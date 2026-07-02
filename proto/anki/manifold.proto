@@ -1,0 +1,100 @@
+// Copyright: Ankitects Pty Ltd and contributors
+// License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package anki.manifold;
+
+import "anki/generic.proto";
+
+service ManifoldService {
+  rpc GetTopicGraph(generic.Empty) returns (TopicGraphResponse);
+  // Read-only: decides which eligible skill cards to serve next and in what
+  // order over the prerequisite DAG. It reads FSRS state, due timing and the
+  // blueprint; it never mutates cards, scheduling or the queue.
+  rpc BuildSessionQueue(generic.Empty) returns (SessionQueueResponse);
+}
+
+// Implicitly includes any of the above methods that are not listed in the
+// backend service.
+service BackendManifoldService {}
+
+message TopicGraphResponse {
+  repeated TopicNode nodes = 1;
+  // Static scoring reference data (scale, ETS distribution + anchors, readiness
+  // mapping constants) sourced from the blueprint, so the TS scoring layer has
+  // a single source of truth for the readiness map rather than a duplicated
+  // table.
+  ScoringConfig scoring_config = 2;
+}
+
+message TopicNode {
+  string id = 1;
+  string title = 2;
+  string area = 3;
+  string tier = 4;
+  float weight = 5;
+  repeated string prereqs = 6;
+  string lock_state = 7;
+  uint32 mastered = 8;
+  uint32 total = 9;
+  float avg_recall = 10;
+  float avg_stability = 11;
+  float coverage = 12;
+  // Accuracy on *unsupported* (revlog Review-kind) attempts only; 0 when none.
+  float performance = 13;
+  // Count of all graded revlog reviews (any kind), for reference.
+  uint32 graded_reviews = 14;
+  // Count of unsupported (Review-kind) attempts: the honest readiness evidence.
+  uint32 independent_reviews = 15;
+  // Card counts by teaching (scaffolding) level — competence-driven, not
+  // CardType: New (unattempted) / Guided (building) / Independent (>=
+  // independent_successes correct retrievals) / Revisited (relearning a lapse).
+  uint32 level_new = 16;
+  uint32 level_guided = 17;
+  uint32 level_independent = 18;
+  uint32 level_revisited = 19;
+}
+
+// The blueprint's readiness-scale reference data, passed to the scoring layer.
+message ScoringConfig {
+  int32 scale_min = 1;
+  int32 scale_max = 2;
+  double distribution_mean = 3;
+  double distribution_sd = 4;
+  repeated EtsAnchor ets_anchors = 5;
+  // Readiness-mapping constants (chosen, not derived — D19): the median
+  // test-taker's assumed blueprint-weighted raw fraction, the performance SD
+  // used to turn a fraction into a percentile, and the coverage band widener.
+  double median_raw_fraction = 6;
+  double performance_sd = 7;
+  double coverage_band_lambda = 8;
+}
+
+message EtsAnchor {
+  int32 scaled = 1;
+  double percentile_below = 2;
+}
+
+message SessionQueueResponse {
+  // Skill cards to study, already ordered (due before new, interleaved across
+  // topics by points-at-stake). The player walks this list in order.
+  repeated SessionItem items = 1;
+}
+
+message SessionItem {
+  int64 card_id = 1;
+  string skill_id = 2;
+  string skill_name = 3;
+  string topic_id = 4;
+  string topic_title = 5;
+  string tier = 6;
+  // Teaching (scaffolding) level, competence-driven and decoupled from Anki's
+  // learning-steps calendar: 0 New (unattempted), 1 Guided (still building),
+  // 2 Independent (>= independent_successes correct retrievals; reachable the
+  // same day, no graduation required), 3 Revisited (relearning after a lapse).
+  // Read-only label; the player does not yet vary the slide by it.
+  uint32 level = 7;
+}

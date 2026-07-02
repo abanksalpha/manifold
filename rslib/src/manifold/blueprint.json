@@ -1,0 +1,337 @@
+{
+    "version": 2,
+    "exam": "GRE Mathematics Subject Test",
+    "scale": { "min": 200, "max": 990 },
+    "distribution": { "mean": 676, "sd": 154, "n": 7452, "source": "ETS 2019-2023" },
+    "readiness_mapping": {
+        "median_raw_fraction": 0.5,
+        "performance_sd": 0.18,
+        "coverage_band_lambda": 0.1
+    },
+    "thresholds": {
+        "new_per_day": 10,
+        "independent_successes": 1,
+        "unlock_competent_fraction": 0.8
+    },
+    "tier_targets": { "relearn": 0.9, "teach": 0.8, "recognize": 0.6 },
+    "tier_stability": { "relearn": 21, "teach": 21, "recognize": 7 },
+    "ets_anchors": [
+        { "scaled": 900, "percentile_below": 93 },
+        { "scaled": 860, "percentile_below": 86 },
+        { "scaled": 820, "percentile_below": 77 },
+        { "scaled": 800, "percentile_below": 74 },
+        { "scaled": 780, "percentile_below": 70 },
+        { "scaled": 740, "percentile_below": 62 },
+        { "scaled": 700, "percentile_below": 54 },
+        { "scaled": 680, "percentile_below": 50 },
+        { "scaled": 660, "percentile_below": 46 },
+        { "scaled": 620, "percentile_below": 38 },
+        { "scaled": 580, "percentile_below": 30 },
+        { "scaled": 540, "percentile_below": 22 },
+        { "scaled": 500, "percentile_below": 14 },
+        { "scaled": 460, "percentile_below": 7 },
+        { "scaled": 420, "percentile_below": 3 }
+    ],
+    "topics": [
+        {
+            "id": "elementary_algebra",
+            "title": "Elementary algebra",
+            "area": "algebra",
+            "tier": "relearn",
+            "weight": 3,
+            "expected_skills": 6,
+            "prereqs": []
+        },
+
+        {
+            "id": "precalc_functions",
+            "title": "Precalculus & functions",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 4,
+            "expected_skills": 4,
+            "prereqs": ["elementary_algebra"]
+        },
+        {
+            "id": "trigonometry",
+            "title": "Trigonometry",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 2,
+            "expected_skills": 5,
+            "prereqs": ["precalc_functions"]
+        },
+        {
+            "id": "coordinate_geometry",
+            "title": "Coordinate geometry",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 3,
+            "expected_skills": 4,
+            "prereqs": ["precalc_functions", "trigonometry"]
+        },
+        {
+            "id": "limits_continuity",
+            "title": "Limits & continuity",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 4,
+            "expected_skills": 4,
+            "prereqs": ["precalc_functions", "trigonometry"]
+        },
+        {
+            "id": "differential_calc",
+            "title": "Differential calculus",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 5,
+            "expected_skills": 4,
+            "prereqs": ["limits_continuity"]
+        },
+        {
+            "id": "applications_derivatives",
+            "title": "Applications of derivatives",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 5,
+            "expected_skills": 5,
+            "prereqs": ["differential_calc", "coordinate_geometry"]
+        },
+        {
+            "id": "integral_calc",
+            "title": "Integral calculus",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 5,
+            "expected_skills": 4,
+            "prereqs": ["differential_calc"]
+        },
+        {
+            "id": "integration_techniques",
+            "title": "Integration techniques",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 4,
+            "expected_skills": 6,
+            "prereqs": ["integral_calc"]
+        },
+        {
+            "id": "applications_integrals",
+            "title": "Applications of integration",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 3,
+            "expected_skills": 3,
+            "prereqs": ["integral_calc", "coordinate_geometry"]
+        },
+        {
+            "id": "sequences_series",
+            "title": "Sequences & series",
+            "area": "calculus",
+            "tier": "relearn",
+            "weight": 5,
+            "expected_skills": 8,
+            "prereqs": ["integral_calc"]
+        },
+        {
+            "id": "multivariable_diff",
+            "title": "Multivariable differential calculus",
+            "area": "calculus",
+            "tier": "teach",
+            "weight": 4,
+            "expected_skills": 6,
+            "prereqs": ["differential_calc", "coordinate_geometry"]
+        },
+        {
+            "id": "multivariable_int",
+            "title": "Multivariable integral calculus",
+            "area": "calculus",
+            "tier": "teach",
+            "weight": 2,
+            "expected_skills": 3,
+            "prereqs": ["integral_calc", "multivariable_diff"]
+        },
+        {
+            "id": "vector_calc",
+            "title": "Vector calculus",
+            "area": "calculus",
+            "tier": "teach",
+            "weight": 2,
+            "expected_skills": 6,
+            "prereqs": ["multivariable_int"]
+        },
+        {
+            "id": "differential_equations",
+            "title": "Differential equations",
+            "area": "calculus",
+            "tier": "teach",
+            "weight": 2,
+            "expected_skills": 6,
+            "prereqs": ["integration_techniques", "sequences_series"]
+        },
+
+        {
+            "id": "number_theory",
+            "title": "Number theory",
+            "area": "algebra",
+            "tier": "recognize",
+            "weight": 3,
+            "expected_skills": 5,
+            "prereqs": ["elementary_algebra"]
+        },
+        {
+            "id": "linear_algebra_core",
+            "title": "Linear algebra: matrices & systems",
+            "area": "algebra",
+            "tier": "teach",
+            "weight": 5,
+            "expected_skills": 4,
+            "prereqs": ["elementary_algebra"]
+        },
+        {
+            "id": "vector_spaces",
+            "title": "Vector spaces & linear maps",
+            "area": "algebra",
+            "tier": "teach",
+            "weight": 5,
+            "expected_skills": 6,
+            "prereqs": ["linear_algebra_core"]
+        },
+        {
+            "id": "eigen",
+            "title": "Eigenvalues & diagonalization",
+            "area": "algebra",
+            "tier": "teach",
+            "weight": 4,
+            "expected_skills": 3,
+            "prereqs": ["vector_spaces"]
+        },
+        {
+            "id": "group_theory",
+            "title": "Group theory",
+            "area": "algebra",
+            "tier": "recognize",
+            "weight": 3,
+            "expected_skills": 6,
+            "prereqs": ["number_theory"]
+        },
+        {
+            "id": "rings_fields",
+            "title": "Rings & fields",
+            "area": "algebra",
+            "tier": "recognize",
+            "weight": 2,
+            "expected_skills": 3,
+            "prereqs": ["group_theory"]
+        },
+
+        {
+            "id": "logic_sets",
+            "title": "Logic, sets & relations",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 3,
+            "expected_skills": 4,
+            "prereqs": ["elementary_algebra"]
+        },
+        {
+            "id": "combinatorics",
+            "title": "Combinatorics",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 3,
+            "expected_skills": 4,
+            "prereqs": ["logic_sets"]
+        },
+        {
+            "id": "graph_theory",
+            "title": "Graph theory",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 1,
+            "expected_skills": 3,
+            "prereqs": ["combinatorics"]
+        },
+        {
+            "id": "algorithms",
+            "title": "Algorithms",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 1,
+            "expected_skills": 3,
+            "prereqs": ["logic_sets"]
+        },
+        {
+            "id": "probability",
+            "title": "Probability",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 4,
+            "expected_skills": 4,
+            "prereqs": ["combinatorics", "integral_calc"]
+        },
+        {
+            "id": "statistics",
+            "title": "Statistics",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 2,
+            "expected_skills": 3,
+            "prereqs": ["probability"]
+        },
+        {
+            "id": "real_analysis_sequences",
+            "title": "Real analysis: sequences & series",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 3,
+            "expected_skills": 4,
+            "prereqs": ["sequences_series"]
+        },
+        {
+            "id": "real_analysis_topology",
+            "title": "Real analysis: continuity & topology of ℝⁿ",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 2,
+            "expected_skills": 4,
+            "prereqs": ["real_analysis_sequences", "limits_continuity"]
+        },
+        {
+            "id": "metric_topology",
+            "title": "Metric & general topology",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 2,
+            "expected_skills": 5,
+            "prereqs": ["real_analysis_topology"]
+        },
+        {
+            "id": "complex_analysis",
+            "title": "Complex analysis",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 2,
+            "expected_skills": 5,
+            "prereqs": ["multivariable_diff", "real_analysis_sequences"]
+        },
+        {
+            "id": "geometry",
+            "title": "Geometry",
+            "area": "additional",
+            "tier": "teach",
+            "weight": 1,
+            "expected_skills": 3,
+            "prereqs": ["trigonometry"]
+        },
+        {
+            "id": "numerical_analysis",
+            "title": "Numerical analysis",
+            "area": "additional",
+            "tier": "recognize",
+            "weight": 1,
+            "expected_skills": 4,
+            "prereqs": ["differential_calc", "linear_algebra_core"]
+        }
+    ]
+}
