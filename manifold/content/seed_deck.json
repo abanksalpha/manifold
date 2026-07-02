@@ -1,0 +1,3120 @@
+{
+    "deck": "GRE Mathematics",
+    "note_type": "Basic",
+    "skills": [
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+            "tier": "relearn",
+            "name": "Symmetric functions of the roots (Vieta's formulas)"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "discriminant_and_the_nature_of_the_roots",
+            "tier": "relearn",
+            "name": "Discriminant and the nature of the roots"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "zero_finding_for_higher_degree_polynomials",
+            "tier": "relearn",
+            "name": "Zero-finding for higher-degree polynomials"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+            "tier": "relearn",
+            "name": "Conjugate roots and building/counting roots (Fundamental Theorem of Algebra)"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "remainder_and_factor_theorems",
+            "tier": "relearn",
+            "name": "Remainder and Factor Theorems"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "sign_analysis_of_a_polynomial_or_rational_inequality",
+            "tier": "relearn",
+            "name": "Sign-analysis of a polynomial or rational inequality"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "absolute_value_equations_and_inequalities",
+            "tier": "relearn",
+            "name": "Absolute-value equations and inequalities"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "domain_from_an_inequality_radicals_logs_denominators",
+            "tier": "relearn",
+            "name": "Domain from an inequality (radicals, logs, denominators)"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "solving_a_small_linear_system",
+            "tier": "relearn",
+            "name": "Solving a small linear system"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "parameter_conditions_for_consistency",
+            "tier": "relearn",
+            "name": "Parameter conditions for consistency"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+            "tier": "relearn",
+            "name": "Simplifying and evaluating exponential/radical expressions"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "solving_exponential_equations",
+            "tier": "relearn",
+            "name": "Solving exponential equations"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "rationalizing_radical_conjugates_and_nested_radicals",
+            "tier": "relearn",
+            "name": "Rationalizing, radical conjugates, and nested radicals"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "log_law_manipulation_and_evaluation",
+            "tier": "relearn",
+            "name": "Log-law manipulation and evaluation"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "solving_logarithmic_equations",
+            "tier": "relearn",
+            "name": "Solving logarithmic equations"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "extracting_a_specific_term_or_coefficient",
+            "tier": "relearn",
+            "name": "Extracting a specific term or coefficient"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "the_constant_power_independent_term",
+            "tier": "relearn",
+            "name": "The constant / power-independent term"
+        },
+        {
+            "topic_id": "elementary_algebra",
+            "skill_id": "sums_of_coefficients_and_binomial_identities",
+            "tier": "relearn",
+            "name": "Sums of coefficients and binomial identities"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "numeric_composite_evaluation",
+            "tier": "relearn",
+            "name": "Numeric composite evaluation"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "symbolic_composition_equation_solving",
+            "tier": "relearn",
+            "name": "Symbolic composition & equation-solving"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "function_decomposition",
+            "tier": "relearn",
+            "name": "Function decomposition"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "functional_equations",
+            "tier": "relearn",
+            "name": "Functional equations"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "self_composition_iteration_fixed_points",
+            "tier": "relearn",
+            "name": "Self-composition, iteration & fixed points"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "largest_domain_determination",
+            "tier": "relearn",
+            "name": "Largest-domain determination"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "range_determination",
+            "tier": "relearn",
+            "name": "Range determination"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "piecewise_defined_evaluation_assembly",
+            "tier": "relearn",
+            "name": "Piecewise-defined evaluation & assembly"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "absolute_value_equations_inequalities_graphs",
+            "tier": "relearn",
+            "name": "Absolute-value equations, inequalities & graphs"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "greatest_integer_floor_function",
+            "tier": "relearn",
+            "name": "Greatest-integer (floor) function"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "compute_an_inverse_function",
+            "tier": "relearn",
+            "name": "Compute an inverse function"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "inverse_value_at_a_point_no_full_inversion",
+            "tier": "relearn",
+            "name": "Inverse value at a point (no full inversion)"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "one_to_one_monotonicity_invertibility_determination",
+            "tier": "relearn",
+            "name": "One-to-one / monotonicity / invertibility determination"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "asymptotes_of_a_rational_function",
+            "tier": "relearn",
+            "name": "Asymptotes of a rational function"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+            "tier": "relearn",
+            "name": "Polynomial roots via factor & remainder theorems"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "counting_real_roots_intersections",
+            "tier": "relearn",
+            "name": "Counting real roots / intersections"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "rootscoefficients_relationships_vieta",
+            "tier": "relearn",
+            "name": "Roots–coefficients relationships (Vieta)"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "graph_transformations",
+            "tier": "relearn",
+            "name": "Graph transformations"
+        },
+        {
+            "topic_id": "precalc_functions",
+            "skill_id": "even_odd_symmetry_periodicity",
+            "tier": "relearn",
+            "name": "Even/odd symmetry & periodicity"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "special_angle_evaluation",
+            "tier": "relearn",
+            "name": "Special-angle evaluation"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "reference_angle_periodicity_reduction",
+            "tier": "relearn",
+            "name": "Reference-angle & periodicity reduction"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "period_amplitude_or_range_of_a_trig_function",
+            "tier": "relearn",
+            "name": "Period, amplitude, or range of a trig function"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "pythagorean_identity_simplification",
+            "tier": "relearn",
+            "name": "Pythagorean-identity simplification"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "sum_difference_double_angle_evaluation",
+            "tier": "relearn",
+            "name": "Sum/difference & double-angle evaluation"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "power_reduction_of_sin_2_cos_2",
+            "tier": "relearn",
+            "name": "Power reduction of \\(\\sin^2\\)/\\(\\cos^2\\)"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "harmonic_addition_max_min_of_a_sin_x_b_cos_x",
+            "tier": "relearn",
+            "name": "Harmonic addition: max/min of \\(a\\sin x+b\\cos x\\)"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "equivalent_expression_identity_recognition",
+            "tier": "relearn",
+            "name": "Equivalent-expression / identity recognition"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "factorable_trig_equation_on_an_interval",
+            "tier": "relearn",
+            "name": "Factorable trig equation on an interval"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "equation_requiring_an_identity_to_reduce",
+            "tier": "relearn",
+            "name": "Equation requiring an identity to reduce"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+            "tier": "relearn",
+            "name": "Compose a trig function with an inverse trig function"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "principal_value_range_of_an_inverse_trig_function",
+            "tier": "relearn",
+            "name": "Principal value / range of an inverse trig function"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "derivative_of_an_inverse_trig_function",
+            "tier": "relearn",
+            "name": "Derivative of an inverse trig function"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "integral_yielding_an_inverse_trig_function",
+            "tier": "relearn",
+            "name": "Integral yielding an inverse trig function"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "law_of_cosines_for_a_missing_side_or_angle",
+            "tier": "relearn",
+            "name": "Law of cosines for a missing side or angle"
+        },
+        {
+            "topic_id": "trigonometry",
+            "skill_id": "law_of_sines_triangle_area_with_an_included_angle",
+            "tier": "relearn",
+            "name": "Law of sines & triangle area with an included angle"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "point_to_line_distance",
+            "tier": "relearn",
+            "name": "Point-to-line distance"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "circle_from_general_form_complete_the_square",
+            "tier": "relearn",
+            "name": "Circle from general form (complete the square)"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+            "tier": "relearn",
+            "name": "Line relationships: slope, intercepts, parallel/perpendicular, intersection"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "tangency_and_reflection_over_a_line",
+            "tier": "relearn",
+            "name": "Tangency and reflection over a line"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "identify_the_conic_from_its_equation",
+            "tier": "relearn",
+            "name": "Identify the conic from its equation"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "ellipse_center_axes_foci_eccentricity",
+            "tier": "relearn",
+            "name": "Ellipse: center, axes, foci, eccentricity"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+            "tier": "relearn",
+            "name": "Hyperbola: asymptotes, foci, eccentricity"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "parabola_vertex_focus_directrix",
+            "tier": "relearn",
+            "name": "Parabola: vertex, focus, directrix"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "polar_rectangular_conversion",
+            "tier": "relearn",
+            "name": "Polar ↔ rectangular conversion"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "recognize_a_polar_curve",
+            "tier": "relearn",
+            "name": "Recognize a polar curve"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "area_enclosed_by_a_polar_curve",
+            "tier": "relearn",
+            "name": "Area enclosed by a polar curve"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "slope_and_tangents_of_a_polar_curve",
+            "tier": "relearn",
+            "name": "Slope and tangents of a polar curve"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "slope_of_a_parametric_curve_at_a_point",
+            "tier": "relearn",
+            "name": "Slope of a parametric curve at a point"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+            "tier": "relearn",
+            "name": "Tangent lines, horizontal/vertical tangents, concavity"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "arc_length_of_a_parametric_or_polar_curve",
+            "tier": "relearn",
+            "name": "Arc length of a parametric or polar curve"
+        },
+        {
+            "topic_id": "coordinate_geometry",
+            "skill_id": "eliminate_the_parameter_identify_the_cartesian_curve",
+            "tier": "relearn",
+            "name": "Eliminate the parameter / identify the Cartesian curve"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "removable_discontinuity_limit_factor_and_cancel",
+            "tier": "relearn",
+            "name": "Removable-discontinuity limit (factor and cancel)"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "conjugate_rationalizing_limit",
+            "tier": "relearn",
+            "name": "Conjugate / rationalizing limit"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "special_trigonometric_limit",
+            "tier": "relearn",
+            "name": "Special trigonometric limit"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "the_number_e_limit",
+            "tier": "relearn",
+            "name": "The number e limit"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "derivative_in_disguise_limit_equals_f_a",
+            "tier": "relearn",
+            "name": "Derivative in disguise (limit equals \\(f'(a)\\))"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "one_sided_limits_and_piecewise_existence",
+            "tier": "relearn",
+            "name": "One-sided limits and piecewise / existence"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "squeeze_sandwich_theorem",
+            "tier": "relearn",
+            "name": "Squeeze (sandwich) theorem"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "greatest_integer_floor_function_limit",
+            "tier": "relearn",
+            "name": "Greatest-integer / floor-function limit"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "solve_for_the_constant_that_makes_a_piecewise_functi",
+            "tier": "relearn",
+            "name": "Solve for the constant that makes a piecewise function continuous"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "classify_the_discontinuity",
+            "tier": "relearn",
+            "name": "Classify the discontinuity"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "intermediate_value_theorem_guaranteed_root_sign_chan",
+            "tier": "relearn",
+            "name": "Intermediate Value Theorem: guaranteed root / sign change"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "continuity_versus_differentiability_conceptual",
+            "tier": "relearn",
+            "name": "Continuity versus differentiability (conceptual)"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "direct_l_hopital_on_0_0_or",
+            "tier": "relearn",
+            "name": "Direct L'Hopital on 0/0 or ∞/∞"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "log_transform_for_1_infty_0_0_infty_0",
+            "tier": "relearn",
+            "name": "Log-transform for \\(1^{\\infty}\\), \\(0^{0}\\), \\(\\infty^{0}\\)"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "growth_rate_hierarchy_comparison",
+            "tier": "relearn",
+            "name": "Growth-rate hierarchy comparison"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "rational_function_end_behavior_degree_rule",
+            "tier": "relearn",
+            "name": "Rational-function end behavior (degree rule)"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "limits_at_infinity_with_radicals_sign_care",
+            "tier": "relearn",
+            "name": "Limits at infinity with radicals (sign care)"
+        },
+        {
+            "topic_id": "limits_continuity",
+            "skill_id": "transcendental_end_behavior_horizontal_asymptotes",
+            "tier": "relearn",
+            "name": "Transcendental end behavior / horizontal asymptotes"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "limit_disguised_as_a_derivative",
+            "tier": "relearn",
+            "name": "Limit disguised as a derivative"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "first_principles_computation_correct_difference_quot",
+            "tier": "relearn",
+            "name": "First-principles computation / correct difference quotient"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "differentiability_vs_continuity_solve_for_the_consta",
+            "tier": "relearn",
+            "name": "Differentiability vs. continuity (solve for the constants)"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+            "tier": "relearn",
+            "name": "Product/quotient rule at a point (table of values)"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "symbolic_product_quotient_derivative",
+            "tier": "relearn",
+            "name": "Symbolic product/quotient derivative"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "nested_composite_derivative",
+            "tier": "relearn",
+            "name": "Nested composite derivative"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "chain_rule_with_an_abstract_or_tabulated_inner_funct",
+            "tier": "relearn",
+            "name": "Chain rule with an abstract or tabulated inner function"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "implicit_dy_dx_and_slope_at_a_point",
+            "tier": "relearn",
+            "name": "Implicit `dy/dx` (and slope at a point)"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+            "tier": "relearn",
+            "name": "Tangent / normal line and horizontal-or-vertical tangents (implicit)"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "second_derivative_by_implicit_differentiation",
+            "tier": "relearn",
+            "name": "Second derivative by implicit differentiation"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "standard_function_derivative_recall",
+            "tier": "relearn",
+            "name": "Standard-function derivative recall"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "logarithmic_differentiation_x_x_type",
+            "tier": "relearn",
+            "name": "Logarithmic differentiation (`x^x`-type)"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "derivative_of_an_inverse_function_f1_b",
+            "tier": "relearn",
+            "name": "Derivative of an inverse function, `(f⁻¹)'(b)`"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "higher_order_n_th_derivative_pattern",
+            "tier": "relearn",
+            "name": "Higher-order / `n`th-derivative pattern"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "clean_simplifying_derivative_identity_collapse",
+            "tier": "relearn",
+            "name": "Clean-simplifying derivative (identity collapse)"
+        },
+        {
+            "topic_id": "differential_calc",
+            "skill_id": "tangent_line_to_an_explicit_curve",
+            "tier": "relearn",
+            "name": "Tangent line to an explicit curve"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "geometric_related_rates_expanding_or_filling_solids",
+            "tier": "relearn",
+            "name": "Geometric related rates (expanding or filling solids)"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "related_rates_via_similar_triangles_or_a_changing_an",
+            "tier": "relearn",
+            "name": "Related rates via similar triangles or a changing angle"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "locate_and_classify_local_extrema",
+            "tier": "relearn",
+            "name": "Locate and classify local extrema"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "absolute_global_extrema",
+            "tier": "relearn",
+            "name": "Absolute (global) extrema"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "count_critical_points_relative_extrema",
+            "tier": "relearn",
+            "name": "Count critical points / relative extrema"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "parameter_tuned_to_force_a_critical_point_or_extremu",
+            "tier": "relearn",
+            "name": "Parameter tuned to force a critical point or extremum"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "find_the_c_guaranteed_by_mvt_rolle",
+            "tier": "relearn",
+            "name": "Find the `c` guaranteed by MVT/Rolle"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "mvt_bound_on_a_function_value_or_an_inequality",
+            "tier": "relearn",
+            "name": "MVT bound on a function value or an inequality"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "count_real_roots_of_an_equation",
+            "tier": "relearn",
+            "name": "Count real roots of an equation"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "intervals_of_increase_decrease_and_concavity",
+            "tier": "relearn",
+            "name": "Intervals of increase/decrease and concavity"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "inflection_points",
+            "tier": "relearn",
+            "name": "Inflection points"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "deduce_f_s_behavior_from_the_graph_or_sign_of_f_or_f",
+            "tier": "relearn",
+            "name": "Deduce `f`'s behavior from the graph or sign of `f'` (or `f''`)"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "geometric_cost_optimization_with_a_constraint",
+            "tier": "relearn",
+            "name": "Geometric / cost optimization with a constraint"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "minimum_distance_closest_point",
+            "tier": "relearn",
+            "name": "Minimum distance / closest point"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "tangent_line_equation_or_slope_at_a_point",
+            "tier": "relearn",
+            "name": "Tangent-line equation or slope at a point"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "tangent_with_a_prescribed_condition",
+            "tier": "relearn",
+            "name": "Tangent with a prescribed condition"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "linear_approximation_differentials",
+            "tier": "relearn",
+            "name": "Linear approximation / differentials"
+        },
+        {
+            "topic_id": "applications_derivatives",
+            "skill_id": "newton_s_method_iteration",
+            "tier": "relearn",
+            "name": "Newton's method iteration"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "differentiate_an_accumulation_function_ftc_1_chain_r",
+            "tier": "relearn",
+            "name": "Differentiate an accumulation function (FTC-1 + chain rule)"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "extrema_monotonicity_of_an_accumulation_function",
+            "tier": "relearn",
+            "name": "Extrema / monotonicity of an accumulation function"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+            "tier": "relearn",
+            "name": "Limit of an integral (FTC-1 + L'Hôpital / Taylor)"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+            "tier": "relearn",
+            "name": "Recognize a limit of a sum as a definite integral"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "definite_integral_from_the_limit_of_sums_definition",
+            "tier": "relearn",
+            "name": "Definite integral from the limit-of-sums definition"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+            "tier": "relearn",
+            "name": "Evaluate a definite integral via FTC-2 (standard antiderivatives)"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "recover_a_function_from_its_derivative_initial_condi",
+            "tier": "relearn",
+            "name": "Recover a function from its derivative + initial condition"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "integrate_absolute_value_piecewise_integrands",
+            "tier": "relearn",
+            "name": "Integrate absolute-value / piecewise integrands"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "compute_the_average_value_of_a_function",
+            "tier": "relearn",
+            "name": "Compute the average value of a function"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "mean_value_theorem_for_integrals",
+            "tier": "relearn",
+            "name": "Mean Value Theorem for integrals"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "odd_even_symmetry_shortcut",
+            "tier": "relearn",
+            "name": "Odd/even symmetry shortcut"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "linearity_interval_additivity_with_given_values",
+            "tier": "relearn",
+            "name": "Linearity & interval additivity with given values"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "bounding_comparing_integrals_without_computing",
+            "tier": "relearn",
+            "name": "Bounding / comparing integrals without computing"
+        },
+        {
+            "topic_id": "integral_calc",
+            "skill_id": "reflection_king_s_property",
+            "tier": "relearn",
+            "name": "Reflection (\"king's\") property"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "direct_u_substitution_reverse_chain_rule",
+            "tier": "relearn",
+            "name": "Direct u-substitution (reverse chain rule)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+            "tier": "relearn",
+            "name": "Substitution in a definite integral (change the limits)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "symmetry_shortcut_odd_even_reflection",
+            "tier": "relearn",
+            "name": "Symmetry shortcut (odd/even; reflection)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "single_integration_by_parts_liate_choice",
+            "tier": "relearn",
+            "name": "Single integration by parts (LIATE choice)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "cyclic_parts_the_integral_returns",
+            "tier": "relearn",
+            "name": "Cyclic parts (the integral returns)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "reduction_formulas_wallis_type_powers",
+            "tier": "relearn",
+            "name": "Reduction formulas & Wallis-type powers"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "powers_of_sine_and_cosine",
+            "tier": "relearn",
+            "name": "Powers of sine and cosine"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "powers_of_tangent_and_secant",
+            "tier": "relearn",
+            "name": "Powers of tangent and secant"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "product_to_sum_orthogonality_style_integrals",
+            "tier": "relearn",
+            "name": "Product-to-sum (orthogonality-style) integrals"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "radical_substitution_a2x2_a2_x2_x2a2",
+            "tier": "relearn",
+            "name": "Radical substitution `√(a²−x²)`, `√(a²+x²)`, `√(x²−a²)`"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "inverse_trig_standard_forms_with_completing_the_squa",
+            "tier": "relearn",
+            "name": "Inverse-trig standard forms (with completing the square)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "distinct_linear_factors_sum_of_logarithms",
+            "tier": "relearn",
+            "name": "Distinct linear factors → sum of logarithms"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "repeated_factors_irreducible_quadratics",
+            "tier": "relearn",
+            "name": "Repeated factors & irreducible quadratics"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "evaluate_a_convergent_improper_integral",
+            "tier": "relearn",
+            "name": "Evaluate a convergent improper integral"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "convergence_vs_divergence_p_test_comparison",
+            "tier": "relearn",
+            "name": "Convergence vs. divergence (p-test & comparison)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "named_parameter_improper_integrals_gamma_factorial",
+            "tier": "relearn",
+            "name": "Named/parameter improper integrals (Gamma, factorial)"
+        },
+        {
+            "topic_id": "integration_techniques",
+            "skill_id": "identify_or_verify_the_antiderivative",
+            "tier": "relearn",
+            "name": "Identify or verify the antiderivative"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "area_between_two_curves_integrate_in_x",
+            "tier": "relearn",
+            "name": "Area between two curves (integrate in x)"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "area_by_horizontal_strips_integrate_in_y",
+            "tier": "relearn",
+            "name": "Area by horizontal strips (integrate in y)"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "definite_integral_evaluated_as_a_geometric_area",
+            "tier": "relearn",
+            "name": "Definite integral evaluated as a geometric area"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "choose_the_correct_integral_set_up_for_a_region",
+            "tier": "relearn",
+            "name": "Choose the correct integral set-up for a region"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "disk_washer_volume_about_a_coordinate_axis",
+            "tier": "relearn",
+            "name": "Disk/washer volume about a coordinate axis"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "shell_method_volume",
+            "tier": "relearn",
+            "name": "Shell-method volume"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "revolution_about_a_line_other_than_an_axis",
+            "tier": "relearn",
+            "name": "Revolution about a line other than an axis"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "volume_by_known_cross_sections",
+            "tier": "relearn",
+            "name": "Volume by known cross-sections"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "arc_length_with_a_perfect_square_integrand",
+            "tier": "relearn",
+            "name": "Arc length with a perfect-square integrand"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "surface_area_of_a_surface_of_revolution",
+            "tier": "relearn",
+            "name": "Surface area of a surface of revolution"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "displacement_vs_total_distance_from_velocity",
+            "tier": "relearn",
+            "name": "Displacement vs. total distance from velocity"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "average_value_of_a_function",
+            "tier": "relearn",
+            "name": "Average value of a function"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "accumulated_net_change_from_a_rate",
+            "tier": "relearn",
+            "name": "Accumulated net change from a rate"
+        },
+        {
+            "topic_id": "applications_integrals",
+            "skill_id": "area_or_volume_as_a_function_of_a_parameter",
+            "tier": "relearn",
+            "name": "Area or volume as a function of a parameter"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "closed_form_sequence_limit",
+            "tier": "relearn",
+            "name": "Closed-form sequence limit"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "recursive_nested_radical_limit_fixed_point",
+            "tier": "relearn",
+            "name": "Recursive / nested-radical limit (fixed point)"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "transcendental_growth_rate_sequence_limit",
+            "tier": "relearn",
+            "name": "Transcendental & growth-rate sequence limit"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "nth_term_divergence_test",
+            "tier": "relearn",
+            "name": "nth-term (divergence) test"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "infinite_geometric_series_sum",
+            "tier": "relearn",
+            "name": "Infinite geometric series sum"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "telescoping_series_sum",
+            "tier": "relearn",
+            "name": "Telescoping series sum"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "arithmeticgeometric_sum_sum_n_x_n",
+            "tier": "relearn",
+            "name": "Arithmetic–geometric sum (\\(\\sum n x^{n}\\))"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "p_series_recognition",
+            "tier": "relearn",
+            "name": "p-series recognition"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "integral_test_application_log_type_series",
+            "tier": "relearn",
+            "name": "Integral test application (log-type series)"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "convergence_by_comparison_limit_comparison",
+            "tier": "relearn",
+            "name": "Convergence by comparison / limit-comparison"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "which_of_the_following_converge_i_ii_iii_sort",
+            "tier": "relearn",
+            "name": "\"Which of the following converge?\" (I/II/III sort)"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "ratio_test_factorial_exponential_series",
+            "tier": "relearn",
+            "name": "Ratio test (factorial / exponential series)"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "root_test_cdot_n_forms",
+            "tier": "relearn",
+            "name": "Root test (\\((\\,\\cdot\\,)^{n}\\) forms)"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "alternating_series_convergence_absolute_vs_condition",
+            "tier": "relearn",
+            "name": "Alternating series: convergence, absolute vs conditional"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "alternating_series_error_bound",
+            "tier": "relearn",
+            "name": "Alternating series error bound"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "radius_interval_of_convergence",
+            "tier": "relearn",
+            "name": "Radius & interval of convergence"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "standard_maclaurin_recall_derivative_or_coefficient",
+            "tier": "relearn",
+            "name": "Standard Maclaurin recall → derivative or coefficient"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "taylor_coefficient_of_a_product_composite",
+            "tier": "relearn",
+            "name": "Taylor coefficient of a product / composite"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "numerical_series_summed_via_a_known_series",
+            "tier": "relearn",
+            "name": "Numerical series summed via a known series"
+        },
+        {
+            "topic_id": "sequences_series",
+            "skill_id": "lagrange_remainder_error_bound",
+            "tier": "relearn",
+            "name": "Lagrange remainder error bound"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "first_order_partial_derivative_at_a_point",
+            "tier": "teach",
+            "name": "First-order partial derivative at a point"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "higher_order_and_mixed_partials_clairaut",
+            "tier": "teach",
+            "name": "Higher-order and mixed partials (Clairaut)"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "verify_a_function_satisfies_a_pde_harmonic_laplace",
+            "tier": "teach",
+            "name": "Verify a function satisfies a PDE (harmonic / Laplace)"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "directional_derivative_in_a_given_direction",
+            "tier": "teach",
+            "name": "Directional derivative in a given direction"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "direction_and_rate_of_steepest_ascent",
+            "tier": "teach",
+            "name": "Direction and rate of steepest ascent"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+            "tier": "teach",
+            "name": "Chain rule along a parametrized path (`dz/dt`)"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "implicit_differentiation_for_a_partial_derivative",
+            "tier": "teach",
+            "name": "Implicit differentiation for a partial derivative"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "tangent_plane_to_a_surface",
+            "tier": "teach",
+            "name": "Tangent plane to a surface"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "normal_vector_normal_line_to_a_surface",
+            "tier": "teach",
+            "name": "Normal vector / normal line to a surface"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "linear_approximation_and_the_total_differential",
+            "tier": "teach",
+            "name": "Linear approximation and the total differential"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+            "tier": "teach",
+            "name": "Find and classify critical points (discriminant / Hessian test)"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "count_or_characterize_saddle_points",
+            "tier": "teach",
+            "name": "Count or characterize saddle points"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "absolute_extrema_on_a_closed_region",
+            "tier": "teach",
+            "name": "Absolute extrema on a closed region"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "constrained_extremum_via_lagrange_multipliers",
+            "tier": "teach",
+            "name": "Constrained extremum via Lagrange multipliers"
+        },
+        {
+            "topic_id": "multivariable_diff",
+            "skill_id": "closest_farthest_point_via_a_constraint",
+            "tier": "teach",
+            "name": "Closest / farthest point via a constraint"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "iterated_double_integral_over_a_rectangle",
+            "tier": "teach",
+            "name": "Iterated double integral over a rectangle"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+            "tier": "teach",
+            "name": "Double integral over a curve-bounded region (Type I / Type II)"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "volume_under_a_surface_between_two_surfaces",
+            "tier": "teach",
+            "name": "Volume under a surface / between two surfaces"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "conversion_to_polar_coordinates",
+            "tier": "teach",
+            "name": "Conversion to polar coordinates"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "area_of_a_planar_region_via_a_double_integral",
+            "tier": "teach",
+            "name": "Area of a planar region via a double integral"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+            "tier": "teach",
+            "name": "Symmetry / odd-integrand vanishing shortcut"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+            "tier": "teach",
+            "name": "Average value (and mass / center of mass) over a region"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "reverse_the_order_to_make_the_integral_solvable",
+            "tier": "teach",
+            "name": "Reverse the order to make the integral solvable"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "rewrite_match_the_swapped_iterated_integral_setup_on",
+            "tier": "teach",
+            "name": "Rewrite / match the swapped iterated integral (setup only)"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+            "tier": "teach",
+            "name": "Volume of a solid via a triple integral (Cartesian)"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+            "tier": "teach",
+            "name": "Cylindrical coordinates for axially symmetric solids"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "spherical_coordinates_for_balls_cones",
+            "tier": "teach",
+            "name": "Spherical coordinates for balls & cones"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "compute_a_jacobian_determinant",
+            "tier": "teach",
+            "name": "Compute a Jacobian determinant"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+            "tier": "teach",
+            "name": "Evaluate a double integral via a linear / affine change of variables"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "identify_the_region_from_given_limits",
+            "tier": "teach",
+            "name": "Identify the region from given limits"
+        },
+        {
+            "topic_id": "multivariable_int",
+            "skill_id": "set_up_the_iterated_integral_for_a_described_region",
+            "tier": "teach",
+            "name": "Set up the iterated integral for a described region"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "divergence_of_a_vector_field",
+            "tier": "teach",
+            "name": "Divergence of a vector field"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "curl_of_a_vector_field",
+            "tier": "teach",
+            "name": "Curl of a vector field"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "operator_identities_and_type_checking",
+            "tier": "teach",
+            "name": "Operator identities and type-checking"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "work_integral_by_direct_parametrization",
+            "tier": "teach",
+            "name": "Work integral by direct parametrization"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "scalar_line_integral_arc_length_form",
+            "tier": "teach",
+            "name": "Scalar line integral (arc-length form)"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "test_whether_a_field_is_conservative",
+            "tier": "teach",
+            "name": "Test whether a field is conservative"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "evaluate_a_line_integral_via_a_potential_function",
+            "tier": "teach",
+            "name": "Evaluate a line integral via a potential function"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "closed_loop_integral_of_a_conservative_field",
+            "tier": "teach",
+            "name": "Closed-loop integral of a conservative field"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "green_s_theorem_to_evaluate_a_closed_line_integral",
+            "tier": "teach",
+            "name": "Green's theorem to evaluate a closed line integral"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "area_enclosed_via_green_s_theorem",
+            "tier": "teach",
+            "name": "Area enclosed via Green's theorem"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "flux_of_a_vector_field_through_a_surface",
+            "tier": "teach",
+            "name": "Flux of a vector field through a surface"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "scalar_surface_integral_surface_area",
+            "tier": "teach",
+            "name": "Scalar surface integral / surface area"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "stokes_theorem_boundary_line_integral_curl_flux",
+            "tier": "teach",
+            "name": "Stokes' theorem (boundary line integral ↔ curl flux)"
+        },
+        {
+            "topic_id": "vector_calc",
+            "skill_id": "flux_through_a_closed_surface_via_the_divergence_the",
+            "tier": "teach",
+            "name": "Flux through a closed surface via the divergence theorem"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "general_solution_of_a_separable_equation",
+            "tier": "teach",
+            "name": "General solution of a separable equation"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "separable_initial_value_problem_evaluate",
+            "tier": "teach",
+            "name": "Separable initial-value problem → evaluate"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "solve_a_linear_equation_via_integrating_factor",
+            "tier": "teach",
+            "name": "Solve a linear equation via integrating factor"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "identify_the_integrating_factor",
+            "tier": "teach",
+            "name": "Identify the integrating factor"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "test_for_exactness_and_solve",
+            "tier": "teach",
+            "name": "Test for exactness and solve"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "characteristic_equation_with_distinct_real_roots",
+            "tier": "teach",
+            "name": "Characteristic equation with distinct real roots"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "repeated_root",
+            "tier": "teach",
+            "name": "Repeated root"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "complex_conjugate_roots_oscillatory_solution",
+            "tier": "teach",
+            "name": "Complex conjugate roots (oscillatory solution)"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+            "tier": "teach",
+            "name": "Recover the equation (or a root) from a given solution"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "particular_solution_for_a_standard_forcing_term",
+            "tier": "teach",
+            "name": "Particular solution for a standard forcing term"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "correct_trial_form_under_resonance",
+            "tier": "teach",
+            "name": "Correct trial form under resonance"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "second_order_ivp_evaluate",
+            "tier": "teach",
+            "name": "Second-order IVP → evaluate"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "existence_uniqueness_recognition",
+            "tier": "teach",
+            "name": "Existence/uniqueness recognition"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "exponential_growth_decay",
+            "tier": "teach",
+            "name": "Exponential growth & decay"
+        },
+        {
+            "topic_id": "differential_equations",
+            "skill_id": "newton_s_law_of_cooling",
+            "tier": "teach",
+            "name": "Newton's law of cooling"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "fixed_integer_that_always_divides_an_expression",
+            "tier": "recognize",
+            "name": "Fixed integer that always divides an expression"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
+            "tier": "recognize",
+            "name": "GCD via the Euclidean algorithm (and Bézout combination)"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "solvability_of_a_linear_diophantine_equation",
+            "tier": "recognize",
+            "name": "Solvability of a linear Diophantine equation"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "units_digit_of_a_large_power",
+            "tier": "recognize",
+            "name": "Units digit of a large power"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
+            "tier": "recognize",
+            "name": "Remainder of a large power (find the cycle length)"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "last_two_digits_of_a_large_power_mod_100",
+            "tier": "recognize",
+            "name": "Last two digits of a large power (mod 100)"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+            "tier": "recognize",
+            "name": "Solve a linear congruence / find a modular inverse"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
+            "tier": "recognize",
+            "name": "Use residues to rule out or classify (squares mod n, parity)"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
+            "tier": "recognize",
+            "name": "Reduce a prime-modulus power with Fermat's little theorem"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
+            "tier": "recognize",
+            "name": "Reduce a composite-modulus power with Euler's theorem"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
+            "tier": "recognize",
+            "name": "Smallest integer satisfying simultaneous remainder conditions"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "the_gcd_lcm_product_relation",
+            "tier": "recognize",
+            "name": "The gcd · lcm = product relation"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
+            "tier": "recognize",
+            "name": "Highest power of a prime dividing a factorial (Legendre) / trailing zeros"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "number_of_positive_divisors_from_the_factorization",
+            "tier": "recognize",
+            "name": "Number of positive divisors from the factorization"
+        },
+        {
+            "topic_id": "number_theory",
+            "skill_id": "sum_of_the_divisors_from_the_factorization",
+            "tier": "recognize",
+            "name": "Sum of the divisors from the factorization"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "solve_a_small_linear_system",
+            "tier": "teach",
+            "name": "Solve a small linear system"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "parameter_dependent_solvability_unique_none_infinite",
+            "tier": "teach",
+            "name": "Parameter-dependent solvability (unique / none / infinitely many)"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "rank_echelon_form_of_a_matrix",
+            "tier": "teach",
+            "name": "Rank / echelon form of a matrix"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "matrix_multiplication_and_non_commutativity",
+            "tier": "teach",
+            "name": "Matrix multiplication and non-commutativity"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "powers_of_a_structured_matrix",
+            "tier": "teach",
+            "name": "Powers of a structured matrix"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "inverse_of_a_22_matrix_and_when_it_exists",
+            "tier": "teach",
+            "name": "Inverse of a 2×2 matrix (and when it exists)"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "identities_that_hold_for_all_matrices_true_false",
+            "tier": "teach",
+            "name": "Identities that hold for all matrices (true/false)"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "trace_value_and_properties",
+            "tier": "teach",
+            "name": "Trace value and properties"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "direct_determinant_computation_22_33",
+            "tier": "teach",
+            "name": "Direct determinant computation (2×2, 3×3)"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "determinant_transformation_rules",
+            "tier": "teach",
+            "name": "Determinant transformation rules"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "effect_of_row_column_operations_and_special_rows",
+            "tier": "teach",
+            "name": "Effect of row/column operations and special rows"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "parameter_that_makes_a_matrix_singular_solve_det_0",
+            "tier": "teach",
+            "name": "Parameter that makes a matrix singular (solve det = 0)"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "invertible_matrix_theorem_equivalences",
+            "tier": "teach",
+            "name": "Invertible Matrix Theorem equivalences"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "homogeneous_systems_nontrivial_solutions",
+            "tier": "teach",
+            "name": "Homogeneous systems & nontrivial solutions"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "solve_ax_b_using_the_inverse_and_consistency",
+            "tier": "teach",
+            "name": "Solve Ax = b using the inverse (and consistency)"
+        },
+        {
+            "topic_id": "linear_algebra_core",
+            "skill_id": "solve_a_matrix_equation_for_an_unknown_matrix",
+            "tier": "teach",
+            "name": "Solve a matrix equation for an unknown matrix"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "subspace_test_which_subsets_are_subspaces",
+            "tier": "teach",
+            "name": "Subspace test (which subsets are subspaces)"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "dimension_of_a_familiar_vector_space",
+            "tier": "teach",
+            "name": "Dimension of a familiar vector space"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "sum_intersection_of_subspaces_dimension_formula",
+            "tier": "teach",
+            "name": "Sum & intersection of subspaces (dimension formula)"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+            "tier": "teach",
+            "name": "Test independence / spanning / basis of explicit vectors"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "parameter_value_forcing_linear_dependence",
+            "tier": "teach",
+            "name": "Parameter value forcing linear dependence"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "dimension_of_a_span_extract_or_extend_a_basis",
+            "tier": "teach",
+            "name": "Dimension of a span; extract or extend a basis"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "coordinates_relative_to_a_basis_change_of_basis",
+            "tier": "teach",
+            "name": "Coordinates relative to a basis / change of basis"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "injective_surjective_from_domaincodomain_dimensions",
+            "tier": "teach",
+            "name": "Injective / surjective from domain–codomain dimensions"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "compute_rank_and_nullity_of_a_matrix_or_map",
+            "tier": "teach",
+            "name": "Compute rank and nullity of a matrix or map"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "basis_dimension_of_the_null_space_solution_space_of",
+            "tier": "teach",
+            "name": "Basis & dimension of the null space (solution space of `Ax = 0`)"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "column_space_consistency_of_ax_b",
+            "tier": "teach",
+            "name": "Column space & consistency of `Ax = b`"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "is_the_map_linear",
+            "tier": "teach",
+            "name": "Is the map linear?"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "matrix_of_a_linear_transformation_in_given_bases",
+            "tier": "teach",
+            "name": "Matrix of a linear transformation in given bases"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "kernel_image_of_a_concrete_transformation",
+            "tier": "teach",
+            "name": "Kernel & image of a concrete transformation"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "geometric_operators_projection_and_reflection_identi",
+            "tier": "teach",
+            "name": "Geometric operators: projection and reflection identities"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "orthogonal_projection_onto_a_line_or_subspace_neares",
+            "tier": "teach",
+            "name": "Orthogonal projection onto a line or subspace; nearest point & distance"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "inner_products_norm_angle_orthogonality_cauchyschwar",
+            "tier": "teach",
+            "name": "Inner products: norm, angle, orthogonality, Cauchy–Schwarz"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "orthogonal_complement_orthogonality_of_the_four_subs",
+            "tier": "teach",
+            "name": "Orthogonal complement & orthogonality of the four subspaces"
+        },
+        {
+            "topic_id": "vector_spaces",
+            "skill_id": "orthonormal_bases_gramschmidt_orthogonal_matrices",
+            "tier": "teach",
+            "name": "Orthonormal bases: Gram–Schmidt & orthogonal matrices"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+            "tier": "teach",
+            "name": "Eigenvalues of an explicit small matrix"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "find_or_verify_an_eigenvector",
+            "tier": "teach",
+            "name": "Find or verify an eigenvector"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "eigenvalue_eigenvector_conceptual_truefalse",
+            "tier": "teach",
+            "name": "Eigenvalue/eigenvector conceptual true–false"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "characteristic_polynomial_and_its_invariants",
+            "tier": "teach",
+            "name": "Characteristic polynomial and its invariants"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "algebraic_vs_geometric_multiplicity",
+            "tier": "teach",
+            "name": "Algebraic vs. geometric multiplicity"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "cayleyhamilton_reduce_powers_or_invert",
+            "tier": "teach",
+            "name": "Cayley–Hamilton: reduce powers or invert"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "decide_whether_a_matrix_is_diagonalizable",
+            "tier": "teach",
+            "name": "Decide whether a matrix is diagonalizable"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "distinct_eigenvalues_diagonalizable_shortcut",
+            "tier": "teach",
+            "name": "Distinct eigenvalues ⇒ diagonalizable (shortcut)"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "similar_matrices_and_shared_invariants",
+            "tier": "teach",
+            "name": "Similar matrices and shared invariants"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "missing_eigenvalue_from_the_trace",
+            "tier": "teach",
+            "name": "Missing eigenvalue from the trace"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "determinant_as_the_product_of_eigenvalues_and_singul",
+            "tier": "teach",
+            "name": "Determinant as the product of eigenvalues (and singularity)"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "triangular_or_diagonal_matrix",
+            "tier": "teach",
+            "name": "Triangular or diagonal matrix"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "eigenvalues_of_a_function_of_a",
+            "tier": "teach",
+            "name": "Eigenvalues of a function of A"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "real_symmetric_matrices",
+            "tier": "teach",
+            "name": "Real symmetric matrices"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "projections_and_idempotents",
+            "tier": "teach",
+            "name": "Projections and idempotents"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "orthogonal_and_rotation_matrices",
+            "tier": "teach",
+            "name": "Orthogonal and rotation matrices"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "rank_one_and_structured_matrices",
+            "tier": "teach",
+            "name": "Rank-one and structured matrices"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "compute_a_high_power_via_diagonalization",
+            "tier": "teach",
+            "name": "Compute a high power via diagonalization"
+        },
+        {
+            "topic_id": "eigen",
+            "skill_id": "long_run_behavior_via_the_dominant_eigenvalue",
+            "tier": "teach",
+            "name": "Long-run behavior via the dominant eigenvalue"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "order_of_a_group_element",
+            "tier": "recognize",
+            "name": "Order of a group element"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "counting_elements_of_a_given_order",
+            "tier": "recognize",
+            "name": "Counting elements of a given order"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "recognizing_subgroups_subgroup_test",
+            "tier": "recognize",
+            "name": "Recognizing subgroups (subgroup test)"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "counting_generators_of_a_cyclic_group",
+            "tier": "recognize",
+            "name": "Counting generators of a cyclic group"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "deciding_whether_a_group_is_cyclic",
+            "tier": "recognize",
+            "name": "Deciding whether a group is cyclic"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "lagrange_divisibility_constraints",
+            "tier": "recognize",
+            "name": "Lagrange divisibility constraints"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "cosets_index",
+            "tier": "recognize",
+            "name": "Cosets & index"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "recognizing_normal_subgroups",
+            "tier": "recognize",
+            "name": "Recognizing normal subgroups"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "identifying_a_quotient_group_s_structure",
+            "tier": "recognize",
+            "name": "Identifying a quotient group's structure"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "counting_homomorphisms_between_groups",
+            "tier": "recognize",
+            "name": "Counting homomorphisms between groups"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "kernel_image_the_first_isomorphism_theorem",
+            "tier": "recognize",
+            "name": "Kernel, image & the first isomorphism theorem"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "isomorphic_or_not_distinguishing_invariants",
+            "tier": "recognize",
+            "name": "Isomorphic or not? (distinguishing invariants)"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "order_of_a_permutation_from_cycle_type",
+            "tier": "recognize",
+            "name": "Order of a permutation from cycle type"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "permutation_products_inverses_in_cycle_notation",
+            "tier": "recognize",
+            "name": "Permutation products & inverses in cycle notation"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "parity_transpositions_the_alternating_group",
+            "tier": "recognize",
+            "name": "Parity, transpositions & the alternating group"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "classifying_groups_of_small_order",
+            "tier": "recognize",
+            "name": "Classifying groups of small order"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "direct_products_finite_abelian_group_classification",
+            "tier": "recognize",
+            "name": "Direct products & finite abelian group classification"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "recognizing_non_group_structures_which_axiom_fails",
+            "tier": "recognize",
+            "name": "Recognizing (non)group structures / which axiom fails"
+        },
+        {
+            "topic_id": "group_theory",
+            "skill_id": "general_group_property_assertions_which_must_be_true",
+            "tier": "recognize",
+            "name": "General group-property assertions (\"which must be true\")"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "ideal_vs_subring_recognition",
+            "tier": "recognize",
+            "name": "Ideal vs. subring recognition"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "quotient_rings_prime_maximal_ideals_and_the_r_i_corr",
+            "tier": "recognize",
+            "name": "Quotient rings, prime & maximal ideals, and the `R/I` correspondence"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "ring_homomorphisms_recognition_kernel_image_and_coun",
+            "tier": "recognize",
+            "name": "Ring homomorphisms: recognition, kernel/image, and counting"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "units_of_a_ring_find_or_count",
+            "tier": "recognize",
+            "name": "Units of a ring (find or count)"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "integral_domain_field_logic_the_hierarchy",
+            "tier": "recognize",
+            "name": "Integral-domain ⇔ field logic (the hierarchy)"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "field_of_fractions_recognition",
+            "tier": "recognize",
+            "name": "Field of fractions recognition"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "zero_divisors_identify_or_count_especially_in_z_n",
+            "tier": "recognize",
+            "name": "Zero divisors (identify or count), especially in `Z/n`"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "nilpotent_and_idempotent_elements",
+            "tier": "recognize",
+            "name": "Nilpotent and idempotent elements"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "polynomial_irreducibility_test",
+            "tier": "recognize",
+            "name": "Polynomial irreducibility test"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "building_a_field_as_f_x_f",
+            "tier": "recognize",
+            "name": "Building a field as `F[x]/(f)`"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "characteristic_computation",
+            "tier": "recognize",
+            "name": "Characteristic computation"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "z_n_is_a_field_integral_domain_n_is_prime",
+            "tier": "recognize",
+            "name": "`Z/n` is a field / integral domain ⇔ `n` is prime"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "order_of_a_finite_field_must_be_a_prime_power",
+            "tier": "recognize",
+            "name": "Order of a finite field must be a prime power"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "multiplicative_structure_of_a_finite_field",
+            "tier": "recognize",
+            "name": "Multiplicative structure of a finite field"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "classify_the_structure_which_of_these_is_a_field_rin",
+            "tier": "recognize",
+            "name": "Classify the structure (\"which of these is a field / ring / domain?\")"
+        },
+        {
+            "topic_id": "rings_fields",
+            "skill_id": "theorem_screen_counterexamples_the_i_ii_iii_format",
+            "tier": "recognize",
+            "name": "Theorem screen & counterexamples (the \"I / II / III\" format)"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "negating_a_quantified_statement",
+            "tier": "recognize",
+            "name": "Negating a quantified statement"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "contrapositive_converse_inverse",
+            "tier": "recognize",
+            "name": "Contrapositive, converse & inverse"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "equivalence_of_compound_statements_truth_tables",
+            "tier": "recognize",
+            "name": "Equivalence of compound statements (truth tables)"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "tautology_contradiction_recognition",
+            "tier": "recognize",
+            "name": "Tautology / contradiction recognition"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "valid_vs_invalid_deduction",
+            "tier": "recognize",
+            "name": "Valid vs. invalid deduction"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+            "tier": "recognize",
+            "name": "Venn-diagram region cardinality (two or three sets)"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "set_algebra_identities_simplification",
+            "tier": "recognize",
+            "name": "Set-algebra identities & simplification"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "cardinality_recognition_power_sets_countability",
+            "tier": "recognize",
+            "name": "Cardinality recognition (power sets, countability)"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "testing_relation_properties",
+            "tier": "recognize",
+            "name": "Testing relation properties"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "equivalence_relations_partitions",
+            "tier": "recognize",
+            "name": "Equivalence relations ↔ partitions"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "partial_orders_hasse_diagrams",
+            "tier": "recognize",
+            "name": "Partial orders & Hasse diagrams"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "deciding_injective_surjective_bijective",
+            "tier": "recognize",
+            "name": "Deciding injective / surjective / bijective"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "counting_maps_between_finite_sets",
+            "tier": "recognize",
+            "name": "Counting maps between finite sets"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "composition_inverse_which_properties_survive",
+            "tier": "recognize",
+            "name": "Composition & inverse: which properties survive"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "structure_of_an_induction_proof_base_case_inductive",
+            "tier": "recognize",
+            "name": "Structure of an induction proof (base case & inductive step)"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "image_preimage_identities",
+            "tier": "recognize",
+            "name": "Image & preimage identities"
+        },
+        {
+            "topic_id": "logic_sets",
+            "skill_id": "closure_counterexample_questions",
+            "tier": "recognize",
+            "name": "Closure & counterexample questions"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "multiplication_principle_staged_choices",
+            "tier": "recognize",
+            "name": "Multiplication principle (staged choices)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
+            "tier": "recognize",
+            "name": "Permutations of distinct objects (arrangements, \\(nP_r\\))"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "combinations_selections_binom_n_k",
+            "tier": "recognize",
+            "name": "Combinations / selections (\\(\\binom{n}{k}\\))"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "permutations_with_identical_objects_multiset_arrange",
+            "tier": "recognize",
+            "name": "Permutations with identical objects (multiset arrangements)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "circular_arrangements",
+            "tier": "recognize",
+            "name": "Circular arrangements"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "arrangements_with_adjacency_separation_restrictions",
+            "tier": "recognize",
+            "name": "Arrangements with adjacency / separation restrictions"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "nonnegative_integer_solutions_stars_and_bars",
+            "tier": "recognize",
+            "name": "Nonnegative integer solutions (stars and bars)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "distributing_with_lower_upper_bounds_constrained_sta",
+            "tier": "recognize",
+            "name": "Distributing with lower/upper bounds (constrained stars and bars)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "union_at_least_one_counting_including_divisibility",
+            "tier": "recognize",
+            "name": "Union / \"at least one\" counting (including divisibility)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "derangements_nothing_in_its_own_place",
+            "tier": "recognize",
+            "name": "Derangements (nothing in its own place)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "counting_onto_surjective_functions",
+            "tier": "recognize",
+            "name": "Counting onto (surjective) functions"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "pigeonhole_guarantee_minimum_to_force_a_property",
+            "tier": "recognize",
+            "name": "Pigeonhole guarantee (minimum to force a property)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "counting_via_a_recurrence",
+            "tier": "recognize",
+            "name": "Counting via a recurrence"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "binomial_coefficient_identities_and_sums",
+            "tier": "recognize",
+            "name": "Binomial-coefficient identities and sums"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "multinomial_coefficient_labeled_groups_trinomial_ter",
+            "tier": "recognize",
+            "name": "Multinomial coefficient (labeled groups / trinomial term)"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "lattice_path_grid_route_counting",
+            "tier": "recognize",
+            "name": "Lattice-path / grid-route counting"
+        },
+        {
+            "topic_id": "combinatorics",
+            "skill_id": "counting_by_bijection_combinatorial_correspondence",
+            "tier": "recognize",
+            "name": "Counting by bijection / combinatorial correspondence"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "handshake_lemma_edges_from_the_degree_sum",
+            "tier": "recognize",
+            "name": "Handshake lemma: edges from the degree sum"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "degree_sequence_feasibility_parity",
+            "tier": "recognize",
+            "name": "Degree-sequence feasibility (parity)"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "terminology_isomorphism_invariant_recognition",
+            "tier": "recognize",
+            "name": "Terminology & isomorphism-invariant recognition"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "edges_of_the_complete_graph_the_handshake_count",
+            "tier": "recognize",
+            "name": "Edges of the complete graph (the handshake count)"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "disguised_c_n_2_counts_round_robins_segments_diagona",
+            "tier": "recognize",
+            "name": "Disguised `C(n, 2)` counts (round-robins, segments, diagonals)"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "edges_of_a_complete_bipartite_graph",
+            "tier": "recognize",
+            "name": "Edges of a complete bipartite graph"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "counting_triangles_complete_subgraphs_in_kn",
+            "tier": "recognize",
+            "name": "Counting triangles / complete subgraphs in `Kₙ`"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "tree_edge_count_characterization",
+            "tier": "recognize",
+            "name": "Tree edge count & characterization"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "minimum_edges_for_connectivity_counting_components",
+            "tier": "recognize",
+            "name": "Minimum edges for connectivity / counting components"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "cayley_s_formula_labeled_trees_spanning_trees_of_kn",
+            "tier": "recognize",
+            "name": "Cayley's formula (labeled trees / spanning trees of `Kₙ`)"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "euler_s_formula_v_e_f_2",
+            "tier": "recognize",
+            "name": "Euler's formula `V − E + F = 2`"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "planarity_recognition_the_edge_bound",
+            "tier": "recognize",
+            "name": "Planarity recognition & the edge bound"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "chromatic_number_basics",
+            "tier": "recognize",
+            "name": "Chromatic number basics"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "euler_path_circuit_existence_even_degree_criterion",
+            "tier": "recognize",
+            "name": "Euler path / circuit existence (even-degree criterion)"
+        },
+        {
+            "topic_id": "graph_theory",
+            "skill_id": "hamiltonian_path_circuit_recognition_counting",
+            "tier": "recognize",
+            "name": "Hamiltonian path / circuit recognition & counting"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "flowchart_pseudocode_output_trace",
+            "tier": "recognize",
+            "name": "Flowchart / pseudocode output trace"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "loop_iteration_operation_count",
+            "tier": "recognize",
+            "name": "Loop iteration & operation count"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "identify_what_the_procedure_computes",
+            "tier": "recognize",
+            "name": "Identify what the procedure computes"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "recursive_procedure_evaluation",
+            "tier": "recognize",
+            "name": "Recursive procedure evaluation"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "growth_rate_ranking_grows_fastest",
+            "tier": "recognize",
+            "name": "Growth-rate ranking (\"grows fastest\")"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "big_o_running_time_of_nested_loops",
+            "tier": "recognize",
+            "name": "Big-O running time of nested loops"
+        },
+        {
+            "topic_id": "algorithms",
+            "skill_id": "search_sort_operation_count",
+            "tier": "recognize",
+            "name": "Search / sort operation count"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "classical_probability_by_counting_favorable_total",
+            "tier": "recognize",
+            "name": "Classical probability by counting (favorable ÷ total)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+            "tier": "recognize",
+            "name": "Selection without replacement (committee / urn, hypergeometric flavor)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "arrangement_permutation_probability",
+            "tier": "recognize",
+            "name": "Arrangement (permutation) probability"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "complement_rule_for_at_least_one_none",
+            "tier": "recognize",
+            "name": "Complement rule for \"at least one\" / \"none\""
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "conditional_probability_p_a_mid_b",
+            "tier": "recognize",
+            "name": "Conditional probability \\(P(A\\mid B)\\)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "independence_and_mutual_exclusivity_use_and_distingu",
+            "tier": "recognize",
+            "name": "Independence and mutual exclusivity (use and distinguish)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "bayes_theorem_law_of_total_probability_source_identi",
+            "tier": "recognize",
+            "name": "Bayes' theorem / law of total probability (source identification)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "binomial_probability",
+            "tier": "recognize",
+            "name": "Binomial probability"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "geometric_distribution_waiting_for_the_first_success",
+            "tier": "recognize",
+            "name": "Geometric distribution (waiting for the first success)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "poisson_probability",
+            "tier": "recognize",
+            "name": "Poisson probability"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+            "tier": "recognize",
+            "name": "Mean and variance of a named distribution (recall)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "normalizing_constant_valid_density",
+            "tier": "recognize",
+            "name": "Normalizing constant / valid density"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "probability_from_a_density_definite_integral_and_the",
+            "tier": "recognize",
+            "name": "Probability from a density (definite integral) and the CDF"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "expected_value_and_variance_from_a_density",
+            "tier": "recognize",
+            "name": "Expected value and variance from a density"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "geometric_probability_uniform_point_on_an_interval_o",
+            "tier": "recognize",
+            "name": "Geometric probability (uniform point on an interval or region)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "exponential_distribution_memoryless_waiting_time",
+            "tier": "recognize",
+            "name": "Exponential distribution (memoryless waiting time)"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "expected_payoff_fair_game_determination",
+            "tier": "recognize",
+            "name": "Expected payoff / fair-game determination"
+        },
+        {
+            "topic_id": "probability",
+            "skill_id": "linearity_of_expectation_expected_number_of",
+            "tier": "recognize",
+            "name": "Linearity of expectation (\"expected number of …\")"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "mean_median_and_mode_of_a_small_data_set",
+            "tier": "recognize",
+            "name": "Mean, median, and mode of a small data set"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "effect_of_a_linear_transformation_on_center_and_spre",
+            "tier": "recognize",
+            "name": "Effect of a linear transformation on center and spread"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "computing_variance_standard_deviation",
+            "tier": "recognize",
+            "name": "Computing variance / standard deviation"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "combined_mean_weighted_mean_or_adding_a_value",
+            "tier": "recognize",
+            "name": "Combined mean, weighted mean, or adding a value"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "empirical_rule_proportions_689599_7",
+            "tier": "recognize",
+            "name": "Empirical-rule proportions (68–95–99.7)"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "standardizing_and_comparing_with_z_scores",
+            "tier": "recognize",
+            "name": "Standardizing and comparing with z-scores"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "properties_of_the_normal_curve_recognize",
+            "tier": "recognize",
+            "name": "Properties of the normal curve (recognize)"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "recognize_the_conclusion_of_the_clt",
+            "tier": "recognize",
+            "name": "Recognize the conclusion of the CLT"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "standard_error_and_sample_size_scaling",
+            "tier": "recognize",
+            "name": "Standard error and sample-size scaling"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "variance_of_a_sum_of_independent_variables",
+            "tier": "recognize",
+            "name": "Variance of a sum of independent variables"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "unbiased_estimators_and_the_n_1_divisor",
+            "tier": "recognize",
+            "name": "Unbiased estimators and the n − 1 divisor"
+        },
+        {
+            "topic_id": "statistics",
+            "skill_id": "confidence_interval_margin_of_error_reasoning",
+            "tier": "recognize",
+            "name": "Confidence-interval / margin-of-error reasoning"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "supremum_infimum_of_an_explicit_set",
+            "tier": "recognize",
+            "name": "Supremum / infimum of an explicit set"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "completeness_least_upper_bound_property_recognition",
+            "tier": "recognize",
+            "name": "Completeness / least-upper-bound property recognition"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+            "tier": "recognize",
+            "name": "Evaluate the limit of an explicit real sequence"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "cauchy_sequence_completeness_recognition",
+            "tier": "recognize",
+            "name": "Cauchy-sequence / completeness recognition"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "limit_of_a_recursively_defined_monotone_bounded_sequ",
+            "tier": "recognize",
+            "name": "Limit of a recursively defined (monotone-bounded) sequence"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "monotone_convergence_theorem_must_be_true_form",
+            "tier": "recognize",
+            "name": "Monotone Convergence Theorem, must-be-true form"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "convergent_subsequence_existence_bolzanoweierstrass",
+            "tier": "recognize",
+            "name": "Convergent-subsequence existence (Bolzano–Weierstrass)"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "compute_limsup_liminf_the_set_of_subsequential_limit",
+            "tier": "recognize",
+            "name": "Compute limsup, liminf & the set of subsequential limits"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "limsup_liminf_relations_true_false",
+            "tier": "recognize",
+            "name": "limsup / liminf relations, true-false"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "pointwise_limit_and_test_for_uniform_convergence",
+            "tier": "recognize",
+            "name": "Pointwise limit and test for uniform convergence"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "which_conclusions_survive_pointwise_vs_uniform_conve",
+            "tier": "recognize",
+            "name": "Which conclusions survive pointwise (vs uniform) convergence"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "uniform_convergence_of_a_function_series_weierstrass",
+            "tier": "recognize",
+            "name": "Uniform convergence of a function series (Weierstrass M-test)"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "which_must_be_true_implication_grid_bounded_monotone",
+            "tier": "recognize",
+            "name": "\"Which must be true\" implication grid (bounded / monotone / convergent / Cauchy)"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "counterexample_selection",
+            "tier": "recognize",
+            "name": "Counterexample selection"
+        },
+        {
+            "topic_id": "real_analysis_sequences",
+            "skill_id": "series_property_recognition_theory_true_false",
+            "tier": "recognize",
+            "name": "Series-property recognition (theory, true-false)"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "reading_or_negating_the_definition_of_limit_continui",
+            "tier": "recognize",
+            "name": "Reading or negating the definition of limit/continuity"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "uniform_continuity_recognition",
+            "tier": "recognize",
+            "name": "Uniform continuity recognition"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "continuity_preserved_by_algebraic_operations_and_com",
+            "tier": "recognize",
+            "name": "Continuity preserved by algebraic operations and composition"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "continuity_of_dirichlet_thomae_type_and_point_define",
+            "tier": "recognize",
+            "name": "Continuity of Dirichlet/Thomae-type and point-defined functions"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "continuous_functions_pinned_down_by_a_dense_set_loca",
+            "tier": "recognize",
+            "name": "Continuous functions pinned down by a dense set / local sign"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "existence_of_a_limit_continuity_at_the_origin_in_r2",
+            "tier": "recognize",
+            "name": "Existence of a limit / continuity at the origin in ℝ² (path test)"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "classify_a_concrete_subset_of_r_or_rn",
+            "tier": "recognize",
+            "name": "Classify a concrete subset of ℝ or ℝⁿ"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "set_operation_and_limit_point_properties_in_rn",
+            "tier": "recognize",
+            "name": "Set-operation and limit-point properties in ℝⁿ"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "extreme_value_theorem_and_its_failure_without_compac",
+            "tier": "recognize",
+            "name": "Extreme Value Theorem and its failure without compactness"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "continuous_image_of_a_compact_connected_set",
+            "tier": "recognize",
+            "name": "Continuous image of a compact/connected set"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "intermediate_value_theorem_and_the_fixed_point_corol",
+            "tier": "recognize",
+            "name": "Intermediate Value Theorem and the fixed-point corollary"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "mean_value_rolle_consequences_and_derivative_sign_fa",
+            "tier": "recognize",
+            "name": "Mean Value / Rolle consequences and derivative-sign facts"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "differentiability_vs_continuity_and_pathological_cou",
+            "tier": "recognize",
+            "name": "Differentiability vs continuity and pathological counterexamples"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "which_functions_are_riemann_integrable",
+            "tier": "recognize",
+            "name": "Which functions are Riemann integrable"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "integral_of_a_continuous_function_theory_ftc_recogni",
+            "tier": "recognize",
+            "name": "Integral-of-a-continuous-function theory (FTC recognition)"
+        },
+        {
+            "topic_id": "real_analysis_topology",
+            "skill_id": "match_the_property_to_its_canonical_counterexample",
+            "tier": "recognize",
+            "name": "Match the property to its canonical counterexample"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "classify_a_subset_as_open_closed_both_or_neither",
+            "tier": "recognize",
+            "name": "Classify a subset as open, closed, both, or neither"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "compute_the_closure_interior_or_boundary_and_limit_p",
+            "tier": "recognize",
+            "name": "Compute the closure, interior, or boundary (and limit points)"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "true_false_about_open_closed_set_operations",
+            "tier": "recognize",
+            "name": "True/false about open/closed set operations"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "decide_whether_a_metric_space_is_complete",
+            "tier": "recognize",
+            "name": "Decide whether a metric space is complete"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "decide_whether_a_given_function_is_a_metric",
+            "tier": "recognize",
+            "name": "Decide whether a given function is a metric"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "verify_or_count_topologies_on_a_set",
+            "tier": "recognize",
+            "name": "Verify (or count) topologies on a set"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "properties_within_a_named_nonstandard_topology",
+            "tier": "recognize",
+            "name": "Properties within a named nonstandard topology"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "continuity_via_preimages_of_open_sets",
+            "tier": "recognize",
+            "name": "Continuity via preimages of open sets"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "decide_compactness_in_mathbb_r_n_heineborel",
+            "tier": "recognize",
+            "name": "Decide compactness in \\(\\mathbb{R}^n\\) (Heine–Borel)"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "true_false_about_compact_sets",
+            "tier": "recognize",
+            "name": "True/false about compact sets"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "decide_whether_a_set_or_space_is_connected",
+            "tier": "recognize",
+            "name": "Decide whether a set or space is connected"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "true_false_about_connectedness",
+            "tier": "recognize",
+            "name": "True/false about connectedness"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "distinguish_topological_from_metric_properties",
+            "tier": "recognize",
+            "name": "Distinguish topological from metric properties"
+        },
+        {
+            "topic_id": "metric_topology",
+            "skill_id": "decide_which_spaces_are_homeomorphic",
+            "tier": "recognize",
+            "name": "Decide which spaces are homeomorphic"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "conjugate_division_rectangular_simplification",
+            "tier": "recognize",
+            "name": "Conjugate division / rectangular simplification"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "powers_of_i_cyclic_reduction",
+            "tier": "recognize",
+            "name": "Powers of \\(i\\) (cyclic reduction)"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "modulus_argument_polar_form",
+            "tier": "recognize",
+            "name": "Modulus, argument & polar form"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "euler_s_formula_complex_exponentials_powers",
+            "tier": "recognize",
+            "name": "Euler's formula: complex exponentials & powers"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "de_moivre_power_computation",
+            "tier": "recognize",
+            "name": "De Moivre power computation"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "n_th_roots_roots_of_unity",
+            "tier": "recognize",
+            "name": "\\(n\\)th roots & roots of unity"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "cauchyriemann_test_for_analyticity",
+            "tier": "recognize",
+            "name": "Cauchy–Riemann test for analyticity"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "harmonic_functions_harmonic_conjugates",
+            "tier": "recognize",
+            "name": "Harmonic functions & harmonic conjugates"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "cauchygoursat_theorem_closed_integral_of_an_analytic",
+            "tier": "recognize",
+            "name": "Cauchy–Goursat theorem (closed integral of an analytic function)"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "cauchy_s_integral_formula_value_derivative_forms",
+            "tier": "recognize",
+            "name": "Cauchy's integral formula (value & derivative forms)"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "residue_at_a_simple_pole",
+            "tier": "recognize",
+            "name": "Residue at a simple pole"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "residue_theorem_for_contour_integrals",
+            "tier": "recognize",
+            "name": "Residue theorem for contour integrals"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "modulus_loci_regions_in_the_plane",
+            "tier": "recognize",
+            "name": "Modulus loci & regions in the plane"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "elementary_mappings_1_z_z_2_linear",
+            "tier": "recognize",
+            "name": "Elementary mappings (\\(1/z\\), \\(z^{2}\\), linear)"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "entire_functions_liouville_recognition",
+            "tier": "recognize",
+            "name": "Entire functions & Liouville (recognition)"
+        },
+        {
+            "topic_id": "complex_analysis",
+            "skill_id": "classifying_isolated_singularities",
+            "tier": "recognize",
+            "name": "Classifying isolated singularities"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+            "tier": "teach",
+            "name": "Special right triangles (30-60-90 and 45-45-90)"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "similar_triangles_and_proportional_segments",
+            "tier": "teach",
+            "name": "Similar triangles and proportional segments"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "general_triangle_area_and_metric_relations",
+            "tier": "teach",
+            "name": "General triangle area and metric relations"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "angle_relationships_and_angle_chasing",
+            "tier": "teach",
+            "name": "Angle relationships and angle chasing"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "inscribed_and_central_angles_including_thales_semici",
+            "tier": "teach",
+            "name": "Inscribed and central angles (including Thales' semicircle)"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "chords_secants_tangents_and_power_of_a_point",
+            "tier": "teach",
+            "name": "Chords, secants, tangents, and power of a point"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "arc_length_and_sector_area",
+            "tier": "teach",
+            "name": "Arc length and sector area"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "interior_and_exterior_angle_sums",
+            "tier": "teach",
+            "name": "Interior and exterior angle sums"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+            "tier": "teach",
+            "name": "Regular-polygon measurements (area, apothem, diagonals)"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+            "tier": "teach",
+            "name": "Areas and perimeters of plane figures (composite / shaded regions)"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "inscribed_and_circumscribed_plane_figures",
+            "tier": "teach",
+            "name": "Inscribed and circumscribed plane figures"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "volume_and_surface_area_of_standard_solids",
+            "tier": "teach",
+            "name": "Volume and surface area of standard solids"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "scaling_laws_for_area_and_volume",
+            "tier": "teach",
+            "name": "Scaling laws for area and volume"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+            "tier": "teach",
+            "name": "Inscribed / circumscribed solids and cross-sections"
+        },
+        {
+            "topic_id": "geometry",
+            "skill_id": "diagonals_distances_and_angles_in_solids",
+            "tier": "teach",
+            "name": "Diagonals, distances, and angles in solids"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "newton_s_method_one_iteration_by_hand",
+            "tier": "recognize",
+            "name": "Newton's method — one iteration by hand"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "bisection_error_bound_number_of_steps",
+            "tier": "recognize",
+            "name": "Bisection — error bound & number of steps"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+            "tier": "recognize",
+            "name": "Trapezoidal or Simpson approximation of a definite integral"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "quadrature_error_order_polynomial_exactness",
+            "tier": "recognize",
+            "name": "Quadrature error order & polynomial exactness"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "interpolating_polynomial_existence_uniqueness_constr",
+            "tier": "recognize",
+            "name": "Interpolating polynomial — existence, uniqueness & construction"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "fixed_point_iteration_convergence_condition",
+            "tier": "recognize",
+            "name": "Fixed-point iteration — convergence condition"
+        },
+        {
+            "topic_id": "numerical_analysis",
+            "skill_id": "convergence_order_order_of_accuracy_comparison",
+            "tier": "recognize",
+            "name": "Convergence order & order-of-accuracy comparison"
+        }
+    ]
+}

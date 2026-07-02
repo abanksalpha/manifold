@@ -1,0 +1,299 @@
+/* Copyright: Ankitects Pty Ltd and contributors
+ * License: GNU AGPL, version 3 or later, http://www.gnu.org/licenses/agpl.html */
+
+/*
+ * Manifold design tokens: Neo-brutalist skin.
+ *
+ * The rule is "loud chrome, honest readings". The structure around the content
+ * is unapologetic (thick pure-black strokes on everything, hard offset "ink
+ * block" shadows with zero blur, sharp corners, a mechanical press, sticker
+ * rotations, a high-saturation pop palette), but the readings stay honest. A
+ * score's fill chroma is still scaled in code by how much evidence backs it, so
+ * a thinly-evidenced reading literally renders greyer, and a withheld reading is
+ * a calm slate grey, never one of the loud pop colours. The palette (hot red,
+ * vivid yellow, soft violet, spring mint) is spent on decoration, actions and
+ * navigation, not on dressing up an uncertain number.
+ *
+ * Colours are authored in OKLCH, chroma eased down near the light and dark
+ * extremes; the ink is a near-black tinted a hair toward the brand hue rather
+ * than a flat #000, and the ground is a warm cream rather than stark white. Type
+ * is Outfit for display and Plus Jakarta Sans for body, both self-hosted from
+ * @fontsource-variable so nothing is fetched at runtime. (The neo-brutalist
+ * reference face is Space Grotesk; swap --mf-font-display once
+ * @fontsource-variable/space-grotesk is added to the deps.)
+ */
+
+.manifold {
+    /* neutral surfaces: a warm cream ground under near-white sticker panels */
+    --mf-bg: oklch(0.986 0.014 96);
+    --mf-surface: oklch(0.996 0.006 96);
+    --mf-surface-sunken: oklch(0.945 0.014 96);
+    /* soft violet, for accent panels and card headers */
+    --mf-muted: oklch(0.8 0.1 293);
+
+    /* ink: a near-black tinted toward violet. Reads as a hard black stroke,
+     * without the flatness of a literal #000. Used for text and every border. */
+    --mf-ink: oklch(0.17 0.016 285);
+    --mf-ink-muted: oklch(0.32 0.02 285);
+    --mf-ink-faint: oklch(0.46 0.022 285);
+
+    /* lines: in neo-brutalism there are no subtle greys, so both the hairline
+     * and the strong border are the ink itself. The signature stroke is chunky. */
+    --mf-border: var(--mf-ink);
+    --mf-border-strong: var(--mf-ink);
+    --mf-border-width: 3px;
+    --mf-border-width-bold: 4px;
+    --mf-outline: var(--mf-border-width) solid var(--mf-ink);
+    --mf-outline-bold: var(--mf-border-width-bold) solid var(--mf-ink);
+
+    /* the one measured signal (violet), plus parts for in-code chroma scaling:
+     * Meter mixes oklch(l, c * evidence, h), so less evidence reads greyer */
+    --mf-signal-l: 0.606;
+    --mf-signal-c: 0.25;
+    --mf-signal-h: 292.7;
+    --mf-signal: oklch(0.606 0.25 292.7);
+    --mf-signal-ink: oklch(0.48 0.27 293);
+
+    /* grey used when a reading is withheld or unevidenced. The one intentional
+     * grey in the system, and it means "no answer", never an alarm. */
+    --mf-abstain: oklch(0.552 0.02 285);
+
+    /* primary action is hot red; text on it is the ink black (passes AA) */
+    --mf-accent: oklch(0.7 0.18 20);
+    --mf-accent-ink: oklch(0.17 0.016 285);
+
+    /* the pop palette: vivid yellow, soft violet, spring mint, each with a
+     * darker ink variant that stays legible as text or a border on the ground */
+    --mf-secondary: oklch(0.875 0.166 92);
+    --mf-secondary-ink: oklch(0.52 0.13 76);
+    --mf-tertiary: oklch(0.8 0.1 293);
+    --mf-tertiary-ink: oklch(0.45 0.16 293);
+    --mf-quaternary: oklch(0.8 0.15 165);
+    --mf-quaternary-ink: oklch(0.48 0.11 165);
+
+    /* hover wash for outlined controls: near-white nudged toward blue, so a
+     * hovered key reads as lit rather than recoloured */
+    --mf-hover: oklch(0.93 0.035 245);
+
+    /* hard, blur-free offset shadows: the ink-block / cut-out feel. Every one is
+     * a solid rectangle of ink at a 45-degree offset, zero blur, zero spread. */
+    --mf-shadow-color: var(--mf-ink);
+    --mf-shadow: 4px 4px 0 0 var(--mf-shadow-color);
+    --mf-shadow-hover: 6px 6px 0 0 var(--mf-shadow-color);
+    --mf-shadow-active: 2px 2px 0 0 var(--mf-shadow-color);
+    --mf-shadow-card: 6px 6px 0 0 var(--mf-shadow-color);
+    --mf-shadow-feature: 10px 10px 0 0 var(--mf-shadow-color);
+    --mf-shadow-lg: 12px 12px 0 0 var(--mf-shadow-color);
+    /* legacy aliases so any not-yet-restyled surface still reads on-brand */
+    --mf-shadow-soft: var(--mf-shadow-card);
+    --mf-shadow-float: var(--mf-shadow-hover);
+
+    /* type: Outfit for the wordmark, headings, labels and buttons; Plus Jakarta
+     * Sans for body copy and the numeric readouts */
+    --mf-font-display: "Outfit Variable", Outfit, system-ui, sans-serif;
+    --mf-font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui,
+        -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    /* type scale, ~1.25 ratio, in px against the page's 15px root */
+    --mf-text-xs: 11px;
+    --mf-text-sm: 13px;
+    --mf-text-base: 15px;
+    --mf-text-md: 17px;
+    --mf-text-lg: 21px;
+    --mf-text-xl: 28px;
+    --mf-text-2xl: 38px;
+    --mf-readout: 44px;
+    --mf-display: clamp(44px, 8vw, 92px);
+
+    /* spacing in px, kept on a strict 4px scale so edges land on the pixel grid
+     * (the page root is 15px, so rem here would fall off it and blur edges) */
+    --mf-space-1: 4px;
+    --mf-space-2: 8px;
+    --mf-space-3: 12px;
+    --mf-space-4: 16px;
+    --mf-space-5: 24px;
+    --mf-space-6: 32px;
+    --mf-space-7: 48px;
+    --mf-space-8: 64px;
+
+    /* radii: neo-brutalism is sharp. Corners are square by default; the only
+     * curve is a full pill for badges, dots and the meter track. */
+    --mf-radius-sm: 0;
+    --mf-radius: 0;
+    --mf-radius-lg: 0;
+    --mf-radius-full: 9999px;
+    --mf-radius-blob: 0;
+
+    --mf-rule: 1px solid var(--mf-border);
+
+    /* motion: fast and mechanical. A short ease-out for the sober readings, a
+     * quick overshoot for the playful chrome. Reduced-motion flattens both. */
+    --mf-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --mf-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --mf-transition: 140ms var(--mf-ease-out);
+    --mf-transition-bounce: 200ms var(--mf-ease-bounce);
+
+    /* ink used for the halftone dot ground */
+    --mf-dot: oklch(0.17 0.016 285 / 0.11);
+
+    position: relative;
+    isolation: isolate;
+    background: var(--mf-bg);
+    color: var(--mf-ink);
+    font-family: var(--mf-font-sans);
+    font-size: var(--mf-text-base);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* A halftone dot grid in strict formation sits behind the content (below the
+ * page), the raw-texture backbone of the skin. It is drawn with a
+ * radial-gradient so it needs no asset, and its ink is alpha-tinted so it never
+ * touches text contrast. */
+.manifold::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(var(--mf-dot) 1.6px, transparent 1.8px);
+    background-size: 22px 22px;
+    background-position: -11px -11px;
+}
+
+.night-mode .manifold {
+    /* dark slate-violet ground, warm cream ink, the pop palette lifted a little
+     * so it stays punchy on the dark surface. Borders invert to the cream ink so
+     * the hard strokes still read; shadows stay a near-black ink block. */
+    --mf-bg: oklch(0.22 0.02 285);
+    --mf-surface: oklch(0.27 0.022 285);
+    --mf-surface-sunken: oklch(0.19 0.018 285);
+    --mf-muted: oklch(0.45 0.1 293);
+
+    --mf-ink: oklch(0.96 0.01 96);
+    --mf-ink-muted: oklch(0.8 0.02 96);
+    --mf-ink-faint: oklch(0.68 0.024 96);
+
+    --mf-border: var(--mf-ink);
+    --mf-border-strong: var(--mf-ink);
+
+    --mf-signal-l: 0.72;
+    --mf-signal-c: 0.2;
+    --mf-signal: oklch(0.72 0.2 293);
+    --mf-signal-ink: oklch(0.8 0.16 293);
+
+    --mf-abstain: oklch(0.64 0.02 285);
+
+    --mf-accent: oklch(0.72 0.18 20);
+    --mf-accent-ink: oklch(0.16 0.02 285);
+
+    --mf-secondary: oklch(0.86 0.16 92);
+    --mf-secondary-ink: oklch(0.2 0.04 90);
+    --mf-tertiary: oklch(0.76 0.12 293);
+    --mf-tertiary-ink: oklch(0.2 0.04 293);
+    --mf-quaternary: oklch(0.8 0.15 165);
+    --mf-quaternary-ink: oklch(0.2 0.04 165);
+
+    --mf-hover: oklch(0.38 0.05 250);
+
+    /* a near-black ink block, darker than every surface, so the cut-out depth
+     * still reads on the dark ground */
+    --mf-shadow-color: oklch(0.09 0.01 285);
+
+    --mf-dot: oklch(0.96 0.01 96 / 0.06);
+}
+
+.manifold *,
+.manifold *::before,
+.manifold *::after {
+    box-sizing: border-box;
+}
+
+/* focus is deliberately loud: a thick violet ring, high contrast on any ground */
+.manifold :focus-visible {
+    outline: 3px solid var(--mf-signal);
+    outline-offset: 3px;
+    border-radius: 0;
+}
+
+/* Shared decorative primitives, usable from any Manifold page. Kept global (not
+ * scoped to one component) so the routes decorate consistently. */
+.manifold .mf-dot-grid {
+    background-image: radial-gradient(var(--mf-dot) 1.6px, transparent 1.8px);
+    background-size: 18px 18px;
+}
+
+.manifold .mf-hatch {
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--mf-dot) 0,
+        var(--mf-dot) 2px,
+        transparent 2px,
+        transparent 9px
+    );
+}
+
+/* Entrance and idle motion the chrome can opt into by name. Reduced-motion
+ * flattens all of these in the block below. */
+@keyframes mf-pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9) rotate(-1deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes mf-wiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(3deg);
+    }
+    75% {
+        transform: rotate(-3deg);
+    }
+}
+
+@keyframes mf-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes mf-marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes mf-spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .manifold *,
+    .manifold *::before,
+    .manifold *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
