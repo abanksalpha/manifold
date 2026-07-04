@@ -1,0 +1,126 @@
+[
+{
+ "template_id": "metric_discrete_v1",
+ "skill_id": "decide_whether_a_given_function_is_a_metric",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -15, "hi": 15},
+  "q": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "Define \\( d(x,y) \\) on the integers by \\( d(x,y) = 0 \\) if \\( x = y \\) and \\( d(x,y) = 1 \\) if \\( x \\neq y \\) (the discrete metric; one can check it satisfies all three metric axioms). Compute \\( d([[p]], [[q]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sign(Abs([[p]]-[[q]]))"},
+ "distractors": [
+  "Abs([[p]]-[[q]])",
+  "[[p]]-[[q]]",
+  "1 - sign(Abs([[p]]-[[q]]))",
+  "[[p]]+[[q]]",
+  "sign(Abs([[p]]-[[q]]))+1",
+  "sign(Abs([[p]]-[[q]]))+2"
+ ],
+ "solution": "The discrete metric outputs \\( 0 \\) only when the two inputs are equal and \\( 1 \\) whenever they differ; here \\( d([[p]],[[q]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the ordinary absolute difference, not the discrete metric's 0/1 output.",
+  "This is the signed difference, not the discrete metric's value.",
+  "This is the complement of the correct 0/1 value (swaps the roles of equal and unequal).",
+  "This is the sum of the two inputs, unrelated to the discrete metric.",
+  "This is one more than the correct 0/1 value.",
+  "This is two more than the correct 0/1 value."
+ ]
+},
+{
+ "template_id": "metric_bounded_v1",
+ "skill_id": "decide_whether_a_given_function_is_a_metric",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -15, "hi": 15},
+  "q": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "derived": {"diff": "Abs([[p]]-[[q]])"},
+ "stem": "Define \\( d(x,y) = \\dfrac{|x-y|}{1+|x-y|} \\) for real numbers \\( x, y \\) (a genuine bounded metric: it is symmetric, vanishes only when \\( x=y \\), and satisfies the triangle inequality). Compute \\( d([[p]], [[q]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs([[p]]-[[q]])/(1+Abs([[p]]-[[q]]))"},
+ "distractors": [
+  "Abs([[p]]-[[q]])",
+  "1/(1+Abs([[p]]-[[q]]))",
+  "Abs([[p]]-[[q]])/Abs([[p]]+[[q]])",
+  "([[p]]-[[q]])/(1+[[p]]-[[q]])",
+  "[[answer]] + 1",
+  "1 - [[answer]]"
+ ],
+ "solution": "\\( |[[p]]-[[q]]| = [[diff]] \\), so \\( d([[p]],[[q]]) = \\dfrac{[[diff]]}{1+[[diff]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the raw distance \\( |x-y| \\), before it is bounded by dividing by \\( 1+|x-y| \\).",
+  "This inverts the fraction instead of putting \\( |x-y| \\) in the numerator.",
+  "This replaces the denominator's \\( 1 \\) with \\( |x+y| \\), which is not the formula.",
+  "This drops the absolute value, so a sign error can creep into the numerator and denominator.",
+  "This adds \\( 1 \\) to the correct value.",
+  "This is one minus the correct value, the wrong complement of the formula."
+ ]
+},
+{
+ "template_id": "metric_scaled_v1",
+ "skill_id": "decide_whether_a_given_function_is_a_metric",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 9},
+  "p": {"type": "int", "lo": -15, "hi": 15},
+  "q": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "For a fixed positive constant \\( c = [[c]] \\), define \\( d(x,y) = [[c]]\\,|x-y| \\) on the real numbers (scaling the usual absolute-value metric by any positive constant always produces another metric). Compute \\( d([[p]], [[q]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]]*Abs([[p]]-[[q]])"},
+ "distractors": [
+  "Abs([[p]]-[[q]])",
+  "[[c]]+Abs([[p]]-[[q]])",
+  "[[c]]*([[p]]-[[q]])",
+  "[[c]]*([[p]]+[[q]])",
+  "[[answer]]+[[c]]",
+  "[[answer]]-[[c]]"
+ ],
+ "solution": "\\( d([[p]],[[q]]) = [[c]]\\cdot|[[p]]-[[q]]| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to scale by the constant \\( c \\).",
+  "This adds \\( c \\) instead of multiplying by it.",
+  "This drops the absolute value, so the sign of \\( x-y \\) can flip the result.",
+  "This uses the sum \\( x+y \\) instead of the difference \\( x-y \\).",
+  "This is off from the correct value by \\( c \\).",
+  "This is off from the correct value by \\( c \\) in the other direction."
+ ]
+},
+{
+ "template_id": "metric_chebyshev_v1",
+ "skill_id": "decide_whether_a_given_function_is_a_metric",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "x1": {"type": "int", "lo": -10, "hi": 10},
+  "y1": {"type": "int", "lo": -10, "hi": 10},
+  "x2": {"type": "int", "lo": -10, "hi": 10},
+  "y2": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Or(Ne([[x1]],[[x2]]), Ne([[y1]],[[y2]]))"],
+ "stem": "For points \\( P = ([[x1]], [[y1]]) \\) and \\( Q = ([[x2]], [[y2]]) \\) in the plane, define \\( d(P,Q) = \\max(|x_1-x_2|,\\ |y_1-y_2|) \\) (the Chebyshev, or sup, metric; one can check the metric axioms hold). Compute \\( d(P,Q) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Max(Abs([[x1]]-[[x2]]), Abs([[y1]]-[[y2]]))"},
+ "distractors": [
+  "Abs([[x1]]-[[x2]]) + Abs([[y1]]-[[y2]])",
+  "Min(Abs([[x1]]-[[x2]]), Abs([[y1]]-[[y2]]))",
+  "Abs([[x1]]-[[x2]])*Abs([[y1]]-[[y2]])",
+  "Max(Abs([[x1]]-[[y1]]), Abs([[x2]]-[[y2]]))",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "The two coordinate gaps are \\( |x_1-x_2| \\) and \\( |y_1-y_2| \\); the Chebyshev distance is their maximum, \\( d(P,Q) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the taxicab (Manhattan) distance, the sum of the coordinate gaps, not their maximum.",
+  "This uses the minimum of the coordinate gaps instead of the maximum.",
+  "This multiplies the coordinate gaps instead of taking their maximum.",
+  "This mismatches the coordinates, comparing \\(x_1\\) to \\(y_1\\) instead of to \\(x_2\\).",
+  "This is one more than the correct distance.",
+  "This is one less than the correct distance."
+ ]
+}
+]

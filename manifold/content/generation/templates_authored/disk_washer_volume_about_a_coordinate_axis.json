@@ -1,0 +1,124 @@
+[
+ {
+  "template_id": "disk_washer_axis_v1",
+  "skill_id": "disk_washer_volume_about_a_coordinate_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 3, "hi": 7},
+   "c": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Le([[c]], [[k]] - 1)"],
+  "stem": "The region in the first quadrant bounded by the line \\( y = x + [[c]] \\), the horizontal line \\( y = [[k]] \\), and the \\( y \\)-axis is revolved about the \\( x \\)-axis. Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*([[k]]**2 - (x + [[c]])**2)", "var": "x", "bounds": ["0", "[[k]] - [[c]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*([[k]] - [[c]])**3/3",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*([[k]] - [[c]])",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Using washers perpendicular to the \\( x \\)-axis, the outer radius is \\( [[k]] \\) and the inner radius is \\( x + [[c]] \\), for \\( 0 \\le x \\le [[k]]-[[c]] \\). The volume is \\( \\pi\\int_{0}^{[[k]]-[[c]]}\\left([[k]]^{2}-(x+[[c]])^{2}\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This squares the difference of the radii instead of taking the difference of the squares.",
+   "This drops the factor of \\( \\pi \\).",
+   "This uses only the outer radius (a solid disk), ignoring the hole.",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "disk_x_axis_no_hole_v1",
+  "skill_id": "disk_washer_volume_about_a_coordinate_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 9}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The region in the first quadrant under the curve \\( y = \\sqrt{[[k]]x} \\), from \\( x = [[a]] \\) to \\( x = [[b]] \\), is revolved about the \\( x \\)-axis. Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*[[k]]*x", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*[[k]]*([[b]] - [[a]])",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*([[b]] - [[a]])",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Since there is no hole, each disk perpendicular to the \\( x \\)-axis has radius \\( y=\\sqrt{[[k]]x} \\), so its area is \\( \\pi y^{2} = \\pi [[k]]x \\). The volume is \\( \\pi\\int_{[[a]]}^{[[b]]}[[k]]x\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the radius directly (not squared) times the width, forgetting to integrate \\( x \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This squares the coefficient \\( [[k]] \\) instead of just the radius.",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "washer_y_axis_v1",
+  "skill_id": "disk_washer_volume_about_a_coordinate_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 3, "hi": 7},
+   "c": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Le([[c]], [[k]] - 1)"],
+  "stem": "The region in the first quadrant bounded by the line \\( x = y + [[c]] \\), the vertical line \\( x = [[k]] \\), and the \\( x \\)-axis is revolved about the \\( y \\)-axis. Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*([[k]]**2 - (y + [[c]])**2)", "var": "y", "bounds": ["0", "[[k]] - [[c]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*([[k]] - [[c]])**3/3",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*([[k]] - [[c]])",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Using washers perpendicular to the \\( y \\)-axis, the outer radius is \\( [[k]] \\) and the inner radius is \\( y + [[c]] \\), for \\( 0 \\le y \\le [[k]]-[[c]] \\). The volume is \\( \\pi\\int_{0}^{[[k]]-[[c]]}\\left([[k]]^{2}-(y+[[c]])^{2}\\right)dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This squares the difference of the radii instead of taking the difference of the squares.",
+   "This drops the factor of \\( \\pi \\).",
+   "This uses only the outer radius (a solid disk), ignoring the hole.",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "disk_y_axis_no_hole_v1",
+  "skill_id": "disk_washer_volume_about_a_coordinate_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "p": {"type": "int", "lo": 0, "hi": 3},
+   "q": {"type": "int", "lo": 4, "hi": 9}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "The region in the first quadrant to the left of the curve \\( x = \\sqrt{[[k]]y} \\), from \\( y = [[p]] \\) to \\( y = [[q]] \\), is revolved about the \\( y \\)-axis. Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*[[k]]*y", "var": "y", "bounds": ["[[p]]", "[[q]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*[[k]]*([[q]] - [[p]])",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*([[q]] - [[p]])",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Since there is no hole, each disk perpendicular to the \\( y \\)-axis has radius \\( x=\\sqrt{[[k]]y} \\), so its area is \\( \\pi x^{2} = \\pi [[k]]y \\). The volume is \\( \\pi\\int_{[[p]]}^{[[q]]}[[k]]y\\,dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the radius directly (not squared) times the width, forgetting to integrate \\( y \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This squares the coefficient \\( [[k]] \\) instead of just the radius.",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ }
+]

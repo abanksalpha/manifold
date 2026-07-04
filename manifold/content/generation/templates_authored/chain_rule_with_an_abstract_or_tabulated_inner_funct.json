@@ -1,0 +1,158 @@
+[
+{
+ "template_id": "chain_rule_table_v1",
+ "skill_id": "chain_rule_with_an_abstract_or_tabulated_inner_funct",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "c": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "d": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "a0": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  }
+ },
+ "constraints": [
+  "Ne([[c]], 0)",
+  "Ne([[d]], 0)"
+ ],
+ "stem": "Let \\( h(x)=f(g(x)) \\). Given \\( g([[a0]])=[[b]] \\), \\( g'([[a0]])=[[c]] \\), and \\( f'([[b]])=[[d]] \\), find \\( h'([[a0]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[d]]*[[c]]"
+ },
+ "distractors": [
+  "[[d]] + [[c]]",
+  "[[c]] + [[b]]",
+  "[[d]]*[[b]]",
+  "[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Chain rule: \\( h'([[a0]]) = f'(g([[a0]]))\\,g'([[a0]]) = [[d]]\\cdot[[c]] = [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "chain_rule_explicit_inner_abstract_outer_v2",
+ "skill_id": "chain_rule_with_an_abstract_or_tabulated_inner_funct",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "cf": {"type": "int", "lo": -6, "hi": 6},
+  "a0": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[cf]], 0)"],
+ "stem": "Let \\( g(x) = [[a]]x^{2}+1 \\), and let \\( f \\) be a differentiable function with \\( f'\\big(g([[a0]])\\big)=[[cf]] \\). If \\( h(x)=f(g(x)) \\), find \\( h'([[a0]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[cf]]*(2*[[a]]*[[a0]])"
+ },
+ "distractors": [
+  "[[cf]] + 2*[[a]]*[[a0]]",
+  "[[cf]]*[[a]]*[[a0]]",
+  "[[cf]]*2*[[a]]",
+  "2*[[a]]*[[a0]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the chain rule, \\( h'(x)=f'(g(x))\\,g'(x) \\) and \\( g'(x)=2[[a]]x \\), so \\( h'([[a0]]) = [[cf]]\\cdot(2\\cdot[[a]]\\cdot[[a0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two factors instead of multiplying them.",
+  "This drops the factor of 2 from \\( g'(x)=2ax \\).",
+  "This uses \\( g'(x)=2a \\), forgetting to multiply by \\( x=a_0 \\).",
+  "This omits the outer factor \\( f'(g(a_0)) \\) entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_triple_composition_v3",
+ "skill_id": "chain_rule_with_an_abstract_or_tabulated_inner_funct",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a0": {"type": "int", "lo": 1, "hi": 4},
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "r": {"type": "int", "lo": 1, "hi": 5},
+  "s": {"type": "int", "lo": -5, "hi": 5},
+  "t": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[q]], 0)", "Ne([[s]], 0)", "Ne([[t]], 0)"],
+ "stem": "Let \\( h(x)=f(g(k(x))) \\), where \\( k([[a0]])=[[p]] \\), \\( k'([[a0]])=[[q]] \\), \\( g([[p]])=[[r]] \\), \\( g'([[p]])=[[s]] \\), and \\( f'([[r]])=[[t]] \\). Find \\( h'([[a0]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[t]]*[[s]]*[[q]]"
+ },
+ "distractors": [
+  "[[t]] + [[s]] + [[q]]",
+  "[[t]]*[[s]] + [[q]]",
+  "[[t]]*[[q]]",
+  "[[s]]*[[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the extended chain rule, \\( h'(x) = f'(g(k(x)))\\,g'(k(x))\\,k'(x) \\), so \\( h'([[a0]]) = f'([[r]])\\cdot g'([[p]])\\cdot k'([[a0]]) = [[t]]\\cdot[[s]]\\cdot[[q]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums the three derivative factors instead of multiplying them.",
+  "This multiplies only two of the three factors, then adds the third.",
+  "This skips the middle factor \\( g'(k(a_0)) \\).",
+  "This skips the outer factor \\( f'(g(k(a_0))) \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_solve_missing_factor_v4",
+ "skill_id": "chain_rule_with_an_abstract_or_tabulated_inner_funct",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a0": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], 0)", "Ne([[d]], 0)"],
+ "derived": {
+  "K": "[[d]]*[[c]]"
+ },
+ "stem": "Let \\( h(x)=f(g(x)) \\), where \\( g([[a0]])=[[b]] \\) and \\( g'([[a0]])=[[c]] \\). If \\( h'([[a0]])=[[K]] \\), what is \\( f'([[b]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[K]]/[[c]]"
+ },
+ "distractors": [
+  "[[K]]*[[c]]",
+  "[[K]] - [[c]]",
+  "[[K]] + [[c]]",
+  "[[c]]/[[K]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( h'(x)=f'(g(x))\\,g'(x) \\), we get \\( f'([[b]]) = h'([[a0]])/g'([[a0]]) = [[K]]/[[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( g'(a_0) \\) instead of dividing by it.",
+  "This subtracts \\( g'(a_0) \\) instead of dividing.",
+  "This adds \\( g'(a_0) \\) instead of dividing.",
+  "This inverts the correct ratio.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

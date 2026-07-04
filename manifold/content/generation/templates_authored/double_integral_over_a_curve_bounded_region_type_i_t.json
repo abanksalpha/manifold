@@ -1,0 +1,191 @@
+[
+ {
+  "template_id": "double_integral_over_a_curve_bounded_region_type_i_t_v1",
+  "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "m": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the region \\( \\{ (x,y) : 0 \\le x \\le [[b]],\\ 0 \\le y \\le [[m]]x \\} \\). Evaluate \\( \\iint_D ([[p]]x + [[q]]y)\\,dA = \\int_{0}^{[[b]]} \\int_{0}^{[[m]]x} ([[p]]x + [[q]]y)\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x + [[q]]*y", "vars": ["y", "x"], "bounds": [["0", "[[m]]*x"], ["0", "[[b]]"]]},
+  "distractors": [
+   "[[p]]*[[m]]*[[b]]**3/2 + [[q]]*[[m]]**2*[[b]]**3/2",
+   "[[p]]*[[m]]*[[b]]**3/3 - [[q]]*[[m]]**2*[[b]]**3/6",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(0\\) to \\([[m]]x\\): \\( \\int_{0}^{[[m]]x}([[p]]x+[[q]]y)\\,dy = [[p]]x([[m]]x) + [[q]]\\frac{([[m]]x)^2}{2} \\). Then integrate this in \\(x\\) from \\(0\\) to \\([[b]]\\) to get \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This integrates \\(y\\) up to the constant \\([[m]][[b]]\\) (a rectangle) instead of up to the line \\(y=[[m]]x\\).",
+   "This makes a sign error on the \\(y\\)-term after integrating.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integral_over_a_curve_bounded_region_type_i_t_v2",
+  "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "k": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the region \\( \\{ (x,y) : 0 \\le x \\le [[b]],\\ 0 \\le y \\le [[k]]x^2 \\} \\), bounded above by a parabola. Evaluate \\( \\iint_D ([[p]]x + [[q]]y)\\,dA = \\int_{0}^{[[b]]} \\int_{0}^{[[k]]x^2} ([[p]]x + [[q]]y)\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x + [[q]]*y", "vars": ["y", "x"], "bounds": [["0", "[[k]]*x**2"], ["0", "[[b]]"]]},
+  "distractors": [
+   "[[p]]*[[k]]*[[b]]**3/3 + [[q]]*[[k]]**2*[[b]]**4/4",
+   "[[p]]*[[k]]*[[b]]**4/3 + [[q]]*[[k]]**2*[[b]]**5/5",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(0\\) to \\([[k]]x^2\\): \\( \\int_{0}^{[[k]]x^2}([[p]]x+[[q]]y)\\,dy = [[p]]x([[k]]x^2) + [[q]]\\frac{([[k]]x^2)^2}{2} \\). Then integrate this in \\(x\\) from \\(0\\) to \\([[b]]\\): \\( \\int_0^{[[b]]}\\left([[p]][[k]]x^3 + \\tfrac{[[q]][[k]]^2}{2}x^4\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the upper bound as if it were the linear curve \\([[k]]x\\) instead of the parabola \\([[k]]x^2\\), giving the wrong powers of \\(x\\).",
+   "This drops the factor of \\(\\tfrac12\\) that comes from integrating the \\(y\\)-term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integral_over_a_curve_bounded_region_type_i_t_v3",
+  "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "d": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the Type II region described by: for each \\(y\\) with \\(0 \\le y \\le [[d]]\\), \\(x\\) ranges from \\(y^2\\) to \\([[d]]^2\\) (so \\(x\\) is given as a function of \\(y\\), bounded by the parabola \\(x=y^2\\)). Evaluate \\( \\iint_D ([[p]]x + [[q]]y)\\,dA = \\int_{0}^{[[d]]} \\int_{y^2}^{[[d]]^2} ([[p]]x + [[q]]y)\\,dx\\,dy \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x + [[q]]*y", "vars": ["x", "y"], "bounds": [["y**2", "[[d]]**2"], ["0", "[[d]]"]]},
+  "distractors": [
+   "[[p]]*[[d]]**5/5 + [[q]]*[[d]]**4/4",
+   "[[p]]*[[d]]**5/2 + [[q]]*[[d]]**4/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Fix \\(y\\) and integrate in \\(x\\) first: \\( \\int_{y^2}^{[[d]]^2}([[p]]x+[[q]]y)\\,dx = [[p]]\\dfrac{[[d]]^4-y^4}{2} + [[q]]y([[d]]^2-y^2) \\). Then integrate this in \\(y\\) from \\(0\\) to \\([[d]]\\) to get \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This mis-integrates the \\(x\\)-term as if the region were a rectangle \\(0\\le x\\le [[d]]^2\\), missing the \\(y^4\\) subtraction.",
+   "This drops the leading coefficients \\(\\tfrac12\\) and \\(\\tfrac14\\) that come from the antiderivatives.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integral_over_a_curve_bounded_region_type_i_t_v4",
+  "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the band-shaped region between two parallel lines, \\( \\{ (x,y) : 0 \\le x \\le [[b]],\\ x \\le y \\le x+[[c]] \\} \\). Evaluate \\( \\iint_D ([[p]]x + [[q]]y)\\,dA = \\int_{0}^{[[b]]} \\int_{x}^{x+[[c]]} ([[p]]x + [[q]]y)\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x + [[q]]*y", "vars": ["y", "x"], "bounds": [["x", "x+[[c]]"], ["0", "[[b]]"]]},
+  "distractors": [
+   "[[p]]*[[c]]*[[b]]**2/2",
+   "([[p]]+[[q]])*[[c]]*[[b]]**2/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(x\\) to \\(x+[[c]]\\): \\( \\int_{x}^{x+[[c]]}([[p]]x+[[q]]y)\\,dy = [[p]]x[[c]] + [[q]]\\dfrac{(x+[[c]])^2-x^2}{2} \\). Simplify and integrate over \\(x\\) from \\(0\\) to \\([[b]]\\) to get \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This drops the \\(q\\)-term contribution entirely, keeping only the \\(p\\)-term.",
+   "This forgets the extra \\(q[[c]]^2/2\\) piece that comes from expanding \\((x+[[c]])^2-x^2\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integral_over_a_curve_bounded_region_type_i_t_v5",
+  "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "R": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the quarter-disk region \\( \\{ (x,y) : 0 \\le x \\le [[R]],\\ 0 \\le y \\le \\sqrt{[[R]]^2-x^2} \\} \\). Evaluate \\( \\iint_D ([[p]]x + [[q]]y)\\,dA = \\int_{0}^{[[R]]} \\int_{0}^{\\sqrt{[[R]]^2-x^2}} ([[p]]x + [[q]]y)\\,dy\\,dx \\) directly in Cartesian coordinates.",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x + [[q]]*y", "vars": ["y", "x"], "bounds": [["0", "sqrt([[R]]**2-x**2)"], ["0", "[[R]]"]]},
+  "distractors": [
+   "([[p]]+[[q]])*pi*[[R]]**3/4",
+   "([[p]]+[[q]])*[[R]]**3/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Integrating in \\(y\\) first, \\( \\int_0^{\\sqrt{[[R]]^2-x^2}}([[p]]x+[[q]]y)\\,dy = [[p]]x\\sqrt{[[R]]^2-x^2} + [[q]]\\dfrac{[[R]]^2-x^2}{2} \\). Both pieces integrate cleanly (the first by the substitution \\(u=[[R]]^2-x^2\\), the second as a polynomial) over \\(0\\le x\\le [[R]]\\), giving \\( \\dfrac{([[p]]+[[q]])[[R]]^3}{3} = [[answer]] \\); no \\(\\pi\\) appears since neither piece is a circular-area term.",
+  "distractor_rationales": [
+   "This mistakenly brings in a factor of \\(\\pi\\), confusing this with a polar-coordinates area computation.",
+   "This drops the correct coefficient \\(\\tfrac13\\), using \\(\\tfrac14\\) instead.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integral_over_a_curve_bounded_region_type_i_t_v6",
+  "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the region enclosed between the parabola \\(y=x^2\\) and the line \\(y=[[m]]x\\) (the two curves meet at \\(x=0\\) and \\(x=[[m]]\\)): \\( \\{ (x,y) : 0 \\le x \\le [[m]],\\ x^2 \\le y \\le [[m]]x \\} \\). Evaluate \\( \\iint_D ([[p]]x + [[q]]y)\\,dA = \\int_{0}^{[[m]]} \\int_{x^2}^{[[m]]x} ([[p]]x + [[q]]y)\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x + [[q]]*y", "vars": ["y", "x"], "bounds": [["x**2", "[[m]]*x"], ["0", "[[m]]"]]},
+  "distractors": [
+   "[[p]]*[[m]]**4/4 + [[q]]*[[m]]**5/10",
+   "[[p]]*[[m]]**4/3 + [[q]]*[[m]]**5/6",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(x^2\\) to \\([[m]]x\\): \\( \\int_{x^2}^{[[m]]x}([[p]]x+[[q]]y)\\,dy = [[p]]x([[m]]x-x^2) + [[q]]\\dfrac{([[m]]x)^2-x^4}{2} \\). Integrating this in \\(x\\) from \\(0\\) to \\([[m]]\\) gives \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This treats the lower bound as \\(0\\) instead of the parabola \\(x^2\\), forgetting to subtract it.",
+   "This uses the wrong exponents when expanding \\(([[m]]x)^2-x^4\\), as if the region were bounded by \\(0\\) below.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

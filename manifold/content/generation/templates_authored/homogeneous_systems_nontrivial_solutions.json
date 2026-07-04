@@ -1,0 +1,185 @@
+[
+{
+ "template_id": "homogeneous_systems_nontrivial_solutions_v1",
+ "skill_id": "homogeneous_systems_nontrivial_solutions",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[a]] + [[b]]*[[b]] + [[c]]*[[c]], 0)"],
+ "derived": {
+  "r31": "[[a]] + [[d]]",
+  "r32": "[[b]] + [[e]]",
+  "r33": "[[c]] + [[f]]"
+ },
+ "stem": "The homogeneous system \\( A\\mathbf{x} = \\mathbf{0} \\) has coefficient matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{bmatrix} \\), whose third row is the sum of the first two. Because \\( A \\) is not full rank, the system has nontrivial solutions. What is the rank of \\( A \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "3",
+  "0",
+  "1",
+  "2",
+  "4",
+  "[[answer]] + 1"
+ ],
+ "solution": "The third row equals the sum of the first two, so it contributes no new pivot. The remaining independent rows give a rank of [[answer]], and the solution space has dimension \\( 3 - [[answer]] \\).",
+ "distractor_rationales": [
+  "This would require all three rows to be independent, but the third is the sum of the first two.",
+  "A matrix with a nonzero row cannot have rank 0.",
+  "This under-counts the number of independent rows.",
+  "This over-counts the number of independent rows.",
+  "A matrix with 3 rows cannot have rank greater than 3.",
+  "This is off by one from the correct rank."
+ ]
+},
+{
+ "template_id": "homogeneous_systems_nontrivial_solutions_v2",
+ "skill_id": "homogeneous_systems_nontrivial_solutions",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "g": {"type": "int", "lo": -5, "hi": 5},
+  "h": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]*[[a]]+[[b]]*[[b]]+[[c]]*[[c]]+[[d]]*[[d]], 0)", "Ne([[e]]*[[e]]+[[f]]*[[f]]+[[g]]*[[g]]+[[h]]*[[h]], 0)"],
+ "stem": "The homogeneous system \\( A\\mathbf{x} = \\mathbf{0} \\) has coefficient matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] & [[d]] \\\\ [[e]] & [[f]] & [[g]] & [[h]] \\end{bmatrix} \\), i.e. 2 equations in 4 unknowns. Because there are more unknowns than equations, the system is guaranteed to have a nontrivial solution. What is \\( \\operatorname{rank}(A) \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]", "[[d]]"], ["[[e]]", "[[f]]", "[[g]]", "[[h]]"]]},
+ "distractors": [
+  "4",
+  "3",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] + 2",
+  "[[answer]] - 1"
+ ],
+ "solution": "A matrix with only 2 rows can have rank at most 2, so \\( \\operatorname{rank}(A) = [[answer]] \\) here.",
+ "distractor_rationales": [
+  "A matrix with only 2 rows cannot have rank 4; rank can never exceed the number of rows.",
+  "A matrix with only 2 rows cannot have rank 3; rank can never exceed the number of rows.",
+  "Since the rows are not both zero, the rank cannot be 0.",
+  "This overcounts the number of independent rows, which cannot exceed 2 here.",
+  "This overcounts the number of independent rows, which cannot exceed 2 here.",
+  "This undercounts the number of independent rows actually present."
+ ]
+},
+{
+ "template_id": "homogeneous_systems_nontrivial_solutions_v3",
+ "skill_id": "homogeneous_systems_nontrivial_solutions",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "g": {"type": "int", "lo": -5, "hi": 5},
+  "h": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]*[[f]] - [[b]]*[[e]], 0)"],
+ "stem": "The homogeneous system \\( A\\mathbf{x} = \\mathbf{0} \\) has coefficient matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] & [[d]] \\\\ [[e]] & [[f]] & [[g]] & [[h]] \\end{bmatrix} \\). Since the first two columns already form an invertible \\( 2\\times2 \\) block, the two rows of \\( A \\) are linearly independent, so \\( \\operatorname{rank}(A) = 2 \\). By the rank-nullity theorem, what is the dimension of the solution space of \\( A\\mathbf{x}=\\mathbf{0} \\) (the number of free parameters, with 4 unknowns in total)?",
+ "answer_spec": {"op": "evaluate", "expr": "4 - 2"},
+ "distractors": [
+  "2",
+  "4",
+  "0",
+  "6",
+  "3",
+  "1"
+ ],
+ "solution": "By the rank-nullity theorem, the dimension of the solution space is (number of unknowns) \\( - \\) rank \\( = 4 - 2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the dimension of the solution space with the rank itself.",
+  "This forgets to subtract the rank at all, using the number of unknowns alone.",
+  "The solution space cannot have dimension 0 when there are more unknowns than independent equations.",
+  "This adds the rank to the number of unknowns instead of subtracting.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension."
+ ]
+},
+{
+ "template_id": "homogeneous_systems_nontrivial_solutions_v4",
+ "skill_id": "homogeneous_systems_nontrivial_solutions",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)", "Eq(Mod([[b]]*[[c]], [[d]]), 0)"],
+ "stem": "Consider the homogeneous system \\( kx + ([[b]])y = 0 \\) and \\( ([[c]])x + [[d]]y = 0 \\), where \\( k \\) is a real parameter and \\( x=y=0 \\) is always a (trivial) solution. For which value of \\( k \\) does the system also have a nontrivial solution?",
+ "answer_spec": {"op": "solve", "equation": "[[d]]*k - [[b]]*[[c]] = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[c]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "A homogeneous system has a nontrivial solution exactly when its coefficient matrix \\( \\begin{bmatrix} k & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) is singular, i.e. \\( [[d]]k - ([[b]])([[c]]) = 0 \\), so \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the product \\( bc \\); one must still divide by \\( [[d]] \\) to solve \\( [[d]]k = bc \\).",
+  "This solves the singularity equation with the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "homogeneous_systems_nontrivial_solutions_v5",
+ "skill_id": "homogeneous_systems_nontrivial_solutions",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)", "Ne([[p]]*[[p]] + [[q]]*[[q]], 0)"],
+ "derived": {
+  "r31": "[[p]]*[[a]] + [[q]]*[[d]]",
+  "r32": "[[p]]*[[b]] + [[q]]*[[e]]",
+  "r33": "[[p]]*[[c]] + [[q]]*[[f]]"
+ },
+ "stem": "The homogeneous system \\( A\\mathbf{x} = \\mathbf{0} \\) has coefficient matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{bmatrix} \\), whose third row is \\( [[p]] \\) times the first row plus \\( [[q]] \\) times the second row. This makes \\( A \\) rank-deficient, so \\( A\\mathbf{x}=\\mathbf{0} \\) has a one-parameter family of nontrivial solutions. Normalizing the free variable to \\( z=1 \\), what is the value of \\( x \\) in such a solution?",
+ "answer_spec": {"op": "system", "equations": ["[[a]]*x + [[b]]*y = -[[c]]", "[[d]]*x + [[e]]*y = -[[f]]"], "vars": ["x", "y"], "want": "x"},
+ "distractors": [
+  "[[c]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The third row is redundant, so the first two rows alone determine the null space. Setting \\( z=1 \\) and solving \\( [[a]]x+[[b]]y=-([[c]]) \\), \\( [[d]]x+[[e]]y=-([[f]]) \\) gives \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( c \\) itself rather than the solved value of \\( x \\) after normalizing \\( z=1 \\).",
+  "This has the right magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

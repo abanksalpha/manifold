@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "gauss_degree_exactness_v1",
+ "skill_id": "quadrature_error_order_polynomial_exactness",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {
+   "type": "int",
+   "lo": 2,
+   "hi": 18
+  }
+ },
+ "constraints": [],
+ "stem": "A Gauss\\(-\\)Legendre quadrature rule uses \\( [[n]] \\) nodes, with both the nodes and the weights chosen optimally. This rule integrates every polynomial exactly up to some maximal degree \\( d \\). What is the largest degree \\( d \\) of polynomial that the rule integrates exactly?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*[[n]] - 1"
+ },
+ "distractors": [
+  "[[n]] - 1",
+  "[[n]]",
+  "2*[[n]]",
+  "2*[[n]] + 1",
+  "2*[[n]] - 2",
+  "[[n]] + 1"
+ ],
+ "solution": "An \\( n \\)-node Gauss\\(-\\)Legendre rule attains the maximal degree of exactness \\( 2n - 1 \\). With \\( n = [[n]] \\) nodes this gives \\( d = 2([[n]]) - 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the degree of exactness \\( n-1 \\) of an interpolatory rule with arbitrary (non-optimal) nodes, such as Newton\\(-\\)Cotes.",
+  "This mistakes the degree of exactness for the number of nodes.",
+  "This is one more than the correct \\( 2n-1 \\).",
+  "This overshoots the optimal degree of exactness by two.",
+  "This undershoots by one.",
+  "This confuses the degree of exactness with \\( n+1 \\)."
+ ]
+},
+{
+ "template_id": "newton_cotes_degree_exactness_v1",
+ "skill_id": "quadrature_error_order_polynomial_exactness",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "A closed Newton\\(-\\)Cotes rule uses \\( [[n]] \\) equally spaced nodes (so \\( [[n]]-1 \\) panels), with weights chosen by exactly integrating the interpolating polynomial through those nodes. By the classical symmetry (\"bonus degree\") result, such a rule is exact for polynomials up to degree \\( [[n]]-1 \\) in general, but gains one extra degree of exactness when the number of panels is even. What is the exact degree of exactness \\( d \\) of this rule?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1 + Mod([[n]], 2)"},
+ "distractors": [
+  "[[n]] - 1",
+  "[[n]]",
+  "2*[[n]] - 1",
+  "[[n]] + 1",
+  "[[n]] - 2",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( [[n]] \\) nodes there are \\( [[n]]-1 \\) panels. If \\( [[n]]-1 \\) is even (i.e. \\( n \\) is odd), the rule gains a bonus degree, giving \\( d = n \\); otherwise \\( d = n-1 \\). Here this gives \\( d = [[answer]] \\).",
+ "distractor_rationales": [
+  "This always assumes no bonus degree, missing the case where the number of panels is even.",
+  "This always assumes the bonus degree applies, even when the number of panels is odd.",
+  "This mistakes the Newton\\(-\\)Cotes formula for the optimal Gauss\\(-\\)Legendre formula \\( 2n-1 \\).",
+  "This overshoots by one beyond the correct degree.",
+  "This undershoots by one below the correct degree.",
+  "This is one more than the correct degree of exactness."
+ ]
+},
+{
+ "template_id": "composite_rule_error_decrease_factor_v1",
+ "skill_id": "quadrature_error_order_polynomial_exactness",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]},
+  "r": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "A composite quadrature rule has global error \\( O(h^{p}) \\) with \\( p = [[p]] \\) (for example, the composite trapezoidal rule has \\( p=2 \\) and the composite Simpson's rule has \\( p=4 \\)). If the number of subintervals is increased by a factor of \\( [[r]] \\) (so \\( h \\to h/[[r]] \\)), by what factor does the error decrease?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r]]**[[p]]"},
+ "distractors": [
+  "[[r]]*[[p]]",
+  "[[r]]**([[p]] - 1)",
+  "[[r]]**([[p]] + 1)",
+  "[[p]]**[[r]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since the error scales like \\( h^{p} \\), shrinking \\( h \\) by a factor of \\( [[r]] \\) shrinks the error by a factor of \\( [[r]]^{p} = [[r]]^{[[p]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( r \\) and \\( p \\) instead of raising \\( r \\) to the power \\( p \\).",
+  "This uses one too few powers of \\( r \\).",
+  "This uses one too many powers of \\( r \\).",
+  "This swaps the roles of \\( r \\) and \\( p \\) in the exponent.",
+  "This is one more than the correct decrease factor.",
+  "This is one less than the correct decrease factor."
+ ]
+},
+{
+ "template_id": "simpson_exactness_failure_error_v1",
+ "skill_id": "quadrature_error_order_polynomial_exactness",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "h": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"b": "[[a]] + 2*[[h]]", "c": "[[a]] + [[h]]"},
+ "stem": "Simpson's rule with the two subintervals \\( [[[a]], [[c]]] \\) and \\( [[[c]], [[b]]] \\) (midpoint \\( c = [[c]] \\)) is used to approximate \\( \\displaystyle\\int_{[[a]]}^{[[b]]} x^{4}\\,dx \\), namely \\( S = \\dfrac{[[b]]-[[a]]}{6}\\big(f([[a]]) + 4f([[c]]) + f([[b]])\\big) \\) with \\( f(x) = x^{4} \\). Since Simpson's rule is exact only for polynomials up to degree 3, \\( S \\) will not equal the true integral. What is the error \\( \\displaystyle\\int_{[[a]]}^{[[b]]} x^{4}\\,dx - S \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "(([[b]])**5 - ([[a]])**5)/5 - (([[b]] - [[a]])/6)*([[a]]**4 + 4*[[c]]**4 + [[b]]**4)"
+ },
+ "distractors": [
+  "0",
+  "-[[answer]]",
+  "(([[b]])**5 - ([[a]])**5)/5",
+  "(([[b]] - [[a]])/6)*([[a]]**4 + 4*[[c]]**4 + [[b]]**4)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The exact integral is \\( \\dfrac{[[b]]^{5}-([[a]])^{5}}{5} \\) and Simpson's estimate is \\( S = \\dfrac{[[b]]-([[a]])}{6}\\big([[a]]^{4}+4([[c]])^{4}+[[b]]^{4}\\big) \\); subtracting gives the error \\( [[answer]] \\), which is nonzero precisely because \\( x^{4} \\) exceeds Simpson's degree-3 exactness.",
+ "distractor_rationales": [
+  "This assumes Simpson's rule is exact for every polynomial, giving zero error.",
+  "This has the sign of the error reversed.",
+  "This reports the exact integral value itself, forgetting to subtract Simpson's estimate.",
+  "This reports Simpson's estimate itself, forgetting to subtract it from the exact integral.",
+  "This is one more than the correct error.",
+  "This is one less than the correct error."
+ ]
+}
+]

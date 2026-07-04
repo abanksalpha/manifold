@@ -1,0 +1,144 @@
+[
+{
+ "template_id": "find_or_verify_eigenvector_v1_row_sum_2x2",
+ "skill_id": "find_or_verify_an_eigenvector",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "derived": {"d": "[[a]] + [[b]] - [[c]]"},
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{pmatrix} \\) and \\( v = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} \\). Given that \\( v \\) is an eigenvector of \\( A \\), what is its corresponding eigenvalue (i.e. the value of \\( \\lambda \\) with \\( Av = \\lambda v \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*1 + [[b]]*1"},
+ "distractors": [
+  "[[c]]*1 + [[d]]*1",
+  "[[a]]",
+  "[[a]]-[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Every row of \\( A \\) sums to the same value here, so \\( Av \\) has both entries equal to that row sum: \\( (Av)_1 = ([[a]])(1)+([[b]])(1) = [[answer]] \\), and \\( Av = [[answer]] v \\), giving eigenvalue \\( \\lambda = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the second row's entries; both rows give the same eigenvalue here, so this happens to coincide unless miscomputed, but is not how \\( \\lambda \\) is read from row 1.",
+  "This is just the \\( (1,1) \\) entry of \\( A \\), not the eigenvalue.",
+  "This subtracts instead of adding the first row's entries.",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by two from the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "find_or_verify_eigenvector_v2_alternating_2x2",
+ "skill_id": "find_or_verify_an_eigenvector",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "derived": {"d": "[[c]] - [[a]] + [[b]]"},
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{pmatrix} \\) and \\( v = \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix} \\). Given that \\( v \\) is an eigenvector of \\( A \\), what is its corresponding eigenvalue?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*1 - [[b]]*1"},
+ "distractors": [
+  "[[c]]*1 - [[d]]*1",
+  "[[a]]",
+  "[[a]]+[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Row 1 gives \\( (Av)_1 = ([[a]])(1) + ([[b]])(-1) = [[a]]-[[b]] = [[answer]] \\), and since \\( v \\) is an eigenvector, \\( Av = [[answer]] v \\), so \\( \\lambda = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses row 2's entries in the same pattern; both rows are consistent with the same eigenvalue by construction, but \\( \\lambda \\) is read directly from row 1's combination \\( a-b \\), not this expression.",
+  "This is just the \\( (1,1) \\) entry of \\( A \\), not the eigenvalue.",
+  "This adds instead of subtracting the first row's entries (using \\( v=(1,1) \\) instead of \\( v=(1,-1) \\)).",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by two from the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "find_or_verify_eigenvector_v3_row_sum_3x3",
+ "skill_id": "find_or_verify_an_eigenvector",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "g": {"type": "int", "lo": -5, "hi": 5},
+  "h": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Or(Ne([[b]],0), Ne([[c]],0))"],
+ "derived": {
+  "f": "[[a]] + [[b]] + [[c]] - [[d]] - [[e]]",
+  "i": "[[a]] + [[b]] + [[c]] - [[g]] - [[h]]"
+ },
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{pmatrix} \\) and \\( v = \\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} \\). Given that \\( v \\) is an eigenvector of \\( A \\), what is its corresponding eigenvalue?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]+[[b]]+[[c]]"},
+ "distractors": [
+  "[[d]]+[[e]]+[[f]]",
+  "[[a]]*[[b]]*[[c]]",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Every row of \\( A \\) sums to the same value here, so \\( (Av)_1 = [[a]]+[[b]]+[[c]] = [[answer]] \\), and since \\( v \\) is an eigenvector, \\( Av = [[answer]] v \\), giving \\( \\lambda = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses row 2's entries; all three rows sum to the same eigenvalue by construction, but \\( \\lambda \\) is read directly from row 1's sum here.",
+  "This multiplies the first row's entries instead of adding them.",
+  "This is just the \\( (1,1) \\) entry of \\( A \\), not the eigenvalue.",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by two from the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "find_or_verify_eigenvector_v4_general_vector",
+ "skill_id": "find_or_verify_an_eigenvector",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "t1": {"type": "int", "lo": -3, "hi": 3},
+  "t2": {"type": "int", "lo": -3, "hi": 3},
+  "lam": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[q]], 0)", "Or(Ne([[t1]],0), Ne([[t2]],0))"],
+ "derived": {
+  "a11": "[[lam]] + [[q]]*[[t1]]",
+  "a12": "-[[p]]*[[t1]]",
+  "a21": "[[q]]*[[t2]]",
+  "a22": "[[lam]] - [[p]]*[[t2]]"
+ },
+ "stem": "Let \\( A = \\begin{pmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{pmatrix} \\) and \\( v = \\begin{pmatrix} [[p]] \\\\ [[q]] \\end{pmatrix} \\). Given that \\( v \\) is an eigenvector of \\( A \\), use the SECOND row of \\( Av \\) to find the corresponding eigenvalue \\( \\lambda \\) (i.e. compute \\( (Av)_2 / v_2 \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a21]]*[[p]] + [[a22]]*[[q]]) / [[q]]"},
+ "distractors": [
+  "([[a11]]*[[p]] + [[a12]]*[[q]]) / [[p]]",
+  "[[a22]]",
+  "[[a21]]+[[a22]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Row 2 of \\( Av \\) is \\( ([[a21]])([[p]]) + ([[a22]])([[q]]) \\); dividing by \\( v_2=[[q]] \\) gives \\( \\lambda = [[answer]] \\) (matching \\( \\lambda=[[lam]] \\) used to build \\( A \\)).",
+ "distractor_rationales": [
+  "This computes the ratio from row 1 instead of row 2 as asked (both give the same \\( \\lambda \\), but this isn't the row-2 computation requested).",
+  "This is just the \\( (2,2) \\) entry of \\( A \\), not the ratio \\( (Av)_2/v_2 \\).",
+  "This adds the second row's entries directly instead of forming the weighted combination with \\( v \\) and dividing by \\( v_2 \\).",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by one from the correct eigenvalue.",
+  "This is off by two from the correct eigenvalue."
+ ]
+}
+]

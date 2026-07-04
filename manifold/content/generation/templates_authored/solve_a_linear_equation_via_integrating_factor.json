@@ -1,0 +1,212 @@
+[
+ {
+  "template_id": "linear_integrating_factor_ivp_v1",
+  "skill_id": "solve_a_linear_equation_via_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "s": {"type": "int", "lo": -3, "hi": 4},
+   "y0": {"type": "int", "lo": -3, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[y0]], [[s]])"],
+  "derived": {"rhs": "[[a]]*[[s]]"},
+  "stem": "Use an integrating factor to solve the linear equation \\( y' + [[a]]y = [[rhs]] \\) with \\( y(0) = [[y0]] \\). What is \\( y([[t0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]] + ([[y0]] - [[s]])*exp(-[[a]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "[[s]] + ([[y0]] - [[s]])*exp([[a]]*[[t0]])",
+   "[[y0]]*exp(-[[a]]*[[t0]])",
+   "[[s]]",
+   "[[s]] - ([[y0]] - [[s]])*exp(-[[a]]*[[t0]])",
+   "[[y0]] + ([[s]] - [[y0]])*exp(-[[a]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The integrating factor is \\( \\mu = e^{[[a]]x} \\). Then \\( (e^{[[a]]x}y)' = [[rhs]]\\,e^{[[a]]x} \\), so \\( e^{[[a]]x}y = [[s]]\\,e^{[[a]]x} + C \\) and \\( y = [[s]] + Ce^{-[[a]]x} \\). Using \\( y(0) = [[y0]] \\) gives \\( C = [[y0]] - [[s]] \\), so \\( y(x) = [[s]] + ([[y0]] - [[s]])e^{-[[a]]x} \\). At \\( x = [[t0]] \\), \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( e^{+[[a]]x} \\) instead of the decaying \\( e^{-[[a]]x} \\).",
+   "This drops the steady-state term \\( [[s]] \\) and decays from \\( [[y0]] \\).",
+   "This reports only the equilibrium value, ignoring the transient.",
+   "This flips the sign of the transient amplitude.",
+   "This swaps the roles of the initial value and the steady state.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_integrating_factor_polynomial_forcing_v1",
+  "skill_id": "solve_a_linear_equation_via_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "derived": {
+   "C": "[[y0]] + [[b]]/[[a]]**2"
+  },
+  "stem": "Use an integrating factor to solve \\( y' + [[a]]y = [[b]]x \\), a linear equation with a first-degree forcing term, given \\( y(0) = [[y0]] \\). Find \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]]/[[a]])*[[t0]] - [[b]]/[[a]]**2 + ([[C]])*exp(-[[a]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "([[b]]/[[a]])*[[t0]] + ([[y0]])*exp(-[[a]]*[[t0]])",
+   "([[b]]/[[a]])*[[t0]] - [[b]]/[[a]]**2 + ([[y0]])*exp(-[[a]]*[[t0]])",
+   "[[b]]*[[t0]] + ([[C]])*exp(-[[a]]*[[t0]])",
+   "([[b]]/[[a]])*[[t0]] - [[b]]/[[a]]**2 + ([[C]])*exp([[a]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Try a particular solution \\( y_p = Bx+D \\); matching coefficients gives \\( B=\\dfrac{[[b]]}{[[a]]} \\) and \\( D=-\\dfrac{[[b]]}{[[a]]^{2}} \\). The homogeneous part is \\( Ce^{-[[a]]x} \\), and \\( y(0)=[[y0]] \\) gives \\( C = [[y0]]+\\dfrac{[[b]]}{[[a]]^{2}} = [[C]] \\). So \\( y(x) = \\dfrac{[[b]]}{[[a]]}x-\\dfrac{[[b]]}{[[a]]^{2}} + [[C]]e^{-[[a]]x} \\), and \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the constant shift \\( -b/a^{2} \\) from the particular solution entirely.",
+   "This uses the raw initial value \\( y_0 \\) instead of correcting it by the particular solution's value at \\( 0 \\).",
+   "This forgets to divide the linear term's slope by \\( [[a]] \\).",
+   "This uses the wrong sign in the decaying exponential.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_integrating_factor_exponential_forcing_v1",
+  "skill_id": "solve_a_linear_equation_via_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[c]], -[[a]])", "Ne([[b]], 0)"],
+  "derived": {
+   "K": "[[b]]/([[a]]+[[c]])"
+  },
+  "stem": "Use an integrating factor to solve \\( y' + [[a]]y = [[b]]e^{[[c]]x} \\) (the forcing term is not itself a solution of the homogeneous equation), given \\( y(0)=[[y0]] \\). Find \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[K]])*exp([[c]]*[[t0]]) + (([[y0]])-([[K]]))*exp(-[[a]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "(([[y0]])-([[K]]))*exp([[c]]*[[t0]]) + ([[K]])*exp(-[[a]]*[[t0]])",
+   "([[K]])*exp(-[[c]]*[[t0]]) + (([[y0]])-([[K]]))*exp(-[[a]]*[[t0]])",
+   "[[b]]*exp([[c]]*[[t0]]) + (([[y0]])-[[b]])*exp(-[[a]]*[[t0]])",
+   "([[b]]/([[a]]-[[c]]))*exp([[c]]*[[t0]]) + (([[y0]])-([[b]]/([[a]]-[[c]])))*exp(-[[a]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The integrating factor is \\( \\mu=e^{[[a]]x} \\), giving \\( (e^{[[a]]x}y)' = [[b]]e^{([[a]]+[[c]])x} \\). Integrating, \\( e^{[[a]]x}y = \\dfrac{[[b]]}{[[a]]+[[c]]}e^{([[a]]+[[c]])x}+C \\), so \\( y = \\dfrac{[[b]]}{[[a]]+[[c]]}e^{[[c]]x} + Ce^{-[[a]]x} \\). Using \\( y(0)=[[y0]] \\), \\( C = [[y0]]-[[K]] \\). Hence \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of the particular and homogeneous coefficients.",
+   "This uses the wrong sign on the forcing rate \\( c \\) in the particular solution.",
+   "This ignores the denominator \\( (a+c) \\) entirely, using \\( b \\) as the amplitude.",
+   "This uses \\( a-c \\) instead of \\( a+c \\) in the denominator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_integrating_factor_resonant_forcing_v1",
+  "skill_id": "solve_a_linear_equation_via_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "Use an integrating factor to solve \\( y' + [[a]]y = [[b]]e^{-[[a]]x} \\) \u2014 note the forcing term shares the homogeneous solution's exponential rate (resonance) \u2014 given \\( y(0)=[[y0]] \\). Find \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(([[b]])*[[t0]] + ([[y0]]))*exp(-[[a]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "(([[b]])+([[y0]]))*exp(-[[a]]*[[t0]])",
+   "(([[b]])*[[t0]] + ([[y0]]))*exp([[a]]*[[t0]])",
+   "([[b]]*[[t0]]**2/2 + [[y0]])*exp(-[[a]]*[[t0]])",
+   "[[b]]*[[t0]]*exp(-[[a]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The integrating factor is \\( \\mu=e^{[[a]]x} \\), giving \\( (e^{[[a]]x}y)' = [[b]] \\) (the exponentials cancel because the forcing matches the homogeneous rate). Integrating, \\( e^{[[a]]x}y = [[b]]x+C \\), so \\( y=([[b]]x+C)e^{-[[a]]x} \\). Using \\( y(0)=[[y0]] \\), \\( C=[[y0]] \\). Hence \\( y([[t0]]) = ([[b]]\\cdot[[t0]]+[[y0]])e^{-[[a]][[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to multiply the forcing coefficient by \\( x \\), missing the resonance correction.",
+   "This uses the wrong sign in the exponential.",
+   "This mistakenly integrates \\( b \\) twice, picking up an extra factor of \\( x^{2}/2 \\).",
+   "This drops the initial value \\( y_0 \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_integrating_factor_variable_coefficient_v1",
+  "skill_id": "solve_a_linear_equation_via_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [1, 2, 3, 4]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[y0]], [[k]])", "Ne([[t0]], [[x0]])"],
+  "derived": {
+   "C": "([[y0]]-[[k]])*[[x0]]"
+  },
+  "stem": "The variable-coefficient linear equation \\( xy' + y = [[k]] \\) (equivalently \\( y' + \\dfrac{y}{x} = \\dfrac{[[k]]}{x} \\), for \\( x>0 \\)) has integrating factor \\( \\mu = x \\). Given \\( y([[x0]]) = [[y0]] \\), use it to find \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]] + ([[C]])/[[t0]]"},
+  "distractors": [
+   "[[k]] + ([[y0]]-[[k]])/[[t0]]",
+   "[[k]]*[[t0]] + ([[C]])/[[x0]]",
+   "[[y0]] + [[k]]*([[t0]]-[[x0]])",
+   "[[k]] - ([[C]])/[[t0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\mu=x \\), \\( (xy)' = [[k]] \\), so \\( xy = [[k]]x+C \\) and \\( y = [[k]] + \\dfrac{C}{x} \\). Using \\( y([[x0]])=[[y0]] \\), \\( C = ([[y0]]-[[k]])\\cdot[[x0]] = [[C]] \\). Hence \\( y([[t0]]) = [[k]] + \\dfrac{[[C]]}{[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to scale the constant \\( C \\) by \\( x_0 \\) when solving for it.",
+   "This swaps the roles of \\( x_0 \\) and \\( t_0 \\) in the formula.",
+   "This treats the equation as if \\( a \\) were a constant coefficient rather than \\( 1/x \\).",
+   "This uses the wrong sign on the \\( C/x \\) term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_integrating_factor_mixing_tank_v1",
+  "skill_id": "solve_a_linear_equation_via_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "s": {"type": "int", "lo": 1, "hi": 6},
+   "Q0": {"type": "int", "lo": 0, "hi": 10},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[Q0]], [[s]])"],
+  "stem": "A tank initially contains \\( [[Q0]] \\) kg of salt dissolved in solution. Brine flows in and well-mixed solution flows out at matched rates, driving the salt amount \\( Q(t) \\) toward an equilibrium of \\( [[s]] \\) kg according to \\( \\dfrac{dQ}{dt} = [[a]]\\left([[s]] - Q\\right) \\). Using an integrating factor, find \\( Q([[t0]]) \\) (in kg) given \\( Q(0) = [[Q0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]] + (([[Q0]])-([[s]]))*exp(-[[a]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "[[s]] + (([[Q0]])-([[s]]))*exp([[a]]*[[t0]])",
+   "[[Q0]]*exp(-[[a]]*[[t0]])",
+   "[[s]]",
+   "[[s]] - (([[Q0]])-([[s]]))*exp(-[[a]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Rewriting, \\( Q' + [[a]]Q = [[a]]\\cdot[[s]] \\). The integrating factor \\( \\mu=e^{[[a]]t} \\) gives \\( Q(t) = [[s]] + Ce^{-[[a]]t} \\); \\( Q(0)=[[Q0]] \\) gives \\( C=[[Q0]]-[[s]] \\). Hence \\( Q([[t0]]) = [[s]] + ([[Q0]]-[[s]])e^{-[[a]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses a growing exponential instead of the correct decaying one.",
+   "This ignores the equilibrium level entirely, decaying toward zero.",
+   "This reports only the equilibrium value, ignoring the transient from \\( Q_0 \\).",
+   "This flips the sign of the transient term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

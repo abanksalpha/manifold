@@ -1,0 +1,139 @@
+[
+ {
+  "template_id": "complex_roots_frequency_v1",
+  "skill_id": "complex_conjugate_roots_oscillatory_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "int", "lo": -3, "hi": 3},
+   "omega": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ne([[omega]], 0)"],
+  "derived": {"b": "-2*[[alpha]]", "c": "[[alpha]]**2 + [[omega]]**2"},
+  "stem": "The equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has complex conjugate characteristic roots \\( \\alpha \\pm i\\omega \\), giving an oscillatory solution \\( e^{\\alpha t}\\left(c_1\\cos(\\omega t) + c_2\\sin(\\omega t)\\right) \\). What is the angular frequency \\( \\omega \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt(4*([[c]]) - ([[b]])**2)/2"},
+  "distractors": [
+   "sqrt(4*([[c]]) - ([[b]])**2)",
+   "[[omega]]**2",
+   "Abs([[alpha]])",
+   "[[c]]",
+   "[[omega]] + 1",
+   "[[omega]] - 1",
+   "[[omega]] + 2"
+  ],
+  "solution": "The roots are \\( r = \\frac{-([[b]]) \\pm \\sqrt{([[b]])^{2} - 4([[c]])}}{2} \\). Since \\( ([[b]])^{2} - 4([[c]]) < 0 \\), the imaginary part is \\( \\omega = \\frac{\\sqrt{4([[c]]) - ([[b]])^{2}}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the division by 2, giving twice the frequency.",
+   "This reports \\( \\omega^{2} \\) rather than \\( \\omega \\).",
+   "This gives the real part \\( |\\alpha| \\) instead of the frequency.",
+   "This uses the constant coefficient \\( [[c]] \\) directly.",
+   "This is one more than the frequency.",
+   "This is one less than the frequency.",
+   "This is two more than the frequency."
+  ]
+ },
+ {
+  "template_id": "complex_roots_decay_rate_v2",
+  "skill_id": "complex_conjugate_roots_oscillatory_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "int", "lo": -5, "hi": 5},
+   "omega": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[omega]], 0)", "Ne([[alpha]], 0)"],
+  "derived": {"b": "-2*[[alpha]]", "c": "[[alpha]]**2 + [[omega]]**2"},
+  "stem": "The equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has complex conjugate characteristic roots \\( \\alpha \\pm i\\omega \\), giving the solution \\( e^{\\alpha t}\\left(c_1\\cos(\\omega t) + c_2\\sin(\\omega t)\\right) \\). What is the exponential rate \\( \\alpha \\) that governs whether solutions grow or decay?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[b]])/2"},
+  "distractors": [
+   "[[b]]/2",
+   "-([[b]])",
+   "[[b]]",
+   "sqrt(4*([[c]]) - ([[b]])**2)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The characteristic roots are \\( r = \\frac{-([[b]]) \\pm \\sqrt{([[b]])^{2} - 4([[c]])}}{2} \\), so the real part is \\( \\alpha = \\frac{-([[b]])}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from the real part.",
+   "This forgets to divide by 2.",
+   "This uses the coefficient \\( [[b]] \\) directly as \\( \\alpha \\).",
+   "This gives the angular frequency \\( \\omega \\) instead of the decay rate \\( \\alpha \\).",
+   "This is one more than the correct rate.",
+   "This is one less than the correct rate.",
+   "This is two more than the correct rate."
+  ]
+ },
+ {
+  "template_id": "complex_roots_period_v3",
+  "skill_id": "complex_conjugate_roots_oscillatory_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "int", "lo": -3, "hi": 3},
+   "omega": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[omega]], 0)"],
+  "derived": {"b": "-2*[[alpha]]", "c": "[[alpha]]**2 + [[omega]]**2"},
+  "require_rational": false,
+  "stem": "The equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has complex conjugate characteristic roots \\( \\alpha \\pm i\\omega \\), so its oscillatory factor \\( \\cos(\\omega t) \\) and \\( \\sin(\\omega t) \\) repeat with period \\( T = \\dfrac{2\\pi}{\\omega} \\). What is \\( T \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*pi/(sqrt(4*([[c]]) - ([[b]])**2)/2)"},
+  "distractors": [
+   "pi/(sqrt(4*([[c]]) - ([[b]])**2)/2)",
+   "4*pi/(sqrt(4*([[c]]) - ([[b]])**2)/2)",
+   "2*pi*(sqrt(4*([[c]]) - ([[b]])**2)/2)",
+   "2*pi/[[c]]",
+   "[[answer]] + pi",
+   "[[answer]]/2",
+   "2*[[answer]]"
+  ],
+  "solution": "From the roots \\( \\alpha \\pm i\\omega \\), the angular frequency is \\( \\omega = \\frac{\\sqrt{4([[c]]) - ([[b]])^{2}}}{2} \\), so the period is \\( T = \\dfrac{2\\pi}{\\omega} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the factor of 2 in the numerator.",
+   "This uses \\( 4\\pi \\) instead of \\( 2\\pi \\) in the numerator.",
+   "This multiplies by \\( \\omega \\) instead of dividing.",
+   "This divides by the constant coefficient \\( [[c]] \\) instead of \\( \\omega \\).",
+   "This adds an extra factor of \\( \\pi \\) to the period.",
+   "This is half the correct period.",
+   "This is twice the correct period."
+  ]
+ },
+ {
+  "template_id": "undamped_oscillator_ivp_evaluate_v4",
+  "skill_id": "complex_conjugate_roots_oscillatory_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "omega": {"type": "choice", "values": [1, 2, 3, 4]},
+   "y0": {"type": "int", "lo": -5, "hi": 5},
+   "v0": {"type": "choice", "values": [-8, -4, -2, -1, 1, 2, 4, 8]},
+   "n": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[y0]], 0)", "Eq(Mod([[v0]], [[omega]]), 0)"],
+  "stem": "The undamped oscillator \\( y'' + [[omega]]^{2}y = 0 \\) has purely imaginary characteristic roots \\( \\pm [[omega]]i \\), giving solution \\( y(t) = c_1\\cos([[omega]]t) + c_2\\sin([[omega]]t) \\). Given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\), what is \\( y\\!\\left(\\dfrac{[[n]]\\pi}{2\\cdot[[omega]]}\\right) \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[y0]]*cos([[omega]]*([[n]]*pi/(2*[[omega]]))) + ([[v0]]/[[omega]])*sin([[omega]]*([[n]]*pi/(2*[[omega]])))"
+  },
+  "distractors": [
+   "[[y0]]*sin([[n]]*pi/2) + ([[v0]]/[[omega]])*cos([[n]]*pi/2)",
+   "[[y0]]",
+   "[[v0]]/[[omega]]",
+   "-([[y0]])*cos([[n]]*pi/2) - ([[v0]]/[[omega]])*sin([[n]]*pi/2)",
+   "[[y0]]*cos([[n]]*pi/2) - ([[v0]]/[[omega]])*sin([[n]]*pi/2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Here \\( c_1 = y(0) = [[y0]] \\) and \\( c_2 = y'(0)/[[omega]] = [[v0]]/[[omega]] \\). At \\( t = \\dfrac{[[n]]\\pi}{2\\cdot[[omega]]} \\), the phase is \\( [[omega]]t = \\dfrac{[[n]]\\pi}{2} \\), so \\( y = [[y0]]\\cos\\!\\left(\\dfrac{[[n]]\\pi}{2}\\right) + \\dfrac{[[v0]]}{[[omega]]}\\sin\\!\\left(\\dfrac{[[n]]\\pi}{2}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of \\( \\cos \\) and \\( \\sin \\) in the general solution.",
+   "This ignores the velocity term and reports only \\( y(0) \\).",
+   "This ignores the position term and reports only the velocity contribution.",
+   "This flips the overall sign of the solution.",
+   "This flips the sign of the velocity contribution only.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

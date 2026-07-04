@@ -1,0 +1,1 @@
+{"skill_id": "cauchy_sequence_completeness_recognition", "reason": "Asks whether a sequence is Cauchy / a space is complete via definitions and theorems; the answer is a conceptual yes/no or statement selection, not a SymPy-computable number."}

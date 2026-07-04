@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "projections_and_idempotents_v1",
+ "skill_id": "projections_and_idempotents",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [3, 4, 5]}
+ },
+ "constraints": ["Eq([[a]]*[[c]] + [[b]]*[[d]], 1)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "The matrix \\( P = \\begin{bmatrix} [[e11]] & [[e12]] \\\\ [[e21]] & [[e22]] \\end{bmatrix} \\) is idempotent (it satisfies \\( P^{2} = P \\)). What is the \\( (1,2) \\) entry (top-right entry) of \\( P^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[d]]"},
+ "distractors": [
+  "[[a]]*[[c]]",
+  "[[b]]*[[d]]",
+  "[[b]]*[[c]]",
+  "1",
+  "[[a]]*[[d]] + 1",
+  "[[a]]*[[d]] - 1",
+  "[[a]]*[[d]] + 2",
+  "[[a]]*[[d]] - 2"
+ ],
+ "solution": "Since \\( P \\) is idempotent, \\( P^{2} = P \\), and therefore \\( P^{n} = P \\) for every \\( n \\ge 1 \\). So the \\( (1,2) \\) entry of \\( P^{[[n]]} \\) equals the \\( (1,2) \\) entry of \\( P \\), which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,1) \\) entry of \\( P \\), not the \\( (1,2) \\) entry.",
+  "This is the \\( (2,2) \\) entry of \\( P \\), not the \\( (1,2) \\) entry.",
+  "This is the \\( (2,1) \\) entry of \\( P \\), not the \\( (1,2) \\) entry.",
+  "This is the trace of \\( P \\) (a projection's trace equals its rank), not the requested entry.",
+  "This is one more than the correct entry.",
+  "This is one less than the correct entry.",
+  "This is two more than the correct entry.",
+  "This is two less than the correct entry."
+ ]
+},
+{
+ "template_id": "projections_and_idempotents_v2",
+ "skill_id": "projections_and_idempotents",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Eq([[a]]*[[c]] + [[b]]*[[d]], 1)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "The matrix \\( P = \\begin{bmatrix} [[e11]] & [[e12]] \\\\ [[e21]] & [[e22]] \\end{bmatrix} \\) is idempotent (it satisfies \\( P^{2} = P \\)) and is not the identity matrix. What is \\( \\det(P) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[e11]]", "[[e12]]"], ["[[e21]]", "[[e22]]"]]},
+ "distractors": [
+  "[[e11]]",
+  "[[e22]]",
+  "1",
+  "-1",
+  "[[answer]] + 2",
+  "[[answer]] - 3"
+ ],
+ "solution": "A nonzero idempotent matrix that is not the identity has eigenvalues only \\( 0 \\) and \\( 1 \\), with at least one eigenvalue equal to \\( 0 \\) (else \\( P \\) would be the identity). So \\( \\det(P) \\), the product of its eigenvalues, is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,1) \\) entry of \\( P \\), not its determinant.",
+  "This is the \\( (2,2) \\) entry of \\( P \\), not its determinant.",
+  "The determinant of this idempotent matrix is not \\( 1 \\) (that would require \\( P \\) to be the identity).",
+  "A projection matrix's determinant cannot be negative; its eigenvalues are only \\( 0 \\) or \\( 1 \\).",
+  "This is two more than the correct determinant.",
+  "This is three less than the correct determinant."
+ ]
+},
+{
+ "template_id": "projections_and_idempotents_v3",
+ "skill_id": "projections_and_idempotents",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "e": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": ["Eq([[a]]*[[c]] + [[b]]*[[d]], 1)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "The \\( 3\\times 3 \\) block-diagonal matrix \\( P = \\begin{bmatrix} [[e11]] & [[e12]] & 0 \\\\ [[e21]] & [[e22]] & 0 \\\\ 0 & 0 & [[e]] \\end{bmatrix} \\) is idempotent: its top-left \\( 2\\times2 \\) block satisfies \\( B^{2}=B \\), and its \\( (3,3) \\) entry is \\( 0 \\) or \\( 1 \\). What is the rank of \\( P \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[e11]]", "[[e12]]", "0"], ["[[e21]]", "[[e22]]", "0"], ["0", "0", "[[e]]"]]},
+ "distractors": [
+  "0",
+  "3",
+  "[[e]]",
+  "2",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "For an idempotent matrix, the rank equals the trace: the top-left block contributes rank (and trace) \\( 1 \\), and the \\( (3,3) \\) entry contributes \\( [[e]] \\) more. So \\( \\mathrm{rank}(P) = 1 + [[e]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "A nonzero idempotent matrix cannot have rank \\( 0 \\).",
+  "The matrix's top-left block alone already accounts for rank \\( 1 \\) with a possible \\( 0 \\) or \\( 1 \\) more, not a full rank of \\( 3 \\).",
+  "This is just the \\( (3,3) \\) entry alone, ignoring the rank-\\( 1 \\) contribution from the block.",
+  "This overcounts the block's contribution.",
+  "This is two more than the correct rank.",
+  "This is two less than the correct rank."
+ ]
+},
+{
+ "template_id": "projections_and_idempotents_v4",
+ "skill_id": "projections_and_idempotents",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [3, 4, 5]}
+ },
+ "constraints": ["Eq([[a]]*[[c]] + [[b]]*[[d]], 1)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "The matrix \\( P = \\begin{bmatrix} [[e11]] & [[e12]] \\\\ [[e21]] & [[e22]] \\end{bmatrix} \\) is idempotent (\\( P^{2}=P \\)), so its complement \\( Q = I - P \\) is idempotent too. What is the \\( (1,1) \\) entry (top-left entry) of \\( Q^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1 - [[a]]*[[c]]"},
+ "distractors": [
+  "[[a]]*[[c]]",
+  "[[a]]*[[d]]",
+  "[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Since \\( Q = I - P \\) is idempotent, \\( Q^{n} = Q \\) for every \\( n \\ge 1 \\). Its \\( (1,1) \\) entry is \\( 1 - ([[e11]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,1) \\) entry of \\( P \\) itself, not of its complement \\( Q = I-P \\).",
+  "This is the \\( (1,2) \\) entry of \\( P \\), not the \\( (1,1) \\) entry of \\( Q \\).",
+  "This is the \\( (2,1) \\) entry of \\( P \\), not the \\( (1,1) \\) entry of \\( Q \\).",
+  "This is one more than the correct entry.",
+  "This is one less than the correct entry.",
+  "This is two more than the correct entry.",
+  "This is two less than the correct entry."
+ ]
+}
+]

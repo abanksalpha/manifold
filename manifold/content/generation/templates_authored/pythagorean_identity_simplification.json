@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "pythagorean_cos2_v1",
+ "skill_id": "pythagorean_identity_simplification",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {
+   "type": "int",
+   "lo": 1,
+   "hi": 9
+  },
+  "q": {
+   "type": "int",
+   "lo": 2,
+   "hi": 12
+  }
+ },
+ "constraints": [
+  "Lt([[p]], [[q]])"
+ ],
+ "stem": "If \\( \\sin\\theta=\\dfrac{[[p]]}{[[q]]} \\), use \\( \\sin^{2}\\theta+\\cos^{2}\\theta=1 \\) to find \\( \\cos^{2}\\theta \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "1 - (Rational([[p]],[[q]]))**2"
+ },
+ "distractors": [
+  "(Rational([[p]],[[q]]))**2",
+  "1 - Rational([[p]],[[q]])",
+  "Rational([[p]],[[q]])",
+  "1 + (Rational([[p]],[[q]]))**2",
+  "1 - (Rational([[p]],[[q]]))**2 + Rational(1,[[q]])",
+  "(Rational([[p]],[[q]]))**2 - 1"
+ ],
+ "solution": "\\( \\cos^{2}\\theta=1-\\sin^{2}\\theta=1-\\left(\\tfrac{[[p]]}{[[q]]}\\right)^{2}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "pythagorean_tan_sec_v1",
+ "skill_id": "pythagorean_identity_simplification",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Eq(gcd([[p]], [[q]]), 1)"],
+ "require_rational": true,
+ "stem": "If \\( \\tan\\theta=\\dfrac{[[p]]}{[[q]]} \\), use \\( 1+\\tan^{2}\\theta=\\sec^{2}\\theta \\) to find \\( \\sec^{2}\\theta \\).",
+ "answer_spec": {"op": "evaluate", "expr": "1 + (Rational([[p]],[[q]]))**2"},
+ "distractors": [
+  "(Rational([[p]],[[q]]))**2",
+  "1 - (Rational([[p]],[[q]]))**2",
+  "Rational([[p]],[[q]])",
+  "1 + Rational([[p]],[[q]])",
+  "1 + (Rational([[p]],[[q]]))**2 - Rational(1,[[q]])",
+  "(Rational([[p]],[[q]]))**2 - 1"
+ ],
+ "solution": "\\( \\sec^{2}\\theta=1+\\tan^{2}\\theta=1+\\left(\\tfrac{[[p]]}{[[q]]}\\right)^{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the leading \\( 1 \\), reporting only \\( \\tan^2\\theta \\).",
+  "This uses the wrong sign, confusing this with a difference-of-squares identity.",
+  "This forgets to square the tangent ratio.",
+  "This forgets to square the tangent ratio before adding \\( 1 \\).",
+  "This subtracts a stray fractional term from the correct value.",
+  "This has the wrong sign overall."
+ ]
+},
+{
+ "template_id": "pythagorean_cot_csc_v1",
+ "skill_id": "pythagorean_identity_simplification",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Eq(gcd([[p]], [[q]]), 1)"],
+ "require_rational": true,
+ "stem": "If \\( \\cot\\theta=\\dfrac{[[p]]}{[[q]]} \\), use \\( 1+\\cot^{2}\\theta=\\csc^{2}\\theta \\) to find \\( \\csc^{2}\\theta \\).",
+ "answer_spec": {"op": "evaluate", "expr": "1 + (Rational([[p]],[[q]]))**2"},
+ "distractors": [
+  "(Rational([[p]],[[q]]))**2",
+  "1 - (Rational([[p]],[[q]]))**2",
+  "Rational([[p]],[[q]])",
+  "1 + Rational([[p]],[[q]])",
+  "1 + (Rational([[p]],[[q]]))**2 - Rational(1,[[q]])",
+  "(Rational([[p]],[[q]]))**2 - 1"
+ ],
+ "solution": "\\( \\csc^{2}\\theta=1+\\cot^{2}\\theta=1+\\left(\\tfrac{[[p]]}{[[q]]}\\right)^{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the leading \\( 1 \\), reporting only \\( \\cot^2\\theta \\).",
+  "This uses the wrong sign, confusing this with a difference-of-squares identity.",
+  "This forgets to square the cotangent ratio.",
+  "This forgets to square the cotangent ratio before adding \\( 1 \\).",
+  "This subtracts a stray fractional term from the correct value.",
+  "This has the wrong sign overall."
+ ]
+},
+{
+ "template_id": "pythagorean_quadrant_sign_v1",
+ "skill_id": "pythagorean_identity_simplification",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+ "require_rational": false,
+ "stem": "If \\( \\sin\\theta=\\dfrac{[[p]]}{[[q]]} \\) and \\( \\theta \\) is in Quadrant II, use \\( \\sin^{2}\\theta+\\cos^{2}\\theta=1 \\) to find \\( \\cos\\theta \\) (not just \\( \\cos^2\\theta \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "-sqrt(1 - (Rational([[p]],[[q]]))**2)"},
+ "distractors": [
+  "sqrt(1 - (Rational([[p]],[[q]]))**2)",
+  "1 - (Rational([[p]],[[q]]))**2",
+  "-(1 - (Rational([[p]],[[q]]))**2)",
+  "Rational([[p]],[[q]])",
+  "-Rational([[p]],[[q]])",
+  "-[[answer]] + 1"
+ ],
+ "solution": "From the identity, \\( \\cos^{2}\\theta=1-\\left(\\tfrac{[[p]]}{[[q]]}\\right)^{2} \\), so \\( \\cos\\theta=\\pm\\sqrt{1-\\left(\\tfrac{[[p]]}{[[q]]}\\right)^{2}} \\). Since \\( \\theta \\) is in Quadrant II, cosine is negative, so \\( \\cos\\theta=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign; cosine is negative in Quadrant II.",
+  "This stops at \\( \\cos^2\\theta \\) without taking the square root or fixing the sign.",
+  "This negates \\( \\cos^2\\theta \\) instead of taking the square root first.",
+  "This returns \\( \\sin\\theta \\) itself instead of \\( \\cos\\theta \\).",
+  "This returns \\( -\\sin\\theta \\) instead of \\( \\cos\\theta \\).",
+  "This has an extra sign flip and offset from the correct value."
+ ]
+}
+]

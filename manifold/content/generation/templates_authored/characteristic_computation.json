@@ -1,0 +1,123 @@
+[
+ {
+  "template_id": "characteristic_product_ring_v1",
+  "skill_id": "characteristic_computation",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 12},
+   "n": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Ne([[m]], [[n]])", "Gt(gcd([[m]], [[n]]), 1)"],
+  "stem": "Consider the ring \\( R = \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\). What is the characteristic of \\( R \\)? (The characteristic is the least positive integer \\( k \\) with \\( k r = 0 \\) for every \\( r \\in R \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[n]]/gcd([[m]], [[n]])"},
+  "distractors": [
+   "[[m]]*[[n]]",
+   "[[m]] + [[n]]",
+   "gcd([[m]], [[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "In \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\) an element \\( (x, y) \\) satisfies \\( k(x,y) = 0 \\) for all \\( (x,y) \\) exactly when \\( [[m]] \\mid k \\) and \\( [[n]] \\mid k \\). The least such \\( k \\) is \\( \\operatorname{lcm}([[m]], [[n]]) = \\dfrac{[[m]] \\cdot [[n]]}{\\gcd([[m]], [[n]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( [[m]] \\cdot [[n]] \\), the number of elements of \\( R \\); the characteristic is the lcm, which equals the product only when the moduli are coprime.",
+   "This adds the two moduli instead of taking their least common multiple.",
+   "This is \\( \\gcd([[m]], [[n]]) \\); the characteristic is the least common multiple, not the greatest common divisor.",
+   "This is one more than the correct characteristic.",
+   "This is one fewer than the correct characteristic.",
+   "This is two more than the correct characteristic."
+  ]
+ },
+ {
+  "template_id": "characteristic_poly_ring_v1",
+  "skill_id": "characteristic_computation",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 30},
+   "deg": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Consider the polynomial ring \\( R = \\mathbb{Z}_{[[n]]}[x] \\) (polynomials in \\( x \\) with coefficients in \\( \\mathbb{Z}_{[[n]]} \\), such as \\( 1 + x + x^{[[deg]]} \\)). What is the characteristic of \\( R \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+  "distractors": [
+   "[[n]] - 1",
+   "[[n]] + 1",
+   "[[n]]*[[deg]]",
+   "[[deg]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Adjoining an indeterminate \\( x \\) does not change how many times the multiplicative identity \\( 1 \\) must be added to reach \\( 0 \\): in \\( R = \\mathbb{Z}_{[[n]]}[x] \\), \\( k \\cdot 1 = k \\) (the constant polynomial) vanishes exactly when \\( [[n]] \\mid k \\). So \\( R \\) has the same characteristic as its coefficient ring \\( \\mathbb{Z}_{[[n]]} \\), namely \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is one less than \\( n \\); the characteristic is exactly \\( n \\), not \\( n-1 \\).",
+   "This is one more than \\( n \\); the characteristic is exactly \\( n \\), not \\( n+1 \\).",
+   "This mistakenly scales by the degree of the polynomial used as an example, which has no effect on the characteristic.",
+   "This uses the degree of the example polynomial instead of the modulus of the coefficient ring.",
+   "This is two more than the correct characteristic.",
+   "This is two fewer than the correct characteristic."
+  ]
+ },
+ {
+  "template_id": "characteristic_matrix_ring_v1",
+  "skill_id": "characteristic_computation",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 30},
+   "k": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": [],
+  "stem": "Let \\( R = M_{[[k]]}(\\mathbb{Z}_{[[n]]}) \\), the ring of \\( [[k]] \\times [[k]] \\) matrices with entries in \\( \\mathbb{Z}_{[[n]]} \\), under the usual matrix addition and multiplication. What is the characteristic of \\( R \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+  "distractors": [
+   "[[n]]*[[k]]",
+   "[[n]]**[[k]]",
+   "[[k]]",
+   "[[n]] - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The characteristic of a matrix ring \\( M_{[[k]]}(\\mathbb{Z}_{[[n]]}) \\) equals the characteristic of its entry ring \\( \\mathbb{Z}_{[[n]]} \\), since \\( kI = 0 \\) (the zero matrix) exactly when every entry \\( k \\cdot 1 \\) vanishes in \\( \\mathbb{Z}_{[[n]]} \\), i.e. exactly when \\( [[n]] \\mid k \\). So the characteristic is \\( [[answer]] \\), independent of the matrix size \\( [[k]] \\).",
+  "distractor_rationales": [
+   "This multiplies the modulus by the matrix size; the matrix size does not affect the characteristic.",
+   "This raises the modulus to the matrix-size power, confusing characteristic with the size of the ring \\( |R| = n^{k^2} \\).",
+   "This uses the matrix dimension itself instead of the entry ring's modulus.",
+   "This is one less than the correct characteristic.",
+   "This is one more than the correct characteristic.",
+   "This is one fewer than the correct characteristic."
+  ]
+ },
+ {
+  "template_id": "characteristic_finite_field_trap_v1",
+  "skill_id": "characteristic_computation",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+   "k": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {"qval": "[[p]]**[[k]]"},
+  "stem": "Let \\( F \\) be a finite field with \\( [[qval]] = [[p]]^{[[k]]} \\) elements. What is the characteristic of \\( F \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]"},
+  "distractors": [
+   "[[qval]]",
+   "[[k]]",
+   "[[qval]] - 1",
+   "[[p]]*[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A finite field with \\( p^{k} \\) elements has characteristic \\( p \\) (the prime), not \\( p^{k} \\) itself: it contains a copy of \\( \\mathbb{Z}_{[[p]]} \\) as its prime subfield, and adding \\( 1 \\) to itself \\( [[p]] \\) times gives \\( 0 \\). So the characteristic is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This confuses the ORDER of the field \\( [[qval]] \\) with its characteristic; the characteristic is the prime \\( p \\), not \\( p^{k} \\).",
+   "This uses the exponent \\( k \\) instead of the prime base \\( p \\).",
+   "This subtracts one from the field's order, unrelated to the characteristic.",
+   "This multiplies the prime by the exponent instead of reporting the prime alone.",
+   "This is one more than the correct characteristic.",
+   "This is one fewer than the correct characteristic."
+  ]
+ }
+]

@@ -1,0 +1,152 @@
+[
+{
+ "template_id": "kernel_image_fit_abstract_v1",
+ "skill_id": "kernel_image_the_first_isomorphism_theorem",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 9},
+  "m": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Ne([[k]], [[m]])"],
+ "derived": {"g": "[[k]]*[[m]]"},
+ "stem": "A group homomorphism \\( \\varphi: G \\to H \\) satisfies \\( |G| = [[g]] \\) and \\( |\\ker\\varphi| = [[k]] \\). Using the First Isomorphism Theorem \\( G/\\ker\\varphi \\cong \\operatorname{im}\\varphi \\), find \\( |\\operatorname{im}\\varphi| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[g]]/[[k]]"},
+ "distractors": [
+  "[[g]]",
+  "[[k]]",
+  "[[g]] - [[k]]",
+  "[[g]] + [[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the First Isomorphism Theorem, \\( G/\\ker\\varphi \\cong \\operatorname{im}\\varphi \\), so \\( |\\operatorname{im}\\varphi| = |G|/|\\ker\\varphi| = [[g]]/[[k]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |G| \\) itself, forgetting to quotient by the kernel at all.",
+  "This is \\( |\\ker\\varphi| \\), confusing the kernel's size with the image's size.",
+  "This subtracts the kernel order from \\( |G| \\) instead of dividing.",
+  "This adds the kernel order to \\( |G| \\) instead of dividing.",
+  "This is off by one above the correct image order.",
+  "This is off by one below the correct image order."
+ ]
+},
+{
+ "template_id": "kernel_image_fit_zn_mult_v2",
+ "skill_id": "kernel_image_the_first_isomorphism_theorem",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 8, "hi": 40},
+  "a": {"type": "int", "lo": 2, "hi": 39}
+ },
+ "constraints": ["Lt([[a]], [[n]])"],
+ "stem": "Let \\( G = \\mathbb{Z}_{[[n]]} \\) (integers mod \\([[n]]\\) under addition) and define \\( \\varphi: G \\to G \\) by \\( \\varphi(x) = [[a]]x \\bmod [[n]] \\), a group homomorphism. Using the First Isomorphism Theorem, find \\( |\\operatorname{im}\\varphi| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]/gcd([[n]],[[a]])"},
+ "distractors": [
+  "[[n]]",
+  "gcd([[n]],[[a]])",
+  "[[a]]",
+  "[[n]] - gcd([[n]],[[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The kernel is \\( \\{x : [[a]]x \\equiv 0 \\pmod{[[n]]}\\} \\), which has \\( \\gcd([[n]],[[a]]) \\) elements. By the First Isomorphism Theorem, \\( |\\operatorname{im}\\varphi| = |G|/|\\ker\\varphi| = [[n]]/\\gcd([[n]],[[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |G| \\) itself, as if \\( \\varphi \\) were always injective.",
+  "This is \\( |\\ker\\varphi| = \\gcd([[n]],[[a]]) \\), the wrong side of the theorem.",
+  "This mistakes the multiplier \\( [[a]] \\) itself for the image size.",
+  "This subtracts the kernel order from \\( n \\) instead of dividing.",
+  "This is off by one above the correct image order.",
+  "This is off by one below the correct image order."
+ ]
+},
+{
+ "template_id": "kernel_image_fit_units_power_v3",
+ "skill_id": "kernel_image_the_first_isomorphism_theorem",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]},
+  "k": {"type": "int", "lo": 2, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Let \\( G = (\\mathbb{Z}/[[p]]\\mathbb{Z})^{\\times} \\), the group of units mod \\([[p]]\\) under multiplication (\\([[p]]\\) prime, so \\( |G| = \\varphi([[p]]) = [[p]]-1 \\)). Define \\( \\phi: G \\to G \\) by \\( \\phi(x) = x^{[[k]]} \\bmod [[p]] \\), a group homomorphism. Using the First Isomorphism Theorem, find \\( |\\operatorname{im}\\phi| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "totient([[p]])/gcd(totient([[p]]),[[k]])"},
+ "distractors": [
+  "totient([[p]])",
+  "gcd(totient([[p]]),[[k]])",
+  "[[k]]",
+  "[[p]] - [[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( G \\) is cyclic of order \\( \\varphi([[p]]) = [[p]]-1 \\), the kernel of \\( x \\mapsto x^{[[k]]} \\) has order \\( \\gcd([[p]]-1,[[k]]) \\). By the First Isomorphism Theorem, \\( |\\operatorname{im}\\phi| = |G|/|\\ker\\phi| = ([[p]]-1)/\\gcd([[p]]-1,[[k]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |G| \\) itself, forgetting the kernel is generally nontrivial.",
+  "This is \\( |\\ker\\phi| \\), the wrong side of the isomorphism theorem.",
+  "This mistakes the exponent \\( [[k]] \\) itself for the image size.",
+  "This subtracts \\( [[k]] \\) from \\( [[p]] \\), an unrelated combination.",
+  "This is off by one above the correct image order.",
+  "This is off by one below the correct image order."
+ ]
+},
+{
+ "template_id": "kernel_image_fit_sign_hom_v4",
+ "skill_id": "kernel_image_the_first_isomorphism_theorem",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "The sign homomorphism \\( \\operatorname{sgn}: S_{[[n]]} \\to \\{1,-1\\} \\) sends a permutation to \\(+1\\) if it is even and \\(-1\\) if it is odd. Given \\( |S_{[[n]]}| = [[n]]! \\) and \\( |\\operatorname{im}(\\operatorname{sgn})| = 2 \\), use the First Isomorphism Theorem to find \\( |\\ker(\\operatorname{sgn})| \\) (the order of the alternating group \\( A_{[[n]]} \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/2"},
+ "distractors": [
+  "factorial([[n]])",
+  "2",
+  "factorial([[n]] - 1)",
+  "factorial([[n]])/4",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the First Isomorphism Theorem, \\( |\\ker(\\operatorname{sgn})| = |S_{[[n]]}|/|\\operatorname{im}(\\operatorname{sgn})| = [[n]]!/2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |S_{[[n]]}| \\) itself, forgetting to quotient by the image size.",
+  "This is \\( |\\operatorname{im}(\\operatorname{sgn})| \\), the wrong side of the theorem.",
+  "This uses \\( (n-1)! \\), an unrelated factorial.",
+  "This divides by 4 instead of by the actual image order of 2.",
+  "This is off by one above the correct kernel order.",
+  "This is off by one below the correct kernel order."
+ ]
+},
+{
+ "template_id": "kernel_image_fit_projection_v5",
+ "skill_id": "kernel_image_the_first_isomorphism_theorem",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 15},
+  "n": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "Let \\( G = \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\), so \\( |G| = [[m]]\\cdot[[n]] \\). Define \\( \\pi: G \\to \\mathbb{Z}_{[[m]]} \\) by \\( \\pi(a,b) = a \\), the projection homomorphism, whose kernel is \\( \\{0\\}\\times\\mathbb{Z}_{[[n]]} \\) of order \\([[n]]\\). Using the First Isomorphism Theorem, find \\( |\\operatorname{im}\\pi| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[m]]*[[n]])/[[n]]"},
+ "distractors": [
+  "[[n]]",
+  "[[m]]*[[n]]",
+  "[[m]] - [[n]]",
+  "[[m]] + [[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the First Isomorphism Theorem, \\( |\\operatorname{im}\\pi| = |G|/|\\ker\\pi| = ([[m]]\\cdot[[n]])/[[n]] = [[answer]] \\), matching \\( |\\mathbb{Z}_{[[m]]}| \\) as expected.",
+ "distractor_rationales": [
+  "This is \\( |\\ker\\pi| \\), the order of the second factor, not the image.",
+  "This is \\( |G| \\) itself, forgetting to quotient by the kernel.",
+  "This subtracts the two factor orders instead of using the quotient.",
+  "This adds the two factor orders instead of using the quotient.",
+  "This is off by one above the correct image order.",
+  "This is off by one below the correct image order."
+ ]
+}
+]

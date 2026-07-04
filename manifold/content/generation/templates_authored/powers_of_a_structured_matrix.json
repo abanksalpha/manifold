@@ -1,0 +1,134 @@
+[
+{
+ "template_id": "powers_of_a_structured_matrix_v1",
+ "skill_id": "powers_of_a_structured_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, 2, 3]},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ 0 & [[a]] \\end{bmatrix} \\). What is the entry in the first row and second column (the top-right entry) of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] * [[a]]**([[n]] - 1) * [[b]]"},
+ "distractors": [
+  "[[a]]**[[n]]",
+  "[[n]] * [[b]]",
+  "[[a]]**([[n]] - 1) * [[b]]",
+  "[[n]] * [[a]]**[[n]] * [[b]]",
+  "[[answer]] + [[b]]",
+  "[[answer]] - [[b]]"
+ ],
+ "solution": "Writing \\( A = [[a]]I + N \\) with \\( N = \\begin{bmatrix} 0 & [[b]] \\\\ 0 & 0 \\end{bmatrix} \\) and \\( N^2 = 0 \\), the binomial theorem gives \\( A^{[[n]]} = [[a]]^{[[n]]}I + [[n]]\\,[[a]]^{[[n]]-1}N \\). The top-right entry is \\( [[n]]\\cdot[[a]]^{[[n]]-1}\\cdot([[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the diagonal entry \\( [[a]]^{[[n]]} \\), not the top-right entry.",
+  "This treats \\( A \\) as if its diagonal were 1, giving \\( n\\cdot b \\).",
+  "This forgets the factor of \\( [[n]] \\) coming from the \\( n \\) equal terms.",
+  "This uses \\( [[a]]^{[[n]]} \\) instead of \\( [[a]]^{[[n]]-1} \\) in the off-diagonal term.",
+  "This is off by \\( [[b]] \\) from the correct entry.",
+  "This is off by \\( [[b]] \\) from the correct entry."
+ ]
+},
+{
+ "template_id": "powers_of_a_structured_matrix_v2_diagonal",
+ "skill_id": "powers_of_a_structured_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[a]], [[b]])"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & 0 \\\\ 0 & [[b]] \\end{bmatrix} \\). What is the trace of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]] + [[b]]**[[n]]"},
+ "distractors": [
+  "([[a]] + [[b]])**[[n]]",
+  "[[n]]*([[a]] + [[b]])",
+  "[[a]]**[[n]] * [[b]]**[[n]]",
+  "[[a]]*[[n]] + [[b]]*[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( A \\) is diagonal, \\( A^{[[n]]} = \\begin{bmatrix} [[a]]^{[[n]]} & 0 \\\\ 0 & [[b]]^{[[n]]} \\end{bmatrix} \\), so \\( \\operatorname{tr}(A^{[[n]]}) = [[a]]^{[[n]]} + [[b]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This raises the SUM of the diagonal entries to the \\( n \\)-th power instead of raising each entry first.",
+  "This multiplies the sum by \\( n \\) instead of raising each entry to the \\( n \\)-th power.",
+  "This is the determinant of \\( A^{[[n]]} \\), not the trace.",
+  "This multiplies each entry by \\( n \\) instead of raising it to the \\( n \\)-th power.",
+  "This is off by one from the correct trace.",
+  "This is off by one from the correct trace."
+ ]
+},
+{
+ "template_id": "powers_of_a_structured_matrix_v3_periodic",
+ "skill_id": "powers_of_a_structured_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} 0 & [[c]] \\\\ [[c]] & 0 \\end{bmatrix} \\). What is the entry in the first row and second column of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]]**[[n]] * (1 - (-1)**[[n]]) / 2"},
+ "distractors": [
+  "[[c]]**[[n]]",
+  "[[c]]**[[n]] * (1 + (-1)**[[n]]) / 2",
+  "[[c]]*[[n]]",
+  "[[c]]**([[n]]-1)",
+  "-[[answer]]",
+  "[[answer]] + [[c]]"
+ ],
+ "solution": "Since \\( A^2 = [[c]]^2 I \\), powers of \\( A \\) alternate: \\( A^{[[n]]} = [[c]]^{[[n]]}I \\) when \\( [[n]] \\) is even (so the top-right entry is \\( 0 \\)), and \\( A^{[[n]]} = [[c]]^{[[n]]-1}A \\) when \\( [[n]] \\) is odd (so the top-right entry is \\( [[c]]^{[[n]]} \\)). Compactly, the top-right entry is \\( [[c]]^{[[n]]}\\cdot\\dfrac{1-(-1)^{[[n]]}}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value when \\( n \\) is odd, applied without checking the parity of \\( n \\) here.",
+  "This uses the DIAGONAL entry's parity formula instead of the off-diagonal one.",
+  "This linearizes the power instead of applying the alternating-parity pattern.",
+  "This is off by one power of \\( c \\) from the correct pattern.",
+  "This has the wrong sign.",
+  "This is off by \\( c \\) from the correct entry."
+ ]
+},
+{
+ "template_id": "powers_of_a_structured_matrix_v4_rank1",
+ "skill_id": "powers_of_a_structured_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[a]]*[[p]] + [[b]]*[[q]], 0)"],
+ "derived": {
+  "A11": "[[a]]*[[p]]",
+  "A12": "[[a]]*[[q]]",
+  "A21": "[[b]]*[[p]]",
+  "A22": "[[b]]*[[q]]",
+  "t": "[[a]]*[[p]] + [[b]]*[[q]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[A11]] & [[A12]] \\\\ [[A21]] & [[A22]] \\end{bmatrix} \\), whose rows are all scalar multiples of \\( ([[p]], [[q]]) \\), so \\( A \\) has rank \\( 1 \\) and \\( A^2 = \\operatorname{tr}(A)\\,A \\). What is the entry in the first row and first column of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[t]]**([[n]]-1) * [[A11]]"},
+ "distractors": [
+  "[[A11]]",
+  "[[t]]**[[n]] * [[A11]]",
+  "[[t]]**([[n]]-1)",
+  "[[t]]*[[A11]]",
+  "-[[answer]]",
+  "[[answer]] + [[t]]"
+ ],
+ "solution": "For a rank-\\(1\\) matrix, \\( A^2 = \\operatorname{tr}(A)A \\), and by induction \\( A^{[[n]]} = \\operatorname{tr}(A)^{[[n]]-1}A \\). Here \\( \\operatorname{tr}(A) = [[t]] \\), so the \\((1,1)\\) entry of \\( A^{[[n]]} \\) is \\( [[t]]^{[[n]]-1}\\cdot[[A11]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\((1,1)\\) entry of \\( A \\) itself, without the trace-power factor.",
+  "This uses \\( \\operatorname{tr}(A)^{[[n]]} \\) instead of \\( \\operatorname{tr}(A)^{[[n]]-1} \\).",
+  "This omits the original \\((1,1)\\) entry factor, leaving only the trace power.",
+  "This uses \\( \\operatorname{tr}(A)^1 \\) regardless of \\( n \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by a factor of \\( \\operatorname{tr}(A) \\) from the correct entry."
+ ]
+}
+]

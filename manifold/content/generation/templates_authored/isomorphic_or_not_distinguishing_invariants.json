@@ -1,0 +1,93 @@
+[
+{
+ "template_id": "isomorphism_invariant_max_element_order_v1",
+ "skill_id": "isomorphic_or_not_distinguishing_invariants",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 30},
+  "n": {"type": "int", "lo": 2, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Two abelian groups of the same order can fail to be isomorphic even when they look superficially similar; one reliable invariant that distinguishes them is the MAXIMUM order attained by any single element. What is the maximum order of an element in \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[m]], [[n]])"},
+ "distractors": [
+  "[[m]]*[[n]]",
+  "[[m]] + [[n]]",
+  "gcd([[m]], [[n]])",
+  "Max([[m]], [[n]])",
+  "lcm([[m]], [[n]]) + 1",
+  "lcm([[m]], [[n]]) - 1"
+ ],
+ "solution": "Every element's order in \\( \\mathbb{Z}_{[[m]]}\\times\\mathbb{Z}_{[[n]]} \\) divides \\( \\operatorname{lcm}([[m]],[[n]]) \\), and the element \\( (1,1) \\) attains exactly this order, so the maximum is \\( \\operatorname{lcm}([[m]],[[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the ORDER of the whole group, not the maximum element order.",
+  "This adds the two moduli instead of taking their LCM.",
+  "This is the GCD of the moduli, which is unrelated to the maximum element order.",
+  "This assumes the maximum order can never exceed either individual factor's order, ignoring that a pair can have larger order than each component.",
+  "This is off by one from the correct maximum order.",
+  "This is off by one from the correct maximum order."
+ ]
+},
+{
+ "template_id": "isomorphism_invariant_elements_of_prime_order_v1",
+ "skill_id": "isomorphic_or_not_distinguishing_invariants",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+  "sm": {"type": "int", "lo": 1, "hi": 8},
+  "sn": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"m": "[[p]]*[[sm]]", "n": "[[p]]*[[sn]]"},
+ "stem": "The number of elements of order exactly [[p]] is a useful invariant for telling non-isomorphic abelian groups of the same order apart. How many elements of order EXACTLY [[p]] does \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\) have (both [[m]] and [[n]] are multiples of the prime [[p]])?",
+ "answer_spec": {"op": "evaluate", "expr": "[[p]]*[[p]] - 1"},
+ "distractors": [
+  "[[p]] - 1",
+  "2*([[p]] - 1)",
+  "[[p]]*[[p]]",
+  "[[m]]*[[n]]/([[p]]*[[p]])",
+  "[[p]]*[[p]] - 1 + 1",
+  "[[p]]*[[p]] - 1 - 1"
+ ],
+ "solution": "Each factor \\( \\mathbb{Z}_{[[m]]} \\) and \\( \\mathbb{Z}_{[[n]]} \\) (both multiples of [[p]]) contributes exactly [[p]] elements \\( x \\) with \\( [[p]]\\,x=0 \\); pairing these gives \\( [[p]]\\cdot[[p]] \\) elements of order dividing [[p]], and removing the identity leaves \\( [[p]]^2-1 = [[answer]] \\) elements of order exactly [[p]].",
+ "distractor_rationales": [
+  "This only counts the order-[[p]] elements within a single cyclic factor, ignoring the other factor entirely.",
+  "This doubles the single-factor count instead of using the product-then-subtract-one rule.",
+  "This forgets to remove the identity element from the count.",
+  "This is an unrelated ratio of the group orders, not a count of order-[[p]] elements.",
+  "This overshoots the correct count by one.",
+  "This undershoots the correct count by one."
+ ]
+},
+{
+ "template_id": "isomorphism_invariant_subgroups_of_elementary_abelian_v1",
+ "skill_id": "isomorphic_or_not_distinguishing_invariants",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 2, "hi": 100}
+ },
+ "constraints": ["isprime([[p]])"],
+ "stem": "The group \\( G = \\mathbb{Z}_{[[p]]} \\times \\mathbb{Z}_{[[p]]} \\) (with [[p]] prime) is NOT isomorphic to \\( \\mathbb{Z}_{[[p]]^2} \\), even though both have order \\( [[p]]^2 \\); one way to see this is to count subgroups of order [[p]] (a cyclic group of order \\( [[p]]^2 \\) has only one). How many subgroups of order [[p]] does \\( G = \\mathbb{Z}_{[[p]]} \\times \\mathbb{Z}_{[[p]]} \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "([[p]]*[[p]] - 1)/([[p]] - 1)"},
+ "distractors": [
+  "1",
+  "[[p]]",
+  "[[p]]*[[p]] - 1",
+  "[[p]] - 1",
+  "([[p]]*[[p]] - 1)/([[p]] - 1) + 1",
+  "([[p]]*[[p]] - 1)/([[p]] - 1) - 1"
+ ],
+ "solution": "\\( G \\) has \\( [[p]]^2-1 \\) non-identity elements, each of order [[p]] since \\( G \\) is elementary abelian; each subgroup of order [[p]] contains \\( [[p]]-1 \\) of them and distinct subgroups of order [[p]] only meet at the identity, so there are \\( \\frac{[[p]]^2-1}{[[p]]-1} = [[p]]+1 = [[answer]] \\) such subgroups.",
+ "distractor_rationales": [
+  "This is the count for a CYCLIC group of order \\( [[p]]^2 \\), which has a unique subgroup per divisor; \\( G \\) is not cyclic, so it has more.",
+  "This restates [[p]] itself instead of counting subgroups.",
+  "This is the total number of non-identity elements, not the number of subgroups they fall into.",
+  "This forgets to divide by the number of non-identity elements per subgroup.",
+  "This overshoots the correct subgroup count by one.",
+  "This undershoots the correct subgroup count by one."
+ ]
+}
+]

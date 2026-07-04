@@ -1,0 +1,274 @@
+[
+{
+ "template_id": "factor_and_quadratic_formula_monic_smaller_root_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -9, "hi": 8},
+  "r2": {"type": "int", "lo": -8, "hi": 9}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])"],
+ "derived": {
+  "b": "-([[r1]] + [[r2]])",
+  "c": "[[r1]]*[[r2]]"
+ },
+ "stem": "Solve \\( x^{2} + ([[b]])x + ([[c]]) = 0 \\) by factoring. What is the smaller of its two real solutions?",
+ "answer_spec": {"op": "solve", "equation": "x**2 + [[b]]*x + [[c]] = 0", "var": "x"},
+ "distractors": [
+  "[[r2]]",
+  "-[[r1]]",
+  "-[[r2]]",
+  "[[r1]]*[[r2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Factoring gives \\( (x-([[r1]]))(x-([[r2]])) = 0 \\), so the two solutions are \\( [[r1]] \\) and \\( [[r2]] \\); the smaller one is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the LARGER of the two solutions, not the smaller one.",
+  "This has the correct magnitude but the wrong sign.",
+  "This has the correct magnitude but the wrong sign, and is also the larger root.",
+  "This multiplies the two roots (their product) instead of reporting either root.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_nonmonic_which_is_solution_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "r2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[r1]], [[r2]])"],
+ "derived": {
+  "b": "-[[a]]*([[r1]] + [[r2]])",
+  "c": "[[a]]*[[r1]]*[[r2]]"
+ },
+ "stem": "Which of the following is a value of \\( x \\) that satisfies \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = 0 \\)?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*x**2 + [[b]]*x + [[c]] = 0", "var": "x"},
+ "distractors": [
+  "[[r1]] + 1",
+  "[[r2]] + 1",
+  "-[[r1]]",
+  "-[[r2]]",
+  "[[r1]]*[[r2]]",
+  "[[answer]] + 3",
+  "[[answer]] - 3"
+ ],
+ "solution": "Factoring out the leading coefficient, \\( [[a]](x-([[r1]]))(x-([[r2]])) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\), so the equation's solutions are \\( x=[[r1]] \\) and \\( x=[[r2]] \\); one value that satisfies it is \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one from one of the two actual solutions.",
+  "This is off by one from the other actual solution.",
+  "This has the correct magnitude but the wrong sign.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is the PRODUCT of the two solutions, not a solution itself.",
+  "This is off by three from the correct value.",
+  "This is off by three from the correct value."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_from_sum_and_product_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -8, "hi": 7},
+  "r2": {"type": "int", "lo": -7, "hi": 8}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])"],
+ "derived": {
+  "S": "[[r1]] + [[r2]]",
+  "P": "[[r1]]*[[r2]]"
+ },
+ "stem": "A quadratic equation has two real roots whose sum is [[S]] and whose product is [[P]]. Writing the equation as \\( x^{2} - ([[S]])x + ([[P]]) = 0 \\) and applying the quadratic formula, what is the smaller of the two roots?",
+ "answer_spec": {"op": "solve", "equation": "x**2 - [[S]]*x + [[P]] = 0", "var": "x"},
+ "distractors": [
+  "[[r2]]",
+  "[[S]] - [[r1]]",
+  "-[[r1]]",
+  "[[P]] - [[r1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Substituting the sum and product into \\( x^{2}-(\\text{sum})x+(\\text{product})=0 \\) gives \\( x^{2} - ([[S]])x + ([[P]]) = 0 \\), which factors as \\( (x-([[r1]]))(x-([[r2]])) = 0 \\); the smaller root is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the LARGER of the two roots, not the smaller one.",
+  "This equals the larger root re-derived clumsily from the sum, not the smaller root.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is an arbitrary combination of the given sum and product, not a root.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_irrational_smaller_root_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Gt([[b]]**2 - 4*[[a]]*[[c]], 0)"],
+ "require_rational": false,
+ "stem": "Consider \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = 0 \\). Using the quadratic formula, what is the smaller of its two real solutions? (The answer need not be rational; give the exact value.)",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*x**2 + [[b]]*x + [[c]] = 0", "var": "x"},
+ "distractors": [
+  "(-([[b]]) + sqrt([[b]]**2 - 4*[[a]]*[[c]]))/(2*[[a]])",
+  "(-([[b]]) - sqrt([[b]]**2 + 4*[[a]]*[[c]]))/(2*[[a]])",
+  "(-([[b]]) - sqrt([[b]]**2 - 4*[[a]]*[[c]]))/[[a]]",
+  "([[b]] - sqrt([[b]]**2 - 4*[[a]]*[[c]]))/(2*[[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the quadratic formula, \\( x = \\dfrac{-([[b]]) \\pm \\sqrt{([[b]])^{2}-4([[a]])([[c]])}}{2([[a]])} \\). Since \\( [[a]] > 0 \\), the smaller root uses the minus sign: \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the PLUS sign, giving the larger root instead of the smaller one.",
+  "This has the wrong sign under the radical (adds instead of subtracts \\( 4ac \\)).",
+  "This forgets the factor of 2 in the denominator.",
+  "This drops the negative sign on \\( b \\) in the numerator.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_vieta_sum_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ge([[b]]**2 - 4*[[a]]*[[c]], 0)"],
+ "stem": "The equation \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = 0 \\) has two real roots. What is the sum of its roots?",
+ "answer_spec": {"op": "vieta", "poly": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "which": "sum"},
+ "distractors": [
+  "[[b]]/[[a]]",
+  "[[c]]/[[a]]",
+  "-[[c]]/[[a]]",
+  "[[b]]*[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Vieta's formulas, for \\( [[a]]x^{2}+([[b]])x+([[c]])=0 \\) the sum of the roots is \\( -\\dfrac{[[b]]}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to negate the ratio \\( b/a \\).",
+  "This gives the PRODUCT of the roots, \\( c/a \\), not their sum.",
+  "This gives the negative of the product of the roots, not their sum.",
+  "This multiplies the coefficients \\( a \\) and \\( b \\), which has no meaning here.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_vieta_product_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ge([[b]]**2 - 4*[[a]]*[[c]], 0)"],
+ "stem": "The equation \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = 0 \\) has two real roots. What is the product of its roots?",
+ "answer_spec": {"op": "vieta", "poly": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "which": "prod"},
+ "distractors": [
+  "-[[c]]/[[a]]",
+  "[[b]]/[[a]]",
+  "-[[b]]/[[a]]",
+  "[[c]]*[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Vieta's formulas, for \\( [[a]]x^{2}+([[b]])x+([[c]])=0 \\) the product of the roots is \\( \\dfrac{[[c]]}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This negates the ratio \\( c/a \\), which is the correct product but with the wrong sign.",
+  "This gives the negative of the SUM of the roots, not their product.",
+  "This gives the sum of the roots itself, not their product.",
+  "This multiplies the coefficients \\( a \\) and \\( c \\), which has no meaning here.",
+  "This is off by one from the correct product.",
+  "This is off by one from the correct product."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_cubic_smallest_root_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -8, "hi": 5},
+  "r2": {"type": "int", "lo": -6, "hi": 7},
+  "r3": {"type": "int", "lo": -4, "hi": 9}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])"],
+ "derived": {
+  "A": "-([[r1]] + [[r2]] + [[r3]])",
+  "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+  "C": "-([[r1]]*[[r2]]*[[r3]])"
+ },
+ "stem": "Solve \\( x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) = 0 \\) by factoring. What is the smallest of its three real solutions?",
+ "answer_spec": {"op": "solve", "equation": "x**3 + [[A]]*x**2 + [[B]]*x + [[C]] = 0", "var": "x"},
+ "distractors": [
+  "[[r2]]",
+  "[[r3]]",
+  "-[[r1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Factoring gives \\( (x-([[r1]]))(x-([[r2]]))(x-([[r3]])) = 0 \\), with solutions \\( [[r1]], [[r2]], [[r3]] \\); the smallest is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the middle solution, not the smallest one.",
+  "This is the largest solution, not the smallest one.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "factor_and_quadratic_formula_word_problem_v1",
+ "skill_id": "factor_and_quadratic_formula",
+ "topic_id": "elementary_algebra",
+ "tier": "relearn",
+ "params": {
+  "d": {"type": "int", "lo": 1, "hi": 9},
+  "w0": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "derived": {
+  "A": "[[w0]]*([[w0]] + [[d]])"
+ },
+ "stem": "A rectangle's length is [[d]] units more than its width. The rectangle's area is [[A]] square units. If \\( w \\) denotes the width, this gives the equation \\( w^{2} + ([[d]])w - ([[A]]) = 0 \\). Which of the following is a value of \\( w \\) that satisfies this equation?",
+ "answer_spec": {"op": "solve", "equation": "w**2 + [[d]]*w - [[A]] = 0", "var": "w"},
+ "distractors": [
+  "[[w0]] + 1",
+  "[[w0]] - 1",
+  "[[d]]",
+  "[[A]]",
+  "-([[w0]] + [[d]]) + 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The equation factors as \\( (w-([[w0]]))(w+([[w0]])+([[d]])) = 0 \\), so \\( w = [[w0]] \\) or \\( w = -([[w0]])-([[d]]) \\); either value satisfies the equation, e.g. \\( w = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one from the width solution.",
+  "This is off by one from the width solution.",
+  "This is just the given difference between length and width, not a solution to the equation.",
+  "This is just the given area, not a solution to the equation.",
+  "This is off by one from the other (negative) solution.",
+  "This is off by two from the correct value."
+ ]
+}
+]

@@ -1,0 +1,1 @@
+{"skill_id": "true_false_about_open_closed_set_operations", "reason": "Explicitly a true/false item about the general laws of open/closed sets under union and intersection (e.g. arbitrary unions of open sets are open, but only finite intersections are guaranteed open); these are statements about all sets, not a scalar a solver computes."}

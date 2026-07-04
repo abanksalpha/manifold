@@ -1,0 +1,258 @@
+[
+ {
+  "template_id": "absolute_max_disk_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "Find the absolute maximum value of \\( f(x, y) = [[a]](x^{2} + y^{2}) + ([[c]]) \\) over the closed disk \\( x^{2} + y^{2} \\le [[r]]^{2} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[r]]**2 + [[c]]"},
+  "distractors": [
+   "[[c]]",
+   "[[a]]*[[r]] + [[c]]",
+   "[[a]]*[[r]]**2",
+   "[[a]]*[[r]]**2 - [[c]]",
+   "2*[[a]]*[[r]]**2 + [[c]]",
+   "[[answer]] + 3"
+  ],
+  "solution": "Since \\( [[a]] > 0 \\), \\( f \\) increases with \\( x^{2}+y^{2} \\), so its maximum on the disk occurs on the boundary where \\( x^{2}+y^{2} = [[r]]^{2} \\). There \\( f = [[a]]([[r]]^{2}) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the minimum value (attained at the center), not the maximum.",
+   "This uses the radius \\( [[r]] \\) instead of \\( [[r]]^{2} \\) for \\( x^{2}+y^{2} \\) on the boundary.",
+   "This forgets to add the constant \\( ([[c]]) \\).",
+   "This subtracts the constant instead of adding it.",
+   "This doubles the boundary contribution.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_max_rectangle_corner_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 2},
+   "x1": {"type": "int", "lo": -1, "hi": 5},
+   "y0": {"type": "int", "lo": -4, "hi": 2},
+   "y1": {"type": "int", "lo": -1, "hi": 5}
+  },
+  "constraints": ["Lt([[x0]], [[x1]])", "Lt([[y0]], [[y1]])"],
+  "stem": "Let \\( f(x, y) = [[a]]x + [[b]]y + ([[c]]) \\) on the closed rectangle \\( [[x0]] \\le x \\le [[x1]],\\ [[y0]] \\le y \\le [[y1]] \\). Since \\( f \\) is linear, it has no interior critical points, so its absolute maximum occurs at a corner of the rectangle. What is that absolute maximum value?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x1]] + [[b]]*[[y1]] + [[c]]"},
+  "distractors": [
+   "[[a]]*[[x0]] + [[b]]*[[y0]] + [[c]]",
+   "[[a]]*[[x0]] + [[b]]*[[y1]] + [[c]]",
+   "[[a]]*[[x1]] + [[b]]*[[y0]] + [[c]]",
+   "[[a]]*([[x1]]-[[x0]]) + [[b]]*([[y1]]-[[y0]]) + [[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Because \\( [[a]] > 0 \\) and \\( [[b]] > 0 \\), \\( f \\) increases as \\( x \\) and \\( y \\) increase, so the maximum over the rectangle occurs at the corner with the largest \\( x \\) and \\( y \\), namely \\( ([[x1]], [[y1]]) \\). There \\( f = [[a]]([[x1]]) + [[b]]([[y1]]) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the minimum value, attained at the opposite corner \\( ([[x0]], [[y0]]) \\).",
+   "This uses the corner \\( ([[x0]], [[y1]]) \\), which mixes the smallest \\( x \\) with the largest \\( y \\).",
+   "This uses the corner \\( ([[x1]], [[y0]]) \\), which mixes the largest \\( x \\) with the smallest \\( y \\).",
+   "This uses the side lengths of the rectangle instead of the actual corner coordinates.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_max_dome_interior_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "k": {"type": "int", "lo": -5, "hi": 8},
+   "p": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "q": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "wx": {"type": "int", "lo": 1, "hi": 3},
+   "wx2": {"type": "int", "lo": 1, "hi": 3},
+   "wy": {"type": "int", "lo": 1, "hi": 3},
+   "wy2": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "[[p]] - [[wx]]",
+   "x1": "[[p]] + [[wx2]]",
+   "y0": "[[q]] - [[wy]]",
+   "y1": "[[q]] + [[wy2]]"
+  },
+  "stem": "Let \\( f(x, y) = -[[a]](x - ([[p]]))^{2} - [[b]](y - ([[q]]))^{2} + ([[k]]) \\) on the closed rectangle \\( [[x0]] \\le x \\le [[x1]],\\ [[y0]] \\le y \\le [[y1]] \\). The point \\( ([[p]], [[q]]) \\) lies in the interior of this rectangle. What is the absolute maximum value of \\( f \\) on the rectangle?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]"},
+  "distractors": [
+   "[[k]] - [[a]]*[[wx]]**2 - [[b]]*[[wy]]**2",
+   "[[k]] - [[a]]*[[wx2]]**2 - [[b]]*[[wy2]]**2",
+   "-[[k]]",
+   "[[a]]*[[p]]**2 + [[b]]*[[q]]**2 + [[k]]",
+   "[[answer]] + 2",
+   "[[answer]] - 4"
+  ],
+  "solution": "Since the coefficients of the squared terms are negative, \\( f \\) is a downward-opening dome with its unique interior critical point at \\( ([[p]], [[q]]) \\), which is a local (and here global) maximum. Because \\( ([[p]], [[q]]) \\) lies inside the rectangle, this interior value beats every boundary value, so the absolute maximum is \\( f([[p]], [[q]]) = [[k]] \\).",
+  "distractor_rationales": [
+   "This is the value at the corner \\( ([[x0]], [[y0]]) \\), which is smaller than the interior maximum.",
+   "This is the value at the corner \\( ([[x1]], [[y1]]) \\), which is smaller than the interior maximum.",
+   "This negates the correct constant term.",
+   "This flips the sign of the squared terms, as if the paraboloid opened upward.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_max_triangle_word_problem_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 3, "hi": 8},
+   "q": {"type": "int", "lo": 1, "hi": 2},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "k": {"type": "choice", "values": [4, 5, 6, 7, 8, 9, 10]}
+  },
+  "constraints": ["Gt([[p]], [[q]])"],
+  "stem": "A furniture maker splits a work week into \\( x \\) hours building chairs and \\( y \\) hours building tables, subject to \\( x \\ge 0 \\), \\( y \\ge 0 \\), and \\( x + y \\le [[k]] \\) (total hours available). The week's profit, in dollars, is \\( P(x, y) = [[p]]x + [[q]]y + ([[c]]) \\). Over this triangular region of allowed \\( (x, y) \\) pairs, what is the maximum possible profit?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]*[[k]] + [[c]]"},
+  "distractors": [
+   "[[q]]*[[k]] + [[c]]",
+   "[[c]]",
+   "[[p]]*[[k]] + [[q]]*[[k]] + [[c]]",
+   "([[p]]+[[q]])*[[k]]/2 + [[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Since \\( P \\) is linear, its maximum over the triangle with vertices \\( (0,0) \\), \\( ([[k]], 0) \\), \\( (0, [[k]]) \\) occurs at a vertex. Because \\( [[p]] > [[q]] \\), spending all hours on chairs beats spending all hours on tables, so the maximum is at \\( (x,y)=([[k]],0) \\): \\( P = [[p]]([[k]]) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the vertex \\( (0,[[k]]) \\), putting all hours into tables instead of the more profitable chairs.",
+   "This is the value at the origin vertex \\( (0,0) \\), where no hours are worked at all.",
+   "This wrongly adds the contributions of both pure-chair and pure-table vertices together.",
+   "This averages the two coefficients instead of picking the larger one at the correct vertex.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_max_dome_boundary_edge_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "k": {"type": "int", "lo": -5, "hi": 8},
+   "px": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "gap": {"type": "int", "lo": 1, "hi": 3},
+   "width": {"type": "int", "lo": 1, "hi": 4},
+   "py": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "wy": {"type": "int", "lo": 1, "hi": 3},
+   "wy2": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "[[px]] + [[gap]]",
+   "x1": "[[px]] + [[gap]] + [[width]]",
+   "y0": "[[py]] - [[wy]]",
+   "y1": "[[py]] + [[wy2]]"
+  },
+  "stem": "Let \\( f(x, y) = -[[a]](x - ([[px]]))^{2} - [[b]](y - ([[py]]))^{2} + ([[k]]) \\) on the closed rectangle \\( [[x0]] \\le x \\le [[x1]],\\ [[y0]] \\le y \\le [[y1]] \\). What is the absolute maximum value of \\( f \\) on this rectangle?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[a]]*[[gap]]**2 + [[k]]"},
+  "distractors": [
+   "[[k]]",
+   "-[[a]]*([[x1]]-[[px]])**2 + [[k]]",
+   "-[[a]]*[[gap]]**2 - [[b]]*[[wy]]**2 + [[k]]",
+   "-[[a]]*[[gap]]**2 - [[b]]*[[wy2]]**2 + [[k]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The unconstrained critical point \\( ([[px]], [[py]]) \\) lies OUTSIDE the rectangle (its \\( x \\)-coordinate \\( [[px]] \\) is less than \\( [[x0]] \\)), so the maximum is not attained in the interior. Since \\( a>0 \\), \\( f \\) decreases as \\( x \\) moves away from \\( [[px]] \\); the closest allowed \\( x \\) is \\( x=[[x0]] \\). Since \\( [[py]] \\) IS interior to \\( [[y0]] \\le y \\le [[y1]] \\), the best \\( y \\) is \\( y=[[py]] \\). So the maximum is on the left edge at \\( ([[x0]], [[py]]) \\): \\( f = -[[a]]([[x0]]-([[px]]))^{2} + [[k]] = -[[a]]([[gap]])^{2} + [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the unconstrained critical point \\( ([[px]],[[py]]) \\) lies inside the rectangle, which it does not.",
+   "This uses the far edge \\( x=[[x1]] \\) instead of the near edge \\( x=[[x0]] \\) that is actually closest to \\( [[px]] \\).",
+   "This wrongly also penalizes the \\( y \\)-direction, as if \\( y=[[py]] \\) were not achievable in the interior.",
+   "This wrongly penalizes the \\( y \\)-direction using the other half-width \\( [[wy2]] \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_max_parabolic_region_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "xstar": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "extra": {"type": "int", "lo": 1, "hi": 3},
+   "kextra": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {
+   "m": "Abs([[xstar]]) + [[extra]]",
+   "k": "[[m]]**2 + [[kextra]]",
+   "c": "2*[[b]]*[[xstar]]"
+  },
+  "stem": "Let \\( f(x, y) = [[c]]x + [[b]]y \\) on the closed region bounded below by \\( y = 0 \\) and above by the parabola \\( y = [[k]] - x^{2} \\), for \\( -[[m]] \\le x \\le [[m]] \\). What is the absolute maximum value of \\( f \\) on this region?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]*([[xstar]]**2 + [[k]])"},
+  "distractors": [
+   "[[c]]*[[m]] + [[b]]*([[k]] - [[m]]**2)",
+   "[[c]]*(-[[m]]) + [[b]]*([[k]] - [[m]]**2)",
+   "[[b]]*[[k]]",
+   "[[c]]*[[xstar]] + [[b]]*[[k]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "For fixed \\( x \\), since \\( [[b]]>0 \\), \\( f \\) increases with \\( y \\), so the maximum in \\( y \\) is on the top boundary \\( y=[[k]]-x^{2} \\). Substituting gives \\( g(x) = [[c]]x + [[b]]([[k]]-x^{2}) \\), a downward parabola in \\( x \\) maximized where \\( g'(x)=[[c]]-2([[b]])x=0 \\), i.e. \\( x = [[xstar]] \\), which lies in \\( (-[[m]], [[m]]) \\). The maximum value is \\( g([[xstar]]) = [[b]]([[xstar]]^{2}+[[k]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( g \\) at the right endpoint \\( x=[[m]] \\) instead of at the true interior maximizer \\( x=[[xstar]] \\).",
+   "This evaluates \\( g \\) at the left endpoint \\( x=-[[m]] \\) instead of at the true interior maximizer.",
+   "This assumes the maximum occurs at \\( x=0 \\), dropping the linear term entirely.",
+   "This uses \\( y=[[k]] \\) (the boundary's value at \\( x=0 \\)) instead of the correct \\( y=[[k]]-x^{2} \\) at \\( x=[[xstar]] \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_min_on_annulus_v1",
+  "skill_id": "absolute_extrema_on_a_closed_region",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "r1": {"type": "int", "lo": 1, "hi": 4},
+   "gap": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "r2": "[[r1]] + [[gap]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]](x^{2} + y^{2}) + ([[c]]) \\) on the closed annular (washer-shaped) region \\( [[r1]] \\le \\sqrt{x^{2}+y^{2}} \\le [[r2]] \\), between two concentric circles. What is the absolute MINIMUM value of \\( f \\) on this region?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[r1]]**2 + [[c]]"},
+  "distractors": [
+   "[[a]]*[[r2]]**2 + [[c]]",
+   "[[c]]",
+   "[[a]]*((([[r1]]+[[r2]]))/2)**2 + [[c]]",
+   "[[a]]*[[r1]] + [[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Since \\( [[a]] > 0 \\), \\( f \\) increases with distance from the origin, so it is minimized where \\( \\sqrt{x^{2}+y^{2}} \\) is as SMALL as possible. The origin itself is excluded (the inner circle has radius \\( [[r1]] > 0 \\)), so the smallest achievable distance is the inner radius \\( [[r1]] \\). There \\( f = [[a]]([[r1]])^{2} + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the outer radius \\( [[r2]] \\), which gives the MAXIMUM of \\( f \\) on the annulus, not the minimum.",
+   "This assumes the origin (where \\( f \\) would be smallest without the hole) lies in the region, but it is excluded.",
+   "This uses the average of the two radii instead of the smaller (inner) one.",
+   "This forgets to square the inner radius.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

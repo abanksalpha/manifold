@@ -1,0 +1,123 @@
+[
+{
+ "template_id": "bijection_pairings_v1",
+ "skill_id": "counting_by_bijection_combinatorial_correspondence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 6},
+  "noun": {"type": "choice", "values": ["people", "players", "students", "children", "dancers"]}
+ },
+ "constraints": [],
+ "derived": {"n": "2*[[m]]"},
+ "stem": "In how many ways can [[n]] [[noun]] be split into [[m]] unlabeled pairs (each person in exactly one pair, and the pairs themselves are not distinguished by order)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial(2*[[m]])/(factorial([[m]])*2**[[m]])"},
+ "distractors": [
+  "factorial(2*[[m]])/factorial([[m]])",
+  "factorial(2*[[m]])/(2**[[m]])",
+  "binomial(2*[[m]], [[m]])",
+  "factorial([[m]])",
+  "[[answer]] + [[m]]",
+  "[[answer]] - [[m]]"
+ ],
+ "solution": "Line up the [[n]] in \\( (2[[m]])! \\) ways, then divide by \\( [[m]]! \\) for the order of the pairs and \\( 2^{[[m]]} \\) for the order within each pair: \\( \\frac{(2[[m]])!}{[[m]]!\\,2^{[[m]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( [[m]]! \\) only, forgetting the two orderings within each pair.",
+  "This divides by \\( 2^{[[m]]} \\) only, forgetting that the pairs are unordered.",
+  "This counts one way to split into two labeled halves, not into [[m]] pairs.",
+  "This is just \\( [[m]]! \\), unrelated to the pairing count.",
+  "This is off from the correct count by [[m]].",
+  "This is off from the correct count by [[m]]."
+ ]
+},
+{
+ "template_id": "bijection_subsets_binary_strings_v1",
+ "skill_id": "counting_by_bijection_combinatorial_correspondence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "A set has [[n]] distinct elements. By matching each subset to the length-[[n]] string of 0s and 1s that marks which elements it contains (a bijection between subsets and binary strings), how many subsets does the set have in total (including the empty set and the whole set)?",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+ "distractors": [
+  "factorial([[n]])",
+  "[[n]]**2",
+  "2*[[n]]",
+  "2**[[n]] - 1",
+  "2**([[n]] - 1)",
+  "[[answer]] + [[n]]"
+ ],
+ "solution": "Each subset corresponds to exactly one binary string of length [[n]] (a 1 marking membership), and there are \\( 2^{[[n]]} \\) such strings, so the set has \\( 2^{[[n]]} = [[answer]] \\) subsets.",
+ "distractor_rationales": [
+  "This confuses the subset count with the number of orderings of the elements.",
+  "This confuses the subset count with a quadratic count.",
+  "This confuses the subset count with a linear count.",
+  "This forgets to include the empty set (the all-zero string).",
+  "This is half the correct count, as if one bit were fixed.",
+  "This adjusts the correct count by [[n]] for no valid reason."
+ ]
+},
+{
+ "template_id": "bijection_labeled_pairs_v1",
+ "skill_id": "counting_by_bijection_combinatorial_correspondence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 6},
+  "noun": {"type": "choice", "values": ["people", "players", "students", "children", "dancers"]}
+ },
+ "constraints": [],
+ "derived": {"n": "2*[[m]]"},
+ "stem": "In how many ways can [[n]] [[noun]] be split into [[m]] LABELED pairs -- Team 1, Team 2, ..., Team [[m]] -- with exactly two [[noun]] on each team (each person on exactly one team)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial(2*[[m]])/(2**[[m]])"},
+ "distractors": [
+  "factorial(2*[[m]])/(factorial([[m]])*2**[[m]])",
+  "factorial(2*[[m]])/factorial([[m]])",
+  "binomial(2*[[m]], [[m]])",
+  "factorial([[m]])",
+  "[[answer]] + [[m]]",
+  "[[answer]] - [[m]]"
+ ],
+ "solution": "Line up the [[n]] [[noun]] in \\( (2[[m]])! \\) ways, then divide only by \\( 2^{[[m]]} \\) for the order within each of the [[m]] LABELED teams (unlike unlabeled pairs, the teams themselves are already distinguished, so there is no \\( [[m]]! \\) to divide out): \\( \\frac{(2[[m]])!}{2^{[[m]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This also divides by \\( [[m]]! \\), which is only correct when the pairs are UNLABELED.",
+  "This forgets to divide out the two orderings within each labeled team.",
+  "This counts ways to choose which people go on Team 1 without finishing the rest of the assignment.",
+  "This is just \\( [[m]]! \\), unrelated to the labeled-pairing count.",
+  "This is off from the correct count by [[m]].",
+  "This is off from the correct count by [[m]]."
+ ]
+},
+{
+ "template_id": "bijection_nonadjacent_selection_shift_v1",
+ "skill_id": "counting_by_bijection_combinatorial_correspondence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 20},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Le(2*[[k]], [[n]] + 1)"],
+ "stem": "The [[n]] seats in a row are numbered \\( 1, 2, \\dots, [[n]] \\). By the shift bijection \\( y_i = x_i - (i-1) \\), selecting [[k]] of the seats with no two selected seats adjacent corresponds to selecting [[k]] values from \\( 1, \\dots, [[n]] - [[k]] + 1 \\) with no restriction. How many ways are there to choose [[k]] of the [[n]] seats so that no two chosen seats are adjacent?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - [[k]] + 1, [[k]])"},
+ "distractors": [
+  "binomial([[n]], [[k]])",
+  "binomial([[n]] - [[k]], [[k]])",
+  "binomial([[n]] - [[k]] + 1, [[k]] - 1)",
+  "binomial([[n]] - 2*[[k]] + 1, [[k]])",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "The shift bijection removes the adjacency gaps, turning the problem into an unrestricted choice of [[k]] values from \\( [[n]]-[[k]]+1 \\) values: \\( \\binom{[[n]]-[[k]]+1}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the adjacency restriction and counts all size-[[k]] subsets.",
+  "This shrinks the pool by [[k]] instead of [[k]]-1 before choosing.",
+  "This chooses one too few seats after the shift.",
+  "This shifts by \\( 2[[k]] \\) instead of \\( [[k]]-1 \\), removing too much room.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+}
+]

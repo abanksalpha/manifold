@@ -1,0 +1,189 @@
+[
+ {
+  "template_id": "inscribed_and_circumscribed_plane_figures_v1",
+  "skill_id": "inscribed_and_circumscribed_plane_figures",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "r": {
+    "type": "int",
+    "lo": 2,
+    "hi": 22
+   }
+  },
+  "constraints": [],
+  "stem": "A square is inscribed in a circle of radius \\( [[r]] \\), so that all four vertices of the square lie on the circle. What is the area of the square?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2*[[r]]**2"
+  },
+  "distractors": [
+   "4*[[r]]**2",
+   "[[r]]**2",
+   "pi*[[r]]**2",
+   "[[r]]**2/2",
+   "[[answer]] + [[r]]",
+   "[[answer]] - [[r]]"
+  ],
+  "solution": "The diagonal of the inscribed square is the circle's diameter, \\( 2[[r]] \\). For a square with side \\( s \\), the diagonal is \\( s\\sqrt{2} \\), so \\( s = \\frac{2[[r]]}{\\sqrt{2}} = [[r]]\\sqrt{2} \\). The area is \\( s^{2} = 2[[r]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the diameter \\( 2r \\) as the side of the square, giving \\( (2r)^{2} \\).",
+   "This uses the radius \\( r \\) directly as the side of the square.",
+   "This is the area of the circle, not the inscribed square.",
+   "This halves the radius-squared instead of doubling it.",
+   "This is off from the correct area by a small amount.",
+   "This is off from the correct area by a small amount."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_circumscribed_plane_figures_v2_circle_in_square",
+  "skill_id": "inscribed_and_circumscribed_plane_figures",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "A circle is inscribed in a square with side length \\( [[s]] \\), so that the circle is tangent to all four sides. What is the area of the circle? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[s]]/2)**2"},
+  "distractors": [
+   "pi*[[s]]**2",
+   "[[s]]**2",
+   "pi*[[s]]",
+   "pi*([[s]]/2)",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The inscribed circle's diameter equals the square's side \\( [[s]] \\), so its radius is \\( \\frac{[[s]]}{2} \\). The circle's area is \\( \\pi\\left(\\frac{[[s]]}{2}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the full side length \\( s \\) as the radius instead of \\( s/2 \\).",
+   "This is the area of the square, not the inscribed circle.",
+   "This forgets to square the radius.",
+   "This forgets to square the radius and only reports \\( \\pi r \\) with \\( r \\) unsquared.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_circumscribed_plane_figures_v3_incircle_equilateral",
+  "skill_id": "inscribed_and_circumscribed_plane_figures",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A circle is inscribed in an equilateral triangle with side length \\( [[s]] \\), tangent to all three sides. What is the area of the circle? (Express the answer in terms of \\( \\pi \\) and/or radicals.)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[s]]/(2*sqrt(3)))**2"},
+  "distractors": [
+   "pi*([[s]]/sqrt(3))**2",
+   "pi*[[s]]**2",
+   "(sqrt(3)/4)*[[s]]**2",
+   "pi*([[s]]/3)**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "An equilateral triangle's inradius is \\( \\dfrac{s}{2\\sqrt{3}} \\). So the inscribed circle's area is \\( \\pi\\left(\\dfrac{[[s]]}{2\\sqrt{3}}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\frac{s}{\\sqrt{3}} \\) as the inradius instead of \\( \\frac{s}{2\\sqrt{3}} \\), missing the factor of 2.",
+   "This uses the full side length as the radius, ignoring the inradius formula entirely.",
+   "This is the triangle's own area, not the inscribed circle's area.",
+   "This uses \\( \\frac{s}{3} \\) as the inradius instead of \\( \\frac{s}{2\\sqrt{3}} \\).",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_circumscribed_plane_figures_v4_circumcircle_equilateral",
+  "skill_id": "inscribed_and_circumscribed_plane_figures",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "An equilateral triangle with side length \\( [[s]] \\) is inscribed in a circle, so that all three vertices lie on the circle. What is the area of the circle? (Express the answer in terms of \\( \\pi \\) and/or radicals.)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[s]]/sqrt(3))**2"},
+  "distractors": [
+   "pi*([[s]]/(2*sqrt(3)))**2",
+   "pi*[[s]]**2",
+   "(sqrt(3)/4)*[[s]]**2",
+   "pi*([[s]]*sqrt(3))**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "An equilateral triangle's circumradius is \\( \\dfrac{s}{\\sqrt{3}} \\). So the circumscribed circle's area is \\( \\pi\\left(\\dfrac{[[s]]}{\\sqrt{3}}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the INRADIUS formula \\( \\frac{s}{2\\sqrt{3}} \\) instead of the circumradius \\( \\frac{s}{\\sqrt{3}} \\).",
+   "This uses the full side length as the radius, ignoring the circumradius formula entirely.",
+   "This is the triangle's own area, not the circumscribed circle's area.",
+   "This multiplies by \\( \\sqrt{3} \\) instead of dividing by it, inverting the circumradius formula.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_circumscribed_plane_figures_v5_rectangle_circumcircle",
+  "skill_id": "inscribed_and_circumscribed_plane_figures",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "l": {"type": "int", "lo": 2, "hi": 18},
+   "w": {"type": "int", "lo": 2, "hi": 18}
+  },
+  "constraints": [],
+  "stem": "A rectangle with length \\( [[l]] \\) and width \\( [[w]] \\) is inscribed in a circle, so that all four vertices lie on the circle. What is the radius of the circle?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[l]]**2 + [[w]]**2)/2"},
+  "distractors": [
+   "sqrt([[l]]**2 + [[w]]**2)",
+   "([[l]] + [[w]])/2",
+   "sqrt([[l]]*[[w]])/2",
+   "([[l]]**2 + [[w]]**2)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The rectangle's diagonal, \\( \\sqrt{[[l]]^{2}+[[w]]^{2}} \\), is a diameter of the circumscribed circle. So the radius is half that: \\( \\dfrac{\\sqrt{[[l]]^{2}+[[w]]^{2}}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the full diagonal (the diameter), forgetting to halve it to get the radius.",
+   "This averages the length and width directly instead of using the diagonal.",
+   "This uses the square root of the product \\( lw \\) instead of the sum of squares.",
+   "This forgets the square root, halving the sum of the squares directly.",
+   "This is off from the correct radius by one.",
+   "This is off from the correct radius by one."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_circumscribed_plane_figures_v6_incircle_hexagon",
+  "skill_id": "inscribed_and_circumscribed_plane_figures",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 18}
+  },
+  "constraints": [],
+  "stem": "A circle is inscribed in a regular hexagon with side length \\( [[s]] \\), tangent to all six sides. What is the area of the circle? (Express the answer in terms of \\( \\pi \\) and/or radicals.)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[s]]*sqrt(3)/2)**2"},
+  "distractors": [
+   "pi*[[s]]**2",
+   "pi*([[s]]/2)**2",
+   "(3*sqrt(3)/2)*[[s]]**2",
+   "pi*([[s]]*sqrt(2)/2)**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "A regular hexagon's apothem (the inradius of its inscribed circle) is \\( \\dfrac{s\\sqrt{3}}{2} \\). So the circle's area is \\( \\pi\\left(\\dfrac{[[s]]\\sqrt{3}}{2}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the full side length as the radius, ignoring the apothem formula.",
+   "This uses half the side length as the radius, as if the hexagon were a square.",
+   "This is the hexagon's own area, not the inscribed circle's area.",
+   "This uses a \\( \\sqrt{2} \\) factor (appropriate for a square) instead of the hexagon's \\( \\sqrt{3} \\) apothem factor.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ }
+]

@@ -1,0 +1,219 @@
+[
+ {
+  "template_id": "equiv_rel_two_classes_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 18
+   }
+  },
+  "constraints": [],
+  "stem": "How many different equivalence relations on a set of [[n]] elements have exactly two equivalence classes? Equivalently, in how many ways can the set be split into two nonempty subsets (where the two subsets are interchangeable)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**([[n]] - 1) - 1"
+  },
+  "distractors": [
+   "2**[[n]] - 1",
+   "2**([[n]] - 1)",
+   "2**[[n]] - 2",
+   "binomial([[n]], 2)",
+   "2**([[n]] - 1) - 2",
+   "[[n]] - 1"
+  ],
+  "solution": "An equivalence relation corresponds to a partition. Splitting the [[n]] elements into an ordered pair of nonempty subsets can be done in \\( 2^{[[n]]} - 2 \\) ways; since the two classes are interchangeable, divide by 2 to get \\( 2^{[[n]]-1} - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 2 for the interchangeable classes (it counts ordered assignments minus one).",
+   "This forgets to remove the case where one subset is empty.",
+   "This counts ordered assignments into two nonempty labeled classes (surjections onto 2 labels).",
+   "This counts ways to choose a 2-element subset, not a 2-class partition.",
+   "This subtracts one too many.",
+   "This uses the number of elements minus one rather than a power of two."
+  ]
+ },
+ {
+  "template_id": "equiv_rel_two_labeled_teams_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A group of [[n]] people is split into two DISTINGUISHABLE teams, Team A and Team B, so that both teams are nonempty. In how many ways can this be done?",
+  "answer_spec": {"op": "evaluate", "expr": "2**[[n]] - 2"},
+  "distractors": [
+   "2**([[n]] - 1) - 1",
+   "2**[[n]]",
+   "2**[[n]] - 1",
+   "2**([[n]] - 1)",
+   "2*([[n]] - 1)",
+   "[[n]]*([[n]] - 1)"
+  ],
+  "solution": "Each person independently joins Team A or Team B, giving \\( 2^{[[n]]} \\) assignments; remove the 2 assignments where one team is empty: \\( 2^{[[n]]} - 2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the count when the two teams are interchangeable (unlabeled), which is half as many.",
+   "This forgets to exclude the two assignments where one team is empty.",
+   "This excludes only one of the two all-in-one-team assignments.",
+   "This is the count for a set with one fewer person.",
+   "This doubles the remaining-people count instead of using an exponent.",
+   "This multiplies the group size by one less than itself instead of exponentiating."
+  ]
+ },
+ {
+  "template_id": "partition_into_sized_classes_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 22},
+   "k": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Le([[k]], [[n]] - 1)", "Ne(2*[[k]], [[n]])"],
+  "stem": "A set with [[n]] elements is partitioned into two classes: one class of exactly [[k]] elements and a second class with the remaining elements. In how many ways can this partition be formed (i.e., in how many ways can the [[k]]-element class be chosen)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]])"},
+  "distractors": [
+   "factorial([[n]])/factorial([[n]] - [[k]])",
+   "binomial([[n]], [[k]])/2",
+   "2**[[n]]",
+   "binomial([[n]], [[k]]) - 1",
+   "binomial([[n]] - 1, [[k]] - 1)",
+   "[[n]] - [[k]]"
+  ],
+  "solution": "Since the two class sizes [[k]] and \\( [[n]]-[[k]] \\) differ, choosing which [[k]] elements form the smaller-labeled class determines the whole partition with no double-counting: \\( \\binom{[[n]]}{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts ordered selections (permutations) instead of an unordered choice of class members.",
+   "This wrongly halves the count as if the two classes could be confused, but their sizes differ so there is no overcount.",
+   "This is the total number of subsets of the whole set, ignoring the required class size.",
+   "This subtracts one for no valid reason.",
+   "This shifts both parameters down by one (a Pascal's-rule slip).",
+   "This is the size of the complementary class, not a count of partitions."
+  ]
+ },
+ {
+  "template_id": "partition_into_three_classes_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "In how many ways can a set of [[n]] elements be partitioned into three nonempty, unlabeled subsets (equivalently, how many equivalence relations on the set have exactly three equivalence classes)?",
+  "answer_spec": {"op": "evaluate", "expr": "(3**[[n]] - 3*2**[[n]] + 3)/6"},
+  "distractors": [
+   "3**[[n]] - 3*2**[[n]] + 3",
+   "(3**[[n]] - 3*2**[[n]] + 3)/2",
+   "2**([[n]] - 1) - 1",
+   "3**[[n]]",
+   "(3**[[n]] - 3*2**[[n]] + 3)/3",
+   "binomial([[n]], 3)"
+  ],
+  "solution": "The number of surjections onto 3 labeled classes is \\( 3^{[[n]]} - 3\\cdot2^{[[n]]} + 3 \\) by inclusion-exclusion; since the three classes are unlabeled, divide by \\( 3! = 6 \\): \\( \\dfrac{3^{[[n]]} - 3\\cdot2^{[[n]]} + 3}{6} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( 3! \\) to remove the labeling of the three classes.",
+   "This divides by 2 instead of \\( 3! = 6 \\).",
+   "This is the two-class partition formula, using the wrong number of classes.",
+   "This counts ALL functions onto 3 labels, without the inclusion-exclusion correction for emptiness.",
+   "This divides by 3 instead of \\( 3! = 6 \\).",
+   "This counts ways to choose a 3-element subset, not a 3-class partition."
+  ]
+ },
+ {
+  "template_id": "partition_into_pairs_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 32}
+  },
+  "constraints": ["Eq(Mod([[n]], 2), 0)"],
+  "derived": {"half": "[[n]]/2"},
+  "stem": "In how many ways can a set of [[n]] elements be partitioned into pairs, so that every element belongs to exactly one (unordered) pair?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/(2**[[half]] * factorial([[half]]))"},
+  "distractors": [
+   "factorial([[n]])/factorial([[half]])",
+   "factorial([[n]])/(factorial([[half]])*factorial([[half]]))",
+   "factorial([[n]])/(2**[[n]])",
+   "binomial([[n]], [[half]])",
+   "factorial([[half]])",
+   "2**[[half]] * factorial([[half]])"
+  ],
+  "solution": "Arrange all [[n]] elements in a row ([[n]]! ways); this overcounts each matching by \\( 2^{[[half]]} \\) (order within each pair doesn't matter) and by \\( [[half]]! \\) (order of the pairs doesn't matter): \\( \\dfrac{[[n]]!}{2^{[[half]]}\\,[[half]]!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This only corrects for the order of the pairs, forgetting the order within each pair.",
+   "This treats the pairing as if it split into two equal labeled halves rather than \\( [[half]] \\) unordered pairs.",
+   "This over-corrects, dividing by \\( 2^{[[n]]} \\) instead of \\( 2^{[[half]]} \\).",
+   "This is a plain binomial coefficient, ignoring the internal structure of the pairing.",
+   "This only accounts for ordering the pairs, ignoring the arrangement of elements within them.",
+   "This is the denominator alone, not the full quotient."
+  ]
+ },
+ {
+  "template_id": "congruence_relation_class_count_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 40},
+   "k": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Ge([[n]], [[k]])"],
+  "stem": "Define a relation \\( \\sim \\) on the set \\( \\{1, 2, \\dots, [[n]]\\} \\) by \\( a \\sim b \\) if and only if \\( a \\) and \\( b \\) leave the same remainder when divided by [[k]]. This is an equivalence relation. How many equivalence classes does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]"},
+  "distractors": [
+   "[[n]]",
+   "[[n]] - [[k]]",
+   "[[k]] - 1",
+   "[[k]] + 1",
+   "floor([[n]]/[[k]])",
+   "ceiling([[n]]/[[k]])"
+  ],
+  "solution": "The possible remainders when dividing by [[k]] are \\( 0, 1, \\dots, [[k]]-1 \\), and since \\( [[n]] \\ge [[k]] \\), every remainder actually occurs among \\( 1, \\dots, [[n]] \\). So there are exactly [[k]] equivalence classes.",
+  "distractor_rationales": [
+   "This confuses the number of elements with the number of classes.",
+   "This subtracts the modulus from the set size instead of recognizing the class count is just the modulus.",
+   "This is one less than the true number of possible remainders.",
+   "This is one more than the true number of possible remainders.",
+   "This estimates how many FULL cycles of remainders fit, rather than how many distinct remainders exist.",
+   "This rounds up the number of cycles instead of counting distinct remainders."
+  ]
+ },
+ {
+  "template_id": "congruence_relation_class_size_v1",
+  "skill_id": "equivalence_relations_partitions",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 10, "hi": 50},
+   "k": {"type": "int", "lo": 2, "hi": 12},
+   "r": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": ["Le([[r]], [[k]])", "Le([[k]], [[n]])"],
+  "stem": "Define a relation \\( \\sim \\) on the set \\( \\{1, 2, \\dots, [[n]]\\} \\) by \\( a \\sim b \\) if and only if \\( a \\) and \\( b \\) leave the same remainder when divided by [[k]]. How many integers in \\( \\{1, \\dots, [[n]]\\} \\) are equivalent to [[r]] under \\( \\sim \\) (that is, how many elements share [[r]]'s equivalence class, including [[r]] itself)?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(([[n]] - [[r]])/[[k]]) + 1"},
+  "distractors": [
+   "floor([[n]]/[[k]])",
+   "[[k]]",
+   "[[r]]",
+   "[[n]] - [[r]] + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The elements equivalent to [[r]] are \\( [[r]], [[r]]+[[k]], [[r]]+2[[k]], \\dots \\) up to [[n]]; there are \\( \\left\\lfloor \\dfrac{[[n]]-[[r]]}{[[k]]} \\right\\rfloor + 1 = [[answer]] \\) of them.",
+  "distractor_rationales": [
+   "This ignores the offset \\( r \\) and just counts multiples of \\( k \\) up to \\( n \\).",
+   "This confuses the class SIZE with the number of classes (the modulus itself).",
+   "This confuses the class size with the representative element \\( r \\) itself.",
+   "This forgets to divide by the modulus \\( k \\).",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ }
+]

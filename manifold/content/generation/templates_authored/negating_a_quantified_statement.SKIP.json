@@ -1,0 +1,4 @@
+{
+ "skill_id": "negating_a_quantified_statement",
+ "reason": "The answer is a rewritten logical statement (a negated quantified sentence), not a single code-computable scalar."
+}

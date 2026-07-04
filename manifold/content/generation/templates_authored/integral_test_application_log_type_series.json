@@ -1,0 +1,63 @@
+[
+{
+ "template_id": "integral_test_application_log_type_series_v1_companion_integral",
+ "skill_id": "integral_test_application_log_type_series",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "C": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3, 4]},
+  "p": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "The integral test compares the log-type series \\( \\displaystyle\\sum_{n=2}^{\\infty} \\frac{[[C]]}{n(\\ln n)^{[[p]]}} \\) to the improper integral \\( \\displaystyle\\int_{e^{[[k]]}}^{\\infty} \\frac{[[C]]}{x(\\ln x)^{[[p]]}}\\,dx \\). Since \\( p=[[p]]>1 \\), substituting \\( u=\\ln x \\) turns this into a convergent p-integral. Compute the value of the integral.",
+ "answer_spec": {"op": "integrate", "expr": "[[C]]/(x*log(x)**[[p]])", "var": "x", "bounds": ["E**[[k]]", "oo"]},
+ "distractors": [
+  "Rational([[C]],[[k]]**([[p]]-1)*[[p]])",
+  "Rational([[C]]*([[p]]-1),[[k]]**([[p]]-1))",
+  "Rational([[C]],[[k]]**[[p]]*([[p]]-1))",
+  "[[answer]] + 1",
+  "2*[[answer]]",
+  "Rational([[C]],[[p]]-1)"
+ ],
+ "solution": "Substitute \\( u=\\ln x \\), \\( du = dx/x \\); the lower bound \\( x=e^{[[k]]} \\) becomes \\( u=[[k]] \\), so the integral becomes \\( \\displaystyle\\int_{[[k]]}^{\\infty} [[C]]u^{-[[p]]}\\,du = \\dfrac{[[C]]}{[[k]]^{[[p]]-1}([[p]]-1)} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( p \\) instead of \\( p-1 \\), forgetting the antiderivative shifts the exponent by one.",
+  "This multiplies by \\( p-1 \\) instead of dividing, inverting the correct relationship.",
+  "This raises \\( k \\) to the \\( p \\) power instead of \\( p-1 \\), an off-by-one error from the substitution.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value.",
+  "This drops the factor of \\( k^{p-1} \\) entirely, as if the substitution's lower bound were 1."
+ ]
+},
+{
+ "template_id": "integral_test_application_log_type_series_v2_limit_definition",
+ "skill_id": "integral_test_application_log_type_series",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7]},
+  "p": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "For the log-type series \\( \\displaystyle\\sum_{n=2}^{\\infty} \\frac{1}{n(\\ln n)^{[[p]]}} \\), the integral test requires evaluating \\( \\displaystyle\\int_{e^{[[k]]}}^{\\infty} \\frac{dx}{x(\\ln x)^{[[p]]}} \\) as the limit \\( \\displaystyle\\lim_{t\\to\\infty} F(t) \\), where \\( F(t) = \\dfrac{(\\ln t)^{1-[[p]]} - [[k]]^{1-[[p]]}}{1-[[p]]} \\) is the antiderivative evaluated between the bounds. Compute this limit.",
+ "answer_spec": {"op": "limit", "expr": "(log(t)**(1-[[p]]) - [[k]]**(1-[[p]]))/(1-[[p]])", "var": "t", "point": "oo"},
+ "distractors": [
+  "Rational(1,[[k]]**([[p]]-1)*[[p]])",
+  "Rational(1,[[k]]**[[p]]*([[p]]-1))",
+  "-Rational(1,[[k]]**([[p]]-1)*([[p]]-1))",
+  "[[answer]] + 1",
+  "2*[[answer]]",
+  "Rational(1,[[p]]-1)"
+ ],
+ "solution": "As \\( t\\to\\infty \\), \\( (\\ln t)^{1-[[p]]}\\to 0 \\) since \\( p>1 \\), leaving \\( \\dfrac{-[[k]]^{1-[[p]]}}{1-[[p]]} = \\dfrac{[[k]]^{1-[[p]]}}{[[p]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mishandles the sign when taking the limit, effectively treating \\( (\\ln t)^{1-p} \\) as if it did not vanish.",
+  "This divides by \\( p \\) instead of \\( p-1 \\) and drops the exponent adjustment.",
+  "This raises \\( k \\) to the \\( p \\) power instead of \\( p-1 \\), an off-by-one exponent error.",
+  "This is off by one from the correct value.",
+  "This has the correct magnitude but the wrong sign.",
+  "This doubles the correct value."
+ ]
+}
+]

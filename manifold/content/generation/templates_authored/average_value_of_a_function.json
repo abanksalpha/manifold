@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "average_value_v1",
+  "skill_id": "average_value_of_a_function",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -4, "hi": 4},
+   "q": {"type": "int", "lo": -6, "hi": 6},
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -2, "hi": 6}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Ne([[p]], 0)", "Ne([[q]], 0)"],
+  "stem": "Find the average value of the function \\( f(x) = x^{2} + ([[p]])x + ([[q]]) \\) on the interval from \\( x = [[a]] \\) to \\( x = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "(x**2 + [[p]]*x + [[q]])/([[b]] - [[a]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "([[b]]**3 - [[a]]**3)/3 + [[p]]*([[b]]**2 - [[a]]**2)/2 + [[q]]*([[b]] - [[a]])",
+   "(([[a]] + [[b]])/2)**2 + [[p]]*([[a]] + [[b]])/2 + [[q]]",
+   "(([[a]]**2 + [[p]]*[[a]] + [[q]]) + ([[b]]**2 + [[p]]*[[b]] + [[q]]))/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The average value is \\( \\dfrac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]}\\left(x^{2}+([[p]])x+([[q]])\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the integral itself, without dividing by the interval length \\( [[b]]-[[a]] \\).",
+   "This evaluates \\( f \\) at the midpoint, which equals the average only for linear functions.",
+   "This averages the endpoint values of \\( f \\), not the function over the interval.",
+   "This is off by one from the correct average.",
+   "This is off by one from the correct average."
+  ]
+ },
+ {
+  "template_id": "average_value_mvt_solve_for_x_v1",
+  "skill_id": "average_value_of_a_function",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 6},
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "a": {"type": "int", "lo": -4, "hi": 2},
+   "b": {"type": "int", "lo": 3, "hi": 9}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "derived": {"avg": "([[m]]*[[a]] + [[k]] + [[m]]*[[b]] + [[k]])/2"},
+  "stem": "Let \\( f(x) = [[m]]x + [[k]] \\). By the Mean Value Theorem for integrals, there is a value \\( c \\) in \\( ([[a]],[[b]]) \\) at which \\( f(c) \\) equals the average value of \\( f \\) on \\( [[[a]],[[b]]] \\). Find \\( c \\).",
+  "answer_spec": {"op": "solve", "equation": "[[m]]*x + [[k]] - ([[avg]]) = 0", "var": "x"},
+  "distractors": [
+   "[[a]]",
+   "[[b]]",
+   "[[avg]]",
+   "([[avg]] - [[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f \\) is linear, its average value over \\( [[[a]],[[b]]] \\) is \\( \\dfrac{f([[a]])+f([[b]])}{2} = [[avg]] \\). Solving \\( [[m]]c+[[k]] = [[avg]] \\) gives \\( c = [[answer]] \\), the midpoint of the interval.",
+  "distractor_rationales": [
+   "This is the left endpoint of the interval, not the point where \\( f \\) equals its average.",
+   "This is the right endpoint of the interval, not the point where \\( f \\) equals its average.",
+   "This is the average VALUE of \\( f \\), not the input \\( c \\) that produces it.",
+   "This solves \\( mc = \\text{avg} \\) but forgets to subtract \\( k \\) correctly first.",
+   "This is off by one from the correct value of \\( c \\)."
+  ]
+ },
+ {
+  "template_id": "average_value_reciprocal_v1",
+  "skill_id": "average_value_of_a_function",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 9},
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 5, "hi": 12}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "Find the average value of \\( f(x) = \\dfrac{[[k]]}{x} \\) on the interval from \\( x = [[a]] \\) to \\( x = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "([[k]]/x)/([[b]] - [[a]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[k]]/(([[a]] + [[b]])/2)",
+   "([[k]]/[[a]] + [[k]]/[[b]])/2",
+   "[[k]]*(log([[b]]) - log([[a]]))",
+   "[[answer]]*([[b]] - [[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The average value is \\( \\dfrac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]}\\dfrac{[[k]]}{x}\\,dx = \\dfrac{[[k]]}{[[b]]-[[a]]}\\ln\\dfrac{[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( f \\) at the midpoint, which equals the average only for linear functions.",
+   "This averages the endpoint values of \\( f \\), not the function over the interval.",
+   "This is the integral itself, without dividing by the interval length.",
+   "This is the plain (unaveraged) integral, missing the division by \\( [[b]]-[[a]] \\).",
+   "This is off by one from the correct average."
+  ]
+ },
+ {
+  "template_id": "average_value_trig_v1",
+  "skill_id": "average_value_of_a_function",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 6},
+   "B": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Find the average value of \\( f(x) = [[A]]\\sin(x) + [[B]] \\) on the interval \\( [0,\\pi] \\).",
+  "answer_spec": {"op": "integrate", "expr": "([[A]]*sin(x) + [[B]])/pi", "var": "x", "bounds": ["0", "pi"]},
+  "distractors": [
+   "[[A]] + [[B]]",
+   "[[A]]/pi + [[B]]",
+   "[[B]]",
+   "2*[[A]] + [[B]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The average value is \\( \\dfrac{1}{\\pi}\\int_{0}^{\\pi}\\left([[A]]\\sin(x)+[[B]]\\right)dx = \\dfrac{1}{\\pi}\\left(2[[A]] + [[B]]\\pi\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the peak value \\( \\sin(\\pi/2)=1 \\) instead of averaging over the whole interval.",
+   "This forgets the factor of 2 that comes from \\( \\int_{0}^{\\pi}\\sin x\\,dx = 2 \\).",
+   "This drops the contribution of the \\( \\sin(x) \\) term entirely.",
+   "This forgets to divide by \\( \\pi \\), the length of the interval.",
+   "This is off by one from the correct average."
+  ]
+ },
+ {
+  "template_id": "average_value_abs_value_v1",
+  "skill_id": "average_value_of_a_function",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -4, "hi": 4},
+   "a": {"type": "int", "lo": -6, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 9}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "Find the average value of \\( f(x) = |x - [[h]]| \\) on the interval from \\( x = [[a]] \\) to \\( x = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "Abs(x - [[h]])/([[b]] - [[a]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "Abs((([[a]] + [[b]])/2) - [[h]])",
+   "(Abs([[a]] - [[h]]) + Abs([[b]] - [[h]]))/2",
+   "[[answer]]*([[b]] - [[a]])",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The average value is \\( \\dfrac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]}|x-[[h]]|\\,dx = [[answer]] \\); because \\( f \\) has a corner at \\( x=[[h]] \\), this is NOT simply \\( f \\) evaluated at the midpoint.",
+  "distractor_rationales": [
+   "This evaluates \\( f \\) at the midpoint, which equals the average only for linear (non-V-shaped) functions.",
+   "This averages the endpoint values of \\( f \\), not the function over the interval.",
+   "This is the plain (unaveraged) integral, missing the division by \\( [[b]]-[[a]] \\).",
+   "This has the wrong sign for an average value that must be non-negative.",
+   "This is off by one from the correct average."
+  ]
+ }
+]

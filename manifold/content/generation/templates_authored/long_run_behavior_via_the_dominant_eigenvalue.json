@@ -1,0 +1,138 @@
+[
+{
+ "template_id": "long_run_dominant_eigenvalue_v1",
+ "skill_id": "long_run_behavior_via_the_dominant_eigenvalue",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 7},
+  "d": {"type": "int", "lo": 1, "hi": 7},
+  "b": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], [[d]])"],
+ "stem": "A system evolves by \\( x_{k+1} = A x_k \\), where \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ 0 & [[d]] \\end{bmatrix} \\). Its long-run growth rate is governed by the dominant (largest) eigenvalue of \\( A \\). What is that dominant eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["0", "[[d]]"]], "which": "max"},
+ "distractors": [
+  "[[a]]",
+  "[[d]]",
+  "[[a]] + [[d]]",
+  "[[a]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The matrix is upper triangular, so its eigenvalues are the diagonal entries \\( [[a]] \\) and \\( [[d]] \\). The dominant (largest) eigenvalue is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is a diagonal entry, but not the larger of the two eigenvalues.",
+  "This is a diagonal entry, but not the larger of the two eigenvalues.",
+  "This is the trace (sum of the eigenvalues), not the dominant eigenvalue.",
+  "This is the determinant (product of the eigenvalues), not the dominant eigenvalue.",
+  "This is one more than the correct dominant eigenvalue.",
+  "This is one less than the correct dominant eigenvalue."
+ ]
+},
+{
+ "template_id": "long_run_dominant_eigenvalue_v2",
+ "skill_id": "long_run_behavior_via_the_dominant_eigenvalue",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 3, "hi": 10},
+  "m": {"type": "int", "lo": -4, "hi": 4},
+  "t": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[m]], 0)", "Gt([[p]], [[t]])", "Ne([[t]], [[m]])", "Ne([[t]], -[[m]])"],
+ "derived": {
+  "a": "[[p]] + [[m]]",
+  "d": "[[p]] - [[m]]",
+  "s": "[[t]]**2 - [[m]]**2"
+ },
+ "stem": "Two interacting populations evolve by \\( \\begin{pmatrix} x_{k+1} \\\\ y_{k+1} \\end{pmatrix} = A \\begin{pmatrix} x_k \\\\ y_k \\end{pmatrix} \\), where \\( A = \\begin{bmatrix} [[a]] & 1 \\\\ [[s]] & [[d]] \\end{bmatrix} \\). Since \\( A \\) is not triangular, solve its characteristic equation to find the growth rate. What is the dominant eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "1"], ["[[s]]", "[[d]]"]], "which": "max"},
+ "distractors": [
+  "[[p]] - [[t]]",
+  "[[a]]",
+  "[[d]]",
+  "[[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "The trace is \\( [[a]]+[[d]] = 2([[p]]) \\) and the determinant is \\( ([[a]])([[d]]) - (1)([[s]]) = [[p]]^{2} - [[t]]^{2} \\), so by the quadratic formula the eigenvalues are \\( [[p]] \\pm [[t]] \\). The dominant (larger) one is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the smaller eigenvalue \\( [[p]]-[[t]] \\), not the dominant one.",
+  "This is the \\( (1,1) \\) entry of \\( A \\), but \\( A \\) is not triangular so this is not an eigenvalue.",
+  "This is the \\( (2,2) \\) entry of \\( A \\), but \\( A \\) is not triangular so this is not an eigenvalue.",
+  "This is half the trace, the average of the two eigenvalues, not the dominant one itself.",
+  "This is one more than the correct dominant eigenvalue.",
+  "This is two less than the correct dominant eigenvalue."
+ ]
+},
+{
+ "template_id": "long_run_dominant_eigenvalue_v3",
+ "skill_id": "long_run_behavior_via_the_dominant_eigenvalue",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": 1, "hi": 9},
+  "l2": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])"],
+ "derived": {
+  "c1": "[[l1]] + [[l2]]",
+  "c2": "-([[l1]] * [[l2]])"
+ },
+ "stem": "A sequence \\( a_n \\) satisfies the linear recurrence \\( a_{n+1} = ([[c1]]) a_n + ([[c2]]) a_{n-1} \\). In the long run, the ratio \\( a_{n+1}/a_n \\) approaches the dominant eigenvalue of the associated companion matrix \\( M = \\begin{bmatrix} [[c1]] & [[c2]] \\\\ 1 & 0 \\end{bmatrix} \\). What is that dominant eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[c1]]", "[[c2]]"], ["1", "0"]], "which": "max"},
+ "distractors": [
+  "[[l1]]",
+  "[[l2]]",
+  "[[c1]]",
+  "[[c2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The companion matrix's characteristic polynomial is \\( \\lambda^2 - ([[c1]])\\lambda - ([[c2]]) = (\\lambda - [[l1]])(\\lambda - [[l2]]) \\), so its eigenvalues are exactly \\( [[l1]] \\) and \\( [[l2]] \\). The dominant (larger) one is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the two roots, but not necessarily the larger (dominant) one.",
+  "This is one of the two roots, but not necessarily the larger (dominant) one.",
+  "This is the sum of the two eigenvalues (the trace), not the dominant one itself.",
+  "This is the recurrence's second coefficient, not an eigenvalue.",
+  "This is one more than the correct dominant eigenvalue.",
+  "This is one less than the correct dominant eigenvalue."
+ ]
+},
+{
+ "template_id": "long_run_dominant_eigenvalue_v4",
+ "skill_id": "long_run_behavior_via_the_dominant_eigenvalue",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "lo": {"type": "int", "lo": 1, "hi": 6},
+  "gap": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": [],
+ "derived": {
+  "hi": "[[lo]] + [[gap]]"
+ },
+ "stem": "A system evolves by \\( x_{k+1} = A x_k \\), where \\( A = \\begin{bmatrix} [[hi]] & [[b]] \\\\ 0 & [[lo]] \\end{bmatrix} \\). Since \\( [[hi]] > [[lo]] \\), the dominant eigenvalue is \\( [[hi]] \\), and after \\( [[n]] \\) steps a generic initial vector is scaled by approximately \\( \\lambda_{\\max}^{[[n]]} \\). What is \\( \\lambda_{\\max}^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[hi]]**[[n]]"},
+ "distractors": [
+  "[[hi]]*[[n]]",
+  "[[lo]]**[[n]]",
+  "[[hi]]**([[n]]-1)",
+  "[[hi]] + [[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 3"
+ ],
+ "solution": "The dominant eigenvalue is \\( [[hi]] \\), and after \\( [[n]] \\) steps the growth factor is \\( \\lambda_{\\max}^{[[n]]} = ([[hi]])^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the eigenvalue by \\( n \\) instead of raising it to the \\( n \\)-th power.",
+  "This uses the smaller (non-dominant) eigenvalue instead of the dominant one.",
+  "This is off by one in the exponent.",
+  "This adds \\( n \\) to the eigenvalue instead of using it as an exponent.",
+  "This is one more than the correct growth factor.",
+  "This is three less than the correct growth factor."
+ ]
+}
+]

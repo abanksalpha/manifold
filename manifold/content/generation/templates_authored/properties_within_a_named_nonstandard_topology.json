@@ -1,0 +1,92 @@
+[
+{
+ "template_id": "particular_point_topology_count_v1",
+ "skill_id": "properties_within_a_named_nonstandard_topology",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 18},
+  "p": {"type": "int", "lo": 1, "hi": 25}
+ },
+ "constraints": ["Le([[p]], [[n]])"],
+ "stem": "Let \\( X = \\{1, 2, \\ldots, [[n]]\\} \\) carry the particular point topology with respect to \\( p = [[p]] \\): the open sets are exactly \\( \\varnothing \\) together with every subset of \\( X \\) that contains \\( p \\) (one can check this collection is closed under arbitrary unions and finite intersections). How many open sets does this topology have?",
+ "answer_spec": {"op": "evaluate", "expr": "2**([[n]]-1) + 1"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]]-1)",
+  "2**[[n]] - 1",
+  "[[n]]+1",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "A subset containing \\(p\\) is determined by freely choosing among the other \\([[n]]-1\\) elements, giving \\(2^{[[n]]-1}\\) such subsets; adding the empty set (which does not contain \\(p\\) but is open by definition) gives \\(2^{[[n]]-1}+1 = [[answer]]\\) open sets.",
+ "distractor_rationales": [
+  "This is the open-set count of the DISCRETE topology, forgetting that only subsets containing \\(p\\) (plus \\(\\varnothing\\)) are open here.",
+  "This forgets to add the extra open set \\(\\varnothing\\), which does not itself contain \\(p\\).",
+  "This subtracts one instead of restricting to subsets containing \\(p\\).",
+  "This is a linear count, unrelated to the exponential count of subsets containing a fixed point.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "excluded_point_topology_count_v1",
+ "skill_id": "properties_within_a_named_nonstandard_topology",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 18},
+  "p": {"type": "int", "lo": 1, "hi": 25}
+ },
+ "constraints": ["Le([[p]], [[n]])"],
+ "stem": "Let \\( X = \\{1, 2, \\ldots, [[n]]\\} \\) carry the excluded point topology with respect to \\( p = [[p]] \\): the open sets are exactly \\( X \\) itself together with every subset of \\( X \\) that does NOT contain \\( p \\) (one can check this collection is closed under arbitrary unions and finite intersections). How many open sets does this topology have?",
+ "answer_spec": {"op": "evaluate", "expr": "2**([[n]]-1) + 1"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]]-1)",
+  "2**[[n]] - 1",
+  "[[n]]+1",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "A subset not containing \\(p\\) is a subset of the other \\([[n]]-1\\) elements, giving \\(2^{[[n]]-1}\\) such subsets (this already includes \\(\\varnothing\\)); adding \\(X\\) itself (which contains \\(p\\) but is open by definition) gives \\(2^{[[n]]-1}+1 = [[answer]]\\) open sets.",
+ "distractor_rationales": [
+  "This is the open-set count of the DISCRETE topology, forgetting that only subsets avoiding \\(p\\) (plus \\(X\\)) are open here.",
+  "This forgets to add the extra open set \\(X\\), which itself contains \\(p\\).",
+  "This subtracts one instead of restricting to subsets avoiding \\(p\\).",
+  "This is a linear count, unrelated to the exponential count of subsets avoiding a fixed point.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "fixed_subset_topology_count_v1",
+ "skill_id": "properties_within_a_named_nonstandard_topology",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 25},
+  "k": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Lt([[k]], [[n]])"],
+ "stem": "Let \\( X = \\{1, 2, \\ldots, [[n]]\\} \\) and fix a subset \\( S \\subseteq X \\) with \\( |S| = [[k]] \\). Define \\( \\tau = \\{\\varnothing\\} \\cup \\{A \\subseteq X : S \\subseteq A\\} \\) (every nonempty open set must contain all of \\(S\\); this collection is closed under arbitrary unions and finite intersections, so \\(\\tau\\) is a valid topology on \\(X\\)). How many open sets does \\(\\tau\\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2**([[n]]-[[k]]) + 1"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]]-[[k]])",
+  "2**([[n]]-1) + 1",
+  "[[n]]-[[k]]+1",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "A set \\(A \\supseteq S\\) is determined by freely choosing among the remaining \\([[n]]-[[k]]\\) elements outside \\(S\\), giving \\(2^{[[n]]-[[k]]}\\) such sets; adding \\(\\varnothing\\) (which does not contain \\(S\\) but is open by definition) gives \\(2^{[[n]]-[[k]]}+1 = [[answer]]\\) open sets.",
+ "distractor_rationales": [
+  "This is the open-set count of the DISCRETE topology, forgetting the requirement that nonempty open sets must contain all of \\(S\\).",
+  "This forgets to add the extra open set \\(\\varnothing\\).",
+  "This uses the single-point particular-point-topology formula (\\(|S|=1\\)) instead of the given \\(|S|=[[k]]\\).",
+  "This is a linear count, unrelated to the exponential count of subsets containing a fixed \\(k\\)-element set.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+}
+]

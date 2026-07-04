@@ -1,0 +1,159 @@
+[
+{
+ "template_id": "empirical_convergence_order_v1",
+ "skill_id": "convergence_order_order_of_accuracy_comparison",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "choice", "values": [1, 2, 3, 4]},
+  "r": {"type": "choice", "values": [2, 3]},
+  "e2": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "derived": {"e1": "[[e2]] * [[r]]**[[p]]"},
+ "stem": "A numerical method has error \\( E(h) \\approx C\\,h^{p} \\) for small step size \\( h \\). On a coarse grid with step size \\( h \\) its error is \\( [[e1]] \\); refining to step size \\( \\dfrac{h}{[[r]]} \\) the error drops to \\( [[e2]] \\). Estimate the order of accuracy \\( p \\).",
+ "answer_spec": {"op": "evaluate", "expr": "log([[e1]]/[[e2]], [[r]])"},
+ "distractors": [
+  "log([[e2]]/[[e1]], [[r]])",
+  "[[e1]]/[[e2]]",
+  "[[r]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( E \\approx C h^{p} \\), the two errors satisfy \\( \\dfrac{E(h)}{E(h/[[r]])} = [[r]]^{\\,p} \\). Thus \\( [[r]]^{\\,p} = \\dfrac{[[e1]]}{[[e2]]} \\), giving \\( p = \\log_{[[r]]}\\!\\left(\\dfrac{[[e1]]}{[[e2]]}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the error ratio, giving \\( -p \\) instead of \\( p \\).",
+  "This reports the error ratio \\( r^{p} \\) itself rather than its base-\\( r \\) logarithm.",
+  "This mistakes the grid refinement factor \\( r \\) for the order of accuracy.",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order.",
+  "This is off by two from the correct order."
+ ]
+},
+{
+ "template_id": "predict_error_after_refinement_v1",
+ "skill_id": "convergence_order_order_of_accuracy_comparison",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "choice", "values": [1, 2, 3, 4]},
+  "r": {"type": "choice", "values": [2, 3]},
+  "Ecoarse": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": ["Gt([[Ecoarse]], 0)"],
+ "stem": "A numerical method is known to have order of accuracy \\( p = [[p]] \\), so its error obeys \\( E(h) \\approx C\\,h^{p} \\). On a grid with step size \\( h \\), the observed error is \\( [[Ecoarse]] \\). If the step size is refined to \\( \\dfrac{h}{[[r]]} \\), what error would you expect?",
+ "answer_spec": {"op": "evaluate", "expr": "[[Ecoarse]]/[[r]]**[[p]]"},
+ "distractors": [
+  "[[Ecoarse]]*[[r]]**[[p]]",
+  "[[Ecoarse]]/[[r]]",
+  "[[Ecoarse]]/[[p]]",
+  "[[Ecoarse]]/[[r]]**([[p]] + 1)",
+  "[[Ecoarse]]/[[r]]**([[p]] - 1)",
+  "[[answer]] + 1"
+ ],
+ "solution": "Halving-type refinement scales the error by \\( r^{p} \\): \\( E(h/r) = E(h)/r^{p} \\). So the new error is \\( \\dfrac{[[Ecoarse]]}{[[r]]^{[[p]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( r^{p} \\) instead of dividing, growing the error instead of shrinking it.",
+  "This only accounts for a single factor of \\( r \\), ignoring the order \\( p \\).",
+  "This divides by \\( p \\) instead of \\( r^{p} \\), confusing the order with the refinement factor.",
+  "This uses one extra power of \\( r \\).",
+  "This uses one too few powers of \\( r \\).",
+  "This is off by one from the correct predicted error."
+ ]
+},
+{
+ "template_id": "compare_two_methods_order_v1",
+ "skill_id": "convergence_order_order_of_accuracy_comparison",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "p1": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "p2": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "r": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne([[p1]], [[p2]])"],
+ "stem": "Method A has order of accuracy \\( p_1 = [[p1]] \\) and Method B has order of accuracy \\( p_2 = [[p2]] \\); both have error \\( E(h) \\approx C h^{p} \\). Both methods are run with the same step size \\( h \\) and then both are refined to step size \\( \\dfrac{h}{[[r]]} \\). By what factor does Method A's error shrink MORE than Method B's, i.e. what is \\( \\dfrac{E_A(h)/E_A(h/[[r]])}{E_B(h)/E_B(h/[[r]])} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r]]**[[p1]]/[[r]]**[[p2]]"},
+ "distractors": [
+  "[[r]]**([[p2]] - [[p1]])",
+  "[[p1]] - [[p2]]",
+  "[[r]]**([[p1]] - [[p2]] + 1)",
+  "[[r]]**([[p1]] - [[p2]] - 1)",
+  "[[p1]]/[[p2]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "Refining by a factor of \\( [[r]] \\) shrinks Method A's error by \\( [[r]]^{p_1} \\) and Method B's by \\( [[r]]^{p_2} \\). The ratio of shrink factors is \\( \\dfrac{[[r]]^{p_1}}{[[r]]^{p_2}} = [[r]]^{[[p1]]-[[p2]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, comparing B's shrink to A's instead of A's to B's.",
+  "This reports the difference of the orders instead of \\( r \\) raised to that difference.",
+  "This uses one extra power of \\( r \\).",
+  "This uses one too few powers of \\( r \\).",
+  "This mistakes the ratio of the orders themselves for the ratio of shrink factors.",
+  "This is off by one from the correct factor."
+ ]
+},
+{
+ "template_id": "refinement_factor_for_target_reduction_v1",
+ "skill_id": "convergence_order_order_of_accuracy_comparison",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "rtrue": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "derived": {"Q": "[[rtrue]]**[[p]]"},
+ "stem": "A numerical method has order of accuracy \\( p = [[p]] \\), so \\( E(h) \\approx C h^{p} \\). By what factor \\( r \\) must the step size be reduced (\\( h \\to h/r \\), with \\( r > 1 \\)) in order to reduce the error by a factor of \\( [[Q]] \\) (so the new error is \\( \\dfrac{1}{[[Q]]} \\) times the old error)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[Q]]**(Rational(1,[[p]]))"},
+ "distractors": [
+  "[[Q]]/[[p]]",
+  "[[Q]] - [[p]]",
+  "[[p]]*[[Q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]]**2"
+ ],
+ "solution": "Refining by factor \\( r \\) shrinks the error by \\( r^{p} \\), so we need \\( r^{p} = [[Q]] \\), i.e. \\( r = [[Q]]^{1/[[p]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides the reduction factor by the order instead of taking a \\( p \\)-th root.",
+  "This subtracts the order from the reduction factor instead of taking a \\( p \\)-th root.",
+  "This multiplies instead of taking a \\( p \\)-th root.",
+  "This is one more than the correct refinement factor.",
+  "This is one less than the correct refinement factor.",
+  "This squares the correct refinement factor."
+ ]
+},
+{
+ "template_id": "order_of_convergence_from_iterates_v1",
+ "skill_id": "convergence_order_order_of_accuracy_comparison",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "e2": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "r": {"type": "choice", "values": [2, 3, 4]},
+  "ptrue": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "derived": {"e1": "[[e2]]*[[r]]**[[ptrue]]", "e0": "[[e1]]*[[r]]"},
+ "stem": "A root-finding iteration produces three consecutive absolute errors \\( e_0 = [[e0]] \\), \\( e_1 = [[e1]] \\), \\( e_2 = [[e2]] \\) (no known step-size ratio is given), where the errors satisfy \\( e_{n+1} \\approx C\\,e_n^{\\,p} \\) for a fixed order of convergence \\( p \\) and constant \\( C \\). Using \\( p \\approx \\dfrac{\\ln(e_2/e_1)}{\\ln(e_1/e_0)} \\), estimate \\( p \\).",
+ "answer_spec": {"op": "evaluate", "expr": "log([[e2]]/[[e1]], [[e1]]/[[e0]])"},
+ "distractors": [
+  "log([[e1]]/[[e0]], [[e2]]/[[e1]])",
+  "log([[e0]]/[[e1]], [[e1]]/[[e2]])",
+  "[[e0]]/[[e1]]",
+  "[[e1]]/[[e2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Taking logs of both successive error ratios and dividing gives the order of convergence: \\( p \\approx \\dfrac{\\ln(e_2/e_1)}{\\ln(e_1/e_0)} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts which ratio is the base and which is the argument.",
+  "This reverses the order of the successive errors used in each ratio.",
+  "This reports the raw ratio \\( e_0/e_1 \\) instead of the order \\( p \\).",
+  "This reports the raw ratio \\( e_1/e_2 \\) instead of the order \\( p \\).",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order."
+ ]
+}
+]

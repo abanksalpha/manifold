@@ -1,0 +1,212 @@
+[
+{
+ "template_id": "reflection_across_line_v1",
+ "skill_id": "geometric_operators_projection_and_reflection_identi",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -3, "hi": 3},
+  "u2": {"type": "int", "lo": -3, "hi": 3},
+  "u3": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -3, "hi": 3},
+  "v2": {"type": "int", "lo": -3, "hi": 3},
+  "v3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2, 0)",
+  "Ne([[v1]]*[[u1]] + [[v2]]*[[u2]] + [[v3]]*[[u3]], 0)"
+ ],
+ "derived": {
+  "dotvu": "[[v1]]*[[u1]] + [[v2]]*[[u2]] + [[v3]]*[[u3]]",
+  "uu": "[[u1]]**2 + [[u2]]**2 + [[u3]]**2"
+ },
+ "stem": "Let \\( \\ell \\) be the line in \\( \\mathbb{R}^3 \\) spanned by \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\). The reflection of \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\) across \\( \\ell \\) is \\( \\mathbf{v}' = 2\\operatorname{proj}_{\\mathbf{u}}(\\mathbf{v}) - \\mathbf{v} \\). What is the first coordinate of \\( \\mathbf{v}' \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*([[dotvu]])*[[u1]]/([[uu]]) - [[v1]]"},
+ "distractors": [
+  "2*([[dotvu]])*[[u1]]/([[uu]]) + [[v1]]",
+  "([[dotvu]])*[[u1]]/([[uu]]) - [[v1]]",
+  "([[dotvu]])*[[u1]]/([[uu]])",
+  "[[v1]]",
+  "-[[v1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "The projection of \\( \\mathbf{v} \\) onto \\( \\mathbf{u} \\) has first coordinate \\( \\dfrac{\\mathbf{v}\\cdot\\mathbf{u}}{\\mathbf{u}\\cdot\\mathbf{u}}u_1 \\); the reflection is \\( 2\\,\\text{proj} - \\mathbf{v} \\), so its first coordinate is \\( 2\\cdot\\dfrac{([[dotvu]])}{[[uu]]}\\cdot([[u1]]) - ([[v1]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( \\mathbf{v} \\) instead of subtracting it in \\( 2\\,\\text{proj} - \\mathbf{v} \\).",
+  "This drops the factor of 2 on the projection term.",
+  "This gives the projection's first coordinate, not the reflection's.",
+  "This returns the original first coordinate, as if there were no reflection.",
+  "This negates the original coordinate instead of reflecting across the line.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This has the wrong sign."
+ ]
+},
+{
+ "template_id": "reflection_across_plane_v2",
+ "skill_id": "geometric_operators_projection_and_reflection_identi",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n1": {"type": "int", "lo": -3, "hi": 3},
+  "n2": {"type": "int", "lo": -3, "hi": 3},
+  "n3": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -3, "hi": 3},
+  "v2": {"type": "int", "lo": -3, "hi": 3},
+  "v3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[n1]]**2 + [[n2]]**2 + [[n3]]**2, 0)",
+  "Ne([[v1]]*[[n1]] + [[v2]]*[[n2]] + [[v3]]*[[n3]], 0)"
+ ],
+ "derived": {
+  "dotvn": "[[v1]]*[[n1]] + [[v2]]*[[n2]] + [[v3]]*[[n3]]",
+  "nn": "[[n1]]**2 + [[n2]]**2 + [[n3]]**2"
+ },
+ "stem": "Let \\( \\Pi \\) be the plane through the origin in \\( \\mathbb{R}^3 \\) with normal vector \\( \\mathbf{n} = ([[n1]], [[n2]], [[n3]]) \\). The reflection of \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\) across \\( \\Pi \\) is \\( \\mathbf{v}' = \\mathbf{v} - 2\\dfrac{\\mathbf{v}\\cdot\\mathbf{n}}{\\mathbf{n}\\cdot\\mathbf{n}}\\mathbf{n} \\). What is the first coordinate of \\( \\mathbf{v}' \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[v1]] - 2*([[dotvn]])*[[n1]]/([[nn]])"},
+ "distractors": [
+  "[[v1]] + 2*([[dotvn]])*[[n1]]/([[nn]])",
+  "[[v1]] - ([[dotvn]])*[[n1]]/([[nn]])",
+  "([[dotvn]])*[[n1]]/([[nn]])",
+  "[[v1]]",
+  "-[[v1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "The reflection across a plane with normal \\( \\mathbf{n} \\) subtracts twice the projection onto \\( \\mathbf{n} \\): the first coordinate is \\( ([[v1]]) - 2\\cdot\\dfrac{([[dotvn]])}{[[nn]]}\\cdot([[n1]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the projection term instead of subtracting it.",
+  "This drops the factor of 2 on the projection term.",
+  "This is the projection of \\( \\mathbf{v} \\) onto \\( \\mathbf{n} \\), not the reflection across the plane.",
+  "This returns the original first coordinate, as if there were no reflection.",
+  "This negates the original coordinate instead of reflecting across the plane.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This has the wrong sign."
+ ]
+},
+{
+ "template_id": "projection_matrix_entry_v3",
+ "skill_id": "geometric_operators_projection_and_reflection_identi",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -4, "hi": 4},
+  "u2": {"type": "int", "lo": -4, "hi": 4},
+  "u3": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2, 0)"
+ ],
+ "derived": {
+  "uu": "[[u1]]**2 + [[u2]]**2 + [[u3]]**2"
+ },
+ "stem": "Let \\( P = \\dfrac{\\mathbf{u}\\mathbf{u}^T}{\\mathbf{u}^T\\mathbf{u}} \\) be the matrix that orthogonally projects onto the line spanned by \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\) in \\( \\mathbb{R}^3 \\). What is the entry \\( P_{12} \\) (row 1, column 2) of \\( P \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[u1]]*[[u2]]/([[uu]])"},
+ "distractors": [
+  "[[u2]]*[[u2]]/([[uu]])",
+  "[[u1]]*[[u1]]/([[uu]])",
+  "[[u1]]*[[u3]]/([[uu]])",
+  "[[u1]]*[[u2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "The \\( (i,j) \\) entry of \\( P = \\mathbf{u}\\mathbf{u}^T/(\\mathbf{u}^T\\mathbf{u}) \\) is \\( u_iu_j/(\\mathbf{u}^T\\mathbf{u}) \\), so \\( P_{12} = \\dfrac{([[u1]])([[u2]])}{[[uu]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the diagonal entry \\( P_{22} \\), not the off-diagonal entry \\( P_{12} \\).",
+  "This is the diagonal entry \\( P_{11} \\), not \\( P_{12} \\).",
+  "This is the entry \\( P_{13} \\), pairing the wrong components.",
+  "This forgets to divide by \\( \\mathbf{u}^T\\mathbf{u} \\).",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This has the wrong sign."
+ ]
+},
+{
+ "template_id": "reflection_matrix_entry_v4",
+ "skill_id": "geometric_operators_projection_and_reflection_identi",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -4, "hi": 4},
+  "u2": {"type": "int", "lo": -4, "hi": 4},
+  "u3": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2, 0)"
+ ],
+ "derived": {
+  "uu": "[[u1]]**2 + [[u2]]**2 + [[u3]]**2"
+ },
+ "stem": "Let \\( P = \\mathbf{u}\\mathbf{u}^T/(\\mathbf{u}^T\\mathbf{u}) \\) and let \\( R = 2P - I \\) be the matrix that reflects vectors across the line spanned by \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\) in \\( \\mathbb{R}^3 \\). What is the diagonal entry \\( R_{11} \\) of \\( R \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[u1]]*[[u1]]/([[uu]]) - 1"},
+ "distractors": [
+  "2*[[u1]]*[[u1]]/([[uu]])",
+  "[[u1]]*[[u1]]/([[uu]]) - 1",
+  "[[u1]]*[[u1]]/([[uu]])",
+  "1 - 2*[[u1]]*[[u1]]/([[uu]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Since \\( R = 2P - I \\), the diagonal entry is \\( R_{11} = 2P_{11} - 1 = 2\\cdot\\dfrac{([[u1]])^2}{[[uu]]} - 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract \\( 1 \\) for the identity term.",
+  "This forgets the factor of \\( 2 \\) on \\( P_{11} \\).",
+  "This is just the projection entry \\( P_{11} \\), not the reflection entry.",
+  "This has the sign of the whole expression flipped.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This has the wrong sign."
+ ]
+},
+{
+ "template_id": "projection_onto_orthogonal_pair_subspace_v5",
+ "skill_id": "geometric_operators_projection_and_reflection_identi",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4},
+  "v3": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[a]]**2 + [[b]]**2, 0)"
+ ],
+ "derived": {
+  "uu1": "[[a]]**2 + [[b]]**2",
+  "uu2": "[[a]]**2 + [[b]]**2 + [[c]]**2",
+  "dot1": "[[v1]]*[[a]] + [[v2]]*[[b]]",
+  "dot2": "-[[v1]]*[[b]] + [[v2]]*[[a]] + [[v3]]*[[c]]"
+ },
+ "stem": "Let \\( \\mathbf{u}_1 = ([[a]], [[b]], 0) \\) and \\( \\mathbf{u}_2 = (-[[b]], [[a]], [[c]]) \\); these are orthogonal vectors in \\( \\mathbb{R}^3 \\), and let \\( W = \\operatorname{span}\\{\\mathbf{u}_1, \\mathbf{u}_2\\} \\). Because \\( \\mathbf{u}_1 \\perp \\mathbf{u}_2 \\), the projection of \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\) onto \\( W \\) is the SUM of the individual projections: \\( \\operatorname{proj}_W(\\mathbf{v}) = \\operatorname{proj}_{\\mathbf{u}_1}(\\mathbf{v}) + \\operatorname{proj}_{\\mathbf{u}_2}(\\mathbf{v}) \\). What is the first coordinate of \\( \\operatorname{proj}_W(\\mathbf{v}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[dot1]])*[[a]]/([[uu1]]) + ([[dot2]])*(-[[b]])/([[uu2]])"},
+ "distractors": [
+  "([[dot1]])*[[a]]/([[uu1]])",
+  "([[dot2]])*(-[[b]])/([[uu2]])",
+  "([[dot1]])*[[a]]/([[uu1]]) - ([[dot2]])*(-[[b]])/([[uu2]])",
+  "[[v1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Since \\( \\mathbf{u}_1\\perp\\mathbf{u}_2 \\), add the two rank-one projections' first coordinates: \\( \\dfrac{\\mathbf{v}\\cdot\\mathbf{u}_1}{\\mathbf{u}_1\\cdot\\mathbf{u}_1}([[a]]) + \\dfrac{\\mathbf{v}\\cdot\\mathbf{u}_2}{\\mathbf{u}_2\\cdot\\mathbf{u}_2}(-[[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This includes only the projection onto \\( \\mathbf{u}_1 \\), forgetting the \\( \\mathbf{u}_2 \\) contribution.",
+  "This includes only the projection onto \\( \\mathbf{u}_2 \\), forgetting the \\( \\mathbf{u}_1 \\) contribution.",
+  "This subtracts the two projections instead of adding them.",
+  "This returns the original first coordinate, as if \\( \\mathbf{v} \\) were unchanged by the projection.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This has the wrong sign."
+ ]
+}
+]

@@ -1,0 +1,162 @@
+[
+{
+ "template_id": "transcendental_growth_rate_sequence_limit_v1",
+ "skill_id": "transcendental_growth_rate_sequence_limit",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "d": {"type": "int", "lo": -8, "hi": 8},
+  "base": {"type": "choice", "values": [2, 3]},
+  "j": {"type": "choice", "values": [2, 3, 4]},
+  "k": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Let \\( a_n = \\dfrac{[[a]]\\cdot[[base]]^{n} + ([[b]])\\,n^{[[j]]}}{[[c]]\\cdot[[base]]^{n} + ([[d]])\\,n^{[[k]]}} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*[[base]]**n + [[b]]*n**[[j]])/([[c]]*[[base]]**n + [[d]]*n**[[k]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[c]],[[a]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The exponential term \\( [[base]]^{n} \\) grows faster than any power of \\( n \\), so it dominates both the numerator and denominator. The limit is the ratio of the exponential coefficients: \\( \\dfrac{[[a]]}{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of the dominant (exponential) coefficients.",
+  "The polynomial terms are dominated by the exponential, so the limit is the coefficient ratio, not \\( 0 \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This is off by two from the correct limit.",
+  "This is off by two from the correct limit."
+ ]
+},
+{
+ "template_id": "transcendental_growth_rate_sequence_limit_factorial_zero_v2",
+ "skill_id": "transcendental_growth_rate_sequence_limit",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 20},
+  "base": {"type": "choice", "values": [2, 3, 5, 7, 10]}
+ },
+ "constraints": [],
+ "stem": "Let \\( a_n = \\dfrac{[[c]]\\cdot[[base]]^{n}}{n!} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+ "answer_spec": {"op": "limit", "expr": "[[c]]*[[base]]**n/factorial(n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]",
+  "[[base]]",
+  "oo",
+  "[[c]]*[[base]]",
+  "1",
+  "[[c]]/[[base]]"
+ ],
+ "solution": "Factorial growth eventually outpaces any fixed exponential base: for a fixed \\( [[base]] \\), the ratio of consecutive terms \\( \\dfrac{a_{n+1}}{a_n} = \\dfrac{[[base]]}{n+1} \\to 0 \\), so \\( a_n \\to 0 \\). Thus \\( \\displaystyle\\lim_{n\\to\\infty} a_n = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the constant multiplier \\( [[c]] \\), ignoring that \\( n! \\) grows without bound.",
+  "This is just the exponential base \\( [[base]] \\), ignoring that \\( n! \\) grows without bound.",
+  "This wrongly assumes the exponential in the numerator dominates; factorial growth dominates any fixed exponential.",
+  "This multiplies the two given constants instead of comparing growth rates.",
+  "This wrongly assumes the two growth rates balance to a finite nonzero ratio.",
+  "This divides the two given constants instead of comparing growth rates."
+ ]
+},
+{
+ "template_id": "transcendental_growth_rate_sequence_limit_factorial_dominates_both_v3",
+ "skill_id": "transcendental_growth_rate_sequence_limit",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 9},
+  "d": {"type": "int", "lo": 2, "hi": 9},
+  "basec": {"type": "choice", "values": [2, 3, 5]},
+  "based": {"type": "choice", "values": [2, 3, 5]}
+ },
+ "constraints": [],
+ "stem": "Let \\( a_n = \\dfrac{n! + [[c]]\\cdot[[basec]]^{n}}{n! + [[d]]\\cdot[[based]]^{n}} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+ "answer_spec": {"op": "limit", "expr": "(factorial(n) + [[c]]*[[basec]]**n)/(factorial(n) + [[d]]*[[based]]**n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[c]],[[d]])",
+  "0",
+  "Rational([[basec]],[[based]])",
+  "[[c]]*[[basec]]",
+  "2",
+  "1/2"
+ ],
+ "solution": "The factorial term \\( n! \\) grows faster than any fixed exponential, so it dominates BOTH the numerator and the denominator; the exponential terms become negligible in comparison. Hence \\( a_n \\to \\dfrac{n!}{n!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly treats the exponential coefficients as dominant, as if \\( n! \\) were absent.",
+  "This wrongly assumes the numerator vanishes relative to the denominator; both are dominated by the same \\( n! \\) term.",
+  "This wrongly compares the exponential bases, which are dominated by \\( n! \\) and so don't affect the limit.",
+  "This multiplies the exponential coefficient and base instead of recognizing both are negligible next to \\( n! \\).",
+  "This guesses a common 'nice' limit value without comparing growth rates.",
+  "This guesses a common 'nice' limit value without comparing growth rates."
+ ]
+},
+{
+ "template_id": "transcendental_growth_rate_sequence_limit_nthroot_max_v4",
+ "skill_id": "transcendental_growth_rate_sequence_limit",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 3, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": ["Gt([[p]], [[q]])"],
+ "stem": "Let \\( a_n = \\left([[p]]^{n} + [[q]]^{n}\\right)^{1/n} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+ "answer_spec": {"op": "limit", "expr": "([[p]]**n + [[q]]**n)**(1/n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[q]]",
+  "[[p]] + [[q]]",
+  "([[p]] + [[q]])/2",
+  "sqrt([[p]]*[[q]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Factor out the larger base: \\( a_n = [[p]]\\left(1 + \\left(\\tfrac{[[q]]}{[[p]]}\\right)^{n}\\right)^{1/n} \\). Since \\( [[q]] < [[p]] \\), \\( \\left(\\tfrac{[[q]]}{[[p]]}\\right)^{n} \\to 0 \\), and the whole factor \\( \\left(1+\\cdots\\right)^{1/n}\\to 1 \\). So \\( a_n \\to [[p]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This picks the smaller base instead of the larger (dominant) one.",
+  "This adds the two bases instead of taking the dominant one under the \\( n \\)th root.",
+  "This averages the two bases instead of taking the dominant one under the \\( n \\)th root.",
+  "This takes the geometric mean of the two bases instead of the dominant one under the \\( n \\)th root.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "transcendental_growth_rate_sequence_limit_log_v5",
+ "skill_id": "transcendental_growth_rate_sequence_limit",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "d": {"type": "int", "lo": -8, "hi": 8},
+  "j": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Let \\( a_n = \\dfrac{[[a]]\\ln(n) + ([[b]])}{[[c]]\\,n^{[[j]]} + ([[d]])} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*log(n) + [[b]])/([[c]]*n**[[j]] + [[d]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[a]],[[c]])",
+  "[[a]]",
+  "oo",
+  "Rational([[b]],[[d]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Any power \\( n^{[[j]]} \\) with \\( [[j]] \\ge 1 \\) grows faster than \\( \\ln(n) \\), so the denominator dominates the numerator. Hence \\( \\displaystyle\\lim_{n\\to\\infty} a_n = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the logarithm and the polynomial as comparable growth rates and takes a leading-coefficient ratio; the polynomial actually dominates.",
+  "This is just the logarithm's coefficient, ignoring that the denominator grows without bound.",
+  "This wrongly assumes the logarithm dominates; polynomial growth always beats logarithmic growth.",
+  "This takes a ratio of the constant terms instead of comparing the growth rates of the leading terms.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

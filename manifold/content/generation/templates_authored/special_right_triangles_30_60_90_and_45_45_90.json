@@ -1,0 +1,306 @@
+[
+ {
+  "template_id": "special_right_triangles_30_60_90_and_45_45_90_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 2,
+    "hi": 22
+   }
+  },
+  "constraints": [],
+  "stem": "In a right triangle whose acute angles measure \\( 30^{\\circ} \\) and \\( 60^{\\circ} \\), the side opposite the \\( 30^{\\circ} \\) angle has length \\( [[a]] \\). What is the length of the side opposite the \\( 60^{\\circ} \\) angle?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[a]]*sqrt(3)"
+  },
+  "distractors": [
+   "[[a]]*sqrt(2)",
+   "2*[[a]]",
+   "[[a]]/sqrt(3)",
+   "[[a]]*sqrt(3)/2",
+   "[[a]]",
+   "3*[[a]]"
+  ],
+  "solution": "In a \\( 30^{\\circ}\\,\\text{-}\\,60^{\\circ}\\,\\text{-}\\,90^{\\circ} \\) triangle the sides are in the ratio \\( 1 : \\sqrt{3} : 2 \\) opposite the \\( 30^{\\circ}, 60^{\\circ}, 90^{\\circ} \\) angles. The side opposite \\( 60^{\\circ} \\) is \\( \\sqrt{3} \\) times the side opposite \\( 30^{\\circ} \\), so it equals \\( [[a]]\\sqrt{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies the \\( 45^{\\circ}\\,\\text{-}\\,45^{\\circ}\\,\\text{-}\\,90^{\\circ} \\) ratio \\( \\sqrt{2} \\) instead of \\( \\sqrt{3} \\).",
+   "This is the hypotenuse (twice the short leg), not the long leg.",
+   "This divides by \\( \\sqrt{3} \\) instead of multiplying by it.",
+   "This is half of the correct long leg.",
+   "This just repeats the short leg without applying any ratio.",
+   "This scales the short leg by 3 rather than by \\( \\sqrt{3} \\)."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_306090_short_to_hyp_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) right triangle, the shorter leg has length \\( [[a]] \\). What is the length of the hypotenuse?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[a]]"},
+  "distractors": [
+   "[[a]]*sqrt(3)",
+   "[[a]]*sqrt(2)",
+   "[[a]]/2",
+   "[[a]]",
+   "3*[[a]]",
+   "[[a]]*sqrt(3)/2"
+  ],
+  "solution": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) triangle the sides are in ratio \\( 1:\\sqrt{3}:2 \\), so the hypotenuse is twice the side opposite \\( 30^{\\circ} \\): \\( 2\\cdot [[a]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the long leg (opposite \\( 60^{\\circ} \\)), not the hypotenuse.",
+   "This applies the \\( 45\\text{-}45\\text{-}90 \\) ratio instead of the \\( 30\\text{-}60\\text{-}90 \\) ratio.",
+   "This halves the short leg instead of doubling it.",
+   "This just repeats the short leg without applying any ratio.",
+   "This triples the short leg instead of doubling it.",
+   "This is half of the correct long leg, not the hypotenuse."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_306090_long_to_short_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "L": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) right triangle, the side opposite the \\( 60^{\\circ} \\) angle has length \\( [[L]] \\). What is the length of the side opposite the \\( 30^{\\circ} \\) angle?",
+  "answer_spec": {"op": "evaluate", "expr": "[[L]]*sqrt(3)/3"},
+  "distractors": [
+   "[[L]]*sqrt(3)",
+   "[[L]]/2",
+   "[[L]]*sqrt(2)/2",
+   "2*[[L]]/sqrt(3)",
+   "[[L]]",
+   "[[L]]/3"
+  ],
+  "solution": "Since the side opposite \\( 60^{\\circ} \\) is \\( \\sqrt{3} \\) times the side opposite \\( 30^{\\circ} \\), the short leg is \\( \\dfrac{[[L]]}{\\sqrt{3}} = \\dfrac{[[L]]\\sqrt{3}}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( \\sqrt{3} \\) instead of dividing by it.",
+   "This mistakenly treats the long leg as the hypotenuse and halves it.",
+   "This applies the \\( 45\\text{-}45\\text{-}90 \\) ratio instead of the \\( 30\\text{-}60\\text{-}90 \\) ratio.",
+   "This doubles the long leg before dividing by \\( \\sqrt{3} \\), an extra factor of 2.",
+   "This just repeats the long leg without applying any ratio.",
+   "This divides by 3 instead of by \\( \\sqrt{3} \\)."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_306090_hyp_to_short_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "H": {"type": "int", "lo": 2, "hi": 50}
+  },
+  "constraints": [],
+  "stem": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) right triangle, the hypotenuse has length \\( [[H]] \\). What is the length of the shorter leg?",
+  "answer_spec": {"op": "evaluate", "expr": "[[H]]/2"},
+  "distractors": [
+   "[[H]]*sqrt(3)/2",
+   "[[H]]*sqrt(2)/2",
+   "2*[[H]]",
+   "[[H]]/sqrt(3)",
+   "[[H]]",
+   "[[H]]/3"
+  ],
+  "solution": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) triangle the hypotenuse is twice the short leg, so the short leg is \\( \\dfrac{[[H]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the long leg (opposite \\( 60^{\\circ} \\)), not the short leg.",
+   "This applies the \\( 45\\text{-}45\\text{-}90 \\) ratio instead of the \\( 30\\text{-}60\\text{-}90 \\) ratio.",
+   "This doubles the hypotenuse instead of halving it.",
+   "This divides by \\( \\sqrt{3} \\) instead of by 2.",
+   "This just repeats the hypotenuse without applying any ratio.",
+   "This divides by 3 instead of by 2."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_306090_hyp_to_long_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "H": {"type": "int", "lo": 2, "hi": 50}
+  },
+  "constraints": [],
+  "stem": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) right triangle, the hypotenuse has length \\( [[H]] \\). What is the length of the longer leg?",
+  "answer_spec": {"op": "evaluate", "expr": "[[H]]*sqrt(3)/2"},
+  "distractors": [
+   "[[H]]/2",
+   "[[H]]*sqrt(2)/2",
+   "[[H]]*sqrt(3)",
+   "[[H]]/sqrt(3)",
+   "[[H]]",
+   "[[H]]*2/sqrt(3)"
+  ],
+  "solution": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) triangle, the short leg is \\( \\frac{H}{2} \\) and the long leg is \\( \\sqrt{3} \\) times the short leg, so the long leg is \\( \\dfrac{[[H]]}{2}\\sqrt{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the short leg (opposite \\( 30^{\\circ} \\)), not the long leg.",
+   "This applies the \\( 45\\text{-}45\\text{-}90 \\) ratio instead of the \\( 30\\text{-}60\\text{-}90 \\) ratio.",
+   "This uses the full hypotenuse instead of the short leg before multiplying by \\( \\sqrt{3} \\).",
+   "This divides by \\( \\sqrt{3} \\) instead of multiplying by it.",
+   "This just repeats the hypotenuse without applying any ratio.",
+   "This uses an extra factor of 2 in the denominator."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_306090_long_to_hyp_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "L": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "In a \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) right triangle, the longer leg has length \\( [[L]] \\). What is the length of the hypotenuse?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[L]]*sqrt(3)/3"},
+  "distractors": [
+   "[[L]]*sqrt(3)",
+   "2*[[L]]",
+   "[[L]]/2",
+   "[[L]]*sqrt(3)/2",
+   "[[L]]*sqrt(2)",
+   "[[L]]/sqrt(3)"
+  ],
+  "solution": "The short leg is \\( \\dfrac{[[L]]}{\\sqrt{3}} \\), and the hypotenuse is twice the short leg: \\( \\dfrac{2[[L]]}{\\sqrt{3}} = \\dfrac{2[[L]]\\sqrt{3}}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakes the long leg's ratio for the hypotenuse's, using \\( \\sqrt{3} \\) directly.",
+   "This doubles the long leg directly, as if it were the short leg.",
+   "This halves the long leg instead of using the \\( 1:\\sqrt3:2 \\) ratio.",
+   "This forgets to double after finding the short leg.",
+   "This applies the \\( 45\\text{-}45\\text{-}90 \\) ratio instead of the \\( 30\\text{-}60\\text{-}90 \\) ratio.",
+   "This divides instead of finding the hypotenuse via the short leg."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_454590_leg_to_hyp_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "In an isosceles right triangle (a \\( 45^{\\circ}\\text{-}45^{\\circ}\\text{-}90^{\\circ} \\) triangle), each leg has length \\( [[a]] \\). What is the length of the hypotenuse?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*sqrt(2)"},
+  "distractors": [
+   "[[a]]*sqrt(3)",
+   "2*[[a]]",
+   "[[a]]/sqrt(2)",
+   "[[a]]*sqrt(2)/2",
+   "[[a]]",
+   "3*[[a]]"
+  ],
+  "solution": "In a \\( 45^{\\circ}\\text{-}45^{\\circ}\\text{-}90^{\\circ} \\) triangle the sides are in ratio \\( 1:1:\\sqrt{2} \\), so the hypotenuse is \\( [[a]]\\sqrt{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies the \\( 30\\text{-}60\\text{-}90 \\) ratio \\( \\sqrt{3} \\) instead of \\( \\sqrt{2} \\).",
+   "This simply doubles the leg instead of multiplying by \\( \\sqrt{2} \\).",
+   "This divides by \\( \\sqrt{2} \\) instead of multiplying by it.",
+   "This is half of the correct hypotenuse.",
+   "This just repeats the leg without applying any ratio.",
+   "This scales the leg by 3 rather than by \\( \\sqrt{2} \\)."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_454590_hyp_to_leg_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "H": {"type": "int", "lo": 2, "hi": 50}
+  },
+  "constraints": [],
+  "stem": "In an isosceles right triangle (a \\( 45^{\\circ}\\text{-}45^{\\circ}\\text{-}90^{\\circ} \\) triangle), the hypotenuse has length \\( [[H]] \\). What is the length of each leg?",
+  "answer_spec": {"op": "evaluate", "expr": "[[H]]*sqrt(2)/2"},
+  "distractors": [
+   "[[H]]*sqrt(3)/2",
+   "[[H]]/2",
+   "[[H]]*sqrt(2)",
+   "2*[[H]]/sqrt(2)",
+   "[[H]]",
+   "[[H]]/3"
+  ],
+  "solution": "In a \\( 45^{\\circ}\\text{-}45^{\\circ}\\text{-}90^{\\circ} \\) triangle each leg is \\( \\dfrac{\\text{hypotenuse}}{\\sqrt{2}} \\), so the leg is \\( \\dfrac{[[H]]}{\\sqrt{2}} = \\dfrac{[[H]]\\sqrt{2}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies the \\( 30\\text{-}60\\text{-}90 \\) ratio \\( \\sqrt{3} \\) instead of \\( \\sqrt{2} \\).",
+   "This simply halves the hypotenuse without applying the \\( \\sqrt{2} \\) factor.",
+   "This multiplies by \\( \\sqrt{2} \\) instead of dividing by it.",
+   "This has an extra factor of 2 in the numerator.",
+   "This just repeats the hypotenuse without applying any ratio.",
+   "This divides by 3 instead of by \\( \\sqrt{2} \\)."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_306090_area_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A \\( 30^{\\circ}\\text{-}60^{\\circ}\\text{-}90^{\\circ} \\) right triangle has its shortest side (opposite the \\( 30^{\\circ} \\) angle) equal to \\( [[a]] \\). What is the area of the triangle?",
+  "answer_spec": {"op": "evaluate", "expr": "(sqrt(3)/2)*[[a]]**2"},
+  "distractors": [
+   "[[a]]**2",
+   "[[a]]**2/2",
+   "sqrt(3)*[[a]]**2",
+   "[[a]]**2*sqrt(3)/4",
+   "[[answer]] + [[a]]",
+   "[[answer]] - [[a]]"
+  ],
+  "solution": "The two legs are \\( [[a]] \\) (short) and \\( [[a]]\\sqrt{3} \\) (long), and they are perpendicular, so the area is \\( \\frac{1}{2}\\cdot [[a]]\\cdot [[a]]\\sqrt{3} = \\frac{\\sqrt{3}}{2}[[a]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the short leg squared with no \\( \\sqrt{3} \\) factor, as if both legs equaled the short leg.",
+   "This forgets the \\( \\sqrt{3} \\) factor entirely, halving the short leg squared.",
+   "This forgets the \\( \\frac{1}{2} \\) factor in the triangle-area formula.",
+   "This uses \\( \\frac{1}{4} \\) instead of \\( \\frac{1}{2} \\) as the area coefficient.",
+   "This is off from the correct area by the short leg.",
+   "This is off from the correct area by the short leg."
+  ]
+ },
+ {
+  "template_id": "special_right_triangles_454590_area_v1",
+  "skill_id": "special_right_triangles_30_60_90_and_45_45_90",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "An isosceles right triangle (a \\( 45^{\\circ}\\text{-}45^{\\circ}\\text{-}90^{\\circ} \\) triangle) has each leg equal to \\( [[a]] \\). What is the area of the triangle?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]**2/2"},
+  "distractors": [
+   "[[a]]**2",
+   "[[a]]**2*sqrt(2)/2",
+   "2*[[a]]**2",
+   "[[a]]**2/4",
+   "[[answer]] + [[a]]",
+   "[[answer]] - [[a]]"
+  ],
+  "solution": "The two legs are equal and perpendicular, each of length \\( [[a]] \\), so the area is \\( \\frac{1}{2}\\cdot [[a]]\\cdot [[a]] = \\dfrac{[[a]]^{2}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the \\( \\frac{1}{2} \\) factor in the triangle-area formula.",
+   "This mistakenly multiplies in a \\( \\sqrt{2} \\) factor, confusing this with the hypotenuse formula.",
+   "This doubles the correct area instead of halving the square of the leg.",
+   "This uses \\( \\frac{1}{4} \\) instead of \\( \\frac{1}{2} \\) as the area coefficient.",
+   "This is off from the correct area by the leg length.",
+   "This is off from the correct area by the leg length."
+  ]
+ }
+]

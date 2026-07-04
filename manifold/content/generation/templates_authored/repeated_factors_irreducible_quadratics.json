@@ -1,0 +1,196 @@
+[
+{
+ "template_id": "repeated_factors_irreducible_quadratics_v1",
+ "skill_id": "repeated_factors_irreducible_quadratics",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{[[b]]} \\frac{[[c]]}{\\left(x + [[a]]\\right)^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x + [[a]])**2", "var": "x", "bounds": ["0", "[[b]]"]},
+ "distractors": [
+  "[[c]]/([[a]]*([[a]] + [[b]]))",
+  "[[c]]*[[b]]/[[a]]**2",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "For the repeated linear factor, \\( \\int \\frac{[[c]]}{(x+[[a]])^{2}}\\,dx = -\\frac{[[c]]}{x+[[a]]} \\). Evaluating from \\( 0 \\) to \\( [[b]] \\) gives \\( \\frac{[[c]]}{[[a]]} - \\frac{[[c]]}{[[a]]+[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( [[b]] \\) in the numerator of the combined fraction.",
+  "This treats the antiderivative as \\( \\tfrac{[[c]][[b]]}{[[a]]^{2}} \\), a plug-in error.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign, as if the antiderivative were \\( +\\tfrac{[[c]]}{x+[[a]]} \\)."
+ ]
+},
+{
+ "template_id": "repeated_factors_linear_numerator_v1",
+ "skill_id": "repeated_factors_irreducible_quadratics",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 2, "hi": 6},
+  "d": {"type": "int", "lo": 1, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d]], 0)"],
+ "stem": "Here the repeated linear factor has a LINEAR numerator, so the decomposition needs two distinct terms \\( \\dfrac{A}{x+[[a]]} + \\dfrac{B}{(x+[[a]])^{2}} \\). Evaluate \\( \\int_{0}^{[[b]]} \\frac{[[d]]x + [[e]]}{\\left(x + [[a]]\\right)^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "([[d]]*x + [[e]])/(x + [[a]])**2", "var": "x", "bounds": ["0", "[[b]]"]},
+ "distractors": [
+  "[[d]]*log([[a]]+[[b]]) - [[d]]*log([[a]])",
+  "[[e]]/[[a]] - [[e]]/([[a]]+[[b]])",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "Write \\( [[d]]x+[[e]] = [[d]](x+[[a]]) + ([[e]]-[[d]]\\cdot[[a]]) \\), so the integrand splits as \\( \\dfrac{[[d]]}{x+[[a]]} + \\dfrac{[[e]]-[[d]][[a]]}{(x+[[a]])^{2}} \\). Integrating gives \\( [[d]]\\ln(x+[[a]]) - \\dfrac{[[e]]-[[d]][[a]]}{x+[[a]]} \\), evaluated from \\( 0 \\) to \\( [[b]] \\), equal to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the logarithmic term from the \\( A/(x+a) \\) piece and drops the algebraic \\( B/(x+a)^2 \\) contribution entirely.",
+  "This keeps only the algebraic \\( B/(x+a)^2 \\) piece (using the wrong constant \\( e \\) instead of \\( e-da \\)) and drops the logarithm entirely.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "repeated_factors_linear_times_irreducible_quadratic_v1",
+ "skill_id": "repeated_factors_irreducible_quadratics",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": 1, "hi": 8},
+  "hi": {"type": "int", "lo": 2, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "The denominator factors as a distinct linear piece times an irreducible quadratic (it has no real roots since \\( q > 0 \\)), calling for the decomposition \\( \\dfrac{A}{x+p} + \\dfrac{Bx+C}{x^{2}+q} \\). Evaluate \\( \\int_{0}^{[[hi]]} \\frac{[[c]]}{\\left(x + [[p]]\\right)\\left(x^{2} + [[q]]\\right)}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/((x + [[p]])*(x**2 + [[q]]))", "var": "x", "bounds": ["0", "[[hi]]"]},
+ "distractors": [
+  "[[c]]/([[p]]*[[q]])",
+  "[[c]]*[[hi]]/([[p]]*[[q]])",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "Decomposing \\( \\dfrac{1}{(x+[[p]])(x^{2}+[[q]])} = \\dfrac{A}{x+[[p]]} + \\dfrac{Bx+C}{x^{2}+[[q]]} \\) and integrating (a logarithm from the linear factor, a log-plus-arctangent pair from the quadratic factor) gives, after scaling by \\( [[c]] \\), \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This plugs \\( x=0 \\) into the factored denominator instead of actually integrating, a common shortcut error.",
+  "This multiplies that same plug-in error by the upper limit, another shortcut error.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "repeated_factors_pure_irreducible_quadratic_v1",
+ "skill_id": "repeated_factors_irreducible_quadratics",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 10},
+  "c": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "The irreducible quadratic \\( x^{2} + [[asq]] \\) has no real roots, so \\( \\dfrac{[[c]]}{x^{2}+[[asq]]} \\) integrates directly to an arctangent (no partial-fraction split is needed). Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]}{x^{2} + [[asq]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2 + [[a]]**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*pi/(2*[[a]])",
+  "[[c]]*pi/[[a]]",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "Using \\( \\displaystyle\\int \\frac{dx}{x^{2}+a^{2}} = \\frac{1}{a}\\arctan\\frac{x}{a} \\), the integral is \\( \\dfrac{[[c]]}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_{0}^{[[a]]} = \\dfrac{[[c]]}{[[a]]}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\pi/2 \\) (as if \\( \\arctan(\\infty) \\)) instead of \\( \\arctan(1)=\\pi/4 \\).",
+  "This drops the leading \\( 1/a \\) coefficient's effect and uses \\( \\pi \\) directly instead of \\( \\pi/4 \\).",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "repeated_factors_quadratic_linear_numerator_v1",
+ "skill_id": "repeated_factors_irreducible_quadratics",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 10},
+  "d": {"type": "int", "lo": 1, "hi": 4},
+  "e": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "Split \\( \\dfrac{[[d]]x + [[e]]}{x^{2}+[[asq]]} \\) into a piece that integrates to a logarithm (from the \\( x \\)-term) and a piece that integrates to an arctangent (from the constant term). Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[d]]x + [[e]]}{x^{2} + [[asq]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "([[d]]*x + [[e]])/(x**2 + [[a]]**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[e]]*pi/(4*[[a]])",
+  "[[d]]*log(2)/2",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "Split the numerator: \\( \\dfrac{[[d]]x}{x^{2}+[[asq]]} \\) integrates (via \\( u=x^2+[[asq]] \\)) to \\( \\tfrac{[[d]]}{2}\\ln(x^{2}+[[asq]]) \\), and \\( \\dfrac{[[e]]}{x^{2}+[[asq]]} \\) integrates to \\( \\tfrac{[[e]]}{[[a]]}\\arctan\\tfrac{x}{[[a]]} \\). Evaluating both from \\( 0 \\) to \\( [[a]] \\) and adding gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the arctangent piece from the constant-numerator term and drops the logarithmic piece entirely.",
+  "This keeps only the logarithmic piece from the \\( x \\)-numerator term and drops the arctangent piece entirely.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "repeated_irreducible_quadratic_v1",
+ "skill_id": "repeated_factors_irreducible_quadratics",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "The irreducible quadratic factor \\( x^{2}+[[asq]] \\) is now SQUARED in the denominator, so a trigonometric substitution \\( x = [[a]]\\tan\\theta \\) is needed rather than a direct arctangent formula. Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]}{\\left(x^{2} + [[asq]]\\right)^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2 + [[a]]**2)**2", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*pi/(4*[[a]]**3)",
+  "[[c]]*pi/(8*[[a]]**3)",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( x=[[a]]\\tan\\theta \\), \\( x^{2}+[[asq]] = [[asq]]\\sec^{2}\\theta \\) and \\( dx=[[a]]\\sec^{2}\\theta\\,d\\theta \\), so the integral becomes \\( \\dfrac{[[c]]}{[[a]]^{3}}\\displaystyle\\int_{0}^{\\pi/4}\\cos^{2}\\theta\\,d\\theta = \\dfrac{[[c]]}{[[a]]^{3}}\\left(\\dfrac{\\pi}{8}+\\dfrac{1}{4}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the plain arctangent formula for a single (unsquared) irreducible quadratic factor.",
+  "This applies the reduction formula but drops the algebraic \\( 1/4 \\) piece, keeping only the \\( \\pi/8 \\) sector term.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+}
+]

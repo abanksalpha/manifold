@@ -1,0 +1,206 @@
+[
+{
+ "template_id": "gram_schmidt_residual_v1",
+ "skill_id": "orthonormal_bases_gramschmidt_orthogonal_matrices",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a1": {"type": "int", "lo": -3, "hi": 3},
+  "a2": {"type": "int", "lo": -3, "hi": 3},
+  "a3": {"type": "int", "lo": -3, "hi": 3},
+  "b1": {"type": "int", "lo": -3, "hi": 3},
+  "b2": {"type": "int", "lo": -3, "hi": 3},
+  "b3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[a1]]**2 + [[a2]]**2 + [[a3]]**2, 0)",
+  "Ne([[b1]]*[[a1]] + [[b2]]*[[a2]] + [[b3]]*[[a3]], 0)"
+ ],
+ "derived": {
+  "dot": "[[b1]]*[[a1]] + [[b2]]*[[a2]] + [[b3]]*[[a3]]",
+  "uu": "[[a1]]**2 + [[a2]]**2 + [[a3]]**2"
+ },
+ "stem": "Apply the Gram–Schmidt process to \\( \\mathbf{u}_1 = ([[a1]], [[a2]], [[a3]]) \\) and \\( \\mathbf{v}_2 = ([[b1]], [[b2]], [[b3]]) \\). The second orthogonal vector is \\( \\mathbf{w}_2 = \\mathbf{v}_2 - \\dfrac{\\mathbf{v}_2\\cdot\\mathbf{u}_1}{\\mathbf{u}_1\\cdot\\mathbf{u}_1}\\,\\mathbf{u}_1 \\). What is the first coordinate of \\( \\mathbf{w}_2 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[b1]] - ([[dot]])*[[a1]]/([[uu]])"},
+ "distractors": [
+  "[[b1]] + ([[dot]])*[[a1]]/([[uu]])",
+  "[[b1]] - ([[dot]])/([[uu]])",
+  "([[dot]])*[[a1]]/([[uu]])",
+  "[[b1]]",
+  "-[[b1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Subtract the projection of \\( \\mathbf{v}_2 \\) onto \\( \\mathbf{u}_1 \\): the first coordinate of \\( \\mathbf{w}_2 \\) is \\( ([[b1]]) - \\dfrac{([[dot]])}{[[uu]]}\\cdot([[a1]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the projection instead of subtracting it.",
+  "This omits the factor \\( u_1 \\) (the first component of \\( \\mathbf{u}_1 \\)) in the projection term.",
+  "This gives the projection's first coordinate rather than the residual \\( \\mathbf{w}_2 \\).",
+  "This returns \\( \\mathbf{v}_2 \\) unchanged, as if no projection were subtracted.",
+  "This negates the original coordinate instead of removing the projection.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This has the wrong sign."
+ ]
+},
+{
+ "template_id": "gram_schmidt_third_vector_v2",
+ "skill_id": "orthonormal_bases_gramschmidt_orthogonal_matrices",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a1": {"type": "int", "lo": -3, "hi": 3},
+  "a2": {"type": "int", "lo": -3, "hi": 3},
+  "a3": {"type": "int", "lo": -3, "hi": 3},
+  "v3x": {"type": "int", "lo": -3, "hi": 3},
+  "v3y": {"type": "int", "lo": -3, "hi": 3},
+  "v3z": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[a1]]**2 + [[a2]]**2 + [[a3]]**2, 0)",
+  "Ne([[a1]]**2 + [[a2]]**2, 0)"
+ ],
+ "derived": {
+  "negA1": "-[[a1]]",
+  "w1w1": "[[a1]]**2 + [[a2]]**2 + [[a3]]**2",
+  "w2w2": "[[a2]]**2 + [[a1]]**2",
+  "dot13": "[[v3x]]*[[a1]] + [[v3y]]*[[a2]] + [[v3z]]*[[a3]]",
+  "dot23": "[[v3x]]*[[a2]] - [[v3y]]*[[a1]]"
+ },
+ "stem": "Apply Gram–Schmidt to \\( \\mathbf{u}_1 = ([[a1]], [[a2]], [[a3]]) \\), \\( \\mathbf{u}_2 = ([[a2]], [[negA1]], 0) \\) (already orthogonal to \\( \\mathbf{u}_1 \\)), and \\( \\mathbf{v}_3 = ([[v3x]], [[v3y]], [[v3z]]) \\). The third orthogonal vector is \\( \\mathbf{w}_3 = \\mathbf{v}_3 - \\dfrac{\\mathbf{v}_3\\cdot\\mathbf{u}_1}{\\mathbf{u}_1\\cdot\\mathbf{u}_1}\\mathbf{u}_1 - \\dfrac{\\mathbf{v}_3\\cdot\\mathbf{u}_2}{\\mathbf{u}_2\\cdot\\mathbf{u}_2}\\mathbf{u}_2 \\). What is the first coordinate of \\( \\mathbf{w}_3 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[v3x]] - (([[dot13]])*[[a1]])/([[w1w1]]) - (([[dot23]])*[[a2]])/([[w2w2]])"},
+ "distractors": [
+  "[[v3x]] + (([[dot13]])*[[a1]])/([[w1w1]]) + (([[dot23]])*[[a2]])/([[w2w2]])",
+  "[[v3x]] - (([[dot13]])*[[a1]])/([[w1w1]])",
+  "[[v3x]] - (([[dot23]])*[[a2]])/([[w2w2]])",
+  "[[v3x]]",
+  "-[[v3x]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Subtract projections onto BOTH earlier orthogonal vectors: \\( w_{3,1} = [[v3x]] - \\dfrac{[[dot13]]}{[[w1w1]]}\\cdot[[a1]] - \\dfrac{[[dot23]]}{[[w2w2]]}\\cdot[[a2]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds both projections instead of subtracting them.",
+  "This removes only the projection onto \\( \\mathbf{u}_1 \\), forgetting \\( \\mathbf{u}_2 \\).",
+  "This removes only the projection onto \\( \\mathbf{u}_2 \\), forgetting \\( \\mathbf{u}_1 \\).",
+  "This returns \\( \\mathbf{v}_3 \\) unchanged, as if no projection were subtracted.",
+  "This negates the original coordinate instead of removing the projections.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "unit_vector_normalization_v3",
+ "skill_id": "orthonormal_bases_gramschmidt_orthogonal_matrices",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "code": {"type": "choice", "values": [304, 403, 512, 1205, 815, 1508, 724, 2407, 2021, 2120, 940, 4009, 1216, 1612, 1824, 2418]},
+  "signp": {"type": "choice", "values": [1, -1]},
+  "signq": {"type": "choice", "values": [1, -1]}
+ },
+ "constraints": [],
+ "derived": {
+  "p": "floor([[code]]/100)",
+  "q": "Mod([[code]],100)",
+  "r": "sqrt([[p]]**2+[[q]]**2)",
+  "wx": "[[signp]]*[[p]]",
+  "wy": "[[signq]]*[[q]]"
+ },
+ "stem": "The vector \\( \\mathbf{w} = ([[wx]], [[wy]]) \\) in \\( \\mathbb{R}^2 \\) is rescaled to the unit vector \\( \\hat{\\mathbf{w}} = \\mathbf{w}/\\|\\mathbf{w}\\| \\) (the first step of building an orthonormal basis). What is the first coordinate of \\( \\hat{\\mathbf{w}} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[wx]]/[[r]]"},
+ "distractors": [
+  "[[wy]]/[[r]]",
+  "[[wx]]/([[p]]**2+[[q]]**2)",
+  "[[wx]]*[[r]]",
+  "-[[answer]]",
+  "[[wx]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( \\|\\mathbf{w}\\| = \\sqrt{([[wx]])^2+([[wy]])^2} = [[r]] \\), so the first coordinate of \\( \\hat{\\mathbf{w}} \\) is \\( [[wx]]/[[r]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives the SECOND coordinate of \\( \\hat{\\mathbf{w}} \\), not the first.",
+  "This divides by \\( \\|\\mathbf{w}\\|^2 \\) instead of \\( \\|\\mathbf{w}\\| \\) (forgot the square root).",
+  "This multiplies by the norm instead of dividing by it.",
+  "This has the wrong sign.",
+  "This is the original (un-normalized) coordinate, as if \\( \\|\\mathbf{w}\\|=1 \\) already.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "solve_for_orthogonality_parameter_v4",
+ "skill_id": "orthonormal_bases_gramschmidt_orthogonal_matrices",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d]], 0)"],
+ "derived": {},
+ "stem": "For what value of \\( t \\) are the vectors \\( \\mathbf{u} = ([[a]], t, [[b]]) \\) and \\( \\mathbf{w} = ([[c]], [[d]], [[e]]) \\) orthogonal (a requirement for them to appear together in an orthonormal basis)?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[c]] + [[d]]*x + [[b]]*[[e]] = 0", "var": "x"},
+ "distractors": [
+  "([[a]]*[[c]] + [[b]]*[[e]])/[[d]]",
+  "([[a]]*[[c]] - [[b]]*[[e]])/[[d]]",
+  "-([[a]]*[[c]] + [[b]]*[[e]])",
+  "[[a]]+[[b]]+[[c]]+[[d]]+[[e]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Orthogonality requires \\( \\mathbf{u}\\cdot\\mathbf{w} = [[a]]\\cdot[[c]] + t\\cdot[[d]] + [[b]]\\cdot[[e]] = 0 \\), so \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the minus sign that comes from isolating \\( t \\).",
+  "This subtracts instead of adds the two known-coordinate products before dividing.",
+  "This forgets to divide by the coefficient \\( d \\) of \\( t \\).",
+  "This just sums all five given numbers, ignoring the orthogonality equation.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This has the wrong sign."
+ ]
+},
+{
+ "template_id": "orthogonal_matrix_second_column_v5",
+ "skill_id": "orthonormal_bases_gramschmidt_orthogonal_matrices",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "code": {"type": "choice", "values": [304, 403, 512, 1205, 815, 1508, 724, 2407, 2021, 2120, 940, 4009, 1216, 1612, 1824, 2418]},
+  "orient": {"type": "choice", "values": [1, -1]}
+ },
+ "constraints": [],
+ "derived": {
+  "p": "floor([[code]]/100)",
+  "q": "Mod([[code]],100)",
+  "r": "sqrt([[p]]**2+[[q]]**2)"
+ },
+ "stem": "The columns of a \\( 2\\times 2 \\) orthogonal matrix \\( Q \\) are orthonormal. Its first column is \\( \\left(\\dfrac{[[p]]}{[[r]]},\\ \\dfrac{[[q]]}{[[r]]}\\right) \\), its second column is a unit vector perpendicular to the first, and \\( \\det(Q) = [[orient]] \\). What is the second entry (the \\(y\\)-coordinate) of the second column of \\( Q \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[orient]]*[[p]])/([[r]])"},
+ "distractors": [
+  "(-[[orient]]*[[q]])/[[r]]",
+  "[[p]]/[[r]]",
+  "(-[[orient]]*[[p]])/[[r]]",
+  "([[orient]]*[[q]])/[[r]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "A unit vector perpendicular to \\( (p/r, q/r) \\) is \\( \\pm(-q/r,\\ p/r) \\); the sign making \\( \\det(Q) = [[orient]] \\) gives second column \\( \\left(\\dfrac{-([[orient]])\\cdot[[q]]}{[[r]]},\\ \\dfrac{([[orient]])\\cdot[[p]]}{[[r]]}\\right) \\), so its \\(y\\)-coordinate is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the FIRST entry of the second column (its \\(x\\)-coordinate), not the second.",
+  "This copies the first column's corresponding entry instead of the second column's.",
+  "This has the wrong sign for the given determinant.",
+  "This swaps which coordinate (\\(p\\) vs \\(q\\)) goes with the second entry.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This doubles the correct entry."
+ ]
+}
+]

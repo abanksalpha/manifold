@@ -1,0 +1,204 @@
+[
+{
+ "template_id": "solve_a_matrix_equation_for_an_unknown_matrix_v1",
+ "skill_id": "solve_a_matrix_equation_for_an_unknown_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "s": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {
+  "B11": "[[a]]*[[p]] + [[b]]*[[r]]",
+  "B12": "[[a]]*[[q]] + [[b]]*[[s]]",
+  "B21": "[[c]]*[[p]] + [[d]]*[[r]]",
+  "B22": "[[c]]*[[q]] + [[d]]*[[s]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[B11]] & [[B12]] \\\\ [[B21]] & [[B22]] \\end{bmatrix} \\). Let \\( X \\) be the \\( 2\\times2 \\) matrix satisfying \\( AX = B \\). What is the entry in the first row and first column of \\( X \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[d]]*[[B11]] - [[b]]*[[B21]]) / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[q]]",
+  "[[r]]",
+  "[[s]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Since \\( A \\) is invertible, \\( X = A^{-1}B \\). The \\( (1,1) \\) entry is \\( \\frac{[[d]]\\cdot([[B11]]) - ([[b]])\\cdot([[B21]])}{([[a]])([[d]]) - ([[b]])([[c]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,2) \\) entry of \\( X \\), not the \\( (1,1) \\) entry.",
+  "This is the \\( (2,1) \\) entry of \\( X \\).",
+  "This is the \\( (2,2) \\) entry of \\( X \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "solve_a_matrix_equation_for_an_unknown_matrix_v2_right",
+ "skill_id": "solve_a_matrix_equation_for_an_unknown_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "s": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[p]] & [[q]] \\\\ [[r]] & [[s]] \\end{bmatrix} \\). Let \\( X \\) be the \\( 2\\times2 \\) matrix satisfying \\( XA = B \\) (note \\( A \\) multiplies \\( X \\) on the RIGHT). What is the entry in the first row and first column of \\( X \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[p]]*[[d]] - [[q]]*[[c]]) / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "([[a]]*[[p]] - [[c]]*[[q]]) / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[q]]",
+  "[[r]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( A \\) is invertible and multiplies \\( X \\) on the right, \\( X = BA^{-1} \\), not \\( A^{-1}B \\) (matrix multiplication does not commute). The \\( (1,1) \\) entry of \\( BA^{-1} \\) is \\( \\frac{[[p]]\\cdot[[d]] - [[q]]\\cdot[[c]]}{([[a]])([[d]]) - ([[b]])([[c]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly computes \\( A^{-1}B \\) (left-multiplication) instead of \\( BA^{-1} \\) (right-multiplication).",
+  "This is the \\( (1,2) \\) entry of \\( B \\), not an entry of \\( X \\).",
+  "This is the \\( (2,1) \\) entry of \\( B \\), not an entry of \\( X \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "solve_a_matrix_equation_for_an_unknown_matrix_v3_sandwich",
+ "skill_id": "solve_a_matrix_equation_for_an_unknown_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "w": {"type": "int", "lo": -3, "hi": 3},
+  "x": {"type": "int", "lo": -3, "hi": 3},
+  "y": {"type": "int", "lo": -3, "hi": 3},
+  "z": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[p]]*[[s]] - [[q]]*[[r]], 0)"],
+ "derived": {
+  "detA": "[[a]]*[[d]] - [[b]]*[[c]]",
+  "detB": "[[p]]*[[s]] - [[q]]*[[r]]",
+  "Y11": "([[w]]*[[s]] - [[x]]*[[r]]) / [[detB]]",
+  "Y21": "([[y]]*[[s]] - [[z]]*[[r]]) / [[detB]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), \\( B = \\begin{bmatrix} [[p]] & [[q]] \\\\ [[r]] & [[s]] \\end{bmatrix} \\), and \\( C = \\begin{bmatrix} [[w]] & [[x]] \\\\ [[y]] & [[z]] \\end{bmatrix} \\). Let \\( X \\) be the \\( 2\\times2 \\) matrix satisfying \\( AXB = C \\). What is the entry in the first row and first column of \\( X \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[d]]*[[Y11]] - [[b]]*[[Y21]]) / [[detA]]"},
+ "distractors": [
+  "[[Y11]]",
+  "[[w]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Since \\( A \\) and \\( B \\) are both invertible, \\( X = A^{-1}CB^{-1} \\). Computing \\( Y = CB^{-1} \\) first gives \\( Y_{11} = [[Y11]] \\) and \\( Y_{21} = [[Y21]] \\); then the \\( (1,1) \\) entry of \\( A^{-1}Y \\) is \\( \\frac{[[d]]\\cdot([[Y11]]) - [[b]]\\cdot([[Y21]])}{[[detA]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,1) \\) entry of the intermediate matrix \\( Y = CB^{-1} \\), before left-multiplying by \\( A^{-1} \\).",
+  "This is the \\( (1,1) \\) entry of \\( C \\) itself, ignoring both matrix inversions.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This is off by two from the correct entry."
+ ]
+},
+{
+ "template_id": "solve_a_matrix_equation_for_an_unknown_matrix_v4_additive",
+ "skill_id": "solve_a_matrix_equation_for_an_unknown_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "s": {"type": "int", "lo": -4, "hi": 4},
+  "w": {"type": "int", "lo": -4, "hi": 4},
+  "y": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), \\( B = \\begin{bmatrix} [[p]] & \\ast \\\\ [[r]] & \\ast \\end{bmatrix} \\), and \\( C = \\begin{bmatrix} [[w]] & \\ast \\\\ [[y]] & \\ast \\end{bmatrix} \\) (only the first columns of \\( B \\) and \\( C \\) matter below). Let \\( X \\) be the \\( 2\\times2 \\) matrix satisfying \\( AX + B = C \\). What is the entry in the first row and first column of \\( X \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[d]]*(([[w]])-([[p]])) - [[b]]*(([[y]])-([[r]]))) / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "([[d]]*([[w]]) - [[b]]*([[y]])) / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[w]] - [[p]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Rearranging, \\( AX = C - B \\), so \\( X = A^{-1}(C-B) \\). The first column of \\( C - B \\) is \\( ([[w]]-([[p]]),\\ [[y]]-([[r]])) \\), so the \\( (1,1) \\) entry of \\( X \\) is \\( \\frac{[[d]]\\cdot(([[w]])-([[p]])) - [[b]]\\cdot(([[y]])-([[r]]))}{([[a]])([[d]])-([[b]])([[c]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( C \\) alone in place of \\( C-B \\), forgetting to subtract \\( B \\) before inverting.",
+  "This is just the difference of the raw entries, without applying \\( A^{-1} \\) at all.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This is off by two from the correct entry."
+ ]
+},
+{
+ "template_id": "solve_a_matrix_equation_for_an_unknown_matrix_v5_factor",
+ "skill_id": "solve_a_matrix_equation_for_an_unknown_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "s": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne(([[a]]+1)*([[d]]+1) - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), \\( I \\) be the \\( 2\\times2 \\) identity matrix, and \\( B = \\begin{bmatrix} [[p]] & [[q]] \\\\ [[r]] & [[s]] \\end{bmatrix} \\). Let \\( X \\) be the \\( 2\\times2 \\) matrix satisfying \\( XA + X = B \\). What is the entry in the first row and first column of \\( X \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[p]]*([[d]]+1) - [[q]]*[[c]]) / (([[a]]+1)*([[d]]+1) - [[b]]*[[c]])"},
+ "distractors": [
+  "([[p]]*[[d]] - [[q]]*[[c]]) / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[q]]",
+  "[[r]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Factoring out \\( X \\) on the left, \\( XA + X = X(A+I) = B \\), so \\( X = B(A+I)^{-1} \\), where \\( A + I = \\begin{bmatrix} [[a]]+1 & [[b]] \\\\ [[c]] & [[d]]+1 \\end{bmatrix} \\). The \\( (1,1) \\) entry of \\( B(A+I)^{-1} \\) is \\( \\frac{[[p]]\\cdot([[d]]+1) - [[q]]\\cdot[[c]]}{([[a]]+1)([[d]]+1) - ([[b]])([[c]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add the identity matrix, inverting \\( A \\) itself instead of \\( A+I \\).",
+  "This is the \\( (1,2) \\) entry of \\( B \\), not an entry of \\( X \\).",
+  "This is the \\( (2,1) \\) entry of \\( B \\), not an entry of \\( X \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+}
+]

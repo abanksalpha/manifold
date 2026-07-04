@@ -1,0 +1,252 @@
+[
+{
+ "template_id": "set_theory_operations_union_given_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 8, "hi": 40},
+  "b": {"type": "int", "lo": 8, "hi": 40},
+  "ab": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Le([[ab]], [[a]])", "Le([[ab]], [[b]])"],
+ "stem": "Sets \\( A \\) and \\( B \\) satisfy \\( |A| = [[a]] \\), \\( |B| = [[b]] \\), and \\( |A \\cap B| = [[ab]] \\). Find \\( |A \\cup B| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]] - [[ab]]"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] + [[b]] + [[ab]]",
+  "[[a]] - [[ab]]",
+  "[[b]] - [[ab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion, \\( |A\\cup B| = |A| + |B| - |A\\cap B| = [[a]] + [[b]] - [[ab]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the overlap, double-counting the elements in both sets.",
+  "This adds the overlap instead of subtracting it.",
+  "This is just \\( |A \\setminus B| \\), not the union.",
+  "This is just \\( |B \\setminus A| \\), not the union.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_intersection_divisibility_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 40, "hi": 300},
+  "d1": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]},
+  "d2": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])"],
+ "stem": "Let \\( U = \\{1, 2, \\ldots, [[N]]\\} \\). Let \\( A \\subseteq U \\) be the set of multiples of [[d1]] in \\( U \\), and let \\( B \\subseteq U \\) be the set of multiples of [[d2]] in \\( U \\). Find \\( |A \\cap B| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/([[d1]]*[[d2]]/gcd([[d1]],[[d2]])))"},
+ "distractors": [
+  "floor([[N]]/[[d1]]) + floor([[N]]/[[d2]])",
+  "floor([[N]]/([[d1]]*[[d2]]))",
+  "floor([[N]]/[[d1]])",
+  "floor([[N]]/[[d2]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "An integer lies in \\( A \\cap B \\) iff it is a multiple of both [[d1]] and [[d2]], i.e. a multiple of \\( \\mathrm{lcm}([[d1]],[[d2]]) \\). There are \\( \\lfloor [[N]] / \\mathrm{lcm}([[d1]],[[d2]]) \\rfloor = [[answer]] \\) such multiples in \\( U \\).",
+ "distractor_rationales": [
+  "This adds the two individual multiple-counts instead of counting the shared multiples of the lcm.",
+  "This uses the product \\( [[d1]]\\cdot[[d2]] \\) as the common period, ignoring their common factors (should use the lcm).",
+  "This only counts multiples of [[d1]], ignoring the requirement that they also be multiples of [[d2]].",
+  "This only counts multiples of [[d2]], ignoring the requirement that they also be multiples of [[d1]].",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_difference_given_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 10, "hi": 40},
+  "ab": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Lt([[ab]], [[a]])"],
+ "stem": "Sets \\( A \\) and \\( B \\) satisfy \\( |A| = [[a]] \\) and \\( |A \\cap B| = [[ab]] \\). Find \\( |A \\setminus B| \\) (the elements of \\( A \\) that are not in \\( B \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] - [[ab]]"},
+ "distractors": [
+  "[[a]] + [[ab]]",
+  "[[ab]]",
+  "[[a]]",
+  "[[a]]*[[ab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The elements of \\( A \\) not in \\( B \\) are exactly those NOT in the overlap \\( A \\cap B \\): \\( |A\\setminus B| = |A| - |A\\cap B| = [[a]] - [[ab]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the overlap instead of subtracting it.",
+  "This reports the size of the overlap itself, which is \\( A \\cap B \\), not \\( A \\setminus B \\).",
+  "This ignores the overlap and reports all of \\( A \\).",
+  "This multiplies the two given sizes instead of subtracting.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_power_set_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( A \\) be a set with [[n]] elements. How many elements does the power set \\( \\mathcal{P}(A) \\) (the set of all subsets of \\( A \\)) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+ "distractors": [
+  "[[n]]**2",
+  "factorial([[n]])",
+  "2*[[n]]",
+  "2**[[n]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Each of the [[n]] elements is independently either in or out of a given subset, so there are \\( 2^{[[n]]} = [[answer]] \\) subsets in total.",
+ "distractor_rationales": [
+  "This squares \\( n \\) instead of using it as an exponent of 2.",
+  "This counts orderings of the elements, not subsets.",
+  "This doubles \\( n \\) instead of exponentiating.",
+  "This forgets to include the empty set (or double-subtracts it) among the subsets.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_union_three_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 15, "hi": 30},
+  "b": {"type": "int", "lo": 15, "hi": 30},
+  "c": {"type": "int", "lo": 15, "hi": 30},
+  "ab": {"type": "int", "lo": 2, "hi": 5},
+  "ac": {"type": "int", "lo": 2, "hi": 5},
+  "bc": {"type": "int", "lo": 2, "hi": 5},
+  "abc": {"type": "int", "lo": 1, "hi": 1}
+ },
+ "constraints": [
+  "Le([[abc]], [[ab]])", "Le([[abc]], [[ac]])", "Le([[abc]], [[bc]])"
+ ],
+ "stem": "Sets \\( A, B, C \\) satisfy \\( |A|=[[a]] \\), \\( |B|=[[b]] \\), \\( |C|=[[c]] \\), \\( |A\\cap B|=[[ab]] \\), \\( |A\\cap C|=[[ac]] \\), \\( |B\\cap C|=[[bc]] \\), and \\( |A\\cap B\\cap C|=[[abc]] \\). Find \\( |A \\cup B \\cup C| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]+[[b]]+[[c]]-[[ab]]-[[ac]]-[[bc]]+[[abc]]"},
+ "distractors": [
+  "[[a]]+[[b]]+[[c]]",
+  "[[a]]+[[b]]+[[c]]-[[ab]]-[[ac]]-[[bc]]",
+  "[[a]]+[[b]]+[[c]]-[[ab]]-[[ac]]-[[bc]]-[[abc]]",
+  "[[a]]+[[b]]+[[c]]-[[ab]]-[[ac]]-[[bc]]+2*[[abc]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion for three sets, \\( |A\\cup B\\cup C| = |A|+|B|+|C|-|A\\cap B|-|A\\cap C|-|B\\cap C|+|A\\cap B\\cap C| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores all overlaps, triple-counting elements in more than one set.",
+  "This forgets to add back the triple overlap, which had been subtracted three times.",
+  "This subtracts the triple overlap instead of adding it back.",
+  "This adds back the triple overlap twice instead of once.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_cartesian_product_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 15},
+  "b": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": [],
+ "stem": "Set \\( A \\) has [[a]] elements and set \\( B \\) has [[b]] elements. Find \\( |A \\times B| \\), the number of ordered pairs \\( (x,y) \\) with \\( x \\in A \\) and \\( y \\in B \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]]**[[b]]",
+  "[[b]]**[[a]]",
+  "2*([[a]]+[[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Each of the [[a]] choices for \\( x \\) can be paired with any of the [[b]] choices for \\( y \\), giving \\( [[a]]\\cdot[[b]] = [[answer]] \\) ordered pairs.",
+ "distractor_rationales": [
+  "This adds the sizes instead of multiplying them.",
+  "This is the count of functions from \\( B \\) to \\( A \\), not the size of the Cartesian product.",
+  "This is the count of functions from \\( A \\) to \\( B \\), not the size of the Cartesian product.",
+  "This computes a perimeter-like formula instead of the product.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_symmetric_difference_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 10, "hi": 40},
+  "b": {"type": "int", "lo": 10, "hi": 40},
+  "ab": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Le([[ab]], [[a]])", "Le([[ab]], [[b]])"],
+ "stem": "Sets \\( A \\) and \\( B \\) satisfy \\( |A| = [[a]] \\), \\( |B| = [[b]] \\), and \\( |A \\cap B| = [[ab]] \\). Find \\( |A \\triangle B| \\) (the symmetric difference: elements in exactly one of \\( A \\), \\( B \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]] - 2*[[ab]]"},
+ "distractors": [
+  "[[a]] + [[b]] - [[ab]]",
+  "[[a]] + [[b]]",
+  "[[a]] - [[ab]]",
+  "[[a]] + [[b]] - 3*[[ab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A \\triangle B = (A\\cup B)\\setminus(A\\cap B) \\), so \\( |A\\triangle B| = |A|+|B|-2|A\\cap B| = [[a]]+[[b]]-2\\cdot[[ab]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |A \\cup B| \\), which still includes the shared elements once \u2014 not the symmetric difference.",
+  "This forgets to remove the overlap at all.",
+  "This is just \\( |A \\setminus B| \\), only one side of the symmetric difference.",
+  "This subtracts the overlap three times instead of twice.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_theory_operations_union_divisibility_v1",
+ "skill_id": "set_theory_operations",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 40, "hi": 300},
+  "d1": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]},
+  "d2": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])"],
+ "stem": "Let \\( U = \\{1, 2, \\ldots, [[N]]\\} \\). Let \\( A \\subseteq U \\) be the set of multiples of [[d1]] in \\( U \\), and let \\( B \\subseteq U \\) be the set of multiples of [[d2]] in \\( U \\). Find \\( |A \\cup B| \\), the number of integers in \\( U \\) that are multiples of [[d1]] or [[d2]] (or both).",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/[[d1]]) + floor([[N]]/[[d2]]) - floor([[N]]/([[d1]]*[[d2]]/gcd([[d1]],[[d2]])))"},
+ "distractors": [
+  "floor([[N]]/[[d1]]) + floor([[N]]/[[d2]])",
+  "floor([[N]]/[[d1]]) + floor([[N]]/[[d2]]) - floor([[N]]/([[d1]]*[[d2]]))",
+  "floor([[N]]/[[d1]])",
+  "floor([[N]]/([[d1]]*[[d2]]/gcd([[d1]],[[d2]])))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion, \\( |A\\cup B| = \\lfloor [[N]]/[[d1]]\\rfloor + \\lfloor [[N]]/[[d2]]\\rfloor - \\lfloor [[N]]/\\mathrm{lcm}([[d1]],[[d2]])\\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This double-counts the multiples of both [[d1]] and [[d2]], forgetting to subtract the overlap.",
+  "This uses the product \\( [[d1]]\\cdot[[d2]] \\) as the common period instead of the lcm, undercounting the overlap removed.",
+  "This only counts multiples of [[d1]], ignoring \\( B \\) entirely.",
+  "This reports only the overlap \\( |A\\cap B| \\), not the union.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+}
+]

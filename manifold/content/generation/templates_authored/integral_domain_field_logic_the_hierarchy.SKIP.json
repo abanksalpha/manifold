@@ -1,0 +1,4 @@
+{
+ "skill_id": "integral_domain_field_logic_the_hierarchy",
+ "reason": "This tests the logical hierarchy among rings, integral domains, and fields (which implications hold); the answer is a true/false implication judgment, not a single computable scalar."
+}

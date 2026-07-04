@@ -1,0 +1,4 @@
+{
+ "skill_id": "find_or_verify_an_eigenvector",
+ "reason": "The answer is an eigenvector (a vector), and the solver ops only return a single scalar, so there is no code-computable scalar answer for this skill."
+}

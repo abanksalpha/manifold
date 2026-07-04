@@ -1,0 +1,157 @@
+[
+ {
+  "template_id": "sum_of_squares_trace_v1",
+  "skill_id": "flowchart_pseudocode_output_trace",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 19
+   }
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( s \\) is initialized to 0: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad s \\leftarrow s + i^{2} \\] What value of \\( s \\) does the procedure output?",
+  "answer_spec": {
+   "op": "sum",
+   "expr": "i**2",
+   "var": "i",
+   "lo": "1",
+   "hi": "[[n]]"
+  },
+  "distractors": [
+   "[[n]]*([[n]] + 1)/2",
+   "([[n]]*([[n]] + 1)/2)**2",
+   "[[n]]**2",
+   "[[n]]*([[n]] + 1)*(2*[[n]] + 1)/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The loop accumulates \\( s = 1^{2} + 2^{2} + \\cdots + [[n]]^{2} = \\frac{[[n]]([[n]]+1)(2\\cdot[[n]]+1)}{6} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( i \\) rather than \\( i^{2} \\) at each step, giving the triangular number.",
+   "This uses the sum-of-cubes formula \\( \\left(\\frac{n(n+1)}{2}\\right)^{2} \\) by mistake.",
+   "This keeps only the final term \\( [[n]]^{2} \\) instead of the running total.",
+   "This divides by 3 instead of 6, doubling the correct sum.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "factorial_product_trace_v1",
+  "skill_id": "flowchart_pseudocode_output_trace",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 18}
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( p \\) is initialized to 1: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad p \\leftarrow p \\cdot i \\] What value of \\( p \\) does the procedure output?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+  "distractors": [
+   "[[n]]**[[n]]",
+   "factorial([[n]] - 1)",
+   "factorial([[n]] + 1)",
+   "[[n]]*([[n]] + 1)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The loop multiplies \\( p \\) by each \\( i \\) from 1 to [[n]] in turn, so \\( p = 1 \\cdot 2 \\cdots [[n]] = [[n]]! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This confuses the running product with \\( n^{n} \\), multiplying by \\( n \\) each time instead of by the current index.",
+   "This stops the loop one iteration early, omitting the final multiplication by [[n]].",
+   "This runs one extra iteration beyond [[n]].",
+   "This mistakes the multiplicative accumulation for the additive triangular-number formula.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "conditional_odd_sum_trace_v1",
+  "skill_id": "flowchart_pseudocode_output_trace",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( s \\) is initialized to 0: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad \\textbf{if } i \\bmod 2 = 1: \\quad s \\leftarrow s + i \\] What value of \\( s \\) does the procedure output?",
+  "answer_spec": {"op": "evaluate", "expr": "(ceiling([[n]]/2))**2"},
+  "distractors": [
+   "[[n]]**2/4",
+   "(floor([[n]]/2))**2",
+   "[[n]]*([[n]] + 1)/2",
+   "[[n]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The condition keeps only the odd \\( i \\), namely \\( 1, 3, \\ldots \\) up to [[n]]; there are \\( \\lceil [[n]]/2 \\rceil \\) of them, and the sum of the first \\( k \\) odd numbers is \\( k^{2} \\), so \\( s = (\\lceil [[n]]/2 \\rceil)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This approximates the count of odd terms as \\( n/2 \\) without rounding, squaring a non-integer count.",
+   "This uses \\( \\lfloor n/2 \\rfloor \\) instead of \\( \\lceil n/2 \\rceil \\), undercounting the odd terms when [[n]] is odd.",
+   "This forgets the filter and sums every \\( i \\) from 1 to [[n]], not just the odd ones.",
+   "This applies the sum-of-first-\\(n\\)-odd-numbers formula to all of [[n]], ignoring that only about half the terms pass the filter.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "while_loop_halving_count_trace_v1",
+  "skill_id": "flowchart_pseudocode_output_trace",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 200}
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure: \\( x \\) is initialized to [[n]] and \\( c \\) is initialized to 0. \\[ \\textbf{while } x > 1: \\quad x \\leftarrow \\lfloor x/2 \\rfloor, \\quad c \\leftarrow c + 1 \\] What value of \\( c \\) does the procedure output when it terminates?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(log([[n]], 2))"},
+  "distractors": [
+   "ceiling(log([[n]], 2))",
+   "floor([[n]]/2)",
+   "[[n]] - 1",
+   "floor(log([[n]], 2)) - 1",
+   "[[answer]] + 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Each pass halves \\( x \\) (rounding down), so \\( x \\) drops below or to 1 after exactly \\( \\lfloor \\log_2 [[n]] \\rfloor \\) passes; hence \\( c = [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds the halving count up instead of down, which overcounts unless [[n]] is an exact power of 2.",
+   "This confuses the number of halvings with the value \\( x \\) takes after just one halving.",
+   "This assumes each pass only decreases \\( x \\) by 1 rather than halving it.",
+   "This stops one iteration too early.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "doubling_product_trace_v1",
+  "skill_id": "flowchart_pseudocode_output_trace",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( p \\) is initialized to 1: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad p \\leftarrow p \\cdot 2 \\] What value of \\( p \\) does the procedure output?",
+  "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+  "distractors": [
+   "2*[[n]]",
+   "[[n]]**2",
+   "2**([[n]] - 1)",
+   "2**([[n]] + 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each pass doubles \\( p \\), so after [[n]] passes \\( p = 2^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakes repeated doubling for repeated addition of 2.",
+   "This confuses the base and the exponent, squaring [[n]] instead of exponentiating 2.",
+   "This stops the loop one iteration early.",
+   "This runs one extra iteration beyond [[n]].",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

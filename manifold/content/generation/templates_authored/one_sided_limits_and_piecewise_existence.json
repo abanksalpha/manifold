@@ -1,0 +1,134 @@
+[
+{
+ "template_id": "one_sided_limit_v1",
+ "skill_id": "one_sided_limits_and_piecewise_existence",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": 2, "hi": 5},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Gt([[b]], 0)"],
+ "stem": "Let \\( f(x) = [[a]] + [[b]]\\cdot\\dfrac{x - ([[c]])}{\\lvert x - ([[c]]) \\rvert} \\). Evaluate the right-hand limit \\( \\lim_{x \\to [[c]]^{+}} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]] + [[b]]*(x - ([[c]]))/Abs(x - ([[c]]))", "var": "x", "point": "[[c]]", "dir": "+"},
+ "distractors": [
+  "[[a]] - [[b]]",
+  "[[a]]",
+  "[[b]]",
+  "[[a]] + 2*[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For \\( x > [[c]] \\), \\( \\frac{x - [[c]]}{|x - [[c]]|} = 1 \\), so \\( f(x) \\to [[a]] + [[b]] = [[answer]] \\). (Approaching from the left the value would be \\( [[a]] - [[b]] \\), so the two-sided limit does not exist.)",
+ "distractor_rationales": [
+  "This is the left-hand limit, where the quotient equals \\( -1 \\).",
+  "This ignores the jump term entirely.",
+  "This uses only the jump size and drops the constant \\( a \\).",
+  "This overshoots by adding the jump twice.",
+  "This is off by one from the correct one-sided limit.",
+  "This is off by one from the correct one-sided limit."
+ ]
+},
+{
+ "template_id": "one_sided_limit_piecewise_cases_v1",
+ "skill_id": "one_sided_limits_and_piecewise_existence",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -7, "hi": 7},
+  "e": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[a]]*[[c]] + [[b]], [[d]]*[[c]] + [[e]])"],
+ "stem": "The piecewise function \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & x < [[c]] \\\\ [[d]]x + ([[e]]) & x \\ge [[c]] \\end{cases} \\) has a jump discontinuity at \\( x = [[c]] \\). Evaluate the left-hand limit \\( \\lim_{x \\to [[c]]^{-}} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]]*x + ([[b]])", "var": "x", "point": "[[c]]", "dir": "-"},
+ "distractors": [
+  "[[d]]*[[c]] + [[e]]",
+  "[[a]]*[[c]] - [[b]]",
+  "[[d]]*[[c]] - [[e]]",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "For \\( x < [[c]] \\), \\( f \\) follows the first branch, so \\( \\lim_{x \\to [[c]]^{-}} f(x) = [[a]]\\cdot[[c]] + ([[b]]) = [[answer]] \\). (The right-hand limit uses the second branch, \\( [[d]]\\cdot[[c]] + ([[e]]) \\), which differs, confirming the jump.)",
+ "distractor_rationales": [
+  "This is the right-hand limit, computed from the second branch instead of the first.",
+  "This flips the sign of the intercept in the correct branch.",
+  "This uses the second branch's formula with the wrong sign on its intercept.",
+  "This drops the multiplication by \\( c \\) in the first branch.",
+  "This is off by one from the correct one-sided limit.",
+  "This is off by one from the correct one-sided limit.",
+  "This is off by two from the correct one-sided limit."
+ ]
+},
+{
+ "template_id": "one_sided_limit_sqrt_domain_v1",
+ "skill_id": "one_sided_limits_and_piecewise_existence",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = [[a]] + \\sqrt{[[b]]\\left(x - ([[c]])\\right)} \\). Since \\( f \\) is defined only for \\( x \\ge [[c]] \\), evaluate the (one-sided) limit \\( \\lim_{x \\to [[c]]^{+}} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]] + sqrt([[b]]*(x - ([[c]])))", "var": "x", "point": "[[c]]", "dir": "+"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[b]]",
+  "-[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( x \\to [[c]]^{+} \\), the quantity \\( [[b]](x-[[c]]) \\to 0^{+} \\), so \\( \\sqrt{[[b]](x-[[c]])} \\to 0 \\). Hence \\( f(x) \\to [[a]] = [[answer]] \\). (The left-hand limit does not exist since \\( f \\) is undefined for \\( x < [[c]] \\), so this one-sided limit is the only limit that makes sense here.)",
+ "distractor_rationales": [
+  "This adds the radicand's coefficient \\( b \\) as if the square root itself approached \\( b \\).",
+  "This subtracts \\( b \\) instead of recognizing the square-root term vanishes.",
+  "This reports only the coefficient \\( b \\), dropping the constant \\( a \\) entirely.",
+  "This negates the correct value.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "one_sided_limit_piecewise_continuous_v1",
+ "skill_id": "one_sided_limits_and_piecewise_existence",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[a]], [[d]])"],
+ "derived": {"e": "[[a]]*[[c]] + [[b]] - [[d]]*[[c]]"},
+ "stem": "The piecewise function \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & x < [[c]] \\\\ [[d]]x + ([[e]]) & x \\ge [[c]] \\end{cases} \\) turns out to be continuous at \\( x = [[c]] \\) (the two pieces meet there). Evaluate \\( \\lim_{x \\to [[c]]} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]]*x + ([[b]])", "var": "x", "point": "[[c]]"},
+ "distractors": [
+  "[[a]]*[[c]] - [[b]]",
+  "[[a]] + [[b]]",
+  "[[d]]*[[c]] - [[e]]",
+  "[[d]] + [[e]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since both one-sided limits agree here, the two-sided limit exists and equals either branch evaluated at \\( x = [[c]] \\): \\( [[a]]\\cdot[[c]] + ([[b]]) = [[answer]] \\) (which matches \\( [[d]]\\cdot[[c]] + ([[e]]) \\) from the other branch, confirming continuity).",
+ "distractor_rationales": [
+  "This flips the sign of the intercept in the first branch.",
+  "This drops the multiplication by \\( c \\) in the first branch.",
+  "This flips the sign of the intercept in the second branch.",
+  "This drops the multiplication by \\( c \\) in the second branch.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This is off by two from the correct limit."
+ ]
+}
+]

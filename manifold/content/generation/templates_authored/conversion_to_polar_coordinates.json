@@ -1,0 +1,291 @@
+[
+ {
+  "template_id": "conversion_to_polar_coordinates_v1",
+  "skill_id": "conversion_to_polar_coordinates",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "R": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "R2": "[[R]]**2"
+  },
+  "stem": "Use polar coordinates to evaluate \\( \\iint_D [[c]](x^2+y^2)\\,dA \\), where \\(D\\) is the disk \\( x^2 + y^2 \\le [[R2]] \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[c]]*r**3",
+   "vars": [
+    "r",
+    "theta"
+   ],
+   "bounds": [
+    [
+     "0",
+     "[[R]]"
+    ],
+    [
+     "0",
+     "2*pi"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[c]]*2*pi*[[R]]**3/3",
+   "[[c]]*pi*[[R]]**2",
+   "[[c]]*pi*[[R]]**4",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "In polar coordinates \\(x^2+y^2=r^2\\) and \\(dA = r\\,dr\\,d\\theta\\), so \\( \\iint_D [[c]](x^2+y^2)\\,dA = \\int_{0}^{2\\pi}\\int_{0}^{[[R]]} [[c]]\\,r^2 \\cdot r\\,dr\\,d\\theta = \\int_{0}^{2\\pi}\\int_{0}^{[[R]]} [[c]]\\,r^3\\,dr\\,d\\theta = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the Jacobian factor \\(r\\), integrating \\([[c]]r^2\\) instead of \\([[c]]r^3\\).",
+   "This uses the plain area of the disk times \\([[c]]\\) rather than integrating \\(x^2+y^2\\).",
+   "This drops the factor of \\(1/2\\) from \\(\\int_0^{[[R]]} r^3\\,dr = [[R]]^4/4\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "conversion_to_polar_coordinates_v2_annulus",
+  "skill_id": "conversion_to_polar_coordinates",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "b": {
+    "type": "int",
+    "lo": 4,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Lt([[a]], [[b]])"
+  ],
+  "stem": "Use polar coordinates to evaluate \\( \\iint_D [[c]](x^2+y^2)\\,dA \\), where \\(D\\) is the annulus \\( [[a]]^2 \\le x^2+y^2 \\le [[b]]^2 \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[c]]*r**3",
+   "vars": [
+    "r",
+    "theta"
+   ],
+   "bounds": [
+    [
+     "[[a]]",
+     "[[b]]"
+    ],
+    [
+     "0",
+     "2*pi"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[c]]*pi*([[b]]**4-[[a]]**4)",
+   "[[c]]*pi*([[b]]**2-[[a]]**2)",
+   "[[c]]*2*pi*([[b]]**3-[[a]]**3)/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "With \\(dA = r\\,dr\\,d\\theta\\), the integral is \\( \\int_{0}^{2\\pi}\\int_{[[a]]}^{[[b]]} [[c]]r^3\\,dr\\,d\\theta = 2\\pi[[c]]\\cdot\\frac{[[b]]^4-[[a]]^4}{4} = [[answer]] \\); note the inner radius \\([[a]]\\) is NOT \\(0\\), since \\(D\\) is a ring, not a full disk.",
+  "distractor_rationales": [
+   "This forgets to divide by \\(4\\) in the antiderivative of \\(r^3\\).",
+   "This uses the area formula \\(\\pi(b^2-a^2)\\) instead of integrating \\(r^3\\).",
+   "This mistakenly uses the antiderivative of \\(r^2\\) (giving \\(r^3/3\\)) instead of \\(r^3\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "conversion_to_polar_coordinates_v3_half_disk",
+  "skill_id": "conversion_to_polar_coordinates",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "R": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "R2": "[[R]]**2"
+  },
+  "stem": "Use polar coordinates to evaluate \\( \\iint_D [[c]]x^2\\,dA \\), where \\(D\\) is the upper half-disk \\( x^2+y^2 \\le [[R2]],\\ y \\ge 0 \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[c]]*(r*cos(theta))**2*r",
+   "vars": [
+    "r",
+    "theta"
+   ],
+   "bounds": [
+    [
+     "0",
+     "[[R]]"
+    ],
+    [
+     "0",
+     "pi"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[c]]*pi*[[R]]**4/2",
+   "[[c]]*pi*[[R]]**4/8",
+   "[[c]]*2*pi*[[R]]**4/4",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "With \\(x = r\\cos\\theta\\) and \\(dA=r\\,dr\\,d\\theta\\), \\( \\iint_D [[c]]x^2\\,dA = \\int_{0}^{\\pi}\\int_{0}^{[[R]]} [[c]]r^2\\cos^2\\theta\\cdot r\\,dr\\,d\\theta = [[c]]\\frac{[[R]]^4}{4}\\int_{0}^{\\pi}\\cos^2\\theta\\,d\\theta = [[c]]\\frac{[[R]]^4}{4}\\cdot\\frac{\\pi}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\(\\int_0^\\pi\\cos^2\\theta\\,d\\theta = \\pi\\) instead of the correct value \\(\\pi/2\\).",
+   "This drops a factor of \\(4\\) from the radial antiderivative \\(r^4/4\\).",
+   "This mishandles the angular integral, using \\(2\\pi/4\\) in place of \\(\\pi/2\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "conversion_to_polar_coordinates_v4_from_cartesian",
+  "skill_id": "conversion_to_polar_coordinates",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "R": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "Convert to polar coordinates and evaluate \\( \\int_{0}^{[[R]]} \\int_{0}^{\\sqrt{[[R]]^2-x^2}} [[c]]\\sqrt{x^2+y^2}\\,dy\\,dx \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[c]]*r*r",
+   "vars": [
+    "r",
+    "theta"
+   ],
+   "bounds": [
+    [
+     "0",
+     "[[R]]"
+    ],
+    [
+     "0",
+     "pi/2"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[c]]*pi*[[R]]**3/3",
+   "[[c]]*pi*[[R]]**3/2",
+   "[[c]]*2*pi*[[R]]**3/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "The region \\(0\\le x\\le [[R]]\\), \\(0\\le y\\le\\sqrt{[[R]]^2-x^2}\\) is the quarter-disk of radius \\([[R]]\\) in the first quadrant, and \\(\\sqrt{x^2+y^2}=r\\). So the integral becomes \\( \\int_{0}^{\\pi/2}\\int_{0}^{[[R]]} [[c]]\\,r\\cdot r\\,dr\\,d\\theta = [[c]]\\frac{\\pi}{2}\\cdot\\frac{[[R]]^3}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the full angular sweep \\(2\\pi\\) instead of the quarter-disk's \\(\\pi/2\\).",
+   "This uses a half-disk's angular sweep \\(\\pi\\) instead of the quarter-disk's \\(\\pi/2\\).",
+   "This uses angular sweep \\(2\\pi/3\\)-style bookkeeping, an arithmetic slip in combining the constants.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "conversion_to_polar_coordinates_v5_offcenter_circle",
+  "skill_id": "conversion_to_polar_coordinates",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "The circle \\( x^2+y^2 = [[a]]\\cdot 2x \\) has polar equation \\( r = 2[[a]]\\cos\\theta \\). Using this, find the area enclosed by the circle by evaluating \\( \\iint_D 1\\,dA \\) in polar coordinates.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "r",
+   "vars": [
+    "r",
+    "theta"
+   ],
+   "bounds": [
+    [
+     "0",
+     "2*[[a]]*cos(theta)"
+    ],
+    [
+     "-pi/2",
+     "pi/2"
+    ]
+   ]
+  },
+  "distractors": [
+   "2*pi*[[a]]**2",
+   "pi*[[a]]**2/2",
+   "4*pi*[[a]]**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "The area is \\( \\int_{-\\pi/2}^{\\pi/2}\\int_{0}^{2[[a]]\\cos\\theta} r\\,dr\\,d\\theta = \\int_{-\\pi/2}^{\\pi/2} 2[[a]]^2\\cos^2\\theta\\,d\\theta = 2[[a]]^2\\cdot\\frac{\\pi}{2} = [[answer]] \\), matching the known area \\(\\pi[[a]]^2\\) of a circle of radius \\([[a]]\\).",
+  "distractor_rationales": [
+   "This doubles the correct area, as if the angular range were \\(-\\pi\\) to \\(\\pi\\) with no adjustment.",
+   "This halves the correct area, mishandling the \\(\\cos^2\\theta\\) integral.",
+   "This uses radius \\(2[[a]]\\) instead of the true radius \\([[a]]\\) of the circle.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,4 @@
+{
+ "skill_id": "is_the_map_linear",
+ "reason": "This is a yes/no recognition task (does the map preserve addition and scalar multiplication?), with no single code-computable scalar or expression answer."
+}

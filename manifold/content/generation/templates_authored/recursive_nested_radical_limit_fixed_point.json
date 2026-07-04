@@ -1,0 +1,126 @@
+[
+{
+ "template_id": "recursive_nested_radical_limit_fixed_point_v1",
+ "skill_id": "recursive_nested_radical_limit_fixed_point",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "L": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[b]], [[L]])"],
+ "derived": {"a": "[[L]]*([[L]] - [[b]])"},
+ "stem": "A sequence is defined by \\( x_1 = 1 \\) and \\( x_{n+1} = \\sqrt{[[a]] + [[b]]\\,x_n} \\) for \\( n \\ge 1 \\). It converges to a positive limit \\( L \\) satisfying \\( L = \\sqrt{[[a]] + [[b]]L} \\). What is \\( L \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[b]] + sqrt([[b]]**2 + 4*[[a]]))/2"},
+ "distractors": [
+  "([[b]] - sqrt([[b]]**2 + 4*[[a]]))/2",
+  "2*[[answer]] - [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Squaring \\( L = \\sqrt{[[a]] + [[b]]L} \\) gives \\( L^2 - [[b]]L - [[a]] = 0 \\), so \\( L = \\dfrac{[[b]] + \\sqrt{[[b]]^{2} + 4\\cdot[[a]]}}{2} = [[answer]] \\) (the positive root).",
+ "distractor_rationales": [
+  "This is the negative root of the quadratic, which cannot be the limit of a sequence of square roots.",
+  "This is the value of the discriminant's square root \\( \\sqrt{[[b]]^{2}+4\\cdot[[a]]} \\), not the limit itself.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This is off by two from the correct limit.",
+  "This is off by two from the correct limit."
+ ]
+},
+{
+ "template_id": "recursive_nested_radical_limit_fixed_point_bare_v2",
+ "skill_id": "recursive_nested_radical_limit_fixed_point",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "L": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[b]], [[L]])"],
+ "derived": {"a": "[[L]]*([[L]] - [[b]])"},
+ "stem": "Assuming the expression below denotes a well-defined positive real number, evaluate \\[ \\sqrt{[[a]] + [[b]]\\sqrt{[[a]] + [[b]]\\sqrt{[[a]] + [[b]]\\sqrt{\\cdots}}}}. \\]",
+ "answer_spec": {"op": "evaluate", "expr": "([[b]] + sqrt([[b]]**2 + 4*[[a]]))/2"},
+ "distractors": [
+  "([[b]] - sqrt([[b]]**2 + 4*[[a]]))/2",
+  "sqrt([[a]] + [[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Let \\( x \\) denote the value of the infinite nested radical. Because the radical repeats, \\( x = \\sqrt{[[a]] + [[b]]x} \\), so \\( x^2 - [[b]]x - [[a]] = 0 \\) and \\( x = \\dfrac{[[b]] + \\sqrt{[[b]]^{2}+4\\cdot[[a]]}}{2} = [[answer]] \\) (taking the positive root).",
+ "distractor_rationales": [
+  "This is the negative root of the same quadratic; the nested radical is manifestly positive.",
+  "This truncates the radical after only one layer instead of using the self-similar equation.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "recursive_nested_radical_limit_fixed_point_reciprocal_v3",
+ "skill_id": "recursive_nested_radical_limit_fixed_point",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "L": {"type": "int", "lo": 2, "hi": 9},
+  "d": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"c": "[[L]]*([[L]] + [[d]])"},
+ "stem": "A sequence is defined by \\( x_1 = 1 \\) and \\( x_{n+1} = \\dfrac{[[c]]}{[[d]] + x_n} \\) for \\( n \\ge 1 \\). It converges to a positive limit \\( L \\) satisfying \\( L = \\dfrac{[[c]]}{[[d]] + L} \\). What is \\( L \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(-[[d]] + sqrt([[d]]**2 + 4*[[c]]))/2"},
+ "distractors": [
+  "(-[[d]] - sqrt([[d]]**2 + 4*[[c]]))/2",
+  "Rational([[c]], [[d]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Setting \\( x_n = x_{n+1} = L \\) in \\( L = \\dfrac{[[c]]}{[[d]]+L} \\) gives \\( L([[d]]+L) = [[c]] \\), i.e. \\( L^2 + [[d]]L - [[c]] = 0 \\), so \\( L = \\dfrac{-[[d]] + \\sqrt{[[d]]^{2}+4\\cdot[[c]]}}{2} = [[answer]] \\) (the positive root).",
+ "distractor_rationales": [
+  "This is the negative root of the same quadratic, which cannot be the limit of a sequence of positive terms.",
+  "This plugs \\( x_n = 0 \\) into the recursion instead of solving the fixed-point equation.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This is off by two from the correct limit.",
+  "This is off by two from the correct limit."
+ ]
+},
+{
+ "template_id": "recursive_nested_radical_limit_fixed_point_newton_v4",
+ "skill_id": "recursive_nested_radical_limit_fixed_point",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 40},
+  "x1": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "A sequence satisfies \\( x_1 = [[x1]] \\) and \\( x_{n+1} = \\dfrac{1}{2}\\left(x_n + \\dfrac{[[c]]}{x_n}\\right) \\) for \\( n \\ge 1 \\) (this is Newton's method for a square root). Given that \\( x_1 > 0 \\), to what limit does the sequence converge?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[c]])"},
+ "distractors": [
+  "Rational([[c]], 2)",
+  "sqrt([[c]]) + 1",
+  "sqrt([[c]] - 1)",
+  "sqrt([[c]] + 1)",
+  "[[c]]",
+  "[[x1]]"
+ ],
+ "solution": "At a fixed point \\( x = \\tfrac12\\left(x + \\tfrac{[[c]]}{x}\\right) \\), which simplifies to \\( x = \\dfrac{[[c]]}{x} \\), i.e. \\( x^2 = [[c]] \\). Since every \\( x_n>0 \\), the sequence converges to \\( \\sqrt{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakes the average recursion for simply halving \\( c \\), ignoring the reciprocal term.",
+  "This is off by one under the radical from the correct limit.",
+  "This uses \\( c-1 \\) instead of \\( c \\) under the radical.",
+  "This uses \\( c+1 \\) instead of \\( c \\) under the radical.",
+  "This forgets to take the square root at all.",
+  "This is just the starting term \\( x_1 \\), not the limit of the sequence."
+ ]
+}
+]

@@ -1,0 +1,301 @@
+[
+ {
+  "template_id": "numerical_series_summed_via_a_known_series_v1",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)",
+   "Lt(Abs([[p]]), [[q]])"
+  ],
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=1}^{\\infty} n\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\) using the known series \\( \\sum_{n=1}^{\\infty} n x^{n} = \\dfrac{x}{(1-x)^{2}} \\) for \\( |x|<1 \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))**2"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "1/(1 - Rational([[p]],[[q]]))**2",
+   "Rational([[p]],[[q]])/(1 + Rational([[p]],[[q]]))**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "With \\( x = \\dfrac{[[p]]}{[[q]]} \\), \\( \\sum_{n=1}^{\\infty} n x^{n} = \\dfrac{x}{(1-x)^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the plain geometric sum \\( \\frac{x}{1-x} \\), dropping the factor of \\( n \\).",
+   "This uses \\( \\frac{1}{(1-x)^{2}} \\), forgetting the \\( x \\) in the numerator.",
+   "This uses \\( (1+x)^{2} \\) in the denominator instead of \\( (1-x)^{2} \\).",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ },
+ {
+  "template_id": "numerical_series_known_series_v2_pure_geometric",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -8,
+    "hi": 8
+   },
+   "q": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)",
+   "Lt(Abs([[p]]), [[q]])"
+  ],
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=0}^{\\infty} \\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\) using the known geometric series \\( \\sum_{n=0}^{\\infty} x^{n} = \\dfrac{1}{1-x} \\) for \\( |x|<1 \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "1/(1 - Rational([[p]],[[q]]))"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "1/(1 + Rational([[p]],[[q]]))",
+   "Rational([[q]],[[p]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "With \\( x = \\dfrac{[[p]]}{[[q]]} \\), \\( \\sum_{n=0}^{\\infty} x^{n} = \\dfrac{1}{1-x} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the arithmetico-geometric sum \\( \\sum n x^{n} = \\frac{x}{(1-x)^2} \\), the wrong known series.",
+   "This uses \\( 1+x \\) in the denominator instead of \\( 1-x \\).",
+   "This inverts the ratio \\( x \\) before applying the formula.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ },
+ {
+  "template_id": "numerical_series_known_series_v3_second_arithmetico_geometric",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)",
+   "Lt(Abs([[p]]), [[q]])"
+  ],
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=1}^{\\infty} n^{2}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\) using the known series \\( \\sum_{n=1}^{\\infty} n^{2} x^{n} = \\dfrac{x(1+x)}{(1-x)^{3}} \\) for \\( |x|<1 \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[p]],[[q]])*(1+Rational([[p]],[[q]]))/(1 - Rational([[p]],[[q]]))**3"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))**2",
+   "Rational([[p]],[[q]])*(1+Rational([[p]],[[q]]))/(1 - Rational([[p]],[[q]]))**2",
+   "(1+Rational([[p]],[[q]]))/(1 - Rational([[p]],[[q]]))**3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "With \\( x = \\dfrac{[[p]]}{[[q]]} \\), \\( \\sum_{n=1}^{\\infty} n^{2} x^{n} = \\dfrac{x(1+x)}{(1-x)^{3}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the plain arithmetico-geometric sum \\( \\sum n x^n = \\frac{x}{(1-x)^2} \\), missing the \\( n^2 \\) formula's extra factor and power.",
+   "This uses the wrong power \\( (1-x)^2 \\) instead of \\( (1-x)^3 \\) in the denominator.",
+   "This drops the leading \\( x \\) factor in the numerator.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ },
+ {
+  "template_id": "numerical_series_known_series_v4_exponential",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": -13,
+    "hi": 13
+   }
+  },
+  "constraints": [
+   "Ne([[c]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=0}^{\\infty} \\dfrac{[[c]]^{n}}{n!} \\) using the known Maclaurin series \\( e^{x} = \\sum_{n=0}^{\\infty} \\dfrac{x^{n}}{n!} \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "exp([[c]])"
+  },
+  "distractors": [
+   "exp(-[[c]])",
+   "[[c]]*exp(1)",
+   "1 + [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "This is \\( e^{x} \\) evaluated at \\( x=[[c]] \\): \\( \\sum_{n=0}^{\\infty}\\dfrac{[[c]]^{n}}{n!} = e^{[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( -c \\) in the exponent instead of \\( c \\).",
+   "This multiplies \\( c \\) by \\( e \\) instead of using \\( c \\) as the exponent.",
+   "This is only the first two terms of the series (\\( n=0,1 \\)), not the full sum.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ },
+ {
+  "template_id": "numerical_series_known_series_v5_exponential_shifted_index",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": -13,
+    "hi": 13
+   }
+  },
+  "constraints": [
+   "Ne([[c]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[c]]^{n}}{n!} \\) using the known Maclaurin series \\( e^{x} = \\sum_{n=0}^{\\infty} \\dfrac{x^{n}}{n!} \\). (Note this sum starts at \\( n=1 \\), not \\( n=0 \\).)",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "exp([[c]]) - 1"
+  },
+  "distractors": [
+   "exp([[c]])",
+   "exp([[c]]) + 1",
+   "exp(-[[c]]) - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "\\( \\sum_{n=0}^{\\infty}\\dfrac{[[c]]^{n}}{n!} = e^{[[c]]} \\); removing the \\( n=0 \\) term (which equals \\( 1 \\)) leaves \\( \\sum_{n=1}^{\\infty}\\dfrac{[[c]]^{n}}{n!} = e^{[[c]]} - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to remove the \\( n=0 \\) term from the full series.",
+   "This adds the removed term back instead of subtracting it.",
+   "This uses \\( -c \\) in the exponent and still subtracts \\( 1 \\) incorrectly.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ },
+ {
+  "template_id": "numerical_series_known_series_v6_sine_series",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -9,
+    "hi": 9
+   },
+   "q": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=0}^{\\infty} \\dfrac{(-1)^{n}}{(2n+1)!}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{2n+1} \\) using the known Maclaurin series \\( \\sin(x) = \\sum_{n=0}^{\\infty} \\dfrac{(-1)^{n}x^{2n+1}}{(2n+1)!} \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "sin(Rational([[p]],[[q]]))"
+  },
+  "distractors": [
+   "cos(Rational([[p]],[[q]]))",
+   "-sin(Rational([[p]],[[q]]))",
+   "Rational([[p]],[[q]])",
+   "sin(Rational([[q]],[[p]]))",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "This is \\( \\sin(x) \\) evaluated at \\( x=\\dfrac{[[p]]}{[[q]]} \\): the sum equals \\( \\sin\\!\\left(\\dfrac{[[p]]}{[[q]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the cosine series instead of the sine series.",
+   "This has the wrong overall sign.",
+   "This is just the argument \\( x \\) itself (the first-order Taylor approximation), not the true sum.",
+   "This inverts the argument before applying sine.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ },
+ {
+  "template_id": "numerical_series_known_series_v7_arctan_series",
+  "skill_id": "numerical_series_summed_via_a_known_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)",
+   "Le(Abs([[p]]), [[q]])"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate the series \\( \\displaystyle\\sum_{n=0}^{\\infty} \\dfrac{(-1)^{n}}{2n+1}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{2n+1} \\) using the known Maclaurin series \\( \\arctan(x) = \\sum_{n=0}^{\\infty} \\dfrac{(-1)^{n}x^{2n+1}}{2n+1} \\) for \\( |x|\\le 1 \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "atan(Rational([[p]],[[q]]))"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])",
+   "-atan(Rational([[p]],[[q]]))",
+   "atan(Rational([[q]],[[p]]))",
+   "pi/4",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "This is \\( \\arctan(x) \\) evaluated at \\( x=\\dfrac{[[p]]}{[[q]]} \\): the sum equals \\( \\arctan\\!\\left(\\dfrac{[[p]]}{[[q]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the argument \\( x \\) itself (the first-order Taylor approximation), not the true sum.",
+   "This has the wrong overall sign.",
+   "This inverts the argument before applying arctan.",
+   "This is the special value \\( \\arctan(1) \\), regardless of the actual argument here.",
+   "This is off by one from the correct sum.",
+   "This doubles the correct sum."
+  ]
+ }
+]

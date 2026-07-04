@@ -1,0 +1,173 @@
+[
+  {
+    "template_id": "euler_composite_power_v1",
+    "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 3, "hi": 30},
+      "b": {"type": "int", "lo": 20, "hi": 60},
+      "n": {"type": "choice", "values": [90, 100, 120, 140, 144]}
+    },
+    "constraints": ["Eq(gcd([[a]], [[n]]), 1)"],
+    "stem": "Using Euler's theorem, find the remainder when \\( [[a]]^{[[b]]} \\) is divided by \\( [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], [[n]])"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), [[n]])",
+      "Mod([[a]]**([[b]] - 1), [[n]])",
+      "Mod([[a]]**2, [[n]])",
+      "Mod([[a]], [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[answer]] + 10, [[n]])"
+    ],
+    "solution": "Since \\( \\gcd([[a]], [[n]]) = 1 \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])} \\equiv 1 \\pmod{[[n]]} \\). Reduce the exponent \\( [[b]] \\) modulo \\( \\varphi([[n]]) \\) and evaluate to get \\( [[a]]^{[[b]]} \\equiv [[answer]] \\pmod{[[n]]} \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one power too many.",
+      "This uses exponent \\( [[b]]-1 \\), one power too few.",
+      "This is \\( [[a]]^{2} \\bmod [[n]] \\), not the value at exponent \\( [[b]] \\).",
+      "This is \\( [[a]] \\bmod [[n]] \\), the base itself.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is ten more than the correct remainder (a tens-digit slip)."
+    ]
+  },
+  {
+    "template_id": "euler_prime_power_modulus_v1",
+    "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [3, 5, 7]},
+      "e": {"type": "choice", "values": [2, 3]},
+      "a": {"type": "int", "lo": 2, "hi": 40},
+      "b": {"type": "int", "lo": 20, "hi": 60}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+    "derived": {"n": "[[p]]**[[e]]"},
+    "stem": "The modulus \\( [[n]] = [[p]]^{[[e]]} \\) is a prime power. Using Euler's theorem with \\( \\varphi([[n]]) = [[p]]^{[[e]]-1}([[p]]-1) \\), find the remainder when \\( [[a]]^{[[b]]} \\) is divided by \\( [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], [[p]]**[[e]])"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), [[n]])",
+      "Mod([[a]]**([[b]] - 1), [[n]])",
+      "Mod([[a]], [[p]])",
+      "Mod([[a]]**([[p]] - 1), [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[answer]] + [[p]], [[n]])"
+    ],
+    "solution": "For the prime power modulus \\( [[n]]=[[p]]^{[[e]]} \\), Euler's totient is \\( \\varphi([[n]]) = [[p]]^{[[e]]-1}([[p]]-1) \\), so \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) (as \\( \\gcd([[a]],[[p]])=1 \\)). Reducing the exponent \\( [[b]] \\) modulo \\( \\varphi([[n]]) \\) gives \\( [[a]]^{[[b]]} \\equiv [[answer]] \\pmod{[[n]]} \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one power too many.",
+      "This uses exponent \\( [[b]]-1 \\), one power too few.",
+      "This reduces \\( [[a]] \\) mod the prime \\( [[p]] \\) instead of mod the prime power \\( [[n]] \\).",
+      "This uses the exponent \\( [[p]]-1 \\), the totient formula for a plain prime modulus, not a prime power.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is off from the correct remainder by \\( [[p]] \\)."
+    ]
+  },
+  {
+    "template_id": "euler_product_of_two_powers_v1",
+    "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 3, "hi": 25},
+      "b": {"type": "int", "lo": 20, "hi": 45},
+      "c": {"type": "int", "lo": 3, "hi": 25},
+      "d": {"type": "int", "lo": 20, "hi": 45},
+      "n": {"type": "choice", "values": [63, 75, 99, 121, 128]}
+    },
+    "constraints": ["Eq(gcd([[a]], [[n]]), 1)", "Eq(gcd([[c]], [[n]]), 1)"],
+    "stem": "Using Euler's theorem on each factor, find the remainder when \\( [[a]]^{[[b]]} \\cdot [[c]]^{[[d]]} \\) is divided by \\( [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] * [[c]]**[[d]], [[n]])"},
+    "distractors": [
+      "Mod([[a]]**[[b]], [[n]])",
+      "Mod([[c]]**[[d]], [[n]])",
+      "Mod([[a]]**[[b]], [[n]]) + Mod([[c]]**[[d]], [[n]])",
+      "Mod([[a]]**[[b]] * [[c]]**([[d]] + 1), [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[answer]] + 10, [[n]])"
+    ],
+    "solution": "Reduce each factor mod \\( [[n]] \\) using Euler's theorem (\\( \\varphi([[n]]) \\) annihilates both \\( [[a]]^{[[b]]} \\) and \\( [[c]]^{[[d]]} \\) after reducing their exponents), then multiply the residues and reduce mod \\( [[n]] \\) once more: the remainder is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This only reduces the first factor, dropping the second entirely.",
+      "This only reduces the second factor, dropping the first entirely.",
+      "This adds the two reduced factors instead of multiplying them.",
+      "This uses one extra power of the second factor.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is ten more than the correct remainder (a tens-digit slip)."
+    ]
+  },
+  {
+    "template_id": "euler_sum_of_two_powers_v1",
+    "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 3, "hi": 25},
+      "b": {"type": "int", "lo": 20, "hi": 45},
+      "c": {"type": "int", "lo": 3, "hi": 25},
+      "d": {"type": "int", "lo": 20, "hi": 45},
+      "n": {"type": "choice", "values": [63, 75, 99, 121, 128]}
+    },
+    "constraints": ["Eq(gcd([[a]], [[n]]), 1)", "Eq(gcd([[c]], [[n]]), 1)"],
+    "stem": "Using Euler's theorem on each term, find the remainder when \\( [[a]]^{[[b]]} + [[c]]^{[[d]]} \\) is divided by \\( [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] + [[c]]**[[d]], [[n]])"},
+    "distractors": [
+      "Mod([[a]]**[[b]], [[n]])",
+      "Mod([[c]]**[[d]], [[n]])",
+      "Mod([[a]]**[[b]] * [[c]]**[[d]], [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[answer]] + 10, [[n]])",
+      "Mod([[a]]**[[b]] + [[c]]**([[d]] + 1), [[n]])"
+    ],
+    "solution": "Reduce each term separately by Euler's theorem (\\( [[a]]^{\\varphi([[n]])}\\equiv1 \\) and \\( [[c]]^{\\varphi([[n]])}\\equiv1\\pmod{[[n]]} \\)), then add the residues and reduce mod \\( [[n]] \\) once more: the remainder is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This only reduces the first term, dropping the second entirely.",
+      "This only reduces the second term, dropping the first entirely.",
+      "This multiplies the two reduced terms instead of adding them.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is ten more than the correct remainder (a tens-digit slip).",
+      "This uses one extra power on the second term."
+    ]
+  },
+  {
+    "template_id": "euler_factorial_exponent_composite_v1",
+    "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 30},
+      "k": {"type": "int", "lo": 3, "hi": 6},
+      "n": {"type": "choice", "values": [63, 75, 90, 100, 121, 128]}
+    },
+    "constraints": ["Eq(gcd([[a]], [[n]]), 1)"],
+    "stem": "Using Euler's theorem, find the remainder when \\( [[a]]^{[[k]]!} \\) is divided by \\( [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(factorial([[k]])), [[n]])"},
+    "distractors": [
+      "Mod([[a]]**[[k]], [[n]])",
+      "Mod([[a]], [[n]])",
+      "Mod(factorial([[k]]), [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[answer]] + 10, [[n]])",
+      "Mod([[a]]**2, [[n]])"
+    ],
+    "solution": "First compute the exponent itself: \\( [[k]]! \\). By Euler's theorem \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\), so only \\( [[k]]! \\bmod \\varphi([[n]]) \\) matters; evaluating gives \\( [[a]]^{[[k]]!} \\equiv [[answer]] \\pmod{[[n]]} \\).",
+    "distractor_rationales": [
+      "This uses the un-evaluated exponent \\( [[k]] \\) instead of \\( [[k]]! \\).",
+      "This is \\( [[a]] \\bmod [[n]] \\), as if the exponent reduced to 1.",
+      "This reduces the exponent \\( [[k]]! \\) itself mod \\( [[n]] \\) instead of using it as a power of \\( [[a]] \\).",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is ten more than the correct remainder (a tens-digit slip).",
+      "This is \\( [[a]]^{2} \\bmod [[n]] \\), as if the exponent reduced to 2."
+    ]
+  }
+]

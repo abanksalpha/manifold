@@ -112,11 +112,16 @@ TS). Steps:
 ### 4.3 Uncertainty band + confidence
 
 - **Band.** Compute a performance interval `[p_lo, p_hi] = p̄ ± (spread + λ·(1 −
-  coverage))`, where `spread` comes from the per-topic `perf̂` min/max already in
-  `MetricEstimate.low/high`, and the coverage penalty widens the band as coverage
-  falls (`λ` tunable, in `readiness_mapping`). Map `p_lo`, `p_hi` through the same
-  §4.2 curve to get `scaledLow`, `scaledHigh`. The point is `p̄` mapped; the range
-  is the pair. **No bare number is ever emitted** — the display is always the pair
+  coverage) + λ_lapse·lapse_rate)`, where `spread` comes from the per-topic
+  `perf̂` min/max already in `MetricEstimate.low/high`, the coverage penalty
+  widens the band as coverage falls, and the lapse penalty widens it as
+  graduated knowledge proves fragile (**D26**: `lapse_rate` = Revisited /
+  (Independent + Revisited) cards; both `λ` and `λ_lapse` tunable, in
+  `readiness_mapping`). Map `p_lo`, `p_hi` through the same §4.2 curve to get
+  `scaledLow`, `scaledHigh`, then cap both — and the point — at the
+  maturity-residue ceiling (`scale_max − residue`, **D29**), so the app never
+  projects past what it honestly promises. The point is `p̄` mapped; the range is
+  the pair. **No bare number is ever emitted** — the display is always the pair
   plus the point (D13, AC 4).
 - **Confidence** uses the `spec-scoring.md` §10 tiers directly:
   `provisional` at ≥ 200 independent attempts & ≥ 50% coverage; `confident` at
@@ -154,19 +159,33 @@ Extend the `Readiness` union in `scoring.ts` with a third state, replacing
 
 ### 5.1 The level scheme
 
-A card's level is a pure function of its `CardType`; no new stored state, no tag.
+A card's **teaching level** is _competence-driven_, not a raw read of Anki's
+`CardType` (**D24**): it is derived from the card's revlog, no new stored state,
+no tag. New = never attempted; Guided = attempted but not yet at the
+independence bar; Independent = ≥ `independent_successes` correct retrievals
+(reachable the same day, off learning-step reps — no scheduler graduation
+required); Revisited = currently relearning after a lapse (`CardType::Relearn`,
+the one level Anki's card type still names directly).
 
-| Level | `CardType` | Name        | Meaning                             | Counts for Performance? |
-| ----- | ---------- | ----------- | ----------------------------------- | ----------------------- |
-| 0     | `New`      | New         | never attempted; first encounter    | no                      |
-| 1     | `Learn`    | Guided      | in learning steps; support present  | no                      |
-| 2     | `Review`   | Independent | graduated; attempted cold           | **yes**                 |
-| 3     | `Relearn`  | Revisited   | lapsed from Review; being re-taught | no                      |
+| Level | Name        | Competence signal                            | Counts for Performance?              |
+| ----- | ----------- | -------------------------------------------- | ------------------------------------ |
+| 0     | New         | never attempted; first encounter             | no                                   |
+| 1     | Guided      | attempted, below the independence bar        | no                                   |
+| 2     | Independent | ≥ `independent_successes` correct retrievals | only its cold `Review`-kind attempts |
+| 3     | Revisited   | relearning after a lapse                     | no                                   |
 
-The "counts for Performance" column is exactly the §4.1 filter, so the label and
-the honesty filter are the _same distinction_ surfaced twice. The
-New/Learn/Review/Relearn backbone is fixed; the display names (New / Guided /
-Independent / Revisited) are settled.
+The teaching level and the performance filter are **distinct axes, not one
+distinction surfaced twice** (**D26**, correcting the original framing). The
+label reads _competence now_ — teaching-Independent is reachable the same day a
+skill is learned — whereas Performance and the readiness give-up evidence count
+only _cold, unsupported_ `Review`-kind attempts (§4.1); a card can be
+teaching-Independent while carrying zero `Review`-kind evidence, so the two
+never collapse into one signal. "Independent" is likewise **not** "ready":
+readiness is durable, stability-based mastery (**D25**), weeks away, tracked
+separately by the violet _mastered_ badge. And the lapse axis feeds back —
+graduated cards that fall to Revisited raise the lapse rate, which _widens the
+readiness confidence band_ (**D26**), because fragile knowledge is less certain
+evidence. The New/Guided/Independent/Revisited display names are settled.
 
 ### 5.2 Where it is computed and surfaced
 
@@ -202,7 +221,11 @@ All require a full `just check` (proto rebuild), not just `cargo check`.
   are not duplicated in `scoring.ts`. (Alternative considered: a generated TS
   constant module; rejected to avoid divergence.)
 - `blueprint.json`: add `readiness_mapping { median_raw_fraction, performance_sd,
-  coverage_band_lambda }` and stop marking the scale/anchors `dead_code`.
+  coverage_band_lambda, lapse_band_lambda, targets[], hours_curve, maturity_residue }`
+  (the D29 target ladder, logarithmic hours-to-target curve and residue ceiling,
+  plus the D26 lapse widener) and stop marking the scale/anchors `dead_code`. The
+  `ScoringConfig` proto message carries all of them so `scoring.ts` has a single
+  source of truth and duplicates nothing.
 
 ## 7. Honesty & placeholder mode (the hard constraint)
 

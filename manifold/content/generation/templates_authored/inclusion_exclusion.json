@@ -1,0 +1,208 @@
+[
+{
+ "template_id": "incl_excl_two_set_union_v1",
+ "skill_id": "inclusion_exclusion",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "ra": {"type": "int", "lo": 10, "hi": 60},
+  "rb": {"type": "int", "lo": 10, "hi": 60},
+  "rab": {"type": "int", "lo": 3, "hi": 25}
+ },
+ "constraints": [],
+ "derived": {"A": "[[ra]] + [[rab]]", "B": "[[rb]] + [[rab]]"},
+ "stem": "In a survey, \\( [[A]] \\) people like coffee, \\( [[B]] \\) people like tea, and \\( [[rab]] \\) people like both. How many people like coffee OR tea (at least one of the two)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[A]] + [[B]] - [[rab]]"},
+ "distractors": [
+  "[[A]] + [[B]]",
+  "[[A]] + [[B]] - 2*[[rab]]",
+  "[[A]] - [[rab]] + [[B]] - [[rab]]",
+  "[[rab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion, \\( |A\\cup B| = |A|+|B|-|A\\cap B| = [[A]]+[[B]]-[[rab]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the overlap, double-counting people who like both.",
+  "This subtracts the overlap twice instead of once.",
+  "This subtracts the overlap from EACH group before adding, over-correcting.",
+  "This reports only the overlap, not the union.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "incl_excl_two_set_neither_v1",
+ "skill_id": "inclusion_exclusion",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "ra": {"type": "int", "lo": 10, "hi": 50},
+  "rb": {"type": "int", "lo": 10, "hi": 50},
+  "rab": {"type": "int", "lo": 3, "hi": 20},
+  "rnone": {"type": "int", "lo": 5, "hi": 40}
+ },
+ "constraints": [],
+ "derived": {"A": "[[ra]] + [[rab]]", "B": "[[rb]] + [[rab]]", "total": "[[ra]] + [[rb]] + [[rab]] + [[rnone]]"},
+ "stem": "Of the \\( [[total]] \\) people surveyed, \\( [[A]] \\) like coffee, \\( [[B]] \\) like tea, and \\( [[rab]] \\) like both. How many people like NEITHER coffee nor tea?",
+ "answer_spec": {"op": "evaluate", "expr": "[[total]] - ([[A]] + [[B]] - [[rab]])"},
+ "distractors": [
+  "[[total]] - [[A]] - [[B]]",
+  "[[total]] - [[rab]]",
+  "[[total]] - [[A]] - [[B]] - [[rab]]",
+  "[[rab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "First find the union: \\( |A\\cup B| = [[A]]+[[B]]-[[rab]] \\). The complement within the total is \\( [[total]] - \\left([[A]]+[[B]]-[[rab]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts both group sizes without adding back the overlap, over-subtracting.",
+  "This only removes the overlap from the total, ignoring the rest of each group.",
+  "This subtracts the overlap an extra, unnecessary time.",
+  "This reports the overlap itself instead of the count outside both groups.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "incl_excl_three_set_union_v1",
+ "skill_id": "inclusion_exclusion",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "r_a": {"type": "int", "lo": 2, "hi": 15},
+  "r_b": {"type": "int", "lo": 2, "hi": 15},
+  "r_c": {"type": "int", "lo": 2, "hi": 15},
+  "r_ab": {"type": "int", "lo": 1, "hi": 10},
+  "r_ac": {"type": "int", "lo": 1, "hi": 10},
+  "r_bc": {"type": "int", "lo": 1, "hi": 10},
+  "r_abc": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {
+  "A": "[[r_a]] + [[r_ab]] + [[r_ac]] + [[r_abc]]",
+  "B": "[[r_b]] + [[r_ab]] + [[r_bc]] + [[r_abc]]",
+  "C": "[[r_c]] + [[r_ac]] + [[r_bc]] + [[r_abc]]",
+  "AB": "[[r_ab]] + [[r_abc]]",
+  "AC": "[[r_ac]] + [[r_abc]]",
+  "BC": "[[r_bc]] + [[r_abc]]",
+  "ABC": "[[r_abc]]"
+ },
+ "stem": "Among a group of students, \\( [[A]] \\) take Math, \\( [[B]] \\) take Physics, and \\( [[C]] \\) take Chemistry. \\( [[AB]] \\) take Math and Physics, \\( [[AC]] \\) take Math and Chemistry, \\( [[BC]] \\) take Physics and Chemistry, and \\( [[ABC]] \\) take all three. How many students take AT LEAST ONE of the three subjects?",
+ "answer_spec": {"op": "evaluate", "expr": "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] + [[ABC]]"},
+ "distractors": [
+  "[[A]] + [[B]] + [[C]]",
+  "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]]",
+  "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] - [[ABC]]",
+  "[[A]] + [[B]] + [[C]] - [[ABC]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion for three sets, \\( |A\\cup B\\cup C| = |A|+|B|+|C|-|A\\cap B|-|A\\cap C|-|B\\cap C|+|A\\cap B\\cap C| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the three totals without removing any of the overlaps.",
+  "This forgets to add back the triple overlap, under-correcting for it being subtracted three times.",
+  "This subtracts the triple overlap again instead of adding it back.",
+  "This skips the pairwise overlaps entirely, only correcting for the triple overlap.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "incl_excl_divisible_by_a_or_b_v1",
+ "skill_id": "inclusion_exclusion",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 60, "hi": 500},
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "b": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "How many integers from 1 to \\( [[N]] \\) (inclusive) are divisible by \\( [[a]] \\) or by \\( [[b]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/lcm([[a]],[[b]]))"},
+ "distractors": [
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]])",
+  "floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/lcm([[a]],[[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion, the count is \\( \\left\\lfloor\\frac{N}{a}\\right\\rfloor+\\left\\lfloor\\frac{N}{b}\\right\\rfloor-\\left\\lfloor\\frac{N}{\\mathrm{lcm}(a,b)}\\right\\rfloor = \\lfloor[[N]]/[[a]]\\rfloor+\\lfloor[[N]]/[[b]]\\rfloor-\\lfloor[[N]]/\\mathrm{lcm}([[a]],[[b]])\\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the multiples of both \\( a \\) and \\( b \\), double-counting them.",
+  "This reports only the multiples of both, not the union.",
+  "This uses the product \\( ab \\) instead of \\( \\mathrm{lcm}(a,b) \\) for the overlap, which overcounts unless \\( a,b \\) are coprime.",
+  "This reports only the overlap term, not the full union.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "incl_excl_divisible_by_a_b_or_c_v1",
+ "skill_id": "inclusion_exclusion",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 100, "hi": 600},
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 2, "hi": 9},
+  "c": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Ne([[a]], [[c]])", "Ne([[b]], [[c]])"],
+ "stem": "How many integers from 1 to \\( [[N]] \\) (inclusive) are divisible by \\( [[a]] \\), by \\( [[b]] \\), or by \\( [[c]] \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]]) - floor([[N]]/lcm([[a]],[[b]])) - floor([[N]]/lcm([[a]],[[c]])) - floor([[N]]/lcm([[b]],[[c]])) + floor([[N]]/lcm(lcm([[a]],[[b]]),[[c]]))"
+ },
+ "distractors": [
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]])",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]]) - floor([[N]]/lcm([[a]],[[b]])) - floor([[N]]/lcm([[a]],[[c]])) - floor([[N]]/lcm([[b]],[[c]]))",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]]) - floor([[N]]/lcm(lcm([[a]],[[b]]),[[c]]))",
+  "floor([[N]]/lcm(lcm([[a]],[[b]]),[[c]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion for three sets of multiples, the count is \\( \\sum\\lfloor N/x\\rfloor - \\sum\\lfloor N/\\mathrm{lcm}(x,y)\\rfloor + \\lfloor N/\\mathrm{lcm}(a,b,c)\\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds all three counts without removing any of the pairwise overlaps.",
+  "This forgets to add back the triple overlap (multiples of \\( \\mathrm{lcm}(a,b,c) \\)).",
+  "This skips the pairwise overlaps entirely, only correcting for the triple overlap.",
+  "This reports only the triple-overlap term, not the full union.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "incl_excl_divisible_neither_v1",
+ "skill_id": "inclusion_exclusion",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 60, "hi": 500},
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "b": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "How many integers from 1 to \\( [[N]] \\) (inclusive) are divisible by NEITHER \\( [[a]] \\) nor \\( [[b]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[N]] - (floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/lcm([[a]],[[b]])))"},
+ "distractors": [
+  "[[N]] - floor([[N]]/[[a]]) - floor([[N]]/[[b]])",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/lcm([[a]],[[b]]))",
+  "[[N]] - floor([[N]]/lcm([[a]],[[b]]))",
+  "[[N]] - floor([[N]]/([[a]]*[[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "First find the union (divisible by \\( a \\) or \\( b \\)) via inclusion-exclusion, then subtract from \\( N \\): \\( [[N]] - \\left(\\lfloor[[N]]/[[a]]\\rfloor+\\lfloor[[N]]/[[b]]\\rfloor-\\lfloor[[N]]/\\mathrm{lcm}([[a]],[[b]])\\rfloor\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts both counts without adding back the overlap, over-subtracting.",
+  "This reports the union count itself, not its complement.",
+  "This only removes the overlap from \\( N \\), ignoring the rest of each group.",
+  "This uses the product instead of the lcm for the overlap, which is wrong unless \\( a,b \\) are coprime.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+}
+]

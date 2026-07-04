@@ -1,0 +1,129 @@
+[
+ {
+  "template_id": "domain_two_radicals_count_v1",
+  "skill_id": "domain_from_an_inequality_radicals_logs_denominators",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Ge([[b]] - [[a]], 2)"],
+  "stem": "How many integers are in the domain of \\( f(x) = \\sqrt{x - ([[a]])} + \\sqrt{([[b]]) - x} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]] - [[a]] + 1"},
+  "distractors": [
+   "[[b]] - [[a]]",
+   "[[b]] - [[a]] + 2",
+   "[[b]] - [[a]] - 1",
+   "[[answer]] + 3",
+   "[[answer]] + 4",
+   "[[answer]] + 5"
+  ],
+  "solution": "Both radicands must be nonnegative: \\( x - ([[a]]) \\ge 0 \\) and \\( ([[b]]) - x \\ge 0 \\), giving \\( [[a]] \\le x \\le [[b]] \\). This closed interval contains \\( [[b]] - [[a]] + 1 = [[answer]] \\) integers.",
+  "distractor_rationales": [
+   "This is the interval length \\( b - a \\); counting integers in a closed interval adds 1.",
+   "This over-counts by one beyond the correct integer count.",
+   "This treats the endpoints as excluded, but the radicals allow equality.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "domain_radical_over_denominator_window_v1",
+  "skill_id": "domain_from_an_inequality_radicals_logs_denominators",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 4},
+   "n": {"type": "int", "lo": 4, "hi": 10},
+   "p": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Ge([[p]], 1)", "Le([[p]], [[n]])"],
+  "derived": {
+   "U": "[[a]] + [[n]]",
+   "excl": "[[a]] + [[p]]"
+  },
+  "stem": "How many integers \\( x \\) with \\( [[a]] \\le x \\le [[U]] \\) lie in the domain of \\( f(x) = \\dfrac{\\sqrt{x - ([[a]])}}{x - ([[excl]])} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[U]] - [[a]] + 1) - 1"},
+  "distractors": [
+   "[[U]] - [[a]] + 1",
+   "[[U]] - [[a]]",
+   "[[U]] - [[a]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The radical requires \\( x \\ge [[a]] \\), and the denominator excludes the single point \\( x = [[excl]] \\), which lies inside \\( [[a]], [[U]] \\). Of the \\( [[U]] - [[a]] + 1 \\) integers in \\( [[a]], [[U]] \\), removing that one excluded point leaves \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to remove the point where the denominator vanishes.",
+   "This under-counts the window by one before removing the excluded point.",
+   "This removes the excluded point but also drops an extra integer from the window.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "domain_log_plus_radical_mixed_endpoints_v1",
+  "skill_id": "domain_from_an_inequality_radicals_logs_denominators",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 6}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Ge([[b]] - [[a]], 2)"],
+  "stem": "How many integers are in the domain of \\( f(x) = \\log(x - ([[a]])) + \\sqrt{([[b]]) - x} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]] - [[a]]"},
+  "distractors": [
+   "[[b]] - [[a]] + 1",
+   "[[b]] - [[a]] - 1",
+   "[[b]] - [[a]] + 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "The logarithm requires \\( x - ([[a]]) > 0 \\), a STRICT inequality, while the radical only requires \\( ([[b]]) - x \\ge 0 \\). So the domain is the half-open interval \\( ([[a]], [[b]]] \\), which contains \\( [[b]] - ([[a]]) = [[answer]] \\) integers (excluding \\( [[a]] \\) but including \\( [[b]] \\)).",
+  "distractor_rationales": [
+   "This treats \\( [[a]] \\) as included, but the logarithm's strict inequality excludes it.",
+   "This also excludes \\( [[b]] \\), but the radical allows equality there.",
+   "This treats both endpoints as included, ignoring the logarithm's strict inequality.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count."
+  ]
+ },
+ {
+  "template_id": "domain_rational_two_excluded_points_v1",
+  "skill_id": "domain_from_an_inequality_radicals_logs_denominators",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -5, "hi": 3},
+   "q": {"type": "int", "lo": -4, "hi": 6},
+   "L": {"type": "int", "lo": -8, "hi": -1},
+   "U": {"type": "int", "lo": 4, "hi": 10}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Le([[L]], [[p]])", "Le([[q]], [[U]])"],
+  "stem": "How many integers \\( x \\) with \\( [[L]] \\le x \\le [[U]] \\) lie in the domain of \\( f(x) = \\dfrac{1}{(x - ([[p]]))(x - ([[q]]))} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[U]] - [[L]] + 1) - 2"},
+  "distractors": [
+   "[[U]] - [[L]] + 1",
+   "([[U]] - [[L]] + 1) - 1",
+   "([[U]] - [[L]] + 1) - 3",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 4"
+  ],
+  "solution": "The denominator vanishes at the two points \\( x = [[p]] \\) and \\( x = [[q]] \\), both of which lie in \\( [[L]], [[U]] \\). Removing these 2 excluded points from the \\( [[U]] - [[L]] + 1 \\) integers in the window leaves \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to remove either excluded point.",
+   "This removes only one of the two excluded points.",
+   "This removes an extra point that was never excluded.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ }
+]

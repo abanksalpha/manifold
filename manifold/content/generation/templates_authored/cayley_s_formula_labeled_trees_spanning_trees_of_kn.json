@@ -1,0 +1,109 @@
+[
+ {
+  "template_id": "cayley_labeled_trees_v1",
+  "skill_id": "cayley_s_formula_labeled_trees_spanning_trees_of_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 14
+   }
+  },
+  "constraints": [],
+  "stem": "How many distinct labeled trees can be formed on \\( [[n]] \\) labeled vertices? (Equivalently, how many spanning trees does \\( K_{[[n]]} \\) have?)",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[n]]**([[n]] - 2)"
+  },
+  "distractors": [
+   "[[n]]**([[n]] - 1)",
+   "[[n]]**([[n]] - 3)",
+   "([[n]] - 1)**([[n]] - 2)",
+   "factorial([[n]] - 1)",
+   "factorial([[n]])",
+   "binomial([[n]], 2)",
+   "[[answer]] + 1"
+  ],
+  "solution": "By Cayley's formula, the number of labeled trees on \\( n \\) vertices is \\( n^{n-2} \\). Here that is \\( [[n]]^{[[n]]-2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the exponent \\( n-1 \\) instead of \\( n-2 \\).",
+   "This uses the exponent \\( n-3 \\) instead of \\( n-2 \\).",
+   "This uses base \\( n-1 \\) instead of \\( n \\).",
+   "This counts permutations \\( (n-1)! \\), a common wrong closed form.",
+   "This counts all permutations \\( n! \\) of the vertices.",
+   "This counts the edges of \\( K_n \\), not its spanning trees.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "cayley_rooted_trees_v2",
+  "skill_id": "cayley_s_formula_labeled_trees_spanning_trees_of_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 2,
+    "hi": 16
+   }
+  },
+  "constraints": [],
+  "stem": "How many distinct ROOTED labeled trees are there on \\( [[n]] \\) labeled vertices (i.e., a labeled tree together with a choice of one vertex as the root)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[n]]**([[n]] - 1)"
+  },
+  "distractors": [
+   "[[n]]**([[n]] - 2)",
+   "[[n]]**[[n]]",
+   "([[n]] - 1)**([[n]] - 1)",
+   "[[n]]*([[n]] - 1)**([[n]] - 2)",
+   "factorial([[n]] - 1)",
+   "[[answer]] + 1"
+  ],
+  "solution": "By Cayley's formula there are \\( n^{n-2} \\) unrooted labeled trees on \\( n \\) vertices, and each can be rooted at any of its \\( n \\) vertices, giving \\( n \\cdot n^{n-2} = n^{n-1} \\) rooted labeled trees. Here that is \\( [[n]]^{[[n]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the unrooted count \\( n^{n-2} \\); it forgets to multiply by the \\( n \\) choices of root.",
+   "This uses the exponent \\( n \\) instead of \\( n-1 \\).",
+   "This uses base \\( n-1 \\) instead of \\( n \\).",
+   "This multiplies the unrooted-tree exponent pattern incorrectly.",
+   "This counts permutations \\( (n-1)! \\), a common wrong closed form.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "cayley_rooted_forest_v3",
+  "skill_id": "cayley_s_formula_labeled_trees_spanning_trees_of_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 14},
+   "k": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "stem": "Consider all labeled forests on vertex set \\( \\{1, 2, \\ldots, [[n]]\\} \\) that consist of exactly \\( [[k]] \\) trees, where vertices \\( 1, 2, \\ldots, [[k]] \\) are required to be the roots of these \\( [[k]] \\) trees (one root per tree). How many such labeled forests are there?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[k]]*[[n]]**([[n]] - [[k]] - 1)"
+  },
+  "distractors": [
+   "[[n]]**([[n]] - [[k]] - 1)",
+   "[[k]]*[[n]]**([[n]] - [[k]])",
+   "[[k]]*[[n]]**([[n]] - 2)",
+   "[[n]]**([[n]] - 2)",
+   "binomial([[n]], [[k]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "This is the generalized Cayley forest formula: the number of labeled forests on \\( n \\) vertices with \\( k \\) trees rooted at \\( k \\) specified vertices is \\( k \\cdot n^{n-k-1} \\). Here that is \\( [[k]] \\cdot [[n]]^{[[n]]-[[k]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of \\( k \\) out front.",
+   "This uses the exponent \\( n-k \\) instead of \\( n-k-1 \\).",
+   "This keeps the plain Cayley exponent \\( n-2 \\) instead of adjusting it for \\( k \\) roots.",
+   "This is the ordinary (unrooted, single-tree) Cayley formula, ignoring the forest structure entirely.",
+   "This confuses the forest count with a simple choice of which vertices are roots.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

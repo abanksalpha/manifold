@@ -1,0 +1,159 @@
+[
+ {
+  "template_id": "chromatic_cycle_v1",
+  "skill_id": "chromatic_number_basics",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 24
+   }
+  },
+  "constraints": [],
+  "stem": "What is the chromatic number of the cycle graph \\( C_{[[n]]} \\) (a single cycle passing through all \\( [[n]] \\) vertices)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2 + Mod([[n]], 2)"
+  },
+  "distractors": [
+   "3 - Mod([[n]], 2)",
+   "[[n]]",
+   "[[n]] - 1",
+   "[[n]] + 1",
+   "2*[[n]]",
+   "1",
+   "4"
+  ],
+  "solution": "A cycle needs 2 colors when its length is even and 3 colors when its length is odd, since an odd cycle cannot be properly 2-colored. For \\( C_{[[n]]} \\) the chromatic number is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the parity rule, using 3 colors for even cycles and 2 for odd ones.",
+   "This mistakes the cycle for a complete graph, where \\( \\chi(K_n) = n \\).",
+   "This uses \\( n - 1 \\), as if one color could be saved from a complete graph.",
+   "This uses \\( n + 1 \\) colors, far more than a cycle requires.",
+   "This doubles the number of vertices.",
+   "This claims a single color suffices, but adjacent vertices must differ.",
+   "This fixes the answer at 4 colors regardless of the cycle length."
+  ]
+ },
+ {
+  "template_id": "chromatic_complete_graph_v2",
+  "skill_id": "chromatic_number_basics",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "What is the chromatic number of the complete graph \\( K_{[[n]]} \\) (every pair of the \\( [[n]] \\) vertices is joined by an edge)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+  "distractors": [
+   "[[n]] - 1",
+   "[[n]] + 1",
+   "binomial([[n]], 2)",
+   "2 + Mod([[n]], 2)",
+   "1",
+   "[[n]]*([[n]] - 1)"
+  ],
+  "solution": "Every pair of vertices in \\( K_n \\) is adjacent, so all \\( n \\) vertices need pairwise-different colors: \\( \\chi(K_{[[n]]}) = [[n]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This saves one color, but every vertex is adjacent to every other, so none can share a color.",
+   "This uses one more color than the vertices actually require.",
+   "This confuses the chromatic number with the edge count \\( \\binom{n}{2} \\).",
+   "This applies the cycle-graph parity rule, which does not apply to a complete graph.",
+   "This claims a single color suffices, but every pair of vertices is adjacent.",
+   "This confuses the chromatic number with a product of vertex counts."
+  ]
+ },
+ {
+  "template_id": "chromatic_complete_bipartite_v3",
+  "skill_id": "chromatic_number_basics",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 10},
+   "n": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "What is the chromatic number of the complete bipartite graph \\( K_{[[m]],[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2"},
+  "distractors": [
+   "[[m]]",
+   "[[n]]",
+   "[[m]] + [[n]]",
+   "[[m]]*[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Color every vertex on one side color 1 and every vertex on the other side color 2; since edges only run between the two sides, no edge joins two vertices of the same color, and one color is not enough because every vertex on one side is adjacent to every vertex on the other. So \\( \\chi(K_{[[m]],[[n]]}) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the size of one part instead of the number of colors needed.",
+   "This uses the size of the other part instead of the number of colors needed.",
+   "This adds the two part sizes, confusing color count with vertex count.",
+   "This confuses the chromatic number with the edge count \\( mn \\).",
+   "This overestimates by one color; two colors always suffice for a bipartite graph.",
+   "This overestimates by two colors; two colors always suffice for a bipartite graph."
+  ]
+ },
+ {
+  "template_id": "chromatic_wheel_v4",
+  "skill_id": "chromatic_number_basics",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "The wheel graph \\( W_{[[n]]} \\) is formed by taking a cycle \\( C_{[[n]]} \\) on \\( [[n]] \\) vertices and adding one extra hub vertex joined to every vertex of the cycle. What is the chromatic number of \\( W_{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "3 + Mod([[n]], 2)"},
+  "distractors": [
+   "2 + Mod([[n]], 2)",
+   "4 - Mod([[n]], 2)",
+   "[[n]]",
+   "[[n]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 1"
+  ],
+  "solution": "The outer cycle \\( C_{[[n]]} \\) alone needs 2 colors if \\( [[n]] \\) is even and 3 if \\( [[n]] \\) is odd. The hub is adjacent to every cycle vertex, so it always needs one MORE color than the cycle used, giving \\( \\chi(W_{[[n]]}) = 3 + ([[n]] \\bmod 2) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the cycle's own chromatic number; it forgets the hub, which is adjacent to every cycle vertex and needs an extra color.",
+   "This flips which parity needs the extra color.",
+   "This mistakes the wheel for a complete graph, where \\( \\chi(K_n) = n \\).",
+   "This uses one more color than the wheel actually requires.",
+   "This is one color short of the correct count.",
+   "This is one color more than the correct count."
+  ]
+ },
+ {
+  "template_id": "chromatic_complete_tripartite_v5",
+  "skill_id": "chromatic_number_basics",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 8},
+   "b": {"type": "int", "lo": 1, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "The complete tripartite graph \\( K_{[[a]],[[b]],[[c]]} \\) has three groups of \\( [[a]] \\), \\( [[b]] \\), and \\( [[c]] \\) vertices, with an edge between every pair of vertices that lie in DIFFERENT groups (and no edges within a group). What is the chromatic number of this graph?",
+  "answer_spec": {"op": "evaluate", "expr": "3"},
+  "distractors": [
+   "[[a]] + [[b]] + [[c]]",
+   "[[a]]",
+   "[[a]]*[[b]]*[[c]]",
+   "2",
+   "[[answer]] + 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Color every vertex by its group (3 colors total). Vertices in the same group are never adjacent, so this is proper, and one color per group is necessary since every pair of groups is fully joined by edges. So \\( \\chi = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds up all the vertices, confusing chromatic number with vertex count.",
+   "This uses just one group's size instead of the number of groups.",
+   "This confuses the chromatic number with the product of the group sizes.",
+   "This is the chromatic number of a complete BIPARTITE (two-group) graph, not a tripartite one.",
+   "This overestimates by one color; three colors, one per group, always suffice.",
+   "This overestimates by two colors; three colors, one per group, always suffice."
+  ]
+ }
+]

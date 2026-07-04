@@ -1,0 +1,152 @@
+[
+ {
+  "template_id": "area_horizontal_strips_y_v1",
+  "skill_id": "area_by_horizontal_strips_integrate_in_y",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -4, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 5}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[p]] + [[q]], 0)"],
+  "derived": {"m": "[[p]] + [[q]]", "k": "-[[p]]*[[q]]"},
+  "stem": "Find the area of the region enclosed between the parabola \\( x = y^{2} \\) and the line \\( x = [[m]]y + ([[k]]) \\), integrating with respect to \\( y \\) using horizontal strips.",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]*y + [[k]] - y**2", "var": "y", "bounds": ["[[p]]", "[[q]]"]},
+  "distractors": [
+   "2*[[answer]]",
+   "3*[[answer]]",
+   "([[q]] - [[p]])**2",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The curves meet where \\( y^{2} = [[m]]y + ([[k]]) \\), namely at \\( y = [[p]] \\) and \\( y = [[q]] \\). A horizontal strip has width \\( \\text{right} - \\text{left} = [[m]]y + ([[k]]) - y^{2} \\), so the area is \\( \\int_{[[p]]}^{[[q]]}\\left([[m]]y + ([[k]]) - y^{2}\\right)dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the correct area.",
+   "This triples the correct area.",
+   "This is the square of the vertical extent, not the area.",
+   "This integrates \\( \\text{left} - \\text{right} \\), giving the negative of the area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "area_cubic_vs_y_axis_v1",
+  "skill_id": "area_by_horizontal_strips_integrate_in_y",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 5, "hi": 9}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "The sideways curve \\( x = y(y-[[p]])(y-[[q]]) \\) crosses the \\( y \\)-axis at \\( y = 0, [[p]], [[q]] \\), lying to the right of the axis on part of \\( 0 \\le y \\le [[q]] \\) and to the left on the rest. Using horizontal strips, find the TOTAL area of the region(s) enclosed between the curve and the \\( y \\)-axis on this range.",
+  "answer_spec": {"op": "integrate", "expr": "Abs(y*(y - [[p]])*(y - [[q]]))", "var": "y", "bounds": ["0", "[[q]]"]},
+  "distractors": [
+   "[[q]]**4/4 - ([[p]]+[[q]])*[[q]]**3/3 + [[p]]*[[q]]**3/2",
+   "[[answer]]/2",
+   "2*[[answer]]",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[p]]",
+   "[[q]]**2*([[q]]-[[p]])/2"
+  ],
+  "solution": "The curve is to the right of the \\( y \\)-axis on \\( (0,[[p]]) \\) and to the left on \\( ([[p]],[[q]]) \\), so the total (unsigned) area requires \\( \\int_{0}^{[[q]]}\\left|y(y-[[p]])(y-[[q]])\\right|dy = [[answer]] \\), not the plain (signed) integral.",
+  "distractor_rationales": [
+   "This is the plain signed integral, which cancels the two regions instead of adding their areas.",
+   "This only counts one of the two enclosed regions.",
+   "This double-counts the enclosed area.",
+   "This is off by \\( [[p]] \\) from the correct total area.",
+   "This is off by \\( [[p]] \\) from the correct total area.",
+   "This treats the region as a triangle-like shape with no calculus basis."
+  ]
+ },
+ {
+  "template_id": "area_two_sideways_parabolas_v1",
+  "skill_id": "area_by_horizontal_strips_integrate_in_y",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "s": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {"q": "[[p]] + 2*[[s]]**2"},
+  "stem": "Find the area of the region enclosed between the rightward-opening curve \\( x = y^{2} + ([[p]]) \\) and the leftward-opening curve \\( x = -y^{2} + [[q]] \\), using horizontal strips.",
+  "answer_spec": {"op": "integrate", "expr": "(-y**2 + [[q]]) - (y**2 + [[p]])", "var": "y", "bounds": ["-[[s]]", "[[s]]"]},
+  "distractors": [
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "(2*[[s]])**2",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The curves meet where \\( y^{2}+([[p]]) = -y^{2}+[[q]] \\), i.e. at \\( y = \\pm[[s]] \\). The leftward curve lies to the right of the rightward one between these points, so the area is \\( \\int_{-[[s]]}^{[[s]]}\\left((-y^{2}+[[q]]) - (y^{2}+([[p]]))\\right)dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the correct area.",
+   "This halves the correct area.",
+   "This is the square of the vertical extent, not the area.",
+   "This integrates \\( \\text{left} - \\text{right} \\), giving the negative of the area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "area_abs_value_triangle_y_v1",
+  "skill_id": "area_by_horizontal_strips_integrate_in_y",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Find the area of the triangular region enclosed between the sideways V-shaped curve \\( x = |y - [[h]]| \\) and the vertical line \\( x = [[k]] \\), using horizontal strips.",
+  "answer_spec": {"op": "integrate", "expr": "[[k]] - Abs(y - [[h]])", "var": "y", "bounds": ["[[h]] - [[k]]", "[[h]] + [[k]]"]},
+  "distractors": [
+   "2*[[k]]*[[k]]",
+   "[[k]]*[[k]]/2",
+   "2*[[answer]]",
+   "-[[answer]]",
+   "[[answer]] + [[h]]",
+   "[[answer]] - [[h]]"
+  ],
+  "solution": "The curves meet where \\( |y-[[h]]| = [[k]] \\), i.e. \\( y = [[h]]-[[k]] \\) and \\( y = [[h]]+[[k]] \\). The line lies to the right of the V-shape between these points, giving a triangle of base \\( 2[[k]] \\) and height \\( [[k]] \\): \\( \\int_{[[h]]-[[k]]}^{[[h]]+[[k]]}\\left([[k]] - |y-[[h]]|\\right)dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the full base times height, \\( 2k \\cdot k \\), instead of half that for a triangle.",
+   "This computes half the triangle's area as if the base were only \\( k \\).",
+   "This doubles the correct area.",
+   "This integrates \\( \\text{left} - \\text{right} \\), giving the negative of the area.",
+   "This is off by \\( [[h]] \\) from the correct area."
+  ]
+ },
+ {
+  "template_id": "area_given_interval_no_intersection_y_v1",
+  "skill_id": "area_by_horizontal_strips_integrate_in_y",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 5, "hi": 10},
+   "q": {"type": "int", "lo": -4, "hi": 4},
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "b": {"type": "int", "lo": 3, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Gt(4*[[p]], [[q]]**2)"],
+  "stem": "On the interval \\( [[a]] \\le y \\le [[b]] \\), the curve \\( x = y^{2} + [[p]] \\) lies entirely to the right of the line \\( x = [[q]]y \\). Using horizontal strips, find the area of the region between them on this interval.",
+  "answer_spec": {"op": "integrate", "expr": "(y**2 + [[p]]) - [[q]]*y", "var": "y", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "([[b]]**2+[[p]]-[[q]]*[[b]]) - ([[a]]**2+[[p]]-[[q]]*[[a]])",
+   "([[b]]**2+[[p]]-[[q]]*[[b]])*([[b]]-[[a]])",
+   "-[[answer]]",
+   "2*[[answer]]",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[p]]"
+  ],
+  "solution": "Since \\( y^{2}+[[p]]-[[q]]y \\) has no real roots (its discriminant \\( [[q]]^{2}-4[[p]] \\) is negative), the curve stays to the right of the line on the whole given interval, and the area is directly \\( \\int_{[[a]]}^{[[b]]}\\left((y^{2}+[[p]]) - [[q]]y\\right)dy = [[answer]] \\), with no need to solve for intersection points first.",
+  "distractor_rationales": [
+   "This evaluates the horizontal gap only at \\( y=[[b]] \\) minus at \\( y=[[a]] \\), instead of integrating it.",
+   "This uses the gap at \\( y=[[b]] \\) times the width, a right-rectangle approximation.",
+   "This integrates \\( \\text{left} - \\text{right} \\), giving the negative of the area.",
+   "This doubles the correct area.",
+   "This is off by \\( [[p]] \\) from the correct area."
+  ]
+ }
+]

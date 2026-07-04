@@ -1,0 +1,135 @@
+[
+ {
+  "template_id": "lagrange_weighted_sum_of_squares_line_v1",
+  "skill_id": "lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 5},
+   "B": {"type": "int", "lo": 1, "hi": 5},
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": -5, "hi": 5},
+   "r": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[r]], 0)"],
+  "stem": "Use Lagrange multipliers to find the minimum value of \\( f(x,y) = [[A]]x^{2} + [[B]]y^{2} \\) subject to the constraint \\( [[p]]x + [[q]]y = [[r]] \\).",
+  "answer_spec": {"op": "system", "equations": ["2*[[A]]*x - lam*[[p]] = 0", "2*[[B]]*y - lam*[[q]] = 0", "[[p]]*x + [[q]]*y - [[r]] = 0"], "vars": ["x", "y", "lam"], "want": "[[A]]*x**2 + [[B]]*y**2"},
+  "distractors": [
+   "0",
+   "[[A]]*[[B]]*[[r]]**2/([[A]]*[[q]]**2+[[B]]*[[p]]**2)",
+   "[[r]]**2/([[p]]**2+[[q]]**2)",
+   "[[B]]*([[r]]/[[q]])**2",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The Lagrange conditions are \\( 2[[A]]x=\\lambda [[p]] \\), \\( 2[[B]]y=\\lambda [[q]] \\), together with the constraint \\( [[p]]x+[[q]]y=[[r]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the unconstrained critical value of \\( f \\) at the origin, ignoring the constraint entirely.",
+   "This swaps which weight (\\( [[A]] \\) or \\( [[B]] \\)) pairs with which constraint coefficient squared.",
+   "This ignores the weights \\( [[A]],[[B]] \\) entirely, as if minimizing \\( x^2+y^2 \\).",
+   "This naively sets \\( x=0 \\) and solves the constraint for \\( y \\), rather than actually minimizing.",
+   "This is off by two from the correct minimum value.",
+   "This is off by two from the correct minimum value."
+  ]
+ },
+ {
+  "template_id": "lagrange_product_objective_line_v1",
+  "skill_id": "lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+  "stem": "Use Lagrange multipliers to find the extreme value of \\( f(x,y) = xy \\) subject to the constraint \\( [[a]]x + [[b]]y = [[c]] \\).",
+  "answer_spec": {"op": "system", "equations": ["y - lam*[[a]] = 0", "x - lam*[[b]] = 0", "[[a]]*x + [[b]]*y - [[c]] = 0"], "vars": ["x", "y", "lam"], "want": "x*y"},
+  "distractors": [
+   "0",
+   "[[c]]**2/([[a]]*[[b]])",
+   "[[c]]**2/(2*[[a]]*[[b]])",
+   "[[c]]**2/(4*[[a]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The Lagrange conditions are \\( y=\\lambda [[a]] \\), \\( x=\\lambda [[b]] \\), together with the constraint \\( [[a]]x+[[b]]y=[[c]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f=xy \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f \\) evaluated at the origin, ignoring the constraint entirely.",
+   "This drops the factor of 4 that arises from solving the Lagrange system.",
+   "This drops a factor of 2 that arises from solving the Lagrange system.",
+   "This mistakenly uses \\( [[a]] \\) for both coefficients instead of correctly pairing \\( [[a]] \\) with \\( x \\) and \\( [[b]] \\) with \\( y \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_mixed_quadratic_form_line_v1",
+  "skill_id": "lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 4},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": -4, "hi": 4},
+   "q": {"type": "int", "lo": -4, "hi": 4},
+   "r": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[r]], 0)", "Ne([[A]]*[[q]]**2 - [[B]]*[[p]]*[[q]] + [[C]]*[[p]]**2, 0)"],
+  "stem": "Use Lagrange multipliers to find the minimum value of \\( f(x,y) = [[A]]x^{2} + [[B]]xy + [[C]]y^{2} \\) subject to the constraint \\( [[p]]x + [[q]]y = [[r]] \\).",
+  "answer_spec": {"op": "system", "equations": ["2*[[A]]*x + [[B]]*y - lam*[[p]] = 0", "[[B]]*x + 2*[[C]]*y - lam*[[q]] = 0", "[[p]]*x + [[q]]*y - [[r]] = 0"], "vars": ["x", "y", "lam"], "want": "[[A]]*x**2 + [[B]]*x*y + [[C]]*y**2"},
+  "distractors": [
+   "0",
+   "-[[answer]]",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "The Lagrange conditions are \\( 2[[A]]x+[[B]]y=\\lambda [[p]] \\), \\( [[B]]x+2[[C]]y=\\lambda [[q]] \\), together with the constraint \\( [[p]]x+[[q]]y=[[r]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the unconstrained critical value of \\( f \\) at the origin, ignoring the constraint entirely.",
+   "This has the wrong overall sign.",
+   "This is twice the correct minimum value.",
+   "This is half the correct minimum value.",
+   "This is off by three from the correct minimum value.",
+   "This is off by three from the correct minimum value."
+  ]
+ },
+ {
+  "template_id": "lagrange_three_variable_plane_v1",
+  "skill_id": "lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 4},
+   "B": {"type": "int", "lo": 1, "hi": 4},
+   "C": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": -4, "hi": 4},
+   "q": {"type": "int", "lo": -4, "hi": 4},
+   "r": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[r]], 0)", "Ne([[k]], 0)"],
+  "stem": "Use Lagrange multipliers to find the minimum value of \\( f(x,y,z) = [[A]]x^{2} + [[B]]y^{2} + [[C]]z^{2} \\) subject to the constraint \\( [[p]]x + [[q]]y + [[r]]z = [[k]] \\).",
+  "answer_spec": {"op": "system", "equations": ["2*[[A]]*x - lam*[[p]] = 0", "2*[[B]]*y - lam*[[q]] = 0", "2*[[C]]*z - lam*[[r]] = 0", "[[p]]*x + [[q]]*y + [[r]]*z - [[k]] = 0"], "vars": ["x", "y", "z", "lam"], "want": "[[A]]*x**2 + [[B]]*y**2 + [[C]]*z**2"},
+  "distractors": [
+   "0",
+   "[[A]]*[[B]]*[[k]]**2/([[B]]*[[p]]**2+[[A]]*[[q]]**2)",
+   "-[[answer]]",
+   "2*[[answer]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The Lagrange conditions are \\( 2[[A]]x=\\lambda [[p]] \\), \\( 2[[B]]y=\\lambda [[q]] \\), \\( 2[[C]]z=\\lambda [[r]] \\), together with the constraint \\( [[p]]x+[[q]]y+[[r]]z=[[k]] \\). Solving this system for \\( x,y,z,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the unconstrained critical value of \\( f \\) at the origin, ignoring the constraint entirely.",
+   "This ignores the \\( z \\)-direction entirely, as if the constraint and objective involved only \\( x \\) and \\( y \\).",
+   "This has the wrong overall sign.",
+   "This is twice the correct minimum value.",
+   "This is off by two from the correct minimum value.",
+   "This is off by two from the correct minimum value."
+  ]
+ }
+]

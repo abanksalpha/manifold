@@ -1,0 +1,132 @@
+[
+{
+ "template_id": "parametric_point_evaluation_polynomial_v1",
+ "skill_id": "parametric_curves",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "t0": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A curve is given parametrically by \\( x(t)=[[a]]t^{2}+[[b]]t+[[c]] \\), \\( y(t)=t \\). Find the \\( x \\)-coordinate of the point on the curve at \\( t=[[t0]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[t0]]**2 + [[b]]*[[t0]] + [[c]]"},
+ "distractors": [
+  "[[a]]*[[t0]] + [[b]]*[[t0]] + [[c]]",
+  "[[a]]*[[t0]]**2 - [[b]]*[[t0]] + [[c]]",
+  "[[a]]*[[t0]]**2 + [[b]]*[[t0]]",
+  "2*[[a]]*[[t0]] + [[b]]",
+  "[[a]]*[[t0]]**2 + [[b]]*[[t0]] + [[c]] + 1",
+  "[[a]]*[[t0]]**2 + [[b]]*[[t0]] + [[c]] - 1"
+ ],
+ "solution": "Substituting \\( t=[[t0]] \\) directly into \\( x(t)=[[a]]t^{2}+[[b]]t+[[c]] \\) gives \\( x([[t0]])=[[a]]([[t0]])^{2}+[[b]]([[t0]])+[[c]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to square \\( t\\) in the leading term.",
+  "This flips the sign of the linear term.",
+  "This drops the constant term \\( c\\) entirely.",
+  "This reports \\( x'(t_0)\\), the derivative, instead of \\( x(t_0)\\) itself.",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "parametric_point_evaluation_trig_v1",
+ "skill_id": "parametric_curves",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "k": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "A curve is given parametrically by \\( x(t)=t \\), \\( y(t)=[[a]]\\sin t+[[b]] \\). Find the \\( y \\)-coordinate of the point on the curve at \\( t=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*sin([[k]]*pi/[[n]]) + [[b]]"},
+ "distractors": [
+  "[[a]]*cos([[k]]*pi/[[n]]) + [[b]]",
+  "[[a]]*sin([[k]]*pi/[[n]]) - [[b]]",
+  "-[[a]]*sin([[k]]*pi/[[n]]) + [[b]]",
+  "[[a]]*sin([[k]]*pi/[[n]])",
+  "[[a]]*sin([[k]]*pi/[[n]]) + [[b]] + 1",
+  "[[a]]*sin([[k]]*pi/[[n]]) + [[b]] - 1"
+ ],
+ "solution": "Substituting \\( t=\\dfrac{[[k]]\\pi}{[[n]]} \\) into \\( y(t)=[[a]]\\sin t+[[b]] \\) gives \\( y=[[a]]\\sin\\dfrac{[[k]]\\pi}{[[n]]}+[[b]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\cos t\\) instead of \\( \\sin t\\).",
+  "This subtracts the constant \\( b\\) instead of adding it.",
+  "This has the wrong sign on the sine term.",
+  "This drops the constant shift \\( b\\) entirely.",
+  "This is off by one from the correct \\( y\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( y\\)-coordinate."
+ ]
+},
+{
+ "template_id": "parametric_arc_length_linear_v1",
+ "skill_id": "parametric_curves",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": -8, "hi": 8},
+  "q": {"type": "int", "lo": -8, "hi": 8},
+  "t0": {"type": "int", "lo": -5, "hi": 4},
+  "t1": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[p]]**2 + [[q]]**2, 0)", "Lt([[t0]], [[t1]])"],
+ "stem": "A particle moves along the curve \\( x(t)=[[p]]t \\), \\( y(t)=[[q]]t \\) for \\( [[t0]]\\le t\\le [[t1]] \\). Find the total arc length traveled.",
+ "answer_spec": {"op": "integrate", "expr": "sqrt([[p]]**2 + [[q]]**2)", "var": "t", "bounds": ["[[t0]]", "[[t1]]"]},
+ "distractors": [
+  "sqrt([[p]]**2 + [[q]]**2)*([[t1]] + [[t0]])",
+  "([[p]] + [[q]])*([[t1]] - [[t0]])",
+  "sqrt([[p]]**2 - [[q]]**2)*([[t1]] - [[t0]])",
+  "sqrt([[p]]**2 + [[q]]**2)",
+  "sqrt([[p]]**2 + [[q]]**2)*([[t1]] - [[t0]]) + 1",
+  "sqrt([[p]]**2 + [[q]]**2)*([[t1]] - [[t0]]) - 1"
+ ],
+ "solution": "The speed is \\( \\sqrt{x'(t)^{2}+y'(t)^{2}}=\\sqrt{[[p]]^{2}+[[q]]^{2}} \\), constant in \\( t \\), so the arc length is this speed times the elapsed time: \\( \\sqrt{[[p]]^{2}+[[q]]^{2}}\\cdot([[t1]]-[[t0]])=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the sum of the endpoints instead of their difference (the elapsed time).",
+  "This adds the velocity components instead of combining them via the Pythagorean theorem.",
+  "This subtracts the squared components under the root instead of adding them.",
+  "This forgets to multiply by the elapsed time entirely.",
+  "This is off by one from the correct arc length.",
+  "This is off by one (other direction) from the correct arc length."
+ ]
+},
+{
+ "template_id": "parametric_arc_length_semicubical_v1",
+ "skill_id": "parametric_curves",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "t1": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "A curve is given parametrically by \\( x(t)=[[a]]t^{2} \\), \\( y(t)=[[b]]t^{3} \\) for \\( 0\\le t\\le [[t1]] \\). Find the arc length of the curve over this interval.",
+ "answer_spec": {"op": "integrate", "expr": "sqrt((2*[[a]]*t)**2 + (3*[[b]]*t**2)**2)", "var": "t", "bounds": ["0", "[[t1]]"]},
+ "distractors": [
+  "((4*[[a]]**2 + 9*[[b]]**2*[[t1]]**2)**Rational(3,2) - (4*[[a]]**2)**Rational(3,2))/(27*[[b]]**2) + 1",
+  "sqrt((2*[[a]]*[[t1]])**2 + (3*[[b]]*[[t1]]**2)**2)*[[t1]]",
+  "sqrt((2*[[a]])**2 + (3*[[b]])**2)*[[t1]]",
+  "2*[[a]]*[[t1]] + [[b]]*[[t1]]**3",
+  "((4*[[a]]**2 + 9*[[b]]**2*[[t1]]**2)**Rational(3,2) - (4*[[a]]**2)**Rational(3,2))/(27*[[b]]**2) - 1",
+  "((4*[[a]]**2 + 9*[[b]]**2*[[t1]]**2)**Rational(3,2) - (4*[[a]]**2)**Rational(3,2))/(27*[[b]]**2) + Rational(1,10)"
+ ],
+ "solution": "The speed is \\( \\sqrt{x'(t)^{2}+y'(t)^{2}}=\\sqrt{(2[[a]]t)^{2}+(3[[b]]t^{2})^{2}} \\); integrating from \\( 0 \\) to \\( [[t1]] \\) via the substitution \\( u=4[[a]]^{2}+9[[b]]^{2}t^{2}\\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds a stray unit to the correct antiderivative value.",
+  "This evaluates the integrand only at the endpoint and multiplies by \\( t_1\\) instead of integrating it.",
+  "This uses the average of the endpoint speed and the initial speed multiplied by \\( t_1\\), rather than integrating.",
+  "This mistakes the parametrization itself, \\( x(t_1)+y(t_1)\\)-style, for the arc length.",
+  "This subtracts a stray unit from the correct antiderivative value.",
+  "This adds a small fractional error to the correct antiderivative value."
+ ]
+}
+]

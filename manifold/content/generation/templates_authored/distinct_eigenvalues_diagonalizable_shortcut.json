@@ -1,0 +1,132 @@
+[
+{
+ "template_id": "distinct_eig_shortcut_v1_symmetric_max",
+ "skill_id": "distinct_eigenvalues_diagonalizable_shortcut",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The symmetric matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[b]] & [[a]] \\end{pmatrix} \\) has two distinct eigenvalues, so the shortcut theorem (n distinct eigenvalues \\( \\Rightarrow \\) diagonalizable) guarantees \\( A \\) is diagonalizable. What is the largest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["[[b]]", "[[a]]"]], "which": "max"},
+ "distractors": [
+  "[[a]] - [[b]]",
+  "[[a]]",
+  "2*[[a]]",
+  "[[b]]",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The eigenvalues of \\( A \\) are \\( a+b \\) and \\( a-b \\); since \\( [[b]]>0 \\) they are distinct, confirming the shortcut applies. Here they are \\( [[a]]+[[b]] \\) and \\( [[a]]-[[b]] \\); the larger is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the smaller eigenvalue \\( a-b \\), not the largest.",
+  "This is the shared diagonal entry (the average of the two eigenvalues), not the largest eigenvalue.",
+  "This doubles the diagonal entry rather than adding the correct offset \\( b \\).",
+  "This is the off-diagonal entry, not an eigenvalue.",
+  "This is one less than the correct largest eigenvalue.",
+  "This is two more than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "distinct_eig_shortcut_v2_triangular_sum",
+ "skill_id": "distinct_eigenvalues_diagonalizable_shortcut",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[d]], [[f]])", "Ne([[a]], [[f]])"],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\) has 3 distinct eigenvalues, so the shortcut theorem guarantees it is diagonalizable. What is the sum of its eigenvalues?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]], "which": "sum"},
+ "distractors": [
+  "[[a]]*[[d]]*[[f]]",
+  "[[b]]+[[c]]+[[e]]",
+  "[[a]]+[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The (distinct) eigenvalues of this triangular matrix are its diagonal entries \\( [[a]], [[d]], [[f]] \\), so their sum is \\( [[a]]+[[d]]+[[f]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the PRODUCT of the eigenvalues, not their sum.",
+  "This sums the off-diagonal entries instead of the diagonal (eigenvalue) entries.",
+  "This omits the third eigenvalue \\( [[f]] \\) from the sum.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+},
+{
+ "template_id": "distinct_eig_shortcut_v3_triangular_product",
+ "skill_id": "distinct_eigenvalues_diagonalizable_shortcut",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[d]], [[f]])", "Ne([[a]], [[f]])", "Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[f]], 0)"],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\) has 3 distinct (nonzero) eigenvalues, so the shortcut theorem guarantees it is diagonalizable, and \\( A \\) is invertible. What is the product of its eigenvalues?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]], "which": "prod"},
+ "distractors": [
+  "[[a]]+[[d]]+[[f]]",
+  "-[[a]]*[[d]]*[[f]]",
+  "[[a]]*[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The eigenvalues are the diagonal entries \\( [[a]], [[d]], [[f]] \\), so their product is \\( ([[a]])([[d]])([[f]]) = [[answer]] \\) (this equals \\( \\det(A) \\), confirming \\( A \\) is invertible).",
+ "distractor_rationales": [
+  "This is the SUM of the eigenvalues, not their product.",
+  "This has the right magnitude but the wrong sign.",
+  "This multiplies entries from the first row instead of the diagonal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "distinct_eig_shortcut_v4_eigenvector_count",
+ "skill_id": "distinct_eigenvalues_diagonalizable_shortcut",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[d]], [[f]])", "Ne([[a]], [[f]])"],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\) has 3 distinct eigenvalues. By the shortcut theorem, how many linearly independent eigenvectors is \\( A \\) guaranteed to have (i.e. what is the dimension of the eigenvector basis the theorem provides)?",
+ "answer_spec": {"op": "evaluate", "expr": "3"},
+ "distractors": [
+  "2",
+  "4",
+  "1",
+  "9",
+  "0"
+ ],
+ "solution": "The shortcut theorem states that 3 DISTINCT eigenvalues guarantee 3 linearly independent eigenvectors (one per eigenvalue), exactly enough to diagonalize this \\( 3\\times3 \\) matrix. So the guaranteed count is [[answer]].",
+ "distractor_rationales": [
+  "This under-counts by one; each of the 3 distinct eigenvalues contributes its own independent eigenvector.",
+  "The theorem cannot guarantee MORE independent eigenvectors than the matrix's size, 3.",
+  "This assumes only one eigenvector total, ignoring that every distinct eigenvalue contributes one.",
+  "This confuses the eigenvector count with the total number of matrix entries.",
+  "A diagonalizable matrix with distinct eigenvalues has a nontrivial eigenbasis, not zero eigenvectors."
+ ]
+}
+]

@@ -1,0 +1,173 @@
+[
+ {
+  "template_id": "evaluate_a_double_integral_via_a_linear_affine_chang_v1",
+  "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": -2, "hi": 2},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "d": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[a]] + [[c]], 0)", "Ne([[b]] + [[d]], 0)"],
+  "stem": "Let \\(D\\) be the image of the rectangle \\( 0 \\le u \\le [[p]],\\ 0 \\le v \\le [[q]] \\) under the linear transformation \\( x = [[a]]u + ([[b]])v, \\quad y = [[c]]u + ([[d]])v \\). Evaluate \\( \\iint_D (x+y)\\,dA \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "Abs([[a]]*[[d]] - [[b]]*[[c]])*(([[a]] + [[c]])*u + ([[b]] + [[d]])*v)", "vars": ["u", "v"], "bounds": [["0", "[[p]]"], ["0", "[[q]]"]]},
+  "distractors": [
+   "([[a]] + [[c]])*[[p]]**2*[[q]]/2 + ([[b]] + [[d]])*[[p]]*[[q]]**2/2",
+   "([[a]]*[[d]] - [[b]]*[[c]])*(([[a]] + [[c]])*[[p]]**2*[[q]]/2 + ([[b]] + [[d]])*[[p]]*[[q]]**2/2)",
+   "Abs([[a]]*[[d]] - [[b]]*[[c]])*(([[a]] + [[c]])*[[p]] + ([[b]] + [[d]])*[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Under the change of variables, \\(x+y = ([[a]]+[[c]])u + ([[b]]+[[d]])v\\) and \\(dA = |J|\\,du\\,dv\\) with \\(|J| = |[[a]]\\cdot[[d]] - [[b]]\\cdot[[c]]|\\). Hence \\( \\iint_D (x+y)\\,dA = |J|\\int_{0}^{[[q]]}\\int_{0}^{[[p]]} \\left(([[a]]+[[c]])u + ([[b]]+[[d]])v\\right)du\\,dv = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the Jacobian factor \\(|J|\\) entirely.",
+   "This uses the signed Jacobian \\(ad-bc\\) instead of its absolute value, flipping the sign when \\(ad-bc<0\\).",
+   "This multiplies \\(|J|\\) by \\(x+y\\) evaluated at \\((u,v)=([[p]],[[q]])\\) rather than integrating.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_double_integral_via_a_linear_affine_chang_v2",
+  "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": -2, "hi": 2},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "d": {"type": "int", "lo": 1, "hi": 3},
+   "e": {"type": "int", "lo": -3, "hi": 3},
+   "f": {"type": "int", "lo": -3, "hi": 3},
+   "p": {"type": "int", "lo": 1, "hi": 2},
+   "q": {"type": "int", "lo": 1, "hi": 2}
+  },
+  "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+  "stem": "Let \\(D\\) be the image of the rectangle \\( 0 \\le u \\le [[p]],\\ 0 \\le v \\le [[q]] \\) under the affine transformation \\( x = [[a]]u + ([[b]])v + ([[e]]), \\quad y = [[c]]u + ([[d]])v + ([[f]]) \\). Evaluate \\( \\iint_D xy\\,dA \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "Abs([[a]]*[[d]] - [[b]]*[[c]])*(([[a]]*u + ([[b]])*v + ([[e]]))*([[c]]*u + ([[d]])*v + ([[f]])))", "vars": ["u", "v"], "bounds": [["0", "[[p]]"], ["0", "[[q]]"]]},
+  "distractors": [
+   "([[a]]*[[d]] - [[b]]*[[c]])*(([[a]]*[[p]] + ([[b]])*[[q]] + ([[e]]))*([[c]]*[[p]] + ([[d]])*[[q]] + ([[f]])))*[[p]]*[[q]]",
+   "Abs([[a]]*[[d]] - [[b]]*[[c]])*[[e]]*[[f]]*[[p]]*[[q]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "A translation does not change the Jacobian, so \\(dA = |J|\\,du\\,dv\\) with \\(|J| = |[[a]][[d]]-[[b]][[c]]|\\) as before. Substituting the full affine expressions for \\(x\\) and \\(y\\) into \\(xy\\) and integrating the resulting polynomial in \\(u,v\\) over the rectangle gives \\([[answer]]\\); note the translation constants \\([[e]]\\) and \\([[f]]\\) do NOT drop out of the product the way they would from a purely linear (sum) integrand.",
+  "distractor_rationales": [
+   "This evaluates the integrand only at the corner \\((u,v)=([[p]],[[q]])\\) and multiplies by the rectangle's area, instead of integrating the polynomial.",
+   "This keeps only the constant term \\(ef\\) of the product \\(xy\\), dropping every term that involves \\(u\\) or \\(v\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_double_integral_via_a_linear_affine_chang_v3",
+  "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "d": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+  "stem": "The linear transformation \\( x = [[a]]u + ([[b]])v,\\ y = [[c]]u + ([[d]])v \\) maps the rectangle \\( 0 \\le u \\le [[p]],\\ 0 \\le v \\le [[q]] \\) onto a parallelogram \\(D\\). Find the area of \\(D\\) by evaluating \\( \\iint_D 1\\,dA \\) via this substitution.",
+  "answer_spec": {"op": "dblintegrate", "expr": "Abs([[a]]*[[d]] - [[b]]*[[c]])", "vars": ["u", "v"], "bounds": [["0", "[[p]]"], ["0", "[[q]]"]]},
+  "distractors": [
+   "[[p]]*[[q]]",
+   "([[a]]*[[d]] - [[b]]*[[c]])*[[p]]*[[q]]",
+   "Abs([[a]]*[[d]] - [[b]]*[[c]])*([[p]]+[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The area of the image scales by the Jacobian: \\( \\iint_D 1\\,dA = |J|\\cdot(\\text{area of the } uv\\text{-rectangle}) = |[[a]][[d]]-[[b]][[c]]|\\cdot [[p]] \\cdot [[q]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the Jacobian factor entirely, reporting the area of the original rectangle instead of its image.",
+   "This uses the signed Jacobian instead of its absolute value.",
+   "This adds \\([[p]]\\) and \\([[q]]\\) instead of multiplying them, as if computing a perimeter-like quantity.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_double_integral_via_a_linear_affine_chang_v4",
+  "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": -2, "hi": 2},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "d": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[a]] + [[c]], 0)", "Ne([[b]] + [[d]], 0)"],
+  "stem": "Let \\(D\\) be the image of the triangle \\( \\{ (u,v) : 0 \\le v \\le u \\le [[p]] \\} \\) under the linear transformation \\( x = [[a]]u + ([[b]])v,\\ y = [[c]]u + ([[d]])v \\). Evaluate \\( \\iint_D (x+y)\\,dA \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "Abs([[a]]*[[d]] - [[b]]*[[c]])*(([[a]] + [[c]])*u + ([[b]] + [[d]])*v)", "vars": ["v", "u"], "bounds": [["0", "u"], ["0", "[[p]]"]]},
+  "distractors": [
+   "Abs([[a]]*[[d]] - [[b]]*[[c]])*(([[a]] + [[c]])*[[p]]**3/2 + ([[b]] + [[d]])*[[p]]**3/2)",
+   "Abs([[a]]*[[d]] - [[b]]*[[c]])*(([[a]] + [[c]])*[[p]]**2/2 + ([[b]] + [[d]])*[[p]]**2/2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "First substitute \\(x+y=([[a]]+[[c]])u+([[b]]+[[d]])v\\) and \\(dA=|J|\\,du\\,dv\\) with \\(|J|=|[[a]][[d]]-[[b]][[c]]|\\) as usual; then integrate over the TRIANGLE \\(0\\le v\\le u\\le [[p]]\\) in the \\(uv\\)-plane (not a rectangle): \\( |J|\\int_0^{[[p]]}\\int_0^u \\left(([[a]]+[[c]])u+([[b]]+[[d]])v\\right)dv\\,du = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong power of \\([[p]]\\) (as if integrating over a 3-dimensional region), from mishandling the nested triangular bounds.",
+   "This treats the triangle as if it were the full square \\(0\\le u,v\\le [[p]]\\) rescaled, forgetting the triangle is only half that area's worth of contribution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_double_integral_via_a_linear_affine_chang_v5",
+  "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 7},
+   "B": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": ["Ne([[A]], [[B]])"],
+  "stem": "The linear transformation \\( x = [[A]]u,\\ y = [[B]]v \\) maps the unit disk \\( u^2+v^2 \\le 1 \\) onto the elliptical region \\( D : \\left(\\dfrac{x}{[[A]]}\\right)^2 + \\left(\\dfrac{y}{[[B]]}\\right)^2 \\le 1 \\). Find the area of \\(D\\) by evaluating \\( \\iint_D 1\\,dA \\) via this substitution.",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[A]]*[[B]]", "vars": ["v", "u"], "bounds": [["-sqrt(1-u**2)", "sqrt(1-u**2)"], ["-1", "1"]]},
+  "distractors": [
+   "pi*[[A]]**2*[[B]]**2",
+   "pi*([[A]]+[[B]])**2/4",
+   "pi*[[A]]*[[B]]/2",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "The Jacobian of \\(x=[[A]]u,\\ y=[[B]]v\\) is \\([[A]][[B]]\\) (constant), so \\( \\iint_D 1\\,dA = [[A]][[B]]\\iint_{u^2+v^2\\le1} 1\\,du\\,dv = [[A]][[B]]\\cdot\\pi = [[answer]] \\), the familiar ellipse-area formula \\(\\pi ab\\).",
+  "distractor_rationales": [
+   "This squares both semi-axes, mistaking this for a scaling of area by \\((AB)^2\\) rather than \\(AB\\).",
+   "This uses the average of \\(A\\) and \\(B\\) squared, an unrelated formula for the area of a circle of the 'average' radius.",
+   "This drops a factor of \\(2\\), as if using the formula for a semi-ellipse doubled incorrectly.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ }
+]

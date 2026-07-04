@@ -1,0 +1,15 @@
+{
+    "note": "Deterministic lecture fixture for the isolated e2e runner (Task 1), wired via MANIFOLD_LECTURES. It is NOT fabricated content: the single lecture is grounded verbatim in a VERIFIED teach_bank item (skill implicit_differentiation_for_a_partial_derivative, item mfteach_95baa092e4252c15, whose verified answer is -x/z for x^2+y^2+z^2=1). It lets the e2e assert the lecture endpoint + render without depending on the full authored lectures.json.",
+    "schema_version": 1,
+    "generated_at": "2026-07-02T00:00:00+00:00",
+    "lecture_count": 1,
+    "lectures": {
+        "implicit_differentiation_for_a_partial_derivative": {
+            "skill_id": "implicit_differentiation_for_a_partial_derivative",
+            "topic_id": "multivariable_diff",
+            "title": "Implicit differentiation for a partial derivative",
+            "lecture_latex": "Method: when a surface is given implicitly by an equation in \\(x\\), \\(y\\), and \\(z\\), you can find a partial derivative such as \\(\\frac{\\partial z}{\\partial x}\\) without ever solving for \\(z\\). Differentiate both sides with respect to \\(x\\), treating \\(z\\) as a function of \\(x\\) — so each \\(z\\) contributes a \\(\\frac{\\partial z}{\\partial x}\\) factor by the chain rule — while holding \\(y\\) constant.\n\nWhen to use it: reach for this whenever \\(z\\) cannot be isolated cleanly, or when solving for \\(z\\) first would be messy. The implicit route is faster and avoids sign slips.\n\nWorked example: for \\(x^2 + y^2 + z^2 = 1\\), differentiate both sides with respect to \\(x\\):\n\\[2x + 2z\\,\\frac{\\partial z}{\\partial x} = 0.\\]\nThe \\(y^2\\) term drops out because \\(y\\) is held constant. Solving the resulting linear equation for the partial derivative gives\n\\[\\frac{\\partial z}{\\partial x} = -\\frac{x}{z}.\\]\n\nTakeaway: differentiate implicitly, let every \\(z\\) pick up a \\(\\frac{\\partial z}{\\partial x}\\) by the chain rule, then solve for \\(\\frac{\\partial z}{\\partial x}\\). Here the answer is \\(-\\frac{x}{z}\\).",
+            "anchored_item_id": "mfteach_95baa092e4252c15"
+        }
+    }
+}

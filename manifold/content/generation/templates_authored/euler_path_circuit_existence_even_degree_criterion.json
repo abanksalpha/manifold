@@ -1,0 +1,74 @@
+[
+{
+ "template_id": "euler_odd_degree_count_list_v1",
+ "skill_id": "euler_path_circuit_existence_even_degree_criterion",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "d1": {"type": "int", "lo": 1, "hi": 8},
+  "d2": {"type": "int", "lo": 1, "hi": 8},
+  "d3": {"type": "int", "lo": 1, "hi": 8},
+  "d4": {"type": "int", "lo": 1, "hi": 8},
+  "d5": {"type": "int", "lo": 1, "hi": 8},
+  "d6": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Eq(Mod([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]] + [[d6]], 2), 0)"],
+ "stem": "A connected graph has six vertices with degrees \\( [[d1]], [[d2]], [[d3]], [[d4]], [[d5]], [[d6]] \\). By the even-degree criterion, the existence of an Euler circuit or Euler path is determined by the number of odd-degree vertices (an Euler circuit needs 0, an Euler path needs exactly 2, otherwise neither exists). How many of the six vertices have odd degree?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[d1]],2) + Mod([[d2]],2) + Mod([[d3]],2) + Mod([[d4]],2) + Mod([[d5]],2) + Mod([[d6]],2)"},
+ "distractors": ["6 - (Mod([[d1]],2) + Mod([[d2]],2) + Mod([[d3]],2) + Mod([[d4]],2) + Mod([[d5]],2) + Mod([[d6]],2))", "Mod([[d1]],2) + Mod([[d2]],2) + Mod([[d3]],2)", "[[answer]] + 1", "[[answer]] + 2", "[[answer]] - 2", "1"],
+ "solution": "Checking each degree's parity, the odd-degree vertices among \\( [[d1]], [[d2]], [[d3]], [[d4]], [[d5]], [[d6]] \\) number [[answer]] (0 means an Euler circuit exists; 2 means only an Euler path exists; any other even count exceeding 2 means neither exists).",
+ "distractor_rationales": [
+  "This counts the EVEN-degree vertices instead of the odd-degree ones.",
+  "This only checks the first three degrees instead of all six.",
+  "This overshoots the correct odd-degree count by 1.",
+  "This overshoots the correct odd-degree count by 2.",
+  "This undershoots the correct odd-degree count by 2.",
+  "This guesses the exactly-Euler-path count without actually checking the degrees."
+ ]
+},
+{
+ "template_id": "euler_odd_degree_count_complete_graph_v1",
+ "skill_id": "euler_path_circuit_existence_even_degree_criterion",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "In the complete graph \\( K_{[[n]]} \\), every vertex has degree \\( [[n]]-1 \\). How many of the [[n]] vertices have ODD degree?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]*Mod([[n]] - 1, 2)"},
+ "distractors": ["[[n]] - 1", "[[n]] + 1", "[[n]]/2", "[[n]]*2", "1", "2"],
+ "solution": "Every vertex has degree \\( [[n]]-1 \\); this is odd exactly when \\( [[n]] \\) is even. So the count of odd-degree vertices is either \\( [[n]] \\) (if all degrees are odd) or \\( 0 \\) (if all degrees are even), giving \\( [[n]]\\cdot([[n]]-1 \\bmod 2) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the shared degree \\([[n]]-1\\) itself, not the count of vertices carrying that degree.",
+  "This is one more than the shared degree \\([[n]]-1\\), not the count of odd-degree vertices.",
+  "This treats only half the vertices as having odd degree instead of checking the actual parity.",
+  "This double-counts the vertices instead of checking the actual parity of the shared degree.",
+  "This guesses a fixed small value unrelated to the actual parity check.",
+  "This guesses another fixed small value unrelated to the actual parity check."
+ ]
+},
+{
+ "template_id": "euler_odd_degree_count_bipartite_v1",
+ "skill_id": "euler_path_circuit_existence_even_degree_criterion",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 15},
+  "n": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "In the complete bipartite graph \\( K_{[[m]],[[n]]} \\), each of the [[m]] vertices on one side has degree [[n]], and each of the [[n]] vertices on the other side has degree [[m]]. How many of the \\( [[m]]+[[n]] \\) vertices have ODD degree?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*Mod([[n]], 2) + [[n]]*Mod([[m]], 2)"},
+ "distractors": ["[[m]] + [[n]]", "[[m]]*Mod([[m]], 2) + [[n]]*Mod([[n]], 2)", "Mod([[m]], 2) + Mod([[n]], 2)", "[[m]]*Mod([[n]], 2)", "[[answer]] + 1", "0"],
+ "solution": "The [[m]] vertices on the first side have degree [[n]], contributing [[m]] odd-degree vertices when [[n]] is odd (else 0); symmetrically the [[n]] vertices on the other side contribute [[n]] odd-degree vertices when [[m]] is odd (else 0). Adding these gives \\( [[m]]\\cdot([[n]]\\bmod 2) + [[n]]\\cdot([[m]]\\bmod 2) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes every vertex on both sides is automatically odd-degree, regardless of actual parities.",
+  "This swaps which side's degree gets checked against which side's parity.",
+  "This reports only whether \\(m\\) and \\(n\\) are individually odd, not how many vertices that parity affects.",
+  "This only accounts for one side of the bipartition and ignores the other entirely.",
+  "This overshoots the correct odd-degree count by 1.",
+  "This assumes every vertex always has even degree regardless of the actual parities of \\(m\\) and \\(n\\)."
+ ]
+}
+]

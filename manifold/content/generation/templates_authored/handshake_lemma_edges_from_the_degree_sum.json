@@ -1,0 +1,129 @@
+[
+ {
+  "template_id": "handshake_lemma_edges_v1",
+  "skill_id": "handshake_lemma_edges_from_the_degree_sum",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": 1, "hi": 5},
+   "d": {"type": "int", "lo": 1, "hi": 5},
+   "e": {"type": "int", "lo": 1, "hi": 5},
+   "f": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Eq(Mod([[a]] + [[b]] + [[c]] + [[d]] + [[e]] + [[f]], 2), 0)"],
+  "stem": "In a certain graph, the six vertices have degrees \\( [[a]], [[b]], [[c]], [[d]], [[e]], \\) and \\( [[f]] \\). How many edges does the graph have?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]] + [[b]] + [[c]] + [[d]] + [[e]] + [[f]], 2)"},
+  "distractors": [
+   "[[a]] + [[b]] + [[c]] + [[d]] + [[e]] + [[f]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "By the handshake lemma, the sum of the vertex degrees equals twice the number of edges. The degree sum is \\( [[a]] + [[b]] + [[c]] + [[d]] + [[e]] + [[f]] \\), so the number of edges is half of this: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the sum of the degrees itself; by the handshake lemma the edge count is only half of that sum.",
+   "This is off by one from the correct edge count.",
+   "This is off by one from the correct edge count.",
+   "This is off by two from the correct edge count.",
+   "This is off by two from the correct edge count.",
+   "This is off by three from the correct edge count."
+  ]
+ },
+ {
+  "template_id": "regular_graph_edges_v2",
+  "skill_id": "handshake_lemma_edges_from_the_degree_sum",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 20},
+   "r": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Lt([[r]], [[n]])", "Eq(Mod([[n]]*[[r]], 2), 0)"],
+  "stem": "A graph has \\( [[n]] \\) vertices, and every vertex has degree \\( [[r]] \\) (the graph is \\( [[r]] \\)-regular). How many edges does the graph have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]*[[r]]/2"},
+  "distractors": [
+   "[[n]]*[[r]]",
+   "[[n]] + [[r]]",
+   "binomial([[n]], 2)",
+   "[[n]]*[[r]] + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the handshake lemma, the sum of the degrees is \\( [[n]] \\cdot [[r]] \\) (since all \\( [[n]] \\) vertices have degree \\( [[r]] \\)), and this equals twice the number of edges. So the edge count is \\( \\frac{[[n]] \\cdot [[r]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the degree sum itself; by the handshake lemma the edge count is only half of that sum.",
+   "This adds the vertex count and the common degree instead of using the handshake lemma.",
+   "This is the maximum possible number of edges on \\( [[n]] \\) vertices, ignoring the actual degree.",
+   "This is the degree sum plus an extra stray unit.",
+   "This is off by one from the correct edge count.",
+   "This is off by one from the correct edge count."
+  ]
+ },
+ {
+  "template_id": "regular_graph_vertices_from_edges_v3",
+  "skill_id": "handshake_lemma_edges_from_the_degree_sum",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 20},
+   "r": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Lt([[r]], [[n]])", "Eq(Mod([[n]]*[[r]], 2), 0)"],
+  "derived": {"E": "[[n]]*[[r]]/2"},
+  "stem": "A graph is \\( [[r]] \\)-regular (every vertex has degree \\( [[r]] \\)) and has \\( [[E]] \\) edges in total. How many vertices does the graph have?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[E]]/[[r]]"},
+  "distractors": [
+   "[[E]]*[[r]]",
+   "[[E]] + [[r]]",
+   "[[E]] - [[r]]",
+   "[[E]]*[[r]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the handshake lemma, the degree sum equals twice the edge count: \\( n \\cdot [[r]] = 2 \\cdot [[E]] \\). Solving for \\( n \\) gives \\( n = \\dfrac{2 \\cdot [[E]]}{[[r]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the edge count by the degree instead of solving the handshake-lemma equation for \\( n \\).",
+   "This adds the edge count and the degree instead of solving for \\( n \\).",
+   "This subtracts the degree from the edge count instead of solving for \\( n \\).",
+   "This forgets to multiply the edge count by 2 before dividing by the degree.",
+   "This is off by one from the correct number of vertices.",
+   "This is off by one from the correct number of vertices."
+  ]
+ },
+ {
+  "template_id": "two_degree_group_edges_v4",
+  "skill_id": "handshake_lemma_edges_from_the_degree_sum",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "int", "lo": 2, "hi": 8},
+   "a": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]},
+   "q": {"type": "int", "lo": 2, "hi": 8},
+   "b": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7]}
+  },
+  "constraints": ["Ne([[a]], [[b]])", "Eq(Mod([[p]]*[[a]] + [[q]]*[[b]], 2), 0)"],
+  "stem": "In a graph, \\( [[p]] \\) of the vertices have degree \\( [[a]] \\) and the remaining \\( [[q]] \\) vertices have degree \\( [[b]] \\). How many edges does the graph have?",
+  "answer_spec": {"op": "evaluate", "expr": "([[p]]*[[a]] + [[q]]*[[b]])/2"},
+  "distractors": [
+   "[[p]]*[[a]] + [[q]]*[[b]]",
+   "[[p]] + [[q]]",
+   "binomial([[p]] + [[q]], 2)",
+   "[[p]]*[[a]]/2 + [[q]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the handshake lemma, the total degree sum is \\( [[p]] \\cdot [[a]] + [[q]] \\cdot [[b]] \\), and this equals twice the number of edges. So the edge count is \\( \\dfrac{[[p]] \\cdot [[a]] + [[q]] \\cdot [[b]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the degree sum itself; by the handshake lemma the edge count is only half of that sum.",
+   "This adds the two vertex counts instead of using their degrees at all.",
+   "This is the maximum possible number of edges on \\( [[p]]+[[q]] \\) vertices, ignoring the actual degrees.",
+   "This only halves the contribution from the first group, forgetting to halve the second.",
+   "This is off by one from the correct edge count.",
+   "This is off by one from the correct edge count."
+  ]
+ }
+]

@@ -1,0 +1,139 @@
+[
+{
+ "template_id": "ftc1_chain_rule_accumulation_v1",
+ "skill_id": "differentiate_an_accumulation_function_ftc_1_chain_r",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "m": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[x0]]**[[m]] + [[b]], 0)", "Or(Eq([[m]], 2), Le([[x0]]*[[x0]], 4))"],
+ "stem": "Let \\( F(x) = \\int_{[[c]]}^{x^{[[m]]}} \\left( ([[a]])t + ([[b]]) \\right) dt \\). Find \\( F'([[x0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]]**[[m]] + [[b]]) * ([[m]]*[[x0]]**([[m]] - 1))"},
+ "distractors": [
+  "[[a]]*[[x0]]**[[m]] + [[b]]",
+  "([[a]]*[[x0]] + [[b]]) * ([[m]]*[[x0]]**([[m]] - 1))",
+  "([[a]]*[[x0]]**[[m]] + [[b]]) * ([[m]]*[[x0]]**[[m]])",
+  "([[a]]*[[x0]]**[[m]] + [[b]]) * [[x0]]",
+  "[[answer]] + [[m]]",
+  "[[answer]] - [[m]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus with the chain rule, \\( F'(x) = \\left( ([[a]])\\,(x^{[[m]]}) + ([[b]]) \\right)\\cdot \\frac{d}{dx}\\left(x^{[[m]]}\\right) = \\left( ([[a]])x^{[[m]]} + ([[b]]) \\right)\\cdot [[m]]x^{[[m]]-1} \\). At \\( x = [[x0]] \\) this equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( g(u([[x0]])) \\) but forgets to multiply by the derivative of the inner function \\( u(x) = x^{[[m]]} \\).",
+  "This evaluates the integrand at \\( [[x0]] \\) instead of at \\( u([[x0]]) = [[x0]]^{[[m]]} \\).",
+  "This uses \\( [[m]]x^{[[m]]} \\) for the inner derivative instead of \\( [[m]]x^{[[m]]-1} \\).",
+  "This multiplies by \\( [[x0]] \\) rather than the full inner derivative \\( [[m]][[x0]]^{[[m]]-1} \\).",
+  "This is off from the correct value by the inner exponent.",
+  "This is off from the correct value by the inner exponent.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "ftc1_both_bounds_variable_v1",
+ "skill_id": "differentiate_an_accumulation_function_ftc_1_chain_r",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2]}
+ },
+ "constraints": ["Ne([[a]]*[[x0]]**4 + [[b]], [[a]]*[[x0]]**2 + [[b]])"],
+ "stem": "Let \\( F(x) = \\displaystyle\\int_{x^{2}}^{x^{3}} \\left( ([[a]])t + ([[b]]) \\right) dt \\). Find \\( F'([[x0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]]**3 + [[b]])*(3*[[x0]]**2) - ([[a]]*[[x0]]**2 + [[b]])*(2*[[x0]])"},
+ "distractors": [
+  "([[a]]*[[x0]]**3 + [[b]])*(3*[[x0]]**2)",
+  "([[a]]*[[x0]]**2 + [[b]])*(2*[[x0]])",
+  "([[a]]*[[x0]]**3 + [[b]])*(3*[[x0]]**2) + ([[a]]*[[x0]]**2 + [[b]])*(2*[[x0]])",
+  "([[a]]*[[x0]]**3 + [[b]]) - ([[a]]*[[x0]]**2 + [[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Split \\( F(x) = \\int_{0}^{x^{3}}(\\cdot)\\,dt - \\int_{0}^{x^{2}}(\\cdot)\\,dt \\). By FTC-1 and the chain rule, \\( F'(x) = \\left(([[a]])x^{3}+([[b]])\\right)\\cdot 3x^{2} - \\left(([[a]])x^{2}+([[b]])\\right)\\cdot 2x \\). At \\( x=[[x0]] \\) this equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the upper-bound term and forgets the lower-bound (now variable) contribution entirely.",
+  "This keeps only the lower-bound term and forgets the upper-bound contribution entirely.",
+  "This adds the two boundary contributions instead of subtracting the lower-bound term.",
+  "This forgets to multiply each boundary term by the derivative of that bound.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc1_trig_inner_function_v1",
+ "skill_id": "differentiate_an_accumulation_function_ftc_1_chain_r",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"x0": "[[n]]*pi/2"},
+ "stem": "Let \\( F(x) = \\displaystyle\\int_{[[c]]}^{\\sin(x)} \\left( ([[a]])t^{2} + [[b]] \\right) dt \\). Find \\( F'\\!\\left( \\dfrac{[[n]]\\pi}{2} \\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*sin([[x0]])**2 + [[b]])*cos([[x0]])"},
+ "distractors": [
+  "[[a]]*sin([[x0]])**2 + [[b]]",
+  "([[a]]*[[x0]]**2 + [[b]])*cos([[x0]])",
+  "([[a]]*sin([[x0]])**2 + [[b]])*sin([[x0]])",
+  "([[a]]*cos([[x0]])**2 + [[b]])*cos([[x0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + [[b]]"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus with the chain rule, \\( F'(x) = \\left(([[a]])\\sin^{2}(x) + [[b]]\\right)\\cdot \\frac{d}{dx}\\sin(x) = \\left(([[a]])\\sin^{2}(x) + [[b]]\\right)\\cos(x) \\). At \\( x=\\frac{[[n]]\\pi}{2} \\) this equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to multiply by the inner derivative \\( \\cos(x) \\) altogether.",
+  "This evaluates the integrand at \\( x \\) itself instead of at the upper bound \\( \\sin(x) \\).",
+  "This multiplies by \\( \\sin(x) \\), the inner function itself, instead of its derivative \\( \\cos(x) \\).",
+  "This mixes up \\( \\sin \\) and \\( \\cos \\) inside the integrand.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by the constant term of the integrand."
+ ]
+},
+{
+ "template_id": "ftc1_reciprocal_inner_function_v1",
+ "skill_id": "differentiate_an_accumulation_function_ftc_1_chain_r",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "x0": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]/[[x0]] + [[b]], 0)"],
+ "stem": "Let \\( F(x) = \\displaystyle\\int_{[[c]]}^{1/x} \\left( ([[a]])t + ([[b]]) \\right) dt \\), for \\( x \\ne 0 \\). Find \\( F'([[x0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]/[[x0]] + [[b]]) * (-1/[[x0]]**2)"},
+ "distractors": [
+  "[[a]]/[[x0]] + [[b]]",
+  "([[a]]/[[x0]] + [[b]]) * (1/[[x0]]**2)",
+  "([[a]]*[[x0]] + [[b]]) * (-1/[[x0]]**2)",
+  "([[a]]/[[x0]] + [[b]]) * (-1/[[x0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus with the chain rule, \\( F'(x) = \\left(([[a]])\\cdot\\frac{1}{x} + ([[b]])\\right)\\cdot \\frac{d}{dx}\\left(\\frac{1}{x}\\right) = \\left(\\frac{[[a]]}{x}+([[b]])\\right)\\cdot\\left(-\\frac{1}{x^{2}}\\right) \\). At \\( x=[[x0]] \\) this equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to multiply by the inner derivative \\( -1/x^{2} \\) altogether.",
+  "This drops the negative sign from the derivative of \\( 1/x \\).",
+  "This evaluates the integrand at \\( x \\) instead of at the upper bound \\( 1/x \\).",
+  "This divides by \\( x \\) instead of multiplying by \\( -1/x^{2} \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This has the wrong overall sign."
+ ]
+}
+]

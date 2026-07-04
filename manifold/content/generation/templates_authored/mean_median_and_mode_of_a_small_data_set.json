@@ -1,0 +1,223 @@
+[
+ {
+  "template_id": "mean_of_small_data_set_v1",
+  "skill_id": "mean_median_and_mode_of_a_small_data_set",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "x1": {"type": "int", "lo": 1, "hi": 20},
+   "x2": {"type": "int", "lo": 1, "hi": 20},
+   "x3": {"type": "int", "lo": 1, "hi": 20},
+   "x4": {"type": "int", "lo": 1, "hi": 20},
+   "x5": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Ne([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]], 0)"],
+  "stem": "Consider the data set \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\). What is the mean (arithmetic average) of these five values?",
+  "answer_spec": {"op": "evaluate", "expr": "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5"},
+  "distractors": [
+   "[[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]]",
+   "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/4",
+   "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/6",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The mean is the sum of the values divided by how many there are: \\( \\frac{[[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]]}{5} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total of the values; the mean also requires dividing by the count, 5.",
+   "This divides by 4 instead of 5; there are five values, not four.",
+   "This divides by 6 instead of 5; there are five values, not six.",
+   "This is off by one from the correct mean.",
+   "This is off by one from the correct mean."
+  ]
+ },
+ {
+  "template_id": "median_of_five_values_v1",
+  "skill_id": "mean_median_and_mode_of_a_small_data_set",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "base": {"type": "int", "lo": 1, "hi": 15},
+   "d1": {"type": "int", "lo": 1, "hi": 6},
+   "d2": {"type": "int", "lo": 1, "hi": 6},
+   "d3": {"type": "int", "lo": 1, "hi": 6},
+   "d4": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "x1": "[[base]]",
+   "x2": "[[base]] + [[d1]]",
+   "x3": "[[base]] + [[d1]] + [[d2]]",
+   "x4": "[[base]] + [[d1]] + [[d2]] + [[d3]]",
+   "x5": "[[base]] + [[d1]] + [[d2]] + [[d3]] + [[d4]]"
+  },
+  "stem": "Consider the data set \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\), listed here in increasing order. What is the median of this data set?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x3]]"},
+  "distractors": [
+   "[[x2]]",
+   "[[x4]]",
+   "([[x1]] + [[x5]])/2",
+   "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With five values already in increasing order, the median is the middle (3rd) value: \\( [[x3]] \\).",
+  "distractor_rationales": [
+   "This is the 2nd value, one position too low to be the middle value of five.",
+   "This is the 4th value, one position too high to be the middle value of five.",
+   "This is the midrange (average of the smallest and largest value), not the median.",
+   "This is the mean of the data set, not the median.",
+   "This is off by one from the correct median."
+  ]
+ },
+ {
+  "template_id": "median_of_six_values_v1",
+  "skill_id": "mean_median_and_mode_of_a_small_data_set",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "base": {"type": "int", "lo": 1, "hi": 12},
+   "d1": {"type": "int", "lo": 1, "hi": 5},
+   "d2": {"type": "int", "lo": 1, "hi": 5},
+   "d3": {"type": "int", "lo": 1, "hi": 5},
+   "d4": {"type": "int", "lo": 1, "hi": 5},
+   "d5": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {
+   "x1": "[[base]]",
+   "x2": "[[base]] + [[d1]]",
+   "x3": "[[base]] + [[d1]] + [[d2]]",
+   "x4": "[[base]] + [[d1]] + [[d2]] + [[d3]]",
+   "x5": "[[base]] + [[d1]] + [[d2]] + [[d3]] + [[d4]]",
+   "x6": "[[base]] + [[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]]"
+  },
+  "stem": "Consider the data set \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]],\\, [[x6]] \\} \\), listed here in increasing order. What is the median of this data set?",
+  "answer_spec": {"op": "evaluate", "expr": "([[x3]] + [[x4]])/2"},
+  "distractors": [
+   "[[x3]]",
+   "[[x4]]",
+   "([[x2]] + [[x5]])/2",
+   "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]] + [[x6]])/6",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With an even number of values (six), the median is the average of the two middle (3rd and 4th) values: \\( \\frac{[[x3]] + [[x4]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only the 3rd value, forgetting to average it with the 4th value.",
+   "This uses only the 4th value, forgetting to average it with the 3rd value.",
+   "This averages the 2nd and 5th values instead of the two true middle values.",
+   "This is the mean of the data set, not the median.",
+   "This is off by one from the correct median."
+  ]
+ },
+ {
+  "template_id": "mode_of_small_data_set_v1",
+  "skill_id": "mean_median_and_mode_of_a_small_data_set",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "v": {"type": "int", "lo": 1, "hi": 20},
+   "x2": {"type": "int", "lo": 1, "hi": 20},
+   "x3": {"type": "int", "lo": 1, "hi": 20},
+   "x4": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": [
+   "Ne([[x2]], [[v]])",
+   "Ne([[x3]], [[v]])",
+   "Ne([[x4]], [[v]])",
+   "Ne([[x2]], [[x3]])",
+   "Ne([[x2]], [[x4]])",
+   "Ne([[x3]], [[x4]])"
+  ],
+  "stem": "In the data set \\( \\{ [[v]],\\, [[v]],\\, [[x2]],\\, [[x3]],\\, [[x4]] \\} \\), what is the mode (the value that occurs most often)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[v]]"},
+  "distractors": [
+   "[[x2]]",
+   "[[x3]]",
+   "[[x4]]",
+   "(2*[[v]] + [[x2]] + [[x3]] + [[x4]])/5",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The value \\( [[v]] \\) appears twice, while every other value appears only once, so \\( [[v]] \\) is the mode.",
+  "distractor_rationales": [
+   "This value appears only once in the data set; it is not the most frequent value.",
+   "This value appears only once in the data set; it is not the most frequent value.",
+   "This value appears only once in the data set; it is not the most frequent value.",
+   "This is the mean of the data set, not the mode.",
+   "This is off by one from the correct mode."
+  ]
+ },
+ {
+  "template_id": "solve_missing_value_from_mean_v1",
+  "skill_id": "mean_median_and_mode_of_a_small_data_set",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "x1": {"type": "int", "lo": 1, "hi": 20},
+   "x2": {"type": "int", "lo": 1, "hi": 20},
+   "x3": {"type": "int", "lo": 1, "hi": 20},
+   "x4": {"type": "int", "lo": 1, "hi": 20},
+   "M": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "The data set \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, y \\} \\) has mean \\( [[M]] \\). What is the value of \\( y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "5*[[M]] - ([[x1]] + [[x2]] + [[x3]] + [[x4]])"},
+  "distractors": [
+   "[[M]]",
+   "4*[[M]] - ([[x1]] + [[x2]] + [[x3]] + [[x4]])",
+   "([[x1]] + [[x2]] + [[x3]] + [[x4]]) - 5*[[M]]",
+   "5*[[M]] - ([[x1]] + [[x2]] + [[x3]] + [[x4]])/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The five values must total \\( 5\\cdot[[M]] \\), so \\( y = 5\\cdot[[M]] - ([[x1]] + [[x2]] + [[x3]] + [[x4]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the missing value simply equals the mean.",
+   "This multiplies the mean by 4 (the number of KNOWN values) instead of 5 (the total count).",
+   "This has the wrong sign, giving the negative of the correct missing value.",
+   "This divides the known sum by 4 before subtracting, instead of using the full known total.",
+   "This is off by one from the correct missing value."
+  ]
+ },
+ {
+  "template_id": "mean_minus_median_v1",
+  "skill_id": "mean_median_and_mode_of_a_small_data_set",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "base": {"type": "int", "lo": 1, "hi": 15},
+   "d1": {"type": "int", "lo": 1, "hi": 6},
+   "d2": {"type": "int", "lo": 1, "hi": 6},
+   "d3": {"type": "int", "lo": 1, "hi": 6},
+   "d4": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "x1": "[[base]]",
+   "x2": "[[base]] + [[d1]]",
+   "x3": "[[base]] + [[d1]] + [[d2]]",
+   "x4": "[[base]] + [[d1]] + [[d2]] + [[d3]]",
+   "x5": "[[base]] + [[d1]] + [[d2]] + [[d3]] + [[d4]]"
+  },
+  "stem": "Consider the data set \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\), listed here in increasing order. By how much does the mean of this data set exceed the median? (A negative value means the mean is smaller than the median.)",
+  "answer_spec": {"op": "evaluate", "expr": "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5 - [[x3]]"},
+  "distractors": [
+   "[[x3]] - ([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5",
+   "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5",
+   "[[x3]]",
+   "([[x1]] + [[x5]])/2 - [[x3]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The mean is \\( \\frac{[[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]]}{5} \\) and the median is \\( [[x3]] \\); their difference is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign; it computes median minus mean instead of mean minus median.",
+   "This reports the mean itself, forgetting to subtract the median.",
+   "This reports the median itself, forgetting to subtract it from the mean.",
+   "This uses the midrange (average of smallest and largest value) in place of the mean.",
+   "This is off by one from the correct difference."
+  ]
+ }
+]

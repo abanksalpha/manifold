@@ -1,0 +1,100 @@
+[
+{
+ "template_id": "derangements_v1",
+ "skill_id": "derangements_nothing_in_its_own_place",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [3, 4, 5, 6, 7]},
+  "noun": {"type": "choice", "values": ["people", "guests", "students", "friends", "travelers"]},
+  "item": {"type": "choice", "values": ["hat", "coat", "umbrella", "gift"]}
+ },
+ "constraints": [],
+ "stem": "[[n]] [[noun]] each own one distinct [[item]]. The [[n]] [[item]]s are collected and then handed back, one to each person at random. In how many ways can the [[item]]s be returned so that no person receives their own [[item]]?",
+ "answer_spec": {"op": "sum", "expr": "(-1)**k * factorial([[n]]) / factorial(k)", "var": "k", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]]) - 1",
+  "factorial([[n]] - 1)",
+  "factorial([[n]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The number of derangements is \\( D_{[[n]]} = [[n]]! \\sum_{k=0}^{[[n]]} \\frac{(-1)^k}{k!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts all [[n]]! permutations, ignoring the no-fixed-point restriction.",
+  "This removes only the single identity permutation, not every arrangement with a fixed point.",
+  "This is \\( ([[n]]-1)! \\), a common wrong guess for derangements.",
+  "This halves the total permutations, which is not how fixed points are excluded.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "derangements_probability_v1",
+ "skill_id": "derangements_nothing_in_its_own_place",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [3, 4, 5, 6, 7, 8]},
+  "noun": {"type": "choice", "values": ["people", "guests", "students", "friends", "travelers"]},
+  "item": {"type": "choice", "values": ["hat", "coat", "umbrella", "gift"]}
+ },
+ "constraints": [],
+ "stem": "[[n]] [[noun]] each own one distinct [[item]]. The [[n]] [[item]]s are collected and handed back at random, one to each person. What is the probability that NO person receives their own [[item]] back? Give your answer as a fraction.",
+ "answer_spec": {"op": "sum", "expr": "(-1)**k/factorial(k)", "var": "k", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "Rational(1, factorial([[n]]))",
+  "Rational([[n]] - 1, [[n]])",
+  "Rational(1, [[n]])",
+  "1 - Rational(1, factorial([[n]]))",
+  "[[answer]] + Rational(1, [[n]])",
+  "[[answer]] - Rational(1, [[n]])"
+ ],
+ "solution": "The probability of a derangement is \\( \\dfrac{D_{[[n]]}}{[[n]]!} = \\displaystyle\\sum_{k=0}^{[[n]]} \\dfrac{(-1)^k}{k!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the probability of the ONE fully-fixed permutation, not the derangement probability.",
+  "This is the naive guess that only one person keeps their own item, \\( \\frac{n-1}{n} \\).",
+  "This is the probability a single specific person keeps their own item.",
+  "This is the complement: the probability that AT LEAST ONE person gets their own item back.",
+  "This adjusts the correct probability by an unrelated fraction.",
+  "This adjusts the correct probability by an unrelated fraction."
+ ]
+},
+{
+ "template_id": "derangements_partial_fixed_points_v1",
+ "skill_id": "derangements_nothing_in_its_own_place",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 10},
+  "m": {"type": "int", "lo": 1, "hi": 3},
+  "noun": {"type": "choice", "values": ["people", "guests", "students", "friends", "travelers"]},
+  "item": {"type": "choice", "values": ["hat", "coat", "umbrella", "gift"]}
+ },
+ "constraints": ["Le([[m]] + 2, [[n]])"],
+ "stem": "[[n]] [[noun]] each own one distinct [[item]]. The [[n]] [[item]]s are handed back at random, one to each person. In how many ways can the [[item]]s be returned so that EXACTLY [[m]] people receive their own [[item]] back (and everyone else receives someone else's)?",
+ "answer_spec": {
+  "op": "sum",
+  "expr": "binomial([[n]], [[m]]) * (-1)**k * factorial([[n]] - [[m]])/factorial(k)",
+  "var": "k", "lo": "0", "hi": "[[n]] - [[m]]"
+ },
+ "distractors": [
+  "binomial([[n]], [[m]])*factorial([[n]] - [[m]])",
+  "factorial([[n]])/factorial([[m]])",
+  "binomial([[n]], [[m]])",
+  "factorial([[n]] - [[m]])",
+  "[[answer]] + [[m]]",
+  "[[answer]] - [[m]]"
+ ],
+ "solution": "Choose which [[m]] people keep their own [[item]] in \\( \\binom{[[n]]}{[[m]]} \\) ways, then derange the remaining \\( [[n]]-[[m]] \\) items: \\( \\binom{[[n]]}{[[m]]} D_{[[n]]-[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This lets the remaining people be arranged in ANY way, not just deranged (no further fixed points).",
+  "This is an unrelated ratio of factorials, not the partial-derangement count.",
+  "This only chooses who keeps their own item and forgets to arrange the rest at all.",
+  "This deranges the rest but forgets to choose which [[m]] people keep their own item.",
+  "This is off from the correct count by [[m]].",
+  "This is off from the correct count by [[m]]."
+ ]
+}
+]

@@ -1,0 +1,257 @@
+[
+ {
+  "template_id": "count_functions_nm_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     4
+    ]
+   },
+   "n": {
+    "type": "int",
+    "lo": 2,
+    "hi": 15
+   }
+  },
+  "constraints": [
+   "Ge([[n]], [[m]])"
+  ],
+  "stem": "Let \\( X \\) be a set with [[m]] elements and let \\( Y \\) be a set with [[n]] elements. How many functions are there from \\( X \\) to \\( Y \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[n]]**[[m]]"
+  },
+  "distractors": [
+   "[[m]]**[[n]]",
+   "[[n]]*[[m]]",
+   "factorial([[n]])/factorial([[n]] - [[m]])",
+   "binomial([[n]], [[m]])",
+   "[[n]]**[[m]] - 1",
+   "[[n]]**[[m]] + 1"
+  ],
+  "solution": "Each of the [[m]] elements of \\( X \\) may be sent to any of the [[n]] elements of \\( Y \\), independently, so there are \\( [[n]]^{[[m]]} = [[answer]] \\) functions.",
+  "distractor_rationales": [
+   "This swaps the roles of domain and codomain, computing \\( m^{n} \\).",
+   "This multiplies the two set sizes instead of using an exponent.",
+   "This counts only the injective (one-to-one) functions, a falling factorial.",
+   "This counts subsets of size \\( m \\), not functions.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "injective_functions_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 7},
+   "n": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": ["Ge([[n]], [[m]])"],
+  "stem": "Let \\( X \\) be a set with [[m]] elements and let \\( Y \\) be a set with [[n]] elements. How many one-to-one (injective) functions are there from \\( X \\) to \\( Y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/factorial([[n]] - [[m]])"},
+  "distractors": [
+   "[[n]]**[[m]]",
+   "factorial([[n]])/(factorial([[m]])*factorial([[n]] - [[m]]))",
+   "factorial([[m]])",
+   "[[n]]**[[m]] - factorial([[m]])",
+   "factorial([[n]])/factorial([[n]] - [[m]] + 1)",
+   "factorial([[n]] - [[m]])"
+  ],
+  "solution": "The first element of \\( X \\) can map to any of [[n]] values, the second to any of the remaining \\( [[n]]-1 \\), and so on, giving \\( \\dfrac{[[n]]!}{([[n]]-[[m]])!} = [[answer]] \\) injective functions.",
+  "distractor_rationales": [
+   "This counts ALL functions, including ones that repeat values.",
+   "This is the binomial coefficient (a combination), which forgets that the \\( m \\) images are assigned in a specific order.",
+   "This only counts the arrangements among the \\( m \\) domain elements, ignoring the choice of which values of \\( Y \\) are used.",
+   "This subtracts the wrong correction term instead of dividing by \\( (n-m)! \\).",
+   "This is off by one in the denominator's factorial.",
+   "This is the count of the complementary, unused elements of \\( Y \\), not the injections."
+  ]
+ },
+ {
+  "template_id": "surjective_functions_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": ["Ge([[m]], [[n]])"],
+  "stem": "Let \\( X \\) be a set with [[m]] elements and let \\( Y \\) be a set with [[n]] elements. How many onto (surjective) functions are there from \\( X \\) to \\( Y \\)?",
+  "answer_spec": {"op": "sum", "expr": "(-1)**i*binomial([[n]], i)*([[n]] - i)**[[m]]", "var": "i", "lo": "0", "hi": "[[n]]"},
+  "distractors": [
+   "[[n]]**[[m]]",
+   "binomial([[m]], [[n]])*factorial([[n]])",
+   "factorial([[n]])",
+   "[[n]]**[[m]] - [[n]]",
+   "([[n]] - 1)**[[m]]",
+   "[[n]]*([[n]] - 1)**([[m]] - 1)"
+  ],
+  "solution": "By inclusion-exclusion, the number of surjections from a set of size [[m]] onto a set of size [[n]] is \\( \\sum_{i=0}^{[[n]]} (-1)^i \\binom{[[n]]}{i}([[n]]-i)^{[[m]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts ALL functions, including ones that miss some elements of \\( Y \\).",
+   "This overcounts by treating the assignment as choose-then-permute without correcting for overlaps.",
+   "This is the count of bijections, ignoring that \\( X \\) is larger than \\( Y \\).",
+   "This subtracts too little to exclude all the non-surjective functions.",
+   "This uses inclusion-exclusion with only the first correction term.",
+   "This uses a rough per-element estimate rather than full inclusion-exclusion."
+  ]
+ },
+ {
+  "template_id": "relations_between_sets_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 7},
+   "n": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\) be a set with [[m]] elements and let \\( Y \\) be a set with [[n]] elements. A relation from \\( X \\) to \\( Y \\) is any subset of \\( X \\times Y \\). How many relations are there from \\( X \\) to \\( Y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2**([[m]]*[[n]])"},
+  "distractors": [
+   "2**([[m]] + [[n]])",
+   "[[n]]**[[m]]",
+   "[[m]]*[[n]]",
+   "2**([[m]]*[[n]]) - 1",
+   "2**([[m]]*[[n]] - 1)",
+   "factorial([[m]]*[[n]])"
+  ],
+  "solution": "\\( X \\times Y \\) has \\( [[m]]\\cdot[[n]] \\) ordered pairs, and a relation is any subset of them, so there are \\( 2^{[[m]]\\cdot[[n]]} = [[answer]] \\) relations.",
+  "distractor_rationales": [
+   "This adds the two set sizes in the exponent instead of multiplying them.",
+   "This counts only functions from \\( X \\) to \\( Y \\), not arbitrary relations.",
+   "This just multiplies the two set sizes, computing \\( |X\\times Y| \\) itself.",
+   "This excludes the empty relation.",
+   "This is off by a factor of 2.",
+   "This counts orderings of the pairs of \\( X \\times Y \\) rather than subsets of it."
+  ]
+ },
+ {
+  "template_id": "increasing_functions_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 7},
+   "n": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": ["Ge([[n]], [[m]])"],
+  "stem": "Let \\( X = \\{1, 2, \\dots, [[m]]\\} \\) and \\( Y = \\{1, 2, \\dots, [[n]]\\} \\). How many strictly increasing functions \\( f : X \\to Y \\) are there, i.e. functions with \\( f(1) < f(2) < \\cdots < f([[m]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[m]])"},
+  "distractors": [
+   "factorial([[n]])/factorial([[n]] - [[m]])",
+   "[[n]]**[[m]]",
+   "binomial([[n]] + [[m]] - 1, [[m]])",
+   "binomial([[n]], [[m]] - 1)",
+   "binomial([[n]] - 1, [[m]])",
+   "factorial([[m]])"
+  ],
+  "solution": "A strictly increasing function is determined entirely by WHICH [[m]] values of \\( Y \\) are used, since they must then appear in increasing order, so the count is \\( \\binom{[[n]]}{[[m]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts all injective functions, without requiring the values to increase.",
+   "This counts all functions, not just the strictly increasing ones.",
+   "This is the count for nondecreasing (not strictly increasing) functions, which allow repeats.",
+   "This is off by one in the size of the domain used.",
+   "This is off by one in the size of the codomain used.",
+   "This only accounts for the arrangements, but a strictly increasing function has just one valid order."
+  ]
+ },
+ {
+  "template_id": "nondecreasing_functions_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "Let \\( X = \\{1, 2, \\dots, [[m]]\\} \\) and \\( Y = \\{1, 2, \\dots, [[n]]\\} \\). How many nondecreasing functions \\( f : X \\to Y \\) are there, i.e. functions with \\( f(1) \\le f(2) \\le \\cdots \\le f([[m]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] + [[m]] - 1, [[m]])"},
+  "distractors": [
+   "binomial([[n]], [[m]])",
+   "[[n]]**[[m]]",
+   "binomial([[n]] + [[m]], [[m]])",
+   "binomial([[n]] + [[m]] - 1, [[m]] - 1)",
+   "binomial([[n]] + [[m]] - 2, [[m]])",
+   "factorial([[m]])*binomial([[n]], [[m]])"
+  ],
+  "solution": "Nondecreasing functions correspond to multisets of size [[m]] chosen from [[n]] values (stars and bars), giving \\( \\binom{[[n]]+[[m]]-1}{[[m]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the count for strictly increasing functions, which forbids repeated values.",
+   "This counts all functions, dropping the nondecreasing requirement.",
+   "This shifts the stars-and-bars total up by one too many.",
+   "This shifts the size parameter of the combination by one.",
+   "This shifts the stars-and-bars total down by one too many.",
+   "This double counts by also permuting the chosen multiset."
+  ]
+ },
+ {
+  "template_id": "partial_functions_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 8},
+   "n": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\) be a set with [[m]] elements and let \\( Y \\) be a set with [[n]] elements. A partial function from \\( X \\) to \\( Y \\) assigns each element of \\( X \\) either a single value in \\( Y \\) or leaves it undefined. How many partial functions are there from \\( X \\) to \\( Y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]] + 1)**[[m]]"},
+  "distractors": [
+   "[[n]]**[[m]]",
+   "[[n]]**[[m]] + [[m]]",
+   "([[n]] + 1)**[[m]] - 1",
+   "[[m]]*([[n]] + 1)",
+   "2**[[m]] * [[n]]**[[m]]",
+   "([[n]] + [[m]])**[[m]]"
+  ],
+  "solution": "Each of the [[m]] elements has \\( [[n]]+1 \\) possibilities (any of the [[n]] values of \\( Y \\), or left undefined), so there are \\( ([[n]]+1)^{[[m]]} = [[answer]] \\) partial functions.",
+  "distractor_rationales": [
+   "This forgets to add the 'undefined' option, counting only total functions.",
+   "This adds the domain size as a flat correction instead of extending the base of the exponent.",
+   "This subtracts one for no valid reason.",
+   "This multiplies instead of exponentiating.",
+   "This double counts by separately choosing a subset AND a total function.",
+   "This adds the domain size to the base instead of just 1 for 'undefined'."
+  ]
+ },
+ {
+  "template_id": "bijections_between_equal_sets_v1",
+  "skill_id": "counting_maps_between_finite_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\) and \\( Y \\) each be sets with [[n]] elements. How many bijections (one-to-one correspondences) are there from \\( X \\) to \\( Y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+  "distractors": [
+   "[[n]]**[[n]]",
+   "2**[[n]]",
+   "factorial([[n]]) - 1",
+   "factorial([[n]] - 1)",
+   "[[n]]*factorial([[n]] - 1)/2",
+   "binomial(2*[[n]], [[n]])"
+  ],
+  "solution": "A bijection assigns the [[n]] elements of \\( Y \\) to the [[n]] elements of \\( X \\) in some order, one of \\( [[n]]! = [[answer]] \\) possible rearrangements.",
+  "distractor_rationales": [
+   "This counts all functions, including ones that are not one-to-one.",
+   "This is the count of subsets, not orderings.",
+   "This subtracts one for no valid reason.",
+   "This fixes the image of the first element, undercounting by a factor of \\( n \\).",
+   "This is half the correct count.",
+   "This counts a different combinatorial object (a choice of \\( n \\) items from \\( 2n \\))."
+  ]
+ }
+]

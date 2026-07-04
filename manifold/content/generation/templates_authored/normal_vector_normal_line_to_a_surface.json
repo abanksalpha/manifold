@@ -1,0 +1,241 @@
+[
+ {
+  "template_id": "normal_vector_component_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "The surface \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\) has, at the point where \\( (x, y) = ([[x0]], [[y0]]) \\), a normal vector of the form \\( \\langle f_{x},\\, f_{y},\\, -1 \\rangle \\). What is the \\( y \\)-component \\( f_{y} \\) of this normal vector?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*[[x0]]**2 + [[b]]*y**2 + [[c]]*[[x0]]*y", "var": "y", "at": "[[y0]]", "order": 1},
+  "distractors": [
+   "2*[[a]]*[[x0]] + [[c]]*[[y0]]",
+   "[[b]]*[[y0]] + [[c]]*[[x0]]",
+   "2*[[b]]*[[y0]] + [[c]]*[[y0]]",
+   "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]",
+   "[[answer]] + 3",
+   "[[answer]] - 2"
+  ],
+  "solution": "Writing the surface as \\( F = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy - z \\), a normal vector is \\( \\nabla F = \\langle f_{x}, f_{y}, -1 \\rangle \\). Here \\( f_{y} = 2([[b]])y + ([[c]])x \\), which at \\( ([[x0]], [[y0]]) \\) equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the \\( x \\)-component \\( f_{x} = 2([[a]])x + ([[c]])y \\), not the \\( y \\)-component.",
+   "This drops the factor of 2 from differentiating \\( [[b]]y^{2} \\).",
+   "This differentiates the cross term with respect to the wrong variable, using \\( y \\) instead of \\( x \\).",
+   "This is the function value \\( f([[x0]], [[y0]]) \\), not a component of the normal vector.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_vector_implicit_ellipsoid_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[z0]]**2"
+  },
+  "stem": "The surface \\( [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} = [[k]] \\) is given implicitly by \\( F(x,y,z) = [[a]]x^{2}+[[b]]y^{2}+[[c]]z^{2}-[[k]] \\). At the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface, a normal vector is \\( \\nabla F = \\langle F_{x}, F_{y}, F_{z} \\rangle \\). What is the \\( z \\)-component \\( F_{z} \\) of this normal vector at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[c]]*[[z0]]"},
+  "distractors": [
+   "2*[[a]]*[[x0]]",
+   "2*[[b]]*[[y0]]",
+   "[[c]]*[[z0]]",
+   "[[k]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The partials of \\( F \\) are \\( F_{x} = 2([[a]])x \\), \\( F_{y} = 2([[b]])y \\), \\( F_{z} = 2([[c]])z \\). At \\( ([[x0]], [[y0]], [[z0]]) \\), \\( F_{z} = 2([[c]])([[z0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( F_{x} \\), the \\( x \\)-component of the normal vector, not \\( F_{z} \\).",
+   "This is \\( F_{y} \\), the \\( y \\)-component of the normal vector, not \\( F_{z} \\).",
+   "This drops the factor of 2 from differentiating \\( [[c]]z^{2} \\).",
+   "This returns the constant \\( k \\) instead of a component of the normal vector.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_line_point_coordinate_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "t1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "The surface \\( z = [[a]]x^{2} + ([[c]])xy \\) has, at the point where \\( (x, y) = ([[x0]], [[y0]]) \\), normal line parametrized as \\( (x, y, z) = ([[x0]] + tf_{x},\\ [[y0]] + tf_{y},\\ z_{0} - t) \\), where \\( f_{x}, f_{y} \\) are the partial derivatives at \\( ([[x0]], [[y0]]) \\) and \\( z_{0} \\) is the surface height there. What is the \\( x \\)-coordinate of the point on this normal line at \\( t = [[t1]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]] + [[t1]]*(2*[[a]]*[[x0]] + [[c]]*[[y0]])"},
+  "distractors": [
+   "[[x0]] - [[t1]]*(2*[[a]]*[[x0]] + [[c]]*[[y0]])",
+   "[[t1]]*(2*[[a]]*[[x0]] + [[c]]*[[y0]])",
+   "[[x0]] + [[t1]]",
+   "[[x0]] + [[t1]]*([[a]]*[[x0]] + [[c]]*[[y0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Here \\( f_{x} = 2([[a]])x + ([[c]])y \\), which at \\( ([[x0]], [[y0]]) \\) equals \\( 2([[a]])([[x0]]) + ([[c]])([[y0]]) \\). The \\( x \\)-coordinate on the normal line at parameter \\( t=[[t1]] \\) is \\( [[x0]] + [[t1]]\\cdot f_{x} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This moves along the normal line in the wrong direction (subtracts instead of adds \\( t\\,f_{x}\\)).",
+   "This drops the base coordinate \\( [[x0]] \\) entirely.",
+   "This uses the \\( z \\)-coordinate's formula \\( x_{0}+t \\), forgetting to scale by \\( f_{x} \\).",
+   "This drops the factor of 2 from differentiating \\( [[a]]x^{2} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_line_xy_plane_intersection_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "z0": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]"
+  },
+  "stem": "The surface \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\) passes through the point \\( ([[x0]], [[y0]], [[z0]]) \\). The normal line there is \\( (x, y, z) = ([[x0]] + t f_{x},\\ [[y0]] + t f_{y},\\ [[z0]] - t) \\). What is the \\( x \\)-coordinate of the point where this normal line meets the plane \\( z = 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]] + [[z0]]*(2*[[a]]*[[x0]] + [[c]]*[[y0]])"},
+  "distractors": [
+   "[[x0]] - [[z0]]*(2*[[a]]*[[x0]] + [[c]]*[[y0]])",
+   "[[z0]]*(2*[[a]]*[[x0]] + [[c]]*[[y0]])",
+   "[[x0]] + [[z0]]",
+   "[[x0]] + [[z0]]*(2*[[b]]*[[y0]] + [[c]]*[[x0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Setting the \\( z \\)-coordinate \\( [[z0]] - t = 0 \\) gives \\( t = [[z0]] \\). Since \\( f_{x} = 2([[a]])x+([[c]])y \\) evaluated at \\( ([[x0]],[[y0]]) \\) is \\( 2([[a]])([[x0]])+([[c]])([[y0]]) \\), the \\( x \\)-coordinate at this \\( t \\) is \\( [[x0]] + [[z0]]\\cdot f_{x} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This moves in the wrong direction along the normal line (subtracts instead of adds).",
+   "This drops the base coordinate \\( [[x0]] \\) entirely.",
+   "This assumes \\( f_{x}=1 \\), ignoring the actual slope of the surface.",
+   "This uses \\( f_{y} \\) instead of \\( f_{x} \\) for the \\( x \\)-coordinate's direction.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_vector_parametric_surface_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "u0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "v0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "A surface is given parametrically by \\( \\mathbf{r}(u, v) = \\langle u,\\ v,\\ [[a]]u^{2} + [[b]]v^{2} + ([[c]])uv \\rangle \\). A normal vector at a point is \\( \\mathbf{r}_{u} \\times \\mathbf{r}_{v} \\), where \\( \\mathbf{r}_{u} = \\langle 1, 0, \\partial z/\\partial u\\rangle \\) and \\( \\mathbf{r}_{v} = \\langle 0, 1, \\partial z/\\partial v\\rangle \\), giving \\( \\mathbf{r}_{u}\\times\\mathbf{r}_{v} = \\langle -\\partial z/\\partial u,\\ -\\partial z/\\partial v,\\ 1\\rangle \\). What is the \\( x \\)-component of this normal vector at \\( (u, v) = ([[u0]], [[v0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-(2*[[a]]*[[u0]] + [[c]]*[[v0]])"},
+  "distractors": [
+   "2*[[a]]*[[u0]] + [[c]]*[[v0]]",
+   "-(2*[[b]]*[[v0]] + [[c]]*[[u0]])",
+   "2*[[b]]*[[v0]] + [[c]]*[[u0]]",
+   "-([[a]]*[[u0]] + [[c]]*[[v0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Here \\( \\partial z/\\partial u = 2([[a]])u+([[c]])v \\), so the \\( x \\)-component of \\( \\mathbf{r}_{u}\\times\\mathbf{r}_{v} \\) is \\( -\\partial z/\\partial u \\), which at \\( ([[u0]],[[v0]]) \\) equals \\( -(2([[a]])([[u0]])+([[c]])([[v0]])) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from the cross-product formula.",
+   "This is the (negated) \\( y \\)-component \\( -\\partial z/\\partial v \\), not the \\( x \\)-component.",
+   "This is the \\( y \\)-component \\( \\partial z/\\partial v \\) without the negative sign.",
+   "This drops the factor of 2 from differentiating \\( [[a]]u^{2} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_vector_implicit_product_surface_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "z0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[x0]]*[[y0]]*[[z0]]"
+  },
+  "stem": "The surface \\( xyz = [[k]] \\) is given implicitly by \\( F(x,y,z) = xyz - [[k]] \\). At the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface, a normal vector is \\( \\nabla F = \\langle F_{x}, F_{y}, F_{z} \\rangle \\). What is the \\( x \\)-component \\( F_{x} \\) of this normal vector at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*[[z0]]"},
+  "distractors": [
+   "[[x0]]*[[z0]]",
+   "[[x0]]*[[y0]]",
+   "[[k]]",
+   "[[y0]] + [[z0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The partials of \\( F=xyz-[[k]] \\) are \\( F_{x}=yz \\), \\( F_{y}=xz \\), \\( F_{z}=xy \\). At \\( ([[x0]], [[y0]], [[z0]]) \\), \\( F_{x} = ([[y0]])([[z0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( F_{y} = xz \\), the \\( y \\)-component, not \\( F_{x} \\).",
+   "This is \\( F_{z} = xy \\), the \\( z \\)-component, not \\( F_{x} \\).",
+   "This returns the constant \\( k \\) instead of a component of the normal vector.",
+   "This adds \\( y_{0} \\) and \\( z_{0} \\) instead of multiplying them.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_vector_hillside_word_problem_v1",
+  "skill_id": "normal_vector_normal_line_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "The elevation of a hillside is given by \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\), where \\( x \\) and \\( y \\) are east-west and north-south coordinates (in km) and \\( z \\) is elevation (in km). A surveyor at the location \\( (x, y) = ([[x0]], [[y0]]) \\) needs the vector perpendicular to the hillside there, \\( \\langle f_{x},\\, f_{y},\\, -1 \\rangle \\). What is the \\( x \\)-component \\( f_{x} \\) of this vector at the surveyor's location?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**2 + [[b]]*[[y0]]**2 + [[c]]*x*[[y0]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "2*[[b]]*[[y0]] + [[c]]*[[x0]]",
+   "[[a]]*[[x0]] + [[c]]*[[y0]]",
+   "2*[[a]]*[[x0]] + [[c]]*[[x0]]",
+   "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]",
+   "[[answer]] + 3",
+   "[[answer]] - 2"
+  ],
+  "solution": "Writing the surface as \\( F = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy - z \\), a normal vector is \\( \\nabla F = \\langle f_{x}, f_{y}, -1 \\rangle \\). Here \\( f_{x} = 2([[a]])x + ([[c]])y \\), which at \\( ([[x0]], [[y0]]) \\) equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the \\( y \\)-component \\( f_{y} = 2([[b]])y + ([[c]])x \\), not the \\( x \\)-component.",
+   "This drops the factor of 2 from differentiating \\( [[a]]x^{2} \\).",
+   "This differentiates the cross term with respect to the wrong variable.",
+   "This is the elevation \\( f([[x0]], [[y0]]) \\), not a component of the normal vector.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

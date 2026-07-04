@@ -1,0 +1,127 @@
+[
+ {
+  "template_id": "geometric_first_success_v1",
+  "skill_id": "geometric_distribution_waiting_for_the_first_success",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "k": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "On each independent trial, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). Trials continue until the first success occurs. What is the probability that the first success happens on trial number [[k]]?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1) * Rational([[pn]], [[pd]])"},
+  "distractors": [
+   "(1 - Rational([[pn]], [[pd]])) ** [[k]] * Rational([[pn]], [[pd]])",
+   "(1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1)",
+   "Rational([[pn]], [[pd]]) ** ([[k]] - 1) * (1 - Rational([[pn]], [[pd]]))",
+   "Rational([[pn]], [[pd]]) ** [[k]]",
+   "Rational([[pn]], [[pd]])",
+   "(1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1) * Rational([[pn]], [[pd]]) ** 2"
+  ],
+  "solution": "The first \\( [[k]] - 1 \\) trials must fail and the [[k]]th must succeed: \\( (1 - p)^{[[k]] - 1} p = \\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[k]] - 1}\\frac{[[pn]]}{[[pd]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses [[k]] failures before the success instead of \\( [[k]] - 1 \\).",
+   "This gives only the probability that the first \\( [[k]] - 1 \\) trials fail, omitting the final success.",
+   "This swaps the roles of success and failure probabilities.",
+   "This is the probability of [[k]] consecutive successes, not a first success on trial [[k]].",
+   "This is just the single-trial success probability, ignoring the earlier failures.",
+   "This includes an extra factor of the success probability."
+  ]
+ },
+ {
+  "template_id": "geometric_cdf_within_k_trials_v1",
+  "skill_id": "geometric_distribution_waiting_for_the_first_success",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "k": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "On each independent trial, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). Trials continue until the first success occurs. What is the probability that the first success occurs on or before trial number [[k]] (that is, within the first [[k]] trials)?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - (1 - Rational([[pn]], [[pd]])) ** [[k]]"},
+  "distractors": [
+   "(1 - Rational([[pn]], [[pd]])) ** [[k]]",
+   "1 - (1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1)",
+   "Rational([[pn]], [[pd]]) * [[k]]",
+   "(1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1) * Rational([[pn]], [[pd]])",
+   "1 - Rational([[pn]], [[pd]]) ** [[k]]",
+   "Rational([[pn]], [[pd]])"
+  ],
+  "solution": "By the complement rule, \\( P(X \\le [[k]]) = 1 - P(\\text{first [[k]] trials all fail}) = 1 - \\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(X > [[k]]) \\), the complement of the requested cumulative probability.",
+   "This uses \\( [[k]] - 1 \\) trials in the exponent instead of [[k]].",
+   "This treats the probabilities as if they simply add across trials.",
+   "This is the pmf \\( P(X = [[k]]) \\), a single trial's probability, not the cumulative probability.",
+   "This raises only the success probability to the [[k]]th power instead of the failure probability.",
+   "This is just the single-trial success probability, ignoring the [[k]] trials."
+  ]
+ },
+ {
+  "template_id": "geometric_survival_all_fail_v1",
+  "skill_id": "geometric_distribution_waiting_for_the_first_success",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "k": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "On each independent trial, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). What is the probability that the first [[k]] trials are ALL failures (that is, no success has occurred yet after [[k]] trials)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - Rational([[pn]], [[pd]])) ** [[k]]"},
+  "distractors": [
+   "1 - (1 - Rational([[pn]], [[pd]])) ** [[k]]",
+   "(1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1)",
+   "(1 - Rational([[pn]], [[pd]])) ** ([[k]] - 1) * Rational([[pn]], [[pd]])",
+   "Rational([[pn]], [[pd]]) ** [[k]]",
+   "1 - Rational([[pn]], [[pd]]) * [[k]]",
+   "Rational([[pn]], [[pd]])"
+  ],
+  "solution": "Each trial must independently fail: \\( P(\\text{no success in [[k]] trials}) = (1-p)^{[[k]]} = \\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the complement — the probability that a success HAS occurred within [[k]] trials.",
+   "This uses \\( [[k]] - 1 \\) failures instead of [[k]].",
+   "This is the pmf \\( P(X = [[k]]) \\), the probability the first success is EXACTLY on trial [[k]], not that all [[k]] trials fail.",
+   "This raises the success probability to the [[k]]th power instead of the failure probability.",
+   "This treats the failure probability as if it simply scales linearly with [[k]].",
+   "This is just the single-trial success probability, ignoring that [[k]] trials must all fail."
+  ]
+ },
+ {
+  "template_id": "geometric_memoryless_property_v1",
+  "skill_id": "geometric_distribution_waiting_for_the_first_success",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "j": {"type": "int", "lo": 1, "hi": 6},
+   "t": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "On each independent trial, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). Given that the first [[j]] trials were all failures, what is the probability that at least [[t]] MORE trials are needed before the first success (that is, trials \\( [[j]]+1 \\) through \\( [[j]]+[[t]] \\) are also all failures)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - Rational([[pn]], [[pd]])) ** [[t]]"},
+  "distractors": [
+   "(1 - Rational([[pn]], [[pd]])) ** ([[j]] + [[t]])",
+   "(1 - Rational([[pn]], [[pd]])) ** [[j]]",
+   "1 - (1 - Rational([[pn]], [[pd]])) ** [[t]]",
+   "(1 - Rational([[pn]], [[pd]])) ** [[t]] * (1 - Rational([[pn]], [[pd]])) ** [[j]]",
+   "Rational([[t]], [[j]] + [[t]])",
+   "Rational([[pn]], [[pd]]) ** [[t]]"
+  ],
+  "solution": "By the memoryless property of the geometric distribution, the number of ADDITIONAL trials needed does not depend on the [[j]] failures already observed: \\( P(\\text{at least [[t]] more trials} \\mid \\text{first [[j]] failed}) = (1-p)^{[[t]]} = \\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[t]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This incorrectly uses the total elapsed trials \\( [[j]]+[[t]] \\) as the exponent, ignoring memorylessness.",
+   "This reports the probability of surviving only the ALREADY-elapsed [[j]] trials, not the additional wait.",
+   "This is the complement (probability the next success happens within the additional [[t]] trials).",
+   "This double-counts by multiplying survival probabilities for [[j]] and [[t]] separately after already conditioning on [[j]].",
+   "This treats the situation as if trial position mattered linearly rather than applying the memoryless property.",
+   "This raises the success probability instead of the failure probability to the power [[t]]."
+  ]
+ }
+]

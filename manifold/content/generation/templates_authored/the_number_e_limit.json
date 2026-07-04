@@ -1,0 +1,138 @@
+[
+{
+ "template_id": "the_number_e_limit_v1",
+ "skill_id": "the_number_e_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": -14,
+   "hi": 14
+  }
+ },
+ "constraints": [
+  "Ne([[a]], 0)"
+ ],
+ "require_rational": false,
+ "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\left(1 + \\frac{[[a]]}{x}\\right)^{x} \\).",
+ "answer_spec": {
+  "op": "limit",
+  "expr": "(1 + [[a]]/x)**x",
+  "var": "x",
+  "point": "oo"
+ },
+ "distractors": [
+  "E",
+  "exp(-[[a]])",
+  "[[a]]*E",
+  "2*exp([[a]])",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The standard limit \\( \\left(1 + \\frac{a}{x}\\right)^{x} \\to e^{a} \\) gives \\( \\lim_{x \\to \\infty} \\left(1 + \\frac{[[a]]}{x}\\right)^{x} = e^{[[a]]} \\).",
+ "distractor_rationales": [
+  "This is \\( e \\), which drops the exponent \\( a \\).",
+  "This has the wrong sign in the exponent.",
+  "This multiplies \\( e \\) by \\( a \\) instead of raising \\( e \\) to the power \\( a \\).",
+  "This doubles the correct value.",
+  "This mistakes the limit for the constant \\( a \\).",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "e_limit_exponent_multiplier_v1",
+ "skill_id": "the_number_e_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "require_rational": false,
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} \\left(1 + \\frac{[[a]]}{x}\\right)^{[[b]]x} \\).",
+ "answer_spec": {"op": "limit", "expr": "(1 + [[a]]/x)**([[b]]*x)", "var": "x", "point": "oo"},
+ "distractors": [
+  "exp([[a]])",
+  "exp([[b]])",
+  "exp([[a]] + [[b]])",
+  "exp(-[[a]]*[[b]])",
+  "[[a]]*[[b]]*E",
+  "[[answer]]*E",
+  "[[answer]]/E"
+ ],
+ "solution": "Writing \\( \\left(1+\\frac{[[a]]}{x}\\right)^{[[b]]x} = \\left[\\left(1+\\frac{[[a]]}{x}\\right)^{x}\\right]^{[[b]]} \\to (e^{[[a]]})^{[[b]]} = e^{[[a]]\\cdot[[b]]} = [[answer]] \\), combining the inner coefficient with the outer exponent multiplier.",
+ "distractor_rationales": [
+  "This uses only the inner coefficient \\( a \\), ignoring the outer multiplier \\( b \\).",
+  "This uses only the outer multiplier \\( b \\), ignoring the inner coefficient \\( a \\).",
+  "This adds \\( a \\) and \\( b \\) instead of multiplying them in the exponent.",
+  "This has the wrong sign in the exponent.",
+  "This multiplies by \\( e \\) rather than raising \\( e \\) to the product \\( ab \\).",
+  "This is off by a factor of \\( e \\) from the correct value."
+ ]
+},
+{
+ "template_id": "e_limit_reciprocal_substitution_v1",
+ "skill_id": "the_number_e_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -14, "hi": 14}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "require_rational": false,
+ "stem": "Evaluate \\( \\displaystyle\\lim_{h \\to 0} \\left(1 + [[a]]h\\right)^{1/h} \\).",
+ "answer_spec": {"op": "limit", "expr": "(1 + [[a]]*h)**(1/h)", "var": "h", "point": 0},
+ "distractors": [
+  "E",
+  "exp(-[[a]])",
+  "[[a]]*E",
+  "2*exp([[a]])",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Substituting \\( x = 1/h \\to \\infty \\) turns this into the standard form \\( \\left(1+\\frac{[[a]]}{x}\\right)^{x} \\to e^{[[a]]} \\), so \\( \\lim_{h\\to 0}(1+[[a]]h)^{1/h} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( e \\), which drops the coefficient \\( a \\).",
+  "This has the wrong sign in the exponent.",
+  "This multiplies \\( e \\) by \\( a \\) instead of raising \\( e \\) to the power \\( a \\).",
+  "This doubles the correct value.",
+  "This mistakes the limit for the coefficient \\( a \\) itself.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "e_limit_continuous_compounding_v1",
+ "skill_id": "the_number_e_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 2, "hi": 9},
+  "r": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[r]], 0)"],
+ "require_rational": false,
+ "stem": "An account with \\( [[p]] \\) (in thousands of dollars) earns interest at rate \\( [[r]] \\) per year, compounded \\( n \\) times per year. As the compounding frequency \\( n \\to \\infty \\) (continuous compounding), the balance after one year approaches \\( \\lim_{n \\to \\infty} [[p]]\\left(1 + \\dfrac{[[r]]}{n}\\right)^{n} \\). Evaluate this limit (in thousands of dollars).",
+ "answer_spec": {"op": "limit", "expr": "[[p]]*(1 + [[r]]/n)**n", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[p]]*E",
+  "[[p]]*exp(-[[r]])",
+  "[[p]] + [[r]]",
+  "[[p]]*[[r]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the standard limit \\( \\left(1+\\frac{r}{n}\\right)^{n} \\to e^{r} \\), the balance approaches \\( [[p]]\\cdot e^{[[r]]} = [[answer]] \\) thousand dollars.",
+ "distractor_rationales": [
+  "This drops the rate \\( r \\) from the exponent, using \\( e \\) alone.",
+  "This has the wrong sign in the exponent.",
+  "This adds the principal and rate instead of multiplying by \\( e^{r} \\).",
+  "This multiplies the principal and rate directly, ignoring the exponential growth.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

@@ -1,0 +1,253 @@
+[
+ {
+  "template_id": "exponents_and_radicals_combine_powers_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "e1": {"type": "int", "lo": 1, "hi": 4},
+   "e2": {"type": "int", "lo": 1, "hi": 4},
+   "e3": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ge([[e1]] + [[e2]] - [[e3]], -3)", "Le([[e1]] + [[e2]] - [[e3]], 6)"],
+  "derived": {"E": "[[e1]] + [[e2]] - [[e3]]"},
+  "stem": "Evaluate \\( \\dfrac{[[b]]^{[[e1]]} \\cdot [[b]]^{[[e2]]}}{[[b]]^{[[e3]]}} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]**([[E]])"},
+  "distractors": [
+   "[[b]] * [[E]]",
+   "[[E]]",
+   "[[b]]**([[E]] + 1)",
+   "[[b]]**([[e1]] + [[e2]] + [[e3]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Using \\( b^{m}\\cdot b^{n} = b^{m+n} \\) and \\( b^{m}/b^{n} = b^{m-n} \\), the expression equals \\( [[b]]^{[[e1]] + [[e2]] - [[e3]]} = [[b]]^{[[E]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the base by the combined exponent instead of raising the base to that power.",
+   "This reports the exponent \\( [[E]] \\) itself instead of \\( [[b]]^{[[E]]} \\).",
+   "This uses an exponent one too large.",
+   "This adds all three exponents instead of subtracting the last one.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_power_of_a_power_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 4]},
+   "e1": {"type": "int", "lo": 1, "hi": 3},
+   "e2": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Le([[e1]] * [[e2]], 7)"],
+  "stem": "Evaluate \\( \\left([[b]]^{[[e1]]}\\right)^{[[e2]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]]**[[e1]])**[[e2]]"},
+  "distractors": [
+   "[[b]]**([[e1]] + [[e2]])",
+   "[[b]] * [[e1]] * [[e2]]",
+   "[[b]]**([[e1]] * [[e2]] + 1)",
+   "[[e1]] * [[e2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the power-of-a-power rule, \\( (b^{m})^{n} = b^{mn} \\), so this equals \\( [[b]]^{[[e1]] \\cdot [[e2]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the exponents, as when multiplying two powers, rather than multiplying them.",
+   "This multiplies the base by both exponents instead of raising it to their product.",
+   "This uses an exponent one too large on the product.",
+   "This reports the product of the exponents itself, not the base raised to that product.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_negative_exponent_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "n": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( [[b]]^{-[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]**(-[[n]])"},
+  "distractors": [
+   "-[[b]]**[[n]]",
+   "[[b]]**[[n]]",
+   "-1/[[b]]**[[n]]",
+   "1/([[n]]*[[b]])",
+   "[[answer]] * 2",
+   "[[answer]] + 1"
+  ],
+  "solution": "A negative exponent means take the reciprocal: \\( [[b]]^{-[[n]]} = \\dfrac{1}{[[b]]^{[[n]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This negates the value instead of taking its reciprocal.",
+   "This drops the negative sign, giving a positive power instead of its reciprocal.",
+   "This takes the reciprocal but keeps an incorrect negative sign.",
+   "This multiplies the base by the exponent in the denominator rather than raising the base to a power.",
+   "This is double the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_fractional_exponent_root_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 10},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {"b": "[[k]]**[[n]]"},
+  "stem": "Evaluate \\( [[b]]^{1/[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]])**(Rational(1,[[n]]))"},
+  "distractors": [
+   "[[b]] / [[n]]",
+   "[[b]] - [[n]]",
+   "[[k]]**([[n]] - 1)",
+   "[[n]]**[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A \\( 1/n \\) power is the same as an \\( n \\)-th root. Since \\( [[b]] = [[k]]^{[[n]]} \\), \\( [[b]]^{1/[[n]]} = [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( n \\) instead of taking the \\( n \\)-th root.",
+   "This subtracts \\( n \\) instead of taking the \\( n \\)-th root.",
+   "This uses an exponent one too small on \\( k \\) when recovering the base.",
+   "This swaps the roles of the base and the root index.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_negative_fractional_exponent_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3]},
+   "m": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "derived": {"b": "[[k]]**[[n]]"},
+  "stem": "Evaluate \\( [[b]]^{-[[m]]/[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]])**(-Rational([[m]],[[n]]))"},
+  "distractors": [
+   "[[k]]**[[m]]",
+   "-1/[[k]]**[[m]]",
+   "[[k]]**(-[[n]]/[[m]])",
+   "1/[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Write \\( [[b]] = [[k]]^{[[n]]} \\), so \\( [[b]]^{-[[m]]/[[n]]} = \\left([[k]]^{[[n]]}\\right)^{-[[m]]/[[n]]} = [[k]]^{-[[m]]} = \\dfrac{1}{[[k]]^{[[m]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign, giving a positive power of \\( k \\) instead of its reciprocal.",
+   "This has the correct reciprocal magnitude but an incorrect negative sign in front.",
+   "This inverts the fractional exponent, using \\( n/m \\) instead of \\( m/n \\).",
+   "This takes the reciprocal of \\( b \\) itself instead of \\( k^{m} \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_sqrt_of_even_power_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5, 6, 7, 10]},
+   "n": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\sqrt{[[b]]^{2[[n]]}} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[b]]**(2*[[n]]))"},
+  "distractors": [
+   "[[b]]**[[n]] / 2",
+   "[[b]]**(2*[[n]])",
+   "[[b]]**([[n]] - 1)",
+   "2*[[b]]**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since the exponent \\( 2[[n]] \\) is even and \\( [[b]] > 0 \\), \\( \\sqrt{[[b]]^{2[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This halves the whole power instead of halving just the exponent.",
+   "This leaves the expression unrooted, forgetting the square root entirely.",
+   "This uses an exponent one too small.",
+   "This doubles the correctly-rooted value for no valid reason.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_conjugate_product_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 30},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\left(\\sqrt{[[a]]} + [[c]]\\right)\\left(\\sqrt{[[a]]} - [[c]]\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(sqrt([[a]]) + [[c]])*(sqrt([[a]]) - [[c]])"},
+  "distractors": [
+   "[[a]] + [[c]]**2",
+   "[[c]]**2 - [[a]]",
+   "sqrt([[a]])",
+   "[[a]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "This is a difference of squares, \\( (\\sqrt{[[a]]}+[[c]])(\\sqrt{[[a]]}-[[c]]) = (\\sqrt{[[a]]})^{2} - [[c]]^{2} = [[a]] - [[c]]^{2} = [[answer]] \\), so the radical always cancels out cleanly.",
+  "distractor_rationales": [
+   "This adds \\( c^{2} \\) instead of subtracting it.",
+   "This flips the sign of the correct difference of squares.",
+   "This leaves a radical in the answer, forgetting the two terms multiply to a clean integer.",
+   "This forgets to square \\( c \\) before subtracting.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exponents_and_radicals_product_of_radicals_v1",
+  "skill_id": "exponents_and_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 6},
+   "d": {"type": "int", "lo": 2, "hi": 6},
+   "e": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": ["Ne([[d]], [[e]])"],
+  "derived": {"a": "[[c]]*[[d]]**2", "b": "[[c]]*[[e]]**2"},
+  "stem": "Evaluate \\( \\sqrt{[[a]]} \\cdot \\sqrt{[[b]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]) * sqrt([[b]])"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "sqrt([[a]] + [[b]])",
+   "[[c]] * [[d]] * [[e]] + 1",
+   "[[a]] * [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\sqrt{[[a]]}\\cdot\\sqrt{[[b]]} = \\sqrt{[[a]][[b]]} \\) and \\( [[a]][[b]] = [[c]]^{2}[[d]]^{2}[[e]]^{2} \\) is a perfect square, this simplifies to \\( [[c]]\\cdot[[d]]\\cdot[[e]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two radicands instead of multiplying the radicals.",
+   "This takes the square root of the SUM of the radicands rather than the product.",
+   "This multiplies the three factors but adds an extra 1.",
+   "This multiplies the two radicands directly instead of taking the square root of their product.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

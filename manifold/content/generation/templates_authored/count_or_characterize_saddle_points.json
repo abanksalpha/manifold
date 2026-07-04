@@ -1,0 +1,129 @@
+[
+ {
+  "template_id": "saddle_count_single_critical_point_v1",
+  "skill_id": "count_or_characterize_saddle_points",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "stem": "Let \\( f(x,y) = [[A]]x^{2} + [[B]]y^{2} \\). This function has exactly one critical point. How many of \\( f \\)'s critical points are saddle points?",
+  "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, [[A]]*[[B]]<0), (0, True))"},
+  "distractors": [
+   "Piecewise((0, [[A]]*[[B]]<0), (1, True))",
+   "2",
+   "-1",
+   "3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The only critical point is \\( (0,0) \\) (from \\( f_x=2[[A]]x=0 \\), \\( f_y=2[[B]]y=0 \\)), where \\( f_{xx}=2[[A]] \\), \\( f_{yy}=2[[B]] \\), \\( f_{xy}=0 \\), so \\( D = 4[[A]]\\cdot[[B]] \\). The point is a saddle iff \\( D<0 \\), i.e. iff \\( [[A]] \\) and \\( [[B]] \\) have opposite signs. Here that gives \\( [[answer]] \\) saddle point(s).",
+  "distractor_rationales": [
+   "This has the saddle/non-saddle condition on \\( AB \\) backwards.",
+   "This overcounts; there is only one critical point total, so at most one can be a saddle.",
+   "A count of saddle points cannot be negative.",
+   "This overcounts; there is only one critical point total, so at most one can be a saddle.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "saddle_count_two_critical_points_v1",
+  "skill_id": "count_or_characterize_saddle_points",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -5, "hi": 5},
+   "k": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "derived": {"c1": "-3*[[A]]*[[k]]**2"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{3} + [[c1]]x + [[B]]y^{2} \\). This function has exactly two critical points, at \\( x=\\pm [[k]] \\), \\( y=0 \\). How many of these two critical points are saddle points of \\( f \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, (6*[[A]]*[[k]])*(2*[[B]])<0), (0, True)) + Piecewise((1, (-6*[[A]]*[[k]])*(2*[[B]])<0), (0, True))"},
+  "distractors": [
+   "0",
+   "2",
+   "3",
+   "4",
+   "[[answer]] + 3",
+   "[[answer]] - 1"
+  ],
+  "solution": "At \\( ([[k]],0) \\): \\( f_{xx}=6[[A]]\\cdot[[k]] \\), \\( f_{yy}=2[[B]] \\), \\( f_{xy}=0 \\), so \\( D_1 = 12[[A]][[B]][[k]] \\). At \\( (-[[k]],0) \\): \\( f_{xx}=-6[[A]]\\cdot[[k]] \\), so \\( D_2=-12[[A]][[B]][[k]] = -D_1 \\). Since \\( D_1 \\) and \\( D_2 \\) always have opposite signs, exactly one of the two critical points has \\( D<0 \\): there is \\( [[answer]] \\) saddle point.",
+  "distractor_rationales": [
+   "This assumes neither critical point is a saddle, but \\( D_1 \\) and \\( D_2 \\) always have opposite signs, so exactly one must be negative.",
+   "This assumes both critical points are saddles, but \\( D_1 \\) and \\( D_2 \\) have opposite signs, so exactly one is negative.",
+   "There are only two critical points total, so the count of saddles cannot exceed two.",
+   "There are only two critical points total, so the count of saddles cannot exceed two.",
+   "This is off by three from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "saddle_count_four_critical_points_v1",
+  "skill_id": "count_or_characterize_saddle_points",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": -4, "hi": 4},
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[C]], 0)"],
+  "derived": {"c1": "-3*[[A]]*[[p]]**2", "c2": "-3*[[C]]*[[q]]**2"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{3} + [[c1]]x + [[C]]y^{3} + [[c2]]y \\). This function has exactly four critical points, at \\( x=\\pm[[p]] \\), \\( y=\\pm[[q]] \\) (all four combinations). How many of these four critical points are saddle points of \\( f \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, (36*[[A]]*[[C]]*[[p]]*[[q]])<0),(0,True)) + Piecewise((1, (-36*[[A]]*[[C]]*[[p]]*[[q]])<0),(0,True)) + Piecewise((1, (-36*[[A]]*[[C]]*[[p]]*[[q]])<0),(0,True)) + Piecewise((1, (36*[[A]]*[[C]]*[[p]]*[[q]])<0),(0,True))"},
+  "distractors": [
+   "0",
+   "1",
+   "3",
+   "4",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "At each critical point \\( (\\pm[[p]],\\pm[[q]]) \\), \\( f_{xy}=0 \\) (the function separates in \\( x \\) and \\( y \\)), so \\( D = f_{xx}f_{yy} = 36[[A]][[C]]\\,xy \\), whose sign matches the sign of \\( xy \\) (up to the fixed sign of \\( [[A]][[C]] \\)). Exactly two of the four sign combinations of \\( (x,y) \\) give \\( xy \\) one sign and two give the other, so exactly two of the four critical points have \\( D<0 \\): there are \\( [[answer]] \\) saddle points.",
+  "distractor_rationales": [
+   "This assumes none of the four critical points are saddles, but the signs of \\( D \\) split evenly, so exactly two must be negative.",
+   "This undercounts; the signs of \\( xy \\) at the four sign combinations split two-and-two, giving two saddles, not one.",
+   "This overcounts; the signs of \\( xy \\) at the four sign combinations split two-and-two, giving two saddles, not three.",
+   "This assumes all four critical points are saddles, but the signs of \\( D \\) split evenly, so exactly two must be positive.",
+   "This is off by two from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ },
+ {
+  "template_id": "saddle_count_no_critical_points_v1",
+  "skill_id": "count_or_characterize_saddle_points",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -5, "hi": 5},
+   "mpos": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "derived": {"m": "-[[mpos]]", "c1": "3*[[A]]*[[mpos]]"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{3} + [[c1]]x + [[B]]y^{2} \\). How many saddle points does \\( f \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "Piecewise((0, [[m]]<0), (2, True))"},
+  "distractors": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Critical points satisfy \\( f_x = 3[[A]]x^{2} + [[c1]] = 3[[A]](x^{2} - ([[m]])) = 0 \\), i.e. \\( x^{2} = [[m]] \\). Since \\( [[m]] < 0 \\), there is no real solution for \\( x \\), so \\( f \\) has no critical points at all, and therefore \\( [[answer]] \\) saddle points.",
+  "distractor_rationales": [
+   "This assumes a critical point exists and is a saddle, but \\( x^{2}=[[m]]<0 \\) has no real solution, so \\( f \\) has no critical points.",
+   "This assumes two critical points exist and both are saddles, but \\( x^{2}=[[m]]<0 \\) has no real solution.",
+   "This assumes three critical points, but \\( f \\) has none since \\( x^2 = [[m]] \\) has no real solution.",
+   "This assumes four critical points, but \\( f \\) has none since \\( x^2 = [[m]] \\) has no real solution.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

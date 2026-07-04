@@ -1,0 +1,171 @@
+[
+ {
+  "template_id": "tangent_plane_zvalue_foreign_point_v1",
+  "skill_id": "tangent_planes",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": -6, "hi": 6},
+   "D": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "x1": {"type": "choice", "values": [-2, -1, 0, 1, 2, 4]},
+   "y1": {"type": "choice", "values": [-2, -1, 0, 1, 2, 4]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)", "Ne([[x1]], [[x0]])", "Ne([[y1]], [[y0]])"],
+  "stem": "Let \\( f(x,y) = [[A]]x^{2} + [[B]]y^{2} + [[C]]x + [[D]]y \\). Using the tangent plane to \\( z=f(x,y) \\) at \\( ([[x0]],[[y0]]) \\) to approximate \\( f \\), what value does this tangent plane give at \\( (x,y)=([[x1]],[[y1]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[A]]*[[x0]]**2+[[B]]*[[y0]]**2+[[C]]*[[x0]]+[[D]]*[[y0]]) + (2*[[A]]*[[x0]]+[[C]])*([[x1]]-[[x0]]) + (2*[[B]]*[[y0]]+[[D]])*([[y1]]-[[y0]])"},
+  "distractors": [
+   "[[A]]*[[x1]]**2+[[B]]*[[y1]]**2+[[C]]*[[x1]]+[[D]]*[[y1]]",
+   "([[A]]*[[x0]]**2+[[B]]*[[y0]]**2+[[C]]*[[x0]]+[[D]]*[[y0]])",
+   "(2*[[A]]*[[x0]]+[[C]])*([[x1]]-[[x0]]) + (2*[[B]]*[[y0]]+[[D]])*([[y1]]-[[y0]])",
+   "([[A]]*[[x0]]**2+[[B]]*[[y0]]**2+[[C]]*[[x0]]+[[D]]*[[y0]]) + (2*[[A]]*[[x0]]+[[C]])*([[y1]]-[[y0]]) + (2*[[B]]*[[y0]]+[[D]])*([[x1]]-[[x0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The tangent plane at \\( ([[x0]],[[y0]]) \\) is \\( z = f([[x0]],[[y0]]) + f_x([[x0]],[[y0]])(x-[[x0]]) + f_y([[x0]],[[y0]])(y-[[y0]]) \\), with \\( f_x=2[[A]]x+[[C]] \\) and \\( f_y=2[[B]]y+[[D]] \\). Evaluating at \\( (x,y)=([[x1]],[[y1]]) \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates the actual (curved) function \\( f \\) at \\( ([[x1]],[[y1]]) \\), not the linear tangent-plane approximation.",
+   "This reports \\( f([[x0]],[[y0]]) \\) itself, forgetting the linear correction terms.",
+   "This drops the base value \\( f([[x0]],[[y0]]) \\), keeping only the correction terms.",
+   "This swaps the roles of \\( f_x \\) and \\( f_y \\) in the two correction terms.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_x_coefficient_v1",
+  "skill_id": "tangent_planes",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "C": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "stem": "Let \\( f(x,y) = [[A]]x^{2}y + [[B]]x + [[C]]y \\). The tangent plane to \\( z=f(x,y) \\) at \\( ([[x0]],[[y0]]) \\) can be written \\( z = f([[x0]],[[y0]]) + m(x-[[x0]]) + n(y-[[y0]]) \\). What is \\( m \\), the coefficient of \\( (x-[[x0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*x**2*[[y0]] + [[B]]*x + [[C]]*[[y0]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[A]]*[[x0]]**2 + [[C]]",
+   "[[A]]*[[x0]]**2*[[y0]] + [[B]]*[[x0]] + [[C]]*[[y0]]",
+   "[[A]]*[[x0]]*[[y0]]",
+   "2*[[A]]*[[x0]] + [[B]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The coefficient \\( m \\) is the partial derivative \\( f_x([[x0]],[[y0]]) \\). Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[A]]([[y0]])x^{2} + [[B]]x + [[C]]([[y0]]) \\), so \\( f_x(x,[[y0]]) = 2[[A]]([[y0]])x + [[B]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( m = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( n \\), the coefficient of \\( y \\) (i.e. \\( f_y([[x0]],[[y0]]) \\)), not \\( m \\).",
+   "This reports \\( f([[x0]],[[y0]]) \\) itself, not the tangent plane's \\( x \\)-coefficient.",
+   "This omits the constant term \\( [[B]] \\) from the derivative.",
+   "This treats \\( f \\) as if the \\( x^2y \\) term's derivative had no factor of 2.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_y_coefficient_v1",
+  "skill_id": "tangent_planes",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "stem": "Let \\( f(x,y) = [[A]]y^{3} + [[B]]xy \\). The tangent plane to \\( z=f(x,y) \\) at \\( ([[x0]],[[y0]]) \\) can be written \\( z = f([[x0]],[[y0]]) + m(x-[[x0]]) + n(y-[[y0]]) \\). What is \\( n \\), the coefficient of \\( (y-[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*y**3 + [[B]]*[[x0]]*y", "var": "y", "at": "[[y0]]", "order": 1},
+  "distractors": [
+   "[[B]]*[[y0]]",
+   "[[A]]*[[y0]]**3 + [[B]]*[[x0]]*[[y0]]",
+   "3*[[A]]*[[y0]]**2",
+   "[[A]]*[[y0]]**2 + [[B]]*[[x0]]",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "The coefficient \\( n \\) is the partial derivative \\( f_y([[x0]],[[y0]]) \\). Holding \\( x=[[x0]] \\) fixed, \\( f([[x0]],y) = [[A]]y^{3} + [[B]]([[x0]])y \\), so \\( f_y([[x0]],y) = 3[[A]]y^{2} + [[B]]([[x0]]) \\). Evaluating at \\( y=[[y0]] \\) gives \\( n = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( m \\), the coefficient of \\( x \\) (i.e. \\( f_x([[x0]],[[y0]]) \\)), not \\( n \\).",
+   "This reports \\( f([[x0]],[[y0]]) \\) itself, not the tangent plane's \\( y \\)-coefficient.",
+   "This drops the factor of 3 on the \\( y^{3} \\) term's derivative.",
+   "This forgets to cube (rather than square) the correct power in the \\( y^3 \\) term's derivative and mishandles the constant.",
+   "This is off by three from the correct value.",
+   "This is off by three from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_z_intercept_v1",
+  "skill_id": "tangent_planes",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": -4, "hi": 4},
+   "E": {"type": "int", "lo": -6, "hi": 6},
+   "F": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[C]], 0)"],
+  "stem": "Let \\( f(x,y) = [[A]]x^{2} + [[B]]xy + [[C]]y^{2} + [[E]]x + [[F]]y \\). The tangent plane to \\( z=f(x,y) \\) at \\( ([[x0]],[[y0]]) \\) crosses the \\( z \\)-axis at \\( z = k \\) (i.e. its value at \\( (x,y)=(0,0) \\)). What is \\( k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[A]]*[[x0]]**2+[[B]]*[[x0]]*[[y0]]+[[C]]*[[y0]]**2+[[E]]*[[x0]]+[[F]]*[[y0]]) - [[x0]]*(2*[[A]]*[[x0]]+[[B]]*[[y0]]+[[E]]) - [[y0]]*([[B]]*[[x0]]+2*[[C]]*[[y0]]+[[F]])"},
+  "distractors": [
+   "[[A]]*[[x0]]**2+[[B]]*[[x0]]*[[y0]]+[[C]]*[[y0]]**2+[[E]]*[[x0]]+[[F]]*[[y0]]",
+   "[[x0]]*(2*[[A]]*[[x0]]+[[B]]*[[y0]]+[[E]]) + [[y0]]*([[B]]*[[x0]]+2*[[C]]*[[y0]]+[[F]])",
+   "-([[A]]*[[x0]]**2+[[B]]*[[x0]]*[[y0]]+[[C]]*[[y0]]**2+[[E]]*[[x0]]+[[F]]*[[y0]])",
+   "([[A]]*[[x0]]**2+[[B]]*[[x0]]*[[y0]]+[[C]]*[[y0]]**2+[[E]]*[[x0]]+[[F]]*[[y0]]) - [[x0]]*(2*[[A]]*[[x0]]+[[B]]*[[y0]]+[[E]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The tangent plane is \\( z = f([[x0]],[[y0]]) + f_x([[x0]],[[y0]])(x-[[x0]]) + f_y([[x0]],[[y0]])(y-[[y0]]) \\), with \\( f_x=2[[A]]x+[[B]]y+[[E]] \\) and \\( f_y=[[B]]x+2[[C]]y+[[F]] \\). Setting \\( (x,y)=(0,0) \\) gives \\( k = f([[x0]],[[y0]]) - [[x0]]\\,f_x([[x0]],[[y0]]) - [[y0]]\\,f_y([[x0]],[[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f([[x0]],[[y0]]) \\) itself, forgetting the correction from moving to \\( (0,0) \\).",
+   "This drops the base value \\( f([[x0]],[[y0]]) \\), keeping only the (positive) correction terms.",
+   "This has the wrong overall sign on the function value term.",
+   "This drops the \\( y \\)-correction term entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_trig_zvalue_v1",
+  "skill_id": "tangent_planes",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "x1": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y1": {"type": "choice", "values": [-2, -1, 0, 1, 2, 4]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)", "Ne([[y1]], [[y0]])"],
+  "stem": "Let \\( f(x,y) = [[A]]\\sin(x) + [[B]]y^{2} \\). Using the tangent plane to \\( z=f(x,y) \\) at \\( (0,[[y0]]) \\) to approximate \\( f \\), what value does this tangent plane give at \\( (x,y)=([[x1]],[[y1]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[B]]*[[y0]]**2 + [[A]]*[[x1]] + 2*[[B]]*[[y0]]*([[y1]]-[[y0]])"},
+  "distractors": [
+   "[[A]]*sin([[x1]]) + [[B]]*[[y1]]**2",
+   "[[B]]*[[y0]]**2",
+   "[[A]]*[[x1]] + 2*[[B]]*[[y0]]*([[y1]]-[[y0]])",
+   "[[B]]*[[y0]]**2 + [[A]]*[[x1]]*[[y0]] + 2*[[B]]*[[y0]]*([[y1]]-[[y0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Since \\( f_x=[[A]]\\cos(x) \\) and \\( f_y=2[[B]]y \\), at \\( (0,[[y0]]) \\) we get \\( f(0,[[y0]])=[[B]]\\cdot[[y0]]^{2} \\) (since \\( \\sin(0)=0 \\)), \\( f_x(0,[[y0]])=[[A]] \\) (since \\( \\cos(0)=1 \\)), and \\( f_y(0,[[y0]])=2[[B]]\\cdot[[y0]] \\). The tangent plane gives \\( f(0,[[y0]]) + f_x(0,[[y0]])\\cdot[[x1]] + f_y(0,[[y0]])\\cdot([[y1]]-[[y0]]) = [[answer]] \\) at \\( (x,y)=([[x1]],[[y1]]) \\).",
+  "distractor_rationales": [
+   "This evaluates the actual (curved) function \\( f \\) at \\( ([[x1]],[[y1]]) \\), not the linear tangent-plane approximation.",
+   "This reports \\( f(0,[[y0]]) \\) itself, forgetting the linear correction terms.",
+   "This drops the base value \\( f(0,[[y0]]) \\), keeping only the correction terms.",
+   "This mistakenly multiplies the \\( x \\)-correction by \\( [[y0]] \\), an extra unwanted factor.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

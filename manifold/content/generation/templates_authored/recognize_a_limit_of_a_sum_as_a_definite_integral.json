@@ -1,0 +1,197 @@
+[
+{
+ "template_id": "riemann_sum_to_integral_unit_interval_v1",
+ "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Recognize the following limit as a definite integral over \\( [0, 1] \\) and evaluate it: \\( \\lim_{n\\to\\infty} \\frac{1}{n} \\sum_{i=1}^{n} \\left[ ([[a]])\\left(\\frac{i}{n}\\right)^{2} + ([[b]])\\left(\\frac{i}{n}\\right) + ([[c]]) \\right] \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "bounds": ["0", "1"]},
+ "distractors": [
+  "[[a]] + [[b]] + [[c]]",
+  "[[a]]/2 + [[b]]/2 + [[c]]",
+  "[[a]]/3 + [[b]]/2",
+  "[[a]]/3 + [[b]]/3 + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( x_i = i/n \\) and \\( \\Delta x = 1/n \\), the sum is a right Riemann sum for \\( \\int_{0}^{1} \\left( ([[a]])x^{2} + ([[b]])x + ([[c]]) \\right) dx \\). Evaluating gives \\( \\frac{[[a]]}{3} + \\frac{[[b]]}{2} + ([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates the integrand at \\( x = 1 \\) instead of integrating over \\( [0, 1] \\).",
+  "This integrates the \\( x^{2} \\) term as if it were linear (dividing by 2 instead of 3).",
+  "This drops the constant term, which integrates to itself over an interval of length 1.",
+  "This mishandles the linear term, dividing by 3 rather than 2.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_general_interval_v2",
+ "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": -5, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 8}
+ },
+ "constraints": ["Ne([[m]], 0)", "Lt([[a]], [[b]])"],
+ "stem": "Recognize the following limit as a definite integral over \\( [[[a]], [[b]]] \\) and evaluate it: \\( \\displaystyle \\lim_{n\\to\\infty} \\sum_{i=1}^{n} \\left[ ([[m]])\\left([[a]] + \\frac{i([[b]]-[[a]])}{n}\\right) + ([[q]]) \\right] \\cdot \\frac{[[b]]-[[a]]}{n} \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[m]]*x + [[q]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "([[m]]*[[a]] + [[q]])*([[b]]-[[a]])",
+  "([[m]]*[[b]] + [[q]])*([[b]]-[[a]])",
+  "[[m]]*([[b]]-[[a]]) + [[q]]",
+  "[[m]]*([[b]]**2-[[a]]**2) + [[q]]*([[b]]-[[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With sample points \\( x_i = [[a]] + i([[b]]-[[a]])/n \\) and \\( \\Delta x = ([[b]]-[[a]])/n \\), this is a right Riemann sum for \\( \\int_{[[a]]}^{[[b]]} \\left( ([[m]])x + ([[q]]) \\right) dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the integrand as constant at its LEFT-endpoint value \\( f([[a]]) \\) times the interval width, instead of integrating.",
+  "This treats the integrand as constant at its RIGHT-endpoint value \\( f([[b]]) \\) times the interval width, instead of integrating.",
+  "This forgets the factor of \\( [[b]]-[[a]] \\) on the linear term while keeping it on the constant term.",
+  "This drops the factor of \\( \\tfrac12 \\) from the power rule, using \\( b^2-a^2 \\) directly instead of \\( \\tfrac12(b^2-a^2) \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_left_endpoint_v3",
+ "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Recognize the following as a LEFT-endpoint Riemann sum converging to a definite integral over \\( [0, 1] \\), and evaluate it: \\( \\displaystyle \\lim_{n\\to\\infty} \\frac{1}{n} \\sum_{i=0}^{n-1} \\left[ ([[a]])\\left(\\frac{i}{n}\\right)^{2} + ([[b]])\\left(\\frac{i}{n}\\right) + ([[c]]) \\right] \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "bounds": ["0", "1"]},
+ "distractors": [
+  "[[c]]",
+  "[[a]]/2 + [[b]]/2 + [[c]]",
+  "[[a]]/3 + [[b]]/2 + 2*[[c]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Even though the sample points are \\( x_i = i/n \\) for \\( i=0,\\dots,n-1 \\) (the LEFT endpoints of each subinterval), the limit converges to the SAME definite integral as any other choice of sample points: \\( \\int_{0}^{1} \\left( ([[a]])x^{2} + ([[b]])x + ([[c]]) \\right) dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates the integrand only at \\( x=0 \\) (the very first left endpoint), instead of integrating over the whole interval.",
+  "This evaluates the integrand at \\( x=1 \\) as if it were a right-endpoint sum, ignoring that this is a left-endpoint sum with the same limiting integral.",
+  "This doubles the constant term's contribution, as if left- and right-endpoint sums gave different limiting integrals.",
+  "This wrongly assumes a left-endpoint sum must vanish in the limit.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_sqrt_integrand_v4",
+ "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 24}
+ },
+ "constraints": [],
+ "stem": "Recognize the following limit as a definite integral over \\( [0, 1] \\) and evaluate it: \\( \\displaystyle \\lim_{n\\to\\infty} \\frac{[[c]]}{n} \\sum_{i=1}^{n} \\sqrt{\\frac{i}{n}} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]]*integrate(sqrt(x), (x, 0, 1))"},
+ "distractors": [
+  "[[c]]",
+  "[[c]]/2",
+  "[[c]]*3/2",
+  "[[c]]/3",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "With \\( x_i=i/n \\) and \\( \\Delta x=1/n \\), the sum is a right Riemann sum for \\( \\int_{0}^{1} \\sqrt{x}\\, dx = \\tfrac{2}{3} \\). Scaled by \\( [[c]] \\), the limit is \\( [[c]]\\cdot\\tfrac{2}{3} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats \\( \\sqrt{x} \\) as if it integrated to 1 over \\( [0,1] \\), forgetting the power-rule factor.",
+  "This uses \\( \\tfrac12 \\), the exponent-based guess, instead of \\( \\int_0^1 \\sqrt{x}\\,dx=\\tfrac23 \\).",
+  "This inverts the fraction \\( \\tfrac23 \\) into \\( \\tfrac32 \\).",
+  "This applies the power rule as if the exponent of \\( \\sqrt{x} \\) were \\( 2 \\) instead of \\( \\tfrac12 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_trig_scaled_bounds_v5",
+ "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 24}
+ },
+ "constraints": [],
+ "stem": "Recognize the following limit as a definite integral over \\( [0, \\pi/2] \\) and evaluate it: \\( \\displaystyle \\lim_{n\\to\\infty} \\frac{[[p]]\\pi}{2n} \\sum_{i=1}^{n} \\sin\\!\\left(\\frac{i\\pi}{2n}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[p]]*integrate(sin(x), (x, 0, pi/2))"},
+ "distractors": [
+  "[[p]]*pi/2",
+  "0",
+  "-[[p]]",
+  "[[p]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[p]]"
+ ],
+ "solution": "With \\( x_i = i\\pi/(2n) \\) and \\( \\Delta x=\\pi/(2n) \\), the sum is a right Riemann sum for \\( \\int_{0}^{\\pi/2} \\sin(x)\\,dx = 1 \\). Scaled by \\( [[p]] \\), the limit is \\( [[p]]\\cdot 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the length of the interval \\( \\pi/2 \\) scaled by \\( [[p]] \\) instead of the value of the integral.",
+  "This wrongly assumes the integral of sine over this interval is 0, as it would be over a full period.",
+  "This drops the correct sign, as if \\( \\int_0^{\\pi/2}\\sin(x)\\,dx=-1 \\).",
+  "This halves the coefficient \\( [[p]] \\) for no valid reason.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_midpoint_v6",
+ "skill_id": "recognize_a_limit_of_a_sum_as_a_definite_integral",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Recognize the following MIDPOINT Riemann sum as converging to a definite integral over \\( [0, 1] \\), and evaluate it: \\( \\displaystyle \\lim_{n\\to\\infty} \\frac{1}{n} \\sum_{i=1}^{n} \\left[ ([[a]])\\left(\\frac{i - 1/2}{n}\\right)^{2} + ([[b]])\\left(\\frac{i-1/2}{n}\\right) + ([[c]]) \\right] \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "bounds": ["0", "1"]},
+ "distractors": [
+  "[[a]]/4 + [[b]]/2 + [[c]]",
+  "[[a]] + [[b]] + [[c]]",
+  "[[a]]/3 + [[b]]/2 + 2*[[c]]",
+  "[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The sample points \\( x_i = (i-\\tfrac12)/n \\) are the MIDPOINTS of each subinterval of \\( [0,1] \\); like left- or right-endpoint sums, a midpoint sum converges to the same definite integral: \\( \\int_{0}^{1} \\left( ([[a]])x^{2} + ([[b]])x + ([[c]]) \\right) dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This plugs the midpoint of the WHOLE interval, \\( x=1/2 \\), into the integrand as if that alone gave the integral.",
+  "This evaluates the integrand at \\( x=1 \\), treating it as a right-endpoint sum instead of a midpoint sum with the same limiting integral.",
+  "This doubles the constant term's contribution, as if a midpoint sum gave a different limiting integral than the true one.",
+  "This keeps only the constant term, dropping the quadratic and linear contributions.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

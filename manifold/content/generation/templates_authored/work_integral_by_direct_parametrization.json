@@ -1,0 +1,95 @@
+[
+{
+ "template_id": "work_direct_param_v1",
+ "skill_id": "work_integral_by_direct_parametrization",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Eq(Mod([[a]] + 2*[[b]], 3), 0)", "Ne([[a]] + 2*[[b]], 0)"],
+ "stem": "A particle is moved along the curve \\( \\mathbf{r}(t) = (t,\\; t^{2}) \\), \\( 0 \\le t \\le 1 \\), by the force field \\( \\mathbf{F}(x,y) = ( ([[a]])y,\\; ([[b]])x ) \\). Compute the work \\( \\displaystyle W = \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+ "answer_spec": {"op": "integrate", "expr": "([[a]])*(t**2)*(1) + ([[b]])*(t)*(2*t)", "var": "t", "bounds": ["0", "1"]},
+ "distractors": [
+  "([[a]]) + 2*([[b]])",
+  "([[a]]) + ([[b]])",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "On the path \\( x=t,\\ y=t^{2} \\), so \\( \\mathbf{r}'(t)=(1,2t) \\) and \\( \\mathbf{F}(\\mathbf{r}(t))=([[a]]t^{2},[[b]]t) \\). Then \\( \\mathbf{F}\\cdot\\mathbf{r}' = ([[a]]+2([[b]]))t^{2} \\) and \\( W=\\int_0^1 ([[a]]+2([[b]]))t^{2}\\,dt = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( [[a]] + 2[[b]] \\), the integrand's coefficient; it forgets the factor \\( \\int_0^1 t^{2}\\,dt = \\tfrac{1}{3} \\).",
+  "This dots the fields incorrectly, adding the raw coefficients instead of forming \\( \\mathbf{F}\\cdot\\mathbf{r}' \\).",
+  "This has the sign of the work reversed (path traversed backwards).",
+  "This is off by one from the correct work.",
+  "This is off by one from the correct work.",
+  "This is off by two from the correct work."
+ ]
+},
+{
+ "template_id": "work_direct_param_3d_cubic_v1",
+ "skill_id": "work_integral_by_direct_parametrization",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "A particle moves along the space curve \\( \\mathbf{r}(t) = (t,\\; t^{2},\\; t^{3}) \\), \\( 0 \\le t \\le 1 \\), through the force field \\( \\mathbf{F}(x,y,z) = ( ([[a]])y,\\; ([[b]])z,\\; ([[c]])x ) \\). Compute the work \\( \\displaystyle W = \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+ "answer_spec": {"op": "integrate", "expr": "([[a]])*(t**2)*(1) + ([[b]])*(t**3)*(2*t) + ([[c]])*(t)*(3*t**2)", "var": "t", "bounds": ["0", "1"]},
+ "distractors": [
+  "([[a]]) + ([[b]]) + ([[c]])",
+  "([[a]])/3 + 2*([[b]])/5 + 3*([[c]])/4",
+  "-([[answer]])",
+  "([[a]])/2 + ([[b]])/2 + ([[c]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "On the path \\( x=t,\\ y=t^{2},\\ z=t^{3} \\), so \\( \\mathbf{r}'(t)=(1,2t,3t^{2}) \\) and \\( \\mathbf{F}(\\mathbf{r}(t))=([[a]]t^{2},[[b]]t^{3},[[c]]t) \\). Then \\( \\mathbf{F}\\cdot\\mathbf{r}' = ([[a]])t^{2} + 2([[b]])t^{4} + 3([[c]])t^{3} \\), and \\( W=\\int_0^1\\big(([[a]])t^{2}+2([[b]])t^{4}+3([[c]])t^{3}\\big)dt = \\dfrac{[[a]]}{3}+\\dfrac{2[[b]]}{5}+\\dfrac{3[[c]]}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the raw coefficients \\( a+b+c \\), skipping the dot product with \\( \\mathbf{r}'(t) \\) and the integration entirely.",
+  "This has the coefficient on the \\( a \\)-term wrong (should be \\( a/3 \\), not swapped with the b/c pattern) from mismatching which power integrates to which fraction.",
+  "This has the sign of the work reversed (path traversed backwards).",
+  "This assumes every term integrates to a factor of \\( 1/2 \\), ignoring the different powers of \\( t \\) involved.",
+  "This is off by one from the correct work.",
+  "This is off by one from the correct work."
+ ]
+},
+{
+ "template_id": "work_direct_param_circular_rotational_v1",
+ "skill_id": "work_integral_by_direct_parametrization",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "R": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"R2": "[[R]]**2"},
+ "stem": "A particle moves once counterclockwise around the full circle \\( \\mathbf{r}(t) = ([[R]]\\cos t,\\; [[R]]\\sin t) \\), \\( 0 \\le t \\le 2\\pi \\), through the rotational force field \\( \\mathbf{F}(x,y) = ( -([[a]])y,\\; ([[a]])x ) \\). Compute the work \\( \\displaystyle W = \\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+ "answer_spec": {"op": "integrate", "expr": "(-([[a]])*([[R]])*sin(t))*(-([[R]])*sin(t)) + (([[a]])*([[R]])*cos(t))*([[R]])*cos(t)", "var": "t", "bounds": ["0", "2*pi"]},
+ "require_rational": false,
+ "distractors": [
+  "0",
+  "([[a]])*([[R2]])",
+  "-2*pi*([[a]])*([[R2]])",
+  "pi*([[a]])*([[R2]])",
+  "4*pi*([[a]])*([[R2]])",
+  "[[answer]] + pi"
+ ],
+ "solution": "Here \\( \\mathbf{r}'(t)=(-[[R]]\\sin t,[[R]]\\cos t) \\) and \\( \\mathbf{F}(\\mathbf{r}(t)) = (-([[a]])[[R]]\\sin t, ([[a]])[[R]]\\cos t) \\), so \\( \\mathbf{F}\\cdot\\mathbf{r}' = ([[a]])[[R]]^{2}\\sin^{2}t + ([[a]])[[R]]^{2}\\cos^{2}t = ([[a]])[[R]]^{2} \\), a constant. Thus \\( W = \\int_0^{2\\pi} ([[a]])([[R]])^{2}\\,dt = 2\\pi([[a]])([[R]])^{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes a rotational field does zero work around a closed loop, like a conservative field would; this field is NOT conservative.",
+  "This forgets to multiply by the \\( 2\\pi \\) from integrating the constant integrand over the full loop.",
+  "This has the wrong sign and only a factor of \\( \\pi \\) instead of \\( 2\\pi \\).",
+  "This uses only \\( \\pi \\) instead of \\( 2\\pi \\), as if the particle traversed just a half-circle.",
+  "This uses \\( 4\\pi \\), as if the particle went around the loop twice.",
+  "This adds a spurious \\( \\pi \\) to the correct value."
+ ]
+}
+]

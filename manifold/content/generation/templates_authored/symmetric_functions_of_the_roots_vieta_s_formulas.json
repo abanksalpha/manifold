@@ -1,0 +1,214 @@
+[
+ {
+  "template_id": "vieta_symmetric_roots_v1",
+  "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "r2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "r3": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The polynomial \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) \\) has three roots \\( r_1, r_2, r_3 \\) (counted with multiplicity). What is the product \\( r_1 r_2 r_3 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + [[c2]]*x**2 + [[c1]]*x + [[c0]]", "var": "x", "which": "prod"},
+  "distractors": [
+   "[[c0]]",
+   "-[[c2]]",
+   "[[c1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By Vieta's formulas for a monic cubic \\( x^{3} + bx^{2} + cx + d \\), the product of the roots is \\( -d \\). Here \\( d = [[c0]] \\), so \\( r_1 r_2 r_3 = -([[c0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the constant term \\( d \\) itself; the product of the roots is \\( -d \\), so the sign is wrong.",
+   "This is the sum of the roots \\( -b \\), not their product.",
+   "This is the sum of the pairwise products of the roots, not the full product.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product.",
+   "This is off by two from the correct product."
+  ]
+ },
+ {
+  "template_id": "vieta_cubic_sum_of_roots_v1",
+  "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The polynomial \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) \\) has three roots \\( r_1, r_2, r_3 \\) (counted with multiplicity). What is the sum \\( r_1 + r_2 + r_3 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + [[c2]]*x**2 + [[c1]]*x + [[c0]]", "var": "x", "which": "sum"},
+  "distractors": [
+   "[[c2]]",
+   "-[[c0]]",
+   "[[c1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By Vieta's formulas for a monic cubic \\( x^{3} + bx^{2} + cx + d \\), the sum of the roots is \\( -b \\). Here \\( b = [[c2]] \\), so \\( r_1+r_2+r_3 = -([[c2]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the coefficient \\( b \\) itself; the sum of the roots is \\( -b \\), so the sign is wrong.",
+   "This is the product of the roots \\( -d \\), not their sum.",
+   "This is the sum of the pairwise products of the roots, not the sum of the roots themselves.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ },
+ {
+  "template_id": "vieta_cubic_sum_of_pairwise_products_v1",
+  "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The polynomial \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) \\) has three roots \\( r_1, r_2, r_3 \\) (counted with multiplicity). What is \\( r_1 r_2 + r_1 r_3 + r_2 r_3 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + [[c2]]*x**2 + [[c1]]*x + [[c0]]", "var": "x", "which": "sum_pairs"},
+  "distractors": [
+   "-[[c1]]",
+   "[[c2]]",
+   "-[[c0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By Vieta's formulas for a monic cubic \\( x^{3} + bx^{2} + cx + d \\), the sum of the pairwise products of the roots equals the coefficient \\( c \\) directly. Here \\( c = [[c1]] \\), so \\( r_1r_2+r_1r_3+r_2r_3 = [[c1]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This negates the coefficient \\( c \\), but the sum of pairwise products equals \\( c \\) directly with no sign change.",
+   "This is the coefficient \\( b \\), which gives the negative of the sum of the roots, not the pairwise products.",
+   "This is the product of the roots, not the sum of their pairwise products.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "vieta_quadratic_sum_v1",
+  "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "b": {"type": "int", "lo": -10, "hi": 10},
+   "c": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)"],
+  "stem": "The quadratic \\( ([[a]])x^{2} + ([[b]])x + ([[c]]) = 0 \\) has roots \\( r_1 \\) and \\( r_2 \\). What is \\( r_1 + r_2 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "which": "sum"},
+  "distractors": [
+   "[[b]]/[[a]]",
+   "-[[c]]/[[a]]",
+   "[[c]]/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "For \\( ax^{2}+bx+c \\), Vieta's formulas give \\( r_1+r_2 = -\\dfrac{b}{a} = -\\dfrac{[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the correct magnitude but the wrong sign; the sum is \\( -b/a \\), not \\( b/a \\).",
+   "This is the negative of the PRODUCT of the roots, \\( -c/a \\), not their sum.",
+   "This is the product of the roots \\( c/a \\), not their sum.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ },
+ {
+  "template_id": "vieta_sum_of_squares_of_roots_v1",
+  "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The polynomial \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) \\) has three roots \\( r_1, r_2, r_3 \\). Using Vieta's formulas (without finding the roots individually), what is \\( r_1^{2} + r_2^{2} + r_3^{2} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[c2]])**2 - 2*([[c1]])"},
+  "distractors": [
+   "([[c2]])**2",
+   "([[c2]])**2 + 2*([[c1]])",
+   "-2*([[c1]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Using \\( (r_1+r_2+r_3)^{2} = r_1^{2}+r_2^{2}+r_3^{2} + 2(r_1r_2+r_1r_3+r_2r_3) \\), and Vieta's formulas \\( r_1+r_2+r_3 = -([[c2]]) \\), \\( r_1r_2+r_1r_3+r_2r_3 = [[c1]] \\), rearranging gives \\( r_1^{2}+r_2^{2}+r_3^{2} = (-([[c2]]))^{2} - 2([[c1]]) = ([[c2]])^{2} - 2([[c1]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract off the pairwise-product term entirely.",
+   "This adds the pairwise-product term instead of subtracting it.",
+   "This drops the squared sum-of-roots term, keeping only the correction.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "vieta_reciprocal_sum_of_roots_v1",
+  "skill_id": "symmetric_functions_of_the_roots_vieta_s_formulas",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[r1]]*[[r2]]*[[r3]], 0)"],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The polynomial \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) \\) has three nonzero roots \\( r_1, r_2, r_3 \\). What is \\( \\dfrac{1}{r_1} + \\dfrac{1}{r_2} + \\dfrac{1}{r_3} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[c1]])/([[c0]])"},
+  "distractors": [
+   "[[c1]]/[[c0]]",
+   "-[[c0]]/[[c1]]",
+   "[[c0]]/[[c1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Writing the reciprocal sum over a common denominator, \\( \\dfrac{1}{r_1}+\\dfrac{1}{r_2}+\\dfrac{1}{r_3} = \\dfrac{r_1r_2+r_1r_3+r_2r_3}{r_1r_2r_3} \\). By Vieta's formulas the numerator is \\( [[c1]] \\) and the denominator is \\( -([[c0]]) \\), so the reciprocal sum is \\( \\dfrac{[[c1]]}{-([[c0]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the correct magnitude but the wrong sign, forgetting that the product of the roots is \\( -d \\), not \\( d \\).",
+   "This inverts the fraction, using the product over the pairwise-sum instead of the reverse.",
+   "This inverts the fraction and also gets the sign wrong.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,200 @@
+[
+{
+ "template_id": "product_linear_quadratic_v1",
+ "skill_id": "product_and_quotient_rules",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+ "stem": "Let \\( h(x) = ([[a]]x + ([[b]]))([[c]]x^{2} + ([[d]])x + ([[e]])) \\). Using the product rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])*([[c]]*x**2+[[d]]*x+[[e]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[a]]*(2*[[c]]*[[x0]]+[[d]])",
+  "(2*[[c]]*[[x0]]+[[d]])*([[a]]*[[x0]]+[[b]])",
+  "[[a]]*[[c]]*[[x0]]**2",
+  "([[a]]*[[x0]]+[[b]])*([[c]]*[[x0]]**2+[[d]]*[[x0]]+[[e]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "By the product rule, \\( h'(x) = [[a]]([[c]]x^{2}+([[d]])x+([[e]])) + ([[a]]x+([[b]]))(2[[c]]x+([[d]])) \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the second term of the product rule, dropping the first factor's own contribution.",
+  "This keeps only the first term of the product rule, dropping the second factor's own contribution.",
+  "This multiplies only the leading coefficients instead of applying the product rule.",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "product_linear_trig_v2",
+ "skill_id": "product_and_quotient_rules",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[k]], 0)"],
+ "stem": "Let \\( h(x) = ([[a]]x + ([[b]]))\\sin([[k]]x) \\). Using the product rule, what is \\( h'(0) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])*sin([[k]]*x)", "var": "x", "at": "0", "order": 1},
+ "distractors": [
+  "[[a]]",
+  "[[b]]*[[k]]",
+  "[[a]]*[[k]]",
+  "[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the product rule, \\( h'(x) = [[a]]\\sin([[k]]x) + ([[a]]x+([[b]]))\\cdot [[k]]\\cos([[k]]x) \\). At \\( x=0 \\), \\( \\sin(0)=0 \\) and \\( \\cos(0)=1 \\), so \\( h'(0) = ([[b]])\\cdot [[k]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports only the first term's coefficient \\( a \\), dropping the second product-rule term entirely.",
+  "This has the correct factors but drops the derivative structure, treating \\( \\sin \\) as if its slope were 1.",
+  "This multiplies \\( a \\) and \\( k \\) instead of \\( b \\) and \\( k \\), using the wrong linear coefficient.",
+  "This reports \\( h(0) \\)'s coefficient without ever differentiating.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "quotient_linear_over_linear_v3",
+ "skill_id": "product_and_quotient_rules",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[c]], 0)", "Ne([[c]]*[[x0]] + [[d]], 0)", "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( h(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\). Using the quotient rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])/([[c]]*x+[[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "Rational([[a]],[[c]])",
+  "([[a]]*([[c]]*[[x0]]+[[d]]) + [[c]]*([[a]]*[[x0]]+[[b]]))/([[c]]*[[x0]]+[[d]])**2",
+  "([[a]]*[[d]]-[[b]]*[[c]])/([[c]]*[[x0]]+[[d]])",
+  "([[a]]*[[x0]]+[[b]])/([[c]]*[[x0]]+[[d]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the quotient rule, \\( h'(x) = \\dfrac{[[a]]([[c]]x+([[d]])) - [[c]]([[a]]x+([[b]]))}{([[c]]x+([[d]]))^{2}} = \\dfrac{[[a]]\\cdot[[d]]-[[b]]\\cdot[[c]]}{([[c]]x+([[d]]))^{2}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This just divides the leading coefficients, ignoring the quotient rule entirely.",
+  "This adds instead of subtracts in the quotient-rule numerator.",
+  "This forgets to square the denominator.",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "quotient_quadratic_over_linear_v4",
+ "skill_id": "product_and_quotient_rules",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[d]]*[[x0]] + [[e]], 0)"],
+ "stem": "Let \\( h(x) = \\dfrac{[[a]]x^{2} + ([[b]])x + ([[c]])}{[[d]]x + ([[e]])} \\). Using the quotient rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x**2+[[b]]*x+[[c]])/([[d]]*x+[[e]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "(2*[[a]]*[[x0]]+[[b]])/[[d]]",
+  "((2*[[a]]*[[x0]]+[[b]])*([[d]]*[[x0]]+[[e]]) + [[d]]*([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]]))/([[d]]*[[x0]]+[[e]])**2",
+  "((2*[[a]]*[[x0]]+[[b]])*([[d]]*[[x0]]+[[e]]) - [[d]]*([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]]))/([[d]]*[[x0]]+[[e]])",
+  "([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]])/([[d]]*[[x0]]+[[e]])",
+  "[[answer]] + 3",
+  "[[answer]] - 3"
+ ],
+ "solution": "By the quotient rule, \\( h'(x) = \\dfrac{(2[[a]]x+([[b]]))([[d]]x+([[e]])) - [[d]]([[a]]x^{2}+([[b]])x+([[c]]))}{([[d]]x+([[e]]))^{2}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This differentiates only the numerator and divides by \\( d \\), ignoring the quotient rule's structure entirely.",
+  "This adds instead of subtracts in the quotient-rule numerator.",
+  "This forgets to square the denominator.",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This is off by three from the correct value.",
+  "This is off by three from the correct value."
+ ]
+},
+{
+ "template_id": "product_three_factors_v5",
+ "skill_id": "product_and_quotient_rules",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -3, "hi": 3},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)", "Ne([[e]], 0)"],
+ "stem": "Let \\( h(x) = ([[a]]x+([[b]]))([[c]]x+([[d]]))([[e]]x+([[f]])) \\). Using the extended product rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])*([[c]]*x+[[d]])*([[e]]*x+[[f]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[a]]*[[c]]*[[e]]",
+  "[[a]]*([[c]]*[[x0]]+[[d]])*([[e]]*[[x0]]+[[f]])",
+  "([[a]]*[[x0]]+[[b]])*([[c]]*[[x0]]+[[d]])*([[e]]*[[x0]]+[[f]])",
+  "([[a]]*[[x0]]+[[b]])*([[c]]*[[x0]]+[[d]])*[[e]] + [[a]]*[[c]]*([[e]]*[[x0]]+[[f]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "By the extended product rule, \\( h'(x) = [[a]]([[c]]x+([[d]]))([[e]]x+([[f]])) + [[c]]([[a]]x+([[b]]))([[e]]x+([[f]])) + [[e]]([[a]]x+([[b]]))([[c]]x+([[d]])) \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies only the leading coefficients, ignoring the product rule entirely.",
+  "This keeps only the term where the first factor is differentiated, dropping the other two terms.",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This drops the third term of the extended product rule (differentiating the last factor).",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "quotient_exponential_over_linear_v6",
+ "skill_id": "product_and_quotient_rules",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[e]], 0)"],
+ "stem": "Let \\( h(x) = \\dfrac{e^{[[a]]x}}{[[d]]x + ([[e]])} \\). Using the quotient rule, what is \\( h'(0) \\)?",
+ "answer_spec": {"op": "diff", "expr": "exp([[a]]*x)/([[d]]*x+[[e]])", "var": "x", "at": "0", "order": 1},
+ "distractors": [
+  "Rational([[a]],[[e]])",
+  "Rational(-[[d]],[[e]]**2)",
+  "Rational([[a]]*[[e]] + [[d]],[[e]]**2)",
+  "Rational(1,[[e]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the quotient rule, \\( h'(x) = \\dfrac{[[a]]e^{[[a]]x}([[d]]x+([[e]])) - [[d]]e^{[[a]]x}}{([[d]]x+([[e]]))^{2}} \\). At \\( x=0 \\), \\( e^{0}=1 \\), so \\( h'(0) = \\dfrac{[[a]]\\cdot[[e]] - [[d]]}{[[e]]^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just divides the exponential's own rate by the denominator's constant term, ignoring the quotient rule.",
+  "This drops the numerator's derivative term \\( a\\cdot e^{ax} \\) entirely, keeping only the denominator's contribution.",
+  "This adds instead of subtracts in the quotient-rule numerator.",
+  "This evaluates \\( h(0) \\), the function value, not its derivative.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

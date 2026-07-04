@@ -1,0 +1,210 @@
+[
+{
+ "template_id": "relations_and_functions_total_functions_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 9},
+  "n": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Set \\( A \\) has [[m]] elements and set \\( B \\) has [[n]] elements. How many distinct functions are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]**[[m]]"},
+ "distractors": [
+  "[[m]]**[[n]]",
+  "binomial([[n]], [[m]])",
+  "factorial([[n]])/factorial([[n]] - [[m]])",
+  "[[m]]*[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Each of the [[m]] elements of \\( A \\) may be sent independently to any of the [[n]] elements of \\( B \\), so there are \\( [[n]]^{[[m]]} = [[answer]] \\) functions.",
+ "distractor_rationales": [
+  "This swaps the roles of the domain and codomain sizes.",
+  "This counts a combination as though order/repetition of images did not matter.",
+  "This is the number of one-to-one (injective) functions, not all functions.",
+  "This multiplies the two sizes instead of exponentiating.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "relations_and_functions_injections_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 9},
+  "n": {"type": "int", "lo": 3, "hi": 12}
+ },
+ "constraints": ["Lt([[m]], [[n]])"],
+ "stem": "Set \\( A \\) has [[m]] elements and set \\( B \\) has [[n]] elements. How many distinct one-to-one (injective) functions are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/factorial([[n]] - [[m]])"},
+ "distractors": [
+  "[[n]]**[[m]]",
+  "binomial([[n]], [[m]])",
+  "factorial([[n]])/factorial([[m]])",
+  "factorial([[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The first element of \\( A \\) can map to any of [[n]] elements, the second to any of the remaining \\( [[n]]-1 \\), and so on for [[m]] elements: \\( \\frac{[[n]]!}{([[n]]-[[m]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts ALL functions, not just the injective ones (it allows repeated images).",
+  "This counts the images as an unordered set, losing the distinction between which element of \\( A \\) maps where.",
+  "This uses the wrong factorial in the denominator.",
+  "This only accounts for arranging the elements of \\( A \\) among themselves, ignoring the larger codomain.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "relations_and_functions_bijections_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Sets \\( A \\) and \\( B \\) each have [[n]] elements. How many bijections (functions that are both one-to-one and onto) are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+ "distractors": [
+  "[[n]]**[[n]]",
+  "2**[[n]]",
+  "factorial([[n]] - 1)",
+  "[[n]]*([[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A bijection between two [[n]]-element sets is a full arrangement (permutation) of \\( B \\) assigned to the elements of \\( A \\): \\( [[n]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the number of ALL functions from \\( A \\) to \\( B \\) (allowing repeats), not just bijections.",
+  "This is the number of subsets of an \\( n \\)-element set, unrelated to counting bijections.",
+  "This forgets to place the last remaining element, stopping the factorial one step early.",
+  "This only accounts for placing the first two elements.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "relations_and_functions_surjections_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 4, "hi": 9},
+  "n": {"type": "int", "lo": 2, "hi": 4}
+ },
+ "constraints": ["Gt([[m]], [[n]])"],
+ "stem": "Set \\( A \\) has [[m]] elements and set \\( B \\) has [[n]] elements. How many distinct onto (surjective) functions are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "sum", "expr": "(-1)**i * binomial([[n]], i) * ([[n]] - i)**[[m]]", "var": "i", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "[[n]]**[[m]]",
+  "factorial([[n]])",
+  "binomial([[m]], [[n]])",
+  "binomial([[m]] - 1, [[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion over the images missed, the number of onto functions is \\( \\sum_{i=0}^{[[n]]} (-1)^i \\binom{[[n]]}{i} ([[n]]-i)^{[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count of ALL functions, without removing the ones that miss at least one element of \\( B \\).",
+  "This only counts bijections between equal-size sets, ignoring the actual sizes here.",
+  "This picks the wrong pair of sets to choose from.",
+  "This is the number of ways to distribute [[m]] IDENTICAL items into [[n]] distinguishable nonempty groups, not the number of onto functions between labeled sets.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "relations_and_functions_relations_AtoB_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 7},
+  "n": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": [],
+ "stem": "Set \\( A \\) has [[m]] elements and set \\( B \\) has [[n]] elements. A relation from \\( A \\) to \\( B \\) is any subset of \\( A \\times B \\). How many distinct relations are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2**([[m]]*[[n]])"},
+ "distractors": [
+  "2**[[m]] * 2**[[n]]",
+  "[[m]]*[[n]]",
+  "[[n]]**[[m]]",
+  "[[m]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A \\times B \\) has \\( [[m]]\\cdot[[n]] \\) ordered pairs, and a relation is any subset of them, so there are \\( 2^{[[m]][[n]]} = [[answer]] \\) relations.",
+ "distractor_rationales": [
+  "This multiplies the number of subsets of \\( A \\) by the number of subsets of \\( B \\) instead of counting subsets of \\( A\\times B \\).",
+  "This is just the size of \\( A \\times B \\), not the number of subsets of it.",
+  "This is the number of functions from \\( A \\) to \\( B \\), a much smaller count than all relations.",
+  "This swaps the roles of \\( A \\) and \\( B \\) in the function-count formula.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "relations_and_functions_relations_on_set_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( A \\) be a set with [[n]] elements. A (binary) relation on \\( A \\) is any subset of \\( A \\times A \\). How many distinct relations are there on \\( A \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2**([[n]]**2)"},
+ "distractors": [
+  "2**[[n]]",
+  "[[n]]**[[n]]",
+  "2**(2*[[n]])",
+  "factorial([[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A \\times A \\) has \\( [[n]]^2 \\) ordered pairs, and a relation is any subset of them, so there are \\( 2^{[[n]]^2} = [[answer]] \\) relations on \\( A \\).",
+ "distractor_rationales": [
+  "This is the number of subsets of \\( A \\) itself, not of \\( A \\times A \\).",
+  "This is the number of functions from \\( A \\) to \\( A \\), a much smaller count than all relations.",
+  "This uses \\( 2n \\) instead of \\( n^2 \\) as the exponent, undercounting the pairs.",
+  "This is the number of permutations of \\( A \\), unrelated to counting relations.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "relations_and_functions_not_injective_v1",
+ "skill_id": "relations_and_functions",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 8},
+  "n": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Le([[m]], [[n]])"],
+ "stem": "Set \\( A \\) has [[m]] elements and set \\( B \\) has [[n]] elements. How many functions from \\( A \\) to \\( B \\) are NOT one-to-one (i.e., at least two elements of \\( A \\) share an image)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]**[[m]] - factorial([[n]])/factorial([[n]] - [[m]])"},
+ "distractors": [
+  "[[n]]**[[m]]",
+  "factorial([[n]])/factorial([[n]] - [[m]])",
+  "binomial([[n]], [[m]])",
+  "[[m]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Start with all \\( [[n]]^{[[m]]} \\) functions and remove the \\( \\frac{[[n]]!}{([[n]]-[[m]])!} \\) that are injective: \\( [[n]]^{[[m]]} - \\frac{[[n]]!}{([[n]]-[[m]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count of ALL functions, forgetting to remove the injective ones.",
+  "This is the count of the injective functions themselves \u2014 the complement of what was asked.",
+  "This treats the images as an unordered selection rather than counting functions.",
+  "This swaps the roles of the domain and codomain sizes.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+}
+]

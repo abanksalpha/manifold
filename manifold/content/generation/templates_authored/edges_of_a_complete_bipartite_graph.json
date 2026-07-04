@@ -1,0 +1,93 @@
+[
+ {
+  "template_id": "complete_bipartite_edges_v1",
+  "skill_id": "edges_of_a_complete_bipartite_graph",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 8},
+   "n": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "How many edges does the complete bipartite graph \\( K_{[[m]],[[n]]} \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[n]]"},
+  "distractors": [
+   "[[m]] + [[n]]",
+   "binomial([[m]] + [[n]], 2)",
+   "[[m]]**2 + [[n]]**2",
+   "([[m]] + [[n]])**2",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Every one of the \\( [[m]] \\) vertices on one side is joined to every one of the \\( [[n]] \\) vertices on the other side, giving \\( [[m]] \\cdot [[n]] = [[answer]] \\) edges.",
+  "distractor_rationales": [
+   "This adds the two part sizes instead of multiplying them.",
+   "This treats all \\( [[m]]+[[n]] \\) vertices as one complete graph, adding edges within each side that do not exist.",
+   "This sums the squares of the part sizes rather than their product.",
+   "This squares the total number of vertices.",
+   "This overcounts by the size of one part.",
+   "This undercounts by the size of one part."
+  ]
+ },
+ {
+  "template_id": "complete_bipartite_edges_inverse_v2",
+  "skill_id": "edges_of_a_complete_bipartite_graph",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": [],
+  "derived": {"E": "[[m]]*[[n]]"},
+  "stem": "A complete bipartite graph has \\( [[m]] \\) vertices on one side and \\( [[E]] \\) edges in total. How many vertices are on the other side?",
+  "answer_spec": {"op": "evaluate", "expr": "[[E]]/[[m]]"},
+  "distractors": [
+   "[[E]] - [[m]]",
+   "[[E]]*[[m]]",
+   "[[E]] + [[m]]",
+   "[[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since the two sides have \\( [[m]] \\) and \\( n \\) vertices, the edge count satisfies \\( [[m]] \\cdot n = [[E]] \\), so \\( n = [[E]]/[[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the given side size instead of dividing by it.",
+   "This multiplies instead of dividing, growing far past a reasonable vertex count.",
+   "This adds the given side size instead of dividing by it.",
+   "This just repeats the given side size instead of solving for the other one.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "complete_bipartite_complement_v3",
+  "skill_id": "edges_of_a_complete_bipartite_graph",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "Start with the complete bipartite graph \\( K_{[[m]],[[n]]} \\), whose two parts have \\( [[m]] \\) and \\( [[n]] \\) vertices. Now add every possible edge WITHIN each part (so no two vertices of the same part are left unjoined), turning the graph into the complete graph on all \\( [[m]] + [[n]] \\) vertices. How many new edges were added?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[m]], 2) + binomial([[n]], 2)"},
+  "distractors": [
+   "binomial([[m]] + [[n]], 2)",
+   "[[m]]*[[n]]",
+   "binomial([[m]], 2)",
+   "binomial([[n]], 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The new edges are exactly the within-part pairs: \\( \\binom{[[m]]}{2} \\) pairs on the first side plus \\( \\binom{[[n]]}{2} \\) pairs on the second side, since the between-part edges already existed. So the count is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the edge count of the FULL complete graph \\( K_{[[m]]+[[n]]} \\), including the original bipartite edges, not just the new ones.",
+   "This is the number of edges that already existed in \\( K_{[[m]],[[n]]} \\), not the ones added.",
+   "This only counts the new edges within the first part, forgetting the second part.",
+   "This only counts the new edges within the second part, forgetting the first part.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

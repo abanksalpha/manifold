@@ -1,0 +1,404 @@
+[
+ {
+  "template_id": "nested_composite_deriv_v1",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x)=([[a]]x^{2}+[[b]])^{3} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "([[a]]*x**2 + [[b]])**3",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "3*([[a]]*[[x0]]**2 + [[b]])**2",
+   "([[a]]*[[x0]]**2 + [[b]])**3",
+   "3*([[a]]*[[x0]]**2 + [[b]])**2 * [[a]]*[[x0]]",
+   "6*[[a]]*[[x0]]",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "Chain rule: \\( f'(x)=3([[a]]x^2+[[b]])^2\\cdot 2[[a]]x \\); at \\( [[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "nested_composite_power_linear_v2",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "b": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "n": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne([[a]]*[[x0]]+[[b]], 0)"
+  ],
+  "stem": "Let \\( f(x) = ([[a]]x+[[b]])^{[[n]]} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "([[a]]*x+[[b]])**[[n]]",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "([[a]]*[[x0]]+[[b]])**[[n]]",
+   "[[a]]*([[a]]*[[x0]]+[[b]])**([[n]]-1)",
+   "[[n]]*([[a]]*[[x0]]+[[b]])**([[n]]-1)",
+   "[[n]]*[[a]]*([[a]]*[[x0]]+[[b]])**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule (general power rule), \\( f'(x) = [[n]]([[a]]x+[[b]])^{[[n]]-1}\\cdot [[a]] \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f([[x0]]) \\) itself instead of the derivative.",
+   "This drops the outer factor \\( n \\) from the power rule.",
+   "This drops the chain-rule factor \\( a \\) from the inner linear function.",
+   "This forgets to decrement the exponent by 1 before multiplying.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "nested_composite_reciprocal_power_v3",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "n": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     4
+    ]
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne([[a]]*[[x0]]+[[b]], 0)"
+  ],
+  "stem": "Let \\( f(x) = \\dfrac{1}{([[a]]x+[[b]])^{[[n]]}} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "1/([[a]]*x+[[b]])**[[n]]",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[n]]*[[a]]/([[a]]*[[x0]]+[[b]])**([[n]]+1)",
+   "-[[n]]/([[a]]*[[x0]]+[[b]])**([[n]]+1)",
+   "-[[n]]*[[a]]/([[a]]*[[x0]]+[[b]])**[[n]]",
+   "[[a]]/([[a]]*[[x0]]+[[b]])**([[n]]+1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Rewrite \\( f(x)=([[a]]x+[[b]])^{-[[n]]} \\), so \\( f'(x)=-[[n]]([[a]]x+[[b]])^{-[[n]]-1}\\cdot [[a]] \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from the negative exponent.",
+   "This drops the chain-rule factor \\( a \\) but keeps the correct sign.",
+   "This forgets to shift the exponent from \\( -n \\) to \\( -n-1 \\).",
+   "This drops both the negative sign and the factor \\( n \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "nested_composite_sqrt_linear_v4",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "s": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "b": "[[s]]**2 - [[a]]*[[x0]]"
+  },
+  "stem": "Let \\( f(x) = \\sqrt{[[a]]x+[[b]]} \\) for \\( [[a]]x+[[b]]\\ge 0 \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "sqrt([[a]]*x+[[b]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "2*[[a]]*sqrt([[a]]*[[x0]]+[[b]])",
+   "[[a]]/sqrt([[a]]*[[x0]]+[[b]])",
+   "sqrt([[a]]*[[x0]]+[[b]])/(2*[[a]])",
+   "1/(2*sqrt([[a]]*[[x0]]+[[b]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = \\dfrac{[[a]]}{2\\sqrt{[[a]]x+[[b]]}} \\); since \\( [[a]]([[x0]])+[[b]]=[[s]]^{2} \\), this is \\( \\dfrac{[[a]]}{2\\cdot [[s]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( 2\\sqrt{\\cdot} \\) instead of dividing by it.",
+   "This drops the factor of 2 in the denominator.",
+   "This inverts the correct ratio.",
+   "This drops the numerator factor \\( a \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "nested_composite_exp_quadratic_v5",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "b": "-[[a]]*[[x0]]"
+  },
+  "stem": "Let \\( f(x) = e^{[[a]]x^{2}+[[b]]x} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "exp([[a]]*x**2 + [[b]]*x)",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "exp([[a]]*[[x0]]**2+[[b]]*[[x0]])",
+   "2*[[a]]*[[x0]]",
+   "[[a]]*[[x0]]**2 + [[b]]*[[x0]]",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = (2[[a]]x+[[b]])e^{[[a]]x^{2}+[[b]]x} \\). At \\( x=[[x0]] \\), the exponent \\( [[a]]([[x0]])^{2}+[[b]]([[x0]]) \\) equals 0, so \\( e^{0}=1 \\) and \\( f'([[x0]]) = 2([[a]])([[x0]])+[[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f([[x0]]) \\) itself (which is \\( e^{0}=1 \\)) instead of the derivative.",
+   "This omits the constant term \\( b \\) from the chain-rule factor \\( 2ax+b \\).",
+   "This reports the exponent's value (which is 0) instead of its derivative factor.",
+   "This uses only the leading coefficient \\( a \\), forgetting the point \\( x_0 \\) and the constant \\( b \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "nested_composite_log_linear_v6",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   },
+   "b": {
+    "type": "int",
+    "lo": -10,
+    "hi": 10
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Gt([[a]]*[[x0]]+[[b]], 0)"
+  ],
+  "stem": "Let \\( f(x) = \\ln([[a]]x+[[b]]) \\) for \\( [[a]]x+[[b]]>0 \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "log([[a]]*x+[[b]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "1/([[a]]*[[x0]]+[[b]])",
+   "[[a]]/[[x0]]",
+   "[[a]]*[[x0]]+[[b]]",
+   "-[[a]]/([[a]]*[[x0]]+[[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x)=\\dfrac{[[a]]}{[[a]]x+[[b]]} \\), so \\( f'([[x0]]) = \\dfrac{[[a]]}{[[a]]([[x0]])+[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the chain-rule numerator \\( a \\) from the derivative of \\( \\ln(ax+b) \\).",
+   "This ignores the constant shift \\( b \\) in the denominator.",
+   "This reports the argument \\( ax+b \\) itself instead of its reciprocal.",
+   "This has the wrong sign.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "nested_composite_sin_linear_v7",
+  "skill_id": "nested_composite_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "b": "-[[a]]*[[x0]]"
+  },
+  "stem": "Let \\( f(x) = \\sin([[a]]x+[[b]]) \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "sin([[a]]*x+[[b]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "cos([[a]]*[[x0]]+[[b]])",
+   "-[[a]]*sin([[a]]*[[x0]]+[[b]])",
+   "[[a]]*[[x0]]+[[b]]",
+   "-[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = [[a]]\\cos([[a]]x+[[b]]) \\). Since \\( [[a]]([[x0]])+[[b]]=0 \\), \\( \\cos(0)=1 \\), so \\( f'([[x0]]) = [[a]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the chain-rule factor \\( a \\) entirely.",
+   "This uses the derivative of \\( \\cos \\) (\\( -\\sin \\)) instead of the derivative of \\( \\sin \\) (\\( \\cos \\)).",
+   "This reports the (zero) value of the inner argument instead of the derivative.",
+   "This has the wrong sign.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

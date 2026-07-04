@@ -1,0 +1,117 @@
+[
+{
+ "template_id": "tree_edges_from_vertices_v1",
+ "skill_id": "trees_and_connectivity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 3, "hi": 50}
+ },
+ "constraints": [],
+ "stem": "A tree has [[v]] vertices. How many edges does it have?",
+ "answer_spec": {"op": "evaluate", "expr": "[[v]] - 1"},
+ "distractors": ["[[v]]", "[[v]] + 1", "[[v]]*([[v]] - 1)/2", "[[v]]/2", "[[answer]] + 2", "[[answer]] - 1"],
+ "solution": "A tree on [[v]] vertices is connected and acyclic, so it has exactly \\( [[v]]-1 = [[answer]] \\) edges.",
+ "distractor_rationales": [
+  "This confuses the vertex count with the edge count, as if every vertex contributed its own edge.",
+  "This overshoots the correct edge count by 2 relative to the tree property.",
+  "This uses the complete-graph edge formula instead of the tree edge formula.",
+  "This mistakenly halves the vertex count instead of subtracting 1.",
+  "This overshoots the correct edge count by 2.",
+  "This undershoots the correct edge count by 1."
+ ]
+},
+{
+ "template_id": "forest_edges_from_components_v1",
+ "skill_id": "trees_and_connectivity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 6, "hi": 60},
+  "c": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": ["Lt([[c]], [[v]])"],
+ "stem": "A forest (a graph with no cycles) has [[v]] vertices spread across exactly [[c]] connected components, each of which is itself a tree. How many edges does the forest have in total?",
+ "answer_spec": {"op": "evaluate", "expr": "[[v]] - [[c]]"},
+ "distractors": ["[[v]] - [[c]] + 1", "[[v]] - [[c]] - 1", "[[v]]/[[c]]", "[[v]] - 1", "[[answer]] + [[c]]", "[[answer]] - [[c]]"],
+ "solution": "Each of the [[c]] tree components with a total of [[v]] vertices contributes (component size \\(-1\\)) edges, so summing over components gives \\( [[v]] - [[c]] = [[answer]] \\) edges total.",
+ "distractor_rationales": [
+  "This overshoots the correct total by 1.",
+  "This undershoots the correct total by 1.",
+  "This divides the vertex count by the number of components instead of subtracting.",
+  "This uses the single-tree formula, ignoring that there are [[c]] separate components.",
+  "This adds an unrelated adjustment of [[c]] to the correct total.",
+  "This subtracts an unrelated adjustment of [[c]] from the correct total."
+ ]
+},
+{
+ "template_id": "min_edges_to_connect_v1",
+ "skill_id": "trees_and_connectivity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 8, "hi": 60},
+  "c": {"type": "int", "lo": 2, "hi": 10}
+ },
+ "constraints": ["Lt([[c]], [[v]])"],
+ "stem": "A graph with [[v]] vertices currently has exactly [[c]] connected components. What is the MINIMUM number of additional edges that must be added to make the graph connected (a single component)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]] - 1"},
+ "distractors": ["[[c]]", "[[c]] + 1", "[[v]] - [[c]]", "[[v]]/[[c]]", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Each new edge can merge at most two components into one, so reducing [[c]] components down to 1 requires at least \\( [[c]]-1 = [[answer]] \\) edges.",
+ "distractor_rationales": [
+  "This forgets that connecting the LAST pair of components requires one fewer edge than the total component count.",
+  "This overshoots the correct minimum by 1.",
+  "This confuses the edge count of the resulting spanning forest with the number of NEW edges needed.",
+  "This divides the vertex count by the component count instead of subtracting 1 from the component count.",
+  "This overshoots the correct minimum by 1.",
+  "This undershoots the correct minimum by 1, allowing too few edges."
+ ]
+},
+{
+ "template_id": "excess_edges_cycle_rank_v1",
+ "skill_id": "trees_and_connectivity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 5, "hi": 40},
+  "extra": {"type": "int", "lo": 1, "hi": 15}
+ },
+ "constraints": [],
+ "derived": {"e": "[[v]] - 1 + [[extra]]"},
+ "stem": "A connected graph has [[v]] vertices and [[e]] edges. What is the minimum number of edges that must be removed so that the remaining graph is still connected but has no cycles (i.e. is a spanning tree)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[e]] - ([[v]] - 1)"},
+ "distractors": ["[[e]] - [[v]]", "[[v]] - [[e]]", "[[e]]/[[v]]", "[[v]] - 1", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "A spanning tree on [[v]] vertices needs exactly \\( [[v]]-1 \\) edges, so the number of excess (cycle-creating) edges that must be removed is \\( [[e]] - ([[v]]-1) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one from the correct excess edge count.",
+  "This subtracts in the wrong direction, giving a negative or nonsensical count.",
+  "This divides the edge count by the vertex count instead of subtracting the spanning-tree size.",
+  "This reports the required SPANNING TREE size rather than the number of edges to remove.",
+  "This overshoots the correct excess edge count by 1.",
+  "This undershoots the correct excess edge count by 1."
+ ]
+},
+{
+ "template_id": "forest_components_from_edges_v1",
+ "skill_id": "trees_and_connectivity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 8, "hi": 60},
+  "e": {"type": "int", "lo": 2, "hi": 55}
+ },
+ "constraints": ["Lt([[e]], [[v]])"],
+ "stem": "A forest (a graph with no cycles) has [[v]] vertices and [[e]] edges. How many connected components does it have?",
+ "answer_spec": {"op": "evaluate", "expr": "[[v]] - [[e]]"},
+ "distractors": ["[[e]] - [[v]]", "[[v]] - [[e]] + 1", "[[v]] - [[e]] - 1", "[[v]]/[[e]]", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Each edge in a forest reduces the number of components by exactly one from the starting count of [[v]] isolated vertices, so the number of components is \\( [[v]] - [[e]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts in the wrong direction, giving a negative or nonsensical count.",
+  "This overshoots the correct component count by 1.",
+  "This undershoots the correct component count by 1.",
+  "This divides the vertex count by the edge count instead of subtracting.",
+  "This overshoots the correct component count by 1.",
+  "This undershoots the correct component count by 1."
+ ]
+}
+]

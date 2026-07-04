@@ -1,0 +1,1 @@
+{"skill_id": "compute_limsup_liminf_the_set_of_subsequential_limit", "reason": "Genuine limsup/liminf items use non-convergent (oscillating) sequences whose answer is the SET of subsequential limits; the solver has no limsup/liminf op, and using a convergent sequence to force a single clean value would merely duplicate the plain limit skill."}

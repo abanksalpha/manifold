@@ -1,0 +1,130 @@
+[
+ {
+  "template_id": "counting_homomorphisms_between_groups_v1",
+  "skill_id": "counting_homomorphisms_between_groups",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 4, "hi": 18},
+   "n": {"type": "int", "lo": 4, "hi": 18}
+  },
+  "constraints": [],
+  "stem": "How many group homomorphisms are there from the cyclic group \\( \\mathbb{Z}_{[[m]]} \\) to the cyclic group \\( \\mathbb{Z}_{[[n]]} \\)? (A homomorphism is determined by the image of a generator, whose order must divide [[m]].)",
+  "answer_spec": {"op": "evaluate", "expr": "gcd([[m]], [[n]])"},
+  "distractors": [
+   "[[m]]",
+   "[[n]]",
+   "[[m]]*[[n]]",
+   "[[m]]*[[n]]/gcd([[m]], [[n]])",
+   "gcd([[m]], [[n]]) + 1",
+   "gcd([[m]], [[n]]) - 1"
+  ],
+  "solution": "A homomorphism \\( \\mathbb{Z}_{m} \\to \\mathbb{Z}_{n} \\) sends the generator to an element \\( x \\) with \\( [[m]]\\,x \\equiv 0 \\pmod{[[n]]} \\); the number of such \\( x \\) is \\( \\gcd([[m]],[[n]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts all of \\( \\mathbb{Z}_{[[m]]} \\), but not every element of the domain gives a valid target.",
+   "This counts all of \\( \\mathbb{Z}_{[[n]]} \\), but only elements whose order divides [[m]] work.",
+   "This multiplies the two orders, which counts nothing meaningful here.",
+   "This is \\( \\operatorname{lcm}([[m]],[[n]]) \\), not the count of homomorphisms.",
+   "This is off by one from \\( \\gcd([[m]],[[n]]) \\).",
+   "This is off by one from \\( \\gcd([[m]],[[n]]) \\)."
+  ]
+ },
+ {
+  "template_id": "counting_injective_homomorphisms_zm_zn_v1",
+  "skill_id": "counting_homomorphisms_between_groups",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 2},
+   "b": {"type": "int", "lo": 1, "hi": 2},
+   "k": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"mval": "[[p]]**[[a]] * [[q]]**[[b]]", "nval": "[[p]]**[[a]] * [[q]]**[[b]] * [[k]]"},
+  "stem": "Since \\( [[mval]] \\) divides \\( [[nval]] \\), how many INJECTIVE group homomorphisms \\( \\mathbb{Z}_{[[mval]]} \\to \\mathbb{Z}_{[[nval]]} \\) are there? (An injective homomorphism must send a generator of \\( \\mathbb{Z}_{[[mval]]} \\) to an element of \\( \\mathbb{Z}_{[[nval]]} \\) of order exactly [[mval]].)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*([[p]] - 1) * [[q]]**([[b]] - 1)*([[q]] - 1)"},
+  "distractors": [
+   "gcd([[mval]], [[nval]])",
+   "[[nval]]/[[mval]]",
+   "[[mval]]",
+   "([[p]] - 1)*([[q]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "An injective homomorphism's image is a subgroup isomorphic to \\( \\mathbb{Z}_{[[mval]]} \\), so the generator must map to one of the \\( \\varphi([[mval]]) \\) elements of order exactly [[mval]] in \\( \\mathbb{Z}_{[[nval]]} \\): \\( \\varphi([[mval]]) = p^{a-1}(p-1)q^{b-1}(q-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total count of ALL homomorphisms \\( \\gcd(m,n) \\), most of which are not injective.",
+   "This is the index \\( [\\mathbb{Z}_n:\\mathbb{Z}_m] \\), not a count of homomorphisms.",
+   "This reports \\( m \\) itself instead of \\( \\varphi(m) \\).",
+   "This drops the prime-power factors of \\( \\varphi(m) \\).",
+   "This is off by one from \\( \\varphi([[mval]]) \\).",
+   "This is off by one from \\( \\varphi([[mval]]) \\)."
+  ]
+ },
+ {
+  "template_id": "counting_surjective_homomorphisms_zm_zn_v1",
+  "skill_id": "counting_homomorphisms_between_groups",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 2},
+   "b": {"type": "int", "lo": 1, "hi": 2},
+   "k": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]", "mval": "[[p]]**[[a]] * [[q]]**[[b]] * [[k]]"},
+  "stem": "Since \\( [[nval]] \\) divides \\( [[mval]] \\), how many SURJECTIVE (onto) group homomorphisms \\( \\mathbb{Z}_{[[mval]]} \\to \\mathbb{Z}_{[[nval]]} \\) are there? (A surjective homomorphism must send a generator of \\( \\mathbb{Z}_{[[mval]]} \\) to a GENERATOR of \\( \\mathbb{Z}_{[[nval]]} \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*([[p]] - 1) * [[q]]**([[b]] - 1)*([[q]] - 1)"},
+  "distractors": [
+   "gcd([[mval]], [[nval]])",
+   "[[mval]]/[[nval]]",
+   "[[nval]]",
+   "([[p]] - 1)*([[q]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A surjective homomorphism's image is all of \\( \\mathbb{Z}_{[[nval]]} \\), so the generator of \\( \\mathbb{Z}_{[[mval]]} \\) must map to one of the \\( \\varphi([[nval]]) \\) generators of \\( \\mathbb{Z}_{[[nval]]} \\): \\( \\varphi([[nval]]) = p^{a-1}(p-1)q^{b-1}(q-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total count of ALL homomorphisms \\( \\gcd(m,n) \\), most of which are not surjective.",
+   "This is the index \\( [\\mathbb{Z}_m:\\mathbb{Z}_n] \\), not a count of homomorphisms.",
+   "This reports \\( n \\) itself instead of \\( \\varphi(n) \\).",
+   "This drops the prime-power factors of \\( \\varphi(n) \\).",
+   "This is off by one from \\( \\varphi([[nval]]) \\).",
+   "This is off by one from \\( \\varphi([[nval]]) \\)."
+  ]
+ },
+ {
+  "template_id": "counting_homomorphisms_sn_to_zk_v1",
+  "skill_id": "counting_homomorphisms_between_groups",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 10},
+   "k": {"type": "int", "lo": 2, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "How many group homomorphisms are there from the symmetric group \\( S_{[[n]]} \\) (with \\( [[n]] \\ge 3 \\)) to the cyclic group \\( \\mathbb{Z}_{[[k]]} \\)? (Every homomorphism from \\( S_{[[n]]} \\) to an abelian group must factor through the sign map, since the abelianization of \\( S_{[[n]]} \\) is \\( \\mathbb{Z}_2 \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "gcd(2, [[k]])"},
+  "distractors": [
+   "[[k]]",
+   "2",
+   "factorial([[n]])",
+   "[[k]] - 1",
+   "gcd(2, [[k]]) + 1",
+   "1"
+  ],
+  "solution": "Every homomorphism \\( S_{[[n]]} \\to \\mathbb{Z}_{[[k]]} \\) factors through the abelianization \\( S_{[[n]]}^{\\text{ab}} \\cong \\mathbb{Z}_2 \\), so the count equals the number of homomorphisms \\( \\mathbb{Z}_2 \\to \\mathbb{Z}_{[[k]]} \\), which is \\( \\gcd(2,[[k]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats every element of \\( \\mathbb{Z}_{[[k]]} \\) as a valid image of a generator, ignoring that \\( S_n \\) is nonabelian.",
+   "This forgets that the trivial homomorphism is also always available, or double counts when \\( k \\) is odd.",
+   "This wrongly uses \\( |S_{[[n]]}| \\), which is irrelevant once you pass to the abelianization.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This forgets the extra homomorphism that exists when \\( [[k]] \\) is even."
+  ]
+ }
+]

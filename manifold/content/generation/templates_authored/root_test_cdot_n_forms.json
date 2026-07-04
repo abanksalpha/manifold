@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "root_test_cdot_n_forms_v1",
+ "skill_id": "root_test_cdot_n_forms",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\left(\\dfrac{[[a]]n + ([[b]])}{[[c]]n + ([[d]])}\\right)^{n} \\). Apply the root test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\sqrt[n]{|a_n|} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*n + [[b]])/([[c]]*n + [[d]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[c]],[[a]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Since \\( a_n \\) is an \\( n \\)th power, \\( \\sqrt[n]{|a_n|} = \\left|\\dfrac{[[a]]n + ([[b]])}{[[c]]n + ([[d]])}\\right| \\to \\dfrac{[[a]]}{[[c]]} \\). Thus \\( L = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of the leading coefficients of the base.",
+  "The base tends to a nonzero limit, so \\( L \\) is that ratio, not \\( 0 \\).",
+  "This is off by one from the correct root-test limit.",
+  "This is off by one from the correct root-test limit.",
+  "This is off by two from the correct root-test limit.",
+  "This is off by two from the correct root-test limit."
+ ]
+},
+{
+ "template_id": "root_test_cdot_n_forms_degree_mismatch_v2",
+ "skill_id": "root_test_cdot_n_forms",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "q": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\left(\\dfrac{[[a]]n + ([[b]])}{n^{2} + [[p]]n + ([[q]])}\\right)^{n} \\). Apply the root test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\sqrt[n]{|a_n|} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*n + [[b]])/(n**2 + [[p]]*n + [[q]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[a]]",
+  "[[a]] + [[p]]",
+  "[[a]] - [[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Since \\( a_n \\) is an \\( n \\)th power, \\( \\sqrt[n]{|a_n|} = \\left|\\dfrac{[[a]]n + ([[b]])}{n^{2} + [[p]]n + ([[q]])}\\right| \\). The denominator grows like \\( n^{2} \\) while the numerator grows only like \\( n \\), so the base tends to \\( 0 \\). Thus \\( L = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly treats numerator and denominator as the same degree and reports the numerator's leading coefficient.",
+  "This adds unrelated coefficients from the numerator and denominator instead of comparing growth rates.",
+  "This subtracts unrelated coefficients from the numerator and denominator instead of comparing growth rates.",
+  "This is off by one from the correct root-test limit.",
+  "This is off by one from the correct root-test limit.",
+  "This is off by two from the correct root-test limit.",
+  "This is off by two from the correct root-test limit."
+ ]
+},
+{
+ "template_id": "root_test_cdot_n_forms_euler_v3",
+ "skill_id": "root_test_cdot_n_forms",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\left(\\dfrac{n + [[b]]}{n}\\right)^{[[c]]n^{2}} \\). Apply the root test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\sqrt[n]{|a_n|} \\).",
+ "answer_spec": {"op": "limit", "expr": "((n + [[b]])/n)**([[c]]*n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "1",
+  "exp([[b]])",
+  "exp([[c]])",
+  "exp([[b]] + [[c]])",
+  "[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( a_n \\) is an \\( n \\)th power, \\( \\sqrt[n]{|a_n|} = \\left(\\dfrac{n+[[b]]}{n}\\right)^{[[c]]n} = \\left(1+\\dfrac{[[b]]}{n}\\right)^{[[c]]n} \\to e^{[[b]]\\cdot[[c]]} \\) as \\( n\\to\\infty \\). Thus \\( L = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakes the base's limit \\( n/n=1 \\) for the whole exponential limit, ignoring the growing exponent.",
+  "This drops the exponent's coefficient \\( c \\).",
+  "This drops the base's shift \\( b \\).",
+  "This adds \\( b \\) and \\( c \\) instead of multiplying them in the exponent of \\( e \\).",
+  "This forgets to exponentiate with \\( e \\) at all.",
+  "This is off by one from the correct root-test limit.",
+  "This is off by one from the correct root-test limit."
+ ]
+},
+{
+ "template_id": "root_test_cdot_n_forms_stirling_v4",
+ "skill_id": "root_test_cdot_n_forms",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{[[c]]^{n}\\,n!}{n^{n}} \\). Apply the root test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\sqrt[n]{|a_n|} \\).",
+ "answer_spec": {"op": "limit", "expr": "[[c]]*(factorial(n))**(1/n)/n", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]",
+  "0",
+  "[[c]]/2",
+  "[[c]]*exp(1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( a_n = \\left(\\dfrac{[[c]]\\,(n!)^{1/n}}{n}\\right)^{n} \\), \\( \\sqrt[n]{|a_n|} = \\dfrac{[[c]]\\,(n!)^{1/n}}{n} \\). By Stirling's approximation \\( (n!)^{1/n} \\sim n/e \\), so this tends to \\( \\dfrac{[[c]]}{e} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( 1/e \\) coming from \\( (n!)^{1/n} \\sim n/e \\).",
+  "This wrongly assumes \\( n! \\) is negligible compared to \\( n^{n} \\), giving \\( 0 \\) instead of the correct finite ratio.",
+  "This uses \\( 1/2 \\) instead of \\( 1/e \\) as the asymptotic factor.",
+  "This multiplies by \\( e \\) instead of dividing by it.",
+  "This is off by one from the correct root-test limit.",
+  "This is off by one from the correct root-test limit."
+ ]
+}
+]

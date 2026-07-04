@@ -1,0 +1,336 @@
+[
+{
+ "template_id": "parabola_focal_length_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 20
+  }
+ },
+ "constraints": [],
+ "stem": "For the parabola \\( y=[[a]]x^{2} \\), the focus is at \\( (0,p) \\). Find \\( p \\), the focal length.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational(1, 4*[[a]])"
+ },
+ "distractors": [
+  "Rational(1, [[a]])",
+  "Rational(1, 2*[[a]])",
+  "4*[[a]]",
+  "Rational([[a]], 4)",
+  "Rational(1, 4*[[a]]) + 1",
+  "Rational(1, 4*[[a]]) - Rational(1, 8*[[a]])"
+ ],
+ "solution": "Writing \\( y=\\frac{1}{4p}x^{2} \\) gives \\( p=\\frac{1}{4[[a]]}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "parabola_vertex_form_vertex_y_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "h": {"type": "int", "lo": -9, "hi": 9},
+  "k": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "The parabola \\( y=[[a]](x-[[h]])^{2}+[[k]] \\) has vertex \\( (h,k) \\). Find \\( k \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k]]"
+ },
+ "distractors": [
+  "[[h]]",
+  "-[[k]]",
+  "[[k]] + [[h]]",
+  "[[a]]",
+  "[[k]] + 1",
+  "[[k]] - 1"
+ ],
+ "solution": "The vertex form \\( y=a(x-h)^{2}+k \\) directly shows the vertex is \\( (h,k) \\), so \\( k=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the \\( x \\)-coordinate of the vertex instead of the \\( y \\)-coordinate.",
+  "This has the wrong sign.",
+  "This adds the two vertex coordinates together.",
+  "This reports the leading coefficient instead of the vertex coordinate.",
+  "This is off by one from the correct value.",
+  "This is off by one (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "parabola_vertex_form_focus_y_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "h": {"type": "int", "lo": -9, "hi": 9},
+  "k": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "The parabola \\( y=[[a]](x-[[h]])^{2}+[[k]] \\) has vertex \\( (h,k) \\). Find the \\( y \\)-coordinate of its focus.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k]] + Rational(1, 4*[[a]])"
+ },
+ "distractors": [
+  "[[k]] - Rational(1, 4*[[a]])",
+  "[[k]] + Rational(1, 2*[[a]])",
+  "Rational(1, 4*[[a]])",
+  "[[k]] + 4*[[a]]",
+  "[[k]] + Rational(1, 4*[[a]]) + 1",
+  "[[k]] + Rational(1, 4*[[a]]) - 1"
+ ],
+ "solution": "The focal length is \\( p=\\frac{1}{4a} \\), and the focus sits \\( p \\) above the vertex, so its \\( y \\)-coordinate is \\( k+\\frac{1}{4a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This moves the focus below the vertex instead of above.",
+  "This uses \\( \\frac{1}{2a}\\) instead of \\( \\frac{1}{4a}\\) for the focal length.",
+  "This forgets to add the vertex's \\( y \\)-coordinate.",
+  "This confuses the focal length formula with the latus rectum length \\( 4a\\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+},
+{
+ "template_id": "parabola_vertex_form_directrix_y_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "h": {"type": "int", "lo": -9, "hi": 9},
+  "k": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "The parabola \\( y=[[a]](x-[[h]])^{2}+[[k]] \\) has vertex \\( (h,k) \\). Find the \\( y \\)-coordinate of its directrix.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k]] - Rational(1, 4*[[a]])"
+ },
+ "distractors": [
+  "[[k]] + Rational(1, 4*[[a]])",
+  "[[k]] - Rational(1, 2*[[a]])",
+  "-Rational(1, 4*[[a]])",
+  "[[k]] - 4*[[a]]",
+  "[[k]] - Rational(1, 4*[[a]]) + 1",
+  "[[k]] - Rational(1, 4*[[a]]) - 1"
+ ],
+ "solution": "The directrix sits \\( p=\\frac{1}{4a} \\) below the vertex, so its \\( y \\)-coordinate is \\( k-\\frac{1}{4a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This places the directrix above the vertex instead of below (that would be the focus's side).",
+  "This uses \\( \\frac{1}{2a}\\) instead of \\( \\frac{1}{4a}\\) for the focal length.",
+  "This forgets to include the vertex's \\( y \\)-coordinate.",
+  "This confuses the focal length formula with the latus rectum length \\( 4a\\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+},
+{
+ "template_id": "parabola_general_form_vertex_x_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "For the parabola \\( y=[[a]]x^{2}+[[b]]x+[[c]] \\), find the \\( x \\)-coordinate of the vertex.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[b]], 2*[[a]])"
+ },
+ "distractors": [
+  "Rational([[b]], 2*[[a]])",
+  "-Rational([[b]], [[a]])",
+  "-Rational([[a]], 2*[[b]])",
+  "Rational([[b]], [[a]])",
+  "-Rational([[b]], 2*[[a]]) + 1",
+  "-Rational([[b]], 2*[[a]]) - 1"
+ ],
+ "solution": "The vertex of \\( y=ax^{2}+bx+c \\) has \\( x=-\\dfrac{b}{2a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign.",
+  "This forgets to double \\( a\\) in the denominator.",
+  "This inverts the roles of \\( a\\) and \\( b\\).",
+  "This drops both the minus sign and the factor of \\( 2\\).",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "parabola_general_form_vertex_y_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "For the parabola \\( y=[[a]]x^{2}+[[b]]x+[[c]] \\), find the \\( y \\)-coordinate of the vertex.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[c]] - Rational([[b]]**2, 4*[[a]])"
+ },
+ "distractors": [
+  "[[c]] + Rational([[b]]**2, 4*[[a]])",
+  "[[c]] - Rational([[b]]**2, 2*[[a]])",
+  "-Rational([[b]]**2, 4*[[a]])",
+  "[[c]] - Rational([[b]], 4*[[a]])",
+  "[[c]] - Rational([[b]]**2, 4*[[a]]) + 1",
+  "[[c]] - Rational([[b]]**2, 4*[[a]]) - 1"
+ ],
+ "solution": "Substituting \\( x=-\\dfrac{b}{2a} \\) into \\( y=ax^{2}+bx+c \\) gives \\( y=c-\\dfrac{b^{2}}{4a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the correction term instead of subtracting it.",
+  "This forgets to double \\( a\\) again after squaring \\( b\\), using \\( 2a\\) instead of \\( 4a\\).",
+  "This forgets to square \\( b\\) in the correction term.",
+  "This drops the required minus sign.",
+  "This is off by one from the correct \\( y\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( y\\)-coordinate."
+ ]
+},
+{
+ "template_id": "parabola_horizontal_focal_length_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "For the sideways parabola \\( x=[[a]]y^{2} \\), the focus is at \\( (p,0) \\). Find \\( p \\), the focal length.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational(1, 4*[[a]])"
+ },
+ "distractors": [
+  "Rational(1, [[a]])",
+  "Rational(1, 2*[[a]])",
+  "4*[[a]]",
+  "Rational([[a]], 4)",
+  "Rational(1, 4*[[a]]) + 1",
+  "Rational(1, 4*[[a]]) - Rational(1, 8*[[a]])"
+ ],
+ "solution": "Writing \\( x=\\frac{1}{4p}y^{2} \\) gives \\( p=\\frac{1}{4[[a]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( 4\\) in the denominator.",
+  "This uses \\( 2\\) instead of \\( 4\\) in the denominator.",
+  "This inverts the correct fraction.",
+  "This uses \\( a/4\\) instead of \\( 1/(4a)\\).",
+  "This is off by one from the correct focal length.",
+  "This is off by a small amount (other direction) from the correct focal length."
+ ]
+},
+{
+ "template_id": "parabola_horizontal_vertex_form_directrix_x_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "h": {"type": "int", "lo": -9, "hi": 9},
+  "k": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "The sideways parabola \\( x=[[a]](y-[[k]])^{2}+[[h]] \\) has vertex \\( (h,k) \\) and opens to the right. Find the \\( x \\)-coordinate of its directrix.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[h]] - Rational(1, 4*[[a]])"
+ },
+ "distractors": [
+  "[[h]] + Rational(1, 4*[[a]])",
+  "[[h]] - Rational(1, 2*[[a]])",
+  "-Rational(1, 4*[[a]])",
+  "[[h]] - 4*[[a]]",
+  "[[h]] - Rational(1, 4*[[a]]) + 1",
+  "[[h]] - Rational(1, 4*[[a]]) - 1"
+ ],
+ "solution": "Since the parabola opens rightward, the directrix sits \\( p=\\frac{1}{4a} \\) to the left of the vertex, so its \\( x \\)-coordinate is \\( h-\\frac{1}{4a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This places the directrix on the focus's side instead of the opposite side.",
+  "This uses \\( \\frac{1}{2a}\\) instead of \\( \\frac{1}{4a}\\) for the focal length.",
+  "This forgets to include the vertex's \\( x\\)-coordinate.",
+  "This confuses the focal length formula with the latus rectum length \\( 4a\\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+},
+{
+ "template_id": "parabola_latus_rectum_length_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "For the parabola \\( y=[[a]]x^{2} \\), find the length of the latus rectum (the focal chord perpendicular to the axis of symmetry).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational(1, Abs([[a]]))"
+ },
+ "distractors": [
+  "Rational(1, 4*Abs([[a]]))",
+  "4*Abs([[a]])",
+  "Rational(1, 2*Abs([[a]]))",
+  "Abs([[a]])",
+  "Rational(1, Abs([[a]])) + 1",
+  "Rational(1, Abs([[a]])) - Rational(1, 2*Abs([[a]]))"
+ ],
+ "solution": "The focal length is \\( p=\\frac{1}{4|a|} \\), and the latus rectum has length \\( 4p=\\frac{1}{|a|}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the focal length \\( p\\) instead of the latus rectum length \\( 4p\\).",
+  "This inverts the correct value.",
+  "This is off by a factor of \\( 2\\) from the correct length.",
+  "This reports \\( |a|\\) itself rather than a function of it.",
+  "This is off by one from the correct length.",
+  "This is off by a small amount (other direction) from the correct length."
+ ]
+},
+{
+ "template_id": "parabola_point_focal_distance_definition_v1",
+ "skill_id": "parabola_vertex_focus_directrix",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "t": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {
+  "x0": "2*[[p]]*[[t]]",
+  "y0": "[[p]]*[[t]]**2"
+ },
+ "stem": "The parabola \\( x^{2}=4([[p]])y \\) has focus \\( (0,[[p]]) \\). The point \\( ([[x0]],[[y0]]) \\) lies on the parabola. Find its distance to the focus.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[y0]] + [[p]]"
+ },
+ "distractors": [
+  "[[y0]] - [[p]]",
+  "[[x0]] + [[p]]",
+  "sqrt([[x0]]**2 + [[y0]]**2)",
+  "[[y0]]",
+  "[[y0]] + [[p]] + 1",
+  "[[y0]] + [[p]] - 1"
+ ],
+ "solution": "By the defining property of a parabola, the distance from any point on it to the focus equals its distance to the directrix \\( y=-[[p]] \\), which is \\( [[y0]]-(-[[p]])=[[y0]]+[[p]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the focal length instead of adding it.",
+  "This uses the point's \\( x\\)-coordinate instead of its \\( y\\)-coordinate.",
+  "This computes the distance from the point to the origin instead of to the focus.",
+  "This omits the focal-length shift entirely.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+}
+]

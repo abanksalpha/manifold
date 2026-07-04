@@ -1,0 +1,152 @@
+[
+{
+ "template_id": "standard_maclaurin_recall_derivative_or_coefficient_v1",
+ "skill_id": "standard_maclaurin_recall_derivative_or_coefficient",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Using the Maclaurin series of \\( f(x) = e^{[[a]]x} \\), find the \\( [[n]] \\)th derivative at \\( 0 \\), \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "exp([[a]]*x)", "var": "x", "at": "0", "order": "[[n]]"},
+ "distractors": [
+  "[[a]]**([[n]]-1)",
+  "[[a]]**([[n]]+1)",
+  "[[a]]*[[n]]",
+  "[[n]]**[[a]]",
+  "[[a]]**[[n]] * factorial([[n]])",
+  "[[a]]**[[n]] + 1"
+ ],
+ "solution": "The Maclaurin series is \\( e^{[[a]]x} = \\sum_{k=0}^{\\infty} \\dfrac{([[a]]x)^{k}}{k!} \\), so the coefficient of \\( x^{[[n]]} \\) is \\( \\dfrac{[[a]]^{[[n]]}}{[[n]]!} \\) and \\( f^{([[n]])}(0) = [[n]]!\\cdot\\dfrac{[[a]]^{[[n]]}}{[[n]]!} = [[a]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the exponent \\( [[n]]-1 \\) instead of \\( [[n]] \\).",
+  "This uses the exponent \\( [[n]]+1 \\) instead of \\( [[n]] \\).",
+  "This multiplies base and order instead of exponentiating.",
+  "This swaps base and exponent, computing \\( [[n]]^{[[a]]} \\).",
+  "This multiplies by \\( [[n]]! \\) again; the factorial already cancels.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "standard_maclaurin_recall_derivative_or_coefficient_sin_v2",
+ "skill_id": "standard_maclaurin_recall_derivative_or_coefficient",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "choice", "values": [1, 3, 5, 7]}
+ },
+ "constraints": [],
+ "stem": "Using the Maclaurin series of \\( f(x) = \\sin([[a]]x) \\), find the \\( [[n]] \\)th derivative at \\( 0 \\), \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "sin([[a]]*x)", "var": "x", "at": "0", "order": "[[n]]"},
+ "distractors": [
+  "[[a]]**[[n]]",
+  "-[[a]]**[[n]]",
+  "[[a]]**([[n]]-1)",
+  "[[a]]**[[n]] * factorial([[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The Maclaurin series is \\( \\sin([[a]]x) = \\sum_{k=0}^{\\infty} (-1)^{k}\\dfrac{([[a]]x)^{2k+1}}{(2k+1)!} \\); only odd powers appear, and the coefficient of \\( x^{[[n]]} \\) is \\( (-1)^{([[n]]-1)/2}\\dfrac{[[a]]^{[[n]]}}{[[n]]!} \\). Multiplying by \\( [[n]]! \\) gives \\( f^{([[n]])}(0) = (-1)^{([[n]]-1)/2}[[a]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the alternating sign that comes from repeatedly differentiating sine.",
+  "This uses the wrong sign for this particular order.",
+  "This uses the exponent \\( [[n]]-1 \\) instead of \\( [[n]] \\).",
+  "This multiplies by \\( [[n]]! \\) again; the factorial already cancels.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "standard_maclaurin_recall_derivative_or_coefficient_cos_v3",
+ "skill_id": "standard_maclaurin_recall_derivative_or_coefficient",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "choice", "values": [2, 4, 6, 8]}
+ },
+ "constraints": [],
+ "stem": "Using the Maclaurin series of \\( f(x) = \\cos([[a]]x) \\), find the \\( [[n]] \\)th derivative at \\( 0 \\), \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "cos([[a]]*x)", "var": "x", "at": "0", "order": "[[n]]"},
+ "distractors": [
+  "[[a]]**[[n]]",
+  "-[[a]]**[[n]]",
+  "[[a]]**([[n]]-2)",
+  "[[a]]**[[n]] * factorial([[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The Maclaurin series is \\( \\cos([[a]]x) = \\sum_{k=0}^{\\infty} (-1)^{k}\\dfrac{([[a]]x)^{2k}}{(2k)!} \\); only even powers appear, and the coefficient of \\( x^{[[n]]} \\) is \\( (-1)^{[[n]]/2}\\dfrac{[[a]]^{[[n]]}}{[[n]]!} \\). Multiplying by \\( [[n]]! \\) gives \\( f^{([[n]])}(0) = (-1)^{[[n]]/2}[[a]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the alternating sign that comes from repeatedly differentiating cosine.",
+  "This uses the wrong sign for this particular order.",
+  "This uses the exponent \\( [[n]]-2 \\) instead of \\( [[n]] \\).",
+  "This multiplies by \\( [[n]]! \\) again; the factorial already cancels.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "standard_maclaurin_recall_derivative_or_coefficient_ln_v4",
+ "skill_id": "standard_maclaurin_recall_derivative_or_coefficient",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Using the Maclaurin series of \\( f(x) = \\ln(1 + [[a]]x) \\), find the \\( [[n]] \\)th derivative at \\( 0 \\), \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "log(1 + [[a]]*x)", "var": "x", "at": "0", "order": "[[n]]"},
+ "distractors": [
+  "[[a]]**[[n]] * factorial([[n]])",
+  "[[a]]**[[n]] / [[n]]",
+  "-[[a]]**[[n]] * factorial([[n]]-1)",
+  "[[a]]**([[n]]-1) * factorial([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The Maclaurin series is \\( \\ln(1+[[a]]x) = \\sum_{k=1}^{\\infty} (-1)^{k+1}\\dfrac{([[a]]x)^{k}}{k} \\), so the coefficient of \\( x^{[[n]]} \\) is \\( (-1)^{[[n]]+1}\\dfrac{[[a]]^{[[n]]}}{[[n]]} \\). Multiplying by \\( [[n]]! \\) gives \\( f^{([[n]])}(0) = (-1)^{[[n]]+1}([[n]]-1)!\\,[[a]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( n! \\) instead of \\( (n-1)! \\); the series coefficient has \\( k \\), not \\( k! \\), in the denominator.",
+  "This forgets to multiply the series coefficient by \\( n! \\) at all.",
+  "This has the wrong sign for this particular order.",
+  "This uses the exponent \\( [[n]]-1 \\) instead of \\( [[n]] \\) on \\( [[a]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "standard_maclaurin_recall_derivative_or_coefficient_geom_coeff_v5",
+ "skill_id": "standard_maclaurin_recall_derivative_or_coefficient",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 8},
+  "n": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "stem": "What is the coefficient of \\( x^{[[n]]} \\) in the Maclaurin series of \\( f(x) = \\dfrac{1}{1 - [[a]]x} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]]"},
+ "distractors": [
+  "[[a]]**([[n]]-1)",
+  "[[a]]**([[n]]+1)",
+  "[[a]]**[[n]] / factorial([[n]])",
+  "[[n]]**[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The geometric series gives \\( \\dfrac{1}{1-[[a]]x} = \\sum_{k=0}^{\\infty} ([[a]]x)^{k} \\), so the coefficient of \\( x^{[[n]]} \\) is \\( [[a]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the exponent \\( [[n]]-1 \\) instead of \\( [[n]] \\).",
+  "This uses the exponent \\( [[n]]+1 \\) instead of \\( [[n]] \\).",
+  "This divides by \\( [[n]]! \\), which is only needed when converting a derivative to a coefficient, not here.",
+  "This swaps base and exponent, computing \\( [[n]]^{[[a]]} \\).",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient."
+ ]
+}
+]

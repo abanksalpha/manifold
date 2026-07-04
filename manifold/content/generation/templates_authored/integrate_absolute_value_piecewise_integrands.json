@@ -1,0 +1,241 @@
+[
+{
+ "template_id": "definite_integral_of_absolute_value_v1",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 0},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Lt([[a]], [[c]])", "Lt([[c]], [[b]])"],
+ "stem": "Evaluate \\( \\int_{[[a]]}^{[[b]]} \\left| x - ([[c]]) \\right|\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "Abs(x - [[c]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "([[b]]**2 - [[a]]**2)/2 - [[c]]*([[b]] - [[a]])",
+  "([[b]] - [[c]])**2/2",
+  "([[c]] - [[a]])**2/2",
+  "Abs(([[a]] + [[b]])/2 - [[c]])*([[b]] - [[a]])",
+  "([[b]] - [[a]])**2/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The integrand \\( |x - ([[c]])| \\) has its corner at \\( x = [[c]] \\), which lies in \\( ([[a]], [[b]]) \\). Split the integral there: \\( \\int_{[[a]]}^{[[c]]}(([[c]]) - x)\\,dx + \\int_{[[c]]}^{[[b]]}(x - ([[c]]))\\,dx = \\frac{([[c]] - [[a]])^{2}}{2} + \\frac{([[b]] - [[c]])^{2}}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the absolute value and integrates \\( x - ([[c]]) \\) directly, so the part below the axis cancels area it should add.",
+  "This counts only the piece to the right of the corner \\( x = [[c]] \\).",
+  "This counts only the piece to the left of the corner \\( x = [[c]] \\).",
+  "This treats \\( |x - ([[c]])| \\) as constant at its midpoint value times the width.",
+  "This squares the whole interval width, ignoring where the corner actually falls.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "abs_value_corner_outside_interval_v2",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 10, "hi": 20},
+  "a": {"type": "int", "lo": -8, "hi": 0},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "Evaluate \\( \\int_{[[a]]}^{[[b]]} \\left| x - ([[c]]) \\right|\\, dx \\). (Note where the corner of the absolute value falls relative to the interval of integration.)",
+ "answer_spec": {"op": "integrate", "expr": "Abs(x - [[c]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "([[c]]**2 - ([[b]]**2 - [[a]]**2)/2 - [[c]]*([[b]] - [[a]]))",
+  "([[b]] - [[c]])**2/2 - ([[a]] - [[c]])**2/2",
+  "([[c]] - [[a]])**2/2 + ([[c]]-[[b]])**2/2",
+  "([[b]] - [[a]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The corner of \\( |x - ([[c]])| \\) is at \\( x = [[c]] \\), which lies OUTSIDE \\( [[[a]], [[b]]] \\) since \\( [[c]] > [[b]] \\). So \\( x - ([[c]]) \\) keeps one sign (negative) throughout the interval, and no splitting is needed: \\( \\int_{[[a]]}^{[[b]]} \\left(([[c]]) - x\\right) dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly splits the integral at the corner as if it were inside the interval.",
+  "This treats the two endpoints as if they straddled the corner, subtracting squared distances instead of using the single-sign form.",
+  "This adds squared distances from both endpoints to the corner, as if there were two pieces.",
+  "This squares the interval width instead of using the single linear antiderivative.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "abs_value_quadratic_two_corners_v3",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 6},
+  "extra": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"rsq": "[[r]]**2", "w": "[[r]] + [[extra]]"},
+ "stem": "Evaluate \\( \\int_{-[[w]]}^{[[w]]} \\left| x^{2} - [[rsq]] \\right|\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "Abs(x**2 - [[rsq]])", "var": "x", "bounds": ["-[[w]]", "[[w]]"]},
+ "distractors": [
+  "2*([[w]]**3/3 - [[rsq]]*[[w]])",
+  "2*[[rsq]]*[[w]]",
+  "2*[[w]]**3/3",
+  "2*([[w]]**3 - [[r]]**3)/3",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "The integrand \\( x^{2} - [[rsq]] \\) has roots at \\( x = \\pm [[r]] \\), and \\( -[[w]] < -[[r]] < [[r]] < [[w]] \\), so \\( |x^{2}-[[rsq]]| \\) has TWO corners. It is positive on \\( [-[[w]],-[[r]]] \\) and \\( [[[r]],[[w]]] \\) and negative (so the absolute value flips it) on \\( [-[[r]],[[r]]] \\). Splitting at both corners and using symmetry gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the absolute value and integrates \\( x^{2} - [[rsq]] \\) directly, so the negative middle piece cancels area it should add.",
+  "This treats the whole integrand as constant at its value at \\( x=0 \\) (namely \\( [[rsq]] \\)) times the interval width.",
+  "This ignores the \\( -[[rsq]] \\) shift and integrates \\( x^{2} \\) alone.",
+  "This uses \\( r^{3} \\) as if the middle piece contributed nothing, rather than flipping its sign.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This is off by 4 from the correct value."
+ ]
+},
+{
+ "template_id": "sum_of_two_absolute_values_v4",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c1": {"type": "int", "lo": 0, "hi": 5},
+  "gap": {"type": "int", "lo": 1, "hi": 6},
+  "pad": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"c2": "[[c1]] + [[gap]]", "lo": "[[c1]] - [[pad]]", "hi": "[[c2]] + [[pad]]"},
+ "stem": "Evaluate \\( \\int_{[[lo]]}^{[[hi]]} \\left( \\left| x - ([[c1]]) \\right| + \\left| x - ([[c2]]) \\right| \\right) dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "Abs(x - [[c1]]) + Abs(x - [[c2]])", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "([[hi]]-[[lo]])**2",
+  "([[c1]]-[[lo]])**2/2 + ([[hi]]-[[c2]])**2/2",
+  "2*([[hi]]-[[lo]])*[[gap]]",
+  "([[hi]]**2-[[lo]]**2) - ([[c1]]+[[c2]])*([[hi]]-[[lo]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "The sum \\( |x-([[c1]])| + |x-([[c2]])| \\) has TWO corners, at \\( x=[[c1]] \\) and \\( x=[[c2]] \\), splitting \\( [[[lo]],[[hi]]] \\) into three pieces on which each absolute value is single-signed. Splitting at both corners and antidifferentiating each piece gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the sum as if it were constant across the whole interval, squaring the total width.",
+  "This only accounts for the two outer pieces and drops the middle piece between the corners.",
+  "This uses the gap between the corners as a uniform 'height' times the full width, doubled.",
+  "This drops the absolute values and integrates \\( (x-c_1)+(x-c_2) \\) directly, letting negative contributions cancel.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This is off by 4 from the correct value."
+ ]
+},
+{
+ "template_id": "max_of_two_linear_functions_v5",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m1": {"type": "int", "lo": 1, "hi": 4},
+  "m2": {"type": "int", "lo": -4, "hi": -1},
+  "k": {"type": "int", "lo": -3, "hi": 3},
+  "pad": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ne([[m1]], [[m2]])"],
+ "derived": {"cross": "[[k]]", "lo": "[[k]] - [[pad]]", "hi": "[[k]] + [[pad]]", "b1": "([[m2]]-[[m1]])*[[k]]", "b2": "0"},
+ "stem": "Let \\( f(x) = [[m1]]x + [[b1]] \\) and \\( g(x) = [[m2]]x \\). Evaluate \\( \\int_{[[lo]]}^{[[hi]]} \\max\\bigl(f(x), g(x)\\bigr)\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "Max([[m1]]*x + [[b1]], [[m2]]*x)", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "integrate([[m1]]*x + [[b1]], (x, [[lo]], [[hi]]))",
+  "integrate([[m2]]*x, (x, [[lo]], [[hi]]))",
+  "(integrate([[m1]]*x + [[b1]], (x, [[lo]], [[hi]])) + integrate([[m2]]*x, (x, [[lo]], [[hi]])))/2",
+  "integrate([[m1]]*x + [[b1]] + [[m2]]*x, (x, [[lo]], [[hi]]))",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "The two lines cross where \\( [[m1]]x + [[b1]] = [[m2]]x \\), i.e. at \\( x = [[k]] \\), which lies inside \\( [[[lo]],[[hi]]] \\). On each side of that crossing point, \\( \\max(f,g) \\) equals whichever line is on top there; splitting the integral at \\( x=[[k]] \\) and integrating each piece gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This integrates \\( f \\) alone over the whole interval, ignoring where \\( g \\) is actually larger.",
+  "This integrates \\( g \\) alone over the whole interval, ignoring where \\( f \\) is actually larger.",
+  "This averages the two functions instead of taking the pointwise maximum.",
+  "This adds the two functions instead of taking the pointwise maximum.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This is off by 4 from the correct value."
+ ]
+},
+{
+ "template_id": "explicit_piecewise_cases_function_v6",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -2, "hi": 4},
+  "padL": {"type": "int", "lo": 1, "hi": 5},
+  "padR": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], [[d]])"],
+ "derived": {"lo": "[[c]] - [[padL]]", "hi": "[[c]] + [[padR]]"},
+ "stem": "A function is defined piecewise by \\( f(x) = ([[a]])x + ([[b]]) \\) for \\( x < [[c]] \\), and \\( f(x) = ([[d]])x + ([[e]]) \\) for \\( x \\ge [[c]] \\). Evaluate \\( \\int_{[[lo]]}^{[[hi]]} f(x)\\, dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "integrate([[a]]*x + [[b]], (x, [[lo]], [[c]])) + integrate([[d]]*x + [[e]], (x, [[c]], [[hi]]))"},
+ "distractors": [
+  "integrate([[a]]*x + [[b]], (x, [[lo]], [[hi]]))",
+  "integrate([[d]]*x + [[e]], (x, [[lo]], [[hi]]))",
+  "integrate([[a]]*x + [[b]], (x, [[lo]], [[c]])) - integrate([[d]]*x + [[e]], (x, [[c]], [[hi]]))",
+  "integrate([[d]]*x + [[e]], (x, [[lo]], [[c]])) + integrate([[a]]*x + [[b]], (x, [[c]], [[hi]]))",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "Split the integral at the breakpoint \\( x=[[c]] \\), using the FIRST piece \\( ([[a]])x+([[b]]) \\) on \\( [[[lo]],[[c]]] \\) and the SECOND piece \\( ([[d]])x+([[e]]) \\) on \\( [[[c]],[[hi]]] \\): \\( \\int_{[[lo]]}^{[[c]]} \\left(([[a]])x+([[b]])\\right)dx + \\int_{[[c]]}^{[[hi]]} \\left(([[d]])x+([[e]])\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the FIRST piece's formula across the whole interval, ignoring the breakpoint.",
+  "This uses only the SECOND piece's formula across the whole interval, ignoring the breakpoint.",
+  "This subtracts the second piece's contribution instead of adding it.",
+  "This swaps which formula applies on which side of the breakpoint.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This is off by 4 from the correct value."
+ ]
+},
+{
+ "template_id": "abs_of_trig_multi_period_v7",
+ "skill_id": "integrate_absolute_value_piecewise_integrands",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"hi": "[[n]]*pi"},
+ "stem": "Evaluate \\( \\int_{0}^{[[n]]\\pi} \\left| ([[a]])\\sin(x) \\right|\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "Abs([[a]]*sin(x))", "var": "x", "bounds": ["0", "[[n]]*pi"]},
+ "distractors": [
+  "0",
+  "[[a]]*[[n]]",
+  "[[a]]*[[n]]*pi",
+  "2*[[a]]*[[n]]*pi",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[a]]*[[n]]/2"
+ ],
+ "solution": "\\( \\sin(x) \\) is nonnegative on \\( [0,\\pi] \\) and nonpositive on \\( [\\pi,2\\pi] \\), so \\( |\\sin(x)| \\) folds every half-period up. Each length-\\( \\pi \\) piece contributes \\( \\int_{0}^{\\pi} ([[a]])\\sin(x)\\,dx = 2([[a]]) \\), and there are \\( [[n]] \\) such pieces in \\( [0,[[n]]\\pi] \\), giving \\( 2([[a]])([[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the positive and negative half-periods cancel as they would WITHOUT the absolute value.",
+  "This drops the factor of 2 that comes from \\( \\int_0^\\pi \\sin(x)\\,dx = 2 \\).",
+  "This treats \\( |\\sin(x)| \\) as if it averaged to \\( 1 \\) over each length-\\( \\pi \\) piece instead of \\( 2/\\pi \\).",
+  "This double-counts the already-doubled per-period contribution.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This halves the correct contribution per period."
+ ]
+}
+]

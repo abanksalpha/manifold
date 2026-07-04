@@ -1,0 +1,296 @@
+[
+ {
+  "template_id": "venn_two_set_union_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": 15, "hi": 45},
+   "B": {"type": "int", "lo": 15, "hi": 45},
+   "I": {"type": "int", "lo": 4, "hi": 12}
+  },
+  "constraints": ["Lt([[I]], [[A]])", "Lt([[I]], [[B]])"],
+  "stem": "In a group of students, [[A]] play a musical instrument and [[B]] play a sport. Exactly [[I]] of the students both play a musical instrument and play a sport. How many students play a musical instrument, a sport, or both?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]] + [[B]] - [[I]]"},
+  "distractors": [
+   "[[A]] + [[B]]",
+   "[[A]] + [[B]] - 2*[[I]]",
+   "[[A]] + [[B]] + [[I]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By inclusion-exclusion, \\( |M \\cup S| = |M| + |S| - |M \\cap S| = [[A]] + [[B]] - [[I]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the overlap, so students who do both are counted twice.",
+   "This subtracts the overlap twice; that counts only those in exactly one category.",
+   "This adds the overlap instead of subtracting it.",
+   "This is off by one from the correct union count.",
+   "This is off by one from the correct union count.",
+   "This is off by two from the correct union count."
+  ]
+ },
+ {
+  "template_id": "venn_two_set_exactly_one_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": 15, "hi": 45},
+   "B": {"type": "int", "lo": 15, "hi": 45},
+   "I": {"type": "int", "lo": 4, "hi": 12}
+  },
+  "constraints": ["Lt([[I]], [[A]])", "Lt([[I]], [[B]])"],
+  "stem": "In a group of students, [[A]] play a musical instrument and [[B]] play a sport. Exactly [[I]] of the students both play a musical instrument and play a sport. How many students play EXACTLY ONE of the two (an instrument or a sport, but not both)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]] + [[B]] - 2*[[I]]"},
+  "distractors": [
+   "[[A]] + [[B]] - [[I]]",
+   "[[A]] + [[B]]",
+   "[[I]]",
+   "[[A]] + [[B]] - 3*[[I]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Removing the double-counted overlap once gives the union; removing it a second time strips out the students who do both, leaving exactly those who do only one: \\( [[A]] + [[B]] - 2[[I]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the union total, which still includes the students who do both.",
+   "This is the sum of the two groups, not accounting for the overlap at all.",
+   "This is just the overlap count, not the exactly-one count.",
+   "This subtracts the overlap one time too many.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "venn_two_set_neither_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "U": {"type": "int", "lo": 60, "hi": 150},
+   "A": {"type": "int", "lo": 15, "hi": 45},
+   "B": {"type": "int", "lo": 15, "hi": 45},
+   "I": {"type": "int", "lo": 4, "hi": 12}
+  },
+  "constraints": ["Lt([[I]], [[A]])", "Lt([[I]], [[B]])", "Ge([[U]], [[A]] + [[B]] - [[I]])"],
+  "stem": "Out of [[U]] students surveyed, [[A]] play a musical instrument and [[B]] play a sport, with exactly [[I]] students playing both. How many of the [[U]] students play NEITHER a musical instrument nor a sport?",
+  "answer_spec": {"op": "evaluate", "expr": "[[U]] - ([[A]] + [[B]] - [[I]])"},
+  "distractors": [
+   "[[U]] - [[A]] - [[B]]",
+   "[[A]] + [[B]] - [[I]]",
+   "[[U]] - [[I]]",
+   "[[U]] - [[A]] - [[B]] - [[I]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First find the union \\( |M \\cup S| = [[A]] + [[B]] - [[I]] \\), the students who play at least one; the rest play neither: \\( [[U]] - ([[A]] + [[B]] - [[I]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to add back the overlap that was subtracted twice.",
+   "This reports the union (who play at least one), not the complement.",
+   "This subtracts the overlap directly from the total instead of the union.",
+   "This subtracts the overlap an extra time.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "venn_three_set_union_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "onlyA": {"type": "int", "lo": 5, "hi": 20},
+   "onlyB": {"type": "int", "lo": 5, "hi": 20},
+   "onlyC": {"type": "int", "lo": 5, "hi": 20},
+   "abOnly": {"type": "int", "lo": 1, "hi": 8},
+   "acOnly": {"type": "int", "lo": 1, "hi": 8},
+   "bcOnly": {"type": "int", "lo": 1, "hi": 8},
+   "allThree": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {
+   "A": "[[onlyA]] + [[abOnly]] + [[acOnly]] + [[allThree]]",
+   "B": "[[onlyB]] + [[abOnly]] + [[bcOnly]] + [[allThree]]",
+   "C": "[[onlyC]] + [[acOnly]] + [[bcOnly]] + [[allThree]]",
+   "AB": "[[abOnly]] + [[allThree]]",
+   "AC": "[[acOnly]] + [[allThree]]",
+   "BC": "[[bcOnly]] + [[allThree]]"
+  },
+  "stem": "In a survey of college students, [[A]] like reading, [[B]] like hiking, and [[C]] like cooking. Of these, [[AB]] like both reading and hiking, [[AC]] like both reading and cooking, [[BC]] like both hiking and cooking, and [[allThree]] like all three activities. How many students like AT LEAST ONE of the three activities?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] + [[allThree]]"},
+  "distractors": [
+   "[[A]] + [[B]] + [[C]]",
+   "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]]",
+   "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] - [[allThree]]",
+   "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] + 2*[[allThree]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By inclusion-exclusion for three sets, \\( |A\\cup B\\cup C| = |A|+|B|+|C|-|A\\cap B|-|A\\cap C|-|B\\cap C|+|A\\cap B\\cap C| = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract any of the pairwise overlaps, triple-counting the overlapping students.",
+   "This forgets to add back the triple overlap, which was subtracted three times by the pairwise terms.",
+   "This subtracts the triple overlap instead of adding it back.",
+   "This adds the triple overlap back twice instead of once.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "venn_three_set_only_one_region_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": 20, "hi": 60},
+   "AB": {"type": "int", "lo": 3, "hi": 15},
+   "AC": {"type": "int", "lo": 3, "hi": 15},
+   "allThree": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Ge([[AB]], [[allThree]])", "Ge([[AC]], [[allThree]])", "Ge([[A]], [[AB]] + [[AC]] - [[allThree]])"],
+  "stem": "Among [[A]] people who like reading, [[AB]] of them also like hiking and [[AC]] of them also like cooking; of these, [[allThree]] like all three (reading, hiking, and cooking). How many of the [[A]] readers like reading ONLY (neither hiking nor cooking)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]] - [[AB]] - [[AC]] + [[allThree]]"},
+  "distractors": [
+   "[[A]] - [[AB]] - [[AC]]",
+   "[[A]] - [[AB]] - [[AC]] - [[allThree]]",
+   "[[A]] - [[AB]] - [[AC]] + 2*[[allThree]]",
+   "[[A]] - [[AB]]",
+   "[[A]] - [[AC]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "Within the [[A]] readers, subtract those who also hike and those who also cook, then add back the triple-overlap group (subtracted twice): \\( [[A]] - [[AB]] - [[AC]] + [[allThree]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to add back the students counted in both subtractions (those who do all three).",
+   "This subtracts the triple-overlap group instead of adding it back.",
+   "This adds the triple-overlap correction twice instead of once.",
+   "This ignores the cooking overlap entirely.",
+   "This ignores the hiking overlap entirely.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "venn_three_set_neither_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "Universe": {"type": "int", "lo": 80, "hi": 200},
+   "onlyA": {"type": "int", "lo": 5, "hi": 20},
+   "onlyB": {"type": "int", "lo": 5, "hi": 20},
+   "onlyC": {"type": "int", "lo": 5, "hi": 20},
+   "abOnly": {"type": "int", "lo": 1, "hi": 8},
+   "acOnly": {"type": "int", "lo": 1, "hi": 8},
+   "bcOnly": {"type": "int", "lo": 1, "hi": 8},
+   "allThree": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [
+   "Ge([[Universe]], [[onlyA]] + [[onlyB]] + [[onlyC]] + [[abOnly]] + [[acOnly]] + [[bcOnly]] + [[allThree]])"
+  ],
+  "derived": {
+   "A": "[[onlyA]] + [[abOnly]] + [[acOnly]] + [[allThree]]",
+   "B": "[[onlyB]] + [[abOnly]] + [[bcOnly]] + [[allThree]]",
+   "C": "[[onlyC]] + [[acOnly]] + [[bcOnly]] + [[allThree]]",
+   "AB": "[[abOnly]] + [[allThree]]",
+   "AC": "[[acOnly]] + [[allThree]]",
+   "BC": "[[bcOnly]] + [[allThree]]"
+  },
+  "stem": "A survey of [[Universe]] people found that [[A]] like reading, [[B]] like hiking, and [[C]] like cooking, with [[AB]] liking both reading and hiking, [[AC]] liking both reading and cooking, [[BC]] liking both hiking and cooking, and [[allThree]] liking all three. How many of the [[Universe]] people surveyed like NONE of the three activities?",
+  "answer_spec": {"op": "evaluate", "expr": "[[Universe]] - ([[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] + [[allThree]])"},
+  "distractors": [
+   "[[Universe]] - [[A]] - [[B]] - [[C]]",
+   "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] + [[allThree]]",
+   "[[Universe]] - [[A]] - [[B]] - [[C]] + [[AB]] + [[AC]] + [[BC]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[Universe]] - [[allThree]]"
+  ],
+  "solution": "First find the union of the three groups via inclusion-exclusion, then subtract it from the total surveyed: \\( [[Universe]] - \\left([[A]]+[[B]]+[[C]]-[[AB]]-[[AC]]-[[BC]]+[[allThree]]\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to add back the pairwise overlaps before subtracting from the total.",
+   "This reports the union total (who like at least one), not the complement.",
+   "This forgets to add back the triple overlap after adding the pairwise overlaps.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This only removes the triple-overlap group, ignoring the rest of the union."
+  ]
+ },
+ {
+  "template_id": "venn_three_set_exactly_two_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "onlyA": {"type": "int", "lo": 5, "hi": 20},
+   "onlyB": {"type": "int", "lo": 5, "hi": 20},
+   "onlyC": {"type": "int", "lo": 5, "hi": 20},
+   "abOnly": {"type": "int", "lo": 1, "hi": 10},
+   "acOnly": {"type": "int", "lo": 1, "hi": 10},
+   "bcOnly": {"type": "int", "lo": 1, "hi": 10},
+   "allThree": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "A Venn diagram for three overlapping groups A, B, and C shows these already non-overlapping region counts: [[onlyA]] in A only, [[onlyB]] in B only, [[onlyC]] in C only, [[abOnly]] in A and B only (not C), [[acOnly]] in A and C only (not B), [[bcOnly]] in B and C only (not A), and [[allThree]] in all three. How many people are in EXACTLY TWO of the three groups?",
+  "answer_spec": {"op": "evaluate", "expr": "[[abOnly]] + [[acOnly]] + [[bcOnly]]"},
+  "distractors": [
+   "[[abOnly]] + [[acOnly]] + [[bcOnly]] + [[allThree]]",
+   "[[onlyA]] + [[onlyB]] + [[onlyC]]",
+   "[[abOnly]] + [[acOnly]] + [[bcOnly]] - [[allThree]]",
+   "[[onlyA]] + [[onlyB]] + [[onlyC]] + [[abOnly]] + [[acOnly]] + [[bcOnly]] + [[allThree]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The regions with EXACTLY two memberships are precisely the three pairwise-only regions; the all-three region is not included. \\( [[abOnly]] + [[acOnly]] + [[bcOnly]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly includes the all-three region, which has three memberships, not two.",
+   "This adds the single-membership regions instead of the two-membership regions.",
+   "This wrongly subtracts the all-three region even though it was never included.",
+   "This sums every region in the diagram (the whole union), not just the exactly-two regions.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "venn_three_set_solve_triple_overlap_v1",
+  "skill_id": "venn_diagram_region_cardinality_two_or_three_sets",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "onlyA": {"type": "int", "lo": 5, "hi": 20},
+   "onlyB": {"type": "int", "lo": 5, "hi": 20},
+   "onlyC": {"type": "int", "lo": 5, "hi": 20},
+   "abOnly": {"type": "int", "lo": 1, "hi": 8},
+   "acOnly": {"type": "int", "lo": 1, "hi": 8},
+   "bcOnly": {"type": "int", "lo": 1, "hi": 8},
+   "allThree": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "derived": {
+   "A": "[[onlyA]] + [[abOnly]] + [[acOnly]] + [[allThree]]",
+   "B": "[[onlyB]] + [[abOnly]] + [[bcOnly]] + [[allThree]]",
+   "C": "[[onlyC]] + [[acOnly]] + [[bcOnly]] + [[allThree]]",
+   "AB": "[[abOnly]] + [[allThree]]",
+   "AC": "[[acOnly]] + [[allThree]]",
+   "BC": "[[bcOnly]] + [[allThree]]",
+   "UnionCount": "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] + [[allThree]]"
+  },
+  "stem": "In a group of people, [[A]] like reading, [[B]] like hiking, and [[C]] like cooking. Exactly [[AB]] like both reading and hiking, [[AC]] like both reading and cooking, and [[BC]] like both hiking and cooking. If [[UnionCount]] people like at least one of the three activities, how many people like all three?",
+  "answer_spec": {"op": "evaluate", "expr": "[[UnionCount]] - [[A]] - [[B]] - [[C]] + [[AB]] + [[AC]] + [[BC]]"},
+  "distractors": [
+   "[[UnionCount]] - [[A]] - [[B]] - [[C]]",
+   "[[A]] + [[B]] + [[C]] - [[AB]] - [[AC]] - [[BC]] - [[UnionCount]]",
+   "[[UnionCount]] - [[AB]] - [[AC]] - [[BC]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Rearranging inclusion-exclusion, \\( |A\\cap B\\cap C| = |A\\cup B\\cup C| - |A| - |B| - |C| + |A\\cap B| + |A\\cap C| + |B\\cap C| = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to add back the pairwise overlaps when solving for the triple overlap.",
+   "This has the sign of the union total flipped in the rearranged formula.",
+   "This forgets to include the individual set sizes in the rearranged formula.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ }
+]

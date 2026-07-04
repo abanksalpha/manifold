@@ -1,0 +1,4 @@
+{
+ "skill_id": "identify_what_the_procedure_computes",
+ "reason": "The answer is a description of the function a procedure computes (e.g. 'the factorial'), not a single code-computable scalar."
+}

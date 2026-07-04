@@ -1,0 +1,129 @@
+[
+ {
+  "template_id": "sign_analysis_integer_count_v1",
+  "skill_id": "sign_analysis_of_a_polynomial_or_rational_inequality",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Ge([[q]] - [[p]], 4)", "Ne([[p]], 0)", "Ne([[q]], 0)"],
+  "derived": {
+   "b": "-([[p]] + [[q]])",
+   "c": "[[p]]*[[q]]"
+  },
+  "stem": "For how many integers \\( x \\) is \\( x^{2} + ([[b]])x + ([[c]]) < 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[q]] - [[p]] - 1"},
+  "distractors": [
+   "[[q]] - [[p]]",
+   "[[q]] - [[p]] + 1",
+   "[[q]] - [[p]] - 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4",
+   "[[answer]] + 5"
+  ],
+  "solution": "The quadratic factors as \\( (x - ([[p]]))(x - ([[q]])) \\), which is negative exactly on the open interval \\( ([[p]], [[q]]) \\). The integers strictly between [[p]] and [[q]] number \\( [[q]] - ([[p]]) - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the length of the interval, but counting integers strictly inside requires subtracting 1.",
+   "This counts as if both endpoints were included, but the inequality is strict.",
+   "This excludes one integer too many.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "sign_analysis_rational_inequality_mixed_endpoints_v1",
+  "skill_id": "sign_analysis_of_a_polynomial_or_rational_inequality",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Ge([[q]] - [[p]], 3)"],
+  "stem": "For how many integers \\( x \\) is \\( \\dfrac{x - ([[p]])}{x - ([[q]])} \\le 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[q]] - [[p]]"},
+  "distractors": [
+   "[[q]] - [[p]] + 1",
+   "[[q]] - [[p]] - 1",
+   "[[q]] - [[p]] + 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "The quotient is zero at \\( x = [[p]] \\) (included, since the numerator vanishing satisfies \\( \\le 0 \\)) and undefined at \\( x = [[q]] \\) (must be excluded). Between them the numerator and denominator have opposite signs, so the quotient is negative. The solution set is the half-open interval \\( [[[p]], [[q]]) \\), which contains \\( [[q]] - ([[p]]) = [[answer]] \\) integers.",
+  "distractor_rationales": [
+   "This treats \\( [[q]] \\) as included, but the expression is undefined there and must be excluded.",
+   "This also excludes \\( [[p]] \\), but the numerator vanishing there is allowed by \\( \\le 0 \\).",
+   "This treats both endpoints as included, ignoring that the denominator's zero must be excluded.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count."
+  ]
+ },
+ {
+  "template_id": "sign_analysis_cubic_three_factor_v1",
+  "skill_id": "sign_analysis_of_a_polynomial_or_rational_inequality",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 2},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "r": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Lt([[q]], [[r]])"],
+  "stem": "For how many integers \\( x \\) with \\( [[p]] \\le x \\le [[r]] \\) is \\( (x - ([[p]]))(x - ([[q]]))(x - ([[r]])) \\le 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]] - [[q]] + 2"},
+  "distractors": [
+   "[[r]] - [[q]] + 1",
+   "[[r]] - [[p]] + 1",
+   "[[r]] - [[q]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "On \\( [[[p]], [[r]]] \\), a sign chart of the three factors shows the product is positive on \\( ([[p]], [[q]]) \\) and non-positive everywhere else in the window (zero at each root, negative on \\( ([[q]], [[r]]) \\)). So the satisfying integers are \\( x = [[p]] \\) together with all integers from \\( [[q]] \\) to \\( [[r]] \\): a total of \\( 1 + ([[r]] - [[q]] + 1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to include the isolated point \\( x = [[p]] \\), where the product is exactly zero.",
+   "This uses the wrong reference root, spanning from \\( [[p]] \\) instead of from \\( [[q]] \\).",
+   "This omits one endpoint of the qualifying range \\( [[[q]], [[r]]] \\).",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "sign_analysis_bounded_window_outside_roots_v1",
+  "skill_id": "sign_analysis_of_a_polynomial_or_rational_inequality",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -4, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 5},
+   "L": {"type": "int", "lo": -12, "hi": -6},
+   "U": {"type": "int", "lo": 7, "hi": 13}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Lt([[L]], [[p]])", "Gt([[U]], [[q]])"],
+  "stem": "For how many integers \\( x \\) with \\( [[L]] \\le x \\le [[U]] \\) is \\( (x - ([[p]]))(x - ([[q]])) > 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[U]] - [[L]] + 1) - ([[q]] - [[p]] + 1)"},
+  "distractors": [
+   "([[U]] - [[L]] + 1) - ([[q]] - [[p]] - 1)",
+   "[[q]] - [[p]] + 1",
+   "[[U]] - [[L]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The product is non-positive exactly on the closed interval \\( [[[p]], [[q]]] \\) (zero at the roots, negative between them), which contains \\( [[q]] - ([[p]]) + 1 \\) integers. Removing these from all \\( [[U]] - ([[L]]) + 1 \\) integers in the window \\( [[[L]], [[U]]] \\) leaves the integers where the product is strictly positive: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This removes only the OPEN interior count instead of the closed interval (the roots themselves must also be excluded from the answer).",
+   "This reports the size of the excluded closed interval instead of its complement in the window.",
+   "This reports the size of the whole window without removing the excluded interval at all.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ }
+]

@@ -1,0 +1,148 @@
+[
+{
+ "template_id": "polyinterp_linear_v1",
+ "skill_id": "polynomial_interpolation",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -8, "hi": 8},
+  "x1": {"type": "int", "lo": -8, "hi": 8},
+  "y0": {"type": "int", "lo": -20, "hi": 20},
+  "y1": {"type": "int", "lo": -20, "hi": 20},
+  "xe": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[x0]], [[x1]])", "Ne([[xe]], [[x0]])", "Ne([[xe]], [[x1]])"],
+ "stem": "The linear polynomial \\( P(x) \\) passes through the points \\( ([[x0]], [[y0]]) \\) and \\( ([[x1]], [[y1]]) \\). What is \\( P([[xe]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[y0]] + ([[y1]] - [[y0]])*([[xe]] - [[x0]])/([[x1]] - [[x0]])"},
+ "distractors": [
+  "[[y1]] + ([[y1]] - [[y0]])*([[xe]] - [[x0]])/([[x1]] - [[x0]])",
+  "[[y0]] + ([[y0]] - [[y1]])*([[xe]] - [[x0]])/([[x1]] - [[x0]])",
+  "[[y0]] + ([[y1]] - [[y0]])*([[xe]] - [[x0]])/([[x1]] - [[xe]])",
+  "([[y0]] + [[y1]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The line through the two points has slope \\( \\dfrac{y_1-y_0}{x_1-x_0} \\), so \\( P(x)=y_0+\\dfrac{y_1-y_0}{x_1-x_0}(x-x_0) \\); at \\( x=[[xe]] \\) this gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This anchors the line at \\( (x_1,y_1) \\) but still measures displacement from \\( x_0 \\), double counting the offset.",
+  "This flips the sign of the slope.",
+  "This uses the wrong denominator, measuring the run to \\( x_1 \\) from \\( x_e \\) instead of from \\( x_0 \\).",
+  "This just averages the two \\( y \\)-values, ignoring where \\( x_e \\) actually falls.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "polyinterp_quadratic_lagrange_v1",
+ "skill_id": "polynomial_interpolation",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "x1": {"type": "int", "lo": -6, "hi": 6},
+  "x2": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -15, "hi": 15},
+  "y1": {"type": "int", "lo": -15, "hi": 15},
+  "y2": {"type": "int", "lo": -15, "hi": 15},
+  "xe": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [
+  "Ne([[x0]], [[x1]])", "Ne([[x0]], [[x2]])", "Ne([[x1]], [[x2]])",
+  "Ne([[xe]], [[x0]])", "Ne([[xe]], [[x1]])", "Ne([[xe]], [[x2]])"
+ ],
+ "stem": "The quadratic polynomial \\( P(x) \\) passes through \\( ([[x0]], [[y0]]) \\), \\( ([[x1]], [[y1]]) \\), and \\( ([[x2]], [[y2]]) \\). Using Lagrange interpolation, find \\( P([[xe]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[y0]]*([[xe]]-[[x1]])*([[xe]]-[[x2]])/(([[x0]]-[[x1]])*([[x0]]-[[x2]])) + [[y1]]*([[xe]]-[[x0]])*([[xe]]-[[x2]])/(([[x1]]-[[x0]])*([[x1]]-[[x2]])) + [[y2]]*([[xe]]-[[x0]])*([[xe]]-[[x1]])/(([[x2]]-[[x0]])*([[x2]]-[[x1]]))"
+ },
+ "distractors": [
+  "([[y0]] + [[y1]] + [[y2]])/3",
+  "[[y0]]*([[xe]]-[[x1]])*([[xe]]-[[x2]])/(([[x0]]-[[x1]])*([[x0]]-[[x2]])) + [[y1]]*([[xe]]-[[x0]])*([[xe]]-[[x2]])/(([[x1]]-[[x0]])*([[x1]]-[[x2]]))",
+  "[[y0]]*([[xe]]-[[x1]])*([[xe]]-[[x2]])/(([[x0]]-[[x1]])*([[x0]]-[[x2]])) - [[y1]]*([[xe]]-[[x0]])*([[xe]]-[[x2]])/(([[x1]]-[[x0]])*([[x1]]-[[x2]])) + [[y2]]*([[xe]]-[[x0]])*([[xe]]-[[x1]])/(([[x2]]-[[x0]])*([[x2]]-[[x1]]))",
+  "[[y0]] + [[y1]] + [[y2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The Lagrange form is \\( P(x)=\\sum_i y_i \\ell_i(x) \\) with \\( \\ell_i(x)=\\prod_{j\\ne i}\\frac{x-x_j}{x_i-x_j} \\); evaluating at \\( x=[[xe]] \\) gives \\( P([[xe]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just averages the three \\( y \\)-values, ignoring where \\( x_e \\) actually falls.",
+  "This drops the third Lagrange basis term entirely.",
+  "This flips the sign of the middle Lagrange basis term.",
+  "This just adds the three \\( y \\)-values, unrelated to the interpolated value.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "polyinterp_lagrange_basis_value_v1",
+ "skill_id": "polynomial_interpolation",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "x1": {"type": "int", "lo": -6, "hi": 6},
+  "x2": {"type": "int", "lo": -6, "hi": 6},
+  "xe": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [
+  "Ne([[x0]], [[x1]])", "Ne([[x0]], [[x2]])", "Ne([[x1]], [[x2]])",
+  "Ne([[xe]], [[x0]])", "Ne([[xe]], [[x1]])", "Ne([[xe]], [[x2]])"
+ ],
+ "stem": "For interpolation nodes \\( x_0=[[x0]] \\), \\( x_1=[[x1]] \\), \\( x_2=[[x2]] \\), the Lagrange basis polynomial associated with \\( x_1 \\) is \\( \\ell_1(x) = \\dfrac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)} \\). What is \\( \\ell_1([[xe]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[xe]]-[[x0]])*([[xe]]-[[x2]])/(([[x1]]-[[x0]])*([[x1]]-[[x2]]))"},
+ "distractors": [
+  "([[xe]]-[[x1]])*([[xe]]-[[x2]])/(([[x0]]-[[x1]])*([[x0]]-[[x2]]))",
+  "([[xe]]-[[x0]])*([[xe]]-[[x1]])/(([[x1]]-[[x0]])*([[x1]]-[[x2]]))",
+  "([[xe]]-[[x0]])*([[xe]]-[[x2]])/(([[x0]]-[[x1]])*([[x1]]-[[x2]]))",
+  "1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Substitute \\( x=[[xe]] \\) directly into \\( \\ell_1(x) \\): \\( \\dfrac{([[xe]]-[[x0]])([[xe]]-[[x2]])}{([[x1]]-[[x0]])([[x1]]-[[x2]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is actually the basis polynomial for node \\( x_0 \\), not \\( x_1 \\).",
+  "This uses the wrong second factor in the numerator (\\(x-x_1\\) instead of \\(x-x_2\\)).",
+  "This uses the wrong sign convention in the denominator's first factor.",
+  "This is the value \\( \\ell_1 \\) takes AT its own node \\( x_1 \\) (always 1), not at \\( x_e \\).",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "polyinterp_divided_difference_leading_coeff_v1",
+ "skill_id": "polynomial_interpolation",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -8, "hi": 8},
+  "x1": {"type": "int", "lo": -8, "hi": 8},
+  "x2": {"type": "int", "lo": -8, "hi": 8},
+  "y0": {"type": "int", "lo": -15, "hi": 15},
+  "y1": {"type": "int", "lo": -15, "hi": 15},
+  "y2": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[x0]], [[x1]])", "Ne([[x0]], [[x2]])", "Ne([[x1]], [[x2]])"],
+ "stem": "The quadratic polynomial \\( P(x) = ax^2+bx+c \\) passes through \\( ([[x0]], [[y0]]) \\), \\( ([[x1]], [[y1]]) \\), and \\( ([[x2]], [[y2]]) \\). Using Newton's divided differences, find the leading coefficient \\( a \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "((([[y2]]-[[y1]])/([[x2]]-[[x1]])) - (([[y1]]-[[y0]])/([[x1]]-[[x0]]))) / ([[x2]]-[[x0]])"
+ },
+ "distractors": [
+  "([[y1]]-[[y0]])/([[x1]]-[[x0]])",
+  "((([[y2]]-[[y1]])/([[x2]]-[[x1]])) - (([[y1]]-[[y0]])/([[x1]]-[[x0]])))",
+  "((([[y2]]-[[y1]])/([[x2]]-[[x1]])) + (([[y1]]-[[y0]])/([[x1]]-[[x0]]))) / ([[x2]]-[[x0]])",
+  "((([[y1]]-[[y0]])/([[x1]]-[[x0]])) - (([[y2]]-[[y1]])/([[x2]]-[[x1]]))) / ([[x2]]-[[x0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The leading coefficient is the second-order divided difference \\( f[x_0,x_1,x_2] = \\dfrac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0} \\), which evaluates to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the first divided difference \\( f[x_0,x_1]\\), the LINEAR slope, not the quadratic leading coefficient.",
+  "This forgets to divide by \\( x_2-x_0 \\) at the end.",
+  "This adds the two first-order divided differences instead of subtracting them.",
+  "This subtracts the two first-order divided differences in the wrong order, flipping the sign.",
+  "This is one more than the correct coefficient.",
+  "This is one less than the correct coefficient."
+ ]
+}
+]

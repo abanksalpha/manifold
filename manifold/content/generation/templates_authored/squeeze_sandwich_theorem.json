@@ -1,0 +1,126 @@
+[
+{
+ "template_id": "squeeze_theorem_v1",
+ "skill_id": "squeeze_sandwich_theorem",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\lim_{x \\to 0} \\left( [[a]] + x^{2}\\sin\\!\\left(\\dfrac{[[b]]}{x}\\right) \\right) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]] + x**2*sin([[b]]/x)", "var": "x", "point": 0},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[b]]",
+  "-[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( -1 \\le \\sin(\\tfrac{[[b]]}{x}) \\le 1 \\), we have \\( -x^{2} \\le x^{2}\\sin(\\tfrac{[[b]]}{x}) \\le x^{2} \\). Both bounds \\( \\to 0 \\), so by the Squeeze Theorem the oscillating term \\( \\to 0 \\) and the limit is \\( [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( b \\), but the bounded oscillating term contributes 0.",
+  "This subtracts \\( b \\), but the oscillating term contributes 0.",
+  "This uses \\( b \\) alone and drops the constant \\( a \\).",
+  "This negates the correct value.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "squeeze_oscillation_over_x_infinity_v1",
+ "skill_id": "squeeze_sandwich_theorem",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} \\left( [[a]] + \\frac{[[b]]\\sin([[c]]x)}{x} \\right) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]] + [[b]]*sin([[c]]*x)/x", "var": "x", "point": "oo"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[b]]",
+  "[[a]]*[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( -1 \\le \\sin([[c]]x) \\le 1 \\), the fraction is squeezed: \\( -\\dfrac{[[b]]}{x} \\le \\dfrac{[[b]]\\sin([[c]]x)}{x} \\le \\dfrac{[[b]]}{x} \\) (for \\( [[b]]>0 \\)), and both bounds \\( \\to 0 \\) as \\( x\\to\\infty \\). So the oscillating fraction vanishes, leaving \\( [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( b \\), but the bounded fraction contributes 0 as \\( x\\to\\infty \\).",
+  "This subtracts \\( b \\), but the bounded fraction contributes 0.",
+  "This keeps only the numerator's coefficient and drops the constant \\( a \\).",
+  "This multiplies \\( a \\) and \\( b \\) instead of recognizing the fraction vanishes.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "squeeze_explicit_bounds_v1",
+ "skill_id": "squeeze_sandwich_theorem",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "p": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Suppose a function \\( g \\) satisfies \\( [[a]] - [[b]](x - ([[p]]))^{2} \\le g(x) \\le [[a]] + [[b]](x - ([[p]]))^{2} \\) for all real \\( x \\). Using the Squeeze Theorem, evaluate \\( \\lim_{x \\to [[p]]} g(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]] + [[b]]*(x - ([[p]]))**2", "var": "x", "point": "[[p]]"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[b]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Both the lower bound \\( [[a]] - [[b]](x-[[p]])^{2} \\) and the upper bound \\( [[a]] + [[b]](x-[[p]])^{2} \\) tend to \\( [[a]] \\) as \\( x \\to [[p]] \\). Since \\( g \\) is trapped between them, the Squeeze Theorem forces \\( \\lim_{x \\to [[p]]} g(x) = [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the coefficient \\( b \\), but both bounding functions converge to \\( a \\) alone.",
+  "This subtracts the coefficient \\( b \\), but both bounding functions converge to \\( a \\) alone.",
+  "This reports only the coefficient of the squared term, dropping \\( a \\).",
+  "This assumes the squeezed value is always 0.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "squeeze_absolute_deviation_bound_v1",
+ "skill_id": "squeeze_sandwich_theorem",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 7},
+  "p": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": [],
+ "stem": "Suppose a function \\( g \\) satisfies \\( \\lvert g(x) - [[a]] \\rvert \\le [[b]]\\lvert x - ([[p]]) \\rvert \\) for all real \\( x \\) near \\( [[p]] \\). Using the Squeeze Theorem, evaluate \\( \\lim_{x \\to [[p]]} g(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]] + [[b]]*Abs(x - ([[p]]))", "var": "x", "point": "[[p]]"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[b]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The inequality \\( -[[b]]|x-[[p]]| \\le g(x) - [[a]] \\le [[b]]|x-[[p]]| \\) squeezes \\( g(x) - [[a]] \\) between two functions that both \\( \\to 0 \\) as \\( x \\to [[p]] \\). Hence \\( g(x) - [[a]] \\to 0 \\), so \\( \\lim_{x \\to [[p]]} g(x) = [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( b \\), but the bound on the deviation forces it to vanish entirely.",
+  "This subtracts \\( b \\), but the bound on the deviation forces it to vanish entirely.",
+  "This reports only the bounding coefficient, dropping \\( a \\).",
+  "This assumes the limit is always 0 regardless of \\( a \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

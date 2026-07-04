@@ -1,0 +1,103 @@
+[
+{
+ "template_id": "curl_k_component_v1",
+ "skill_id": "curl_of_a_vector_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[q]] - [[p]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( ([[a]])x + ([[p]])y,\\; ([[q]])x + ([[b]])y,\\; ([[c]])z \\right) \\). Find the \\( \\mathbf{k} \\)-component (the coefficient of \\( \\mathbf{k} \\)) of the curl \\( \\nabla \\times \\mathbf{F} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[q]]) - ([[p]])"},
+ "distractors": [
+  "([[p]]) - ([[q]])",
+  "([[p]]) + ([[q]])",
+  "([[q]])*([[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The \\( \\mathbf{k} \\)-component of the curl is \\( \\partial_x Q - \\partial_y P \\). Here \\( \\partial_x Q = [[q]] \\) and \\( \\partial_y P = [[p]] \\), so the component is \\( ([[q]]) - ([[p]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reverses the subtraction, computing \\( \\partial_y P - \\partial_x Q \\) instead of \\( \\partial_x Q - \\partial_y P \\).",
+  "This adds the two partials instead of subtracting them.",
+  "This multiplies the two partials instead of subtracting them.",
+  "This is off by one from the correct component.",
+  "This is off by one from the correct component.",
+  "This is off by two from the correct component.",
+  "This is off by two from the correct component."
+ ]
+},
+{
+ "template_id": "curl_point_eval_v1",
+ "skill_id": "curl_of_a_vector_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "y0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[x0]], 0)", "Ne([[y0]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( ([[a]])y^{2},\\; ([[b]])x^{2},\\; 0 \\right) \\). Find the \\( \\mathbf{k} \\)-component of the curl \\( \\nabla \\times \\mathbf{F} \\) at the point \\( ([[x0]], [[y0]], 0) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*([[b]])*([[x0]]) - 2*([[a]])*([[y0]])"},
+ "distractors": [
+  "2*([[a]])*([[y0]]) - 2*([[b]])*([[x0]])",
+  "2*([[b]])*([[y0]]) - 2*([[a]])*([[x0]])",
+  "([[b]])*([[x0]]) - ([[a]])*([[y0]])",
+  "-(2*([[b]])*([[x0]]) - 2*([[a]])*([[y0]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( P=([[a]])y^{2} \\) and \\( Q=([[b]])x^{2} \\), the \\( \\mathbf{k} \\)-component of the curl is \\( \\partial_x Q - \\partial_y P = 2([[b]])x - 2([[a]])y \\), which is not constant. Evaluating at \\( ([[x0]], [[y0]], 0) \\) gives \\( 2([[b]])([[x0]]) - 2([[a]])([[y0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reverses the subtraction order, computing \\( \\partial_y P - \\partial_x Q \\) instead.",
+  "This mismatches each partial with the wrong coordinate.",
+  "This forgets the factor of 2 that comes from differentiating each squared term.",
+  "This has the sign of the curl component reversed.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "curl_solve_irrotational_v1",
+ "skill_id": "curl_of_a_vector_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( ([[a]])y,\\; kx,\\; ([[c]])z \\right) \\), where \\( k \\) is a constant. For what value of \\( k \\) is \\( \\mathbf{F} \\) irrotational (\\( \\nabla \\times \\mathbf{F} = \\mathbf{0} \\) everywhere)?",
+ "answer_spec": {"op": "solve", "equation": "k - ([[a]]) = 0", "var": "k"},
+ "distractors": [
+  "-([[a]])",
+  "([[c]])",
+  "-([[c]])",
+  "2*([[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The \\( \\mathbf{k} \\)-component of the curl is \\( \\partial_x(kx) - \\partial_y(([[a]])y) = k - ([[a]]) \\); the other two components are automatically 0 for this field. Setting \\( k - ([[a]]) = 0 \\) gives \\( k = ([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This negates the required value instead of matching it directly.",
+  "This is the unrelated \\( z \\)-coefficient \\( c \\), which never affects the curl.",
+  "This is the negative of the unrelated \\( z \\)-coefficient \\( c \\).",
+  "This doubles the correct coefficient instead of matching it.",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by two from the correct value of \\( k \\)."
+ ]
+}
+]

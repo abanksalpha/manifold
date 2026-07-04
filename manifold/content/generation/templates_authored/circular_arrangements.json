@@ -1,0 +1,154 @@
+[
+{
+ "template_id": "circular_arrangements_v1",
+ "skill_id": "circular_arrangements",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 8},
+  "noun": {"type": "choice", "values": ["people", "guests", "knights", "friends", "delegates"]}
+ },
+ "constraints": [],
+ "stem": "In how many distinct ways can [[n]] [[noun]] be seated around a circular table, where two seatings are regarded as the same whenever one is a rotation of the other?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]] - 2)",
+  "factorial([[n]] - 1)/2",
+  "2*factorial([[n]] - 1)",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Fixing one person to remove rotational duplicates, the remaining \\( [[n]]-1 \\) are arranged in \\( ([[n]]-1)! = [[answer]] \\) ways.",
+ "distractor_rationales": [
+  "This is \\( [[n]]! \\), the count for a straight row, which does not remove rotations.",
+  "This removes one too many positions, using \\( ([[n]]-2)! \\).",
+  "This also divides out reflections, which the problem does not ask for.",
+  "This doubles the correct count, as if reflections were counted separately.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[n]]."
+ ]
+},
+{
+ "template_id": "circular_arrangements_with_reflections_v1",
+ "skill_id": "circular_arrangements",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 10},
+  "noun": {"type": "choice", "values": ["beads", "charms", "gems", "pendants", "stones"]}
+ },
+ "constraints": [],
+ "stem": "In how many distinct ways can [[n]] different [[noun]] be strung onto a circular bracelet, if two arrangements are considered the same whenever one can be obtained from the other by a rotation OR a flip (reflection)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)/2"},
+ "distractors": [
+  "factorial([[n]] - 1)",
+  "factorial([[n]])",
+  "factorial([[n]])/2",
+  "factorial([[n]] - 2)",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Fixing one bead removes rotational duplicates, leaving \\( ([[n]]-1)! \\) arrangements; since flips are also identified, divide by 2 more: \\( \\frac{([[n]]-1)!}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This accounts for rotations only, forgetting that reflections are also identified.",
+  "This is the count for a straight row, with no symmetry removed at all.",
+  "This divides the row count by 2 instead of properly fixing rotations first.",
+  "This removes one too many positions before dividing.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[n]]."
+ ]
+},
+{
+ "template_id": "circular_arrangements_adjacent_pair_v1",
+ "skill_id": "circular_arrangements",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 9},
+  "noun": {"type": "choice", "values": ["people", "guests", "knights", "friends", "delegates"]}
+ },
+ "constraints": ["Gt([[n]], 3)"],
+ "stem": "[[n]] distinct [[noun]] are seated around a circular table, where two seatings are regarded as the same whenever one is a rotation of the other. In how many of these seatings are two particular individuals seated next to each other?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 2)*factorial(2)"},
+ "distractors": [
+  "factorial([[n]] - 1)",
+  "factorial([[n]] - 1)*factorial(2)",
+  "factorial([[n]])",
+  "factorial([[n]] - 2)",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Glue the two individuals into one block, leaving \\( [[n]]-1 \\) circular objects; fixing rotations gives \\( ([[n]]-2)! \\) arrangements, times \\( 2! \\) for the block's internal order: \\( ([[n]]-2)!\\cdot 2! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the \\( 2! \\) internal orders of the adjacent pair.",
+  "This uses the LINEAR glue-block formula, which does not account for the circular table.",
+  "This is the unrestricted count with no adjacency requirement at all.",
+  "This removes one too many seats before applying the block's internal order.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[n]]."
+ ]
+},
+{
+ "template_id": "circular_arrangements_numbered_seats_v1",
+ "skill_id": "circular_arrangements",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 9},
+  "noun": {"type": "choice", "values": ["people", "guests", "students", "friends", "delegates"]}
+ },
+ "constraints": [],
+ "stem": "[[n]] distinct [[noun]] are to be seated around a circular table that has [[n]] numbered seats (seat 1, seat 2, ..., seat [[n]]). Since the seats are numbered, two seatings that differ only by a rotation are considered DIFFERENT. In how many ways can the [[n]] [[noun]] be seated?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+ "distractors": [
+  "factorial([[n]] - 1)",
+  "factorial([[n]] - 1)*[[n]]/2",
+  "factorial([[n]] - 2)",
+  "[[n]]**[[n]]",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Because the seats are numbered, rotations are no longer equivalent, so every one of the \\( [[n]]! \\) orderings of the [[n]] [[noun]] into the [[n]] seats is distinct: the count is \\( [[n]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly still divides out rotations, as if the seats were unlabeled.",
+  "This applies an unrelated halving to the unlabeled-seat count.",
+  "This removes two too many seats' worth of arrangement.",
+  "This allows repeated occupants of a seat, which is not possible here.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[n]]."
+ ]
+},
+{
+ "template_id": "circular_arrangements_alternating_gender_v1",
+ "skill_id": "circular_arrangements",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 8},
+  "group_a": {"type": "choice", "values": ["men", "boys", "actors", "violinists", "engineers"]},
+  "group_b": {"type": "choice", "values": ["women", "girls", "actresses", "cellists", "architects"]}
+ },
+ "constraints": [],
+ "derived": {"n": "2*[[m]]"},
+ "stem": "[[m]] [[group_a]] and [[m]] [[group_b]] (all distinct individuals, [[n]] people in total) are seated around a circular table, where two seatings are regarded as the same whenever one is a rotation of the other. In how many such seatings do the two groups alternate around the table?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[m]] - 1)*factorial([[m]])"},
+ "distractors": [
+  "factorial([[m]])*factorial([[m]])",
+  "factorial([[n]] - 1)",
+  "2*factorial([[m]] - 1)*factorial([[m]])",
+  "factorial([[m]] - 1)*factorial([[m]] - 1)",
+  "[[answer]] + [[m]]",
+  "[[answer]] - [[m]]"
+ ],
+ "solution": "Fix one man's seat to remove rotational duplicates; the remaining \\( [[m]]-1 \\) men fill the other men's seats in \\( ([[m]]-1)! \\) ways, and the [[m]] women fill the women's seats in \\( [[m]]! \\) ways: \\( ([[m]]-1)!\\cdot [[m]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets that fixing one man's seat already removes rotational duplicates, over-counting the men's arrangements.",
+  "This is the unrestricted circular count, ignoring the alternating requirement.",
+  "This doubles the correct count, as if starting with either gender were still a free choice after fixing a seat.",
+  "This treats the women's count the same reduced way as the men's, which double-removes a rotation.",
+  "This is off from the correct count by [[m]].",
+  "This is off from the correct count by [[m]]."
+ ]
+}
+]

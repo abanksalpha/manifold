@@ -1,0 +1,174 @@
+[
+{
+ "template_id": "related_rates_sphere_v1",
+ "skill_id": "geometric_related_rates_expanding_or_filling_solids",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {
+   "type": "int",
+   "lo": 1,
+   "hi": 12
+  },
+  "drdt": {
+   "type": "int",
+   "lo": 1,
+   "hi": 9
+  }
+ },
+ "constraints": [],
+ "stem": "A sphere's radius grows at \\( \\frac{dr}{dt}=[[drdt]] \\). When \\( r=[[r]] \\), how fast is the volume changing (\\( \\frac{dV}{dt}=4\\pi r^{2}\\frac{dr}{dt} \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "4*pi*[[r]]**2*[[drdt]]"
+ },
+ "distractors": [
+  "4*pi*[[r]]**2",
+  "4*pi*[[r]]*[[drdt]]",
+  "Rational(4,3)*pi*[[r]]**3*[[drdt]]",
+  "8*pi*[[r]]*[[drdt]]",
+  "4*pi*[[r]]**2*[[drdt]] + pi",
+  "2*pi*[[r]]**2*[[drdt]]"
+ ],
+ "solution": "\\( \\frac{dV}{dt}=4\\pi r^{2}\\frac{dr}{dt}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "related_rates_cube_volume_v1",
+ "skill_id": "geometric_related_rates_expanding_or_filling_solids",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "s": {"type": "int", "lo": 1, "hi": 15},
+  "dsdt": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "A cube's edge length grows at \\( \\frac{ds}{dt}=[[dsdt]] \\). When \\( s=[[s]] \\), how fast is the volume changing (\\( V=s^{3} \\), so \\( \\frac{dV}{dt}=3s^{2}\\frac{ds}{dt} \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "3*[[s]]**2*[[dsdt]]"
+ },
+ "distractors": [
+  "3*[[s]]*[[dsdt]]",
+  "[[s]]**3",
+  "[[s]]**2*[[dsdt]]",
+  "2*[[s]]*[[dsdt]]",
+  "3*[[s]]**2*[[dsdt]] + 1",
+  "3*[[s]]**2*[[dsdt]] - 1"
+ ],
+ "solution": "\\( \\frac{dV}{dt}=3s^{2}\\frac{ds}{dt}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the square on \\( s \\).",
+  "This is the volume itself, not its rate of change.",
+  "This drops the factor of 3 from the power rule.",
+  "This uses the exponent as if \\( V=s^{2}\\), not \\( s^{3} \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "related_rates_cone_filling_v1",
+ "skill_id": "geometric_related_rates_expanding_or_filling_solids",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "choice", "values": [1, 2, 3]},
+  "h": {"type": "int", "lo": 1, "hi": 10},
+  "dhdt": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "A tank shaped like an inverted cone is filled with water so that the surface radius is always \\( [[k]] \\) times the depth \\( h \\) (that is, \\( r=[[k]]h \\)), giving volume \\( V=\\dfrac{\\pi}{3}([[k]]h)^{2}h \\). If the depth is rising at \\( \\frac{dh}{dt}=[[dhdt]] \\), how fast is the volume changing when \\( h=[[h]] \\) (i.e. \\( \\frac{dV}{dt}=\\pi [[k]]^{2}h^{2}\\frac{dh}{dt} \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "pi*[[k]]**2*[[h]]**2*[[dhdt]]"
+ },
+ "distractors": [
+  "pi*[[k]]*[[h]]**2*[[dhdt]]",
+  "pi*[[k]]**2*[[h]]*[[dhdt]]",
+  "Rational(1,3)*pi*[[k]]**2*[[h]]**3",
+  "2*pi*[[k]]**2*[[h]]*[[dhdt]]",
+  "pi*[[k]]**2*[[h]]**2*[[dhdt]] + pi",
+  "2*pi*[[k]]**2*[[h]]**2*[[dhdt]]"
+ ],
+ "solution": "Substituting \\( r=[[k]]h \\) into \\( V=\\frac{\\pi}{3}r^{2}h \\) gives \\( V=\\frac{\\pi}{3}[[k]]^{2}h^{3} \\), so \\( \\frac{dV}{dt}=\\pi [[k]]^{2}h^{2}\\frac{dh}{dt}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to square the ratio \\( k \\).",
+  "This forgets to square the depth \\( h \\).",
+  "This uses \\( V \\) itself instead of differentiating to get \\( \\frac{dV}{dt}\\).",
+  "This has an extra factor of 2 from a chain-rule slip.",
+  "This adds an extraneous \\( \\pi \\) term.",
+  "This doubles the correct rate."
+ ]
+},
+{
+ "template_id": "related_rates_cylinder_level_v1",
+ "skill_id": "geometric_related_rates_expanding_or_filling_solids",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": true,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 10},
+  "c": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": [],
+ "derived": {"dVdt": "pi*[[r]]**2*[[c]]"},
+ "stem": "Water is pumped into a cylindrical tank of fixed radius \\( [[r]] \\) at a rate \\( \\frac{dV}{dt}=[[dVdt]] \\) (volume per unit time). Since \\( V=\\pi r^{2}h \\) with \\( r \\) constant, how fast is the water level \\( h \\) rising (find \\( \\frac{dh}{dt} \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[dVdt]]/(pi*[[r]]**2)"
+ },
+ "distractors": [
+  "[[dVdt]]/([[r]]**2)",
+  "[[dVdt]]/(2*pi*[[r]])",
+  "[[dVdt]]*pi*[[r]]**2",
+  "[[dVdt]]/([[r]])",
+  "[[dVdt]]/(pi*[[r]]**2) + 1",
+  "[[dVdt]]/(pi*[[r]]**2) - 1"
+ ],
+ "solution": "Since \\( \\frac{dV}{dt}=\\pi r^{2}\\frac{dh}{dt} \\) with \\( r \\) fixed, \\( \\frac{dh}{dt}=\\dfrac{dV/dt}{\\pi r^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( \\pi \\) in the denominator.",
+  "This uses the circle's circumference formula instead of its area.",
+  "This multiplies by \\( \\pi r^{2} \\) instead of dividing.",
+  "This forgets to square the radius.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "related_rates_sphere_surface_area_v1",
+ "skill_id": "geometric_related_rates_expanding_or_filling_solids",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 1, "hi": 15},
+  "drdt": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "A spherical balloon's radius grows at \\( \\frac{dr}{dt}=[[drdt]] \\). When \\( r=[[r]] \\), how fast is its SURFACE AREA changing? (Recall \\( A=4\\pi r^{2} \\), so \\( \\frac{dA}{dt}=8\\pi r\\frac{dr}{dt} \\).)",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "8*pi*[[r]]*[[drdt]]"
+ },
+ "distractors": [
+  "4*pi*[[r]]*[[drdt]]",
+  "8*pi*[[r]]**2*[[drdt]]",
+  "4*pi*[[r]]**2",
+  "8*pi*[[drdt]]",
+  "8*pi*[[r]]*[[drdt]] + pi",
+  "16*pi*[[r]]*[[drdt]]"
+ ],
+ "solution": "\\( \\frac{dA}{dt}=8\\pi r\\frac{dr}{dt}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the coefficient from the area formula itself, without differentiating.",
+  "This forgets to reduce the power of \\( r \\) from 2 to 1.",
+  "This is the surface area itself, not its rate of change.",
+  "This drops the factor of \\( r \\).",
+  "This adds an extraneous \\( \\pi \\) term.",
+  "This doubles the correct rate."
+ ]
+}
+]

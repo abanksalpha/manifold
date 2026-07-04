@@ -1,0 +1,146 @@
+[
+{
+ "template_id": "increase_boundary_v1",
+ "skill_id": "intervals_of_increase_decrease_and_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "r1": {
+   "type": "int",
+   "lo": -7,
+   "hi": 1
+  },
+  "r2": {
+   "type": "int",
+   "lo": 2,
+   "hi": 9
+  }
+ },
+ "constraints": [
+  "Lt([[r1]], [[r2]])"
+ ],
+ "derived": {
+  "s": "[[r1]] + [[r2]]",
+  "p": "[[r1]]*[[r2]]"
+ },
+ "stem": "\\( f'(x)=x^{2}-([[s]])x+([[p]]) \\). \\( f \\) changes from increasing to decreasing at one of its critical points; give a critical \\( x \\).",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "x**2 - [[s]]*x + [[p]] = 0",
+  "var": "x"
+ },
+ "distractors": [
+  "[[s]]",
+  "[[p]]",
+  "-[[r2]]",
+  "[[s]] + [[p]]",
+  "[[r1]] + 1",
+  "[[r2]] - 1"
+ ],
+ "solution": "The sign of \\( f' \\) changes at its roots \\( [[r1]],[[r2]] \\); one is \\( [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "decreasing_and_concave_down_endpoint_v1",
+ "skill_id": "intervals_of_increase_decrease_and_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "derived": {"B": "-3*[[n]]"},
+ "stem": "Let \\( f(x)=x^{3}+([[B]])x^{2} \\). On the interval where \\( f \\) is BOTH decreasing and concave down, what is the right endpoint of that interval?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[B]], 3)"
+ },
+ "distractors": [
+  "-Rational(2*[[B]], 3)",
+  "-[[B]]",
+  "Rational([[B]], 3)",
+  "0",
+  "-Rational([[B]], 3) + 1",
+  "-Rational([[B]], 3) - 1"
+ ],
+ "solution": "\\( f'(x)=3x^{2}+2([[B]])x=x(3x+2[[B]]) \\) is zero at \\( x=0 \\) and \\( x=-\\frac{2[[B]]}{3} \\), so \\( f \\) is decreasing on \\( \\left(0,-\\frac{2[[B]]}{3}\\right) \\). \\( f''(x)=6x+2[[B]] \\) is zero at \\( x=-\\frac{[[B]]}{3} \\), so \\( f \\) is concave down for \\( x<-\\frac{[[B]]}{3} \\). Intersecting, \\( f \\) is decreasing and concave down on \\( \\left(0,-\\frac{[[B]]}{3}\\right) \\), whose right endpoint is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the right endpoint of the full decreasing interval, ignoring the concavity condition.",
+  "This drops the factor of 3 in the inflection-point formula.",
+  "This has the wrong sign.",
+  "This is the left endpoint of the interval, not the right endpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "cubic_derivative_three_roots_local_max_v1",
+ "skill_id": "intervals_of_increase_decrease_and_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -8, "hi": 3},
+  "r2": {"type": "int", "lo": -6, "hi": 6},
+  "r3": {"type": "int", "lo": -4, "hi": 9}
+ },
+ "constraints": [
+  "Lt([[r1]], [[r2]])",
+  "Lt([[r2]], [[r3]])"
+ ],
+ "stem": "Let \\( f'(x) = (x-([[r1]]))(x-([[r2]]))(x-([[r3]])) \\), where \\( [[r1]]<[[r2]]<[[r3]] \\). By tracking the sign of \\( f' \\) across all three critical points, at which one does \\( f \\) have a local MAXIMUM?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[r2]]"
+ },
+ "distractors": [
+  "[[r1]]",
+  "[[r3]]",
+  "Rational([[r1]] + [[r3]], 2)",
+  "[[r1]] + [[r2]] + [[r3]]",
+  "[[r2]] + 1",
+  "[[r2]] - 1"
+ ],
+ "solution": "For \\( x<[[r1]] \\), all three factors are negative so \\( f'<0 \\) (decreasing). Between \\( [[r1]] \\) and \\( [[r2]] \\), exactly one factor is positive so \\( f'>0 \\) (increasing) -- so \\( [[r1]] \\) is a local MIN. Between \\( [[r2]] \\) and \\( [[r3]] \\), exactly two factors are positive so \\( f'<0 \\) (decreasing) -- so \\( [[r2]] \\) is a local MAX. For \\( x>[[r3]] \\), all factors are positive (increasing), making \\( [[r3]] \\) a local min. So the local maximum is at \\( x=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is the smaller outer root, which is a local minimum, not a maximum.",
+  "This is the larger outer root, which is also a local minimum, not a maximum.",
+  "This averages the two outer roots instead of identifying the middle critical point.",
+  "This adds all three roots together instead of picking the local maximum.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "increasing_interval_restricted_domain_v1",
+ "skill_id": "intervals_of_increase_decrease_and_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 24}
+ },
+ "constraints": [],
+ "derived": {"k": "[[m]]**2"},
+ "stem": "For \\( x>0 \\), let \\( f(x)=x+\\dfrac{[[k]]}{x} \\). On what interval is \\( f \\) increasing? Give the left endpoint of that interval.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[k]])"
+ },
+ "distractors": [
+  "[[k]]",
+  "Rational([[k]], 2)",
+  "-sqrt([[k]])",
+  "sqrt([[k]])/2",
+  "sqrt([[k]]) + 1",
+  "sqrt([[k]]) - 1"
+ ],
+ "solution": "\\( f'(x)=1-\\dfrac{[[k]]}{x^{2}}=0 \\) at \\( x=\\sqrt{[[k]]} \\) (for \\( x>0 \\)); \\( f'>0 \\) for \\( x>\\sqrt{[[k]]} \\), so \\( f \\) increases on \\( (\\sqrt{[[k]]},\\infty) \\), with left endpoint \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take a square root.",
+  "This halves the value under the root instead of taking its square root.",
+  "This is the negative root, outside the domain \\( x>0 \\).",
+  "This halves the correct endpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

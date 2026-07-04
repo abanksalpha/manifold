@@ -1,0 +1,223 @@
+[
+ {
+  "template_id": "nth_roots_of_unity_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 6, 8, 12]},
+   "k": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "stem": "The \\( [[n]] \\)th roots of unity are \\( e^{2\\pi i k/[[n]]} \\) for \\( k = 0, 1, \\dots, [[n]]-1 \\). Compute the root with \\( k = [[k]] \\), namely \\( e^{2\\pi i [[k]]/[[n]]} \\), in rectangular form \\( x + yi \\).",
+  "answer_spec": {"op": "evaluate", "expr": "cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]])"},
+  "require_rational": false,
+  "distractors": [
+   "sin(2*pi*[[k]]/[[n]]) + I*cos(2*pi*[[k]]/[[n]])",
+   "cos(2*pi*[[k]]/[[n]]) - I*sin(2*pi*[[k]]/[[n]])",
+   "-(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))",
+   "I*(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With angle \\( \\theta = \\dfrac{2\\pi [[k]]}{[[n]]} \\), the root is \\( \\cos\\theta + i\\sin\\theta = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps sine and cosine; the real part is \\( \\cos\\theta \\).",
+   "This is the conjugate root \\( e^{-2\\pi i k/n} \\); the sign of the imaginary part was flipped.",
+   "This is the diametrically opposite point \\( -e^{2\\pi i k/n} \\).",
+   "This rotates the correct root by an extra quarter turn (multiplying by \\( i \\)).",
+   "This is off by one in the real part; every root of unity has modulus 1.",
+   "This is off by one in the real part; every root of unity has modulus 1."
+  ]
+ },
+ {
+  "template_id": "nth_root_of_positive_real_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "choice", "values": [3, 4, 6]},
+   "k": {"type": "int", "lo": 0, "hi": 5}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "derived": {"a": "[[b]]**[[n]]"},
+  "require_rational": false,
+  "stem": "Since \\( [[a]] = [[b]]^{[[n]]} \\), the equation \\( z^{[[n]]} = [[a]] \\) has \\( [[n]] \\) complex solutions \\( z_k = [[b]]\\left(\\cos\\dfrac{2\\pi k}{[[n]]} + i\\sin\\dfrac{2\\pi k}{[[n]]}\\right) \\) for \\( k = 0, 1, \\dots, [[n]]-1 \\). Compute \\( z_{[[k]]} \\) in rectangular form \\( x + yi \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]*(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))"},
+  "distractors": [
+   "[[b]]*(sin(2*pi*[[k]]/[[n]]) + I*cos(2*pi*[[k]]/[[n]]))",
+   "[[b]]*(cos(2*pi*[[k]]/[[n]]) - I*sin(2*pi*[[k]]/[[n]]))",
+   "-([[b]]*(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]])))",
+   "[[a]]*(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Every root has modulus \\( \\sqrt[[[n]]]{[[a]]} = [[b]] \\) (not \\( [[a]] \\) itself), and argument \\( \\dfrac{2\\pi [[k]]}{[[n]]} \\), so \\( z_{[[k]]} = [[b]]\\left(\\cos\\dfrac{2\\pi [[k]]}{[[n]]} + i\\sin\\dfrac{2\\pi [[k]]}{[[n]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps sine and cosine; the real part is \\( [[b]]\\cos\\theta \\).",
+   "This is the conjugate root, obtained by flipping the sign of the imaginary part.",
+   "This is the diametrically opposite point on the circle of radius \\( [[b]] \\).",
+   "This forgets to take the \\( [[n]] \\)th root of the modulus, using \\( [[a]] \\) instead of \\( [[b]] \\) as the radius.",
+   "This is off by one from the correct real part.",
+   "This is off by one from the correct real part."
+  ]
+ },
+ {
+  "template_id": "nth_root_of_negative_real_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 6]},
+   "k": {"type": "int", "lo": 0, "hi": 5}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "derived": {"a": "[[b]]**[[n]]"},
+  "require_rational": false,
+  "stem": "Since \\( [[a]] = [[b]]^{[[n]]} \\), the equation \\( z^{[[n]]} = -[[a]] \\) has \\( [[n]] \\) complex solutions \\( z_k = [[b]]\\left(\\cos\\dfrac{\\pi + 2\\pi k}{[[n]]} + i\\sin\\dfrac{\\pi + 2\\pi k}{[[n]]}\\right) \\) for \\( k = 0, 1, \\dots, [[n]]-1 \\) (note the starting angle is \\( \\pi \\), not \\( 0 \\), since the base is negative). Compute \\( z_{[[k]]} \\) in rectangular form \\( x + yi \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]*(cos((pi + 2*pi*[[k]])/[[n]]) + I*sin((pi + 2*pi*[[k]])/[[n]]))"},
+  "distractors": [
+   "[[b]]*(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))",
+   "[[b]]*(sin((pi + 2*pi*[[k]])/[[n]]) + I*cos((pi + 2*pi*[[k]])/[[n]]))",
+   "[[b]]*(cos((pi + 2*pi*[[k]])/[[n]]) - I*sin((pi + 2*pi*[[k]])/[[n]]))",
+   "-([[b]]*(cos((pi + 2*pi*[[k]])/[[n]]) + I*sin((pi + 2*pi*[[k]])/[[n]])))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A negative base contributes a starting argument of \\( \\pi \\) (since \\( -[[a]] = [[a]]\\,e^{i\\pi} \\)), so \\( z_{[[k]]} = [[b]]\\left(\\cos\\dfrac{\\pi+2\\pi [[k]]}{[[n]]} + i\\sin\\dfrac{\\pi+2\\pi [[k]]}{[[n]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the \\( \\pi \\) phase shift, treating \\( -[[a]] \\) as if it were the positive number \\( [[a]] \\).",
+   "This swaps sine and cosine in the correct angle.",
+   "This is the conjugate of the correct root.",
+   "This is the diametrically opposite point of the correct root.",
+   "This is off by one from the correct real part.",
+   "This is off by one from the correct real part."
+  ]
+ },
+ {
+  "template_id": "nth_roots_common_count_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 30},
+   "m": {"type": "int", "lo": 4, "hi": 30}
+  },
+  "constraints": ["Ne([[n]], [[m]])"],
+  "stem": "How many complex numbers are simultaneously an \\( [[n]] \\)th root of unity and an \\( [[m]] \\)th root of unity?",
+  "answer_spec": {"op": "evaluate", "expr": "gcd([[n]], [[m]])"},
+  "distractors": [
+   "[[n]]*[[m]]",
+   "[[n]]*[[m]]/gcd([[n]], [[m]])",
+   "Abs([[n]] - [[m]])",
+   "[[n]] + [[m]]",
+   "[[answer]] + 1",
+   "[[answer]]*2"
+  ],
+  "solution": "A number is a common root exactly when it is a root of unity of order dividing both \\( [[n]] \\) and \\( [[m]] \\); the set of such orders is the divisors of \\( \\gcd([[n]],[[m]]) \\), and there are exactly \\( \\gcd([[n]],[[m]]) = [[answer]] \\) common roots (the \\( \\gcd([[n]],[[m]]) \\)th roots of unity).",
+  "distractor_rationales": [
+   "This multiplies \\( [[n]] \\) and \\( [[m]] \\) instead of taking their greatest common divisor.",
+   "This computes the least common multiple, which counts the combined order, not the number of common roots.",
+   "This is the absolute difference of \\( [[n]] \\) and \\( [[m]] \\), not their greatest common divisor.",
+   "This adds \\( [[n]] \\) and \\( [[m]] \\) instead of taking their greatest common divisor.",
+   "This is off by one from the correct count.",
+   "This doubles the correct count."
+  ]
+ },
+ {
+  "template_id": "nth_roots_product_vieta_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 22}
+  },
+  "constraints": [],
+  "stem": "The \\( [[n]] \\)th roots of unity are precisely the \\( [[n]] \\) roots of \\( x^{[[n]]} - 1 = 0 \\). Using Vieta's formulas, compute the product of all \\( [[n]] \\) roots of unity.",
+  "answer_spec": {"op": "vieta", "poly": "x**[[n]] - 1", "var": "x", "which": "prod"},
+  "distractors": [
+   "1",
+   "-1",
+   "0",
+   "[[n]]",
+   "(-1)**[[n]]",
+   "2",
+   "3",
+   "[[n]] - 1"
+  ],
+  "solution": "For \\( x^{[[n]]} - 1 = 0 \\), Vieta's formula gives the product of the roots as \\( (-1)^{[[n]]}\\cdot\\dfrac{-1}{1} = (-1)^{[[n]]+1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is correct only when \\( [[n]] \\) is odd; it drops the sign that depends on the parity of \\( [[n]] \\).",
+   "This is correct only when \\( [[n]] \\) is even; it drops the sign that depends on the parity of \\( [[n]] \\).",
+   "This confuses the product of the roots with their sum, which is \\( 0 \\) for \\( [[n]] \\ge 2 \\).",
+   "This uses \\( [[n]] \\) itself rather than the sign pattern \\( (-1)^{[[n]]+1} \\) from Vieta's formula.",
+   "This has the parity of the exponent flipped from the correct formula \\( (-1)^{[[n]]+1} \\).",
+   "The product of roots of unity always has modulus \\( 1 \\), so it can only be \\( \\pm 1 \\), never \\( 2 \\)."
+  ]
+ },
+ {
+  "template_id": "power_of_root_of_unity_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 6, 8, 12]},
+   "m": {"type": "int", "lo": 5, "hi": 60}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( w = e^{2\\pi i/[[n]]} \\) be the primitive \\( [[n]] \\)th root of unity. Using \\( w^{[[n]]} = 1 \\) to reduce the exponent, compute \\( w^{[[m]]} \\) in rectangular form \\( x + yi \\).",
+  "answer_spec": {"op": "evaluate", "expr": "cos(2*pi*[[m]]/[[n]]) + I*sin(2*pi*[[m]]/[[n]])"},
+  "distractors": [
+   "sin(2*pi*[[m]]/[[n]]) + I*cos(2*pi*[[m]]/[[n]])",
+   "cos(2*pi*[[m]]/[[n]]) - I*sin(2*pi*[[m]]/[[n]])",
+   "-(cos(2*pi*[[m]]/[[n]]) + I*sin(2*pi*[[m]]/[[n]]))",
+   "cos(2*pi*[[m]]/[[n]]**2) + I*sin(2*pi*[[m]]/[[n]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Reduce the exponent modulo \\( [[n]] \\): \\( w^{[[m]]} = w^{[[m]] \\bmod [[n]]} = \\cos\\dfrac{2\\pi [[m]]}{[[n]]} + i\\sin\\dfrac{2\\pi [[m]]}{[[n]]} = [[answer]] \\) (the angle \\( \\frac{2\\pi [[m]]}{[[n]]} \\) only depends on \\( [[m]] \\) modulo \\( [[n]] \\)).",
+  "distractor_rationales": [
+   "This swaps sine and cosine; the real part is \\( \\cos\\theta \\).",
+   "This is the conjugate \\( w^{-[[m]]} \\); the sign of the imaginary part was flipped.",
+   "This is the diametrically opposite point \\( -w^{[[m]]} \\).",
+   "This mistakenly divides the angle by \\( [[n]]^2 \\) instead of \\( [[n]] \\).",
+   "This is off by one in the real part; every power of a root of unity has modulus 1.",
+   "This is off by one in the real part; every power of a root of unity has modulus 1."
+  ]
+ },
+ {
+  "template_id": "nth_roots_chord_distance_v1",
+  "skill_id": "n_th_roots_roots_of_unity",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 6, 8, 12]},
+   "j": {"type": "int", "lo": 0, "hi": 11},
+   "k": {"type": "int", "lo": 0, "hi": 11}
+  },
+  "constraints": ["Lt([[j]], [[n]])", "Lt([[k]], [[n]])", "Ne([[j]], [[k]])"],
+  "require_rational": false,
+  "stem": "Let \\( w_m = e^{2\\pi i m/[[n]]} \\) denote the \\( [[n]] \\)th roots of unity, the vertices of a regular \\( [[n]] \\)-gon inscribed in the unit circle. Compute the (straight-line) distance \\( |w_{[[j]]} - w_{[[k]]}| \\) between the vertices with \\( m = [[j]] \\) and \\( m = [[k]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "Abs((cos(2*pi*[[j]]/[[n]]) + I*sin(2*pi*[[j]]/[[n]])) - (cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]])))"},
+  "distractors": [
+   "Abs([[j]] - [[k]])",
+   "2*pi*Abs([[j]] - [[k]])/[[n]]",
+   "cos(2*pi*[[j]]/[[n]]) - cos(2*pi*[[k]]/[[n]])",
+   "sin(2*pi*[[j]]/[[n]]) - sin(2*pi*[[k]]/[[n]])",
+   "[[answer]] + 1",
+   "[[answer]]/2"
+  ],
+  "solution": "The straight-line (chord) distance between two points on the unit circle at angles \\( \\theta_1,\\theta_2 \\) is \\( |e^{i\\theta_1}-e^{i\\theta_2}| = 2\\left|\\sin\\dfrac{\\theta_1-\\theta_2}{2}\\right| \\); evaluating at \\( \\theta_1 = \\tfrac{2\\pi [[j]]}{[[n]]}, \\theta_2 = \\tfrac{2\\pi [[k]]}{[[n]]} \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This confuses the vertex index difference with the actual geometric distance.",
+   "This computes the arc length along the circle between the two vertices, not the straight-line chord distance.",
+   "This compares only the real parts (a projection), not the full complex distance.",
+   "This compares only the imaginary parts (a projection), not the full complex distance.",
+   "This is off by one from the correct chord distance.",
+   "This is half the correct chord distance."
+  ]
+ }
+]

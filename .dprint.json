@@ -14,6 +14,8 @@
         ".cursor",
         ".agents",
         "**/node_modules",
+        "**/.venv",
+        "**/__pycache__",
         "out/**",
         "**/*-lock.json",
         "qt/aqt/data/web/js/vendor/*.js",
@@ -28,7 +30,17 @@
         "extra",
         "ts/.svelte-kit",
         "ts/vite.config.ts.timestamp*",
-        "qt/installer/*-template"
+        "qt/installer/*-template",
+        "manifold/content/generation/item_bank.json",
+        "manifold/content/generation/coverage_report.json",
+        "manifold/content/generation/patterns.json",
+        "manifold/content/generation/stage_*",
+        "manifold/content/generation/teach_bank.json",
+        "manifold/content/generation/template_bank.json",
+        "manifold/content/generation/templates_authored",
+        "manifold/content/lectures/lectures.json",
+        "manifold/content/eval/results",
+        "manifold/experiments/*.results.json"
     ],
     "plugins": [
         "https://plugins.dprint.dev/typescript-0.91.6.wasm",

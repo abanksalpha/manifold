@@ -1,0 +1,4 @@
+{
+ "skill_id": "recognize_the_conclusion_of_the_clt",
+ "reason": "This asks the student to identify the qualitative conclusion of the Central Limit Theorem (the sampling distribution of the mean becomes approximately normal as n grows, regardless of the population shape); it is a conceptual multiple-choice with no single computable scalar answer."
+}

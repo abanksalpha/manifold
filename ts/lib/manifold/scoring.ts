@@ -32,12 +32,45 @@ export interface TopicStat {
     coverage: number;
     gradedReviews: number;
     independentReviews: number;
+    // Card counts by teaching level, read only for the lapse-rate signal below:
+    // Independent = graduated cold-capable, Revisited = lapsed and relearning.
+    // Their ratio proxies how fragile the graduated knowledge is (D26).
+    levelIndependent: number;
+    levelRevisited: number;
+}
+
+/** One rung of the target ladder: a named goal and the scaled band that defines
+ * it (D29/D30), sourced from the blueprint. */
+export interface ReadinessTargetConfig {
+    id: string;
+    label: string;
+    scaledPoint: number;
+    scaledLow: number;
+    scaledHigh: number;
+}
+
+/** Logarithmic hours-to-target curve constants (D29), sourced from the
+ * blueprint. `scaled(hours) = scaledFloor + pointsPerLogHour · ln(1 + hours /
+ * hoursScale)`; chosen and tunable, not a cited hour count. */
+export interface HoursCurveConfig {
+    scaledFloor: number;
+    pointsPerLogHour: number;
+    hoursScale: number;
+}
+
+/** The maturity-residue the app does not promise (D29/D30), sourced from the
+ * blueprint: the deep-proof items and the scaled points at the top it withholds. */
+export interface MaturityResidueConfig {
+    items: number;
+    scaledPoints: number;
 }
 
 /**
  * The static readiness-scale reference data, sourced from the blueprint and
  * delivered over the topic-graph RPC (camelCase). Kept as the single source of
- * truth in `blueprint.json` rather than duplicated here.
+ * truth in `blueprint.json` rather than duplicated here. Singular sub-messages
+ * (`hoursCurve`, `maturityResidue`) are optional on the wire (proto3), so they
+ * are validated at the point of use and never silently defaulted.
  */
 export interface ScoringConfig {
     scaleMin: number;
@@ -48,6 +81,10 @@ export interface ScoringConfig {
     medianRawFraction: number;
     performanceSd: number;
     coverageBandLambda: number;
+    lapseBandLambda: number;
+    targets: ReadinessTargetConfig[];
+    hoursCurve?: HoursCurveConfig;
+    maturityResidue?: MaturityResidueConfig;
 }
 
 /**
@@ -98,11 +135,40 @@ export interface ReadinessDriver {
     priority: number;
 }
 
+/** A target ladder rung with the current standing against it (D29/D30). */
+export interface TargetProjection {
+    id: string;
+    label: string;
+    scaledPoint: number;
+    scaledLow: number;
+    scaledHigh: number;
+    /** Scaled points from the current point estimate up to this target; 0 once met. */
+    gapPoints: number;
+    /** Estimated study hours to close the gap on the logarithmic curve; 0 once met. */
+    hoursToTarget: number;
+    /** True once the current point estimate is at or above the target point. */
+    reached: boolean;
+}
+
+/** The explicit ceiling the app refuses to promise past (D29/D30). */
+export interface MaturityResidue {
+    /** Deep-proof items the app cannot drill (~2–3). */
+    items: number;
+    /** Scaled points at the top the app does not promise (~30–40). */
+    scaledPoints: number;
+    /** The highest scaled score the app will ever project: scaleMax − residue. */
+    promisedCeiling: number;
+}
+
 /**
- * Readiness is a refusal or an honest projected range, never a bare scalar.
- * `abstaining`: below the give-up line, with the missing evidence and a nudge.
- * `projected`: above the line, mapped to an ETS-anchored scaled range with its
- * confidence and the topics driving it (D13/D19).
+ * Readiness is a refusal or an honest projected range, never a bare scalar. Both
+ * states carry `lastUpdated` so the reading is always stamped. `abstaining`:
+ * below the give-up line, with the missing evidence and a nudge. `projected`:
+ * above the line, mapped to an ETS-anchored scaled range (D13/D19) and carrying
+ * the seven honest fields — point, range, %covered, confidence, last-updated,
+ * drivers, and the give-up state itself — plus the target ladder, the fragility
+ * (lapse) that widened its band (D26), and the residue ceiling it will not
+ * promise past (D29).
  */
 export type Readiness =
     | {
@@ -112,6 +178,8 @@ export type Readiness =
         coverage: number;
         coverageNeeded: number;
         studyNext: StudyNext | null;
+        /** Epoch millis the scores were derived (the "last updated" field). */
+        lastUpdated: number;
     }
     | {
         state: "projected";
@@ -122,6 +190,14 @@ export type Readiness =
         independentReviews: number;
         confidence: "provisional" | "confident";
         drivers: ReadinessDriver[];
+        /** Epoch millis the scores were derived (the "last updated" field). */
+        lastUpdated: number;
+        /** The honest target ladder with hours-to-target and gap per rung. */
+        targets: TargetProjection[];
+        /** Aggregate lapse rate that widened the band; 0 when nothing has lapsed. */
+        lapseRate: number;
+        /** The maturity residue the app does not promise past (D29/D30). */
+        residue: MaturityResidue;
     };
 
 export interface ScoreReport {
@@ -328,6 +404,96 @@ function performanceToScaled(pBar: number, config: ScoringConfig): number {
     return clampToScale(percentileToScaled(pct, config), config);
 }
 
+// --- Target ladder, hours-to-target, residue ceiling (D29/D30) -------------
+
+/**
+ * The honest target ladder — median, strong, exceptional — each with its scaled
+ * band, sourced from the blueprint (single source of truth). Throws on an empty
+ * ladder rather than inventing goals.
+ */
+export function targetLadder(config: ScoringConfig): ReadinessTargetConfig[] {
+    if (config.targets.length === 0) {
+        throw new Error("scoring config has no readiness targets");
+    }
+    return config.targets;
+}
+
+/**
+ * Select one target by id (`median` | `strong` | `exceptional`). Throws on an
+ * unknown id rather than guessing a fallback.
+ */
+export function selectTarget(config: ScoringConfig, id: string): ReadinessTargetConfig {
+    const found = config.targets.find((t) => t.id === id);
+    if (!found) {
+        throw new Error(`unknown readiness target '${id}'`);
+    }
+    return found;
+}
+
+/**
+ * The maturity-residue ceiling: the ~2–3 deep-proof items and the ~30–40 scaled
+ * points at the very top the app does NOT promise, and the highest scaled score
+ * it will therefore ever project (`scaleMax − residue`). Throws if the config
+ * omits it rather than promising the whole scale.
+ */
+export function maturityResidue(config: ScoringConfig): MaturityResidue {
+    const residue = config.maturityResidue;
+    if (!residue) {
+        throw new Error("scoring config missing maturity residue");
+    }
+    return {
+        items: residue.items,
+        scaledPoints: residue.scaledPoints,
+        promisedCeiling: config.scaleMax - residue.scaledPoints,
+    };
+}
+
+/**
+ * Cumulative targeted-prep hours the logarithmic curve places at a scaled score:
+ * `H(s) = hoursScale · (exp((s − scaledFloor) / pointsPerLogHour) − 1)`.
+ * Monotone and convex, so each further scaled point costs more hours than the
+ * last — the Messick-style diminishing-returns / top-percentile tax.
+ */
+function curveHoursAt(scaled: number, curve: HoursCurveConfig): number {
+    return curve.hoursScale
+        * (Math.exp((scaled - curve.scaledFloor) / curve.pointsPerLogHour) - 1);
+}
+
+/**
+ * Estimated study hours to move from `current` up to `target` on the log curve;
+ * zero once the current estimate already meets the target. Because the curve is
+ * convex, the same scaled gain costs progressively more hours the higher the
+ * starting point (D29).
+ */
+export function hoursToTarget(
+    current: number,
+    target: number,
+    curve: HoursCurveConfig,
+): number {
+    if (current >= target) {
+        return 0;
+    }
+    return curveHoursAt(target, curve) - curveHoursAt(current, curve);
+}
+
+/**
+ * Aggregate lapse rate: of the cards that have graduated to cold-capable
+ * (Independent) or fallen back from it (Revisited), the fraction currently
+ * lapsed. A proxy for how fragile the graduated knowledge is; `0` when nothing
+ * has graduated yet (an absence of signal, not a failure). Feeds the readiness
+ * confidence band (D26): fragile knowledge → a wider, less certain range.
+ */
+function lapseRate(nodes: TopicStat[]): number {
+    let independent = 0;
+    let revisited = 0;
+    for (const node of nodes) {
+        independent += node.levelIndependent;
+        revisited += node.levelRevisited;
+    }
+    const graduated = independent + revisited;
+    return graduated === 0 ? 0 : revisited / graduated;
+}
+
 /** The top few weak, heavily-weighted topics dragging the estimate down. */
 function readinessDrivers(nodes: TopicStat[]): ReadinessDriver[] {
     return nodes
@@ -343,8 +509,17 @@ function readinessDrivers(nodes: TopicStat[]): ReadinessDriver[] {
         .slice(0, 2);
 }
 
-/** Derive Manifold's three scores from the topic graph. */
-export function computeScores(nodes: TopicStat[], config: ScoringConfig): ScoreReport {
+/**
+ * Derive Manifold's three scores from the topic graph. `computedAt` stamps the
+ * reading's "last updated" field; it defaults to the wall-clock moment of
+ * computation (the honest value — the scores are derived now), and is injectable
+ * so callers and tests can supply a cached or fixed timestamp.
+ */
+export function computeScores(
+    nodes: TopicStat[],
+    config: ScoringConfig,
+    computedAt: number = Date.now(),
+): ScoreReport {
     if (nodes.length === 0) {
         throw new Error("getTopicGraph returned no topics");
     }
@@ -372,21 +547,50 @@ export function computeScores(nodes: TopicStat[], config: ScoringConfig): ScoreR
 
     let readiness: Readiness;
     if (gateMet && performance !== null) {
+        const curve = config.hoursCurve;
+        if (!curve) {
+            throw new Error("scoring config missing readiness hours curve");
+        }
+        const residue = maturityResidue(config);
         const confident = totalIndependentReviews >= READINESS_CONFIDENT_INDEPENDENT_REVIEWS
             && coverage >= READINESS_CONFIDENT_COVERAGE;
+        // Band = observed per-topic spread, widened as coverage falls and as
+        // graduated knowledge proves fragile (a high lapse rate ⇒ less certain).
+        const lapse = lapseRate(nodes);
         const halfWidth = config.coverageBandLambda * (1 - coverage)
+            + config.lapseBandLambda * lapse
             + 0.5 * (performance.high - performance.low);
         const pLow = Math.max(0, performance.value - halfWidth);
         const pHigh = Math.min(1, performance.value + halfWidth);
+        // The app never projects past the promised ceiling: the residue (the
+        // deep-proof items + top-percentile tax) is honestly withheld (D29/D30).
+        const cap = (scaled: number): number => Math.min(scaled, residue.promisedCeiling);
+        const scaledPoint = cap(performanceToScaled(performance.value, config));
+        const scaledLow = cap(performanceToScaled(pLow, config));
+        const scaledHigh = cap(performanceToScaled(pHigh, config));
+        const targets: TargetProjection[] = targetLadder(config).map((t) => ({
+            id: t.id,
+            label: t.label,
+            scaledPoint: t.scaledPoint,
+            scaledLow: t.scaledLow,
+            scaledHigh: t.scaledHigh,
+            gapPoints: Math.max(0, t.scaledPoint - scaledPoint),
+            hoursToTarget: hoursToTarget(scaledPoint, t.scaledPoint, curve),
+            reached: scaledPoint >= t.scaledPoint,
+        }));
         readiness = {
             state: "projected",
-            scaledPoint: performanceToScaled(performance.value, config),
-            scaledLow: performanceToScaled(pLow, config),
-            scaledHigh: performanceToScaled(pHigh, config),
+            scaledPoint,
+            scaledLow,
+            scaledHigh,
             coverage,
             independentReviews: totalIndependentReviews,
             confidence: confident ? "confident" : "provisional",
             drivers: readinessDrivers(nodes),
+            lastUpdated: computedAt,
+            targets,
+            lapseRate: lapse,
+            residue,
         };
     } else {
         readiness = {
@@ -399,6 +603,7 @@ export function computeScores(nodes: TopicStat[], config: ScoringConfig): ScoreR
             coverage,
             coverageNeeded: Math.max(0, READINESS_MIN_COVERAGE - coverage),
             studyNext: selectStudyNext(nodes),
+            lastUpdated: computedAt,
         };
     }
 

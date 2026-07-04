@@ -1,0 +1,164 @@
+[
+{
+ "template_id": "radical_substitution_a2x2_a2_x2_x2a2_v1",
+ "skill_id": "radical_substitution_a2x2_a2_x2_x2a2",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 15
+  },
+  "c": {
+   "type": "int",
+   "lo": 1,
+   "hi": 13
+  }
+ },
+ "constraints": [],
+ "derived": {
+  "asq": "[[a]]**2"
+ },
+ "stem": "Using the trigonometric substitution \\( x = [[a]]\\sin\\theta \\), evaluate \\( \\int_{0}^{[[a]]} [[c]]\\sqrt{[[asq]] - x^{2}}\\,dx \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "[[c]]*sqrt([[a]]**2 - x**2)",
+  "var": "x",
+  "bounds": [
+   "0",
+   "[[a]]"
+  ]
+ },
+ "distractors": [
+  "[[c]]*pi*[[a]]/4",
+  "[[c]]*pi*[[a]]**2/2",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "2*[[answer]]/3",
+  "[[c]]*pi*[[a]]**2"
+ ],
+ "solution": "With \\( x = [[a]]\\sin\\theta \\), \\( \\sqrt{[[asq]] - x^{2}} = [[a]]\\cos\\theta \\) and \\( dx = [[a]]\\cos\\theta\\,d\\theta \\), so the integral becomes \\( [[c]][[a]]^{2}\\int_{0}^{\\pi/2}\\cos^{2}\\theta\\,d\\theta = [[c]][[a]]^{2}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\) (the area of a quarter disk of radius \\( [[a]] \\), scaled by \\( [[c]] \\)).",
+ "distractor_rationales": [
+  "This uses \\( [[a]] \\) instead of \\( [[a]]^{2} \\), forgetting to square the radius.",
+  "This uses \\( \\tfrac{\\pi}{2} \\) (a half disk) instead of \\( \\tfrac{\\pi}{4} \\) for the quarter disk.",
+  "This halves the correct value.",
+  "This triples the correct value.",
+  "This scales the correct value by 2/3.",
+  "This drops the factor of \\( \\tfrac{1}{4} \\) entirely."
+ ]
+},
+{
+ "template_id": "radical_substitution_partial_segment_v1",
+ "skill_id": "radical_substitution_a2x2_a2_x2_x2a2",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 16},
+  "c": {"type": "int", "lo": 1, "hi": 13}
+ },
+ "constraints": ["Eq(Mod([[a]], 2), 0)"],
+ "derived": {"asq": "[[a]]**2", "half": "[[a]]/2"},
+ "stem": "The upper limit below is only half of the radius, so the region swept out is a circular segment, not a full quarter disk: apply \\( x = [[a]]\\sin\\theta \\) and evaluate \\( \\int_{0}^{[[half]]} [[c]]\\sqrt{[[asq]] - x^{2}}\\,dx \\), keeping BOTH the algebraic and the arcsine pieces of the antiderivative.",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "[[c]]*sqrt([[a]]**2 - x**2)",
+  "var": "x",
+  "bounds": ["0", "[[half]]"]
+ },
+ "distractors": [
+  "[[c]]*[[asq]]*pi/12",
+  "[[c]]*[[asq]]*sqrt(3)/8",
+  "[[c]]*[[asq]]*pi/4",
+  "[[answer]]*2",
+  "[[answer]]/2",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( x = [[a]]\\sin\\theta \\), the upper limit \\( x=[[half]] \\) corresponds to \\( \\sin\\theta = \\tfrac12 \\), i.e. \\( \\theta=\\pi/6 \\). The antiderivative \\( \\tfrac{x}{2}\\sqrt{[[asq]]-x^2} + \\tfrac{[[asq]]}{2}\\arcsin\\!\\tfrac{x}{[[a]]} \\) evaluated from \\(0\\) to \\([[half]]\\) gives \\( [[asq]]\\left(\\tfrac{\\sqrt3}{8}+\\tfrac{\\pi}{12}\\right) \\), so the integral is \\( [[c]]\\left([[asq]]\\left(\\tfrac{\\sqrt3}{8}+\\tfrac{\\pi}{12}\\right)\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the sector (arcsin) term and drops the triangular \\( \\sqrt{3}/8 \\) piece.",
+  "This keeps only the algebraic triangular piece and drops the arcsin sector term.",
+  "This mistakenly reuses the full quarter-circle answer \\( \\pi/4 \\) as if the upper limit were \\( [[a]] \\) instead of \\( [[half]] \\).",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "radical_substitution_tangent_a2px2_v1",
+ "skill_id": "radical_substitution_a2x2_a2_x2_x2a2",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 12},
+  "c": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "Using the trigonometric substitution \\( x = [[a]]\\tan\\theta \\), evaluate \\( \\int_{0}^{[[a]]} [[c]]\\sqrt{[[asq]] + x^{2}}\\,dx \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "[[c]]*sqrt([[a]]**2 + x**2)",
+  "var": "x",
+  "bounds": ["0", "[[a]]"]
+ },
+ "distractors": [
+  "[[c]]*[[asq]]*sqrt(2)/2",
+  "[[c]]*[[asq]]*log(1 + sqrt(2))",
+  "[[c]]*[[asq]]*pi/4",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + [[c]]*[[asq]]/2"
+ ],
+ "solution": "With \\( x = [[a]]\\tan\\theta \\), \\( \\sqrt{[[asq]]+x^2} = [[a]]\\sec\\theta \\) and \\( dx = [[a]]\\sec^2\\theta\\,d\\theta \\), turning the integral into \\( [[c]][[asq]]\\int_0^{\\pi/4}\\sec^3\\theta\\,d\\theta \\). Evaluating the standard secant-cubed reduction gives \\( [[c]][[asq]]\\left(\\tfrac{\\sqrt2}{2} + \\tfrac12\\ln(1+\\sqrt2)\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the \\( \\sqrt2/2 \\) piece from the secant-cubed antiderivative and drops the logarithmic term.",
+  "This keeps only the logarithmic piece (without its \\( 1/2 \\) coefficient) and drops the algebraic \\( \\sqrt2/2 \\) term.",
+  "This mistakenly reuses the \\( a^2-x^2 \\) circle-area formula for this \\( a^2+x^2 \\) integrand.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This adds an extra spurious half-term to the correct value."
+ ]
+},
+{
+ "template_id": "radical_substitution_secant_x2ma2_v1",
+ "skill_id": "radical_substitution_a2x2_a2_x2_x2a2",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "c": {"type": "int", "lo": 1, "hi": 10},
+  "m": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2", "hi": "[[m]]*[[a]]"},
+ "stem": "Using the trigonometric substitution \\( x = [[a]]\\sec\\theta \\), evaluate \\( \\int_{[[a]]}^{[[hi]]} [[c]]\\sqrt{x^{2} - [[asq]]}\\,dx \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "[[c]]*sqrt(x**2 - [[a]]**2)",
+  "var": "x",
+  "bounds": ["[[a]]", "[[hi]]"]
+ },
+ "distractors": [
+  "[[c]]*[[asq]]*([[m]]**2 - 1)/2",
+  "[[c]]*[[asq]]*sqrt([[m]]**2 - 1)",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( x = [[a]]\\sec\\theta \\), \\( \\sqrt{x^2-[[asq]]} = [[a]]\\tan\\theta \\) and \\( dx = [[a]]\\sec\\theta\\tan\\theta\\,d\\theta \\). The antiderivative \\( \\tfrac{x}{2}\\sqrt{x^2-[[asq]]} - \\tfrac{[[asq]]}{2}\\ln\\left|x+\\sqrt{x^2-[[asq]]}\\right| \\), evaluated from \\( x=[[a]] \\) (where the root vanishes) to \\( x=[[hi]] \\), gives \\( [[answer]] \\); the \\( \\ln [[a]] \\) pieces from each endpoint cancel, leaving a value independent of \\( \\ln [[a]] \\) itself.",
+ "distractor_rationales": [
+  "This drops the logarithmic term entirely and keeps only the algebraic \\( \\tfrac{1}{2}(m^2-1) \\) piece.",
+  "This uses \\( \\sqrt{m^2-1} \\) without the correct \\( \\tfrac12 \\) scaling and without the log correction.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+}
+]

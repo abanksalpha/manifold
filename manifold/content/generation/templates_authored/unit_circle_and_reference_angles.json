@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "unit_circle_sin_v1",
+ "skill_id": "unit_circle_and_reference_angles",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -12, "hi": 12},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Find \\( \\sin\\dfrac{[[k]]\\pi}{[[n]]} \\) using the unit circle.",
+ "answer_spec": {"op": "evaluate", "expr": "sin([[k]]*pi/[[n]])"},
+ "distractors": [
+  "cos([[k]]*pi/[[n]])",
+  "-sin([[k]]*pi/[[n]])",
+  "sin(pi/[[n]])",
+  "tan([[k]]*pi/[[n]])",
+  "sin([[k]]*pi/[[n]]) + Rational(1,10)",
+  "sin([[k]]*pi/[[n]]) - Rational(1,10)"
+ ],
+ "solution": "Locating \\( \\dfrac{[[k]]\\pi}{[[n]]} \\) on the unit circle and reading its \\( y \\)-coordinate gives \\( \\sin\\dfrac{[[k]]\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the \\( x \\)-coordinate (cosine) instead of the \\( y \\)-coordinate (sine).",
+  "This has the wrong sign for the quadrant containing this angle.",
+  "This drops the numerator \\( k\\), using the base angle \\( \\pi/n\\) instead of the full angle.",
+  "This reports the tangent instead of the sine.",
+  "This is off by a small additive amount from the correct value.",
+  "This is off by a small additive amount (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "unit_circle_cos_v1",
+ "skill_id": "unit_circle_and_reference_angles",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -12, "hi": 12},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Find \\( \\cos\\dfrac{[[k]]\\pi}{[[n]]} \\) using the unit circle.",
+ "answer_spec": {"op": "evaluate", "expr": "cos([[k]]*pi/[[n]])"},
+ "distractors": [
+  "sin([[k]]*pi/[[n]])",
+  "-cos([[k]]*pi/[[n]])",
+  "cos(pi/[[n]])",
+  "1/cos([[k]]*pi/[[n]])",
+  "cos([[k]]*pi/[[n]]) + Rational(1,10)",
+  "cos([[k]]*pi/[[n]]) - Rational(1,10)"
+ ],
+ "solution": "Locating \\( \\dfrac{[[k]]\\pi}{[[n]]} \\) on the unit circle and reading its \\( x \\)-coordinate gives \\( \\cos\\dfrac{[[k]]\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the \\( y \\)-coordinate (sine) instead of the \\( x \\)-coordinate (cosine).",
+  "This has the wrong sign for the quadrant containing this angle.",
+  "This drops the numerator \\( k\\), using the base angle \\( \\pi/n\\) instead of the full angle.",
+  "This reports the secant instead of the cosine.",
+  "This is off by a small additive amount from the correct value.",
+  "This is off by a small additive amount (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "unit_circle_tan_v1",
+ "skill_id": "unit_circle_and_reference_angles",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)", "Ne(Mod(2*[[k]], 2*[[n]]), [[n]])"],
+ "stem": "Find \\( \\tan\\dfrac{[[k]]\\pi}{[[n]]} \\) using the unit circle.",
+ "answer_spec": {"op": "evaluate", "expr": "tan([[k]]*pi/[[n]])"},
+ "distractors": [
+  "1/tan([[k]]*pi/[[n]])",
+  "-tan([[k]]*pi/[[n]])",
+  "sin([[k]]*pi/[[n]])",
+  "cos([[k]]*pi/[[n]])",
+  "tan([[k]]*pi/[[n]]) + 1",
+  "tan([[k]]*pi/[[n]]) - 1"
+ ],
+ "solution": "\\( \\tan\\theta=\\dfrac{\\sin\\theta}{\\cos\\theta} \\); at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) this ratio is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the cotangent (reciprocal) instead of the tangent.",
+  "This has the wrong sign for the quadrant containing this angle.",
+  "This reports the sine instead of the tangent.",
+  "This reports the cosine instead of the tangent.",
+  "This is off by one from the correct value.",
+  "This is off by one (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "unit_circle_secant_v1",
+ "skill_id": "unit_circle_and_reference_angles",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)", "Ne(Mod(2*[[k]], 2*[[n]]), [[n]])"],
+ "stem": "Find \\( \\sec\\dfrac{[[k]]\\pi}{[[n]]} \\), the reciprocal of cosine, using the unit circle.",
+ "answer_spec": {"op": "evaluate", "expr": "1/cos([[k]]*pi/[[n]])"},
+ "distractors": [
+  "cos([[k]]*pi/[[n]])",
+  "-1/cos([[k]]*pi/[[n]])",
+  "1/sin([[k]]*pi/[[n]])",
+  "sin([[k]]*pi/[[n]])",
+  "1/cos([[k]]*pi/[[n]]) + 1",
+  "1/cos([[k]]*pi/[[n]]) - 1"
+ ],
+ "solution": "\\( \\sec\\theta=\\dfrac{1}{\\cos\\theta} \\); at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\), \\( \\cos\\theta \\) is read from the unit circle and inverted to give \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the cosine itself instead of its reciprocal.",
+  "This has the wrong sign for the quadrant containing this angle.",
+  "This reports the cosecant (reciprocal of sine) instead of the secant.",
+  "This reports the sine instead of the secant.",
+  "This is off by one from the correct value.",
+  "This is off by one (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "unit_circle_reference_angle_v1",
+ "skill_id": "unit_circle_and_reference_angles",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Find the reference angle of \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\), the positive acute angle between the terminal side of \\( \\theta \\) and the \\( x \\)-axis.",
+ "answer_spec": {"op": "evaluate", "expr": "asin(Abs(sin([[k]]*pi/[[n]])))"},
+ "distractors": [
+  "[[k]]*pi/[[n]]",
+  "pi - asin(Abs(sin([[k]]*pi/[[n]])))",
+  "-asin(Abs(sin([[k]]*pi/[[n]])))",
+  "pi/2 - asin(Abs(sin([[k]]*pi/[[n]])))",
+  "asin(Abs(sin([[k]]*pi/[[n]]))) + pi/[[n]]",
+  "asin(Abs(sin([[k]]*pi/[[n]]))) - pi/[[n]]"
+ ],
+ "solution": "The reference angle is always the acute angle in \\( \\left[0,\\tfrac{\\pi}{2}\\right] \\) with the same absolute sine value as \\( \\theta \\), namely \\( \\arcsin\\left|\\sin\\theta\\right|=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the original angle itself without reducing it to an acute reference angle.",
+  "This uses the supplementary angle instead of the true reference angle.",
+  "This gives a negative angle rather than a positive acute one.",
+  "This uses the complementary angle instead of the true reference angle.",
+  "This adds a stray multiple of the base angle to the correct reference angle.",
+  "This subtracts a stray multiple of the base angle from the correct reference angle."
+ ]
+}
+]

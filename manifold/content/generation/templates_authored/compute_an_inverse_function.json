@@ -1,0 +1,197 @@
+[
+ {
+  "template_id": "compute_an_inverse_function_v1",
+  "skill_id": "compute_an_inverse_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "s": {"type": "choice", "values": [-3, -2, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {"y0": "[[a]]*[[s]]**3 + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]]) \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x**3 + [[b]] = [[y0]]", "var": "x"},
+  "distractors": [
+   "([[y0]] - [[b]])/[[a]]",
+   "[[y0]] - [[b]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "To invert, set \\( [[a]]x^{3} + ([[b]]) = [[y0]] \\), so \\( x^{3} = \\dfrac{[[y0]] - ([[b]])}{[[a]]} \\) and \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes \\( x^{3} \\) and forgets to take the cube root.",
+   "This isolates \\( [[a]]x^{3} \\) but neither divides by \\( [[a]]\\) nor takes the cube root.",
+   "This negates the correct value; the real cube root has the same sign as its input.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "compute_an_inverse_function_linear_slope_intercept_v1",
+  "skill_id": "compute_an_inverse_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). If \\( f^{-1}(x) = mx + k \\) for constants \\( m \\) and \\( k \\), what is \\( m + k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "1/[[a]] + (1 - [[b]])/[[a]]"},
+  "distractors": [
+   "1/[[a]]",
+   "-[[b]]/[[a]]",
+   "[[a]] + [[b]]",
+   "(1 + [[b]])/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Swap \\( x \\) and \\( y \\) in \\( y = [[a]]x + ([[b]]) \\) and solve for \\( y \\): \\( x = [[a]]y + ([[b]]) \\Rightarrow y = \\dfrac{1}{[[a]]}x - \\dfrac{[[b]]}{[[a]]} \\). So \\( m = \\dfrac{1}{[[a]]} \\) and \\( k = -\\dfrac{[[b]]}{[[a]]} \\), giving \\( m + k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports only the slope \\( m \\) of the inverse, forgetting to add the intercept \\( k \\).",
+   "This reports only the intercept \\( k \\), forgetting to add the slope \\( m \\).",
+   "This confuses the inverse's coefficients with the original function's coefficients \\( a \\) and \\( b \\) themselves.",
+   "This flips the sign of the intercept term \\( k \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compute_an_inverse_function_linear_fractional_v1",
+  "skill_id": "compute_an_inverse_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "s": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)", "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[c]]*[[s]] + [[d]], 0)"],
+  "derived": {"y0": "([[a]]*[[s]] + [[b]])/([[c]]*[[s]] + [[d]])"},
+  "stem": "Let \\( f(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "([[a]]*x + [[b]])/([[c]]*x + [[d]]) = [[y0]]", "var": "x"},
+  "distractors": [
+   "[[y0]]",
+   "-[[answer]]",
+   "([[d]]*[[y0]] - [[b]])/[[a]]",
+   "([[b]] - [[d]]*[[y0]])/([[c]]*[[y0]] - [[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Set \\( \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} = [[y0]] \\), cross-multiply to get \\( [[a]]x + ([[b]]) = [[y0]]\\big([[c]]x + ([[d]])\\big) \\), and collect the \\( x \\) terms on one side to solve: \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just restates the given output value \\( [[y0]] \\) instead of solving for \\( x \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This cross-multiplies but uses the wrong side's coefficients when isolating \\( x \\).",
+   "This swaps which coefficients multiply \\( y_0 \\) versus which stand alone, a common bookkeeping slip.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "compute_an_inverse_function_sqrt_v1",
+  "skill_id": "compute_an_inverse_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "h": {"type": "int", "lo": -6, "hi": 6},
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": 0, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {"y0": "[[a]]*[[t]] + [[k]]"},
+  "stem": "Let \\( f(x) = [[a]]\\sqrt{x - ([[h]])} + ([[k]]) \\) for \\( x \\ge [[h]] \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*sqrt(x - [[h]]) + [[k]] = [[y0]]", "var": "x"},
+  "distractors": [
+   "[[h]] + ([[y0]] - [[k]])/[[a]]",
+   "[[h]] - ([[y0]] - [[k]])**2/[[a]]**2",
+   "([[y0]] - [[k]])**2/[[a]]**2",
+   "[[h]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Set \\( [[a]]\\sqrt{x-([[h]])} + ([[k]]) = [[y0]] \\), isolate the radical as \\( \\sqrt{x-([[h]])} = \\dfrac{[[y0]] - ([[k]])}{[[a]]} \\), then square both sides: \\( x = [[h]] + \\left(\\dfrac{[[y0]]-([[k]])}{[[a]]}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This isolates the radical correctly but forgets to square it before adding to \\( [[h]] \\).",
+   "This subtracts the squared term instead of adding it.",
+   "This squares the isolated radical correctly but forgets to add \\( [[h]] \\).",
+   "This reports the domain's left endpoint \\( [[h]] \\) rather than solving for the actual input.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compute_an_inverse_function_quadratic_restricted_v1",
+  "skill_id": "compute_an_inverse_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -6, "hi": 6},
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": 0, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {"y0": "[[t]]**2 + [[k]]"},
+  "stem": "Let \\( f(x) = (x - ([[h]]))^{2} + ([[k]]) \\) for \\( x \\ge [[h]] \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[h]] + sqrt([[y0]] - [[k]])"},
+  "distractors": [
+   "[[h]] - sqrt([[y0]] - [[k]])",
+   "[[h]] + ([[y0]] - [[k]])",
+   "sqrt([[y0]] - [[k]])",
+   "[[h]] + ([[y0]] - [[k]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( x \\ge [[h]] \\) is the restricted (invertible) branch, take the \\( + \\) square root when solving \\( (x-([[h]]))^{2} = [[y0]] - ([[k]]) \\): \\( x = [[h]] + \\sqrt{[[y0]] - ([[k]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This takes the \\( - \\) square root, which belongs to the excluded branch \\( x < [[h]] \\).",
+   "This forgets to take the square root at all, using the difference directly.",
+   "This finds the offset from \\( [[h]] \\) but forgets to add \\( [[h]] \\) itself back.",
+   "This squares the difference instead of taking its square root.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compute_an_inverse_function_exponential_v1",
+  "skill_id": "compute_an_inverse_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5]},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "int", "lo": -3, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {"y0": "[[a]]**[[x0]] + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]^{x} + ([[b]]) \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[y0]] - [[b]], [[a]])"},
+  "distractors": [
+   "[[y0]] - [[b]]",
+   "log([[y0]], [[a]])",
+   "[[y0]]/[[a]] - [[b]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Set \\( [[a]]^{x} + ([[b]]) = [[y0]] \\), isolate the exponential as \\( [[a]]^{x} = [[y0]] - ([[b]]) \\), then take \\( \\log_{[[a]]} \\) of both sides: \\( x = \\log_{[[a]]}\\!\\big([[y0]] - ([[b]])\\big) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to take the logarithm, leaving the isolated power itself.",
+   "This forgets to subtract \\( [[b]] \\) before taking the logarithm.",
+   "This divides by \\( [[a]] \\) instead of taking a logarithm base \\( [[a]] \\).",
+   "This negates the correct exponent (a sign slip).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

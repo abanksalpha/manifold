@@ -1,0 +1,185 @@
+[
+ {
+  "template_id": "deriv_arctan_ax_v1",
+  "skill_id": "derivative_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 6},
+   "x0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "stem": "Find the derivative of \\( \\arctan([[a]]x) \\) with respect to \\( x \\), evaluated at \\( x = [[x0]] \\).",
+  "answer_spec": {"op": "diff", "expr": "atan([[a]]*x)", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]/(1 + [[x0]]**2)",
+   "1/(1 + [[a]]**2*[[x0]]**2)",
+   "[[a]]/(1 - [[a]]**2*[[x0]]**2)",
+   "[[a]]*[[x0]]/(1 + [[a]]**2*[[x0]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule \\( \\dfrac{d}{dx}\\arctan([[a]]x) = \\dfrac{[[a]]}{1 + ([[a]]x)^2} = \\dfrac{[[a]]}{1 + [[a]]^2 x^2} \\). At \\( x = [[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square the coefficient \\( [[a]] \\) in the denominator.",
+   "This omits the chain-rule factor of \\( [[a]] \\) in the numerator.",
+   "This uses \\( 1 - a^2x^2 \\) in the denominator (wrong sign).",
+   "This inserts an extra factor of \\( x \\) into the numerator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "deriv_arcsin_at_point_v1",
+  "skill_id": "derivative_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[p]], 0)", "Lt(Abs([[p]]), [[q]])", "Eq(gcd(Abs([[p]]), [[q]]), 1)"],
+  "require_rational": false,
+  "stem": "Find the derivative of \\( \\arcsin(x) \\) with respect to \\( x \\), evaluated at \\( x = \\dfrac{[[p]]}{[[q]]} \\).",
+  "answer_spec": {"op": "diff", "expr": "asin(x)", "var": "x", "at": "Rational([[p]],[[q]])", "order": 1},
+  "distractors": [
+   "sqrt(1 - Rational([[p]],[[q]])**2)",
+   "1/(1 - Rational([[p]],[[q]])**2)",
+   "1 - Rational([[p]],[[q]])**2",
+   "1/sqrt(1 + Rational([[p]],[[q]])**2)",
+   "-[[answer]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "\\( \\dfrac{d}{dx}\\arcsin(x) = \\dfrac{1}{\\sqrt{1 - x^2}} \\). At \\( x = \\dfrac{[[p]]}{[[q]]} \\) this is \\( \\dfrac{1}{\\sqrt{1 - ([[p]]/[[q]])^2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\sqrt{1-x^2} \\) (the reciprocal of the correct derivative).",
+   "This forgets the square root in the denominator.",
+   "This drops both the reciprocal and the square root.",
+   "This uses \\( 1+x^2 \\) under the root (wrong sign).",
+   "This has the wrong sign; the derivative of \\( \\arcsin \\) is positive.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "deriv_arccos_at_point_v1",
+  "skill_id": "derivative_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[p]], 0)", "Lt(Abs([[p]]), [[q]])", "Eq(gcd(Abs([[p]]), [[q]]), 1)"],
+  "require_rational": false,
+  "stem": "Find the derivative of \\( \\arccos(x) \\) with respect to \\( x \\), evaluated at \\( x = \\dfrac{[[p]]}{[[q]]} \\).",
+  "answer_spec": {"op": "diff", "expr": "acos(x)", "var": "x", "at": "Rational([[p]],[[q]])", "order": 1},
+  "distractors": [
+   "sqrt(1 - Rational([[p]],[[q]])**2)",
+   "1/sqrt(1 - Rational([[p]],[[q]])**2)",
+   "-1/(1 - Rational([[p]],[[q]])**2)",
+   "1/sqrt(1 + Rational([[p]],[[q]])**2)",
+   "-[[answer]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "\\( \\dfrac{d}{dx}\\arccos(x) = -\\dfrac{1}{\\sqrt{1 - x^2}} \\). At \\( x = \\dfrac{[[p]]}{[[q]]} \\) this is \\( -\\dfrac{1}{\\sqrt{1 - ([[p]]/[[q]])^2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\sqrt{1-x^2} \\) (the reciprocal of the correct derivative) with the wrong sign.",
+   "This drops the negative sign; the derivative of \\( \\arccos \\) is always negative.",
+   "This forgets the square root in the denominator (but keeps the correct sign).",
+   "This uses \\( 1+x^2 \\) under the root and drops the negative sign.",
+   "This has the wrong sign; the derivative of \\( \\arccos \\) is negative on \\( (-1,1) \\).",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "deriv_product_x_arctan_v1",
+  "skill_id": "derivative_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "x0": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( f(x) = x\\arctan(x) \\). Find \\( f'([[x0]]) \\) using the product rule.",
+  "answer_spec": {"op": "diff", "expr": "x*atan(x)", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "atan([[x0]])",
+   "[[x0]]/(1 + [[x0]]**2)",
+   "[[x0]]*atan([[x0]])",
+   "atan([[x0]]) - [[x0]]/(1 + [[x0]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the product rule, \\( f'(x) = \\arctan(x) + \\dfrac{x}{1+x^2} \\). At \\( x = [[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This only differentiates the \\( \\arctan(x) \\) factor and forgets the other product term.",
+   "This only differentiates the \\( x \\) factor and forgets the \\( \\arctan(x) \\) term.",
+   "This differentiates neither factor, just evaluates the original product.",
+   "This subtracts the two product-rule terms instead of adding them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "deriv_arctan_second_order_v1",
+  "skill_id": "derivative_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "x0": {"type": "int", "lo": -14, "hi": 14}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "require_rational": false,
+  "stem": "Find the second derivative of \\( \\arctan(x) \\) with respect to \\( x \\), evaluated at \\( x = [[x0]] \\).",
+  "answer_spec": {"op": "diff", "expr": "atan(x)", "var": "x", "at": "[[x0]]", "order": 2},
+  "distractors": [
+   "1/(1 + [[x0]]**2)",
+   "-2*[[x0]]/(1 + [[x0]])**2",
+   "2*[[x0]]/(1 + [[x0]]**2)**2",
+   "-[[x0]]/(1 + [[x0]]**2)",
+   "[[answer]] + 1",
+   "-[[answer]]"
+  ],
+  "solution": "Since \\( \\dfrac{d}{dx}\\arctan(x) = \\dfrac{1}{1+x^2} \\), differentiating again with the quotient rule gives \\( \\dfrac{d^2}{dx^2}\\arctan(x) = \\dfrac{-2x}{(1+x^2)^2} \\). At \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This stops after the first derivative instead of differentiating a second time.",
+   "This forgets to square the full \\( (1+x^2) \\) denominator, expanding only \\( (1+x)^2 \\).",
+   "This drops the negative sign from the quotient rule.",
+   "This forgets the factor of 2 from differentiating \\( x^2 \\) in the denominator.",
+   "This is off by one from the correct value.",
+   "This has the wrong sign."
+  ]
+ },
+ {
+  "template_id": "deriv_arctan_reciprocal_inner_v1",
+  "skill_id": "derivative_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 6},
+   "x0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "require_rational": false,
+  "stem": "Find the derivative of \\( \\arctan\\!\\left(\\dfrac{[[a]]}{x}\\right) \\) with respect to \\( x \\), evaluated at \\( x = [[x0]] \\).",
+  "answer_spec": {"op": "diff", "expr": "atan([[a]]/x)", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]/([[x0]]**2 + [[a]]**2)",
+   "1/([[x0]]**2 + [[a]]**2)",
+   "-[[a]]/([[x0]]**2 - [[a]]**2)",
+   "[[a]]/(1 + ([[a]]/[[x0]])**2)",
+   "-[[answer]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "By the chain rule with inner function \\( u=\\tfrac{[[a]]}{x} \\), \\( \\dfrac{du}{dx}=-\\tfrac{[[a]]}{x^2} \\), so \\( \\dfrac{d}{dx}\\arctan\\!\\left(\\tfrac{[[a]]}{x}\\right) = \\dfrac{-[[a]]/x^2}{1+([[a]]/x)^2} = \\dfrac{-[[a]]}{x^2+[[a]]^2} \\). At \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from differentiating the reciprocal inner function.",
+   "This forgets the factor of \\( [[a]] \\) in the numerator entirely.",
+   "This uses \\( x^2 - a^2 \\) in the denominator (wrong sign inside).",
+   "This forgets to convert \\( 1+(a/x)^2 \\) to a single fraction, leaving \\( x^2 \\) out of the denominator.",
+   "This has the wrong sign.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

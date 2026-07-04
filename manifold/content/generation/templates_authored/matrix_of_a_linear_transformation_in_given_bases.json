@@ -1,0 +1,173 @@
+[
+{
+ "template_id": "single_basis_entry_r2_v1",
+ "skill_id": "matrix_of_a_linear_transformation_in_given_bases",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[p]]*[[s]]-[[q]]*[[r]], 0)", "Ne([[a]]**2+[[b]]**2+[[c]]**2+[[d]]**2, 0)"],
+ "derived": {
+  "u1": "[[a]]*[[p]] + [[b]]*[[q]]",
+  "u2": "[[c]]*[[p]] + [[d]]*[[q]]"
+ },
+ "stem": "Let \\( T : \\mathbb{R}^2 \\to \\mathbb{R}^2 \\) be the linear transformation with standard matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) (so \\( T(\\mathbf{x}) = A\\mathbf{x} \\) in the standard basis). Let \\( B = \\{\\mathbf{b}_1, \\mathbf{b}_2\\} \\) be the basis of \\( \\mathbb{R}^2 \\) with \\( \\mathbf{b}_1 = ([[p]],\\ [[q]]) \\) and \\( \\mathbf{b}_2 = ([[r]],\\ [[s]]) \\). If \\( [T]_B \\) is the matrix of \\( T \\) relative to \\( B \\) (used for both the domain and codomain), what is the \\( (1,1) \\) entry of \\( [T]_B \\) (the coefficient of \\( \\mathbf{b}_1 \\) when \\( T(\\mathbf{b}_1) \\) is written in the basis \\( B \\))?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[p]]*x+[[r]]*y=[[u1]]", "[[q]]*x+[[s]]*y=[[u2]]"],
+  "vars": ["x", "y"],
+  "want": "x"
+ },
+ "distractors": ["[[u1]]", "[[u2]]", "-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[p]]", "[[a]]"],
+ "solution": "Compute \\( T(\\mathbf{b}_1) = ([[u1]],\\ [[u2]]) \\) in standard coordinates. Writing \\( T(\\mathbf{b}_1) = x\\mathbf{b}_1 + y\\mathbf{b}_2 \\) gives the system \\( [[p]]x+[[r]]y=[[u1]] \\), \\( [[q]]x+[[s]]y=[[u2]] \\); solving for \\( x \\) gives the \\((1,1)\\) entry \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the standard-coordinate first entry of \\( T(\\mathbf{b}_1) \\), not its coefficient of \\( \\mathbf{b}_1 \\) in the basis \\( B \\).",
+  "This is the standard-coordinate second entry of \\( T(\\mathbf{b}_1) \\), mistaken for the \\((1,1)\\) entry.",
+  "This is the negative of the correct entry, from a sign error solving the \\(2\\times2\\) system.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This mistakes a coordinate of the basis vector \\( \\mathbf{b}_1 \\) itself for the matrix entry.",
+  "This mistakes an entry of the standard matrix \\(A\\) for the entry of \\([T]_B\\)."
+ ]
+},
+{
+ "template_id": "transition_matrix_entry_v2",
+ "skill_id": "matrix_of_a_linear_transformation_in_given_bases",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[p]]*[[s]]-[[q]]*[[r]], 0)"],
+ "stem": "Let \\( B = \\{\\mathbf{b}_1, \\mathbf{b}_2\\} \\) be the basis of \\( \\mathbb{R}^2 \\) with \\( \\mathbf{b}_1 = ([[p]],\\ [[q]]) \\) and \\( \\mathbf{b}_2 = ([[r]],\\ [[s]]) \\). The change-of-basis matrix from the standard basis to \\( B \\) is the matrix of the identity transformation relative to the standard basis (domain) and \\( B \\) (codomain). Using it to write \\( \\mathbf{v} = ([[v1]],\\ [[v2]]) \\) as \\( \\mathbf{v} = x\\mathbf{b}_1 + y\\mathbf{b}_2 \\), what is \\( x \\) (the \\((1,1)\\) entry of the change-of-basis matrix applied to \\( \\mathbf{v} \\))?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[p]]*x+[[r]]*y=[[v1]]", "[[q]]*x+[[s]]*y=[[v2]]"],
+  "vars": ["x", "y"],
+  "want": "x"
+ },
+ "distractors": ["[[v1]]", "[[v2]]", "-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[q]]", "[[s]]"],
+ "solution": "Solving \\( [[p]]x+[[r]]y=[[v1]] \\), \\( [[q]]x+[[s]]y=[[v2]] \\) for \\( x \\) (unique since \\( \\mathbf{b}_1,\\mathbf{b}_2 \\) are independent) gives \\( x = [[answer]] \\), the \\( B \\)-coordinate of \\( \\mathbf{v} \\) along \\( \\mathbf{b}_1 \\).",
+ "distractor_rationales": [
+  "This mistakes the standard first coordinate of \\( \\mathbf{v} \\) itself for its \\(B\\)-coordinate.",
+  "This mistakes the standard second coordinate of \\( \\mathbf{v} \\) itself for its \\(B\\)-coordinate.",
+  "This is the negative of the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This mistakes a coordinate of \\( \\mathbf{b}_1 \\) for the answer.",
+  "This mistakes a coordinate of \\( \\mathbf{b}_2 \\) for the answer."
+ ]
+},
+{
+ "template_id": "single_basis_entry_r3_v3",
+ "skill_id": "matrix_of_a_linear_transformation_in_given_bases",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -2, "hi": 2},
+  "b": {"type": "int", "lo": -2, "hi": 2},
+  "c": {"type": "int", "lo": -2, "hi": 2},
+  "d": {"type": "int", "lo": -2, "hi": 2},
+  "e": {"type": "int", "lo": -2, "hi": 2},
+  "f": {"type": "int", "lo": -2, "hi": 2},
+  "g": {"type": "int", "lo": -2, "hi": 2},
+  "h": {"type": "int", "lo": -2, "hi": 2},
+  "k": {"type": "int", "lo": -2, "hi": 2},
+  "p1": {"type": "int", "lo": -2, "hi": 2},
+  "p2": {"type": "int", "lo": -2, "hi": 2},
+  "p3": {"type": "int", "lo": -2, "hi": 2},
+  "q1": {"type": "int", "lo": -2, "hi": 2},
+  "q2": {"type": "int", "lo": -2, "hi": 2},
+  "q3": {"type": "int", "lo": -2, "hi": 2},
+  "r1": {"type": "int", "lo": -2, "hi": 2},
+  "r2": {"type": "int", "lo": -2, "hi": 2},
+  "r3": {"type": "int", "lo": -2, "hi": 2}
+ },
+ "constraints": [
+  "Ne([[p1]]*([[q2]]*[[r3]]-[[q3]]*[[r2]]) - [[q1]]*([[p2]]*[[r3]]-[[p3]]*[[r2]]) + [[r1]]*([[p2]]*[[q3]]-[[p3]]*[[q2]]), 0)",
+  "Ne([[a]]**2+[[b]]**2+[[c]]**2+[[d]]**2+[[e]]**2+[[f]]**2+[[g]]**2+[[h]]**2+[[k]]**2, 0)"
+ ],
+ "derived": {
+  "u1": "[[a]]*[[p1]] + [[b]]*[[p2]] + [[c]]*[[p3]]",
+  "u2": "[[d]]*[[p1]] + [[e]]*[[p2]] + [[f]]*[[p3]]",
+  "u3": "[[g]]*[[p1]] + [[h]]*[[p2]] + [[k]]*[[p3]]"
+ },
+ "stem": "Let \\( T : \\mathbb{R}^3 \\to \\mathbb{R}^3 \\) have standard matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[k]] \\end{bmatrix} \\). Let \\( B = \\{\\mathbf{b}_1,\\mathbf{b}_2,\\mathbf{b}_3\\} \\) be the basis of \\( \\mathbb{R}^3 \\) with \\( \\mathbf{b}_1=([[p1]],[[p2]],[[p3]]) \\), \\( \\mathbf{b}_2=([[q1]],[[q2]],[[q3]]) \\), \\( \\mathbf{b}_3=([[r1]],[[r2]],[[r3]]) \\). If \\( [T]_B \\) is the matrix of \\( T \\) relative to \\( B \\) (for both domain and codomain), what is the \\( (1,1) \\) entry of \\( [T]_B \\) (the coefficient of \\( \\mathbf{b}_1 \\) when \\( T(\\mathbf{b}_1) \\) is written in the basis \\( B \\))?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[p1]]*x+[[q1]]*y+[[r1]]*z=[[u1]]", "[[p2]]*x+[[q2]]*y+[[r2]]*z=[[u2]]", "[[p3]]*x+[[q3]]*y+[[r3]]*z=[[u3]]"],
+  "vars": ["x", "y", "z"],
+  "want": "x"
+ },
+ "distractors": ["[[u1]]", "[[u2]]", "[[u3]]", "-[[answer]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "Compute \\( T(\\mathbf{b}_1) = ([[u1]],\\ [[u2]],\\ [[u3]]) \\) in standard coordinates, then solve \\( x\\mathbf{b}_1+y\\mathbf{b}_2+z\\mathbf{b}_3 = T(\\mathbf{b}_1) \\) for \\( x \\), giving the \\((1,1)\\) entry \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is a standard-coordinate entry of \\( T(\\mathbf{b}_1) \\), not its coefficient of \\( \\mathbf{b}_1 \\) in \\( B \\).",
+  "This is a standard-coordinate entry of \\( T(\\mathbf{b}_1) \\), mistaken for the \\((1,1)\\) entry.",
+  "This is a standard-coordinate entry of \\( T(\\mathbf{b}_1) \\), mistaken for the \\((1,1)\\) entry.",
+  "This is the negative of the correct entry, from a sign error solving the \\(3\\times3\\) system.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "different_domain_codomain_bases_v4",
+ "skill_id": "matrix_of_a_linear_transformation_in_given_bases",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "b1x": {"type": "int", "lo": -3, "hi": 3},
+  "b1y": {"type": "int", "lo": -3, "hi": 3},
+  "b2x": {"type": "int", "lo": -3, "hi": 3},
+  "b2y": {"type": "int", "lo": -3, "hi": 3},
+  "c1x": {"type": "int", "lo": -3, "hi": 3},
+  "c1y": {"type": "int", "lo": -3, "hi": 3},
+  "c2x": {"type": "int", "lo": -3, "hi": 3},
+  "c2y": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[b1x]]*[[b2y]]-[[b1y]]*[[b2x]], 0)",
+  "Ne([[c1x]]*[[c2y]]-[[c1y]]*[[c2x]], 0)",
+  "Ne([[a]]**2+[[b]]**2+[[c]]**2+[[d]]**2, 0)"
+ ],
+ "derived": {
+  "u1": "[[a]]*[[b1x]] + [[b]]*[[b1y]]",
+  "u2": "[[c]]*[[b1x]] + [[d]]*[[b1y]]"
+ },
+ "stem": "Let \\( T : \\mathbb{R}^2 \\to \\mathbb{R}^2 \\) have standard matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). Let \\( B = \\{\\mathbf{b}_1,\\mathbf{b}_2\\} \\) with \\( \\mathbf{b}_1=([[b1x]],[[b1y]]) \\), \\( \\mathbf{b}_2=([[b2x]],[[b2y]]) \\) be a basis for the DOMAIN, and let \\( C = \\{\\mathbf{c}_1,\\mathbf{c}_2\\} \\) with \\( \\mathbf{c}_1=([[c1x]],[[c1y]]) \\), \\( \\mathbf{c}_2=([[c2x]],[[c2y]]) \\) be a (different) basis for the CODOMAIN. If \\( [T]_{C \\leftarrow B} \\) denotes the matrix of \\( T \\) relative to \\( B \\) (domain) and \\( C \\) (codomain), what is its \\( (1,1) \\) entry (the coefficient of \\( \\mathbf{c}_1 \\) when \\( T(\\mathbf{b}_1) \\) is written in the basis \\( C \\))?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[c1x]]*x+[[c2x]]*y=[[u1]]", "[[c1y]]*x+[[c2y]]*y=[[u2]]"],
+  "vars": ["x", "y"],
+  "want": "x"
+ },
+ "distractors": ["[[u1]]", "[[u2]]", "-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[c1x]]", "[[c1y]]"],
+ "solution": "Compute \\( T(\\mathbf{b}_1) = ([[u1]],\\ [[u2]]) \\) in standard coordinates, then write it in the codomain basis \\( C \\): \\( T(\\mathbf{b}_1) = x\\mathbf{c}_1+y\\mathbf{c}_2 \\). Solving \\( [[c1x]]x+[[c2x]]y=[[u1]] \\), \\( [[c1y]]x+[[c2y]]y=[[u2]] \\) for \\( x \\) gives the \\((1,1)\\) entry \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the standard-coordinate first entry of \\( T(\\mathbf{b}_1) \\), not its coefficient of \\( \\mathbf{c}_1 \\) in \\( C \\).",
+  "This is the standard-coordinate second entry of \\( T(\\mathbf{b}_1) \\), mistaken for the \\((1,1)\\) entry.",
+  "This is the negative of the correct entry, from a sign error solving the \\(2\\times2\\) system.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry.",
+  "This mistakes a coordinate of \\( \\mathbf{c}_1 \\) itself for the matrix entry.",
+  "This mistakes a coordinate of \\( \\mathbf{c}_1 \\) itself for the matrix entry."
+ ]
+}
+]

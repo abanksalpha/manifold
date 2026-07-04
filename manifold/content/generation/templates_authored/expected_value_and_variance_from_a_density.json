@@ -1,0 +1,124 @@
+[
+ {
+  "template_id": "expected_value_from_density_v1",
+  "skill_id": "expected_value_and_variance_from_a_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "derived": {"c": "([[m]] + 1) / [[b]] ** ([[m]] + 1)"},
+  "stem": "A continuous random variable \\( X \\) has probability density \\( f(x) = [[c]]\\,x^{[[m]]} \\) for \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) elsewhere). What is the expected value \\( E[X] \\)?",
+  "answer_spec": {"op": "integrate", "expr": "x * [[c]] * x ** [[m]]", "var": "x", "bounds": ["0", "[[b]]"]},
+  "distractors": [
+   "Rational([[b]], 2)",
+   "Rational([[m]] + 1, [[m]] + 2)",
+   "[[c]] * [[b]] ** ([[m]] + 2) / ([[m]] + 1)",
+   "Rational(([[m]] + 1) * [[b]], [[m]] + 3)",
+   "Rational([[m]] * [[b]], [[m]] + 1)",
+   "Rational(([[m]] + 2) * [[b]], [[m]] + 1)"
+  ],
+  "solution": "Use \\( E[X] = \\int_0^{[[b]]} x\\,f(x)\\,dx = \\int_0^{[[b]]} [[c]]\\,x^{[[m]]+1}\\,dx = \\frac{([[m]]+1)[[b]]}{[[m]]+2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes \\( X \\) is uniform on \\( [0, [[b]]] \\) with mean \\( [[b]]/2 \\), ignoring the density.",
+   "This forgets the factor of [[b]] from the interval length.",
+   "This equals \\( [[b]] \\); it uses \\( [[m]]+1 \\) in the denominator instead of \\( [[m]]+2 \\).",
+   "This uses \\( [[m]]+3 \\) in the denominator instead of \\( [[m]]+2 \\).",
+   "This uses \\( [[m]] \\) and \\( [[m]]+1 \\) instead of \\( [[m]]+1 \\) and \\( [[m]]+2 \\).",
+   "This swaps the numerator factor to \\( [[m]]+2 \\) and denominator to \\( [[m]]+1 \\)."
+  ]
+ },
+ {
+  "template_id": "variance_from_power_density_v1",
+  "skill_id": "expected_value_and_variance_from_a_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 0, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "derived": {"c": "([[m]] + 1) / [[b]] ** ([[m]] + 1)"},
+  "stem": "A continuous random variable \\( X \\) has probability density \\( f(x) = [[c]]\\,x^{[[m]]} \\) for \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) elsewhere). What is the variance \\( \\operatorname{Var}(X) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]] ** 2 * ([[m]] + 1) / (([[m]] + 2) ** 2 * ([[m]] + 3))"},
+  "distractors": [
+   "[[b]] ** 2 / 12",
+   "Rational([[m]] + 1, [[m]] + 3) * [[b]] ** 2",
+   "Rational(([[m]] + 1) ** 2, ([[m]] + 2) ** 2) * [[b]] ** 2",
+   "[[b]] ** 2 * ([[m]] + 1) / (([[m]] + 2) * ([[m]] + 3))",
+   "Rational([[m]] + 1, [[m]] + 2) * [[b]]",
+   "[[b]] ** 2 * ([[m]] + 3) / (([[m]] + 2) ** 2 * ([[m]] + 1))"
+  ],
+  "solution": "Use \\( \\operatorname{Var}(X) = E[X^2] - E[X]^2 \\) with \\( E[X^2] = \\frac{([[m]]+1)[[b]]^2}{[[m]]+3} \\) and \\( E[X] = \\frac{([[m]]+1)[[b]]}{[[m]]+2} \\), which simplifies to \\( \\operatorname{Var}(X) = \\dfrac{([[m]]+1)[[b]]^2}{([[m]]+2)^2([[m]]+3)} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the variance formula for a UNIFORM density, ignoring the actual power-law shape.",
+   "This is \\( E[X^2] \\) alone, forgetting to subtract \\( E[X]^2 \\).",
+   "This is \\( E[X]^2 \\) alone, forgetting to subtract it FROM \\( E[X^2] \\) rather than reporting it directly.",
+   "This drops one factor of \\( ([[m]]+2) \\) from the denominator.",
+   "This is \\( E[X] \\), the mean, not the variance.",
+   "This swaps the roles of \\( ([[m]]+1) \\) and \\( ([[m]]+3) \\) in the formula."
+  ]
+ },
+ {
+  "template_id": "expected_value_from_linear_density_v1",
+  "skill_id": "expected_value_and_variance_from_a_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "L": {"type": "int", "lo": 3, "hi": 30}
+  },
+  "constraints": [],
+  "derived": {"c": "2 / [[L]] ** 2"},
+  "stem": "A continuous random variable \\( X \\) has probability density \\( f(x) = [[c]]([[L]] - x) \\) for \\( 0 \\le x \\le [[L]] \\) (and \\( f(x) = 0 \\) elsewhere), so outcomes near \\( 0 \\) are more likely than outcomes near [[L]]. What is the expected value \\( E[X] \\)?",
+  "answer_spec": {"op": "integrate", "expr": "x * [[c]] * ([[L]] - x)", "var": "x", "bounds": ["0", "[[L]]"]},
+  "distractors": [
+   "Rational([[L]], 2)",
+   "Rational(2 * [[L]], 3)",
+   "Rational([[L]], 4)",
+   "Rational([[L]], 6)",
+   "Rational(3 * [[L]], 4)",
+   "Rational([[L]], 2) - 1"
+  ],
+  "solution": "Compute \\( E[X] = \\int_0^{[[L]]} x\\,[[c]]([[L]]-x)\\,dx = [[c]]\\left(\\frac{[[L]]^3}{2} - \\frac{[[L]]^3}{3}\\right) = \\frac{[[L]]}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes \\( X \\) is uniform on \\( [0,[[L]]] \\) with mean \\( [[L]]/2 \\), ignoring that the density decreases.",
+   "This is the mean of the MIRROR density (more likely near [[L]]), not this decreasing one.",
+   "This is off by a factor of \\( 3/4 \\) from the correct mean.",
+   "This is half the correct mean.",
+   "This is the wrong mean for a density that increases rather than decreases.",
+   "This is close to the uniform mean but shifted down by one, not derived from the actual density."
+  ]
+ },
+ {
+  "template_id": "variance_from_linear_density_v1",
+  "skill_id": "expected_value_and_variance_from_a_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "L": {"type": "int", "lo": 3, "hi": 30}
+  },
+  "constraints": [],
+  "derived": {"c": "2 / [[L]] ** 2"},
+  "stem": "A continuous random variable \\( X \\) has probability density \\( f(x) = [[c]]([[L]] - x) \\) for \\( 0 \\le x \\le [[L]] \\) (and \\( f(x) = 0 \\) elsewhere). What is the variance \\( \\operatorname{Var}(X) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[L]] ** 2 / 18"},
+  "distractors": [
+   "[[L]] ** 2 / 12",
+   "[[L]] ** 2 / 9",
+   "[[L]] ** 2 / 6",
+   "[[L]] ** 2 / 36",
+   "Rational([[L]], 3)",
+   "[[L]] ** 2 / 24"
+  ],
+  "solution": "With \\( E[X] = [[L]]/3 \\) and \\( E[X^2] = \\int_0^{[[L]]} x^2\\,[[c]]([[L]]-x)\\,dx = [[L]]^2/6 \\), the variance is \\( \\operatorname{Var}(X) = E[X^2] - E[X]^2 = \\frac{[[L]]^2}{6} - \\frac{[[L]]^2}{9} = \\frac{[[L]]^2}{18} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the variance formula for a UNIFORM density, ignoring the actual linear shape.",
+   "This drops a factor from the denominator (uses \\( 9 \\) instead of \\( 18 \\)).",
+   "This drops a factor from the denominator (uses \\( 6 \\) instead of \\( 18 \\)).",
+   "This uses too large a denominator, off by a factor of 2.",
+   "This is \\( E[X] \\), the mean, not the variance.",
+   "This uses too large a denominator, off by a factor of \\( 4/3 \\)."
+  ]
+ }
+]

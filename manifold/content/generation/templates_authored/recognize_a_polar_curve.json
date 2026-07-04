@@ -1,0 +1,100 @@
+[
+{
+ "template_id": "recognize_polar_limacon_value_v1",
+ "skill_id": "recognize_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "The limaçon \\( r=[[a]]+[[b]]\\cos\\theta \\) is graphed in polar coordinates. Find \\( r \\) at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]]*cos([[k]]*pi/[[n]])"},
+ "distractors": [
+  "[[a]] - [[b]]*cos([[k]]*pi/[[n]])",
+  "[[a]] + [[b]]*sin([[k]]*pi/[[n]])",
+  "[[a]]*[[b]]*cos([[k]]*pi/[[n]])",
+  "[[b]] + [[a]]*cos([[k]]*pi/[[n]])",
+  "[[a]] + [[b]]*cos([[k]]*pi/[[n]]) + 1",
+  "[[a]] + [[b]]*cos([[k]]*pi/[[n]]) - 1"
+ ],
+ "solution": "Substituting \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) into \\( r=[[a]]+[[b]]\\cos\\theta \\) gives \\( r=[[a]]+[[b]]\\cos\\dfrac{[[k]]\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the cosine term instead of adding it.",
+  "This uses \\( \\sin\\theta\\) instead of \\( \\cos\\theta\\).",
+  "This multiplies \\( a\\) and \\( b\\) instead of adding \\( a\\) to \\( b\\cos\\theta\\).",
+  "This swaps the roles of \\( a\\) and \\( b\\).",
+  "This is off by one from the correct value of \\( r\\).",
+  "This is off by one (other direction) from the correct value of \\( r\\)."
+ ]
+},
+{
+ "template_id": "recognize_polar_rose_value_v1",
+ "skill_id": "recognize_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "pet": {"type": "choice", "values": [2, 3, 4, 5]},
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "The rose curve \\( r=[[a]]\\cos([[pet]]\\theta) \\) is graphed in polar coordinates. Find \\( r \\) at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*cos([[pet]]*[[k]]*pi/[[n]])"},
+ "distractors": [
+  "[[a]]*sin([[pet]]*[[k]]*pi/[[n]])",
+  "-[[a]]*cos([[pet]]*[[k]]*pi/[[n]])",
+  "[[a]]*cos([[k]]*pi/[[n]])",
+  "[[pet]]*[[a]]*cos([[k]]*pi/[[n]])",
+  "[[a]]*cos([[pet]]*[[k]]*pi/[[n]]) + 1",
+  "[[a]]*cos([[pet]]*[[k]]*pi/[[n]]) - 1"
+ ],
+ "solution": "Substituting \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) into \\( r=[[a]]\\cos([[pet]]\\theta) \\) gives \\( r=[[a]]\\cos\\!\\left([[pet]]\\cdot\\dfrac{[[k]]\\pi}{[[n]]}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\sin([[pet]]\\theta)\\) instead of \\( \\cos([[pet]]\\theta)\\).",
+  "This has the wrong sign for this angle.",
+  "This forgets to multiply the angle by the petal count \\( [[pet]]\\) before taking the cosine.",
+  "This multiplies the petal count by the amplitude \\( a\\) instead of by the angle.",
+  "This is off by one from the correct value of \\( r\\).",
+  "This is off by one (other direction) from the correct value of \\( r\\)."
+ ]
+},
+{
+ "template_id": "recognize_polar_spiral_value_v1",
+ "skill_id": "recognize_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "k": {"type": "int", "lo": 1, "hi": 8},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "The Archimedean spiral \\( r=[[a]]\\theta \\) is graphed in polar coordinates for \\( \\theta\\ge 0 \\). Find \\( r \\) at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[k]]*pi/[[n]]"},
+ "distractors": [
+  "[[a]] + [[k]]*pi/[[n]]",
+  "Rational([[a]]*[[n]], [[k]])",
+  "[[a]]*[[n]]/([[k]]*pi)",
+  "[[a]]*[[k]]/[[n]]",
+  "[[a]]*[[k]]*pi/[[n]] + 1",
+  "[[a]]*[[k]]*pi/[[n]] - 1"
+ ],
+ "solution": "Substituting \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) into \\( r=[[a]]\\theta \\) gives \\( r=[[a]]\\cdot\\dfrac{[[k]]\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( a\\) to \\( \\theta\\) instead of multiplying them.",
+  "This inverts the relationship, dividing \\( a\\) and \\( n\\) by \\( k\\) instead of scaling \\( \\theta\\) by \\( a\\).",
+  "This inverts the whole expression rather than multiplying \\( a\\) by \\( \\theta\\).",
+  "This drops the factor of \\( \\pi\\) from the angle entirely.",
+  "This is off by one from the correct value of \\( r\\).",
+  "This is off by one (other direction) from the correct value of \\( r\\)."
+ ]
+}
+]

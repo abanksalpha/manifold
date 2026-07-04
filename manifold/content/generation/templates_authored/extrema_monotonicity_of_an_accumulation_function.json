@@ -1,0 +1,170 @@
+[
+{
+ "template_id": "critical_numbers_of_accumulation_function_v1",
+ "skill_id": "extrema_monotonicity_of_an_accumulation_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -7, "hi": 7},
+  "r2": {"type": "int", "lo": -7, "hi": 7},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])"],
+ "derived": {"b": "-([[r1]] + [[r2]])", "cc": "[[r1]]*[[r2]]"},
+ "stem": "Let \\( F(x) = \\int_{[[c]]}^{x} \\left( t^{2} + ([[b]])t + ([[cc]]) \\right) dt \\). Which of the following is a critical number of \\( F \\), i.e. a value of \\( x \\) at which \\( F'(x) = 0 \\)?",
+ "answer_spec": {"op": "solve", "equation": "x**2 + ([[b]])*x + ([[cc]]) = 0", "var": "x"},
+ "distractors": [
+  "[[r1]] + [[r2]]",
+  "[[r1]] * [[r2]]",
+  "[[b]]",
+  "-[[r1]]",
+  "-[[r2]]",
+  "[[answer]] + 4",
+  "[[answer]] - 4"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus, \\( F'(x) = x^{2} + ([[b]])x + ([[cc]]) \\). Setting \\( F'(x) = 0 \\) and factoring gives \\( (x - ([[r1]]))(x - ([[r2]])) = 0 \\), so the critical numbers are \\( x = [[r1]] \\) and \\( x = [[r2]] \\); \\( [[answer]] \\) is one of them.",
+ "distractor_rationales": [
+  "This is the sum of the two critical numbers, not a critical number itself.",
+  "This is the product of the two critical numbers (the constant term), not a root.",
+  "This reads off the linear coefficient of \\( F'(x) \\) as if it were a root.",
+  "This sign-flips one of the roots.",
+  "This sign-flips the other root.",
+  "This is not a root of \\( F'(x) \\).",
+  "This is not a root of \\( F'(x) \\)."
+ ]
+},
+{
+ "template_id": "accumulation_function_local_min_of_two_v2",
+ "skill_id": "extrema_monotonicity_of_an_accumulation_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -8, "hi": 6},
+  "r2": {"type": "int", "lo": -6, "hi": 8},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])"],
+ "derived": {"b": "-([[r1]] + [[r2]])", "cc": "[[r1]]*[[r2]]"},
+ "stem": "Let \\( F(x) = \\int_{[[c]]}^{x} (t - ([[r1]]))(t - ([[r2]]))\\, dt \\). The integrand \\( f(t) = (t-([[r1]]))(t-([[r2]])) \\) is negative for \\( t \\) strictly between its two roots and positive outside. At which critical number does \\( F \\) have a LOCAL MINIMUM?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r2]]"},
+ "distractors": [
+  "[[r1]]",
+  "[[r1]] + [[r2]]",
+  "([[r1]] + [[r2]])/2",
+  "[[cc]]",
+  "[[answer]] + 3",
+  "[[answer]] - 3",
+  "-[[r2]]"
+ ],
+ "solution": "Since \\( f(t) \\) is negative on \\( ([[r1]], [[r2]]) \\) and positive for \\( t > [[r2]] \\), \\( F'=f \\) changes from negative to positive at \\( x = [[r2]] \\); that sign change (decreasing to increasing) marks a local minimum of \\( F \\). At \\( x=[[r1]] \\), \\( f \\) changes from positive to negative, giving a local maximum instead. So the local minimum is at \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the OTHER critical number, where \\( F \\) has a local maximum, not a minimum.",
+  "This is the sum of the two critical numbers, not a critical number itself.",
+  "This is the midpoint of the two roots, which is not generally a critical number of \\( F \\).",
+  "This is the product of the two roots (the constant term of \\( f \\)), not a critical number.",
+  "This is off by 3 from the correct value.",
+  "This is off by 3 from the correct value.",
+  "This sign-flips the correct root."
+ ]
+},
+{
+ "template_id": "accumulation_function_local_max_of_three_v3",
+ "skill_id": "extrema_monotonicity_of_an_accumulation_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -9, "hi": 9},
+  "r2": {"type": "int", "lo": -9, "hi": 9},
+  "r3": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])"],
+ "stem": "Let \\( F(x) = \\int_{[[c]]}^{x} (t-([[r1]]))(t-([[r2]]))(t-([[r3]]))\\, dt \\). This cubic integrand \\( f \\) is negative for \\( t<[[r1]] \\), positive on \\( ([[r1]], [[r2]]) \\), negative on \\( ([[r2]], [[r3]]) \\), and positive for \\( t>[[r3]] \\). Among the three critical numbers of \\( F \\), which one is a LOCAL MAXIMUM?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r2]]"},
+ "distractors": [
+  "[[r1]]",
+  "[[r3]]",
+  "[[r1]] + [[r3]]",
+  "([[r1]]+[[r2]]+[[r3]])/3",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[r1]]*[[r3]]"
+ ],
+ "solution": "\\( F' = f \\) changes from negative to positive at \\( x=[[r1]] \\) (local minimum), from positive to negative at \\( x=[[r2]] \\) (local maximum), and from negative to positive at \\( x=[[r3]] \\) (local minimum). So the local maximum occurs at \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is a local MINIMUM of \\( F \\) (the smallest critical number), not the local maximum.",
+  "This is a local MINIMUM of \\( F \\) (the largest critical number), not the local maximum.",
+  "This adds the two local-minimum locations instead of picking the local-maximum location.",
+  "This averages all three critical numbers rather than identifying the sign-change pattern.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This multiplies the two local-minimum locations instead of picking the local-maximum location."
+ ]
+},
+{
+ "template_id": "accumulation_function_inflection_point_v4",
+ "skill_id": "extrema_monotonicity_of_an_accumulation_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( F(x) = \\int_{[[k]]}^{x} \\left( ([[a]])t^{2} + ([[b]])t + ([[c]]) \\right) dt \\). Find the \\( x \\)-coordinate of the inflection point of \\( F \\), i.e. the value at which \\( F''(x) = 0 \\).",
+ "answer_spec": {"op": "solve", "equation": "2*([[a]])*x + ([[b]]) = 0", "var": "x"},
+ "distractors": [
+  "-[[b]]/[[a]]",
+  "[[b]]/(2*[[a]])",
+  "-[[a]]/(2*[[b]])",
+  "[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Here \\( F'(x) = ([[a]])x^{2} + ([[b]])x + ([[c]]) \\), so \\( F''(x) = 2([[a]])x + ([[b]]) \\). This is the derivative of \\( f(t)=([[a]])t^2+([[b]])t+([[c]]) \\), i.e. \\( F \\) has an inflection point exactly where the integrand \\( f \\) has its own critical point (vertex). Setting \\( F''(x)=0 \\) gives \\( x = -\\frac{[[b]]}{2([[a]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of 2 from differentiating \\( ([[a]])x^{2} \\), using \\( F'=0 \\) logic instead of \\( F''=0 \\).",
+  "This drops the minus sign on the vertex formula.",
+  "This inverts the roles of \\( a \\) and \\( b \\) in the vertex formula.",
+  "This reports the constant term of \\( f \\), which plays no role in locating the inflection point.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "accumulation_function_word_problem_v5",
+ "skill_id": "extrema_monotonicity_of_an_accumulation_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -6, "hi": -1},
+  "n": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Water flows into a tank at a rate of \\( r(t) = ([[m]])t + ([[n]]) \\) gallons per minute for \\( t \\ge 0 \\) (negative \\( r(t) \\) means water is being drained). Let \\( V(t) = \\int_{0}^{t} r(s)\\, ds \\) be the net volume added by time \\( t \\). At what time \\( t>0 \\) is \\( V(t) \\) at a critical point (a local extreme value of the accumulated volume)?",
+ "answer_spec": {"op": "solve", "equation": "([[m]])*t + ([[n]]) = 0", "var": "t"},
+ "distractors": [
+  "-[[n]]/[[m]]",
+  "[[n]]/[[m]]",
+  "[[m]]/[[n]]",
+  "-[[m]]*[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus, \\( V'(t) = r(t) = ([[m]])t + ([[n]]) \\). The accumulated volume is at a critical point when the inflow rate is zero: \\( ([[m]])t + ([[n]]) = 0 \\), so \\( t = -\\frac{[[n]]}{[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the minus sign when isolating \\( t \\).",
+  "This drops the minus sign and additionally has the wrong sign convention.",
+  "This inverts the ratio of the coefficients.",
+  "This multiplies the coefficients instead of solving the linear equation \\( r(t)=0 \\) for \\( t \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

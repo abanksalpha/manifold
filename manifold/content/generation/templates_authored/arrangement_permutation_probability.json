@@ -1,0 +1,199 @@
+[
+ {
+  "template_id": "arrangement_block_together_v1",
+  "skill_id": "arrangement_permutation_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 18
+   },
+   "k": {
+    "type": "int",
+    "lo": 2,
+    "hi": 14
+   }
+  },
+  "constraints": [
+   "Lt([[k]], [[n]])"
+  ],
+  "stem": "[[n]] distinct books are placed on a shelf in a random order, with all \\( [[n]]! \\) orderings equally likely. What is the probability that a particular set of [[k]] of the books end up next to one another (in a single contiguous block, in any order)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "factorial([[k]]) * factorial([[n]] - [[k]] + 1) / factorial([[n]])"
+  },
+  "distractors": [
+   "factorial([[n]] - [[k]] + 1) / factorial([[n]])",
+   "factorial([[k]]) / factorial([[n]])",
+   "factorial([[k]]) * factorial([[n]] - [[k]]) / factorial([[n]])",
+   "Rational(2, [[n]])",
+   "Rational(1, factorial([[k]]))",
+   "factorial([[k]]) * factorial([[n]] - [[k]] + 1) / factorial([[n]] + 1)"
+  ],
+  "solution": "Treat the [[k]] chosen books as one block: there are \\( ([[n]] - [[k]] + 1)! \\) ways to order the block among the other books and \\( [[k]]! \\) ways to order the books inside the block, out of \\( [[n]]! \\) total: \\( \\frac{[[k]]!\\,([[n]] - [[k]] + 1)!}{[[n]]!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the [[k]]! internal orderings of the books within the block.",
+   "This forgets the \\( ([[n]] - [[k]] + 1)! \\) ways to place the block among the others.",
+   "This uses \\( ([[n]] - [[k]])! \\) instead of \\( ([[n]] - [[k]] + 1)! \\) for the block placement.",
+   "This applies the 'two adjacent' shortcut \\( 2/n \\), valid only when exactly two items must be together.",
+   "This gives only the chance the block is in one fixed internal order, ignoring placement.",
+   "This divides by \\( ([[n]] + 1)! \\) instead of \\( [[n]]! \\)."
+  ]
+ },
+ {
+  "template_id": "arrangement_two_not_adjacent_v1",
+  "skill_id": "arrangement_permutation_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 30
+   }
+  },
+  "constraints": [],
+  "stem": "[[n]] distinct runners are assigned starting lanes in a random order, with all \\( [[n]]! \\) assignments equally likely. What is the probability that two particular runners do NOT end up in adjacent lanes?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "1 - Rational(2, [[n]])"
+  },
+  "distractors": [
+   "Rational(2, [[n]])",
+   "Rational(1, [[n]])",
+   "1 - Rational(1, [[n]])",
+   "Rational([[n]] - 2, [[n]])",
+   "1 - Rational(2, [[n]] - 1)",
+   "Rational(2, [[n]] - 1)"
+  ],
+  "solution": "The probability the two particular runners ARE adjacent is \\( \\frac{2}{[[n]]} \\) (glue them into a block, in either internal order, among [[n]] - 1 slots). By the complement rule, the probability they are NOT adjacent is \\( 1 - \\frac{2}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability the two runners ARE adjacent, the complementary event.",
+   "This treats only one internal order of the pair as adjacent, halving the true adjacency chance, then forgets to complement.",
+   "This complements the wrong 'single runner in a fixed spot' probability \\( 1/[[n]] \\) instead of the adjacency probability.",
+   "This subtracts 2 from the count of favorable lanes rather than applying the correct block-counting argument.",
+   "This uses \\( [[n]] - 1 \\) instead of [[n]] in the adjacency probability before complementing.",
+   "This is the adjacency probability computed with \\( [[n]] - 1 \\) instead of [[n]] in the denominator."
+  ]
+ },
+ {
+  "template_id": "arrangement_relative_order_v1",
+  "skill_id": "arrangement_permutation_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 5,
+    "hi": 20
+   },
+   "k": {
+    "type": "int",
+    "lo": 2,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Lt([[k]], [[n]])"
+  ],
+  "stem": "[[n]] distinct runners finish a race in a uniformly random order, with all \\( [[n]]! \\) finishing orders equally likely. What is the probability that [[k]] particular runners finish in one specific relative order (for example, all before each other in a pre-announced sequence), regardless of where the other runners finish?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational(1, factorial([[k]]))"
+  },
+  "distractors": [
+   "Rational(1, factorial([[n]]))",
+   "Rational([[k]], factorial([[k]]))",
+   "Rational(1, [[k]])",
+   "factorial([[k]]) / factorial([[n]])",
+   "Rational(1, factorial([[k]] - 1))",
+   "Rational(1, factorial([[k]] + 1))"
+  ],
+  "solution": "Among the [[k]] particular runners, all \\( [[k]]! \\) relative orders are equally likely by symmetry, regardless of the other runners' positions, so the probability of any one specific relative order is \\( \\frac{1}{[[k]]!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats all [[n]] runners as needing one specific order, not just the [[k]] particular ones.",
+   "This multiplies by [[k]] instead of leaving the reciprocal of \\( [[k]]! \\) alone.",
+   "This forgets the factorial growth and treats the count of orders as just [[k]] instead of \\( [[k]]! \\).",
+   "This is the probability the [[k]] runners are contiguous AND in order, not just in relative order.",
+   "This uses \\( ([[k]]-1)! \\) instead of \\( [[k]]! \\), undercounting the orderings by a factor of [[k]].",
+   "This uses \\( ([[k]]+1)! \\) instead of \\( [[k]]! \\), overcounting the orderings."
+  ]
+ },
+ {
+  "template_id": "arrangement_circular_adjacent_v1",
+  "skill_id": "arrangement_permutation_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 25
+   }
+  },
+  "constraints": [],
+  "stem": "[[n]] people are seated uniformly at random around a circular table, with seatings that differ only by rotation counted as the same (so there are \\( ([[n]] - 1)! \\) equally likely seatings). What is the probability that two particular people end up sitting next to each other?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational(2, [[n]] - 1)"
+  },
+  "distractors": [
+   "Rational(2, [[n]])",
+   "Rational(1, [[n]] - 1)",
+   "1 - Rational(2, [[n]] - 1)",
+   "Rational(1, [[n]])",
+   "Rational(2, [[n]] + 1)",
+   "Rational([[n]] - 2, [[n]] - 1)"
+  ],
+  "solution": "Fix one of the two people to remove the rotational symmetry; the other [[n]] - 1 people (including the second particular person) fill the remaining \\( [[n]] - 1 \\) seats equally likely, and exactly 2 of those seats (immediately to the left or right) are adjacent: \\( \\frac{2}{[[n]] - 1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the linear-arrangement adjacency formula \\( 2/n \\) instead of the circular one \\( 2/(n-1) \\).",
+   "This only counts one side (left OR right) as adjacent instead of both.",
+   "This is the complement: the probability the two people are NOT adjacent.",
+   "This further forgets the factor of 2 for the two adjacent sides on top of using the wrong denominator.",
+   "This uses \\( [[n]] + 1 \\) instead of \\( [[n]] - 1 \\) in the denominator.",
+   "This is the probability of NOT being adjacent computed with the wrong (linear) base rate."
+  ]
+ },
+ {
+  "template_id": "arrangement_derangement_v1",
+  "skill_id": "arrangement_permutation_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "[[n]] labeled gifts are randomly redistributed among [[n]] people (each of the \\( [[n]]! \\) redistributions equally likely), one gift per person, where person \\( i \\) originally owned gift \\( i \\). What is the probability that NO person receives their own original gift?",
+  "answer_spec": {
+   "op": "sum",
+   "expr": "(-1)**i / factorial(i)",
+   "var": "i",
+   "lo": "0",
+   "hi": "[[n]]"
+  },
+  "distractors": [
+   "Rational(1, factorial([[n]]))",
+   "1 - Rational(1, factorial([[n]]))",
+   "Rational([[n]] - 1, [[n]])",
+   "Rational(1, [[n]])",
+   "1 - Rational(1, [[n]])",
+   "Rational(1, 2)"
+  ],
+  "solution": "By inclusion-exclusion, the probability that a uniformly random permutation of [[n]] items has no fixed point is \\( \\sum_{i=0}^{[[n]]} \\frac{(-1)^i}{i!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability of one specific fixed permutation, not the derangement probability.",
+   "This is the complement of a single specific permutation's probability, not the derangement probability.",
+   "This assumes only one person can possibly get their own gift back and just excludes that one case naively.",
+   "This is the probability a single specified person gets their own gift back.",
+   "This is the complement of a single person keeping their own gift, not of every person avoiding their own gift.",
+   "This is the limiting value \\( 1/2 \\) mistaken for the exact derangement probability at this [[n]]."
+  ]
+ }
+]

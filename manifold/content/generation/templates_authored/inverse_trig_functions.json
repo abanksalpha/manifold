@@ -1,0 +1,126 @@
+[
+{
+ "template_id": "inverse_trig_arcsin_of_sin_branch_v1",
+ "skill_id": "inverse_trig_functions",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)", "Ne(Mod([[k]], [[n]]), 0)"],
+ "stem": "Evaluate \\( \\arcsin\\!\\left(\\sin\\dfrac{[[k]]\\pi}{[[n]]}\\right) \\). Give your answer as a value in \\( \\left[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "asin(sin([[k]]*pi/[[n]]))"},
+ "distractors": [
+  "[[k]]*pi/[[n]]",
+  "pi - [[k]]*pi/[[n]]",
+  "-[[k]]*pi/[[n]]",
+  "Mod([[k]], [[n]])*pi/[[n]]",
+  "[[k]]*pi/[[n]] + pi",
+  "[[k]]*pi/[[n]] - pi"
+ ],
+ "solution": "\\( \\arcsin \\) only undoes \\( \\sin \\) directly when the angle already lies in \\( \\left[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right] \\); otherwise it returns the angle in that range with the same sine. Reducing \\( \\dfrac{[[k]]\\pi}{[[n]]} \\) to its equivalent principal-branch angle gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the original angle without checking whether it lies in the principal branch \\( [-\\pi/2,\\pi/2] \\).",
+  "This uses the reference-angle rule for cosine/the second quadrant instead of the correct sine branch reduction.",
+  "This flips the sign of the original angle instead of reducing it into the principal branch.",
+  "This reduces the angle mod \\( n \\) directly on the fraction \\( k/n \\) instead of finding the equivalent principal-branch angle.",
+  "This adds a full extra \\( \\pi \\) instead of reflecting into the principal branch.",
+  "This subtracts an extra \\( \\pi \\) instead of reflecting into the principal branch."
+ ]
+},
+{
+ "template_id": "inverse_trig_arccos_of_cos_branch_v1",
+ "skill_id": "inverse_trig_functions",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)", "Ne(Mod([[k]], [[n]]), 0)"],
+ "stem": "Evaluate \\( \\arccos\\!\\left(\\cos\\dfrac{[[k]]\\pi}{[[n]]}\\right) \\). Give your answer as a value in \\( [0,\\pi] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "acos(cos([[k]]*pi/[[n]]))"},
+ "distractors": [
+  "[[k]]*pi/[[n]]",
+  "-[[k]]*pi/[[n]]",
+  "2*pi - [[k]]*pi/[[n]]",
+  "Abs(Mod([[k]], [[n]]))*pi/[[n]]",
+  "[[k]]*pi/[[n]] + pi",
+  "[[k]]*pi/[[n]] - pi"
+ ],
+ "solution": "\\( \\arccos \\) only undoes \\( \\cos \\) directly when the angle already lies in \\( [0,\\pi] \\); otherwise it returns the angle in that range with the same cosine. Reducing \\( \\dfrac{[[k]]\\pi}{[[n]]} \\) to its equivalent angle in \\( [0,\\pi] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the original angle without checking whether it lies in \\( [0,\\pi] \\).",
+  "This flips the sign of the original angle instead of reducing it into \\( [0,\\pi] \\).",
+  "This reflects the angle across \\( 2\\pi \\) rather than finding the equivalent angle in \\( [0,\\pi] \\) with the same cosine.",
+  "This takes the absolute value of the reduced fraction \\( k/n \\) directly rather than finding the true equivalent angle.",
+  "This adds a full extra \\( \\pi \\) instead of correctly reflecting into \\( [0,\\pi] \\).",
+  "This subtracts an extra \\( \\pi \\) instead of correctly reflecting into \\( [0,\\pi] \\)."
+ ]
+},
+{
+ "template_id": "inverse_trig_arctan_of_tan_branch_v1",
+ "skill_id": "inverse_trig_functions",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)", "Ne(Mod([[k]], [[n]]), 0)", "Ne(Mod(2*[[k]], 2*[[n]]), [[n]])"],
+ "stem": "Evaluate \\( \\arctan\\!\\left(\\tan\\dfrac{[[k]]\\pi}{[[n]]}\\right) \\). Give your answer as a value in \\( \\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "atan(tan([[k]]*pi/[[n]]))"},
+ "distractors": [
+  "[[k]]*pi/[[n]]",
+  "-[[k]]*pi/[[n]]",
+  "pi - [[k]]*pi/[[n]]",
+  "[[k]]*pi/[[n]] + pi",
+  "[[k]]*pi/[[n]] - pi",
+  "Mod([[k]], [[n]])*pi/[[n]]"
+ ],
+ "solution": "\\( \\arctan \\) only undoes \\( \\tan \\) directly when the angle already lies in \\( \\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right) \\); since \\( \\tan \\) has period \\( \\pi \\), \\( \\arctan(\\tan\\theta) \\) equals \\( \\theta \\) shifted by a multiple of \\( \\pi \\) into that interval. This gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the original angle without shifting it into \\( (-\\pi/2,\\pi/2) \\).",
+  "This flips the sign of the original angle instead of shifting it by a multiple of \\( \\pi \\).",
+  "This uses the cosine branch's reflection rule instead of tangent's \\( \\pi \\)-periodic shift.",
+  "This adds a full extra \\( \\pi \\) instead of the correct shift.",
+  "This subtracts an extra \\( \\pi \\) instead of the correct shift.",
+  "This reduces the fraction \\( k/n \\) mod \\( n \\) directly instead of finding the true equivalent angle."
+ ]
+},
+{
+ "template_id": "inverse_trig_sum_arcsin_arccos_table_v1",
+ "skill_id": "inverse_trig_functions",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "q": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\arcsin\\!\\left(\\dfrac{[[p]]}{2}\\right) + \\arccos\\!\\left(\\dfrac{[[q]]}{2}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "asin(Rational([[p]],2)) + acos(Rational([[q]],2))"},
+ "distractors": [
+  "asin(Rational([[p]],2)) - acos(Rational([[q]],2))",
+  "acos(Rational([[p]],2)) + asin(Rational([[q]],2))",
+  "Rational([[p]],2) + Rational([[q]],2)",
+  "asin(Rational([[p]],2))*acos(Rational([[q]],2))",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "From the table of exact values, \\( \\arcsin\\dfrac{[[p]]}{2} \\) and \\( \\arccos\\dfrac{[[q]]}{2} \\) are each a special angle; adding them gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the second term instead of adding it.",
+  "This swaps which special-value table (\\( \\arcsin \\) vs \\( \\arccos \\)) applies to which argument.",
+  "This adds the raw input ratios instead of the angles they represent.",
+  "This multiplies the two angles instead of adding them.",
+  "This adds a stray \\( \\pi \\) to the correct sum.",
+  "This subtracts a stray \\( \\pi \\) from the correct sum."
+ ]
+}
+]

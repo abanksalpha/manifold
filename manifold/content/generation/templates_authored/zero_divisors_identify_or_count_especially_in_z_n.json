@@ -1,0 +1,124 @@
+[
+ {
+  "template_id": "zero_divisors_count_z_n_v1",
+  "skill_id": "zero_divisors_identify_or_count_especially_in_z_n",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "In the ring \\( \\mathbb{Z}_{[[nval]]} \\) with \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\), how many nonzero elements are zero divisors? (A nonzero \\( x \\) is a zero divisor if \\( x y \\equiv 0 \\pmod{[[nval]]} \\) for some nonzero \\( y \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[nval]] - ([[p]]**([[a]] - 1)*([[p]] - 1)*[[q]]**([[b]] - 1)*([[q]] - 1)) - 1"},
+  "distractors": [
+   "[[nval]] - ([[p]]**([[a]] - 1)*([[p]] - 1)*[[q]]**([[b]] - 1)*([[q]] - 1))",
+   "[[p]]**([[a]] - 1)*([[p]] - 1)*[[q]]**([[b]] - 1)*([[q]] - 1)",
+   "[[nval]] - 1",
+   "[[p]]**([[a]] - 1)*([[p]] - 1)*[[q]]**([[b]] - 1)*([[q]] - 1) - 1",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The nonzero non-units of \\( \\mathbb{Z}_{[[nval]]} \\) are exactly its zero divisors. There are \\( [[nval]] \\) residues, of which \\( \\varphi([[nval]]) = [[p]]^{[[a]]-1}([[p]]-1)\\cdot[[q]]^{[[b]]-1}([[q]]-1) \\) are units and one is \\( 0 \\). So the number of nonzero zero divisors is \\( [[nval]] - \\varphi([[nval]]) - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( n - \\varphi(n) \\), the count of all non-units; it still includes \\( 0 \\), which is not counted as a (nonzero) zero divisor.",
+   "This counts the units \\( \\varphi(n) \\) instead of the zero divisors.",
+   "This counts every nonzero residue, treating \\( \\mathbb{Z}_{[[nval]]} \\) as if it had no zero divisors beyond exclusion of \\( 0 \\).",
+   "This subtracts one from the unit count \\( \\varphi(n) \\) rather than computing \\( n - \\varphi(n) - 1 \\).",
+   "This is two fewer than the correct count.",
+   "This is three more than the correct count."
+  ]
+ },
+ {
+  "template_id": "smallest_zero_divisor_partner_v1",
+  "skill_id": "zero_divisors_identify_or_count_especially_in_z_n",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 200},
+   "x": {"type": "int", "lo": 2, "hi": 199}
+  },
+  "constraints": ["Lt([[x]], [[n]])", "Gt(gcd([[x]], [[n]]), 1)"],
+  "stem": "In the ring \\( \\mathbb{Z}_{[[n]]} \\), the element \\( x = [[x]] \\) is a zero divisor. What is the SMALLEST positive integer \\( y \\) such that \\( x y \\equiv 0 \\pmod{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]/gcd([[x]], [[n]])"},
+  "distractors": [
+   "gcd([[x]], [[n]])",
+   "[[n]] - [[x]]",
+   "[[x]]",
+   "[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( xy \\equiv 0 \\pmod{[[n]]} \\) means \\( n \\mid xy \\). Writing \\( d = \\gcd([[x]],[[n]]) \\), this reduces to \\( \\frac{n}{d} \\mid y \\cdot \\frac{x}{d} \\), and since \\( \\frac{x}{d} \\) and \\( \\frac{n}{d} \\) are coprime, the smallest positive \\( y \\) is \\( \\frac{n}{d} = \\dfrac{[[n]]}{\\gcd([[x]],[[n]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( \\gcd(x,n) \\) itself, the FACTOR that \\( n \\) shares with \\( x \\), not the smallest annihilating multiplier \\( n/\\gcd(x,n) \\).",
+   "This is the additive complement of \\( x \\), unrelated to the multiplicative annihilator condition \\( xy \\equiv 0 \\).",
+   "This just repeats \\( x \\) itself, which does not generally satisfy \\( x\\cdot x \\equiv 0 \\pmod{n} \\).",
+   "This is \\( y = n \\), which does satisfy \\( xy\\equiv 0 \\) but is not the SMALLEST such positive \\( y \\) (that representative is \\( 0 \\), excluded, and the smallest positive one is smaller than \\( n \\) itself).",
+   "This is one more than the correct smallest \\( y \\).",
+   "This is one fewer than the correct smallest \\( y \\)."
+  ]
+ },
+ {
+  "template_id": "zero_divisors_prime_modulus_trap_v1",
+  "skill_id": "zero_divisors_identify_or_count_especially_in_z_n",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71]}
+  },
+  "constraints": [],
+  "stem": "How many nonzero elements of \\( \\mathbb{Z}_{[[p]]} \\), where \\( [[p]] \\) is prime, are zero divisors?",
+  "answer_spec": {"op": "evaluate", "expr": "0"},
+  "distractors": [
+   "[[p]] - 1",
+   "[[p]] - 2",
+   "1",
+   "2",
+   "3",
+   "[[p]]"
+  ],
+  "solution": "\\( \\mathbb{Z}_{[[p]]} \\) is a field when \\( [[p]] \\) is prime (every nonzero element is a unit, by Bezout / Fermat), and a field has NO zero divisors. So the count is \\( [[answer]] = 0 \\).",
+  "distractor_rationales": [
+   "This treats every nonzero element as a zero divisor; but \\( \\mathbb{Z}_{[[p]]} \\) is a field, so every nonzero element is a UNIT, not a zero divisor.",
+   "This is one less than \\( p-1 \\), still wrongly assuming most nonzero elements are zero divisors.",
+   "This assumes exactly one nonzero zero divisor exists; a field has none at all.",
+   "This assumes exactly two nonzero zero divisors exist; a field has none at all.",
+   "This assumes exactly three nonzero zero divisors exist; a field has none at all.",
+   "This is the modulus \\( [[p]] \\) itself, unrelated to counting zero divisors."
+  ]
+ },
+ {
+  "template_id": "count_annihilator_partners_v1",
+  "skill_id": "zero_divisors_identify_or_count_especially_in_z_n",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 200},
+   "x": {"type": "int", "lo": 2, "hi": 199}
+  },
+  "constraints": ["Lt([[x]], [[n]])", "Gt(gcd([[x]], [[n]]), 1)"],
+  "stem": "In the ring \\( \\mathbb{Z}_{[[n]]} \\), the element \\( x = [[x]] \\) is a zero divisor. How many NONZERO elements \\( y \\in \\{1, \\dots, [[n]]-1\\} \\) satisfy \\( x y \\equiv 0 \\pmod{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "gcd([[x]], [[n]]) - 1"},
+  "distractors": [
+   "gcd([[x]], [[n]])",
+   "[[n]]/gcd([[x]], [[n]])",
+   "[[n]]/gcd([[x]], [[n]]) - 1",
+   "[[n]] - [[x]]",
+   "[[answer]] + 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The set of \\( y \\in \\mathbb{Z}_{[[n]]} \\) with \\( xy\\equiv 0 \\pmod{[[n]]} \\) (the annihilator of \\( x \\)) has exactly \\( d = \\gcd([[x]],[[n]]) \\) elements, namely the multiples of \\( n/d \\), including \\( y=0 \\). Excluding \\( y=0 \\) leaves \\( d - 1 = \\gcd([[x]],[[n]]) - 1 = [[answer]] \\) nonzero solutions.",
+  "distractor_rationales": [
+   "This includes \\( y=0 \\) in the count; the question asks only for NONZERO solutions \\( y \\).",
+   "This is the smallest positive annihilating \\( y \\) (namely \\( n/\\gcd(x,n) \\)), not the total NUMBER of nonzero \\( y \\) that work.",
+   "This is one less than the smallest positive annihilating \\( y \\), not the count of all such \\( y \\).",
+   "This is the additive complement of \\( x \\), unrelated to counting annihilator solutions.",
+   "This is one more than the correct count.",
+   "This is two more than the correct count."
+  ]
+ }
+]

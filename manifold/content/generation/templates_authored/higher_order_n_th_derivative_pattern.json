@@ -1,0 +1,194 @@
+[
+{
+ "template_id": "nth_derivative_power_v1",
+ "skill_id": "higher_order_n_th_derivative_pattern",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {
+   "type": "int",
+   "lo": 3,
+   "hi": 6
+  },
+  "n": {
+   "type": "int",
+   "lo": 2,
+   "hi": 3
+  },
+  "x0": {
+   "type": "int",
+   "lo": 1,
+   "hi": 4
+  }
+ },
+ "constraints": [
+  "Gt([[m]], [[n]])"
+ ],
+ "stem": "For \\( f(x)=x^{[[m]]} \\), find the \\( [[n]] \\)th derivative \\( f^{([[n]])}([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "x**[[m]]",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": "[[n]]"
+ },
+ "distractors": [
+  "[[m]]*[[x0]]**([[m]]-[[n]])",
+  "[[x0]]**([[m]]-[[n]])",
+  "[[m]]**[[n]] * [[x0]]**([[m]]-[[n]])",
+  "[[answer]] + [[x0]]",
+  "[[answer]] - [[x0]]",
+  "[[answer]] + 2"
+ ],
+ "solution": "Differentiating \\( x^{[[m]]} \\) \\( [[n]] \\) times and evaluating at \\( [[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "nth_derivative_exponential_v2",
+ "skill_id": "higher_order_n_th_derivative_pattern",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "For \\( f(x)=[[a]]e^{[[k]]x} \\), find the \\( [[n]] \\)th derivative \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[a]]*exp([[k]]*x)",
+  "var": "x",
+  "at": "0",
+  "order": "[[n]]"
+ },
+ "distractors": [
+  "[[a]]*[[k]]*[[n]]",
+  "[[a]]*[[n]]**[[k]]",
+  "[[a]]*[[k]]",
+  "[[k]]**[[n]]",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[a]]"
+ ],
+ "solution": "Each differentiation of \\( e^{[[k]]x} \\) multiplies by \\( [[k]] \\), so \\( f^{([[n]])}(x)=[[a]][[k]]^{[[n]]}e^{[[k]]x} \\); at \\( x=0 \\) this is \\( [[a]]\\cdot[[k]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( k \\) by \\( n \\) instead of raising \\( k \\) to the \\( n \\)th power.",
+  "This raises \\( n \\) to the \\( k \\)th power instead of \\( k \\) to the \\( n \\)th power.",
+  "This stops after only one differentiation instead of \\( n \\).",
+  "This omits the leading coefficient \\( a \\) entirely.",
+  "This is off by \\( a \\) from the correct value.",
+  "This is off by \\( a \\) from the correct value."
+ ]
+},
+{
+ "template_id": "nth_derivative_trig_cyclic_v3",
+ "skill_id": "higher_order_n_th_derivative_pattern",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "int", "lo": 5, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "For \\( f(x)=[[a]]\\sin(x) \\), find the \\( [[n]] \\)th derivative \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[a]]*sin(x)",
+  "var": "x",
+  "at": "0",
+  "order": "[[n]]"
+ },
+ "distractors": [
+  "[[a]]",
+  "-[[a]]",
+  "0",
+  "[[a]]*[[n]]",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[a]]"
+ ],
+ "solution": "The derivatives of \\( \\sin(x) \\) cycle with period 4: \\( \\sin,\\cos,-\\sin,-\\cos \\); at \\( x=0 \\) these are \\( 0,1,0,-1 \\). Since \\( [[n]] \\bmod 4 \\) determines the pattern, \\( f^{([[n]])}(0)=[[a]]\\cdot[[answer]]/[[a]] \\) reduces to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the \\( n \\)th derivative always lands on \\( \\cos(0)=1 \\) scaled by \\( a \\).",
+  "This assumes the \\( n \\)th derivative always lands on \\( -\\cos(0)=-1 \\) scaled by \\( a \\).",
+  "This assumes the pattern never lands on a cosine term, always giving 0.",
+  "This multiplies by \\( n \\) instead of using the mod-4 cyclic pattern.",
+  "This is off by \\( a \\) from the correct value.",
+  "This is off by \\( a \\) from the correct value."
+ ]
+},
+{
+ "template_id": "nth_derivative_negative_power_v4",
+ "skill_id": "higher_order_n_th_derivative_pattern",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "int", "lo": 2, "hi": 4},
+  "x0": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[x0]] + [[c]], 0)"],
+ "stem": "For \\( f(x)=\\dfrac{1}{x+[[c]]} \\), find the \\( [[n]] \\)th derivative \\( f^{([[n]])}([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "1/(x + [[c]])",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": "[[n]]"
+ },
+ "distractors": [
+  "factorial([[n]])/([[x0]]+[[c]])**[[n]]",
+  "-factorial([[n]])/([[x0]]+[[c]])**([[n]]+1)",
+  "factorial([[n]])/([[x0]]+[[c]])**([[n]]+1)",
+  "1/([[x0]]+[[c]])**([[n]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For \\( f(x)=(x+[[c]])^{-1} \\), the pattern is \\( f^{([[n]])}(x)=(-1)^{[[n]]}[[n]]!\\,(x+[[c]])^{-([[n]]+1)} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the correct denominator power but drops the alternating sign \\( (-1)^n \\).",
+  "This drops the exponent-plus-one shift but keeps the correct sign, then double-counts the sign.",
+  "This drops the alternating sign \\( (-1)^n \\) while keeping the correct denominator power.",
+  "This forgets the factorial factor \\( n! \\) entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "nth_derivative_zero_beyond_degree_v5",
+ "skill_id": "higher_order_n_th_derivative_pattern",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "m": {"type": "int", "lo": 2, "hi": 5},
+  "n": {"type": "int", "lo": 1, "hi": 4},
+  "x0": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "For \\( f(x)=[[a]]x^{[[m]]} \\), find the \\( ([[m]]+[[n]]) \\)th derivative \\( f^{([[m]]+[[n]])}([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[a]]*x**[[m]]",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": "[[m]] + [[n]]"
+ },
+ "distractors": [
+  "[[a]]",
+  "[[a]]*factorial([[m]])",
+  "[[a]]*[[x0]]",
+  "1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( f \\) is a degree-\\( [[m]] \\) polynomial, every derivative of order greater than \\( [[m]] \\) is identically 0, so \\( f^{([[m]]+[[n]])}(x)\\equiv 0 \\), giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the leading coefficient, mistakenly treated as surviving past the polynomial's degree.",
+  "This is \\( a\\cdot m! \\), the value of the \\( m \\)th derivative, not a derivative of higher order which is 0.",
+  "This assumes the derivative pattern keeps reproducing a linear term instead of vanishing.",
+  "This assumes some nonzero constant survives instead of recognizing the derivative is identically 0.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

@@ -170,9 +170,9 @@ its prerequisite edges and tells the parent which topic to read out.
                     role="button"
                     tabindex="0"
                     aria-pressed={p.node.id === selectedId}
-                    aria-label="{p.node.title}, {tierLabel(p.node.tier)} tier, {lockLabels[
-                        p.node.lockState
-                    ] ?? p.node.lockState}"
+                    aria-label="{p.node.title}, {tierLabel(
+                        p.node.tier,
+                    )} tier, {lockLabels[p.node.lockState] ?? p.node.lockState}"
                     on:click={() => choose(p.node.id)}
                     on:keydown={(event) => onKey(event, p.node.id)}
                 >

@@ -1,0 +1,105 @@
+[
+{
+ "template_id": "closed_loop_conservative_v1",
+ "skill_id": "closed_loop_integral_of_a_conservative_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "R": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"R2": "[[R]]**2"},
+ "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( ([[a]])y + ([[b]]),\\; ([[a]])x + ([[c]]) \\right) \\) is conservative. Evaluate the closed-loop integral \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is the circle \\( x^{2} + y^{2} = [[R2]] \\) traversed once counterclockwise.",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "([[a]])*([[R2]])",
+  "2*([[a]])*([[R2]])",
+  "([[b]]) + ([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "A conservative field is the gradient of a potential \\( \\varphi \\) (here \\( \\varphi = ([[a]])xy + ([[b]])x + ([[c]])y \\)). The line integral over any closed curve returns to its starting potential value, so \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = 0 \\).",
+ "distractor_rationales": [
+  "This assumes a nonzero result proportional to the enclosed area \\( \\pi R^{2} \\) mishandled as \\( a R^{2} \\); a conservative field has zero circulation.",
+  "This doubles a spurious area term; the true circulation of a conservative field is 0.",
+  "This adds the constant components of the field, which do not contribute to a closed-loop integral of a gradient.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0."
+ ]
+},
+{
+ "template_id": "closed_loop_conservative_nonlinear_v1",
+ "skill_id": "closed_loop_integral_of_a_conservative_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4]},
+  "s": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( ([[a]])y + ([[b]])x^{[[n]]},\\; ([[a]])x \\right) \\) is conservative for every choice of exponent \\( [[n]] \\), since \\( \\partial_y P = \\partial_x Q = ([[a]]) \\) regardless of the \\( x^{[[n]]} \\) term. Let \\( C \\) be the square with corners \\( (\\pm [[s]], \\pm [[s]]) \\), traversed once counterclockwise. Evaluate \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "([[b]])*(2*([[s]]))**([[n]])",
+  "([[a]])*(2*([[s]]))**2",
+  "4*([[s]])**2*([[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "A potential is \\( \\varphi(x,y) = ([[a]])xy + \\tfrac{([[b]])}{[[n]]+1}x^{[[n]]+1} \\), since \\( \\nabla\\varphi=\\mathbf{F} \\) (the \\( x^{[[n]]} \\) term never breaks conservativeness because it only appears in \\( P \\) and does not depend on \\( y \\)). Any closed loop integral of a conservative field is 0, regardless of the loop's shape, so \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = 0 \\).",
+ "distractor_rationales": [
+  "This treats the nonlinear term as if it contributed a nonzero circulation; it does not, since the field is still conservative.",
+  "This assumes the field behaves like a pure rotation field of magnitude \\( a \\) around the square; a conservative field's closed-loop integral is 0 regardless.",
+  "This guesses a value proportional to the square's perimeter/area; it is not how a conservative field's circulation works (it is always 0).",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0."
+ ]
+},
+{
+ "template_id": "closed_loop_conservative_3d_v1",
+ "skill_id": "closed_loop_integral_of_a_conservative_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "The vector field \\( \\mathbf{F}(x,y,z) = \\left( ([[a]])y + ([[b]])z,\\; ([[a]])x + ([[c]])z,\\; ([[b]])x + ([[c]])y \\right) \\) is conservative in \\( \\mathbb{R}^{3} \\). Let \\( C \\) be a helical closed loop that starts and ends at the same point after two full turns. Evaluate \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "([[a]]) + ([[b]]) + ([[c]])",
+  "2*(([[a]]) + ([[b]]) + ([[c]]))",
+  "([[a]])*([[b]])*([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "A potential is \\( \\varphi(x,y,z) = ([[a]])xy + ([[b]])xz + ([[c]])yz \\), since \\( \\nabla\\varphi = \\mathbf{F} \\). For a conservative field, the work done around ANY closed loop (in the plane or in space, no matter how many times it winds) is 0 because the path returns to its starting potential value, so \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = 0 \\).",
+ "distractor_rationales": [
+  "This adds the three coefficients as if they gave a nonzero circulation per loop; a conservative field's closed-loop integral is always 0.",
+  "This doubles the (spurious) per-loop value for the two turns; the correct value for a conservative field is 0 regardless of how many times the loop winds.",
+  "This multiplies the coefficients instead of recognizing the closed-loop integral of a gradient field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0.",
+  "This is a small nonzero value; the correct closed-loop integral of a conservative field is exactly 0."
+ ]
+}
+]

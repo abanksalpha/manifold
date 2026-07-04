@@ -1,0 +1,26 @@
+{
+    "auth": {
+        "providers": {
+            "googleSignIn": {
+                "oAuthBrandDisplayName": "Manifold",
+                "supportEmail": "adam.banks@alphaaiengineering.com"
+            }
+        }
+    },
+    "firestore": {
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    },
+    "emulators": {
+        "auth": {
+            "port": 9399
+        },
+        "firestore": {
+            "port": 8399
+        },
+        "ui": {
+            "enabled": false
+        },
+        "singleProjectMode": true
+    }
+}

@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "nested_loop_triangular_count_v1",
+  "skill_id": "loop_iteration_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 24
+   }
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( c \\) is initialized to 0: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad \\textbf{for } j = 1 \\textbf{ to } i: \\quad c \\leftarrow c + 1 \\] What is the value of \\( c \\) after the procedure finishes?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[n]]*([[n]] + 1)/2"
+  },
+  "distractors": [
+   "[[n]]**2",
+   "[[n]]*([[n]] - 1)/2",
+   "[[n]]*([[n]] + 1)",
+   "[[n]]*([[n]] + 1)/2 + [[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For each \\( i \\) from 1 to [[n]], the inner loop runs \\( i \\) times, so \\( c = 1 + 2 + \\cdots + [[n]] = \\frac{[[n]]([[n]]+1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the inner loop runs [[n]] times for every \\( i \\), giving \\( n^{2} \\).",
+   "This sums \\( 1 \\) through \\( [[n]]-1 \\), dropping the last pass of the inner loop.",
+   "This forgets to divide the sum by 2.",
+   "This overcounts by an extra [[n]] increments.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "independent_nested_loop_count_v1",
+  "skill_id": "loop_iteration_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 15},
+   "m": {"type": "int", "lo": 3, "hi": 15}
+  },
+  "constraints": ["Ne([[n]], [[m]])"],
+  "stem": "Consider the following procedure, where \\( c \\) is initialized to 0: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad \\textbf{for } j = 1 \\textbf{ to } [[m]]: \\quad c \\leftarrow c + 1 \\] What is the value of \\( c \\) after the procedure finishes?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]*[[m]]"},
+  "distractors": [
+   "[[n]] + [[m]]",
+   "[[n]]*([[n]] + 1)/2",
+   "[[m]]*([[m]] + 1)/2",
+   "[[n]]**[[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since the inner loop always runs the full [[m]] passes regardless of \\( i \\), the total count is \\( [[n]] \\times [[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two bounds instead of multiplying them.",
+   "This mistakenly treats the inner bound as depending on \\( i \\), as in a triangular count.",
+   "This mistakenly treats the outer bound as depending on \\( j \\), as in a triangular count.",
+   "This confuses repeated multiplication with exponentiation.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "strided_loop_iteration_count_v1",
+  "skill_id": "loop_iteration_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 20, "hi": 99},
+   "k": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne(Mod([[n]], [[k]]), 0)"],
+  "stem": "Consider the following procedure, where \\( c \\) is initialized to 0: \\[ \\textbf{for } i = 1, 1+[[k]], 1+2\\cdot[[k]], \\ldots \\textbf{ while } i \\le [[n]]: \\quad c \\leftarrow c + 1 \\] That is, \\( i \\) starts at 1 and increases by [[k]] each pass as long as \\( i \\le [[n]] \\). What is the value of \\( c \\) after the procedure finishes?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(([[n]] - 1)/[[k]]) + 1"},
+  "distractors": [
+   "floor([[n]]/[[k]])",
+   "floor(([[n]] - 1)/[[k]])",
+   "[[n]]/[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The values taken by \\( i \\) are \\( 1, 1+[[k]], 1+2[[k]], \\ldots \\), i.e. \\( i = 1 + t\\cdot[[k]] \\) for \\( t = 0, 1, 2, \\ldots \\); the last pass has the largest \\( t \\) with \\( 1+t[[k]] \\le [[n]] \\), so there are \\( \\lfloor ([[n]]-1)/[[k]] \\rfloor + 1 = [[answer]] \\) passes.",
+  "distractor_rationales": [
+   "This divides \\( n \\) directly by the step instead of accounting for starting the sequence at \\( i=1 \\).",
+   "This forgets to add the initial pass at \\( i=1 \\).",
+   "This leaves the count as a raw (non-integer) ratio instead of the correct floor-based formula.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total.",
+   "This is off by two from the correct total."
+  ]
+ },
+ {
+  "template_id": "triple_nested_triangular_count_v1",
+  "skill_id": "loop_iteration_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( c \\) is initialized to 0: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad \\textbf{for } j = 1 \\textbf{ to } i: \\quad \\textbf{for } k = 1 \\textbf{ to } j: \\quad c \\leftarrow c + 1 \\] What is the value of \\( c \\) after the procedure finishes?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] + 2, 3)"},
+  "distractors": [
+   "[[n]]**3",
+   "[[n]]*([[n]] + 1)*([[n]] + 2)/6",
+   "binomial([[n]] + 1, 3)",
+   "[[n]]*([[n]] + 1)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The triple counts exactly the non-decreasing triples \\( 1 \\le k \\le j \\le i \\le [[n]] \\), and the number of such triples is \\( \\binom{[[n]]+2}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes all three loops run the full [[n]] passes, ignoring that the inner bounds shrink.",
+   "This uses the ordinary (non-binomial) cubic-growth approximation, which is close but not exact.",
+   "This uses \\( \\binom{n+1}{3} \\), off by one in the binomial's upper index.",
+   "This computes only the two-level triangular count, forgetting the third nested loop.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "same_parity_pair_count_v1",
+  "skill_id": "loop_iteration_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "Consider the following procedure, where \\( c \\) is initialized to 0: \\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\quad \\textbf{for } j = i+1 \\textbf{ to } [[n]]: \\quad \\textbf{if } i+j \\bmod 2 = 0: \\quad c \\leftarrow c + 1 \\] What is the value of \\( c \\) after the procedure finishes? (Here \\( i+j \\bmod 2 = 0 \\) means \\( i \\) and \\( j \\) have the same parity.)",
+  "answer_spec": {"op": "evaluate", "expr": "binomial(ceiling([[n]]/2), 2) + binomial(floor([[n]]/2), 2)"},
+  "distractors": [
+   "binomial([[n]], 2)",
+   "binomial([[n]], 2)/2",
+   "binomial(ceiling([[n]]/2), 2)",
+   "binomial(floor([[n]]/2), 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Among \\( 1,\\ldots,[[n]] \\) there are \\( \\lceil [[n]]/2 \\rceil \\) odd numbers and \\( \\lfloor [[n]]/2 \\rfloor \\) even numbers; a pair \\( i<j \\) is counted exactly when both are odd or both are even, giving \\( \\binom{\\lceil [[n]]/2 \\rceil}{2} + \\binom{\\lfloor [[n]]/2 \\rfloor}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts every pair, ignoring the same-parity condition entirely.",
+   "This guesses that exactly half of all pairs match the condition, which is not exact for general [[n]].",
+   "This counts only the odd-odd pairs, forgetting the even-even pairs.",
+   "This counts only the even-even pairs, forgetting the odd-odd pairs.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ }
+]

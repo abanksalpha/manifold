@@ -1,0 +1,4 @@
+{
+ "skill_id": "recognizing_non_group_structures_which_axiom_fails",
+ "reason": "The answer names which group axiom fails (closure, associativity, identity, or inverses), a categorical recognition verdict rather than a single computed scalar."
+}

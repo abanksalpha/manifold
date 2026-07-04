@@ -1,0 +1,98 @@
+[
+ {
+  "template_id": "lagrange_remainder_error_bound_v1",
+  "skill_id": "lagrange_remainder_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "M": {"type": "int", "lo": 1, "hi": 8},
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "x": {"type": "int", "lo": -4, "hi": 4},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Ne([[x]], [[a]])"],
+  "stem": "A degree-\\( [[n]] \\) Taylor polynomial about \\( a = [[a]] \\) has Lagrange remainder \\( R_{[[n]]}(x) = \\dfrac{f^{([[n]]+1)}(\\xi)}{([[n]]+1)!}(x-a)^{[[n]]+1} \\). Given \\( \\left|f^{([[n]]+1)}(\\xi)\\right| \\le [[M]] \\) for all \\( \\xi \\) between \\( a \\) and \\( x \\), find the resulting upper bound on \\( \\left|R_{[[n]]}([[x]])\\right| \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[M]]*Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]]+1)"},
+  "distractors": [
+   "[[M]]*Abs([[x]] - [[a]])**[[n]]/factorial([[n]])",
+   "[[M]]*Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]])",
+   "[[M]]*Abs([[x]] - [[a]])**([[n]]+1)/([[n]]+1)",
+   "Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]]+1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substitute \\( M = [[M]] \\), \\( |x-a| = |[[x]]-([[a]])| \\), and order \\( [[n]] \\) into \\( \\dfrac{M\\,|x-a|^{[[n]]+1}}{([[n]]+1)!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses order \\( [[n]] \\) throughout (\\( |x-a|^{[[n]]}/[[n]]! \\)) instead of \\( [[n]]+1 \\).",
+   "This forgets to increment the factorial to \\( ([[n]]+1)! \\), leaving \\( [[n]]! \\).",
+   "This replaces the factorial \\( ([[n]]+1)! \\) with just \\( [[n]]+1 \\).",
+   "This omits the bound \\( M = [[M]] \\) on the derivative.",
+   "This is off by one from the correct bound.",
+   "This is off by one from the correct bound."
+  ]
+ },
+ {
+  "template_id": "lagrange_remainder_error_bound_sincos_v2",
+  "skill_id": "lagrange_remainder_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "fn": {"type": "choice", "values": ["\\sin x", "\\cos x"]},
+   "x": {"type": "int", "lo": -6, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Ne([[x]], 0)"],
+  "stem": "The Maclaurin polynomial of degree \\( [[n]] \\) for \\( f(x) = [[fn]] \\) is used to approximate \\( f([[x]]) \\). Every derivative of \\( [[fn]] \\) satisfies \\( \\left|f^{(k)}(\\xi)\\right| \\le 1 \\) for all \\( \\xi \\), so the Lagrange remainder satisfies \\( \\left|R_{[[n]]}(x)\\right| \\le \\dfrac{|x|^{[[n]]+1}}{([[n]]+1)!} \\). Find this upper bound at \\( x = [[x]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[x]])**([[n]]+1)/factorial([[n]]+1)"},
+  "distractors": [
+   "Abs([[x]])**[[n]]/factorial([[n]])",
+   "Abs([[x]])**([[n]]+1)/factorial([[n]])",
+   "Abs([[x]])**([[n]]+1)/([[n]]+1)",
+   "[[x]]**([[n]]+1)/factorial([[n]]+1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( M=1 \\) bounds every derivative of \\( [[fn]] \\), the bound is \\( \\dfrac{|[[x]]|^{[[n]]+1}}{([[n]]+1)!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses order \\( [[n]] \\) throughout instead of \\( [[n]]+1 \\).",
+   "This forgets to increment the factorial to \\( ([[n]]+1)! \\), leaving \\( [[n]]! \\).",
+   "This replaces the factorial \\( ([[n]]+1)! \\) with just \\( [[n]]+1 \\).",
+   "This drops the absolute value, which can give a negative bound for odd powers.",
+   "This is off by one from the correct bound.",
+   "This is off by one from the correct bound."
+  ]
+ },
+ {
+  "template_id": "lagrange_remainder_error_bound_max_value_v3",
+  "skill_id": "lagrange_remainder_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "M": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "x": {"type": "int", "lo": -4, "hi": 4},
+   "n": {"type": "choice", "values": [2, 3, 4]},
+   "Pval": {"type": "int", "lo": -20, "hi": 20}
+  },
+  "constraints": ["Ne([[x]], [[a]])"],
+  "stem": "A degree-\\( [[n]] \\) Taylor polynomial \\( P_{[[n]]}(x) \\) about \\( a = [[a]] \\) approximates a function \\( f \\), with \\( P_{[[n]]}([[x]]) = [[Pval]] \\). The Lagrange remainder satisfies \\( \\left|R_{[[n]]}([[x]])\\right| \\le [[M]]\\cdot\\dfrac{|[[x]]-[[a]]|^{[[n]]+1}}{([[n]]+1)!} \\). Since \\( f([[x]]) = P_{[[n]]}([[x]]) + R_{[[n]]}([[x]]) \\), what is the largest possible value of \\( f([[x]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[Pval]] + [[M]]*Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]]+1)"},
+  "distractors": [
+   "[[Pval]] - [[M]]*Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]]+1)",
+   "[[M]]*Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]]+1)",
+   "[[Pval]]*(1 + [[M]]*Abs([[x]] - [[a]])**([[n]]+1)/factorial([[n]]+1))",
+   "[[Pval]] + [[M]]*Abs([[x]] - [[a]])**[[n]]/factorial([[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The largest possible value occurs when the remainder attains its maximum positive value: \\( f([[x]]) \\le P_{[[n]]}([[x]]) + \\dfrac{M|[[x]]-([[a]])|^{[[n]]+1}}{([[n]]+1)!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the remainder bound instead of adding it, giving the smallest possible value instead of the largest.",
+   "This reports the remainder bound itself, forgetting to add the approximation \\( P_{[[n]]}([[x]]) \\).",
+   "This multiplies the approximation by a factor involving the bound instead of adding the bound.",
+   "This uses order \\( [[n]] \\) throughout instead of \\( [[n]]+1 \\) in the remainder bound.",
+   "This is off by one from the correct maximum value.",
+   "This is off by one from the correct maximum value."
+  ]
+ }
+]

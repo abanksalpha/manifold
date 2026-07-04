@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "improper_integral_power_type_infinite_bound_v1",
+ "skill_id": "improper_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "p": {"type": "choice", "values": [2, 3, 4, 5]},
+  "a": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Evaluate the improper integral \\( \\displaystyle\\int_{[[a]]}^{\\infty} \\dfrac{[[c]]}{x^{[[p]]}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/x**[[p]]", "var": "x", "bounds": ["[[a]]", "oo"]},
+ "distractors": [
+  "[[c]]*[[a]]**(1-[[p]])/(1-[[p]])",
+  "[[c]]/(([[p]]-1)*[[a]]**[[p]])",
+  "[[c]]/[[a]]**[[p]]",
+  "-[[answer]]",
+  "[[answer]]*[[p]]",
+  "[[answer]]/[[p]]"
+ ],
+ "solution": "An antiderivative of \\( x^{-[[p]]} \\) is \\( \\dfrac{x^{1-[[p]]}}{1-[[p]]} \\). Since \\( [[p]]>1 \\), this term vanishes as \\( x\\to\\infty \\), so the integral converges to \\( [[c]]\\cdot\\dfrac{[[a]]^{1-[[p]]}}{[[p]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps the sign from \\( 1/(1-[[p]]) \\) without flipping it, the opposite sign of the correct convergent value.",
+  "This uses the wrong power (\\( [[p]] \\) instead of \\( [[p]]-1 \\)) in the denominator's exponent.",
+  "This evaluates the integrand at \\( x=[[a]] \\) instead of computing the improper integral.",
+  "This has the correct magnitude but the wrong sign.",
+  "This multiplies by \\( [[p]] \\) instead of leaving the \\( [[p]]-1 \\) denominator as is.",
+  "This divides by an extra factor of \\( [[p]] \\) beyond the correct \\( [[p]]-1 \\)."
+ ]
+},
+{
+ "template_id": "improper_integral_exponential_decay_v1",
+ "skill_id": "improper_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Evaluate the improper integral \\( \\displaystyle\\int_{0}^{\\infty} [[c]]e^{-[[k]]x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*exp(-[[k]]*x)", "var": "x", "bounds": ["0", "oo"]},
+ "distractors": [
+  "[[c]]*[[k]]",
+  "[[c]]",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "An antiderivative of \\( e^{-[[k]]x} \\) is \\( -\\tfrac{1}{[[k]]}e^{-[[k]]x} \\); this vanishes as \\( x\\to\\infty \\) and equals \\( -\\tfrac{1}{[[k]]} \\) at \\( x=0 \\). So the integral converges to \\( [[c]]\\left(0-\\left(-\\tfrac{1}{[[k]]}\\right)\\right) = \\dfrac{[[c]]}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( [[k]] \\) instead of dividing by it, inverting the exponential's antiderivative coefficient.",
+  "This forgets the \\( 1/[[k]] \\) factor entirely, as if \\( [[k]]=1 \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is double the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "improper_integral_unbounded_integrand_v1",
+ "skill_id": "improper_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "a": {"type": "choice", "values": [1, 4, 9, 16, 25]}
+ },
+ "constraints": [],
+ "stem": "Evaluate the improper integral \\( \\displaystyle\\int_{0}^{[[a]]} \\dfrac{[[c]]}{\\sqrt{x}}\\,dx \\) (the integrand is unbounded near \\( x=0 \\)).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/sqrt(x)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*sqrt([[a]])",
+  "[[c]]*[[a]]",
+  "[[c]]/sqrt([[a]])",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "An antiderivative of \\( x^{-1/2} \\) is \\( 2x^{1/2} \\). Although \\( 1/\\sqrt{x}\\to\\infty \\) as \\( x\\to 0^{+} \\), the antiderivative itself stays finite there, so \\( \\int_{0}^{[[a]]} \\dfrac{[[c]]}{\\sqrt{x}}\\,dx = 2[[c]]\\sqrt{[[a]]} - 0 = [[answer]] \\); the improper integral converges.",
+ "distractor_rationales": [
+  "This forgets the factor of 2 from the power rule on \\( x^{1/2} \\).",
+  "This uses the wrong antiderivative power (\\( x \\) instead of \\( x^{1/2} \\)).",
+  "This evaluates the integrand at \\( x=[[a]] \\) instead of computing the integral.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is double the correct value."
+ ]
+},
+{
+ "template_id": "improper_integral_both_bounds_infinite_v1",
+ "skill_id": "improper_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Evaluate the improper integral \\( \\displaystyle\\int_{-\\infty}^{\\infty} \\dfrac{[[c]]}{x^{2}+[[k]]^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2+[[k]]**2)", "var": "x", "bounds": ["-oo", "oo"]},
+ "distractors": [
+  "[[c]]*pi/[[k]]**2",
+  "[[c]]*pi*[[k]]",
+  "2*[[c]]*pi/[[k]]",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1"
+ ],
+ "solution": "Using \\( \\displaystyle\\int \\dfrac{dx}{x^{2}+[[k]]^{2}} = \\dfrac{1}{[[k]]}\\arctan\\!\\left(\\dfrac{x}{[[k]]}\\right) \\), and since \\( \\arctan \\to \\pm\\tfrac{\\pi}{2} \\) as \\( x\\to\\pm\\infty \\), the integral converges to \\( [[c]]\\cdot\\dfrac{1}{[[k]]}\\left(\\dfrac{\\pi}{2}-\\left(-\\dfrac{\\pi}{2}\\right)\\right) = \\dfrac{[[c]]\\pi}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( [[k]]^{2} \\) in the denominator instead of \\( [[k]] \\), a wrong power carried over from the original integrand.",
+  "This multiplies by \\( [[k]] \\) instead of dividing by it.",
+  "This is double the correct value, as if the arctan range were \\( 2\\pi \\) instead of \\( \\pi \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

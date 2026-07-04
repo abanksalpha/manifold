@@ -1,0 +1,166 @@
+[
+{
+ "template_id": "standard_error_of_mean_v1",
+ "skill_id": "sampling_distributions_standard_error",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "sigma": {"type": "int", "lo": 2, "hi": 60},
+  "n": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144]}
+ },
+ "constraints": [],
+ "derived": {"sqn": "sqrt([[n]])"},
+ "stem": "A population has standard deviation \\( \\sigma=[[sigma]] \\). For a random sample of size \\( n=[[n]] \\), what is the standard error of the sample mean, \\( SE=\\dfrac{\\sigma}{\\sqrt{n}} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[sigma]]/[[sqn]]"},
+ "distractors": [
+  "[[sigma]]/[[n]]",
+  "[[sigma]]*[[sqn]]",
+  "[[sqn]]/[[sigma]]",
+  "[[sigma]]**2/[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( SE = \\dfrac{\\sigma}{\\sqrt{n}} = \\dfrac{[[sigma]]}{[[sqn]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( n \\) instead of \\( \\sqrt{n} \\).",
+  "This multiplies by \\( \\sqrt{n} \\) instead of dividing by it.",
+  "This inverts the standard error formula.",
+  "This is the VARIANCE of the sample mean, \\( \\sigma^2/n \\), not its standard error.",
+  "This is off by one from the correct standard error.",
+  "This is off by one from the correct standard error."
+ ]
+},
+{
+ "template_id": "standard_error_of_proportion_v1",
+ "skill_id": "sampling_distributions_standard_error",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "choice", "values": [5, 8, 10, 13, 16, 17, 20, 25, 29, 32, 37, 40, 41, 50]},
+  "a": {"type": "int", "lo": 1, "hi": 49},
+  "n": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64, 81, 100]}
+ },
+ "constraints": [
+  "Lt([[a]], [[b]])",
+  "Eq([[a]]*([[b]]-[[a]]) - floor(sqrt([[a]]*([[b]]-[[a]])))**2, 0)"
+ ],
+ "derived": {
+  "sqn": "sqrt([[n]])",
+  "num": "[[a]]*([[b]]-[[a]])",
+  "sqnum": "sqrt([[num]])"
+ },
+ "stem": "A sample proportion is based on a population proportion \\( p=\\dfrac{[[a]]}{[[b]]} \\) and sample size \\( n=[[n]] \\). What is the standard error of the sample proportion, \\( SE=\\sqrt{\\dfrac{p(1-p)}{n}} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[sqnum]]/([[b]]*[[sqn]])"},
+ "distractors": [
+  "Rational([[a]],[[b]])*(1-Rational([[a]],[[b]]))/[[n]]",
+  "[[sqnum]]/([[b]]*[[n]])",
+  "[[sqnum]]/[[b]]",
+  "Rational([[a]],[[b]])/[[sqn]]",
+  "[[answer]] + Rational(1,10)",
+  "[[answer]] - Rational(1,10)"
+ ],
+ "solution": "\\( SE = \\sqrt{\\dfrac{p(1-p)}{n}} = \\sqrt{\\dfrac{\\frac{[[a]]}{[[b]]}\\left(1-\\frac{[[a]]}{[[b]]}\\right)}{[[n]]}} = \\dfrac{\\sqrt{[[num]]}}{[[b]]\\sqrt{[[n]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the VARIANCE of the sample proportion, \\( p(1-p)/n \\), forgetting to take the square root.",
+  "This divides by \\( n \\) instead of \\( \\sqrt{n} \\) under the square root.",
+  "This forgets to divide by \\( \\sqrt{n} \\) entirely.",
+  "This uses \\( p \\) alone instead of \\( p(1-p) \\) under the square root.",
+  "This is off from the correct standard error by a fixed amount.",
+  "This is off from the correct standard error by a fixed amount."
+ ]
+},
+{
+ "template_id": "standard_error_sample_size_scaling_v1",
+ "skill_id": "sampling_distributions_standard_error",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64]},
+  "n0": {"type": "int", "lo": 5, "hi": 500}
+ },
+ "constraints": [],
+ "derived": {"n1": "[[n0]]*[[k]]"},
+ "stem": "In a study, the sample size is increased from \\( n=[[n0]] \\) to \\( n=[[n1]] \\) (a factor of [[k]]) while the population standard deviation stays the same. By what factor does the standard error of the sample mean change (that is, what is the new \\( SE \\) divided by the old \\( SE \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "1/sqrt([[k]])"},
+ "distractors": [
+  "sqrt([[k]])",
+  "1/[[k]]",
+  "[[k]]",
+  "1-1/sqrt([[k]])",
+  "[[answer]] + Rational(1,10)",
+  "[[answer]] - Rational(1,10)"
+ ],
+ "solution": "Since \\( SE = \\sigma/\\sqrt{n} \\), scaling \\( n \\) by [[k]] scales \\( SE \\) by \\( \\dfrac{1}{\\sqrt{[[k]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct scaling factor.",
+  "This scales by \\( 1/n \\) instead of \\( 1/\\sqrt{n} \\), forgetting the square root in the SE formula.",
+  "This assumes the standard error scales directly with the sample size, with no square root at all.",
+  "This reports the complement of the correct scaling factor instead of the factor itself.",
+  "This is off from the correct scaling factor by a fixed amount.",
+  "This is off from the correct scaling factor by a fixed amount."
+ ]
+},
+{
+ "template_id": "solve_sample_size_from_se_v1",
+ "skill_id": "sampling_distributions_standard_error",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "n_target": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64, 81, 100]},
+  "sigma": {"type": "choice", "values": [3, 4, 5, 6, 8, 9, 10, 12, 15, 20, 24, 30]}
+ },
+ "constraints": [],
+ "derived": {"sqn": "sqrt([[n_target]])", "se": "[[sigma]]/[[sqn]]"},
+ "stem": "A population has standard deviation \\( \\sigma=[[sigma]] \\). A random sample's standard error of the mean is \\( SE=[[se]] \\). Using \\( SE=\\sigma/\\sqrt{n} \\), what sample size \\( n \\) was used?",
+ "answer_spec": {"op": "evaluate", "expr": "([[sigma]]/[[se]])**2"},
+ "distractors": [
+  "[[sigma]]/[[se]]",
+  "([[se]]/[[sigma]])**2",
+  "[[sigma]]**2/[[se]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[sigma]]*[[se]]"
+ ],
+ "solution": "Rearranging \\( SE=\\sigma/\\sqrt{n} \\) gives \\( \\sqrt{n}=\\sigma/SE = [[sigma]]/[[se]] \\), so \\( n = \\left(\\dfrac{[[sigma]]}{[[se]]}\\right)^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This finds \\( \\sqrt{n} \\) but forgets to square it to get \\( n \\).",
+  "This inverts the ratio \\( \\sigma/SE \\) before squaring.",
+  "This forgets to square \\( SE \\) in the denominator.",
+  "This is off by one from the correct sample size.",
+  "This is off by one from the correct sample size.",
+  "This multiplies \\( \\sigma \\) and \\( SE \\) instead of dividing."
+ ]
+},
+{
+ "template_id": "solve_sigma_from_se_v1",
+ "skill_id": "sampling_distributions_standard_error",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64, 81, 100]},
+  "se_n": {"type": "int", "lo": 1, "hi": 20},
+  "se_d": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "derived": {"sqn": "sqrt([[n]])"},
+ "stem": "A random sample of size \\( n=[[n]] \\) has standard error of the mean \\( SE=\\dfrac{[[se_n]]}{[[se_d]]} \\). Using \\( SE=\\sigma/\\sqrt{n} \\), what is the population standard deviation \\( \\sigma \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[se_n]],[[se_d]])*[[sqn]]"},
+ "distractors": [
+  "Rational([[se_n]],[[se_d]])/[[sqn]]",
+  "Rational([[se_n]],[[se_d]])*[[n]]",
+  "Rational([[se_n]],[[se_d]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[sqn]]/Rational([[se_n]],[[se_d]])"
+ ],
+ "solution": "Rearranging \\( SE=\\sigma/\\sqrt{n} \\) gives \\( \\sigma = SE\\cdot\\sqrt{n} = \\dfrac{[[se_n]]}{[[se_d]]}\\cdot[[sqn]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( \\sqrt{n} \\) instead of multiplying by it.",
+  "This uses \\( n \\) instead of \\( \\sqrt{n} \\) as the scaling factor.",
+  "This forgets to scale by \\( \\sqrt{n} \\) at all.",
+  "This is off by one from the correct standard deviation.",
+  "This is off by one from the correct standard deviation.",
+  "This inverts the correct relationship between \\( SE \\) and \\( \\sigma \\)."
+ ]
+}
+]

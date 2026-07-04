@@ -1,0 +1,236 @@
+[
+ {
+  "template_id": "symbolic_composition_equation_solving_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-3, -2, 2, 3]},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "s": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "derived": {"k": "[[a]]*([[a]]*[[s]] + [[b]]) + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). If \\( f(f(x)) = [[k]] \\), what is the value of \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*([[a]]*x + [[b]]) + [[b]] = [[k]]", "var": "x"},
+  "distractors": [
+   "([[k]] - [[b]])/[[a]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Since \\( f(f(x)) = [[a]]\\big([[a]]x + ([[b]])\\big) + ([[b]]) \\), setting this equal to \\( [[k]] \\) and solving gives \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This solves the single equation \\( f(x) = [[k]] \\) instead of \\( f(f(x)) = [[k]] \\).",
+   "This negates the correct solution (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_composition_equation_solving_two_functions_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a1": {"type": "int", "lo": -4, "hi": 4},
+   "b1": {"type": "int", "lo": -5, "hi": 5},
+   "a2": {"type": "int", "lo": -4, "hi": 4},
+   "b2": {"type": "int", "lo": -5, "hi": 5},
+   "s": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a1]], 0)", "Ne([[a2]], 0)"],
+  "derived": {"k": "[[a1]]*([[a2]]*[[s]] + [[b2]]) + [[b1]]"},
+  "stem": "Let \\( f(x) = [[a1]]x + ([[b1]]) \\) and \\( g(x) = [[a2]]x + ([[b2]]) \\). If \\( f(g(x)) = [[k]] \\), what is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a1]]*([[a2]]*x + [[b2]]) + [[b1]] = [[k]]", "var": "x"},
+  "distractors": [
+   "([[k]] - [[b1]])/[[a1]]",
+   "([[k]] - [[b2]])/[[a2]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( f(g(x)) = [[a1]]\\big([[a2]]x + ([[b2]])\\big) + ([[b1]]) \\), setting this equal to \\( [[k]] \\) and solving gives \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This stops after undoing only the outer function \\( f \\), reporting \\( g(x) \\) instead of \\( x \\).",
+   "This uses \\( g \\)'s coefficients to undo the outer function, confusing which function is outer and which is inner.",
+   "This negates the correct solution (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_composition_equation_solving_quadratic_outer_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "s": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[s]], 0)"],
+  "derived": {"k": "[[A]]*([[a]]*[[s]] + [[b]])**2 + [[B]]"},
+  "stem": "Let \\( g(u) = [[A]]u^{2} + ([[B]]) \\) and \\( f(x) = [[a]]x + ([[b]]) \\). Which of the following is a solution of \\( g(f(x)) = [[k]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[A]]*([[a]]*x + [[b]])**2 + [[B]] = [[k]]", "var": "x"},
+  "distractors": [
+   "([[k]] - [[B]] - [[b]])/[[a]]",
+   "(-[[s]])",
+   "([[k]] - [[B]])/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( g(f(x)) = [[A]]\\big([[a]]x+([[b]])\\big)^{2} + ([[B]]) \\), setting this equal to \\( [[k]] \\) gives \\( \\big([[a]]x+([[b]])\\big)^{2} = \\dfrac{[[k]]-([[B]])}{[[A]]} \\). Taking the square root and solving, \\( x = [[answer]] \\) is one solution.",
+  "distractor_rationales": [
+   "This forgets to square (or unsquare) properly, treating \\( g \\) as if it were linear in \\( f(x) \\).",
+   "This is the OTHER root's mirror value in the wrong direction, not an actual solution here.",
+   "This forgets to subtract off \\( [[b]] \\) before dividing by \\( [[a]] \\) after taking the square root.",
+   "This is off by one from a correct solution.",
+   "This is off by one from a correct solution.",
+   "This is off by two from a correct solution."
+  ]
+ },
+ {
+  "template_id": "symbolic_composition_equation_solving_cancel_injective_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "af": {"type": "int", "lo": -4, "hi": 4},
+   "bf": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "e": {"type": "int", "lo": -4, "hi": 4},
+   "m": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[af]], 0)", "Ne([[c]], [[e]])"],
+  "stem": "Let \\( f(x) = [[af]]x + ([[bf]]) \\), \\( g(x) = [[c]]x + ([[d]]) \\), and \\( h(x) = [[e]]x + ([[m]]) \\). Given that \\( f(g(x)) = f(h(x)) \\), what is \\( x \\)? (Hint: since \\( f \\) is one-to-one, you do not need to expand \\( f \\) at all.)",
+  "answer_spec": {"op": "solve", "equation": "[[c]]*x + [[d]] = [[e]]*x + [[m]]", "var": "x"},
+  "distractors": [
+   "([[m]] - [[d]])/([[c]] + [[e]])",
+   "([[d]] - [[m]])/([[c]] - [[e]])",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( f \\) is one-to-one, \\( f(g(x)) = f(h(x)) \\) forces \\( g(x) = h(x) \\) directly (no need to ever expand \\( f \\)): \\( [[c]]x + ([[d]]) = [[e]]x + ([[m]]) \\), so \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two slopes in the denominator instead of subtracting them.",
+   "This swaps the sign of both numerator and denominator, an inconsistent sign error that happens to look plausible.",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_composition_equation_solving_squared_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "s": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[s]], 0)"],
+  "derived": {"k": "([[a]]*[[s]] + [[b]])**2"},
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). Which of the following is a solution of \\( \\big(f(x)\\big)^{2} = [[k]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "([[a]]*x + [[b]])**2 = [[k]]", "var": "x"},
+  "distractors": [
+   "([[k]] - [[b]])/[[a]]",
+   "sqrt([[k]])",
+   "-sqrt([[k]])/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Taking the square root of both sides, \\( f(x) = \\pm\\sqrt{[[k]]} \\), so \\( [[a]]x + ([[b]]) = \\pm\\sqrt{[[k]]} \\). Solving the \\( + \\) case gives \\( x = [[answer]] \\) as one solution.",
+  "distractor_rationales": [
+   "This subtracts \\( b \\) from \\( k \\) itself rather than from \\( \\pm\\sqrt{k} \\) before dividing by \\( a \\).",
+   "This reports \\( \\sqrt{k} \\) directly without ever isolating \\( x \\) using \\( f \\)'s coefficients.",
+   "This divides by the wrong sign combination and omits the constant term \\( b \\) entirely.",
+   "This is off by one from a correct solution.",
+   "This is off by one from a correct solution.",
+   "This is off by two from a correct solution."
+  ]
+ },
+ {
+  "template_id": "symbolic_composition_equation_solving_sqrt_composition_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": 0, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {"k": "[[a]]*[[t]] + [[b]]"},
+  "stem": "Let \\( f(u) = [[a]]u + ([[b]]) \\). If \\( f(\\sqrt{x}) = [[k]] \\), what is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*sqrt(x) + [[b]] = [[k]]", "var": "x"},
+  "distractors": [
+   "([[k]] - [[b]])/[[a]]",
+   "(([[k]] - [[b]])/[[a]])**2 - [[b]]",
+   "-((([[k]] - [[b]])/[[a]])**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 4"
+  ],
+  "solution": "Isolate the radical: \\( \\sqrt{x} = \\dfrac{[[k]] - ([[b]])}{[[a]]} \\), then square both sides: \\( x = \\left(\\dfrac{[[k]]-([[b]])}{[[a]]}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This isolates \\( \\sqrt{x} \\) correctly but forgets to square it to recover \\( x \\).",
+   "This squares correctly but then subtracts an extra, unneeded \\( b \\).",
+   "This negates the squared result, which cannot be correct since \\( x \\) must be non-negative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by four from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_composition_equation_solving_triple_v1",
+  "skill_id": "symbolic_composition_equation_solving",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a1": {"type": "int", "lo": 1, "hi": 3},
+   "b1": {"type": "int", "lo": -4, "hi": 4},
+   "a2": {"type": "int", "lo": 1, "hi": 3},
+   "b2": {"type": "int", "lo": -4, "hi": 4},
+   "a3": {"type": "int", "lo": 1, "hi": 3},
+   "b3": {"type": "int", "lo": -4, "hi": 4},
+   "s": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[b1]], 0)", "Ne([[b2]], 0)", "Ne([[b3]], 0)"],
+  "derived": {"k": "[[a1]]*([[a2]]*([[a3]]*[[s]]+[[b3]])+[[b2]])+[[b1]]"},
+  "stem": "Let \\( f(x) = [[a1]]x + ([[b1]]) \\), \\( g(x) = [[a2]]x + ([[b2]]) \\), and \\( h(x) = [[a3]]x + ([[b3]]) \\). If \\( f(g(h(x))) = [[k]] \\), what is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a1]]*([[a2]]*([[a3]]*x+[[b3]])+[[b2]])+[[b1]] = [[k]]", "var": "x"},
+  "distractors": [
+   "([[k]] - [[b1]])/[[a1]]",
+   "(([[k]] - [[b1]])/[[a1]] - [[b2]])/[[a2]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Undo the composition from the outside in: first strip \\( f \\), then \\( g \\), then \\( h \\), solving for \\( x \\) at the last step. This gives \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This stops after undoing only the outermost function \\( f \\), reporting \\( g(h(x)) \\) instead of \\( x \\).",
+   "This stops after undoing \\( f \\) and \\( g \\), reporting \\( h(x) \\) instead of \\( x \\).",
+   "This negates the correct solution (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

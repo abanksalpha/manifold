@@ -1,0 +1,244 @@
+[
+{
+ "template_id": "binomial_pmf_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 15},
+  "k": {"type": "int", "lo": 1, "hi": 14},
+  "pd": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 10]},
+  "pn": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Lt([[k]], [[n]])", "Lt([[pn]], [[pd]])"],
+ "stem": "On each of [[n]] independent trials, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). Let \\( X \\) be the total number of successes (so \\( X \\) is binomial). What is \\( P(X = [[k]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "binomial([[n]],[[k]])*Rational([[pn]],[[pd]])**[[k]]*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]])"
+ },
+ "distractors": [
+  "binomial([[n]],[[k]])*Rational([[pn]],[[pd]])**([[n]]-[[k]])*(1-Rational([[pn]],[[pd]]))**[[k]]",
+  "binomial([[n]],[[k]]-1)*Rational([[pn]],[[pd]])**[[k]]*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]])",
+  "Rational([[pn]],[[pd]])**[[k]]*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]])",
+  "binomial([[n]],[[k]])*Rational([[pn]],[[pd]])**[[k]]*(1-Rational([[pn]],[[pd]]))**[[k]]",
+  "binomial([[n]],[[k]])*Rational([[pn]],[[pd]])**([[k]]-1)*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]])",
+  "binomial([[n]]-1,[[k]])*Rational([[pn]],[[pd]])**[[k]]*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]])"
+ ],
+ "solution": "\\( P(X=[[k]]) = \\binom{[[n]]}{[[k]]}\\left(\\frac{[[pn]]}{[[pd]]}\\right)^{[[k]]}\\left(1-\\frac{[[pn]]}{[[pd]]}\\right)^{[[n]]-[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps the exponents on the success and failure probabilities.",
+  "This uses the wrong binomial coefficient \\( \\binom{n}{k-1} \\) instead of \\( \\binom{n}{k} \\).",
+  "This omits the binomial coefficient \\( \\binom{n}{k} \\) entirely.",
+  "This uses \\( k \\) as the exponent on the failure probability instead of \\( n-k \\).",
+  "This uses \\( k-1 \\) as the exponent on the success probability instead of \\( k \\).",
+  "This uses the wrong binomial coefficient \\( \\binom{n-1}{k} \\) instead of \\( \\binom{n}{k} \\)."
+ ]
+},
+{
+ "template_id": "binomial_cdf_via_sum_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 14},
+  "k": {"type": "int", "lo": 1, "hi": 12},
+  "pd": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+  "pn": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Lt([[k]], [[n]] - 1)", "Lt([[pn]], [[pd]])"],
+ "stem": "On each of [[n]] independent trials, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). Let \\( X \\) be the total number of successes (so \\( X \\) is binomial). What is \\( P(X \\le [[k]]) \\)?",
+ "answer_spec": {
+  "op": "sum",
+  "expr": "binomial([[n]],j)*Rational([[pn]],[[pd]])**j*(1-Rational([[pn]],[[pd]]))**([[n]]-j)",
+  "var": "j", "lo": "0", "hi": "[[k]]"
+ },
+ "distractors": [
+  "1-[[answer]]",
+  "binomial([[n]],[[k]])*Rational([[pn]],[[pd]])**[[k]]*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]])",
+  "binomial([[n]],[[k]]+1)*Rational([[pn]],[[pd]])**([[k]]+1)*(1-Rational([[pn]],[[pd]]))**([[n]]-[[k]]-1)",
+  "Rational([[n]]*[[pn]],[[pd]])",
+  "[[answer]] + Rational(1,10)",
+  "[[answer]] - Rational(1,10)"
+ ],
+ "solution": "\\( P(X \\le [[k]]) = \\displaystyle\\sum_{j=0}^{[[k]]} \\binom{[[n]]}{j}\\left(\\frac{[[pn]]}{[[pd]]}\\right)^{j}\\left(1-\\frac{[[pn]]}{[[pd]]}\\right)^{[[n]]-j} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( P(X > [[k]]) \\), the complement of the requested cumulative probability.",
+  "This is just the pmf \\( P(X=[[k]]) \\), a single term, not the cumulative sum.",
+  "This is just the pmf \\( P(X=[[k]]+1) \\), the wrong single term entirely.",
+  "This is the MEAN of \\( X \\), an entirely different quantity from a cumulative probability.",
+  "This is off from the correct cumulative probability by a fixed amount.",
+  "This is off from the correct cumulative probability by a fixed amount."
+ ]
+},
+{
+ "template_id": "geometric_pmf_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "pd": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8]},
+  "pn": {"type": "int", "lo": 1, "hi": 7},
+  "k": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]}
+ },
+ "constraints": ["Lt([[pn]], [[pd]])"],
+ "stem": "A certain process succeeds on each independent trial with probability \\( \\frac{[[pn]]}{[[pd]]} \\). Let \\( X \\) be the number of the trial on which the first success occurs (so \\( X \\) is geometric, taking values \\( 1, 2, 3, \\ldots \\)). What is \\( P(X = [[k]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "(1-Rational([[pn]],[[pd]]))**([[k]]-1)*Rational([[pn]],[[pd]])"
+ },
+ "distractors": [
+  "(1-Rational([[pn]],[[pd]]))**[[k]]*Rational([[pn]],[[pd]])",
+  "(1-Rational([[pn]],[[pd]]))**([[k]]-1)",
+  "Rational([[pn]],[[pd]])**([[k]]-1)*(1-Rational([[pn]],[[pd]]))",
+  "1-(1-Rational([[pn]],[[pd]]))**[[k]]",
+  "Rational([[pn]],[[pd]])",
+  "(1-Rational([[pn]],[[pd]]))**([[k]]-1)*Rational([[pn]],[[pd]])**2"
+ ],
+ "solution": "The first \\( [[k]]-1 \\) trials must fail and trial [[k]] must succeed: \\( P(X=[[k]]) = (1-p)^{[[k]]-1}p = \\left(1-\\frac{[[pn]]}{[[pd]]}\\right)^{[[k]]-1}\\frac{[[pn]]}{[[pd]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses [[k]] failures before the success instead of \\( [[k]]-1 \\).",
+  "This gives only the probability the first \\( [[k]]-1 \\) trials fail, omitting the final success factor.",
+  "This swaps the roles of the success and failure probabilities.",
+  "This is the CDF \\( P(X \\le [[k]]) \\), not the pmf \\( P(X=[[k]]) \\).",
+  "This is just the single-trial success probability, ignoring the earlier required failures.",
+  "This includes an extra, unjustified factor of the success probability."
+ ]
+},
+{
+ "template_id": "poisson_successive_ratio_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "lam_n": {"type": "int", "lo": 1, "hi": 20},
+  "lam_d": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "k": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "A random variable \\( X \\) follows a Poisson distribution with mean \\( \\lambda = \\frac{[[lam_n]]}{[[lam_d]]} \\). What is the ratio \\( \\dfrac{P(X = [[k]]+1)}{P(X = [[k]])} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[lam_n]],[[lam_d]])/([[k]]+1)"},
+ "distractors": [
+  "Rational([[lam_n]],[[lam_d]])",
+  "Rational([[lam_n]],[[lam_d]])/[[k]]",
+  "([[k]]+1)/Rational([[lam_n]],[[lam_d]])",
+  "Rational([[lam_n]],[[lam_d]])**([[k]]+1)",
+  "Rational([[lam_n]],[[lam_d]])/([[k]]+2)",
+  "[[k]]/Rational([[lam_n]],[[lam_d]])"
+ ],
+ "solution": "For a Poisson pmf, \\( \\dfrac{P(X=k+1)}{P(X=k)} = \\dfrac{\\lambda}{k+1} \\), so the ratio is \\( \\dfrac{[[lam_n]]/[[lam_d]]}{[[k]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just \\( \\lambda \\), forgetting to divide by \\( k+1 \\).",
+  "This divides by \\( k \\) instead of \\( k+1 \\), an off-by-one error.",
+  "This inverts the correct ratio.",
+  "This raises \\( \\lambda \\) to a power instead of dividing by \\( k+1 \\).",
+  "This divides by \\( k+2 \\) instead of \\( k+1 \\), an off-by-one error in the other direction.",
+  "This inverts the ratio and also uses \\( k \\) instead of \\( k+1 \\)."
+ ]
+},
+{
+ "template_id": "poisson_second_moment_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "lam_n": {"type": "int", "lo": 2, "hi": 15},
+  "lam_d": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "A random variable \\( X \\) follows a Poisson distribution with mean \\( \\lambda = \\frac{[[lam_n]]}{[[lam_d]]} \\). Using the fact that \\( \\operatorname{Var}(X) = \\lambda \\), what is \\( E[X^2] \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[lam_n]],[[lam_d]]) + Rational([[lam_n]],[[lam_d]])**2"
+ },
+ "distractors": [
+  "Rational([[lam_n]],[[lam_d]])**2",
+  "Rational([[lam_n]],[[lam_d]])",
+  "2*Rational([[lam_n]],[[lam_d]])",
+  "Rational([[lam_n]],[[lam_d]])**2 - Rational([[lam_n]],[[lam_d]])",
+  "Rational([[lam_n]],[[lam_d]])*(Rational([[lam_n]],[[lam_d]])-1)",
+  "Rational([[lam_n]],[[lam_d]]) + 1"
+ ],
+ "solution": "Since \\( \\operatorname{Var}(X) = E[X^2] - (E[X])^2 \\) and \\( \\operatorname{Var}(X)=E[X]=\\lambda \\) for Poisson, \\( E[X^2] = \\lambda + \\lambda^2 = \\frac{[[lam_n]]}{[[lam_d]]} + \\left(\\frac{[[lam_n]]}{[[lam_d]]}\\right)^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just \\( (E[X])^2 \\), forgetting to add the variance \\( \\lambda \\).",
+  "This is just \\( \\lambda \\) itself, forgetting to add \\( \\lambda^2 \\).",
+  "This doubles \\( \\lambda \\) instead of adding \\( \\lambda^2 \\).",
+  "This subtracts instead of adds, a sign error in the variance identity.",
+  "This uses \\( \\lambda - 1 \\) instead of \\( \\lambda + 1 \\) as the second factor.",
+  "This adds 1 instead of \\( \\lambda^2 \\)."
+ ]
+},
+{
+ "template_id": "binomial_mode_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 30},
+  "pd": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]},
+  "pn": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [
+  "Lt([[pn]], [[pd]])",
+  "Ne(Mod(([[n]]+1)*[[pn]], [[pd]]), 0)"
+ ],
+ "stem": "Let \\( X \\) be a binomial random variable with \\( n = [[n]] \\) trials and success probability \\( p = \\frac{[[pn]]}{[[pd]]} \\) per trial. What is the mode of \\( X \\) (the value of \\( k \\) at which \\( P(X=k) \\) is largest)?",
+ "answer_spec": {"op": "evaluate", "expr": "floor(([[n]]+1)*Rational([[pn]],[[pd]]))"},
+ "distractors": [
+  "ceiling(([[n]]+1)*Rational([[pn]],[[pd]]))",
+  "[[n]]*Rational([[pn]],[[pd]])",
+  "[[answer]] + 2",
+  "[[answer]] - 1",
+  "[[answer]] - 2",
+  "floor([[n]]*Rational([[pn]],[[pd]])/2)"
+ ],
+ "solution": "The mode of a binomial variable is \\( \\lfloor (n+1)p \\rfloor \\) (when \\( (n+1)p \\) is not an integer): \\( \\lfloor ([[n]]+1)\\cdot\\frac{[[pn]]}{[[pd]]} \\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This rounds up instead of taking the floor, off by one from the correct mode.",
+  "This reports the raw mean \\( np \\) without applying the floor from the mode formula.",
+  "This is off by two from the correct mode.",
+  "This is off by one from the correct mode.",
+  "This is off by two from the correct mode in the other direction.",
+  "This mistakenly halves the mean before flooring."
+ ]
+},
+{
+ "template_id": "hypergeometric_pmf_v1",
+ "skill_id": "discrete_distributions",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 15, "hi": 40},
+  "K": {"type": "int", "lo": 3, "hi": 12},
+  "n": {"type": "int", "lo": 3, "hi": 12},
+  "k": {"type": "int", "lo": 0, "hi": 10}
+ },
+ "constraints": [
+  "Lt([[K]], [[N]])", "Lt([[n]], [[N]])",
+  "Le([[k]], [[K]])", "Le([[k]], [[n]])",
+  "Le([[n]] - [[k]], [[N]] - [[K]])"
+ ],
+ "stem": "A sample of [[n]] items is drawn without replacement from a population of [[N]] items, of which [[K]] are defective. Let \\( X \\) be the number of defective items in the sample (so \\( X \\) is hypergeometric). What is \\( P(X = [[k]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "binomial([[K]],[[k]])*binomial([[N]]-[[K]],[[n]]-[[k]])/binomial([[N]],[[n]])"
+ },
+ "distractors": [
+  "binomial([[K]],[[k]])*binomial([[N]]-[[K]],[[n]]-[[k]])",
+  "binomial([[K]],[[k]])/binomial([[N]],[[n]])",
+  "binomial([[n]],[[k]])*Rational([[K]],[[N]])**[[k]]*(1-Rational([[K]],[[N]]))**([[n]]-[[k]])",
+  "binomial([[K]],[[n]]-[[k]])*binomial([[N]]-[[K]],[[k]])/binomial([[N]],[[n]])",
+  "binomial([[N]]-[[K]],[[n]]-[[k]])/binomial([[N]],[[n]])",
+  "Rational([[K]],[[N]])"
+ ],
+ "solution": "\\( P(X=[[k]]) = \\dfrac{\\binom{[[K]]}{[[k]]}\\binom{[[N]]-[[K]]}{[[n]]-[[k]]}}{\\binom{[[N]]}{[[n]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by the total number of ways to choose the sample, \\( \\binom{N}{n} \\).",
+  "This drops the factor for choosing the non-defective items in the sample.",
+  "This uses the BINOMIAL approximation (sampling with replacement) instead of the exact hypergeometric pmf.",
+  "This swaps which group contributes \\( k \\) versus \\( n-k \\) items.",
+  "This drops the factor for choosing the defective items in the sample.",
+  "This is just the population proportion of defectives, ignoring the sampling combinatorics entirely."
+ ]
+}
+]

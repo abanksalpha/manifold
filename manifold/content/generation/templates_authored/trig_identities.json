@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "trig_identity_double_angle_sin_v1",
+ "skill_id": "trig_identities",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "s": {"type": "int", "lo": 2, "hi": 8},
+  "t": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Gt([[s]], [[t]])"],
+ "derived": {
+  "m": "[[s]]**2 - [[t]]**2",
+  "n": "2*[[s]]*[[t]]",
+  "p": "[[s]]**2 + [[t]]**2"
+ },
+ "stem": "An angle \\( \\theta \\) in Quadrant I satisfies \\( \\sin\\theta=\\dfrac{[[n]]}{[[p]]} \\) and \\( \\cos\\theta=\\dfrac{[[m]]}{[[p]]} \\). Use the double-angle identity to find \\( \\sin(2\\theta) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*Rational([[n]],[[p]])*Rational([[m]],[[p]])"},
+ "distractors": [
+  "Rational([[n]],[[p]])*Rational([[m]],[[p]])",
+  "Rational([[n]],[[p]]) + Rational([[m]],[[p]])",
+  "Rational([[n]]**2,[[p]]**2) - Rational([[m]]**2,[[p]]**2)",
+  "4*Rational([[n]],[[p]])*Rational([[m]],[[p]])",
+  "2*Rational([[n]],[[p]])*Rational([[m]],[[p]]) + Rational(1,10)",
+  "2*Rational([[n]],[[p]])*Rational([[m]],[[p]]) - Rational(1,10)"
+ ],
+ "solution": "By the double-angle identity, \\( \\sin(2\\theta)=2\\sin\\theta\\cos\\theta=2\\cdot\\dfrac{[[n]]}{[[p]]}\\cdot\\dfrac{[[m]]}{[[p]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required factor of \\( 2\\) from the double-angle identity.",
+  "This adds \\( \\sin\\theta\\) and \\( \\cos\\theta\\) instead of multiplying them.",
+  "This uses the cosine double-angle identity \\( \\cos^{2}\\theta-\\sin^{2}\\theta\\) instead of the sine one.",
+  "This uses a factor of \\( 4\\) instead of \\( 2\\).",
+  "This is off by a small additive amount from the correct value.",
+  "This is off by a small additive amount (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "trig_identity_cos_double_from_tan_v1",
+ "skill_id": "trig_identities",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+ "stem": "An angle \\( \\theta \\) satisfies \\( \\tan\\theta=\\dfrac{[[a]]}{[[b]]} \\). Use the identity \\( \\cos(2\\theta)=\\dfrac{1-\\tan^{2}\\theta}{1+\\tan^{2}\\theta} \\) to find \\( \\cos(2\\theta) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[b]]**2 - [[a]]**2)/([[b]]**2 + [[a]]**2)"},
+ "distractors": [
+  "([[a]]**2 - [[b]]**2)/([[b]]**2 + [[a]]**2)",
+  "(1 - Rational([[a]],[[b]]))/(1 + Rational([[a]],[[b]]))",
+  "([[b]]**2 + [[a]]**2)/([[b]]**2 - [[a]]**2)",
+  "2*[[a]]*[[b]]/([[a]]**2 + [[b]]**2)",
+  "([[b]]**2 - [[a]]**2)/([[b]]**2 + [[a]]**2) + 1",
+  "([[b]]**2 - [[a]]**2)/([[b]]**2 + [[a]]**2) - 1"
+ ],
+ "solution": "Writing \\( \\tan\\theta=\\dfrac{[[a]]}{[[b]]} \\), \\( \\cos(2\\theta)=\\dfrac{1-\\tan^{2}\\theta}{1+\\tan^{2}\\theta}=\\dfrac{[[b]]^{2}-[[a]]^{2}}{[[b]]^{2}+[[a]]^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the numerator, negating the whole result.",
+  "This substitutes the raw ratio \\( a/b\\) for \\( \\tan^2\\theta\\) instead of squaring it first.",
+  "This inverts the correct fraction.",
+  "This uses the sine double-angle identity \\( 2\\sin\\theta\\cos\\theta\\)'s form instead of the cosine one.",
+  "This is off by one from the correct value.",
+  "This is off by one (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "trig_identity_angle_difference_sin_v1",
+ "skill_id": "trig_identities",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k1": {"type": "int", "lo": -5, "hi": 5},
+  "n1": {"type": "choice", "values": [2, 3, 4, 6]},
+  "k2": {"type": "int", "lo": -5, "hi": 5},
+  "n2": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k1]], 0)", "Ne([[k2]], 0)"],
+ "stem": "Use the angle-subtraction identity \\( \\sin(A-B)=\\sin A\\cos B-\\cos A\\sin B \\) to evaluate \\( \\sin\\!\\left(\\dfrac{[[k1]]\\pi}{[[n1]]}\\right)\\cos\\!\\left(\\dfrac{[[k2]]\\pi}{[[n2]]}\\right)-\\cos\\!\\left(\\dfrac{[[k1]]\\pi}{[[n1]]}\\right)\\sin\\!\\left(\\dfrac{[[k2]]\\pi}{[[n2]]}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sin([[k1]]*pi/[[n1]] - [[k2]]*pi/[[n2]])"},
+ "distractors": [
+  "sin([[k1]]*pi/[[n1]] + [[k2]]*pi/[[n2]])",
+  "cos([[k1]]*pi/[[n1]] - [[k2]]*pi/[[n2]])",
+  "sin([[k2]]*pi/[[n2]] - [[k1]]*pi/[[n1]])",
+  "sin([[k1]]*pi/[[n1]])*sin([[k2]]*pi/[[n2]])",
+  "sin([[k1]]*pi/[[n1]] - [[k2]]*pi/[[n2]]) + Rational(1,10)",
+  "sin([[k1]]*pi/[[n1]] - [[k2]]*pi/[[n2]]) - Rational(1,10)"
+ ],
+ "solution": "By the angle-subtraction identity, this expression equals \\( \\sin\\!\\left(\\dfrac{[[k1]]\\pi}{[[n1]]}-\\dfrac{[[k2]]\\pi}{[[n2]]}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the sum identity \\( \\sin(A+B)\\) instead of the difference identity \\( \\sin(A-B)\\).",
+  "This computes \\( \\cos(A-B)\\) instead of \\( \\sin(A-B)\\).",
+  "This reverses the order, computing \\( \\sin(B-A)=-\\sin(A-B)\\).",
+  "This multiplies the two sine factors directly instead of applying the subtraction identity.",
+  "This is off by a small additive amount from the correct value.",
+  "This is off by a small additive amount (other direction) from the correct value."
+ ]
+},
+{
+ "template_id": "trig_identity_half_angle_sin_v1",
+ "skill_id": "trig_identities",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+ "stem": "An angle \\( \\theta \\) in \\( (0,\\pi) \\) satisfies \\( \\cos\\theta=\\dfrac{[[a]]}{[[b]]} \\). Use the half-angle identity to find \\( \\sin\\dfrac{\\theta}{2} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt((1 - Rational([[a]],[[b]]))/2)"},
+ "distractors": [
+  "sqrt((1 + Rational([[a]],[[b]]))/2)",
+  "-sqrt((1 - Rational([[a]],[[b]]))/2)",
+  "(1 - Rational([[a]],[[b]]))/2",
+  "sqrt((1 - Rational([[a]],[[b]]))*2)",
+  "sqrt((1 - Rational([[a]],[[b]]))/2) + Rational(1,10)",
+  "sqrt((1 - Rational([[a]],[[b]]))/2) - Rational(1,10)"
+ ],
+ "solution": "Since \\( \\theta\\in(0,\\pi) \\), \\( \\dfrac{\\theta}{2}\\in\\left(0,\\tfrac{\\pi}{2}\\right) \\), so \\( \\sin\\dfrac{\\theta}{2}\\ge 0 \\). The half-angle identity gives \\( \\sin\\dfrac{\\theta}{2}=\\sqrt{\\dfrac{1-\\cos\\theta}{2}}=\\sqrt{\\dfrac{1-[[a]]/[[b]]}{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the half-angle formula for cosine, \\( \\sqrt{(1+\\cos\\theta)/2}\\), instead of sine.",
+  "This has the wrong sign; \\( \\sin(\\theta/2)\\ge 0\\) since \\( \\theta/2\\in(0,\\pi/2)\\).",
+  "This omits the square root, reporting \\( \\sin^{2}(\\theta/2)\\) instead of \\( \\sin(\\theta/2)\\).",
+  "This multiplies by \\( 2\\) instead of dividing by \\( 2\\) before taking the square root.",
+  "This is off by a small additive amount from the correct value.",
+  "This is off by a small additive amount (other direction) from the correct value."
+ ]
+}
+]

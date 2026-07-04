@@ -1,0 +1,162 @@
+[
+{
+ "template_id": "mvt_quadratic_midpoint_v1",
+ "skill_id": "mean_value_theorem",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": -8, "hi": 4},
+  "q": {"type": "int", "lo": 5, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], 0)", "Lt([[p]], [[q]])"],
+ "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\) on \\( [[[p]], [[q]]] \\). The Mean Value Theorem guarantees a value \\( c \\) in \\( ([[p]], [[q]]) \\) with \\( f'(c) = \\dfrac{f([[q]]) - f([[p]])}{[[q]] - [[p]]} \\). Find \\( c \\).",
+ "answer_spec": {"op": "solve", "equation": "2*[[a]]*x + [[b]] = (([[a]]*[[q]]**2+[[b]]*[[q]]+[[c]]) - ([[a]]*[[p]]**2+[[b]]*[[p]]+[[c]]))/([[q]]-[[p]])", "var": "x"},
+ "distractors": [
+  "[[p]]",
+  "[[q]]",
+  "Rational([[q]]-[[p]],2)",
+  "Rational([[p]]+[[q]],2) + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( f \\) is quadratic, \\( f'(x)=2[[a]]x+([[b]]) \\) is linear, so the guaranteed point is always the midpoint of the interval: \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), regardless of the coefficients \\( a,b,c \\).",
+ "distractor_rationales": [
+  "This gives the left endpoint of the interval, not the guaranteed interior point.",
+  "This gives the right endpoint of the interval, not the guaranteed interior point.",
+  "This reports the interval's width instead of its midpoint.",
+  "This is off by one from the correct midpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_word_problem_velocity_v2",
+ "skill_id": "mean_value_theorem",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "t1": {"type": "int", "lo": 0, "hi": 5},
+  "t2": {"type": "int", "lo": 6, "hi": 14}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A particle's position at time \\( t \\) seconds is \\( s(t) = [[a]]t^{2} + ([[b]])t \\) meters. By the Mean Value Theorem, there is some instant \\( t=c \\) in \\( ([[t1]], [[t2]]) \\) at which the particle's instantaneous velocity \\( s'(c) \\) equals its AVERAGE velocity over \\( [[[t1]], [[t2]]] \\). Find \\( c \\).",
+ "answer_spec": {"op": "solve", "equation": "2*[[a]]*x + [[b]] = (([[a]]*[[t2]]**2+[[b]]*[[t2]]) - ([[a]]*[[t1]]**2+[[b]]*[[t1]]))/([[t2]]-[[t1]])", "var": "x"},
+ "distractors": [
+  "[[t1]]",
+  "[[t2]]",
+  "[[t2]] - [[t1]]",
+  "Rational([[t1]]+[[t2]],2) + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( s \\) is quadratic, \\( s'(t)=2[[a]]t+([[b]]) \\) is linear, so the guaranteed instant is the midpoint of the time interval: \\( c = \\dfrac{[[t1]]+[[t2]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the start of the time interval, not the guaranteed interior instant.",
+  "This is the end of the time interval, not the guaranteed interior instant.",
+  "This reports the elapsed time instead of the midpoint instant.",
+  "This is off by one from the correct midpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_reciprocal_geometric_mean_v3",
+ "skill_id": "mean_value_theorem",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 6},
+  "q": {"type": "int", "lo": 7, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = \\dfrac{1}{x} \\) on \\( [[[p]], [[q]]] \\) (with \\( 0 < [[p]] < [[q]] \\)). The Mean Value Theorem guarantees a value \\( c \\) in \\( ([[p]], [[q]]) \\) with \\( f'(c) = \\dfrac{f([[q]]) - f([[p]])}{[[q]] - [[p]]} \\). Find \\( c \\) (take the positive root).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[p]]*[[q]])"},
+ "distractors": [
+  "Rational([[p]]+[[q]],2)",
+  "[[p]]*[[q]]",
+  "sqrt([[p]]+[[q]])",
+  "Rational([[p]]*[[q]],2)",
+  "sqrt([[p]]*[[q]]) + 1",
+  "sqrt([[p]]*[[q]]) - 1"
+ ],
+ "solution": "\\( f'(x)=-\\dfrac{1}{x^{2}} \\), and the secant slope is \\( \\dfrac{1/[[q]] - 1/[[p]]}{[[q]]-[[p]]} = -\\dfrac{1}{[[p]][[q]]} \\). Setting \\( -\\dfrac{1}{c^{2}} = -\\dfrac{1}{[[p]][[q]]} \\) gives \\( c^{2}=[[p]][[q]] \\), so (taking the positive root in \\( ([[p]],[[q]]) \\)) \\( c=\\sqrt{[[p]][[q]]} = [[answer]] \\), the geometric mean.",
+ "distractor_rationales": [
+  "This is the arithmetic mean, which is the MVT point for a LINEAR or quadratic function, not \\( 1/x \\).",
+  "This is the product \\( pq \\) itself, not its square root.",
+  "This takes the square root of the sum instead of the product.",
+  "This halves the product instead of taking its square root.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_cubic_v4",
+ "skill_id": "mean_value_theorem",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 6},
+  "q": {"type": "int", "lo": 7, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = x^{3} \\) on \\( [[[p]], [[q]]] \\). The Mean Value Theorem guarantees a value \\( c \\) in \\( ([[p]], [[q]]) \\) with \\( f'(c) = \\dfrac{f([[q]]) - f([[p]])}{[[q]] - [[p]]} \\). Find \\( c \\) (take the positive root).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt(([[p]]**2+[[p]]*[[q]]+[[q]]**2)/3)"},
+ "distractors": [
+  "Rational([[p]]+[[q]],2)",
+  "sqrt([[p]]*[[q]])",
+  "sqrt(([[p]]**2+[[q]]**2)/2)",
+  "Rational([[p]]**2+[[p]]*[[q]]+[[q]]**2,3)",
+  "sqrt(([[p]]**2+[[p]]*[[q]]+[[q]]**2)/3) + 1",
+  "sqrt(([[p]]**2+[[p]]*[[q]]+[[q]]**2)/3) - 1"
+ ],
+ "solution": "\\( f'(x)=3x^{2} \\), and the secant slope is \\( \\dfrac{[[q]]^{3}-[[p]]^{3}}{[[q]]-[[p]]} = [[p]]^{2}+[[p]][[q]]+[[q]]^{2} \\). Setting \\( 3c^{2}=[[p]]^{2}+[[p]][[q]]+[[q]]^{2} \\) gives \\( c=\\sqrt{\\dfrac{[[p]]^{2}+[[p]][[q]]+[[q]]^{2}}{3}} = [[answer]] \\) (positive root, since \\( c\\in([[p]],[[q]]) \\)).",
+ "distractor_rationales": [
+  "This is the midpoint formula, which is only the MVT point for a quadratic, not a cubic.",
+  "This is the geometric mean, which is the MVT point for \\( 1/x \\), not \\( x^{3} \\).",
+  "This averages the squares of the endpoints instead of including the cross term \\( pq \\).",
+  "This forgets to take the square root after dividing by 3.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_solve_for_endpoint_v5",
+ "skill_id": "mean_value_theorem",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": -6, "hi": 3},
+  "cval": {"type": "int", "lo": 4, "hi": 10}
+ },
+ "constraints": ["Ne([[a]], 0)", "Gt([[cval]], [[p]])"],
+ "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). On the interval \\( ([[p]], q) \\), the Mean Value Theorem's guaranteed point is \\( c = [[cval]] \\), i.e. \\( f'([[cval]]) = \\dfrac{f(q) - f([[p]])}{q - [[p]]} \\). Find \\( q \\) (given \\( q > [[p]] \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[cval]] - [[p]]"},
+ "distractors": [
+  "[[cval]] - [[p]]",
+  "[[cval]] + [[p]]",
+  "2*[[cval]] + [[p]]",
+  "Rational([[cval]],2) - [[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( f \\) is quadratic, the guaranteed point is always the midpoint: \\( [[cval]] = \\dfrac{[[p]]+q}{2} \\). Solving for \\( q \\) gives \\( q = 2([[cval]]) - ([[p]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes the interval's width instead of solving the midpoint equation for \\( q \\).",
+  "This adds instead of solving \\( c=(p+q)/2 \\) for \\( q \\).",
+  "This drops the minus sign when isolating \\( q \\) from the midpoint equation.",
+  "This halves \\( c \\) before doubling, rather than doubling \\( c \\) first.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

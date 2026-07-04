@@ -1,0 +1,187 @@
+[
+{
+ "template_id": "limits_indeterminate_factor_cancel_v1",
+ "skill_id": "limits_and_indeterminate_forms",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "int", "lo": -6, "hi": 6},
+  "s": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[r]], [[s]])"],
+ "derived": {
+  "b": "-([[r]] + [[s]])",
+  "c": "[[r]]*[[s]]"
+ },
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to [[r]]} \\dfrac{x^{2} + ([[b]])x + [[c]]}{x - [[r]]} \\), a \\( \\frac{0}{0} \\) form.",
+ "answer_spec": {"op": "limit", "expr": "(x**2 + [[b]]*x + [[c]])/(x - [[r]])", "var": "x", "point": "[[r]]"},
+ "distractors": [
+  "[[r]] + [[s]]",
+  "[[s]] - [[r]]",
+  "[[r]]",
+  "[[s]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The numerator factors as \\( (x-[[r]])(x-[[s]]) \\), so for \\( x \\ne [[r]] \\) the quotient equals \\( x - [[s]] \\). Since this cancellation removes the \\( \\frac{0}{0} \\) singularity, the limit equals the value of \\( x - [[s]] \\) at \\( x=[[r]] \\), namely \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two roots instead of taking their difference in the right order.",
+  "This reverses the order of subtraction, giving the negative of the correct value.",
+  "This reports the point being approached rather than evaluating the cancelled quotient there.",
+  "This reports the OTHER root instead of evaluating \\( x-[[s]] \\) at \\( x=[[r]] \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_indeterminate_sinc_v2",
+ "skill_id": "limits_and_indeterminate_forms",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{\\sin([[a]]x)}{[[b]]x} \\), a \\( \\frac{0}{0} \\) form.",
+ "answer_spec": {"op": "limit", "expr": "sin([[a]]*x)/([[b]]*x)", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "-Rational([[a]], [[b]])",
+  "[[a]]*[[b]]",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Using \\( \\lim_{t \\to 0} \\frac{\\sin t}{t} = 1 \\), write \\( \\dfrac{\\sin([[a]]x)}{[[b]]x} = \\dfrac{[[a]]}{[[b]]} \\cdot \\dfrac{\\sin([[a]]x)}{[[a]]x} \\to \\dfrac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio \\( \\frac{a}{b} \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This multiplies \\( a \\) and \\( b \\) instead of dividing.",
+  "This adds \\( a \\) and \\( b \\) instead of dividing them.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_indeterminate_one_minus_cos_v3",
+ "skill_id": "limits_and_indeterminate_forms",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -14, "hi": 14}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{1 - \\cos([[a]]x)}{x^{2}} \\), a \\( \\frac{0}{0} \\) form.",
+ "answer_spec": {"op": "limit", "expr": "(1 - cos([[a]]*x))/x**2", "var": "x", "point": 0},
+ "distractors": [
+  "[[a]]**2",
+  "Rational([[a]], 2)",
+  "2*[[a]]**2",
+  "-Rational([[a]]**2, 2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Applying L'Hopital's rule twice (or the identity \\( 1-\\cos\\theta = 2\\sin^2(\\theta/2) \\)): \\( \\dfrac{1-\\cos([[a]]x)}{x^2} \\to \\dfrac{[[a]]^2}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by 2, using \\( a^2 \\) alone.",
+  "This uses \\( a/2 \\), the coefficient scaling for a first-derivative 0/0 form, not this second-order one.",
+  "This doubles the correct value instead of matching the \\( \\tfrac12 \\) factor.",
+  "This has the wrong sign.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_indeterminate_exponential_v4",
+ "skill_id": "limits_and_indeterminate_forms",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{e^{[[a]]x} - 1}{[[b]]x} \\), a \\( \\frac{0}{0} \\) form.",
+ "answer_spec": {"op": "limit", "expr": "(exp([[a]]*x) - 1)/([[b]]*x)", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "-Rational([[a]], [[b]])",
+  "[[a]]*[[b]]",
+  "[[a]] - [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By L'Hopital's rule (differentiating numerator and denominator), \\( \\dfrac{e^{[[a]]x}-1}{[[b]]x} \\to \\dfrac{[[a]]e^{[[a]]\\cdot 0}}{[[b]]} = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio \\( \\frac{a}{b} \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This multiplies \\( a \\) and \\( b \\) instead of dividing.",
+  "This subtracts \\( b \\) from \\( a \\) instead of dividing.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_indeterminate_radical_conjugate_v5",
+ "skill_id": "limits_and_indeterminate_forms",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": [],
+ "derived": {
+  "c": "[[k]]**2 - [[a]]"
+ },
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to [[c]]} \\dfrac{\\sqrt{x + [[a]]} - [[k]]}{x - [[c]]} \\), a \\( \\frac{0}{0} \\) form.",
+ "answer_spec": {"op": "limit", "expr": "(sqrt(x + [[a]]) - [[k]])/(x - [[c]])", "var": "x", "point": "[[c]]"},
+ "distractors": [
+  "Rational(1, [[k]])",
+  "2*[[k]]",
+  "Rational([[k]], 2)",
+  "-Rational(1, 2*[[k]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Multiply numerator and denominator by the conjugate \\( \\sqrt{x+[[a]]} + [[k]] \\): \\( \\dfrac{\\sqrt{x+[[a]]} - [[k]]}{x-[[c]]} = \\dfrac{x - [[c]]}{(x-[[c]])\\left(\\sqrt{x+[[a]]}+[[k]]\\right)} = \\dfrac{1}{\\sqrt{x+[[a]]}+[[k]]} \\to \\dfrac{1}{2\\cdot[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 in the denominator \\( 2[[k]] \\).",
+  "This inverts the correct value.",
+  "This halves \\( [[k]] \\) instead of forming \\( 2[[k]] \\) in the denominator.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_indeterminate_repeated_lhopital_v6",
+ "skill_id": "limits_and_indeterminate_forms",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -14, "hi": 14}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{[[a]]x - \\sin([[a]]x)}{x^{3}} \\), a \\( \\frac{0}{0} \\) form that requires L'Hopital's rule more than once.",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x - sin([[a]]*x))/x**3", "var": "x", "point": 0},
+ "distractors": [
+  "[[a]]**3",
+  "Rational([[a]]**3, 3)",
+  "-Rational([[a]]**3, 6)",
+  "Rational([[a]], 6)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "This \\( \\frac{0}{0} \\) form needs L'Hopital's rule three times (or the Taylor series \\( \\sin\\theta = \\theta - \\theta^3/6 + \\cdots \\)): \\( [[a]]x - \\sin([[a]]x) \\approx \\dfrac{([[a]]x)^3}{6} \\), so the limit is \\( \\dfrac{[[a]]^3}{6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by 6, using \\( a^3 \\) alone.",
+  "This divides by 3 instead of 6.",
+  "This has the wrong sign as well as an extra factor.",
+  "This uses \\( a/6 \\) instead of \\( a^3/6 \\), mismatching the power.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

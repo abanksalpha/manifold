@@ -1,0 +1,122 @@
+[
+{
+ "template_id": "deciding_injective_surjective_bijective_injective_count_v1",
+ "skill_id": "deciding_injective_surjective_bijective",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "int", "lo": 3, "hi": 12}
+ },
+ "constraints": ["Lt([[k]], [[n]])"],
+ "stem": "Let \\( A \\) be a set with \\( [[k]] \\) elements and \\( B \\) be a set with \\( [[n]] \\) elements. How many injective (one-to-one) functions are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/factorial([[n]]-[[k]])"},
+ "distractors": [
+  "[[n]]**[[k]]",
+  "factorial([[n]])/(factorial([[k]])*factorial([[n]]-[[k]]))",
+  "factorial([[k]])",
+  "factorial([[n]])/factorial([[n]]-[[k]]-1)",
+  "[[k]]**[[n]]",
+  "[[answer]]/factorial([[k]])"
+ ],
+ "solution": "An injective function sends each of the \\( [[k]] \\) elements of \\( A \\) to a DISTINCT element of \\( B \\), so there are \\( [[n]] \\) choices for the first, \\( [[n]]-1 \\) for the second, and so on down to \\( [[n]]-[[k]]+1 \\) choices for the last: \\( \\dfrac{[[n]]!}{([[n]]-[[k]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count of ALL functions \\( A \\to B \\), without requiring injectivity.",
+  "This divides by \\( [[k]]! \\), which would be correct for counting subsets of size \\( [[k]] \\) of \\( B \\), not for counting injective FUNCTIONS (order of assignment matters).",
+  "This only counts ways to permute the elements of \\( A \\) among themselves and ignores \\( B \\).",
+  "This uses one fewer factor in the denominator than the correct falling-factorial formula.",
+  "This swaps which set's size is the base and which is the exponent.",
+  "This divides the correct count by an unrelated factor of \\( [[k]]! \\)."
+ ]
+},
+{
+ "template_id": "deciding_injective_surjective_bijective_bijection_count_v1",
+ "skill_id": "deciding_injective_surjective_bijective",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "Let \\( A \\) and \\( B \\) each be sets with \\( [[n]] \\) elements. How many bijections (one-to-one correspondences) are there from \\( A \\) to \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+ "distractors": [
+  "[[n]]**[[n]]",
+  "2**[[n]]",
+  "factorial([[n]]-1)",
+  "[[n]]*([[n]]-1)",
+  "[[answer]]/[[n]]",
+  "[[answer]]+[[n]]"
+ ],
+ "solution": "A bijection between two \\( [[n]] \\)-element sets is exactly an arrangement (permutation) of the \\( [[n]] \\) elements of \\( B \\) to match up with the \\( [[n]] \\) elements of \\( A \\): there are \\( [[n]]! = [[answer]] \\) such correspondences.",
+ "distractor_rationales": [
+  "This counts ALL functions \\( A \\to B \\) (not requiring the map to be one-to-one or onto).",
+  "This is the number of subsets of an \\( [[n]] \\)-element set, unrelated to counting bijections.",
+  "This omits the last factor of the permutation count, as if only \\( [[n]]-1 \\) elements needed to be placed.",
+  "This only accounts for placing the first two elements and stops there.",
+  "This divides the correct count by an extra factor of \\( [[n]] \\).",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count."
+ ]
+},
+{
+ "template_id": "deciding_injective_surjective_bijective_surjective_count_v1",
+ "skill_id": "deciding_injective_surjective_bijective",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 4},
+  "n": {"type": "int", "lo": 3, "hi": 8}
+ },
+ "constraints": ["Lt([[m]], [[n]])"],
+ "stem": "How many surjective (onto) functions are there from a set of \\( [[n]] \\) elements to a set of \\( [[m]] \\) elements?",
+ "answer_spec": {"op": "sum", "var": "i", "expr": "(-1)**i*binomial([[m]],i)*([[m]]-i)**[[n]]", "lo": 0, "hi": "[[m]]"},
+ "distractors": [
+  "[[m]]**[[n]]",
+  "factorial([[n]])/factorial([[n]]-[[m]])",
+  "factorial([[m]])*binomial([[n]],[[m]])",
+  "[[n]]**[[m]]",
+  "[[answer]]+[[n]]",
+  "[[answer]]-[[m]]"
+ ],
+ "solution": "By inclusion-exclusion on the \\( [[m]] \\) codomain elements that could be MISSED, the number of onto functions is \\( \\sum_{i=0}^{[[m]]} (-1)^i \\binom{[[m]]}{i} ([[m]]-i)^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count of ALL functions from the \\( [[n]] \\)-element set to the \\( [[m]] \\)-element set, without requiring every codomain element to be hit.",
+  "This applies the injective-function (falling factorial) formula, which needs the codomain to be at least as large as the domain here, and does not count onto-ness.",
+  "This confuses choosing a partition of the domain with a direct multiplication by \\( \\binom{[[n]]}{[[m]]} \\), which double counts and undercounts different ways.",
+  "This swaps which set's size is the base and which is the exponent.",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count.",
+  "This subtracts an unrelated adjustment of \\( [[m]] \\) from the correct count."
+ ]
+},
+{
+ "template_id": "deciding_injective_surjective_bijective_complement_non_injective_v1",
+ "skill_id": "deciding_injective_surjective_bijective",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 6},
+  "extra": {"type": "int", "lo": 0, "hi": 4}
+ },
+ "derived": {"m": "[[n]]+[[extra]]"},
+ "constraints": [],
+ "stem": "How many functions from a set of \\( [[n]] \\) elements to a set of \\( [[m]] \\) elements FAIL to be injective (one-to-one)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]**[[n]] - factorial([[m]])/factorial([[m]]-[[n]])"},
+ "distractors": [
+  "[[m]]**[[n]]",
+  "factorial([[m]])/factorial([[m]]-[[n]])",
+  "[[n]]**[[m]] - factorial([[m]])/factorial([[m]]-[[n]])",
+  "[[m]]**[[n]] - factorial([[n]])",
+  "[[answer]]+[[n]]",
+  "[[answer]]-[[m]]"
+ ],
+ "solution": "There are \\( [[m]]^{[[n]]} \\) functions from the \\( [[n]] \\)-element set to the \\( [[m]] \\)-element set in total, and \\( \\dfrac{[[m]]!}{([[m]]-[[n]])!} \\) of them are injective. The number that are NOT injective is the complement: \\( [[m]]^{[[n]]} - \\dfrac{[[m]]!}{([[m]]-[[n]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract off the injective functions and just gives the total count.",
+  "This IS the count of injective functions, the complement of what was asked.",
+  "This swaps which set's size is the base and which is the exponent in the total-function count.",
+  "This subtracts the count of permutations of the domain instead of the true injective-function count.",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count.",
+  "This subtracts an unrelated adjustment of \\( [[m]] \\) from the correct count."
+ ]
+}
+]

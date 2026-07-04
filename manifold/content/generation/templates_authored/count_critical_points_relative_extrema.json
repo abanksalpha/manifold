@@ -1,0 +1,168 @@
+[
+{
+ "template_id": "count_v1_single_linear_factor",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "r1": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( f \\) be differentiable on all of \\( \\mathbb{R} \\), with \\( f'(x) = [[a]](x-[[r1]]) \\) for every \\( x \\). How many relative extrema does \\( f \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": ["0", "2", "3", "4"],
+ "solution": "\\( f' \\) is linear with a single simple real zero at \\( x=[[r1]] \\), and it changes sign there, so \\( f \\) has exactly one relative extremum.",
+ "distractor_rationales": [
+  "This assumes a critical point never produces an extremum, but a simple zero of \\( f' \\) always changes sign.",
+  "This overcounts, as if \\( f' \\) had two zeros instead of one.",
+  "This overcounts, as if \\( f' \\) had three zeros instead of one.",
+  "This overcounts, as if \\( f' \\) had four zeros instead of one."
+ ]
+},
+{
+ "template_id": "count_v2_two_distinct_linear_factors",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "r1": {"type": "int", "lo": -8, "hi": 8},
+  "gap": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"r2": "[[r1]] + [[gap]]"},
+ "stem": "Let \\( f \\) be differentiable on all of \\( \\mathbb{R} \\), with \\( f'(x) = [[a]](x-[[r1]])(x-[[r2]]) \\) for every \\( x \\). How many relative extrema does \\( f \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["1", "3", "4", "0"],
+ "solution": "\\( f' \\) is quadratic with two distinct simple real zeros, \\( x=[[r1]] \\) and \\( x=[[r2]] \\), and it changes sign at each, so \\( f \\) has exactly two relative extrema.",
+ "distractor_rationales": [
+  "This counts only one of the two sign changes of \\( f' \\).",
+  "This overcounts, as if \\( f' \\) had a third zero.",
+  "This confuses the count with the degree of \\( f \\) (which is 3), not the number of extrema.",
+  "This assumes none of the critical points are genuine extrema, but both simple zeros of \\( f' \\) change sign."
+ ]
+},
+{
+ "template_id": "count_v3_three_distinct_linear_factors",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -8, "hi": 8},
+  "g2": {"type": "choice", "values": [1, 2, 3]},
+  "g3": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"r2": "[[r1]] + [[g2]]", "r3": "[[r1]] + [[g2]] + [[g3]]"},
+ "stem": "Let \\( f \\) be differentiable on all of \\( \\mathbb{R} \\), with \\( f'(x) = [[a]](x-[[r1]])(x-[[r2]])(x-[[r3]]) \\) for every \\( x \\). How many relative extrema does \\( f \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "3"},
+ "distractors": ["2", "4", "1", "5"],
+ "solution": "\\( f' \\) is cubic with three distinct simple real zeros, \\( x=[[r1]], [[r2]], [[r3]] \\), and it changes sign at each one, so \\( f \\) has exactly three relative extrema.",
+ "distractor_rationales": [
+  "This misses one of the three sign changes of \\( f' \\).",
+  "This confuses the count with the degree of \\( f \\) (which is 4), not the number of extrema.",
+  "This wrongly assumes only the middle zero produces a genuine extremum.",
+  "This overcounts, as if \\( f' \\) had a fourth zero."
+ ]
+},
+{
+ "template_id": "count_v4_four_distinct_linear_factors",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -8, "hi": 8},
+  "g2": {"type": "choice", "values": [1, 2, 3]},
+  "g3": {"type": "choice", "values": [1, 2, 3]},
+  "g4": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {
+  "r2": "[[r1]] + [[g2]]",
+  "r3": "[[r1]] + [[g2]] + [[g3]]",
+  "r4": "[[r1]] + [[g2]] + [[g3]] + [[g4]]"
+ },
+ "stem": "Let \\( f \\) be differentiable on all of \\( \\mathbb{R} \\), with \\( f'(x) = [[a]](x-[[r1]])(x-[[r2]])(x-[[r3]])(x-[[r4]]) \\) for every \\( x \\). How many relative extrema does \\( f \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "4"},
+ "distractors": ["3", "5", "2", "6"],
+ "solution": "\\( f' \\) has four distinct simple real zeros, \\( x=[[r1]], [[r2]], [[r3]], [[r4]] \\), and it changes sign at each one, so \\( f \\) has exactly four relative extrema.",
+ "distractor_rationales": [
+  "This misses one of the four sign changes of \\( f' \\).",
+  "This confuses the count with the degree of \\( f \\) (which is 5), not the number of extrema.",
+  "This drastically undercounts, keeping only half of the sign changes.",
+  "This overcounts, as if \\( f' \\) had a fifth zero."
+ ]
+},
+{
+ "template_id": "count_v5_repeated_root_critical_points",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -8, "hi": 6},
+  "g2": {"type": "choice", "values": [1, 2, 3, 4]},
+  "g3": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"r2": "[[r1]] + [[g2]]", "r3": "[[r1]] + [[g2]] + [[g3]]"},
+ "stem": "Let \\( f \\) be differentiable on all of \\( \\mathbb{R} \\), with \\( f'(x) = [[a]](x-[[r1]])(x-[[r2]])^{2}(x-[[r3]]) \\) for every \\( x \\). How many CRITICAL POINTS does \\( f \\) have (count each distinct real number where \\( f'(x)=0 \\) once)?",
+ "answer_spec": {"op": "evaluate", "expr": "3"},
+ "distractors": ["2", "4", "1", "5"],
+ "solution": "\\( f'(x)=0 \\) exactly when \\( x=[[r1]] \\), \\( x=[[r2]] \\), or \\( x=[[r3]] \\) — three distinct real numbers — regardless of the repeated factor at \\( x=[[r2]] \\), so \\( f \\) has three critical points.",
+ "distractor_rationales": [
+  "This misses \\( x=[[r2]] \\), perhaps because it is a repeated (double) root, but it is still a critical point.",
+  "This double-counts the repeated root \\( x=[[r2]] \\) as if it were two distinct critical points.",
+  "This keeps only one critical point instead of all three distinct real zeros of \\( f' \\).",
+  "This overcounts, as if \\( f' \\) had a fourth distinct real zero."
+ ]
+},
+{
+ "template_id": "count_v6_repeated_root_extrema",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -8, "hi": 6},
+  "g2": {"type": "choice", "values": [1, 2, 3, 4]},
+  "g3": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"r2": "[[r1]] + [[g2]]", "r3": "[[r1]] + [[g2]] + [[g3]]"},
+ "stem": "Let \\( f \\) be differentiable on all of \\( \\mathbb{R} \\), with \\( f'(x) = [[a]](x-[[r1]])(x-[[r2]])^{2}(x-[[r3]]) \\) for every \\( x \\). How many RELATIVE EXTREMA does \\( f \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["3", "4", "1", "0"],
+ "solution": "\\( f' \\) is zero at \\( x=[[r1]], [[r2]], [[r3]] \\), but at the DOUBLE root \\( x=[[r2]] \\) the factor \\( (x-[[r2]])^{2}\\ge 0 \\) never changes sign, so \\( f' \\) does not change sign there and \\( x=[[r2]] \\) is NOT an extremum. Only the simple roots \\( x=[[r1]] \\) and \\( x=[[r3]] \\) are relative extrema, so \\( f \\) has exactly two.",
+ "distractor_rationales": [
+  "This wrongly counts the double root \\( x=[[r2]] \\) as an extremum too, even though \\( f' \\) does not change sign there.",
+  "This confuses the count with the degree of \\( f \\) (which is 4).",
+  "This keeps only one of the two genuine sign-changing extrema.",
+  "This assumes none of the critical points are genuine extrema."
+ ]
+},
+{
+ "template_id": "count_v7_trig_zeros_open_interval",
+ "skill_id": "count_critical_points_relative_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( f \\) be differentiable on the open interval \\( 0 < x < 2\\pi \\), with \\( f'(x) = [[a]]\\sin([[n]]x) \\). How many relative extrema does \\( f \\) have on this interval?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[n]] - 1"},
+ "distractors": ["2*[[n]]", "[[n]]", "2*[[n]] + 1", "[[n]] - 1"],
+ "solution": "On \\( (0,2\\pi) \\), \\( \\sin([[n]]x)=0 \\) exactly at \\( x=\\frac{m\\pi}{[[n]]} \\) for \\( m=1,2,\\dots,2[[n]]-1 \\), giving \\( 2([[n]])-1=[[answer]] \\) simple (sign-changing) zeros, each a relative extremum of \\( f \\).",
+ "distractor_rationales": [
+  "This overcounts by including an endpoint of the open interval, where \\( f' \\) is not actually zero.",
+  "This severely undercounts, counting only \\( [[n]] \\) of the \\( 2[[n]]-1 \\) sign changes.",
+  "This overcounts by including both endpoints as if the interval were closed.",
+  "This is off by two from the correct count."
+ ]
+}
+]

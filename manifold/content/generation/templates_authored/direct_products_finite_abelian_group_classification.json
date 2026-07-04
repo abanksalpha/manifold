@@ -1,0 +1,101 @@
+[
+{
+ "template_id": "direct_products_order_of_group_v1",
+ "skill_id": "direct_products_finite_abelian_group_classification",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "n1": {"type": "int", "lo": 2, "hi": 14},
+  "n2": {"type": "int", "lo": 2, "hi": 14},
+  "n3": {"type": "int", "lo": 2, "hi": 14}
+ },
+ "constraints": [],
+ "stem": "By the Fundamental Theorem of Finite Abelian Groups, every finite abelian group is (isomorphic to) a direct product of cyclic groups. What is the order of the abelian group \\( G = \\mathbb{Z}_{[[n1]]} \\times \\mathbb{Z}_{[[n2]]} \\times \\mathbb{Z}_{[[n3]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n1]] * [[n2]] * [[n3]]"},
+ "distractors": [
+  "[[n1]] + [[n2]] + [[n3]]",
+  "lcm(lcm([[n1]], [[n2]]), [[n3]])",
+  "[[n1]] * [[n2]]",
+  "[[n2]] * [[n3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The order of a direct product of groups is the product of their orders: \\( |G| = [[n1]]\\cdot[[n2]]\\cdot[[n3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the factor sizes instead of multiplying them.",
+  "This computes the LCM of the factor sizes, which gives the maximum element order, not the group's order.",
+  "This omits the third factor \\( \\mathbb{Z}_{[[n3]]} \\) entirely.",
+  "This omits the first factor \\( \\mathbb{Z}_{[[n1]]} \\) entirely.",
+  "This is off by one from the correct order.",
+  "This is off by one from the correct order."
+ ]
+},
+{
+ "template_id": "direct_products_order_of_element_three_factors_v1",
+ "skill_id": "direct_products_finite_abelian_group_classification",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 4, "hi": 15},
+  "n": {"type": "int", "lo": 4, "hi": 15},
+  "k": {"type": "int", "lo": 4, "hi": 15},
+  "a": {"type": "int", "lo": 1, "hi": 14},
+  "b": {"type": "int", "lo": 1, "hi": 14},
+  "c": {"type": "int", "lo": 1, "hi": 14}
+ },
+ "constraints": ["Lt([[a]], [[m]])", "Lt([[b]], [[n]])", "Lt([[c]], [[k]])"],
+ "stem": "Consider the element \\( ([[a]],[[b]],[[c]]) \\) of the direct product \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\times \\mathbb{Z}_{[[k]]} \\). Its order is the least common multiple of the orders of [[a]] in \\( \\mathbb{Z}_{[[m]]} \\), [[b]] in \\( \\mathbb{Z}_{[[n]]} \\), and [[c]] in \\( \\mathbb{Z}_{[[k]]} \\). What is the order of \\( ([[a]],[[b]],[[c]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "lcm(lcm([[m]]/gcd([[m]],[[a]]), [[n]]/gcd([[n]],[[b]])), [[k]]/gcd([[k]],[[c]]))"
+ },
+ "distractors": [
+  "([[m]]/gcd([[m]],[[a]])) * ([[n]]/gcd([[n]],[[b]])) * ([[k]]/gcd([[k]],[[c]]))",
+  "[[m]]/gcd([[m]],[[a]]) + [[n]]/gcd([[n]],[[b]]) + [[k]]/gcd([[k]],[[c]])",
+  "[[m]]*[[n]]*[[k]]",
+  "lcm([[m]]/gcd([[m]],[[a]]), [[n]]/gcd([[n]],[[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The order of [[a]] in \\( \\mathbb{Z}_{[[m]]} \\) is \\( [[m]]/\\gcd([[m]],[[a]]) \\), of [[b]] in \\( \\mathbb{Z}_{[[n]]} \\) is \\( [[n]]/\\gcd([[n]],[[b]]) \\), and of [[c]] in \\( \\mathbb{Z}_{[[k]]} \\) is \\( [[k]]/\\gcd([[k]],[[c]]) \\). The order of the triple is the LCM of these three numbers, which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the three component orders instead of taking their LCM.",
+  "This adds the three component orders instead of taking their LCM.",
+  "This is the order of the WHOLE group, not of this one element.",
+  "This drops the third component's order from the LCM entirely.",
+  "This is off by one from the correct order.",
+  "This is off by one from the correct order."
+ ]
+},
+{
+ "template_id": "direct_products_count_order_dividing_d_v1",
+ "skill_id": "direct_products_finite_abelian_group_classification",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 6, "hi": 60},
+  "n": {"type": "int", "lo": 6, "hi": 60},
+  "d": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "Let \\( G = \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\). How many elements \\( g \\in G \\) satisfy \\( [[d]]\\cdot g = (0,0) \\) (equivalently, whose order divides [[d]])?",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[m]], [[d]]) * gcd([[n]], [[d]])"},
+ "distractors": [
+  "gcd([[m]], [[d]]) + gcd([[n]], [[d]])",
+  "[[m]] * [[n]]",
+  "lcm([[m]], [[d]]) * lcm([[n]], [[d]])",
+  "gcd([[m]], [[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "In \\( \\mathbb{Z}_{[[m]]} \\), the elements \\( x \\) with \\( [[d]]x=0 \\) form a subgroup of size \\( \\gcd([[m]],[[d]]) \\); likewise \\( \\gcd([[n]],[[d]]) \\) in \\( \\mathbb{Z}_{[[n]]} \\). Since \\( G \\) is a direct product, the count of such pairs is the PRODUCT \\( \\gcd([[m]],[[d]])\\cdot\\gcd([[n]],[[d]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two component counts instead of multiplying them (the pairs combine independently, by the multiplication principle).",
+  "This counts the ENTIRE group \\( G \\), ignoring the order-[[d]] restriction.",
+  "This uses the LCM of each modulus with [[d]] instead of the gcd, which is unrelated to the solution count.",
+  "This only relates the two moduli to each other, ignoring [[d]] entirely.",
+  "This is off by one from the correct count.",
+  "This is off by one from the correct count."
+ ]
+}
+]

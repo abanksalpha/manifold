@@ -1,0 +1,4 @@
+{
+ "skill_id": "count_or_characterize_saddle_points",
+ "reason": "Counting/characterizing saddle points requires enumerating all critical points (solving a 2D nonlinear gradient system) and classifying each via the Hessian sign; solver.py has no op that computes this, and the 'solve'/'system' ops require a single/unique solution, so any count would be an author-asserted (not code-computed) number, which the pipeline forbids."
+}

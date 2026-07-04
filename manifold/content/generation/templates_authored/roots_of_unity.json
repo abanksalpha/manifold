@@ -1,0 +1,120 @@
+[
+{
+ "template_id": "roots_of_unity_sum_v1",
+ "skill_id": "roots_of_unity",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "choice", "values": [2, 4, 6, 8, 10, 14, 16, 18, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40]}
+ },
+ "constraints": [],
+ "stem": "What is the sum of all [[n]] of the \\( [[n]] \\)th roots of unity (the [[n]] complex solutions of \\( z^{[[n]]} = 1 \\))?",
+ "answer_spec": {"op": "sum", "expr": "exp(2*pi*I*k/[[n]])", "var": "k", "lo": "0", "hi": "[[n]] - 1"},
+ "distractors": [
+  "1",
+  "[[n]]",
+  "-1",
+  "[[n]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The roots are \\( e^{2\\pi i k/[[n]]} \\) for \\( k=0,\\dots,[[n]]-1 \\), a geometric series with ratio \\( e^{2\\pi i/[[n]]}\\ne 1 \\); by the geometric-series sum formula, \\( \\sum_{k=0}^{[[n]]-1} e^{2\\pi i k/[[n]]} = \\dfrac{e^{2\\pi i}-1}{e^{2\\pi i/[[n]]}-1} = [[answer]] \\) (the roots are symmetric around the origin and cancel out).",
+ "distractor_rationales": [
+  "This is the value of the trivial root \\( z=1 \\) alone, not the sum of all the roots.",
+  "This mistakes the number of roots for their sum.",
+  "This is the product of the roots when \\( n \\) is odd, not their sum.",
+  "This subtracts one from the root count for no valid reason.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "roots_of_unity_product_v1",
+ "skill_id": "roots_of_unity",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 26}
+ },
+ "constraints": [],
+ "stem": "What is the product of all [[n]] of the \\( [[n]] \\)th roots of unity (the [[n]] complex solutions of \\( z^{[[n]]} = 1 \\))?",
+ "answer_spec": {"op": "vieta", "poly": "x**[[n]] - 1", "var": "x", "which": "prod"},
+ "distractors": [
+  "1",
+  "-1",
+  "0",
+  "[[n]]",
+  "[[n]] - 1",
+  "2"
+ ],
+ "solution": "By Vieta's formulas applied to \\( x^{[[n]]}-1=0 \\), the product of the [[n]] roots is \\( (-1)^{[[n]]}\\cdot\\dfrac{-1}{1} = (-1)^{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is correct only when [[n]] is odd; it drops the sign that depends on the parity of [[n]].",
+  "This is correct only when [[n]] is even; it drops the sign that depends on the parity of [[n]].",
+  "This confuses the product of the roots with their sum, which is \\( 0 \\) for \\( n \\ge 2 \\).",
+  "This mistakes the number of roots for their product.",
+  "This subtracts one from the root count for no valid reason.",
+  "The product of roots of unity always has modulus \\( 1 \\), so it can only be \\( \\pm 1 \\), never \\( 2 \\)."
+ ]
+},
+{
+ "template_id": "roots_of_unity_specific_root_v1",
+ "skill_id": "roots_of_unity",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "choice", "values": [3, 4, 5, 6, 8, 9, 10, 12]},
+  "k": {"type": "int", "lo": 0, "hi": 11}
+ },
+ "constraints": ["Lt([[k]], [[n]])"],
+ "require_rational": false,
+ "stem": "The \\( [[n]] \\)th roots of unity are \\( e^{2\\pi i k/[[n]]} \\) for \\( k=0,1,\\dots,[[n]]-1 \\). What is the root with \\( k=[[k]] \\), namely \\( e^{2\\pi i [[k]]/[[n]]} \\), written in rectangular form \\( x+yi \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]])"},
+ "distractors": [
+  "sin(2*pi*[[k]]/[[n]]) + I*cos(2*pi*[[k]]/[[n]])",
+  "cos(2*pi*[[k]]/[[n]]) - I*sin(2*pi*[[k]]/[[n]])",
+  "-(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))",
+  "I*(cos(2*pi*[[k]]/[[n]]) + I*sin(2*pi*[[k]]/[[n]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "With angle \\( \\theta=\\dfrac{2\\pi[[k]]}{[[n]]} \\), the root is \\( \\cos\\theta + i\\sin\\theta = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps sine and cosine; the real part of the root is \\( \\cos\\theta \\).",
+  "This is the conjugate root \\( e^{-2\\pi ik/n} \\); the sign of the imaginary part was flipped.",
+  "This is the diametrically opposite point \\( -e^{2\\pi ik/n} \\) on the unit circle.",
+  "This rotates the correct root by an extra quarter turn (multiplying by \\( i \\)).",
+  "This is off by one in the real part; every root of unity has modulus exactly 1.",
+  "This is off by one in the real part; every root of unity has modulus exactly 1."
+ ]
+},
+{
+ "template_id": "roots_of_unity_count_real_v1",
+ "skill_id": "roots_of_unity",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "How many of the \\( [[n]] \\)th roots of unity (the [[n]] complex solutions of \\( z^{[[n]]} = 1 \\)) are real numbers?",
+ "answer_spec": {"op": "evaluate", "expr": "2 - Mod([[n]], 2)"},
+ "distractors": [
+  "1",
+  "[[n]]",
+  "Rational([[n]], 2)",
+  "[[n]] - 1",
+  "3",
+  "0"
+ ],
+ "solution": "A root of unity \\( e^{i\\theta} \\) is real exactly when \\( \\theta=0 \\) or \\( \\theta=\\pi \\); the second occurs only when [[n]] is even (giving the root \\( -1 \\)). So there are 2 real roots when [[n]] is even and 1 (just \\( z=1 \\)) when [[n]] is odd: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is correct only when [[n]] is odd; it misses the extra real root \\( -1 \\) that appears when [[n]] is even.",
+  "This mistakes the total root count for the count of REAL roots.",
+  "This is not even always an integer, and does not correspond to any correct count of real roots.",
+  "This subtracts one from the total root count for no valid reason.",
+  "There are never more than 2 real roots of unity, since a real number on the unit circle must be \\( \\pm 1 \\).",
+  "This misses the trivial real root \\( z=1 \\), which always exists."
+ ]
+}
+]

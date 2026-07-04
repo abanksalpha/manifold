@@ -1,0 +1,215 @@
+[
+ {
+  "template_id": "power_set_size_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 18
+   }
+  },
+  "constraints": [],
+  "stem": "A set \\( S \\) has [[n]] elements. How many subsets does \\( S \\) have, including the empty set and \\( S \\) itself?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**[[n]]"
+  },
+  "distractors": [
+   "[[n]]**2",
+   "2*[[n]]",
+   "2**[[n]] - 1",
+   "2**[[n]] - 2",
+   "2**([[n]] - 1)",
+   "factorial([[n]])"
+  ],
+  "solution": "Each element is independently either in or out of a subset, giving \\( 2 \\) choices per element, so \\( S \\) has \\( 2^{[[n]]} = [[answer]] \\) subsets.",
+  "distractor_rationales": [
+   "This squares the number of elements instead of raising 2 to that power.",
+   "This doubles the number of elements instead of using an exponent.",
+   "This excludes the empty set, counting only nonempty subsets.",
+   "This excludes both the empty set and \\( S \\) itself (proper nonempty subsets).",
+   "This is the number of subsets of a set with one fewer element.",
+   "This counts the orderings (permutations) of the elements, not the subsets."
+  ]
+ },
+ {
+  "template_id": "subsets_of_exact_size_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 20},
+   "k": {"type": "int", "lo": 1, "hi": 19}
+  },
+  "constraints": ["Le([[k]], [[n]] - 1)"],
+  "stem": "A set \\( S \\) has [[n]] elements. How many subsets of \\( S \\) contain exactly [[k]] elements?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]])"},
+  "distractors": [
+   "factorial([[n]])/factorial([[n]] - [[k]])",
+   "2**[[k]]",
+   "[[n]]*[[k]]",
+   "binomial([[n]] - 1, [[k]] - 1)",
+   "binomial([[n]], [[k]] - 1)",
+   "binomial([[n]], [[k]] + 1)"
+  ],
+  "solution": "Choosing which [[k]] of the [[n]] elements belong to the subset is \\( \\binom{[[n]]}{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts ordered selections (permutations) instead of unordered subsets.",
+   "This is the number of subsets of a set with only \\( k \\) elements, not a selection from \\( n \\).",
+   "This multiplies the set size by the subset size instead of using a combination.",
+   "This shifts both parameters down by one (a Pascal's-rule slip).",
+   "This is off by one in the size parameter.",
+   "This is off by one in the size parameter."
+  ]
+ },
+ {
+  "template_id": "subsets_at_most_size_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 22},
+   "k": {"type": "int", "lo": 1, "hi": 19}
+  },
+  "constraints": ["Le([[k]], [[n]] - 2)"],
+  "stem": "A set \\( S \\) has [[n]] elements. How many subsets of \\( S \\) have at most [[k]] elements (including the empty set)?",
+  "answer_spec": {"op": "sum", "expr": "binomial([[n]], i)", "var": "i", "lo": "0", "hi": "[[k]]"},
+  "distractors": [
+   "binomial([[n]], [[k]])",
+   "2**[[k]]",
+   "2**[[n]] - 1",
+   "binomial([[n]], [[k]] + 1)",
+   "2**[[n]]",
+   "binomial([[n]], [[k]] - 1)"
+  ],
+  "solution": "Sum the number of subsets of each size from \\( 0 \\) to \\( [[k]] \\): \\( \\sum_{i=0}^{[[k]]} \\binom{[[n]]}{i} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts only subsets of size exactly \\( k \\), forgetting to accumulate the smaller sizes.",
+   "This confuses the cumulative count with a power-set-style count using \\( k \\) as the set size.",
+   "This is the total number of nonempty subsets of the whole set, ignoring the size cap.",
+   "This is off by one in the size cap.",
+   "This is the total number of subsets of the whole set, ignoring the size cap entirely.",
+   "This is off by one in the size cap."
+  ]
+ },
+ {
+  "template_id": "proper_nonempty_subsets_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A set \\( S \\) has [[n]] elements. How many subsets of \\( S \\) are neither empty nor equal to \\( S \\) itself (proper, nonempty subsets)?",
+  "answer_spec": {"op": "evaluate", "expr": "2**[[n]] - 2"},
+  "distractors": [
+   "2**[[n]] - 1",
+   "2**[[n]]",
+   "2**([[n]] - 1)",
+   "2**([[n]] - 1) - 2",
+   "2**[[n]] - 3",
+   "2**[[n]] - 4"
+  ],
+  "solution": "Start from all \\( 2^{[[n]]} \\) subsets and remove the two excluded ones (the empty set and \\( S \\) itself): \\( 2^{[[n]]} - 2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This excludes only the empty set, forgetting to also exclude \\( S \\) itself.",
+   "This excludes neither the empty set nor \\( S \\) itself.",
+   "This is the count for a set with one fewer element, not the proper-subset correction.",
+   "This wrongly halves the count before subtracting.",
+   "This subtracts one too many.",
+   "This subtracts two too many."
+  ]
+ },
+ {
+  "template_id": "power_set_of_product_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "Set \\( A \\) has [[m]] elements and set \\( B \\) has [[n]] elements. How many subsets does the Cartesian product \\( A \\times B \\) have, including the empty set?",
+  "answer_spec": {"op": "evaluate", "expr": "2**([[m]]*[[n]])"},
+  "distractors": [
+   "2**([[m]] + [[n]])",
+   "([[m]]*[[n]])**2",
+   "2**[[m]] + 2**[[n]]",
+   "2**([[m]]*[[n]] - 1)",
+   "2**([[m]]*[[n]]) - 1",
+   "factorial([[m]]*[[n]])"
+  ],
+  "solution": "\\( A \\times B \\) has \\( [[m]]\\cdot[[n]] \\) ordered pairs, so its power set has \\( 2^{[[m]]\\cdot[[n]]} = [[answer]] \\) elements.",
+  "distractor_rationales": [
+   "This adds the two set sizes in the exponent instead of multiplying them.",
+   "This squares the product-set size instead of using it as an exponent of 2.",
+   "This adds the two power-set sizes instead of using the product-set size as the exponent.",
+   "This is off by a factor of 2 (one fewer power of 2).",
+   "This excludes the empty set.",
+   "This counts orderings of the pairs rather than subsets."
+  ]
+ },
+ {
+  "template_id": "subsets_containing_fixed_element_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 22}
+  },
+  "constraints": [],
+  "stem": "A set \\( S \\) has [[n]] elements, including a particular element \\( x \\). How many subsets of \\( S \\) contain \\( x \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2**([[n]] - 1)"},
+  "distractors": [
+   "2**[[n]]",
+   "2**([[n]] - 1) - 1",
+   "2**([[n]] - 2)",
+   "2**[[n]] - 2",
+   "2*([[n]] - 1)",
+   "[[n]] - 1"
+  ],
+  "solution": "Element \\( x \\) is fixed to be included; each of the other \\( [[n]]-1 \\) elements is independently in or out, giving \\( 2^{[[n]]-1} = [[answer]] \\) subsets.",
+  "distractor_rationales": [
+   "This is the total number of subsets of \\( S \\), forgetting that \\( x \\) must be included.",
+   "This subtracts one extra, excluding the empty remainder case.",
+   "This treats two elements as fixed instead of just \\( x \\).",
+   "This subtracts 2 from the full power set instead of halving it.",
+   "This doubles the remaining element count instead of using it as an exponent.",
+   "This gives the remaining element count itself, not the number of subsets it produces."
+  ]
+ },
+ {
+  "template_id": "disjoint_subset_pairs_v1",
+  "skill_id": "cardinality_recognition_power_sets_countability",
+  "topic_id": "logic_sets",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A set \\( S \\) has [[n]] elements. How many ordered pairs of subsets \\( (A, B) \\) of \\( S \\) satisfy \\( A \\cap B = \\varnothing \\) (elements of \\( S \\) may lie in \\( A \\) only, in \\( B \\) only, or in neither)?",
+  "answer_spec": {"op": "evaluate", "expr": "3**[[n]]"},
+  "distractors": [
+   "2**[[n]]",
+   "2**(2*[[n]])",
+   "4**[[n]]",
+   "3**[[n]] - 1",
+   "3**([[n]] - 1)",
+   "[[n]]*3"
+  ],
+  "solution": "Each element independently falls into exactly one of 3 categories (A only, B only, or neither), giving \\( 3^{[[n]]} = [[answer]] \\) disjoint pairs.",
+  "distractor_rationales": [
+   "This uses only 2 categories per element instead of 3.",
+   "This double-counts by treating each of \\( A \\) and \\( B \\) as an independent power set (allowing overlap).",
+   "This uses 4 categories per element, as if an element could be in both \\( A \\) and \\( B \\) too.",
+   "This subtracts one as if a case must be excluded.",
+   "This is the count for a set with one fewer element.",
+   "This multiplies instead of exponentiating."
+  ]
+ }
+]

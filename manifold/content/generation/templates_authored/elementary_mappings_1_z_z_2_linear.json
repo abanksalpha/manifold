@@ -1,0 +1,129 @@
+[
+{
+ "template_id": "elementary_mapping_inversion_v1",
+ "skill_id": "elementary_mappings_1_z_z_2_linear",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "d": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Under the mapping \\( w = \\dfrac{1}{z} \\), find the image of the point \\( z = ([[c]]) + ([[d]])i \\). Give \\( w \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "1/(([[c]]) + ([[d]])*I)"},
+ "require_rational": false,
+ "distractors": [
+  "([[c]]) - ([[d]])*I",
+  "(([[c]]) + ([[d]])*I)/(([[c]])**2 + ([[d]])**2)",
+  "1/([[c]]) - I/([[d]])",
+  "-(1/(([[c]]) + ([[d]])*I))",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "\\( \\dfrac{1}{z} = \\dfrac{\\bar z}{|z|^{2}} = \\dfrac{([[c]]) - ([[d]])i}{([[c]])^{2} + ([[d]])^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the conjugate \\( \\bar z \\); inversion also divides by \\( |z|^{2} \\).",
+  "This divides the number itself (not its conjugate) by \\( |z|^{2} \\), leaving the wrong sign on the imaginary part.",
+  "This inverts each component separately, which is not how \\( 1/z \\) works.",
+  "This has the wrong overall sign.",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "elementary_mapping_square_v1",
+ "skill_id": "elementary_mappings_1_z_z_2_linear",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "d": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Under the mapping \\( w = z^{2} \\), find the image of the point \\( z = ([[c]]) + ([[d]])i \\). Give \\( w \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(([[c]]) + ([[d]])*I)**2"},
+ "require_rational": false,
+ "distractors": [
+  "([[c]])**2 + ([[d]])**2",
+  "([[c]])**2 - ([[d]])**2",
+  "(([[c]]) - ([[d]])*I)**2",
+  "-((([[c]]) + ([[d]])*I)**2)",
+  "[[answer]] + 1",
+  "[[answer]] + 2*I"
+ ],
+ "solution": "Expanding, \\( w = z^{2} = (([[c]]) + ([[d]])i)^{2} = ([[c]])^{2} - ([[d]])^{2} + 2([[c]])([[d]])i = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |z|^{2} = c^{2}+d^{2} \\), not \\( z^{2} \\); the cross term and sign are both wrong.",
+  "This gets the real part right but drops the imaginary cross term entirely.",
+  "This squares the conjugate \\( \\bar z \\) instead of \\( z \\), flipping the sign of the imaginary part.",
+  "This negates the correct value (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by two in the imaginary part."
+ ]
+},
+{
+ "template_id": "elementary_mapping_linear_v1",
+ "skill_id": "elementary_mappings_1_z_z_2_linear",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "e": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "f": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Under the linear mapping \\( w = \\left(([[p]]) + ([[q]])i\\right)z + \\left(([[e]]) + ([[f]])i\\right) \\), find the image of the point \\( z = ([[c]]) + ([[d]])i \\). Give \\( w \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "((([[p]]) + ([[q]])*I) * (([[c]]) + ([[d]])*I)) + (([[e]]) + ([[f]])*I)"},
+ "require_rational": false,
+ "distractors": [
+  "((([[p]]) + ([[q]])*I) * (([[c]]) + ([[d]])*I))",
+  "(([[e]]) + ([[f]])*I)",
+  "((([[p]]) + ([[q]])*I) + (([[c]]) + ([[d]])*I)) + (([[e]]) + ([[f]])*I)",
+  "-(((([[p]]) + ([[q]])*I) * (([[c]]) + ([[d]])*I)) + (([[e]]) + ([[f]])*I))",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "Substitute \\( z=([[c]])+([[d]])i \\) into \\( w = \\left(([[p]])+([[q]])i\\right)z + \\left(([[e]])+([[f]])i\\right) \\): first multiply, then add the constant term, giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the linear (multiplicative) part, forgetting to add the constant term.",
+  "This is only the constant term, forgetting to include the multiplicative part.",
+  "This adds the coefficient to \\( z \\) instead of multiplying it by \\( z \\).",
+  "This negates the correct value (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "elementary_mapping_linear_fixed_point_v1",
+ "skill_id": "elementary_mappings_1_z_z_2_linear",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [-3, -2, 2, 3, 4]},
+  "k": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Under the real linear mapping \\( w = [[m]]z + [[k]] \\), a fixed point is a value \\( z \\) with \\( w = z \\). Find the (real) fixed point of this mapping.",
+ "answer_spec": {"op": "solve", "equation": "[[m]]*z + [[k]] = z", "var": "z"},
+ "distractors": [
+  "-[[k]]/([[m]]-1)",
+  "[[k]]/([[m]]+1)",
+  "[[k]]*([[m]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Setting \\( w=z \\): \\( [[m]]z + [[k]] = z \\Rightarrow z([[m]]-1) = -[[k]] \\Rightarrow z = \\dfrac{[[k]]}{1-[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign in the denominator.",
+  "This has the wrong sign in the denominator (added 1 instead of subtracting).",
+  "This multiplies instead of dividing when isolating \\( z \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

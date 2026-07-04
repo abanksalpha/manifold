@@ -1,0 +1,152 @@
+[
+ {
+  "template_id": "polynomial_root_choice_v1",
+  "skill_id": "zero_finding_for_higher_degree_polynomials",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[r1]], [[r2]])", "Ne([[r1]], [[r3]])", "Ne([[r2]], [[r3]])"],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "Which of the following is a root of \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) = 0 \\)?",
+  "answer_spec": {"op": "solve", "equation": "x**3 + [[c2]]*x**2 + [[c1]]*x + [[c0]] = 0", "var": "x"},
+  "distractors": [
+   "[[r1]] + 1",
+   "-[[r1]]",
+   "[[r1]] + [[r2]]",
+   "[[answer]] + 9",
+   "[[answer]] - 9",
+   "[[answer]] + 10",
+   "[[answer]] - 10"
+  ],
+  "solution": "The cubic factors as \\( (x - ([[r1]]))(x - ([[r2]]))(x - ([[r3]])) \\), so its roots are \\( [[r1]], [[r2]], [[r3]] \\). One of these is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is one more than a root; substituting it does not give zero.",
+   "This negates a root; sign matters, and the negated value is not a root here.",
+   "This sums two of the roots, which is not itself a root.",
+   "This value is well outside the range of the roots, so it cannot be a zero.",
+   "This value is well outside the range of the roots, so it cannot be a zero.",
+   "This value is well outside the range of the roots, so it cannot be a zero."
+  ]
+ },
+ {
+  "template_id": "rational_root_theorem_non_monic_v1",
+  "skill_id": "zero_finding_for_higher_degree_polynomials",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3, 4]},
+   "n": {"type": "int", "lo": -8, "hi": 8},
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[n]], 0)", "Ne([[r1]], [[r2]])", "Ne(Mod([[n]], [[m]]), 0)"],
+  "derived": {
+   "c3": "[[m]]",
+   "c2": "-([[m]]*([[r1]] + [[r2]]) + [[n]])",
+   "c1": "[[m]]*[[r1]]*[[r2]] + [[n]]*([[r1]] + [[r2]])",
+   "c0": "-[[n]]*[[r1]]*[[r2]]"
+  },
+  "stem": "Which of the following is a root of \\( ([[c3]])x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) = 0 \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[c3]]*x**3 + [[c2]]*x**2 + [[c1]]*x + [[c0]] = 0", "var": "x"},
+  "distractors": [
+   "[[n]]",
+   "[[n]]/[[m]] + 1",
+   "-[[n]]/[[m]]",
+   "[[r1]] + 1",
+   "[[r2]] + 1",
+   "[[answer]] + 5"
+  ],
+  "solution": "The cubic factors as \\( ([[m]]x - ([[n]]))(x - ([[r1]]))(x - ([[r2]])) \\), so by the Rational Root Theorem its roots are \\( \\dfrac{[[n]]}{[[m]]} \\), \\( [[r1]] \\), and \\( [[r2]] \\). One of these is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the numerator \\( n \\) alone; the actual rational root is \\( n/m \\), not \\( n \\) itself.",
+   "This is off by one from the true rational root \\( n/m \\).",
+   "This has the correct magnitude but the wrong sign for the rational root.",
+   "This is one more than a genuine integer root.",
+   "This is one more than a genuine integer root.",
+   "This value is well outside the range of the roots, so it cannot be a zero."
+  ]
+ },
+ {
+  "template_id": "repeated_root_distinct_zero_sum_v1",
+  "skill_id": "zero_finding_for_higher_degree_polynomials",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "s": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[r]], [[s]])"],
+  "derived": {
+   "c2": "-(2*[[r]] + [[s]])",
+   "c1": "[[r]]**2 + 2*[[r]]*[[s]]",
+   "c0": "-([[r]]**2)*[[s]]"
+  },
+  "stem": "The equation \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) = 0 \\) has a repeated (double) root and one other, different root. What is the SUM of its DISTINCT real zeros (each counted only once)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]] + [[s]]"},
+  "distractors": [
+   "2*[[r]] + [[s]]",
+   "[[r]] + 2*[[s]]",
+   "-(2*[[r]] + [[s]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The cubic factors as \\( (x-([[r]]))^{2}(x-([[s]])) \\), so its zeros are \\( [[r]] \\) (a double root) and \\( [[s]] \\). Counting each distinct zero only once, the sum is \\( [[r]] + [[s]] = [[answer]] \\). (This differs from the full Vieta sum \\( 2([[r]]) + [[s]] \\), which counts the double root twice.)",
+  "distractor_rationales": [
+   "This is the full Vieta sum of the roots WITH multiplicity, counting the double root twice.",
+   "This mistakenly doubles the simple root \\( s \\) instead of the repeated root \\( r \\).",
+   "This has the correct magnitude as the Vieta sum but the wrong sign.",
+   "This is off by one from the correct sum of distinct zeros.",
+   "This is off by one from the correct sum of distinct zeros.",
+   "This is off by two from the correct sum of distinct zeros."
+  ]
+ },
+ {
+  "template_id": "which_is_not_a_root_v1",
+  "skill_id": "zero_finding_for_higher_degree_polynomials",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "m": {"type": "choice", "values": [-9, -8, 7, 8, 9]}
+  },
+  "constraints": [
+   "Ne([[r1]], [[r2]])", "Ne([[r1]], [[r3]])", "Ne([[r2]], [[r3]])",
+   "Ne([[m]], [[r1]])", "Ne([[m]], [[r2]])", "Ne([[m]], [[r3]])"
+  ],
+  "derived": {
+   "c2": "-([[r1]] + [[r2]] + [[r3]])",
+   "c1": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "c0": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "Which of the following is NOT a root of \\( x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) = 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]"},
+  "distractors": [
+   "[[r1]]",
+   "[[r2]]",
+   "[[r3]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The cubic factors as \\( (x-([[r1]]))(x-([[r2]]))(x-([[r3]])) \\), so its only roots are \\( [[r1]], [[r2]], [[r3]] \\). The value \\( [[m]] \\) is none of these, so it is NOT a root.",
+  "distractor_rationales": [
+   "This IS one of the genuine roots of the cubic, so it is a poor choice for 'NOT a root'.",
+   "This IS one of the genuine roots of the cubic, so it is a poor choice for 'NOT a root'.",
+   "This IS one of the genuine roots of the cubic, so it is a poor choice for 'NOT a root'.",
+   "This is a nearby number chosen to look plausible, but it is off by one from the intended non-root value.",
+   "This is a nearby number chosen to look plausible, but it is off by one from the intended non-root value.",
+   "This is a nearby number chosen to look plausible, but it is off by two from the intended non-root value."
+  ]
+ }
+]

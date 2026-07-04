@@ -1,0 +1,100 @@
+[
+{
+ "template_id": "eliminate_parameter_linear_slope_v1",
+ "skill_id": "eliminate_the_parameter_identify_the_cartesian_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -8, "hi": 8},
+  "d": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A curve is given parametrically by \\( x=[[a]]t+[[b]] \\), \\( y=[[c]]t+[[d]] \\). Eliminate the parameter \\( t \\) to write the Cartesian equation as \\( y=mx+k \\). Find \\( m \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[c]],[[a]])"},
+ "distractors": [
+  "Rational([[a]],[[c]])",
+  "Rational([[c]],[[a]]) + [[b]]",
+  "-Rational([[c]],[[a]])",
+  "Rational([[d]],[[b]])",
+  "Rational([[c]],[[a]]) + 1",
+  "Rational([[c]],[[a]]) - 1"
+ ],
+ "solution": "From \\( x=[[a]]t+[[b]] \\), \\( t=\\dfrac{x-[[b]]}{[[a]]} \\). Substituting into \\( y=[[c]]t+[[d]] \\) gives \\( y=\\dfrac{[[c]]}{[[a]]}(x-[[b]])+[[d]]=\\dfrac{[[c]]}{[[a]]}x+\\left([[d]]-\\dfrac{[[c]][[b]]}{[[a]]}\\right) \\), so \\( m=\\dfrac{[[c]]}{[[a]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, using \\( a/c\\) instead of \\( c/a\\).",
+  "This mistakenly adds the intercept term \\( b\\) into the slope.",
+  "This flips the sign of the correct slope.",
+  "This uses the ratio of the constant shifts \\( d/b\\) instead of the ratio of the coefficients of \\( t\\).",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "eliminate_parameter_linear_quadratic_v1",
+ "skill_id": "eliminate_the_parameter_identify_the_cartesian_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "A curve is given parametrically by \\( x=[[a]]t+[[b]] \\), \\( y=[[c]]t^{2}+[[d]] \\). Eliminate the parameter \\( t \\) to express \\( y \\) as a function of \\( x \\), then find \\( y \\) when \\( x=[[x0]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]]*Rational([[x0]]-[[b]],[[a]])**2 + [[d]]"},
+ "distractors": [
+  "[[c]]*Rational([[x0]]-[[b]],[[a]]) + [[d]]",
+  "[[c]]*Rational([[x0]]+[[b]],[[a]])**2 + [[d]]",
+  "[[c]]*Rational([[x0]],[[a]])**2 + [[d]]",
+  "[[c]]*Rational([[x0]]-[[b]],[[a]])**2 - [[d]]",
+  "[[c]]*Rational([[x0]]-[[b]],[[a]])**2 + [[d]] + 1",
+  "[[c]]*Rational([[x0]]-[[b]],[[a]])**2 + [[d]] - 1"
+ ],
+ "solution": "From \\( x=[[a]]t+[[b]] \\), \\( t=\\dfrac{x-[[b]]}{[[a]]} \\). Substituting into \\( y=[[c]]t^{2}+[[d]] \\) gives \\( y=[[c]]\\left(\\dfrac{x-[[b]]}{[[a]]}\\right)^{2}+[[d]] \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to square the substituted expression for \\( t\\).",
+  "This uses the wrong sign when solving \\( x=[[a]]t+[[b]]\\) for \\( t\\).",
+  "This drops the shift \\( b\\) entirely when solving for \\( t\\).",
+  "This subtracts the constant \\( d\\) instead of adding it.",
+  "This is off by one from the correct value of \\( y\\).",
+  "This is off by one (other direction) from the correct value of \\( y\\)."
+ ]
+},
+{
+ "template_id": "eliminate_parameter_trig_ellipse_v1",
+ "skill_id": "eliminate_the_parameter_identify_the_cartesian_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 10},
+  "b": {"type": "int", "lo": 2, "hi": 10},
+  "x0": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Lt(Abs([[x0]]), [[a]])"],
+ "stem": "A curve is given parametrically by \\( x=[[a]]\\cos t \\), \\( y=[[b]]\\sin t \\). Eliminate the parameter \\( t \\) using the Pythagorean identity to find the Cartesian relation between \\( x \\) and \\( y \\), then find \\( y^{2} \\) when \\( x=[[x0]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[b]]**2*(1 - Rational([[x0]],[[a]])**2)"},
+ "distractors": [
+  "[[b]]**2*(1 + Rational([[x0]],[[a]])**2)",
+  "[[a]]**2*(1 - Rational([[x0]],[[b]])**2)",
+  "[[b]]**2 - [[x0]]**2",
+  "[[b]]**2*Rational([[x0]],[[a]])**2",
+  "[[b]]**2*(1 - Rational([[x0]],[[a]])**2) + 1",
+  "[[b]]**2*(1 - Rational([[x0]],[[a]])**2) - 1"
+ ],
+ "solution": "Since \\( \\cos t=\\dfrac{x}{[[a]]} \\) and \\( \\sin t=\\dfrac{y}{[[b]]} \\), the identity \\( \\cos^{2}t+\\sin^{2}t=1 \\) eliminates \\( t \\) to give \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\), i.e. \\( y^{2}=[[b]]^{2}\\left(1-\\dfrac{x^{2}}{[[a]]^{2}}\\right) \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign inside the parentheses, adding the squared ratio instead of subtracting it.",
+  "This swaps the roles of \\( a\\) and \\( b\\) in the eliminated relation.",
+  "This forgets to scale \\( x_0^2\\) by \\( 1/a^2\\) before subtracting it from \\( 1\\).",
+  "This drops the leading \\( 1\\) entirely, keeping only the scaled squared term.",
+  "This is off by one from the correct value of \\( y^{2}\\).",
+  "This is off by one (other direction) from the correct value of \\( y^{2}\\)."
+ ]
+}
+]

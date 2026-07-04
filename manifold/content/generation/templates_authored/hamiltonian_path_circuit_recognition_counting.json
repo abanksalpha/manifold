@@ -1,0 +1,98 @@
+[
+ {
+  "template_id": "hamiltonian_cycles_kn_v1",
+  "skill_id": "hamiltonian_path_circuit_recognition_counting",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 14
+   }
+  },
+  "constraints": [],
+  "stem": "How many distinct Hamiltonian cycles does the complete graph \\( K_{[[n]]} \\) have? (Two cycles are considered the same if they consist of the same set of edges, so rotations and reflections are not counted separately.)",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "factorial([[n]] - 1)/2"
+  },
+  "distractors": [
+   "factorial([[n]] - 1)",
+   "factorial([[n]])/2",
+   "factorial([[n]])",
+   "factorial([[n]] - 2)",
+   "binomial([[n]], 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Fix a starting vertex; the remaining \\( n-1 \\) vertices can be ordered in \\( (n-1)! \\) ways, but each cycle is counted twice (once in each direction), giving \\( \\frac{(n-1)!}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that each cycle is traversed in two directions; divide by 2.",
+   "This fixes no starting vertex, overcounting by a factor of \\( n \\) before halving.",
+   "This counts all \\( n! \\) orderings of the vertices as distinct.",
+   "This uses \\( (n-2)! \\), dropping a factor from the arrangement count.",
+   "This counts the edges of \\( K_n \\), not its Hamiltonian cycles.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "hamiltonian_paths_kn_v2",
+  "skill_id": "hamiltonian_path_circuit_recognition_counting",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "How many distinct Hamiltonian PATHS (paths visiting every vertex exactly once, with two endpoints rather than a closed loop) does the complete graph \\( K_{[[n]]} \\) have? (A path and its reverse traversal are considered the same path.)",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/2"},
+  "distractors": [
+   "factorial([[n]])",
+   "factorial([[n]] - 1)/2",
+   "factorial([[n]] - 1)",
+   "factorial([[n]] - 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A Hamiltonian path is an ordering of all \\( n \\) vertices, and there are \\( n! \\) such orderings; but each path is counted twice, once for each direction of traversal, giving \\( \\frac{n!}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that traversing a path forward and backward gives the same path; divide by 2.",
+   "This is the Hamiltonian CYCLE count formula, which fixes a vertex since a cycle has no endpoints; a path does not work this way.",
+   "This fixes a starting vertex as if for a cycle, but a path has two distinguishable endpoints, not a fixed rotation point.",
+   "This drops an extra factor from the arrangement count.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "directed_hamiltonian_cycles_kn_v3",
+  "skill_id": "hamiltonian_path_circuit_recognition_counting",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 17}
+  },
+  "constraints": [],
+  "stem": "How many distinct DIRECTED Hamiltonian cycles does the complete graph \\( K_{[[n]]} \\) have, if a cycle traversed clockwise is considered DIFFERENT from the same cycle traversed counterclockwise (but rotations to a different starting vertex along the same direction are considered the same cycle)?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)"},
+  "distractors": [
+   "factorial([[n]] - 1)/2",
+   "factorial([[n]])",
+   "factorial([[n]])/2",
+   "factorial([[n]] - 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Fix a starting vertex; the remaining \\( n-1 \\) vertices can be ordered in \\( (n-1)! \\) ways, and now each such ordering gives a DIFFERENT cycle since direction matters (no division by 2). So the count is \\( (n-1)! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by 2 for direction, but here clockwise and counterclockwise are explicitly counted as different.",
+   "This counts all \\( n! \\) orderings of the vertices without fixing a starting vertex to remove rotational duplicates.",
+   "This is the undirected-cycle count, dividing by 2 for direction, which does not apply here.",
+   "This uses \\( (n-2)! \\), dropping a factor from the arrangement count.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

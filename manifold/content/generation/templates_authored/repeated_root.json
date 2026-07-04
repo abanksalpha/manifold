@@ -1,0 +1,147 @@
+[
+ {
+  "template_id": "repeated_root_value_v1",
+  "skill_id": "repeated_root",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -16,
+    "hi": 16
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)"
+  ],
+  "derived": {
+   "b": "-2*[[p]]",
+   "c": "[[p]]**2"
+  },
+  "stem": "The equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has a characteristic equation \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\) with a repeated (double) root. What is that repeated root?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "r**2 + ([[b]])*r + ([[c]]) = 0",
+   "var": "r"
+  },
+  "distractors": [
+   "-[[p]]",
+   "2*[[p]]",
+   "-2*[[p]]",
+   "[[p]]**2",
+   "[[p]] + 1",
+   "[[p]] - 1",
+   "[[p]] + 2"
+  ],
+  "solution": "The characteristic equation is \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\), which factors as \\( (r - [[p]])^{2} = 0 \\) since the discriminant is zero. The repeated root is \\( r = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the root.",
+   "This reports \\( -([[b]]) = 2([[p]]) \\), the sum of the two equal roots.",
+   "This uses the coefficient \\( [[b]] \\) directly as the root.",
+   "This uses the constant term \\( [[c]] = [[p]]^{2} \\) as the root.",
+   "This is one more than the root.",
+   "This is one less than the root.",
+   "This is two more than the root."
+  ]
+ },
+ {
+  "template_id": "repeated_root_find_c_from_b_v2",
+  "skill_id": "repeated_root",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "For what value of \\( c \\) does the equation \\( y'' + ([[b]])y' + c\\,y = 0 \\) have a repeated (double) characteristic root?",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]])**2/4"},
+  "distractors": [
+   "([[b]])**2",
+   "([[b]])/2",
+   "-([[b]])**2/4",
+   "([[b]])**2/2",
+   "[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A repeated root occurs exactly when the discriminant vanishes: \\( ([[b]])^{2} - 4c = 0 \\), so \\( c = \\dfrac{([[b]])^{2}}{4} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 4 in the discriminant condition.",
+   "This reports half of \\( b \\) instead of a quarter of \\( b^{2} \\).",
+   "This has the wrong sign.",
+   "This divides by 2 instead of 4.",
+   "This uses \\( b \\) itself instead of \\( b^{2}/4 \\).",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "repeated_root_ivp_evaluate_v3",
+  "skill_id": "repeated_root",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": -5, "hi": 5},
+   "v0": {"type": "int", "lo": -5, "hi": 5},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[r]], 0)", "Ne([[y0]], 0)"],
+  "derived": {"b": "-2*[[r]]", "c": "[[r]]**2", "c2": "[[v0]] - [[r]]*[[y0]]"},
+  "require_rational": false,
+  "stem": "Solve the initial value problem \\( y'' + ([[b]])y' + ([[c]])y = 0 \\), \\( y(0) = [[y0]] \\), \\( y'(0) = [[v0]] \\) (a repeated-root case), and evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[y0]] + ([[c2]])*[[t0]])*exp([[r]]*[[t0]])"},
+  "distractors": [
+   "([[y0]] + ([[v0]])*[[t0]])*exp([[r]]*[[t0]])",
+   "[[y0]]*exp([[r]]*[[t0]])",
+   "([[c2]])*[[t0]]*exp([[r]]*[[t0]])",
+   "([[y0]] - ([[c2]])*[[t0]])*exp([[r]]*[[t0]])",
+   "([[y0]] + ([[c2]])*[[t0]])*exp(-[[r]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The repeated root [[r]] gives \\( y = (C_1 + C_2 t)e^{[[r]]t} \\). Then \\( C_1 = y(0) = [[y0]] \\) and \\( y'(0) = C_2 + [[r]]C_1 = [[v0]] \\) gives \\( C_2 = [[v0]] - [[r]]\\cdot[[y0]] = [[c2]] \\). Hence \\( y([[t0]]) = \\left([[y0]] + ([[c2]])[[t0]]\\right)e^{[[r]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( v_0 \\) directly as \\( C_2 \\), forgetting to subtract \\( r\\,y_0 \\).",
+   "This drops the second term of the repeated-root solution entirely.",
+   "This drops the first term of the repeated-root solution entirely.",
+   "This flips the sign of the \\( C_2 t \\) term.",
+   "This flips the sign in the exponential, giving decay instead of growth or vice versa.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "repeated_root_second_solution_diff_v4",
+  "skill_id": "repeated_root",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "require_rational": false,
+  "stem": "For a repeated characteristic root \\( r = [[r]] \\), the second linearly independent solution of the ODE is \\( y = t\\,e^{[[r]]t} \\). What is \\( y''([[t0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "x*exp([[r]]*x)", "var": "x", "at": "[[t0]]", "order": 2},
+  "distractors": [
+   "exp([[r]]*[[t0]])",
+   "[[r]]*exp([[r]]*[[t0]])",
+   "(1 + [[r]]*[[t0]])*exp([[r]]*[[t0]])",
+   "[[r]]**2*[[t0]]*exp([[r]]*[[t0]])",
+   "2*[[r]]*exp([[r]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With \\( y = te^{[[r]]t} \\), \\( y' = (1 + [[r]]t)e^{[[r]]t} \\) and \\( y'' = (2[[r]] + [[r]]^{2}t)e^{[[r]]t} \\). At \\( t = [[t0]] \\), \\( y'' = (2[[r]] + [[r]]^{2}\\cdot[[t0]])e^{[[r]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( y \\) itself rather than \\( y'' \\).",
+   "This reports (part of) \\( y' \\) rather than the full second derivative.",
+   "This reports \\( y' \\) rather than \\( y'' \\).",
+   "This omits the \\( 2r \\) term that arises from differentiating the product rule twice.",
+   "This omits the \\( r^{2}t \\) term, keeping only the constant part of \\( y'' \\).",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

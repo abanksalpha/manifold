@@ -1,0 +1,126 @@
+[
+ {
+  "template_id": "alternating_series_error_bound_v1",
+  "skill_id": "alternating_series_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "p": {"type": "choice", "values": [1, 2, 3]},
+   "N": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "The alternating series \\( \\displaystyle\\sum_{k=1}^{\\infty} \\dfrac{(-1)^{k+1}\\,[[c]]}{k^{[[p]]}} \\) is approximated by the partial sum of its first \\( [[N]] \\) terms. By the alternating series estimation theorem, the error is at most the first omitted term. What is that error bound?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[c]],1)/([[N]]+1)**[[p]]"},
+  "distractors": [
+   "Rational([[c]],1)/[[N]]**[[p]]",
+   "Rational([[c]],1)/([[N]]+2)**[[p]]",
+   "Rational([[c]],1)/([[N]]+1)**([[p]]+1)",
+   "2*Rational([[c]],1)/([[N]]+1)**[[p]]",
+   "Rational([[c]],1)/([[N]]+1)**([[p]]-1)",
+   "[[answer]] + 1"
+  ],
+  "solution": "The first omitted term is the \\( ([[N]]+1) \\)th term, so the error bound is \\( \\dfrac{[[c]]}{([[N]]+1)^{[[p]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the \\( [[N]] \\)th term instead of the first omitted \\( ([[N]]+1) \\)th term.",
+   "This uses the \\( ([[N]]+2) \\)th term, skipping one term too far.",
+   "This raises the denominator to the wrong power \\( [[p]]+1 \\).",
+   "This doubles the correct bound.",
+   "This uses the wrong power \\( [[p]]-1 \\) on the denominator.",
+   "This is off by one from the correct bound."
+  ]
+ },
+ {
+  "template_id": "alternating_series_error_bound_factorial_v2",
+  "skill_id": "alternating_series_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "N": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "The alternating series \\( \\displaystyle\\sum_{k=1}^{\\infty} \\dfrac{(-1)^{k+1}\\,[[c]]}{k!} \\) is approximated by the partial sum of its first \\( [[N]] \\) terms. By the alternating series estimation theorem, the error is at most the first omitted term. What is that error bound?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[c]],1)/factorial([[N]]+1)"},
+  "distractors": [
+   "Rational([[c]],1)/factorial([[N]])",
+   "Rational([[c]],1)/factorial([[N]]+2)",
+   "Rational([[c]],1)/([[N]]+1)",
+   "2*Rational([[c]],1)/factorial([[N]]+1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The first omitted term is the \\( ([[N]]+1) \\)th term, so the error bound is \\( \\dfrac{[[c]]}{([[N]]+1)!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the \\( [[N]] \\)th term's factorial instead of the \\( ([[N]]+1) \\)th.",
+   "This uses the \\( ([[N]]+2) \\)th term, skipping one term too far.",
+   "This replaces the factorial \\( ([[N]]+1)! \\) with just \\( [[N]]+1 \\).",
+   "This doubles the correct bound.",
+   "This is off by one from the correct bound.",
+   "This is off by one from the correct bound."
+  ]
+ },
+ {
+  "template_id": "alternating_series_error_bound_geometric_v3",
+  "skill_id": "alternating_series_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "p": {"type": "int", "lo": 1, "hi": 6},
+   "q": {"type": "int", "lo": 2, "hi": 9},
+   "N": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+  "stem": "The alternating series \\( \\displaystyle\\sum_{k=1}^{\\infty} (-1)^{k+1}\\,[[c]]\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{k} \\) has terms decreasing geometrically. It is approximated by the partial sum of its first \\( [[N]] \\) terms. By the alternating series estimation theorem, the error is at most the first omitted term. What is that error bound?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[c]],1)*Rational([[p]],[[q]])**([[N]]+1)"},
+  "distractors": [
+   "Rational([[c]],1)*Rational([[p]],[[q]])**[[N]]",
+   "Rational([[c]],1)*Rational([[p]],[[q]])**([[N]]+2)",
+   "2*Rational([[c]],1)*Rational([[p]],[[q]])**([[N]]+1)",
+   "Rational([[c]],1)*Rational([[q]],[[p]])**([[N]]+1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The first omitted term is the \\( ([[N]]+1) \\)th term, so the error bound is \\( [[c]]\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{[[N]]+1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the \\( [[N]] \\)th term instead of the first omitted \\( ([[N]]+1) \\)th term.",
+   "This uses the \\( ([[N]]+2) \\)th term, skipping one term too far.",
+   "This doubles the correct bound.",
+   "This inverts the common ratio \\( p/q \\).",
+   "This is off by one from the correct bound.",
+   "This is off by one from the correct bound."
+  ]
+ },
+ {
+  "template_id": "alternating_series_error_bound_min_terms_v4",
+  "skill_id": "alternating_series_error_bound",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "N0": {"type": "int", "lo": 1, "hi": 12},
+   "p": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {"K": "([[N0]]+1)**[[p]]"},
+  "stem": "The alternating series \\( \\displaystyle\\sum_{k=1}^{\\infty} \\dfrac{(-1)^{k+1}}{k^{[[p]]}} \\) is approximated by a partial sum of its first \\( n \\) terms. By the alternating series estimation theorem, the error using \\( n \\) terms is at most the \\( (n+1) \\)th term. What is the smallest number of terms \\( n \\) that guarantees an error less than \\( \\dfrac{1}{[[K]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "root([[K]],[[p]]) - 1"},
+  "distractors": [
+   "root([[K]],[[p]])",
+   "root([[K]],[[p]]) + 1",
+   "[[K]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "We need the \\( (n+1) \\)th term to satisfy \\( \\dfrac{1}{(n+1)^{[[p]]}} < \\dfrac{1}{[[K]]} \\), i.e. \\( (n+1)^{[[p]]} \\ge [[K]] \\). Since \\( [[K]] = ([[N0]]+1)^{[[p]]} \\), the smallest such \\( n \\) is \\( n = \\sqrt[[[p]]]{[[K]]} - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract \\( 1 \\), reporting \\( n+1 \\) instead of \\( n \\).",
+   "This is off by one in the other direction.",
+   "This reports the threshold \\( [[K]] \\) itself instead of solving for \\( n \\).",
+   "This is off by one from the correct number of terms.",
+   "This is off by one from the correct number of terms.",
+   "This is off by two from the correct number of terms."
+  ]
+ }
+]

@@ -1,0 +1,93 @@
+[
+{
+ "template_id": "unif_conv_sup_bounded_domain_shrinks_v1",
+ "skill_id": "uniform_convergence",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "M": {"type": "int", "lo": 1, "hi": 9},
+  "n": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( f_n(x) = \\dfrac{[[a]]x}{x+n} \\) for \\( x \\in [0, [[M]]] \\); each \\( f_n \\) is increasing in \\( x \\) on this interval and \\( f_n(x) \\to 0 \\) pointwise as \\( n \\to \\infty \\) for every fixed \\( x \\). Find \\( \\displaystyle\\sup_{x \\in [0,[[M]]]} f_n(x) \\) when \\( n = [[n]] \\) (this sup-norm value is the quantity that must go to \\( 0 \\) for convergence to be uniform on \\( [0,[[M]]] \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[M]]/([[M]] + [[n]])"},
+ "distractors": [
+  "[[a]]",
+  "[[a]]*[[n]]/([[M]]+[[n]])",
+  "[[a]]*[[M]]/[[n]]",
+  "Rational([[M]], [[M]]+[[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( f_n \\) is increasing in \\( x \\) on \\( [0,[[M]]] \\), its supremum is attained at the right endpoint: \\( \\sup_{x\\in[0,[[M]]]} f_n(x) = f_n([[M]]) = \\dfrac{[[a]]\\cdot [[M]]}{[[M]]+[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value of the coefficient \\( a \\) alone, ignoring the endpoint evaluation.",
+  "This swaps the roles of \\( M \\) and \\( n \\) in the endpoint value.",
+  "This omits the \\( +n \\) term in the denominator.",
+  "This drops the coefficient \\( a \\) from the correct endpoint value.",
+  "This is off by one from the correct supremum.",
+  "This is off by one from the correct supremum."
+ ]
+},
+{
+ "template_id": "unif_conv_sup_norm_bounded_sine_v1",
+ "skill_id": "uniform_convergence",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "n": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( f_n(x) = \\dfrac{[[a]]\\sin(nx)}{n} \\) for \\( x \\in \\mathbb{R} \\), so \\( f_n \\to 0 \\) pointwise (in fact for every \\( x \\)) as \\( n \\to \\infty \\). Since \\( \\sin \\) attains every value in \\( [-1,1] \\), find \\( \\displaystyle\\sup_{x \\in \\mathbb{R}} |f_n(x)| \\) when \\( n = [[n]] \\) (this sup-norm value going to \\( 0 \\) is exactly what makes the convergence uniform on all of \\( \\mathbb{R} \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[a]], [[n]])"},
+ "distractors": [
+  "[[a]]",
+  "Rational([[n]], [[a]])",
+  "[[a]]*[[n]]",
+  "Rational([[a]], [[n]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( |\\sin(nx)| \\) attains the value \\( 1 \\), \\( \\sup_{x\\in\\mathbb{R}} |f_n(x)| = \\dfrac{[[a]]}{[[n]]}\\cdot\\sup|\\sin(nx)| = \\dfrac{[[a]]}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the factor \\( 1/n \\) entirely.",
+  "This inverts the correct ratio.",
+  "This multiplies instead of dividing by \\( n \\).",
+  "This uses \\( n+1 \\) in the denominator instead of \\( n \\).",
+  "This is off by one from the correct sup-norm.",
+  "This is off by one from the correct sup-norm."
+ ]
+},
+{
+ "template_id": "unif_conv_fails_sup_does_not_vanish_v1",
+ "skill_id": "uniform_convergence",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Let \\( f_n(x) = [[a]]\\,n\\,x(1-x)^n \\) for \\( x \\in [0,1] \\); for every fixed \\( x \\in [0,1] \\), \\( f_n(x) \\to 0 \\) as \\( n \\to \\infty \\), but \\( f_n \\) is maximized at \\( x = \\dfrac{1}{n+1} \\). Find \\( \\displaystyle\\sup_{x \\in [0,1]} f_n(x) \\) when \\( n = [[n]] \\) (this value does NOT go to \\( 0 \\), which is exactly why the pointwise convergence to \\( 0 \\) here is not uniform).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[n]]**([[n]]+1)/([[n]]+1)**([[n]]+1)"},
+ "distractors": [
+  "[[a]]",
+  "Rational([[a]], [[n]]+1)",
+  "[[a]]*[[n]]",
+  "Rational([[a]]*[[n]], ([[n]]+1)**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Evaluating at the maximizer \\( x^* = \\dfrac{1}{n+1} \\): \\( f_n(x^*) = [[a]]\\cdot n \\cdot \\dfrac{1}{n+1}\\left(\\dfrac{n}{n+1}\\right)^{n} = [[a]]\\cdot\\dfrac{n^{n+1}}{(n+1)^{n+1}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the coefficient \\( a \\), ignoring the maximizing computation entirely.",
+  "This resembles \\( a/(n+1) \\), missing the exponent on both \\( n \\) and \\( n+1 \\).",
+  "This multiplies \\( a \\) by \\( n \\) with no exponents at all.",
+  "This uses the wrong power (squared denominator only) instead of \\( n+1 \\) on both terms.",
+  "This is off by one from the correct supremum.",
+  "This is off by one from the correct supremum."
+ ]
+}
+]

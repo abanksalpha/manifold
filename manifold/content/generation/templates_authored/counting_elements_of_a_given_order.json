@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "counting_elements_of_a_given_order_v1",
+  "skill_id": "counting_elements_of_a_given_order",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "m": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": [],
+  "derived": {"dval": "[[p]]**[[a]]", "nval": "[[p]]**[[a]] * [[m]]"},
+  "stem": "In the cyclic group \\( \\mathbb{Z}_{[[nval]]} \\) (integers modulo [[nval]] under addition), how many elements have order exactly [[dval]]? (Note that [[dval]] divides [[nval]].)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*([[p]] - 1)"},
+  "distractors": [
+   "[[dval]]",
+   "[[dval]] - 1",
+   "[[p]] - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "A cyclic group of order \\( n \\) has exactly \\( \\varphi(d) \\) elements of order \\( d \\) for each divisor \\( d \\mid n \\). Here \\( d = [[dval]] = [[p]]^{[[a]]} \\), so \\( \\varphi(d) = p^{a-1}(p-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the size of the order-\\( [[dval]] \\) subgroup, not the number of elements of order exactly \\( [[dval]] \\).",
+   "This counts the non-identity elements of that subgroup, which overcounts unless \\( [[dval]] \\) is prime.",
+   "This uses \\( p-1 \\) only, dropping the \\( p^{a-1} \\) factor of \\( \\varphi(p^{a}) \\).",
+   "This is off by one from \\( \\varphi([[dval]]) \\).",
+   "This is off by one from \\( \\varphi([[dval]]) \\).",
+   "This is off by two from \\( \\varphi([[dval]]) \\)."
+  ]
+ },
+ {
+  "template_id": "counting_elements_two_prime_power_divisor_v1",
+  "skill_id": "counting_elements_of_a_given_order",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 2},
+   "b": {"type": "int", "lo": 1, "hi": 2},
+   "m": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"dval": "[[p]]**[[a]] * [[q]]**[[b]]", "nval": "[[p]]**[[a]] * [[q]]**[[b]] * [[m]]"},
+  "stem": "In the cyclic group \\( \\mathbb{Z}_{[[nval]]} \\), how many elements have order exactly \\( d = [[dval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\)? (Note that \\( d \\) divides [[nval]].)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*([[p]] - 1) * [[q]]**([[b]] - 1)*([[q]] - 1)"},
+  "distractors": [
+   "([[p]] - 1)*([[q]] - 1)",
+   "[[p]]**([[a]] - 1) * [[q]]**([[b]] - 1)",
+   "[[dval]] - 1",
+   "[[dval]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Euler's totient is multiplicative on coprime factors: \\( \\varphi(d) = \\varphi(p^{a})\\varphi(q^{b}) = p^{a-1}(p-1)\\,q^{b-1}(q-1) = [[answer]] \\). A cyclic group of order \\( n \\) has exactly \\( \\varphi(d) \\) elements of order \\( d \\) for a divisor \\( d \\mid n \\).",
+  "distractor_rationales": [
+   "This drops the prime-power factors \\( p^{a-1} \\) and \\( q^{b-1} \\).",
+   "This keeps only \\( p^{a-1}q^{b-1} \\) and forgets the \\( (p-1)(q-1) \\) factors.",
+   "This counts every non-identity element of the order-\\( d \\) subgroup, which overcounts.",
+   "This reports \\( d \\) itself, not \\( \\varphi(d) \\).",
+   "This is off by one from \\( \\varphi(d) \\).",
+   "This is off by one from \\( \\varphi(d) \\)."
+  ]
+ },
+ {
+  "template_id": "counting_full_cycles_in_sn_v1",
+  "skill_id": "counting_elements_of_a_given_order",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 22}
+  },
+  "constraints": [],
+  "stem": "How many \\( n \\)-cycles are there in the symmetric group \\( S_{[[n]]} \\), i.e., permutations of \\( \\{1, 2, \\dots, [[n]]\\} \\) that cyclically permute all [[n]] symbols in a single cycle? (Every such permutation has order exactly [[n]].)",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)"},
+  "distractors": [
+   "factorial([[n]])",
+   "[[n]]",
+   "factorial([[n]]) / [[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "factorial([[n]] - 1) * [[n]]"
+  ],
+  "solution": "There are \\( n! \\) orderings of \\( n \\) symbols, and each \\( n \\)-cycle can be written starting from any of its \\( n \\) symbols, so the count is \\( \\frac{n!}{n} = (n-1)! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts ALL permutations of \\( S_{[[n]]} \\), not just the full cycles.",
+   "This is the order of each such element, not the number of them.",
+   "This forgets that \\( n! \\) must already be divided by \\( n \\) (double counts the rotation).",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This multiplies back by \\( n \\), undoing the division that fixes the starting point."
+  ]
+ },
+ {
+  "template_id": "counting_transpositions_in_sn_v1",
+  "skill_id": "counting_elements_of_a_given_order",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "How many transpositions (permutations that swap exactly two symbols and fix all others) are there in the symmetric group \\( S_{[[n]]} \\)? (Each transposition has order 2.)",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2)"},
+  "distractors": [
+   "[[n]]",
+   "factorial([[n]])",
+   "[[n]]*([[n]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "A transposition is determined by an unordered pair of symbols to swap, so the count is \\( \\binom{[[n]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( n \\), not the number of pairs of symbols.",
+   "This counts all permutations of \\( S_{[[n]]} \\), not just transpositions.",
+   "This counts ORDERED pairs, double-counting each transposition.",
+   "This is off by one from \\( \\binom{n}{2} \\).",
+   "This is off by one from \\( \\binom{n}{2} \\).",
+   "This doubles the correct count by treating each pair as ordered."
+  ]
+ },
+ {
+  "template_id": "counting_order2_dihedral_v1",
+  "skill_id": "counting_elements_of_a_given_order",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]}
+  },
+  "constraints": [],
+  "derived": {"gorder": "2 * [[n]]"},
+  "stem": "The dihedral group \\( D_{[[n]]} \\) of symmetries of a regular [[n]]-gon has order [[gorder]] ([[n]] rotations and [[n]] reflections), where [[n]] is odd. Since [[n]] is odd, no nontrivial rotation has order 2. How many elements of \\( D_{[[n]]} \\) have order exactly 2?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+  "distractors": [
+   "[[gorder]]",
+   "[[n]] + 1",
+   "[[n]] - 1",
+   "2*[[n]]",
+   "[[gorder]] - 1",
+   "[[n]] + 2"
+  ],
+  "solution": "Every reflection in \\( D_{[[n]]} \\) has order 2, giving [[n]] such elements; since [[n]] is odd, the rotation subgroup (cyclic of order [[n]]) has no element of order 2. So the total is [[answer]].",
+  "distractor_rationales": [
+   "This counts every non-identity element of \\( D_{[[n]]} \\), not just those of order 2.",
+   "This mistakenly adds the identity to the reflection count.",
+   "This undercounts the reflections by one.",
+   "This double counts the reflections.",
+   "This is off by one from the correct count.",
+   "This overcounts the reflections by two."
+  ]
+ }
+]

@@ -1,0 +1,1 @@
+{"skill_id": "decide_whether_a_set_or_space_is_connected", "reason": "Duplicate framing of connectedness as a yes/no verdict; there is no scalar quantity to compute, only a topological classification."}

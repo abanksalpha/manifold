@@ -1,0 +1,175 @@
+[
+{
+ "template_id": "amplitude_v1",
+ "skill_id": "period_amplitude_or_range_of_a_trig_function",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 2,
+   "hi": 9
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "c": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "d": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  }
+ },
+ "constraints": [],
+ "stem": "What is the amplitude of \\( y=[[a]]\\sin([[b]]x+([[c]]))+([[d]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[a]])"
+ },
+ "distractors": [
+  "[[a]] + [[d]]",
+  "[[b]]",
+  "Abs([[a]]) + Abs([[d]])",
+  "2*[[a]]",
+  "Abs([[a]]) + 1",
+  "Abs([[a]]) - 1"
+ ],
+ "solution": "The amplitude of \\( a\\sin(bx+c)+d \\) is \\( |a|=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "period_sin_cos_v1",
+ "skill_id": "period_amplitude_or_range_of_a_trig_function",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "What is the period of \\( y=[[a]]\\cos([[b]]x+([[c]]))+([[d]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi/[[b]]"},
+ "distractors": [
+  "pi/[[b]]",
+  "2*pi*[[b]]",
+  "[[b]]",
+  "2*pi/[[a]]",
+  "4*pi/[[b]]",
+  "pi*[[b]]"
+ ],
+ "solution": "The period of \\( a\\cos(bx+c)+d \\) is \\( \\dfrac{2\\pi}{|b|}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This halves the correct period.",
+  "This inverts \\( b \\) into the numerator instead of the denominator.",
+  "This reports \\( b \\) itself rather than \\( 2\\pi/b \\).",
+  "This uses the amplitude \\( a \\) in place of \\( b \\).",
+  "This doubles the correct period.",
+  "This multiplies instead of dividing by \\( b \\)."
+ ]
+},
+{
+ "template_id": "period_tan_v1",
+ "skill_id": "period_amplitude_or_range_of_a_trig_function",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "What is the period of \\( y=[[a]]\\tan([[b]]x+([[c]])) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "pi/[[b]]"},
+ "distractors": [
+  "2*pi/[[b]]",
+  "pi*[[b]]",
+  "[[b]]",
+  "pi/[[a]]",
+  "pi/(2*[[b]])",
+  "2*pi*[[b]]"
+ ],
+ "solution": "Unlike \\( \\sin \\) and \\( \\cos \\), the tangent function has period \\( \\pi \\) (not \\( 2\\pi \\)), so \\( \\tan(bx+c) \\) has period \\( \\dfrac{\\pi}{|b|} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the \\( \\sin/\\cos \\) period formula \\( 2\\pi/b \\) instead of \\( \\pi/b \\) for tangent.",
+  "This inverts \\( b \\) into the numerator instead of the denominator.",
+  "This reports \\( b \\) itself rather than \\( \\pi/b \\).",
+  "This uses the coefficient \\( a \\) in place of \\( b \\); the period does not depend on \\( a \\).",
+  "This halves the correct period.",
+  "This uses the \\( \\sin/\\cos \\) period formula with an extra factor of \\( b \\)."
+ ]
+},
+{
+ "template_id": "range_sum_of_max_and_min_v1",
+ "skill_id": "period_amplitude_or_range_of_a_trig_function",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "What is the sum of the maximum and minimum values of \\( y=[[a]]\\sin([[b]]x+([[c]]))+([[d]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[d]]"},
+ "distractors": [
+  "[[d]]",
+  "2*[[a]] + [[d]]",
+  "[[a]] + [[d]]",
+  "2*[[d]] + [[a]]",
+  "0",
+  "[[d]] + [[b]]"
+ ],
+ "solution": "The maximum is \\( [[a]]+[[d]] \\) (attained when the wave equals \\( 1 \\)) and the minimum is \\( -[[a]]+[[d]] \\); their sum is \\( ([[a]]+[[d]]) + (-[[a]]+[[d]]) = 2[[d]] = [[answer]] \\) — the amplitude cancels, leaving twice the midline.",
+ "distractor_rationales": [
+  "This reports only the midline shift, not twice it.",
+  "This adds the amplitude on top of twice the midline instead of letting it cancel.",
+  "This adds the amplitude once instead of letting it cancel entirely.",
+  "This leaves an extra amplitude term instead of cancelling it.",
+  "This ignores the vertical shift entirely.",
+  "This confuses the midline shift with the coefficient \\( b \\)."
+ ]
+},
+{
+ "template_id": "solve_for_b_given_period_v1",
+ "skill_id": "period_amplitude_or_range_of_a_trig_function",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "n": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "For what positive value of \\( b \\) does \\( y=[[a]]\\sin(bx) \\) have period \\( \\dfrac{2\\pi}{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+ "distractors": [
+  "1/[[n]]",
+  "2*pi/[[n]]",
+  "[[n]]/2",
+  "2*[[n]]",
+  "[[n]] + 1",
+  "pi*[[n]]"
+ ],
+ "solution": "The period of \\( a\\sin(bx) \\) is \\( \\dfrac{2\\pi}{b} \\). Setting \\( \\dfrac{2\\pi}{b} = \\dfrac{2\\pi}{[[n]]} \\) gives \\( b = [[n]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct value.",
+  "This reports the target period itself instead of solving for \\( b \\).",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This leaves a stray factor of \\( \\pi \\) in the answer."
+ ]
+}
+]

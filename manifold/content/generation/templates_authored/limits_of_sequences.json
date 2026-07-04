@@ -1,0 +1,158 @@
+[
+{
+ "template_id": "limits_of_sequences_rational_equal_degree_v1",
+ "skill_id": "limits_of_sequences",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "A sequence is given by \\( a_n = \\dfrac{[[a]]n^{2} + [[b]]n + [[c]]}{[[d]]n^{2} + [[e]]n} \\). Find \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*n**2 + [[b]]*n + [[c]])/([[d]]*n**2 + [[e]]*n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[b]], [[e]])",
+  "Rational([[d]], [[a]])",
+  "-Rational([[a]], [[d]])",
+  "Rational([[c]], [[e]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Dividing numerator and denominator by \\( n^{2} \\) (the highest power present), every term except the leading ones vanishes, leaving the ratio of leading coefficients \\( \\dfrac{[[a]]}{[[d]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the coefficients of the linear (subleading) terms instead of the leading coefficients.",
+  "This inverts the ratio of leading coefficients.",
+  "This has the correct magnitude but the wrong sign.",
+  "This uses the constant terms instead of the leading coefficients.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_of_sequences_lower_degree_v2",
+ "skill_id": "limits_of_sequences",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9},
+  "f": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "A sequence is given by \\( a_n = \\dfrac{[[a]]n + [[b]]}{[[d]]n^{2} + [[e]]n + [[f]]} \\). Find \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*n + [[b]])/([[d]]*n**2 + [[e]]*n + [[f]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[a]], [[d]])",
+  "Rational([[a]], [[e]])",
+  "Rational([[b]], [[f]])",
+  "[[a]]",
+  "1",
+  "-1"
+ ],
+ "solution": "The denominator grows like \\( n^{2} \\), which outpaces the numerator's growth of order \\( n \\). Dividing through by \\( n^{2} \\) sends every term to \\( 0 \\), so \\( \\displaystyle\\lim_{n\\to\\infty} a_n = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly treats numerator and denominator as having equal degree and takes a leading-coefficient ratio.",
+  "This uses the subleading coefficients as if forming a leading-coefficient ratio.",
+  "This uses the constant terms as if forming a ratio.",
+  "This reports the numerator's leading coefficient itself instead of recognizing the limit is 0.",
+  "This assumes the limit is 1, a common but unjustified default guess.",
+  "This assumes the limit is \u22121, a common but unjustified default guess."
+ ]
+},
+{
+ "template_id": "limits_of_sequences_radical_conjugate_v3",
+ "skill_id": "limits_of_sequences",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A sequence is given by \\( a_n = \\sqrt{n^{2} + [[a]]n + [[b]]} - n \\). Find \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+ "answer_spec": {"op": "limit", "expr": "sqrt(n**2 + [[a]]*n + [[b]]) - n", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[a]]",
+  "0",
+  "Rational([[b]], 2)",
+  "Rational([[a]] + [[b]], 2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Multiply by the conjugate: \\( \\sqrt{n^{2}+[[a]]n+[[b]]} - n = \\dfrac{[[a]]n + [[b]]}{\\sqrt{n^{2}+[[a]]n+[[b]]} + n} \\). Dividing numerator and denominator by \\( n \\) gives \\( \\dfrac{[[a]]}{1+1} = \\dfrac{[[a]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by 2 (the two \\( n \\) terms in the denominator).",
+  "This wrongly assumes the radical cancels \\( n \\) exactly.",
+  "This uses the constant term \\( b \\) instead of the linear coefficient \\( a \\).",
+  "This mixes the linear and constant coefficients.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_of_sequences_constant_plus_vanishing_v4",
+ "skill_id": "limits_of_sequences",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -12, "hi": 12},
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "k": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[p]], 0)"],
+ "stem": "A sequence is given by \\( a_n = [[c]] + \\dfrac{[[p]]}{n^{[[k]]}} \\). Find \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+ "answer_spec": {"op": "limit", "expr": "[[c]] + [[p]]/n**[[k]]", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]] + [[p]]",
+  "[[p]]",
+  "0",
+  "[[c]] - [[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( n \\to \\infty \\), the term \\( \\dfrac{[[p]]}{n^{[[k]]}} \\to 0 \\), so \\( \\displaystyle\\lim_{n\\to\\infty} a_n = [[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly keeps the vanishing term at its \\( n=1 \\) value instead of letting it tend to \\( 0 \\).",
+  "This reports the vanishing term's coefficient instead of the constant \\( c \\) that the sequence actually converges to.",
+  "This wrongly assumes the entire expression (including the constant) vanishes.",
+  "This subtracts the vanishing term's coefficient instead of dropping it.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_of_sequences_n_sin_v5",
+ "skill_id": "limits_of_sequences",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A sequence is given by \\( a_n = n \\sin\\!\\left(\\dfrac{[[a]]}{n}\\right) \\). Find \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+ "answer_spec": {"op": "limit", "expr": "n*sin([[a]]/n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "0",
+  "1",
+  "Rational([[a]], 2)",
+  "[[a]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Let \\( t = [[a]]/n \\to 0 \\) as \\( n \\to \\infty \\). Then \\( a_n = \\dfrac{[[a]]\\sin t}{t} \\to [[a]]\\cdot 1 = [[answer]] \\), using \\( \\lim_{t\\to 0}\\frac{\\sin t}{t}=1 \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the bounded sine factor forces the whole product to \\( 0 \\), ignoring that \\( n \\) grows exactly as fast as \\( \\sin(a/n) \\) shrinks.",
+  "This wrongly assumes the limit is the generic special-limit value \\( 1 \\) itself, forgetting the factor of \\( a \\).",
+  "This halves \\( a \\) instead of matching it exactly.",
+  "This squares \\( a \\) instead of leaving it linear.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

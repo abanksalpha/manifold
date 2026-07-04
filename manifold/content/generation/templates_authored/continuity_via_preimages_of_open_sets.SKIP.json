@@ -1,0 +1,1 @@
+{"skill_id": "continuity_via_preimages_of_open_sets", "reason": "Tests whether the preimage of a given open set is open, a per-set topological verdict decided by geometric/logical reasoning; deciding openness of a preimage is not a SymPy-computable scalar, so it cannot be templated without the author asserting the verdict by hand."}

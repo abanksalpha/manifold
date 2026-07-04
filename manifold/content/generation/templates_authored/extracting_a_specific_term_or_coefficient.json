@@ -1,0 +1,135 @@
+[
+ {
+  "template_id": "binomial_coefficient_of_term_v1",
+  "skill_id": "extracting_a_specific_term_or_coefficient",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "choice", "values": [4, 5]},
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "choice", "values": [2, 3]},
+   "q": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Le([[k]], [[n]] - 1)"],
+  "stem": "In the expansion of \\( ([[p]]x + [[q]])^{[[n]]} \\), what is the coefficient of \\( x^{[[k]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]]) * ([[p]])**[[k]] * ([[q]])**([[n]] - [[k]])"},
+  "distractors": [
+   "binomial([[n]], [[k]])",
+   "binomial([[n]], [[k]]) * ([[p]])**([[n]] - [[k]]) * ([[q]])**[[k]]",
+   "([[p]])**[[k]] * ([[q]])**([[n]] - [[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The term containing \\( x^{k} \\) in \\( (px + q)^{n} \\) is \\( \\binom{n}{k}(px)^{k} q^{n-k} \\), so the coefficient of \\( x^{[[k]]} \\) is \\( \\binom{[[n]]}{[[k]]} ([[p]])^{[[k]]} ([[q]])^{[[n]] - [[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is only \\( \\binom{n}{k} \\); it omits the factors \\( p^{k} \\) and \\( q^{n-k} \\).",
+   "This swaps the exponents on \\( p \\) and \\( q \\).",
+   "This omits the binomial coefficient \\( \\binom{n}{k} \\).",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "mixed_exponent_term_coefficient_v1",
+  "skill_id": "extracting_a_specific_term_or_coefficient",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 8},
+   "j": {"type": "int", "lo": 0, "hi": 8},
+   "c": {"type": "choice", "values": [-3, -2, 2, 3]}
+  },
+  "constraints": ["Le([[j]], [[n]])", "Ge(2*[[n]] - 3*[[j]], -6)", "Le(2*[[n]] - 3*[[j]], 12)"],
+  "derived": {
+   "m": "2*[[n]] - 3*[[j]]"
+  },
+  "stem": "In the expansion of \\( \\left(x^{2} + \\dfrac{[[c]]}{x}\\right)^{[[n]]} \\), what is the coefficient of \\( x^{[[m]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[j]]) * ([[c]])**[[j]]"},
+  "distractors": [
+   "binomial([[n]], [[j]])",
+   "([[c]])**[[j]]",
+   "binomial([[n]], [[j]]) * ([[c]])**([[n]] - [[j]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The general term is \\( \\binom{[[n]]}{j} (x^{2})^{[[n]]-j} \\left(\\dfrac{[[c]]}{x}\\right)^{j} = \\binom{[[n]]}{j} ([[c]])^{j} x^{2[[n]]-3j} \\). Setting \\( 2([[n]]) - 3j = [[m]] \\) gives \\( j = [[j]] \\), so the coefficient is \\( \\binom{[[n]]}{[[j]]} ([[c]])^{[[j]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the factor \\( c^{j} \\) from the term.",
+   "This omits the binomial coefficient \\( \\binom{n}{j} \\).",
+   "This uses the wrong exponent on \\( c \\), swapping \\( j \\) and \\( n-j \\).",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "kth_term_by_position_v1",
+  "skill_id": "extracting_a_specific_term_or_coefficient",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 9},
+   "t": {"type": "int", "lo": 1, "hi": 8},
+   "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Le([[t]], [[n]] + 1)"],
+  "stem": "What is the coefficient of the \\( [[t]] \\)-th term (counting the first term as \\( x^{[[n]]} \\)) in the expansion of \\( (x + [[c]])^{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[t]] - 1) * ([[c]])**([[t]] - 1)"},
+  "distractors": [
+   "binomial([[n]], [[t]]) * ([[c]])**[[t]]",
+   "binomial([[n]], [[t]] - 1)",
+   "([[c]])**([[t]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The \\( [[t]] \\)-th term corresponds to index \\( j = [[t]] - 1 \\) (since the first term has \\( j = 0 \\)). Its coefficient is \\( \\binom{[[n]]}{[[t]]-1} ([[c]])^{[[t]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the off-by-one shift between term NUMBER and binomial index, using \\( j = t \\) instead of \\( j = t-1 \\).",
+   "This omits the factor \\( c^{t-1} \\) from the term.",
+   "This omits the binomial coefficient \\( \\binom{n}{t-1} \\).",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "term_from_the_end_coefficient_v1",
+  "skill_id": "extracting_a_specific_term_or_coefficient",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 9},
+   "s": {"type": "int", "lo": 1, "hi": 8},
+   "p": {"type": "choice", "values": [1, 2, 3]},
+   "q": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Le([[s]], [[n]] + 1)"],
+  "derived": {
+   "j": "[[n]] - [[s]] + 1"
+  },
+  "stem": "What is the coefficient of the \\( [[s]] \\)-th term counted from the END of the expansion of \\( ([[p]]x + [[q]])^{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[j]]) * ([[p]])**[[j]] * ([[q]])**([[n]] - [[j]])"},
+  "distractors": [
+   "binomial([[n]], [[s]] - 1) * ([[p]])**([[s]] - 1) * ([[q]])**([[n]] - [[s]] + 1)",
+   "binomial([[n]], [[j]])",
+   "([[p]])**[[j]] * ([[q]])**([[n]] - [[j]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The last term ( \\( s=1 \\) ) corresponds to index \\( j = n \\), so counting \\( [[s]] \\) terms from the end gives \\( j = [[n]] - [[s]] + 1 = [[j]] \\). That term's coefficient is \\( \\binom{[[n]]}{[[j]]} ([[p]])^{[[j]]} ([[q]])^{[[n]]-[[j]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts from the beginning ( \\( j = s-1 \\) ) instead of from the end.",
+   "This omits the factors \\( p^{j} q^{n-j} \\), leaving only the binomial coefficient.",
+   "This omits the binomial coefficient \\( \\binom{n}{j} \\).",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ }
+]

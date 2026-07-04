@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "reduction_formulas_wallis_type_powers_v1",
+ "skill_id": "reduction_formulas_wallis_type_powers",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 3},
+  "n": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]}
+ },
+ "constraints": [],
+ "stem": "Using the reduction formula for \\( \\int \\sin^{n} x\\,dx \\), evaluate \\( \\int_{0}^{\\pi/2} [[c]]\\sin^{[[n]]} x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)**[[n]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "[[answer]]/3",
+  "3*[[answer]]/2",
+  "2*[[answer]]/3"
+ ],
+ "solution": "The Wallis reduction \\( \\int_{0}^{\\pi/2}\\sin^{n}x\\,dx = \\tfrac{n-1}{n}\\int_{0}^{\\pi/2}\\sin^{n-2}x\\,dx \\) applied down to \\( \\int_{0}^{\\pi/2}\\sin x\\,dx = 1 \\) or \\( \\int_{0}^{\\pi/2}1\\,dx = \\tfrac{\\pi}{2} \\) gives, after multiplying by \\( [[c]] \\), the value \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies the reduction one step too few, doubling the result.",
+  "This applies the reduction one step too many, halving the result.",
+  "This mishandles a factor in the recursion, tripling the result.",
+  "This mishandles a factor in the recursion, scaling by 1/3.",
+  "This uses the wrong \\( \\tfrac{n-1}{n} \\) factor at the last step.",
+  "This uses the wrong \\( \\tfrac{n-1}{n} \\) factor at the last step."
+ ]
+},
+{
+ "template_id": "reduction_formulas_tangent_power_v1",
+ "skill_id": "reduction_formulas_wallis_type_powers",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]}
+ },
+ "constraints": [],
+ "stem": "Using the reduction formula \\( \\int \\tan^{n} x\\,dx = \\dfrac{\\tan^{n-1}x}{n-1} - \\int \\tan^{n-2}x\\,dx \\), evaluate \\( \\int_{0}^{\\pi/4} [[c]]\\tan^{[[n]]} x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*tan(x)**[[n]]", "var": "x", "bounds": ["0", "pi/4"]},
+ "distractors": [
+  "[[c]]*pi/4",
+  "-[[c]]*pi/4",
+  "[[answer]] + [[c]]",
+  "[[answer]] - [[c]]",
+  "2*[[answer]]",
+  "[[answer]]/2"
+ ],
+ "solution": "The telescoping tangent reduction \\( \\int \\tan^{n}x\\,dx = \\tfrac{\\tan^{n-1}x}{n-1} - \\int\\tan^{n-2}x\\,dx \\), applied repeatedly down to \\( \\int_0^{\\pi/4}\\tan x\\,dx = \\tfrac12\\ln 2 \\) or \\( \\int_0^{\\pi/4}1\\,dx = \\tfrac{\\pi}{4} \\), gives \\( [[answer]] \\) after scaling by \\( [[c]] \\) (note the sign alternates at each step, unlike the sine/cosine Wallis recursion).",
+ "distractor_rationales": [
+  "This mistakenly reduces all the way to the base case \\( \\tfrac{\\pi}{4} \\) without keeping the algebraic \\( \\tan^{n-1}/(n-1) \\) terms picked up along the way.",
+  "This makes the same base-case error but with the wrong sign.",
+  "This adds an extra spurious \\( [[c]] \\) from a miscounted recursion step.",
+  "This subtracts an extra spurious \\( [[c]] \\) from a miscounted recursion step.",
+  "This doubles the correct value.",
+  "This halves the correct value."
+ ]
+},
+{
+ "template_id": "reduction_formulas_secant_even_power_v1",
+ "skill_id": "reduction_formulas_wallis_type_powers",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [2, 4, 6, 8]}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( u = \\tan x \\) (so \\( \\sec^{2}x\\,dx = du \\)) to reduce the even secant power, evaluate \\( \\int_{0}^{\\pi/4} [[c]]\\sec^{[[n]]} x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sec(x)**[[n]]", "var": "x", "bounds": ["0", "pi/4"]},
+ "distractors": [
+  "[[c]]",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + [[c]]",
+  "[[answer]] - [[c]]",
+  "3*[[answer]]/2"
+ ],
+ "solution": "Write \\( \\sec^{[[n]]}x = (1+\\tan^{2}x)^{[[n]]/2 - 1}\\sec^{2}x \\) and substitute \\( u=\\tan x \\); the limits become \\( u=0 \\) to \\( u=1 \\), and expanding \\( (1+u^{2})^{[[n]]/2-1} \\) as a polynomial in \\( u \\) and integrating termwise gives, after scaling by \\( [[c]] \\), \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the polynomial expansion entirely and just reports the leading coefficient times \\( [[c]] \\).",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This adds a spurious extra term of \\( [[c]] \\) from a miscounted binomial expansion.",
+  "This subtracts a spurious extra term of \\( [[c]] \\) from a miscounted binomial expansion.",
+  "This scales the correct value by 3/2."
+ ]
+},
+{
+ "template_id": "reduction_formulas_wallis_product_odd_v1",
+ "skill_id": "reduction_formulas_wallis_type_powers",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 4},
+  "m": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]},
+  "n": {"type": "choice", "values": [1, 3, 5, 7]}
+ },
+ "constraints": [],
+ "stem": "Since the cosine power \\( [[n]] \\) here is odd, evaluate \\( \\int_{0}^{\\pi/2} [[c]]\\sin^{[[m]]} x\\cos^{[[n]]} x\\,dx \\) by peeling off one factor of \\( \\cos x \\) and substituting \\( u=\\sin x \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)**[[m]]*cos(x)**[[n]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[c]]/([[m]]+[[n]])",
+  "[[c]]/([[m]]+[[n]]+2)",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + [[c]]",
+  "[[c]]*pi/4"
+ ],
+ "solution": "With \\( u=\\sin x \\), \\( du=\\cos x\\,dx \\), and \\( \\cos^{[[n]]-1}x=(1-u^{2})^{([[n]]-1)/2} \\); the integral becomes \\( [[c]]\\int_{0}^{1}u^{[[m]]}(1-u^{2})^{([[n]]-1)/2}\\,du \\), a polynomial integral in \\( u \\) that evaluates to the rational number \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the naive Beta-function denominator \\( m+n \\) without the correct binomial expansion.",
+  "This uses the naive denominator \\( m+n+2 \\), off by the correct combinatorial factor.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This adds a spurious extra \\( [[c]] \\) from a miscounted expansion.",
+  "This wrongly reuses the pure-Wallis \\( \\pi/4 \\) form, which only applies when both powers are even."
+ ]
+},
+{
+ "template_id": "reduction_formulas_wallis_product_even_v1",
+ "skill_id": "reduction_formulas_wallis_type_powers",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 4},
+  "m": {"type": "choice", "values": [2, 4, 6]},
+  "n": {"type": "choice", "values": [2, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "Since BOTH powers here are even, the quick substitution trick fails; use the full double-angle Wallis reduction to evaluate \\( \\int_{0}^{\\pi/2} [[c]]\\sin^{[[m]]} x\\cos^{[[n]]} x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)**[[m]]*cos(x)**[[n]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[c]]*pi/([[m]]+[[n]])",
+  "[[c]]*pi/([[m]]*[[n]])",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "4*[[answer]]",
+  "[[answer]]/4"
+ ],
+ "solution": "Because both exponents are even, no factor of \\( \\sin x \\) or \\( \\cos x \\) can be peeled off for a clean substitution; repeatedly applying the double-angle Wallis reduction to both powers (or the general product formula involving the Beta function) yields a rational multiple of \\( \\pi \\): \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses a naive denominator \\( m+n \\) for the \\( \\pi \\) coefficient instead of the correct product-formula factors.",
+  "This uses a naive denominator \\( m\\cdot n \\) for the \\( \\pi \\) coefficient instead of the correct product-formula factors.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by a factor of 4 from the correct value.",
+  "This is off by a factor of 1/4 from the correct value."
+ ]
+}
+]

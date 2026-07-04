@@ -1,0 +1,4 @@
+{
+ "skill_id": "classify_the_structure_which_of_these_is_a_field_rin",
+ "reason": "This asks which listed structure is a field/ring/domain (a classification/recognition task over given options), not a single code-computable scalar answer."
+}

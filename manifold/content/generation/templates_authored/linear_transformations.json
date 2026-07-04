@@ -1,0 +1,150 @@
+[
+{
+ "template_id": "evaluate_matrix_transformation_r2_v1",
+ "skill_id": "linear_transformations",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "v1": {"type": "int", "lo": -6, "hi": 6},
+  "v2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[v1]]**2+[[v2]]**2, 0)"],
+ "stem": "The linear transformation \\( T : \\mathbb{R}^2 \\to \\mathbb{R}^2 \\) has standard matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), so \\( T(\\mathbf{x}) = A\\mathbf{x} \\). If \\( \\mathbf{v} = ([[v1]],\\ [[v2]]) \\), what is the FIRST coordinate of \\( T(\\mathbf{v}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[v1]] + [[b]]*[[v2]]"},
+ "distractors": ["[[c]]*[[v1]]+[[d]]*[[v2]]", "[[a]]*[[v2]]+[[b]]*[[v1]]", "[[a]]*[[v1]]-[[b]]*[[v2]]", "[[v1]]+[[v2]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "\\( T(\\mathbf{v}) = A\\mathbf{v} \\); its first coordinate is \\( [[a]]\\cdot[[v1]] + [[b]]\\cdot[[v2]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the SECOND coordinate of \\( T(\\mathbf{v}) \\) (using row 2 of \\(A\\)), not the first.",
+  "This swaps \\( v_1 \\) and \\( v_2 \\) when applying row 1 of \\(A\\).",
+  "This subtracts instead of adds the second term.",
+  "This adds the coordinates of \\( \\mathbf{v} \\) directly, ignoring the matrix \\(A\\) entirely.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "evaluate_matrix_transformation_r3_to_r2_v2",
+ "skill_id": "linear_transformations",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "v1": {"type": "int", "lo": -5, "hi": 5},
+  "v2": {"type": "int", "lo": -5, "hi": 5},
+  "v3": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[v1]]**2+[[v2]]**2+[[v3]]**2, 0)"],
+ "stem": "The linear transformation \\( T : \\mathbb{R}^3 \\to \\mathbb{R}^2 \\) is given by \\( T(\\mathbf{x}) = A\\mathbf{x} \\) with \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\end{bmatrix} \\). If \\( \\mathbf{v} = ([[v1]],\\ [[v2]],\\ [[v3]]) \\), what is the SECOND coordinate of \\( T(\\mathbf{v}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[d]]*[[v1]] + [[e]]*[[v2]] + [[f]]*[[v3]]"},
+ "distractors": ["[[a]]*[[v1]]+[[b]]*[[v2]]+[[c]]*[[v3]]", "[[d]]*[[v3]]+[[e]]*[[v2]]+[[f]]*[[v1]]", "[[d]]*[[v1]]+[[e]]*[[v2]]-[[f]]*[[v3]]", "[[v1]]+[[v2]]+[[v3]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "\\( T(\\mathbf{v}) = A\\mathbf{v} \\); its second coordinate uses row 2 of \\(A\\): \\( [[d]]\\cdot[[v1]] + [[e]]\\cdot[[v2]] + [[f]]\\cdot[[v3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the FIRST coordinate of \\( T(\\mathbf{v}) \\) (using row 1 of \\(A\\)), not the second.",
+  "This reverses which entry of \\( \\mathbf{v} \\) multiplies which entry of row 2.",
+  "This subtracts instead of adds the last term.",
+  "This adds the coordinates of \\( \\mathbf{v} \\) directly, ignoring the matrix \\(A\\) entirely.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "evaluate_transformation_given_by_formula_v3",
+ "skill_id": "linear_transformations",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "y0": {"type": "int", "lo": -5, "hi": 5},
+  "z0": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[x0]]**2+[[y0]]**2+[[z0]]**2, 0)"],
+ "stem": "The linear transformation \\( T : \\mathbb{R}^3 \\to \\mathbb{R} \\) is defined by \\[ T(x,y,z) = [[a]]x + [[b]]y - [[c]]z + [[d]]x - [[e]]z. \\] What is \\( T([[x0]],\\ [[y0]],\\ [[z0]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]] + [[b]]*[[y0]] - [[c]]*[[z0]] + [[d]]*[[x0]] - [[e]]*[[z0]])"},
+ "distractors": ["[[a]]*[[x0]]+[[b]]*[[y0]]+[[c]]*[[z0]]", "[[x0]]+[[y0]]+[[z0]]", "([[a]]+[[d]])*[[x0]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2"],
+ "solution": "Combining like terms, \\( T(x,y,z) = ([[a]]+[[d]])x + [[b]]y - ([[c]]+[[e]])z \\). Substituting \\( (x,y,z)=([[x0]],[[y0]],[[z0]]) \\) gives \\( T = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the \\(z\\) terms instead of keeping them negative.",
+  "This adds the input coordinates directly, ignoring the coefficients of \\(T\\).",
+  "This only keeps the \\(x\\)-terms of \\(T\\), dropping the \\(y\\) and \\(z\\) contributions.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "linearity_from_known_images_v4",
+ "skill_id": "linear_transformations",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p1": {"type": "int", "lo": -6, "hi": 6},
+  "p2": {"type": "int", "lo": -6, "hi": 6},
+  "q1": {"type": "int", "lo": -6, "hi": 6},
+  "q2": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[m]]**2+[[n]]**2, 0)"],
+ "stem": "Let \\( T \\) be a linear transformation with \\( T(\\mathbf{u}) = ([[p1]],\\ [[p2]]) \\) and \\( T(\\mathbf{w}) = ([[q1]],\\ [[q2]]) \\). If \\( \\mathbf{v} = [[m]]\\mathbf{u} + [[n]]\\mathbf{w} \\), what is the FIRST coordinate of \\( T(\\mathbf{v}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[p1]] + [[n]]*[[q1]]"},
+ "distractors": ["[[m]]*[[p2]]+[[n]]*[[q2]]", "[[m]]*[[p1]]-[[n]]*[[q1]]", "[[p1]]+[[q1]]", "[[m]]+[[n]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "By linearity, \\( T(\\mathbf{v}) = T([[m]]\\mathbf{u}+[[n]]\\mathbf{w}) = [[m]]T(\\mathbf{u}) + [[n]]T(\\mathbf{w}) \\). Its first coordinate is \\( [[m]]\\cdot[[p1]] + [[n]]\\cdot[[q1]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the SECOND coordinates of \\( T(\\mathbf{u}) \\) and \\( T(\\mathbf{w}) \\) instead of the first.",
+  "This subtracts instead of adds the second term.",
+  "This adds the given first coordinates directly, ignoring the coefficients \\( m,n \\).",
+  "This adds the coefficients \\(m,n\\) directly, ignoring the images of \\( \\mathbf{u},\\mathbf{w} \\) entirely.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "composition_of_two_transformations_v5",
+ "skill_id": "linear_transformations",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "e": {"type": "int", "lo": -3, "hi": 3},
+  "f": {"type": "int", "lo": -3, "hi": 3},
+  "g": {"type": "int", "lo": -3, "hi": 3},
+  "h": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[v1]]**2+[[v2]]**2, 0)", "Ne([[a]]**2+[[b]]**2+[[c]]**2+[[d]]**2, 0)"],
+ "derived": {
+  "s1": "[[a]]*[[v1]] + [[b]]*[[v2]]",
+  "s2": "[[c]]*[[v1]] + [[d]]*[[v2]]"
+ },
+ "stem": "Let \\( S : \\mathbb{R}^2 \\to \\mathbb{R}^2 \\) have standard matrix \\( \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), and let \\( R : \\mathbb{R}^2 \\to \\mathbb{R}^2 \\) have standard matrix \\( \\begin{bmatrix} [[e]] & [[f]] \\\\ [[g]] & [[h]] \\end{bmatrix} \\). If \\( \\mathbf{v} = ([[v1]],\\ [[v2]]) \\), what is the FIRST coordinate of \\( (R \\circ S)(\\mathbf{v}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[e]]*([[a]]*[[v1]]+[[b]]*[[v2]]) + [[f]]*([[c]]*[[v1]]+[[d]]*[[v2]])"},
+ "distractors": ["[[g]]*[[s1]]+[[h]]*[[s2]]", "[[a]]*[[v1]]+[[b]]*[[v2]]", "[[e]]*[[v1]]+[[f]]*[[v2]]", "[[e]]*[[s2]]+[[f]]*[[s1]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "First compute \\( S(\\mathbf{v}) = ([[s1]],\\ [[s2]]) \\). Then \\( (R\\circ S)(\\mathbf{v}) = R(S(\\mathbf{v})) \\) has first coordinate \\( [[e]]\\cdot[[s1]] + [[f]]\\cdot[[s2]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses row 2 of \\(R\\) instead of row 1, giving the SECOND coordinate of \\((R\\circ S)(\\mathbf{v})\\).",
+  "This applies only \\(S\\) to \\(\\mathbf{v}\\) and forgets to apply \\(R\\) afterward.",
+  "This applies only \\(R\\) directly to \\(\\mathbf{v}\\), skipping \\(S\\) entirely.",
+  "This swaps the two coordinates of \\(S(\\mathbf{v})\\) before applying row 1 of \\(R\\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+}
+]

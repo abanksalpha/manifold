@@ -1,0 +1,149 @@
+[
+{
+ "template_id": "parameter_dependent_solvability_unique_none_infinite_v1",
+ "skill_id": "parameter_dependent_solvability_unique_none_infinite",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "choice", "values": [2, 3, 4]},
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "r2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)", "Eq(Mod([[b]]*[[c]], [[d]]), 0)"],
+ "stem": "Consider the system \\( kx + ([[b]])y = [[r1]] \\) and \\( ([[c]])x + [[d]]y = [[r2]] \\), where \\( k \\) is a real parameter. For which value of \\( k \\) does the system fail to have a unique solution?",
+ "answer_spec": {"op": "solve", "equation": "[[d]]*k - [[b]]*[[c]] = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[c]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The system has a unique solution exactly when its coefficient matrix \\( \\begin{bmatrix} k & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) is invertible, i.e. when \\( [[d]]k - ([[b]])([[c]]) \\ne 0 \\). It fails to be unique when \\( [[d]]k = ([[b]])([[c]]) \\), so \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the product \\( bc \\); one must still divide by \\( [[d]] \\) to solve \\( [[d]]k = bc \\).",
+  "This solves the determinant equation with the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "parameter_dependent_solvability_unique_none_infinite_v2_infinite",
+ "skill_id": "parameter_dependent_solvability_unique_none_infinite",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "r1": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "derived": {
+  "ma": "[[m]]*[[a]]",
+  "r2": "[[m]]*[[r1]]"
+ },
+ "stem": "In the system below, the second equation's constant term and \\(x\\)-coefficient are already [[m]] times the first equation's: \\( [[a]]x + ([[b]])y = [[r1]] \\) and \\( [[ma]]x + ky = [[r2]] \\), where \\(k\\) is a real parameter. For which value of \\(k\\) does the system have infinitely many solutions?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[b]]"},
+ "distractors": [
+  "[[b]]",
+  "-[[answer]]",
+  "[[ma]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The second equation is exactly \\([[m]]\\) times the first precisely when its \\(y\\)-coefficient matches that same ratio: \\(k = [[m]]\\cdot([[b]]) = [[answer]]\\). At \\(k=[[answer]]\\) the second equation is literally [[m]] times the first, so every point on that line solves both equations: infinitely many solutions.",
+ "distractor_rationales": [
+  "This is the first equation's \\(y\\)-coefficient itself, without scaling by [[m]].",
+  "This has the correct magnitude but the wrong sign.",
+  "This is the (already-scaled) \\(x\\)-coefficient of the second equation, not the value needed for the \\(y\\)-coefficient.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "parameter_dependent_solvability_unique_none_infinite_v3_none",
+ "skill_id": "parameter_dependent_solvability_unique_none_infinite",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "r2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[r2]], [[m]]*[[r1]])"],
+ "derived": {
+  "ma": "[[m]]*[[a]]"
+ },
+ "stem": "In the system below, the second equation's \\(x\\)-coefficient is already [[m]] times the first equation's, but its constant term is not: \\( [[a]]x + ([[b]])y = [[r1]] \\) and \\( [[ma]]x + ky = [[r2]] \\), where \\(k\\) is a real parameter. For which value of \\(k\\) does the system have NO solution?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[b]]"},
+ "distractors": [
+  "[[b]]",
+  "-[[answer]]",
+  "[[ma]]",
+  "[[r1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "At \\(k=[[m]]\\cdot([[b]]) = [[answer]]\\), the coefficient rows become proportional (the second equation's left-hand side is [[m]] times the first's), but since \\([[r2]] \\ne [[m]]\\cdot([[r1]])\\) the constant terms are NOT in that same ratio. The two equations describe parallel, non-coincident lines, so the system has no solution at \\(k = [[answer]]\\).",
+ "distractor_rationales": [
+  "This is the first equation's \\(y\\)-coefficient itself, without scaling by [[m]].",
+  "This has the correct magnitude but the wrong sign.",
+  "This is the (already-scaled) \\(x\\)-coefficient of the second equation, not the \\(y\\)-coefficient value that makes the rows proportional.",
+  "This is the first equation's constant term, not the value of \\(k\\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "parameter_dependent_solvability_unique_none_infinite_v4_rhs",
+ "skill_id": "parameter_dependent_solvability_unique_none_infinite",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "r1": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "derived": {
+  "ma": "[[m]]*[[a]]",
+  "mb": "[[m]]*[[b]]"
+ },
+ "stem": "Consider the system \\( [[a]]x + ([[b]])y = [[r1]] \\) and \\( [[ma]]x + ([[mb]])y = k \\), where \\(k\\) is a real parameter (the second equation's left-hand side is exactly [[m]] times the first's). For which value of \\(k\\) does the system have infinitely many solutions?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[r1]]"},
+ "distractors": [
+  "[[r1]]",
+  "-[[answer]]",
+  "[[ma]]",
+  "[[mb]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since the left-hand side of the second equation already equals [[m]] times the first's, the two equations describe the same line exactly when the right-hand sides are in that same ratio: \\(k = [[m]]\\cdot([[r1]]) = [[answer]]\\). At that value the second equation is literally [[m]] times the first, giving infinitely many solutions.",
+ "distractor_rationales": [
+  "This is the first equation's constant term itself, without scaling by [[m]].",
+  "This has the correct magnitude but the wrong sign.",
+  "This is the (already-scaled) \\(x\\)-coefficient of the second equation, not the required right-hand side.",
+  "This is the (already-scaled) \\(y\\)-coefficient of the second equation, not the required right-hand side.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

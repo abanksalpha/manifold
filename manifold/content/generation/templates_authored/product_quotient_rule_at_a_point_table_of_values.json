@@ -1,0 +1,462 @@
+[
+ {
+  "template_id": "product_rule_table_v1",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "fa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "fpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "ga": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "Given \\( f([[a0]])=[[fa]] \\), \\( f'([[a0]])=[[fpa]] \\), \\( g([[a0]])=[[ga]] \\), and \\( g'([[a0]])=[[gpa]] \\), find \\( (fg)'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[fpa]]*[[ga]] + [[fa]]*[[gpa]]"
+  },
+  "distractors": [
+   "[[fpa]]*[[gpa]]",
+   "[[fpa]]*[[ga]] - [[fa]]*[[gpa]]",
+   "[[fa]]*[[ga]] + [[fpa]]*[[gpa]]",
+   "[[fpa]]*[[gpa]] + [[fa]]*[[ga]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Product rule: \\( (fg)'=f'g+fg' = [[fpa]]\\cdot[[ga]] + [[fa]]\\cdot[[gpa]] = [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "quotient_rule_table_v2",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "fa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "fpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "ga": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[ga]], 0)"
+  ],
+  "stem": "Given \\( f([[a0]])=[[fa]] \\), \\( f'([[a0]])=[[fpa]] \\), \\( g([[a0]])=[[ga]] \\), and \\( g'([[a0]])=[[gpa]] \\), find \\( \\left(\\dfrac{f}{g}\\right)'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[fpa]]*[[ga]] - [[fa]]*[[gpa]])/[[ga]]**2"
+  },
+  "distractors": [
+   "([[fpa]]*[[ga]] + [[fa]]*[[gpa]])/[[ga]]**2",
+   "([[fpa]]*[[ga]] - [[fa]]*[[gpa]])/[[ga]]",
+   "([[fa]]*[[gpa]] - [[fpa]]*[[ga]])/[[ga]]**2",
+   "[[fpa]]/[[gpa]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Quotient rule: \\( \\left(\\dfrac{f}{g}\\right)' = \\dfrac{f'g - fg'}{g^{2}} = \\dfrac{[[fpa]]\\cdot[[ga]] - [[fa]]\\cdot[[gpa]]}{[[ga]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\) in the numerator.",
+   "This forgets to square the denominator.",
+   "This has the numerator terms in the wrong order, flipping the sign.",
+   "This divides the two derivatives directly instead of applying the quotient rule.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "product_rule_solve_missing_v3",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "fa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "ga": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "fpa_true": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[ga]], 0)"
+  ],
+  "derived": {
+   "K": "[[fpa_true]]*[[ga]] + [[fa]]*[[gpa]]"
+  },
+  "stem": "Given \\( f([[a0]])=[[fa]] \\), \\( g([[a0]])=[[ga]] \\), \\( g'([[a0]])=[[gpa]] \\), and \\( h(x)=f(x)g(x) \\) with \\( h'([[a0]])=[[K]] \\), find \\( f'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[K]] - [[fa]]*[[gpa]])/[[ga]]"
+  },
+  "distractors": [
+   "([[K]] + [[fa]]*[[gpa]])/[[ga]]",
+   "([[K]] - [[fa]]*[[gpa]])*[[ga]]",
+   "([[K]] - [[fa]]*[[gpa]])/[[gpa]]",
+   "[[K]]/[[ga]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( h'([[a0]])=f'([[a0]])g([[a0]])+f([[a0]])g'([[a0]]) \\), solving gives \\( f'([[a0]]) = \\dfrac{h'([[a0]])-f([[a0]])g'([[a0]])}{g([[a0]])} = \\dfrac{[[K]]-[[fa]]\\cdot[[gpa]]}{[[ga]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( f([[a0]])g'([[a0]]) \\) instead of subtracting it before dividing.",
+   "This multiplies by \\( g([[a0]]) \\) instead of dividing by it.",
+   "This divides by \\( g'([[a0]]) \\) instead of \\( g([[a0]]) \\).",
+   "This ignores the term \\( f([[a0]])g'([[a0]]) \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "quotient_rule_solve_missing_v4",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "fa": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "ga": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "fpa_true": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "K": "([[fpa_true]]*[[ga]] - [[fa]]*[[gpa]])/[[ga]]**2"
+  },
+  "stem": "Given \\( f([[a0]])=[[fa]] \\), \\( g([[a0]])=[[ga]] \\), \\( g'([[a0]])=[[gpa]] \\), and \\( h(x)=\\dfrac{f(x)}{g(x)} \\) with \\( h'([[a0]])=[[K]] \\), find \\( f'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[K]]*[[ga]]**2 + [[fa]]*[[gpa]])/[[ga]]"
+  },
+  "distractors": [
+   "([[K]]*[[ga]]**2 - [[fa]]*[[gpa]])/[[ga]]",
+   "([[K]]*[[ga]] + [[fa]]*[[gpa]])/[[ga]]",
+   "[[K]]*[[ga]]",
+   "[[K]]*[[ga]]**2 + [[fa]]*[[gpa]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( h'([[a0]]) = \\dfrac{f'([[a0]])g([[a0]]) - f([[a0]])g'([[a0]])}{g([[a0]])^{2}} \\), solving gives \\( f'([[a0]]) = \\dfrac{h'([[a0]])g([[a0]])^{2}+f([[a0]])g'([[a0]])}{g([[a0]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts \\( f([[a0]])g'([[a0]]) \\) instead of adding it back in.",
+   "This forgets to square \\( g([[a0]]) \\) when undoing the quotient rule.",
+   "This omits the division by \\( g([[a0]]) \\) at the end.",
+   "This omits the division by \\( g([[a0]]) \\) and never isolates \\( f'([[a0]]) \\) properly.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "triple_product_rule_table_v5",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "fa": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "fpa": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "ga": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "ha": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "hpa": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "Given \\( f([[a0]])=[[fa]] \\), \\( f'([[a0]])=[[fpa]] \\), \\( g([[a0]])=[[ga]] \\), \\( g'([[a0]])=[[gpa]] \\), \\( h([[a0]])=[[ha]] \\), and \\( h'([[a0]])=[[hpa]] \\), let \\( k(x)=f(x)g(x)h(x) \\). Find \\( k'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[fpa]]*[[ga]]*[[ha]] + [[fa]]*[[gpa]]*[[ha]] + [[fa]]*[[ga]]*[[hpa]]"
+  },
+  "distractors": [
+   "[[fpa]]*[[gpa]]*[[hpa]]",
+   "[[fpa]]*[[ga]]*[[ha]] + [[fa]]*[[gpa]]*[[ha]]",
+   "[[fa]]*[[ga]]*[[ha]]",
+   "[[fpa]] + [[gpa]] + [[hpa]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the extended product rule, \\( k'(x)=f'gh+fg'h+fgh' \\), so \\( k'([[a0]]) = [[fpa]]\\cdot[[ga]]\\cdot[[ha]] + [[fa]]\\cdot[[gpa]]\\cdot[[ha]] + [[fa]]\\cdot[[ga]]\\cdot[[hpa]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the three derivatives together instead of using the extended product rule.",
+   "This drops the third term \\( fgh' \\) entirely.",
+   "This reports the product of the three function VALUES, not the derivative.",
+   "This sums the three derivatives instead of applying the product rule.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "product_rule_explicit_f_table_g_v6",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "c": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "ga": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x) = [[a]]x^{2}+[[b]]x+[[c]] \\), and let \\( g \\) be a differentiable function with \\( g([[a0]])=[[ga]] \\) and \\( g'([[a0]])=[[gpa]] \\). If \\( h(x)=f(x)g(x) \\), find \\( h'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "(2*[[a]]*[[a0]]+[[b]])*[[ga]] + ([[a]]*[[a0]]**2+[[b]]*[[a0]]+[[c]])*[[gpa]]"
+  },
+  "distractors": [
+   "([[a]]*[[a0]]**2+[[b]]*[[a0]]+[[c]])*[[ga]]",
+   "(2*[[a]]*[[a0]]+[[b]])*[[gpa]]",
+   "(2*[[a]]*[[a0]]+[[b]])*[[ga]] - ([[a]]*[[a0]]**2+[[b]]*[[a0]]+[[c]])*[[gpa]]",
+   "([[a]]*[[a0]]**2+[[b]]*[[a0]]+[[c]])*[[gpa]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f'(x)=2[[a]]x+[[b]] \\), the product rule gives \\( h'([[a0]]) = f'([[a0]])g([[a0]]) + f([[a0]])g'([[a0]]) = (2[[a]]([[a0]])+[[b]])\\cdot[[ga]] + ([[a]]([[a0]])^{2}+[[b]]([[a0]])+[[c]])\\cdot[[gpa]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the function VALUES \\( f([[a0]])g([[a0]]) \\) instead of applying the product rule.",
+   "This uses only the term \\( f'([[a0]])g'([[a0]]) \\), forgetting the second product-rule term.",
+   "This subtracts the second term as if this were the quotient rule.",
+   "This uses \\( f([[a0]])g'([[a0]]) \\) alone, dropping the \\( f'([[a0]])g([[a0]]) \\) term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "quotient_rule_table_f_explicit_g_v7",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "e": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "fa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "fpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Ne([[d]]*[[a0]]+[[e]], 0)"
+  ],
+  "stem": "Let \\( g(x) = [[d]]x+[[e]] \\), and let \\( f \\) be a differentiable function with \\( f([[a0]])=[[fa]] \\) and \\( f'([[a0]])=[[fpa]] \\). If \\( h(x)=\\dfrac{f(x)}{g(x)} \\), find \\( h'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[fpa]]*([[d]]*[[a0]]+[[e]]) - [[fa]]*[[d]])/([[d]]*[[a0]]+[[e]])**2"
+  },
+  "distractors": [
+   "([[fpa]]*([[d]]*[[a0]]+[[e]]) + [[fa]]*[[d]])/([[d]]*[[a0]]+[[e]])**2",
+   "([[fpa]]*([[d]]*[[a0]]+[[e]]) - [[fa]]*[[d]])/([[d]]*[[a0]]+[[e]])",
+   "([[fa]]*[[d]] - [[fpa]]*([[d]]*[[a0]]+[[e]]))/([[d]]*[[a0]]+[[e]])**2",
+   "[[fpa]]/[[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( g'(x)=[[d]] \\), the quotient rule gives \\( h'([[a0]]) = \\dfrac{f'([[a0]])g([[a0]]) - f([[a0]])g'([[a0]])}{g([[a0]])^{2}} = \\dfrac{[[fpa]]([[d]]([[a0]])+[[e]]) - [[fa]]\\cdot[[d]]}{([[d]]([[a0]])+[[e]])^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\).",
+   "This forgets to square the denominator \\( g([[a0]]) \\).",
+   "This has the numerator terms in the wrong order, flipping the sign.",
+   "This divides the two derivatives directly instead of applying the quotient rule.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "reciprocal_rule_table_v8",
+  "skill_id": "product_quotient_rule_at_a_point_table_of_values",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "ga": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "gpa": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "a0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[ga]], 0)"
+  ],
+  "stem": "Given \\( g([[a0]])=[[ga]] \\) and \\( g'([[a0]])=[[gpa]] \\), let \\( h(x)=\\dfrac{1}{g(x)} \\). Find \\( h'([[a0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-[[gpa]]/[[ga]]**2"
+  },
+  "distractors": [
+   "[[gpa]]/[[ga]]**2",
+   "-[[gpa]]/[[ga]]",
+   "[[gpa]]*[[ga]]**2",
+   "1/([[ga]]*[[gpa]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the reciprocal rule, \\( h'(x) = -\\dfrac{g'(x)}{g(x)^{2}} \\), so \\( h'([[a0]]) = -\\dfrac{[[gpa]]}{[[ga]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from the reciprocal rule.",
+   "This forgets to square the denominator.",
+   "This multiplies instead of dividing, and drops the sign.",
+   "This confuses the reciprocal rule with an unrelated product of the given values.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

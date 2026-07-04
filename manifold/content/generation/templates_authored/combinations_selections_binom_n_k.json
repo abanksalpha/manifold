@@ -1,0 +1,182 @@
+[
+{
+ "template_id": "combinations_binom_v1",
+ "skill_id": "combinations_selections_binom_n_k",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 12},
+  "k": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Lt([[k]], [[n]] - 1)"],
+ "stem": "A committee of [[k]] people is to be chosen from a group of [[n]] people. In how many different ways can the committee be selected?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]])"},
+ "distractors": [
+  "factorial([[n]])/factorial([[n]] - [[k]])",
+  "[[n]]**[[k]]",
+  "binomial([[n]] - 1, [[k]])",
+  "binomial([[n]] + 1, [[k]])",
+  "binomial([[n]], [[k]]) + [[k]]",
+  "binomial([[n]], [[k]]) - [[k]]"
+ ],
+ "solution": "Order does not matter, so the count is \\( \\binom{[[n]]}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the number of ordered arrangements \\( {}_{[[n]]}P_{[[k]]} \\); dividing by \\( [[k]]! \\) is needed because order does not matter.",
+  "This counts sequences with repetition allowed, not distinct committees.",
+  "This uses one fewer person in the pool.",
+  "This uses one extra person in the pool.",
+  "This adjusts the correct count by the committee size for no valid reason."
+ ]
+},
+{
+ "template_id": "combinations_must_include_v1",
+ "skill_id": "combinations_selections_binom_n_k",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 7, "hi": 14},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Lt([[k]], [[n]] - 1)"],
+ "stem": "A committee of [[k]] people is to be chosen from a group of [[n]] people that includes a person named Alex. In how many ways can the committee be selected if Alex MUST be a member of the committee?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - 1, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]], [[k]])",
+  "binomial([[n]] - 1, [[k]])",
+  "factorial([[n]] - 1)/factorial([[n]] - [[k]])",
+  "binomial([[n]], [[k]] - 1)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Alex's seat is already filled, so choose the remaining \\( [[k]]-1 \\) members from the other \\( [[n]]-1 \\) people: \\( \\binom{[[n]]-1}{[[k]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the requirement entirely and counts all committees.",
+  "This forgets to reduce the committee size after fixing Alex's seat.",
+  "This treats the remaining choices as ordered rather than unordered.",
+  "This forgets to remove Alex from the pool of people being chosen from.",
+  "This adjusts the correct count by the committee size for no valid reason.",
+  "This adjusts the correct count by the committee size for no valid reason."
+ ]
+},
+{
+ "template_id": "combinations_must_exclude_v1",
+ "skill_id": "combinations_selections_binom_n_k",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 7, "hi": 14},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Lt([[k]], [[n]] - 1)"],
+ "stem": "A committee of [[k]] people is to be chosen from a group of [[n]] people that includes a person named Sam, who refuses to serve. In how many ways can the committee be selected if Sam must NOT be a member of the committee?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - 1, [[k]])"},
+ "distractors": [
+  "binomial([[n]], [[k]])",
+  "binomial([[n]] - 1, [[k]] - 1)",
+  "binomial([[n]], [[k]]) - binomial([[n]] - 1, [[k]] - 1)",
+  "binomial([[n]] - 2, [[k]])",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Remove Sam from the pool and choose all [[k]] members from the remaining \\( [[n]]-1 \\) people: \\( \\binom{[[n]]-1}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the requirement entirely and counts all committees, including those with Sam.",
+  "This is the count of committees that DO include Sam, the complement of what was asked.",
+  "This is only the count of committees excluding Sam via a subtraction that double-corrects.",
+  "This removes one extra person from the pool beyond just Sam.",
+  "This adjusts the correct count by the committee size for no valid reason.",
+  "This adjusts the correct count by the committee size for no valid reason."
+ ]
+},
+{
+ "template_id": "combinations_two_groups_v1",
+ "skill_id": "combinations_selections_binom_n_k",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 5, "hi": 10},
+  "w": {"type": "int", "lo": 5, "hi": 10},
+  "i": {"type": "int", "lo": 2, "hi": 4},
+  "j": {"type": "int", "lo": 2, "hi": 4}
+ },
+ "constraints": ["Lt([[i]], [[m]])", "Lt([[j]], [[w]])"],
+ "stem": "A committee is to be formed with exactly [[i]] members chosen from a pool of [[m]] available men and exactly [[j]] members chosen from a pool of [[w]] available women. In how many ways can this committee be formed?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[m]], [[i]])*binomial([[w]], [[j]])"},
+ "distractors": [
+  "binomial([[m]] + [[w]], [[i]] + [[j]])",
+  "binomial([[m]], [[i]]) + binomial([[w]], [[j]])",
+  "binomial([[m]], [[j]])*binomial([[w]], [[i]])",
+  "binomial([[m]], [[i]])*binomial([[w]], [[j]]) + [[i]]",
+  "[[answer]] + [[i]]",
+  "[[answer]] - [[j]]"
+ ],
+ "solution": "The two selections are independent, so by the multiplication principle the count is \\( \\binom{[[m]]}{[[i]]}\\binom{[[w]]}{[[j]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This pools the two groups together and chooses the total size, ignoring the separate quotas.",
+  "This adds the two counts instead of multiplying them.",
+  "This swaps which quota applies to which pool.",
+  "This adds an unrelated adjustment to the correct product.",
+  "This adjusts the correct count by [[i]] for no valid reason.",
+  "This adjusts the correct count by [[j]] for no valid reason."
+ ]
+},
+{
+ "template_id": "combinations_committee_with_leader_v1",
+ "skill_id": "combinations_selections_binom_n_k",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 7, "hi": 14},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Lt([[k]], [[n]] - 1)"],
+ "stem": "A committee of [[k]] people is to be chosen from a group of [[n]] people, and then one member of that committee is designated as chairperson. In how many ways can the committee and its chairperson be chosen together?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]])*[[k]]"},
+ "distractors": [
+  "binomial([[n]], [[k]])",
+  "binomial([[n]], [[k]])*factorial([[k]])",
+  "[[n]]*binomial([[n]] - 1, [[k]])",
+  "binomial([[n]], [[k]] - 1)*[[k]]",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Choose the committee in \\( \\binom{[[n]]}{[[k]]} \\) ways, then choose which of its [[k]] members chairs it: \\( \\binom{[[n]]}{[[k]]}\\cdot [[k]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to also designate a chairperson.",
+  "This over-counts by ordering the entire committee instead of just picking one chair.",
+  "This picks a chairperson from the whole pool before forming the committee, which double counts differently sized committees.",
+  "This chooses one fewer committee member before multiplying by the chair count.",
+  "This adjusts the correct count by the committee size for no valid reason.",
+  "This adjusts the correct count by the committee size for no valid reason."
+ ]
+},
+{
+ "template_id": "combinations_polygon_diagonals_v1",
+ "skill_id": "combinations_selections_binom_n_k",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "A convex polygon has [[n]] vertices, no three of which are collinear. How many diagonals does the polygon have? (A diagonal is a segment joining two non-adjacent vertices.)",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2) - [[n]]"},
+ "distractors": [
+  "binomial([[n]], 2)",
+  "binomial([[n]], 2) + [[n]]",
+  "factorial([[n]])/2",
+  "[[n]]*([[n]] - 3)",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "There are \\( \\binom{[[n]]}{2} \\) segments joining pairs of vertices in total; removing the [[n]] sides of the polygon leaves \\( \\binom{[[n]]}{2} - [[n]] = [[answer]] \\) diagonals.",
+ "distractor_rationales": [
+  "This counts every segment between vertices, including the polygon's own sides.",
+  "This adds the sides back in instead of subtracting them.",
+  "This is an unrelated formula that does not match the diagonal count.",
+  "This resembles the correct diagonal formula \\( \\frac{n(n-3)}{2} \\) but omits the division by 2.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[n]]."
+ ]
+}
+]

@@ -1,0 +1,135 @@
+[
+ {
+  "template_id": "char_eq_distinct_roots_v1",
+  "skill_id": "characteristic_equation_with_distinct_real_roots",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {"b": "-([[p]] + [[q]])", "c": "[[p]]*[[q]]"},
+  "stem": "The second-order linear homogeneous equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has characteristic equation \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\), which has two distinct real roots. Which of the following is a root?",
+  "answer_spec": {"op": "solve", "equation": "r**2 + ([[b]])*r + ([[c]]) = 0", "var": "r"},
+  "distractors": [
+   "-[[p]]",
+   "-[[q]]",
+   "[[p]] + [[q]]",
+   "[[p]]*[[q]]",
+   "[[b]]",
+   "[[c]]",
+   "[[p]] + 1",
+   "[[q]] - 1"
+  ],
+  "solution": "Substituting \\( y = e^{rt} \\) gives the characteristic equation \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\), which factors as \\( (r - [[p]])(r - [[q]]) = 0 \\). Its roots are \\( [[p]] \\) and \\( [[q]] \\); one such root is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of a root, a common error when reading \\( (r - [[p]]) = 0 \\).",
+   "This flips the sign of the other root.",
+   "This is the sum of the roots \\( -([[b]]) \\), not a root itself.",
+   "This is the product of the roots \\( [[c]] \\), not a root itself.",
+   "This uses the coefficient \\( [[b]] \\) as if it were a root.",
+   "This uses the coefficient \\( [[c]] \\) as if it were a root.",
+   "This is one more than a root.",
+   "This is one less than a root."
+  ]
+ },
+ {
+  "template_id": "char_eq_sum_of_roots_v2",
+  "skill_id": "characteristic_equation_with_distinct_real_roots",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {"b": "-([[p]] + [[q]])", "c": "[[p]]*[[q]]"},
+  "stem": "The characteristic equation \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\) of \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has two distinct real roots \\( r_1 \\) and \\( r_2 \\). What is \\( r_1 + r_2 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "r**2 + ([[b]])*r + ([[c]])", "var": "r", "which": "sum"},
+  "distractors": [
+   "[[b]]",
+   "[[c]]",
+   "-[[c]]",
+   "[[p]]*[[q]]",
+   "-([[p]]*[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas for \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\), the sum of the roots is \\( r_1 + r_2 = -([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the coefficient \\( [[b]] \\) directly, forgetting the negative sign in Vieta's formula.",
+   "This confuses the sum with the constant term \\( [[c]] \\).",
+   "This confuses the sum with the negative of the product of the roots.",
+   "This is the product of the roots, not their sum.",
+   "This has the wrong sign on the product of the roots.",
+   "This is one more than the correct sum.",
+   "This is one less than the correct sum."
+  ]
+ },
+ {
+  "template_id": "char_eq_product_of_roots_v3",
+  "skill_id": "characteristic_equation_with_distinct_real_roots",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[p]], 0)", "Ne([[q]], 0)"],
+  "derived": {"b": "-([[p]] + [[q]])", "c": "[[p]]*[[q]]"},
+  "stem": "The characteristic equation \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\) of \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has two distinct real roots \\( r_1 \\) and \\( r_2 \\). What is the product \\( r_1 r_2 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "r**2 + ([[b]])*r + ([[c]])", "var": "r", "which": "prod"},
+  "distractors": [
+   "-([[c]])",
+   "[[b]]",
+   "-([[b]])",
+   "[[p]] + [[q]]",
+   "-([[p]] + [[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas for \\( r^{2} + ([[b]])r + ([[c]]) = 0 \\), the product of the roots is \\( r_1 r_2 = [[c]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the constant term.",
+   "This confuses the product with the coefficient \\( [[b]] \\).",
+   "This confuses the product with the negative of the sum of the roots.",
+   "This is the sum of the roots, not their product.",
+   "This has the wrong sign on the sum of the roots.",
+   "This is one more than the correct product.",
+   "This is one less than the correct product."
+  ]
+ },
+ {
+  "template_id": "char_eq_other_root_from_one_v4",
+  "skill_id": "characteristic_equation_with_distinct_real_roots",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne(2*[[k]] + [[b]], 0)"],
+  "stem": "For the equation \\( y'' + ([[b]])y' + cy = 0 \\), one root of the characteristic equation \\( r^{2} + ([[b]])r + c = 0 \\) is known to be \\( r_1 = [[k]] \\), and the equation has two distinct real roots. What is the other root \\( r_2 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[b]]) - [[k]]"},
+  "distractors": [
+   "[[b]] + [[k]]",
+   "[[k]] - [[b]]",
+   "-[[k]]",
+   "[[b]]",
+   "-([[b]])/[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, \\( r_1 + r_2 = -([[b]]) \\), so \\( r_2 = -([[b]]) - r_1 = -([[b]]) - ([[k]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from Vieta's sum-of-roots formula.",
+   "This subtracts in the wrong order.",
+   "This just negates the known root, ignoring the coefficient \\( [[b]] \\) entirely.",
+   "This reports the coefficient \\( [[b]] \\) itself as the other root.",
+   "This divides instead of using the sum-of-roots relation.",
+   "This is one more than the correct root.",
+   "This is one less than the correct root."
+  ]
+ }
+]

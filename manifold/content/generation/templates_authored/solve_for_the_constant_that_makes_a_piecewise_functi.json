@@ -1,0 +1,168 @@
+[
+{
+ "template_id": "piecewise_continuity_constant_v1",
+ "skill_id": "solve_for_the_constant_that_makes_a_piecewise_functi",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], [[d]])"],
+ "stem": "The function \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & x < [[c]] \\\\ [[d]]x + k & x \\ge [[c]] \\end{cases} \\) is continuous for all real \\( x \\). Find the value of the constant \\( k \\).",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[c]] + [[b]] = [[d]]*[[c]] + k", "var": "k"},
+ "distractors": [
+  "[[a]]*[[c]] + [[b]] + [[d]]*[[c]]",
+  "([[d]] - [[a]])*[[c]] + [[b]]",
+  "[[a]]*[[c]] - [[b]] - [[d]]*[[c]]",
+  "[[b]]",
+  "([[a]] - [[d]])*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Continuity at the junction \\( x = [[c]] \\) requires the pieces to agree there: \\( [[a]]\\cdot[[c]] + ([[b]]) = [[d]]\\cdot[[c]] + k \\). Solving for \\( k \\) gives \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the term \\( d\\,c \\) instead of subtracting it when isolating \\( k \\).",
+  "This reverses the slope difference, giving \\( (d-a)c + b \\).",
+  "This flips the sign of the constant \\( b \\).",
+  "This assumes \\( k \\) simply equals the intercept \\( b \\).",
+  "This forgets to include the intercept \\( b \\).",
+  "This is off by one from the correct constant."
+ ]
+},
+{
+ "template_id": "piecewise_continuity_slope_v1",
+ "skill_id": "solve_for_the_constant_that_makes_a_piecewise_functi",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+ "stem": "The function \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & x < [[c]] \\\\ kx + ([[d]]) & x \\ge [[c]] \\end{cases} \\) is continuous for all real \\( x \\), where \\( k \\) is the (unknown) slope of the second piece. Find \\( k \\).",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[c]] + [[b]] = k*[[c]] + [[d]]", "var": "k"},
+ "distractors": [
+  "[[a]]",
+  "Rational([[a]]*[[c]] + [[b]] + [[d]], [[c]])",
+  "Rational([[d]] - [[b]], [[c]])",
+  "[[a]] + [[b]] - [[d]]",
+  "-Rational([[a]]*[[c]] + [[b]] - [[d]], [[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Continuity at \\( x = [[c]] \\) requires \\( [[a]]\\cdot[[c]] + ([[b]]) = k\\cdot[[c]] + ([[d]]) \\). Isolating the unknown slope: \\( k = \\dfrac{[[a]]\\cdot[[c]] + ([[b]]) - ([[d]])}{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the unknown slope just equals the known slope \\( a \\).",
+  "This adds \\( d \\) instead of subtracting it before dividing by \\( c \\).",
+  "This drops the first piece's contribution entirely.",
+  "This forgets to divide by \\( c \\) when isolating the slope.",
+  "This has the wrong sign on the numerator before dividing.",
+  "This is off by one from the correct slope."
+ ]
+},
+{
+ "template_id": "piecewise_continuity_quadratic_branch_v1",
+ "skill_id": "solve_for_the_constant_that_makes_a_piecewise_functi",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "The function \\( f(x) = \\begin{cases} [[a]]x^{2} + ([[b]]) & x < [[c]] \\\\ [[d]]x + k & x \\ge [[c]] \\end{cases} \\) is continuous for all real \\( x \\). Find the value of the constant \\( k \\).",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[c]]**2 + [[b]] = [[d]]*[[c]] + k", "var": "k"},
+ "distractors": [
+  "[[a]]*[[c]] + [[b]] - [[d]]*[[c]]",
+  "[[a]]*[[c]]**2 + [[b]] + [[d]]*[[c]]",
+  "[[a]]*[[c]]**2 - [[b]] - [[d]]*[[c]]",
+  "[[b]] - [[d]]*[[c]]",
+  "2*[[a]]*[[c]] + [[b]] - [[d]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Continuity at \\( x = [[c]] \\) requires the quadratic piece and the linear piece to agree there: \\( [[a]]\\cdot[[c]]^{2} + ([[b]]) = [[d]]\\cdot[[c]] + k \\). Solving for \\( k \\) gives \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( c \\) instead of \\( c^{2} \\) in the quadratic term.",
+  "This adds \\( dc \\) instead of subtracting it when isolating \\( k \\).",
+  "This flips the sign of the constant \\( b \\).",
+  "This drops the quadratic term \\( ac^{2} \\) entirely.",
+  "This doubles the quadratic term's contribution, as if differentiating it.",
+  "This is off by one from the correct constant."
+ ]
+},
+{
+ "template_id": "piecewise_continuity_both_sides_v1",
+ "skill_id": "solve_for_the_constant_that_makes_a_piecewise_functi",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], 1)"],
+ "stem": "The function \\( f(x) = \\begin{cases} kx + ([[b]]) & x < [[c]] \\\\ [[a]]x + k & x \\ge [[c]] \\end{cases} \\) is continuous for all real \\( x \\), where the same constant \\( k \\) appears in both pieces. Find \\( k \\).",
+ "answer_spec": {"op": "solve", "equation": "k*[[c]] + [[b]] = [[a]]*[[c]] + k", "var": "k"},
+ "distractors": [
+  "Rational([[a]]*[[c]] - [[b]], [[c]] - 1)",
+  "Rational([[a]]*[[c]] + [[b]], [[c]] + 1)",
+  "[[a]] - [[b]]",
+  "Rational([[b]] - [[a]]*[[c]], [[c]])",
+  "-Rational([[a]]*[[c]] - [[b]], [[c]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Continuity requires \\( k\\cdot[[c]] + ([[b]]) = [[a]]\\cdot[[c]] + k \\). Collecting the \\( k \\) terms: \\( k([[c]] - 1) = [[a]]\\cdot[[c]] - ([[b]]) \\), so \\( k = \\dfrac{[[a]]\\cdot[[c]] - ([[b]])}{[[c]] - 1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( c - 1 \\) but omits subtracting \\( b \\) correctly in the numerator sign.",
+  "This adds 1 instead of subtracting 1 in the denominator.",
+  "This ignores the equation entirely and just subtracts the constants.",
+  "This isolates \\( k \\) as if it appeared only once, dividing by \\( c \\) instead of \\( c-1 \\).",
+  "This has the wrong sign on the whole expression.",
+  "This is off by one from the correct constant."
+ ]
+},
+{
+ "template_id": "piecewise_continuity_three_branch_system_v1",
+ "skill_id": "solve_for_the_constant_that_makes_a_piecewise_functi",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -7, "hi": 7},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -7, "hi": 7},
+  "p": {"type": "int", "lo": -4, "hi": 2},
+  "q": {"type": "int", "lo": 3, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "The function \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & x < [[p]] \\\\ kx + m & [[p]] \\le x < [[q]] \\\\ [[d]]x + ([[e]]) & x \\ge [[q]] \\end{cases} \\) is continuous for all real \\( x \\). Find the value of the constant \\( k \\).",
+ "answer_spec": {"op": "system", "equations": ["[[a]]*[[p]] + [[b]] = k*[[p]] + m", "k*[[q]] + m = [[d]]*[[q]] + [[e]]"], "vars": ["k", "m"], "want": "k"},
+ "distractors": [
+  "[[a]]",
+  "[[d]]",
+  "Rational([[a]] + [[d]], 2)",
+  "Rational([[d]]*[[q]] + [[e]] - [[a]]*[[p]] - [[b]], [[q]] - [[p]])",
+  "-Rational([[a]]*[[p]] + [[b]] - [[d]]*[[q]] - [[e]], [[q]] - [[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Matching the middle piece to its neighbors at both junctions gives the system \\( [[a]]\\cdot[[p]] + ([[b]]) = k\\cdot[[p]] + m \\) and \\( k\\cdot[[q]] + m = [[d]]\\cdot[[q]] + ([[e]]) \\). Solving this \\( 2\\times 2 \\) system for \\( k \\) (eliminating \\( m \\)) gives \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the middle slope just equals the first piece's slope.",
+  "This assumes the middle slope just equals the third piece's slope.",
+  "This averages the two outer slopes instead of solving the system.",
+  "This has the numerator's sign flipped in the elimination step.",
+  "This has the denominator's sign flipped in the elimination step.",
+  "This is off by one from the correct constant."
+ ]
+}
+]

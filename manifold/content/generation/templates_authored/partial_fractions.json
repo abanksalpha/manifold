@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "partial_fractions_distinct_linear_v1",
+ "skill_id": "partial_fractions",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "choice", "values": [1, 2, 3, 4]},
+  "q": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Gt([[a]], [[b]])"],
+ "stem": "Decompose into partial fractions with distinct linear factors and evaluate \\( \\displaystyle\\int_{[[a]]+[[p]]}^{[[a]]+[[p]]+[[q]]} \\frac{1}{(x-[[a]])(x-[[b]])}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "1/((x-[[a]])*(x-[[b]]))", "var": "x", "bounds": ["[[a]]+[[p]]", "[[a]]+[[p]]+[[q]]"]},
+ "distractors": [
+  "log(([[p]]+[[q]])/([[p]]))/([[a]]-[[b]])",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Write \\( \\dfrac{1}{(x-[[a]])(x-[[b]])} = \\dfrac{1}{[[a]]-[[b]]}\\left(\\dfrac{1}{x-[[a]]} - \\dfrac{1}{x-[[b]]}\\right) \\). Integrating gives \\( \\dfrac{1}{[[a]]-[[b]]}\\ln\\left|\\dfrac{x-[[a]]}{x-[[b]]}\\right| \\), and evaluating over the given bounds yields \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This mismatches which root's shift goes in the numerator versus the denominator of the log ratio.",
+  "This flips the sign of the correct value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "partial_fractions_repeated_linear_v2",
+ "skill_id": "partial_fractions",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Lt([[a]], [[b]])"],
+ "stem": "Decompose into partial fractions with a repeated linear factor and evaluate \\( \\displaystyle\\int_{[[b]]+[[m]]}^{[[b]]+[[m]]+2} \\frac{x}{(x-[[a]])(x-[[b]])^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "x/((x-[[a]])*(x-[[b]])**2)", "var": "x", "bounds": ["[[b]]+[[m]]", "[[b]]+[[m]]+2"]},
+ "distractors": [
+  "0",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Write \\( \\dfrac{x}{(x-[[a]])(x-[[b]])^{2}} = \\dfrac{A}{x-[[a]]} + \\dfrac{B}{x-[[b]]} + \\dfrac{C}{(x-[[b]])^{2}} \\), with \\( A = \\dfrac{[[a]]}{([[a]]-[[b]])^{2}} \\) and \\( C = \\dfrac{[[b]]}{[[b]]-[[a]]} \\) found by clearing denominators, and \\( B \\) from matching the remaining coefficient. Integrating term by term (the \\( C \\) term gives a \\( -1/(x-[[b]]) \\) antiderivative, not a log) and evaluating over the bounds gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the repeated-factor terms cancel out over these bounds.",
+  "This flips the sign of the correct value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "partial_fractions_irreducible_quadratic_v3",
+ "skill_id": "partial_fractions",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Decompose into partial fractions with an irreducible quadratic factor and evaluate \\( \\displaystyle\\int_{1}^{[[m]]+1} \\frac{[[b]]}{x\\left(x^{2}+[[a]]\\right)}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[b]]/(x*(x**2+[[a]]))", "var": "x", "bounds": ["1", "[[m]]+1"]},
+ "distractors": [
+  "[[b]]*log([[m]]+1)/[[a]]",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Write \\( \\dfrac{[[b]]}{x(x^{2}+[[a]])} = \\dfrac{[[b]]/[[a]]}{x} - \\dfrac{([[b]]/[[a]])x}{x^{2}+[[a]]} \\). The first piece integrates to a log of \\( x \\), and the quadratic piece integrates to a log of \\( x^{2}+[[a]] \\) (an irreducible quadratic contributes a logarithm here, not an arctangent, because its numerator is proportional to \\( x \\)). Evaluating from \\( 1 \\) to \\( [[m]]+1 \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the \\( 1/x \\) piece of the decomposition and drops the quadratic-factor term entirely.",
+  "This flips the sign of the correct value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "partial_fractions_solve_coefficient_v4",
+ "skill_id": "partial_fractions",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Ne([[c]]*[[a]] + [[d]], 0)"],
+ "stem": "Suppose \\( \\dfrac{[[c]]x+[[d]]}{(x-[[a]])(x-[[b]])} = \\dfrac{A}{x-[[a]]} + \\dfrac{B}{x-[[b]]} \\) for all \\( x \\) where both sides are defined. What is \\( A \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[c]]*[[a]]+[[d]])/([[a]]-[[b]])"},
+ "distractors": [
+  "([[c]]*[[b]]+[[d]])/([[b]]-[[a]])",
+  "([[c]]*[[a]]+[[d]])/([[b]]-[[a]])",
+  "([[c]]*[[a]]+[[d]])/([[a]]+[[b]])",
+  "[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Multiply both sides by \\( (x-[[a]])(x-[[b]]) \\) and set \\( x=[[a]] \\) so the \\( B \\) term vanishes: \\( A = \\dfrac{[[c]]\\cdot[[a]]+[[d]]}{[[a]]-[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( B \\) (evaluating the numerator at \\( x=[[b]] \\)) instead of \\( A \\).",
+  "This uses the correct numerator value at \\( x=[[a]] \\) but the wrong sign in the denominator.",
+  "This adds \\( [[a]]+[[b]] \\) in the denominator instead of subtracting.",
+  "This only reports the numerator's linear coefficient, ignoring the residue evaluation entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "partial_fractions_improper_rational_v5",
+ "skill_id": "partial_fractions",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Lt([[a]], [[b]]+[[m]]+1)"],
+ "stem": "The degree of the numerator here EQUALS the degree of the denominator, so first do polynomial division before decomposing. Evaluate \\( \\displaystyle\\int_{[[b]]+[[m]]+1}^{[[b]]+[[m]]+3} \\frac{x^{2}}{(x-[[a]])(x-[[b]])}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "x**2/((x-[[a]])*(x-[[b]]))", "var": "x", "bounds": ["[[b]]+[[m]]+1", "[[b]]+[[m]]+3"]},
+ "distractors": [
+  "2",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since the numerator and denominator have the same degree, \\( \\dfrac{x^{2}}{(x-[[a]])(x-[[b]])} = 1 + \\dfrac{([[a]]+[[b]])x - [[a]]\\cdot[[b]]}{(x-[[a]])(x-[[b]])} \\) after division, and the remaining proper fraction decomposes into two linear terms. Integrating the constant \\( 1 \\) plus the two logarithms and evaluating over the bounds gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports only the constant term \\( 1 \\) integrated over an interval of length 2, ignoring the logarithmic partial-fraction remainder entirely.",
+  "This flips the sign of the correct value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

@@ -1,0 +1,175 @@
+[
+{
+ "template_id": "inverse_trig_standard_forms_with_completing_the_squa_v1",
+ "skill_id": "inverse_trig_standard_forms_with_completing_the_squa",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 15},
+  "c": {"type": "int", "lo": 1, "hi": 13}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]}{x^{2} + [[asq]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2 + [[a]]**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*pi/4",
+  "[[c]]*pi/(2*[[a]])",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "2*[[answer]]/3",
+  "[[c]]*pi*[[a]]/4"
+ ],
+ "solution": "Using the standard form \\( \\int \\frac{dx}{x^{2}+[[a]]^{2}} = \\tfrac{1}{[[a]]}\\arctan\\tfrac{x}{[[a]]} \\), we get \\( [[c]]\\cdot\\tfrac{1}{[[a]]}\\left[\\arctan\\tfrac{x}{[[a]]}\\right]_{0}^{[[a]]} = \\tfrac{[[c]]}{[[a]]}\\arctan(1) = \\tfrac{[[c]]}{[[a]]}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the \\( \\tfrac{1}{[[a]]} \\) factor from the standard form.",
+  "This uses \\( \\tfrac{1}{2[[a]]} \\) as the leading coefficient by mistake.",
+  "This halves the correct value.",
+  "This triples the correct value.",
+  "This scales the correct value by 2/3.",
+  "This multiplies by \\( [[a]] \\) instead of dividing by it."
+ ]
+},
+{
+ "template_id": "inverse_trig_arcsin_direct_v2",
+ "skill_id": "inverse_trig_standard_forms_with_completing_the_squa",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 15},
+  "c": {"type": "int", "lo": 1, "hi": 13}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]}{\\sqrt{[[asq]] - x^{2}}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/sqrt([[a]]**2 - x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*pi/4",
+  "[[c]]*pi",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "2*[[answer]]/3",
+  "[[c]]*pi*[[a]]/2"
+ ],
+ "solution": "Using the standard form \\( \\int \\frac{dx}{\\sqrt{[[a]]^{2}-x^{2}}} = \\arcsin\\tfrac{x}{[[a]]} \\), we get \\( [[c]]\\left[\\arcsin\\tfrac{x}{[[a]]}\\right]_{0}^{[[a]]} = [[c]]\\left(\\arcsin(1) - \\arcsin(0)\\right) = [[c]]\\cdot\\tfrac{\\pi}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\tfrac{\\pi}{4} \\) (the arctan value) instead of \\( \\arcsin(1) = \\tfrac{\\pi}{2} \\).",
+  "This uses \\( \\pi \\) instead of \\( \\tfrac{\\pi}{2} \\) for \\( \\arcsin(1) \\).",
+  "This halves the correct value.",
+  "This triples the correct value.",
+  "This scales the correct value by 2/3.",
+  "This multiplies by \\( [[a]] \\), which does not belong in this antiderivative."
+ ]
+},
+{
+ "template_id": "inverse_trig_arctan_complete_square_v3",
+ "skill_id": "inverse_trig_standard_forms_with_completing_the_squa",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "h": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[h]], 0)"],
+ "derived": {
+  "b2": "2*[[h]]",
+  "d": "[[h]]**2 + [[a]]**2",
+  "lo": "-[[h]]",
+  "hi": "[[a]] - [[h]]"
+ },
+ "stem": "Evaluate \\( \\int_{[[lo]]}^{[[hi]]} \\frac{[[c]]}{x^{2} + ([[b2]])x + [[d]]}\\,dx \\) by first completing the square in the denominator.",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2 + [[b2]]*x + [[d]])", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "[[c]]*pi/(2*[[a]])",
+  "[[c]]*pi/4",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "2*[[answer]]/3",
+  "[[c]]*pi*[[a]]/4"
+ ],
+ "solution": "Complete the square: \\( x^{2} + ([[b2]])x + [[d]] = (x + [[h]])^{2} + [[a]]^{2} \\). With \\( u = x+[[h]] \\), the limits become \\( u = 0 \\) to \\( u = [[a]] \\), so the integral is \\( [[c]]\\cdot\\tfrac{1}{[[a]]}\\left[\\arctan\\tfrac{u}{[[a]]}\\right]_{0}^{[[a]]} = \\tfrac{[[c]]}{[[a]]}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the \\( \\tfrac{1}{[[a]]} \\) factor from the standard arctan form.",
+  "This drops the \\( \\tfrac{1}{[[a]]} \\) factor and keeps only \\( \\arctan(1) \\).",
+  "This halves the correct value.",
+  "This triples the correct value.",
+  "This scales the correct value by 2/3.",
+  "This multiplies by \\( [[a]] \\) instead of dividing by it."
+ ]
+},
+{
+ "template_id": "inverse_trig_arcsin_complete_square_v4",
+ "skill_id": "inverse_trig_standard_forms_with_completing_the_squa",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 8},
+  "k": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "derived": {
+  "twok": "2*[[k]]",
+  "d": "[[a]]**2 - [[k]]**2",
+  "lo": "[[k]]",
+  "hi": "[[k]] + [[a]]"
+ },
+ "stem": "Evaluate \\( \\int_{[[lo]]}^{[[hi]]} \\frac{[[c]]}{\\sqrt{[[d]] + ([[twok]])x - x^{2}}}\\,dx \\) by completing the square under the radical.",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/sqrt([[d]] + [[twok]]*x - x**2)", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "[[c]]*pi/4",
+  "[[c]]*pi",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "2*[[answer]]/3",
+  "[[c]]*pi*[[a]]/2"
+ ],
+ "solution": "Since \\( [[d]] + ([[twok]])x - x^{2} = [[a]]^{2} - (x - [[k]])^{2} \\), substitute \\( u = x - [[k]] \\); the limits become \\( u=0 \\) to \\( u=[[a]] \\), giving \\( [[c]]\\left[\\arcsin\\tfrac{u}{[[a]]}\\right]_{0}^{[[a]]} = [[c]]\\cdot\\tfrac{\\pi}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\tfrac{\\pi}{4} \\) (the arctan value) instead of \\( \\arcsin(1) = \\tfrac{\\pi}{2} \\).",
+  "This uses \\( \\pi \\) instead of \\( \\tfrac{\\pi}{2} \\) for \\( \\arcsin(1) \\).",
+  "This halves the correct value.",
+  "This triples the correct value.",
+  "This scales the correct value by 2/3.",
+  "This multiplies by \\( [[a]] \\), which does not belong in this antiderivative."
+ ]
+},
+{
+ "template_id": "inverse_trig_arctan_leading_coeff_v5",
+ "skill_id": "inverse_trig_standard_forms_with_completing_the_squa",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": 2, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"a2": "[[a]]**2", "k2": "[[k]]**2"},
+ "stem": "Evaluate \\( \\int_{0}^{[[a]]/[[k]]} \\frac{[[c]]}{[[k2]]x^{2} + [[a2]]}\\,dx \\). (The denominator has a leading coefficient that is not 1; factor it out before matching the standard arctan form.)",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/([[k2]]*x**2 + [[a2]])", "var": "x", "bounds": ["0", "[[a]]/[[k]]"]},
+ "distractors": [
+  "[[c]]*pi/(4*[[a]])",
+  "[[c]]*pi/(4*[[k]])",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "2*[[answer]]/3",
+  "[[c]]*pi/4"
+ ],
+ "solution": "Factor: \\( [[k2]]x^{2}+[[a2]] = [[k]]^{2}\\left(x^{2}+\\tfrac{[[a]]^{2}}{[[k]]^{2}}\\right) \\), or directly use \\( \\int\\frac{dx}{k^{2}x^{2}+a^{2}} = \\tfrac{1}{ak}\\arctan\\tfrac{kx}{a} \\). Evaluated from \\( 0 \\) to \\( \\tfrac{[[a]]}{[[k]]} \\), \\( \\tfrac{kx}{a} \\) runs from \\( 0 \\) to \\( 1 \\), giving \\( [[c]]\\cdot\\tfrac{1}{[[a]][[k]]}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( [[k]] \\) in the denominator, using \\( \\tfrac{1}{[[a]]} \\) instead of \\( \\tfrac{1}{[[a]][[k]]} \\).",
+  "This forgets the factor of \\( [[a]] \\) in the denominator, using \\( \\tfrac{1}{[[k]]} \\) instead of \\( \\tfrac{1}{[[a]][[k]]} \\).",
+  "This halves the correct value.",
+  "This triples the correct value.",
+  "This scales the correct value by 2/3.",
+  "This uses \\( \\tfrac{1}{4} \\) alone, forgetting both scale factors \\( [[a]] \\) and \\( [[k]] \\)."
+ ]
+}
+]

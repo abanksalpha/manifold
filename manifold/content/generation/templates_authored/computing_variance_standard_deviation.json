@@ -1,0 +1,143 @@
+[
+ {
+  "template_id": "population_variance_v1",
+  "skill_id": "computing_variance_standard_deviation",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "x1": {"type": "int", "lo": 1, "hi": 9},
+   "x2": {"type": "int", "lo": 1, "hi": 9},
+   "x3": {"type": "int", "lo": 1, "hi": 9},
+   "x4": {"type": "int", "lo": 1, "hi": 9},
+   "x5": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Eq(Mod([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]], 5), 0)"],
+  "derived": {
+   "mbar": "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5",
+   "ssq": "([[x1]] - [[mbar]])**2 + ([[x2]] - [[mbar]])**2 + ([[x3]] - [[mbar]])**2 + ([[x4]] - [[mbar]])**2 + ([[x5]] - [[mbar]])**2"
+  },
+  "stem": "The complete population \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\) has mean \\( [[mbar]] \\). What is the population variance of this data set?",
+  "answer_spec": {"op": "evaluate", "expr": "[[ssq]]/5"},
+  "distractors": [
+   "[[ssq]]/4",
+   "[[ssq]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Population variance is the mean of the squared deviations from \\( \\bar{x} = [[mbar]] \\): \\( \\sigma^2 = \\frac{[[ssq]]}{5} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides the summed squared deviations by \\( n-1 = 4 \\); that is the sample variance, not the population variance.",
+   "This is the total of the squared deviations without dividing by \\( n = 5 \\).",
+   "This is off by one from the correct variance.",
+   "This is off by one from the correct variance."
+  ]
+ },
+ {
+  "template_id": "population_sd_symmetric_v1",
+  "skill_id": "computing_variance_standard_deviation",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": -10, "hi": 10},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "x1": "[[m]] - 3*[[k]]",
+   "x2": "[[m]] - [[k]]",
+   "x3": "[[m]]",
+   "x4": "[[m]] + [[k]]",
+   "x5": "[[m]] + 3*[[k]]"
+  },
+  "stem": "The complete population \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\) has mean \\( [[x3]] \\). What is the population standard deviation of this data set?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((([[x1]]-[[x3]])**2 + ([[x2]]-[[x3]])**2 + ([[x3]]-[[x3]])**2 + ([[x4]]-[[x3]])**2 + ([[x5]]-[[x3]])**2)/5)"},
+  "distractors": [
+   "sqrt((([[x1]]-[[x3]])**2 + ([[x2]]-[[x3]])**2 + ([[x3]]-[[x3]])**2 + ([[x4]]-[[x3]])**2 + ([[x5]]-[[x3]])**2)/4)",
+   "(([[x1]]-[[x3]])**2 + ([[x2]]-[[x3]])**2 + ([[x3]]-[[x3]])**2 + ([[x4]]-[[x3]])**2 + ([[x5]]-[[x3]])**2)/5",
+   "sqrt([[x1]]**2 + [[x2]]**2 + [[x3]]**2 + [[x4]]**2 + [[x5]]**2)/5",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Take the square root of the population variance: \\( \\sigma = \\sqrt{\\dfrac{(-3[[k]])^2+(-[[k]])^2+0^2+[[k]]^2+(3[[k]])^2}{5}} = \\sqrt{4[[k]]^2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( n-1=4 \\) inside the square root; that is the sample standard deviation, not the population one.",
+   "This is the variance itself, without taking the square root.",
+   "This takes the square root of the sum of squared VALUES (not deviations from the mean) before dividing.",
+   "This is off by one from the correct standard deviation.",
+   "This is off by one from the correct standard deviation."
+  ]
+ },
+ {
+  "template_id": "variance_from_frequency_table_v1",
+  "skill_id": "computing_variance_standard_deviation",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "v": {"type": "int", "lo": -10, "hi": 10},
+   "d": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]},
+   "k": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+   "m2": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Eq(Mod(2*[[k]]*[[d]]**2, 2*[[k]] + [[m2]]), 0)"],
+  "derived": {
+   "vlo": "[[v]] - [[d]]",
+   "vhi": "[[v]] + [[d]]",
+   "ntot": "2*[[k]] + [[m2]]"
+  },
+  "stem": "In a data set, the value \\( [[vlo]] \\) occurs \\( [[k]] \\) times, the value \\( [[v]] \\) occurs \\( [[m2]] \\) times, and the value \\( [[vhi]] \\) occurs \\( [[k]] \\) times (no other values occur). What is the variance of this data set?",
+  "answer_spec": {"op": "evaluate", "expr": "([[k]]*([[vlo]]-[[v]])**2 + [[k]]*([[vhi]]-[[v]])**2)/[[ntot]]"},
+  "distractors": [
+   "([[k]]*([[vlo]]-[[v]])**2 + [[k]]*([[vhi]]-[[v]])**2)/(2*[[k]])",
+   "[[k]]*([[vlo]]-[[v]])**2 + [[k]]*([[vhi]]-[[v]])**2",
+   "([[k]]*([[vlo]]-[[v]])**2 + [[k]]*([[vhi]]-[[v]])**2)/([[ntot]] - 1)",
+   "([[vlo]]-[[v]])**2 + ([[vhi]]-[[v]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The mean is \\( [[v]] \\) by symmetry. Weighting each squared deviation by its frequency and dividing by the total count \\( [[ntot]] \\): \\( \\frac{[[k]]([[vlo]]-[[v]])^2 + [[k]]([[vhi]]-[[v]])^2}{[[ntot]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides only by the count of the two extreme values, \\( 2[[k]] \\), ignoring the \\( [[m2]] \\) occurrences of the middle value.",
+   "This is the frequency-weighted sum of squared deviations without dividing by the total count.",
+   "This divides by \\( n-1 \\) instead of \\( n \\); that would be a sample-variance divisor, not appropriate here.",
+   "This forgets to weight the squared deviations by their frequency \\( [[k]] \\) at all.",
+   "This is off by one from the correct variance."
+  ]
+ },
+ {
+  "template_id": "variance_shortcut_formula_v1",
+  "skill_id": "computing_variance_standard_deviation",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 8, 10, 12]},
+   "mu": {"type": "int", "lo": -8, "hi": 8},
+   "V": {"type": "int", "lo": 1, "hi": 25}
+  },
+  "constraints": [],
+  "derived": {
+   "S": "[[n]]*[[mu]]",
+   "Sq": "[[n]]*([[V]] + [[mu]]**2)"
+  },
+  "stem": "A sample of \\( [[n]] \\) values has sum \\( [[S]] \\) and sum of squares \\( \\sum x_i^2 = [[Sq]] \\). Using the shortcut formula \\( \\mathrm{Var} = \\dfrac{\\sum x_i^2}{n} - \\bar{x}^2 \\), what is the variance of this sample?",
+  "answer_spec": {"op": "evaluate", "expr": "[[Sq]]/[[n]] - ([[S]]/[[n]])**2"},
+  "distractors": [
+   "[[Sq]]/[[n]]",
+   "([[S]]/[[n]])**2",
+   "[[Sq]]/[[n]] - [[S]]/[[n]]",
+   "[[Sq]]/([[n]] - 1) - ([[S]]/[[n]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The mean is \\( \\bar{x} = [[S]]/[[n]] \\), and \\( \\mathrm{Var} = \\dfrac{[[Sq]]}{[[n]]} - \\bar{x}^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the squared mean entirely.",
+   "This reports only the squared mean, not the full shortcut expression.",
+   "This subtracts the mean itself instead of the mean squared.",
+   "This divides the sum of squares by \\( n-1 \\) instead of \\( n \\) before subtracting.",
+   "This is off by one from the correct variance."
+  ]
+ }
+]

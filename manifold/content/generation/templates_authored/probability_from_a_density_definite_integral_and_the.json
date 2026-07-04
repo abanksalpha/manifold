@@ -1,0 +1,197 @@
+[
+ {
+  "template_id": "probability_from_density_integral_v1",
+  "skill_id": "probability_from_a_density_definite_integral_and_the",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "choice", "values": [2, 3, 4]},
+   "lo": {"type": "int", "lo": 0, "hi": 3},
+   "hi": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[lo]], [[hi]])", "Le([[hi]], [[b]])", "Ge([[lo]], 0)", "Or(Gt([[lo]], 0), Lt([[hi]], [[b]]))"],
+  "derived": {"c": "([[m]] + 1) / [[b]] ** ([[m]] + 1)"},
+  "stem": "A continuous random variable \\( X \\) has probability density \\( f(x) = [[c]]\\,x^{[[m]]} \\) for \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) elsewhere). What is \\( P([[lo]] \\le X \\le [[hi]]) \\)?",
+  "answer_spec": {"op": "integrate", "expr": "[[c]] * x ** [[m]]", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+  "distractors": [
+   "([[hi]] ** ([[m]] + 1) - [[lo]] ** ([[m]] + 1)) / ([[m]] + 1)",
+   "[[c]] * ([[hi]] ** [[m]] - [[lo]] ** [[m]])",
+   "Rational([[hi]] - [[lo]], [[b]])",
+   "[[c]] * ([[hi]] ** ([[m]] + 1) - [[lo]] ** ([[m]] + 1))",
+   "[[hi]] ** ([[m]] + 1) / [[b]] ** ([[m]] + 1)",
+   "[[lo]] ** ([[m]] + 1) / [[b]] ** ([[m]] + 1)"
+  ],
+  "solution": "Integrate the density over the interval: \\( P([[lo]] \\le X \\le [[hi]]) = \\int_{[[lo]]}^{[[hi]]} [[c]]\\,x^{[[m]]}\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates \\( x^{[[m]]} \\) but forgets to multiply by the density constant [[c]].",
+   "This forgets that integrating raises the exponent, using \\( x^{[[m]]} \\) values instead of \\( x^{[[m]]+1} \\).",
+   "This treats \\( X \\) as uniform on \\( [0, [[b]]] \\), ignoring the actual density.",
+   "This omits dividing by \\( [[m]]+1 \\) after integrating.",
+   "This is \\( P(X \\le [[hi]]) \\), the CDF at the upper limit, ignoring the lower limit.",
+   "This is \\( P(X \\le [[lo]]) \\), the CDF at the lower limit, not the interval probability."
+  ]
+ },
+ {
+  "template_id": "probability_uniform_interval_ratio_v1",
+  "skill_id": "probability_from_a_density_definite_integral_and_the",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 4},
+   "w": {"type": "int", "lo": 4, "hi": 24},
+   "lo_off": {"type": "int", "lo": 0, "hi": 10},
+   "seg": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": ["Lt([[lo_off]] + [[seg]], [[w]])", "Or(Gt([[lo_off]], 0), Lt([[lo_off]] + [[seg]], [[w]]))"],
+  "derived": {"b": "[[a]] + [[w]]", "lo": "[[a]] + [[lo_off]]", "hi": "[[a]] + [[lo_off]] + [[seg]]"},
+  "stem": "A continuous random variable \\( X \\) is distributed uniformly on the interval \\( [[[a]], [[b]]] \\). What is \\( P([[lo]] \\le X \\le [[hi]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[hi]] - [[lo]], [[b]] - [[a]])"},
+  "distractors": [
+   "Rational([[hi]] - [[lo]], 2)",
+   "[[hi]] - [[lo]]",
+   "Rational([[b]] - [[a]], [[hi]] - [[lo]])",
+   "Rational([[hi]] - [[a]], [[b]] - [[a]])",
+   "Rational([[lo]] - [[a]], [[b]] - [[a]])",
+   "Rational([[hi]] - [[lo]], [[b]] - [[lo]])"
+  ],
+  "solution": "For a uniform density, probability is proportional to length: \\( P([[lo]] \\le X \\le [[hi]]) = \\frac{[[hi]] - [[lo]]}{[[b]] - [[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides the segment length by 2 instead of by the total interval width.",
+   "This is just the segment length, forgetting to divide by the total width at all.",
+   "This inverts the correct ratio.",
+   "This is \\( P(X \\le [[hi]]) \\), the CDF at the upper limit, ignoring the lower cutoff.",
+   "This is \\( P(X \\le [[lo]]) \\), the CDF at the lower limit, not the requested interval.",
+   "This uses the wrong denominator \\( [[b]] - [[lo]] \\) instead of the full interval width."
+  ]
+ },
+ {
+  "template_id": "probability_triangular_tent_density_v1",
+  "skill_id": "probability_from_a_density_definite_integral_and_the",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 2, "hi": 8},
+   "lo": {"type": "int", "lo": 0, "hi": 8},
+   "seg": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Le([[lo]] + [[seg]], [[b]])", "Le([[lo]] + [[seg]], [[b]])", "Or(Gt([[lo]], 0), Lt([[lo]] + [[seg]], [[b]]))", "Le([[lo]] + [[seg]], 2 * [[b]])"],
+  "derived": {"hi": "[[lo]] + [[seg]]"},
+  "stem": "A continuous random variable \\( X \\) has the triangular (tent) density \\( f(x) = \\dfrac{[[b]] - |x - [[b]]|}{[[b]]^{2}} \\) for \\( 0 \\le x \\le 2[[b]] \\) (and \\( f(x) = 0 \\) elsewhere), which rises linearly to a peak at \\( x = [[b]] \\) and falls linearly back to \\( 0 \\) at \\( x = 2[[b]] \\). What is \\( P([[lo]] \\le X \\le [[hi]]) \\)?",
+  "answer_spec": {"op": "integrate", "expr": "([[b]] - Abs(x - [[b]])) / [[b]] ** 2", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+  "distractors": [
+   "Rational([[hi]] - [[lo]], 2 * [[b]])",
+   "([[hi]] - [[lo]]) / [[b]]",
+   "([[hi]] ** 2 - [[lo]] ** 2) / (2 * [[b]] ** 2)",
+   "([[b]] - Abs([[hi]] - [[b]])) / [[b]] ** 2",
+   "([[b]] - Abs([[lo]] - [[b]])) / [[b]] ** 2",
+   "([[hi]] - [[lo]]) ** 2 / [[b]] ** 2"
+  ],
+  "solution": "Integrate the tent density over the interval (splitting at the peak \\( x=[[b]] \\) if the interval crosses it): \\( P([[lo]] \\le X \\le [[hi]]) = \\int_{[[lo]]}^{[[hi]]} \\frac{[[b]] - |x-[[b]]|}{[[b]]^2}\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the density as uniform on \\( [0, 2[[b]]] \\), ignoring the triangular shape entirely.",
+   "This uses the wrong (unsquared) normalizing denominator.",
+   "This mishandles the absolute value by treating the density as purely linear (\\(x/b^2\\)) rather than tent-shaped.",
+   "This evaluates only the density's HEIGHT at the upper bound, not the accumulated area.",
+   "This evaluates only the density's HEIGHT at the lower bound, not the accumulated area.",
+   "This squares the segment length instead of integrating the density."
+  ]
+ },
+ {
+  "template_id": "probability_exponential_density_v1",
+  "skill_id": "probability_from_a_density_definite_integral_and_the",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lamn": {"type": "int", "lo": 1, "hi": 6},
+   "lamd": {"type": "choice", "values": [1, 2, 3, 4]},
+   "lo": {"type": "int", "lo": 0, "hi": 5},
+   "seg": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {"hi": "[[lo]] + [[seg]]"},
+  "stem": "A continuous random variable \\( X \\) has the exponential density \\( f(x) = \\lambda e^{-\\lambda x} \\) for \\( x \\ge 0 \\), where \\( \\lambda = \\frac{[[lamn]]}{[[lamd]]} \\). What is \\( P([[lo]] \\le X \\le [[hi]]) \\)?",
+  "answer_spec": {"op": "integrate", "expr": "Rational([[lamn]], [[lamd]]) * exp(-Rational([[lamn]], [[lamd]]) * x)", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+  "distractors": [
+   "exp(-Rational([[lamn]], [[lamd]]) * [[lo]]) - exp(-Rational([[lamn]], [[lamd]]) * [[hi]])",
+   "exp(-Rational([[lamn]], [[lamd]]) * [[hi]]) - exp(-Rational([[lamn]], [[lamd]]) * [[lo]])",
+   "1 - exp(-Rational([[lamn]], [[lamd]]) * [[hi]])",
+   "exp(-Rational([[lamn]], [[lamd]]) * [[lo]])",
+   "exp(-Rational([[lamn]], [[lamd]]) * [[hi]])",
+   "Rational([[lamn]], [[lamd]]) * ([[hi]] - [[lo]])"
+  ],
+  "solution": "The CDF of an exponential variable is \\( F(x) = 1 - e^{-\\lambda x} \\), so \\( P([[lo]] \\le X \\le [[hi]]) = F([[hi]]) - F([[lo]]) = e^{-\\lambda [[lo]]} - e^{-\\lambda [[hi]]} = [[answer]] \\), matching direct integration of the density.",
+  "distractor_rationales": [
+   "This has the correct two terms but is missing the sign flip from integrating \\(-\\lambda e^{-\\lambda x}\\) correctly (an artifact of the antiderivative's sign).",
+   "This has the two exponential terms in the wrong order (sign error).",
+   "This is \\( P(X \\le [[hi]]) \\), the CDF at the upper bound alone, ignoring the lower cutoff.",
+   "This is \\( P(X > [[lo]]) \\), the survival function at the lower bound, not the interval probability.",
+   "This is the survival function at the upper bound alone.",
+   "This treats the density as uniform, multiplying the rate by the segment length."
+  ]
+ },
+ {
+  "template_id": "probability_from_given_cdf_v1",
+  "skill_id": "probability_from_a_density_definite_integral_and_the",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 4, 5]},
+   "lo": {"type": "int", "lo": 0, "hi": 4},
+   "hi": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[lo]], [[hi]])", "Le([[hi]], [[b]])", "Or(Gt([[lo]], 0), Lt([[hi]], [[b]]))"],
+  "stem": "A continuous random variable \\( X \\) taking values in \\( [0, [[b]]] \\) has cumulative distribution function \\( F(x) = \\left(\\dfrac{x}{[[b]]}\\right)^{[[n]]} \\). Using \\( P(a \\le X \\le c) = F(c) - F(a) \\), what is \\( P([[lo]] \\le X \\le [[hi]])\\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(Rational([[hi]], [[b]])) ** [[n]] - (Rational([[lo]], [[b]])) ** [[n]]"},
+  "distractors": [
+   "(Rational([[hi]], [[b]])) ** [[n]]",
+   "(Rational([[lo]], [[b]])) ** [[n]]",
+   "Rational([[hi]] - [[lo]], [[b]]) ** [[n]]",
+   "(Rational([[hi]], [[b]])) ** [[n]] + (Rational([[lo]], [[b]])) ** [[n]]",
+   "[[n]] * (Rational([[hi]], [[b]]) - Rational([[lo]], [[b]]))",
+   "Rational([[hi]] - [[lo]], [[b]])"
+  ],
+  "solution": "\\( P([[lo]] \\le X \\le [[hi]]) = F([[hi]]) - F([[lo]]) = \\left(\\frac{[[hi]]}{[[b]]}\\right)^{[[n]]} - \\left(\\frac{[[lo]]}{[[b]]}\\right)^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( F([[hi]]) \\) alone, forgetting to subtract \\( F([[lo]]) \\).",
+   "This is \\( F([[lo]]) \\) alone, not the difference.",
+   "This raises the RATIO of the difference to the power \\( n \\), instead of subtracting the two individually-raised CDF values.",
+   "This adds the two CDF values instead of subtracting them.",
+   "This differentiates the CDF form incorrectly, using a linear scaling by \\( n \\) instead of the actual power-law CDF values.",
+   "This uses the density's linear (uniform-style) ratio instead of the given power-law CDF."
+  ]
+ },
+ {
+  "template_id": "probability_quantile_from_density_v1",
+  "skill_id": "probability_from_a_density_definite_integral_and_the",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "choice", "values": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]},
+   "t": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Lt([[t]], [[b]])"],
+  "derived": {"p": "Rational([[t]], [[b]]) ** 3"},
+  "stem": "A continuous random variable \\( X \\) has cumulative distribution function \\( F(x) = \\left(\\dfrac{x}{[[b]]}\\right)^{3} \\) for \\( 0 \\le x \\le [[b]] \\) (equivalently, density \\( f(x) = \\dfrac{3x^2}{[[b]]^3} \\)). If \\( F(t_0) = [[p]] \\) for some \\( t_0 \\) in \\( [0, [[b]]] \\), what is \\( t_0 \\)?",
+  "answer_spec": {"op": "solve", "equation": "x ** 3 = [[p]] * [[b]] ** 3", "var": "x"},
+  "distractors": [
+   "[[b]] * [[p]]",
+   "[[b]] * [[p]] ** 2",
+   "[[b]] - [[b]] * [[p]]",
+   "[[b]] * (1 - [[p]])",
+   "[[b]] * [[p]] ** Rational(1, 2)",
+   "[[p]] * [[b]] ** 2"
+  ],
+  "solution": "Since \\( F(t_0) = \\left(\\dfrac{t_0}{[[b]]}\\right)^3 = [[p]] \\), taking the cube root of both sides gives \\( t_0 = [[b]]\\cdot [[p]]^{1/3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the density as if it were uniform, scaling \\( t_0 \\) linearly by the target probability instead of taking a cube root.",
+   "This squares the target probability instead of taking its cube root.",
+   "This finds the complementary point (as if the target probability were a survival probability).",
+   "This uses the complement of the target probability with the same linear (uniform-style) mistake.",
+   "This takes a square root instead of a cube root.",
+   "This mixes a linear scale-up by \\( b^2 \\) with the raw probability, the wrong dimensional combination."
+  ]
+ }
+]

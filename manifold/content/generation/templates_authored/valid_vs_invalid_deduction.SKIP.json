@@ -1,0 +1,4 @@
+{
+ "skill_id": "valid_vs_invalid_deduction",
+ "reason": "The answer is a validity judgment about an argument (valid / invalid), not a single code-computable scalar."
+}

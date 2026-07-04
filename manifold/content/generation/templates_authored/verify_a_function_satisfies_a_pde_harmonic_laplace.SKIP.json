@@ -1,0 +1,4 @@
+{
+ "skill_id": "verify_a_function_satisfies_a_pde_harmonic_laplace",
+ "reason": "The skill is a yes/no verification that a given function satisfies a PDE (e.g. is harmonic, u_xx + u_yy = 0); its answer is a boolean judgment, not a single code-computable scalar with plausible numeric distractors, so it has no faithful parametric MCQ template."
+}

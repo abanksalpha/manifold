@@ -1,0 +1,147 @@
+[
+{
+ "template_id": "parameter_that_makes_a_matrix_singular_solve_det_0_v1",
+ "skill_id": "parameter_that_makes_a_matrix_singular_solve_det_0",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "choice", "values": [2, 3, 4]},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "g": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[d]], 0)", "Eq(Mod([[b]]*[[d]], [[e]]), 0)"],
+ "stem": "For which value of \\( k \\) is the matrix \\( A = \\begin{bmatrix} k & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ 0 & 0 & [[g]] \\end{bmatrix} \\) singular (that is, \\( \\det(A) = 0 \\))?",
+ "answer_spec": {"op": "solve", "equation": "[[g]]*([[e]]*k - [[b]]*[[d]]) = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[d]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Expanding along the last row, \\( \\det(A) = [[g]]\\,(k\\cdot[[e]] - ([[b]])([[d]])) \\). Since \\( [[g]] \\ne 0 \\), this is zero when \\( [[e]]k = ([[b]])([[d]]) \\), giving \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the product \\( bd \\); one must still divide by \\( [[e]] \\) to solve \\( [[e]]k = bd \\).",
+  "This solves the determinant equation with the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "parameter_that_makes_a_matrix_singular_solve_det_0_v2_2x2",
+ "skill_id": "parameter_that_makes_a_matrix_singular_solve_det_0",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)", "Eq(Mod([[b]]*[[c]], [[a]]), 0)"],
+ "stem": "For which value of \\( k \\) is the matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & k \\end{bmatrix} \\) singular?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*k - [[b]]*[[c]] = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[c]]",
+  "-[[answer]]",
+  "[[b]]",
+  "[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The matrix is singular exactly when \\( \\det(A) = [[a]]k - ([[b]])([[c]]) = 0 \\), i.e. \\( k = \\dfrac{([[b]])([[c]])}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the product \\( bc \\); one must still divide by \\( a \\) to isolate \\( k \\).",
+  "This solves the determinant equation with the wrong sign.",
+  "This is the top-right entry, not the value of \\( k \\).",
+  "This is the bottom-left entry, not the value of \\( k \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "parameter_that_makes_a_matrix_singular_solve_det_0_v3_quadratic",
+ "skill_id": "parameter_that_makes_a_matrix_singular_solve_det_0",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "b": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "g": {"type": "int", "lo": 1, "hi": 5},
+  "m": {"type": "choice", "values": [1, 2, 3, 4]},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[g]], 0)"],
+ "derived": {
+  "c": "[[b]]*[[m]]*[[m]]"
+ },
+ "stem": "For which value of \\( k \\) does \\( A = \\begin{bmatrix} k & [[b]] & 0 \\\\ [[c]] & k & 0 \\\\ [[e]] & [[f]] & [[g]] \\end{bmatrix} \\) satisfy \\( \\det(A) = 0 \\)? (There are two such values; give a value of \\( k \\) that works.)",
+ "answer_spec": {"op": "solve", "equation": "[[g]]*(k*k - [[b]]*[[c]]) = 0", "var": "k"},
+ "distractors": [
+  "[[m]]",
+  "[[b]]*[[m]]",
+  "[[m]] + 1",
+  "[[m]] - 1",
+  "[[m]] + 2",
+  "-[[m]] - 1",
+  "[[g]]"
+ ],
+ "solution": "Expanding along the third column, \\( \\det(A) = [[g]]\\,(k^2 - [[b]]\\cdot[[c]]) \\). Since \\( [[b]]\\cdot[[c]] = ([[m]])^2\\cdot[[b]]^2 \\), this is zero when \\( k = \\pm [[b]]\\cdot[[m]] \\); in particular \\( k = [[answer]] \\) works.",
+ "distractor_rationales": [
+  "This is \\( m \\) alone, before multiplying by the top-middle entry \\( b \\).",
+  "This has the right form but the wrong sign for one of the two roots (or the other root's magnitude).",
+  "This is off by one from a correct root.",
+  "This is off by one from a correct root.",
+  "This is off by two from a correct root.",
+  "This has the wrong sign and is off by one.",
+  "This is the bottom-right entry \\( g \\), not a root of the determinant equation."
+ ]
+},
+{
+ "template_id": "parameter_that_makes_a_matrix_singular_solve_det_0_v4_row_multiple",
+ "skill_id": "parameter_that_makes_a_matrix_singular_solve_det_0",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)"],
+ "derived": {
+  "ma": "[[m]]*[[a]]",
+  "mb": "[[m]]*[[b]]"
+ },
+ "stem": "The third row of \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[c]] \\\\ [[ma]] & [[mb]] & k \\end{bmatrix} \\) is exactly [[m]] times the first row in its first two entries. For which value of \\( k \\) is \\( A \\) singular (i.e. the third row becomes exactly [[m]] times the first row)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[c]]"},
+ "distractors": [
+  "[[c]]",
+  "-[[answer]]",
+  "[[ma]]",
+  "[[mb]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Row 3 is already \\([[m]]\\cdot([[a]]), [[m]]\\cdot([[b]])\\) in its first two entries, matching \\([[m]]\\) times row 1. It becomes exactly \\([[m]]\\) times row 1 (making \\(A\\) singular, since a row is a scalar multiple of another) precisely when its last entry also matches: \\( k = [[m]]\\cdot([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the first row's last entry itself, without scaling by [[m]].",
+  "This has the correct magnitude but the wrong sign.",
+  "This is the (already-scaled) first entry of row 3, not the value needed for the last entry.",
+  "This is the (already-scaled) second entry of row 3, not the value needed for the last entry.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

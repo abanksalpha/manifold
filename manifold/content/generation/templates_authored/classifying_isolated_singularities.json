@@ -1,0 +1,132 @@
+[
+{
+ "template_id": "classifying_isolated_singularities_residue_at_double_pole_v1",
+ "skill_id": "classifying_isolated_singularities",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "c": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "The function \\( f(z) = \\dfrac{([[a]])z^{2}+([[b]])z+([[c]])}{(z-([[p]]))^{2}} \\) has an isolated singularity at \\( z=[[p]] \\), a pole of order \\( 2 \\) (a double pole). Compute the residue \\( \\operatorname{Res}_{z=[[p]]} f \\).",
+ "answer_spec": {"op": "diff", "expr": "([[a]])*z**2+([[b]])*z+([[c]])", "var": "z", "at": "[[p]]", "order": 1},
+ "distractors": [
+  "([[a]])*([[p]])**2+([[b]])*([[p]])+([[c]])",
+  "2*(([[a]])*([[p]])**2+([[b]])*([[p]])+([[c]]))",
+  "2*([[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-([[answer]])"
+ ],
+ "solution": "For a pole of order \\( 2 \\), \\( \\operatorname{Res}_{z=p}f = \\dfrac{d}{dz}\\!\\left[({[[a]]})z^{2}+({[[b]]})z+({[[c]]})\\right]_{z=[[p]]} = 2([[a]])([[p]])+([[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the numerator evaluated at \\( z=[[p]] \\) (the value of \\( f \\)'s numerator), not the derivative the double-pole residue formula requires.",
+  "This doubles the numerator's value at \\( z=[[p]] \\) instead of differentiating it.",
+  "This uses only twice the leading coefficient, ignoring the point \\( z=[[p]] \\) entirely.",
+  "This is off by one from the correct residue.",
+  "This is off by one from the correct residue.",
+  "This has the wrong sign from the correct residue."
+ ]
+},
+{
+ "template_id": "classifying_isolated_singularities_residue_at_order_three_pole_v1",
+ "skill_id": "classifying_isolated_singularities",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "c": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "d": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "The function \\( f(z) = \\dfrac{([[a]])z^{3}+([[b]])z^{2}+([[c]])z+([[d]])}{(z-([[p]]))^{3}} \\) has an isolated singularity at \\( z=[[p]] \\), a pole of order \\( 3 \\). Compute the residue \\( \\operatorname{Res}_{z=[[p]]} f \\).",
+ "answer_spec": {"op": "diff", "expr": "(([[a]])*z**3+([[b]])*z**2+([[c]])*z+([[d]]))/2", "var": "z", "at": "[[p]]", "order": 2},
+ "require_rational": false,
+ "distractors": [
+  "diff((([[a]])*z**3+([[b]])*z**2+([[c]])*z+([[d]])), z).subs(z, [[p]])",
+  "2*[[answer]]",
+  "diff((([[a]])*z**3+([[b]])*z**2+([[c]])*z+([[d]])), z, 2).subs(z, [[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-([[answer]])"
+ ],
+ "solution": "For a pole of order \\( 3 \\), \\( \\operatorname{Res}_{z=p}f = \\dfrac{1}{2!}\\dfrac{d^{2}}{dz^{2}}\\!\\left[({[[a]]})z^{3}+({[[b]]})z^{2}+({[[c]]})z+({[[d]]})\\right]_{z=[[p]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the FIRST derivative (the double-pole formula) instead of the second derivative that an order-\\( 3 \\) pole requires.",
+  "This forgets to divide by \\( 2! = 2 \\).",
+  "This is the second derivative alone, forgetting the required \\( 1/2! \\) factor from the residue formula.",
+  "This is off by one from the correct residue.",
+  "This is off by one from the correct residue.",
+  "This has the wrong sign from the correct residue."
+ ]
+},
+{
+ "template_id": "classifying_isolated_singularities_removable_algebraic_limit_v1",
+ "skill_id": "classifying_isolated_singularities",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {
+  "c": "-([[a]])*([[p]])**2-([[b]])*([[p]])"
+ },
+ "stem": "Let \\( f(z) = \\dfrac{([[a]])z^{2}+([[b]])z+([[c]])}{z-([[p]])} \\). Since the numerator also vanishes at \\( z=[[p]] \\), the singularity at \\( z=[[p]] \\) is removable rather than a pole. Compute \\( \\displaystyle\\lim_{z\\to [[p]]} f(z) \\), the value that removes the singularity.",
+ "answer_spec": {"op": "limit", "expr": "(([[a]])*z**2+([[b]])*z+([[c]]))/(z-([[p]]))", "var": "z", "point": "[[p]]"},
+ "distractors": [
+  "([[a]])*([[p]])**2+([[b]])*([[p]])+([[c]])",
+  "([[a]])*([[p]])",
+  "2*([[a]])*([[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-([[answer]])"
+ ],
+ "solution": "Since \\( z=[[p]] \\) is a root of the numerator, factor it out: \\( ([[a]])z^{2}+([[b]])z+([[c]]) = (z-([[p]]))\\left(([[a]])z + \\left(([[a]])([[p]])+([[b]])\\right)\\right) \\), so \\( f(z) = ([[a]])z+\\left(([[a]])([[p]])+([[b]])\\right) \\) for \\( z\\ne[[p]] \\), and the limit as \\( z\\to[[p]] \\) is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the numerator's value at \\( z=[[p]] \\), which is \\( 0/0 \\) and not the removable limit.",
+  "This uses only the leading coefficient times \\( p \\), omitting the linear coefficient \\( b \\).",
+  "This doubles the leading term's contribution instead of following the factorization.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This has the wrong sign from the correct limit."
+ ]
+},
+{
+ "template_id": "classifying_isolated_singularities_removable_transcendental_limit_v1",
+ "skill_id": "classifying_isolated_singularities",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = \\dfrac{\\sin\\!\\left(([[k]])(z-([[p]]))\\right)}{z-([[p]])} \\). This has a removable singularity at \\( z=[[p]] \\) (the numerator also vanishes there). Compute \\( \\displaystyle\\lim_{z\\to [[p]]} f(z) \\), the value that removes the singularity.",
+ "answer_spec": {"op": "limit", "expr": "sin((([[k]]))*(z-([[p]])))/(z-([[p]]))", "var": "z", "point": "[[p]]"},
+ "distractors": [
+  "1",
+  "0",
+  "([[k]])*([[p]])",
+  "[[k]] + 1",
+  "[[k]] - 1",
+  "-([[k]])"
+ ],
+ "solution": "Using \\( \\displaystyle\\lim_{w\\to 0}\\dfrac{\\sin(kw)}{w} = k \\) with \\( w=z-([[p]]) \\), the limit is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the classic \\( \\lim \\sin(w)/w = 1 \\) fact applied without accounting for the scale factor \\( k \\) inside the sine.",
+  "This mistakes the removable value for the singular point's numerator value, which is \\( 0 \\) but not the limit of the quotient.",
+  "This multiplies \\( k \\) by the singular point \\( p \\), which plays no role in this limit.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This has the wrong sign from the correct limit."
+ ]
+}
+]

@@ -1,0 +1,191 @@
+[
+ {
+  "template_id": "hypergeometric_urn_v1",
+  "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 4, "hi": 8},
+   "b": {"type": "int", "lo": 4, "hi": 8},
+   "k": {"type": "choice", "values": [2, 3, 4]},
+   "j": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Lt([[j]], [[k]])", "Le([[k]] - [[j]], [[b]])", "Le([[j]], [[r]])", "Le([[k]], [[r]] + [[b]])"],
+  "stem": "An urn contains [[r]] red balls and [[b]] blue balls. A handful of [[k]] balls is drawn at random all at once (without replacement). What is the probability that exactly [[j]] of the drawn balls are red?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[r]], [[j]]) * binomial([[b]], [[k]] - [[j]]) / binomial([[r]] + [[b]], [[k]])"},
+  "distractors": [
+   "binomial([[r]], [[j]]) * binomial([[b]], [[k]] - [[j]]) / binomial([[r]] + [[b]], [[j]])",
+   "binomial([[r]], [[j]]) / binomial([[r]] + [[b]], [[k]])",
+   "binomial([[r]], [[k]]) * binomial([[b]], [[k]] - [[j]]) / binomial([[r]] + [[b]], [[k]])",
+   "binomial([[b]], [[j]]) * binomial([[r]], [[k]] - [[j]]) / binomial([[r]] + [[b]], [[k]])",
+   "Rational([[j]], [[k]])",
+   "Rational([[r]], [[r]] + [[b]]) ** [[j]]"
+  ],
+  "solution": "Choose which [[j]] of the [[r]] red balls appear and which \\( [[k]] - [[j]] \\) of the [[b]] blue balls appear, out of all ways to choose [[k]] balls: \\( \\frac{\\binom{[[r]]}{[[j]]}\\binom{[[b]]}{[[k]] - [[j]]}}{\\binom{[[r]] + [[b]]}{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong denominator, choosing [[j]] balls from the whole urn instead of [[k]].",
+   "This forgets to count the ways of choosing the blue balls.",
+   "This chooses [[k]] red balls instead of [[j]] in the numerator.",
+   "This swaps the roles of the red and blue balls.",
+   "This is the naive fraction of the draw that is red, ignoring the counting.",
+   "This treats the draws as independent with replacement, so it is not the hypergeometric probability."
+  ]
+ },
+ {
+  "template_id": "multivariate_hypergeometric_three_colors_v1",
+  "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "R": {"type": "int", "lo": 3, "hi": 6},
+   "G": {"type": "int", "lo": 3, "hi": 6},
+   "Bl": {"type": "int", "lo": 3, "hi": 6},
+   "r": {"type": "choice", "values": [1, 2]},
+   "g": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Le([[r]], [[R]])", "Le([[g]], [[G]])", "Le(2, [[Bl]])"],
+  "derived": {"k": "[[r]] + [[g]] + 2"},
+  "stem": "A bag contains [[R]] red, [[G]] green, and [[Bl]] blue marbles. A handful of [[k]] marbles is drawn at random all at once (without replacement). What is the probability that the handful contains exactly [[r]] red, exactly [[g]] green, and exactly 2 blue marbles?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[R]], [[r]]) * binomial([[G]], [[g]]) * binomial([[Bl]], 2) / binomial([[R]] + [[G]] + [[Bl]], [[k]])"},
+  "distractors": [
+   "binomial([[R]], [[r]]) * binomial([[G]], [[g]]) * binomial([[Bl]], 2) / (binomial([[R]], [[r]]) * binomial([[G]], [[g]]) * binomial([[Bl]], 2))",
+   "binomial([[R]], [[r]]) + binomial([[G]], [[g]]) + binomial([[Bl]], 2)",
+   "binomial([[R]] + [[G]] + [[Bl]], [[k]]) / (binomial([[R]], [[r]]) * binomial([[G]], [[g]]) * binomial([[Bl]], 2))",
+   "binomial([[R]], [[r]]) * binomial([[G]], [[g]]) * binomial([[Bl]], 2) / binomial([[R]] + [[G]] + [[Bl]], [[r]] + [[g]])",
+   "Rational([[R]], [[R]] + [[G]] + [[Bl]]) * Rational([[G]], [[R]] + [[G]] + [[Bl]]) * Rational([[Bl]], [[R]] + [[G]] + [[Bl]])",
+   "binomial([[R]], [[r]]) * binomial([[G]], [[g]]) / binomial([[R]] + [[G]] + [[Bl]], [[k]])"
+  ],
+  "solution": "Count favorable ways to pick each color separately and divide by all ways to pick [[k]] marbles from the whole bag: \\( \\frac{\\binom{[[R]]}{[[r]]}\\binom{[[G]]}{[[g]]}\\binom{[[Bl]]}{2}}{\\binom{[[R]]+[[G]]+[[Bl]]}{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides the numerator by itself, collapsing to 1 rather than normalizing by the total number of ways to draw [[k]] marbles.",
+   "This adds the per-color counts instead of multiplying them.",
+   "This inverts the correct ratio.",
+   "This uses the wrong denominator, choosing only \\( [[r]]+[[g]] \\) marbles from the whole bag instead of all [[k]].",
+   "This (incorrectly) treats the three colors as if drawn independently with replacement.",
+   "This forgets to include the blue-marble count in the numerator."
+  ]
+ },
+ {
+  "template_id": "both_specific_people_on_committee_v1",
+  "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 8, "hi": 25},
+   "k": {"type": "int", "lo": 3, "hi": 10},
+   "m": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Lt([[k]], [[n]])", "Le([[m]], [[k]])", "Le([[m]], [[n]] - [[k]] + [[m]])"],
+  "stem": "A committee of [[k]] people is chosen at random (without replacement) from a group of [[n]] people. Among the group, [[m]] particular people are close friends. What is the probability that ALL [[m]] of these particular people end up on the committee?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - [[m]], [[k]] - [[m]]) / binomial([[n]], [[k]])"},
+  "distractors": [
+   "Rational([[k]], [[n]]) ** [[m]]",
+   "binomial([[n]] - [[m]], [[k]]) / binomial([[n]], [[k]])",
+   "binomial([[n]], [[k]] - [[m]]) / binomial([[n]], [[k]])",
+   "Rational([[m]], [[n]])",
+   "binomial([[k]], [[m]]) / binomial([[n]], [[m]])",
+   "binomial([[n]] - [[m]], [[k]] - [[m]]) / binomial([[n]] - [[m]], [[k]])"
+  ],
+  "solution": "Fix the [[m]] particular people as already on the committee, and choose the remaining \\( [[k]]-[[m]] \\) seats from the other \\( [[n]]-[[m]] \\) people, out of all ways to fill the committee: \\( \\frac{\\binom{[[n]]-[[m]]}{[[k]]-[[m]]}}{\\binom{[[n]]}{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This (incorrectly) treats each of the [[m]] people's inclusion as an independent event with probability \\( k/n \\).",
+   "This forgets to reduce the number of remaining seats to fill by [[m]].",
+   "This forgets to reduce the pool of remaining people to choose from.",
+   "This is just the fraction of the group made up of the [[m]] particular people, ignoring the committee-selection structure.",
+   "This has the numerator and denominator's roles reversed.",
+   "This uses the wrong denominator, excluding the [[m]] particular people from the total count as well."
+  ]
+ },
+ {
+  "template_id": "at_least_one_specific_excluded_v1",
+  "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 8, "hi": 25},
+   "k": {"type": "int", "lo": 3, "hi": 10}
+  },
+  "constraints": ["Lt([[k]], [[n]])", "Le(2, [[k]])"],
+  "stem": "A committee of [[k]] people is chosen at random (without replacement) from a group of [[n]] people that includes two particular rivals, Alice and Bob. What is the probability that AT LEAST ONE of Alice or Bob is left OFF the committee?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - binomial([[n]] - 2, [[k]] - 2) / binomial([[n]], [[k]])"},
+  "distractors": [
+   "binomial([[n]] - 2, [[k]] - 2) / binomial([[n]], [[k]])",
+   "binomial([[n]] - 2, [[k]]) / binomial([[n]], [[k]])",
+   "1 - binomial([[n]] - 2, [[k]]) / binomial([[n]], [[k]])",
+   "Rational(2, [[n]])",
+   "1 - Rational([[k]], [[n]]) ** 2",
+   "binomial([[n]] - 2, [[k]] - 2) / binomial([[n]] - 2, [[k]])"
+  ],
+  "solution": "The complement is \"both Alice and Bob are on the committee,\" with probability \\( \\frac{\\binom{[[n]]-2}{[[k]]-2}}{\\binom{[[n]]}{[[k]]}} \\). So \\( P(\\text{at least one left off}) = 1 - \\frac{\\binom{[[n]]-2}{[[k]]-2}}{\\binom{[[n]]}{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the complement event (both are ON the committee), not the requested probability.",
+   "This forgets to reduce the number of seats to fill by 2 when conditioning on both particular people.",
+   "This wrongly complements a probability that itself forgot to reduce the seat count.",
+   "This treats it as a simple 2-out-of-n chance, ignoring the committee-selection structure.",
+   "This (incorrectly) treats each person's inclusion as an independent event with probability \\( k/n \\).",
+   "This uses the wrong denominator, excluding Alice and Bob from the total pool as well."
+  ]
+ },
+ {
+  "template_id": "first_special_item_on_draw_k_v1",
+  "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "R": {"type": "int", "lo": 1, "hi": 5},
+   "B": {"type": "int", "lo": 3, "hi": 12},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Le([[k]], [[B]] + 1)", "Le([[k]] - 1, [[B]])"],
+  "stem": "A deck of \\( [[R]] + [[B]] \\) cards ([[R]] aces and [[B]] non-aces) is shuffled into a uniformly random order and dealt out one at a time, without replacement. What is the probability that the FIRST ace appears on draw number [[k]]?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[B]], [[k]] - 1) * [[R]] / (binomial([[B]] + [[R]], [[k]] - 1) * ([[B]] + [[R]] - [[k]] + 1))"},
+  "distractors": [
+   "binomial([[B]], [[k]]) / binomial([[B]] + [[R]], [[k]])",
+   "Rational([[R]], [[B]] + [[R]])",
+   "binomial([[B]], [[k]] - 1) / binomial([[B]] + [[R]], [[k]] - 1)",
+   "Rational([[R]], [[B]] + [[R]]) * Rational([[B]], [[B]] + [[R]] - 1) ** ([[k]] - 1)",
+   "binomial([[B]], [[k]] - 1) * [[R]] / binomial([[B]] + [[R]], [[k]])",
+   "Rational([[B]] - [[k]] + 1, [[B]] + [[R]] - [[k]] + 1)"
+  ],
+  "solution": "By symmetry, the position of the first ace has \\( P(\\text{first ace at draw } [[k]]) = \\frac{\\binom{[[B]]}{[[k]]-1}}{\\binom{[[B]]+[[R]]}{[[k]]-1}} \\cdot \\frac{[[R]]}{[[B]]+[[R]]-[[k]]+1} = [[answer]] \\): the first \\( [[k]]-1 \\) draws must all be non-aces, and then draw [[k]] must be an ace.",
+  "distractor_rationales": [
+   "This treats all [[k]] draws as non-aces (using \\( \\binom{B}{k} \\)) instead of only the first \\( [[k]]-1 \\), forgetting the final ace draw.",
+   "This is just the overall fraction of aces in the deck, ignoring the ordering requirement entirely.",
+   "This omits the final factor for drawing an ace exactly on draw [[k]], leaving only the \"first \\( [[k]]-1 \\) are non-aces\" part.",
+   "This wrongly repeats the SAME conditional probability for each of the \\( [[k]]-1 \\) prior draws instead of using combinatorial counting.",
+   "This uses the wrong denominator, choosing [[k]] positions for non-aces from the whole deck instead of \\( [[k]]-1 \\).",
+   "This is an unrelated ratio of remaining non-aces to remaining cards, not the waiting-time probability."
+  ]
+ },
+ {
+  "template_id": "none_defective_quality_control_v1",
+  "skill_id": "selection_without_replacement_committee_urn_hypergeo",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 10, "hi": 30},
+   "d": {"type": "int", "lo": 1, "hi": 6},
+   "k": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Lt([[d]], [[n]])", "Le([[k]], [[n]] - [[d]])"],
+  "stem": "A batch of [[n]] manufactured items contains [[d]] defective items. An inspector selects [[k]] items at random (without replacement) to test. What is the probability that NONE of the tested items is defective?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - [[d]], [[k]]) / binomial([[n]], [[k]])"},
+  "distractors": [
+   "binomial([[n]] - [[d]], [[k]]) / binomial([[n]], [[d]])",
+   "Rational([[n]] - [[d]], [[n]]) ** [[k]]",
+   "1 - binomial([[n]] - [[d]], [[k]]) / binomial([[n]], [[k]])",
+   "binomial([[d]], [[k]]) / binomial([[n]], [[k]])",
+   "binomial([[n]] - [[d]], [[k]] - [[d]]) / binomial([[n]], [[k]])",
+   "Rational([[n]] - [[d]] - [[k]], [[n]] - [[k]])"
+  ],
+  "solution": "Choose all [[k]] tested items from the \\( [[n]] - [[d]] \\) non-defective items, out of all ways to choose [[k]] items: \\( \\frac{\\binom{[[n]] - [[d]]}{[[k]]}}{\\binom{[[n]]}{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong denominator, choosing [[k]] items from the whole batch of [[n]] as if only [[d]] items existed to choose among.",
+   "This (incorrectly) treats each draw as independent with replacement, raising a single-draw probability to the [[k]]-th power.",
+   "This is the complement (at least one defective), not the probability of none being defective.",
+   "This chooses among the DEFECTIVE items instead of the non-defective ones.",
+   "This subtracts [[d]] from the number chosen as well as from the pool, an unnecessary extra correction.",
+   "This is an unrelated linear ratio rather than the correct combinatorial probability."
+  ]
+ }
+]

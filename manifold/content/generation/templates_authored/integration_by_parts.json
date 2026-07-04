@@ -1,0 +1,162 @@
+[
+{
+ "template_id": "integration_by_parts_single_poly_exp_v1",
+ "skill_id": "integration_by_parts",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "m": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Using integration by parts with \\( u = [[c]]x \\) and \\( dv = e^{-[[k]]x}\\,dx \\), evaluate \\( \\displaystyle\\int_{0}^{[[m]]} [[c]]x\\,e^{-[[k]]x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x*exp(-[[k]]*x)", "var": "x", "bounds": ["0", "[[m]]"]},
+ "distractors": [
+  "[[c]]/[[k]]**2",
+  "-[[c]]*[[m]]*exp(-[[k]]*[[m]])/[[k]]",
+  "[[c]]/[[k]]",
+  "[[answer]] + 1",
+  "-[[answer]]",
+  "2*[[answer]]"
+ ],
+ "solution": "With \\( u=[[c]]x,\\ dv=e^{-[[k]]x}dx \\) so \\( du=[[c]]\\,dx,\\ v=-\\tfrac{1}{[[k]]}e^{-[[k]]x} \\): \\( \\int [[c]]x e^{-[[k]]x}dx = -\\tfrac{[[c]]x}{[[k]]}e^{-[[k]]x} - \\displaystyle\\int -\\tfrac{[[c]]}{[[k]]}e^{-[[k]]x}dx = -\\tfrac{[[c]]x}{[[k]]}e^{-[[k]]x} - \\tfrac{[[c]]}{[[k]]^{2}}e^{-[[k]]x} \\). Evaluating from \\( 0 \\) to \\( [[m]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly assumes the boundary contribution at \\( x=[[m]] \\) vanishes entirely (treating it like an improper integral at infinity).",
+  "This keeps only the boundary term from parts and drops the remaining exponential integral.",
+  "This uses the antiderivative coefficient alone with no boundary evaluation at all.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "integration_by_parts_reduction_poly2_exp_improper_v2",
+ "skill_id": "integration_by_parts",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Applying integration by parts TWICE (a reduction in the power of \\( x \\) each time), evaluate the improper integral \\( \\displaystyle\\int_{0}^{\\infty} [[c]]x^{2}e^{-[[k]]x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**2*exp(-[[k]]*x)", "var": "x", "bounds": ["0", "oo"]},
+ "distractors": [
+  "[[c]]/[[k]]**3",
+  "4*[[c]]/[[k]]**3",
+  "[[c]]/[[k]]**2",
+  "3*[[c]]/[[k]]**3",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "First parts step (\\( u=[[c]]x^{2} \\), \\( dv=e^{-[[k]]x}dx \\)) reduces the power of \\( x \\) by one and leaves \\( \\tfrac{2[[c]]}{[[k]]}\\displaystyle\\int_{0}^{\\infty}xe^{-[[k]]x}dx \\); a second parts step (or the known result \\( \\int_0^\\infty xe^{-kx}dx=1/k^2 \\)) finishes it. All boundary terms vanish as \\( x\\to\\infty \\) since the exponential decays faster than any power of \\( x \\) grows. The result is \\( \\dfrac{2[[c]]}{[[k]]^{3}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 that appears after two applications of parts (\\( n! \\) for the reduction of \\( x^{2} \\)).",
+  "This uses the wrong power of \\( [[k]] \\) in the denominator, as if only one parts step had been applied to \\( x^2 \\) directly.",
+  "This is the result for \\( \\int_0^\\infty [[c]]xe^{-[[k]]x}dx \\) (only one power of \\( x \\)), not \\( x^2 \\).",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "integration_by_parts_cyclic_exp_trig_v3",
+ "skill_id": "integration_by_parts",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 1, "hi": 3},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Applying integration by parts TWICE and solving algebraically for the original integral (it reappears on both sides), evaluate \\( \\displaystyle\\int_{0}^{\\pi/[[b]]} [[c]]e^{[[a]]x}\\sin([[b]]x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*exp([[a]]*x)*sin([[b]]*x)", "var": "x", "bounds": ["0", "pi/[[b]]"]},
+ "distractors": [
+  "[[c]]*[[b]]/([[a]]**2+[[b]]**2)",
+  "[[c]]*[[a]]*(exp([[a]]*pi/[[b]])+1)/([[a]]**2+[[b]]**2)",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "The cyclic identity \\( \\int e^{ax}\\sin(bx)\\,dx = \\dfrac{e^{ax}\\left(a\\sin(bx)-b\\cos(bx)\\right)}{a^{2}+b^{2}} \\) comes from applying parts twice and solving for the integral once it reappears. Substituting \\( a=[[a]],\\,b=[[b]],\\,c=[[c]] \\) and evaluating from \\( 0 \\) to \\( \\pi/[[b]] \\) (where \\( \\sin([[b]]x) \\) vanishes at both ends but \\( \\cos([[b]]x) \\) does not) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the exponential growth factor entirely, as if the boundary term at the upper limit did not contribute.",
+  "This swaps the roles of \\( a \\) and \\( b \\) in the cyclic formula's numerator.",
+  "This flips the sign of the correct value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "integration_by_parts_poly_sec_squared_v4",
+ "skill_id": "integration_by_parts",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "Using integration by parts with \\( u = [[c]]x \\) and \\( dv = \\sec^{2}x\\,dx \\), evaluate \\( \\displaystyle\\int_{0}^{\\pi/[[n]]} [[c]]x\\sec^{2}x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x*sec(x)**2", "var": "x", "bounds": ["0", "pi/[[n]]"]},
+ "distractors": [
+  "[[c]]*pi/[[n]]",
+  "[[c]]*log(cos(pi/[[n]]))",
+  "-[[c]]*(pi/[[n]])*tan(pi/[[n]]) - [[c]]*log(cos(pi/[[n]]))",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( u=[[c]]x,\\ dv=\\sec^{2}x\\,dx,\\ v=\\tan x \\): \\( \\int [[c]]x\\sec^{2}x\\,dx = [[c]]x\\tan x - [[c]]\\displaystyle\\int \\tan x\\,dx = [[c]]x\\tan x + [[c]]\\ln|\\cos x| \\). Evaluating from \\( 0 \\) to \\( \\pi/[[n]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the boundary term \\( [[c]]x\\tan x \\) and forgets the logarithmic correction from \\( -\\int\\tan x\\,dx \\).",
+  "This keeps only the logarithmic correction term and drops the \\( x\\tan x \\) boundary contribution.",
+  "This flips the sign of both terms in the antiderivative.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "integration_by_parts_tabular_poly2_trig_v5",
+ "skill_id": "integration_by_parts",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Using the TABULAR method (repeated integration by parts on \\( u=[[c]]x^{2} \\) until it reaches zero), evaluate \\( \\displaystyle\\int_{0}^{\\pi} [[c]]x^{2}\\sin([[k]]x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**2*sin([[k]]*x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "[[c]]*pi**2/[[k]]",
+  "-[[c]]*pi**2/[[k]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "The tabular pattern (alternating signs, differentiating \\( x^{2}\\to 2x\\to 2\\to 0 \\) and antidifferentiating \\( \\sin([[k]]x) \\) each row) gives \\( \\int x^{2}\\sin(kx)\\,dx = -\\tfrac{x^{2}}{k}\\cos(kx) + \\tfrac{2x}{k^{2}}\\sin(kx) + \\tfrac{2}{k^{3}}\\cos(kx) \\). Scaling by \\( [[c]] \\) and evaluating from \\( 0 \\) to \\( \\pi \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the leading \\( -\\tfrac{x^2}{k}\\cos(kx) \\) row of the tabular pattern and drops the remaining two rows.",
+  "This keeps the leading row but with the wrong sign.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

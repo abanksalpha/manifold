@@ -1,0 +1,215 @@
+[
+ {
+  "template_id": "domain_range_piecewise_evaluate_two_branch_v1",
+  "skill_id": "domain_range_piecewise",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[x0]], [[t]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x < [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x \\ge [[t]] \\end{cases} \\), with domain all real numbers. What is \\( f([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "((Abs([[x0]] - [[t]]) + ([[x0]] - [[t]]))/(2*([[x0]] - [[t]])))*([[c]]*[[x0]] + [[d]]) + (1 - (Abs([[x0]] - [[t]]) + ([[x0]] - [[t]]))/(2*([[x0]] - [[t]])))*([[a]]*[[x0]] + [[b]])"},
+  "distractors": [
+   "[[a]]*[[x0]] + [[b]]",
+   "[[c]]*[[x0]] + [[d]]",
+   "[[a]]*[[t]] + [[b]]",
+   "[[c]]*[[t]] + [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Compare \\( [[x0]] \\) with the breakpoint \\( [[t]] \\) to pick the correct piece of the domain, then substitute. This gives \\( f([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the rule for \\( x < [[t]] \\); check which side of \\( [[t]] \\) the input \\( [[x0]] \\) is on.",
+   "This uses the rule for \\( x \\ge [[t]] \\); check which side of \\( [[t]] \\) the input \\( [[x0]] \\) is on.",
+   "This substitutes the breakpoint \\( [[t]] \\) into the lower piece instead of the input \\( [[x0]] \\).",
+   "This substitutes the breakpoint \\( [[t]] \\) into the upper piece instead of the input \\( [[x0]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "domain_range_piecewise_evaluate_at_boundary_v1",
+  "skill_id": "domain_range_piecewise",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]]*[[t]]+[[b]], [[c]]*[[t]]+[[d]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x \\le [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x > [[t]] \\end{cases} \\), with domain all real numbers. What is \\( f([[t]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[t]] + [[b]]"},
+  "distractors": [
+   "[[c]]*[[t]] + [[d]]",
+   "[[a]]*[[t]] - [[b]]",
+   "[[c]]*[[t]] - [[d]]",
+   "[[t]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The breakpoint \\( x=[[t]] \\) satisfies \\( x \\le [[t]] \\) (not strict), so the FIRST piece applies: \\( f([[t]]) = [[a]]([[t]]) + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the second piece, but the condition \\( x \\le [[t]] \\) on the first piece includes the breakpoint itself.",
+   "This flips the sign of the constant term.",
+   "This uses the wrong piece and also flips the sign of its constant term.",
+   "This reports the input value itself instead of evaluating \\( f \\) at it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "domain_range_piecewise_excluded_point_v1",
+  "skill_id": "domain_range_piecewise",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 6},
+   "e": {"type": "int", "lo": -9, "hi": 9},
+   "t": {"type": "int", "lo": -3, "hi": 8},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[m]]*[[t]] + [[e]], 0)"],
+  "derived": {"cut": "-[[e]]/[[m]]"},
+  "stem": "Let \\( f(x) = \\begin{cases} \\dfrac{1}{[[m]]x + ([[e]])} & \\text{if } x < [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x \\ge [[t]] \\end{cases} \\). Exactly one real number must be excluded from the domain of \\( f \\), because it makes a denominator zero. What is that excluded number?",
+  "answer_spec": {"op": "solve", "equation": "[[m]]*x + [[e]] = 0", "var": "x"},
+  "distractors": [
+   "[[t]]",
+   "[[e]] / [[m]]",
+   "[[m]] / [[e]]",
+   "-[[m]] / [[e]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The first piece is undefined exactly when its denominator vanishes: \\( [[m]]x + ([[e]]) = 0 \\), so \\( x = [[answer]] \\). (The constraint that this value lies below [[t]] guarantees it truly falls inside the first piece's own domain restriction, so it really is excluded.)",
+  "distractor_rationales": [
+   "This is the breakpoint \\( [[t]] \\) itself, not the value that zeroes the denominator.",
+   "This flips the sign when solving \\( [[m]]x+([[e]])=0 \\) for \\( x \\).",
+   "This inverts the ratio of the coefficients instead of solving for \\( x \\).",
+   "This inverts the ratio and flips its sign.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "domain_range_piecewise_range_minimum_of_branch_v1",
+  "skill_id": "domain_range_piecewise",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "h": {"type": "int", "lo": 1, "hi": 8},
+   "n": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -9, "hi": 0},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Lt([[t]], [[h]])"],
+  "derived": {"B": "-2*[[a]]*[[h]]", "C": "[[a]]*[[h]]**2 + [[n]]"},
+  "stem": "Let \\( f(x) = \\begin{cases} [[c]]x + ([[d]]) & \\text{if } x < [[t]] \\\\ [[a]]x^{2} + ([[B]])x + ([[C]]) & \\text{if } x \\ge [[t]] \\end{cases} \\). The vertex of the parabola piece lies within its domain restriction \\( x \\ge [[t]] \\). What is the minimum value attained by \\( f \\) on that piece?",
+  "answer_spec": {"op": "evaluate", "expr": "[[C]] - ([[B]])**2/(4*[[a]])"},
+  "distractors": [
+   "[[C]]",
+   "([[B]])**2/(4*[[a]])",
+   "[[C]] + ([[B]])**2/(4*[[a]])",
+   "-([[B]])/(2*[[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The parabola \\( [[a]]x^{2}+([[B]])x+([[C]]) \\) has its vertex at \\( x = -\\dfrac{[[B]]}{2[[a]]} = [[h]] \\), which satisfies \\( x \\ge [[t]] \\), so the minimum on this piece is the vertex's \\( y \\)-value: \\( [[C]] - \\dfrac{([[B]])^{2}}{4[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the constant term \\( C \\) directly instead of completing the square to find the vertex value.",
+   "This reports only the correction term, dropping the constant \\( C \\).",
+   "This adds the correction term instead of subtracting it.",
+   "This reports the vertex's \\( x \\)-coordinate instead of the minimum \\( y \\)-value.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "domain_range_piecewise_evaluate_three_branch_v1",
+  "skill_id": "domain_range_piecewise",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a0": {"type": "int", "lo": -3, "hi": 3},
+   "b0": {"type": "int", "lo": -5, "hi": 5},
+   "a1": {"type": "int", "lo": -3, "hi": 3},
+   "b1": {"type": "int", "lo": -5, "hi": 5},
+   "a2": {"type": "int", "lo": -3, "hi": 3},
+   "b2": {"type": "int", "lo": -5, "hi": 5},
+   "t1": {"type": "int", "lo": -6, "hi": 0},
+   "gap": {"type": "int", "lo": 2, "hi": 6},
+   "x0": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[x0]], [[t1]])", "Ne([[x0]], [[t1]]+[[gap]])"],
+  "derived": {"t2": "[[t1]] + [[gap]]"},
+  "stem": "Let \\( f(x) = \\begin{cases} [[a0]]x + ([[b0]]) & \\text{if } x < [[t1]] \\\\ [[a1]]x + ([[b1]]) & \\text{if } [[t1]] \\le x < [[t2]] \\\\ [[a2]]x + ([[b2]]) & \\text{if } x \\ge [[t2]] \\end{cases} \\), with domain all real numbers. What is \\( f([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - ((Abs([[x0]]-[[t1]])+([[x0]]-[[t1]]))/(2*([[x0]]-[[t1]]))))*([[a0]]*[[x0]]+[[b0]]) + (((Abs([[x0]]-[[t1]])+([[x0]]-[[t1]]))/(2*([[x0]]-[[t1]]))) - ((Abs([[x0]]-[[t2]])+([[x0]]-[[t2]]))/(2*([[x0]]-[[t2]]))))*([[a1]]*[[x0]]+[[b1]]) + (((Abs([[x0]]-[[t2]])+([[x0]]-[[t2]]))/(2*([[x0]]-[[t2]]))))*([[a2]]*[[x0]]+[[b2]])"},
+  "distractors": [
+   "[[a0]]*[[x0]] + [[b0]]",
+   "[[a1]]*[[x0]] + [[b1]]",
+   "[[a2]]*[[x0]] + [[b2]]",
+   "[[a1]]*[[t1]] + [[b1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Locate \\( [[x0]] \\) among the three intervals of the domain determined by the breakpoints \\( [[t1]] \\) and \\( [[t2]] \\), then apply that piece's rule. This gives \\( f([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the first piece's rule; check which of the three domain intervals \\( [[x0]] \\) actually falls in.",
+   "This uses the middle piece's rule; check which of the three domain intervals \\( [[x0]] \\) actually falls in.",
+   "This uses the last piece's rule; check which of the three domain intervals \\( [[x0]] \\) actually falls in.",
+   "This substitutes the breakpoint \\( [[t1]] \\) into the middle piece instead of the input \\( [[x0]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "domain_range_piecewise_solve_on_branch_v1",
+  "skill_id": "domain_range_piecewise",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -4, "hi": 4},
+   "gap": {"type": "int", "lo": 0, "hi": 6}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "derived": {"s": "[[t]] + [[gap]]", "V": "[[c]]*([[t]]+[[gap]]) + [[d]]"},
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x < [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x \\ge [[t]] \\end{cases} \\). Given that the value \\( V=[[V]] \\) is attained on the \\( x \\ge [[t]] \\) branch of the domain, which of the following is a solution of \\( f(x) = [[V]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[c]]*x + [[d]] = [[V]]", "var": "x"},
+  "distractors": [
+   "[[t]]",
+   "([[V]] - [[b]])/[[a]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since we are told \\( V \\) is attained on the \\( x \\ge [[t]] \\) branch, solve that branch's equation: \\( [[c]]x + ([[d]]) = [[V]] \\), giving \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the breakpoint itself instead of solving the branch equation.",
+   "This incorrectly solves the OTHER branch's equation, which does not apply here.",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

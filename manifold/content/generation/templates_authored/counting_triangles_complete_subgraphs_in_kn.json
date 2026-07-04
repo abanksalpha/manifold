@@ -1,0 +1,126 @@
+[
+ {
+  "template_id": "triangles_in_kn_v1",
+  "skill_id": "counting_triangles_complete_subgraphs_in_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 22
+   }
+  },
+  "constraints": [],
+  "stem": "How many triangles (sets of 3 mutually adjacent vertices) are there in the complete graph \\( K_{[[n]]} \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "binomial([[n]], 3)"
+  },
+  "distractors": [
+   "binomial([[n]], 2)",
+   "[[n]]*([[n]] - 1)*([[n]] - 2)",
+   "[[n]]**3",
+   "[[n]]*([[n]] - 1)*([[n]] - 2)/2",
+   "[[answer]] + [[n]]",
+   "[[answer]] - 1"
+  ],
+  "solution": "A triangle is chosen by picking any 3 of the \\( [[n]] \\) vertices, and in \\( K_{[[n]]} \\) all three connecting edges are present. So the count is \\( \\binom{[[n]]}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts edges \\( \\binom{[[n]]}{2} \\), which are pairs of vertices, not triples.",
+   "This counts ordered triples of distinct vertices; each triangle is counted \\( 3! = 6 \\) times.",
+   "This counts all ordered triples with repetition allowed.",
+   "This divides the ordered triple count by 2 instead of by \\( 3! = 6 \\).",
+   "This overcounts the triangles by the number of vertices.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "kr_cliques_in_kn_v2",
+  "skill_id": "counting_triangles_complete_subgraphs_in_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 20},
+   "r": {"type": "choice", "values": [4, 5, 6]}
+  },
+  "constraints": ["Lt([[r]], [[n]])"],
+  "stem": "How many complete subgraphs isomorphic to \\( K_{[[r]]} \\) (sets of \\( [[r]] \\) mutually adjacent vertices) are there inside the complete graph \\( K_{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[r]])"},
+  "distractors": [
+   "binomial([[n]], [[r]] - 1)",
+   "binomial([[n]], [[r]] + 1)",
+   "factorial([[r]])*binomial([[n]], [[r]])",
+   "[[n]]**[[r]]",
+   "binomial([[n]] - 1, [[r]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "Every set of \\( [[r]] \\) vertices in \\( K_{[[n]]} \\) is mutually adjacent (since ALL edges are present), so each \\( [[r]] \\)-subset of vertices gives exactly one \\( K_{[[r]]} \\). The count is \\( \\binom{[[n]]}{[[r]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses one fewer vertex per clique than required.",
+   "This uses one more vertex per clique than required.",
+   "This multiplies by \\( r! \\), as if the vertices within each clique were ordered.",
+   "This treats vertices as chosen with order and repetition, rather than as an unordered subset.",
+   "This leaves out one vertex from the pool available to be chosen.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "triangles_through_fixed_vertex_v3",
+  "skill_id": "counting_triangles_complete_subgraphs_in_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "In the complete graph \\( K_{[[n]]} \\), a single vertex \\( v \\) is fixed. How many triangles (sets of 3 mutually adjacent vertices) contain \\( v \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - 1, 2)"},
+  "distractors": [
+   "binomial([[n]], 2)",
+   "binomial([[n]] - 1, 3)",
+   "binomial([[n]], 3)",
+   "[[n]] - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A triangle through \\( v \\) is determined by picking 2 of the remaining \\( [[n]] - 1 \\) vertices to join \\( v \\) (all such edges exist in \\( K_{[[n]]} \\)). So the count is \\( \\binom{[[n]]-1}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to remove \\( v \\) from the pool before choosing the other 2 vertices.",
+   "This picks 3 other vertices instead of 2, forming a 4-vertex set rather than a triangle with \\( v \\).",
+   "This counts ALL triangles in \\( K_{[[n]]} \\), not just those through \\( v \\).",
+   "This counts single vertices rather than pairs that complete a triangle with \\( v \\).",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "triangles_through_fixed_edge_v4",
+  "skill_id": "counting_triangles_complete_subgraphs_in_kn",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "In the complete graph \\( K_{[[n]]} \\), a single edge \\( \\{u, v\\} \\) is fixed. How many triangles (sets of 3 mutually adjacent vertices) contain this edge?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - 2"},
+  "distractors": [
+   "[[n]] - 1",
+   "[[n]]",
+   "binomial([[n]], 2)",
+   "[[n]] - 3",
+   "[[answer]] + 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "A triangle through the edge \\( \\{u,v\\} \\) is completed by any third vertex, since it is automatically adjacent to both \\( u \\) and \\( v \\) in \\( K_{[[n]]} \\). There are \\( [[n]] - 2 \\) choices for that third vertex, so the count is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to exclude both \\( u \\) and \\( v \\) from the pool of possible third vertices, excluding only one.",
+   "This forgets to exclude \\( u \\) and \\( v \\) from the pool at all.",
+   "This counts all edges of \\( K_{[[n]]} \\) rather than triangles through this one fixed edge.",
+   "This excludes one vertex too many from the pool of possible third vertices.",
+   "This overcounts by 2 the number of valid third vertices.",
+   "This overcounts by 3 the number of valid third vertices."
+  ]
+ }
+]

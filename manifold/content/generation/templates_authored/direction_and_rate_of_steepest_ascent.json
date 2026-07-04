@@ -1,0 +1,271 @@
+[
+ {
+  "template_id": "steepest_ascent_rate_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "u": {"type": "choice", "values": [2, 3, 4]},
+   "v": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Gt([[u]], [[v]])"],
+  "derived": {
+   "p": "[[u]]**2 - [[v]]**2",
+   "q": "2*[[u]]*[[v]]",
+   "m": "[[u]]**2 + [[v]]**2",
+   "c": "[[u]]**2 - [[v]]**2 - 2*[[a]]*[[x0]]",
+   "d": "2*[[u]]*[[v]] - 2*[[b]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])x + ([[d]])y \\). What is the rate of steepest ascent of \\( f \\) at the point \\( ([[x0]], [[y0]]) \\), i.e. the maximum rate of increase (the magnitude of the gradient there)?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((2*[[a]]*[[x0]] + [[c]])**2 + (2*[[b]]*[[y0]] + [[d]])**2)"},
+  "distractors": [
+   "[[p]] + [[q]]",
+   "[[p]]**2 + [[q]]**2",
+   "Abs([[p]]) + Abs([[q]]) + 1",
+   "2*[[m]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f = \\langle 2([[a]])x + ([[c]]),\\ 2([[b]])y + ([[d]]) \\rangle \\), which at \\( ([[x0]], [[y0]]) \\) is \\( \\langle [[p]], [[q]] \\rangle \\). The rate of steepest ascent is \\( \\lVert \\nabla f \\rVert = \\sqrt{[[p]]^{2} + [[q]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the gradient components instead of taking the magnitude.",
+   "This is the squared magnitude; the rate is its square root.",
+   "This adds absolute values of the components (and is off by one) rather than using the Pythagorean magnitude.",
+   "This doubles the correct magnitude.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "steepest_ascent_direction_component_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "n": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "p": "[[m]]**2 - [[n]]**2",
+   "q": "2*[[m]]*[[n]]",
+   "mag": "[[m]]**2 + [[n]]**2",
+   "c": "[[m]]**2 - [[n]]**2 - 2*[[a]]*[[x0]]",
+   "d": "2*[[m]]*[[n]] - 2*[[b]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])x + ([[d]])y \\). The direction of steepest ascent of \\( f \\) at the point \\( ([[x0]], [[y0]]) \\) is the unit vector \\( \\hat{\\mathbf{u}} = \\langle u_{1}, u_{2} \\rangle \\) parallel to \\( \\nabla f([[x0]], [[y0]]) \\). What is \\( u_{1} \\), the \\( x \\)-component of \\( \\hat{\\mathbf{u}} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]/[[mag]]"},
+  "distractors": [
+   "[[p]]",
+   "[[q]]/[[mag]]",
+   "-[[p]]/[[mag]]",
+   "[[p]]/[[mag]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f([[x0]], [[y0]]) = \\langle [[p]], [[q]] \\rangle \\), which has magnitude \\( \\sqrt{[[p]]^{2}+[[q]]^{2}} = [[mag]] \\). The direction of steepest ascent is \\( \\hat{\\mathbf{u}} = \\dfrac{1}{[[mag]]}\\langle [[p]], [[q]] \\rangle \\), so \\( u_{1} = \\dfrac{[[p]]}{[[mag]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the raw gradient component \\( f_{x} \\), not normalized to a unit vector.",
+   "This uses the \\( y \\)-component of the gradient instead of the \\( x \\)-component.",
+   "This has the wrong sign, giving the \\( x \\)-component of the steepest DESCENT direction instead.",
+   "This divides by the squared magnitude instead of the magnitude itself.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "steepest_descent_rate_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "u": {"type": "choice", "values": [2, 3, 4]},
+   "v": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Gt([[u]], [[v]])"],
+  "derived": {
+   "p": "[[u]]**2 - [[v]]**2",
+   "q": "2*[[u]]*[[v]]",
+   "m": "[[u]]**2 + [[v]]**2",
+   "c": "[[u]]**2 - [[v]]**2 - 2*[[a]]*[[x0]]",
+   "d": "2*[[u]]*[[v]] - 2*[[b]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])x + ([[d]])y \\). The rate of steepest descent of \\( f \\) at the point \\( ([[x0]], [[y0]]) \\) is defined as \\( -\\lVert \\nabla f \\rVert \\) evaluated there (the most negative directional derivative). What is this rate?",
+  "answer_spec": {"op": "evaluate", "expr": "-sqrt((2*[[a]]*[[x0]] + [[c]])**2 + (2*[[b]]*[[y0]] + [[d]])**2)"},
+  "distractors": [
+   "sqrt((2*[[a]]*[[x0]] + [[c]])**2 + (2*[[b]]*[[y0]] + [[d]])**2)",
+   "[[p]] + [[q]]",
+   "-([[p]] + [[q]])",
+   "-2*[[m]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient at \\( ([[x0]], [[y0]]) \\) is \\( \\langle [[p]], [[q]] \\rangle \\), with magnitude \\( \\sqrt{[[p]]^{2}+[[q]]^{2}} = [[m]] \\). The rate of steepest descent is the negative of this magnitude, \\( -[[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign, giving the rate of steepest ASCENT instead of descent.",
+   "This adds the gradient components instead of taking the negative magnitude.",
+   "This negates the sum of the components rather than the Pythagorean magnitude.",
+   "This doubles the correct magnitude before negating.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "steepest_ascent_rate_3var_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( f(x, y, z) = [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} \\). What is the rate of steepest ascent of \\( f \\) at the point \\( ([[x0]], [[y0]], [[z0]]) \\), i.e. the magnitude of the gradient there?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((2*[[a]]*[[x0]])**2 + (2*[[b]]*[[y0]])**2 + (2*[[c]]*[[z0]])**2)"},
+  "distractors": [
+   "2*[[a]]*[[x0]] + 2*[[b]]*[[y0]] + 2*[[c]]*[[z0]]",
+   "(2*[[a]]*[[x0]])**2 + (2*[[b]]*[[y0]])**2 + (2*[[c]]*[[z0]])**2",
+   "sqrt((2*[[a]]*[[x0]])**2 + (2*[[b]]*[[y0]])**2)",
+   "Abs(2*[[a]]*[[x0]]) + Abs(2*[[b]]*[[y0]]) + Abs(2*[[c]]*[[z0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f = \\langle 2([[a]])x,\\ 2([[b]])y,\\ 2([[c]])z \\rangle \\), which at \\( ([[x0]], [[y0]], [[z0]]) \\) is \\( \\langle 2([[a]])([[x0]]),\\ 2([[b]])([[y0]]),\\ 2([[c]])([[z0]]) \\rangle \\). The rate of steepest ascent is \\( \\lVert \\nabla f \\rVert = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the gradient components instead of taking their Pythagorean magnitude.",
+   "This is the squared magnitude; the rate is its square root.",
+   "This drops the \\( z \\)-component of the gradient entirely.",
+   "This adds absolute values of the components instead of using the Pythagorean magnitude.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "steepest_ascent_find_coefficient_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "p": "2*[[a]]*[[x0]]",
+   "q": "2*[[b]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + by^{2} \\) for an unknown positive coefficient \\( b \\). At the point \\( ([[x0]], [[y0]]) \\), the direction of steepest ascent of \\( f \\) is parallel to the vector \\( \\langle [[p]], [[q]] \\rangle \\). What is the value of \\( b \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]*[[q]]/([[y0]]*[[p]])"},
+  "distractors": [
+   "[[a]]*[[y0]]*[[p]]/([[x0]]*[[q]])",
+   "[[q]]/(2*[[y0]])",
+   "[[p]]/(2*[[x0]])",
+   "[[a]]*[[q]]/[[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\langle 2([[a]])x,\\ 2by \\rangle \\), which at \\( ([[x0]],[[y0]]) \\) must be a scalar multiple of \\( \\langle [[p]],[[q]]\\rangle \\). Matching the \\( x \\)-component fixes the scalar (since \\( 2([[a]])([[x0]]) = [[p]] \\) means the scalar is 1), so \\( 2b([[y0]]) = [[q]] \\), giving \\( b = \\dfrac{[[a]]([[x0]])([[q]])}{([[y0]])([[p]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the correct ratio, solving as if \\( a \\) were the unknown instead of \\( b \\).",
+   "This computes \\( q/(2y_0) \\) directly, forgetting that this equals \\( b \\) only after also accounting for the coefficient \\( a \\) via \\( p \\).",
+   "This computes \\( p/(2x_0) \\), which just recovers the KNOWN coefficient \\( a \\), not the unknown \\( b \\).",
+   "This forgets to divide by \\( y_0 \\), only scaling by \\( p \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "steepest_ascent_hillside_word_problem_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "require_rational": false,
+  "stem": "The elevation of a hillside at position \\( (x, y) \\) (in hundreds of meters east and north of a base camp) is \\( h(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\). A hiker standing at \\( ([[x0]], [[y0]]) \\) wants to climb as steeply as possible. What is the rate of increase in elevation per unit distance (the magnitude of the gradient) in that best direction?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((2*[[a]]*[[x0]] + [[c]]*[[y0]])**2 + (2*[[b]]*[[y0]] + [[c]]*[[x0]])**2)"},
+  "distractors": [
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])**2 + (2*[[b]]*[[y0]] + [[c]]*[[x0]])**2",
+   "sqrt((2*[[a]]*[[x0]])**2 + (2*[[b]]*[[y0]])**2)",
+   "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla h = \\langle 2([[a]])x + ([[c]])y,\\ 2([[b]])y + ([[c]])x \\rangle \\), which at \\( ([[x0]], [[y0]]) \\) is \\( \\langle 2([[a]])([[x0]]) + ([[c]])([[y0]]),\\ 2([[b]])([[y0]]) + ([[c]])([[x0]]) \\rangle \\). The steepest rate of increase is \\( \\lVert \\nabla h \\rVert = [[answer]] \\) (in hundreds of meters of elevation per unit of horizontal distance).",
+  "distractor_rationales": [
+   "This adds the gradient components instead of taking their Pythagorean magnitude.",
+   "This is the squared magnitude; the rate is its square root.",
+   "This drops the mixed term \\( [[c]]xy \\)'s contribution to each gradient component.",
+   "This is the elevation \\( h([[x0]],[[y0]]) \\) itself, not the rate of steepest ascent.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "steepest_descent_direction_component_v1",
+  "skill_id": "direction_and_rate_of_steepest_ascent",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "n": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "p": "[[m]]**2 - [[n]]**2",
+   "q": "2*[[m]]*[[n]]",
+   "mag": "[[m]]**2 + [[n]]**2",
+   "c": "[[m]]**2 - [[n]]**2 - 2*[[a]]*[[x0]]",
+   "d": "2*[[m]]*[[n]] - 2*[[b]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])x + ([[d]])y \\). The direction of steepest DESCENT of \\( f \\) at the point \\( ([[x0]], [[y0]]) \\) is the unit vector \\( \\hat{\\mathbf{v}} = \\langle v_{1}, v_{2} \\rangle \\) anti-parallel to \\( \\nabla f([[x0]], [[y0]]) \\). What is \\( v_{1} \\), the \\( x \\)-component of \\( \\hat{\\mathbf{v}} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[p]]/[[mag]]"},
+  "distractors": [
+   "[[p]]/[[mag]]",
+   "-[[q]]/[[mag]]",
+   "-[[p]]",
+   "-[[p]]/[[mag]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f([[x0]], [[y0]]) = \\langle [[p]], [[q]] \\rangle \\), with magnitude \\( [[mag]] \\). The direction of steepest descent is the OPPOSITE unit vector, \\( \\hat{\\mathbf{v}} = -\\dfrac{1}{[[mag]]}\\langle [[p]], [[q]] \\rangle \\), so \\( v_{1} = -\\dfrac{[[p]]}{[[mag]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the \\( x \\)-component of the steepest ASCENT direction instead, forgetting the sign flip for descent.",
+   "This uses the \\( y \\)-component of the gradient (negated) instead of the \\( x \\)-component.",
+   "This is the raw (negated) gradient component, not normalized to a unit vector.",
+   "This divides by the squared magnitude instead of the magnitude itself.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

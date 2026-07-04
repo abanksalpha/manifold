@@ -1,0 +1,248 @@
+[
+{
+ "template_id": "parametric_slope_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "t0": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  }
+ },
+ "constraints": [],
+ "stem": "A curve is given by \\( x=[[a]]t^{2} \\), \\( y=[[b]]t^{3} \\). Find \\( \\dfrac{dy}{dx} \\) at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational(3*[[b]]*[[t0]], 2*[[a]])"
+ },
+ "distractors": [
+  "Rational(2*[[a]], 3*[[b]]*[[t0]])",
+  "Rational(3*[[b]], 2*[[a]])",
+  "Rational(3*[[b]]*[[t0]]**2, 2*[[a]]*[[t0]]) + 1",
+  "Rational([[b]]*[[t0]], [[a]])",
+  "Rational(3*[[b]]*[[t0]], 2*[[a]]) + 1",
+  "Rational(3*[[b]]*[[t0]], 2*[[a]]) - 1"
+ ],
+ "solution": "\\( \\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}=\\frac{3[[b]]t^{2}}{2[[a]]t}=\\frac{3[[b]]t}{2[[a]]} \\); at \\( [[t0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "parametric_slope_trig_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "A curve is given by \\( x=[[a]]\\cos t \\), \\( y=[[b]]\\sin t \\). Find \\( \\dfrac{dy}{dx} \\) at \\( t=\\dfrac{\\pi}{[[n]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[b]],[[a]])*cos(pi/[[n]])/sin(pi/[[n]])"
+ },
+ "distractors": [
+  "Rational([[b]],[[a]])*cos(pi/[[n]])/sin(pi/[[n]])",
+  "-Rational([[a]],[[b]])*cos(pi/[[n]])/sin(pi/[[n]])",
+  "-Rational([[b]],[[a]])*sin(pi/[[n]])/cos(pi/[[n]])",
+  "-Rational([[b]],[[a]])",
+  "-Rational([[b]],[[a]])*cos(pi/[[n]])/sin(pi/[[n]]) + Rational(1,10)",
+  "-Rational([[b]],[[a]])*cos(pi/[[n]])/sin(pi/[[n]]) - Rational(1,10)"
+ ],
+ "solution": "\\( \\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}=\\frac{[[b]]\\cos t}{-[[a]]\\sin t}=-\\frac{[[b]]}{[[a]]}\\cot t \\); at \\( t=\\pi/[[n]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign from the quotient rule on \\( dx/dt=-a\\sin t\\).",
+  "This inverts the ratio \\( b/a\\).",
+  "This uses \\( \\tan t\\) instead of \\( \\cot t\\).",
+  "This forgets to evaluate the trig factor at the given angle.",
+  "This is off by a small additive amount from the correct slope.",
+  "This is off by a small additive amount (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "parametric_slope_from_velocity_components_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "t0": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[t0]] + [[b]], 0)"],
+ "stem": "A particle moves in the plane so that \\( \\dfrac{dx}{dt}=[[a]]t+[[b]] \\) and \\( \\dfrac{dy}{dt}=[[c]]t+[[d]] \\) for all \\( t \\). Find \\( \\dfrac{dy}{dx} \\) at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[c]]*[[t0]] + [[d]], [[a]]*[[t0]] + [[b]])"
+ },
+ "distractors": [
+  "Rational([[a]]*[[t0]] + [[b]], [[c]]*[[t0]] + [[d]])",
+  "Rational([[c]]*[[t0]] - [[d]], [[a]]*[[t0]] + [[b]])",
+  "Rational([[c]]*[[t0]] + [[d]], [[a]]*[[t0]] - [[b]])",
+  "[[c]]*[[t0]] + [[d]] - [[a]]*[[t0]] - [[b]]",
+  "Rational([[c]]*[[t0]] + [[d]], [[a]]*[[t0]] + [[b]]) + 1",
+  "Rational([[c]]*[[t0]] + [[d]], [[a]]*[[t0]] + [[b]]) - 1"
+ ],
+ "solution": "\\( \\dfrac{dy}{dx}=\\dfrac{dy/dt}{dx/dt}=\\dfrac{[[c]]t+[[d]]}{[[a]]t+[[b]]} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, using \\( dx/dt\\) over \\( dy/dt\\).",
+  "This drops a sign in the numerator.",
+  "This drops a sign in the denominator.",
+  "This subtracts the two velocity components instead of dividing them.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "parametric_slope_exponential_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "t0": {"type": "int", "lo": 0, "hi": 2}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "A curve is given by \\( x=e^{[[a]]t} \\), \\( y=e^{[[b]]t} \\). Find \\( \\dfrac{dy}{dx} \\) at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[b]],[[a]])*exp(([[b]]-[[a]])*[[t0]])"
+ },
+ "distractors": [
+  "Rational([[a]],[[b]])*exp(([[b]]-[[a]])*[[t0]])",
+  "Rational([[b]],[[a]])*exp(([[a]]-[[b]])*[[t0]])",
+  "Rational([[b]],[[a]])",
+  "exp(([[b]]-[[a]])*[[t0]])",
+  "Rational([[b]],[[a]])*exp(([[b]]-[[a]])*[[t0]]) + 1",
+  "Rational([[b]],[[a]])*exp(([[b]]-[[a]])*[[t0]]) - 1"
+ ],
+ "solution": "\\( \\dfrac{dy}{dx}=\\dfrac{[[b]]e^{[[b]]t}}{[[a]]e^{[[a]]t}}=\\dfrac{[[b]]}{[[a]]}e^{([[b]]-[[a]])t} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the coefficient ratio \\( b/a\\).",
+  "This flips the sign of the exponent.",
+  "This forgets to include the exponential factor entirely.",
+  "This drops the coefficient ratio, leaving only the exponential factor.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "parametric_tangent_line_y_intercept_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "t0": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "A curve is given by \\( x=[[a]]t^{2} \\), \\( y=[[b]]t^{3} \\). Find the \\( y \\)-intercept of the line tangent to the curve at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational(1,2)*[[b]]*[[t0]]**3"
+ },
+ "distractors": [
+  "Rational(1,2)*[[b]]*[[t0]]**3",
+  "-[[b]]*[[t0]]**3",
+  "-Rational(1,2)*[[b]]*[[t0]]**2",
+  "-Rational(3,2)*[[b]]*[[t0]]**3",
+  "-Rational(1,2)*[[b]]*[[t0]]**3 + 1",
+  "-Rational(1,2)*[[b]]*[[t0]]**3 - 1"
+ ],
+ "solution": "The point is \\( ([[a]][[t0]]^{2},[[b]][[t0]]^{3}) \\) and the slope is \\( \\frac{3[[b]][[t0]]}{2[[a]]} \\); the tangent line is \\( y-[[b]][[t0]]^{3}=\\frac{3[[b]][[t0]]}{2[[a]]}(x-[[a]][[t0]]^{2}) \\), which has \\( y \\)-intercept \\( -\\frac{1}{2}[[b]][[t0]]^{3}=[[answer]] \\) (the leading coefficient \\( a\\) cancels out).",
+ "distractor_rationales": [
+  "This drops the required minus sign.",
+  "This forgets the factor of \\( \\tfrac12\\).",
+  "This uses \\( t_0^2\\) instead of \\( t_0^3\\).",
+  "This uses a factor of \\( \\tfrac32\\) instead of \\( \\tfrac12\\).",
+  "This is off by one from the correct \\( y\\)-intercept.",
+  "This is off by one (other direction) from the correct \\( y\\)-intercept."
+ ]
+},
+{
+ "template_id": "parametric_slope_rational_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 12},
+  "t0": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "A curve is given by \\( x=t \\), \\( y=\\dfrac{[[c]]}{t} \\). Find \\( \\dfrac{dy}{dx} \\) at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[c]], [[t0]]**2)"
+ },
+ "distractors": [
+  "Rational([[c]], [[t0]]**2)",
+  "-Rational([[c]], [[t0]])",
+  "-Rational(1, [[c]]*[[t0]]**2)",
+  "-[[c]]*[[t0]]**2",
+  "-Rational([[c]], [[t0]]**2) + 1",
+  "-Rational([[c]], [[t0]]**2) - 1"
+ ],
+ "solution": "Since \\( y=[[c]]/t \\), \\( \\dfrac{dy}{dt}=-\\dfrac{[[c]]}{t^{2}} \\) and \\( \\dfrac{dx}{dt}=1 \\), so \\( \\dfrac{dy}{dx}=-\\dfrac{[[c]]}{t^{2}} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign from the power rule on a negative exponent.",
+  "This forgets to square \\( t\\) in the denominator.",
+  "This inverts the fraction entirely.",
+  "This has the wrong sign and forgets the power rule's exponent drop.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "parametric_slope_logarithmic_v1",
+ "skill_id": "slope_of_a_parametric_curve_at_a_point",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "t0": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "A curve is given by \\( x=\\ln t \\), \\( y=[[a]]t^{2}+[[b]] \\), for \\( t>0 \\). Find \\( \\dfrac{dy}{dx} \\) at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*[[a]]*[[t0]]**2"
+ },
+ "distractors": [
+  "[[a]]*[[t0]]**2",
+  "2*[[a]]*[[t0]]",
+  "Rational(2*[[a]], [[t0]]**2)",
+  "2*[[a]]*[[t0]]**2 + [[b]]",
+  "2*[[a]]*[[t0]]**2 + 1",
+  "2*[[a]]*[[t0]]**2 - 1"
+ ],
+ "solution": "\\( \\dfrac{dy}{dt}=2[[a]]t \\) and \\( \\dfrac{dx}{dt}=\\dfrac{1}{t} \\), so \\( \\dfrac{dy}{dx}=2[[a]]t\\cdot t=2[[a]]t^{2} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double the coefficient \\( a\\).",
+  "This forgets to square \\( t\\), leaving it linear.",
+  "This divides by \\( t^2\\) instead of multiplying.",
+  "This mistakenly includes the constant \\( b\\), which vanishes under differentiation.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+}
+]

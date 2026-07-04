@@ -1,0 +1,4 @@
+{
+ "skill_id": "structure_of_an_induction_proof_base_case_inductive",
+ "reason": "The answer identifies the correct proof structure (base case / inductive step), not a single code-computable scalar."
+}

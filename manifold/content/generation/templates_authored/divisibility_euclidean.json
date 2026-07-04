@@ -1,0 +1,122 @@
+[
+{
+ "template_id": "divisibility_gcd_v1",
+ "skill_id": "divisibility_euclidean",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 12, "hi": 400},
+  "b": {"type": "int", "lo": 12, "hi": 400}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Using the Euclidean algorithm, find \\( \\gcd([[a]], [[b]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[a]], [[b]])"},
+ "distractors": [
+  "lcm([[a]], [[b]])",
+  "[[a]]*[[b]]",
+  "Abs([[a]] - [[b]])",
+  "1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Repeated division (the Euclidean algorithm) reduces the pair until the remainder is 0, giving \\( \\gcd([[a]],[[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the least common multiple, not the greatest common divisor.",
+  "This is the product of the two numbers, not their gcd.",
+  "This is just the difference of the two numbers, which is not generally the gcd.",
+  "This assumes the two numbers are always coprime, which need not be true.",
+  "This is one more than the correct gcd.",
+  "This is one less than the correct gcd."
+ ]
+},
+{
+ "template_id": "divisibility_lcm_v1",
+ "skill_id": "divisibility_euclidean",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 4, "hi": 90},
+  "b": {"type": "int", "lo": 4, "hi": 90}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "What is the least common multiple of \\( [[a]] \\) and \\( [[b]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[a]], [[b]])"},
+ "distractors": [
+  "gcd([[a]], [[b]])",
+  "[[a]]*[[b]]",
+  "[[a]]*[[b]]/gcd([[a]], [[b]])**2",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( \\mathrm{lcm}(a,b)\\cdot\\gcd(a,b) = ab \\), the least common multiple is \\( \\dfrac{[[a]]\\cdot[[b]]}{\\gcd([[a]],[[b]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the greatest common divisor, not the least common multiple.",
+  "This is the product of the two numbers, forgetting to divide by their gcd.",
+  "This divides by the gcd twice instead of once, undercorrecting.",
+  "This adds the two numbers instead of using the lcm-gcd product relationship.",
+  "This is one more than the correct lcm.",
+  "This is one less than the correct lcm."
+ ]
+},
+{
+ "template_id": "divisibility_bezout_coefficient_v1",
+ "skill_id": "divisibility_euclidean",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 6, "hi": 90},
+  "b": {"type": "int", "lo": 6, "hi": 90}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Ne(Mod([[a]], [[b]]), 0)"],
+ "stem": "Let \\( g = \\gcd([[a]], [[b]]) \\). What is the smallest non-negative integer \\( x \\) such that \\( [[a]]x \\equiv g \\pmod{[[b]]} \\)? (This \\( x \\) is a Bézout coefficient for \\( [[a]] \\) and \\( [[b]] \\).)",
+ "answer_spec": {"op": "evaluate", "expr": "mod_inverse([[a]]/gcd([[a]], [[b]]), [[b]]/gcd([[a]], [[b]]))"},
+ "distractors": [
+  "gcd([[a]], [[b]])",
+  "[[b]] - mod_inverse([[a]]/gcd([[a]], [[b]]), [[b]]/gcd([[a]], [[b]]))",
+  "mod_inverse([[b]]/gcd([[a]], [[b]]), [[a]]/gcd([[a]], [[b]]))",
+  "[[a]]/gcd([[a]], [[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Dividing through by \\( g \\), solve \\( \\frac{a}{g}x \\equiv 1 \\pmod{\\frac{b}{g}} \\); the smallest such \\( x \\) is the modular inverse of \\( a/g \\) modulo \\( b/g \\), which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the gcd itself, not the Bézout coefficient \\( x \\).",
+  "This uses the wrong residue by subtracting from the modulus instead of taking the true smallest inverse.",
+  "This swaps which reduced value (\\(a/g\\) vs \\(b/g\\)) is inverted modulo the other.",
+  "This reports the reduced coefficient \\( a/g \\) itself, not its modular inverse.",
+  "This is one more than the correct coefficient.",
+  "This is one less than the correct coefficient."
+ ]
+},
+{
+ "template_id": "divisibility_gcd_of_squares_v1",
+ "skill_id": "divisibility_euclidean",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 6, "hi": 120},
+  "b": {"type": "int", "lo": 6, "hi": 120}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "What is \\( \\gcd\\!\\left([[a]]^2, [[b]]^2\\right) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[a]]**2, [[b]]**2)"},
+ "distractors": [
+  "gcd([[a]], [[b]])",
+  "gcd([[a]], [[b]])*2",
+  "[[a]]**2*[[b]]**2",
+  "gcd([[a]], [[b]]) + [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Squaring both numbers squares their gcd as well: \\( \\gcd(a^2,b^2) = \\gcd(a,b)^2 = [[answer]] \\) (computed directly from \\( [[a]]^2 \\) and \\( [[b]]^2 \\)).",
+ "distractor_rationales": [
+  "This uses the un-squared gcd, forgetting that squaring the numbers squares the gcd too.",
+  "This doubles the un-squared gcd instead of squaring it.",
+  "This reports the product of the squares, not their gcd.",
+  "This adds an unrelated leftover term to the un-squared gcd.",
+  "This is one more than the correct gcd.",
+  "This is one less than the correct gcd."
+ ]
+}
+]

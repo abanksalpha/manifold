@@ -1,0 +1,4 @@
+{
+ "skill_id": "field_of_fractions_recognition",
+ "reason": "This asks the student to recognize the field of fractions of a given integral domain; the answer is the identification of an algebraic structure, not a single code-computable number."
+}

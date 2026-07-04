@@ -1,0 +1,126 @@
+[
+ {
+  "template_id": "order_of_a_group_element_v1",
+  "skill_id": "order_of_a_group_element",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 24},
+   "k": {"type": "int", "lo": 2, "hi": 23}
+  },
+  "constraints": ["Lt([[k]], [[n]])", "Gt([[k]], 0)"],
+  "stem": "In the additive group \\( \\mathbb{Z}_{[[n]]} \\) of integers modulo [[n]], what is the order of the element [[k]] (the least positive integer \\( d \\) with \\( d \\cdot [[k]] \\equiv 0 \\pmod{[[n]]} \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]/gcd([[n]], [[k]])"},
+  "distractors": [
+   "gcd([[n]], [[k]])",
+   "[[n]]",
+   "[[k]]",
+   "[[n]] - [[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The order of \\( k \\) in \\( \\mathbb{Z}_{n} \\) is \\( \\frac{n}{\\gcd(n,k)} \\). Here \\( \\frac{[[n]]}{\\gcd([[n]],[[k]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( \\gcd([[n]],[[k]]) \\), not the order; the order is \\( n/\\gcd(n,k) \\).",
+   "This assumes every element has order equal to the group size, which only holds for generators.",
+   "This confuses the element with its order.",
+   "This subtracts the element from the modulus for no valid reason.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order."
+  ]
+ },
+ {
+  "template_id": "order_of_element_direct_product_v1",
+  "skill_id": "order_of_a_group_element",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 4, "hi": 15},
+   "n": {"type": "int", "lo": 4, "hi": 15},
+   "a": {"type": "int", "lo": 1, "hi": 14},
+   "b": {"type": "int", "lo": 1, "hi": 14}
+  },
+  "constraints": ["Lt([[a]], [[m]])", "Lt([[b]], [[n]])", "Gt([[a]], 0)", "Gt([[b]], 0)"],
+  "stem": "Consider the element \\( ([[a]], [[b]]) \\) in the direct product group \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\). The order of \\( ([[a]],[[b]]) \\) is the least common multiple of the order of [[a]] in \\( \\mathbb{Z}_{[[m]]} \\) and the order of [[b]] in \\( \\mathbb{Z}_{[[n]]} \\). What is the order of \\( ([[a]], [[b]]) \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[m]]/gcd([[m]],[[a]])) * ([[n]]/gcd([[n]],[[b]])) / gcd([[m]]/gcd([[m]],[[a]]), [[n]]/gcd([[n]],[[b]]))"
+  },
+  "distractors": [
+   "[[m]]/gcd([[m]],[[a]]) + [[n]]/gcd([[n]],[[b]])",
+   "[[m]]/gcd([[m]],[[a]])",
+   "[[n]]/gcd([[n]],[[b]])",
+   "[[m]]*[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The order of [[a]] in \\( \\mathbb{Z}_{[[m]]} \\) is \\( [[m]]/\\gcd([[m]],[[a]]) \\) and the order of [[b]] in \\( \\mathbb{Z}_{[[n]]} \\) is \\( [[n]]/\\gcd([[n]],[[b]]) \\). The order of the pair is the lcm of these two orders, which is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two component orders instead of taking their lcm.",
+   "This uses only the first component's order, ignoring the second.",
+   "This uses only the second component's order, ignoring the first.",
+   "This multiplies the group sizes, not the component orders' lcm.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order."
+  ]
+ },
+ {
+  "template_id": "order_of_product_coprime_orders_v1",
+  "skill_id": "order_of_a_group_element",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 11},
+   "b": {"type": "int", "lo": 2, "hi": 11}
+  },
+  "constraints": ["Eq(gcd([[a]], [[b]]), 1)"],
+  "stem": "Let \\( x \\) and \\( y \\) be COMMUTING elements of a group, with \\( x \\) of order [[a]] and \\( y \\) of order [[b]], where \\( \\gcd([[a]],[[b]]) = 1 \\). What is the order of the product \\( xy \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]] * [[b]]"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "[[a]]",
+   "[[b]]",
+   "gcd([[a]], [[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For commuting elements of coprime orders, \\( \\operatorname{ord}(xy) = \\operatorname{ord}(x)\\cdot\\operatorname{ord}(y) \\) (since it equals \\( \\operatorname{lcm}([[a]],[[b]]) \\), which is just the product when \\( \\gcd([[a]],[[b]])=1 \\)). So the order of \\( xy \\) is \\( [[a]] \\cdot [[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two orders instead of multiplying them.",
+   "This uses only \\( \\operatorname{ord}(x) \\), ignoring \\( y \\).",
+   "This uses only \\( \\operatorname{ord}(y) \\), ignoring \\( x \\).",
+   "Since the orders are coprime, their gcd is 1, not the order of the product.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order."
+  ]
+ },
+ {
+  "template_id": "order_of_exponent_equal_to_inverse_v1",
+  "skill_id": "order_of_a_group_element",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "An element \\( x \\) of a group has order [[n]]. What is the SMALLEST positive integer \\( m \\) such that \\( x^{m} = x^{-1} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1"},
+  "distractors": [
+   "[[n]]",
+   "[[n]] + 1",
+   "[[n]] - 2",
+   "Rational([[n]], 2)",
+   "1",
+   "[[n]] - 1 + 1"
+  ],
+  "solution": "\\( x^{m} = x^{-1} \\) iff \\( x^{m+1} = e \\) iff \\( [[n]] \\mid (m+1) \\); the smallest positive such \\( m \\) is \\( m = [[n]] - 1 \\).",
+  "distractor_rationales": [
+   "This uses \\( x^{n} = e \\ne x^{-1} \\) (unless \\( n=1 \\)), confusing the order with the exponent needed here.",
+   "This overshoots past a full period.",
+   "This is off by one from the correct exponent.",
+   "This mistakenly halves the order, which only works for elements of order 2.",
+   "This confuses \\( x^{-1} \\) with \\( x^{1} \\).",
+   "This just restates \\( n \\), not \\( n - 1 \\)."
+  ]
+ }
+]

@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "pigeonhole_minimum_v1",
+ "skill_id": "pigeonhole_guarantee_minimum_to_force_a_property",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "choice", "values": [2, 3, 4, 5]},
+  "r": {"type": "int", "lo": 3, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "A drawer contains a large supply of socks in [[k]] different colors, mixed together. What is the least number of socks that must be drawn (without looking) to be certain of obtaining at least [[r]] socks of the same color?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]]*([[r]] - 1) + 1"},
+ "distractors": [
+  "[[k]]*[[r]]",
+  "[[k]]*([[r]] - 1)",
+  "[[k]]*[[r]] + 1",
+  "([[k]] - 1)*([[r]] - 1) + 1",
+  "[[k]]*[[r]] - 1",
+  "[[r]]*([[k]] - 1) + 1"
+ ],
+ "solution": "In the worst case each color yields [[r]]-1 socks, that is \\( [[k]]([[r]]-1) \\) socks, without success; one more forces [[r]] of some color: \\( [[k]]([[r]]-1) + 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( k\\cdot r \\), overshooting the guaranteed minimum.",
+  "This is the worst case \\( k([[r]]-1) \\) but forgets the one extra sock needed.",
+  "This overshoots by adding one to \\( k\\cdot r \\).",
+  "This uses \\( k-1 \\) colors, undercounting the worst case.",
+  "This undershoots the count by one.",
+  "This swaps the roles of the number of colors and the target count."
+ ]
+},
+{
+ "template_id": "pigeonhole_pair_sum_v1",
+ "skill_id": "pigeonhole_guarantee_minimum_to_force_a_property",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "derived": {"total": "2*[[n]]", "target": "2*[[n]] + 1"},
+ "stem": "A box contains [[total]] balls labeled with the distinct integers 1 through [[total]]. What is the least number of balls that must be drawn (without looking) to be certain that some two of the drawn balls have labels summing to [[target]]?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] + 1"},
+ "distractors": [
+  "[[n]]",
+  "2*[[n]]",
+  "[[n]] - 1",
+  "[[n]] + 2",
+  "[[total]] - 1",
+  "[[answer]] + 3"
+ ],
+ "solution": "The [[total]] labels split into [[n]] disjoint pairs \\( (i, [[target]]-i) \\) each summing to [[target]]. Treating each pair as a pigeonhole, drawing [[n]] balls could still land one from every pair with none matched; one more draw forces two balls from the same pair: \\( [[n]] + 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the worst case of one ball per pair, forgetting the one extra ball needed to force a match.",
+  "This draws every ball in the box, far more than necessary to force the guarantee.",
+  "This undershoots the worst case by one pair.",
+  "This overshoots the correct guarantee by one.",
+  "This is nearly the whole box, an unnecessary overreach.",
+  "This is off from the correct count by 3."
+ ]
+},
+{
+ "template_id": "pigeonhole_residue_class_v1",
+ "skill_id": "pigeonhole_guarantee_minimum_to_force_a_property",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "N": {"type": "int", "lo": 5, "hi": 30},
+  "k": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": ["Ge([[N]], [[k]] + 1)"],
+ "stem": "A bag contains [[N]] balls, each labeled with a distinct integer from 1 to [[N]]. What is the least number of balls that must be drawn (without looking) to guarantee that some two of the drawn balls have labels leaving the SAME remainder when divided by [[k]]?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]] + 1"},
+ "distractors": [
+  "[[k]]",
+  "[[k]] - 1",
+  "2*[[k]]",
+  "[[N]] - [[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "There are exactly [[k]] possible remainders mod [[k]] (the pigeonholes). Drawing [[k]] balls could give one of each remainder with none repeated; one more draw forces two balls into the same remainder class: \\( [[k]] + 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the worst case of one ball per remainder class, forgetting the one extra ball needed.",
+  "This undershoots the number of remainder classes by one.",
+  "This doubles the number of remainder classes for no valid reason.",
+  "This is an unrelated combination of the two given numbers.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by 2."
+ ]
+},
+{
+ "template_id": "pigeonhole_one_of_every_type_v1",
+ "skill_id": "pigeonhole_guarantee_minimum_to_force_a_property",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "g1": {"type": "int", "lo": 2, "hi": 6},
+  "g2": {"type": "int", "lo": 3, "hi": 12},
+  "g3": {"type": "int", "lo": 3, "hi": 12}
+ },
+ "constraints": ["Le([[g1]], [[g2]])", "Le([[g1]], [[g3]])"],
+ "derived": {"total": "[[g1]] + [[g2]] + [[g3]]"},
+ "stem": "A drawer contains [[g1]] red socks, [[g2]] blue socks, and [[g3]] green socks, all mixed together ([[total]] socks in all). What is the least number of socks that must be drawn (without looking) to be certain of having drawn AT LEAST ONE sock of every color?",
+ "answer_spec": {"op": "evaluate", "expr": "[[g2]] + [[g3]] + 1"},
+ "distractors": [
+  "[[g1]] + [[g2]] + [[g3]]",
+  "[[g2]] + [[g3]]",
+  "[[g1]] + [[g3]] + 1",
+  "[[g1]] + [[g2]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The worst case delays completion as long as possible by drawing every sock of the two LARGER-or-equal colors first while avoiding the smallest color (red, with only [[g1]]): that is \\( [[g2]]+[[g3]] \\) socks with no red yet; one more draw must be red: \\( [[g2]]+[[g3]]+1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This draws every sock in the drawer, far more than necessary.",
+  "This is the worst case before the guarantee, forgetting the one extra sock needed.",
+  "This mistakenly avoids blue instead of the smallest color (red) when building the worst case.",
+  "This mistakenly avoids green instead of the smallest color (red) when building the worst case.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "taylor_coefficient_of_a_product_composite_v1",
+ "skill_id": "taylor_coefficient_of_a_product_composite",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Find the coefficient of \\( x^{[[n]]} \\) in the Maclaurin series of \\( f(x) = \\dfrac{1}{(1-[[a]]x)(1-[[b]]x)} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]**([[n]]+1) - [[b]]**([[n]]+1))/([[a]] - [[b]])"},
+ "distractors": [
+  "([[a]]**[[n]] - [[b]]**[[n]])/([[a]] - [[b]])",
+  "([[a]]*[[b]])**[[n]]",
+  "[[a]]**[[n]] + [[b]]**[[n]]",
+  "[[a]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By partial fractions, \\( \\dfrac{1}{(1-[[a]]x)(1-[[b]]x)} = \\sum_{n=0}^{\\infty}\\dfrac{[[a]]^{n+1}-[[b]]^{n+1}}{[[a]]-[[b]]}x^{n} \\). The coefficient of \\( x^{[[n]]} \\) is \\( \\dfrac{[[a]]^{[[n]]+1}-[[b]]^{[[n]]+1}}{[[a]]-[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the coefficient of \\( x^{[[n]]-1} \\) (off by one in the exponent).",
+  "This multiplies the two geometric ratios, giving \\( ([[a]][[b]])^{[[n]]} \\).",
+  "This adds the individual \\( n \\)th powers instead of forming the correct sum \\( a^n + a^{n-1}b + \\cdots + b^n \\).",
+  "This keeps only the \\( [[a]] \\) geometric series, ignoring the \\( [[b]] \\) factor.",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient."
+ ]
+},
+{
+ "template_id": "taylor_coefficient_of_a_product_composite_poly_exp_v2",
+ "skill_id": "taylor_coefficient_of_a_product_composite",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Find the coefficient of \\( x^{[[n]]} \\) in the Maclaurin series of \\( f(x) = (1 + [[a]]x)\\,e^{[[b]]x} \\), where \\( [[n]] \\ge 1 \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[b]]**[[n]]/factorial([[n]]) + [[a]]*[[b]]**([[n]]-1)/factorial([[n]]-1)"},
+ "distractors": [
+  "[[b]]**[[n]]/factorial([[n]])",
+  "[[a]]*[[b]]**([[n]]-1)/factorial([[n]]-1)",
+  "([[a]]+[[b]])**[[n]]/factorial([[n]])",
+  "[[a]]*[[b]]**[[n]]/factorial([[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The series for \\( e^{[[b]]x} \\) has coefficient \\( \\dfrac{[[b]]^{k}}{k!} \\) on \\( x^{k} \\). Multiplying by \\( (1+[[a]]x) \\) (a Cauchy product with only two terms) contributes the \\( x^{[[n]]} \\) term from \\( 1\\cdot\\dfrac{[[b]]^{[[n]]}}{[[n]]!}x^{[[n]]} \\) and from \\( [[a]]x\\cdot\\dfrac{[[b]]^{[[n]]-1}}{([[n]]-1)!}x^{[[n]]-1} \\), giving \\( \\dfrac{[[b]]^{[[n]]}}{[[n]]!} + \\dfrac{[[a]]\\,[[b]]^{[[n]]-1}}{([[n]]-1)!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the contribution from the constant term \\( 1 \\), ignoring the \\( [[a]]x \\) term entirely.",
+  "This keeps only the contribution from the \\( [[a]]x \\) term, ignoring the constant term \\( 1 \\).",
+  "This wrongly adds \\( a \\) and \\( b \\) before applying the exponential series, rather than doing a Cauchy product.",
+  "This multiplies both contributions together instead of adding two separate product terms.",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient."
+ ]
+},
+{
+ "template_id": "taylor_coefficient_of_a_product_composite_exp_composite_v3",
+ "skill_id": "taylor_coefficient_of_a_product_composite",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Find the coefficient of \\( x^{2[[n]]} \\) in the Maclaurin series of \\( f(x) = e^{[[a]]x^{2}} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]]/factorial([[n]])"},
+ "distractors": [
+  "[[a]]**[[n]]",
+  "[[a]]**(2*[[n]])/factorial([[n]])",
+  "[[a]]**[[n]]/factorial(2*[[n]])",
+  "[[a]]**([[n]]-1)/factorial([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Substitute \\( u = [[a]]x^{2} \\) into \\( e^{u} = \\sum_{k=0}^{\\infty}\\dfrac{u^{k}}{k!} \\), giving \\( e^{[[a]]x^{2}} = \\sum_{k=0}^{\\infty}\\dfrac{[[a]]^{k}}{k!}x^{2k} \\). Setting \\( k=[[n]] \\), the coefficient of \\( x^{2[[n]]} \\) is \\( \\dfrac{[[a]]^{[[n]]}}{[[n]]!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( [[n]]! \\), the factorial that comes from the exponential series.",
+  "This uses \\( a^{2n} \\) instead of \\( a^{n} \\), confusing the exponent of \\( a \\) with the exponent of \\( x \\).",
+  "This divides by \\( (2n)! \\) instead of \\( n! \\), confusing the power of \\( x \\) with the series index \\( k \\).",
+  "This is the coefficient of \\( x^{2([[n]]-1)} \\) (off by one in the series index).",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient."
+ ]
+},
+{
+ "template_id": "taylor_coefficient_of_a_product_composite_geom_composite_v4",
+ "skill_id": "taylor_coefficient_of_a_product_composite",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 8},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Find the coefficient of \\( x^{3[[n]]} \\) in the Maclaurin series of \\( f(x) = \\dfrac{1}{1 - [[a]]x^{3}} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]]"},
+ "distractors": [
+  "[[a]]**(3*[[n]])",
+  "[[a]]**[[n]]/factorial([[n]])",
+  "3*[[a]]**[[n]]",
+  "[[a]]**([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Substitute \\( u = [[a]]x^{3} \\) into \\( \\dfrac{1}{1-u} = \\sum_{k=0}^{\\infty}u^{k} \\), giving \\( \\dfrac{1}{1-[[a]]x^{3}} = \\sum_{k=0}^{\\infty}[[a]]^{k}x^{3k} \\) (all other powers of \\( x \\) have coefficient \\( 0 \\)). Setting \\( k=[[n]] \\), the coefficient of \\( x^{3[[n]]} \\) is \\( [[a]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( a^{3n} \\) instead of \\( a^{n} \\), confusing the exponent of \\( a \\) with the exponent of \\( x \\).",
+  "This wrongly divides by \\( n! \\), a mistake carried over from series like \\( e^{u} \\) that don't apply to a geometric series.",
+  "This multiplies by the exponent \\( 3 \\) of \\( x^3 \\) instead of using it only to identify which power of \\( x \\) is nonzero.",
+  "This is the coefficient of \\( x^{3([[n]]-1)} \\) (off by one in the series index).",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient."
+ ]
+}
+]

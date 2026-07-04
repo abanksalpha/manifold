@@ -1,0 +1,200 @@
+[
+{
+ "template_id": "dimension_of_sum_v1",
+ "skill_id": "sum_intersection_of_subspaces_dimension_formula",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [5, 6, 7, 8]},
+  "a": {"type": "int", "lo": 2, "hi": 5},
+  "b": {"type": "int", "lo": 2, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [
+  "Le([[c]], [[a]])",
+  "Le([[c]], [[b]])",
+  "Le([[a]] + [[b]] - [[c]], [[n]])"
+ ],
+ "stem": "Let \\( U \\) and \\( W \\) be subspaces of \\( \\mathbb{R}^{[[n]]} \\) with \\( \\dim U = [[a]] \\), \\( \\dim W = [[b]] \\), and \\( \\dim(U \\cap W) = [[c]] \\). What is \\( \\dim(U + W) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]] - [[c]]"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] + [[b]] - 2*[[c]]",
+  "[[a]] + [[b]] + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[a]]*[[b]] - [[c]]",
+  "[[n]]",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the dimension formula \\( \\dim(U+W) = \\dim U + \\dim W - \\dim(U\\cap W) = [[a]] + [[b]] - [[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the dimension of the intersection.",
+  "This subtracts the intersection twice instead of once.",
+  "This adds the intersection dimension instead of subtracting it.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This misapplies the formula by multiplying the dimensions.",
+  "This assumes the sum fills the whole ambient space.",
+  "This is off by two from the correct dimension."
+ ]
+},
+{
+ "template_id": "dimension_of_intersection_from_full_sum_v2",
+ "skill_id": "sum_intersection_of_subspaces_dimension_formula",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [5, 6, 7, 8]},
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "b": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [
+  "Le([[a]], [[n]])",
+  "Le([[b]], [[n]])",
+  "Le([[n]], [[a]] + [[b]])"
+ ],
+ "stem": "Let \\( U \\) and \\( W \\) be subspaces of \\( \\mathbb{R}^{[[n]]} \\) with \\( \\dim U = [[a]] \\) and \\( \\dim W = [[b]] \\). Suppose \\( U + W = \\mathbb{R}^{[[n]]} \\) (together they span the whole space). What is \\( \\dim(U \\cap W) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]] - [[n]]"},
+ "distractors": [
+  "[[n]] - [[a]] - [[b]]",
+  "[[a]] + [[b]]",
+  "[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[a]] - [[b]]",
+  "[[b]] - [[a]]"
+ ],
+ "solution": "Since \\( U+W = \\mathbb{R}^{[[n]]} \\), \\( \\dim(U+W) = [[n]] \\). By the dimension formula, \\( \\dim(U\\cap W) = \\dim U + \\dim W - \\dim(U+W) = [[a]] + [[b]] - [[n]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign, as if \\( \\dim U+\\dim W \\) were subtracted from \\( n \\) instead of the reverse.",
+  "This forgets to subtract \\( \\dim(U+W)=n \\) at all.",
+  "This just reports the ambient dimension itself.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This subtracts the two given dimensions instead of applying the formula.",
+  "This subtracts the two given dimensions in the wrong order."
+ ]
+},
+{
+ "template_id": "smallest_possible_intersection_dimension_v3",
+ "skill_id": "sum_intersection_of_subspaces_dimension_formula",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [4, 5, 6, 7, 8, 9]},
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Le([[a]], [[n]])", "Le([[b]], [[n]])"],
+ "stem": "Let \\( U \\) and \\( W \\) be subspaces of \\( \\mathbb{R}^{[[n]]} \\) with \\( \\dim U = [[a]] \\) and \\( \\dim W = [[b]] \\), with no further information given. What is the SMALLEST possible value of \\( \\dim(U \\cap W) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]+[[b]]-[[n]]) + Abs([[a]]+[[b]]-[[n]]))/2"},
+ "distractors": [
+  "[[a]] + [[b]] - [[n]]",
+  "0",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[n]] - [[a]] - [[b]]",
+  "([[a]]+[[b]]-Abs([[a]]-[[b]]))/2"
+ ],
+ "solution": "Since \\( \\dim(U+W) \\le [[n]] \\), the formula \\( \\dim(U\\cap W) = \\dim U + \\dim W - \\dim(U+W) \\) gives \\( \\dim(U\\cap W) \\ge [[a]]+[[b]]-[[n]] \\); combined with \\( \\dim(U\\cap W)\\ge 0 \\), the smallest possible value is \\( \\max(0, [[a]]+[[b]]-[[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the floor of \\( 0 \\), which is wrong whenever \\( [[a]]+[[b]] < [[n]] \\) (a negative dimension is impossible).",
+  "This assumes the subspaces can always be arranged to intersect trivially, ignoring the ambient dimension constraint.",
+  "This assumes the two subspaces are always independent (never overlapping) and adds their dimensions.",
+  "This is off by one from the correct minimum.",
+  "This is off by one from the correct minimum.",
+  "This has the wrong sign for the bound.",
+  "This computes the LARGEST possible intersection dimension, not the smallest."
+ ]
+},
+{
+ "template_id": "largest_possible_intersection_dimension_v4",
+ "skill_id": "sum_intersection_of_subspaces_dimension_formula",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [8, 9, 10, 12]},
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Le([[a]], [[n]])", "Le([[b]], [[n]])"],
+ "stem": "Let \\( U \\) and \\( W \\) be subspaces of \\( \\mathbb{R}^{[[n]]} \\) with \\( \\dim U = [[a]] \\) and \\( \\dim W = [[b]] \\), with no further information given. What is the LARGEST possible value of \\( \\dim(U \\cap W) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]+[[b]]-Abs([[a]]-[[b]]))/2"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[n]]",
+  "([[a]]+[[b]]+Abs([[a]]-[[b]]))/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "0",
+  "[[a]] - [[b]]"
+ ],
+ "solution": "Since \\( U \\cap W \\subseteq U \\) and \\( U \\cap W \\subseteq W \\), \\( \\dim(U\\cap W) \\) can be at most \\( \\dim U \\) and at most \\( \\dim W \\); this bound \\( \\min([[a]],[[b]]) \\) is achieved when the smaller subspace is contained in the larger one, giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the two subspaces could overlap in more dimensions than either one has.",
+  "This just reports the ambient dimension, which is unrelated to how large the intersection can be.",
+  "This computes \\( \\max([[a]],[[b]]) \\) instead of \\( \\min([[a]],[[b]]) \\).",
+  "This is off by one from the correct maximum.",
+  "This is off by one from the correct maximum.",
+  "This computes the SMALLEST possible intersection dimension, not the largest.",
+  "This subtracts the two dimensions instead of taking their minimum."
+ ]
+},
+{
+ "template_id": "dimension_of_sum_via_rank_v5",
+ "skill_id": "sum_intersection_of_subspaces_dimension_formula",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "int", "lo": -2, "hi": 2},
+  "q": {"type": "int", "lo": -2, "hi": 2},
+  "r": {"type": "int", "lo": -2, "hi": 2},
+  "s": {"type": "int", "lo": -2, "hi": 2},
+  "k1": {"type": "int", "lo": 1, "hi": 3},
+  "k2": {"type": "int", "lo": 1, "hi": 3},
+  "d1": {"type": "choice", "values": [0, 1]},
+  "d2": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [
+  "Ne([[p]]**2 + [[q]]**2 + [[d1]], 0)",
+  "Ne([[r]]**2 + [[s]]**2 + [[d2]], 0)"
+ ],
+ "derived": {
+  "wz1": "[[p]]*[[a]] + [[q]]*[[b]] + [[d1]]*[[k1]]",
+  "wz2": "[[r]]*[[a]] + [[s]]*[[b]] + [[d2]]*[[k2]]"
+ },
+ "stem": "Let \\( U \\) be the subspace of \\( \\mathbb{R}^3 \\) spanned by \\( \\mathbf{u}_1 = (1, 0, [[a]]) \\) and \\( \\mathbf{u}_2 = (0, 1, [[b]]) \\) (so \\( \\dim U = 2 \\)), and let \\( W \\) be the subspace spanned by \\( \\mathbf{w}_1 = ([[p]], [[q]], [[wz1]]) \\) and \\( \\mathbf{w}_2 = ([[r]], [[s]], [[wz2]]) \\). What is \\( \\dim(U + W) \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [
+   ["1", "0", "[[a]]"],
+   ["0", "1", "[[b]]"],
+   ["[[p]]", "[[q]]", "[[wz1]]"],
+   ["[[r]]", "[[s]]", "[[wz2]]"]
+  ]
+ },
+ "distractors": [
+  "3",
+  "2",
+  "4",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "1",
+  "0"
+ ],
+ "solution": "\\( \\dim(U+W) \\) is the rank of the matrix whose rows are \\( \\mathbf{u}_1,\\mathbf{u}_2,\\mathbf{w}_1,\\mathbf{w}_2 \\) (a spanning set for \\( U+W \\)), which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes \\( W \\) always contributes an entirely new direction beyond \\( U \\)'s plane, which need not hold.",
+  "This assumes \\( W \\subseteq U \\) always, ignoring that \\( W \\) may add a new direction.",
+  "Four vectors cannot span more than \\( \\mathbb{R}^3 \\), so \\( \\dim(U+W) \\) cannot exceed \\( 3 \\).",
+  "This overcounts the spanning set's rank by one.",
+  "This undercounts the spanning set's rank by one.",
+  "This assumes only one independent direction among all four vectors.",
+  "This assumes all four vectors are dependent, which is not generally true."
+ ]
+}
+]

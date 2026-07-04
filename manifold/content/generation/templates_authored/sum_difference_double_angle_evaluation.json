@@ -1,0 +1,387 @@
+[
+{
+ "template_id": "double_angle_eval_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 30
+  }
+ },
+ "constraints": [
+  "Ne(Mod([[k]], 6), 0)"
+ ],
+ "stem": "Evaluate \\( \\sin\\!\\left(\\dfrac{[[k]]\\pi}{12}\\right) \\) using a sum or difference identity.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sin([[k]]*pi/12)"
+ },
+ "distractors": [
+  "cos([[k]]*pi/12)",
+  "-sin([[k]]*pi/12)",
+  "sin([[k]]*pi/12) + 1",
+  "sin([[k]]*pi/12) - 1",
+  "1 - sin([[k]]*pi/12)",
+  "-cos([[k]]*pi/12)"
+ ],
+ "solution": "Write \\( \\tfrac{[[k]]\\pi}{12} \\) as a sum/difference of special angles: \\( \\sin\\!\\left(\\tfrac{[[k]]\\pi}{12}\\right)=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "cos_diff_special_angle_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [
+  "Ne(Mod([[k]], 6), 0)"
+ ],
+ "stem": "Evaluate \\( \\cos\\!\\left(\\dfrac{[[k]]\\pi}{12}\\right) \\) using a sum or difference identity.",
+ "answer_spec": {"op": "evaluate", "expr": "cos([[k]]*pi/12)"},
+ "distractors": [
+  "sin([[k]]*pi/12)",
+  "-cos([[k]]*pi/12)",
+  "cos([[k]]*pi/12) + 1",
+  "cos([[k]]*pi/12) - 1",
+  "1 - cos([[k]]*pi/12)",
+  "-sin([[k]]*pi/12)"
+ ],
+ "solution": "Write \\( \\tfrac{[[k]]\\pi}{12} \\) as a sum/difference of special angles: \\( \\cos\\!\\left(\\tfrac{[[k]]\\pi}{12}\\right)=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "tan_diff_special_angle_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [
+  "Ne(Mod([[k]], 12), 6)",
+  "Ne(Mod([[k]], 12), 0)"
+ ],
+ "stem": "Evaluate \\( \\tan\\!\\left(\\dfrac{[[k]]\\pi}{12}\\right) \\) using a sum or difference identity.",
+ "answer_spec": {"op": "evaluate", "expr": "tan([[k]]*pi/12)"},
+ "distractors": [
+  "1/tan([[k]]*pi/12)",
+  "-tan([[k]]*pi/12)",
+  "tan([[k]]*pi/12) + 1",
+  "tan([[k]]*pi/12) - 1",
+  "sin([[k]]*pi/12)",
+  "cos([[k]]*pi/12)"
+ ],
+ "solution": "Write \\( \\tfrac{[[k]]\\pi}{12} \\) as a sum/difference of special angles and apply \\( \\tan(\\alpha\\pm\\beta)=\\dfrac{\\tan\\alpha\\pm\\tan\\beta}{1\\mp\\tan\\alpha\\tan\\beta} \\): \\( \\tan\\!\\left(\\tfrac{[[k]]\\pi}{12}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is the reciprocal \\( \\cot \\) of the correct value.",
+  "This has the wrong sign.",
+  "This is off by \\( +1 \\).",
+  "This is off by \\( -1 \\).",
+  "This reports \\( \\sin \\) instead of \\( \\tan \\).",
+  "This reports \\( \\cos \\) instead of \\( \\tan \\)."
+ ]
+},
+{
+ "template_id": "double_angle_sin_from_sin_qII_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)"],
+ "stem": "Suppose \\( \\sin\\theta = \\dfrac{[[a]]}{[[b]]} \\) and \\( \\theta \\) is in Quadrant II. Use the double-angle identity to find \\( \\sin(2\\theta) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*Rational([[a]],[[b]])*(-sqrt(1 - Rational([[a]],[[b]])**2))"},
+ "distractors": [
+  "2*Rational([[a]],[[b]])*sqrt(1 - Rational([[a]],[[b]])**2)",
+  "Rational([[a]],[[b]])**2",
+  "1 - 2*Rational([[a]],[[b]])**2",
+  "2*Rational([[a]],[[b]]) - 1",
+  "-[[answer]]",
+  "[[answer]]/2"
+ ],
+ "solution": "Since \\( \\theta \\) is in Quadrant II, \\( \\cos\\theta = -\\sqrt{1-\\sin^{2}\\theta} = -\\sqrt{1-\\left(\\tfrac{[[a]]}{[[b]]}\\right)^{2}} \\). Then \\( \\sin(2\\theta)=2\\sin\\theta\\cos\\theta=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign for \\( \\cos\\theta \\); cosine is negative in Quadrant II.",
+  "This squares \\( \\sin\\theta \\) instead of applying the double-angle formula.",
+  "This confuses the target with the cosine double-angle formula \\( 1-2\\sin^{2}\\theta \\).",
+  "This forgets the factor of 2 and a square root.",
+  "This has the wrong sign.",
+  "This is off by a factor of 2."
+ ]
+},
+{
+ "template_id": "double_angle_cos_from_cos_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": true,
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+ "stem": "If \\( \\cos\\theta = \\dfrac{[[a]]}{[[b]]} \\), use the double-angle identity \\( \\cos(2\\theta)=2\\cos^{2}\\theta-1 \\) to find \\( \\cos(2\\theta) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*Rational([[a]],[[b]])**2 - 1"},
+ "distractors": [
+  "1 - 2*Rational([[a]],[[b]])**2",
+  "2*Rational([[a]],[[b]]) - 1",
+  "Rational([[a]],[[b]])**2 - 1",
+  "2*Rational([[a]],[[b]])**2 + 1",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "\\( \\cos(2\\theta)=2\\cos^{2}\\theta-1=2\\left(\\tfrac{[[a]]}{[[b]]}\\right)^{2}-1=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign, confusing this with \\( 1-2\\cos^{2}\\theta \\).",
+  "This forgets to square the cosine ratio.",
+  "This forgets the factor of 2.",
+  "This flips the sign of the trailing constant.",
+  "This is off by \\( +1 \\).",
+  "This has the wrong overall sign."
+ ]
+},
+{
+ "template_id": "double_angle_cos_from_sin_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": true,
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+ "stem": "If \\( \\sin\\theta = \\dfrac{[[a]]}{[[b]]} \\), use the double-angle identity \\( \\cos(2\\theta)=1-2\\sin^{2}\\theta \\) to find \\( \\cos(2\\theta) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "1 - 2*Rational([[a]],[[b]])**2"},
+ "distractors": [
+  "2*Rational([[a]],[[b]])**2 - 1",
+  "1 - 2*Rational([[a]],[[b]])",
+  "1 - Rational([[a]],[[b]])**2",
+  "2*Rational([[a]],[[b]])**2 + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "\\( \\cos(2\\theta)=1-2\\sin^{2}\\theta=1-2\\left(\\tfrac{[[a]]}{[[b]]}\\right)^{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign, confusing this with \\( 2\\sin^{2}\\theta-1 \\).",
+  "This forgets to square the sine ratio.",
+  "This forgets the factor of 2 on the squared term.",
+  "This flips the sign of the leading constant.",
+  "This is off by \\( -1 \\).",
+  "This has the wrong overall sign."
+ ]
+},
+{
+ "template_id": "double_angle_tan_from_tan_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": true,
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Eq(gcd(Abs([[a]]), [[b]]), 1)", "Ne(Abs([[a]]), [[b]])"],
+ "stem": "If \\( \\tan\\theta = \\dfrac{[[a]]}{[[b]]} \\), use the double-angle identity \\( \\tan(2\\theta)=\\dfrac{2\\tan\\theta}{1-\\tan^{2}\\theta} \\) to find \\( \\tan(2\\theta) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*Rational([[a]],[[b]])/(1 - Rational([[a]],[[b]])**2)"},
+ "distractors": [
+  "2*Rational([[a]],[[b]])/(1 + Rational([[a]],[[b]])**2)",
+  "Rational([[a]],[[b]])/(1 - Rational([[a]],[[b]])**2)",
+  "2*Rational([[a]],[[b]])",
+  "(1 - Rational([[a]],[[b]])**2)/(2*Rational([[a]],[[b]]))",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "\\( \\tan(2\\theta)=\\dfrac{2\\tan\\theta}{1-\\tan^{2}\\theta}=\\dfrac{2\\cdot\\tfrac{[[a]]}{[[b]]}}{1-\\left(\\tfrac{[[a]]}{[[b]]}\\right)^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( 1+\\tan^{2}\\theta \\) in the denominator instead of \\( 1-\\tan^{2}\\theta \\).",
+  "This forgets the factor of 2 in the numerator.",
+  "This forgets the denominator entirely.",
+  "This is the reciprocal, \\( \\cot(2\\theta) \\), of the correct value.",
+  "This is off by \\( +1 \\).",
+  "This has the wrong overall sign."
+ ]
+},
+{
+ "template_id": "half_angle_from_double_cos_qI_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "q": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": ["Lt(Abs([[p]]), [[q]])", "Eq(gcd(Abs([[p]]), [[q]]), 1)"],
+ "stem": "If \\( \\cos(2\\theta) = \\dfrac{[[p]]}{[[q]]} \\) and \\( \\theta \\) is in Quadrant I, find \\( \\cos\\theta \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt((1 + Rational([[p]],[[q]]))/2)"},
+ "distractors": [
+  "-sqrt((1 + Rational([[p]],[[q]]))/2)",
+  "sqrt((1 - Rational([[p]],[[q]]))/2)",
+  "(1 + Rational([[p]],[[q]]))/2",
+  "sqrt((1 + Rational([[p]],[[q]]))/2) - 1",
+  "-[[answer]]",
+  "[[answer]]/2"
+ ],
+ "solution": "Since \\( \\theta \\) is in Quadrant I, \\( \\cos\\theta>0 \\). From \\( \\cos(2\\theta)=2\\cos^{2}\\theta-1 \\), \\( \\cos^{2}\\theta=\\dfrac{1+\\cos(2\\theta)}{2} \\), so \\( \\cos\\theta=\\sqrt{\\dfrac{1+\\cos(2\\theta)}{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign; cosine is positive in Quadrant I.",
+  "This uses the sine half-angle formula \\( \\sqrt{\\tfrac{1-\\cos(2\\theta)}{2}} \\) instead.",
+  "This stops at \\( \\cos^{2}\\theta \\) without taking the square root.",
+  "This is off by \\( -1 \\) from the correct value.",
+  "This has the wrong overall sign.",
+  "This is off by a factor of 2."
+ ]
+},
+{
+ "template_id": "half_angle_from_double_sin_qIII_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "q": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": ["Lt(Abs([[p]]), [[q]])", "Eq(gcd(Abs([[p]]), [[q]]), 1)"],
+ "stem": "If \\( \\cos(2\\theta) = \\dfrac{[[p]]}{[[q]]} \\) and \\( \\theta \\) is in Quadrant III, find \\( \\sin\\theta \\).",
+ "answer_spec": {"op": "evaluate", "expr": "-sqrt((1 - Rational([[p]],[[q]]))/2)"},
+ "distractors": [
+  "sqrt((1 - Rational([[p]],[[q]]))/2)",
+  "-sqrt((1 + Rational([[p]],[[q]]))/2)",
+  "-(1 - Rational([[p]],[[q]]))/2",
+  "sqrt((1 - Rational([[p]],[[q]]))/2) - 1",
+  "-[[answer]]",
+  "[[answer]]/2"
+ ],
+ "solution": "Since \\( \\theta \\) is in Quadrant III, \\( \\sin\\theta<0 \\). From \\( \\cos(2\\theta)=1-2\\sin^{2}\\theta \\), \\( \\sin^{2}\\theta=\\dfrac{1-\\cos(2\\theta)}{2} \\), so \\( \\sin\\theta=-\\sqrt{\\dfrac{1-\\cos(2\\theta)}{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign; sine is negative in Quadrant III.",
+  "This uses the cosine half-angle formula \\( \\sqrt{\\tfrac{1+\\cos(2\\theta)}{2}} \\) instead.",
+  "This stops at \\( \\sin^{2}\\theta \\) without taking the square root.",
+  "This is off by \\( -1 \\) from the correct value.",
+  "This has the wrong overall sign.",
+  "This is off by a factor of 2."
+ ]
+},
+{
+ "template_id": "sum_formula_sin_given_ratios_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 7},
+  "b": {"type": "int", "lo": 2, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 7},
+  "d": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [
+  "Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)",
+  "Lt([[c]], [[d]])", "Eq(gcd([[c]], [[d]]), 1)"
+ ],
+ "stem": "Let \\( A \\) and \\( B \\) be angles in Quadrant I with \\( \\sin A = \\dfrac{[[a]]}{[[b]]} \\) and \\( \\cos B = \\dfrac{[[c]]}{[[d]]} \\). Find \\( \\sin(A+B) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[a]],[[b]])*Rational([[c]],[[d]]) + sqrt(1 - Rational([[a]],[[b]])**2)*sqrt(1 - Rational([[c]],[[d]])**2)"},
+ "distractors": [
+  "Rational([[a]],[[b]])*Rational([[c]],[[d]]) - sqrt(1 - Rational([[a]],[[b]])**2)*sqrt(1 - Rational([[c]],[[d]])**2)",
+  "sqrt(1 - Rational([[a]],[[b]])**2)*Rational([[c]],[[d]]) - Rational([[a]],[[b]])*sqrt(1 - Rational([[c]],[[d]])**2)",
+  "Rational([[a]],[[b]]) + Rational([[c]],[[d]])",
+  "Rational([[a]],[[b]])*Rational([[c]],[[d]])",
+  "-[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "Since \\( A,B \\) are in Quadrant I, \\( \\cos A=\\sqrt{1-\\sin^{2}A}=\\sqrt{1-\\left(\\tfrac{[[a]]}{[[b]]}\\right)^{2}} \\) and \\( \\sin B=\\sqrt{1-\\cos^{2}B}=\\sqrt{1-\\left(\\tfrac{[[c]]}{[[d]]}\\right)^{2}} \\). By the sum identity, \\( \\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the difference identity \\( \\sin(A-B) \\) instead of the sum identity.",
+  "This uses the cosine sum identity's pattern, \\( \\cos A\\cos B-\\sin A\\sin B \\), instead.",
+  "This adds the two given ratios directly instead of applying the sum identity.",
+  "This multiplies the two given ratios directly instead of applying the sum identity.",
+  "This has the wrong overall sign.",
+  "This is off by \\( +1 \\)."
+ ]
+},
+{
+ "template_id": "diff_formula_cos_given_ratios_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 7},
+  "b": {"type": "int", "lo": 2, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 7},
+  "d": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [
+  "Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)",
+  "Lt([[c]], [[d]])", "Eq(gcd([[c]], [[d]]), 1)"
+ ],
+ "stem": "Let \\( A \\) be an angle in Quadrant I with \\( \\cos A = \\dfrac{[[a]]}{[[b]]} \\), and let \\( B \\) be an angle in Quadrant II with \\( \\sin B = \\dfrac{[[c]]}{[[d]]} \\). Find \\( \\cos(A-B) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[a]],[[b]])*(-sqrt(1 - Rational([[c]],[[d]])**2)) + sqrt(1 - Rational([[a]],[[b]])**2)*Rational([[c]],[[d]])"},
+ "distractors": [
+  "Rational([[a]],[[b]])*sqrt(1 - Rational([[c]],[[d]])**2) + sqrt(1 - Rational([[a]],[[b]])**2)*Rational([[c]],[[d]])",
+  "Rational([[a]],[[b]])*(-sqrt(1 - Rational([[c]],[[d]])**2)) - sqrt(1 - Rational([[a]],[[b]])**2)*Rational([[c]],[[d]])",
+  "Rational([[a]],[[b]]) - Rational([[c]],[[d]])",
+  "Rational([[a]],[[b]])*Rational([[c]],[[d]])",
+  "-[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "Since \\( A \\) is in Quadrant I, \\( \\sin A=\\sqrt{1-\\cos^{2}A}=\\sqrt{1-\\left(\\tfrac{[[a]]}{[[b]]}\\right)^{2}} \\). Since \\( B \\) is in Quadrant II, \\( \\cos B=-\\sqrt{1-\\sin^{2}B}=-\\sqrt{1-\\left(\\tfrac{[[c]]}{[[d]]}\\right)^{2}} \\). By the difference identity, \\( \\cos(A-B)=\\cos A\\cos B+\\sin A\\sin B=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign for \\( \\cos B \\); cosine is negative in Quadrant II.",
+  "This uses the sum identity \\( \\cos(A+B) \\) instead of the difference identity.",
+  "This subtracts the two given ratios directly instead of applying the difference identity.",
+  "This multiplies the two given ratios directly instead of applying the difference identity.",
+  "This has the wrong overall sign.",
+  "This is off by \\( +1 \\)."
+ ]
+},
+{
+ "template_id": "sum_formula_tan_given_ratios_v1",
+ "skill_id": "sum_difference_double_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": true,
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [
+  "Ne([[a]], 0)", "Eq(gcd(Abs([[a]]), [[b]]), 1)",
+  "Ne([[c]], 0)", "Eq(gcd(Abs([[c]]), [[d]]), 1)",
+  "Ne([[a]]*[[c]], [[b]]*[[d]])"
+ ],
+ "stem": "If \\( \\tan A = \\dfrac{[[a]]}{[[b]]} \\) and \\( \\tan B = \\dfrac{[[c]]}{[[d]]} \\), use the tangent sum identity to find \\( \\tan(A+B) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(Rational([[a]],[[b]]) + Rational([[c]],[[d]]))/(1 - Rational([[a]],[[b]])*Rational([[c]],[[d]]))"},
+ "distractors": [
+  "(Rational([[a]],[[b]]) - Rational([[c]],[[d]]))/(1 + Rational([[a]],[[b]])*Rational([[c]],[[d]]))",
+  "(Rational([[a]],[[b]]) + Rational([[c]],[[d]]))/(1 + Rational([[a]],[[b]])*Rational([[c]],[[d]]))",
+  "Rational([[a]],[[b]]) + Rational([[c]],[[d]])",
+  "Rational([[a]],[[b]])*Rational([[c]],[[d]])",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "By the tangent sum identity, \\( \\tan(A+B)=\\dfrac{\\tan A+\\tan B}{1-\\tan A\\tan B}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the tangent difference identity instead of the sum identity.",
+  "This uses the wrong sign in the denominator.",
+  "This forgets the denominator entirely.",
+  "This multiplies the two given ratios instead of applying the sum identity.",
+  "This is off by \\( +1 \\).",
+  "This has the wrong overall sign."
+ ]
+}
+]

@@ -1,0 +1,137 @@
+[
+{
+ "template_id": "alg_vs_geom_mult_v1_algebraic_mult2",
+ "skill_id": "algebraic_vs_geometric_multiplicity",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[c]], [[d]])"],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[c]] & [[p]] & [[q]] \\\\ 0 & [[c]] & [[r]] \\\\ 0 & 0 & [[d]] \\end{pmatrix} \\) has characteristic polynomial \\( (\\lambda-[[c]])^2(\\lambda-[[d]]) \\). What is the algebraic multiplicity of the eigenvalue \\( \\lambda=[[c]] \\) (its multiplicity as a root of the characteristic polynomial)?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": [
+  "1",
+  "3",
+  "0",
+  "4"
+ ],
+ "solution": "Since \\( \\lambda=[[c]] \\) appears as a root of the characteristic polynomial \\( (\\lambda-[[c]])^2(\\lambda-[[d]]) \\) with exponent 2, its algebraic multiplicity is [[answer]].",
+ "distractor_rationales": [
+  "This under-counts; \\( (\\lambda-[[c]]) \\) appears SQUARED in the factorization, not just once.",
+  "The exponent of \\( (\\lambda-[[c]]) \\) in the factorization is 2, not 3; the other factor \\( (\\lambda-[[d]]) \\) belongs to a different eigenvalue.",
+  "An eigenvalue that actually appears as a root cannot have algebraic multiplicity 0.",
+  "This exceeds the total degree of the characteristic polynomial contributed by \\( \\lambda=[[c]] \\)."
+ ]
+},
+{
+ "template_id": "alg_vs_geom_mult_v2_algebraic_mult3",
+ "skill_id": "algebraic_vs_geometric_multiplicity",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[c]] & [[p]] & [[q]] \\\\ 0 & [[c]] & [[r]] \\\\ 0 & 0 & [[c]] \\end{pmatrix} \\) has characteristic polynomial \\( (\\lambda-[[c]])^3 \\). What is the algebraic multiplicity of the eigenvalue \\( \\lambda=[[c]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3"},
+ "distractors": [
+  "1",
+  "2",
+  "0",
+  "4"
+ ],
+ "solution": "Since \\( \\lambda=[[c]] \\) is the ONLY root of the characteristic polynomial \\( (\\lambda-[[c]])^3 \\), appearing with exponent 3, its algebraic multiplicity is [[answer]].",
+ "distractor_rationales": [
+  "This under-counts; the factor \\( (\\lambda-[[c]]) \\) appears with exponent 3, not 1.",
+  "This under-counts; the factor \\( (\\lambda-[[c]]) \\) appears with exponent 3, not 2.",
+  "An eigenvalue that appears as the ONLY root cannot have algebraic multiplicity 0.",
+  "This exceeds the degree of the characteristic polynomial, which is only 3."
+ ]
+},
+{
+ "template_id": "alg_vs_geom_mult_v3_jordan_block_geometric",
+ "skill_id": "algebraic_vs_geometric_multiplicity",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "The matrix \\( A = \\begin{pmatrix} [[c]] & [[k]] \\\\ 0 & [[c]] \\end{pmatrix} \\) has \\( \\lambda=[[c]] \\) as its only eigenvalue, with algebraic multiplicity 2. Its geometric multiplicity is \\( 2 - \\operatorname{rank}(A-[[c]]I) \\). What is the geometric multiplicity of \\( \\lambda=[[c]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": [
+  "2",
+  "0",
+  "3",
+  "-1"
+ ],
+ "solution": "\\( A-[[c]]I = \\begin{pmatrix} 0 & [[k]] \\\\ 0 & 0 \\end{pmatrix} \\) has rank 1 (since \\( [[k]] \\ne 0 \\)), so the geometric multiplicity is \\( 2-1 = [[answer]] \\): only ONE independent eigenvector, even though the algebraic multiplicity is 2. This is why \\( A \\) is NOT diagonalizable.",
+ "distractor_rationales": [
+  "This equals the algebraic multiplicity, but the geometric multiplicity here falls SHORT of it (that's exactly what makes \\( A \\) defective).",
+  "The eigenspace of an actual eigenvalue can never be trivial (0-dimensional).",
+  "The geometric multiplicity of an eigenvalue can never exceed its algebraic multiplicity, which is only 2 here.",
+  "A multiplicity (a dimension) can never be negative."
+ ]
+},
+{
+ "template_id": "alg_vs_geom_mult_v4_diagonal_full_geometric",
+ "skill_id": "algebraic_vs_geometric_multiplicity",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -14, "hi": 14}
+ },
+ "constraints": [],
+ "stem": "The diagonal matrix \\( A = \\begin{pmatrix} [[c]] & 0 \\\\ 0 & [[c]] \\end{pmatrix} \\) has \\( \\lambda=[[c]] \\) as its only eigenvalue, with algebraic multiplicity 2. What is the geometric multiplicity of \\( \\lambda=[[c]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": [
+  "1",
+  "0",
+  "3",
+  "-1"
+ ],
+ "solution": "\\( A - [[c]]I \\) is the \\( 2\\times2 \\) zero matrix (rank 0), so the geometric multiplicity is \\( 2-0 = [[answer]] \\): it matches the algebraic multiplicity exactly, so \\( A \\) (already diagonal) is diagonalizable.",
+ "distractor_rationales": [
+  "This falls short of the algebraic multiplicity, but here \\( A-[[c]]I \\) is the ZERO matrix, so every vector is an eigenvector and the full multiplicity is achieved.",
+  "The eigenspace of an actual eigenvalue can never be trivial (0-dimensional).",
+  "The geometric multiplicity of an eigenvalue can never exceed its algebraic multiplicity, which is only 2 here.",
+  "A multiplicity (a dimension) can never be negative."
+ ]
+},
+{
+ "template_id": "alg_vs_geom_mult_v5_defect_jordan3",
+ "skill_id": "algebraic_vs_geometric_multiplicity",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "k1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "k2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "The matrix \\( A = \\begin{pmatrix} [[c]] & [[k1]] & 0 \\\\ 0 & [[c]] & [[k2]] \\\\ 0 & 0 & [[c]] \\end{pmatrix} \\) has \\( \\lambda=[[c]] \\) as its only eigenvalue, with algebraic multiplicity 3, and geometric multiplicity 1 (a single Jordan chain). What is the defect (algebraic multiplicity minus geometric multiplicity) of \\( \\lambda=[[c]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - 1"},
+ "distractors": [
+  "0",
+  "1",
+  "3",
+  "-2"
+ ],
+ "solution": "The algebraic multiplicity is 3 and the geometric multiplicity is 1, so the defect is \\( 3-1 = [[answer]] \\); this defect (the shortfall in independent eigenvectors) is exactly why \\( A \\) is not diagonalizable.",
+ "distractor_rationales": [
+  "A defect of 0 would mean \\( A \\) is diagonalizable, but here the geometric multiplicity falls strictly short of the algebraic one.",
+  "This is the geometric multiplicity itself, not the DIFFERENCE between the two multiplicities.",
+  "This is the algebraic multiplicity itself, not the difference between the two multiplicities.",
+  "A defect (a difference of two multiplicities with algebraic \\( \\ge \\) geometric) can never be negative."
+ ]
+}
+]

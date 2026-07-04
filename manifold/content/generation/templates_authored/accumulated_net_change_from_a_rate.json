@@ -1,0 +1,165 @@
+[
+ {
+  "template_id": "net_change_from_rate_v1",
+  "skill_id": "accumulated_net_change_from_a_rate",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 5},
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": 0, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "Water flows into a tank at a rate of \\( r(t) = [[m]]t + [[k]] \\) liters per minute, where \\( t \\) is measured in minutes. Find the net change in the volume of water in the tank from \\( t = [[a]] \\) to \\( t = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]*t + [[k]]", "var": "t", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[m]]*[[b]] + [[k]]",
+   "([[m]]*[[b]] + [[k]])*([[b]] - [[a]])",
+   "([[m]]*[[a]] + [[k]])*([[b]] - [[a]])",
+   "[[m]]*([[b]]**2 - [[a]]**2)/2 - [[k]]*([[b]] - [[a]])",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[m]]"
+  ],
+  "solution": "The net change equals the integral of the rate: \\( \\int_{[[a]]}^{[[b]]}([[m]]t+[[k]])\\,dt = \\dfrac{[[m]]}{2}\\left([[b]]^{2}-[[a]]^{2}\\right) + [[k]]([[b]]-[[a]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the rate \\( r([[b]]) \\) at the final time, not the accumulated change.",
+   "This uses the final rate times the elapsed time (a right-endpoint rectangle).",
+   "This uses the initial rate times the elapsed time (a left-endpoint rectangle).",
+   "This subtracts the constant term instead of adding it.",
+   "This is off by \\( [[m]] \\) from the correct net change."
+  ]
+ },
+ {
+  "template_id": "net_change_quadratic_rate_v1",
+  "skill_id": "accumulated_net_change_from_a_rate",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -5, "hi": 5},
+   "a": {"type": "int", "lo": -2, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "A chemical reaction produces a substance at a rate of \\( r(t) = [[p]]t^{2} + ([[q]])t + ([[k]]) \\) grams per minute, where \\( t \\) is time in minutes. Find the net change in the amount of substance produced from \\( t = [[a]] \\) to \\( t = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[p]]*t**2 + [[q]]*t + [[k]]", "var": "t", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[p]]*[[b]]**2 + [[q]]*[[b]] + [[k]]",
+   "([[p]]*[[b]]**2 + [[q]]*[[b]] + [[k]])*([[b]] - [[a]])",
+   "[[p]]*([[b]]**3 - [[a]]**3)/2 + [[q]]*([[b]]**2 - [[a]]**2)/2 + [[k]]*([[b]] - [[a]])",
+   "[[p]]*([[b]] - [[a]])**3/3 + [[q]]*([[b]] - [[a]])**2/2 + [[k]]*([[b]] - [[a]])",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[p]]"
+  ],
+  "solution": "The net change equals the integral of the rate: \\( \\int_{[[a]]}^{[[b]]}\\left([[p]]t^{2}+([[q]])t+([[k]])\\right)dt = \\dfrac{[[p]]}{3}\\left([[b]]^{3}-[[a]]^{3}\\right) + \\dfrac{[[q]]}{2}\\left([[b]]^{2}-[[a]]^{2}\\right) + [[k]]([[b]]-[[a]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the rate \\( r([[b]]) \\) at the final time, not the accumulated change.",
+   "This uses the final rate times the elapsed time (a right-endpoint rectangle).",
+   "This uses the power rule with denominator 2 instead of 3 for the \\( t^{2} \\) term.",
+   "This mistakenly substitutes \\( [[b]]-[[a]] \\) for \\( t \\) instead of evaluating at each endpoint.",
+   "This is off by \\( [[p]] \\) from the correct net change."
+  ]
+ },
+ {
+  "template_id": "net_change_initial_value_v1",
+  "skill_id": "accumulated_net_change_from_a_rate",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "N0": {"type": "int", "lo": 5, "hi": 40},
+   "m": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Ne([[m]], 0)"],
+  "stem": "A tank contains \\( [[N0]] \\) liters of water at time \\( t = 0 \\). Water is then added or removed at a rate of \\( r(t) = [[m]]t + [[k]] \\) liters per minute, for \\( t \\) in minutes. How many liters of water are in the tank at time \\( t = [[b]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[N0]] + [[m]]*[[b]]**2/2 + [[k]]*[[b]]"},
+  "distractors": [
+   "[[m]]*[[b]]**2/2 + [[k]]*[[b]]",
+   "[[N0]] + [[m]]*[[b]] + [[k]]",
+   "[[N0]]*(1 + [[m]]*[[b]]/2 + [[k]])",
+   "[[N0]] - ([[m]]*[[b]]**2/2 + [[k]]*[[b]])",
+   "[[answer]] + [[N0]]",
+   "[[answer]] - [[N0]]"
+  ],
+  "solution": "By the net change theorem, the amount at time \\( t=[[b]] \\) is the initial amount plus the accumulated change: \\( [[N0]] + \\int_{0}^{[[b]]}([[m]]t+[[k]])\\,dt = [[N0]] + \\dfrac{[[m]]}{2}[[b]]^{2} + [[k]][[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives only the net change, forgetting to add the initial \\( [[N0]] \\) liters.",
+   "This uses \\( r([[b]]) \\) instead of integrating the rate to find the accumulated change.",
+   "This incorrectly scales the initial amount by the rate instead of adding the accumulated change.",
+   "This subtracts the accumulated change instead of adding it.",
+   "This is off by \\( [[N0]] \\) from the correct amount."
+  ]
+ },
+ {
+  "template_id": "net_change_inflow_outflow_v1",
+  "skill_id": "accumulated_net_change_from_a_rate",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 1, "hi": 8},
+   "r": {"type": "int", "lo": 1, "hi": 5},
+   "s": {"type": "int", "lo": 1, "hi": 8},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 10}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Ne([[p]], [[r]])"],
+  "stem": "Water flows into a reservoir at a rate of \\( R_{in}(t) = [[p]]t + [[q]] \\) liters per minute and flows out at a rate of \\( R_{out}(t) = [[r]]t + [[s]] \\) liters per minute, where \\( t \\) is in minutes. Find the net change in the volume of water in the reservoir from \\( t = [[a]] \\) to \\( t = [[b]] \\).",
+  "answer_spec": {
+   "op": "integrate",
+   "expr": "([[p]]*t + [[q]]) - ([[r]]*t + [[s]])",
+   "var": "t",
+   "bounds": ["[[a]]", "[[b]]"]
+  },
+  "distractors": [
+   "[[p]]*([[b]]**2-[[a]]**2)/2 + [[q]]*([[b]]-[[a]]) + [[r]]*([[b]]**2-[[a]]**2)/2 + [[s]]*([[b]]-[[a]])",
+   "[[r]]*([[b]]**2-[[a]]**2)/2 + [[s]]*([[b]]-[[a]]) - ([[p]]*([[b]]**2-[[a]]**2)/2 + [[q]]*([[b]]-[[a]]))",
+   "([[p]]-[[r]])*[[b]] + ([[q]]-[[s]])",
+   "([[p]]+[[r]])*([[b]]-[[a]])**2/2 + ([[q]]+[[s]])*([[b]]-[[a]])",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[r]]"
+  ],
+  "solution": "The net rate of change of volume is \\( R_{in}(t)-R_{out}(t) \\), so the net change is \\( \\int_{[[a]]}^{[[b]]}\\left(([[p]]t+[[q]])-([[r]]t+[[s]])\\right)dt = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two rates' accumulated amounts instead of subtracting.",
+   "This computes outflow minus inflow, the negative of the correct net change.",
+   "This evaluates the net rate only at \\( t=[[b]] \\) instead of integrating it.",
+   "This adds the rates instead of subtracting before integrating.",
+   "This is off by \\( [[p]] \\) from the correct net change."
+  ]
+ },
+ {
+  "template_id": "net_change_reciprocal_square_rate_v1",
+  "skill_id": "accumulated_net_change_from_a_rate",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 12},
+   "c": {"type": "int", "lo": 1, "hi": 5},
+   "a": {"type": "int", "lo": 0, "hi": 4},
+   "b": {"type": "int", "lo": 5, "hi": 10}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The marginal cost of producing \\( x \\) units of a product is \\( C'(x) = \\dfrac{[[k]]}{(x+[[c]])^{2}} \\) dollars per unit. Find the increase in total cost as production increases from \\( x = [[a]] \\) to \\( x = [[b]] \\) units.",
+  "answer_spec": {"op": "integrate", "expr": "[[k]]/(x + [[c]])**2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[k]]/([[b]]+[[c]]) - [[k]]/([[a]]+[[c]])",
+   "[[k]]*(log([[b]]+[[c]]) - log([[a]]+[[c]]))",
+   "[[k]]/([[a]]+[[c]])**2 - [[k]]/([[b]]+[[c]])**2",
+   "[[k]]*([[b]]-[[a]])/([[a]]+[[c]])**2",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]"
+  ],
+  "solution": "An antiderivative of \\( \\dfrac{[[k]]}{(x+[[c]])^{2}} \\) is \\( -\\dfrac{[[k]]}{x+[[c]]} \\), so the increase in cost is \\( \\int_{[[a]]}^{[[b]]}\\dfrac{[[k]]}{(x+[[c]])^{2}}\\,dx = \\dfrac{[[k]]}{[[a]]+[[c]]} - \\dfrac{[[k]]}{[[b]]+[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates the endpoints in the wrong order, giving the negative of the correct increase.",
+   "This treats the integrand as \\( \\dfrac{k}{x+c} \\) and uses a logarithmic antiderivative instead of the power rule.",
+   "This evaluates the marginal cost \\( C'(x) \\) at both endpoints instead of integrating it.",
+   "This uses only the left endpoint's marginal cost times the width, a left-rectangle approximation.",
+   "This is off by \\( [[k]] \\) from the correct increase."
+  ]
+ }
+]

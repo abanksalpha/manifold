@@ -1,0 +1,396 @@
+[
+ {
+  "template_id": "second_deriv_implicit_v1",
+  "skill_id": "second_derivative_by_implicit_differentiation",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "y0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "r2": {
+    "type": "int",
+    "lo": 2,
+    "hi": 60
+   }
+  },
+  "constraints": [
+   "Eq([[x0]]**2 + [[y0]]**2, [[r2]])"
+  ],
+  "stem": "On the circle \\( x^{2}+y^{2}=[[r2]] \\), the second derivative is \\( \\dfrac{d^{2}y}{dx^{2}}=-\\dfrac{x^{2}+y^{2}}{y^{3}} \\). Evaluate it at \\( ([[x0]],[[y0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-([[x0]]**2 + [[y0]]**2)/([[y0]]**3)"
+  },
+  "distractors": [
+   "-([[x0]]**2 + [[y0]]**2)/([[y0]]**2)",
+   "-1/[[y0]]",
+   "-[[r2]]/[[y0]]",
+   "([[x0]]**2 + [[y0]]**2)/([[y0]]**3)",
+   "-([[x0]]**2 + [[y0]]**2)/([[y0]]**3) + 1",
+   "-([[x0]]**2 + [[y0]]**2)/([[y0]]**3) - 1"
+  ],
+  "solution": "\\( y''=-\\dfrac{x^2+y^2}{y^3} \\); at \\( ([[x0]],[[y0]]) \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "second_deriv_implicit_ellipse_v2",
+  "skill_id": "second_derivative_by_implicit_differentiation",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "y0": {
+    "type": "choice",
+    "values": [
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "C": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2"
+  },
+  "stem": "On the curve \\( [[a]]x^{2}+[[b]]y^{2}=[[C]] \\), the second derivative is \\( \\dfrac{d^{2}y}{dx^{2}}=-\\dfrac{[[a]](\\,[[a]]x^{2}+[[b]]y^{2})}{[[b]]^{2}y^{3}} \\). Evaluate it at \\( ([[x0]],[[y0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-[[a]]*[[C]]/([[b]]**2*[[y0]]**3)"
+  },
+  "distractors": [
+   "[[a]]*[[C]]/([[b]]**2*[[y0]]**3)",
+   "-[[a]]*[[C]]/([[b]]*[[y0]]**3)",
+   "-[[a]]*[[C]]/([[b]]**2*[[y0]]**2)",
+   "-[[C]]/([[b]]**2*[[y0]]**3)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( a=[[a]] \\), \\( b=[[b]] \\), and \\( [[a]]x^{2}+[[b]]y^{2}=[[C]] \\) at \\( ([[x0]],[[y0]]) \\) gives \\( y''=-\\dfrac{[[a]]\\cdot[[C]]}{[[b]]^{2}\\cdot[[y0]]^{3}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from the second-derivative formula.",
+   "This forgets to square \\( b \\) in the denominator.",
+   "This uses \\( y^{2} \\) instead of \\( y^{3} \\) in the denominator.",
+   "This drops the leading factor of \\( a \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_deriv_implicit_cubic_sum_v3",
+  "skill_id": "second_derivative_by_implicit_differentiation",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "x0": {
+    "type": "choice",
+    "values": [
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "y0": {
+    "type": "choice",
+    "values": [
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "C": "[[x0]]**3 + [[y0]]**3"
+  },
+  "stem": "On the curve \\( x^{3}+y^{3}=[[C]] \\), the second derivative is \\( \\dfrac{d^{2}y}{dx^{2}}=-\\dfrac{2x(x^{3}+y^{3})}{y^{5}} \\). Evaluate it at \\( ([[x0]],[[y0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-2*[[x0]]*[[C]]/[[y0]]**5"
+  },
+  "distractors": [
+   "2*[[x0]]*[[C]]/[[y0]]**5",
+   "-2*[[x0]]*[[C]]/[[y0]]**3",
+   "-[[x0]]*[[C]]/[[y0]]**5",
+   "-2*[[C]]/[[y0]]**5",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( x^{3}+y^{3}=[[C]] \\) at \\( ([[x0]],[[y0]]) \\) gives \\( y''=-\\dfrac{2([[x0]])([[C]])}{([[y0]])^{5}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from the second-derivative formula.",
+   "This uses \\( y^{3} \\) instead of \\( y^{5} \\) in the denominator.",
+   "This forgets the factor of 2 in the numerator.",
+   "This drops the factor of \\( x \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_deriv_implicit_hyperbola_v4",
+  "skill_id": "second_derivative_by_implicit_differentiation",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "x0": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "y0": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "C": "[[x0]]*[[y0]]"
+  },
+  "stem": "On the curve \\( xy=[[C]] \\), the second derivative is \\( \\dfrac{d^{2}y}{dx^{2}}=\\dfrac{2y}{x^{2}} \\). Evaluate it at \\( ([[x0]],[[y0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2*[[y0]]/[[x0]]**2"
+  },
+  "distractors": [
+   "-2*[[y0]]/[[x0]]**2",
+   "2*[[y0]]/[[x0]]",
+   "2*[[x0]]/[[y0]]**2",
+   "[[y0]]/[[x0]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( x=[[x0]] \\), \\( y=[[y0]] \\) into \\( y''=\\dfrac{2y}{x^{2}} \\) gives \\( \\dfrac{2([[y0]])}{([[x0]])^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign.",
+   "This uses \\( x \\) instead of \\( x^{2} \\) in the denominator.",
+   "This swaps the roles of \\( x \\) and \\( y \\).",
+   "This drops the factor of 2 in the numerator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_deriv_implicit_shifted_circle_v5",
+  "skill_id": "second_derivative_by_implicit_differentiation",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "y0": {
+    "type": "choice",
+    "values": [
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "C": "[[x0]]**2 + [[y0]]**2 + [[a]]*[[x0]]"
+  },
+  "stem": "On the curve \\( x^{2}+y^{2}+[[a]]x=[[C]] \\), the second derivative is \\( \\dfrac{d^{2}y}{dx^{2}}=-\\dfrac{4y^{2}+(2x+[[a]])^{2}}{4y^{3}} \\). Evaluate it at \\( ([[x0]],[[y0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-(4*[[y0]]**2+(2*[[x0]]+[[a]])**2)/(4*[[y0]]**3)"
+  },
+  "distractors": [
+   "(4*[[y0]]**2+(2*[[x0]]+[[a]])**2)/(4*[[y0]]**3)",
+   "-(4*[[y0]]**2+(2*[[x0]]+[[a]])**2)/(4*[[y0]]**2)",
+   "-(2*[[x0]]+[[a]])**2/(4*[[y0]]**3)",
+   "-(4*[[y0]]**2)/(4*[[y0]]**3)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( x=[[x0]] \\), \\( y=[[y0]] \\) into \\( y''=-\\dfrac{4y^{2}+(2x+[[a]])^{2}}{4y^{3}} \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign.",
+   "This uses \\( y^{2} \\) instead of \\( y^{3} \\) in the denominator.",
+   "This drops the \\( 4y^{2} \\) term from the numerator entirely.",
+   "This drops the \\( (2x+a)^{2} \\) term from the numerator entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_deriv_implicit_parabola_v6",
+  "skill_id": "second_derivative_by_implicit_differentiation",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "x0": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "y0": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   }
+  },
+  "constraints": [
+   "Eq(Mod([[y0]]**2, [[x0]]), 0)"
+  ],
+  "derived": {
+   "a": "[[y0]]**2/[[x0]]"
+  },
+  "stem": "On the parabola \\( y^{2}=[[a]]x \\) (passing through \\( ([[x0]],[[y0]]) \\)), the second derivative is \\( \\dfrac{d^{2}y}{dx^{2}}=-\\dfrac{[[a]]^{2}}{4y^{3}} \\). Evaluate it at \\( ([[x0]],[[y0]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-[[a]]**2/(4*[[y0]]**3)"
+  },
+  "distractors": [
+   "[[a]]**2/(4*[[y0]]**3)",
+   "-[[a]]/(4*[[y0]]**3)",
+   "-[[a]]**2/(4*[[y0]]**2)",
+   "-[[a]]**2/[[y0]]**3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( y^{2}=[[a]]x \\) at \\( ([[x0]],[[y0]]) \\), \\( y''=-\\dfrac{[[a]]^{2}}{4y^{3}} = -\\dfrac{[[a]]^{2}}{4([[y0]])^{3}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign.",
+   "This forgets to square \\( a \\) in the numerator.",
+   "This uses \\( y^{2} \\) instead of \\( y^{3} \\) in the denominator.",
+   "This drops the factor of 4 in the denominator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

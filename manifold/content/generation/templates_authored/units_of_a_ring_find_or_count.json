@@ -1,0 +1,138 @@
+[
+ {
+  "template_id": "units_of_z_n_count_v1",
+  "skill_id": "units_of_a_ring_find_or_count",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "In the ring \\( \\mathbb{Z}_{[[nval]]} \\) of integers modulo \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\), how many elements are units (that is, have a multiplicative inverse)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*([[p]] - 1)*[[q]]**([[b]] - 1)*([[q]] - 1)"},
+  "distractors": [
+   "[[nval]] - 1",
+   "([[p]] - 1)*([[q]] - 1)",
+   "([[p]]**[[a]] - 1)*([[q]]**[[b]] - 1)",
+   "[[nval]] - [[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "An element of \\( \\mathbb{Z}_{[[nval]]} \\) is a unit exactly when it is coprime to \\( [[nval]] \\), so the number of units is \\( \\varphi([[nval]]) \\). For \\( n = p^{a} q^{b} \\), \\( \\varphi(n) = p^{a-1}(p-1)\\,q^{b-1}(q-1) = [[p]]^{[[a]]-1}([[p]]-1)\\cdot[[q]]^{[[b]]-1}([[q]]-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts every nonzero residue as invertible, i.e. treats \\( \\mathbb{Z}_{[[nval]]} \\) as a field; but \\( [[nval]] \\) is composite, so only residues coprime to it are units.",
+   "This uses \\( (p-1)(q-1) \\), the totient of the squarefree number \\( pq \\); it drops the prime-power factors \\( p^{a-1} \\) and \\( q^{b-1} \\).",
+   "This uses \\( (p^{a}-1)(q^{b}-1) \\), an incorrect prime-power totient; the correct one is \\( p^{a-1}(p-1) \\), not \\( p^{a}-1 \\).",
+   "This counts the non-units (the zero divisors together with \\( 0 \\)) instead of the units.",
+   "This is one more than the correct count of units.",
+   "This is one fewer than the correct count of units."
+  ]
+ },
+ {
+  "template_id": "find_modular_inverse_v1",
+  "skill_id": "units_of_a_ring_find_or_count",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "choice", "values": [1, 2]},
+   "b": {"type": "choice", "values": [1, 2]},
+   "x": {"type": "int", "lo": 2, "hi": 300}
+  },
+  "constraints": [
+   "Lt([[p]], [[q]])",
+   "Lt([[x]], [[p]]**[[a]] * [[q]]**[[b]])",
+   "Eq(gcd([[x]], [[p]]**[[a]] * [[q]]**[[b]]), 1)"
+  ],
+  "derived": {
+   "nval": "[[p]]**[[a]] * [[q]]**[[b]]",
+   "phi_n": "[[p]]**([[a]] - 1)*([[p]] - 1)*[[q]]**([[b]] - 1)*([[q]] - 1)"
+  },
+  "stem": "In the ring \\( \\mathbb{Z}_{[[nval]]} \\), the element \\( x = [[x]] \\) is a unit. What is the multiplicative inverse of \\( x \\), i.e. the unique \\( y \\in \\{1,\\dots,[[nval]]-1\\} \\) with \\( xy \\equiv 1 \\pmod{[[nval]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Mod([[x]]**([[phi_n]] - 1), [[nval]])"},
+  "distractors": [
+   "[[nval]] - [[x]]",
+   "Mod([[nval]] - [[x]], [[nval]])",
+   "[[x]]",
+   "Mod([[x]]**2, [[nval]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[nval]] - [[answer]]"
+  ],
+  "solution": "Since \\( \\gcd([[x]], [[nval]]) = 1 \\), Euler's theorem gives \\( x^{\\varphi([[nval]])} \\equiv 1 \\pmod{[[nval]]} \\), so \\( x^{-1} \\equiv x^{\\varphi([[nval]]) - 1} \\pmod{[[nval]]} \\). Here \\( \\varphi([[nval]]) = [[phi_n]] \\), and computing \\( [[x]]^{[[phi_n]]-1} \\bmod [[nval]] \\) gives \\( y = [[answer]] \\); indeed \\( [[x]] \\cdot [[answer]] \\equiv 1 \\pmod{[[nval]]} \\).",
+  "distractor_rationales": [
+   "This is the additive complement \\( n - x \\), which satisfies \\( x+y\\equiv 0 \\), not the multiplicative inverse \\( xy\\equiv 1 \\).",
+   "This reduces the additive complement mod \\( n \\), still confusing the additive inverse with the multiplicative one.",
+   "This just repeats \\( x \\) itself, as if \\( x \\) were its own inverse.",
+   "This computes \\( x^{2} \\bmod n \\) instead of the modular inverse.",
+   "This is one more than the correct inverse.",
+   "This is one fewer than the correct inverse."
+  ]
+ },
+ {
+  "template_id": "units_of_polynomial_ring_v1",
+  "skill_id": "units_of_a_ring_find_or_count",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]}
+  },
+  "constraints": [],
+  "stem": "Let \\( F = \\mathbb{Z}_{[[p]]} \\), a field with \\( [[p]] \\) elements, and consider the polynomial ring \\( F[x] \\). Although \\( F[x] \\) is an infinite ring, it has only finitely many units, namely the nonzero constant polynomials. How many units does \\( F[x] \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]] - 1"},
+  "distractors": [
+   "[[p]]",
+   "[[p]] + 1",
+   "[[p]] - 2",
+   "2*([[p]] - 1)",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "A nonzero polynomial \\( p(x) \\in F[x] \\) is a unit exactly when its inverse is also a polynomial, which forces \\( \\deg p = 0 \\), i.e. \\( p(x) \\) is a nonzero constant in \\( F \\). There are \\( [[p]] \\) constants total and \\( 1 \\) of them is \\( 0 \\), so there are \\( [[p]] - 1 = [[answer]] \\) units.",
+  "distractor_rationales": [
+   "This counts \\( 0 \\) as a unit as well, but \\( 0 \\) is never invertible.",
+   "This is one more than \\( [[p]] \\), not related to removing the single non-unit \\( 0 \\) from the \\( [[p]] \\) constants.",
+   "This removes two elements instead of just the one non-unit \\( 0 \\).",
+   "This double-counts the units, as if \\( \\pm \\) each nonzero constant gave a distinct unit.",
+   "This is two more than the correct count.",
+   "This is two fewer than the correct count."
+  ]
+ },
+ {
+  "template_id": "units_of_product_ring_v1",
+  "skill_id": "units_of_a_ring_find_or_count",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "Consider the direct product ring \\( R = \\mathbb{Z}_{[[p]]} \\times \\mathbb{Z}_{[[q]]} \\) (with \\( [[p]] \\) and \\( [[q]] \\) distinct primes). An element \\( (x,y) \\in R \\) is a unit exactly when both \\( x \\) and \\( y \\) are units in their own factors. How many units does \\( R \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "([[p]] - 1)*([[q]] - 1)"},
+  "distractors": [
+   "[[p]]*[[q]] - 1",
+   "[[p]] + [[q]] - 2",
+   "[[p]]*[[q]]",
+   "([[p]] - 1) + ([[q]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( \\mathbb{Z}_{[[p]]} \\) and \\( \\mathbb{Z}_{[[q]]} \\) are fields, each has \\( [[p]]-1 \\) and \\( [[q]]-1 \\) nonzero (hence unit) elements respectively. A pair \\( (x,y) \\) is a unit of the product exactly when \\( x \\ne 0 \\) and \\( y \\ne 0 \\), so the count is \\( ([[p]]-1)([[q]]-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is one less than \\( |R| = pq \\), as if only the zero pair \\( (0,0) \\) failed to be a unit; but any pair with EITHER coordinate zero is a non-unit.",
+   "This adds the two factor counts \\( (p-1)+(q-1) \\) instead of multiplying them; units of a product multiply, they don't add.",
+   "This is the full size \\( |R| = pq \\), not the count of units.",
+   "This adds instead of multiplying the per-factor unit counts.",
+   "This is one more than the correct count.",
+   "This is one fewer than the correct count."
+  ]
+ }
+]

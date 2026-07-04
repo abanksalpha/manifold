@@ -1,0 +1,152 @@
+[
+{
+ "template_id": "telescoping_series_sum_v1",
+ "skill_id": "telescoping_series_sum",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 8},
+  "N": {"type": "int", "lo": 5, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Evaluate the telescoping sum \\( \\displaystyle\\sum_{k=1}^{[[N]]} \\dfrac{1}{(k+[[a]])(k+[[a]]+1)} \\).",
+ "answer_spec": {"op": "sum", "expr": "1/((k + [[a]])*(k + [[a]] + 1))", "var": "k", "lo": "1", "hi": "[[N]]"},
+ "distractors": [
+  "1/([[a]] + 1)",
+  "1/([[N]] + [[a]] + 1)",
+  "1/([[a]] + 1) + 1/([[N]] + [[a]] + 1)",
+  "2/([[a]] + 1) - 1/([[N]] + [[a]] + 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Partial fractions give \\( \\dfrac{1}{(k+[[a]])(k+[[a]]+1)} = \\dfrac{1}{k+[[a]]} - \\dfrac{1}{k+[[a]]+1} \\). The sum telescopes to \\( \\dfrac{1}{1+[[a]]} - \\dfrac{1}{[[N]]+[[a]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value of the infinite sum \\( \\sum_{k=1}^{\\infty} \\); the finite sum still subtracts the final tail term.",
+  "This is only the subtracted tail term \\( \\dfrac{1}{[[N]]+[[a]]+1} \\), not the whole telescoped difference.",
+  "This adds the tail term instead of subtracting it.",
+  "This doubles the leading term of the telescoped expression.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "telescoping_series_sum_gap2_v2",
+ "skill_id": "telescoping_series_sum",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 8},
+  "N": {"type": "int", "lo": 5, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Each term below skips an index compared to the usual telescoping pattern. Find \\( \\displaystyle\\sum_{k=1}^{[[N]]} \\dfrac{1}{(k+[[a]])(k+[[a]]+2)} \\).",
+ "answer_spec": {"op": "sum", "expr": "1/((k + [[a]])*(k + [[a]] + 2))", "var": "k", "lo": "1", "hi": "[[N]]"},
+ "distractors": [
+  "1/([[a]]+1) - 1/([[N]]+[[a]]+1)",
+  "1/([[a]]+1) + 1/([[a]]+2)",
+  "1/([[N]]+[[a]]+1) + 1/([[N]]+[[a]]+2)",
+  "1/([[a]]+1) - 1/([[N]]+[[a]]+2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Partial fractions give \\( \\dfrac{1}{(k+[[a]])(k+[[a]]+2)} = \\dfrac{1}{2}\\left(\\dfrac{1}{k+[[a]]} - \\dfrac{1}{k+[[a]]+2}\\right) \\). Because each term skips one index, TWO head terms survive at the start and two tail terms survive at the end: the sum telescopes to \\( \\dfrac{1}{2}\\left(\\dfrac{1}{[[a]]+1}+\\dfrac{1}{[[a]]+2}-\\dfrac{1}{[[N]]+[[a]]+1}-\\dfrac{1}{[[N]]+[[a]]+2}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies the gap-1 telescoping pattern (one head term, one tail term) instead of the gap-2 pattern needed here.",
+  "This keeps only the two head terms and forgets to subtract the two tail terms.",
+  "This keeps only the two tail terms and forgets the two head terms.",
+  "This mismatches the head and tail terms, mixing a gap-1 head with a gap-2 tail.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "telescoping_series_sum_triple_factor_v3",
+ "skill_id": "telescoping_series_sum",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "int", "lo": 0, "hi": 6},
+  "N": {"type": "int", "lo": 5, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "Evaluate the telescoping sum \\( \\displaystyle\\sum_{k=1}^{[[N]]} \\dfrac{1}{(k+[[b]])(k+[[b]]+1)(k+[[b]]+2)} \\).",
+ "answer_spec": {"op": "sum", "expr": "1/((k + [[b]])*(k + [[b]] + 1)*(k + [[b]] + 2))", "var": "k", "lo": "1", "hi": "[[N]]"},
+ "distractors": [
+  "1/(([[b]]+1)*([[b]]+2))",
+  "1/(([[N]]+[[b]]+1)*([[N]]+[[b]]+2))",
+  "1/(([[b]]+1)*([[b]]+2)) + 1/(([[N]]+[[b]]+1)*([[N]]+[[b]]+2))",
+  "1/([[b]]+1) - 1/([[N]]+[[b]]+2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Write \\( \\dfrac{1}{(k+[[b]])(k+[[b]]+1)(k+[[b]]+2)} = \\dfrac{1}{2}\\left(\\dfrac{1}{(k+[[b]])(k+[[b]]+1)} - \\dfrac{1}{(k+[[b]]+1)(k+[[b]]+2)}\\right) \\), a telescoping difference of PAIRED reciprocal products. Summing collapses everything but the first and last pair: \\( \\dfrac{1}{2}\\left(\\dfrac{1}{([[b]]+1)([[b]]+2)} - \\dfrac{1}{([[N]]+[[b]]+1)([[N]]+[[b]]+2)}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the leading (head) paired term, without subtracting the tail term or the factor of \\( \\tfrac12 \\).",
+  "This is only the trailing (tail) paired term, without the head term or the factor of \\( \\tfrac12 \\).",
+  "This adds the head and tail paired terms instead of subtracting them.",
+  "This wrongly treats the sum as if it telescoped by single reciprocals rather than by paired reciprocal products.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "telescoping_series_sum_log_v4",
+ "skill_id": "telescoping_series_sum",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 8},
+  "N": {"type": "int", "lo": 5, "hi": 20}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "Evaluate the telescoping sum \\( \\displaystyle\\sum_{k=1}^{[[N]]} \\ln\\!\\left(\\dfrac{k+[[c]]}{k+[[c]]-1}\\right) \\).",
+ "answer_spec": {"op": "sum", "expr": "log((k + [[c]])/(k + [[c]] - 1))", "var": "k", "lo": "1", "hi": "[[N]]"},
+ "distractors": [
+  "log([[N]] + [[c]])",
+  "log([[c]])",
+  "log([[N]])",
+  "[[N]]*log([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Each term is \\( \\ln(k+[[c]]) - \\ln(k+[[c]]-1) \\), so the sum telescopes: \\( \\displaystyle\\sum_{k=1}^{[[N]]}\\left[\\ln(k+[[c]])-\\ln(k+[[c]]-1)\\right] = \\ln([[N]]+[[c]]) - \\ln([[c]]) = \\ln\\!\\left(\\dfrac{[[N]]+[[c]]}{[[c]]}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the head term \\( \\ln([[c]]) \\).",
+  "This is only the (negative of the) head term, not the full telescoped difference.",
+  "This uses \\( \\ln([[N]]) \\) instead of the correctly telescoped \\( \\ln([[N]]+[[c]])-\\ln([[c]]) \\).",
+  "This multiplies instead of using the log-difference telescoping identity.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "telescoping_series_sum_infinite_v5",
+ "skill_id": "telescoping_series_sum",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 12}
+ },
+ "constraints": [],
+ "stem": "Evaluate the infinite telescoping series \\( \\displaystyle\\sum_{k=1}^{\\infty} \\dfrac{1}{(k+[[a]])(k+[[a]]+1)} \\).",
+ "answer_spec": {"op": "limit", "expr": "1/([[a]]+1) - 1/(n+[[a]]+1)", "var": "n", "point": "oo"},
+ "distractors": [
+  "1/([[a]]+1)**2",
+  "[[a]] + 1",
+  "0",
+  "2/([[a]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The \\( N \\)th partial sum telescopes to \\( S_N = \\dfrac{1}{[[a]]+1} - \\dfrac{1}{N+[[a]]+1} \\). As \\( N \\to \\infty \\) the second term vanishes, so the infinite sum is \\( \\displaystyle\\lim_{N\\to\\infty} S_N = \\dfrac{1}{[[a]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This squares the leading term instead of just taking its limiting value.",
+  "This inverts the correct answer, mistaking \\( a+1 \\) itself for its reciprocal.",
+  "This wrongly assumes the whole telescoped expression vanishes in the limit, not just the tail term.",
+  "This doubles the correct leading term.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

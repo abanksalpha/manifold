@@ -1,0 +1,171 @@
+[
+{
+  "template_id": "gcd_euclidean_v1",
+  "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
+  "topic_id": "number_theory",
+  "tier": "teach",
+  "params": {
+    "d": {"type": "choice", "values": [6, 8, 9, 12, 14, 15, 16, 18, 21]},
+    "m": {"type": "int", "lo": 2, "hi": 9},
+    "n": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Eq(gcd([[m]], [[n]]), 1)", "Gt([[m]], [[n]])"],
+  "derived": {"A": "[[d]]*[[m]]", "B": "[[d]]*[[n]]"},
+  "stem": "Use the Euclidean algorithm to compute \\( \\gcd([[A]], [[B]]) \\). What is the greatest common divisor of \\( [[A]] \\) and \\( [[B]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "gcd([[A]], [[B]])"},
+  "distractors": [
+    "[[m]]*[[n]]",
+    "[[d]]*[[m]]*[[n]]",
+    "[[answer]] + 1",
+    "[[answer]] - 1",
+    "[[answer]] + 2",
+    "[[answer]] - 2",
+    "[[answer]] + 3"
+  ],
+  "solution": "The Euclidean algorithm repeatedly replaces the larger number by its remainder upon division by the smaller; the last nonzero remainder is \\( \\gcd([[A]], [[B]]) = [[answer]] \\).",
+  "distractor_rationales": [
+    "This is the product of the cofactors, not the common divisor itself.",
+    "This is \\( \\operatorname{lcm}([[A]],[[B]]) \\); the greatest common divisor is much smaller.",
+    "This is one more than the correct gcd.",
+    "This is one less than the correct gcd.",
+    "This is two more than the correct gcd.",
+    "This is two less than the correct gcd.",
+    "This is three more than the correct gcd."
+  ]
+},
+{
+  "template_id": "gcd_of_three_numbers_v1",
+  "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
+  "topic_id": "number_theory",
+  "tier": "teach",
+  "params": {
+    "d": {"type": "choice", "values": [4, 6, 8, 9, 10, 12]},
+    "m": {"type": "int", "lo": 3, "hi": 10},
+    "n": {"type": "int", "lo": 3, "hi": 10},
+    "k": {"type": "int", "lo": 3, "hi": 10}
+  },
+  "constraints": ["Eq(gcd(gcd([[m]], [[n]]), [[k]]), 1)", "Lt([[m]], [[n]])", "Lt([[n]], [[k]])"],
+  "derived": {"A": "[[d]]*[[m]]", "B": "[[d]]*[[n]]", "C": "[[d]]*[[k]]"},
+  "stem": "Applying the Euclidean algorithm pairwise, find \\( \\gcd([[A]], [[B]], [[C]]) \\), the greatest common divisor of all three numbers \\( [[A]] \\), \\( [[B]] \\), and \\( [[C]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "gcd(gcd([[A]], [[B]]), [[C]])"},
+  "distractors": [
+    "gcd([[A]], [[B]])",
+    "gcd([[B]], [[C]])",
+    "[[m]]*[[n]]*[[k]]",
+    "[[answer]] + 1",
+    "[[answer]] - 1",
+    "[[answer]] + 2",
+    "[[answer]] + 3"
+  ],
+  "solution": "Apply the Euclidean algorithm to two of the numbers first, then to that result and the third: \\( \\gcd([[A]],[[B]],[[C]]) = \\gcd(\\gcd([[A]],[[B]]), [[C]]) = [[answer]] \\).",
+  "distractor_rationales": [
+    "This stops after only the first pairwise gcd, ignoring the third number.",
+    "This uses only the second and third numbers, ignoring the first.",
+    "This multiplies the cofactors instead of taking a gcd.",
+    "This is one more than the correct three-way gcd.",
+    "This is one less than the correct three-way gcd.",
+    "This is two more than the correct three-way gcd.",
+    "This is three more than the correct three-way gcd."
+  ]
+},
+{
+  "template_id": "gcd_bezout_coefficient_v1",
+  "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
+  "topic_id": "number_theory",
+  "tier": "teach",
+  "params": {
+    "d": {"type": "choice", "values": [3, 4, 5, 6, 7, 8, 9]},
+    "n": {"type": "choice", "values": [7, 11, 13, 17, 19]},
+    "m": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": ["Lt([[m]], [[n]])", "Ne(Mod([[m]], [[n]]), 0)"],
+  "derived": {"A": "[[d]]*[[m]]", "B": "[[d]]*[[n]]"},
+  "stem": "Running the extended Euclidean algorithm on \\( [[A]] \\) and \\( [[B]] \\) produces integers \\( x \\) and \\( y \\) with \\( [[A]]x + [[B]]y = \\gcd([[A]], [[B]]) \\). What is the smallest positive value of \\( x \\) that works?",
+  "answer_spec": {"op": "evaluate", "expr": "Mod([[m]]**([[n]] - 2), [[n]])"},
+  "distractors": [
+    "[[m]]",
+    "[[n]] - [[m]]",
+    "Mod([[m]]**2, [[n]])",
+    "[[answer]] + 1",
+    "[[answer]] - 1",
+    "[[answer]] + 2",
+    "[[n]] - [[answer]]"
+  ],
+  "solution": "Dividing through by \\( d=[[d]] \\), the identity reduces to \\( [[m]]x \\equiv 1 \\pmod{[[n]]} \\), i.e. \\( x \\) is the inverse of \\( [[m]] \\) modulo the prime \\( [[n]] \\). Since \\( [[n]] \\) is prime, Fermat's Little Theorem gives \\( x \\equiv [[m]]^{[[n]]-2} \\equiv [[answer]] \\pmod{[[n]]} \\), the smallest positive such \\( x \\).",
+  "distractor_rationales": [
+    "This is \\( m \\) itself, not the Bezout coefficient \\( x \\).",
+    "This is \\( n-m \\), an unrelated combination.",
+    "This is \\( m^{2} \\bmod n \\), not the inverse \\( m^{-1} \\bmod n \\).",
+    "This is one more than the correct coefficient.",
+    "This is one less than the correct coefficient.",
+    "This is two more than the correct coefficient.",
+    "This reflects the correct coefficient as \\( n - x \\), the wrong sign convention."
+  ]
+},
+{
+  "template_id": "gcd_of_linear_expressions_in_n_v1",
+  "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
+  "topic_id": "number_theory",
+  "tier": "teach",
+  "params": {
+    "b": {"type": "int", "lo": 1, "hi": 12},
+    "c": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+    "e": {"type": "int", "lo": 1, "hi": 30}
+  },
+  "constraints": ["Ne([[e]], [[c]]*[[b]])"],
+  "stem": "For a positive integer \\( n \\), let \\( d = \\gcd(n + [[b]], \\, [[c]]n + [[e]]) \\). Running the Euclidean algorithm algebraically (eliminating \\( n \\) between the two expressions) shows \\( d \\) is bounded by a fixed constant. What is the largest possible value of \\( d \\) as \\( n \\) ranges over the positive integers?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[e]] - [[c]]*[[b]])"},
+  "distractors": [
+    "[[e]] - [[b]]",
+    "[[c]]*[[e]] - [[b]]",
+    "[[b]] + [[e]]",
+    "[[c]]*([[e]] - [[b]])",
+    "[[answer]] + 1",
+    "[[answer]] - 1",
+    "[[answer]] + [[c]]"
+  ],
+  "solution": "Since \\( d \\) divides both \\( n+[[b]] \\) and \\( [[c]]n+[[e]] \\), it divides \\( [[c]](n+[[b]]) - ([[c]]n+[[e]]) = [[c]]\\cdot[[b]] - [[e]] \\), a fixed constant independent of \\( n \\). So \\( d \\le |[[c]]\\cdot[[b]] - [[e]]| = [[answer]] \\), and choosing \\( n \\) so that \\( n+[[b]] \\) is a multiple of \\( [[answer]] \\) achieves this bound exactly. The largest possible value is \\( [[answer]] \\).",
+  "distractor_rationales": [
+    "This subtracts the constants directly, forgetting to scale \\( [[b]] \\) by the coefficient \\( [[c]] \\) first.",
+    "This multiplies the wrong pair of terms before subtracting.",
+    "This adds the constants instead of eliminating \\( n \\) by subtraction.",
+    "This factors out \\( [[c]] \\) from the wrong combination of terms.",
+    "This is one more than the correct bound.",
+    "This is one less than the correct bound.",
+    "This overshoots the correct bound by the coefficient \\( [[c]] \\)."
+  ]
+},
+{
+  "template_id": "gcd_of_mersenne_like_powers_v1",
+  "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
+  "topic_id": "number_theory",
+  "tier": "teach",
+  "params": {
+    "m": {"type": "int", "lo": 2, "hi": 15},
+    "n": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": ["Ne([[m]], [[n]])"],
+  "derived": {"A": "2**[[m]] - 1", "B": "2**[[n]] - 1"},
+  "stem": "What is \\( \\gcd([[A]], [[B]]) \\), i.e. \\( \\gcd(2^{[[m]]} - 1,\\, 2^{[[n]]} - 1) \\)? (Running the Euclidean algorithm on these two numbers mirrors running it on the exponents \\( [[m]] \\) and \\( [[n]] \\) themselves.)",
+  "answer_spec": {"op": "evaluate", "expr": "2**gcd([[m]], [[n]]) - 1"},
+  "distractors": [
+    "2**([[m]] + [[n]]) - 1",
+    "2**Abs([[m]] - [[n]]) - 1",
+    "[[A]]",
+    "[[B]]",
+    "[[answer]] + 1",
+    "[[answer]] - 1",
+    "[[answer]] + 2"
+  ],
+  "solution": "The Euclidean algorithm on \\( 2^{[[m]]}-1 \\) and \\( 2^{[[n]]}-1 \\) proceeds in lockstep with the Euclidean algorithm on the exponents \\( [[m]] \\) and \\( [[n]] \\), which gives the identity \\( \\gcd(2^{a}-1, 2^{b}-1) = 2^{\\gcd(a,b)}-1 \\). Here \\( \\gcd([[m]],[[n]]) \\) computes to give \\( \\gcd([[A]], [[B]]) = 2^{\\gcd([[m]],[[n]])} - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+    "This adds the exponents instead of taking their gcd.",
+    "This subtracts the exponents instead of taking their gcd.",
+    "This is \\( 2^{[[m]]}-1 \\) itself, not the gcd of the two numbers.",
+    "This is \\( 2^{[[n]]}-1 \\) itself, not the gcd of the two numbers.",
+    "This is one more than the correct gcd.",
+    "This is one less than the correct gcd.",
+    "This is two more than the correct gcd."
+  ]
+}
+]

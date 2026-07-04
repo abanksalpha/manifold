@@ -1,0 +1,127 @@
+[
+{
+ "template_id": "powers_of_tangent_and_secant_v1",
+ "skill_id": "powers_of_tangent_and_secant",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi/4} [[c]]\\tan^{[[n]]} x\\,\\sec^{2} x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*tan(x)**[[n]]*sec(x)**2", "var": "x", "bounds": ["0", "pi/4"]},
+ "distractors": [
+  "[[c]]/[[n]]",
+  "[[c]]/([[n]] + 2)",
+  "[[c]]*([[n]] + 1)",
+  "[[answer]] + 1",
+  "2*[[answer]]",
+  "3*[[answer]]"
+ ],
+ "solution": "Substitute \\( u = \\tan x \\), so \\( du = \\sec^{2} x\\,dx \\) and the limits become \\( u = 0 \\) to \\( u = \\tan\\tfrac{\\pi}{4} = 1 \\). Then \\( [[c]]\\int_{0}^{1} u^{[[n]]}\\,du = \\left.\\tfrac{[[c]]\\,u^{[[n]]+1}}{[[n]]+1}\\right|_{0}^{1} = \\tfrac{[[c]]}{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( [[n]] \\) instead of \\( [[n]]+1 \\) (wrong power rule).",
+  "This divides by \\( [[n]]+2 \\), over-counting the exponent increase.",
+  "This multiplies by \\( [[n]]+1 \\) instead of dividing by it.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value.",
+  "This triples the correct value."
+ ]
+},
+ {
+  "template_id": "powers_of_tangent_odd_with_secant_v2",
+  "skill_id": "powers_of_tangent_and_secant",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "m": {"type": "choice", "values": [1, 3]},
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+  "stem": "Evaluate \\( \\int_{0}^{\\arctan([[p]]/[[q]])} [[c]]\\tan^{[[m]]} x\\,\\sec x\\,dx \\) (an odd power of tangent times a single secant factor).",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*tan(x)**[[m]]*sec(x)", "var": "x", "bounds": ["0", "atan([[p]]/[[q]])"]},
+  "distractors": [
+   "[[c]]*([[m]] + 1)",
+   "[[c]]*[[p]]/[[q]]",
+   "[[c]]*sqrt([[p]]**2 + [[q]]**2)/[[q]]",
+   "[[answer]] + 1",
+   "2*[[answer]]",
+   "[[answer]]/2"
+  ],
+  "solution": "Substitute \\( u = \\sec x \\), so \\( du = \\sec x\\tan x\\,dx \\), and write \\( \\tan^{[[m]]}x = (\\sec^{2}x-1)^{([[m]]-1)/2}\\tan x \\) since \\( [[m]] \\) is odd. Since \\( \\tan(\\text{upper limit}) = \\tfrac{[[p]]}{[[q]]} \\), \\( \\sec(\\text{upper limit}) = \\tfrac{\\sqrt{[[p]]^{2}+[[q]]^{2}}}{[[q]]} \\), and \\( u \\) runs from \\( 1 \\) to this value. The resulting polynomial integral in \\( u \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( [[m]]+1 \\), confusing this with the simple power-rule case.",
+   "This uses \\( \\tan(\\text{bound}) \\) directly instead of carrying out the \\( u=\\sec x \\) substitution.",
+   "This uses only the endpoint value of \\( \\sec x \\) times \\( c \\), skipping the actual integration.",
+   "This is off by one from the correct value.",
+   "This doubles the correct value.",
+   "This halves the correct value."
+  ]
+ },
+{
+ "template_id": "powers_of_tangent_pure_identity_v3",
+ "skill_id": "powers_of_tangent_and_secant",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "bidx": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi/[[bidx]]} [[c]]\\tan^{2} x\\,dx \\) (a pure power of tangent, using the identity \\( \\tan^{2}x = \\sec^{2}x - 1 \\)).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*tan(x)**2", "var": "x", "bounds": ["0", "pi/[[bidx]]"]},
+ "distractors": [
+  "[[c]]*tan(pi/[[bidx]])",
+  "[[c]]*pi/[[bidx]]",
+  "[[c]]*(tan(pi/[[bidx]]) + pi/[[bidx]])",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1"
+ ],
+ "solution": "Using \\( \\tan^{2}x = \\sec^{2}x - 1 \\), \\( \\int_{0}^{\\pi/[[bidx]]} [[c]]\\tan^{2}x\\,dx = [[c]]\\Big[\\tan x - x\\Big]_{0}^{\\pi/[[bidx]]} = [[c]]\\left(\\tan\\tfrac{\\pi}{[[bidx]]} - \\tfrac{\\pi}{[[bidx]]}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the \\( \\tan x \\) antiderivative term and forgets to subtract \\( x \\).",
+  "This keeps only the \\( -x \\) term and forgets the \\( \\tan x \\) antiderivative.",
+  "This adds the two antiderivative terms instead of subtracting them.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+ {
+  "template_id": "powers_of_secant_pure_even_identity_v4",
+  "skill_id": "powers_of_tangent_and_secant",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 5},
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+  "stem": "Evaluate \\( \\int_{0}^{\\arctan([[p]]/[[q]])} [[c]]\\sec^{4} x\\,dx \\) (a pure even power of secant, using \\( \\sec^{2}x = 1+\\tan^{2}x \\) and \\( u=\\tan x \\)).",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*sec(x)**4", "var": "x", "bounds": ["0", "atan([[p]]/[[q]])"]},
+  "distractors": [
+   "[[c]]*[[p]]/[[q]]",
+   "[[c]]*([[p]]/[[q]] + ([[p]]/[[q]])**3)",
+   "[[c]]*([[p]]/[[q]])**3/3",
+   "[[answer]] + 1",
+   "2*[[answer]]",
+   "[[answer]]/2"
+  ],
+  "solution": "Write \\( \\sec^{4}x = \\sec^{2}x(1+\\tan^{2}x) \\) and substitute \\( u=\\tan x \\), \\( du=\\sec^{2}x\\,dx \\); since the upper limit is \\( \\arctan(\\tfrac{[[p]]}{[[q]]}) \\), \\( u \\) runs from \\( 0 \\) to \\( \\tfrac{[[p]]}{[[q]]} \\). Then \\( [[c]]\\int_{0}^{[[p]]/[[q]]}(1+u^{2})\\,du = [[c]]\\left(\\tfrac{[[p]]}{[[q]]}+\\tfrac{1}{3}\\left(\\tfrac{[[p]]}{[[q]]}\\right)^{3}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This keeps only the \\( \\int 1\\,du \\) term and forgets the \\( u^{2} \\) contribution.",
+   "This doubles the \\( u^{3}/3 \\) term instead of applying the correct \\( \\tfrac{1}{3} \\) factor.",
+   "This keeps only the \\( \\int u^{2}\\,du \\) term and forgets the constant contribution.",
+   "This is off by one from the correct value.",
+   "This doubles the correct value.",
+   "This halves the correct value."
+  ]
+ }
+]

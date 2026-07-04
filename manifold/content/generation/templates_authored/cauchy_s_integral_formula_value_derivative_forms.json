@@ -1,0 +1,136 @@
+[
+{
+ "template_id": "cauchy_integral_formula_value_v1",
+ "skill_id": "cauchy_s_integral_formula_value_derivative_forms",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "a": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": ["Ne(([[c2]])*([[a]])**2 + ([[c1]])*([[a]]) + ([[c0]]), 0)"],
+ "stem": "Let \\( f(z) = ([[c2]])z^{2} + ([[c1]])z + ([[c0]]) \\), and let \\( C \\) be a positively oriented simple closed contour enclosing the point \\( z = [[a]] \\). By Cauchy's integral formula, evaluate \\( \\displaystyle\\oint_{C} \\frac{f(z)}{z - ([[a]])}\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*(([[c2]])*([[a]])**2 + ([[c1]])*([[a]]) + ([[c0]]))"},
+ "require_rational": false,
+ "distractors": [
+  "([[c2]])*([[a]])**2 + ([[c1]])*([[a]]) + ([[c0]])",
+  "pi*I*(([[c2]])*([[a]])**2 + ([[c1]])*([[a]]) + ([[c0]]))",
+  "-([[answer]])",
+  "2*([[answer]])",
+  "[[answer]] + 2*pi*I",
+  "[[answer]] - 2*pi*I"
+ ],
+ "solution": "Cauchy's integral formula gives \\( \\oint_{C} \\frac{f(z)}{z-a}\\,dz = 2\\pi i\\, f(a) \\). Here \\( f([[a]]) = ([[c2]])([[a]])^{2} + ([[c1]])([[a]]) + ([[c0]]) \\), so the integral equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f(a) \\) alone, forgetting the factor \\( 2\\pi i \\).",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\) as the constant.",
+  "This has the wrong sign (the contour orientation was reversed).",
+  "This doubles the correct value.",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "cauchy_integral_formula_first_derivative_v1",
+ "skill_id": "cauchy_s_integral_formula_value_derivative_forms",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c3": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "a": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = ([[c3]])z^{3} + ([[c2]])z^{2} + ([[c1]])z + ([[c0]]) \\), and let \\( C \\) be a positively oriented simple closed contour enclosing the point \\( z = [[a]] \\). By the derivative form of Cauchy's integral formula, evaluate \\( \\displaystyle\\oint_{C} \\frac{f(z)}{(z - ([[a]]))^{2}}\\,dz \\).",
+ "answer_spec": {"op": "diff", "expr": "2*pi*I*(([[c3]])*z**3 + ([[c2]])*z**2 + ([[c1]])*z + ([[c0]]))", "var": "z", "at": "[[a]]", "order": 1},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*(3*([[c3]])*([[a]])**2 + 2*([[c2]])*([[a]]) + ([[c1]]))/2",
+  "pi*I*(3*([[c3]])*([[a]])**2 + 2*([[c2]])*([[a]]) + ([[c1]]))",
+  "3*([[c3]])*([[a]])**2 + 2*([[c2]])*([[a]]) + ([[c1]])",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I",
+  "[[answer]] - 2*pi*I"
+ ],
+ "solution": "The derivative form of Cauchy's integral formula gives \\( \\oint_{C} \\frac{f(z)}{(z-a)^{2}}\\,dz = 2\\pi i\\, f'(a) \\). Here \\( f'(z) = 3([[c3]])z^{2} + 2([[c2]])z + ([[c1]]) \\), so \\( f'([[a]]) \\) times \\( 2\\pi i \\) equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This halves the correct coefficient, as if the \\( n=1 \\) case needed a \\( 1/1! \\) applied twice.",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\).",
+  "This is \\( f'(a) \\) alone, forgetting the factor \\( 2\\pi i \\).",
+  "This has the wrong sign (the contour orientation was reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "cauchy_integral_formula_second_derivative_v1",
+ "skill_id": "cauchy_s_integral_formula_value_derivative_forms",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c3": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "a": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = ([[c3]])z^{3} + ([[c2]])z^{2} + ([[c1]])z + ([[c0]]) \\), and let \\( C \\) be a positively oriented simple closed contour enclosing the point \\( z = [[a]] \\). By the generalized Cauchy integral formula \\( \\displaystyle\\oint_{C} \\frac{f(z)}{(z-a)^{n+1}}\\,dz = \\frac{2\\pi i}{n!}f^{(n)}(a) \\), evaluate \\( \\displaystyle\\oint_{C} \\frac{f(z)}{(z - ([[a]]))^{3}}\\,dz \\).",
+ "answer_spec": {"op": "diff", "expr": "pi*I*(([[c3]])*z**3 + ([[c2]])*z**2 + ([[c1]])*z + ([[c0]]))", "var": "z", "at": "[[a]]", "order": 2},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*(6*([[c3]])*([[a]]) + 2*([[c2]]))",
+  "2*pi*I*(6*([[c3]])*([[a]]) + 2*([[c2]]))/2",
+  "6*([[c3]])*([[a]]) + 2*([[c2]])",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I",
+  "[[answer]] - pi*I"
+ ],
+ "solution": "With \\( n=2 \\), the formula gives \\( \\oint_{C} \\frac{f(z)}{(z-a)^{3}}\\,dz = \\frac{2\\pi i}{2!}f''(a) = \\pi i\\, f''(a) \\). Here \\( f''(z) = 6([[c3]])z + 2([[c2]]) \\), so \\( \\pi i\\,f''([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( 2! = 2 \\), using the \\( n=1 \\) prefactor \\( 2\\pi i \\) instead of \\( \\pi i \\).",
+  "This divides by an extra factor of 2, effectively using \\( n! \\) twice.",
+  "This is \\( f''(a) \\) alone, forgetting the prefactor \\( \\pi i \\).",
+  "This has the wrong sign (the contour orientation was reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This is off by \\( \\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "cauchy_integral_formula_pole_outside_v1",
+ "skill_id": "cauchy_s_integral_formula_value_derivative_forms",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "R": {"type": "choice", "values": [1, 2, 3]},
+  "a": {"type": "choice", "values": [5, 6, 7, 8, -5, -6, -7, -8]}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = ([[c2]])z^{2} + ([[c1]])z + ([[c0]]) \\), and let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Since \\( z = [[a]] \\) lies outside \\( C \\), evaluate \\( \\displaystyle\\oint_{C} \\frac{f(z)}{z - ([[a]])}\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2*pi*I*(([[c2]])*([[a]])**2 + ([[c1]])*([[a]]) + ([[c0]]))",
+  "([[c2]])*([[a]])**2 + ([[c1]])*([[a]]) + ([[c0]])",
+  "2*pi*I",
+  "-2*pi*I",
+  "pi*I*([[c0]])",
+  "2*pi*I*([[c0]])"
+ ],
+ "solution": "Cauchy's integral formula only applies to a singularity ENCLOSED by \\( C \\). Since \\( z=[[a]] \\) lies outside \\( |z|=[[R]] \\), the integrand \\( f(z)/(z-a) \\) is analytic everywhere inside and on \\( C \\), so by the Cauchy-Goursat theorem the integral is \\( 0 \\).",
+ "distractor_rationales": [
+  "This mistakenly applies Cauchy's integral formula as if \\( z=a \\) were enclosed by \\( C \\).",
+  "This evaluates \\( f(a) \\) as if that were the answer, ignoring that no pole is enclosed.",
+  "This treats the integral as \\( \\oint dz/z \\), which is not the integrand here.",
+  "This has the wrong sign for the same mistaken residue-style computation.",
+  "This applies a residue-style factor to the constant term despite there being no enclosed pole.",
+  "This applies a residue-style factor to the constant term despite there being no enclosed pole."
+ ]
+}
+]

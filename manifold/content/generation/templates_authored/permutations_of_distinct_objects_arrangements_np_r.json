@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "permutations_npr_v1",
+ "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {
+   "type": "int",
+   "lo": 5,
+   "hi": 19
+  },
+  "r": {
+   "type": "int",
+   "lo": 2,
+   "hi": 14
+  }
+ },
+ "constraints": [
+  "Lt([[r]], [[n]])"
+ ],
+ "stem": "From [[n]] distinct books, [[r]] of them are to be selected and placed in a specific order on a shelf. How many different ordered arrangements are possible?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "factorial([[n]])/factorial([[n]] - [[r]])"
+ },
+ "distractors": [
+  "binomial([[n]], [[r]])",
+  "factorial([[n]])/factorial([[r]])",
+  "[[n]]**[[r]]",
+  "factorial([[n]])",
+  "factorial([[n]] - [[r]])",
+  "[[answer]] + [[n]]"
+ ],
+ "solution": "Order matters and there is no repetition, so the count is \\( {}_{[[n]]}P_{[[r]]} = \\frac{[[n]]!}{([[n]]-[[r]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\binom{[[n]]}{[[r]]} \\), which treats the arrangement as unordered.",
+  "This divides by \\( [[r]]! \\) instead of \\( ([[n]]-[[r]])! \\).",
+  "This allows repetition, counting \\( [[n]]^{[[r]]} \\) sequences.",
+  "This arranges all [[n]] books rather than only [[r]] of them.",
+  "This is only the denominator \\( ([[n]]-[[r]])! \\) of the permutation formula.",
+  "This is off from the correct count by [[n]]."
+ ]
+},
+{
+ "template_id": "permutations_fixed_position_v1",
+ "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 16},
+  "r": {"type": "int", "lo": 2, "hi": 7},
+  "p": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Lt([[r]], [[n]])", "Le([[p]], [[r]])"],
+ "stem": "From [[n]] distinct runners, [[r]] of them will finish in order to take medal positions 1st through [[r]]th. If a particular runner, Amy, is required to finish in exactly [[p]]th place, in how many ways can the OTHER [[r]]-1 medal positions be filled (in order) by the remaining runners?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)/factorial([[n]] - [[r]])"},
+ "distractors": [
+  "factorial([[n]])/factorial([[n]] - [[r]])",
+  "factorial([[n]] - 1)/factorial([[n]] - [[r]] - 1)",
+  "binomial([[n]] - 1, [[r]] - 1)",
+  "factorial([[n]] - [[r]])",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[r]]"
+ ],
+ "solution": "Amy's place is already fixed, so the remaining \\( [[r]]-1 \\) medal positions are filled, in order, from the other \\( [[n]]-1 \\) runners: \\( {}_{[[n]]-1}P_{[[r]]-1} = \\dfrac{([[n]]-1)!}{([[n]]-[[r]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the requirement that Amy's place is fixed and counts all orderings of [[r]] positions from [[n]] runners.",
+  "This removes one extra runner from the pool beyond just Amy.",
+  "This treats the remaining assignment as an unordered selection rather than an ordered one.",
+  "This is only the denominator of the permutation formula, missing the numerator factorial.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[r]]."
+ ]
+},
+{
+ "template_id": "permutations_circular_v1",
+ "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "In how many distinguishable ways can [[n]] distinct people be seated around a circular table, if two seatings that differ only by a rotation of the whole table are considered the SAME arrangement?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]])/2",
+  "factorial([[n]] - 1)/2",
+  "factorial([[n]] - 2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Fix one person's seat to eliminate rotational duplicates, then arrange the remaining \\( [[n]]-1 \\) people in the remaining seats: \\( ([[n]]-1)! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the seats as a straight row, forgetting to divide out rotational duplicates.",
+  "This divides the row count by 2 instead of by [[n]] (confusing circular symmetry with reflection symmetry).",
+  "This also divides out reflections, which the problem did not ask to treat as identical.",
+  "This fixes two seats instead of just one, over-reducing the count.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "permutations_must_be_adjacent_v1",
+ "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "In how many ways can [[n]] distinct books be arranged in a row on a shelf if two particular books, X and Y, MUST stand next to each other?",
+ "answer_spec": {"op": "evaluate", "expr": "2*factorial([[n]] - 1)"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]] - 1)",
+  "2*factorial([[n]] - 2)",
+  "factorial([[n]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Glue X and Y into a single block, giving \\( [[n]]-1 \\) items to arrange in \\( ([[n]]-1)! \\) ways, then multiply by 2 for the two internal orders of X and Y within the block: \\( 2\\cdot([[n]]-1)! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the adjacency requirement and arranges all [[n]] books freely.",
+  "This forgets the factor of 2 for the two internal orders of the X-Y block.",
+  "This treats the glued block as reducing the item count by 2 instead of by 1.",
+  "This divides by 2 instead of accounting for the block correctly.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "permutations_must_not_be_adjacent_v1",
+ "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "In how many ways can [[n]] distinct books be arranged in a row on a shelf if two particular books, X and Y, must NOT stand next to each other?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]]) - 2*factorial([[n]] - 1)"},
+ "distractors": [
+  "factorial([[n]])",
+  "2*factorial([[n]] - 1)",
+  "factorial([[n]]) - factorial([[n]] - 1)",
+  "factorial([[n]] - 2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "From all \\( [[n]]! \\) arrangements, subtract the \\( 2\\cdot([[n]]-1)! \\) arrangements where X and Y ARE adjacent: \\( [[n]]! - 2([[n]]-1)! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to exclude any arrangements and counts all of them.",
+  "This is the count of arrangements where X and Y ARE adjacent, the complement of what was asked.",
+  "This forgets the factor of 2 when subtracting the adjacent cases.",
+  "This is an unrelated smaller factorial, not the complementary count.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

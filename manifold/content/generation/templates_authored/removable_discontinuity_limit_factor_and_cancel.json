@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "removable_discontinuity_limit_v1",
+ "skill_id": "removable_discontinuity_limit_factor_and_cancel",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "derived": {"s": "[[a]] + [[b]]", "p": "[[a]]*[[b]]"},
+ "stem": "Let \\( f(x) = \\frac{x^{2} - ([[s]])x + ([[p]])}{x - ([[a]])} \\). The graph of \\( f \\) has a removable discontinuity (a hole) at \\( x = [[a]] \\). Evaluate \\( \\lim_{x \\to [[a]]} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "(x**2 - ([[s]])*x + ([[p]]))/(x - ([[a]]))", "var": "x", "point": "[[a]]"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[b]] - [[a]]",
+  "2*[[a]]",
+  "2*[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The numerator factors as \\( x^{2} - ([[s]])x + ([[p]]) = (x - ([[a]]))(x - ([[b]])) \\). Cancelling the common factor \\( x - ([[a]]) \\) leaves \\( x - ([[b]]) \\), so \\( \\lim_{x \\to [[a]]} f(x) = [[a]] - ([[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( a + b \\); after cancelling, the surviving factor is \\( x - b \\), which gives \\( a - b \\) at \\( x = a \\).",
+  "This is the negative of the correct value (the factors were subtracted in the wrong order).",
+  "This doubles the point being approached instead of evaluating the surviving factor.",
+  "This doubles the other root instead of computing \\( a - b \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "removable_discontinuity_conjugate_radical_v1",
+ "skill_id": "removable_discontinuity_limit_factor_and_cancel",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 9},
+  "c": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"k": "[[m]]**2 - [[c]]"},
+ "stem": "Let \\( f(x) = \\dfrac{\\sqrt{x + ([[k]])} - [[m]]}{x - ([[c]])} \\). This has a removable discontinuity at \\( x = [[c]] \\). Evaluate \\( \\lim_{x \\to [[c]]} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "(sqrt(x + ([[k]])) - [[m]])/(x - ([[c]]))", "var": "x", "point": "[[c]]"},
+ "distractors": [
+  "Rational(1, [[m]])",
+  "2*[[m]]",
+  "-Rational(1, 2*[[m]])",
+  "[[m]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Multiply numerator and denominator by the conjugate \\( \\sqrt{x+[[k]]} + [[m]] \\): \\( \\dfrac{(x+[[k]]) - [[m]]^{2}}{(x-[[c]])(\\sqrt{x+[[k]]}+[[m]])} = \\dfrac{x - [[c]]}{(x-[[c]])(\\sqrt{x+[[k]]}+[[m]])} = \\dfrac{1}{\\sqrt{x+[[k]]}+[[m]]} \\) (using \\( [[m]]^{2} = [[k]] + [[c]] \\)). As \\( x \\to [[c]] \\) this gives \\( \\dfrac{1}{2[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double \\( m \\) in the denominator after rationalizing.",
+  "This inverts the correct fraction and drops the factor of 2.",
+  "This has the wrong sign on the correct value.",
+  "This reports \\( m \\) itself instead of the rationalized limit.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "removable_discontinuity_quadratic_over_quadratic_v1",
+ "skill_id": "removable_discontinuity_limit_factor_and_cancel",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b1": {"type": "int", "lo": -7, "hi": 7},
+  "b2": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[a]], [[b1]])", "Ne([[a]], [[b2]])", "Ne([[b1]], [[b2]])"],
+ "derived": {"s1": "[[a]] + [[b1]]", "p1": "[[a]]*[[b1]]", "s2": "[[a]] + [[b2]]", "p2": "[[a]]*[[b2]]"},
+ "stem": "Let \\( f(x) = \\dfrac{x^{2} - ([[s1]])x + ([[p1]])}{x^{2} - ([[s2]])x + ([[p2]])} \\). Both the numerator and denominator vanish at \\( x = [[a]] \\), giving a removable discontinuity there. Evaluate \\( \\lim_{x \\to [[a]]} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "(x**2 - ([[s1]])*x + ([[p1]]))/(x**2 - ([[s2]])*x + ([[p2]]))", "var": "x", "point": "[[a]]"},
+ "distractors": [
+  "Rational([[b2]] - [[a]], [[b1]] - [[a]])",
+  "[[b1]] - [[b2]]",
+  "1",
+  "0",
+  "Rational([[a]] - [[b2]], [[a]] - [[b1]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Both quadratics share the factor \\( x - ([[a]]) \\): the numerator is \\( (x-([[a]]))(x-([[b1]])) \\) and the denominator is \\( (x-([[a]]))(x-([[b2]])) \\). Cancelling leaves \\( \\dfrac{x-([[b1]])}{x-([[b2]])} \\), so the limit at \\( x=[[a]] \\) is \\( \\dfrac{[[a]]-([[b1]])}{[[a]]-([[b2]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct ratio.",
+  "This subtracts the other roots instead of forming the ratio of surviving factors.",
+  "This assumes the surviving factors are always equal.",
+  "This assumes the discontinuity leaves a limit of \\( 0 \\), ignoring the surviving denominator factor.",
+  "This has the numerator and denominator of the ratio swapped in sign.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "removable_discontinuity_complex_fraction_v1",
+ "skill_id": "removable_discontinuity_limit_factor_and_cancel",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "int", "lo": -18, "hi": 18}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to [[b]]} \\dfrac{\\frac{1}{x} - \\frac{1}{[[b]]}}{x - [[b]]} \\).",
+ "answer_spec": {"op": "limit", "expr": "(1/x - Rational(1,1)/[[b]])/(x - ([[b]]))", "var": "x", "point": "[[b]]"},
+ "distractors": [
+  "Rational(1, [[b]]**2)",
+  "-Rational(1, [[b]])",
+  "0",
+  "-[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Clear the complex fraction: \\( \\dfrac{1}{x} - \\dfrac{1}{[[b]]} = \\dfrac{[[b]] - x}{[[b]]x} \\), so the whole expression is \\( \\dfrac{[[b]]-x}{[[b]]x(x-[[b]])} = \\dfrac{-1}{[[b]]x} \\) for \\( x \\ne [[b]] \\). As \\( x \\to [[b]] \\), this gives \\( -\\dfrac{1}{[[b]]^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign after clearing the complex fraction.",
+  "This forgets to square \\( b \\) in the denominator.",
+  "This assumes the hole leaves a limit of \\( 0 \\).",
+  "This reports \\( -b \\) instead of \\( -1/b^{2} \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "removable_discontinuity_power_difference_v1",
+ "skill_id": "removable_discontinuity_limit_factor_and_cancel",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to [[a]]} \\dfrac{x^{[[n]]} - [[a]]^{[[n]]}}{x - [[a]]} \\).",
+ "answer_spec": {"op": "limit", "expr": "(x**[[n]] - [[a]]**[[n]])/(x - ([[a]]))", "var": "x", "point": "[[a]]"},
+ "distractors": [
+  "[[n]]*[[a]]",
+  "[[a]]**([[n]]-1)",
+  "([[n]]-1)*[[a]]**[[n]]",
+  "[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Using the factoring identity \\( x^{n} - a^{n} = (x-a)(x^{n-1} + x^{n-2}a + \\cdots + a^{n-1}) \\), cancelling \\( x - [[a]] \\) leaves \\( n \\) terms that all equal \\( [[a]]^{[[n]]-1} \\) at \\( x = [[a]] \\), giving \\( [[n]]\\cdot[[a]]^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( n \\) by \\( a \\) instead of by \\( a^{n-1} \\).",
+  "This drops the factor of \\( n \\) from the count of surviving terms.",
+  "This uses \\( n-1 \\) instead of \\( n \\) as the multiplying count.",
+  "This reports only the exponent, dropping the base entirely.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

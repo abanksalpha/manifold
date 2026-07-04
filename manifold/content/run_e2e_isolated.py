@@ -103,6 +103,35 @@ def launch_anki(base: Path, port: int, log_path: Path):
         # (the documented e2e escape hatch); binds mediasrv on all interfaces.
         "ANKI_API_HOST": "0.0.0.0",
         "ANKIDEV": "1",
+        # Manifold serves every problem via live generation (D44). For a hermetic,
+        # offline, free e2e we inject a fixtures test double: it replaces ONLY the
+        # model call, so serve_live.py still runs verify.py in the loop and every
+        # served item is really verified (no fabrication).
+        "MANIFOLD_LIVE_FIXTURES": str(
+            REPO_ROOT / "manifold" / "content" / "generation" / "live_fixtures.e2e.json"
+        ),
+        # Independent cross-solve gate (D32 gate 5) also runs on the live path, so a
+        # hermetic e2e needs a solver double too: a perfect blind solver that agrees
+        # with any genuinely-verified item (the agreement logic still runs; only the
+        # model call is replaced). Without it the verified fixture item would fail the
+        # cross-solve gate for lack of a key and serve_live would (correctly) abstain.
+        "MANIFOLD_SOLVE_FIXTURES": str(
+            REPO_ROOT / "manifold" / "content" / "generation" / "solve_fixtures.e2e.json"
+        ),
+        # New-skill lectures (Task 1) are served from a static, pre-authored file.
+        # For a hermetic e2e, point at a fixture whose single lecture is grounded in
+        # a real VERIFIED teach_bank item, so the endpoint + render can be asserted
+        # without depending on the full authored lectures.json.
+        "MANIFOLD_LECTURES": str(
+            REPO_ROOT / "manifold" / "content" / "lectures" / "lectures.e2e.json"
+        ),
+        # The hint assistant (ask-a-question-about-the-problem) is another live model
+        # path. Inject a fixtures double so the endpoint + panel run hermetically: it
+        # replaces ONLY the model call (get_hint's validation + honest-abstain logic
+        # still run) and returns an answer-free, delimited-LaTeX hint for any skill.
+        "MANIFOLD_HINT_FIXTURES": str(
+            REPO_ROOT / "manifold" / "content" / "generation" / "hint_fixtures.e2e.json"
+        ),
         "PYTHONPYCACHEPREFIX": str(OUT / "pycache"),
         "RUST_BACKTRACE": "1",
         # Headless Qt: mediasrv's HTTP stack renders to memory, no display needed.

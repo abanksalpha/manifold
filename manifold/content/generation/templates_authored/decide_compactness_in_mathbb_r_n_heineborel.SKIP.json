@@ -1,0 +1,1 @@
+{"skill_id": "decide_compactness_in_mathbb_r_n_heineborel", "reason": "Even restricted to R^n, the Heine-Borel item format is a yes/no verdict (closed and bounded, hence compact, or not) about a described set; there is no scalar answer for a solver to compute."}

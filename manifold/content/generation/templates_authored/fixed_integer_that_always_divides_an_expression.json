@@ -1,0 +1,218 @@
+[
+{
+ "template_id": "fixed_divisor_consecutive_product_v1",
+ "skill_id": "fixed_integer_that_always_divides_an_expression",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "m": {
+   "type": "int",
+   "lo": 3,
+   "hi": 14
+  }
+ },
+ "constraints": [],
+ "stem": "What is the largest integer that is guaranteed to divide the product of any \\( [[m]] \\) consecutive positive integers?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "factorial([[m]])"
+ },
+ "distractors": [
+  "factorial([[m]] - 1)",
+  "factorial([[m]] + 1)",
+  "[[m]]**2",
+  "2*factorial([[m]])",
+  "factorial([[m]]) + [[m]]",
+  "factorial([[m]]) - [[m]]"
+ ],
+ "solution": "Among any \\( [[m]] \\) consecutive integers the product is always divisible by \\( [[m]]! \\), and the block \\( 1\\cdot 2\\cdots [[m]] \\) equals exactly \\( [[m]]! \\), so no larger integer is forced. The largest guaranteed divisor is \\( [[m]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( ([[m]]-1)! \\); it always divides the product but is not the largest such integer.",
+  "This is \\( ([[m]]+1)! \\), which does not divide every product of \\( [[m]] \\) consecutive integers.",
+  "This squares the count instead of taking a factorial.",
+  "This doubles \\( [[m]]! \\); the product is not always divisible by \\( 2\\cdot[[m]]! \\).",
+  "This adds \\( [[m]] \\) to the factorial, which is not a divisor argument.",
+  "This subtracts \\( [[m]] \\) from the factorial, which is not a divisor argument."
+ ]
+},
+{
+ "template_id": "fixed_divisor_even_consecutive_product_v1",
+ "skill_id": "fixed_integer_that_always_divides_an_expression",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "m": {
+   "type": "int",
+   "lo": 2,
+   "hi": 15
+  }
+ },
+ "constraints": [],
+ "stem": "What is the largest integer that is guaranteed to divide the product of any \\( [[m]] \\) consecutive positive EVEN integers?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2**[[m]] * factorial([[m]])"
+ },
+ "distractors": [
+  "factorial([[m]])",
+  "2**[[m]]",
+  "2*factorial([[m]])",
+  "2**[[m]] * factorial([[m]] - 1)",
+  "2**([[m]] + 1) * factorial([[m]])",
+  "2**[[m]] * factorial([[m]] + 1)"
+ ],
+ "solution": "Write the \\( [[m]] \\) consecutive even integers as \\( 2k, 2(k+1), \\dots, 2(k+[[m]]-1) \\). Factoring out a 2 from each term leaves \\( 2^{[[m]]} \\cdot k(k+1)\\cdots(k+[[m]]-1) \\), and the block of \\( [[m]] \\) consecutive integers \\( k, k+1, \\dots, k+[[m]]-1 \\) is always divisible by \\( [[m]]! \\). So the product is always divisible by \\( 2^{[[m]]} \\cdot [[m]]! \\), and taking \\( k=1 \\) (i.e. \\( 2,4,\\dots,2[[m]] \\)) shows this bound is tight: \\( 2^{[[m]]} \\cdot [[m]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( 2^{[[m]]} \\) pulled out of each of the \\( [[m]] \\) even terms.",
+  "This forgets the factor of \\( [[m]]! \\) coming from the consecutive-integer block.",
+  "This uses only one factor of 2 instead of \\( 2^{[[m]]} \\).",
+  "This uses \\( ([[m]]-1)! \\) instead of \\( [[m]]! \\) for the consecutive-integer block.",
+  "This uses one extra factor of 2 beyond \\( 2^{[[m]]} \\).",
+  "This uses \\( ([[m]]+1)! \\) instead of \\( [[m]]! \\) for the consecutive-integer block."
+ ]
+},
+{
+ "template_id": "fixed_divisor_cubic_minus_linear_v1",
+ "skill_id": "fixed_integer_that_always_divides_an_expression",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 15
+  }
+ },
+ "constraints": [],
+ "stem": "For every integer \\( n \\), what is the largest integer guaranteed to divide \\( [[a]](n^{3} - n) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "6*[[a]]"
+ },
+ "distractors": [
+  "[[a]]",
+  "2*[[a]]",
+  "3*[[a]]",
+  "12*[[a]]",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[a]]"
+ ],
+ "solution": "Factor \\( n^{3}-n = (n-1)n(n+1) \\), the product of 3 consecutive integers, which is always divisible by \\( 3! = 6 \\) (and this bound is tight, e.g. \\( n=2 \\) gives \\( 1\\cdot2\\cdot3=6 \\)). So \\( [[a]](n^{3}-n) \\) is always divisible by \\( 6\\cdot[[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 6 entirely, leaving just the coefficient.",
+  "This uses only 2 of the 3 consecutive-integer factors.",
+  "This uses only 2 of the 3 consecutive-integer factors (the other pairing).",
+  "This doubles the correct bound \\( 6[[a]] \\).",
+  "This overshoots the correct bound by \\( [[a]] \\).",
+  "This undershoots the correct bound by \\( [[a]] \\)."
+ ]
+},
+{
+ "template_id": "fixed_divisor_consecutive_sum_v1",
+ "skill_id": "fixed_integer_that_always_divides_an_expression",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "m": {
+   "type": "int",
+   "lo": 3,
+   "hi": 29
+  }
+ },
+ "constraints": ["Eq(Mod([[m]], 2), 1)"],
+ "stem": "What is the largest integer guaranteed to divide the SUM of any \\( [[m]] \\) consecutive integers?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[m]]"
+ },
+ "distractors": [
+  "[[m]] + 1",
+  "[[m]] - 1",
+  "2*[[m]]",
+  "([[m]] - 1)/2",
+  "([[m]] + 1)/2",
+  "[[m]]**2"
+ ],
+ "solution": "Since \\( [[m]] \\) is odd, any \\( [[m]] \\) consecutive integers have a middle term \\( c \\), and their sum equals \\( [[m]]\\cdot c \\), an exact multiple of \\( [[m]] \\); taking the block starting at 1 shows no larger integer is forced. The largest guaranteed divisor is \\( [[answer]] \\).",
+  "distractor_rationales": [
+    "This is one more than the count of terms.",
+    "This is one less than the count of terms.",
+    "This doubles the count of terms, which is not forced.",
+    "This is half of \\( [[m]]-1 \\), not the full count.",
+    "This is half of \\( [[m]]+1 \\), not the full count.",
+    "This squares the count instead of using it directly."
+  ]
+},
+{
+ "template_id": "fixed_divisor_fifth_power_minus_linear_v1",
+ "skill_id": "fixed_integer_that_always_divides_an_expression",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 15
+  }
+ },
+ "constraints": [],
+ "stem": "The quantity \\( [[a]](n^{5} - n) \\) is always an integer multiple of some fixed number, no matter which integer \\( n \\) you plug in. What is the largest such fixed number?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "30*[[a]]"
+ },
+ "distractors": [
+  "5*[[a]]",
+  "6*[[a]]",
+  "10*[[a]]",
+  "15*[[a]]",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[a]]"
+ ],
+ "solution": "Factor \\( n^{5}-n = n(n-1)(n+1)(n^{2}+1) \\). The three consecutive integers \\( n-1,n,n+1 \\) force divisibility by \\( 3!=6 \\), and Fermat's Little Theorem gives \\( n^{5}\\equiv n \\pmod 5 \\), forcing an extra factor of 5; since \\( \\gcd(6,5)=1 \\) this gives divisibility by \\( 30 \\), and \\( n=2 \\) (\\( 2^{5}-2=30 \\)) shows the bound is tight. So \\( [[a]](n^{5}-n) \\) is always divisible by \\( 30\\cdot[[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the factor of 5 from Fermat's Little Theorem, dropping the consecutive-integer factor of 6.",
+  "This keeps only the factor of 6 from the consecutive integers, dropping the extra factor of 5 from Fermat's Little Theorem.",
+  "This doubles the Fermat factor of 5 instead of combining it with the factor of 6.",
+  "This is \\( 3\\times \\) the Fermat factor of 5, missing the correct combination with 6.",
+  "This overshoots the correct bound by \\( [[a]] \\).",
+  "This undershoots the correct bound by \\( [[a]] \\)."
+ ]
+},
+{
+ "template_id": "fixed_divisor_odd_square_minus_one_v1",
+ "skill_id": "fixed_integer_that_always_divides_an_expression",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 15
+  }
+ },
+ "constraints": [],
+ "stem": "For every ODD integer \\( n \\), what is the largest integer guaranteed to divide \\( [[a]](n^{2} - 1) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "8*[[a]]"
+ },
+ "distractors": [
+  "2*[[a]]",
+  "4*[[a]]",
+  "16*[[a]]",
+  "[[a]]",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[a]]"
+ ],
+ "solution": "Write \\( n^{2}-1=(n-1)(n+1) \\); since \\( n \\) is odd, \\( n-1 \\) and \\( n+1 \\) are two consecutive even integers, so one of them is divisible by 4 and the other by 2, forcing \\( 8 \\mid (n-1)(n+1) \\). Taking \\( n=3 \\) gives exactly \\( n^{2}-1=8 \\), so the bound is tight. Hence \\( [[a]](n^{2}-1) \\) is always divisible by \\( 8\\cdot[[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This only uses one factor of 2 from the two consecutive even numbers.",
+  "This only uses the factor of 4 from one of the two consecutive even numbers, dropping the other factor of 2.",
+  "This doubles the correct bound, overcounting the powers of 2 present.",
+  "This drops the case-analysis on odd \\( n \\) entirely, using only the coefficient.",
+  "This overshoots the correct bound by \\( [[a]] \\).",
+  "This undershoots the correct bound by \\( [[a]] \\)."
+ ]
+}
+]

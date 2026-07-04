@@ -1,0 +1,4 @@
+{
+ "skill_id": "existence_uniqueness_recognition",
+ "reason": "This skill is conceptual recognition of whether the existence/uniqueness hypotheses (continuity of f and of df/dy) hold for an IVP; the answer is a yes/no or which-hypothesis-fails judgment, not a single machine-computable scalar or expression."
+}

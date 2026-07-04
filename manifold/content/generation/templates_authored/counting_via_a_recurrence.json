@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "recurrence_hanoi_v1",
+ "skill_id": "counting_via_a_recurrence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {
+   "type": "int",
+   "lo": 3,
+   "hi": 19
+  }
+ },
+ "constraints": [],
+ "stem": "The minimum number of moves \\( M_n \\) required to solve the Tower of Hanoi puzzle with \\( n \\) disks satisfies \\( M_1 = 1 \\) and \\( M_n = 2M_{n-1} + 1 \\) for \\( n \\ge 2 \\). What is \\( M_{[[n]]} \\)?",
+ "answer_spec": {
+  "op": "iterate",
+  "f": "2*x + 1",
+  "x0": "1",
+  "n": "[[n]] - 1",
+  "var": "x"
+ },
+ "distractors": [
+  "2**[[n]]",
+  "2**[[n]] - 2",
+  "2*[[n]] - 1",
+  "2**([[n]] - 1)",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Unrolling the recurrence from \\( M_1 = 1 \\) gives \\( M_n = 2^n - 1 \\), so \\( M_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( 2^{[[n]]} \\), off by one from the correct \\( 2^{[[n]]}-1 \\).",
+  "This subtracts two instead of one from the power of two.",
+  "This treats the recurrence as linear growth, \\( 2n-1 \\).",
+  "This uses \\( 2^{[[n]]-1} \\), the count for one fewer disk's power.",
+  "This is off from the correct count by two.",
+  "This is off from the correct count by two."
+ ]
+},
+{
+ "template_id": "recurrence_subset_doubling_v1",
+ "skill_id": "counting_via_a_recurrence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( S_n \\) be the number of subsets of a set with \\( n \\) elements. It satisfies \\( S_0 = 1 \\) (only the empty set) and \\( S_n = 2S_{n-1} \\) for \\( n \\ge 1 \\), since adding one new element doubles the number of subsets. What is \\( S_{[[n]]} \\)?",
+ "answer_spec": {"op": "iterate", "f": "2*x", "x0": "1", "n": "[[n]]", "var": "x"},
+ "distractors": [
+  "[[n]]**2",
+  "2*[[n]]",
+  "factorial([[n]])",
+  "2**([[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Unrolling the recurrence from \\( S_0 = 1 \\) gives \\( S_n = 2^n \\), so \\( S_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the doubling recurrence with a quadratic count.",
+  "This treats the recurrence as linear growth instead of doubling.",
+  "This confuses the subset count with a permutation count.",
+  "This is off by a factor of 2, using one fewer doubling step than needed.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "recurrence_regions_from_lines_v1",
+ "skill_id": "counting_via_a_recurrence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( R_n \\) be the maximum number of regions into which the plane is divided by \\( n \\) lines in general position (no two parallel, no three concurrent). This satisfies \\( R_0 = 1 \\) and \\( R_n = R_{n-1} + n \\) for \\( n \\ge 1 \\), since the \\( n \\)-th line crosses every earlier line and so adds \\( n \\) new regions. What is \\( R_{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1 + [[n]]*([[n]] + 1)/2"},
+ "distractors": [
+  "[[n]]*([[n]] + 1)/2",
+  "1 + [[n]]**2",
+  "2**[[n]]",
+  "[[n]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Unrolling the recurrence, \\( R_n = 1 + \\sum_{i=1}^{n} i = 1 + \\frac{n(n+1)}{2} \\), so \\( R_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add the starting region \\( R_0 = 1 \\) before the triangular sum.",
+  "This replaces the triangular sum with a plain square, an unrelated growth rate.",
+  "This treats the recurrence as doubling instead of an additive increment.",
+  "This drops the accumulated sum entirely, keeping only the most recent increment.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "recurrence_domino_tiling_fibonacci_v1",
+ "skill_id": "counting_via_a_recurrence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( T_n \\) be the number of ways to tile a \\( 1\\times n \\) strip using \\( 1\\times 1 \\) squares and \\( 1\\times 2 \\) dominoes. It satisfies \\( T_1 = 1 \\), \\( T_2 = 2 \\), and the two-term recurrence \\( T_n = T_{n-1} + T_{n-2} \\) for \\( n \\ge 3 \\) (the strip begins with either a square, leaving \\( n-1 \\) cells, or a domino, leaving \\( n-2 \\) cells). What is \\( T_{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(((1 + sqrt(5))/2)**([[n]] + 1) - ((1 - sqrt(5))/2)**([[n]] + 1))/sqrt(5)"},
+ "distractors": [
+  "(((1 + sqrt(5))/2)**([[n]]) - ((1 - sqrt(5))/2)**([[n]]))/sqrt(5)",
+  "[[n]]**2",
+  "2**[[n]]",
+  "[[n]]*([[n]] + 1)/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The sequence \\( T_1, T_2, T_3, \\dots \\) is the Fibonacci sequence shifted by one index, \\( T_n = F_{n+1} \\); evaluating the closed form gives \\( T_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( F_n \\) instead of the correctly shifted \\( F_{n+1} \\), an off-by-one indexing error.",
+  "This confuses the two-term recurrence's growth with a quadratic count.",
+  "This treats the recurrence as pure doubling instead of a two-term sum.",
+  "This confuses the tiling count with a triangular-number formula.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "recurrence_catalan_v1",
+ "skill_id": "counting_via_a_recurrence",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 15}
+ },
+ "constraints": [],
+ "stem": "The Catalan numbers \\( C_n \\) count, among other things, the ways to fully parenthesize a product of \\( n+1 \\) factors, and satisfy \\( C_0 = 1 \\) and the convolution recurrence \\( C_{n+1} = \\displaystyle\\sum_{i=0}^{n} C_i C_{n-i} \\) for \\( n \\ge 0 \\). Using the closed form \\( C_n = \\dfrac{1}{n+1}\\dbinom{2n}{n} \\), what is \\( C_{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial(2*[[n]], [[n]])/([[n]] + 1)"},
+ "distractors": [
+  "binomial(2*[[n]], [[n]])",
+  "binomial(2*[[n]], [[n]] - 1)",
+  "factorial([[n]])",
+  "2**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the closed form, \\( C_{[[n]]} = \\dfrac{1}{[[n]]+1}\\binom{2\\cdot [[n]]}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( n+1 \\), leaving the plain central binomial coefficient.",
+  "This shifts the bottom index of the binomial coefficient down by one.",
+  "This confuses the Catalan recurrence with a plain factorial count.",
+  "This confuses the Catalan recurrence with pure doubling.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

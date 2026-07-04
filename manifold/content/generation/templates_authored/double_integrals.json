@@ -1,0 +1,410 @@
+[
+ {
+  "template_id": "double_integrals_v1",
+  "skill_id": "double_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "c": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Lt([[a]], [[b]])",
+   "Lt([[c]], [[d]])"
+  ],
+  "stem": "Evaluate the iterated integral \\( \\int_{[[c]]}^{[[d]]} \\int_{[[a]]}^{[[b]]} \\left( [[p]]x + [[q]]y \\right) \\, dx \\, dy \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[p]]*x + [[q]]*y",
+   "vars": [
+    "x",
+    "y"
+   ],
+   "bounds": [
+    [
+     "[[a]]",
+     "[[b]]"
+    ],
+    [
+     "[[c]]",
+     "[[d]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[p]]*([[b]]**2 - [[a]]**2)/2*([[d]] - [[c]]) - [[q]]*([[b]] - [[a]])*([[d]]**2 - [[c]]**2)/2",
+   "([[p]] + [[q]])*([[b]] - [[a]])*([[d]] - [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Integrate in \\(x\\) first, treating \\(y\\) as constant: \\( \\int_{[[a]]}^{[[b]]}([[p]]x+[[q]]y)\\,dx = [[p]]\\frac{[[b]]^2-[[a]]^2}{2} + [[q]]([[b]]-[[a]])\\,y \\). Then integrate this in \\(y\\) from \\([[c]]\\) to \\([[d]]\\) to obtain \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This subtracts the \\(y\\)-term instead of adding it (a sign error on the second piece).",
+   "This treats the integrand as the constant \\([[p]]+[[q]]\\) times the area of the rectangle, forgetting to integrate \\(x\\) and \\(y\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integrals_v2",
+  "skill_id": "double_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "m": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3
+    ]
+   },
+   "n": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3
+    ]
+   },
+   "a": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "c": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Lt([[a]], [[b]])",
+   "Lt([[c]], [[d]])"
+  ],
+  "stem": "Evaluate the iterated integral \\( \\int_{[[c]]}^{[[d]]} \\int_{[[a]]}^{[[b]]} [[k]]\\,x^{[[m]]} y^{[[n]]} \\, dx \\, dy \\), where the integrand is a single separable monomial in \\(x\\) and \\(y\\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]*x**[[m]]*y**[[n]]",
+   "vars": [
+    "x",
+    "y"
+   ],
+   "bounds": [
+    [
+     "[[a]]",
+     "[[b]]"
+    ],
+    [
+     "[[c]]",
+     "[[d]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[k]]*([[b]]**[[m]] - [[a]]**[[m]])*([[d]]**[[n]] - [[c]]**[[n]])",
+   "[[k]]*([[b]]-[[a]])**([[m]]+1)/([[m]]+1)*([[d]]-[[c]])**([[n]]+1)/([[n]]+1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Because the integrand is a single product \\(x^{[[m]]}y^{[[n]]}\\), the double integral SEPARATES into a product of two single-variable integrals: \\( [[k]]\\left(\\int_{[[a]]}^{[[b]]}x^{[[m]]}dx\\right)\\left(\\int_{[[c]]}^{[[d]]}y^{[[n]]}dy\\right) = [[k]]\\cdot\\dfrac{[[b]]^{[[m]]+1}-[[a]]^{[[m]]+1}}{[[m]]+1}\\cdot\\dfrac{[[d]]^{[[n]]+1}-[[c]]^{[[n]]+1}}{[[n]]+1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the power rule's denominator entirely, using \\(x^{[[m]]}\\) and \\(y^{[[n]]}\\) evaluated at the endpoints instead of their antiderivatives.",
+   "This applies the antiderivative power rule to the WIDTH of each interval (\\(b-a\\), \\(d-c\\)) rather than to the endpoints themselves.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integrals_v3",
+  "skill_id": "double_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "r": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "a": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "c": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   }
+  },
+  "constraints": [
+   "Lt([[a]], [[b]])",
+   "Lt([[c]], [[d]])"
+  ],
+  "stem": "Evaluate the iterated integral \\( \\int_{[[c]]}^{[[d]]} \\int_{[[a]]}^{[[b]]} \\left( [[p]]xy + [[q]]x^2 + [[r]]y^2 \\right) \\, dx \\, dy \\), whose integrand mixes a cross term \\(xy\\) with pure single-variable terms.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[p]]*x*y + [[q]]*x**2 + [[r]]*y**2",
+   "vars": [
+    "x",
+    "y"
+   ],
+   "bounds": [
+    [
+     "[[a]]",
+     "[[b]]"
+    ],
+    [
+     "[[c]]",
+     "[[d]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[p]]*([[b]]-[[a]])*([[d]]-[[c]]) + [[q]]*([[b]]-[[a]]) + [[r]]*([[d]]-[[c]])",
+   "[[p]]*([[b]]**2-[[a]]**2)*([[d]]**2-[[c]]**2)/4 + [[q]]*([[b]]-[[a]])**3/3 + [[r]]*([[d]]-[[c]])**3/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Split by linearity into three iterated integrals. The cross term separates as \\( [[p]]\\left(\\int_{[[a]]}^{[[b]]}x\\,dx\\right)\\left(\\int_{[[c]]}^{[[d]]}y\\,dy\\right) \\); each pure term integrates over BOTH variables (e.g. \\( [[q]]x^2 \\) integrates in \\(x\\) then is multiplied by the \\(y\\)-width \\([[d]]-[[c]]\\)). Summing the three pieces gives \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This treats every term as if it depended on only one variable, using interval widths instead of the correct antiderivative powers.",
+   "This uses the wrong endpoints (interval widths raised to a power) for the pure \\(x^2\\) and \\(y^2\\) terms instead of the difference of cubes/squares at the actual bounds.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integrals_v4",
+  "skill_id": "double_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "a": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "c": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Lt([[a]], [[b]])",
+   "Lt([[c]], [[d]])"
+  ],
+  "derived": {
+   "Area": "([[b]]-[[a]])*([[d]]-[[c]])"
+  },
+  "stem": "Find the AVERAGE VALUE of \\( f(x,y) = [[p]]x + [[q]]y \\) over the rectangle \\( [[a]] \\le x \\le [[b]],\\ [[c]] \\le y \\le [[d]] \\), i.e. \\( \\dfrac{1}{\\text{Area}} \\displaystyle\\int_{[[c]]}^{[[d]]} \\int_{[[a]]}^{[[b]]} f(x,y) \\, dx \\, dy \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "([[p]]*x + [[q]]*y)/([[Area]])",
+   "vars": [
+    "x",
+    "y"
+   ],
+   "bounds": [
+    [
+     "[[a]]",
+     "[[b]]"
+    ],
+    [
+     "[[c]]",
+     "[[d]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[p]]*([[b]]**2-[[a]]**2)/2 + [[q]]*([[d]]**2-[[c]]**2)/2",
+   "[[p]]*([[a]]+[[b]])/2 + [[q]]*([[c]]+[[d]])/2 + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The average value is \\( \\dfrac{1}{[[Area]]}\\int_{[[c]]}^{[[d]]}\\int_{[[a]]}^{[[b]]} ([[p]]x+[[q]]y)\\,dx\\,dy \\). Since \\(f\\) is linear, this equals \\(f\\) evaluated at the CENTER of the rectangle: \\( [[p]]\\cdot\\dfrac{[[a]]+[[b]]}{2} + [[q]]\\cdot\\dfrac{[[c]]+[[d]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the raw (un-averaged) double integral, forgetting to divide by the area of the rectangle.",
+   "This uses the midpoint formula but adds a stray \\(+1\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "double_integrals_v5",
+  "skill_id": "double_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "a": {
+    "type": "int",
+    "lo": -4,
+    "hi": -1
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "c": {
+    "type": "int",
+    "lo": 0,
+    "hi": 2
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Lt([[c]], [[d]])"
+  ],
+  "stem": "Evaluate the iterated integral \\( \\int_{[[c]]}^{[[d]]} \\int_{[[a]]}^{[[b]]} \\left( [[p]]\\,|x| + [[q]]y \\right) \\, dx \\, dy \\), where the \\(x\\)-interval \\([[a]],[[b]]\\) straddles \\(0\\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[p]]*Abs(x) + [[q]]*y",
+   "vars": [
+    "x",
+    "y"
+   ],
+   "bounds": [
+    [
+     "[[a]]",
+     "[[b]]"
+    ],
+    [
+     "[[c]]",
+     "[[d]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[p]]*([[b]]**2 - [[a]]**2)/2*([[d]]-[[c]]) + [[q]]*([[b]]-[[a]])*([[d]]**2-[[c]]**2)/2",
+   "[[p]]*([[b]]+[[a]])*([[d]]-[[c]]) + [[q]]*([[b]]-[[a]])*([[d]]**2-[[c]]**2)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Since \\(|x|\\) changes formula at \\(x=0\\), split \\( \\int_{[[a]]}^{[[b]]} |x|\\,dx = \\int_{[[a]]}^{0}(-x)\\,dx + \\int_{0}^{[[b]]} x\\,dx = \\dfrac{[[a]]^2+[[b]]^2}{2} \\). Multiplying by the \\(y\\)-width and adding the (ordinary) \\(y\\)-term contribution gives \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This integrates \\(x\\) directly (ignoring the absolute value) using \\((b^2-a^2)/2\\), which is wrong-signed since \\(a<0\\).",
+   "This uses \\(a+b\\) (the signed endpoints) instead of \\(a^2+b^2\\), as if \\(|x|\\) were just \\(x\\) shifted.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

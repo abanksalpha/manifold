@@ -1,0 +1,128 @@
+[
+ {
+  "template_id": "finite_field_order_prime_power_v1",
+  "skill_id": "order_of_a_finite_field_must_be_a_prime_power",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "k": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A finite field \\( F \\) has characteristic \\( [[p]] \\), and as a vector space over its prime subfield \\( \\mathbb{Z}_{[[p]]} \\) it has dimension \\( [[k]] \\). How many elements does \\( F \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**[[k]]"},
+  "distractors": [
+   "[[p]]*[[k]]",
+   "[[k]]**[[p]]",
+   "[[p]]**[[k]] - 1",
+   "[[p]]**([[k]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "A field of characteristic \\( p \\) that is a \\( k \\)-dimensional vector space over its prime subfield \\( \\mathbb{Z}_{p} \\) has \\( p^{k} \\) elements (one coordinate vector per element). So \\( |F| = [[p]]^{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies \\( p \\cdot k \\) instead of raising \\( p \\) to the power \\( k \\).",
+   "This swaps base and exponent, using \\( k^{p} \\) instead of \\( p^{k} \\).",
+   "This is \\( p^{k} - 1 \\), the order of the multiplicative group \\( F^{\\times} \\), not of the whole field.",
+   "This uses dimension \\( k-1 \\); the field is \\( k \\)-dimensional over its prime subfield.",
+   "This is one more than the correct number of elements.",
+   "This is two more than the correct number of elements."
+  ]
+ },
+ {
+  "template_id": "extract_characteristic_from_order_v1",
+  "skill_id": "order_of_a_finite_field_must_be_a_prime_power",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+   "k": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": [],
+  "derived": {"qval": "[[p]]**[[k]]"},
+  "stem": "A finite field \\( F \\) has exactly \\( [[qval]] \\) elements. Since the order of a finite field must be a prime power, \\( [[qval]] \\) can be written uniquely as \\( q^{m} \\) for some prime \\( q \\) and positive integer \\( m \\). What is the prime \\( q \\), i.e. the characteristic of \\( F \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]"},
+  "distractors": [
+   "[[qval]]",
+   "[[k]]",
+   "[[qval]] - 1",
+   "[[p]]*[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( [[qval]] \\) in prime-power form gives \\( [[qval]] = [[p]]^{[[k]]} \\), so the prime base (the characteristic of \\( F \\)) is \\( q = [[p]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the ORDER of the field \\( [[qval]] \\) itself, not the prime base of its prime-power factorization.",
+   "This is the exponent \\( [[k]] \\) in \\( [[qval]] = p^{[[k]]} \\), not the prime base.",
+   "This subtracts one from the field's order, unrelated to extracting the prime base.",
+   "This multiplies the prime by the exponent instead of reporting the prime alone.",
+   "This is one more than the correct characteristic.",
+   "This is one fewer than the correct characteristic."
+  ]
+ },
+ {
+  "template_id": "extract_dimension_from_order_v1",
+  "skill_id": "order_of_a_finite_field_must_be_a_prime_power",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+   "k": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": [],
+  "derived": {"qval": "[[p]]**[[k]]"},
+  "stem": "A finite field \\( F \\) has characteristic \\( [[p]] \\) and exactly \\( [[qval]] \\) elements. Since \\( |F| \\) must equal \\( [[p]]^{m} \\) for some positive integer \\( m \\), what is \\( m \\) (the dimension of \\( F \\) as a vector space over its prime subfield \\( \\mathbb{Z}_{[[p]]} \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]"},
+  "distractors": [
+   "[[qval]]",
+   "[[p]]",
+   "[[qval]]/[[p]]",
+   "[[k]] + 1",
+   "[[k]] - 1",
+   "[[k]]*[[p]]"
+  ],
+  "solution": "Since \\( [[qval]] = [[p]]^{[[k]]} \\), matching \\( [[qval]] = [[p]]^{m} \\) forces \\( m = [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the field's full order \\( [[qval]] \\), not the exponent \\( m \\) in its prime-power factorization.",
+   "This is the characteristic \\( [[p]] \\) itself, not the exponent \\( m \\).",
+   "This divides the order by the characteristic once, giving \\( p^{[[k]]-1} \\) rather than isolating the exponent \\( [[k]] \\).",
+   "This is one more than the correct dimension.",
+   "This is one fewer than the correct dimension.",
+   "This multiplies the exponent by the characteristic instead of reporting the exponent alone."
+  ]
+ },
+ {
+  "template_id": "which_could_be_field_order_v1",
+  "skill_id": "order_of_a_finite_field_must_be_a_prime_power",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+   "k": {"type": "int", "lo": 2, "hi": 6},
+   "r": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19]},
+   "s": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19, 23]}
+  },
+  "constraints": ["Ne([[r]], [[p]])", "Ne([[s]], [[p]])", "Ne([[r]], [[s]])"],
+  "derived": {"qval": "[[p]]**[[k]]"},
+  "stem": "A finite field has characteristic \\( [[p]] \\) and is a \\( [[k]] \\)-dimensional vector space over its prime subfield \\( \\mathbb{Z}_{[[p]]} \\). Which of the following could be the number of elements of this field? (Recall: a finite field's order must be a power of a single prime.)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**[[k]]"},
+  "distractors": [
+   "[[qval]]*[[r]]",
+   "[[qval]]*[[s]]",
+   "[[r]]*[[s]]",
+   "[[qval]]*[[r]]*[[s]]",
+   "[[r]]*[[r]]*[[s]]",
+   "[[s]]*[[s]]*[[r]]"
+  ],
+  "solution": "\\( [[qval]] = [[p]]^{[[k]]} \\) is a power of the single prime \\( [[p]] \\), so it is a valid finite field order. Every other listed number has at least two DISTINCT prime factors (e.g. it is divisible by both \\( [[r]] \\) and/or \\( [[s]] \\) together with \\( [[p]] \\)), so it cannot be the order of any finite field.",
+  "distractor_rationales": [
+   "This has two distinct prime factors, \\( [[p]] \\) and \\( [[r]] \\), so it is not a prime power.",
+   "This has two distinct prime factors, \\( [[p]] \\) and \\( [[s]] \\), so it is not a prime power.",
+   "This has two distinct prime factors, \\( [[r]] \\) and \\( [[s]] \\), so it is not a prime power.",
+   "This has three distinct prime factors, \\( [[p]] \\), \\( [[r]] \\), and \\( [[s]] \\), so it is not a prime power.",
+   "This has two distinct prime factors, \\( [[r]] \\) and \\( [[s]] \\), so it is not a prime power.",
+   "This has two distinct prime factors, \\( [[s]] \\) and \\( [[r]] \\), so it is not a prime power."
+  ]
+ }
+]

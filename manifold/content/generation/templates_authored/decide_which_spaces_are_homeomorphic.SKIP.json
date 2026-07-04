@@ -1,0 +1,1 @@
+{"skill_id": "decide_which_spaces_are_homeomorphic", "reason": "Tests recognition/matching of which spaces admit a homeomorphism (or an invariant, such as compactness/connectedness/genus, that distinguishes them); this is a verdict or multi-way classification, not a single scalar a solver computes."}

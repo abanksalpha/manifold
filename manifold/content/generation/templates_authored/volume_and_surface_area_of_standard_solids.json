@@ -1,0 +1,874 @@
+[
+ {
+  "template_id": "volume_and_surface_area_of_standard_solids_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "A right circular cylinder has base radius \\( [[r]] \\) and height \\( [[h]] \\). What is its volume? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2*[[h]]"},
+  "distractors": [
+   "2*pi*[[r]]*[[h]]",
+   "pi*[[r]]**2",
+   "2*pi*[[r]]**2 + 2*pi*[[r]]*[[h]]",
+   "pi*[[r]]*[[h]]",
+   "[[r]]**2*[[h]]",
+   "pi*[[r]]**2*[[h]]/3",
+   "[[answer]] + pi"
+  ],
+  "solution": "The volume of a cylinder is the base area times the height: \\( V = \\pi r^{2} h = \\pi\\cdot[[r]]^{2}\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the lateral surface area \\( 2\\pi r h \\), not the volume.",
+   "This is only the base area \\( \\pi r^{2} \\), missing the height factor.",
+   "This is the total surface area of the cylinder, not its volume.",
+   "This drops the square on the radius, using \\( r \\) instead of \\( r^{2} \\).",
+   "This drops the factor of \\( \\pi \\) from the volume.",
+   "This uses the cone volume formula \\( \\tfrac{1}{3}\\pi r^{2} h \\) instead of the cylinder's.",
+   "This is off from the correct volume by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "cylinder_total_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 14},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A right circular cylinder has base radius \\( [[r]] \\) and height \\( [[h]] \\). What is its total surface area, including both circular bases? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "2*pi*[[r]]**2 + 2*pi*[[r]]*[[h]]"},
+  "distractors": [
+   "2*pi*[[r]]*[[h]]",
+   "pi*[[r]]**2",
+   "pi*[[r]]**2*[[h]]",
+   "pi*[[r]]**2 + 2*pi*[[r]]*[[h]]",
+   "2*[[r]]**2 + 2*[[r]]*[[h]]",
+   "[[answer]] + pi",
+   "[[answer]] + 2*pi*[[r]]**2"
+  ],
+  "solution": "The total surface area of a cylinder is the two circular bases plus the lateral surface: \\( S = 2\\pi r^{2} + 2\\pi r h = 2\\pi\\cdot[[r]]^{2} + 2\\pi\\cdot[[r]]\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is only the lateral surface area, omitting the two circular bases.",
+   "This is only one base's area \\( \\pi r^{2} \\).",
+   "This is the volume of the cylinder, not its surface area.",
+   "This counts only one base instead of both, so it is short by \\( \\pi r^{2} \\).",
+   "This drops the factor of \\( \\pi \\) from the surface area.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This double-counts a base, adding an extra \\( 2\\pi r^{2} \\)."
+  ]
+ },
+ {
+  "template_id": "cylinder_lateral_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 14},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A right circular cylinder has base radius \\( [[r]] \\) and height \\( [[h]] \\). What is its lateral (curved) surface area, not including the two circular bases? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "2*pi*[[r]]*[[h]]"},
+  "distractors": [
+   "2*pi*[[r]]**2 + 2*pi*[[r]]*[[h]]",
+   "pi*[[r]]**2",
+   "pi*[[r]]**2*[[h]]",
+   "pi*[[r]]*[[h]]",
+   "4*pi*[[r]]*[[h]]",
+   "[[answer]] + pi",
+   "[[answer]]/2"
+  ],
+  "solution": "The lateral surface area unrolls into a rectangle of width the circumference \\( 2\\pi r \\) and height \\( h \\): \\( S = 2\\pi r h = 2\\pi\\cdot[[r]]\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total surface area, including the two bases.",
+   "This is one base's area \\( \\pi r^{2} \\), not the lateral area.",
+   "This is the volume, not the lateral surface area.",
+   "This drops a factor of 2, using the radius instead of the circumference.",
+   "This doubles the correct lateral surface area.",
+   "This is off from the correct value by \\( \\pi \\).",
+   "This is half the correct lateral surface area."
+  ]
+ },
+ {
+  "template_id": "cylinder_open_top_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 14},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A cylindrical water tank with an open top has base radius \\( [[r]] \\) and height \\( [[h]] \\). What is the total area of material (the circular bottom plus the curved side, but not a lid) needed to build the tank? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2 + 2*pi*[[r]]*[[h]]"},
+  "distractors": [
+   "2*pi*[[r]]**2 + 2*pi*[[r]]*[[h]]",
+   "2*pi*[[r]]*[[h]]",
+   "pi*[[r]]**2",
+   "pi*[[r]]**2*[[h]]",
+   "pi*[[r]]*[[h]]",
+   "[[answer]] + pi",
+   "[[answer]] + 2*pi*[[r]]*[[h]]"
+  ],
+  "solution": "With no lid, the material is one base plus the lateral surface: \\( S = \\pi r^{2} + 2\\pi r h = \\pi\\cdot[[r]]^{2} + 2\\pi\\cdot[[r]]\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly adds a second base (a lid), which the open tank does not have.",
+   "This omits the bottom base entirely, counting only the curved side.",
+   "This is only the base area, ignoring the curved side.",
+   "This is the volume of the tank, not its surface area.",
+   "This drops a factor of 2 from the lateral term.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This double-counts the lateral surface area."
+  ]
+ },
+ {
+  "template_id": "cone_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 12},
+   "h": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "A right circular cone has base radius \\( [[r]] \\) and height \\( [[h]] \\). What is its volume? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2*[[h]]/3"},
+  "distractors": [
+   "pi*[[r]]**2*[[h]]",
+   "pi*[[r]]**2*[[h]]/2",
+   "pi*[[r]]*[[h]]/3",
+   "4*pi*[[r]]**3/3",
+   "2*pi*[[r]]*[[h]]",
+   "[[answer]] + pi",
+   "[[answer]]*2"
+  ],
+  "solution": "A cone's volume is one third the corresponding cylinder's: \\( V = \\tfrac{1}{3}\\pi r^{2} h = \\tfrac{1}{3}\\pi\\cdot[[r]]^{2}\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the cylinder's volume formula, forgetting the factor of \\( \\tfrac13 \\).",
+   "This uses \\( \\tfrac12 \\) instead of \\( \\tfrac13 \\) as the cone's correction factor.",
+   "This drops the square on the radius.",
+   "This uses the sphere volume formula instead of the cone's.",
+   "This resembles a lateral-surface-area expression, not the volume.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This doubles the correct volume."
+  ]
+ },
+ {
+  "template_id": "cone_lateral_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "A right circular cone has base radius \\( [[r]] \\) and height \\( [[h]] \\), so its slant height is \\( \\sqrt{[[r]]^{2}+[[h]]^{2}} \\). What is its lateral (curved) surface area, not including the base? (Express the answer in terms of \\( \\pi \\), leaving any square root in exact form.)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]*sqrt([[r]]**2+[[h]]**2)"},
+  "distractors": [
+   "pi*[[r]]**2 + pi*[[r]]*sqrt([[r]]**2+[[h]]**2)",
+   "pi*[[r]]**2",
+   "pi*[[r]]**2*[[h]]/3",
+   "pi*[[r]]*[[h]]",
+   "2*pi*[[r]]*sqrt([[r]]**2+[[h]]**2)",
+   "[[answer]] + pi",
+   "pi*[[r]]*([[r]]+[[h]])"
+  ],
+  "solution": "The lateral surface area of a cone is \\( \\pi r l \\), where \\( l=\\sqrt{r^{2}+h^{2}} \\) is the slant height: \\( S=\\pi\\cdot[[r]]\\cdot\\sqrt{[[r]]^{2}+[[h]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly adds the base's area, giving the total surface area instead of just the lateral part.",
+   "This is only the base's area \\( \\pi r^{2} \\).",
+   "This is the cone's volume, not its surface area.",
+   "This uses the height \\( h \\) in place of the slant height \\( l \\).",
+   "This doubles the correct lateral surface area.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This adds \\( r \\) and \\( h \\) directly instead of combining them under a square root."
+  ]
+ },
+ {
+  "template_id": "cone_total_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "A right circular cone has base radius \\( [[r]] \\) and height \\( [[h]] \\). What is its total surface area, including the circular base? (Express the answer in terms of \\( \\pi \\), leaving any square root in exact form.)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2 + pi*[[r]]*sqrt([[r]]**2+[[h]]**2)"},
+  "distractors": [
+   "pi*[[r]]*sqrt([[r]]**2+[[h]]**2)",
+   "pi*[[r]]**2",
+   "pi*[[r]]**2*[[h]]/3",
+   "pi*[[r]]**2 + pi*[[r]]*[[h]]",
+   "2*pi*[[r]]**2 + pi*[[r]]*sqrt([[r]]**2+[[h]]**2)",
+   "[[answer]] + pi",
+   "[[answer]] + pi*[[r]]**2"
+  ],
+  "solution": "Total surface area is the base plus the lateral surface: \\( S=\\pi r^{2} + \\pi r l \\) where \\( l=\\sqrt{r^{2}+h^{2}} \\): \\( S = \\pi\\cdot[[r]]^{2} + \\pi\\cdot[[r]]\\cdot\\sqrt{[[r]]^{2}+[[h]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the base, giving only the lateral surface area.",
+   "This is only the base's area \\( \\pi r^{2} \\).",
+   "This is the cone's volume, not its surface area.",
+   "This uses the height \\( h \\) in place of the slant height \\( l \\).",
+   "This double-counts the base.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This adds an extra base's worth of area."
+  ]
+ },
+ {
+  "template_id": "sphere_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A sphere has radius \\( [[r]] \\). What is its volume? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "4*pi*[[r]]**3/3"},
+  "distractors": [
+   "4*pi*[[r]]**2",
+   "pi*[[r]]**3",
+   "2*pi*[[r]]**3/3",
+   "pi*[[r]]**3/3",
+   "8*pi*[[r]]**3/3",
+   "[[answer]] + pi",
+   "[[answer]]/2"
+  ],
+  "solution": "A sphere's volume is \\( V=\\tfrac{4}{3}\\pi r^{3} = \\tfrac{4}{3}\\pi\\cdot[[r]]^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the sphere's surface area formula, not its volume.",
+   "This drops the factor of \\( \\tfrac43 \\) entirely.",
+   "This uses the hemisphere's volume formula \\( \\tfrac23\\pi r^{3} \\).",
+   "This uses \\( \\tfrac13 \\) as the coefficient instead of \\( \\tfrac43 \\), a cone-like error.",
+   "This doubles the correct volume.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This is half the correct volume."
+  ]
+ },
+ {
+  "template_id": "sphere_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A sphere has radius \\( [[r]] \\). What is its surface area? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "4*pi*[[r]]**2"},
+  "distractors": [
+   "4*pi*[[r]]**3/3",
+   "2*pi*[[r]]**2",
+   "pi*[[r]]**2",
+   "3*pi*[[r]]**2",
+   "8*pi*[[r]]**2",
+   "[[answer]] + pi",
+   "[[answer]]/2"
+  ],
+  "solution": "A sphere's surface area is \\( S=4\\pi r^{2} = 4\\pi\\cdot[[r]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the sphere's volume formula, not its surface area.",
+   "This uses the hemisphere's curved surface area formula \\( 2\\pi r^{2} \\).",
+   "This is just a circle's area \\( \\pi r^{2} \\), missing the factor of 4.",
+   "This uses the hemisphere's total surface area formula \\( 3\\pi r^{2} \\).",
+   "This doubles the correct surface area.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This is half the correct surface area."
+  ]
+ },
+ {
+  "template_id": "hemisphere_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A solid hemisphere (half of a solid sphere) has radius \\( [[r]] \\). What is its volume? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "2*pi*[[r]]**3/3"},
+  "distractors": [
+   "4*pi*[[r]]**3/3",
+   "2*pi*[[r]]**2",
+   "3*pi*[[r]]**2",
+   "pi*[[r]]**3/3",
+   "4*pi*[[r]]**2",
+   "[[answer]] + pi",
+   "[[answer]]*2"
+  ],
+  "solution": "A hemisphere's volume is half the sphere's: \\( V=\\tfrac{2}{3}\\pi r^{3} = \\tfrac{2}{3}\\pi\\cdot[[r]]^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the full sphere, forgetting to halve it.",
+   "This is the hemisphere's curved surface area, not its volume.",
+   "This is the hemisphere's total surface area, not its volume.",
+   "This mimics a cone's \\( \\tfrac13 \\) coefficient instead of the hemisphere's \\( \\tfrac23 \\).",
+   "This is the sphere's surface area, not the hemisphere's volume.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This doubles the correct volume."
+  ]
+ },
+ {
+  "template_id": "hemisphere_curved_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A solid hemisphere has radius \\( [[r]] \\). What is the area of its curved (domed) surface only, not including the flat circular base? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "2*pi*[[r]]**2"},
+  "distractors": [
+   "3*pi*[[r]]**2",
+   "4*pi*[[r]]**2",
+   "pi*[[r]]**2",
+   "2*pi*[[r]]**3/3",
+   "4*pi*[[r]]**3/3",
+   "[[answer]] + pi",
+   "[[answer]]/2"
+  ],
+  "solution": "The curved part of a hemisphere's surface is half the full sphere's surface area: \\( S=2\\pi r^{2} = 2\\pi\\cdot[[r]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the hemisphere's total surface area, including the flat base.",
+   "This is the full sphere's surface area, not just the hemisphere's dome.",
+   "This is only the flat circular base, not the curved dome.",
+   "This is the hemisphere's volume, not its surface area.",
+   "This is the full sphere's volume, not the hemisphere's curved surface.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This is half the correct curved surface area."
+  ]
+ },
+ {
+  "template_id": "hemisphere_total_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A solid hemisphere has radius \\( [[r]] \\). What is its total surface area (the curved dome plus the flat circular base)? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "3*pi*[[r]]**2"},
+  "distractors": [
+   "2*pi*[[r]]**2",
+   "4*pi*[[r]]**2",
+   "pi*[[r]]**2",
+   "2*pi*[[r]]**3/3",
+   "4*pi*[[r]]**3/3",
+   "[[answer]] + pi",
+   "[[answer]]/2"
+  ],
+  "solution": "The total surface area adds the curved dome \\( 2\\pi r^{2} \\) to the flat base \\( \\pi r^{2} \\): \\( S=3\\pi r^{2} = 3\\pi\\cdot[[r]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the flat circular base, giving only the curved dome.",
+   "This is the full sphere's surface area, not the hemisphere's total.",
+   "This is only the flat circular base, ignoring the curved dome.",
+   "This is the hemisphere's volume, not its surface area.",
+   "This is the full sphere's volume, not the hemisphere's surface area.",
+   "This is off from the correct surface area by \\( \\pi \\).",
+   "This is half the correct total surface area."
+  ]
+ },
+ {
+  "template_id": "rectangular_prism_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "l": {"type": "int", "lo": 2, "hi": 14},
+   "w": {"type": "int", "lo": 2, "hi": 14},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A rectangular box (rectangular prism) has length \\( [[l]] \\), width \\( [[w]] \\), and height \\( [[h]] \\). What is its volume?",
+  "answer_spec": {"op": "evaluate", "expr": "[[l]]*[[w]]*[[h]]"},
+  "distractors": [
+   "2*([[l]]*[[w]]+[[l]]*[[h]]+[[w]]*[[h]])",
+   "[[l]]*[[w]]",
+   "[[l]]+[[w]]+[[h]]",
+   "2*[[l]]*[[w]]*[[h]]",
+   "[[l]]*[[w]]*[[h]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The volume of a rectangular box is length times width times height: \\( V=lwh=[[l]]\\cdot[[w]]\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the box's surface area formula, not its volume.",
+   "This is only the base area \\( lw \\), missing the height factor.",
+   "This adds the three dimensions instead of multiplying them.",
+   "This doubles the correct volume.",
+   "This is half the correct volume.",
+   "This is off from the correct volume by 1.",
+   "This is off from the correct volume by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "rectangular_prism_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "l": {"type": "int", "lo": 2, "hi": 14},
+   "w": {"type": "int", "lo": 2, "hi": 14},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A rectangular box (rectangular prism) has length \\( [[l]] \\), width \\( [[w]] \\), and height \\( [[h]] \\). What is its total surface area?",
+  "answer_spec": {"op": "evaluate", "expr": "2*([[l]]*[[w]]+[[l]]*[[h]]+[[w]]*[[h]])"},
+  "distractors": [
+   "[[l]]*[[w]]*[[h]]",
+   "[[l]]*[[w]]+[[l]]*[[h]]+[[w]]*[[h]]",
+   "2*[[h]]*([[l]]+[[w]])",
+   "4*([[l]]+[[w]]+[[h]])",
+   "2*[[l]]*[[w]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The surface area is twice the sum of the three pairwise face areas: \\( S=2(lw+lh+wh)=2([[l]]\\cdot[[w]]+[[l]]\\cdot[[h]]+[[w]]\\cdot[[h]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the box's volume, not its surface area.",
+   "This drops the factor of 2, counting each face only once.",
+   "This is only the four side (lateral) faces, omitting the top and bottom.",
+   "This adds the edge lengths instead of computing face areas.",
+   "This is only twice one pair of opposite faces.",
+   "This is off from the correct surface area by 1.",
+   "This is off from the correct surface area by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "cube_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A cube has edge length \\( [[s]] \\). What is its volume?",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]]**3"},
+  "distractors": [
+   "6*[[s]]**2",
+   "[[s]]**2",
+   "4*[[s]]**3",
+   "3*[[s]]",
+   "[[s]]**3/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A cube's volume is the cube of its edge length: \\( V=s^{3}=[[s]]^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the cube's surface area formula, not its volume.",
+   "This is the area of one face, not the volume.",
+   "This quadruples the correct volume.",
+   "This adds the edge length three times instead of cubing it.",
+   "This is half the correct volume.",
+   "This is off from the correct volume by 1.",
+   "This is off from the correct volume by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "cube_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A cube has edge length \\( [[s]] \\). What is its surface area?",
+  "answer_spec": {"op": "evaluate", "expr": "6*[[s]]**2"},
+  "distractors": [
+   "[[s]]**3",
+   "4*[[s]]**2",
+   "[[s]]**2",
+   "12*[[s]]**2",
+   "3*[[s]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A cube has 6 congruent square faces: \\( S=6s^{2}=6\\cdot[[s]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the cube's volume, not its surface area.",
+   "This counts only 4 faces instead of all 6.",
+   "This is the area of just one face.",
+   "This doubles the correct surface area.",
+   "This counts only half the faces (3 instead of 6).",
+   "This is off from the correct surface area by 1.",
+   "This is off from the correct surface area by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "cube_side_from_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 25}
+  },
+  "constraints": [],
+  "derived": {"V": "[[s]]**3"},
+  "stem": "A cube has volume \\( [[V]] \\) cubic units. What is the length of a side of the cube?",
+  "answer_spec": {"op": "solve", "equation": "x**3 = [[V]]", "var": "x"},
+  "distractors": [
+   "root([[V]],2)",
+   "[[V]]/6",
+   "[[V]]/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]]*2"
+  ],
+  "solution": "The side length satisfies \\( s^{3}=[[V]] \\), so \\( s=\\sqrt[3]{[[V]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This takes a square root instead of the required cube root.",
+   "This divides by 6 as if reversing the surface-area formula, not the volume formula.",
+   "This divides by 3 rather than taking a cube root.",
+   "This is off from the correct side length by 1.",
+   "This is off from the correct side length by 1 in the other direction.",
+   "This doubles the correct side length."
+  ]
+ },
+ {
+  "template_id": "cube_surface_area_given_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 25}
+  },
+  "constraints": [],
+  "derived": {"V": "[[s]]**3"},
+  "stem": "A cube has volume \\( [[V]] \\) cubic units. What is its surface area?",
+  "answer_spec": {"op": "evaluate", "expr": "6*root([[V]],3)**2"},
+  "distractors": [
+   "[[V]]",
+   "6*root([[V]],3)",
+   "root([[V]],3)**2",
+   "root([[V]],2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First find the side length \\( s=\\sqrt[3]{[[V]]} \\); then the surface area is \\( 6s^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just reports the volume itself, not the surface area.",
+   "This finds the side length correctly but forgets to square it.",
+   "This squares the side length but forgets the factor of 6.",
+   "This takes a square root of the volume instead of a cube root.",
+   "This is off from the correct surface area by 1.",
+   "This is off from the correct surface area by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "square_pyramid_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 12},
+   "h": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "A right pyramid has a square base of edge \\( [[s]] \\) and height \\( [[h]] \\) (measured perpendicular from the apex to the base). What is its volume?",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]]**2*[[h]]/3"},
+  "distractors": [
+   "[[s]]**2*[[h]]",
+   "[[s]]**2*[[h]]/2",
+   "[[s]]*[[h]]/3",
+   "2*[[s]]**2*[[h]]/3",
+   "[[s]]**3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A pyramid's volume is one third the base area times the height: \\( V=\\tfrac13 s^{2}h = \\tfrac13\\cdot[[s]]^{2}\\cdot[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the rectangular-box volume formula, forgetting the factor of \\( \\tfrac13 \\).",
+   "This uses \\( \\tfrac12 \\) instead of \\( \\tfrac13 \\) as the pyramid's correction factor.",
+   "This drops the square on the base edge.",
+   "This doubles the correct coefficient.",
+   "This is the cube of the edge length, ignoring the height entirely.",
+   "This is off from the correct volume by 1.",
+   "This is off from the correct volume by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "square_pyramid_surface_area_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 12},
+   "h": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "A right pyramid has a square base of edge \\( [[s]] \\) and height \\( [[h]] \\) (perpendicular from the apex to the center of the base). What is its total surface area (the square base plus the four congruent triangular faces)? (Leave any square root in exact form.)",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]]**2 + 2*[[s]]*sqrt([[h]]**2 + ([[s]]/2)**2)"},
+  "distractors": [
+   "2*[[s]]*sqrt([[h]]**2 + ([[s]]/2)**2)",
+   "[[s]]**2",
+   "[[s]]**2*[[h]]/3",
+   "[[s]]**2 + 2*[[s]]*[[h]]",
+   "[[s]]**2 + 4*[[s]]*sqrt([[h]]**2 + ([[s]]/2)**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each triangular face has slant height \\( l=\\sqrt{h^{2}+(s/2)^{2}} \\), so the four faces contribute \\( 2sl \\); adding the square base gives \\( S=s^{2}+2sl = [[s]]^{2} + 2\\cdot[[s]]\\cdot\\sqrt{[[h]]^{2}+([[s]]/2)^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the square base, giving only the lateral (side) area.",
+   "This is only the base area, ignoring the four triangular faces.",
+   "This is the pyramid's volume, not its surface area.",
+   "This uses the height \\( h \\) directly instead of the slant height of a triangular face.",
+   "This doubles the lateral area by mistake.",
+   "This is off from the correct surface area by 1.",
+   "This is off from the correct surface area by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "triangular_prism_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 12},
+   "b": {"type": "int", "lo": 2, "hi": 12},
+   "L": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": [],
+  "stem": "A prism has length \\( [[L]] \\) and a cross-section that is a right triangle with legs \\( [[a]] \\) and \\( [[b]] \\). What is the volume of the prism?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]*[[L]]/2"},
+  "distractors": [
+   "[[a]]*[[b]]*[[L]]",
+   "[[a]]*[[b]]/2",
+   "([[a]]+[[b]])*[[L]]",
+   "[[a]]*[[b]]*[[L]]/3",
+   "2*[[a]]*[[b]]*[[L]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The cross-sectional area is \\( \\tfrac12 ab \\); the prism's volume is that times the length: \\( V=\\tfrac12 ab L = \\tfrac12\\cdot[[a]]\\cdot[[b]]\\cdot[[L]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the cross-section as a full rectangle instead of a triangle, forgetting the factor of \\( \\tfrac12 \\).",
+   "This is only the cross-sectional area, missing the length of the prism.",
+   "This adds the legs instead of multiplying them for the triangle's area.",
+   "This uses a cone-like \\( \\tfrac13 \\) coefficient instead of the prism's \\( \\tfrac12 \\).",
+   "This doubles the correct volume.",
+   "This is off from the correct volume by 1.",
+   "This is off from the correct volume by 1 in the other direction."
+  ]
+ },
+ {
+  "template_id": "capsule_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A storage tank is shaped like a capsule: a cylinder of radius \\( [[r]] \\) and height \\( [[h]] \\) capped at each end by a hemisphere of the same radius \\( [[r]] \\). What is the total volume of the tank? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2*[[h]] + 4*pi*[[r]]**3/3"},
+  "distractors": [
+   "pi*[[r]]**2*[[h]]",
+   "4*pi*[[r]]**3/3",
+   "pi*[[r]]**2*[[h]] + 2*pi*[[r]]**3/3",
+   "pi*[[r]]**2*[[h]] + 2*pi*[[r]]**3",
+   "pi*[[r]]**2*([[h]]+[[r]])",
+   "[[answer]] + pi",
+   "[[answer]]*2"
+  ],
+  "solution": "The two hemispherical caps together form one full sphere, so \\( V = \\pi r^{2} h + \\tfrac{4}{3}\\pi r^{3} = \\pi\\cdot[[r]]^{2}\\cdot[[h]] + \\tfrac{4}{3}\\pi\\cdot[[r]]^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the cylindrical section, ignoring the two hemispherical caps.",
+   "This is just the two hemispherical caps (a full sphere), ignoring the cylinder.",
+   "This counts only one hemispherical cap instead of both.",
+   "This uses \\( 2\\pi r^{3} \\) for the caps, double what the two hemispheres actually contribute.",
+   "This confuses the geometry, mixing the radius and height incorrectly.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This doubles the correct volume."
+  ]
+ },
+ {
+  "template_id": "cone_on_cylinder_composite_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h1": {"type": "int", "lo": 2, "hi": 12},
+   "h2": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "A grain silo consists of a cylindrical section of radius \\( [[r]] \\) and height \\( [[h1]] \\), topped by a conical roof of the same radius and height \\( [[h2]] \\). What is the total volume enclosed by the silo? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2*[[h1]] + pi*[[r]]**2*[[h2]]/3"},
+  "distractors": [
+   "pi*[[r]]**2*[[h1]]",
+   "pi*[[r]]**2*[[h2]]/3",
+   "pi*[[r]]**2*([[h1]]+[[h2]])",
+   "pi*[[r]]**2*[[h1]] + pi*[[r]]**2*[[h2]]/2",
+   "pi*[[r]]**2*[[h1]] + 4*pi*[[r]]**3/3",
+   "[[answer]] + pi",
+   "[[answer]]*2"
+  ],
+  "solution": "The volume is the cylinder plus the cone on top: \\( V=\\pi r^{2}h_1 + \\tfrac13\\pi r^{2}h_2 = \\pi\\cdot[[r]]^{2}\\cdot[[h1]] + \\tfrac13\\pi\\cdot[[r]]^{2}\\cdot[[h2]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the cylindrical section, ignoring the conical roof.",
+   "This is just the conical roof, ignoring the cylindrical section.",
+   "This treats the conical roof as if it were another cylinder, forgetting the \\( \\tfrac13 \\) factor.",
+   "This uses \\( \\tfrac12 \\) instead of \\( \\tfrac13 \\) for the cone's coefficient.",
+   "This replaces the conical roof with a full sphere of the same radius.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This doubles the correct volume."
+  ]
+ },
+ {
+  "template_id": "frustum_of_cone_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "R": {"type": "int", "lo": 10, "hi": 22},
+   "r": {"type": "int", "lo": 1, "hi": 9},
+   "h": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Gt([[R]], [[r]])"],
+  "stem": "A frustum of a right circular cone has bottom radius \\( [[R]] \\), top radius \\( [[r]] \\), and height \\( [[h]] \\). What is its volume? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[h]]*([[R]]**2+[[R]]*[[r]]+[[r]]**2)/3"},
+  "distractors": [
+   "pi*[[h]]*[[R]]**2/3",
+   "pi*[[h]]*([[R]]**2-[[r]]**2)/3",
+   "pi*[[h]]*([[R]]+[[r]])**2/3",
+   "pi*[[h]]*([[R]]**2+[[r]]**2)/3",
+   "pi*[[h]]*([[R]]**2+[[R]]*[[r]]+[[r]]**2)",
+   "[[answer]] + pi",
+   "[[answer]]*2"
+  ],
+  "solution": "A frustum's volume is \\( V=\\tfrac13\\pi h (R^{2}+Rr+r^{2}) = \\tfrac13\\pi\\cdot[[h]]\\cdot([[R]]^{2}+[[R]]\\cdot[[r]]+[[r]]^{2}) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the top radius, treating the solid as a full cone of radius \\( R \\).",
+   "This subtracts the radii's squares instead of using the correct sum-of-products form.",
+   "This mistakenly squares the sum \\( (R+r) \\) instead of using \\( R^{2}+Rr+r^{2} \\).",
+   "This drops the cross term \\( Rr \\) from the formula.",
+   "This forgets the factor of \\( \\tfrac13 \\) entirely.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This doubles the correct volume."
+  ]
+ },
+ {
+  "template_id": "sphere_inscribed_in_cube_volume_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A sphere is inscribed in a cube with edge length \\( [[s]] \\) (the sphere is tangent to each face of the cube, so its diameter equals the cube's edge). What is the volume of the sphere? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "4*pi*([[s]]/2)**3/3"},
+  "distractors": [
+   "[[s]]**3",
+   "4*pi*[[s]]**3/3",
+   "4*pi*([[s]]/2)**2",
+   "2*pi*([[s]]/2)**3/3",
+   "pi*[[s]]**2",
+   "[[answer]] + pi",
+   "[[answer]]*2"
+  ],
+  "solution": "The inscribed sphere's radius is half the cube's edge, \\( r=[[s]]/2 \\), so \\( V=\\tfrac43\\pi r^{3} = \\tfrac43\\pi\\left(\\tfrac{[[s]]}{2}\\right)^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the cube's own volume, not the inscribed sphere's.",
+   "This forgets to halve the cube's edge to get the sphere's radius.",
+   "This uses the surface-area exponent (squared) instead of cubing the radius.",
+   "This is the volume of a hemisphere of that radius, not the full sphere.",
+   "This is a surface-area-style expression, not a volume.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This doubles the correct volume."
+  ]
+ },
+ {
+  "template_id": "similar_solids_volume_ratio_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 10},
+   "k": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "stem": "A right circular cone has radius \\( [[r]] \\) and height \\( [[h]] \\). A second cone, similar to the first, has every linear dimension multiplied by a factor of \\( [[k]] \\) (radius \\( [[k]]\\cdot[[r]] \\) and height \\( [[k]]\\cdot[[h]] \\)). The volume of the second cone is how many times the volume of the first?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]**3"},
+  "distractors": [
+   "[[k]]**2",
+   "[[k]]",
+   "3*[[k]]",
+   "[[k]]**3 + 1",
+   "[[k]]**3 - 1",
+   "2*[[k]]**3"
+  ],
+  "solution": "Volume scales as the cube of the linear scale factor: the new volume is \\( k^{3}=[[k]]^{3}=[[answer]] \\) times the original, independent of \\( r \\) and \\( h \\).",
+  "distractor_rationales": [
+   "This applies the scale factor as if it applied to a 2-dimensional (area) quantity, not volume.",
+   "This treats the scale factor as if it applied directly to a 1-dimensional length, not volume.",
+   "This multiplies the scale factor by 3 instead of cubing it.",
+   "This is off from the correct ratio by 1.",
+   "This is off from the correct ratio by 1 in the other direction.",
+   "This doubles the correct ratio."
+  ]
+ },
+ {
+  "template_id": "similar_solids_surface_area_ratio_v1",
+  "skill_id": "volume_and_surface_area_of_standard_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 10},
+   "k": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "stem": "A right circular cone has radius \\( [[r]] \\) and height \\( [[h]] \\). A second cone, similar to the first, has every linear dimension multiplied by a factor of \\( [[k]] \\). The total surface area of the second cone is how many times the total surface area of the first?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]**2"},
+  "distractors": [
+   "[[k]]**3",
+   "[[k]]",
+   "2*[[k]]",
+   "[[k]]**2 + 1",
+   "[[k]]**2 - 1",
+   "3*[[k]]**2"
+  ],
+  "solution": "Surface area scales as the square of the linear scale factor: the new surface area is \\( k^{2}=[[k]]^{2}=[[answer]] \\) times the original.",
+  "distractor_rationales": [
+   "This applies the volume-scaling rule (cube) instead of the area-scaling rule (square).",
+   "This treats the scale factor as if it applied directly to a length, not an area.",
+   "This doubles the scale factor instead of squaring it.",
+   "This is off from the correct ratio by 1.",
+   "This is off from the correct ratio by 1 in the other direction.",
+   "This triples the correct ratio."
+  ]
+ }
+]

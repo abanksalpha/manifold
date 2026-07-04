@@ -1,0 +1,180 @@
+[
+{
+ "template_id": "partial_orders_hasse_diagrams_boolean_comparable_pairs_v1",
+ "skill_id": "partial_orders_hasse_diagrams",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "Consider the poset of all subsets of a set with \\( [[n]] \\) elements, ordered by inclusion \\( (\\subseteq) \\), whose Hasse diagram is the \\( [[n]] \\)-dimensional cube. How many COMPARABLE pairs \\( \\{S,T\\} \\) of distinct subsets are there in this poset (that is, pairs with \\( S \\subsetneq T \\) or \\( T \\subsetneq S \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "3**[[n]] - 2**[[n]]"},
+ "distractors": [
+  "binomial(2**[[n]], 2)",
+  "2**[[n]]",
+  "3**[[n]]",
+  "binomial(2**[[n]], 2) - (3**[[n]] - 2**[[n]])",
+  "[[answer]]+[[n]]",
+  "[[answer]]-[[n]]"
+ ],
+ "solution": "For each of the \\( [[n]] \\) elements, a pair \\( (S,T) \\) with \\( S \\subseteq T \\) puts it in exactly one of 3 states (in neither, in \\(T\\) only, or in both), giving \\( 3^{[[n]]} \\) pairs with \\( S \\subseteq T \\) (including \\( S=T \\)). Removing the \\( 2^{[[n]]} \\) pairs where \\( S=T \\) leaves \\( 3^{[[n]]} - 2^{[[n]]} = [[answer]] \\) STRICT containments, and each comparable UNORDERED pair corresponds to exactly one such strict containment.",
+ "distractor_rationales": [
+  "This counts EVERY pair of distinct subsets, comparable or not.",
+  "This is just the number of elements (subsets) in the poset, not the number of comparable pairs.",
+  "This counts ordered pairs \\( (S,T) \\) with \\( S \\subseteq T \\) but forgets to remove the \\( S=T \\) diagonal.",
+  "This is the number of INCOMPARABLE pairs, the complement of what was asked.",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count.",
+  "This subtracts an unrelated adjustment of \\( [[n]] \\) from the correct count."
+ ]
+},
+{
+ "template_id": "partial_orders_hasse_diagrams_boolean_incomparable_pairs_v1",
+ "skill_id": "partial_orders_hasse_diagrams",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "Consider the poset of all subsets of a set with \\( [[n]] \\) elements, ordered by inclusion \\( (\\subseteq) \\). How many INCOMPARABLE pairs \\( \\{S,T\\} \\) of distinct subsets are there (pairs with neither \\( S \\subseteq T \\) nor \\( T \\subseteq S \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial(2**[[n]], 2) - (3**[[n]] - 2**[[n]])"},
+ "distractors": [
+  "3**[[n]] - 2**[[n]]",
+  "binomial(2**[[n]], 2)",
+  "2**[[n]]",
+  "3**[[n]]",
+  "[[answer]]+[[n]]",
+  "[[answer]]-[[n]]"
+ ],
+ "solution": "There are \\( \\binom{2^{[[n]]}}{2} \\) pairs of distinct subsets in total, and \\( 3^{[[n]]} - 2^{[[n]]} \\) of them are COMPARABLE (one contains the other). The incomparable pairs are the rest: \\( \\binom{2^{[[n]]}}{2} - (3^{[[n]]} - 2^{[[n]]}) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This IS the number of comparable pairs, the complement of what was asked.",
+  "This counts EVERY pair of distinct subsets, comparable or not, without removing the comparable ones.",
+  "This is just the number of elements (subsets) in the poset, not a pair count.",
+  "This is the count from the \\( 3^n \\) containment identity BEFORE subtracting the diagonal, and is not a pair count at all.",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count.",
+  "This subtracts an unrelated adjustment of \\( [[n]] \\) from the correct count."
+ ]
+},
+{
+ "template_id": "partial_orders_hasse_diagrams_boolean_covering_edges_v1",
+ "skill_id": "partial_orders_hasse_diagrams",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "Consider the poset of all subsets of a set with \\( [[n]] \\) elements, ordered by inclusion, and its Hasse diagram (an edge joins \\( S \\) to \\( T \\) exactly when \\( T \\) covers \\( S \\), i.e. \\( S \\subsetneq T \\) with \\( |T|=|S|+1 \\)). How many edges does this Hasse diagram have?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]*2**([[n]]-1)"},
+ "distractors": [
+  "2**[[n]]",
+  "3**[[n]] - 2**[[n]]",
+  "binomial(2**[[n]], 2)",
+  "[[n]]*2**[[n]]",
+  "[[answer]]+[[n]]",
+  "[[answer]]-[[n]]"
+ ],
+ "solution": "Each of the \\( 2^{[[n]]} \\) subsets \\( S \\) is covered by exactly \\( [[n]]-|S| \\) larger subsets (one for each element you could add). Summing \\( [[n]]-|S| \\) over all subsets \\( S\\) (equivalently, counting from the other end) gives \\( [[n]]\\cdot 2^{[[n]]-1} = [[answer]] \\) covering edges.",
+ "distractor_rationales": [
+  "This is just the number of elements (subsets) in the poset, not the number of Hasse-diagram edges.",
+  "This is the number of ALL comparable pairs (not just covering / adjacent pairs) in the poset.",
+  "This counts every pair of distinct subsets, comparable or not.",
+  "This uses \\( 2^{[[n]]} \\) instead of \\( 2^{[[n]]-1} \\), doubling the true edge count.",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count.",
+  "This subtracts an unrelated adjustment of \\( [[n]] \\) from the correct count."
+ ]
+},
+{
+ "template_id": "partial_orders_hasse_diagrams_boolean_maximal_chains_v1",
+ "skill_id": "partial_orders_hasse_diagrams",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "Consider the poset of all subsets of a set with \\( [[n]] \\) elements, ordered by inclusion. A MAXIMAL chain is a sequence \\( \\varnothing = S_0 \\subsetneq S_1 \\subsetneq \\cdots \\subsetneq S_{[[n]]} = \\{1,\\ldots,[[n]]\\} \\) where each \\( S_i \\) covers \\( S_{i-1} \\) (one element is added at each step) all the way from the bottom element to the top element of the poset. How many distinct maximal chains does this poset have?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+ "distractors": [
+  "2**[[n]]",
+  "[[n]]*2**([[n]]-1)",
+  "[[n]]**[[n]]",
+  "factorial([[n]]-1)",
+  "[[answer]]+[[n]]",
+  "[[answer]]-[[n]]"
+ ],
+ "solution": "A maximal chain from \\( \\varnothing \\) to the full set corresponds exactly to an ORDER in which the \\( [[n]] \\) elements are added one at a time, so the number of maximal chains equals the number of orderings of the \\( [[n]] \\) elements: \\( [[n]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the number of elements (subsets) in the poset, not the number of maximal chains through it.",
+  "This is the number of Hasse-diagram EDGES, not the number of full top-to-bottom chains.",
+  "This counts every function from the elements added to \\( [[n]] \\) steps, over-counting because it allows repeats.",
+  "This omits the very last element that must be added to reach the full set.",
+  "This adds an unrelated adjustment of \\( [[n]] \\) to the correct count.",
+  "This subtracts an unrelated adjustment of \\( [[n]] \\) from the correct count."
+ ]
+},
+{
+ "template_id": "partial_orders_hasse_diagrams_divisor_grid_covering_edges_v1",
+ "skill_id": "partial_orders_hasse_diagrams",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"N": "2**[[a]]*3**[[b]]"},
+ "stem": "Let \\( N = 2^{[[a]]}\\cdot 3^{[[b]]} = [[N]] \\), and consider the poset of all positive divisors of \\( N \\), ordered by divisibility. In the Hasse diagram of this poset (an edge joins divisor \\(d\\) to divisor \\(e\\) exactly when \\(e\\) is \\(d\\) times a single prime), how many edges are there?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[a]]*[[b]]+[[a]]+[[b]]"},
+ "distractors": [
+  "([[a]]+1)*([[b]]+1)",
+  "[[a]]*[[b]]",
+  "binomial(([[a]]+1)*([[b]]+1), 2)",
+  "[[a]]+[[b]]",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "Every divisor of \\(N\\) is \\( 2^i 3^j \\) with \\( 0\\le i\\le [[a]], 0\\le j\\le [[b]] \\), so the poset is a \\( ([[a]]+1)\\times([[b]]+1) \\) grid. Each point \\((i,j)\\) with \\(i<[[a]]\\) has a covering edge to \\((i+1,j)\\) (multiply by 2), giving \\( [[a]]([[b]]+1) \\) such edges, and each point with \\(j<[[b]]\\) has a covering edge to \\((i,j+1)\\) (multiply by 3), giving \\( [[b]]([[a]]+1) \\) more: total \\( [[a]]([[b]]+1)+[[b]]([[a]]+1) = 2\\cdot[[a]]\\cdot[[b]]+[[a]]+[[b]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the number of DIVISORS of \\(N\\) (elements of the poset), not the number of Hasse-diagram edges.",
+  "This multiplies the two exponents directly, which is not the edge-count formula.",
+  "This is the number of ALL comparable-or-not pairs of divisors, not just the covering (adjacent) pairs.",
+  "This only adds the two exponents and ignores the cross term entirely.",
+  "This overcounts the edges by one.",
+  "This undercounts the edges by one."
+ ]
+},
+{
+ "template_id": "partial_orders_hasse_diagrams_divisor_grid_comparable_pairs_v1",
+ "skill_id": "partial_orders_hasse_diagrams",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"N": "2**[[a]]*3**[[b]]"},
+ "stem": "Let \\( N = 2^{[[a]]}\\cdot 3^{[[b]]} = [[N]] \\), and consider the poset of all positive divisors of \\( N \\), ordered by divisibility. How many COMPARABLE pairs \\( \\{d,e\\} \\) of distinct divisors of \\( N \\) are there (that is, pairs with \\( d \\mid e \\) or \\( e \\mid d \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]+1)*([[a]]+2)/2)*(([[b]]+1)*([[b]]+2)/2) - ([[a]]+1)*([[b]]+1)"},
+ "distractors": [
+  "binomial(([[a]]+1)*([[b]]+1), 2)",
+  "([[a]]+1)*([[b]]+1)",
+  "2*[[a]]*[[b]]+[[a]]+[[b]]",
+  "binomial([[a]]+1,2)*binomial([[b]]+1,2)",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "Writing each divisor as \\( 2^i3^j \\), a WEAK containment \\( 2^{i_1}3^{j_1} \\mid 2^{i_2}3^{j_2} \\) (allowing equality) needs \\( i_1\\le i_2 \\) and \\( j_1\\le j_2\\) independently. There are \\( \\binom{[[a]]+2}{2} \\) pairs \\( i_1\\le i_2 \\) in \\( \\{0,\\ldots,[[a]]\\} \\) and \\( \\binom{[[b]]+2}{2} \\) pairs \\( j_1\\le j_2 \\) in \\( \\{0,\\ldots,[[b]]\\} \\), so there are \\( \\binom{[[a]]+2}{2}\\binom{[[b]]+2}{2} \\) weak-containment ordered pairs; removing the \\( ([[a]]+1)([[b]]+1) \\) pairs where \\(d=e\\) leaves \\( [[answer]] \\) comparable unordered pairs of distinct divisors.",
+ "distractor_rationales": [
+  "This counts EVERY pair of distinct divisors, comparable or not.",
+  "This is just the number of divisors (elements of the poset), not a pair count.",
+  "This is the number of Hasse-diagram EDGES (covering pairs only), not all comparable pairs.",
+  "This multiplies the two per-coordinate binomial counts without removing the \\(d=e\\) diagonal, over-counting.",
+  "This overcounts the comparable pairs by one.",
+  "This undercounts the comparable pairs by one."
+ ]
+}
+]

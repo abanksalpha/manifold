@@ -1,0 +1,155 @@
+[
+ {
+  "template_id": "adjacency_glue_block_v1",
+  "skill_id": "arrangements_with_adjacency_separation_restrictions",
+  "topic_id": "combinatorics",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 8},
+   "noun": {"type": "choice", "values": ["people", "students", "children", "friends", "actors"]}
+  },
+  "constraints": [],
+  "stem": "[[n]] distinct [[noun]] are to be arranged in a single row. In how many of these arrangements are two particular individuals seated immediately next to each other?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)*factorial(2)"},
+  "distractors": [
+   "factorial([[n]])",
+   "factorial([[n]] - 1)",
+   "factorial([[n]]) - factorial([[n]] - 1)*factorial(2)",
+   "factorial([[n]] - 2)*factorial(2)",
+   "2*factorial([[n]])",
+   "[[answer]] + [[n]]"
+  ],
+  "solution": "Glue the two individuals into one block, giving \\( ([[n]]-1)! \\) arrangements of the [[n]]-1 objects, then \\( 2! \\) internal orders: \\( ([[n]]-1)!\\cdot 2! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of arrangements with no restriction.",
+   "This treats the glued block but forgets the \\( 2! \\) internal orders of the pair.",
+   "This counts the arrangements in which the two are NOT adjacent (the complement).",
+   "This shrinks the block count to \\( ([[n]]-2)! \\), removing one too many positions.",
+   "This doubles the total instead of the block's internal arrangements.",
+   "This is off from the correct count by [[n]]."
+  ]
+ },
+ {
+  "template_id": "adjacency_complement_not_adjacent_v1",
+  "skill_id": "arrangements_with_adjacency_separation_restrictions",
+  "topic_id": "combinatorics",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 9},
+   "noun": {"type": "choice", "values": ["people", "students", "children", "friends", "actors", "runners"]}
+  },
+  "constraints": ["Gt([[n]], 3)"],
+  "stem": "[[n]] distinct [[noun]] are to be arranged in a single row. In how many of these arrangements are two particular individuals NOT seated next to each other?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]]) - factorial([[n]] - 1)*factorial(2)"},
+  "distractors": [
+   "factorial([[n]] - 1)*factorial(2)",
+   "factorial([[n]])",
+   "factorial([[n]] - 1)",
+   "factorial([[n]]) - factorial([[n]] - 1)",
+   "[[answer]] + [[n]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Of the \\( [[n]]! \\) total arrangements, \\( ([[n]]-1)!\\cdot 2! \\) have the pair adjacent (glue-block count); subtracting gives \\( [[n]]! - ([[n]]-1)!\\cdot 2! = [[answer]] \\) arrangements with the pair apart.",
+  "distractor_rationales": [
+   "This is the count of arrangements where the pair IS adjacent, the complement of what was asked.",
+   "This is the total number of arrangements with no restriction at all.",
+   "This treats only one individual as fixed, not the pair's adjacency count.",
+   "This subtracts the wrong glue-block count (missing the internal \\( 2! \\) order).",
+   "This is off from the correct count by [[n]].",
+   "This is off from the correct count by [[n]]."
+  ]
+ },
+ {
+  "template_id": "adjacency_group_gap_method_v1",
+  "skill_id": "arrangements_with_adjacency_separation_restrictions",
+  "topic_id": "combinatorics",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 10},
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "noun": {"type": "choice", "values": ["people", "students", "children", "friends", "delegates"]}
+  },
+  "constraints": ["Ge([[n]] - 2*[[m]] + 1, 0)", "Lt([[m]], [[n]])"],
+  "stem": "[[n]] distinct [[noun]] are arranged in a single row. Among them, a particular group of [[m]] individuals is singled out. In how many of these arrangements is no pair of the [[m]] singled-out individuals seated next to each other?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - [[m]]) * factorial([[n]] - [[m]] + 1)/factorial([[n]] - 2*[[m]] + 1)"},
+  "distractors": [
+   "factorial([[n]])",
+   "factorial([[n]] - [[m]] + 1)*factorial([[m]])",
+   "factorial([[n]] - [[m]])",
+   "factorial([[n]] - [[m]])*factorial([[n]] - [[m]] + 1)",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "First seat the other \\( [[n]]-[[m]] \\) individuals: \\( ([[n]]-[[m]])! \\) ways. This creates \\( [[n]]-[[m]]+1 \\) gaps (including the ends); placing the [[m]] singled-out individuals into distinct gaps, in order, uses \\( \\frac{([[n]]-[[m]]+1)!}{([[n]]-2[[m]]+1)!} \\) of them. Multiplying gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of arrangements with no restriction.",
+   "This treats the singled-out group as one glued block instead of spreading them into separate gaps.",
+   "This seats only the other individuals and forgets to place the singled-out group at all.",
+   "This multiplies the two factorials without dividing out the unused gap choices.",
+   "This is off from the correct count by [[m]].",
+   "This is off from the correct count by [[n]]."
+  ]
+ },
+ {
+  "template_id": "adjacency_two_disjoint_pairs_v1",
+  "skill_id": "arrangements_with_adjacency_separation_restrictions",
+  "topic_id": "combinatorics",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 9},
+   "noun": {"type": "choice", "values": ["people", "students", "children", "friends", "actors"]}
+  },
+  "constraints": ["Gt([[n]], 4)"],
+  "stem": "[[n]] distinct [[noun]] are arranged in a single row. Two disjoint designated pairs are marked: pair A and pair B (four different individuals in total). In how many arrangements are the two members of pair A seated next to each other AND the two members of pair B seated next to each other?",
+  "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 2)*factorial(2)*factorial(2)"},
+  "distractors": [
+   "factorial([[n]] - 1)*factorial(2)",
+   "factorial([[n]])",
+   "factorial([[n]] - 3)*factorial(2)*factorial(2)",
+   "factorial([[n]] - 2)*factorial(2)",
+   "[[answer]] + [[n]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Glue pair A into one block and pair B into another, leaving \\( [[n]]-2 \\) objects to arrange in \\( ([[n]]-2)! \\) ways, times \\( 2! \\) internal orders for each of the two blocks: \\( ([[n]]-2)!\\cdot 2!\\cdot 2! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This glues only one of the two pairs and leaves the other unrestricted.",
+   "This is the total number of arrangements with no restriction.",
+   "This shrinks the object count to \\( [[n]]-3 \\), removing one too many positions.",
+   "This forgets the internal \\( 2! \\) order of the second glued pair.",
+   "This is off from the correct count by [[n]].",
+   "This is off from the correct count by [[n]]."
+  ]
+ },
+ {
+  "template_id": "adjacency_alternating_genders_v1",
+  "skill_id": "arrangements_with_adjacency_separation_restrictions",
+  "topic_id": "combinatorics",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "group_a": {"type": "choice", "values": ["boys", "men", "actors", "violinists", "engineers"]},
+   "group_b": {"type": "choice", "values": ["girls", "women", "actresses", "cellists", "architects"]}
+  },
+  "constraints": [],
+  "derived": {"n": "2*[[m]]"},
+  "stem": "In a row of [[n]] seats, [[m]] [[group_a]] and [[m]] [[group_b]] (all distinct individuals) are to be seated so that no two people from the same group are seated next to each other. In how many ways can this be done?",
+  "answer_spec": {"op": "evaluate", "expr": "2*factorial([[m]])*factorial([[m]])"},
+  "distractors": [
+   "factorial([[m]])*factorial([[m]])",
+   "factorial([[n]])",
+   "2*factorial([[n]] - 1)",
+   "4*factorial([[m]])*factorial([[m]])",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[m]]"
+  ],
+  "solution": "Either the boys or the girls can occupy the odd-numbered seats (2 choices of pattern), and within each pattern the [[m]] boys can be arranged in \\( [[m]]! \\) ways and the [[m]] girls in \\( [[m]]! \\) ways: \\( 2\\cdot [[m]]!\\cdot [[m]]! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 for which gender starts the row.",
+   "This is the total number of unrestricted arrangements of all [[n]] people.",
+   "This uses an unrelated formula mixing a doubled factorial of one fewer seat.",
+   "This double-counts the starting-gender choice by using 4 instead of 2.",
+   "This is off from the correct count by [[m]].",
+   "This is off from the correct count by [[m]]."
+  ]
+ }
+]

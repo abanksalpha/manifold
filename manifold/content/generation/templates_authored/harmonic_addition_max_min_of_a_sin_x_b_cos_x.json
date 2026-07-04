@@ -1,0 +1,132 @@
+[
+{
+ "template_id": "harmonic_addition_max_v1",
+ "skill_id": "harmonic_addition_max_min_of_a_sin_x_b_cos_x",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "require_rational": false,
+ "stem": "What is the maximum value of \\( ([[a]])\\sin x + ([[b]])\\cos x \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2)"},
+ "distractors": [
+  "Abs([[a]]) + Abs([[b]])",
+  "[[a]]**2 + [[b]]**2",
+  "sqrt(Abs([[a]]**2 - [[b]]**2))",
+  "Abs([[a]])",
+  "Abs([[b]])",
+  "sqrt([[a]]**2 + [[b]]**2) + 1"
+ ],
+ "solution": "Rewrite \\( a\\sin x + b\\cos x = R\\sin(x+\\varphi) \\) with \\( R = \\sqrt{a^2+b^2} \\). Since \\( \\sin(x+\\varphi) \\) ranges over \\( [-1,1] \\), the maximum is \\( R = \\sqrt{([[a]])^2 + ([[b]])^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the coefficients' magnitudes; the amplitude is \\( \\sqrt{a^2+b^2} \\), not \\( |a|+|b| \\).",
+  "This forgets to take the square root of \\( a^2+b^2 \\).",
+  "This subtracts the squares instead of adding them under the root.",
+  "This takes only the \\( \\sin \\) coefficient as the amplitude.",
+  "This takes only the \\( \\cos \\) coefficient as the amplitude.",
+  "This is off by one from the correct amplitude."
+ ]
+},
+{
+ "template_id": "harmonic_addition_min_v1",
+ "skill_id": "harmonic_addition_max_min_of_a_sin_x_b_cos_x",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "require_rational": false,
+ "stem": "What is the minimum value of \\( ([[a]])\\sin x + ([[b]])\\cos x \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "-sqrt([[a]]**2 + [[b]]**2)"},
+ "distractors": [
+  "-(Abs([[a]]) + Abs([[b]]))",
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "-([[a]]**2 + [[b]]**2)",
+  "-Abs([[a]])",
+  "-Abs([[b]])",
+  "-sqrt([[a]]**2 + [[b]]**2) + 1"
+ ],
+ "solution": "Rewrite \\( a\\sin x + b\\cos x = R\\sin(x+\\varphi) \\) with \\( R = \\sqrt{a^2+b^2} \\). Since \\( \\sin(x+\\varphi) \\) ranges over \\( [-1,1] \\), the minimum is \\( -R = -\\sqrt{([[a]])^2 + ([[b]])^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the coefficients' magnitudes; the amplitude is \\( \\sqrt{a^2+b^2} \\), not \\( |a|+|b| \\).",
+  "This has the wrong sign; the minimum is the negative of the amplitude.",
+  "This forgets to take the square root of \\( a^2+b^2 \\).",
+  "This takes only the \\( \\sin \\) coefficient's magnitude as the amplitude.",
+  "This takes only the \\( \\cos \\) coefficient's magnitude as the amplitude.",
+  "This is off by one from the correct minimum."
+ ]
+},
+{
+ "template_id": "harmonic_addition_vertical_shift_max_v1",
+ "skill_id": "harmonic_addition_max_min_of_a_sin_x_b_cos_x",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "require_rational": false,
+ "stem": "What is the maximum value of \\( ([[a]])\\sin x + ([[b]])\\cos x + ([[d]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2) + [[d]]"},
+ "distractors": [
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt(([[a]]+[[d]])**2 + [[b]]**2)",
+  "Abs([[a]]) + Abs([[b]]) + [[d]]",
+  "sqrt([[a]]**2 + [[b]]**2) - [[d]]",
+  "[[d]] - sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2) + 2*[[d]]"
+ ],
+ "solution": "Since \\( a\\sin x+b\\cos x \\) alone has amplitude \\( R=\\sqrt{a^2+b^2} \\) and ranges over \\( [-R,R] \\), adding the constant \\( d \\) shifts the whole range to \\( [d-R,\\,d+R] \\). The maximum is \\( R+d = \\sqrt{([[a]])^2+([[b]])^2} + ([[d]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add the vertical shift \\( d \\) at all.",
+  "This mistakenly folds \\( d \\) into the \\( \\sin \\) coefficient before computing the amplitude.",
+  "This uses \\( |a|+|b| \\) instead of \\( \\sqrt{a^2+b^2} \\) for the amplitude.",
+  "This subtracts \\( d \\) instead of adding it.",
+  "This has the amplitude and shift in the wrong order/sign.",
+  "This double-counts the vertical shift."
+ ]
+},
+{
+ "template_id": "harmonic_addition_solve_for_coefficient_v1",
+ "skill_id": "harmonic_addition_max_min_of_a_sin_x_b_cos_x",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 6},
+  "n": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Lt([[n]], [[m]])", "Eq(gcd([[m]], [[n]]), 1)", "Ne(Mod([[m]]+[[n]], 2), 0)"],
+ "require_rational": false,
+ "derived": {
+  "a": "[[k]]*([[m]]**2 - [[n]]**2)",
+  "M": "[[k]]*([[m]]**2 + [[n]]**2)"
+ },
+ "stem": "For what positive value of \\( c \\) does \\( ([[a]])\\sin x + c\\cos x \\) have a maximum value of \\( [[M]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[M]]**2 - [[a]]**2)"},
+ "distractors": [
+  "[[M]] - [[a]]",
+  "sqrt([[M]] - [[a]])",
+  "[[M]]**2 - [[a]]**2",
+  "sqrt([[M]]**2 + [[a]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The maximum of \\( a\\sin x + c\\cos x \\) is \\( \\sqrt{a^2+c^2} \\). Setting \\( \\sqrt{([[a]])^2+c^2} = [[M]] \\) and solving for the positive root gives \\( c = \\sqrt{[[M]]^2 - ([[a]])^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts \\( a \\) from \\( M \\) directly instead of using the Pythagorean relationship.",
+  "This forgets to square \\( M \\) and \\( a \\) before subtracting under the root.",
+  "This stops at \\( M^2-a^2 \\) without taking the square root.",
+  "This adds the squares instead of subtracting.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

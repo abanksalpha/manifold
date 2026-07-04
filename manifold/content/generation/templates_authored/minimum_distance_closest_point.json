@@ -1,0 +1,148 @@
+[
+ {
+  "template_id": "min_distance_to_line_v1",
+  "skill_id": "minimum_distance_closest_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "stem": "Find the minimum distance from the point \\( ([[p]],[[q]]) \\) to the line \\( y=x \\).",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[p]] - [[q]])/sqrt(2)"},
+  "distractors": [
+   "Abs([[p]] - [[q]])",
+   "Abs([[p]] - [[q]])/2",
+   "Abs([[p]] + [[q]])/sqrt(2)",
+   "sqrt(2)*Abs([[p]] - [[q]])",
+   "Abs([[p]] - [[q]])/sqrt(2) + 1",
+   "Abs([[p]] - [[q]])/sqrt(2) - 1"
+  ],
+  "solution": "Distance to \\( y=x \\) is \\( \\frac{|p-q|}{\\sqrt{2}}=[[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "min_distance_point_to_parabola_v1",
+  "skill_id": "minimum_distance_closest_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -14, "hi": 14}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "derived": {"h2": "2*[[k]]**2 + 1"},
+  "stem": "Using calculus, find the positive \\( x \\)-coordinate of the point on the curve \\( y=x^{2} \\) that is closest to the point \\( \\left(0,\\dfrac{[[h2]]}{2}\\right) \\) on the \\( y \\)-axis.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt(([[h2]]-1)/2)"},
+  "distractors": [
+   "-sqrt(([[h2]]-1)/2)",
+   "sqrt([[h2]]/2)",
+   "Rational([[h2]]-1,2)",
+   "Rational([[h2]],2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Minimize \\( D(x)^2=x^{2}+\\left(x^{2}-\\dfrac{[[h2]]}{2}\\right)^{2} \\). Setting the derivative to 0 and discarding \\( x=0 \\) gives \\( x^{2}=\\dfrac{[[h2]]}{2}-\\dfrac{1}{2} \\), so the positive root is \\( x=\\sqrt{\\dfrac{[[h2]]-1}{2}}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign; the problem asks for the positive \\( x \\)-coordinate.",
+   "This omits the \\( -\\tfrac12 \\) shift from differentiating the squared term.",
+   "This drops the square root, leaving \\( x^{2} \\) instead of \\( x \\).",
+   "This drops the square root and also omits the \\( -\\tfrac12 \\) shift.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "min_distance_origin_to_hyperbola_v1",
+  "skill_id": "minimum_distance_closest_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 25}
+  },
+  "constraints": [],
+  "derived": {"k": "[[m]]**2"},
+  "stem": "Using calculus, find the \\( x \\)-coordinate of the point in the first quadrant on the curve \\( xy=[[k]] \\) that is closest to the origin.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[k]])"},
+  "distractors": [
+   "[[k]]",
+   "-sqrt([[k]])",
+   "sqrt(2*[[k]])",
+   "Rational([[k]], 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With \\( y=[[k]]/x \\), minimize \\( D(x)^2=x^{2}+[[k]]^{2}/x^{2} \\). Setting the derivative to 0 gives \\( x^{4}=[[k]]^{2} \\), so the first-quadrant solution is \\( x=\\sqrt{[[k]]}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( k \\) itself rather than \\( \\sqrt{k} \\).",
+   "This has the wrong sign for a first-quadrant point.",
+   "This confuses the distance formula's extra factor with the x-coordinate.",
+   "This halves \\( k \\) instead of taking a square root.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "min_vertical_distance_line_parabola_v1",
+  "skill_id": "minimum_distance_closest_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [-8, -6, -4, -2, 2, 4, 6, 8]},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 30}
+  },
+  "constraints": ["Gt(4*([[c]] - [[b]]), [[m]]**2)"],
+  "stem": "The line \\( y=[[m]]x+([[b]]) \\) lies entirely below the parabola \\( y=x^{2}+[[c]] \\) for all \\( x \\). Using calculus, find the minimum vertical distance between the two curves.",
+  "answer_spec": {"op": "evaluate", "expr": "([[c]] - [[b]]) - Rational([[m]]**2, 4)"},
+  "distractors": [
+   "([[c]] - [[b]]) + Rational([[m]]**2, 4)",
+   "[[c]] - [[b]]",
+   "Rational([[m]]**2, 4)",
+   "([[c]] - [[b]]) - Rational([[m]]**2, 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Let \\( g(x)=(x^{2}+[[c]])-([[m]]x+([[b]])) \\). Then \\( g'(x)=2x-[[m]]=0 \\) at \\( x=\\tfrac{[[m]]}{2} \\), and \\( g\\left(\\tfrac{[[m]]}{2}\\right)=([[c]]-[[b]])-\\dfrac{[[m]]^{2}}{4}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the vertex-shift term.",
+   "This omits the vertex-shift term entirely.",
+   "This reports only the vertex-shift term, dropping \\( c-b \\).",
+   "This uses the wrong denominator (2 instead of 4).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "min_distance_closest_point_on_line_v1",
+  "skill_id": "minimum_distance_closest_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "t": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[t]], 0)"],
+  "derived": {"b": "-[[t]]*(1 + [[m]]**2)"},
+  "stem": "Using calculus, find the \\( x \\)-coordinate of the point on the line \\( y=[[m]]x+([[b]]) \\) that is closest to the origin.",
+  "answer_spec": {"op": "evaluate", "expr": "-[[m]]*[[b]]/(1 + [[m]]**2)"},
+  "distractors": [
+   "-[[m]]*[[b]]",
+   "[[m]]*[[b]]/(1 + [[m]]**2)",
+   "[[b]]/(1 + [[m]]**2)",
+   "-[[b]]/[[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Minimize \\( D(x)^2=x^{2}+([[m]]x+([[b]]))^{2} \\). Setting the derivative to 0 gives \\( x=\\dfrac{-[[m]]\\,([[b]])}{1+[[m]]^{2}}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the \\( 1+m^{2} \\) denominator.",
+   "This has the wrong sign.",
+   "This omits the factor of \\( m \\) in the numerator.",
+   "This uses \\( m \\) as a denominator instead of \\( 1+m^{2} \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

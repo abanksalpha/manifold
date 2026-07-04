@@ -1,0 +1,125 @@
+[
+ {
+  "template_id": "standard_error_v1",
+  "skill_id": "standard_error_and_sample_size_scaling",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "sigma": {"type": "int", "lo": 2, "hi": 20},
+   "rootn": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "derived": {"n": "[[rootn]]**2"},
+  "stem": "A population has standard deviation \\( \\sigma = [[sigma]] \\). For random samples of size \\( n = [[n]] \\), what is the standard error of the sample mean, \\( \\sigma/\\sqrt{n} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[sigma]]/sqrt([[n]])"},
+  "distractors": [
+   "[[sigma]]/[[n]]",
+   "[[sigma]]*sqrt([[n]])",
+   "[[sigma]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The standard error scales by \\( \\sqrt{n} \\): \\( \\frac{\\sigma}{\\sqrt{n}} = \\frac{[[sigma]]}{\\sqrt{[[n]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( n \\) instead of by \\( \\sqrt{n} \\).",
+   "This multiplies by \\( \\sqrt{n} \\) instead of dividing by it.",
+   "This is the population standard deviation itself; the standard error shrinks with sample size.",
+   "This is off by one from the correct standard error."
+  ]
+ },
+ {
+  "template_id": "required_sample_size_for_se_v1",
+  "skill_id": "standard_error_and_sample_size_scaling",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "rootn": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8]},
+   "t": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "derived": {"sigma": "[[rootn]]*[[t]]", "SE": "[[t]]"},
+  "stem": "A population has standard deviation \\( \\sigma = [[sigma]] \\). What sample size \\( n \\) is required so that the standard error of the sample mean, \\( \\sigma/\\sqrt{n} \\), equals \\( [[SE]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[sigma]]/[[SE]])**2"},
+  "distractors": [
+   "[[sigma]]/[[SE]]",
+   "[[sigma]]**2/[[SE]]",
+   "([[SE]]/[[sigma]])**2",
+   "[[sigma]]/[[SE]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solving \\( [[SE]] = \\dfrac{\\sigma}{\\sqrt{n}} \\) for \\( n \\) gives \\( n = \\left(\\dfrac{\\sigma}{[[SE]]}\\right)^2 = \\left(\\dfrac{[[sigma]]}{[[SE]]}\\right)^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square the ratio \\( \\sigma/[[SE]] \\).",
+   "This squares only \\( \\sigma \\) and forgets to also square \\( [[SE]] \\) in the denominator.",
+   "This inverts the ratio, dividing \\( [[SE]] \\) by \\( \\sigma \\) instead of the other way around.",
+   "This squares only the denominator \\( [[SE]] \\), not the whole ratio.",
+   "This is off by one from the correct sample size."
+  ]
+ },
+ {
+  "template_id": "se_scaling_factor_v1",
+  "skill_id": "standard_error_and_sample_size_scaling",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "f": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+  },
+  "constraints": [],
+  "derived": {"fsq": "[[f]]**2"},
+  "stem": "For random samples from a fixed population, the sample size is increased by a factor of \\( [[fsq]] \\) (that is, the new sample size is \\( [[fsq]] \\) times the old one). By what factor does the standard error of the sample mean change?",
+  "answer_spec": {"op": "evaluate", "expr": "1/[[f]]"},
+  "distractors": [
+   "[[f]]",
+   "1/[[fsq]]",
+   "[[fsq]]",
+   "-1/[[f]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The standard error is proportional to \\( 1/\\sqrt{n} \\); multiplying \\( n \\) by \\( [[fsq]] \\) multiplies \\( \\sqrt{n} \\) by \\( [[f]] \\), so the standard error is multiplied by \\( 1/[[f]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the sample-size multiplier itself as the change factor for the standard error, rather than its square root.",
+   "This divides by the sample-size multiplier \\( [[fsq]] \\) directly, instead of by its square root \\( [[f]] \\).",
+   "This assumes the standard error grows by the same factor the sample size grows by.",
+   "This has the correct magnitude but the wrong sign.",
+   "This is off by one from the correct factor."
+  ]
+ },
+ {
+  "template_id": "se_at_new_sample_size_v1",
+  "skill_id": "standard_error_and_sample_size_scaling",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "rootn1": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "rootn2": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "t": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": ["Ne([[rootn1]], [[rootn2]])"],
+  "derived": {
+   "n1": "[[rootn1]]**2",
+   "n2": "[[rootn2]]**2",
+   "SE1": "[[rootn2]]*[[t]]"
+  },
+  "stem": "For samples of size \\( n_1 = [[n1]] \\) drawn from a population, the standard error of the sample mean is \\( [[SE1]] \\). What would the standard error of the sample mean be for samples of size \\( n_2 = [[n2]] \\) drawn from the SAME population?",
+  "answer_spec": {"op": "evaluate", "expr": "[[SE1]]*sqrt([[n1]])/sqrt([[n2]])"},
+  "distractors": [
+   "[[SE1]]*sqrt([[n2]])/sqrt([[n1]])",
+   "[[SE1]]*[[n1]]/[[n2]]",
+   "[[SE1]]*[[n2]]/[[n1]]",
+   "[[SE1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\sigma = [[SE1]]\\sqrt{n_1} \\) stays fixed, the new standard error is \\( [[SE1]]\\cdot\\dfrac{\\sqrt{n_1}}{\\sqrt{n_2}} = [[SE1]]\\cdot\\dfrac{\\sqrt{[[n1]]}}{\\sqrt{[[n2]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio of sample sizes inside the square root.",
+   "This scales by the ratio of sample sizes directly, instead of by the ratio of their square roots.",
+   "This scales by the inverse ratio of sample sizes directly, instead of by the ratio of square roots.",
+   "This assumes the standard error is unaffected by the change in sample size.",
+   "This is off by one from the correct standard error."
+  ]
+ }
+]

@@ -1,0 +1,254 @@
+[
+{
+ "template_id": "triangle_pythagorean_hypotenuse_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 11},
+  "n": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": ["Gt([[m]], [[n]])"],
+ "derived": {"a": "[[m]]**2 - [[n]]**2", "b": "2*[[m]]*[[n]]"},
+ "stem": "A right triangle has legs of length \\( [[a]] \\) and \\( [[b]] \\). What is the length of its hypotenuse?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2)"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]]**2 + [[b]]**2",
+  "sqrt([[a]] + [[b]])",
+  "sqrt([[a]]**2 - [[b]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the Pythagorean theorem, the hypotenuse is \\( \\sqrt{a^2+b^2} = \\sqrt{[[a]]^2+[[b]]^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This simply adds the two legs instead of applying the Pythagorean theorem.",
+  "This stops at \\( a^2+b^2 \\) without taking the square root.",
+  "This takes the square root of the sum of the legs, not the sum of their squares.",
+  "This subtracts the squares instead of adding them.",
+  "This is one more than the correct hypotenuse.",
+  "This is one less than the correct hypotenuse."
+ ]
+},
+{
+ "template_id": "triangle_pythagorean_missing_leg_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 11},
+  "n": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": ["Gt([[m]], [[n]])"],
+ "derived": {"b": "2*[[m]]*[[n]]", "c": "[[m]]**2 + [[n]]**2"},
+ "stem": "A right triangle has a hypotenuse of length \\( [[c]] \\) and one leg of length \\( [[b]] \\). What is the length of the other leg?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[c]]**2 - [[b]]**2)"},
+ "distractors": [
+  "[[c]] - [[b]]",
+  "sqrt([[c]]**2 + [[b]]**2)",
+  "[[c]]**2 - [[b]]**2",
+  "sqrt([[c]] - [[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the Pythagorean theorem, the missing leg is \\( \\sqrt{c^2-b^2} = \\sqrt{[[c]]^2-[[b]]^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the leg from the hypotenuse directly instead of applying the Pythagorean theorem.",
+  "This adds the squares instead of subtracting, as if solving for the hypotenuse.",
+  "This stops at \\( c^2-b^2 \\) without taking the square root.",
+  "This subtracts before squaring instead of after.",
+  "This is one more than the correct leg.",
+  "This is one less than the correct leg."
+ ]
+},
+{
+ "template_id": "triangle_similar_missing_side_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 2, "hi": 7},
+  "q": {"type": "int", "lo": 2, "hi": 7},
+  "x": {"type": "int", "lo": 3, "hi": 9},
+  "y": {"type": "int", "lo": 3, "hi": 9},
+  "z": {"type": "int", "lo": 3, "hi": 9}
+ },
+ "constraints": [
+  "Ne([[p]], [[q]])",
+  "Gt([[x]] + [[y]], [[z]])", "Gt([[x]] + [[z]], [[y]])", "Gt([[y]] + [[z]], [[x]])"
+ ],
+ "derived": {"AB": "[[p]]*[[x]]", "BC": "[[p]]*[[y]]", "CA": "[[p]]*[[z]]", "DE": "[[q]]*[[x]]"},
+ "stem": "Triangle \\( ABC \\) is similar to triangle \\( DEF \\), with \\( AB \\) corresponding to \\( DE \\), \\( BC \\) corresponding to \\( EF \\), and \\( CA \\) corresponding to \\( FD \\). If \\( AB = [[AB]] \\), \\( BC = [[BC]] \\), \\( CA = [[CA]] \\), and \\( DE = [[DE]] \\), what is the length of \\( EF \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[BC]]*[[DE]]/[[AB]]"},
+ "distractors": [
+  "[[BC]]*[[AB]]/[[DE]]",
+  "[[BC]] + ([[DE]] - [[AB]])",
+  "[[DE]]",
+  "[[CA]]*[[DE]]/[[AB]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The similarity ratio is \\( \\dfrac{DE}{AB} = \\dfrac{[[DE]]}{[[AB]]} \\), so \\( EF = BC\\cdot\\dfrac{DE}{AB} = [[BC]]\\cdot\\dfrac{[[DE]]}{[[AB]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the similarity ratio.",
+  "This adds the difference of the corresponding sides instead of scaling by the ratio.",
+  "This just repeats the given side \\( DE \\) instead of computing \\( EF \\).",
+  "This scales the wrong side (\\(CA\\)) by the similarity ratio instead of \\(BC\\).",
+  "This is one more than the correct length.",
+  "This is one less than the correct length."
+ ]
+},
+{
+ "template_id": "triangle_similar_area_ratio_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "base": {"type": "int", "lo": 2, "hi": 20},
+  "p": {"type": "int", "lo": 2, "hi": 6},
+  "q": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "derived": {"area1": "[[base]]*[[p]]**2"},
+ "stem": "Triangle \\( A \\) has area \\( [[area1]] \\). Triangle \\( B \\) is similar to triangle \\( A \\), with corresponding side lengths in ratio \\( [[p]] : [[q]] \\) (triangle \\( A \\) to triangle \\( B \\)). What is the area of triangle \\( B \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[area1]]*([[q]]/[[p]])**2"},
+ "distractors": [
+  "[[area1]]*([[q]]/[[p]])",
+  "[[area1]]*([[p]]/[[q]])**2",
+  "[[area1]]",
+  "[[area1]]*[[q]]/[[p]]",
+  "[[answer]] + [[p]]",
+  "[[answer]] - [[q]]"
+ ],
+ "solution": "Areas of similar figures scale with the SQUARE of the ratio of corresponding sides: \\( [[area1]]\\cdot\\left(\\dfrac{[[q]]}{[[p]]}\\right)^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This scales the area by the side ratio itself instead of its square.",
+  "This inverts the side ratio before squaring.",
+  "This forgets to scale the area at all.",
+  "This scales by the ratio (not squared) with the correct orientation, but still misses the square.",
+  "This adjusts the correct area by an unrelated amount.",
+  "This adjusts the correct area by an unrelated amount."
+ ]
+},
+{
+ "template_id": "triangle_altitude_hypotenuse_segments_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 10},
+  "n": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"p": "[[k]]", "q": "[[k]]*[[n]]**2"},
+ "stem": "In a right triangle, the altitude drawn to the hypotenuse divides the hypotenuse into two segments of lengths \\( [[p]] \\) and \\( [[q]] \\). What is the length of the altitude?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[p]]*[[q]])"},
+ "distractors": [
+  "([[p]] + [[q]])/2",
+  "[[p]]*[[q]]",
+  "sqrt([[p]] + [[q]])",
+  "([[p]]*[[q]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The altitude to the hypotenuse is the geometric mean of the two segments it creates: \\( h = \\sqrt{pq} = \\sqrt{[[p]]\\cdot[[q]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This averages the two segments instead of taking their geometric mean.",
+  "This stops at \\( pq \\) without taking the square root.",
+  "This takes the square root of the sum of the segments, not their product.",
+  "This halves the product instead of taking its square root.",
+  "This is one more than the correct altitude.",
+  "This is one less than the correct altitude."
+ ]
+},
+{
+ "template_id": "triangle_altitude_leg_geometric_mean_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 8},
+  "n": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"seg": "[[k]]", "hyp": "[[k]]*[[n]]**2"},
+ "stem": "In a right triangle, the altitude to the hypotenuse divides it into two segments. The segment adjacent to one leg has length \\( [[seg]] \\), and the full hypotenuse has length \\( [[hyp]] \\). What is the length of that leg?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[seg]]*[[hyp]])"},
+ "distractors": [
+  "[[hyp]] - [[seg]]",
+  "sqrt([[hyp]] - [[seg]])",
+  "([[seg]] + [[hyp]])/2",
+  "[[seg]]*[[hyp]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A leg of a right triangle is the geometric mean of the whole hypotenuse and the segment adjacent to that leg: \\( \\sqrt{[[seg]]\\cdot[[hyp]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes the OTHER segment of the hypotenuse instead of the leg.",
+  "This takes the square root of the other segment instead of the geometric-mean product.",
+  "This averages the segment and hypotenuse instead of taking their geometric mean.",
+  "This stops at the product \\( \\mathrm{seg}\\cdot\\mathrm{hyp} \\) without taking the square root.",
+  "This is one more than the correct leg.",
+  "This is one less than the correct leg."
+ ]
+},
+{
+ "template_id": "triangle_30_60_90_hypotenuse_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "short": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "In a 30-60-90 right triangle, the side opposite the \\( 30^{\\circ} \\) angle (the short leg) has length \\( [[short]] \\). What is the length of the hypotenuse?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[short]]"},
+ "distractors": [
+  "[[short]]",
+  "3*[[short]]",
+  "[[short]]/2",
+  "4*[[short]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "In a 30-60-90 triangle the hypotenuse is always twice the short leg: \\( 2\\cdot[[short]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just repeats the short leg instead of doubling it.",
+  "This triples the short leg instead of doubling it.",
+  "This halves the short leg instead of doubling it.",
+  "This quadruples the short leg instead of doubling it.",
+  "This is one more than the correct hypotenuse.",
+  "This is one less than the correct hypotenuse."
+ ]
+},
+{
+ "template_id": "triangle_45_45_90_hypotenuse_v1",
+ "skill_id": "triangle_geometry_similarity",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "leg": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "In a 45-45-90 right triangle, each leg has length \\( [[leg]] \\). What is the length of the hypotenuse?",
+ "answer_spec": {"op": "evaluate", "expr": "[[leg]]*sqrt(2)"},
+ "distractors": [
+  "[[leg]]*sqrt(3)",
+  "2*[[leg]]",
+  "[[leg]]/sqrt(2)",
+  "[[leg]]**2",
+  "[[answer]] + 1",
+  "2*[[answer]]"
+ ],
+ "solution": "In a 45-45-90 triangle the hypotenuse is the leg times \\( \\sqrt{2} \\): \\( [[leg]]\\sqrt{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\sqrt{3} \\), the 30-60-90 relationship, instead of \\( \\sqrt{2} \\).",
+  "This doubles the leg as if it were a 30-60-90 short leg.",
+  "This divides by \\( \\sqrt{2} \\) instead of multiplying.",
+  "This squares the leg instead of multiplying by \\( \\sqrt{2} \\).",
+  "This is one more than the correct hypotenuse.",
+  "This doubles the correct hypotenuse."
+ ]
+}
+]

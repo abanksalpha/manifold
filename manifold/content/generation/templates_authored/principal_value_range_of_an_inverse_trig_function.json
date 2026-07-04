@@ -1,0 +1,160 @@
+[
+ {
+  "template_id": "principal_arcsin_sin_v1",
+  "skill_id": "principal_value_range_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -24, "hi": 24},
+   "d": {"type": "choice", "values": [4, 6]}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\sin^{-1}\\!\\left( \\sin\\dfrac{[[k]]\\pi}{[[d]]} \\right) \\), giving the value in the range of \\( \\arcsin \\).",
+  "answer_spec": {"op": "evaluate", "expr": "asin(sin([[k]]*pi/[[d]]))"},
+  "distractors": [
+   "[[k]]*pi/[[d]]",
+   "pi - [[k]]*pi/[[d]]",
+   "-[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "pi/2 - [[answer]]"
+  ],
+  "solution": "\\( \\arcsin \\) returns a value in \\( [-\\tfrac{\\pi}{2}, \\tfrac{\\pi}{2}] \\). Reduce \\( \\sin\\dfrac{[[k]]\\pi}{[[d]]} \\) to its sine value and take the angle in that range: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the input angle itself, ignoring that \\( \\arcsin \\) must land in \\( [-\\tfrac{\\pi}{2}, \\tfrac{\\pi}{2}] \\).",
+   "This uses the supplement \\( \\pi - \\theta \\) rather than the principal value.",
+   "This has the wrong sign.",
+   "This differs from the principal value by a full \\( \\pi \\).",
+   "This differs from the principal value by \\( \\pi \\).",
+   "This uses the complementary angle instead of the principal value."
+  ]
+ },
+ {
+  "template_id": "principal_arccos_cos_v1",
+  "skill_id": "principal_value_range_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -24, "hi": 24},
+   "d": {"type": "choice", "values": [4, 6]}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\cos^{-1}\\!\\left( \\cos\\dfrac{[[k]]\\pi}{[[d]]} \\right) \\), giving the value in the range of \\( \\arccos \\).",
+  "answer_spec": {"op": "evaluate", "expr": "acos(cos([[k]]*pi/[[d]]))"},
+  "distractors": [
+   "[[k]]*pi/[[d]]",
+   "pi + [[k]]*pi/[[d]]",
+   "-[[answer]]",
+   "[[answer]] + pi",
+   "pi/2 - [[answer]]",
+   "2*pi - [[answer]]"
+  ],
+  "solution": "\\( \\arccos \\) returns a value in \\( [0, \\pi] \\). Reduce \\( \\cos\\dfrac{[[k]]\\pi}{[[d]]} \\) to its cosine value and take the angle in that range: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the input angle itself, ignoring that \\( \\arccos \\) must land in \\( [0, \\pi] \\).",
+   "This adds a full \\( \\pi \\) to the input.",
+   "This has the wrong sign; \\( \\arccos \\ge 0 \\).",
+   "This differs from the principal value by \\( \\pi \\).",
+   "This uses the complementary angle instead of the principal value.",
+   "This uses the reflection \\( 2\\pi - \\theta \\) rather than the principal value."
+  ]
+ },
+ {
+  "template_id": "principal_arctan_tan_v1",
+  "skill_id": "principal_value_range_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -24, "hi": 24},
+   "d": {"type": "choice", "values": [4, 6]}
+  },
+  "constraints": [
+   "Ne([[k]], 0)",
+   "Or(And(Eq([[d]], 4), Ne(Mod([[k]], 4), 2)), And(Eq([[d]], 6), Ne(Mod([[k]], 6), 3)))"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\tan^{-1}\\!\\left( \\tan\\dfrac{[[k]]\\pi}{[[d]]} \\right) \\), giving the value in the range of \\( \\arctan \\).",
+  "answer_spec": {"op": "evaluate", "expr": "atan(tan([[k]]*pi/[[d]]))"},
+  "distractors": [
+   "[[k]]*pi/[[d]]",
+   "pi - [[k]]*pi/[[d]]",
+   "-[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "pi/2 - [[answer]]"
+  ],
+  "solution": "\\( \\arctan \\) returns a value in \\( (-\\tfrac{\\pi}{2}, \\tfrac{\\pi}{2}) \\). Since \\( \\tan \\) has period \\( \\pi \\), reduce \\( \\dfrac{[[k]]\\pi}{[[d]]} \\) modulo \\( \\pi \\) into that range: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the input angle itself, ignoring that \\( \\arctan \\) must land in \\( (-\\tfrac{\\pi}{2}, \\tfrac{\\pi}{2}) \\).",
+   "This uses \\( \\pi - \\theta \\) rather than reducing modulo \\( \\pi \\).",
+   "This has the wrong sign.",
+   "This differs from the principal value by a full \\( \\pi \\).",
+   "This differs from the principal value by \\( \\pi \\).",
+   "This uses the complementary angle instead of the principal value."
+  ]
+ },
+ {
+  "template_id": "principal_arcsin_cos_cofunction_v1",
+  "skill_id": "principal_value_range_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -24, "hi": 24},
+   "d": {"type": "choice", "values": [4, 6]}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\sin^{-1}\\!\\left( \\cos\\dfrac{[[k]]\\pi}{[[d]]} \\right) \\), giving the value in the range of \\( \\arcsin \\).",
+  "answer_spec": {"op": "evaluate", "expr": "asin(cos([[k]]*pi/[[d]]))"},
+  "distractors": [
+   "[[k]]*pi/[[d]]",
+   "pi/2 + [[k]]*pi/[[d]]",
+   "-[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "pi/2 - [[answer]]"
+  ],
+  "solution": "By the co-function identity, \\( \\sin\\!\\left(\\tfrac{\\pi}{2}-\\theta\\right)=\\cos\\theta \\), so \\( \\sin^{-1}(\\cos\\theta) \\) equals \\( \\tfrac{\\pi}{2}-\\theta \\) adjusted by a multiple of \\( 2\\pi \\) to land in \\( [-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}] \\). Evaluating at \\( \\theta=\\dfrac{[[k]]\\pi}{[[d]]} \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the input angle itself instead of applying the co-function relationship.",
+   "This adds \\( \\tfrac{\\pi}{2} \\) instead of subtracting from it.",
+   "This has the wrong sign.",
+   "This differs from the principal value by a full \\( \\pi \\).",
+   "This differs from the principal value by \\( \\pi \\).",
+   "This has the wrong sign on the co-function reduction."
+  ]
+ },
+ {
+  "template_id": "principal_range_transformed_arccos_v1",
+  "skill_id": "principal_value_range_of_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 9},
+   "b": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "require_rational": false,
+  "stem": "What is the maximum value attained by \\( g(x) = [[a]]\\arccos(x) + ([[b]]) \\) for \\( x \\) in the domain of \\( \\arccos \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*pi + [[b]]"},
+  "distractors": [
+   "[[a]]*pi/2 + [[b]]",
+   "-[[a]]*pi + [[b]]",
+   "[[a]]*pi - [[b]]",
+   "[[b]]",
+   "[[a]]*pi/2 - [[b]]",
+   "[[a]]*pi + 2*[[b]]"
+  ],
+  "solution": "Since \\( \\arccos(x) \\) ranges over \\( [0,\\pi] \\) and \\( [[a]]>0 \\), \\( g(x)=[[a]]\\arccos(x)+([[b]]) \\) is maximized when \\( \\arccos(x)=\\pi \\) (at \\( x=-1 \\)), giving \\( g_{\\max} = [[a]]\\pi + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the midpoint of the range of \\( \\arccos \\) instead of its maximum.",
+   "This has the wrong sign on the \\( \\pi \\) term.",
+   "This subtracts the shift instead of adding it.",
+   "This drops the \\( \\arccos \\) term entirely, reporting only the shift.",
+   "This uses the midpoint of the range and also subtracts the shift.",
+   "This double-counts the vertical shift."
+  ]
+ }
+]

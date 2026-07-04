@@ -1,0 +1,177 @@
+[
+{
+ "template_id": "characteristic_polynomial_v1_evaluate_at_point_2x2",
+ "skill_id": "characteristic_polynomial",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "lam": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{pmatrix} \\) with characteristic polynomial \\( p(\\lambda) = \\det(\\lambda I - A) \\). What is \\( p([[lam]]) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[lam]]-[[a]]", "-[[b]]"], ["-[[c]]", "[[lam]]-[[d]]"]]},
+ "distractors": [
+  "([[lam]]-[[a]])*([[lam]]-[[d]]) + [[b]]*[[c]]",
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[lam]]*[[lam]] - ([[a]]+[[d]])*[[lam]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "\\( p(\\lambda) = ( \\lambda - [[a]])(\\lambda - [[d]]) - (-[[b]])(-[[c]]) \\); substituting \\( \\lambda = [[lam]] \\) gives \\( p([[lam]]) = ([[lam]]-[[a]])([[lam]]-[[d]]) - [[b]]\\cdot[[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( bc \\) instead of subtracting it (a sign error on the off-diagonal product).",
+  "This is \\( \\det(A) \\), which equals \\( p(0) \\), not \\( p([[lam]]) \\) in general.",
+  "This drops the constant term \\( \\det(A) \\) that appears when expanding \\( (\\lambda-a)(\\lambda-d)-bc \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_v2_evaluate_at_zero_3x3",
+ "skill_id": "characteristic_polynomial",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "i": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]]), 0)"],
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{pmatrix} \\) with characteristic polynomial \\( p(\\lambda) = \\det(\\lambda I - A) \\). What is \\( p(0) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["-[[a]]", "-[[b]]", "-[[c]]"], ["-[[d]]", "-[[e]]", "-[[f]]"], ["-[[g]]", "-[[h]]", "-[[i]]"]]},
+ "distractors": [
+  "[[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]])",
+  "-([[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]]))",
+  "[[a]]+[[e]]+[[i]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( p(0) = \\det(0\\cdot I - A) = \\det(-A) = (-1)^3\\det(A) = -\\det(A) \\). Since \\( \\det(A) = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) \\), we get \\( p(0) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\det(A) \\) itself, forgetting the sign flip \\( (-1)^n \\) from negating a \\(3\\times3\\) matrix.",
+  "This double-negates \\( \\det(A) \\), landing back on \\( \\det(A) \\) with the wrong sign relative to \\( p(0) \\).",
+  "This is the trace of \\( A \\), not \\( p(0) \\).",
+  "A characteristic polynomial evaluated at 0 need not vanish unless 0 is an eigenvalue.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_v3_trace_coefficient",
+ "skill_id": "characteristic_polynomial",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a11": {"type": "int", "lo": -6, "hi": 6},
+  "a12": {"type": "int", "lo": -6, "hi": 6},
+  "a13": {"type": "int", "lo": -6, "hi": 6},
+  "a21": {"type": "int", "lo": -6, "hi": 6},
+  "a22": {"type": "int", "lo": -6, "hi": 6},
+  "a23": {"type": "int", "lo": -6, "hi": 6},
+  "a31": {"type": "int", "lo": -6, "hi": 6},
+  "a32": {"type": "int", "lo": -6, "hi": 6},
+  "a33": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "For \\( A = \\begin{pmatrix} [[a11]] & [[a12]] & [[a13]] \\\\ [[a21]] & [[a22]] & [[a23]] \\\\ [[a31]] & [[a32]] & [[a33]] \\end{pmatrix} \\), the characteristic polynomial \\( p(\\lambda) = \\det(\\lambda I - A) = \\lambda^3 - (\\operatorname{tr} A)\\lambda^2 + \\cdots \\). What is the coefficient of \\( \\lambda^2 \\) in \\( p(\\lambda) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "-([[a11]]+[[a22]]+[[a33]])"},
+ "distractors": [
+  "[[a11]]+[[a22]]+[[a33]]",
+  "[[a11]]*[[a22]]*[[a33]]",
+  "[[a12]]+[[a23]]+[[a31]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The \\( \\lambda^2 \\) coefficient of \\( \\det(\\lambda I - A) \\) is always \\( -\\operatorname{tr}(A) = -([[a11]]+[[a22]]+[[a33]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the minus sign; the coefficient is \\( -\\operatorname{tr}(A) \\), not \\( \\operatorname{tr}(A) \\).",
+  "This multiplies the diagonal entries (related to the determinant), not their sum.",
+  "This sums off-diagonal entries instead of the diagonal (trace) entries.",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient.",
+  "This is off by two from the correct coefficient."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_v4_det_constant_term",
+ "skill_id": "characteristic_polynomial",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "i": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "For \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{pmatrix} \\), the characteristic polynomial \\( p(\\lambda) = \\det(\\lambda I - A) \\) has constant term \\( p(0) = (-1)^3\\det(A) = -\\det(A) \\). What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[g]]", "[[h]]", "[[i]]"]]},
+ "distractors": [
+  "[[a]]*([[e]]*[[i]]-[[f]]*[[h]]) + [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]])",
+  "-([[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]]))",
+  "[[a]]+[[e]]+[[i]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Cofactor-expanding along row 1: \\( \\det(A) = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses all plus signs instead of the alternating \\( +,-,+ \\) cofactor pattern.",
+  "This is \\( -\\det(A) \\) (i.e. \\( p(0) \\) itself), the negative of what was asked.",
+  "This is the trace of \\( A \\), not its determinant.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_v5_vieta_sum_pairs",
+ "skill_id": "characteristic_polynomial",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "e1": {"type": "int", "lo": -6, "hi": 6},
+  "e2": {"type": "int", "lo": -6, "hi": 6},
+  "e3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[e1]], [[e2]])", "Ne([[e2]], [[e3]])", "Ne([[e1]], [[e3]])"],
+ "stem": "A \\( 3\\times3 \\) matrix \\( A \\) has characteristic polynomial \\( p(\\lambda) = (\\lambda - ([[e1]]))(\\lambda - ([[e2]]))(\\lambda - ([[e3]])) \\). What is the coefficient of \\( \\lambda \\) in \\( p(\\lambda) \\)?",
+ "answer_spec": {"op": "vieta", "poly": "(x-([[e1]]))*(x-([[e2]]))*(x-([[e3]]))", "var": "x", "which": "sum_pairs"},
+ "distractors": [
+  "[[e1]]+[[e2]]+[[e3]]",
+  "[[e1]]*[[e2]]*[[e3]]",
+  "-([[e1]]*[[e2]]*[[e3]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Expanding, \\( p(\\lambda) = \\lambda^3 - (e_1+e_2+e_3)\\lambda^2 + (e_1e_2+e_1e_3+e_2e_3)\\lambda - e_1e_2e_3 \\), so the coefficient of \\( \\lambda \\) is the sum of pairwise products of the eigenvalues: \\( [[e1]]\\cdot[[e2]] + [[e1]]\\cdot[[e3]] + [[e2]]\\cdot[[e3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the sum of the eigenvalues (negative of the \\( \\lambda^2 \\) coefficient), not the \\( \\lambda \\) coefficient.",
+  "This is the product of all three eigenvalues (negative of the constant term), not the \\( \\lambda \\) coefficient.",
+  "This is the constant term of \\( p(\\lambda) \\), not the \\( \\lambda \\) coefficient.",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient.",
+  "This is off by two from the correct coefficient."
+ ]
+}
+]

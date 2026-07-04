@@ -1,0 +1,155 @@
+[
+ {
+  "template_id": "cross_sections_squares_v1",
+  "skill_id": "volume_by_known_cross_sections",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The base of a solid is the region bounded by the line \\( y = x + [[k]] \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\). Every cross-section taken perpendicular to the \\( x \\)-axis is a square. Find the volume of the solid.",
+  "answer_spec": {"op": "integrate", "expr": "(x + [[k]])**2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "(([[b]] + [[k]])**2 - ([[a]] + [[k]])**2)/2",
+   "([[b]]**3 - [[a]]**3)/3",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "At position \\( x \\) the base has height \\( x+[[k]] \\), so each square has area \\( (x+[[k]])^{2} \\). The volume is \\( \\int_{[[a]]}^{[[b]]}(x+[[k]])^{2}\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates the side length instead of its square (area).",
+   "This ignores the \\( +[[k]] \\) in the side length.",
+   "This doubles the correct volume.",
+   "This halves the correct volume, as for triangular cross-sections.",
+   "This is off by one from the correct volume."
+  ]
+ },
+ {
+  "template_id": "cross_sections_semicircles_v1",
+  "skill_id": "volume_by_known_cross_sections",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "The base of a solid is the region bounded by the line \\( y = x + [[k]] \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\). Every cross-section taken perpendicular to the \\( x \\)-axis is a SEMICIRCLE whose diameter equals the height of the base region. Find the volume of the solid.",
+  "answer_spec": {"op": "integrate", "expr": "pi*(x + [[k]])**2/8", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "pi*((([[b]]+[[k]])**3-([[a]]+[[k]])**3)/3)/2",
+   "4*[[answer]]",
+   "[[answer]]/pi",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "A semicircle with diameter \\( d=x+[[k]] \\) has radius \\( d/2 \\) and area \\( \\tfrac{1}{2}\\pi(d/2)^{2} = \\tfrac{\\pi}{8}(x+[[k]])^{2} \\). The volume is \\( \\int_{[[a]]}^{[[b]]}\\tfrac{\\pi}{8}(x+[[k]])^{2}\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the area of a full circle of diameter \\( d \\), \\( \\tfrac{\\pi}{4}d^{2}\\), doubled by mistake instead of halved.",
+   "This scales up as if the cross-section area formula had no \\( \\tfrac18 \\) factor at all.",
+   "This drops the factor of \\( \\pi \\).",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "cross_sections_equilateral_triangles_v1",
+  "skill_id": "volume_by_known_cross_sections",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "The base of a solid is the region bounded by the line \\( y = x + [[k]] \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\). Every cross-section taken perpendicular to the \\( x \\)-axis is an EQUILATERAL TRIANGLE whose side equals the height of the base region. Find the volume of the solid.",
+  "answer_spec": {"op": "integrate", "expr": "sqrt(3)*(x + [[k]])**2/4", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "((([[b]]+[[k]])**3-([[a]]+[[k]])**3)/3)/2",
+   "sqrt(3)*((([[b]]+[[k]])**3-([[a]]+[[k]])**3)/3)/2",
+   "[[answer]]/sqrt(3)",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "An equilateral triangle with side \\( s=x+[[k]] \\) has area \\( \\tfrac{\\sqrt{3}}{4}s^{2} \\). The volume is \\( \\int_{[[a]]}^{[[b]]}\\tfrac{\\sqrt{3}}{4}(x+[[k]])^{2}\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the area formula for a right triangle with legs \\( s \\), not an equilateral triangle.",
+   "This drops a factor of 2 from the equilateral-triangle area formula.",
+   "This forgets the \\( \\sqrt{3} \\) factor entirely.",
+   "This doubles the correct volume.",
+   "This is off by one from the correct volume."
+  ]
+ },
+ {
+  "template_id": "cross_sections_isosceles_right_triangles_hyp_v1",
+  "skill_id": "volume_by_known_cross_sections",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The base of a solid is the region bounded by the line \\( y = x + [[k]] \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\). Every cross-section taken perpendicular to the \\( x \\)-axis is an ISOSCELES RIGHT TRIANGLE whose HYPOTENUSE lies along the base and equals the height of the base region. Find the volume of the solid.",
+  "answer_spec": {"op": "integrate", "expr": "(x + [[k]])**2/4", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "((([[b]]+[[k]])**3-([[a]]+[[k]])**3)/3)/2",
+   "(([[b]]+[[k]])**3-([[a]]+[[k]])**3)/3",
+   "2*[[answer]]",
+   "4*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "An isosceles right triangle with hypotenuse \\( h=x+[[k]] \\) has legs \\( h/\\sqrt{2} \\) and area \\( \\tfrac{1}{2}(h/\\sqrt{2})^{2} = \\tfrac{h^{2}}{4} \\). The volume is \\( \\int_{[[a]]}^{[[b]]}\\tfrac{(x+[[k]])^{2}}{4}\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the area formula for a triangle with a LEG (not the hypotenuse) equal to \\( h \\).",
+   "This treats the cross-section as a square of side \\( h \\), not a triangle.",
+   "This doubles the correct volume.",
+   "This is four times the correct volume.",
+   "This is off by one from the correct volume."
+  ]
+ },
+ {
+  "template_id": "cross_sections_squares_two_curve_base_v1",
+  "skill_id": "volume_by_known_cross_sections",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 5, "hi": 10},
+   "q": {"type": "int", "lo": -4, "hi": 4},
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "b": {"type": "int", "lo": 3, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Gt(4*[[p]], [[q]]**2)"],
+  "stem": "The base of a solid is the region between the curve \\( y = x^{2} + [[p]] \\) and the line \\( y = [[q]]x \\), for \\( [[a]] \\le x \\le [[b]] \\) (on which the curve lies entirely above the line). Every cross-section taken perpendicular to the \\( x \\)-axis is a square whose side length equals the vertical distance between the curve and the line. Find the volume of the solid.",
+  "answer_spec": {"op": "integrate", "expr": "((x**2 + [[p]]) - [[q]]*x)**2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "((([[b]]**2+[[p]])-[[q]]*[[b]])**2 - (([[a]]**2+[[p]])-[[q]]*[[a]])**2)/2",
+   "(([[b]]**2+[[p]])-[[q]]*[[b]])**2*([[b]]-[[a]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[p]]"
+  ],
+  "solution": "At position \\( x \\) the side length of the square is the gap between the two curves, \\( (x^{2}+[[p]]) - [[q]]x \\), so its area is \\( \\left((x^{2}+[[p]]) - [[q]]x\\right)^{2} \\). The volume is \\( \\int_{[[a]]}^{[[b]]}\\left((x^{2}+[[p]]) - [[q]]x\\right)^{2}dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates the side length only at the endpoints instead of integrating its square over the whole interval.",
+   "This uses the side length at \\( x=[[b]] \\) times the width, a right-rectangle approximation.",
+   "This doubles the correct volume.",
+   "This halves the correct volume.",
+   "This is off by \\( [[p]] \\) from the correct volume."
+  ]
+ }
+]

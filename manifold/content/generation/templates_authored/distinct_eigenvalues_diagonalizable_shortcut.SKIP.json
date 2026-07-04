@@ -1,0 +1,4 @@
+{
+ "skill_id": "distinct_eigenvalues_diagonalizable_shortcut",
+ "reason": "This skill is the yes/no reasoning shortcut 'distinct eigenvalues implies diagonalizable'; it has no single computable scalar answer."
+}

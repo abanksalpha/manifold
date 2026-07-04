@@ -1,0 +1,74 @@
+[
+{
+ "template_id": "growth_ranking_list_of_four_v1",
+ "skill_id": "growth_rate_ranking_grows_fastest",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 9},
+  "c": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Rank the following four functions by growth rate as \\( n\\to\\infty \\): \\( n \\), \\( n\\log n \\), \\( n^{[[k]]} \\), and \\( [[c]]^{n} \\). The fastest-growing is \\( [[c]]^{n} \\). Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{n^{[[k]]}}{[[c]]^{n}} \\), the ratio of the SECOND-fastest-growing function to the fastest.",
+ "answer_spec": {"op": "limit", "expr": "n**[[k]]/[[c]]**n", "var": "n", "point": "oo"},
+ "distractors": ["[[k]]/[[c]]", "[[c]]/[[k]]", "1", "[[c]]**[[k]]", "[[k]] - [[c]]", "[[c]] - [[k]]"],
+ "solution": "Among the four, \\( n \\) and \\( n\\log n \\) both lose to any positive power of \\( n \\), so the second-fastest is \\( n^{[[k]]} \\). Since exponentials dominate polynomials, \\( \\frac{n^{[[k]]}}{[[c]]^n}\\to [[answer]] \\) as \\( n\\to\\infty \\).",
+ "distractor_rationales": [
+  "This treats the exponent and base as if they combined into a simple ratio.",
+  "This is the reciprocal of the previous incorrect ratio.",
+  "This assumes the second-fastest and fastest functions grow at comparable rates.",
+  "This evaluates an unrelated power instead of the limit of the ratio.",
+  "This subtracts the base from the exponent instead of taking the limit.",
+  "This subtracts the exponent from the base instead of taking the limit."
+ ]
+},
+{
+ "template_id": "growth_ranking_four_polynomials_v1",
+ "skill_id": "growth_rate_ranking_grows_fastest",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "a1": {"type": "int", "lo": 1, "hi": 4},
+  "a2": {"type": "int", "lo": 2, "hi": 6},
+  "a3": {"type": "int", "lo": 4, "hi": 9},
+  "a4": {"type": "int", "lo": 7, "hi": 14}
+ },
+ "constraints": ["Lt([[a1]], [[a2]])", "Lt([[a2]], [[a3]])", "Lt([[a3]], [[a4]])"],
+ "stem": "Four power functions have distinct positive integer exponents: \\( n^{[[a1]]} \\), \\( n^{[[a2]]} \\), \\( n^{[[a3]]} \\), and \\( n^{[[a4]]} \\). Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{n^{[[a3]]}}{n^{[[a4]]}} \\), the ratio of the SECOND-fastest-growing of the four to the fastest.",
+ "answer_spec": {"op": "limit", "expr": "n**[[a3]]/n**[[a4]]", "var": "n", "point": "oo"},
+ "distractors": ["[[a3]]/[[a4]]", "[[a4]]/[[a3]]", "1", "[[a4]] - [[a3]]", "[[a3]] - [[a4]]", "0 - 1"],
+ "solution": "The largest exponent, [[a4]], makes \\( n^{[[a4]]} \\) the fastest-growing; the next-largest, [[a3]], makes \\( n^{[[a3]]} \\) second-fastest. Since \\( [[a3]] < [[a4]] \\), \\( \\frac{n^{[[a3]]}}{n^{[[a4]]}} = n^{[[a3]]-[[a4]]}\\to [[answer]] \\) as \\( n\\to\\infty \\).",
+ "distractor_rationales": [
+  "This is the ratio of the exponents themselves, not the limit of the function ratio.",
+  "This is the reciprocal of the exponent ratio, still not the limit.",
+  "This assumes the second-fastest and fastest functions grow at the same rate.",
+  "This is the positive exponent difference, not the value of the limit.",
+  "This is the negative exponent difference used incorrectly as if it were the answer directly.",
+  "This guesses a generic negative value instead of computing the actual limit."
+ ]
+},
+{
+ "template_id": "growth_ranking_two_exponentials_v1",
+ "skill_id": "growth_rate_ranking_grows_fastest",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": 2, "hi": 5},
+  "b": {"type": "int", "lo": 4, "hi": 9}
+ },
+ "constraints": ["Lt([[c]], [[b]])"],
+ "stem": "Consider the three functions \\( n^{[[a]]} \\), \\( [[c]]^{n} \\), and \\( [[b]]^{n} \\). Both exponentials outgrow the polynomial, and \\( [[b]]^n \\) is the fastest-growing of all three. Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{[[c]]^{n}}{[[b]]^{n}} \\), the ratio of the SECOND-fastest-growing function to the fastest.",
+ "answer_spec": {"op": "limit", "expr": "[[c]]**n/[[b]]**n", "var": "n", "point": "oo"},
+ "distractors": ["[[c]]/[[b]]", "[[b]]/[[c]]", "1", "[[b]] - [[c]]", "[[a]]/[[b]]", "[[c]] - [[b]]"],
+ "solution": "Since \\( [[c]] < [[b]] \\), the ratio \\( \\left(\\frac{[[c]]}{[[b]]}\\right)^n \\to 0 \\) as \\( n\\to\\infty \\); the polynomial \\( n^{[[a]]} \\) never even enters this comparison since both exponentials already dominate it.",
+ "distractor_rationales": [
+  "This is the ratio of the bases themselves, mistaken for the limit.",
+  "This is the reciprocal of the base ratio, still not the limit.",
+  "This assumes the two exponentials grow at the same rate.",
+  "This is the positive base difference rather than the value of the limit.",
+  "This mixes in the unrelated polynomial exponent instead of comparing the two exponential bases.",
+  "This is the negative base difference rather than the value of the limit."
+ ]
+}
+]

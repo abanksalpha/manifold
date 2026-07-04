@@ -1,0 +1,82 @@
+[
+{
+ "template_id": "degree_seq_sum_v1",
+ "skill_id": "degree_sequence_feasibility_parity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "d1": {"type": "int", "lo": 0, "hi": 9},
+  "d2": {"type": "int", "lo": 0, "hi": 9},
+  "d3": {"type": "int", "lo": 0, "hi": 9},
+  "d4": {"type": "int", "lo": 0, "hi": 9},
+  "d5": {"type": "int", "lo": 0, "hi": 9},
+  "d6": {"type": "int", "lo": 0, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "A sequence of proposed vertex degrees is \\( ([[d1]], [[d2]], [[d3]], [[d4]], [[d5]], [[d6]]) \\). By the handshake lemma, a degree sequence can only be realized by an actual graph if its sum is even. What is the sum of this degree sequence?",
+ "answer_spec": {"op": "evaluate", "expr": "[[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]] + [[d6]]"},
+ "distractors": ["[[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]]", "([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]] + [[d6]])/2", "[[d1]]*[[d2]]*[[d3]]", "[[answer]] + 1", "[[answer]] - 1", "[[answer]] + 2"],
+ "solution": "The sum of the degree sequence is \\( [[d1]]+[[d2]]+[[d3]]+[[d4]]+[[d5]]+[[d6]] = [[answer]] \\) (the sequence is graphical-by-parity only if this is even, since it must equal twice the edge count).",
+ "distractor_rationales": [
+  "This leaves out one of the six degrees from the sum.",
+  "This divides the correct sum by 2, confusing the degree sum with the edge count.",
+  "This multiplies three of the degrees instead of summing all six.",
+  "This overshoots the correct sum by 1.",
+  "This undershoots the correct sum by 1.",
+  "This overshoots the correct sum by 2."
+ ]
+},
+{
+ "template_id": "degree_seq_odd_count_v1",
+ "skill_id": "degree_sequence_feasibility_parity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "d1": {"type": "int", "lo": 0, "hi": 9},
+  "d2": {"type": "int", "lo": 0, "hi": 9},
+  "d3": {"type": "int", "lo": 0, "hi": 9},
+  "d4": {"type": "int", "lo": 0, "hi": 9},
+  "d5": {"type": "int", "lo": 0, "hi": 9},
+  "d6": {"type": "int", "lo": 0, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "A sequence of proposed vertex degrees is \\( ([[d1]], [[d2]], [[d3]], [[d4]], [[d5]], [[d6]]) \\). In any graph, the number of vertices with odd degree must be even. How many of these six proposed degrees are odd?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[d1]],2) + Mod([[d2]],2) + Mod([[d3]],2) + Mod([[d4]],2) + Mod([[d5]],2) + Mod([[d6]],2)"},
+ "distractors": ["Mod([[d1]],2) + Mod([[d2]],2) + Mod([[d3]],2)", "6 - (Mod([[d1]],2) + Mod([[d2]],2) + Mod([[d3]],2) + Mod([[d4]],2) + Mod([[d5]],2) + Mod([[d6]],2))", "[[d1]] + [[d2]]", "[[answer]] + 1", "[[answer]] + 2", "[[answer]] - 1"],
+ "solution": "Checking each degree's parity and counting the odd ones among \\( [[d1]], [[d2]], [[d3]], [[d4]], [[d5]], [[d6]] \\) gives [[answer]] (this count must be even for the sequence to be graphical).",
+ "distractor_rationales": [
+  "This only checks the first three degrees instead of all six.",
+  "This counts the EVEN-degree vertices instead of the odd-degree ones.",
+  "This adds two of the raw degree values instead of counting how many are odd.",
+  "This overshoots the correct odd-degree count by 1.",
+  "This overshoots the correct odd-degree count by 2.",
+  "This undershoots the correct odd-degree count by 1."
+ ]
+},
+{
+ "template_id": "degree_seq_min_missing_parity_v1",
+ "skill_id": "degree_sequence_feasibility_parity",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "d1": {"type": "int", "lo": 0, "hi": 9},
+  "d2": {"type": "int", "lo": 0, "hi": 9},
+  "d3": {"type": "int", "lo": 0, "hi": 9},
+  "d4": {"type": "int", "lo": 0, "hi": 9},
+  "d5": {"type": "int", "lo": 0, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Five vertices of a graph have degrees \\( [[d1]], [[d2]], [[d3]], [[d4]], [[d5]] \\), and a sixth vertex has some unknown degree \\( x \\ge 0 \\). Since the total degree sum of any graph must be even, what is the SMALLEST nonnegative integer value \\( x \\) can take?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]], 2)"},
+ "distractors": ["[[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]]", "Mod([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]], 2) + 1", "Mod([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]], 2) + 2", "1 - Mod([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]], 2)", "2", "3"],
+ "solution": "The known five degrees sum to \\( [[d1]]+[[d2]]+[[d3]]+[[d4]]+[[d5]] \\); for the total (including \\(x\\)) to be even, \\(x\\) must have the same parity as this sum, and the smallest nonnegative such \\(x\\) is \\([[answer]]\\) (either \\(0\\) if the known sum is already even, or \\(1\\) if it is odd).",
+ "distractor_rationales": [
+  "This reports the raw sum of the five known degrees instead of the needed parity of \\(x\\).",
+  "This adds one to the correct minimal value.",
+  "This adds two to the correct minimal value.",
+  "This flips the required parity, picking the opposite of the correct minimal value.",
+  "This guesses a fixed value unrelated to the actual parity of the known sum.",
+  "This guesses another fixed value unrelated to the actual parity of the known sum."
+ ]
+}
+]

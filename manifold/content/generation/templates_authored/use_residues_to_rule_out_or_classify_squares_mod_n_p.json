@@ -1,0 +1,154 @@
+[
+  {
+    "template_id": "quadratic_residue_value_v1",
+    "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 15},
+      "n": {"type": "choice", "values": [5, 7, 8, 9, 11, 13]}
+    },
+    "constraints": ["Ne(Mod([[a]], [[n]]), 0)"],
+    "stem": "What is the least non-negative residue of \\( [[a]]^{2} \\) modulo \\( [[n]] \\)? (Equivalently, the remainder when \\( [[a]]^{2} \\) is divided by \\( [[n]] \\).) This residue is a quadratic residue modulo \\( [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**2, [[n]])"},
+    "distractors": [
+      "Mod([[a]], [[n]])",
+      "Mod(2*[[a]], [[n]])",
+      "Mod([[a]]**2 + 1, [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[a]]**3, [[n]])",
+      "Mod([[answer]] + 3, [[n]])"
+    ],
+    "solution": "Square \\( [[a]] \\) and reduce modulo \\( [[n]] \\): the least non-negative residue of \\( [[a]]^{2} \\) is \\( [[answer]] \\), so \\( [[answer]] \\) is a quadratic residue modulo \\( [[n]] \\).",
+    "distractor_rationales": [
+      "This is \\( [[a]] \\bmod [[n]] \\); the exponent 2 was dropped.",
+      "This is \\( 2[[a]] \\bmod [[n]] \\); the square was replaced by doubling.",
+      "This is \\( [[a]]^{2}+1 \\bmod [[n]] \\), an off-by-one slip.",
+      "This is one more than the correct residue.",
+      "This is two more than the correct residue.",
+      "This is \\( [[a]]^{3} \\bmod [[n]] \\), a cube rather than a square.",
+      "This is three more than the correct residue."
+    ]
+  },
+  {
+    "template_id": "sum_of_two_squares_mod_4_v1",
+    "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "n": {"type": "int", "lo": 20, "hi": 400}
+    },
+    "constraints": [],
+    "stem": "Every perfect square is congruent to 0 or 1 modulo 4, so a sum of two perfect squares can never be congruent to 3 modulo 4. To check whether \\( [[n]] \\) could possibly be written as a sum of two perfect squares, what is \\( [[n]] \\bmod 4 \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[n]], 4)"},
+    "distractors": [
+      "Mod([[n]], 2)",
+      "Mod([[n]], 3)",
+      "Mod([[n]] + 1, 4)",
+      "Mod([[n]] - 1, 4)",
+      "Mod([[n]], 8)",
+      "floor([[n]]/4)"
+    ],
+    "solution": "Divide \\( [[n]] \\) by 4 and take the remainder: \\( [[n]] \\bmod 4 = [[answer]] \\). If this were 3, \\( [[n]] \\) could be ruled out immediately as a sum of two squares.",
+    "distractor_rationales": [
+      "This reduces modulo 2 instead of modulo 4, which only tests parity and cannot rule out residue 3.",
+      "This reduces modulo 3, the wrong modulus for this classification.",
+      "This is one more than the correct residue.",
+      "This is one less than the correct residue.",
+      "This reduces modulo 8, a finer classification than the one asked for.",
+      "This is the quotient of \\( [[n]] \\) by 4, not the remainder."
+    ]
+  },
+  {
+    "template_id": "count_quadratic_residues_v1",
+    "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]}
+    },
+    "constraints": [],
+    "stem": "For the odd prime \\( [[p]] \\), how many distinct nonzero quadratic residues (values of \\( x^{2} \\bmod [[p]] \\) for \\( x = 1, \\dots, [[p]]-1 \\)) are there modulo \\( [[p]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "([[p]] - 1)/2"},
+    "distractors": [
+      "[[p]] - 1",
+      "[[p]]",
+      "([[p]] + 1)/2",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "2*[[answer]]"
+    ],
+    "solution": "For an odd prime \\( [[p]] \\), squaring is exactly 2-to-1 on the nonzero residues \\( \\{1,\\dots,[[p]]-1\\} \\) (since \\( x^2 \\equiv (-x)^2 \\) and \\( x \\ne -x \\)), so there are exactly \\( \\dfrac{[[p]]-1}{2} = [[answer]] \\) distinct nonzero quadratic residues.",
+    "distractor_rationales": [
+      "This counts every nonzero residue, forgetting that squaring is 2-to-1.",
+      "This counts every residue including 0.",
+      "This rounds the wrong way, using \\( p+1 \\) instead of \\( p-1 \\) in the numerator.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This doubles the correct count, undoing the 2-to-1 reduction."
+    ]
+  },
+  {
+    "template_id": "euler_criterion_classify_v1",
+    "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [7, 11, 13, 17, 19, 23]},
+      "a": {"type": "int", "lo": 2, "hi": 30}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+    "stem": "By Euler's criterion, \\( a \\) is a quadratic residue modulo the odd prime \\( p \\) exactly when \\( a^{(p-1)/2} \\equiv 1 \\pmod p \\) (and a non-residue when it is \\( \\equiv -1 \\)). What is the least non-negative residue of \\( [[a]]^{([[p]]-1)/2} \\) modulo \\( [[p]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(([[p]]-1)/2), [[p]])"},
+    "distractors": [
+      "1",
+      "[[p]] - 1",
+      "Mod([[a]], [[p]])",
+      "Mod([[a]]**2, [[p]])",
+      "Mod([[answer]] + 1, [[p]])",
+      "Mod([[p]] - [[answer]], [[p]])"
+    ],
+    "solution": "Compute \\( [[a]]^{([[p]]-1)/2} \\bmod [[p]] \\) directly: the result is \\( [[answer]] \\), which by Euler's criterion is either \\( 1 \\) (\\( [[a]] \\) is a quadratic residue mod \\( [[p]] \\)) or \\( [[p]]-1 \\) (\\( [[a]] \\) is a non-residue).",
+    "distractor_rationales": [
+      "This assumes \\( [[a]] \\) is always a quadratic residue, guessing 1 without computing.",
+      "This assumes \\( [[a]] \\) is always a non-residue, guessing \\( p-1 \\) without computing.",
+      "This is \\( [[a]] \\bmod [[p]] \\), as if the exponent were 1 instead of \\( (p-1)/2 \\).",
+      "This is \\( [[a]]^{2} \\bmod [[p]] \\), the wrong exponent.",
+      "This is one more than the correct value.",
+      "This is the complementary value \\( p - \\text{answer} \\), the wrong sign class."
+    ]
+  },
+  {
+    "template_id": "count_solutions_to_x2_equiv_a_mod_p_v1",
+    "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]},
+      "a": {"type": "int", "lo": 1, "hi": 60}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+    "stem": "For the odd prime \\( [[p]] \\), how many integers \\( x \\) with \\( 0 \\le x < [[p]] \\) satisfy \\( x^{2} \\equiv [[a]] \\pmod{[[p]]} \\)? (This count is 2 if \\( [[a]] \\) is a nonzero quadratic residue modulo \\( [[p]] \\), and 0 if \\( [[a]] \\) is a non-residue.)",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(([[p]]-1)/2) + 1, [[p]])"},
+    "distractors": [
+      "1",
+      "Mod([[a]]**(([[p]]-1)/2), [[p]])",
+      "2",
+      "0",
+      "[[answer]] + 1",
+      "[[p]] - [[answer]]",
+      "Mod([[a]], [[p]])"
+    ],
+    "solution": "By Euler's criterion, \\( [[a]]^{([[p]]-1)/2} \\equiv \\pm 1 \\pmod{[[p]]} \\), and the number of solutions to \\( x^{2} \\equiv [[a]] \\pmod{[[p]]} \\) equals \\( \\left([[a]]^{([[p]]-1)/2}+1\\right) \\bmod [[p]] \\), which is \\( 2 \\) when \\( [[a]] \\) is a quadratic residue and \\( 0 \\) otherwise. Here the count is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This assumes every quadratic congruence has exactly one solution, the way a linear equation would.",
+      "This is the raw Euler's-criterion residue ( \\( \\pm 1 \\bmod [[p]] \\) ) without the final shift that converts it into a solution count.",
+      "This assumes \\( [[a]] \\) is always a quadratic residue, guessing 2 without checking.",
+      "This assumes \\( [[a]] \\) is always a non-residue, guessing 0 without checking.",
+      "This is one more than the correct count.",
+      "This is the complementary count \\( p - \\text{answer} \\), the wrong direction.",
+      "This is just \\( [[a]] \\bmod [[p]] \\), not the number of solutions."
+    ]
+  }
+]

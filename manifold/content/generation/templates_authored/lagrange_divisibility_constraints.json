@@ -1,0 +1,158 @@
+[
+ {
+  "template_id": "lagrange_divisibility_constraints_v1",
+  "skill_id": "lagrange_divisibility_constraints",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "h": {"type": "int", "lo": 2, "hi": 12},
+   "m": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": [],
+  "derived": {"g": "[[h]] * [[m]]"},
+  "stem": "By Lagrange's theorem the order of a subgroup divides the order of the group. Suppose a finite group \\( G \\) has order [[g]] and \\( H \\) is a subgroup of \\( G \\) of order [[h]]. What is the index \\( [G : H] = \\dfrac{|G|}{|H|} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[g]], [[h]])"},
+  "distractors": [
+   "[[g]] - [[h]]",
+   "[[g]] + [[h]]",
+   "[[h]]",
+   "[[g]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Lagrange's theorem gives \\( |G| = [G:H]\\,|H| \\), so \\( [G:H] = \\frac{|G|}{|H|} = \\frac{[[g]]}{[[h]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the orders instead of dividing them.",
+   "This adds the orders instead of dividing them.",
+   "This reports the subgroup order rather than the index.",
+   "This reports the group order rather than the index.",
+   "This is off by one from the correct index.",
+   "This is off by one from the correct index."
+  ]
+ },
+ {
+  "template_id": "lagrange_possible_subgroup_orders_v1",
+  "skill_id": "lagrange_divisibility_constraints",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "A finite group \\( G \\) has order \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). By Lagrange's theorem, the order of every subgroup of \\( G \\) must be a positive divisor of [[nval]]. How many DIFFERENT subgroup orders are consistent with Lagrange's theorem (i.e., how many positive divisors does [[nval]] have)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]] + 1)*([[b]] + 1)"},
+  "distractors": [
+   "[[a]]*[[b]]",
+   "[[a]] + [[b]]",
+   "([[a]] + 1) + ([[b]] + 1)",
+   "[[nval]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The positive divisors of \\( p^{a}q^{b} \\) number \\( (a+1)(b+1) \\), since each divisor picks an exponent from \\( 0,\\dots,a \\) for \\( p \\) and \\( 0,\\dots,b \\) for \\( q \\). Here \\( (a+1)(b+1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the exponents directly instead of adding one to each first.",
+   "This adds the exponents instead of using \\( (a+1)(b+1) \\).",
+   "This adds the two factors instead of multiplying them.",
+   "This reports \\( |G| \\) itself, not the number of divisors of \\( |G| \\).",
+   "This is off by one from the correct divisor count.",
+   "This is off by one from the correct divisor count."
+  ]
+ },
+ {
+  "template_id": "lagrange_largest_proper_subgroup_order_v1",
+  "skill_id": "lagrange_divisibility_constraints",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+   "m": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Lt([[p]], [[m]])"],
+  "derived": {"nval": "[[p]] * [[m]]"},
+  "stem": "A finite group \\( G \\) has order [[nval]], and [[p]] is the SMALLEST prime factor of [[nval]]. By Lagrange's theorem, what is the largest possible order of a PROPER subgroup of \\( G \\) (that is, a subgroup with \\( |H| < |G| \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "[[nval]]/[[p]]"},
+  "distractors": [
+   "[[nval]] - 1",
+   "[[nval]] - [[p]]",
+   "[[p]]",
+   "[[nval]]",
+   "[[nval]]/[[p]] + 1",
+   "[[nval]]/[[p]] - 1"
+  ],
+  "solution": "A proper subgroup's order is a divisor of \\( |G| = [[nval]] \\) that is strictly less than \\( [[nval]] \\); the LARGEST such divisor is \\( |G| \\) divided by its smallest prime factor, \\( \\frac{[[nval]]}{[[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is off by one from \\( |G| \\), not a divisor of \\( |G| \\) at all in general.",
+   "This subtracts the prime instead of dividing by it.",
+   "This reports the smallest prime factor itself, not the largest proper divisor.",
+   "This reports \\( |G| \\), which is not a PROPER subgroup's order.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order."
+  ]
+ },
+ {
+  "template_id": "lagrange_min_group_order_two_subgroups_v1",
+  "skill_id": "lagrange_divisibility_constraints",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "h": {"type": "int", "lo": 2, "hi": 15},
+   "k": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": ["Ne([[h]], [[k]])"],
+  "stem": "A finite group \\( G \\) has a subgroup of order [[h]] and a (different) subgroup of order [[k]]. By Lagrange's theorem, both [[h]] and [[k]] must divide \\( |G| \\). What is the SMALLEST possible value of \\( |G| \\) consistent with this?",
+  "answer_spec": {"op": "evaluate", "expr": "[[h]]*[[k]]/gcd([[h]], [[k]])"},
+  "distractors": [
+   "[[h]]*[[k]]",
+   "[[h]] + [[k]]",
+   "gcd([[h]], [[k]])",
+   "([[h]] + [[k]] + Abs([[h]] - [[k]]))/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The smallest number divisible by both [[h]] and [[k]] is their least common multiple, \\( \\operatorname{lcm}([[h]],[[k]]) = \\dfrac{[[h]]\\cdot[[k]]}{\\gcd([[h]],[[k]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the two orders, which is only the lcm when they are coprime.",
+   "This adds the two orders instead of taking their lcm.",
+   "This gives the gcd, not the lcm, of the two orders.",
+   "This uses only the larger of the two subgroup orders, ignoring the other's divisibility requirement.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "lagrange_subgroup_order_from_index_v1",
+  "skill_id": "lagrange_divisibility_constraints",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": [],
+  "derived": {"g": "[[h]] * [[k]]"},
+  "stem": "A finite group \\( G \\) of order [[g]] has a subgroup \\( H \\) of index \\( [G:H] = [[k]] \\). By Lagrange's theorem \\( |G| = [G:H]\\,|H| \\). What is \\( |H| \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[g]], [[k]])"},
+  "distractors": [
+   "[[k]]",
+   "[[g]] - [[k]]",
+   "[[g]]",
+   "[[g]]*[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "From \\( |G| = [G:H]|H| \\), \\( |H| = \\dfrac{|G|}{[G:H]} = \\dfrac{[[g]]}{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the index itself rather than \\( |H| \\).",
+   "This subtracts the index from \\( |G| \\) instead of dividing.",
+   "This reports \\( |G| \\) as if \\( H \\) were the whole group.",
+   "This multiplies instead of dividing.",
+   "This is off by one from the correct subgroup order.",
+   "This is off by one from the correct subgroup order."
+  ]
+ }
+]

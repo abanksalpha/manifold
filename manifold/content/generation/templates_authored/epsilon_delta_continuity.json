@@ -1,0 +1,99 @@
+[
+ {
+  "template_id": "eps_delta_linear_find_delta_v1",
+  "skill_id": "epsilon_delta_continuity",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "int", "lo": -6, "hi": 6},
+   "eps_num": {"type": "int", "lo": 1, "hi": 9},
+   "eps_den": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[m]], 0)"],
+  "stem": "Let \\( f(x) = [[m]]x + ([[b]]) \\), and fix \\( x_0 = [[x0]] \\) and \\( \\varepsilon = \\dfrac{[[eps_num]]}{[[eps_den]]} \\). Using the \\( \\varepsilon\\text{-}\\delta \\) definition of continuity, what is the LARGEST \\( \\delta > 0 \\) such that \\( |x - x_0| < \\delta \\) implies \\( |f(x)-f(x_0)| < \\varepsilon \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[eps_num]],[[eps_den]])/Abs([[m]])"},
+  "distractors": [
+   "Rational([[eps_num]],[[eps_den]])*Abs([[m]])",
+   "Rational([[eps_num]],[[eps_den]])",
+   "Rational([[eps_num]],[[eps_den]])/[[m]]**2",
+   "Abs([[m]])/Rational([[eps_num]],[[eps_den]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( |f(x)-f(x_0)| = |[[m]]||x-x_0| \\), the condition \\( |f(x)-f(x_0)|<\\varepsilon \\) holds exactly when \\( |x-x_0| < \\dfrac{\\varepsilon}{|[[m]]|} \\). So the largest valid \\( \\delta \\) is \\( \\dfrac{\\varepsilon}{|[[m]]|} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( |m| \\) instead of dividing by it.",
+   "This ignores the slope entirely and just reports \\( \\varepsilon \\).",
+   "This divides by \\( m^{2} \\) instead of \\( |m| \\).",
+   "This inverts the ratio of \\( \\varepsilon \\) and \\( |m| \\).",
+   "This is off by one from the correct \\( \\delta \\).",
+   "This is off by one from the correct \\( \\delta \\)."
+  ]
+ },
+ {
+  "template_id": "eps_delta_linear_find_epsilon_v1",
+  "skill_id": "epsilon_delta_continuity",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "int", "lo": -6, "hi": 6},
+   "delta_num": {"type": "int", "lo": 1, "hi": 9},
+   "delta_den": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[m]], 0)"],
+  "stem": "Let \\( f(x) = [[m]]x + ([[b]]) \\), and fix \\( x_0 = [[x0]] \\) and \\( \\delta = \\dfrac{[[delta_num]]}{[[delta_den]]} \\). What is the SMALLEST \\( \\varepsilon > 0 \\) such that \\( |x-x_0| < \\delta \\) is guaranteed to imply \\( |f(x)-f(x_0)| < \\varepsilon \\) (i.e. the sharp bound on \\( |f(x)-f(x_0)| \\) over that \\( \\delta \\)-neighborhood)?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[m]])*Rational([[delta_num]],[[delta_den]])"},
+  "distractors": [
+   "Rational([[delta_num]],[[delta_den]])/Abs([[m]])",
+   "Rational([[delta_num]],[[delta_den]])",
+   "[[m]]**2*Rational([[delta_num]],[[delta_den]])",
+   "Abs([[m]])/Rational([[delta_num]],[[delta_den]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For \\( |x-x_0|<\\delta \\), \\( |f(x)-f(x_0)| = |[[m]]||x-x_0| \\) ranges up to (but not including) \\( |[[m]]|\\delta \\). So the sharp bound is \\( \\varepsilon = |[[m]]|\\cdot\\delta = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( |m| \\) instead of multiplying by it.",
+   "This ignores the slope entirely and just reports \\( \\delta \\).",
+   "This multiplies by \\( m^{2} \\) instead of \\( |m| \\).",
+   "This inverts the ratio of \\( |m| \\) and \\( \\delta \\).",
+   "This is off by one from the correct \\( \\varepsilon \\).",
+   "This is off by one from the correct \\( \\varepsilon \\)."
+  ]
+ },
+ {
+  "template_id": "eps_delta_quadratic_bounded_delta_v1",
+  "skill_id": "epsilon_delta_continuity",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "x0": {"type": "int", "lo": 1, "hi": 8},
+   "eps_num": {"type": "int", "lo": 1, "hi": 6},
+   "eps_den": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Le([[eps_num]], 2*[[x0]]+1)"],
+  "stem": "Let \\( f(x) = x^{2} \\) and fix \\( x_0 = [[x0]] \\), \\( \\varepsilon = \\dfrac{[[eps_num]]}{[[eps_den]]} \\). Using the standard bound (restricting attention to \\( \\delta \\le 1 \\), so that \\( |x+x_0| \\le 2x_0+1 \\) whenever \\( |x-x_0|<\\delta \\le 1 \\)), the textbook choice \\( \\delta = \\min\\!\\left(1, \\dfrac{\\varepsilon}{2x_0+1}\\right) \\) makes \\( |x-x_0|<\\delta \\) imply \\( |f(x)-f(x_0)|<\\varepsilon \\). Since \\( \\varepsilon \\le 2x_0+1 \\) here, what is this \\( \\delta \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[eps_num]],[[eps_den]])/(2*[[x0]]+1)"},
+  "distractors": [
+   "Rational([[eps_num]],[[eps_den]])/(2*[[x0]])",
+   "Rational([[eps_num]],[[eps_den]])*(2*[[x0]]+1)",
+   "Rational([[eps_num]],[[eps_den]])",
+   "1",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( |f(x)-f(x_0)| = |x-x_0||x+x_0| \\) and \\( |x+x_0|\\le 2x_0+1 \\) once \\( \\delta\\le 1 \\), choosing \\( \\delta = \\dfrac{\\varepsilon}{2x_0+1} \\) forces \\( |f(x)-f(x_0)| < \\delta(2x_0+1) = \\varepsilon \\). Because \\( \\varepsilon \\le 2x_0+1 \\) here, this \\( \\delta \\) is already \\( \\le 1 \\), so it is exactly \\( \\min(1,\\varepsilon/(2x_0+1)) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the \\( +1 \\) from bounding \\( |x+x_0| \\) by \\( 2x_0+1 \\), using \\( 2x_0 \\) instead.",
+   "This multiplies by \\( 2x_0+1 \\) instead of dividing by it.",
+   "This ignores the factor \\( |x+x_0| \\) entirely.",
+   "This always reports the cap \\( \\delta\\le 1 \\) rather than the tighter bound.",
+   "This is off by one from the correct \\( \\delta \\).",
+   "This is off by one from the correct \\( \\delta \\)."
+  ]
+ }
+]

@@ -1,0 +1,208 @@
+[
+  {
+    "template_id": "sum_of_divisors_v1",
+    "skill_id": "sum_of_the_divisors_from_the_factorization",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7]},
+      "q": {"type": "choice", "values": [2, 3, 5, 7]},
+      "a": {"type": "int", "lo": 1, "hi": 3},
+      "b": {"type": "int", "lo": 1, "hi": 3}
+    },
+    "constraints": ["Lt([[p]], [[q]])"],
+    "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+    "stem": "What is the sum of all positive divisors of \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1))"},
+    "distractors": [
+      "[[nval]]",
+      "([[a]] + 1)*([[b]] + 1)",
+      "[[answer]] - [[nval]]",
+      "[[p]]**([[a]] + 1) + [[q]]**([[b]] + 1)",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "For \\( n = p^{a}q^{b} \\), the sum of divisors factors as \\( \\sigma(n) = \\frac{p^{a+1}-1}{p-1}\\cdot\\frac{q^{b+1}-1}{q-1} \\). Substituting gives \\( \\sigma([[nval]]) = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( n \\) itself, not the sum of all its divisors.",
+      "This is the number of divisors \\( (a+1)(b+1) \\), not their sum.",
+      "This is the sum of the proper divisors, which omits \\( n \\) itself.",
+      "This adds the two top prime-power terms but drops the rest of each geometric series.",
+      "This is one more than the correct sum.",
+      "This is one less than the correct sum.",
+      "This is two more than the correct sum."
+    ]
+  },
+  {
+    "template_id": "sum_of_proper_divisors_v1",
+    "skill_id": "sum_of_the_divisors_from_the_factorization",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7]},
+      "q": {"type": "choice", "values": [2, 3, 5, 7]},
+      "a": {"type": "int", "lo": 1, "hi": 3},
+      "b": {"type": "int", "lo": 1, "hi": 3}
+    },
+    "constraints": ["Lt([[p]], [[q]])"],
+    "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+    "stem": "What is the sum of the PROPER positive divisors of \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\) (that is, all positive divisors except \\( [[nval]] \\) itself)?",
+    "answer_spec": {"op": "evaluate", "expr": "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1)) - [[nval]]"},
+    "distractors": [
+      "([[p]]**([[a]] + 1) - 1)/([[p]] - 1) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1))",
+      "[[nval]]",
+      "([[a]] + 1)*([[b]] + 1) - 1",
+      "[[answer]] + [[nval]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "The sum of ALL divisors is \\( \\sigma(n)=\\frac{p^{a+1}-1}{p-1}\\cdot\\frac{q^{b+1}-1}{q-1} \\); subtracting \\( n \\) itself leaves only the proper divisors: \\( \\sigma([[nval]]) - [[nval]] = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( \\sigma(n) \\), the sum of ALL divisors, forgetting to exclude \\( n \\) itself.",
+      "This is \\( n \\) itself, not the sum of its proper divisors.",
+      "This is one less than the divisor COUNT, not the divisor sum.",
+      "This adds \\( n \\) back on top of the correct proper-divisor sum.",
+      "This is one more than the correct sum.",
+      "This is one less than the correct sum.",
+      "This is two more than the correct sum."
+    ]
+  },
+  {
+    "template_id": "sum_of_divisors_from_raw_number_v1",
+    "skill_id": "sum_of_the_divisors_from_the_factorization",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+      "q": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+      "a": {"type": "int", "lo": 1, "hi": 3},
+      "b": {"type": "int", "lo": 1, "hi": 2}
+    },
+    "constraints": ["Lt([[p]], [[q]])"],
+    "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+    "stem": "What is the sum of all positive divisors of the number \\( [[nval]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1))"},
+    "distractors": [
+      "[[nval]]",
+      "([[a]] + 1)*([[b]] + 1)",
+      "[[p]] + [[q]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "First factor \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). Then \\( \\sigma([[nval]]) = \\frac{p^{a+1}-1}{p-1}\\cdot\\frac{q^{b+1}-1}{q-1} = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( n \\) itself, not the sum of all its divisors.",
+      "This is the number of divisors, not their sum.",
+      "This just adds the two prime factors, ignoring the exponents and the geometric series.",
+      "This is one more than the correct sum.",
+      "This is one less than the correct sum.",
+      "This is two more than the correct sum."
+    ]
+  },
+  {
+    "template_id": "sum_of_divisors_of_square_v1",
+    "skill_id": "sum_of_the_divisors_from_the_factorization",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+      "q": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]}
+    },
+    "constraints": ["Lt([[p]], [[q]])"],
+    "derived": {"nval": "[[p]] * [[q]]", "n2val": "[[p]]**2 * [[q]]**2"},
+    "stem": "Let \\( n = [[nval]] = [[p]] \\cdot [[q]] \\) for distinct primes \\( [[p]] \\) and \\( [[q]] \\). What is the sum of all positive divisors of \\( n^{2} = [[n2val]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "(([[p]]**3 - 1)/([[p]] - 1)) * (([[q]]**3 - 1)/([[q]] - 1))"},
+    "distractors": [
+      "([[p]] + 1)*([[q]] + 1)",
+      "[[n2val]]",
+      "(([[p]]**2 - 1)/([[p]] - 1)) * (([[q]]**2 - 1)/([[q]] - 1))",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "Squaring \\( n \\) doubles both exponents: \\( n^{2} = [[p]]^{2}[[q]]^{2} \\), so \\( \\sigma(n^{2}) = \\frac{p^{3}-1}{p-1}\\cdot\\frac{q^{3}-1}{q-1} = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( \\sigma(n) \\), the sum of divisors of \\( n \\) itself, forgetting that squaring doubles the exponents.",
+      "This is \\( n^{2} \\) itself, not the sum of its divisors.",
+      "This uses exponent 1 instead of 2 in each geometric-series numerator, i.e. computes \\( \\sigma(n) \\) again.",
+      "This is one more than the correct sum.",
+      "This is one less than the correct sum.",
+      "This is two more than the correct sum."
+    ]
+  },
+  {
+    "template_id": "sum_of_divisors_three_prime_factors_v1",
+    "skill_id": "sum_of_the_divisors_from_the_factorization",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5]},
+      "q": {"type": "choice", "values": [3, 5, 7]},
+      "r": {"type": "choice", "values": [7, 11, 13]},
+      "a": {"type": "int", "lo": 1, "hi": 2},
+      "b": {"type": "int", "lo": 1, "hi": 2},
+      "c": {"type": "int", "lo": 1, "hi": 2}
+    },
+    "constraints": ["Lt([[p]], [[q]])", "Lt([[q]], [[r]])"],
+    "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]] * [[r]]**[[c]]"},
+    "stem": "What is the sum of all positive divisors of \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\cdot [[r]]^{[[c]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1)) * (([[r]]**([[c]] + 1) - 1)/([[r]] - 1))"},
+    "distractors": [
+      "[[nval]]",
+      "([[a]] + 1)*([[b]] + 1)*([[c]] + 1)",
+      "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1))",
+      "[[p]]**([[a]] + 1) + [[q]]**([[b]] + 1) + [[r]]**([[c]] + 1)",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "For \\( n = p^{a}q^{b}r^{c} \\) with three distinct primes, the sum-of-divisors function multiplies across all three: \\( \\sigma(n) = \\frac{p^{a+1}-1}{p-1}\\cdot\\frac{q^{b+1}-1}{q-1}\\cdot\\frac{r^{c+1}-1}{r-1} = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( n \\) itself, not the sum of all its divisors.",
+      "This is the divisor COUNT, not the divisor SUM.",
+      "This drops the third prime's geometric series entirely, using only two of the three factors.",
+      "This adds the three top prime-power terms but drops the rest of each geometric series.",
+      "This is one more than the correct sum.",
+      "This is one less than the correct sum.",
+      "This is two more than the correct sum."
+    ]
+  },
+  {
+    "template_id": "sum_of_divisors_divisible_by_prime_v1",
+    "skill_id": "sum_of_the_divisors_from_the_factorization",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7]},
+      "q": {"type": "choice", "values": [2, 3, 5, 7]},
+      "a": {"type": "int", "lo": 1, "hi": 4},
+      "b": {"type": "int", "lo": 1, "hi": 4}
+    },
+    "constraints": ["Lt([[p]], [[q]])"],
+    "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+    "stem": "Let \\( n = [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). What is the sum of the positive divisors of \\( n \\) that are divisible by \\( [[q]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * ([[q]]*([[q]]**[[b]] - 1)/([[q]] - 1))"},
+    "distractors": [
+      "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**([[b]] + 1) - 1)/([[q]] - 1))",
+      "[[nval]]",
+      "([[a]] + 1)*[[b]]",
+      "(([[p]]**([[a]] + 1) - 1)/([[p]] - 1)) * (([[q]]**[[b]] - 1)/([[q]] - 1))",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "A divisor of \\( n \\) divisible by \\( [[q]] \\) has the form \\( p^{i}q^{k} \\) with \\( 0\\le i\\le[[a]] \\) and \\( 1\\le k\\le[[b]] \\). Summing over \\( i \\) gives the full geometric series \\( \\frac{p^{a+1}-1}{p-1} \\), while summing \\( q^{k} \\) for \\( k=1,\\dots,[[b]] \\) gives \\( \\frac{q([[q]]^{[[b]]}-1)}{q-1} \\). Multiplying these gives \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( \\sigma(n) \\), the sum of ALL divisors, forgetting to restrict to multiples of \\( [[q]] \\).",
+      "This is \\( n \\) itself, not a sum of divisors.",
+      "This multiplies exponent-based counts instead of summing the actual divisor values.",
+      "This starts the \\( q \\)-power series at exponent 0 instead of 1, missing the required factor of \\( [[q]] \\).",
+      "This is one more than the correct sum.",
+      "This is one less than the correct sum.",
+      "This is two more than the correct sum."
+    ]
+  }
+]

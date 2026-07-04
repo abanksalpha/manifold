@@ -1,0 +1,240 @@
+[
+ {
+  "template_id": "nth_term_divergence_test_v1",
+  "skill_id": "nth_term_divergence_test",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": -9,
+    "hi": 9
+   },
+   "d": {
+    "type": "int",
+    "lo": -9,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[d]], 0)"
+  ],
+  "stem": "For the series \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{[[a]]n + ([[b]])}{[[c]]n + ([[d]])} \\), the nth-term (divergence) test examines \\( \\lim_{n\\to\\infty} a_n \\). What is that limit?",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "([[a]]*n + [[b]])/([[c]]*n + [[d]])",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "Rational([[c]],[[a]])",
+   "Rational([[b]],[[d]])",
+   "0",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Numerator and denominator both have degree \\( 1 \\) in \\( n \\), so \\( \\lim_{n\\to\\infty} a_n = \\dfrac{[[a]]}{[[c]]} = [[answer]] \\). Since this is nonzero, the divergence test shows \\( \\sum a_n \\) diverges.",
+  "distractor_rationales": [
+   "This inverts the ratio of the leading (degree-1) coefficients.",
+   "This takes the ratio of the constant terms, which do not determine the limit.",
+   "The degrees are equal, so the limit is the coefficient ratio, not \\( 0 \\); a \\( 0 \\) limit would make the test inconclusive.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ },
+ {
+  "template_id": "nth_term_divergence_test_v2_zero_limit",
+  "skill_id": "nth_term_divergence_test",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": -9,
+    "hi": 9
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "e": {
+    "type": "int",
+    "lo": -9,
+    "hi": 9
+   }
+  },
+  "constraints": [],
+  "stem": "For the series \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{[[a]]n + ([[b]])}{[[c]]n^{2} + ([[e]])} \\), what is \\( \\lim_{n\\to\\infty} a_n \\)?",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "([[a]]*n + [[b]])/([[c]]*n**2 + [[e]])",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "Rational([[a]],[[c]])",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The numerator has degree \\( 1 \\) but the denominator has degree \\( 2 \\), so \\( \\lim_{n\\to\\infty} a_n = 0 \\). Since the limit is \\( 0 \\), the nth-term test is INCONCLUSIVE here (it cannot show divergence, and does not by itself show convergence either).",
+  "distractor_rationales": [
+   "This is the ratio of leading coefficients, which only determines the limit when the degrees are EQUAL; here the denominator's degree is larger.",
+   "This keeps only the numerator's leading coefficient, ignoring that the denominator grows faster.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ },
+ {
+  "template_id": "nth_term_divergence_test_v3_compound_growth",
+  "skill_id": "nth_term_divergence_test",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": -14,
+    "hi": 14
+   }
+  },
+  "constraints": [
+   "Ne([[c]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "For the series \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\left(1 + \\dfrac{[[c]]}{n}\\right)^{n} \\), the nth-term test examines \\( \\lim_{n\\to\\infty} a_n \\). What is that limit?",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "(1 + [[c]]/n)**n",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "1",
+   "exp(-[[c]])",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "This is the standard compound-growth limit \\( \\lim_{n\\to\\infty}\\left(1+\\frac{c}{n}\\right)^{n} = e^{c} \\), so the limit is \\( e^{[[c]]} = [[answer]] \\). Since \\( c \\ne 0 \\) this is nonzero, so by the nth-term test \\( \\sum a_n \\) diverges.",
+  "distractor_rationales": [
+   "This is the limit one would get if \\( c \\) were \\( 0 \\); it ignores the actual value of \\( c \\).",
+   "This uses \\( -c \\) in the exponent instead of \\( c \\).",
+   "This mistakes the parameter \\( c \\) itself for the limit of the whole expression.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This doubles the correct limit."
+  ]
+ },
+ {
+  "template_id": "nth_term_divergence_test_v4_squeeze",
+  "skill_id": "nth_term_divergence_test",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": -8,
+    "hi": 8
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Ne([[c]], 0)"
+  ],
+  "stem": "For the series \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = [[c]] + \\dfrac{\\cos([[d]]n)}{n} \\), the nth-term test examines \\( \\lim_{n\\to\\infty} a_n \\). Using the fact that \\( \\cos([[d]]n) \\) is bounded, what is that limit?",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "[[c]] + cos([[d]]*n)/n",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "0",
+   "[[c]] + 1",
+   "[[c]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[d]]"
+  ],
+  "solution": "Since \\( -1 \\le \\cos([[d]]n) \\le 1 \\), the term \\( \\dfrac{\\cos([[d]]n)}{n} \\to 0 \\) by the squeeze theorem, so \\( \\lim_{n\\to\\infty} a_n = [[c]] = [[answer]] \\). This is nonzero, so \\( \\sum a_n \\) diverges by the nth-term test.",
+  "distractor_rationales": [
+   "This assumes the whole expression vanishes, but the bounded oscillating piece only removes the \\( \\cos \\) term, leaving \\( c \\).",
+   "This adds an extra \\( 1 \\) from the bound on cosine instead of letting the oscillating term vanish.",
+   "This subtracts an extra \\( 1 \\) from the bound on cosine instead of letting the oscillating term vanish.",
+   "This is off by two from the correct limit.",
+   "This is off by two from the correct limit.",
+   "This confuses the frequency parameter \\( d \\) inside the cosine with the limit itself."
+  ]
+ },
+ {
+  "template_id": "nth_term_divergence_test_v5_nth_root_growth",
+  "skill_id": "nth_term_divergence_test",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 2,
+    "hi": 8
+   },
+   "b": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "For the series \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\sqrt[n]{[[a]]n + [[b]]} \\), the nth-term test examines \\( \\lim_{n\\to\\infty} a_n \\). What is that limit?",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "([[a]]*n + [[b]])**(1/n)",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "0",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Any polynomial in \\( n \\) taken to the \\( 1/n \\) power tends to \\( 1 \\): \\( \\lim_{n\\to\\infty} \\sqrt[n]{[[a]]n+[[b]]} = 1 = [[answer]] \\). Since this limit is nonzero, the nth-term test shows \\( \\sum a_n \\) diverges.",
+  "distractor_rationales": [
+   "This wrongly assumes an \\( n \\)th root of a growing quantity shrinks to \\( 0 \\).",
+   "This mistakes the linear growth rate \\( a \\) for the limit of the \\( n \\)th root.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ }
+]

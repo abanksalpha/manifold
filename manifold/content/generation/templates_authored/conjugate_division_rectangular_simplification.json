@@ -1,0 +1,145 @@
+[
+{
+ "template_id": "conjugate_division_rectangular_v1",
+ "skill_id": "conjugate_division_rectangular_simplification",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[p]], [[q]])", "Ne([[p]], -[[q]])"],
+ "derived": {
+  "a": "[[c]]*[[p]] - [[d]]*[[q]]",
+  "b": "[[c]]*[[q]] + [[d]]*[[p]]"
+ },
+ "stem": "Write the quotient \\( \\dfrac{([[a]]) + ([[b]])i}{([[c]]) + ([[d]])i} \\) in rectangular form \\( x + yi \\). What is the result?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]) + ([[b]])*I)/(([[c]]) + ([[d]])*I)"},
+ "require_rational": false,
+ "distractors": [
+  "([[a]]*[[c]] + [[b]]*[[d]]) + ([[b]]*[[c]] - [[a]]*[[d]])*I",
+  "[[p]] - [[q]]*I",
+  "[[q]] + [[p]]*I",
+  "-[[p]] + [[q]]*I",
+  "[[p]] + [[q]]*I + 1",
+  "[[p]] + [[q]]*I + I"
+ ],
+ "solution": "Multiply numerator and denominator by the conjugate \\( ([[c]]) - ([[d]])i \\): the denominator becomes \\( ([[c]])^{2} + ([[d]])^{2} \\), and after simplifying the quotient equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the numerator after multiplying by the conjugate but forgetting to divide by \\( c^{2}+d^{2} \\).",
+  "This negates the imaginary part, as if the conjugate applied to the answer instead of the denominator.",
+  "This swaps the real and imaginary parts of the correct quotient.",
+  "This flips the sign of the real part only.",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "conjugate_division_plus_number_v1",
+ "skill_id": "conjugate_division_rectangular_simplification",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "e": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "f": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Simplify \\( \\dfrac{([[a]]) + ([[b]])i}{([[c]]) + ([[d]])i} + \\left(([[e]]) + ([[f]])i\\right) \\) and write the result in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "((([[a]]) + ([[b]])*I)/(([[c]]) + ([[d]])*I)) + (([[e]]) + ([[f]])*I)"},
+ "require_rational": false,
+ "distractors": [
+  "((([[a]]) + ([[b]])*I)/(([[c]]) + ([[d]])*I))",
+  "(([[e]]) + ([[f]])*I)",
+  "((([[a]]) + ([[e]]) ) + ([[b]]) + ([[d]])*I)/(([[c]]) + ([[d]])*I)",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - I"
+ ],
+ "solution": "First rationalize \\( \\dfrac{([[a]]) + ([[b]])i}{([[c]]) + ([[d]])i} \\) by multiplying by the conjugate \\( ([[c]]) - ([[d]])i \\) over itself, then add \\( ([[e]]) + ([[f]])i \\); the sum simplifies to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the quotient term, forgetting to add \\( ([[e]])+([[f]])i \\).",
+  "This is only the added number, forgetting to include the quotient.",
+  "This incorrectly adds the added number's parts into the numerator before dividing, instead of dividing first.",
+  "This negates the correct sum (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "conjugate_division_difference_of_quotients_v1",
+ "skill_id": "conjugate_division_rectangular_simplification",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "e": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "f": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "g": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "h": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[c]], [[g]])", "Ne([[d]], [[h]])"],
+ "stem": "Simplify \\( \\dfrac{([[a]]) + ([[b]])i}{([[c]]) + ([[d]])i} - \\dfrac{([[e]]) + ([[f]])i}{([[g]]) + ([[h]])i} \\) and write the result in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "((([[a]]) + ([[b]])*I)/(([[c]]) + ([[d]])*I)) - ((([[e]]) + ([[f]])*I)/(([[g]]) + ([[h]])*I))"},
+ "require_rational": false,
+ "distractors": [
+  "((([[a]]) + ([[b]])*I)/(([[c]]) + ([[d]])*I))",
+  "((([[e]]) + ([[f]])*I)/(([[g]]) + ([[h]])*I))",
+  "((([[a]]) + ([[b]])*I)/(([[c]]) + ([[d]])*I)) + ((([[e]]) + ([[f]])*I)/(([[g]]) + ([[h]])*I))",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - I"
+ ],
+ "solution": "Rationalize each quotient separately by multiplying by its own denominator's conjugate over itself, then subtract the two rectangular-form results; this simplifies to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the first quotient, forgetting to subtract the second.",
+  "This is only the second quotient (with the wrong sign), forgetting the first.",
+  "This adds the two quotients instead of subtracting the second from the first.",
+  "This negates the correct difference (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "conjugate_division_solve_real_parameter_v1",
+ "skill_id": "conjugate_division_rectangular_simplification",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "m": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[d]], 0)"],
+ "derived": {
+  "p": "[[c]]*[[m]]"
+ },
+ "stem": "For what real value of \\( t \\) is the quotient \\( \\dfrac{([[p]]) + ti}{([[c]]) + ([[d]])i} \\) a real number (i.e. has imaginary part equal to \\( 0 \\))?",
+ "answer_spec": {"op": "solve", "equation": "t*([[c]]) - ([[p]])*([[d]]) = 0", "var": "t"},
+ "distractors": [
+  "-([[p]])*([[d]])/([[c]])",
+  "([[p]])*([[c]])/([[d]])",
+  "([[d]])/([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Multiplying by the conjugate, the imaginary part of the quotient is proportional to \\( t([[c]]) - ([[p]])([[d]]) \\). Setting this to \\( 0 \\) gives \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign on the correct expression.",
+  "This swaps the roles of \\( c \\) and \\( d \\) in the proportionality relation.",
+  "This drops the factor of \\( p \\) coming from the numerator's real part.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

@@ -1,0 +1,196 @@
+[
+ {
+  "template_id": "powers_of_i_cyclic_reduction_v1",
+  "skill_id": "powers_of_i_cyclic_reduction",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 27}
+  },
+  "constraints": [],
+  "stem": "Let \\( i = \\sqrt{-1} \\). Using the cycle \\( i^{1}=i,\\ i^{2}=-1,\\ i^{3}=-i,\\ i^{4}=1 \\), evaluate \\( i^{[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "I**[[n]]"},
+  "require_rational": false,
+  "distractors": [
+   "1",
+   "-1",
+   "I",
+   "-I",
+   "0",
+   "1 + I",
+   "-1 - I"
+  ],
+  "solution": "Reduce the exponent modulo 4: \\( [[n]] \\equiv [[n]] \\pmod 4 \\) selects the corresponding entry of the cycle, so \\( i^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the value of \\( i^{4k} \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value of \\( i^{4k+2} \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value of \\( i^{4k+1} \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value of \\( i^{4k+3} \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "A power of \\( i \\) is never \\( 0 \\); it always has modulus 1.",
+   "A power of \\( i \\) is always purely real or purely imaginary, never \\( 1+i \\).",
+   "A power of \\( i \\) is always purely real or purely imaginary, never \\( -1-i \\)."
+  ]
+ },
+ {
+  "template_id": "powers_of_i_negative_exponent_v1",
+  "skill_id": "powers_of_i_cyclic_reduction",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 1, "hi": 30}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( i = \\sqrt{-1} \\). Using \\( i^{-1} = \\dfrac{1}{i} = -i \\) and the cycle \\( i^{1}=i,\\ i^{2}=-1,\\ i^{3}=-i,\\ i^{4}=1 \\), evaluate \\( i^{-[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "I**(-[[n]])"},
+  "distractors": [
+   "I**[[n]]",
+   "1",
+   "-1",
+   "I",
+   "0",
+   "-1 + I",
+   "1 - I"
+  ],
+  "solution": "A negative exponent means \\( i^{-[[n]]} = \\dfrac{1}{i^{[[n]]}} \\); since \\( 1/i = -i \\), this equals \\( i^{-1\\cdot[[n]]} = i^{4-([[n]] \\bmod 4)} \\) when \\( [[n]] \\not\\equiv 0 \\pmod 4 \\), giving \\( i^{-[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the exponent, giving \\( i^{[[n]]} \\) instead of \\( i^{-[[n]]} \\); the two agree only when the cycle position is real.",
+   "This is the value \\( i^{-[[n]]} \\) would take if \\( [[n]] \\) were a multiple of \\( 4 \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value \\( i^{-[[n]]} \\) would take if \\( [[n]] \\equiv 2 \\pmod 4 \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This forgets the negative sign introduced by \\( 1/i = -i \\).",
+   "A power of \\( i \\) is never \\( 0 \\); it always has modulus 1.",
+   "A power of \\( i \\) is always purely real or purely imaginary, never \\( -1+i \\).",
+   "A power of \\( i \\) is always purely real or purely imaginary, never \\( 1-i \\)."
+  ]
+ },
+ {
+  "template_id": "powers_of_i_telescoping_sum_v1",
+  "skill_id": "powers_of_i_cyclic_reduction",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Since every 4 consecutive powers of \\( i \\) sum to \\( i + i^2 + i^3 + i^4 = 0 \\), evaluate the sum \\( i^{1} + i^{2} + i^{3} + \\cdots + i^{[[n]]} \\).",
+  "answer_spec": {"op": "sum", "expr": "I**k", "var": "k", "lo": "1", "hi": "[[n]]"},
+  "distractors": [
+   "I**[[n]]",
+   "1",
+   "-1",
+   "I",
+   "0",
+   "[[n]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "Group the terms into complete blocks of \\( 4 \\), each summing to \\( 0 \\); only the leftover \\( [[n]] \\bmod 4 \\) terms at the end survive, giving \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the last term of the sum, \\( i^{[[n]]} \\), not the running total.",
+   "This assumes the sum always collapses to \\( 1 \\), ignoring the actual remainder block.",
+   "This assumes the sum always collapses to \\( -1 \\), ignoring the actual remainder block.",
+   "This assumes the sum always collapses to \\( i \\), ignoring the actual remainder block.",
+   "This is correct only when \\( [[n]] \\) is a multiple of \\( 4 \\); otherwise a nonzero remainder block survives.",
+   "This confuses the number of terms \\( [[n]] \\) with the value of the sum.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "powers_of_i_product_v1",
+  "skill_id": "powers_of_i_cyclic_reduction",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 40},
+   "n": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( i = \\sqrt{-1} \\). First combine the exponents, then reduce cyclically: evaluate \\( i^{[[m]]} \\cdot i^{[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "I**[[m]] * I**[[n]]"},
+  "distractors": [
+   "I**[[m]]",
+   "I**[[n]]",
+   "1",
+   "-1",
+   "I",
+   "0",
+   "[[answer]] + 1"
+  ],
+  "solution": "Adding exponents, \\( i^{[[m]]}\\cdot i^{[[n]]} = i^{[[m]]+[[n]]} \\); reducing \\( [[m]]+[[n]] \\) modulo \\( 4 \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This stops after reducing only the first factor, \\( i^{[[m]]} \\), forgetting to multiply by the second.",
+   "This stops after reducing only the second factor, \\( i^{[[n]]} \\), forgetting to multiply by the first.",
+   "This assumes the product always reduces to \\( 1 \\), ignoring the actual combined exponent.",
+   "This assumes the product always reduces to \\( -1 \\), ignoring the actual combined exponent.",
+   "This assumes the product always reduces to \\( i \\), ignoring the actual combined exponent.",
+   "A power of \\( i \\) is never \\( 0 \\); it always has modulus 1.",
+   "This is off by one from the correct product."
+  ]
+ },
+ {
+  "template_id": "powers_of_i_quotient_v1",
+  "skill_id": "powers_of_i_cyclic_reduction",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 5, "hi": 50},
+   "n": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "require_rational": false,
+  "stem": "Let \\( i = \\sqrt{-1} \\). First combine the exponents, then reduce cyclically: evaluate \\( \\dfrac{i^{[[m]]}}{i^{[[n]]}} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "I**[[m]] / I**[[n]]"},
+  "distractors": [
+   "I**[[m]]",
+   "I**[[n]]",
+   "1",
+   "-1",
+   "I",
+   "0",
+   "[[answer]] + 1"
+  ],
+  "solution": "Subtracting exponents, \\( \\dfrac{i^{[[m]]}}{i^{[[n]]}} = i^{[[m]]-[[n]]} \\); reducing \\( [[m]]-[[n]] \\) modulo \\( 4 \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the numerator power \\( i^{[[m]]} \\) alone, without dividing by \\( i^{[[n]]} \\).",
+   "This is the denominator power \\( i^{[[n]]} \\) alone, not the quotient.",
+   "This assumes the quotient always reduces to \\( 1 \\), ignoring the actual exponent difference.",
+   "This assumes the quotient always reduces to \\( -1 \\), ignoring the actual exponent difference.",
+   "This assumes the quotient always reduces to \\( i \\), ignoring the actual exponent difference.",
+   "A power of \\( i \\) is never \\( 0 \\); it always has modulus 1.",
+   "This is off by one from the correct quotient."
+  ]
+ },
+ {
+  "template_id": "powers_of_negative_i_v1",
+  "skill_id": "powers_of_i_cyclic_reduction",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 2, "hi": 33}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( i = \\sqrt{-1} \\), so \\( -i \\) also has a 4-cycle of powers: \\( (-i)^1=-i,\\ (-i)^2=-1,\\ (-i)^3=i,\\ (-i)^4=1 \\). Evaluate \\( (-i)^{[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(-I)**[[n]]"},
+  "distractors": [
+   "I**[[n]]",
+   "1",
+   "-1",
+   "I",
+   "-I",
+   "0",
+   "[[answer]] + 1"
+  ],
+  "solution": "Reduce the exponent modulo \\( 4 \\) using the cycle of \\( -i \\): \\( (-i)^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the cycle of \\( i \\) instead of \\( -i \\); the two cycles agree only at even exponents.",
+   "This is the value \\( (-i)^{[[n]]} \\) would take if \\( [[n]] \\) were a multiple of \\( 4 \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value \\( (-i)^{[[n]]} \\) would take if \\( [[n]] \\equiv 2 \\pmod 4 \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value \\( (-i)^{[[n]]} \\) would take if \\( [[n]] \\equiv 3 \\pmod 4 \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "This is the value \\( (-i)^{[[n]]} \\) would take if \\( [[n]] \\equiv 1 \\pmod 4 \\); recheck \\( [[n]] \\bmod 4 \\).",
+   "A power of \\( -i \\) is never \\( 0 \\); it always has modulus 1.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

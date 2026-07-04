@@ -1,0 +1,189 @@
+[
+ {
+  "template_id": "even_odd_symmetry_periodicity_v1",
+  "skill_id": "even_odd_symmetry_periodicity",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "T": {"type": "choice", "values": [3, 4, 5, 6]},
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 8},
+   "x1": {"type": "int", "lo": 8, "hi": 40}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "derived": {"r": "Mod([[x1]], [[T]])"},
+  "stem": "A function \\( f \\) has period [[T]]; that is, \\( f(x + [[T]]) = f(x) \\) for all \\( x \\). On one period, for \\( 0 \\le x < [[T]] \\), it is given by \\( f(x) = [[a]]x + ([[b]]) \\). What is \\( f([[x1]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*Mod([[x1]], [[T]]) + [[b]]"},
+  "distractors": [
+   "[[a]]*[[x1]] + [[b]]",
+   "[[a]]*([[T]] - Mod([[x1]], [[T]])) + [[b]]",
+   "[[a]]*floor([[x1]]/[[T]]) + [[b]]",
+   "[[a]]*Mod([[x1]], [[T]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By periodicity, reduce the input modulo [[T]]: \\( [[x1]] \\equiv [[r]] \\pmod{[[T]]} \\) with \\( 0 \\le [[r]] < [[T]] \\). Then \\( f([[x1]]) = f([[r]]) = [[a]]([[r]]) + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This plugs \\( [[x1]] \\) straight into the one-period formula without reducing modulo [[T]] first.",
+   "This reflects the remainder as \\( [[T]] - r \\) instead of using \\( r \\) itself.",
+   "This uses the number of whole periods \\( \\lfloor [[x1]]/[[T]] \\rfloor \\) in place of the remainder.",
+   "This uses the correct remainder but drops the constant term \\( ([[b]]) \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "even_odd_symmetry_periodicity_even_reflection_v1",
+  "skill_id": "even_odd_symmetry_periodicity",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "The function \\( f \\) is even; that is, \\( f(-x) = f(x) \\) for all \\( x \\). For \\( x \\ge 0 \\), \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). What is \\( f(-[[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]"},
+  "distractors": [
+   "-([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]])",
+   "[[a]]*[[x0]]**2 - [[b]]*[[x0]] + [[c]]",
+   "[[a]]*[[x0]]**2 + [[c]]",
+   "-[[a]]*[[x0]]**2 + [[b]]*[[x0]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f \\) is even, \\( f(-[[x0]]) = f([[x0]]) \\). Substituting into the given formula (valid for \\( x \\ge 0 \\)): \\( f([[x0]]) = [[a]]([[x0]])^{2} + ([[b]])([[x0]]) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This negates the value, as if \\( f \\) were odd rather than even.",
+   "This flips the sign of only the linear term, as if substituting \\( -[[x0]] \\) directly into the formula meant for \\( x \\ge 0 \\).",
+   "This drops the linear term entirely instead of substituting \\( [[x0]] \\) for \\( x \\).",
+   "This flips the sign of the quadratic and constant terms but not the linear one, an inconsistent sign error.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "even_odd_symmetry_periodicity_odd_reflection_v1",
+  "skill_id": "even_odd_symmetry_periodicity",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "The function \\( f \\) is odd; that is, \\( f(-x) = -f(x) \\) for all \\( x \\). For \\( x \\ge 0 \\), \\( f(x) = [[a]]x^{3} + ([[b]])x \\). What is \\( f(-[[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[a]]*[[x0]]**3 + [[b]]*[[x0]])"},
+  "distractors": [
+   "[[a]]*[[x0]]**3 + [[b]]*[[x0]]",
+   "-[[a]]*[[x0]]**3 + [[b]]*[[x0]]",
+   "[[a]]*[[x0]]**3 - [[b]]*[[x0]]",
+   "-[[a]]*[[x0]]**3 - [[b]]*[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f \\) is odd, \\( f(-[[x0]]) = -f([[x0]]) \\). Substituting into the given formula (valid for \\( x \\ge 0 \\)): \\( f([[x0]]) = [[a]]([[x0]])^{3} + ([[b]])([[x0]]) \\), so \\( f(-[[x0]]) = -\\big([[a]]([[x0]])^{3} + ([[b]])([[x0]])\\big) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats \\( f \\) as even instead of odd, forgetting to negate the value.",
+   "This flips the sign of only the cubic term instead of the whole expression.",
+   "This flips the sign of only the linear term instead of the whole expression.",
+   "This computes \\( -f([[x0]]) \\) with both terms independently negated as if squared, a sign-distribution slip that happens to double-negate incorrectly for this odd/even mix.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "even_odd_symmetry_periodicity_product_parity_v1",
+  "skill_id": "even_odd_symmetry_periodicity",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 9},
+   "A": {"type": "int", "lo": -8, "hi": 8},
+   "B": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "stem": "Suppose \\( f \\) is even and \\( g \\) is odd, with \\( f([[p]]) = [[A]] \\) and \\( g([[p]]) = [[B]] \\). Let \\( h(x) = f(x) \\cdot g(x) \\). What is \\( h(-[[p]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[A]]*[[B]]"},
+  "distractors": [
+   "[[A]]*[[B]]",
+   "[[A]] - [[B]]",
+   "-[[A]] - [[B]]",
+   "[[A]] + [[B]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f \\) is even, \\( f(-[[p]]) = f([[p]]) = [[A]] \\). Since \\( g \\) is odd, \\( g(-[[p]]) = -g([[p]]) = -[[B]] \\). So \\( h(-[[p]]) = f(-[[p]]) \\cdot g(-[[p]]) = ([[A]])(-[[B]]) = [[answer]] \\); the product of an even and an odd function is always odd.",
+  "distractor_rationales": [
+   "This treats \\( h \\) as even, forgetting that the product of an even and an odd function is odd.",
+   "This subtracts the two given values instead of multiplying them (and gets the sign wrong).",
+   "This negates both factors instead of just the odd one.",
+   "This adds the two given values instead of multiplying them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "even_odd_symmetry_periodicity_scaled_period_v1",
+  "skill_id": "even_odd_symmetry_periodicity",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "T": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]},
+   "k": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "stem": "The function \\( f \\) has period [[T]]. Define \\( g(x) = f\\!\\left(\\dfrac{x}{[[k]]}\\right) \\). What is the period of \\( g \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[T]]*[[k]]"},
+  "distractors": [
+   "[[T]]/[[k]]",
+   "[[T]]",
+   "[[T]] + [[k]]",
+   "[[T]] - [[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Replacing \\( x \\) with \\( x/[[k]] \\) stretches the graph horizontally by a factor of [[k]], so the period scales by the same factor: the period of \\( g \\) is \\( [[T]] \\cdot [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( [[k]] \\) instead of multiplying, as if the graph were compressed rather than stretched.",
+   "This ignores the horizontal stretch entirely and reuses \\( f \\)'s original period.",
+   "This adds the stretch factor to the period instead of multiplying by it.",
+   "This subtracts the stretch factor from the period instead of multiplying by it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "even_odd_symmetry_periodicity_axis_symmetry_v1",
+  "skill_id": "even_odd_symmetry_periodicity",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -6, "hi": 6},
+   "p": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[p]], [[h]])"],
+  "stem": "The graph of \\( f \\) is symmetric about the vertical line \\( x = [[h]] \\); that is, \\( f([[h]] + x) = f([[h]] - x) \\) for all \\( x \\). Given that \\( f([[p]]) = f(q) \\) for some \\( q \\ne [[p]] \\), what is \\( q \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[h]] - [[p]]"},
+  "distractors": [
+   "[[h]] - [[p]]",
+   "[[p]] - 2*[[h]]",
+   "[[h]] + [[p]]",
+   "-[[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Symmetry about \\( x = [[h]] \\) means \\( q \\) is the mirror image of \\( [[p]] \\) across \\( x = [[h]] \\): \\( q = [[h]] + ([[h]] - [[p]]) = 2([[h]]) - [[p]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to double the axis of symmetry \\( [[h]] \\) when reflecting.",
+   "This negates the correct value (a sign slip in the reflection formula).",
+   "This adds instead of reflecting, using \\( h + p \\) rather than \\( 2h - p \\).",
+   "This reflects about \\( x = 0 \\) instead of about \\( x = [[h]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

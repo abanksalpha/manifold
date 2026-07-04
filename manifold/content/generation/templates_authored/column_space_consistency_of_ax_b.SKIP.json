@@ -1,0 +1,4 @@
+{
+ "skill_id": "column_space_consistency_of_ax_b",
+ "reason": "The distinctive question is whether Ax=b is consistent (b in the column space), a yes/no answer; the only scalar version (dimension of the column space = rank) duplicates the rank/nullity skill."
+}

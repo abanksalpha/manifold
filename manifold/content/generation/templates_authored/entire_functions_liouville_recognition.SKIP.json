@@ -1,0 +1,4 @@
+{
+ "skill_id": "entire_functions_liouville_recognition",
+ "reason": "This is a conceptual recognition task (a bounded entire function must be constant, by Liouville's theorem), which asks whether a statement holds rather than for a single code-computable scalar answer."
+}

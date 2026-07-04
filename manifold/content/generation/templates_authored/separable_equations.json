@@ -1,0 +1,260 @@
+[
+ {
+  "template_id": "separable_exponential_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": -8, "hi": 8},
+   "t0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne([[y0]], 0)"],
+  "require_rational": false,
+  "stem": "Solve the separable equation \\( \\dfrac{dy}{dx} = [[k]]y \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*exp([[k]]*[[t0]])"},
+  "distractors": [
+   "[[y0]]*exp(-[[k]]*[[t0]])",
+   "[[y0]]+[[k]]*[[t0]]",
+   "[[y0]]*[[k]]*[[t0]]",
+   "exp([[k]]*[[t0]])",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating variables, \\( \\dfrac{dy}{y} = [[k]]\\,dx \\), so \\( \\ln|y| = [[k]]x + C \\) and \\( y(x) = C_1 e^{[[k]]x} \\). The condition \\( y(0) = [[y0]] \\) gives \\( C_1 = [[y0]] \\), so \\( y([[t0]]) = [[y0]]e^{[[k]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign in the exponent.",
+   "This treats the growth as linear rather than exponential.",
+   "This multiplies the rate and time outside of an exponential.",
+   "This drops the initial value \\( [[y0]] \\), leaving \\( C_1 = 1 \\).",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_variable_coeff_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -6, "hi": 6},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne([[y0]], 0)"],
+  "require_rational": false,
+  "stem": "Solve the separable equation \\( \\dfrac{dy}{dx} = [[k]]xy \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*exp([[k]]*[[t0]]**2/2)"},
+  "distractors": [
+   "[[y0]]*exp([[k]]*[[t0]]**2)",
+   "[[y0]]*exp([[k]]*[[t0]])",
+   "exp([[k]]*[[t0]]**2/2)",
+   "[[y0]]*exp(-[[k]]*[[t0]]**2/2)",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating variables, \\( \\dfrac{dy}{y} = [[k]]x\\,dx \\), so \\( \\ln|y| = \\dfrac{[[k]]x^{2}}{2} + C \\), giving \\( y(x) = C_1 e^{[[k]]x^{2}/2} \\). Since \\( y(0) = [[y0]] \\), \\( C_1 = [[y0]] \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of \\( \\tfrac12 \\) obtained when integrating \\( [[k]]x \\).",
+   "This treats the equation as \\( y' = [[k]]y \\), ignoring the factor of \\( x \\).",
+   "This forgets to square \\( [[t0]] \\) inside the exponent.",
+   "This flips the sign of the exponent.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_nonlinear_power_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -5, "hi": 5},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne([[y0]], 0)", "Ne(1-[[k]]*[[y0]]*[[t0]], 0)"],
+  "stem": "Solve the nonlinear separable equation \\( \\dfrac{dy}{dx} = [[k]]y^{2} \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]/(1-[[k]]*[[y0]]*[[t0]])"},
+  "distractors": [
+   "[[y0]]*exp([[k]]*[[t0]])",
+   "[[y0]]/(1+[[k]]*[[y0]]*[[t0]])",
+   "[[y0]]*(1-[[k]]*[[y0]]*[[t0]])",
+   "[[y0]]+[[k]]*[[y0]]**2*[[t0]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating variables, \\( \\dfrac{dy}{y^{2}} = [[k]]\\,dx \\), so \\( -\\dfrac{1}{y} = [[k]]x + C \\). The condition \\( y(0) = [[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1-[[k]][[y0]]x} \\). At \\( x = [[t0]] \\), \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakes the equation for the LINEAR \\( y' = [[k]]y \\), giving exponential growth instead of the correct rational blow-up form.",
+   "This uses the wrong sign in the denominator.",
+   "This inverts the rational solution, multiplying instead of dividing.",
+   "This uses a single Euler step (a linear approximation) instead of the exact solution.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_implicit_algebraic_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": 1, "hi": 6},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Gt([[y0]]**2+[[k]]*[[t0]]**2, 0)"],
+  "require_rational": false,
+  "stem": "The curve \\( y = y(x) \\), with \\( y > 0 \\), satisfies the separable equation \\( y\\,\\dfrac{dy}{dx} = [[k]]x \\), \\( y(0) = [[y0]] \\). Evaluate \\( y([[t0]]) \\), taking the positive branch.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[y0]]**2+[[k]]*[[t0]]**2)"},
+  "distractors": [
+   "sqrt([[y0]]**2-[[k]]*[[t0]]**2)",
+   "[[y0]]+[[k]]*[[t0]]**2/2",
+   "sqrt([[y0]]+[[k]]*[[t0]]**2)",
+   "-sqrt([[y0]]**2+[[k]]*[[t0]]**2)",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating gives \\( y\\,dy = [[k]]x\\,dx \\), so \\( \\dfrac{y^{2}}{2} = \\dfrac{[[k]]x^{2}}{2} + C \\). The condition \\( y(0) = [[y0]] \\) gives \\( C = \\dfrac{[[y0]]^{2}}{2} \\), so \\( y(x)^{2} = [[y0]]^{2}+[[k]]x^{2} \\). Taking the positive branch, \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of \\( k \\) inside the radical.",
+   "This forgets to square \\( x \\) before scaling by \\( k \\).",
+   "This forgets to square \\( y_0 \\) before adding under the radical.",
+   "This takes the negative branch instead of the positive one.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_trig_forced_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "y0": {"type": "int", "lo": 1, "hi": 6},
+   "m": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Gt([[y0]]**2+2*sin([[m]]*pi/2), 0)"],
+  "require_rational": false,
+  "stem": "The curve \\( y = y(x) \\), with \\( y > 0 \\), satisfies \\( \\dfrac{dy}{dx} = \\dfrac{\\cos x}{y} \\), \\( y(0) = [[y0]] \\). Evaluate \\( y\\!\\left(\\dfrac{[[m]]\\pi}{2}\\right) \\), taking the positive branch.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[y0]]**2+2*sin([[m]]*pi/2))"},
+  "distractors": [
+   "sqrt([[y0]]**2-2*sin([[m]]*pi/2))",
+   "[[y0]]+sin([[m]]*pi/2)",
+   "sqrt(2*sin([[m]]*pi/2))",
+   "-sqrt([[y0]]**2+2*sin([[m]]*pi/2))",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating gives \\( y\\,dy = \\cos x\\,dx \\), so \\( \\dfrac{y^{2}}{2} = \\sin x + C \\). Since \\( y(0) = [[y0]] \\) and \\( \\sin 0 = 0 \\), \\( C = \\dfrac{[[y0]]^{2}}{2} \\), so \\( y(x)^{2} = [[y0]]^{2}+2\\sin x \\). At \\( x = \\dfrac{[[m]]\\pi}{2} \\), taking the positive branch, \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the sine term inside the radical.",
+   "This forgets to double the sine term and to take a square root.",
+   "This drops the initial-value term entirely.",
+   "This takes the negative branch instead of the positive one.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_exponential_forced_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "y0": {"type": "int", "lo": 2, "hi": 6},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Gt(2*exp([[t0]])+[[y0]]**2-2, 0)"],
+  "require_rational": false,
+  "stem": "The curve \\( y = y(x) \\), with \\( y > 0 \\), satisfies \\( \\dfrac{dy}{dx} = \\dfrac{e^{x}}{y} \\), \\( y(0) = [[y0]] \\). Evaluate \\( y([[t0]]) \\), taking the positive branch.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt(2*exp([[t0]])+[[y0]]**2-2)"},
+  "distractors": [
+   "sqrt(exp([[t0]])+[[y0]]**2-1)",
+   "sqrt(2*exp([[t0]])+[[y0]]**2)",
+   "[[y0]]+exp([[t0]])-1",
+   "-sqrt(2*exp([[t0]])+[[y0]]**2-2)",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating gives \\( y\\,dy = e^{x}\\,dx \\), so \\( \\dfrac{y^{2}}{2} = e^{x} + C \\). Since \\( y(0) = [[y0]] \\), \\( \\dfrac{[[y0]]^{2}}{2} = 1 + C \\), giving \\( C = \\dfrac{[[y0]]^{2}}{2}-1 \\), so \\( y(x)^{2} = 2e^{x}+[[y0]]^{2}-2 \\). At \\( x = [[t0]] \\), taking the positive branch, \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to double the exponential term while still shifting the constant.",
+   "This forgets the constant shift of \\( -2 \\) needed to match the initial condition.",
+   "This forgets to take the square root of the implicit relation.",
+   "This takes the negative branch instead of the positive one.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_newton_cooling_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "tenv": {"type": "int", "lo": -10, "hi": 30},
+   "t0v": {"type": "int", "lo": -10, "hi": 40},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[t0v]], [[tenv]])"],
+  "require_rational": false,
+  "stem": "A cooling object's temperature \\( T(t) \\) obeys Newton's law of cooling \\( \\dfrac{dT}{dt} = -[[k]](T-[[tenv]]) \\), a separable equation, where \\( [[tenv]] \\) is the constant ambient temperature. If \\( T(0) = [[t0v]] \\), find \\( T([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[tenv]]+([[t0v]]-[[tenv]])*exp(-[[k]]*[[t0]])"},
+  "distractors": [
+   "[[tenv]]+([[t0v]]-[[tenv]])*exp([[k]]*[[t0]])",
+   "[[t0v]]*exp(-[[k]]*[[t0]])",
+   "[[tenv]]-([[t0v]]-[[tenv]])*exp(-[[k]]*[[t0]])",
+   "[[t0v]]-[[k]]*[[t0]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Separating variables, \\( \\dfrac{dT}{T-[[tenv]]} = -[[k]]\\,dt \\), so \\( T(t) = [[tenv]] + Ce^{-[[k]]t} \\). Since \\( T(0) = [[t0v]] \\), \\( C = [[t0v]]-[[tenv]] \\), so \\( T([[t0]]) = [[tenv]]+([[t0v]]-[[tenv]])e^{-[[k]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign in the exponent, giving heating instead of cooling toward the ambient temperature.",
+   "This ignores the ambient temperature shift entirely.",
+   "This flips the sign of the transient term, undershooting instead of approaching \\( [[tenv]] \\) correctly.",
+   "This treats the decay as linear rather than exponential.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_logistic_v1",
+  "skill_id": "separable_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "num": {"type": "int", "lo": 1, "hi": 5},
+   "den": {"type": "int", "lo": 6, "hi": 9},
+   "a": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Lt([[num]], [[den]])", "Eq(gcd([[num]], [[den]]), 1)"],
+  "derived": {
+   "A": "([[num]]/[[den]])/(1-([[num]]/[[den]]))"
+  },
+  "require_rational": false,
+  "stem": "A quantity \\( y(t) \\), with \\( 0 < y < 1 \\), grows according to the logistic equation \\( \\dfrac{dy}{dt} = [[a]]y(1-y) \\), \\( y(0) = \\dfrac{[[num]]}{[[den]]} \\). Evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(([[A]])*exp([[a]]*[[t0]]))/(1+([[A]])*exp([[a]]*[[t0]]))"},
+  "distractors": [
+   "([[num]]/[[den]])*exp([[a]]*[[t0]])",
+   "1/(1+([[A]])*exp(-[[a]]*[[t0]]))",
+   "([[A]])*exp([[a]]*[[t0]])",
+   "([[A]])/(1+([[A]])*exp([[a]]*[[t0]]))",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "By partial fractions, \\( \\int\\left(\\dfrac1y+\\dfrac1{1-y}\\right)dy = \\ln\\left|\\dfrac{y}{1-y}\\right| = [[a]]t+C \\), so \\( \\dfrac{y}{1-y} = Ae^{[[a]]t} \\) with \\( A = \\dfrac{y_0}{1-y_0} = [[A]] \\). Solving for \\( y \\), \\( y(t) = \\dfrac{Ae^{[[a]]t}}{1+Ae^{[[a]]t}} \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the saturation term \\( (1-y) \\), treating the growth as plain exponential.",
+   "This uses the wrong sign in the exponent, growing toward the wrong limit.",
+   "This forgets to normalize by the denominator \\( 1+Ae^{at} \\).",
+   "This places \\( A \\) in the numerator instead of \\( Ae^{at} \\).",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

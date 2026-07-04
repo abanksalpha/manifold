@@ -1,0 +1,4 @@
+{
+ "skill_id": "decide_whether_a_matrix_is_diagonalizable",
+ "reason": "The answer is a yes/no classification rather than a single code-computable numeric or expression value."
+}

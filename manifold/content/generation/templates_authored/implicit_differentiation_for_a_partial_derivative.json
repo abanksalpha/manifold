@@ -1,0 +1,253 @@
+[
+ {
+  "template_id": "implicit_partial_dzdx_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[z0]]**2"
+  },
+  "stem": "The equation \\( [[a]]x^{2} + [[b]]y^{2} + ([[c]])z^{2} = [[k]] \\) defines \\( z \\) implicitly as a function of \\( x \\) and \\( y \\) near the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface. Using implicit differentiation, what is \\( \\dfrac{\\partial z}{\\partial x} \\) at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[a]]*[[x0]])/([[c]]*[[z0]])"},
+  "distractors": [
+   "([[a]]*[[x0]])/([[c]]*[[z0]])",
+   "-([[a]]*[[x0]])/([[b]]*[[y0]])",
+   "-([[c]]*[[z0]])/([[a]]*[[x0]])",
+   "-(2*[[a]]*[[x0]])/([[c]]*[[z0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Differentiate \\( [[a]]x^{2} + [[b]]y^{2} + ([[c]])z^{2} = [[k]] \\) with respect to \\( x \\) (treating \\( y \\) as constant and \\( z \\) as a function of \\( x \\)): \\( 2([[a]])x + 2([[c]])z\\,\\frac{\\partial z}{\\partial x} = 0 \\), so \\( \\frac{\\partial z}{\\partial x} = -\\frac{F_{x}}{F_{z}} = -\\frac{([[a]])x}{([[c]])z} \\). At \\( ([[x0]], [[y0]], [[z0]]) \\) this equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from moving \\( F_{x} \\) to the other side.",
+   "This divides by \\( F_{y} \\) instead of \\( F_{z} \\); the dependent variable here is \\( z \\).",
+   "This inverts the ratio, computing \\( -F_{z}/F_{x} \\) instead of \\( -F_{x}/F_{z} \\).",
+   "This forgets that the factor of 2 cancels between numerator and denominator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "implicit_partial_product_surface_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "z0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[x0]] + [[y0]], 0)"],
+  "derived": {
+   "k": "[[x0]]*[[y0]] + [[y0]]*[[z0]] + [[z0]]*[[x0]]"
+  },
+  "stem": "The equation \\( xy + yz + zx = [[k]] \\) defines \\( z \\) implicitly as a function of \\( x \\) and \\( y \\) near the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface. Using implicit differentiation, what is \\( \\dfrac{\\partial z}{\\partial x} \\) at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[y0]] + [[z0]])/([[x0]] + [[y0]])"},
+  "distractors": [
+   "([[y0]] + [[z0]])/([[x0]] + [[y0]])",
+   "-([[x0]] + [[z0]])/([[x0]] + [[y0]])",
+   "-([[y0]] + [[z0]])/([[x0]] + [[z0]])",
+   "-([[y0]] + [[z0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( F = xy+yz+zx-[[k]] \\), the partials are \\( F_{x} = y+z \\) and \\( F_{z} = x+y \\). Implicit differentiation gives \\( \\frac{\\partial z}{\\partial x} = -\\frac{F_{x}}{F_{z}} = -\\dfrac{y+z}{x+y} \\), which at \\( ([[x0]], [[y0]], [[z0]]) \\) equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from \\( -F_{x}/F_{z}\\).",
+   "This uses \\( F_{y} = x+z \\) in the numerator instead of \\( F_{x} = y+z \\).",
+   "This uses \\( F_{y} = x+z \\) in the denominator instead of \\( F_{z} = x+y \\).",
+   "This forgets to divide by \\( F_{z} \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "implicit_partial_system_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[y0]], [[z0]])"],
+  "derived": {
+   "k1": "[[x0]]**2 + [[y0]]**2 + [[z0]]**2",
+   "k2": "[[x0]] + [[y0]] + [[z0]]"
+  },
+  "stem": "The system \\( x^{2} + y^{2} + z^{2} = [[k1]] \\), \\( x + y + z = [[k2]] \\) defines \\( y \\) and \\( z \\) implicitly as functions of \\( x \\) near the point \\( ([[x0]], [[y0]], [[z0]]) \\), which satisfies both equations. Differentiating both equations implicitly with respect to \\( x \\) and solving the resulting linear system for \\( \\dfrac{dy}{dx} \\) and \\( \\dfrac{dz}{dx} \\), what is \\( \\dfrac{dy}{dx} \\) at that point?",
+  "answer_spec": {
+   "op": "system",
+   "equations": [
+    "2*[[x0]] + 2*[[y0]]*yp + 2*[[z0]]*zp = 0",
+    "1 + yp + zp = 0"
+   ],
+   "vars": ["yp", "zp"],
+   "want": "yp"
+  },
+  "distractors": [
+   "([[x0]] - [[z0]])/([[y0]] - [[z0]])",
+   "([[z0]] - [[x0]])/([[z0]] - [[y0]])",
+   "-1 - ([[z0]] - [[x0]])/([[y0]] - [[z0]])",
+   "[[z0]] - [[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Differentiating \\( x^{2}+y^{2}+z^{2}=[[k1]] \\) gives \\( x + y\\,y' + z\\,z' = 0 \\), and differentiating \\( x+y+z=[[k2]] \\) gives \\( 1 + y' + z' = 0 \\). Substituting \\( z' = -1-y' \\) into the first equation and solving for \\( y' \\) at \\( ([[x0]],[[y0]],[[z0]]) \\) gives \\( \\dfrac{dy}{dx} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has a sign error in the numerator of the solved ratio.",
+   "This flips the sign in both numerator and denominator, giving the negative of the correct value.",
+   "This is \\( \\frac{dz}{dx} \\), the OTHER unknown solved from the same system, not \\( \\frac{dy}{dx} \\).",
+   "This drops the denominator entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "implicit_partial_second_order_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "c": "[[z0]]**2 - [[a]]*[[x0]]**2 - [[b]]*[[y0]]**2"
+  },
+  "stem": "The equation \\( z^{2} = [[a]]x^{2} + [[b]]y^{2} + ([[c]]) \\) defines \\( z \\) implicitly as a function of \\( x \\) and \\( y \\) near the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface. Implicit differentiation gives \\( \\dfrac{\\partial z}{\\partial x} = \\dfrac{[[a]]x}{z} \\). Differentiating implicitly ONE MORE TIME with respect to \\( x \\) (using the quotient rule, since \\( z \\) also depends on \\( x \\)), what is \\( \\dfrac{\\partial^{2} z}{\\partial x^{2}} \\) at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[z0]] - [[a]]*[[x0]]*([[a]]*[[x0]]/[[z0]]))/[[z0]]**2"},
+  "distractors": [
+   "([[a]]*[[z0]] + [[a]]*[[x0]]*([[a]]*[[x0]]/[[z0]]))/[[z0]]**2",
+   "[[a]]*[[x0]]/[[z0]]",
+   "[[a]]/[[z0]]",
+   "-([[a]]*[[z0]] - [[a]]*[[x0]]*([[a]]*[[x0]]/[[z0]]))/[[z0]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Differentiating \\( z_{x} = \\dfrac{[[a]]x}{z} \\) with respect to \\( x \\) using the quotient rule (with \\( z_{x} \\) itself substituted back in for the \\( z \\)-derivative that appears): \\( z_{xx} = \\dfrac{[[a]]z - [[a]]x\\,z_{x}}{z^{2}} \\). At \\( ([[x0]],[[y0]],[[z0]]) \\), \\( z_{x} = \\dfrac{([[a]])([[x0]])}{[[z0]]} \\), so \\( z_{xx} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has a sign error, adding the quotient-rule's second term instead of subtracting it.",
+   "This is only \\( z_{x} \\), the first-order partial, not the second-order one.",
+   "This omits the entire subtracted term from the quotient rule, using only the numerator's first piece divided by \\( z \\).",
+   "This is the negative of the correct second-order partial.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "implicit_partial_box_volume_word_problem_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "int", "lo": 1, "hi": 6},
+   "y0": {"type": "int", "lo": 1, "hi": 6},
+   "z0": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[x0]]*[[y0]]*[[z0]]"
+  },
+  "stem": "A rectangular box has dimensions \\( x \\), \\( y \\), \\( z \\) (in meters), and its volume is fixed at \\( xyz = [[k]] \\) cubic meters. This equation defines \\( z \\) implicitly as a function of \\( x \\) and \\( y \\) near the point \\( ([[x0]], [[y0]], [[z0]]) \\), which satisfies the volume constraint. Using implicit differentiation on \\( F(x,y,z) = xyz - [[k]] \\), what is \\( \\dfrac{\\partial z}{\\partial x} \\) at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[z0]]/[[x0]]"},
+  "distractors": [
+   "[[z0]]/[[x0]]",
+   "-[[x0]]/[[z0]]",
+   "-[[z0]]/[[y0]]",
+   "-[[y0]]/[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( F = xyz - [[k]] \\), the partials are \\( F_{x} = yz \\) and \\( F_{z} = xy \\). Implicit differentiation gives \\( \\dfrac{\\partial z}{\\partial x} = -\\dfrac{F_{x}}{F_{z}} = -\\dfrac{yz}{xy} = -\\dfrac{z}{x} \\), which at \\( ([[x0]], [[y0]], [[z0]]) \\) equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from \\( -F_{x}/F_{z} \\).",
+   "This inverts the correct ratio \\( z/x \\).",
+   "This uses \\( y \\) in the denominator instead of \\( x \\).",
+   "This uses \\( y \\) in the numerator instead of \\( z \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "implicit_partial_exponential_surface_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[x0]] + [[y0]], 0)"],
+  "derived": {
+   "k": "[[x0]]"
+  },
+  "stem": "The equation \\( x\\,e^{z} + yz = [[k]] \\) defines \\( z \\) implicitly as a function of \\( x \\) and \\( y \\) near the point \\( ([[x0]], [[y0]], 0) \\), which lies on the surface (note \\( e^{0}=1 \\)). Using implicit differentiation, what is \\( \\dfrac{\\partial z}{\\partial x} \\) at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "-1/([[x0]] + [[y0]])"},
+  "distractors": [
+   "1/([[x0]] + [[y0]])",
+   "-1/([[x0]] - [[y0]])",
+   "-[[x0]]/([[x0]] + [[y0]])",
+   "-([[x0]] + [[y0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( F = xe^{z} + yz - [[k]] \\), the partials are \\( F_{x} = e^{z} \\) and \\( F_{z} = xe^{z} + y \\). Implicit differentiation gives \\( \\dfrac{\\partial z}{\\partial x} = -\\dfrac{F_{x}}{F_{z}} = -\\dfrac{e^{z}}{xe^{z}+y} \\). At \\( ([[x0]], [[y0]], 0) \\), \\( e^{0}=1 \\), so this is \\( -\\dfrac{1}{[[x0]]+[[y0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from \\( -F_{x}/F_{z} \\).",
+   "This subtracts \\( y \\) instead of adding it in the denominator.",
+   "This multiplies the denominator by \\( x_{0} \\) instead of leaving it as \\( x_{0}+y_{0} \\).",
+   "This inverts the correct ratio, computing \\( -F_{z}/F_{x} \\) instead of \\( -F_{x}/F_{z} \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "implicit_partial_rational_surface_v1",
+  "skill_id": "implicit_differentiation_for_a_partial_derivative",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[x0]]/[[z0]] + [[y0]]**2"
+  },
+  "stem": "The equation \\( \\dfrac{x}{z} + y^{2} = [[k]] \\) defines \\( z \\) implicitly as a function of \\( x \\) and \\( y \\) near the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface. Using implicit differentiation, what is \\( \\dfrac{\\partial z}{\\partial x} \\) at that point?",
+  "answer_spec": {"op": "evaluate", "expr": "[[z0]]/[[x0]]"},
+  "distractors": [
+   "-[[z0]]/[[x0]]",
+   "[[x0]]/[[z0]]",
+   "-[[x0]]/[[z0]]**2",
+   "[[z0]]**2/[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( F = \\dfrac{x}{z} + y^{2} - [[k]] \\), the partials are \\( F_{x} = \\dfrac{1}{z} \\) and \\( F_{z} = -\\dfrac{x}{z^{2}} \\). Implicit differentiation gives \\( \\dfrac{\\partial z}{\\partial x} = -\\dfrac{F_{x}}{F_{z}} = -\\dfrac{1/z}{-x/z^{2}} = \\dfrac{z}{x} \\), which at \\( ([[x0]], [[y0]], [[z0]]) \\) equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the sign flip that comes from dividing by the negative \\( F_{z} \\).",
+   "This inverts the correct ratio \\( z/x \\).",
+   "This forgets to cancel one factor of \\( z \\) when dividing by \\( F_{z} = -x/z^{2} \\).",
+   "This forgets to divide by \\( x \\), leaving an extra factor of \\( z \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

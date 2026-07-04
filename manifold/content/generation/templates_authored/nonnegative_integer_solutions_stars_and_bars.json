@@ -1,0 +1,122 @@
+[
+{
+ "template_id": "stars_and_bars_v1",
+ "skill_id": "nonnegative_integer_solutions_stars_and_bars",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 12},
+  "k": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "How many solutions in nonnegative integers are there to the equation \\( \\sum_{i=1}^{[[k]]} x_i = [[n]] \\)? Solutions that differ in any coordinate are counted separately.",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] + [[k]] - 1, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]] + [[k]] - 1, [[k]])",
+  "binomial([[n]] - 1, [[k]] - 1)",
+  "binomial([[n]] + [[k]], [[k]] - 1)",
+  "binomial([[n]] + [[k]] - 1, [[k]] - 2)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "By stars and bars the number of nonnegative solutions is \\( \\binom{[[n]] + [[k]] - 1}{[[k]] - 1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\binom{n+k-1}{k} \\), placing the bars in the wrong count of gaps.",
+  "This is \\( \\binom{n-1}{k-1} \\), the count of strictly POSITIVE solutions.",
+  "This shifts the top of the binomial up by one.",
+  "This uses \\( k-2 \\) bars instead of \\( k-1 \\).",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+},
+{
+ "template_id": "stars_and_bars_positive_v1",
+ "skill_id": "nonnegative_integer_solutions_stars_and_bars",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 15},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ge([[n]], [[k]])"],
+ "stem": "How many solutions in POSITIVE integers (each \\( x_i \\ge 1 \\)) are there to the equation \\( \\sum_{i=1}^{[[k]]} x_i = [[n]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - 1, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]] + [[k]] - 1, [[k]] - 1)",
+  "binomial([[n]] - 1, [[k]])",
+  "binomial([[n]] - [[k]], [[k]] - 1)",
+  "binomial([[n]] + [[k]], [[k]] - 1)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Give each \\( x_i \\) its required unit first, leaving \\( [[n]]-[[k]] \\) to distribute freely among [[k]] nonnegative slack variables: \\( \\binom{([[n]]-[[k]])+[[k]]-1}{[[k]]-1} = \\binom{[[n]]-1}{[[k]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count of NONNEGATIVE solutions, forgetting the positivity requirement.",
+  "This uses the wrong lower index \\( k \\) instead of \\( k-1 \\).",
+  "This subtracts [[k]] again after already accounting for positivity, an extra unwarranted shift.",
+  "This shifts the top of the binomial up instead of down.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+},
+{
+ "template_id": "stars_and_bars_inequality_v1",
+ "skill_id": "nonnegative_integer_solutions_stars_and_bars",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 12},
+  "k": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "How many solutions in nonnegative integers are there to the INEQUALITY \\( \\sum_{i=1}^{[[k]]} x_i \\le [[n]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] + [[k]], [[k]])"},
+ "distractors": [
+  "binomial([[n]] + [[k]] - 1, [[k]] - 1)",
+  "binomial([[n]] + [[k]], [[k]] - 1)",
+  "binomial([[n]] + [[k]] + 1, [[k]])",
+  "binomial([[n]], [[k]])",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Introduce a nonnegative slack variable \\( x_{[[k]]+1} = [[n]] - \\sum x_i \\) to turn the inequality into the equality \\( x_1+\\cdots+x_{[[k]]}+x_{[[k]]+1} = [[n]] \\) in \\( [[k]]+1 \\) variables: \\( \\binom{[[n]]+[[k]]}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies the equality-case formula directly, forgetting the extra slack variable needed for the inequality.",
+  "This uses the wrong lower index \\( k-1 \\) instead of \\( k \\).",
+  "This shifts the top of the binomial up by one too many.",
+  "This forgets the slack variable entirely, using only the original [[k]] variables.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+},
+{
+ "template_id": "stars_and_bars_monomials_v1",
+ "skill_id": "nonnegative_integer_solutions_stars_and_bars",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 12},
+  "k": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "How many distinct monomial terms \\( x_1^{e_1}x_2^{e_2}\\cdots x_{[[k]]}^{e_{[[k]]}} \\) of total degree exactly [[n]] are there in [[k]] variables (that is, how many choices of nonnegative-integer exponents \\( e_1,\\dots,e_{[[k]]} \\) satisfy \\( e_1+\\cdots+e_{[[k]]}=[[n]] \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] + [[k]] - 1, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]] + [[k]], [[k]])",
+  "binomial([[n]] - 1, [[k]] - 1)",
+  "factorial([[n]])/factorial([[n]] - [[k]])",
+  "[[k]]**[[n]]",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Each monomial of degree [[n]] corresponds to a nonnegative-integer solution of \\( e_1+\\cdots+e_{[[k]]}=[[n]] \\); by stars and bars there are \\( \\binom{[[n]]+[[k]]-1}{[[k]]-1} = [[answer]] \\) such monomials.",
+ "distractor_rationales": [
+  "This uses the inequality-case (degree AT MOST n) formula instead of exact degree n.",
+  "This uses the POSITIVE-exponent formula, forgetting that an exponent may be 0.",
+  "This treats the exponent assignment as an ordered permutation-style count.",
+  "This treats each of the [[n]] degree units as independently choosing one of [[k]] variables without accounting for the shared total correctly.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+}
+]

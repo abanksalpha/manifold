@@ -1,0 +1,157 @@
+[
+ {
+  "template_id": "one_to_one_monotonicity_invertibility_determination_v1",
+  "skill_id": "one_to_one_monotonicity_invertibility_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Consider \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). This function is one-to-one on the interval \\( (-\\infty, k] \\), but on no larger interval of that form. What is \\( k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[b]]/(2*[[a]])"},
+  "distractors": [
+   "-[[b]]/[[a]]",
+   "[[b]]/(2*[[a]])",
+   "-[[b]]/(4*[[a]])",
+   "([[c]]) - ([[b]])**2/(4*[[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A parabola is one-to-one exactly on each side of its vertex, whose \\( x \\)-coordinate is \\( x = -\\dfrac{[[b]]}{2\\cdot[[a]]} = [[answer]] \\). So \\( f \\) is one-to-one on \\( (-\\infty, [[answer]]] \\) and on no larger such interval, giving \\( k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 in the vertex formula \\( -\\frac{b}{2a} \\).",
+   "This flips the sign of the vertex \\( x \\)-coordinate.",
+   "This uses \\( 4a \\) in the denominator instead of \\( 2a \\).",
+   "This gives the minimum value (the vertex \\( y \\)-coordinate), not its \\( x \\)-coordinate.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "one_to_one_monotonicity_invertibility_determination_abs_v1",
+  "skill_id": "one_to_one_monotonicity_invertibility_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Consider \\( f(x) = |[[a]]x - ([[b]])| + ([[c]]) \\). This function is one-to-one on the interval \\( (-\\infty, k] \\), but on no larger interval of that form. What is \\( k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]/[[a]]"},
+  "distractors": [
+   "-[[b]]/[[a]]",
+   "[[a]]/[[b]]",
+   "[[b]]*[[a]]",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A V-shaped absolute value graph is one-to-one exactly on each side of its vertex, which occurs where the inside expression is zero: \\( [[a]]x - [[b]] = 0 \\Rightarrow x = \\dfrac{[[b]]}{[[a]]} = [[answer]] \\). So \\( f \\) is one-to-one on \\( (-\\infty, [[answer]]] \\) and on no larger such interval.",
+  "distractor_rationales": [
+   "This flips the sign of the vertex \\( x \\)-coordinate.",
+   "This inverts the fraction, dividing \\( a \\) by \\( b \\) instead of solving for \\( x \\).",
+   "This multiplies the coefficients instead of dividing to solve for \\( x \\).",
+   "This reports the vertical shift \\( [[c]] \\), which does not affect the vertex's \\( x \\)-coordinate.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "one_to_one_monotonicity_invertibility_determination_linear_degenerate_v1",
+  "skill_id": "one_to_one_monotonicity_invertibility_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[m]], 0)", "Ne([[b]], 0)"],
+  "stem": "The function \\( f(x) = (2a - ([[m]]))x + ([[b]]) \\) fails to be one-to-one for exactly one real value of the parameter \\( a \\). What is that value?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[m]], 2)"},
+  "distractors": [
+   "[[m]]",
+   "2*[[m]]",
+   "-Rational([[m]], 2)",
+   "[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A linear function fails to be one-to-one exactly when its slope is zero: \\( 2a - [[m]] = 0 \\), so \\( a = \\dfrac{[[m]]}{2} = [[answer]] \\). For every other value of \\( a \\), \\( f \\) has nonzero slope and is one-to-one.",
+  "distractor_rationales": [
+   "This forgets to divide by 2 when solving \\( 2a = [[m]] \\) for \\( a \\).",
+   "This doubles the correct value instead of halving \\( [[m]] \\).",
+   "This flips the sign of the correct value.",
+   "This reports the constant term \\( [[b]] \\), which never affects one-to-one-ness of a line.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "one_to_one_monotonicity_invertibility_determination_mobius_v1",
+  "skill_id": "one_to_one_monotonicity_invertibility_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[b]], 0)"],
+  "stem": "The function \\( f(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + d} \\) collapses to a constant function (and so is nowhere one-to-one) for exactly one value of \\( d \\). What is that value?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]*[[c]]/[[a]]"},
+  "distractors": [
+   "[[a]]*[[c]]/[[b]]",
+   "[[a]]/([[b]]*[[c]])",
+   "-[[b]]*[[c]]/[[a]]",
+   "[[b]]/[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A linear-fractional function is constant exactly when its numerator and denominator are proportional, i.e. \\( [[a]]\\cdot d = ([[b]])\\cdot([[c]]) \\), so \\( d = \\dfrac{([[b]])([[c]])}{[[a]]} = [[answer]] \\). For every other \\( d \\), \\( f \\) is one-to-one on its domain.",
+  "distractor_rationales": [
+   "This swaps which coefficients are multiplied and which is divided, inverting the proportionality condition.",
+   "This inverts the correct fraction entirely.",
+   "This flips the sign of the correct value.",
+   "This omits the coefficient \\( [[a]] \\) from the proportionality condition entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "one_to_one_monotonicity_invertibility_determination_piecewise_continuity_v1",
+  "skill_id": "one_to_one_monotonicity_invertibility_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a1": {"type": "int", "lo": 1, "hi": 5},
+   "b1": {"type": "int", "lo": -6, "hi": 6},
+   "a2": {"type": "int", "lo": 1, "hi": 5},
+   "t": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[a1]], [[a2]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a1]]x + ([[b1]]) & \\text{if } x < [[t]] \\\\ [[a2]]x + k & \\text{if } x \\ge [[t]] \\end{cases} \\), where both pieces are strictly increasing. For \\( f \\) to be continuous at \\( x = [[t]] \\) (which guarantees \\( f \\) is one-to-one on all of \\( \\mathbb{R} \\)), what must \\( k \\) equal?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a1]]*[[t]] + [[b1]] - [[a2]]*[[t]]"},
+  "distractors": [
+   "[[a1]]*[[t]] + [[b1]]",
+   "[[a2]]*[[t]] - [[a1]]*[[t]] - [[b1]]",
+   "[[b1]]",
+   "[[a1]]*[[t]] + [[b1]] + [[a2]]*[[t]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Continuity at \\( x=[[t]] \\) requires the two pieces to agree there: \\( [[a1]]([[t]]) + ([[b1]]) = [[a2]]([[t]]) + k \\), so \\( k = [[a1]]([[t]]) + ([[b1]]) - [[a2]]([[t]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the left piece's value at \\( [[t]] \\) directly without solving for \\( k \\) in the right piece.",
+   "This flips the sign of the correct combination.",
+   "This reports only the left piece's constant term, ignoring both slopes and the breakpoint \\( [[t]] \\).",
+   "This adds where it should subtract the right piece's slope contribution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,184 @@
+[
+ {
+  "template_id": "log_diff_product_v1",
+  "skill_id": "logarithmic_differentiation_x_x_type",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 7
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 7
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Ne([[a]], [[b]])"
+  ],
+  "stem": "Using logarithmic differentiation for \\( y=(x+[[a]])^{2}(x+[[b]])^{3} \\), find the logarithmic derivative \\( \\dfrac{y'}{y} \\) at \\( x=[[x0]] \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2/([[x0]]+[[a]]) + 3/([[x0]]+[[b]])"
+  },
+  "distractors": [
+   "1/([[x0]]+[[a]]) + 1/([[x0]]+[[b]])",
+   "2/([[x0]]+[[a]]) - 3/([[x0]]+[[b]])",
+   "3/([[x0]]+[[a]]) + 2/([[x0]]+[[b]])",
+   "5/([[x0]]+[[a]]+[[b]])",
+   "2/([[x0]]+[[a]]) + 3/([[x0]]+[[b]]) + 1",
+   "2/([[x0]]+[[a]]) + 3/([[x0]]+[[b]]) - 1"
+  ],
+  "solution": "\\( \\ln y = 2\\ln(x+[[a]])+3\\ln(x+[[b]]) \\), so \\( \\frac{y'}{y}=\\frac{2}{x+[[a]]}+\\frac{3}{x+[[b]]} = [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "log_diff_pure_xx_v2",
+  "skill_id": "logarithmic_differentiation_x_x_type",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "exp([[k]])"
+  },
+  "stem": "For \\( y=x^{x} \\) (with \\( x>0 \\)), use logarithmic differentiation to find the logarithmic derivative \\( \\dfrac{y'}{y} \\) at \\( x=e^{[[k]]} \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "log([[x0]]) + 1"
+  },
+  "distractors": [
+   "log([[x0]])",
+   "[[k]]",
+   "[[k]] - 1",
+   "[[k]]*[[x0]]",
+   "log([[x0]]) + 2",
+   "log([[x0]]) - 1"
+  ],
+  "solution": "\\( \\ln y = x\\ln x \\), so \\( \\frac{y'}{y}=\\ln x + 1 \\). At \\( x=e^{[[k]]} \\), \\( \\ln x = [[k]] \\), giving \\( [[k]]+1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( +1 \\) term that comes from differentiating the factor of \\( x \\) in \\( x\\ln x \\).",
+   "This reports \\( \\ln x = k \\) without the \\( +1 \\) correction, mislabeled.",
+   "This is one less than \\( \\ln x \\) instead of one more.",
+   "This multiplies \\( k \\) by \\( x_0 \\) instead of adding 1.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_diff_quotient_v3",
+  "skill_id": "logarithmic_differentiation_x_x_type",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 7
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 7
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Ne([[a]], [[b]])"
+  ],
+  "stem": "Using logarithmic differentiation for \\( y=\\dfrac{(x+[[a]])^{3}}{(x+[[b]])^{2}} \\), find the logarithmic derivative \\( \\dfrac{y'}{y} \\) at \\( x=[[x0]] \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "3/([[x0]]+[[a]]) - 2/([[x0]]+[[b]])"
+  },
+  "distractors": [
+   "3/([[x0]]+[[a]]) + 2/([[x0]]+[[b]])",
+   "2/([[x0]]+[[a]]) - 3/([[x0]]+[[b]])",
+   "1/([[x0]]+[[a]]) - 1/([[x0]]+[[b]])",
+   "3/([[x0]]+[[a]]) - 2/([[x0]]+[[b]]) + 1",
+   "3/([[x0]]+[[a]]) - 2/([[x0]]+[[b]]) - 1",
+   "-3/([[x0]]+[[a]]) + 2/([[x0]]+[[b]])"
+  ],
+  "solution": "\\( \\ln y = 3\\ln(x+[[a]]) - 2\\ln(x+[[b]]) \\), so \\( \\frac{y'}{y}=\\frac{3}{x+[[a]]} - \\frac{2}{x+[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two terms instead of subtracting, forgetting the quotient's minus sign.",
+   "This swaps which term uses which power.",
+   "This uses the wrong powers (1 and 1 instead of 3 and 2).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This flips the overall sign of the correct expression."
+  ]
+ },
+ {
+  "template_id": "log_diff_abstract_power_tower_v4",
+  "skill_id": "logarithmic_differentiation_x_x_type",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "r": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "s": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[p]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Let \\( y=g(x)^{h(x)} \\), where at \\( x=a \\), \\( g(a)=[[p]] \\), \\( g'(a)=[[q]] \\), \\( h(a)=[[r]] \\), and \\( h'(a)=[[s]] \\). Using logarithmic differentiation, find the logarithmic derivative \\( \\dfrac{y'}{y} \\) at \\( x=a \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[s]]*log([[p]]) + [[r]]*[[q]]/[[p]]"
+  },
+  "distractors": [
+   "[[s]]*log([[p]]) - [[r]]*[[q]]/[[p]]",
+   "[[q]]*log([[p]]) + [[r]]*[[s]]/[[p]]",
+   "[[s]]*[[p]] + [[r]]*[[q]]/[[p]]",
+   "[[r]]*log([[p]]) + [[s]]*[[q]]/[[p]]",
+   "[[s]]*log([[p]]) + [[r]]*[[q]]/[[p]] + 1",
+   "[[s]]*log([[p]]) + [[r]]*[[q]]/[[p]] - 1"
+  ],
+  "solution": "\\( \\ln y = h(x)\\ln(g(x)) \\), so \\( \\frac{y'}{y}=h'(x)\\ln(g(x)) + \\frac{h(x)g'(x)}{g(x)} \\). At \\( x=a \\) this is \\( [[s]]\\ln([[p]]) + \\dfrac{[[r]]\\cdot[[q]]}{[[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the second term instead of adding it.",
+   "This swaps the roles of \\( g'(a) \\) and \\( h'(a) \\) between the two terms.",
+   "This replaces \\( \\ln(g(a)) \\) with \\( g(a) \\) itself.",
+   "This swaps \\( g(a) \\) and \\( h(a) \\) between the log term and the ratio term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

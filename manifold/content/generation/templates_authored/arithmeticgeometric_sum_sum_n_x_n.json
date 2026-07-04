@@ -1,0 +1,97 @@
+[
+ {
+  "template_id": "arithmeticgeometric_sum_sum_n_x_n_v1",
+  "skill_id": "arithmeticgeometric_sum_sum_n_x_n",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 6},
+   "N": {"type": "int", "lo": 3, "hi": 8}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "Evaluate the arithmetic\u2013geometric sum \\( \\displaystyle\\sum_{k=1}^{[[N]]} k\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{k} \\).",
+  "answer_spec": {"op": "sum", "expr": "k*Rational([[p]],[[q]])**k", "var": "k", "lo": "1", "hi": "[[N]]"},
+  "distractors": [
+   "[[answer]] - [[N]]*Rational([[p]],[[q]])**[[N]]",
+   "(Rational([[p]],[[q]])**([[N]]+1) - Rational([[p]],[[q]]))/(Rational([[p]],[[q]]) - 1)",
+   "2*[[answer]]",
+   "[[answer]] + Rational([[p]],[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Summing \\( k\\left(\\frac{[[p]]}{[[q]]}\\right)^{k} \\) term by term from \\( k=1 \\) to \\( k=[[N]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the final term \\( [[N]]\\left(\\frac{[[p]]}{[[q]]}\\right)^{[[N]]} \\), stopping one term early.",
+   "This sums \\( \\left(\\frac{[[p]]}{[[q]]}\\right)^{k} \\) (a plain geometric series), dropping the factor of \\( k \\).",
+   "This doubles the correct value.",
+   "This adds one extra ratio \\( \\frac{[[p]]}{[[q]]} \\) to the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "arithmeticgeometric_sum_affine_coeff_v2",
+  "skill_id": "arithmeticgeometric_sum_sum_n_x_n",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 2, "hi": 6},
+   "N": {"type": "int", "lo": 3, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], 0)", "Lt([[p]], [[q]])"],
+  "stem": "Evaluate the arithmetic\u2013geometric sum \\( \\displaystyle\\sum_{k=1}^{[[N]]} ([[a]] + [[b]]k)\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{k} \\), where \\( [[a]]+[[b]]k \\) is an arithmetic sequence in \\( k \\).",
+  "answer_spec": {"op": "sum", "expr": "([[a]] + [[b]]*k)*Rational([[p]],[[q]])**k", "var": "k", "lo": "1", "hi": "[[N]]"},
+  "distractors": [
+   "[[answer]] - ([[a]] + [[b]]*[[N]])*Rational([[p]],[[q]])**[[N]]",
+   "[[a]]*Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "2*[[answer]]",
+   "[[answer]] + [[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Split the sum into \\( [[a]]\\sum_{k=1}^{[[N]]} r^{k} \\) plus \\( [[b]]\\sum_{k=1}^{[[N]]} k r^{k} \\) with \\( r=\\frac{[[p]]}{[[q]]} \\), and add the two closed forms to get \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the final term \\( ([[a]]+[[b]]\\cdot[[N]])\\left(\\frac{[[p]]}{[[q]]}\\right)^{[[N]]} \\), stopping one term early.",
+   "This uses only the constant part \\( [[a]] \\) of the coefficient, as an infinite geometric series, dropping the \\( [[b]]k \\) part and the finite cutoff.",
+   "This doubles the correct value.",
+   "This adds the constant coefficient \\( [[a]] \\) once more instead of correctly weighting each term.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "arithmeticgeometric_sum_quadratic_weight_v3",
+  "skill_id": "arithmeticgeometric_sum_sum_n_x_n",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 2, "hi": 6},
+   "N": {"type": "int", "lo": 3, "hi": 7}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "Evaluate the sum \\( \\displaystyle\\sum_{k=1}^{[[N]]} k^{2}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{k} \\), which combines a geometric factor with a quadratic weight in \\( k \\).",
+  "answer_spec": {"op": "sum", "expr": "k**2 * Rational([[p]],[[q]])**k", "var": "k", "lo": "1", "hi": "[[N]]"},
+  "distractors": [
+   "[[answer]] - [[N]]**2*Rational([[p]],[[q]])**[[N]]",
+   "Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "2*[[answer]]",
+   "[[answer]] + [[N]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Summing \\( k^{2}\\left(\\frac{[[p]]}{[[q]]}\\right)^{k} \\) term by term from \\( k=1 \\) to \\( k=[[N]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the final term \\( [[N]]^{2}\\left(\\frac{[[p]]}{[[q]]}\\right)^{[[N]]} \\), stopping one term early.",
+   "This is the plain (unweighted) infinite geometric sum, dropping the \\( k^{2} \\) weight entirely.",
+   "This doubles the correct value.",
+   "This adds \\( [[N]] \\) instead of the correct final term.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ }
+]

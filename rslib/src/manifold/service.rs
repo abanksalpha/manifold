@@ -14,8 +14,15 @@ impl crate::services::ManifoldService for Collection {
         })
     }
 
-    fn build_session_queue(&mut self) -> error::Result<anki_proto::manifold::SessionQueueResponse> {
-        let items = crate::manifold::session::build_session_queue(self)?;
+    fn build_session_queue(
+        &mut self,
+        input: anki_proto::manifold::SessionQueueRequest,
+    ) -> error::Result<anki_proto::manifold::SessionQueueResponse> {
+        // Default on: an unset field means interleave (the full-Manifold
+        // behavior), so callers that send an empty request are unchanged. Only
+        // an explicit `interleave: false` selects blocked practice (WS5).
+        let interleave = input.interleave.unwrap_or(true);
+        let items = crate::manifold::session::build_session_queue(self, interleave)?;
         Ok(anki_proto::manifold::SessionQueueResponse { items })
     }
 }

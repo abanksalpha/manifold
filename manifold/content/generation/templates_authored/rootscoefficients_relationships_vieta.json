@@ -1,0 +1,244 @@
+[
+ {
+  "template_id": "rootscoefficients_relationships_vieta_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -3, "hi": 3},
+   "r2": {"type": "int", "lo": -3, "hi": 3},
+   "r3": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])"],
+  "derived": {
+   "A": "-([[r1]] + [[r2]] + [[r3]])",
+   "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "C": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The cubic \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) has three real roots. What is the sum of its roots?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + ([[A]])*x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "sum"},
+  "distractors": [
+   "[[A]]",
+   "-([[C]])",
+   "[[B]]",
+   "[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, for \\( x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) the sum of the roots equals \\( -([[A]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reads the \\( x^{2} \\)-coefficient directly and forgets that the sum of roots is its negative.",
+   "This gives the product of the roots, \\( -([[C]]) \\), instead of their sum.",
+   "This gives the sum of pairwise products of the roots (the \\( x \\)-coefficient), not the sum.",
+   "This reports the constant term rather than the sum of the roots.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "rootscoefficients_relationships_vieta_product_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -3, "hi": 3},
+   "r2": {"type": "int", "lo": -3, "hi": 3},
+   "r3": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])"],
+  "derived": {
+   "A": "-([[r1]] + [[r2]] + [[r3]])",
+   "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "C": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The cubic \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) has three real roots. What is the product of its roots?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + ([[A]])*x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "prod"},
+  "distractors": [
+   "[[C]]",
+   "-([[A]])",
+   "[[B]]",
+   "-([[B]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, for a monic cubic \\( x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\), the product of the roots equals \\( -([[C]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reads the constant term directly and forgets that the product of roots is its negative.",
+   "This gives the negative of the \\( x^{2} \\)-coefficient (the sum of roots), not their product.",
+   "This gives the sum of pairwise products of the roots, not the product of all three.",
+   "This negates the sum of pairwise products, which is unrelated to the product of all three roots.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product."
+  ]
+ },
+ {
+  "template_id": "rootscoefficients_relationships_vieta_pairwise_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -3, "hi": 3},
+   "r2": {"type": "int", "lo": -3, "hi": 3},
+   "r3": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])"],
+  "derived": {
+   "A": "-([[r1]] + [[r2]] + [[r3]])",
+   "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "C": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The cubic \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) has three real roots \\( r_1, r_2, r_3 \\). What is \\( r_1 r_2 + r_1 r_3 + r_2 r_3 \\)?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + ([[A]])*x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "sum_pairs"},
+  "distractors": [
+   "-([[A]])",
+   "-([[C]])",
+   "[[A]]",
+   "[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, for a monic cubic \\( x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\), the sum of the pairwise products of the roots equals the \\( x \\)-coefficient \\( [[B]] = [[answer]] \\) directly.",
+  "distractor_rationales": [
+   "This gives the sum of all three roots instead of the sum of their pairwise products.",
+   "This gives the product of all three roots instead of the sum of their pairwise products.",
+   "This reads the \\( x^{2} \\)-coefficient directly without negating it.",
+   "This reads the constant term directly without negating it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "rootscoefficients_relationships_vieta_sum_of_squares_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -6, "hi": 6},
+   "r2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])"],
+  "derived": {"B": "-([[r1]] + [[r2]])", "C": "[[r1]]*[[r2]]"},
+  "stem": "The quadratic \\( p(x) = x^{2} + ([[B]])x + ([[C]]) \\) has two real roots \\( r_1 \\) and \\( r_2 \\). What is \\( r_1^{2} + r_2^{2} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[B]]**2 - 2*[[C]]"},
+  "distractors": [
+   "[[B]]**2 + 2*[[C]]",
+   "[[B]]**2",
+   "-2*[[C]]",
+   "[[C]]**2 - 2*[[B]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, the sum of the roots is \\( -([[B]]) \\) and their product is \\( [[C]] \\). Using \\( r_1^{2}+r_2^{2} = (r_1+r_2)^{2} - 2r_1r_2 \\), this is \\( (-([[B]]))^{2} - 2([[C]]) = [[B]]^{2} - 2[[C]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds instead of subtracts twice the product when expanding the square of the sum.",
+   "This forgets the \\( -2r_1r_2 \\) correction entirely.",
+   "This forgets the \\( (r_1+r_2)^2 \\) term and uses only the correction.",
+   "This swaps the roles of the sum and product coefficients in the identity.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "rootscoefficients_relationships_vieta_reciprocal_sum_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -4, "hi": 4},
+   "r2": {"type": "int", "lo": -4, "hi": 4},
+   "r3": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])", "Ne([[r1]], 0)", "Ne([[r2]], 0)", "Ne([[r3]], 0)"],
+  "derived": {
+   "A": "-([[r1]] + [[r2]] + [[r3]])",
+   "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "C": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The cubic \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) has three nonzero real roots \\( r_1, r_2, r_3 \\). What is \\( \\dfrac{1}{r_1} + \\dfrac{1}{r_2} + \\dfrac{1}{r_3} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[B]]/[[C]]"},
+  "distractors": [
+   "[[B]]/[[C]]",
+   "[[C]]/[[B]]",
+   "-[[C]]/[[B]]",
+   "[[B]]*[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, \\( r_1r_2+r_1r_3+r_2r_3 = [[B]] \\) and \\( r_1r_2r_3 = -([[C]]) \\). Writing the sum of reciprocals over a common denominator, \\( \\dfrac{1}{r_1}+\\dfrac{1}{r_2}+\\dfrac{1}{r_3} = \\dfrac{r_1r_2+r_1r_3+r_2r_3}{r_1r_2r_3} = \\dfrac{[[B]]}{-([[C]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to negate the denominator (the product of the roots is \\( -C \\), not \\( C \\)).",
+   "This inverts the correct fraction entirely.",
+   "This inverts the fraction and also forgets the sign correction.",
+   "This multiplies the two Vieta quantities instead of dividing them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "rootscoefficients_relationships_vieta_inverse_construct_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "S": {"type": "int", "lo": -9, "hi": 9},
+   "P": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[S]], 0)"],
+  "stem": "A quadratic has two real roots whose sum is [[S]] and whose product is [[P]]. If the quadratic is written in monic form \\( x^{2} + Bx + C \\), what is \\( B \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[S]]"},
+  "distractors": [
+   "[[S]]",
+   "[[P]]",
+   "-[[P]]",
+   "[[S]] + [[P]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For a monic quadratic \\( x^{2}+Bx+C \\), Vieta's formulas give (sum of roots) \\( = -B \\). Since the sum of the roots is [[S]], \\( B = -([[S]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to negate the given sum.",
+   "This reports the product of the roots instead of the (negated) sum.",
+   "This negates the product instead of the sum.",
+   "This adds the sum and product together, which has no basis in Vieta's formulas.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "rootscoefficients_relationships_vieta_shifted_product_v1",
+  "skill_id": "rootscoefficients_relationships_vieta",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -4, "hi": 4},
+   "r2": {"type": "int", "lo": -4, "hi": 4},
+   "r3": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])", "Ne([[k]], [[r1]])", "Ne([[k]], [[r2]])", "Ne([[k]], [[r3]])"],
+  "derived": {
+   "A": "-([[r1]] + [[r2]] + [[r3]])",
+   "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+   "C": "-([[r1]]*[[r2]]*[[r3]])"
+  },
+  "stem": "The cubic \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) has real roots \\( r_1, r_2, r_3 \\). What is \\( (r_1 - ([[k]]))(r_2 - ([[k]]))(r_3 - ([[k]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-(([[k]])**3 + ([[A]])*([[k]])**2 + ([[B]])*([[k]]) + ([[C]]))"},
+  "distractors": [
+   "([[k]])**3 + ([[A]])*([[k]])**2 + ([[B]])*([[k]]) + ([[C]])",
+   "-(([[k]])**3 + ([[A]])*([[k]])**2 + ([[B]])*([[k]]))",
+   "[[C]]",
+   "-[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( p(x) = (x-r_1)(x-r_2)(x-r_3) \\), evaluating at \\( x=[[k]] \\) gives \\( p([[k]]) = ([[k]]-r_1)([[k]]-r_2)([[k]]-r_3) \\). Negating each factor flips the sign three times (an odd number), so \\( (r_1-[[k]])(r_2-[[k]])(r_3-[[k]]) = -p([[k]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to negate \\( p([[k]]) \\), missing the odd number of sign flips from reversing each factor.",
+   "This negates correctly but drops the constant term \\( ([[C]]) \\) when evaluating \\( p([[k]]) \\).",
+   "This reports the constant term of \\( p \\) directly rather than evaluating \\( p \\) at \\( [[k]] \\).",
+   "This negates the constant term alone rather than evaluating and negating the whole polynomial at \\( [[k]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

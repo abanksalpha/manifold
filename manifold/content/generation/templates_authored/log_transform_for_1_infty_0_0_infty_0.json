@@ -1,0 +1,182 @@
+[
+ {
+  "template_id": "log_transform_indeterminate_v1",
+  "skill_id": "log_transform_for_1_infty_0_0_infty_0",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": -3,
+    "hi": 3
+   },
+   "b": {
+    "type": "int",
+    "lo": -3,
+    "hi": 3
+   }
+  },
+  "constraints": [
+   "Ne([[a]], 0)",
+   "Ne([[b]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\lim_{x \\to 0^{+}} (1 + ([[a]])x)^{[[b]]/x} \\), an indeterminate form of type \\( 1^{\\infty} \\).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "(1 + [[a]]*x)**([[b]]/x)",
+   "var": "x",
+   "point": 0,
+   "dir": "+"
+  },
+  "distractors": [
+   "exp([[a]] + [[b]])",
+   "exp([[a]])",
+   "exp([[b]])",
+   "[[a]]*[[b]]",
+   "1",
+   "exp(-[[a]]*[[b]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "Let \\( L \\) be the limit. Then \\( \\ln L = \\lim_{x \\to 0^{+}} \\frac{[[b]]}{x}\\ln(1 + ([[a]])x) = \\lim_{x \\to 0^{+}} \\frac{[[b]]}{x}\\,(([[a]])x + o(x)) = ([[a]])([[b]]) \\). Therefore \\( L = e^{([[a]])([[b]])} \\).",
+  "distractor_rationales": [
+   "This adds the constants in the exponent instead of multiplying them.",
+   "This keeps only \\( a \\) in the exponent.",
+   "This keeps only \\( b \\) in the exponent.",
+   "This stops at \\( \\ln L = ab \\) and forgets to exponentiate.",
+   "This treats the base as exactly 1, giving 1.",
+   "This has the wrong sign in the exponent."
+  ]
+ },
+ {
+  "template_id": "log_transform_zero_to_zero_v1",
+  "skill_id": "log_transform_for_1_infty_0_0_infty_0",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Ne([[a]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\lim_{x \\to 0^{+}} x^{[[a]]/\\ln x} \\), an indeterminate form of type \\( 0^{0} \\) (the base \\( x \\to 0 \\) and the exponent \\( \\tfrac{[[a]]}{\\ln x} \\to 0 \\)).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "x**([[a]]/log(x))",
+   "var": "x",
+   "point": 0,
+   "dir": "+"
+  },
+  "distractors": [
+   "0",
+   "1",
+   "exp(-[[a]])",
+   "[[a]]",
+   "exp(2*[[a]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "Let \\( L \\) be the limit. Then \\( \\ln L = \\lim_{x \\to 0^{+}} \\frac{[[a]]}{\\ln x}\\cdot \\ln x = [[a]] \\), since the \\( \\ln x \\) factors cancel exactly (they never actually reach their individual limits of \\( \\pm\\infty \\) and \\( 0 \\) — the log transform reveals the true, finite exponent). Therefore \\( L = e^{[[a]]} \\).",
+  "distractor_rationales": [
+   "This wrongly assumes a \\( 0^0 \\) form always evaluates to 0.",
+   "This wrongly assumes a \\( 0^0 \\) form always evaluates to 1.",
+   "This has the wrong sign in the exponent.",
+   "This stops at \\( \\ln L = a \\) and forgets to exponentiate.",
+   "This doubles the correct exponent.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "log_transform_infinity_to_zero_v1",
+  "skill_id": "log_transform_for_1_infty_0_0_infty_0",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": -8,
+    "hi": 8
+   }
+  },
+  "constraints": [
+   "Ne([[a]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} (x^{2} + 1)^{[[a]]/\\ln x} \\), an indeterminate form of type \\( \\infty^{0} \\) (the base \\( \\to \\infty \\) and the exponent \\( \\tfrac{[[a]]}{\\ln x} \\to 0 \\)).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "(x**2 + 1)**([[a]]/log(x))",
+   "var": "x",
+   "point": "oo"
+  },
+  "distractors": [
+   "exp([[a]])",
+   "1",
+   "exp(-2*[[a]])",
+   "[[a]]",
+   "exp(3*[[a]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "Let \\( L \\) be the limit. Then \\( \\ln L = \\lim_{x \\to \\infty} \\frac{[[a]]}{\\ln x}\\cdot \\ln(x^{2}+1) \\). Since \\( \\ln(x^{2}+1) \\sim 2\\ln x \\) for large \\( x \\), this gives \\( \\ln L = [[a]]\\cdot 2 = 2([[a]]) \\). Therefore \\( L = e^{2([[a]])} \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 coming from \\( \\ln(x^2+1)\\sim 2\\ln x \\).",
+   "This wrongly assumes an \\( \\infty^0 \\) form always evaluates to 1.",
+   "This has the wrong sign as well as the factor of 2.",
+   "This stops at \\( \\ln L = 2a \\) worth of reasoning but forgets to exponentiate, reporting just \\( a \\).",
+   "This uses a factor of 3 instead of the correct factor of 2.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "log_transform_one_to_infinity_at_infinity_v1",
+  "skill_id": "log_transform_for_1_infty_0_0_infty_0",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne([[a]], 0)",
+   "Ne([[b]], 0)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\left(1 + \\dfrac{[[a]]}{x}\\right)^{[[b]]x} \\), an indeterminate form of type \\( 1^{\\infty} \\).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "(1 + [[a]]/x)**([[b]]*x)",
+   "var": "x",
+   "point": "oo"
+  },
+  "distractors": [
+   "exp([[a]] + [[b]])",
+   "exp([[a]])",
+   "exp([[b]])",
+   "[[a]]*[[b]]",
+   "1",
+   "exp(-[[a]]*[[b]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "Let \\( L \\) be the limit. Then \\( \\ln L = \\lim_{x \\to \\infty} [[b]]x \\ln\\left(1 + \\dfrac{[[a]]}{x}\\right) = \\lim_{x \\to \\infty} [[b]]x\\left(\\dfrac{[[a]]}{x} + o\\!\\left(\\dfrac{1}{x}\\right)\\right) = ([[a]])([[b]]) \\). Therefore \\( L = e^{([[a]])([[b]])} \\).",
+  "distractor_rationales": [
+   "This adds the constants in the exponent instead of multiplying them.",
+   "This keeps only \\( a \\) in the exponent.",
+   "This keeps only \\( b \\) in the exponent.",
+   "This stops at \\( \\ln L = ab \\) and forgets to exponentiate.",
+   "This treats the base as exactly 1, giving 1.",
+   "This has the wrong sign in the exponent."
+  ]
+ }
+]

@@ -1,0 +1,165 @@
+[
+{
+ "template_id": "injectivity_gap_from_explicit_matrix_v1",
+ "skill_id": "injective_surjective_from_domaincodomain_dimensions",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "a4": {"type": "int", "lo": -2, "hi": 2},
+  "b4": {"type": "int", "lo": -2, "hi": 2},
+  "c4": {"type": "int", "lo": -2, "hi": 2},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "m4a": "[[a4]] + [[b4]]*[[p]] + [[c4]]*[[q]]",
+  "m4b": "[[a4]]*[[s]] + [[b4]]*[[m22]] + [[c4]]*[[m32]]",
+  "m4c": "[[a4]]*[[t]] + [[b4]]*[[m23]] + [[c4]]*[[m33]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Let \\( T : \\mathbb{R}^3 \\to \\mathbb{R}^4 \\) be given by \\( T(\\mathbf{x}) = A\\mathbf{x} \\) with \\[ A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\\\ [[m4a]] & [[m4b]] & [[m4c]] \\end{bmatrix}. \\] Since \\( T \\) is injective exactly when \\( \\dim(\\ker T) = 0 \\), what is \\( \\dim(\\ker T) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "3", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "\\( \\dim(\\ker T) = 3 - \\operatorname{rank}(A) \\) (the domain dimension minus the rank). Row-reducing \\( A \\) gives \\( \\operatorname{rank}(A) = [[rankval]] \\), so \\( \\dim(\\ker T) = 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\operatorname{rank}(A) \\), not \\( \\dim(\\ker T) \\).",
+  "This assumes \\(A\\) is the zero matrix, so every domain vector would be in the kernel.",
+  "This overcounts the kernel dimension by one.",
+  "This undercounts the kernel dimension by one.",
+  "This is a plausible but unverified value.",
+  "This is a plausible but unverified value.",
+  "This assumes \\(T\\) is already injective."
+ ]
+},
+{
+ "template_id": "surjectivity_gap_from_explicit_matrix_v2",
+ "skill_id": "injective_surjective_from_domaincodomain_dimensions",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "s1": {"type": "int", "lo": -3, "hi": 3},
+  "s2": {"type": "int", "lo": -3, "hi": 3},
+  "s3": {"type": "int", "lo": -3, "hi": 3},
+  "p2": {"type": "int", "lo": -3, "hi": 3},
+  "x2": {"type": "int", "lo": -3, "hi": 3},
+  "y2": {"type": "int", "lo": -3, "hi": 3},
+  "p3": {"type": "int", "lo": -3, "hi": 3},
+  "q3": {"type": "int", "lo": -3, "hi": 3},
+  "z3": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "r2_1": "[[p2]]",
+  "r2_2": "[[p2]]*[[s1]] + [[d2]]",
+  "r2_3": "[[p2]]*[[s2]] + [[d2]]*[[x2]]",
+  "r2_4": "[[p2]]*[[s3]] + [[d2]]*[[y2]]",
+  "r3_1": "[[p3]]",
+  "r3_2": "[[p3]]*[[s1]] + [[q3]]*[[d2]]",
+  "r3_3": "[[p3]]*[[s2]] + [[q3]]*[[d2]]*[[x2]] + [[d3]]",
+  "r3_4": "[[p3]]*[[s3]] + [[q3]]*[[d2]]*[[y2]] + [[d3]]*[[z3]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Let \\( T : \\mathbb{R}^4 \\to \\mathbb{R}^3 \\) be given by \\( T(\\mathbf{x}) = A\\mathbf{x} \\) with \\[ A = \\begin{bmatrix} 1 & [[s1]] & [[s2]] & [[s3]] \\\\ [[r2_1]] & [[r2_2]] & [[r2_3]] & [[r2_4]] \\\\ [[r3_1]] & [[r3_2]] & [[r3_3]] & [[r3_4]] \\end{bmatrix}. \\] Since \\( T \\) is surjective exactly when \\( \\dim(\\operatorname{Im} T) = 3 \\) (all of the codomain), how many dimensions of the codomain \\( \\mathbb{R}^3 \\) fall OUTSIDE the image of \\( T \\) (i.e., what is \\( 3 - \\dim(\\operatorname{Im} T) \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "3", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "\\( \\dim(\\operatorname{Im} T) = \\operatorname{rank}(A) \\). Row-reducing \\( A \\) gives \\( \\operatorname{rank}(A) = [[rankval]] \\), so the codomain dimensions missed by the image are \\( 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\dim(\\operatorname{Im} T) = \\operatorname{rank}(A) \\), not the dimension missed.",
+  "This assumes \\(A\\) is the zero matrix, so the entire codomain would be missed.",
+  "This overcounts the missed dimensions by one.",
+  "This undercounts the missed dimensions by one.",
+  "This is a plausible but unverified value.",
+  "This is a plausible but unverified value.",
+  "This assumes \\(T\\) is already surjective."
+ ]
+},
+{
+ "template_id": "surjectivity_gap_pure_data_v3",
+ "skill_id": "injective_surjective_from_domaincodomain_dimensions",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [4, 5, 6, 7, 8]},
+  "m": {"type": "choice", "values": [3, 4, 5, 6, 7]},
+  "r": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Le([[r]], [[n]])", "Le([[r]], [[m]])"],
+ "stem": "A linear transformation \\( T : \\mathbb{R}^{[[n]]} \\to \\mathbb{R}^{[[m]]} \\) has rank \\( [[r]] \\). \\(T\\) is surjective exactly when \\( \\operatorname{rank}(T) = [[m]] \\) (the codomain dimension). What is the dimension of the codomain that is NOT covered by the image of \\( T \\) (i.e., \\( [[m]] - \\operatorname{rank}(T) \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]] - [[r]]"},
+ "distractors": ["[[n]]-[[r]]", "[[r]]", "[[n]]-[[m]]", "[[m]]+[[r]]", "[[answer]]+1", "[[answer]]-1", "[[m]]", "[[n]]"],
+ "solution": "The image has dimension \\( \\operatorname{rank}(T) = [[r]] \\); the dimensions of \\( \\mathbb{R}^{[[m]]} \\) not covered by the image number \\( [[m]] - [[r]] = [[answer]] \\). This is \\(0\\) exactly when \\(T\\) is surjective.",
+ "distractor_rationales": [
+  "This uses the domain dimension \\(n\\) instead of the codomain dimension \\(m\\) (that formula gives the kernel dimension, i.e. the injectivity gap, instead).",
+  "This reports the rank itself instead of subtracting it from \\(m\\).",
+  "This subtracts the codomain dimension from the domain dimension, ignoring the given rank.",
+  "This adds the rank instead of subtracting it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This assumes the rank is \\(0\\) (T is the zero map).",
+  "This assumes the rank is \\(0\\), reporting the domain dimension."
+ ]
+},
+{
+ "template_id": "injectivity_gap_pure_data_v4",
+ "skill_id": "injective_surjective_from_domaincodomain_dimensions",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [3, 4, 5, 6, 7]},
+  "m": {"type": "choice", "values": [4, 5, 6, 7, 8]},
+  "r": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Le([[r]], [[n]])", "Le([[r]], [[m]])"],
+ "stem": "A linear transformation \\( T : \\mathbb{R}^{[[n]]} \\to \\mathbb{R}^{[[m]]} \\) has rank \\( [[r]] \\). \\(T\\) is injective exactly when \\( \\dim(\\ker T) = 0 \\). What is \\( \\dim(\\ker T) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[r]]"},
+ "distractors": ["[[m]]-[[r]]", "[[r]]", "[[n]]-[[m]]", "[[n]]+[[r]]", "[[answer]]+1", "[[answer]]-1", "[[m]]", "[[n]]"],
+ "solution": "By the rank\u2013nullity theorem, \\( \\dim(\\ker T) = [[n]] - \\operatorname{rank}(T) = [[n]] - [[r]] = [[answer]] \\). This is \\(0\\) exactly when \\(T\\) is injective.",
+ "distractor_rationales": [
+  "This uses the codomain dimension \\(m\\) instead of the domain dimension \\(n\\) (that formula gives the surjectivity gap instead).",
+  "This reports the rank itself instead of subtracting it from \\(n\\).",
+  "This subtracts the domain dimension from the codomain dimension, ignoring the given rank.",
+  "This adds the rank instead of subtracting it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This assumes the rank is \\(0\\), reporting the codomain dimension.",
+  "This assumes the rank is \\(0\\) (T is the zero map)."
+ ]
+},
+{
+ "template_id": "maximum_possible_rank_feasibility_v5",
+ "skill_id": "injective_surjective_from_domaincodomain_dimensions",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 12},
+  "m": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Ne([[n]], [[m]])"],
+ "stem": "A linear transformation \\( T : \\mathbb{R}^{[[n]]} \\to \\mathbb{R}^{[[m]]} \\) can have rank at most \\( \\min([[n]], [[m]]) \\). What is the LARGEST possible rank \\( T \\) could have (this is the largest rank for which injectivity, if \\( n \\le m \\), or surjectivity, if \\( m \\le n \\), remains even possible)?",
+ "answer_spec": {"op": "evaluate", "expr": "Min([[n]], [[m]])"},
+ "distractors": ["Max([[n]], [[m]])", "[[n]]", "[[m]]", "[[n]]+[[m]]", "[[answer]]+1", "[[answer]]-1", "0"],
+ "solution": "The rank of a linear map cannot exceed either the domain or codomain dimension, so the largest possible rank is \\( \\min([[n]], [[m]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the larger of the two dimensions instead of the smaller.",
+  "This uses only the domain dimension, ignoring the constraint from the codomain.",
+  "This uses only the codomain dimension, ignoring the constraint from the domain.",
+  "This adds the two dimensions instead of taking their minimum.",
+  "This is off by one from the correct maximum rank.",
+  "This is off by one from the correct maximum rank.",
+  "This assumes \\(T\\) must be the zero map."
+ ]
+}
+]

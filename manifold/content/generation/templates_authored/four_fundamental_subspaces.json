@@ -1,0 +1,146 @@
+[
+{
+ "template_id": "dimension_of_column_space_v1",
+ "skill_id": "four_fundamental_subspaces",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\end{bmatrix} \\). What is \\( \\dim(\\operatorname{Col}(A)) \\), the dimension of the column space of \\( A \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s]]", "[[t]]"], ["[[p]]", "[[m22]]", "[[m23]]"], ["[[q]]", "[[m32]]", "[[m33]]"]]
+ },
+ "distractors": ["3-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "0", "3"],
+ "solution": "\\( \\dim(\\operatorname{Col}(A)) \\) equals \\( \\operatorname{rank}(A) \\). Row-reducing \\( A \\) gives rank \\( [[answer]] \\), so \\( \\dim(\\operatorname{Col}(A)) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\dim(\\operatorname{Null}(A)) = 3-\\operatorname{rank}(A) \\), not the column space dimension.",
+  "This overcounts the rank by one.",
+  "This undercounts the rank by one.",
+  "This overcounts the rank, which cannot exceed the matrix size.",
+  "This assumes \\(A\\) is the zero matrix.",
+  "This assumes \\(A\\) is invertible without checking for dependence among its rows."
+ ]
+},
+{
+ "template_id": "dimension_of_null_space_v2",
+ "skill_id": "four_fundamental_subspaces",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\end{bmatrix} \\). What is \\( \\dim(\\operatorname{Null}(A)) \\), the dimension of the null space of \\( A \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "3", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "\\( \\dim(\\operatorname{Null}(A)) = 3 - \\operatorname{rank}(A) \\). Row-reducing \\( A \\) gives \\( \\operatorname{rank}(A) = [[rankval]] \\), so \\( \\dim(\\operatorname{Null}(A)) = 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\dim(\\operatorname{Col}(A)) = \\operatorname{rank}(A) \\), not the null space dimension.",
+  "This assumes \\(A\\) is the zero matrix, so the null space would be all of \\( \\mathbb{R}^3 \\).",
+  "This overcounts the free columns by one.",
+  "This undercounts the free columns by one.",
+  "This is a plausible but unverified nullity value.",
+  "This is a plausible but unverified nullity value.",
+  "This assumes \\(A\\) is invertible, giving a trivial null space."
+ ]
+},
+{
+ "template_id": "dimension_of_left_null_space_v3",
+ "skill_id": "four_fundamental_subspaces",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "a4": {"type": "int", "lo": -2, "hi": 2},
+  "b4": {"type": "int", "lo": -2, "hi": 2},
+  "c4": {"type": "int", "lo": -2, "hi": 2},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "v4a": "[[a4]] + [[b4]]*[[p]] + [[c4]]*[[q]]",
+  "v4b": "[[a4]]*[[s]] + [[b4]]*[[m22]] + [[c4]]*[[m32]]",
+  "v4c": "[[a4]]*[[t]] + [[b4]]*[[m23]] + [[c4]]*[[m33]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\\\ [[v4a]] & [[v4b]] & [[v4c]] \\end{bmatrix} \\), a \\(4\\times3\\) matrix. What is \\( \\dim(\\operatorname{Null}(A^{T})) \\), the dimension of the left null space of \\( A \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "4 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "4", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "The left null space \\( \\operatorname{Null}(A^{T}) \\) has dimension \\( m - \\operatorname{rank}(A) \\), where \\( m=4 \\) is the number of rows of \\( A \\). Row-reducing \\( A \\) shows \\( \\operatorname{rank}(A) = [[rankval]] \\), so \\( \\dim(\\operatorname{Null}(A^{T})) = 4 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\operatorname{rank}(A) \\) itself, not the left null space dimension.",
+  "This assumes \\(A\\) is the zero matrix, giving the largest possible left null space.",
+  "This overcounts the dimension by one.",
+  "This undercounts the dimension by one.",
+  "This is a plausible but unverified value.",
+  "This is a plausible but unverified value.",
+  "This assumes \\(A\\) has full row rank, leaving no left null space."
+ ]
+},
+{
+ "template_id": "fundamental_subspaces_pure_data_v4",
+ "skill_id": "four_fundamental_subspaces",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [4, 5, 6, 7, 8]},
+  "m": {"type": "choice", "values": [3, 4, 5, 6, 7]},
+  "r": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Le([[r]], [[n]])", "Le([[r]], [[m]])"],
+ "stem": "A matrix \\( A \\) is \\( [[m]] \\times [[n]] \\) (mapping \\( \\mathbb{R}^{[[n]]} \\to \\mathbb{R}^{[[m]]} \\)) with \\( \\operatorname{rank}(A) = [[r]] \\). Since the row space and the null space of \\(A\\) are orthogonal complements within \\( \\mathbb{R}^{[[n]]} \\), what is \\( \\dim(\\operatorname{Null}(A)) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[r]]"},
+ "distractors": ["[[m]]-[[r]]", "[[r]]", "[[n]]-[[m]]", "[[n]]+[[r]]", "[[answer]]+1", "[[answer]]-1", "[[m]]", "[[n]]"],
+ "solution": "Since \\( \\operatorname{Row}(A) \\) and \\( \\operatorname{Null}(A) \\) are orthogonal complements in \\( \\mathbb{R}^{[[n]]} \\), their dimensions add to \\( n \\): \\( \\dim(\\operatorname{Null}(A)) = [[n]] - \\dim(\\operatorname{Row}(A)) = [[n]] - [[r]] = [[answer]] \\) (using \\( \\dim(\\operatorname{Row}(A)) = \\operatorname{rank}(A) = [[r]] \\)).",
+ "distractor_rationales": [
+  "This uses the codomain dimension \\(m\\) instead of the domain dimension \\(n\\) (that formula gives the left null space dimension instead).",
+  "This reports the rank itself instead of subtracting it from \\(n\\).",
+  "This subtracts the two given dimensions instead of using the rank.",
+  "This adds instead of subtracting.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This assumes the rank is \\(0\\), reporting the codomain dimension.",
+  "This assumes the rank is \\(0\\), reporting the full domain dimension."
+ ]
+}
+]

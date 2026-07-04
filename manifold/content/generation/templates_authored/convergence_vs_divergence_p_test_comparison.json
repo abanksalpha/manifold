@@ -1,0 +1,133 @@
+[
+ {
+  "template_id": "convergence_vs_divergence_p_test_comparison_v1",
+  "skill_id": "convergence_vs_divergence_p_test_comparison",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [1, 2, 3]},
+   "p": {"type": "choice", "values": [2, 3, 4, 5]},
+   "c": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "By the p-test, \\( \\int_{[[b]]}^{\\infty} \\frac{[[c]]}{x^{[[p]]}}\\,dx \\) converges because \\( [[p]] > 1 \\). Evaluate it.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]/x**[[p]]", "var": "x", "bounds": ["[[b]]", "oo"]},
+  "distractors": [
+   "[[c]]/([[p]] - 1)",
+   "[[c]]/([[p]]*[[b]]**([[p]] - 1))",
+   "[[c]]/(([[p]] - 1)*[[b]]**[[p]])",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]]/2"
+  ],
+  "solution": "For \\( [[p]] > 1 \\), \\( \\int_{[[b]]}^{\\infty} [[c]]x^{-[[p]]}\\,dx = \\left[\\tfrac{[[c]]x^{1-[[p]]}}{1-[[p]]}\\right]_{[[b]]}^{\\infty} = \\tfrac{[[c]]}{([[p]]-1)\\,[[b]]^{[[p]]-1}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the \\( [[b]]^{[[p]]-1} \\) factor from the lower limit.",
+   "This uses \\( [[p]] \\) instead of \\( [[p]]-1 \\) in the denominator.",
+   "This uses \\( [[b]]^{[[p]]} \\) instead of \\( [[b]]^{[[p]]-1} \\).",
+   "This doubles the correct value.",
+   "This is off by one from the correct value.",
+   "This halves the correct value."
+  ]
+ },
+ {
+  "template_id": "convergence_vs_divergence_p_test_comparison_v2",
+  "skill_id": "convergence_vs_divergence_p_test_comparison",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "t": {"type": "int", "lo": 1, "hi": 6},
+   "k": {"type": "choice", "values": [2, 3, 4]},
+   "c": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {"a": "[[t]]**[[k]]"},
+  "stem": "By the p-test, \\( \\int_{0}^{[[a]]} \\frac{[[c]]}{x^{1/[[k]]}}\\,dx \\) converges even though the integrand blows up at \\( x=0 \\), since the exponent \\( \\tfrac{1}{[[k]]} < 1 \\). Evaluate it.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]/x**(1/[[k]])", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*[[k]]/([[k]] - 1)",
+   "[[c]]*[[t]]**([[k]] - 1)/[[k]]",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + 1",
+   "3*[[answer]]/2"
+  ],
+  "solution": "\\( \\int_{0}^{[[a]]} [[c]]x^{-1/[[k]]}\\,dx = \\left[\\tfrac{[[c]][[k]]}{[[k]]-1}x^{([[k]]-1)/[[k]]}\\right]_{0}^{[[a]]} = \\tfrac{[[c]][[k]]}{[[k]]-1}[[t]]^{[[k]]-1} = [[answer]] \\), since the singularity is integrable (exponent \\( <1 \\)).",
+  "distractor_rationales": [
+   "This uses \\( \\tfrac{[[k]]}{[[k]]-1} \\) but forgets to raise \\( [[t]] \\) to the power \\( [[k]]-1 \\).",
+   "This drops the leading factor \\( \\tfrac{[[k]]}{[[k]]-1} \\) entirely.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This is off by one from the correct value.",
+   "This scales the correct value by 3/2."
+  ]
+ },
+ {
+  "template_id": "convergence_vs_divergence_p_test_comparison_v3",
+  "skill_id": "convergence_vs_divergence_p_test_comparison",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "d": {"type": "int", "lo": 1, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Since \\( \\frac{[[c]]}{x(x+[[d]])} \\) is comparable to \\( \\frac{[[c]]}{x^{2}} \\) for large \\( x \\), the integral \\( \\int_{1}^{\\infty} \\frac{[[c]]}{x(x+[[d]])}\\,dx \\) converges by comparison with a p-series. Evaluate it exactly.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]/(x*(x + [[d]]))", "var": "x", "bounds": ["1", "oo"]},
+  "distractors": [
+   "[[c]]*log([[d]] + 1)",
+   "[[c]]*log([[d]])/[[d]]",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "-[[answer]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "\\( \\frac{[[c]]}{x(x+[[d]])} = \\frac{[[c]]}{[[d]]}\\left(\\frac{1}{x} - \\frac{1}{x+[[d]]}\\right) \\), so \\( \\int_{1}^{\\infty} = \\frac{[[c]]}{[[d]]}\\left[\\ln\\frac{x}{x+[[d]]}\\right]_{1}^{\\infty} = \\frac{[[c]]}{[[d]]}\\ln([[d]]+1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( [[d]] \\) from the partial-fraction coefficient.",
+   "This uses \\( \\ln([[d]]) \\) instead of \\( \\ln([[d]]+1) \\).",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This flips the overall sign.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "convergence_vs_divergence_p_test_comparison_v4",
+  "skill_id": "convergence_vs_divergence_p_test_comparison",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [2, 4]},
+   "b0": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {"target": "[[c]]/(([[p]] - 1)*[[b0]]**([[p]] - 1))"},
+  "stem": "The convergent improper integral \\( \\int_{b}^{\\infty} \\frac{[[c]]}{x^{[[p]]}}\\,dx \\) equals \\( [[target]] \\) for a particular lower limit \\( b > 0 \\). Solve for \\( b \\).",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "[[c]]/(([[p]] - 1)*b**([[p]] - 1)) = [[target]]",
+   "var": "b"
+  },
+  "distractors": [
+   "[[b0]] + 1",
+   "[[b0]] - 1",
+   "2*[[b0]]",
+   "[[b0]]/2",
+   "[[b0]] + 2",
+   "[[b0]]**2"
+  ],
+  "solution": "By the p-test formula, \\( \\int_{b}^{\\infty}\\frac{[[c]]}{x^{[[p]]}}\\,dx = \\frac{[[c]]}{([[p]]-1)b^{[[p]]-1}} \\). Setting this equal to \\( [[target]] \\) and solving gives \\( b = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This is off by two from the correct value.",
+   "This squares the correct value instead of solving linearly."
+  ]
+ }
+]

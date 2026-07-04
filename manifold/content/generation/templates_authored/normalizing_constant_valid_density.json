@@ -1,0 +1,196 @@
+[
+ {
+  "template_id": "normalizing_constant_power_density_v1",
+  "skill_id": "normalizing_constant_valid_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "m": {
+    "type": "int",
+    "lo": 1,
+    "hi": 13
+   },
+   "b": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     4
+    ]
+   }
+  },
+  "constraints": [],
+  "stem": "For which value of the constant \\( c \\) is \\( f(x) = c\\,x^{[[m]]} \\) a valid probability density function on the interval \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) elsewhere)?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "c * [[b]] ** ([[m]] + 1) / ([[m]] + 1) = 1",
+   "var": "c"
+  },
+  "distractors": [
+   "Rational([[m]] + 1, [[b]] ** [[m]])",
+   "Rational([[m]], [[b]] ** ([[m]] + 1))",
+   "Rational(1, [[b]] ** ([[m]] + 1))",
+   "[[b]] ** ([[m]] + 1) / ([[m]] + 1)",
+   "Rational([[m]] + 2, [[b]] ** ([[m]] + 1))",
+   "Rational([[m]] + 1, [[b]])"
+  ],
+  "solution": "A density must integrate to 1: \\( \\int_0^{[[b]]} c\\,x^{[[m]]}\\,dx = c\\,\\frac{[[b]]^{[[m]]+1}}{[[m]]+1} = 1 \\), so \\( c = \\frac{[[m]]+1}{[[b]]^{[[m]]+1}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( [[b]]^{[[m]]} \\) instead of \\( [[b]]^{[[m]]+1} \\) in the denominator (forgot to raise the exponent from integrating).",
+   "This uses \\( [[m]] \\) instead of \\( [[m]]+1 \\) in the numerator.",
+   "This drops the \\( ([[m]]+1) \\) factor from the numerator entirely.",
+   "This is the value of the integral \\( \\int_0^{[[b]]} x^{[[m]]}\\,dx \\), i.e. \\( 1/c \\), not \\( c \\) itself.",
+   "This is off by one in the numerator, using \\( [[m]]+2 \\).",
+   "This divides by \\( [[b]] \\) instead of \\( [[b]]^{[[m]]+1} \\)."
+  ]
+ },
+ {
+  "template_id": "normalizing_constant_uniform_density_v1",
+  "skill_id": "normalizing_constant_valid_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -10, "hi": 10},
+   "w": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": [],
+  "derived": {"b": "[[a]] + [[w]]"},
+  "stem": "For which value of the constant \\( c \\) is \\( f(x) = c \\) (a constant function) a valid probability density function on the interval \\( [[[a]], [[b]]] \\) (and \\( f(x) = 0 \\) elsewhere)?",
+  "answer_spec": {"op": "solve", "equation": "c * ([[b]] - [[a]]) = 1", "var": "c"},
+  "distractors": [
+   "[[b]] - [[a]]",
+   "Rational(1, [[b]] + [[a]])",
+   "Rational([[b]] - [[a]], 2)",
+   "Rational(2, [[b]] - [[a]])",
+   "Rational(1, [[b]]) - Rational(1, [[a]])",
+   "Rational(1, [[b]] - [[a]] - 1)"
+  ],
+  "solution": "A constant density on \\( [a,b] \\) must satisfy \\( c(b-a) = 1 \\), so \\( c = \\frac{1}{b-a} = \\frac{1}{[[b]] - [[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the interval width itself, i.e. \\( 1/c \\), rather than \\( c \\).",
+   "This adds the endpoints instead of subtracting them.",
+   "This halves the width instead of taking its reciprocal.",
+   "This has an extra factor of 2 in the numerator.",
+   "This incorrectly splits the reciprocal across the two endpoints.",
+   "This is off by one in the width."
+  ]
+ },
+ {
+  "template_id": "normalizing_constant_linear_ramp_density_v1",
+  "skill_id": "normalizing_constant_valid_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "For which value of the constant \\( c \\) is \\( f(x) = c\\,([[b]] - x) \\) a valid probability density function on the interval \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) elsewhere)?",
+  "answer_spec": {"op": "solve", "equation": "c * [[b]] ** 2 / 2 = 1", "var": "c"},
+  "distractors": [
+   "Rational(1, [[b]] ** 2)",
+   "Rational(2, [[b]])",
+   "Rational([[b]] ** 2, 2)",
+   "Rational(1, 2 * [[b]] ** 2)",
+   "Rational(4, [[b]] ** 2)",
+   "Rational(2, [[b]] ** 2) - 1"
+  ],
+  "solution": "A density must integrate to 1: \\( \\int_0^{[[b]]} c([[b]]-x)\\,dx = c\\,\\frac{[[b]]^2}{2} = 1 \\), so \\( c = \\frac{2}{[[b]]^2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of 2 from the numerator, using \\( 1/b^2 \\) instead of \\( 2/b^2 \\).",
+   "This forgets to square \\( b \\), using \\( 2/b \\) instead of \\( 2/b^2 \\).",
+   "This is the value of the integral itself, i.e. \\( 1/c \\), not \\( c \\).",
+   "This has an extra factor of 2 in the denominator.",
+   "This uses 4 instead of 2 in the numerator.",
+   "This subtracts 1 after computing the correct ratio."
+  ]
+ },
+ {
+  "template_id": "normalizing_constant_arch_density_v1",
+  "skill_id": "normalizing_constant_valid_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "For which value of the constant \\( c \\) is \\( f(x) = c\\,x\\,([[b]] - x) \\) a valid probability density function on the interval \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) elsewhere)?",
+  "answer_spec": {"op": "solve", "equation": "c * [[b]] ** 3 / 6 = 1", "var": "c"},
+  "distractors": [
+   "Rational(1, [[b]] ** 3)",
+   "Rational(6, [[b]] ** 2)",
+   "Rational(3, [[b]] ** 3)",
+   "Rational([[b]] ** 3, 6)",
+   "Rational(12, [[b]] ** 3)",
+   "Rational(6, [[b]])"
+  ],
+  "solution": "A density must integrate to 1: \\( \\int_0^{[[b]]} c\\,x([[b]]-x)\\,dx = c\\,\\frac{[[b]]^3}{6} = 1 \\), so \\( c = \\frac{6}{[[b]]^3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of 6 from the numerator entirely.",
+   "This uses \\( b^2 \\) instead of \\( b^3 \\) in the denominator.",
+   "This uses 3 instead of 6 in the numerator (forgetting the full cubic-integral coefficient).",
+   "This is the value of the integral itself, i.e. \\( 1/c \\), not \\( c \\).",
+   "This doubles the correct numerator.",
+   "This forgets to cube \\( b \\), using \\( 6/b \\) instead of \\( 6/b^3 \\)."
+  ]
+ },
+ {
+  "template_id": "normalizing_constant_exponential_density_v1",
+  "skill_id": "normalizing_constant_valid_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "kd": {"type": "choice", "values": [1, 2, 3, 4]},
+   "kn": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "For which value of the constant \\( c \\) is \\( f(x) = c\\,e^{-\\frac{[[kn]]}{[[kd]]} x} \\) a valid probability density function on the interval \\( x \\ge 0 \\) (and \\( f(x) = 0 \\) for \\( x < 0 \\))?",
+  "answer_spec": {"op": "solve", "equation": "c / (Rational([[kn]], [[kd]])) = 1", "var": "c"},
+  "distractors": [
+   "Rational([[kd]], [[kn]])",
+   "Rational([[kn]], [[kd]]) ** 2",
+   "1 / Rational([[kn]], [[kd]]) ** 2",
+   "2 * Rational([[kn]], [[kd]])",
+   "Rational([[kn]], [[kd]]) + 1",
+   "Rational([[kn]], [[kd]]) - 1"
+  ],
+  "solution": "A density on \\( [0,\\infty) \\) must integrate to 1: \\( \\int_0^{\\infty} c\\,e^{-kx}\\,dx = \\frac{c}{k} = 1 \\) where \\( k = \\frac{[[kn]]}{[[kd]]} \\), so \\( c = k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the rate, using \\( 1/k \\) instead of \\( k \\).",
+   "This squares the rate instead of using it directly.",
+   "This uses \\( 1/k^2 \\), confusing this with a variance-type formula.",
+   "This doubles the correct rate.",
+   "This adds 1 to the correct rate.",
+   "This subtracts 1 from the correct rate."
+  ]
+ },
+ {
+  "template_id": "normalizing_constant_pareto_tail_density_v1",
+  "skill_id": "normalizing_constant_valid_density",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": 1, "hi": 15}
+  },
+  "constraints": [],
+  "stem": "For which value of the constant \\( c \\) is \\( f(x) = \\dfrac{c}{x^{2}} \\) a valid probability density function on the interval \\( x \\ge [[b]] \\) (and \\( f(x) = 0 \\) for \\( x < [[b]] \\))?",
+  "answer_spec": {"op": "solve", "equation": "c / [[b]] = 1", "var": "c"},
+  "distractors": [
+   "Rational(1, [[b]])",
+   "[[b]] ** 2",
+   "Rational(1, [[b]] ** 2)",
+   "2 * [[b]]",
+   "[[b]] - 1",
+   "[[b]] + 1"
+  ],
+  "solution": "A density on \\( [b,\\infty) \\) must integrate to 1: \\( \\int_{[[b]]}^{\\infty} \\frac{c}{x^2}\\,dx = \\frac{c}{[[b]]} = 1 \\), so \\( c = [[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the answer, giving \\( 1/b \\) instead of \\( b \\).",
+   "This squares \\( b \\) instead of using it directly.",
+   "This is the reciprocal of the squared value.",
+   "This doubles the correct value.",
+   "This is off by one below the correct value.",
+   "This is off by one above the correct value."
+  ]
+ }
+]

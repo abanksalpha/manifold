@@ -1,0 +1,4 @@
+{
+ "skill_id": "ideal_vs_subring_recognition",
+ "reason": "This asks the student to recognize/classify whether a given subset is an ideal or merely a subring; the answer is a qualitative classification, not a single computable scalar."
+}

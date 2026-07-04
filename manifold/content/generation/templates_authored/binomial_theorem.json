@@ -1,0 +1,193 @@
+[
+ {
+  "template_id": "binomial_theorem_term_coefficient_v1",
+  "skill_id": "binomial_theorem",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 10},
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Le([[k]], [[n]] - 1)"],
+  "stem": "In the expansion of \\( ([[a]]x + [[b]])^{[[n]]} \\), what is the coefficient of \\( x^{[[k]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]],[[k]])*([[a]])**[[k]]*([[b]])**([[n]]-[[k]])"},
+  "distractors": [
+   "binomial([[n]],[[k]])",
+   "binomial([[n]],[[k]])*([[a]])**([[n]]-[[k]])*([[b]])**[[k]]",
+   "([[a]])**[[k]]*([[b]])**([[n]]-[[k]])",
+   "binomial([[n]],[[k]]-1)*([[a]])**[[k]]*([[b]])**([[n]]-[[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The general term of \\( (ax+b)^{n} \\) is \\( \\binom{n}{k}(ax)^{k}b^{n-k} \\), so the coefficient of \\( x^{[[k]]} \\) is \\( \\binom{[[n]]}{[[k]]}([[a]])^{[[k]]}([[b]])^{[[n]]-[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is only \\( \\binom{n}{k} \\); it omits the factors \\( a^{k} \\) and \\( b^{n-k} \\).",
+   "This swaps the exponents on \\( a \\) and \\( b \\).",
+   "This omits the binomial coefficient \\( \\binom{n}{k} \\) entirely.",
+   "This uses the binomial coefficient for one index too low.",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "binomial_theorem_middle_term_v1",
+  "skill_id": "binomial_theorem",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "choice", "values": [4, 6, 8, 10, 12]},
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "b": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "derived": {"mid": "[[n]]/2"},
+  "stem": "The expansion of \\( ([[a]]x + [[b]])^{[[n]]} \\) has \\( [[n]]+1 \\) terms, since [[n]] is even. What is the coefficient of its middle term, \\( x^{[[mid]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]],[[mid]])*([[a]])**[[mid]]*([[b]])**[[mid]]"},
+  "distractors": [
+   "binomial([[n]],[[mid]])",
+   "([[a]])**[[mid]]*([[b]])**[[mid]]",
+   "binomial([[n]],[[mid]]-1)*([[a]])**[[mid]]*([[b]])**[[mid]]",
+   "binomial([[n]],[[mid]])*([[a]])**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The middle term corresponds to index \\( j = [[n]]/2 = [[mid]] \\), where numerator and denominator exponents on \\( a \\) and \\( b \\) are equal. Its coefficient is \\( \\binom{[[n]]}{[[mid]]}([[a]])^{[[mid]]}([[b]])^{[[mid]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the factors \\( a^{[[mid]]}b^{[[mid]]} \\), leaving only the binomial coefficient.",
+   "This omits the binomial coefficient \\( \\binom{n}{[[mid]]} \\).",
+   "This uses the binomial coefficient for one index too low.",
+   "This raises \\( a \\) to the full power \\( n \\) instead of just \\( [[mid]] \\).",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "binomial_theorem_sum_of_coefficients_v1",
+  "skill_id": "binomial_theorem",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "n": {"type": "int", "lo": 3, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "What is the sum of all the coefficients in the expansion of \\( ([[a]]x + [[b]])^{[[n]]} \\)? (Hint: every coefficient is counted once when \\( x = 1 \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]+[[b]])**[[n]]"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "([[a]] - [[b]])**[[n]]",
+   "[[a]]**[[n]] + [[b]]**[[n]]",
+   "[[n]]*([[a]] + [[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( x = 1 \\) turns the expansion into the sum of all its coefficients: \\( ([[a]](1) + [[b]])^{[[n]]} = ([[a]]+[[b]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to raise the sum to the power [[n]].",
+   "This substitutes \\( x=-1 \\) instead of \\( x=1 \\).",
+   "This raises \\( a \\) and \\( b \\) to the power separately instead of raising their sum.",
+   "This multiplies the sum by [[n]] instead of raising it to the power [[n]].",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "binomial_theorem_even_power_coefficient_sum_v1",
+  "skill_id": "binomial_theorem",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "n": {"type": "int", "lo": 3, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "In the expansion of \\( ([[a]]x + [[b]])^{[[n]]} \\), what is the sum of the coefficients of only the terms with an EVEN power of \\( x \\) (counting a constant term as the power \\( 0 \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "(([[a]]+[[b]])**[[n]] + (-[[a]]+[[b]])**[[n]])/2"},
+  "distractors": [
+   "(([[a]]+[[b]])**[[n]] - (-[[a]]+[[b]])**[[n]])/2",
+   "([[a]]+[[b]])**[[n]]",
+   "(-[[a]]+[[b]])**[[n]]",
+   "([[a]]+[[b]])**[[n]] + (-[[a]]+[[b]])**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Let \\( f(x) = ([[a]]x+[[b]])^{[[n]]} \\). Then \\( f(1) \\) sums ALL coefficients and \\( f(-1) \\) sums coefficients with alternating sign, so the even-power sum is \\( \\dfrac{f(1)+f(-1)}{2} = \\dfrac{([[a]]+[[b]])^{[[n]]} + (-[[a]]+[[b]])^{[[n]]}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the ODD-power coefficient sum \\( \\frac{f(1)-f(-1)}{2} \\), not the even-power sum.",
+   "This is just \\( f(1) \\), the sum of ALL coefficients, forgetting to combine with \\( f(-1) \\).",
+   "This is just \\( f(-1) \\) alone, not the average of \\( f(1) \\) and \\( f(-1) \\).",
+   "This forgets to divide by 2 after adding \\( f(1) \\) and \\( f(-1) \\).",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "binomial_theorem_constant_term_v1",
+  "skill_id": "binomial_theorem",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "choice", "values": [3, 6, 9, 12]},
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {"j": "2*[[n]]/3"},
+  "stem": "In the expansion of \\( \\left([[a]]x^{2} + \\dfrac{[[b]]}{x}\\right)^{[[n]]} \\), what is the term independent of \\( x \\) (i.e., the constant term)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]],[[j]])*([[a]])**([[n]]-[[j]])*([[b]])**[[j]]"},
+  "distractors": [
+   "binomial([[n]],[[j]])",
+   "binomial([[n]],[[j]])*([[a]])**[[j]]*([[b]])**([[n]]-[[j]])",
+   "([[a]])**([[n]]-[[j]])*([[b]])**[[j]]",
+   "binomial([[n]],[[j]]-1)*([[a]])**([[n]]-[[j]])*([[b]])**[[j]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The general term is \\( \\binom{[[n]]}{j}(x^{2})^{[[n]]-j}\\left(\\dfrac{[[b]]}{x}\\right)^{j} = \\binom{[[n]]}{j}([[a]])^{[[n]]-j}([[b]])^{j}x^{2[[n]]-3j} \\). Setting \\( 2([[n]]) - 3j = 0 \\) gives \\( j = [[j]] \\), so the constant term is \\( \\binom{[[n]]}{[[j]]}([[a]])^{[[n]]-[[j]]}([[b]])^{[[j]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the factors \\( a^{n-j}b^{j} \\), leaving only the binomial coefficient.",
+   "This swaps the exponents on \\( a \\) and \\( b \\).",
+   "This omits the binomial coefficient \\( \\binom{n}{j} \\).",
+   "This uses the binomial coefficient for one index too low.",
+   "This is off by one from the correct term.",
+   "This is off by one from the correct term."
+  ]
+ },
+ {
+  "template_id": "binomial_theorem_vandermonde_sum_v1",
+  "skill_id": "binomial_theorem",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Using the binomial theorem applied to \\( (1+x)^{[[n]]}(1+x)^{[[n]]} = (1+x)^{2[[n]]} \\) and comparing coefficients, evaluate \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^{2} \\).",
+  "answer_spec": {"op": "sum", "expr": "binomial([[n]],k)**2", "var": "k", "lo": "0", "hi": "[[n]]"},
+  "distractors": [
+   "2**[[n]]",
+   "[[n]]**2",
+   "binomial([[n]],2)",
+   "[[n]]*(2**[[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By Vandermonde's identity, \\( \\displaystyle\\sum_{k=0}^{n} \\binom{n}{k}^{2} = \\binom{2n}{n} \\); directly summing the [[n]]+1 squared coefficients for \\( n=[[n]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the sum of the (unsquared) binomial coefficients, \\( 2^{n} \\), not the sum of their squares.",
+   "This squares \\( n \\) itself rather than summing the squares of the coefficients.",
+   "This reports a single binomial coefficient rather than the sum of all their squares.",
+   "This multiplies \\( n \\) by \\( 2^{n} \\), an unrelated quantity.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ }
+]

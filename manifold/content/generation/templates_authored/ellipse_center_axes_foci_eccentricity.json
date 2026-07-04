@@ -1,0 +1,278 @@
+[
+{
+ "template_id": "ellipse_focal_distance_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 3,
+   "hi": 12
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 11
+  }
+ },
+ "constraints": [
+  "Gt([[a]], [[b]])"
+ ],
+ "stem": "For the ellipse \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\), find the focal distance \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 - [[b]]**2)"
+ },
+ "distractors": [
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "[[a]] - [[b]]",
+  "sqrt([[a]] - [[b]])",
+  "Abs([[a]] - [[b]])",
+  "sqrt([[a]]**2 - [[b]]**2) + 1",
+  "sqrt([[a]]**2 - [[b]]**2) - 1"
+ ],
+ "solution": "For an ellipse, \\( c=\\sqrt{a^{2}-b^{2}}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "ellipse_eccentricity_from_axes_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 14},
+  "b": {"type": "int", "lo": 1, "hi": 13}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "For the ellipse \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\), find the eccentricity \\( e \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 - [[b]]**2)/[[a]]"
+ },
+ "distractors": [
+  "sqrt([[a]]**2 - [[b]]**2)/[[b]]",
+  "sqrt([[a]]**2 + [[b]]**2)/[[a]]",
+  "[[b]]/[[a]]",
+  "([[a]]**2 - [[b]]**2)/[[a]]**2",
+  "sqrt([[a]]**2 - [[b]]**2)/[[a]] + Rational(1,10)",
+  "sqrt([[a]]**2 - [[b]]**2)/[[a]] - Rational(1,10)"
+ ],
+ "solution": "\\( e=\\dfrac{c}{a}=\\dfrac{\\sqrt{a^{2}-b^{2}}}{a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( b \\) (the semi-minor axis) instead of \\( a \\).",
+  "This uses \\( \\sqrt{a^2+b^2}\\) instead of \\( \\sqrt{a^2-b^2}\\).",
+  "This reports the axis ratio \\( b/a \\) instead of the eccentricity.",
+  "This forgets to take the square root of \\( a^2-b^2\\) before dividing.",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+},
+{
+ "template_id": "ellipse_vertical_major_axis_focus_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 12},
+  "b": {"type": "int", "lo": 1, "hi": 11}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "For the ellipse \\( \\dfrac{x^{2}}{[[b]]^{2}}+\\dfrac{y^{2}}{[[a]]^{2}}=1 \\) (major axis vertical, since \\( [[a]]>[[b]] \\)), find the \\( y \\)-coordinate of the focus that lies above the center.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 - [[b]]**2)"
+ },
+ "distractors": [
+  "sqrt([[b]]**2 - [[a]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "[[a]] - [[b]]",
+  "-sqrt([[a]]**2 - [[b]]**2)",
+  "sqrt([[a]]**2 - [[b]]**2) + 1",
+  "sqrt([[a]]**2 - [[b]]**2) - 1"
+ ],
+ "solution": "Since the larger denominator \\( [[a]]^{2}\\) is under \\( y^{2}\\), the major axis is vertical and the foci are at \\( (0,\\pm c) \\) with \\( c=\\sqrt{a^{2}-b^{2}}=[[answer]] \\); the one above the center has \\( y=[[answer]] \\).",
+ "distractor_rationales": [
+  "This takes the square root the wrong way, as if \\( b\\) were the semi-major axis.",
+  "This uses \\( \\sqrt{a^2+b^2}\\) instead of \\( \\sqrt{a^2-b^2}\\).",
+  "This subtracts without squaring first.",
+  "This gives the focus below the center instead of above it.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+},
+{
+ "template_id": "ellipse_shifted_center_focus_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "h": {"type": "int", "lo": -8, "hi": 8},
+  "k": {"type": "int", "lo": -8, "hi": 8},
+  "a": {"type": "int", "lo": 3, "hi": 10},
+  "b": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "For the ellipse \\( \\dfrac{(x-[[h]])^{2}}{[[a]]^{2}}+\\dfrac{(y-[[k]])^{2}}{[[b]]^{2}}=1 \\), find the \\( x \\)-coordinate of the focus to the right of the center.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[h]] + sqrt([[a]]**2 - [[b]]**2)"
+ },
+ "distractors": [
+  "[[h]] - sqrt([[a]]**2 - [[b]]**2)",
+  "sqrt([[a]]**2 - [[b]]**2)",
+  "[[h]] + sqrt([[a]]**2 + [[b]]**2)",
+  "[[k]] + sqrt([[a]]**2 - [[b]]**2)",
+  "[[h]] + sqrt([[a]]**2 - [[b]]**2) + 1",
+  "[[h]] + sqrt([[a]]**2 - [[b]]**2) - 1"
+ ],
+ "solution": "The center is \\( ([[h]],[[k]]) \\) and \\( c=\\sqrt{a^{2}-b^{2}} \\), so the right focus has \\( x=[[h]]+c=[[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts \\( c\\) instead of adding it, giving the left focus.",
+  "This forgets to shift by the center's \\( x\\)-coordinate \\( h\\).",
+  "This uses \\( \\sqrt{a^2+b^2}\\) instead of \\( \\sqrt{a^2-b^2}\\).",
+  "This shifts by \\( k\\) instead of \\( h\\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+},
+{
+ "template_id": "ellipse_focal_sum_property_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 5, "hi": 25},
+  "d1": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Lt([[d1]], 2*[[a]])"],
+ "stem": "An ellipse has semi-major axis \\( [[a]] \\). A point \\( P \\) on the ellipse is at distance \\( [[d1]] \\) from one focus. What is its distance from the other focus?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*[[a]] - [[d1]]"
+ },
+ "distractors": [
+  "2*[[a]] + [[d1]]",
+  "[[a]] - [[d1]]",
+  "[[d1]] - 2*[[a]]",
+  "[[a]]/2 - [[d1]]",
+  "2*[[a]] - [[d1]] + 1",
+  "2*[[a]] - [[d1]] - 1"
+ ],
+ "solution": "By the definition of an ellipse, the two focal distances always sum to \\( 2a \\), so the other distance is \\( 2([[a]])-[[d1]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the distances instead of using the constant-sum property.",
+  "This uses \\( a\\) instead of \\( 2a\\) as the constant sum.",
+  "This computes the sum minus double the semi-major axis, giving a negative, incorrect result.",
+  "This uses \\( a/2\\) instead of \\( 2a\\) as the total.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "ellipse_eccentricity_general_form_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 8},
+  "q": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "stem": "The ellipse \\( [[p]]x^{2}+[[q]]y^{2}=1 \\) is not yet in standard form \\( \\dfrac{x^{2}}{a^{2}}+\\dfrac{y^{2}}{b^{2}}=1 \\). Find its eccentricity.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt(Rational([[q]] - [[p]], [[q]]))"
+ },
+ "distractors": [
+  "sqrt(Rational([[p]], [[q]]))",
+  "sqrt(Rational([[q]] - [[p]], [[p]]))",
+  "Rational([[p]], [[q]])",
+  "sqrt(Rational([[q]] + [[p]], [[q]]))",
+  "sqrt(Rational([[q]] - [[p]], [[q]])) + Rational(1,10)",
+  "sqrt(Rational([[q]] - [[p]], [[q]])) - Rational(1,10)"
+ ],
+ "solution": "Dividing by \\( 1 \\) directly, \\( a^{2}=\\dfrac{1}{[[p]]} \\) and \\( b^{2}=\\dfrac{1}{[[q]]} \\) (with \\( a^2>b^2\\) since \\( [[p]]<[[q]] \\)), so \\( e=\\sqrt{1-\\dfrac{b^{2}}{a^{2}}}=\\sqrt{\\dfrac{[[q]]-[[p]]}{[[q]]}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( p/q\\) under the root instead of \\( (q-p)/q\\).",
+  "This divides by \\( p\\) instead of \\( q\\) in the final ratio.",
+  "This forgets to take the square root.",
+  "This adds \\( p\\) and \\( q\\) instead of subtracting.",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+},
+{
+ "template_id": "ellipse_area_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "b": {"type": "int", "lo": 1, "hi": 11}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "Find the area enclosed by the ellipse \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "pi*[[a]]*[[b]]"
+ },
+ "distractors": [
+  "pi*[[a]]**2",
+  "pi*([[a]]+[[b]])",
+  "2*pi*[[a]]*[[b]]",
+  "Rational(1,2)*pi*[[a]]*[[b]]",
+  "pi*[[a]]*[[b]] + 1",
+  "pi*[[a]]*[[b]] - 1"
+ ],
+ "solution": "The area of an ellipse with semi-axes \\( a,b \\) is \\( \\pi ab=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\pi a^2\\) (a circle's formula) instead of \\( \\pi ab\\).",
+  "This uses \\( \\pi(a+b)\\) instead of \\( \\pi ab\\).",
+  "This doubles the correct area.",
+  "This halves the correct area.",
+  "This is off by one from the correct area.",
+  "This is off by one (other direction) from the correct area."
+ ]
+},
+{
+ "template_id": "ellipse_focus_from_eccentricity_v1",
+ "skill_id": "ellipse_center_axes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 4, "hi": 20},
+  "m": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "int", "lo": 5, "hi": 9}
+ },
+ "constraints": ["Lt([[m]], [[n]])", "Eq(gcd([[m]], [[n]]), 1)"],
+ "stem": "An ellipse has semi-major axis \\( a=[[a]] \\) and eccentricity \\( e=\\dfrac{[[m]]}{[[n]]} \\). Find the focal distance \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[a]]*Rational([[m]], [[n]])"
+ },
+ "distractors": [
+  "[[a]]*Rational([[n]], [[m]])",
+  "Rational([[a]]*[[n]], [[m]])",
+  "[[a]] + Rational([[m]], [[n]])",
+  "[[a]] - [[a]]*Rational([[m]], [[n]])",
+  "[[a]]*Rational([[m]], [[n]]) + 1",
+  "[[a]]*Rational([[m]], [[n]]) - 1"
+ ],
+ "solution": "Since \\( e=\\dfrac{c}{a} \\), the focal distance is \\( c=ea=[[a]]\\cdot\\dfrac{[[m]]}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the eccentricity fraction before multiplying.",
+  "This divides by \\( e\\) instead of multiplying by it.",
+  "This adds \\( e\\) to \\( a\\) instead of multiplying.",
+  "This computes \\( b=a-c\\)-style subtraction instead of \\( c=ea\\).",
+  "This is off by one from the correct focal distance.",
+  "This is off by one (other direction) from the correct focal distance."
+ ]
+}
+]

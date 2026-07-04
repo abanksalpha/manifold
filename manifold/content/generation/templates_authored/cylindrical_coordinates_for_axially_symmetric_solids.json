@@ -1,0 +1,201 @@
+[
+ {
+  "template_id": "cylindrical_coordinates_for_axially_symmetric_solids_v1",
+  "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "R": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {"topc": "[[k]]*[[R]]**2"},
+  "stem": "A solid is bounded below by the paraboloid \\( z = [[k]](x^2+y^2) \\) and above by the plane \\( z = [[topc]] \\). Using cylindrical coordinates, find its volume.",
+  "answer_spec": {"op": "dblintegrate", "expr": "r", "vars": ["z", "r", "theta"], "bounds": [["[[k]]*r**2", "[[topc]]"], ["0", "[[R]]"], ["0", "2*pi"]]},
+  "distractors": [
+   "4*pi*[[k]]*[[R]]**3/3",
+   "pi*[[R]]**2*[[topc]]",
+   "[[k]]*pi*[[R]]**4/4",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "The paraboloid \\(z=[[k]]r^2\\) meets the plane \\(z=[[topc]]\\) at \\(r=[[R]]\\). With \\(dV = r\\,dz\\,dr\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{0}^{[[R]]}\\int_{[[k]]r^2}^{[[topc]]} r\\,dz\\,dr\\,d\\theta = \\int_{0}^{2\\pi}\\int_{0}^{[[R]]} r([[topc]]-[[k]]r^2)\\,dr\\,d\\theta = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the Jacobian factor \\(r\\), integrating \\(([[topc]]-[[k]]r^2)\\) without it.",
+   "This uses the volume of the full cylinder of height \\([[topc]]\\), ignoring the paraboloid bottom.",
+   "This keeps only \\(\\tfrac14\\) of the correct value (a mishandled \\(r\\)-integral).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "cylindrical_coordinates_for_axially_symmetric_solids_v2",
+  "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "R": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {"topc": "[[k]]*[[R]]"},
+  "stem": "A solid is bounded below by the cone \\( z = [[k]]\\sqrt{x^2+y^2} \\) and above by the plane \\( z = [[topc]] \\). Using cylindrical coordinates, find its volume.",
+  "answer_spec": {"op": "dblintegrate", "expr": "r", "vars": ["z", "r", "theta"], "bounds": [["[[k]]*r", "[[topc]]"], ["0", "[[R]]"], ["0", "2*pi"]]},
+  "distractors": [
+   "4*pi*[[k]]*[[R]]**3/3",
+   "pi*[[R]]**2*[[topc]]",
+   "[[k]]*pi*[[R]]**3/2",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "The cone \\(z=[[k]]r\\) meets the plane \\(z=[[topc]]\\) at \\(r=[[R]]\\). With \\(dV = r\\,dz\\,dr\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{0}^{[[R]]}\\int_{[[k]]r}^{[[topc]]} r\\,dz\\,dr\\,d\\theta = \\int_{0}^{2\\pi}\\int_{0}^{[[R]]} r([[topc]]-[[k]]r)\\,dr\\,d\\theta = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of a full ball of radius \\([[R]]\\), an unrelated formula.",
+   "This is the volume of the whole cylinder of height \\([[topc]]\\), ignoring the cone bottom.",
+   "This drops the factor of \\(\\tfrac13\\) that comes from the cone's linear taper.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "cylindrical_coordinates_for_axially_symmetric_solids_v3",
+  "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "R": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "derived": {"h": "([[a]]+[[b]])*[[R]]**2"},
+  "stem": "A solid lies between two paraboloids: \\( z = [[a]](x^2+y^2) \\) from below and \\( z = [[h]] - [[b]](x^2+y^2) \\) from above (the two surfaces meet where \\( x^2+y^2 = [[R]]^2 \\)). Using cylindrical coordinates, find the volume of the solid.",
+  "answer_spec": {"op": "dblintegrate", "expr": "r", "vars": ["z", "r", "theta"], "bounds": [["[[a]]*r**2", "[[h]]-[[b]]*r**2"], ["0", "[[R]]"], ["0", "2*pi"]]},
+  "distractors": [
+   "pi*[[R]]**2*[[h]]",
+   "4*pi*([[a]]+[[b]])*[[R]]**4/3",
+   "pi*([[a]]+[[b]])*[[R]]**4/4",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV = r\\,dz\\,dr\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{0}^{[[R]]}\\int_{[[a]]r^2}^{[[h]]-[[b]]r^2} r\\,dz\\,dr\\,d\\theta = \\int_{0}^{2\\pi}\\int_{0}^{[[R]]} r\\left([[h]]-([[a]]+[[b]])r^2\\right)dr\\,d\\theta = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the top as a flat cap at height \\([[h]]\\) over the full disk, ignoring both paraboloids' curvature.",
+   "This uses a sphere-like \\(\\tfrac43\\pi\\) coefficient, an unrelated formula.",
+   "This is exactly half the correct value (a dropped factor of 2 from the \\(\\theta\\)-integral).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "cylindrical_coordinates_for_axially_symmetric_solids_v4",
+  "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 2, "hi": 6},
+   "H": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "A cylindrical shell is formed by drilling a coaxial cylindrical hole of radius \\([[a]]\\) out of a solid cylinder of radius \\([[b]]\\) and height \\([[H]]\\). Using cylindrical coordinates, find the volume of the shell that remains.",
+  "answer_spec": {"op": "dblintegrate", "expr": "r", "vars": ["z", "r", "theta"], "bounds": [["0", "[[H]]"], ["[[a]]", "[[b]]"], ["0", "2*pi"]]},
+  "distractors": [
+   "pi*[[H]]*[[b]]**2",
+   "pi*[[H]]*([[b]]-[[a]])**2",
+   "2*pi*[[H]]*([[b]]-[[a]])",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV = r\\,dz\\,dr\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{[[a]]}^{[[b]]}\\int_{0}^{[[H]]} r\\,dz\\,dr\\,d\\theta = 2\\pi [[H]] \\int_{[[a]]}^{[[b]]} r\\,dr = \\pi [[H]] \\left([[b]]^2-[[a]]^2\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to drill out the inner hole, using the full solid cylinder's volume.",
+   "This subtracts the radii before squaring instead of squaring first, i.e. \\((b-a)^2\\) instead of \\(b^2-a^2\\).",
+   "This uses a lateral-surface-area style formula instead of a volume formula.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "cylindrical_coordinates_for_axially_symmetric_solids_v5",
+  "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "R": {"type": "int", "lo": 1, "hi": 4},
+   "H": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "A solid cylinder of radius \\([[R]]\\) and height \\([[H]]\\) has mass density \\( \\delta(x,y,z) = [[k]]\\sqrt{x^2+y^2} \\) (proportional to distance from the central axis). Using cylindrical coordinates, find the total mass of the solid.",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[k]]*r*r", "vars": ["z", "r", "theta"], "bounds": [["0", "[[H]]"], ["0", "[[R]]"], ["0", "2*pi"]]},
+  "distractors": [
+   "pi*[[k]]*[[H]]*[[R]]**2",
+   "4*pi*[[k]]*[[H]]*[[R]]**3/3",
+   "[[k]]*pi*[[H]]*[[R]]**4/2",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "In cylindrical coordinates \\(\\delta = [[k]]r\\) and \\(dV=r\\,dz\\,dr\\,d\\theta\\), so the mass is \\( \\int_{0}^{2\\pi}\\int_{0}^{[[R]]}\\int_{0}^{[[H]]} [[k]]r\\cdot r\\,dz\\,dr\\,d\\theta = 2\\pi [[H]] [[k]] \\int_{0}^{[[R]]} r^2\\,dr = \\dfrac{2\\pi [[k]] [[H]] [[R]]^3}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only one factor of \\(r\\) (density times \\(dr\\) instead of density times the Jacobian \\(r\\,dr\\)), i.e. treats mass like a uniform-density volume.",
+   "This uses a sphere-like \\(\\tfrac43\\pi\\) coefficient, an unrelated formula.",
+   "This uses \\(r^4\\) instead of \\(r^3\\) in the radial integral, an extra power of \\(r\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "cylindrical_coordinates_for_axially_symmetric_solids_v6",
+  "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "R": {"type": "int", "lo": 1, "hi": 4},
+   "H": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 8]}
+  },
+  "constraints": [],
+  "stem": "A wedge is cut from a solid cylinder of radius \\([[R]]\\) and height \\([[H]]\\) by two planes through the central axis, taking the sector where \\( 0 \\le \\theta \\le \\dfrac{2\\pi}{[[n]]} \\) (i.e. \\(\\tfrac{1}{[[n]]}\\) of a full revolution). Using cylindrical coordinates, find the volume of the wedge.",
+  "answer_spec": {"op": "dblintegrate", "expr": "r", "vars": ["z", "r", "theta"], "bounds": [["0", "[[H]]"], ["0", "[[R]]"], ["0", "2*pi/[[n]]"]]},
+  "distractors": [
+   "pi*[[R]]**2*[[H]]",
+   "pi*[[R]]**2*[[H]]/(2*[[n]])",
+   "2*pi*[[R]]**2*[[H]]/[[n]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV=r\\,dz\\,dr\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi/[[n]]}\\int_{0}^{[[R]]}\\int_{0}^{[[H]]} r\\,dz\\,dr\\,d\\theta = \\dfrac{2\\pi}{[[n]]}\\cdot[[H]]\\cdot\\dfrac{[[R]]^2}{2} = \\dfrac{\\pi [[R]]^2 [[H]]}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the volume of the full cylinder, forgetting to take only the \\(\\tfrac1{[[n]]}\\)-fraction wedge.",
+   "This has an extra stray factor of \\(\\tfrac12\\) from double-counting the wedge fraction.",
+   "This is twice the correct value (a doubled wedge angle).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ }
+]

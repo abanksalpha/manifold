@@ -1,0 +1,182 @@
+[
+{
+ "template_id": "sup_increasing_bounded_via_limit_v1",
+ "skill_id": "supremum_and_completeness",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( S = \\left\\{\\, [[c]] - \\dfrac{[[d]]}{n} : n = 1, 2, 3, \\dots \\right\\} \\). The terms increase with \\( n \\) and are bounded above by \\( [[c]] \\), so by the completeness (least-upper-bound) property of \\( \\mathbb{R} \\), \\( \\sup S \\) exists (even though it is never attained by any term). Find \\( \\sup S \\).",
+ "answer_spec": {"op": "limit", "expr": "[[c]] - [[d]]/n", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]] - [[d]]",
+  "[[c]] + [[d]]",
+  "[[d]]",
+  "[[c]]/[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( n \\to \\infty \\), \\( \\dfrac{[[d]]}{n} \\to 0 \\), so the increasing bounded sequence approaches its least upper bound: \\( \\sup S = \\lim_{n\\to\\infty}\\left([[c]] - \\dfrac{[[d]]}{n}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the first term \\( n=1 \\), which is the infimum of this increasing set, not the supremum.",
+  "This adds instead of subtracts the offset.",
+  "This reports only the offset \\( d \\), not the limiting value.",
+  "This divides the two constants for no valid reason.",
+  "This is off by one from the correct supremum.",
+  "This is off by one from the correct supremum."
+ ]
+},
+{
+ "template_id": "inf_increasing_bounded_via_first_term_v1",
+ "skill_id": "supremum_and_completeness",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( S = \\left\\{\\, [[c]] - \\dfrac{[[d]]}{n} : n = 1, 2, 3, \\dots \\right\\} \\). Since \\( \\dfrac{[[d]]}{n} \\) strictly decreases as \\( n \\) increases, the terms of \\( S \\) strictly increase, so the smallest term occurs at \\( n = 1 \\) and equals \\( \\inf S \\) (here the infimum IS attained). Find \\( \\inf S \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]] - [[d]]"},
+ "distractors": [
+  "[[c]]",
+  "[[c]] + [[d]]",
+  "[[d]] - [[c]]",
+  "-[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The set increases with \\( n \\), so its minimum (attained) value is the \\( n=1 \\) term: \\( \\inf S = [[c]] - \\dfrac{[[d]]}{1} = [[c]] - [[d]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the limiting value \\( \\sup S \\), not the infimum.",
+  "This adds instead of subtracts the offset.",
+  "This has the two terms in the wrong order.",
+  "This drops the constant \\( c \\) entirely.",
+  "This is off by one from the correct infimum.",
+  "This is off by one from the correct infimum."
+ ]
+},
+{
+ "template_id": "inf_decreasing_bounded_via_limit_v1",
+ "skill_id": "supremum_and_completeness",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( S = \\left\\{\\, [[c]] + \\dfrac{[[d]]}{n} : n = 1, 2, 3, \\dots \\right\\} \\). The terms decrease as \\( n \\) increases and are bounded below by \\( [[c]] \\), so by the completeness property of \\( \\mathbb{R} \\), \\( \\inf S \\) exists (even though it is never attained by any term). Find \\( \\inf S \\).",
+ "answer_spec": {"op": "limit", "expr": "[[c]] + [[d]]/n", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]] + [[d]]",
+  "[[c]] - [[d]]",
+  "[[d]]",
+  "-[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( n \\to \\infty \\), \\( \\dfrac{[[d]]}{n} \\to 0 \\), so the decreasing bounded-below sequence approaches its greatest lower bound: \\( \\inf S = \\lim_{n\\to\\infty}\\left([[c]] + \\dfrac{[[d]]}{n}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the first term \\( n=1 \\), which is the supremum of this decreasing set, not the infimum.",
+  "This subtracts instead of adds the offset.",
+  "This reports only the offset \\( d \\), not the limiting value.",
+  "This has the wrong sign on \\( c \\).",
+  "This is off by one from the correct infimum.",
+  "This is off by one from the correct infimum."
+ ]
+},
+{
+ "template_id": "sup_decreasing_bounded_via_first_term_v1",
+ "skill_id": "supremum_and_completeness",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( S = \\left\\{\\, [[c]] + \\dfrac{[[d]]}{n} : n = 1, 2, 3, \\dots \\right\\} \\). Since \\( \\dfrac{[[d]]}{n} \\) strictly decreases as \\( n \\) increases, the terms of \\( S \\) strictly decrease, so the largest term occurs at \\( n = 1 \\) and equals \\( \\sup S \\) (here the supremum IS attained). Find \\( \\sup S \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]] + [[d]]"},
+ "distractors": [
+  "[[c]]",
+  "[[c]] - [[d]]",
+  "[[d]] - [[c]]",
+  "-[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The set decreases with \\( n \\), so its maximum (attained) value is the \\( n=1 \\) term: \\( \\sup S = [[c]] + \\dfrac{[[d]]}{1} = [[c]] + [[d]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the limiting value \\( \\inf S \\), not the supremum.",
+  "This subtracts instead of adds the offset.",
+  "This has the two terms in the wrong order.",
+  "This drops the constant \\( c \\) entirely.",
+  "This is off by one from the correct supremum.",
+  "This is off by one from the correct supremum."
+ ]
+},
+{
+ "template_id": "sup_alternating_bounded_set_v1",
+ "skill_id": "supremum_and_completeness",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( S = \\left\\{\\, (-1)^n\\dfrac{[[c]]}{n} + [[e]] : n = 1, 2, 3, \\dots \\right\\} \\). The positive (even-\\(n\\)) terms \\( \\dfrac{[[c]]}{2}+[[e]], \\dfrac{[[c]]}{4}+[[e]], \\dfrac{[[c]]}{6}+[[e]], \\dots \\) decrease, so the largest one is \\( \\dfrac{[[c]]}{2}+[[e]] \\) at \\( n=2 \\), which is the maximum, hence the supremum, of the whole set \\( S \\). Find \\( \\sup S \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[c]], 2) + [[e]]"},
+ "distractors": [
+  "[[c]] + [[e]]",
+  "Rational([[c]], 4) + [[e]]",
+  "-[[c]] + [[e]]",
+  "Rational(-[[c]], 2) + [[e]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Among the positive terms (even \\( n \\)), \\( \\dfrac{[[c]]}{n} \\) is largest at the smallest even \\( n=2 \\), giving \\( \\sup S = \\dfrac{[[c]]}{2} + [[e]] = [[answer]] \\); the negative (odd-\\(n\\)) terms are all smaller than this.",
+ "distractor_rationales": [
+  "This is the \\( n=1 \\) term's magnitude plus the shift, not the attained maximum of the set.",
+  "This is the next even term \\( n=4 \\) plus the shift, smaller than the true maximum.",
+  "This is the infimum of \\( S \\) (attained at \\( n=1 \\)), not the supremum.",
+  "This has the wrong sign on the \\( c/2 \\) part of the correct supremum.",
+  "This is off by one from the correct supremum.",
+  "This is off by one from the correct supremum."
+ ]
+},
+{
+ "template_id": "inf_alternating_bounded_set_v1",
+ "skill_id": "supremum_and_completeness",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Let \\( S = \\left\\{\\, (-1)^n\\dfrac{[[c]]}{n} + [[e]] : n = 1, 2, 3, \\dots \\right\\} \\). The negative (odd-\\(n\\)) terms \\( -[[c]]+[[e]], -\\dfrac{[[c]]}{3}+[[e]], -\\dfrac{[[c]]}{5}+[[e]], \\dots \\) increase toward \\( [[e]] \\), so the smallest (most negative) one is \\( -[[c]]+[[e]] \\) at \\( n=1 \\), which is the minimum, hence the infimum, of the whole set \\( S \\). Find \\( \\inf S \\).",
+ "answer_spec": {"op": "evaluate", "expr": "-[[c]] + [[e]]"},
+ "distractors": [
+  "[[c]] + [[e]]",
+  "Rational(-[[c]], 2) + [[e]]",
+  "Rational(-[[c]], 3) + [[e]]",
+  "Rational([[c]], 2) + [[e]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Among the negative terms (odd \\( n \\)), \\( -\\dfrac{[[c]]}{n} \\) is smallest (most negative) at the smallest odd \\( n=1 \\), giving \\( \\inf S = -[[c]] + [[e]] = [[answer]] \\); the positive (even-\\(n\\)) terms are all larger than this.",
+ "distractor_rationales": [
+  "This has the wrong sign on the \\( c \\) part; the infimum's \\( c \\)-term here is negative.",
+  "This is the next odd term's negative half plus the shift, not the true minimum.",
+  "This is the \\( n=3 \\) term, smaller in magnitude than the true minimum.",
+  "This is the supremum of \\( S \\) (attained at \\( n=2 \\)), not the infimum.",
+  "This is off by one from the correct infimum.",
+  "This is off by one from the correct infimum."
+ ]
+}
+]

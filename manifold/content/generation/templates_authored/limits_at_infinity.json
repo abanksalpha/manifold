@@ -1,0 +1,134 @@
+[
+{
+ "template_id": "limits_at_infinity_equal_degree_ratio_v1",
+ "skill_id": "limits_at_infinity",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} \\dfrac{[[a]]x^{2} + [[b]]x + [[c]]}{[[d]]x^{2} + [[e]]x} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x**2 + [[b]]*x + [[c]])/([[d]]*x**2 + [[e]]*x)", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[b]], [[e]])",
+  "Rational([[d]], [[a]])",
+  "-Rational([[a]], [[d]])",
+  "Rational([[c]], [[e]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( x \\to \\infty \\), only the highest-degree terms matter: the limit is the ratio of the leading coefficients, \\( \\dfrac{[[a]]}{[[d]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the coefficients of the linear (subleading) terms instead of the leading coefficients.",
+  "This inverts the ratio of leading coefficients.",
+  "This has the correct magnitude but the wrong sign.",
+  "This uses the constant terms instead of the leading coefficients.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_at_infinity_lower_degree_numerator_v2",
+ "skill_id": "limits_at_infinity",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9},
+  "f": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} \\dfrac{[[a]]x + [[b]]}{[[d]]x^{2} + [[e]]x + [[f]]} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x + [[b]])/([[d]]*x**2 + [[e]]*x + [[f]])", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[a]], [[d]])",
+  "Rational([[a]], [[e]])",
+  "Rational([[b]], [[f]])",
+  "[[a]]",
+  "1",
+  "-1"
+ ],
+ "solution": "The denominator has HIGHER degree than the numerator, so dividing every term by the denominator's leading power \\( x^2 \\) sends every term to \\( 0 \\): the limit is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly treats numerator and denominator as having equal degree and takes a leading-coefficient ratio.",
+  "This uses the subleading coefficients as if forming a leading-coefficient ratio.",
+  "This uses the constant terms as if forming a ratio.",
+  "This reports the numerator's leading coefficient itself instead of recognizing the limit is 0.",
+  "This assumes the limit is 1, a common but unjustified default guess.",
+  "This assumes the limit is \u22121, a common but unjustified default guess."
+ ]
+},
+{
+ "template_id": "limits_at_infinity_negative_infinity_same_sign_v3",
+ "skill_id": "limits_at_infinity",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9},
+  "e": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to -\\infty} \\dfrac{[[a]]x^{3} + [[b]]x}{[[d]]x^{3} + [[e]]x^{2} + [[c]]} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x**3 + [[b]]*x)/([[d]]*x**3 + [[e]]*x**2 + [[c]])", "var": "x", "point": "-oo"},
+ "distractors": [
+  "-Rational([[a]], [[d]])",
+  "Rational([[b]], [[e]])",
+  "Rational([[d]], [[a]])",
+  "Rational([[c]], [[e]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Numerator and denominator have the SAME (odd) degree \\( 3 \\), so as with \\( x \\to \\infty \\), the \\( x^3 \\) terms dominate and their sign contributions cancel identically in the ratio: the limit is still just the ratio of leading coefficients, \\( \\dfrac{[[a]]}{[[d]]} = [[answer]] \\) \u2014 the direction of infinity does not flip the sign here.",
+ "distractor_rationales": [
+  "This wrongly flips the sign, assuming \\( x \\to -\\infty \\) negates the equal-degree leading-coefficient ratio.",
+  "This uses the subleading coefficients instead of the leading coefficients.",
+  "This inverts the ratio of leading coefficients.",
+  "This uses the constant and subleading coefficients instead of the leading coefficients.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "limits_at_infinity_vanishing_term_sum_v4",
+ "skill_id": "limits_at_infinity",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": 1, "hi": 9},
+  "d": {"type": "int", "lo": -9, "hi": 9},
+  "e": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[e]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} \\left( \\dfrac{[[a]]}{x} + \\dfrac{[[b]]x + [[c]]}{[[e]]x + [[d]]} \\right) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]]/x + ([[b]]*x + [[c]])/([[e]]*x + [[d]])", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[a]], [[e]])",
+  "Rational([[c]], [[d]])",
+  "[[a]] + Rational([[b]], [[e]])",
+  "Rational([[b]], [[d]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The first term \\( \\dfrac{[[a]]}{x} \\to 0 \\), and the second term's numerator and denominator have equal degree, so it tends to the ratio of leading coefficients \\( \\dfrac{[[b]]}{[[e]]} \\). The whole limit is \\( 0 + \\dfrac{[[b]]}{[[e]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( a \\) (from the vanishing term) in place of the ratio \\( b/e \\).",
+  "This uses the constant terms \\( c/d \\) instead of the leading-coefficient ratio \\( b/e \\).",
+  "This wrongly keeps the vanishing term \\( a \\) as a nonzero contribution added to \\( b/e \\).",
+  "This mismatches the leading coefficient \\( b \\) with the wrong constant \\( d \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

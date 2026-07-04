@@ -1,0 +1,194 @@
+[
+ {
+  "template_id": "absolute_value_equations_inequalities_graphs_v1",
+  "skill_id": "absolute_value_equations_inequalities_graphs",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "b": {"type": "int", "lo": 0, "hi": 10},
+   "c": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Eq(Mod([[b]] + [[c]], [[a]]), 0)", "Eq(Mod([[b]] - [[c]], [[a]]), 0)"],
+  "stem": "Solve \\( |[[a]]x - [[b]]| = [[c]] \\). Which of the following is a solution?",
+  "answer_spec": {"op": "solve", "equation": "Abs([[a]]*x - [[b]]) = [[c]]", "var": "x"},
+  "distractors": [
+   "[[b]]",
+   "[[b]] + [[c]]",
+   "[[b]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Removing the absolute value gives \\( [[a]]x - [[b]] = \\pm [[c]] \\), so \\( x = \\dfrac{[[b]] \\pm [[c]]}{[[a]]} \\). One solution is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the value where the inside of the absolute value is zero, not where it equals \\( \\pm[[c]] \\).",
+   "This adds \\( [[c]] \\) to \\( [[b]] \\) but forgets to divide by the coefficient \\( [[a]] \\).",
+   "This subtracts \\( [[c]] \\) from \\( [[b]] \\) but forgets to divide by the coefficient \\( [[a]] \\).",
+   "This is off by one from a correct solution.",
+   "This is off by one from a correct solution.",
+   "This is off by two from a correct solution.",
+   "This is off by two from a correct solution."
+  ]
+ },
+ {
+  "template_id": "absolute_value_equations_inequalities_graphs_interval_length_v1",
+  "skill_id": "absolute_value_equations_inequalities_graphs",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3, 4]},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "The solution set of \\( |[[a]]x - ([[b]])| < [[c]] \\) is an open interval \\( (p, q) \\). What is \\( q - p \\), the length of that interval?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[c]]/[[a]]"},
+  "distractors": [
+   "[[c]]/[[a]]",
+   "2*[[c]]",
+   "2*[[b]]/[[a]]",
+   "[[c]]/(2*[[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The inequality \\( |[[a]]x - [[b]]| < [[c]] \\) means \\( [[b]] - [[c]] < [[a]]x < [[b]] + [[c]] \\), so \\( \\dfrac{[[b]]-[[c]]}{[[a]]} < x < \\dfrac{[[b]]+[[c]]}{[[a]]} \\). The interval length is \\( q - p = \\dfrac{2\\cdot[[c]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 that comes from having two endpoints a distance \\( [[c]] \\) apart.",
+   "This forgets to divide by the coefficient \\( [[a]] \\) when converting from the \\( [[a]]x \\) term to \\( x \\).",
+   "This confuses the radius \\( [[c]] \\) with the center \\( [[b]] \\) of the interval.",
+   "This divides by an extra, unneeded factor of 2.",
+   "This is off by one from the correct length.",
+   "This is off by one from the correct length."
+  ]
+ },
+ {
+  "template_id": "absolute_value_equations_inequalities_graphs_equidistant_v1",
+  "skill_id": "absolute_value_equations_inequalities_graphs",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "Solve \\( |x - ([[a]])| = |x - ([[b]])| \\) for \\( x \\).",
+  "answer_spec": {"op": "solve", "equation": "Abs(x - [[a]]) = Abs(x - [[b]])", "var": "x"},
+  "distractors": [
+   "[[a]]",
+   "[[b]]",
+   "[[a]] + [[b]]",
+   "[[a]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "This equation says \\( x \\) is equidistant from \\( [[a]] \\) and \\( [[b]] \\), so \\( x \\) is their midpoint: \\( x = \\dfrac{[[a]] + [[b]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is one of the two fixed points, not the midpoint between them.",
+   "This is the other fixed point, not the midpoint between them.",
+   "This forgets to divide the sum by 2 to get the midpoint.",
+   "This subtracts the two fixed points instead of averaging them.",
+   "This is off by one from the correct midpoint.",
+   "This is off by one from the correct midpoint."
+  ]
+ },
+ {
+  "template_id": "absolute_value_equations_inequalities_graphs_integer_count_v1",
+  "skill_id": "absolute_value_equations_inequalities_graphs",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4]},
+   "b": {"type": "int", "lo": -10, "hi": 10},
+   "c": {"type": "int", "lo": 3, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "How many integers \\( x \\) satisfy \\( |[[a]]x - ([[b]])| \\le [[c]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(([[b]]+[[c]])/[[a]]) - ceiling(([[b]]-[[c]])/[[a]]) + 1"},
+  "distractors": [
+   "floor(2*[[c]]/[[a]])",
+   "2*[[c]] + 1",
+   "[[c]]",
+   "[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The inequality holds for \\( \\dfrac{[[b]]-[[c]]}{[[a]]} \\le x \\le \\dfrac{[[b]]+[[c]]}{[[a]]} \\). Counting the integers in this closed interval gives \\( \\left\\lfloor \\dfrac{[[b]]+[[c]]}{[[a]]} \\right\\rfloor - \\left\\lceil \\dfrac{[[b]]-[[c]]}{[[a]]} \\right\\rceil + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This floors the raw (un-rounded) interval length \\( 2c/a \\) and forgets the endpoint-rounding and the +1 needed to count integers.",
+   "This treats the coefficient \\( [[a]] \\) as if it were 1, ignoring that \\( x \\) is scaled.",
+   "This reports the bound \\( [[c]] \\) itself rather than the count of integers satisfying the inequality.",
+   "This reports the center \\( [[b]] \\) of the interval rather than the count of integers in it.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ },
+ {
+  "template_id": "absolute_value_equations_inequalities_graphs_abs_equals_linear_v1",
+  "skill_id": "absolute_value_equations_inequalities_graphs",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[c]], 0)", "Lt(Abs([[c]]), [[a]])", "Gt([[d]]*[[a]], [[b]]*[[c]])"],
+  "stem": "Which of the following is a solution of \\( |[[a]]x + ([[b]])| = [[c]]x + ([[d]]) \\)?",
+  "answer_spec": {"op": "solve", "equation": "Abs([[a]]*x + [[b]]) = [[c]]*x + [[d]]", "var": "x"},
+  "distractors": [
+   "-[[b]]/[[a]]",
+   "-[[d]]/[[c]]",
+   "([[d]] - [[b]])/([[a]] - [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Split into the two cases \\( [[a]]x + [[b]] = [[c]]x + [[d]] \\) and \\( [[a]]x + [[b]] = -([[c]]x + [[d]]) \\), solve each linear equation, and keep only the roots for which the right side \\( [[c]]x + [[d]] \\) is non-negative. This gives \\( x = [[answer]] \\) as a valid solution.",
+  "distractor_rationales": [
+   "This is where the expression inside the absolute value is zero, not a solution of the full equation.",
+   "This is where the right-hand side is zero, not a solution of the full equation.",
+   "This solves the case-1 linear equation but forgets to check that the right side stays non-negative there.",
+   "This is off by one from a correct solution.",
+   "This is off by one from a correct solution.",
+   "This is off by two from a correct solution.",
+   "This is off by two from a correct solution."
+  ]
+ },
+ {
+  "template_id": "absolute_value_equations_inequalities_graphs_intersection_sum_v1",
+  "skill_id": "absolute_value_equations_inequalities_graphs",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3, 4]},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "The graph of \\( y = |[[a]]x - ([[b]])| \\) intersects the horizontal line \\( y = [[c]] \\) at two points with \\( x \\)-coordinates \\( p \\) and \\( q \\). What is \\( p + q \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[b]]/[[a]]"},
+  "distractors": [
+   "[[b]]/[[a]]",
+   "2*[[c]]/[[a]]",
+   "2*[[b]]",
+   "[[b]]/(2*[[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The intersections satisfy \\( [[a]]x - [[b]] = \\pm [[c]] \\), i.e. \\( x = \\dfrac{[[b]]+[[c]]}{[[a]]} \\) and \\( x = \\dfrac{[[b]]-[[c]]}{[[a]]} \\). Their sum is \\( p+q = \\dfrac{2[[b]]}{[[a]]} = [[answer]] \\) (the two \\( \\pm[[c]] \\) terms cancel, leaving the V's axis of symmetry doubled).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 and reports only the axis of symmetry, not the sum of both roots.",
+   "This uses \\( [[c]] \\) (the height of the line) instead of \\( [[b]] \\) (the vertex location) in the sum formula.",
+   "This forgets to divide by the coefficient \\( [[a]] \\).",
+   "This divides by an extra, unneeded factor of 2.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ }
+]

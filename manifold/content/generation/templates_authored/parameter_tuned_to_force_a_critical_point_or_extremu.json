@@ -1,0 +1,114 @@
+[
+ {
+  "template_id": "param_force_critical_v1",
+  "skill_id": "parameter_tuned_to_force_a_critical_point_or_extremu",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "x0": {"type": "int", "lo": -11, "hi": 11}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "stem": "For \\( f(x)=x^{3}+kx \\), find the value of \\( k \\) that makes \\( x=[[x0]] \\) a critical point.",
+  "answer_spec": {"op": "evaluate", "expr": "-3*[[x0]]**2"},
+  "distractors": [
+   "3*[[x0]]**2",
+   "-[[x0]]**2",
+   "-3*[[x0]]",
+   "-6*[[x0]]",
+   "-3*[[x0]]**2 + 1",
+   "-3*[[x0]]**2 - 1"
+  ],
+  "solution": "\\( f'(x)=3x^{2}+k \\); \\( f'([[x0]])=0 \\Rightarrow k=-3[[x0]]^{2}=[[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "param_force_critical_rational_v1",
+  "skill_id": "parameter_tuned_to_force_a_critical_point_or_extremu",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "x0": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "stem": "For \\( f(x) = x + \\dfrac{k}{x} \\), find the value of \\( k \\) that makes \\( x=[[x0]] \\) a critical point.",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]]**2"},
+  "distractors": [
+   "-[[x0]]**2",
+   "[[x0]]",
+   "2*[[x0]]",
+   "-[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x)=1-\\dfrac{k}{x^{2}} \\); \\( f'([[x0]])=0 \\Rightarrow k=[[x0]]^{2}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign for \\( k \\).",
+   "This reports \\( x_0 \\) itself instead of \\( x_0^{2} \\).",
+   "This reports \\( 2x_0 \\) instead of \\( x_0^{2} \\).",
+   "This has the wrong sign and forgets to square.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "param_force_extremum_value_v1",
+  "skill_id": "parameter_tuned_to_force_a_critical_point_or_extremu",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "V": {"type": "int", "lo": -40, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "For \\( f(x) = x^{3} - 3([[a]])^{2}x + k \\), the location of \\( f \\)'s local minimum (at \\( x=[[a]] \\)) does not depend on \\( k \\), but its VALUE does. Find the value of \\( k \\) that makes that local minimum value equal \\( [[V]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[V]] + 2*[[a]]**3"},
+  "distractors": [
+   "[[V]] - 2*[[a]]**3",
+   "[[V]] + [[a]]**3",
+   "2*[[a]]**3",
+   "[[V]] - [[a]]**3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f(a)=a^{3}-3a^{3}+k=k-2a^{3} \\). Setting \\( f([[a]])=[[V]] \\) gives \\( k=[[V]]+2([[a]])^{3}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the shift term.",
+   "This uses \\( a^{3} \\) instead of \\( 2a^{3} \\) for the shift.",
+   "This reports only the shift term, dropping \\( V \\).",
+   "This subtracts \\( a^3 \\) instead of adding \\( 2a^3 \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "param_force_two_critical_points_v1",
+  "skill_id": "parameter_tuned_to_force_a_critical_point_or_extremu",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -6, "hi": 6},
+   "r2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[r1]], [[r2]])", "Eq(Mod([[r1]] + [[r2]], 2), 0)"],
+  "derived": {"p": "-3*([[r1]] + [[r2]])/2"},
+  "stem": "For \\( f(x) = x^{3} + ([[p]])x^{2} + kx \\), find the value of \\( k \\) such that BOTH \\( x=[[r1]] \\) and \\( x=[[r2]] \\) are critical points of \\( f \\).",
+  "answer_spec": {"op": "evaluate", "expr": "3*[[r1]]*[[r2]]"},
+  "distractors": [
+   "3*[[r1]] + 3*[[r2]]",
+   "[[r1]]*[[r2]]",
+   "-3*[[r1]]*[[r2]]",
+   "3*([[r1]] + [[r2]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x)=3x^{2}+2([[p]])x+k \\) must equal \\( 3(x-[[r1]])(x-[[r2]]) \\), so \\( k=3([[r1]])([[r2]])=[[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the sum of the roots (times 3) instead of the product.",
+   "This forgets the factor of 3 from the leading coefficient.",
+   "This has the wrong sign.",
+   "This uses \\( 3(r_1+r_2) \\), confusing the sum-of-roots relation with the product.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

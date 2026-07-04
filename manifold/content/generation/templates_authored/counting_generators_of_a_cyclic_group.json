@@ -1,0 +1,130 @@
+[
+ {
+  "template_id": "counting_generators_of_a_cyclic_group_v1",
+  "skill_id": "counting_generators_of_a_cyclic_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 2},
+   "b": {"type": "int", "lo": 1, "hi": 2}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Ge([[a]] + [[b]], 3)"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "The cyclic group \\( \\mathbb{Z}_{[[nval]]} \\) has order \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). How many of its elements are generators (that is, have order exactly [[nval]])?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*([[p]] - 1) * [[q]]**([[b]] - 1)*([[q]] - 1)"},
+  "distractors": [
+   "([[p]] - 1)*([[q]] - 1)",
+   "[[p]]**([[a]] - 1) * [[q]]**([[b]] - 1)",
+   "[[nval]] - 1",
+   "[[p]]**[[a]] * [[q]]**[[b]] - [[p]]**[[a]] - [[q]]**[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The number of generators of \\( \\mathbb{Z}_{n} \\) is Euler's totient \\( \\varphi(n) \\). For \\( n = p^{a} q^{b} \\), \\( \\varphi(n) = p^{a-1}(p-1)\\,q^{b-1}(q-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( (p-1)(q-1) \\), dropping the prime-power factors \\( p^{a-1} \\) and \\( q^{b-1} \\).",
+   "This keeps only \\( p^{a-1}q^{b-1} \\) and forgets the \\( (p-1)(q-1) \\) factors.",
+   "This counts every non-identity element as a generator, which is false unless the order is prime.",
+   "This applies an inclusion-exclusion by the wrong terms.",
+   "This is off by one from \\( \\varphi(n) \\).",
+   "This is off by one from \\( \\varphi(n) \\).",
+   "This is off by two from \\( \\varphi(n) \\)."
+  ]
+ },
+ {
+  "template_id": "counting_generators_prime_order_v1",
+  "skill_id": "counting_generators_of_a_cyclic_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113]}
+  },
+  "constraints": [],
+  "stem": "A cyclic group \\( G \\) has PRIME order [[p]]. Since the only positive divisors of [[p]] are 1 and [[p]], every non-identity element must have order [[p]]. How many generators does \\( G \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]] - 1"},
+  "distractors": [
+   "[[p]]",
+   "[[p]] + 1",
+   "[[p]] - 2",
+   "Rational([[p]] - 1, 2)",
+   "2*([[p]] - 1)",
+   "[[p]] - 1 + 1"
+  ],
+  "solution": "In a group of prime order [[p]], every element except the identity generates the whole group, so the number of generators is \\( [[p]] - 1 \\).",
+  "distractor_rationales": [
+   "This mistakenly includes the identity element as a generator.",
+   "This overcounts by one beyond the group's own order.",
+   "This is off by one from the correct count.",
+   "This mistakenly halves the count.",
+   "This mistakenly doubles the count.",
+   "This just restates \\( p \\), not \\( p - 1 \\)."
+  ]
+ },
+ {
+  "template_id": "counting_generators_prime_power_v1",
+  "skill_id": "counting_generators_of_a_cyclic_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "k": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {"nval": "[[p]]**[[k]]"},
+  "stem": "A cyclic group \\( G \\) has prime-power order \\( [[nval]] = [[p]]^{[[k]]} \\). Unlike a group of prime order, not every non-identity element generates \\( G \\) here (an element generates iff its order is the full \\( p^{k} \\), i.e., it is not a multiple of \\( p \\)). How many generators does \\( G \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[k]] - 1)*([[p]] - 1)"},
+  "distractors": [
+   "[[nval]] - 1",
+   "[[p]]**([[k]] - 1)",
+   "[[nval]] - [[p]]**([[k]] - 1)",
+   "[[p]] - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "An element of \\( \\mathbb{Z}_{p^{k}} \\) generates the group iff it is not divisible by \\( p \\); there are \\( p^{k-1} \\) multiples of \\( p \\) in \\( \\{0,\\dots,p^{k}-1\\} \\), so the generator count is \\( p^{k} - p^{k-1} = p^{k-1}(p-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats every non-identity element as a generator, which is only valid for prime (not prime-power) order.",
+   "This reports the number of NON-generators (multiples of \\( p \\)), not the generators.",
+   "This subtracts in the wrong direction.",
+   "This uses \\( p - 1 \\) alone, dropping the \\( p^{k-1} \\) scaling factor.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "counting_generators_direct_product_crt_v1",
+  "skill_id": "counting_generators_of_a_cyclic_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5]},
+   "q": {"type": "choice", "values": [3, 5, 7, 9, 11]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 2}
+  },
+  "constraints": ["Eq(gcd([[p]], [[q]]), 1)", "Ne([[p]], [[q]])"],
+  "derived": {"m": "[[p]]**[[a]]", "n": "[[q]]**[[b]]"},
+  "stem": "Consider the direct product \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\), where \\( \\gcd([[m]], [[n]]) = 1 \\). By the Chinese Remainder Theorem this group is cyclic, isomorphic to \\( \\mathbb{Z}_{[[m]][[n]]} \\). How many elements \\( (x,y) \\) generate the entire group \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[p]]**([[a]]-1)*([[p]]-1)) * ([[q]]**([[b]]-1)*([[q]]-1))"},
+  "distractors": [
+   "[[m]] * [[n]]",
+   "[[m]] * [[n]] - 1",
+   "([[p]] - 1) * ([[q]] - 1)",
+   "[[m]] + [[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\gcd([[m]],[[n]]) = 1 \\), \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\cong \\mathbb{Z}_{[[m]][[n]]} \\), a cyclic group of order \\( [[m]][[n]] \\) with \\( \\varphi([[m]][[n]]) = \\varphi([[m]])\\varphi([[n]]) = [[answer]] \\) generators.",
+  "distractor_rationales": [
+   "This is the size of the whole group, not the number of generators.",
+   "This wrongly assumes every non-identity element is a generator.",
+   "This drops the prime-power factors from each Euler totient.",
+   "This adds the group orders instead of multiplying the totients.",
+   "This is off by one from \\( \\varphi([[m]][[n]]) \\).",
+   "This is off by one from \\( \\varphi([[m]][[n]]) \\)."
+  ]
+ }
+]

@@ -1,0 +1,129 @@
+[
+{
+ "template_id": "fixed_point_affine_v1",
+ "skill_id": "fixed_point_iteration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "choice", "values": ["Rational(1,2)", "Rational(-1,3)", "Rational(2,3)", "Rational(1,4)", "Rational(3,4)", "Rational(-2,5)", "Rational(1,5)", "Rational(-3,4)"]},
+  "d": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -8, "hi": 8},
+  "n": {"type": "choice", "values": [3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[d]], 0)"],
+ "stem": "Fixed-point iteration is applied to \\( g(x) = [[r]]x + ([[d]]) \\), starting from \\( x_0 = [[x0]] \\), using \\( x_{k+1} = g(x_k) \\). What is \\( x_{[[n]]} \\)?",
+ "answer_spec": {"op": "iterate", "f": "[[r]]*x + [[d]]", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+ "distractors": [
+  "[[r]]**[[n]]*[[x0]]",
+  "[[x0]] + [[n]]*[[d]]",
+  "[[r]]*[[x0]] + [[d]]",
+  "[[r]]**([[n]] - 1)*[[x0]] + [[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Apply \\( g \\) repeatedly starting from \\( x_0=[[x0]] \\); after [[n]] iterations, \\( x_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the additive constant, treating the map as purely multiplicative.",
+  "This treats the map as purely additive, ignoring the multiplicative factor \\( r \\).",
+  "This applies \\( g \\) only ONCE instead of \\( n \\) times.",
+  "This applies \\( g \\) one time too few before adding the last constant term.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "fixed_point_babylonian_sqrt_v1",
+ "skill_id": "fixed_point_iteration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 60},
+  "x0": {"type": "int", "lo": 1, "hi": 10},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "To approximate \\( \\sqrt{[[k]]} \\), fixed-point (Newton / Babylonian) iteration is applied to \\( g(x) = \\dfrac{1}{2}\\left(x + \\dfrac{[[k]]}{x}\\right) \\), starting from \\( x_0 = [[x0]] \\). What is \\( x_{[[n]]} \\) (as an exact fraction)?",
+ "answer_spec": {"op": "iterate", "f": "(x + [[k]]/x)/2", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+ "distractors": [
+  "([[x0]] + [[k]]/[[x0]])/2",
+  "[[x0]] + [[n]]*([[k]] - [[x0]]**2)/(2*[[x0]])",
+  "sqrt([[k]])",
+  "([[x0]]**[[n]] + [[k]]/[[x0]]**[[n]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Apply \\( g(x)=\\frac{1}{2}(x+k/x) \\) repeatedly from \\( x_0=[[x0]] \\); after [[n]] iterations, \\( x_{[[n]]} = [[answer]] \\) (as an exact fraction, not yet the limiting decimal value).",
+ "distractor_rationales": [
+  "This applies \\( g \\) only ONCE instead of \\( n \\) times.",
+  "This uses a single linear-correction step instead of iterating the actual update rule.",
+  "This reports the true irrational limit \\( \\sqrt{k} \\) rather than the exact rational iterate.",
+  "This raises \\( x_0 \\) to the \\( n \\)-th power inside the formula instead of actually iterating \\( n \\) times.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "fixed_point_mobius_map_v1",
+ "skill_id": "fixed_point_iteration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 30},
+  "d": {"type": "int", "lo": 1, "hi": 10},
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[x0]] + [[d]], 0)"],
+ "stem": "Fixed-point iteration is applied to \\( g(x) = \\dfrac{[[k]]}{x + [[d]]} \\), starting from \\( x_0 = [[x0]] \\), using \\( x_{j+1} = g(x_j) \\). What is \\( x_{[[n]]} \\) (as an exact fraction)?",
+ "answer_spec": {"op": "iterate", "f": "[[k]]/(x + [[d]])", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+ "distractors": [
+  "[[k]]/([[x0]] + [[d]])",
+  "[[k]]/([[x0]] + [[n]]*[[d]])",
+  "[[x0]] + [[n]]",
+  "[[k]]**[[n]]/([[x0]] + [[d]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Apply \\( g(x)=\\dfrac{k}{x+d} \\) repeatedly from \\( x_0=[[x0]] \\); after [[n]] iterations, \\( x_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies \\( g \\) only ONCE instead of \\( n \\) times.",
+  "This incorrectly scales the shift \\( d \\) by \\( n \\) instead of actually iterating \\( n \\) times.",
+  "This ignores the map entirely and just shifts \\( x_0 \\) by \\( n \\).",
+  "This raises the numerator to the \\( n \\)-th power instead of actually iterating \\( n \\) times.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "fixed_point_newton_quadratic_v1",
+ "skill_id": "fixed_point_iteration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 20},
+  "x0": {"type": "int", "lo": 2, "hi": 9},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne(2*[[x0]] - [[c]], 0)"],
+ "stem": "Newton's method is used to find a root of \\( f(x) = x^2 - [[c]]x - [[k]] \\) via the fixed-point iteration \\( x_{j+1} = x_j - \\dfrac{f(x_j)}{f'(x_j)} \\), starting from \\( x_0 = [[x0]] \\). What is \\( x_{[[n]]} \\) (as an exact fraction)?",
+ "answer_spec": {"op": "iterate", "f": "x - (x**2 - [[c]]*x - [[k]])/(2*x - [[c]])", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+ "distractors": [
+  "[[x0]] - ([[x0]]**2 - [[c]]*[[x0]] - [[k]])/(2*[[x0]] - [[c]])",
+  "[[x0]] - ([[x0]]**2 - [[c]]*[[x0]] - [[k]])",
+  "[[x0]]**2 - [[c]]*[[x0]] - [[k]]",
+  "[[x0]] + ([[x0]]**2 - [[c]]*[[x0]] - [[k]])/(2*[[x0]] - [[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Apply Newton's update \\( x - f(x)/f'(x) \\) repeatedly from \\( x_0=[[x0]] \\); after [[n]] iterations, \\( x_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies Newton's update only ONCE instead of \\( n \\) times.",
+  "This forgets to divide by the derivative \\( f'(x) \\) before subtracting.",
+  "This just reports \\( f(x_0) \\), not an updated iterate at all.",
+  "This adds the correction term instead of subtracting it.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+}
+]

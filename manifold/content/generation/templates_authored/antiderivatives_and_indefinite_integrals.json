@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "antideriv_monomial_from_zero_v1",
+ "skill_id": "antiderivatives_and_indefinite_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "b": {"type": "int", "lo": -6, "hi": 8}
+ },
+ "constraints": ["Ne([[c]], 0)", "Ne([[b]], 0)"],
+ "stem": "The antiderivative \\( F(x) \\) of \\( f(x) = [[c]]x^{[[n]]} \\) satisfies \\( F(0) = 0 \\). What is \\( F([[b]]) \\)?",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**[[n]]", "var": "x", "bounds": ["0", "[[b]]"]},
+ "distractors": [
+  "[[c]]*[[b]]**[[n]]",
+  "[[c]]*[[b]]**([[n]]+1)",
+  "[[c]]*[[b]]**[[n]]/[[n]]",
+  "-[[answer]]",
+  "[[answer]] + [[c]]",
+  "[[answer]]/2"
+ ],
+ "solution": "By the power rule for antiderivatives, \\( F(x) = \\dfrac{[[c]]}{[[n]]+1}x^{[[n]]+1} \\) (using \\( F(0)=0 \\) to fix the constant), so \\( F([[b]]) = \\dfrac{[[c]]}{[[n]]+1}\\cdot [[b]]^{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\( f([[b]]) \\) directly instead of integrating to get \\( F([[b]]) \\).",
+  "This forgets to divide by \\( [[n]]+1 \\) after raising the power.",
+  "This divides by \\( [[n]] \\) instead of \\( [[n]]+1 \\) in the power rule.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[c]] \\) from the correct value.",
+  "This is half of the correct value."
+ ]
+},
+{
+ "template_id": "antideriv_trinomial_shifted_reference_v1",
+ "skill_id": "antiderivatives_and_indefinite_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "r": {"type": "int", "lo": -5, "hi": 5},
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 8}
+ },
+ "constraints": ["Ne([[p]], 0)", "Ne([[a]], [[b]])"],
+ "stem": "An antiderivative \\( F(x) \\) of \\( f(x) = [[p]]x^{2} + ([[q]])x + ([[r]]) \\) satisfies \\( F([[a]]) = 0 \\). What is \\( F([[b]]) \\)?",
+ "answer_spec": {"op": "integrate", "expr": "[[p]]*x**2 + [[q]]*x + [[r]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[p]]*[[b]]**2 + [[q]]*[[b]] + [[r]]",
+  "([[p]]*[[b]]**2+[[q]]*[[b]]+[[r]])*([[b]]-[[a]])",
+  "[[p]]*([[b]]**3-[[a]]**3)/2 + [[q]]*([[b]]**2-[[a]]**2)/2 + [[r]]*([[b]]-[[a]])",
+  "-[[answer]]",
+  "[[answer]] + [[p]]",
+  "[[answer]]/2"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus, \\( F([[b]]) - F([[a]]) = \\displaystyle\\int_{[[a]]}^{[[b]]} \\left([[p]]x^{2}+([[q]])x+([[r]])\\right)dx \\). Since \\( F([[a]])=0 \\), this equals \\( \\dfrac{[[p]]}{3}\\left([[b]]^{3}-[[a]]^{3}\\right) + \\dfrac{[[q]]}{2}\\left([[b]]^{2}-[[a]]^{2}\\right) + [[r]]\\left([[b]]-[[a]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\( f([[b]]) \\) directly instead of integrating over \\( [[a]],[[b]] \\).",
+  "This uses a right-endpoint rectangle approximation instead of the exact antiderivative.",
+  "This uses the wrong denominator (2 instead of 3) for the cubic power-rule term.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[p]] \\) from the correct value.",
+  "This is half of the correct value."
+ ]
+},
+{
+ "template_id": "antideriv_sine_nice_angle_v1",
+ "skill_id": "antiderivatives_and_indefinite_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "j": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "The antiderivative \\( F(x) \\) of \\( f(x) = [[c]]\\sin(x) \\) satisfies \\( F(0) = 0 \\). What is \\( F\\!\\left(\\dfrac{[[j]]\\pi}{3}\\right) \\)?",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)", "var": "x", "bounds": ["0", "[[j]]*pi/3"]},
+ "distractors": [
+  "[[c]]*cos([[j]]*pi/3)",
+  "-[[c]]*cos([[j]]*pi/3)",
+  "[[c]]*sin([[j]]*pi/3)",
+  "-[[answer]]",
+  "[[answer]] + [[c]]",
+  "[[answer]]/2"
+ ],
+ "solution": "Since \\( \\int \\sin x\\,dx = -\\cos x + C \\) and \\( F(0)=0 \\) fixes the constant, \\( F(x) = [[c]]\\left(1-\\cos x\\right) \\). So \\( F\\!\\left(\\tfrac{[[j]]\\pi}{3}\\right) = [[c]]\\left(1-\\cos\\!\\left(\\tfrac{[[j]]\\pi}{3}\\right)\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports \\( [[c]]\\cos\\!\\left(\\tfrac{[[j]]\\pi}{3}\\right) \\) alone, forgetting the \\( 1-\\cos(\\cdot) \\) structure from \\( F(0)=0 \\).",
+  "This flips the sign of the cosine term but still forgets to subtract it from 1.",
+  "This evaluates \\( f\\!\\left(\\tfrac{[[j]]\\pi}{3}\\right) \\) directly instead of integrating to get \\( F \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[c]] \\) from the correct value.",
+  "This is half of the correct value."
+ ]
+},
+{
+ "template_id": "antideriv_initial_value_general_point_v1",
+ "skill_id": "antiderivatives_and_indefinite_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 8},
+  "C": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[m]], 0)", "Ne([[a]], [[b]])"],
+ "stem": "Suppose \\( F'(x) = [[m]]x + ([[k]]) \\) and \\( F([[a]]) = [[C]] \\). What is \\( F([[b]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[C]] + [[m]]*([[b]]**2 - [[a]]**2)/2 + [[k]]*([[b]] - [[a]])"},
+ "distractors": [
+  "[[m]]*([[b]]**2 - [[a]]**2)/2 + [[k]]*([[b]] - [[a]])",
+  "[[C]] + [[m]]*[[b]]**2/2 + [[k]]*[[b]]",
+  "[[C]] + [[m]]*[[b]] + [[k]]",
+  "-[[answer]]",
+  "[[answer]] + [[m]]",
+  "[[answer]] - [[m]]"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus, \\( F([[b]]) = F([[a]]) + \\displaystyle\\int_{[[a]]}^{[[b]]}\\left([[m]]x+([[k]])\\right)dx = [[C]] + \\dfrac{[[m]]}{2}\\left([[b]]^{2}-[[a]]^{2}\\right) + [[k]]\\left([[b]]-[[a]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes only the net change and forgets to add the initial value \\( F([[a]])=[[C]] \\).",
+  "This wrongly applies the power-rule antiderivative as if \\( F(0)=[[C]] \\) rather than \\( F([[a]])=[[C]] \\).",
+  "This uses the rate \\( F'([[b]]) \\) itself instead of integrating it.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[m]] \\) from the correct value.",
+  "This is off by \\( [[m]] \\) from the correct value in the other direction."
+ ]
+},
+{
+ "template_id": "antideriv_find_constant_of_integration_v1",
+ "skill_id": "antiderivatives_and_indefinite_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[x0]], 0)"],
+ "stem": "The general antiderivative of \\( f(x) = [[c]]x^{[[n]]} \\) can be written as \\( F(x) = \\dfrac{[[c]]}{[[n]]+1}x^{[[n]]+1} + C \\). If \\( F([[x0]]) = [[k]] \\), what is the value of \\( C \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]] - [[c]]*[[x0]]**([[n]]+1)/([[n]]+1)"},
+ "distractors": [
+  "[[k]] + [[c]]*[[x0]]**([[n]]+1)/([[n]]+1)",
+  "[[k]] - [[c]]*[[x0]]**[[n]]",
+  "[[c]]*[[x0]]**([[n]]+1)/([[n]]+1)",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Substitute \\( x=[[x0]] \\): \\( [[k]] = \\dfrac{[[c]]}{[[n]]+1}[[x0]]^{[[n]]+1} + C \\), so \\( C = [[k]] - \\dfrac{[[c]]}{[[n]]+1}[[x0]]^{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the power term instead of subtracting it, a sign error when isolating \\( C \\).",
+  "This uses the wrong power (\\( [[n]] \\) instead of \\( [[n]]+1 \\)) and forgets to divide.",
+  "This reports just the power term itself, forgetting to subtract it from \\( [[k]] \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value in the other direction."
+ ]
+}
+]

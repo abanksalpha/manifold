@@ -1,0 +1,208 @@
+[
+{
+ "template_id": "inner_product_dot_v1",
+ "skill_id": "inner_products_norm_angle_orthogonality_cauchyschwar",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -4, "hi": 4},
+  "u2": {"type": "int", "lo": -4, "hi": 4},
+  "u3": {"type": "int", "lo": -4, "hi": 4},
+  "u4": {"type": "int", "lo": -4, "hi": 4},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4},
+  "v3": {"type": "int", "lo": -4, "hi": 4},
+  "v4": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2 + [[u4]]**2, 0)",
+  "Ne([[v1]]**2 + [[v2]]**2 + [[v3]]**2 + [[v4]]**2, 0)"
+ ],
+ "stem": "Compute the inner product \\( \\mathbf{u}\\cdot\\mathbf{v} \\) of \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]], [[u4]]) \\) and \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]], [[v4]]) \\) in \\( \\mathbb{R}^4 \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[u1]]*[[v1]] + [[u2]]*[[v2]] + [[u3]]*[[v3]] + [[u4]]*[[v4]]"},
+ "distractors": [
+  "[[u1]]*[[v1]] + [[u2]]*[[v2]] + [[u3]]*[[v3]] - [[u4]]*[[v4]]",
+  "[[u1]]*[[v1]] - [[u2]]*[[v2]] + [[u3]]*[[v3]] + [[u4]]*[[v4]]",
+  "[[u1]] + [[u2]] + [[u3]] + [[u4]] + [[v1]] + [[v2]] + [[v3]] + [[v4]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "-[[answer]]"
+ ],
+ "solution": "The inner product is the sum of componentwise products: \\( ([[u1]])([[v1]]) + ([[u2]])([[v2]]) + ([[u3]])([[v3]]) + ([[u4]])([[v4]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the last product term.",
+  "This flips the sign of the second product term.",
+  "This adds all the components instead of summing componentwise products.",
+  "This is off by one from the correct inner product.",
+  "This is off by one from the correct inner product.",
+  "This is off by two from the correct inner product.",
+  "This is off by two from the correct inner product.",
+  "This has the wrong overall sign."
+ ]
+},
+{
+ "template_id": "vector_norm_pythagorean_v2",
+ "skill_id": "inner_products_norm_angle_orthogonality_cauchyschwar",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 7},
+  "n": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3]},
+  "sa": {"type": "choice", "values": [1, -1]},
+  "sb": {"type": "choice", "values": [1, -1]}
+ },
+ "constraints": ["Lt([[n]], [[m]])"],
+ "derived": {
+  "araw": "[[m]]**2 - [[n]]**2",
+  "braw": "2*[[m]]*[[n]]",
+  "a": "[[sa]]*[[k]]*([[araw]])",
+  "b": "[[sb]]*[[k]]*([[braw]])"
+ },
+ "stem": "What is the norm \\( \\|\\mathbf{v}\\| = \\sqrt{v_1^2 + v_2^2} \\) of the vector \\( \\mathbf{v} = ([[a]], [[b]]) \\) in \\( \\mathbb{R}^2 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2)"},
+ "distractors": [
+  "[[a]]**2 + [[b]]**2",
+  "[[a]] + [[b]]",
+  "Abs([[a]]) + Abs([[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "-[[answer]]"
+ ],
+ "solution": "By construction \\( v_1^2+v_2^2 \\) is a perfect square: \\( \\|\\mathbf{v}\\| = \\sqrt{([[a]])^2+([[b]])^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the square root, leaving the squared norm.",
+  "This adds the components instead of using the Pythagorean formula.",
+  "This uses the sum of absolute values (the taxicab/\\(\\ell^1\\) norm), not the Euclidean norm.",
+  "This is off by one from the correct norm.",
+  "This is off by one from the correct norm.",
+  "This is off by two from the correct norm.",
+  "This has the wrong sign; a norm cannot be negative."
+ ]
+},
+{
+ "template_id": "orthogonality_parameter_v3",
+ "skill_id": "inner_products_norm_angle_orthogonality_cauchyschwar",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[c]], 0)", "Ne([[a]]*[[d]] + [[b]]*[[e]], 0)"],
+ "stem": "For what value of \\( t \\) are the vectors \\( \\mathbf{u} = ([[a]], [[b]], [[c]]) \\) and \\( \\mathbf{v} = ([[d]], [[e]], t) \\) orthogonal?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[d]] + [[b]]*[[e]] + [[c]]*t = 0", "var": "t"},
+ "distractors": [
+  "([[a]]*[[d]] + [[b]]*[[e]])/[[c]]",
+  "-([[a]]*[[d]] + [[b]]*[[e]])",
+  "([[a]]*[[d]] + [[b]]*[[e]])*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]",
+  "[[c]]"
+ ],
+ "solution": "Orthogonality requires \\( \\mathbf{u}\\cdot\\mathbf{v}=0 \\): \\( ([[a]])([[d]]) + ([[b]])([[e]]) + ([[c]])t = 0 \\), so \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign, missing the negative from solving for \\( t \\).",
+  "This forgets to divide by the coefficient \\( c \\) of \\( t \\).",
+  "This multiplies by \\( c \\) instead of dividing by it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This has the wrong sign.",
+  "This is just the third coordinate of \\( \\mathbf{u} \\), unrelated to the orthogonality condition."
+ ]
+},
+{
+ "template_id": "cauchy_schwarz_gap_v4",
+ "skill_id": "inner_products_norm_angle_orthogonality_cauchyschwar",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -4, "hi": 4},
+  "u2": {"type": "int", "lo": -4, "hi": 4},
+  "u3": {"type": "int", "lo": -4, "hi": 4},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4},
+  "v3": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2, 0)",
+  "Ne([[v1]]**2 + [[v2]]**2 + [[v3]]**2, 0)"
+ ],
+ "derived": {
+  "uu": "[[u1]]**2 + [[u2]]**2 + [[u3]]**2",
+  "vv": "[[v1]]**2 + [[v2]]**2 + [[v3]]**2",
+  "uv": "[[u1]]*[[v1]] + [[u2]]*[[v2]] + [[u3]]*[[v3]]"
+ },
+ "stem": "Let \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\) and \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\) in \\( \\mathbb{R}^3 \\). By the Cauchy\u2013Schwarz inequality, \\( (\\mathbf{u}\\cdot\\mathbf{u})(\\mathbf{v}\\cdot\\mathbf{v}) - (\\mathbf{u}\\cdot\\mathbf{v})^2 \\ge 0 \\). What is the value of \\( (\\mathbf{u}\\cdot\\mathbf{u})(\\mathbf{v}\\cdot\\mathbf{v}) - (\\mathbf{u}\\cdot\\mathbf{v})^2 \\) for these vectors?",
+ "answer_spec": {"op": "evaluate", "expr": "([[uu]])*([[vv]]) - ([[uv]])**2"},
+ "distractors": [
+  "([[uv]])**2 - ([[uu]])*([[vv]])",
+  "([[uu]])*([[vv]])",
+  "([[uv]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]",
+  "[[uu]] + [[vv]] - [[uv]]"
+ ],
+ "solution": "Compute \\( \\mathbf{u}\\cdot\\mathbf{u} = [[uu]] \\), \\( \\mathbf{v}\\cdot\\mathbf{v} = [[vv]] \\), and \\( \\mathbf{u}\\cdot\\mathbf{v} = [[uv]] \\), so \\( (\\mathbf{u}\\cdot\\mathbf{u})(\\mathbf{v}\\cdot\\mathbf{v}) - (\\mathbf{u}\\cdot\\mathbf{v})^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the sign of the whole expression flipped.",
+  "This forgets to subtract \\( (\\mathbf{u}\\cdot\\mathbf{v})^2 \\).",
+  "This is only the squared dot product term, missing the norm product.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This has the wrong sign.",
+  "This adds the norm-squared values and subtracts the dot product without squaring or multiplying correctly."
+ ]
+},
+{
+ "template_id": "angle_cosine_pythagorean_v5",
+ "skill_id": "inner_products_norm_angle_orthogonality_cauchyschwar",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "m1": {"type": "int", "lo": 2, "hi": 6},
+  "n1": {"type": "int", "lo": 1, "hi": 5},
+  "m2": {"type": "int", "lo": 2, "hi": 6},
+  "n2": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Lt([[n1]], [[m1]])", "Lt([[n2]], [[m2]])"],
+ "derived": {
+  "a1": "[[m1]]**2 - [[n1]]**2",
+  "b1": "2*[[m1]]*[[n1]]",
+  "c1": "[[m1]]**2 + [[n1]]**2",
+  "a2": "[[m2]]**2 - [[n2]]**2",
+  "b2": "2*[[m2]]*[[n2]]",
+  "c2": "[[m2]]**2 + [[n2]]**2",
+  "dot": "[[a1]]*[[a2]] + [[b1]]*[[b2]]"
+ },
+ "stem": "The vectors \\( \\mathbf{u} = ([[a1]], [[b1]]) \\) and \\( \\mathbf{v} = ([[a2]], [[b2]]) \\) in \\( \\mathbb{R}^2 \\) satisfy \\( \\|\\mathbf{u}\\| = [[c1]] \\) and \\( \\|\\mathbf{v}\\| = [[c2]] \\). What is \\( \\cos\\theta \\), where \\( \\theta \\) is the angle between \\( \\mathbf{u} \\) and \\( \\mathbf{v} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[dot]])/([[c1]]*[[c2]])"},
+ "distractors": [
+  "([[dot]])",
+  "([[dot]])/[[c1]]",
+  "([[dot]])/[[c2]]",
+  "-([[dot]])/([[c1]]*[[c2]])",
+  "[[a1]]*[[a2]]/([[c1]]*[[c2]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By definition \\( \\cos\\theta = \\dfrac{\\mathbf{u}\\cdot\\mathbf{v}}{\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|} = \\dfrac{[[dot]]}{[[c1]]\\cdot[[c2]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( \\|\\mathbf{u}\\|\\|\\mathbf{v}\\| \\), leaving just the dot product.",
+  "This divides by \\( \\|\\mathbf{u}\\| \\) only, forgetting \\( \\|\\mathbf{v}\\| \\).",
+  "This divides by \\( \\|\\mathbf{v}\\| \\) only, forgetting \\( \\|\\mathbf{u}\\| \\).",
+  "This has the wrong sign.",
+  "This uses only the first-coordinate product, dropping the second term of the dot product.",
+  "This is off by one from the correct cosine.",
+  "This is off by one from the correct cosine."
+ ]
+}
+]

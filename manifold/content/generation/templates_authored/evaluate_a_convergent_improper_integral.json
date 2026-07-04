@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "evaluate_a_convergent_improper_integral_v1",
+  "skill_id": "evaluate_a_convergent_improper_integral",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate the convergent improper integral \\( \\int_{0}^{\\infty} [[c]]e^{-[[a]]x}\\,dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*exp(-[[a]]*x)", "var": "x", "bounds": ["0", "oo"]},
+  "distractors": [
+   "[[c]]*[[a]]",
+   "[[c]]/[[a]]**2",
+   "[[a]]/[[c]]",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]]/2"
+  ],
+  "solution": "\\( \\int_{0}^{\\infty} [[c]]e^{-[[a]]x}\\,dx = \\lim_{t\\to\\infty}\\left[-\\tfrac{[[c]]}{[[a]]}e^{-[[a]]x}\\right]_{0}^{t} = \\tfrac{[[c]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( [[a]] \\) instead of dividing by it.",
+   "This divides by \\( [[a]]^{2} \\), mishandling the exponent's constant.",
+   "This inverts the fraction to \\( \\tfrac{[[a]]}{[[c]]} \\).",
+   "This doubles the correct value.",
+   "This is off by one from the correct value.",
+   "This halves the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_convergent_improper_integral_v2",
+  "skill_id": "evaluate_a_convergent_improper_integral",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 9},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "The integrand \\( \\frac{[[c]]}{\\sqrt{x}} \\) is unbounded as \\( x \\to 0^{+} \\), but the improper integral still converges. Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]}{\\sqrt{x}}\\,dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]/sqrt(x)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*sqrt([[a]])",
+   "[[c]]*[[a]]/2",
+   "4*[[c]]*sqrt([[a]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + 1"
+  ],
+  "solution": "\\( \\int_{0}^{[[a]]} [[c]]x^{-1/2}\\,dx = \\left[2[[c]]\\sqrt{x}\\right]_{0}^{[[a]]} = 2[[c]]\\sqrt{[[a]]} = [[answer]] \\); the singularity is integrable since the exponent \\( -\\tfrac12 > -1 \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 from antidifferentiating \\( x^{-1/2} \\).",
+   "This treats the integrand as if it were \\( \\sqrt{x} \\) rather than \\( 1/\\sqrt{x} \\).",
+   "This doubles the correct value by an extra factor of 2.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_convergent_improper_integral_v3",
+  "skill_id": "evaluate_a_convergent_improper_integral",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "d": {"type": "int", "lo": 1, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate the convergent improper integral \\( \\int_{1}^{\\infty} \\frac{[[c]]}{x^{2} + [[d]]}\\,dx \\), where the interval of integration is unbounded but the integrand decays like \\( 1/x^{2} \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2 + [[d]])", "var": "x", "bounds": ["1", "oo"]},
+  "distractors": [
+   "[[c]]*pi/(2*sqrt([[d]]))",
+   "[[c]]*pi/sqrt([[d]])",
+   "[[c]]/sqrt([[d]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + 1"
+  ],
+  "solution": "\\( \\int_{1}^{\\infty} \\frac{[[c]]}{x^{2}+[[d]]}\\,dx = \\left[\\tfrac{[[c]]}{\\sqrt{[[d]]}}\\arctan\\tfrac{x}{\\sqrt{[[d]]}}\\right]_{1}^{\\infty} = \\tfrac{[[c]]}{\\sqrt{[[d]]}}\\left(\\tfrac{\\pi}{2} - \\arctan\\tfrac{1}{\\sqrt{[[d]]}}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the arctangent value at the lower limit \\( x=1 \\).",
+   "This doubles the correct value through a factor-of-2 slip in the arctan formula.",
+   "This drops the \\( \\pi/2 \\) term from the limit at infinity entirely.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_convergent_improper_integral_v4",
+  "skill_id": "evaluate_a_convergent_improper_integral",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "d": {"type": "int", "lo": 1, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Both limits of integration are infinite. Evaluate \\( \\int_{-\\infty}^{\\infty} \\frac{[[c]]}{x^{2} + [[d]]}\\,dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2 + [[d]])", "var": "x", "bounds": ["-oo", "oo"]},
+  "distractors": [
+   "[[c]]*pi/(2*sqrt([[d]]))",
+   "[[c]]*pi*sqrt([[d]])",
+   "2*[[c]]*pi/sqrt([[d]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + 1"
+  ],
+  "solution": "By symmetry, \\( \\int_{-\\infty}^{\\infty} \\frac{[[c]]}{x^{2}+[[d]]}\\,dx = 2\\int_{0}^{\\infty}\\frac{[[c]]}{x^{2}+[[d]]}\\,dx = \\tfrac{[[c]]}{\\sqrt{[[d]]}}\\left[\\arctan\\tfrac{x}{\\sqrt{[[d]]}}\\right]_{-\\infty}^{\\infty} = \\tfrac{[[c]]\\pi}{\\sqrt{[[d]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This halves the correct value, as if only integrating over the positive half-line.",
+   "This multiplies by \\( \\sqrt{[[d]]} \\) instead of dividing by it.",
+   "This doubles the correct value.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "evaluate_a_convergent_improper_integral_v5",
+  "skill_id": "evaluate_a_convergent_improper_integral",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 9},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Although \\( \\ln x \\to -\\infty \\) as \\( x \\to 0^{+} \\), the improper integral \\( \\int_{0}^{[[a]]} [[c]]\\ln x\\,dx \\) still converges. Evaluate it.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*log(x)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*[[a]]*log([[a]])",
+   "[[c]]*log([[a]])",
+   "[[c]]*([[a]]*log([[a]]) + [[a]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "-[[answer]]"
+  ],
+  "solution": "\\( \\int_{0}^{[[a]]} [[c]]\\ln x\\,dx = [[c]]\\left[x\\ln x - x\\right]_{0}^{[[a]]} = [[c]]\\left([[a]]\\ln [[a]] - [[a]]\\right) = [[answer]] \\), using \\( \\lim_{x\\to0^{+}} x\\ln x = 0 \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the \\( -x \\) term from the antiderivative.",
+   "This drops the \\( [[a]] \\) factor multiplying the logarithm entirely.",
+   "This flips the sign of the \\( -[[a]] \\) term, adding instead of subtracting.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This flips the sign of the correct value."
+  ]
+ }
+]

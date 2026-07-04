@@ -1,0 +1,119 @@
+[
+ {
+  "template_id": "linear_transformation_mean_v1",
+  "skill_id": "effect_of_a_linear_transformation_on_center_and_spre",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]},
+   "b": {"type": "int", "lo": -9, "hi": 9},
+   "m": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "The values in a data set have mean \\( [[m]] \\). Each value \\( x \\) is replaced by \\( y = [[a]]x + ([[b]]) \\). What is the mean of the new data set of \\( y \\)-values?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[m]] + [[b]]"},
+  "distractors": [
+   "[[a]]*[[m]]",
+   "[[m]] + [[b]]",
+   "[[a]]*[[m]] - [[b]]",
+   "[[a]]*([[m]] + [[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A linear transformation \\( y = ax + b \\) shifts and scales the mean the same way: \\( \\bar{y} = [[a]]\\cdot[[m]] + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This scales the mean by \\( [[a]] \\) but forgets to add the constant \\( [[b]] \\).",
+   "This adds \\( [[b]] \\) but forgets to multiply the mean by \\( [[a]] \\).",
+   "This subtracts \\( [[b]] \\) instead of adding it (a sign error).",
+   "This multiplies the added constant by \\( [[a]] \\) as well; only the original values are scaled."
+  ]
+ },
+ {
+  "template_id": "linear_transformation_sd_v1",
+  "skill_id": "effect_of_a_linear_transformation_on_center_and_spre",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]},
+   "b": {"type": "int", "lo": -9, "hi": 9},
+   "sigma": {"type": "int", "lo": 1, "hi": 15}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "The values in a data set have standard deviation \\( [[sigma]] \\). Each value \\( x \\) is replaced by \\( y = [[a]]x + ([[b]]) \\). What is the standard deviation of the new data set of \\( y \\)-values?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[a]])*[[sigma]]"},
+  "distractors": [
+   "[[a]]*[[sigma]]",
+   "[[a]]*[[sigma]] + [[b]]",
+   "[[a]]**2*[[sigma]]",
+   "[[sigma]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A linear transformation scales the standard deviation by the size of the slope: \\( \\sigma_y = |[[a]]|\\cdot[[sigma]] = [[answer]] \\); shifting by \\( [[b]] \\) does not change the spread at all.",
+  "distractor_rationales": [
+   "This keeps the sign of \\( [[a]] \\); a standard deviation must scale by \\( |a| \\), never come out negative.",
+   "This mistakenly adds the shift \\( [[b]] \\), but shifting a data set never changes its spread.",
+   "This squares the scale factor instead of taking its absolute value.",
+   "This assumes the standard deviation is unaffected by the scaling factor \\( [[a]] \\) at all.",
+   "This is off by one from the correct standard deviation."
+  ]
+ },
+ {
+  "template_id": "linear_transformation_word_problem_v1",
+  "skill_id": "effect_of_a_linear_transformation_on_center_and_spre",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "k": {"type": "int", "lo": -8, "hi": 12}
+  },
+  "constraints": [],
+  "derived": {"meanC": "5*[[k]]"},
+  "stem": "The average daily temperature over a week was \\( [[meanC]]^\\circ\\text{C} \\). Using the conversion \\( F = \\dfrac{9}{5}C + 32 \\), what was the average daily temperature that week in degrees Fahrenheit?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational(9,5)*[[meanC]] + 32"},
+  "distractors": [
+   "[[meanC]] + 32",
+   "Rational(9,5)*[[meanC]]",
+   "Rational(5,9)*[[meanC]] + 32",
+   "Rational(9,5)*([[meanC]] + 32)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The mean transforms the same way the values do: \\( \\bar{F} = \\dfrac{9}{5}\\cdot[[meanC]] + 32 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds 32 but forgets to scale the Celsius mean by \\( 9/5 \\) first.",
+   "This scales by \\( 9/5 \\) but forgets to add the 32-degree offset.",
+   "This uses the inverse slope \\( 5/9 \\) (for converting Fahrenheit to Celsius) instead of \\( 9/5 \\).",
+   "This adds 32 to the Celsius mean before scaling, instead of after.",
+   "This is off by one from the correct Fahrenheit mean."
+  ]
+ },
+ {
+  "template_id": "linear_transformation_solve_for_shift_v1",
+  "skill_id": "effect_of_a_linear_transformation_on_center_and_spre",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]},
+   "m": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[m]], 0)"],
+  "stem": "A data set has mean \\( [[m]] \\). Each value \\( x \\) is transformed to \\( y = [[a]]x + b \\) for some constant \\( b \\). For what value of \\( b \\) does the new data set of \\( y \\)-values have mean \\( 0 \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*[[m]] + b = 0", "var": "b"},
+  "distractors": [
+   "[[a]]*[[m]]",
+   "[[m]]/[[a]]",
+   "-[[m]]/[[a]]",
+   "[[a]] + [[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The new mean is \\( [[a]]\\cdot[[m]] + b \\); setting this equal to \\( 0 \\) and solving gives \\( b = -[[a]]\\cdot[[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign; it is the negative of the needed shift.",
+   "This divides instead of multiplying, and does not solve the mean equation at all.",
+   "This divides instead of multiplying (with a sign flip), and does not solve the mean equation at all.",
+   "This adds \\( a \\) and \\( m \\) together instead of solving \\( am + b = 0 \\) for \\( b \\).",
+   "This is off by one from the correct shift."
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+{
+ "template_id": "optimization_max_product_fixed_sum_v1",
+ "skill_id": "optimization",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "s": {"type": "int", "lo": 6, "hi": 100}
+ },
+ "constraints": ["Eq(Mod([[s]], 2), 0)"],
+ "stem": "Two nonnegative numbers have a sum of \\( [[s]] \\). What is the maximum possible value of their product?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[s]],2)*([[s]]-Rational([[s]],2))"},
+ "distractors": [
+  "Rational([[s]]**2,2)",
+  "Rational([[s]],2)",
+  "[[s]]**2",
+  "Rational([[s]]**2,8)",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Let the numbers be \\( x \\) and \\( [[s]]-x \\); the product is \\( P(x)=x([[s]]-x) \\). Solving \\( P'(x)=[[s]]-2x=0 \\) gives \\( x=[[s]]/2 \\), and \\( P([[s]]/2) = \\dfrac{[[s]]^{2}}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide the squared sum by 4, using \\( s^2/2 \\) instead.",
+  "This reports the optimal \\( x=s/2 \\) itself, not the maximum product.",
+  "This uses the sum itself squared without normalizing by the critical point.",
+  "This divides by 8 instead of 4.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "optimization_projectile_max_height_v2",
+ "skill_id": "optimization",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 4, "hi": 40},
+  "c": {"type": "int", "lo": 0, "hi": 20}
+ },
+ "constraints": ["Eq(Mod([[b]], 2*[[a]]), 0)"],
+ "stem": "A ball's height in meters at time \\( t \\) seconds is \\( h(t) = -[[a]]t^{2} + [[b]]t + [[c]] \\). What is the maximum height the ball reaches?",
+ "answer_spec": {"op": "evaluate", "expr": "-[[a]]*(Rational([[b]],2*[[a]]))**2 + [[b]]*Rational([[b]],2*[[a]]) + [[c]]"},
+ "distractors": [
+  "[[c]]",
+  "Rational([[b]],2*[[a]])",
+  "Rational([[b]]**2,4*[[a]]) + [[c]]",
+  "Rational([[b]]**2,2*[[a]]) + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Solving \\( h'(t)=-2[[a]]t+[[b]]=0 \\) gives the critical time \\( t=\\dfrac{[[b]]}{2[[a]]} \\). Evaluating \\( h \\) at this time gives the maximum height \\( \\dfrac{[[b]]^{2}}{4[[a]]}+[[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the initial height \\( h(0) \\), not the maximum height.",
+  "This reports the time at which the maximum occurs, not the height itself.",
+  "This is a common sign/factor slip that drops the initial height \\( c \\) inconsistently across similar problems.",
+  "This forgets to divide by 4, using \\( b^2/(2a) \\) instead of \\( b^2/(4a) \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "optimization_cost_rational_function_v3",
+ "skill_id": "optimization",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "The daily cost (in dollars) of running a production line at rate \\( x>0 \\) is \\( C(x) = [[a]]x + \\dfrac{[[b]]}{x} \\). What is the minimum possible cost?",
+ "answer_spec": {"op": "evaluate", "expr": "2*sqrt([[a]]*[[b]])"},
+ "distractors": [
+  "sqrt([[a]]*[[b]])",
+  "sqrt(Rational([[b]],[[a]]))",
+  "[[a]]*sqrt([[b]])",
+  "Rational([[a]]*[[b]],2)",
+  "2*sqrt([[a]]*[[b]]) + 1",
+  "2*sqrt([[a]]*[[b]]) - 1"
+ ],
+ "solution": "Solving \\( C'(x) = [[a]] - \\dfrac{[[b]]}{x^{2}} = 0 \\) gives the critical point \\( x=\\sqrt{[[b]]/[[a]]} \\). Since \\( C \\) is convex for \\( x>0 \\), this is a minimum, and \\( C\\big(\\sqrt{[[b]]/[[a]]}\\big) = 2\\sqrt{[[a]][[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the critical point \\( x=\\sqrt{ab} \\)-style expression without the factor of 2 from evaluating \\( C \\) there.",
+  "This reports the optimal rate \\( x=\\sqrt{b/a} \\) itself, not the minimum cost.",
+  "This drops the square root on \\( a \\), applying it only to \\( b \\).",
+  "This averages \\( a \\) and \\( b \\) as a product over 2 instead of using the calculus-derived formula.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "optimization_cubic_profit_v4",
+ "skill_id": "optimization",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 90}
+ },
+ "constraints": ["Eq(Mod(2*[[a]], 3), 0)"],
+ "stem": "A company's profit (in thousands of dollars) from producing \\( x>0 \\) thousand units is \\( P(x) = -x^{3} + [[a]]x^{2} \\). What is the maximum profit (for \\( x>0 \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "-(Rational(2*[[a]],3))**3 + [[a]]*(Rational(2*[[a]],3))**2"},
+ "distractors": [
+  "Rational(2*[[a]],3)",
+  "[[a]]**2",
+  "-(Rational([[a]],3))**3 + [[a]]*(Rational([[a]],3))**2",
+  "Rational(4*[[a]]**3,27)",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Solving \\( P'(x) = -3x^{2}+2[[a]]x = x(2[[a]]-3x) = 0 \\) gives \\( x=0 \\) or \\( x=\\dfrac{2[[a]]}{3} \\); the nonzero critical point is a maximum for \\( x>0 \\). Evaluating \\( P \\) there gives \\( P\\big(\\tfrac{2[[a]]}{3}\\big) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the critical point \\( x=2a/3 \\) itself, not the maximum profit.",
+  "This mistakes the coefficient \\( a^{2} \\) itself for the maximum profit value.",
+  "This uses the WRONG critical point \\( x=a/3 \\) instead of \\( x=2a/3 \\).",
+  "This has the right form but the wrong constant, from mis-simplifying the cubic evaluation.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

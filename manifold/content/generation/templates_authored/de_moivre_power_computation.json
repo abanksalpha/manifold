@@ -1,0 +1,130 @@
+[
+{
+ "template_id": "de_moivre_power_v1",
+ "skill_id": "de_moivre_power_computation",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": [],
+ "stem": "Expand \\( \\left( ([[a]]) + ([[b]])i \\right)^{[[n]]} \\) and write the result in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]) + ([[b]])*I)**[[n]]"},
+ "require_rational": false,
+ "distractors": [
+  "(([[a]]) - ([[b]])*I)**[[n]]",
+  "[[a]]**[[n]] + [[b]]**[[n]]*I",
+  "([[a]]**[[n]]) + (([[b]])*I)**[[n]]",
+  "-((([[a]]) + ([[b]])*I)**[[n]])",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "Raise to the power (by De Moivre's theorem or direct expansion): \\( (([[a]]) + ([[b]])i)^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This raises the conjugate \\( a-bi \\) to the power instead of \\( a+bi \\).",
+  "This applies the exponent to each part separately, which is not how powers of a sum work.",
+  "This raises each term of the binomial to the power separately, dropping all cross terms.",
+  "This negates the correct value (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "de_moivre_polar_input_v1",
+ "skill_id": "de_moivre_power_computation",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "r": {"type": "choice", "values": [1, 2, 3]},
+  "k": {"type": "int", "lo": 1, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[k]], 6)"],
+ "stem": "Let \\( z = r(\\cos\\theta + i\\sin\\theta) \\) with \\( r = [[r]] \\) and \\( \\theta = \\dfrac{[[k]]\\pi}{6} \\). Using De Moivre's theorem, compute \\( z^{[[n]]} \\) and write the result in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[r]])**[[n]] * (cos([[n]]*[[k]]*pi/6) + I*sin([[n]]*[[k]]*pi/6))"},
+ "require_rational": false,
+ "distractors": [
+  "([[r]])**[[n]] * (cos([[k]]*pi/6) + I*sin([[k]]*pi/6))",
+  "([[r]]) * (cos([[n]]*[[k]]*pi/6) + I*sin([[n]]*[[k]]*pi/6))",
+  "([[r]])**[[n]] * (sin([[n]]*[[k]]*pi/6) + I*cos([[n]]*[[k]]*pi/6))",
+  "-(([[r]])**[[n]] * (cos([[n]]*[[k]]*pi/6) + I*sin([[n]]*[[k]]*pi/6)))",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "By De Moivre's theorem, \\( z^{[[n]]} = r^{[[n]]}\\left(\\cos([[n]]\\theta) + i\\sin([[n]]\\theta)\\right) \\) with \\( r^{[[n]]} = ([[r]])^{[[n]]} \\) and \\( [[n]]\\theta = \\dfrac{[[n]]\\cdot[[k]]\\pi}{6} \\), giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to multiply the angle by \\( n \\), leaving \\( \\theta \\) unscaled.",
+  "This forgets to raise the modulus \\( r \\) to the power \\( n \\).",
+  "This swaps sine and cosine; the real part must be \\( \\cos(n\\theta) \\).",
+  "This negates the correct value (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "de_moivre_modulus_of_power_v1",
+ "skill_id": "de_moivre_power_computation",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "b": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Let \\( z = ([[a]]) + ([[b]])i \\). Using De Moivre's theorem (\\( |z^{n}| = |z|^{n} \\)), find \\( \\left| z^{[[n]]} \\right| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs(([[a]]) + ([[b]])*I)**[[n]]"},
+ "require_rational": false,
+ "distractors": [
+  "[[n]]*Abs(([[a]]) + ([[b]])*I)",
+  "(([[a]])**2 + ([[b]])**2)**[[n]]",
+  "Abs(([[a]]) + ([[b]])*I)**([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "\\( |z| = \\sqrt{([[a]])^{2}+([[b]])^{2}} \\), and by De Moivre's theorem \\( |z^{[[n]]}| = |z|^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the modulus by \\( n \\) instead of raising it to the power \\( n \\).",
+  "This uses \\( |z|^{2} = a^{2}+b^{2} \\) (forgetting the square root) raised to the \\( n \\)th power.",
+  "This is off by one in the exponent.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "de_moivre_negative_power_v1",
+ "skill_id": "de_moivre_power_computation",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "n": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Let \\( z = ([[a]]) + ([[b]])i \\). Compute \\( z^{-[[n]]} \\) and write the result as a single simplified expression in the form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]) + ([[b]])*I)**(-[[n]])"},
+ "require_rational": false,
+ "distractors": [
+  "(([[a]]) + ([[b]])*I)**[[n]]",
+  "(([[a]]) - ([[b]])*I)**(-[[n]])",
+  "-((([[a]]) + ([[b]])*I)**(-[[n]]))",
+  "-((([[a]]) + ([[b]])*I)**[[n]])",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "By De Moivre's theorem in reciprocal form, \\( z^{-n} = |z|^{-n}\\left(\\cos(n\\theta) - i\\sin(n\\theta)\\right) \\); computing directly, \\( \\left(([[a]]) + ([[b]])i\\right)^{-[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign on the exponent, computing \\( z^{n} \\) instead of \\( z^{-n} \\).",
+  "This uses the conjugate \\( \\bar z \\) in place of \\( z \\) before taking the negative power.",
+  "This negates the correct value (a sign slip).",
+  "This both drops the negative exponent and negates the result.",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+}
+]

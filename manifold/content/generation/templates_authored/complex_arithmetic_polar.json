@@ -1,0 +1,195 @@
+[
+{
+ "template_id": "complex_arithmetic_polar_modulus_of_power_de_moivre_v1",
+ "skill_id": "complex_arithmetic_polar",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "n": {"type": "choice", "values": [2, 4, 6]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Let \\( z = ([[a]]) + ([[b]])i \\). Using \\( |z^{n}| = |z|^{n} \\), compute \\( \\left| z^{[[n]]} \\right| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs((([[a]])+([[b]])*I))**[[n]]"},
+ "distractors": [
+  "Abs((([[a]])+([[b]])*I))*[[n]]",
+  "(([[a]])**2+([[b]])**2)**[[n]]",
+  "([[a]])**[[n]] + ([[b]])**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "Since \\( |z^{n}| = |z|^{n} \\), first find \\( |z| = \\sqrt{([[a]])^{2}+([[b]])^{2}} \\), then raise it to the \\( [[n]] \\)-th power (an even power, so the result is a clean integer): \\( \\left|z^{[[n]]}\\right| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the modulus by \\( n \\) instead of raising it to the \\( n \\)-th power.",
+  "This raises \\( |z|^{2} = a^{2}+b^{2} \\) to the \\( n \\)-th power, squaring the correct answer instead of matching it.",
+  "This raises each part separately and adds, instead of computing the modulus first.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "complex_arithmetic_polar_argument_of_power_de_moivre_v1",
+ "skill_id": "complex_arithmetic_polar",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Let \\( z = [[r]]\\left(\\cos\\dfrac{[[k]]\\pi}{6} + i\\sin\\dfrac{[[k]]\\pi}{6}\\right) \\). By De Moivre's theorem, \\( z^{[[n]]} = r^{[[n]]}\\left(\\cos(n\\theta) + i\\sin(n\\theta)\\right) \\). Find the principal argument \\( \\arg\\left(z^{[[n]]}\\right) \\) (in radians, in \\( (-\\pi, \\pi] \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "arg((([[r]])*(cos([[k]]*pi/6)+I*sin([[k]]*pi/6)))**[[n]])"},
+ "require_rational": false,
+ "distractors": [
+  "[[n]]*[[k]]*pi/6",
+  "arg((([[r]])*(cos([[k]]*pi/6)+I*sin([[k]]*pi/6))))",
+  "-([[answer]])",
+  "[[answer]] + pi",
+  "[[answer]] - pi",
+  "[[answer]] + pi/2"
+ ],
+ "solution": "By De Moivre's theorem, multiplying the argument by \\( n \\) (then reducing to the principal range \\( (-\\pi,\\pi] \\)) gives \\( \\arg\\left(z^{[[n]]}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the raw multiple \\( n\\theta \\) without reducing it to the principal range \\( (-\\pi,\\pi] \\).",
+  "This is \\( \\arg(z) \\) alone, forgetting to multiply by \\( n \\) as De Moivre's theorem requires.",
+  "This has the wrong sign, as if the angle were measured clockwise.",
+  "This adds an extra half turn to the correct angle.",
+  "This subtracts an extra half turn from the correct angle.",
+  "This adds an extra quarter turn to the correct angle."
+ ]
+},
+{
+ "template_id": "complex_arithmetic_polar_power_to_rectangular_de_moivre_v1",
+ "skill_id": "complex_arithmetic_polar",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "choice", "values": [1, 2, 3]},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Let \\( z = [[r]]\\left(\\cos\\dfrac{[[k]]\\pi}{6} + i\\sin\\dfrac{[[k]]\\pi}{6}\\right) \\). Using De Moivre's theorem, write \\( z^{[[n]]} \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "expand((([[r]])*(cos([[k]]*pi/6)+I*sin([[k]]*pi/6)))**[[n]])"},
+ "require_rational": false,
+ "distractors": [
+  "expand((([[r]])**[[n]])*(cos([[k]]*pi/6)+I*sin([[k]]*pi/6)))",
+  "expand((([[r]])*(cos([[n]]*[[k]]*pi/6)+I*sin([[k]]*pi/6)))**1)",
+  "conjugate([[answer]])",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "By De Moivre's theorem, \\( z^{[[n]]} = [[r]]^{[[n]]}\\left(\\cos\\dfrac{[[n]][[k]]\\pi}{6} + i\\sin\\dfrac{[[n]][[k]]\\pi}{6}\\right) \\), which simplifies to the rectangular value \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This raises the modulus to the \\( n \\)-th power but forgets to multiply the angle by \\( n \\) inside the trig functions.",
+  "This multiplies the angle inside cosine by \\( n \\) but leaves the sine's angle and the modulus's power unchanged.",
+  "This is the complex conjugate of the correct value, as if the sign of the angle were flipped.",
+  "This negates the correct value (a sign slip in applying De Moivre's theorem).",
+  "This is off by one in the real part.",
+  "This adds an extra unit to the imaginary part."
+ ]
+},
+{
+ "template_id": "complex_arithmetic_polar_modulus_of_quotient_polar_v1",
+ "skill_id": "complex_arithmetic_polar",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": 2, "hi": 24},
+  "r2": {"type": "int", "lo": 2, "hi": 8},
+  "k1": {"type": "int", "lo": -6, "hi": 6},
+  "k2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Eq(Mod([[r1]], [[r2]]), 0)"],
+ "stem": "Let \\( z_{1} = [[r1]]\\left(\\cos\\dfrac{[[k1]]\\pi}{6} + i\\sin\\dfrac{[[k1]]\\pi}{6}\\right) \\) and \\( z_{2} = [[r2]]\\left(\\cos\\dfrac{[[k2]]\\pi}{6} + i\\sin\\dfrac{[[k2]]\\pi}{6}\\right) \\). Compute \\( \\left|\\dfrac{z_{1}}{z_{2}}\\right| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs((([[r1]])*(cos([[k1]]*pi/6)+I*sin([[k1]]*pi/6)))/((([[r2]])*(cos([[k2]]*pi/6)+I*sin([[k2]]*pi/6)))))"},
+ "distractors": [
+  "([[r1]])*([[r2]])",
+  "([[r2]])/([[r1]])",
+  "([[r1]])/([[r2]]) + 1",
+  "([[r1]])/([[r2]]) - 1",
+  "([[r1]]) - ([[r2]])",
+  "([[r1]]) + ([[r2]])"
+ ],
+ "solution": "Since \\( \\left|\\dfrac{z_1}{z_2}\\right| = \\dfrac{|z_1|}{|z_2|} = \\dfrac{r_1}{r_2} \\), and the arguments do not affect the modulus, \\( \\left|\\dfrac{z_1}{z_2}\\right| = \\dfrac{[[r1]]}{[[r2]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the moduli instead of dividing them.",
+  "This inverts the ratio, dividing \\( r_2 \\) by \\( r_1 \\) instead of \\( r_1 \\) by \\( r_2 \\).",
+  "This is off by one from the correct ratio.",
+  "This is off by one from the correct ratio.",
+  "This subtracts the moduli instead of dividing them.",
+  "This adds the moduli instead of dividing them."
+ ]
+},
+{
+ "template_id": "complex_arithmetic_polar_argument_of_quotient_polar_v1",
+ "skill_id": "complex_arithmetic_polar",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": 1, "hi": 6},
+  "r2": {"type": "int", "lo": 1, "hi": 6},
+  "k1": {"type": "int", "lo": -6, "hi": 6},
+  "k2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[k1]], [[k2]])"],
+ "stem": "Let \\( z_{1} = [[r1]]\\left(\\cos\\dfrac{[[k1]]\\pi}{6} + i\\sin\\dfrac{[[k1]]\\pi}{6}\\right) \\) and \\( z_{2} = [[r2]]\\left(\\cos\\dfrac{[[k2]]\\pi}{6} + i\\sin\\dfrac{[[k2]]\\pi}{6}\\right) \\). Find the principal argument \\( \\arg\\left(\\dfrac{z_{1}}{z_{2}}\\right) \\) (in radians, in \\( (-\\pi, \\pi] \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "arg((([[r1]])*(cos([[k1]]*pi/6)+I*sin([[k1]]*pi/6)))/((([[r2]])*(cos([[k2]]*pi/6)+I*sin([[k2]]*pi/6)))))"},
+ "require_rational": false,
+ "distractors": [
+  "([[k1]]+[[k2]])*pi/6",
+  "([[k2]]-[[k1]])*pi/6",
+  "-([[answer]])",
+  "[[answer]] + pi",
+  "[[answer]] - pi",
+  "[[answer]] + pi/2"
+ ],
+ "solution": "Since \\( \\arg\\left(\\dfrac{z_1}{z_2}\\right) = \\arg(z_1) - \\arg(z_2) \\), subtract the angles \\( \\dfrac{[[k1]]\\pi}{6} - \\dfrac{[[k2]]\\pi}{6} \\) and reduce to the principal range: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two angles instead of subtracting them.",
+  "This subtracts in the wrong order, giving \\( \\arg(z_2) - \\arg(z_1) \\) instead of \\( \\arg(z_1) - \\arg(z_2) \\).",
+  "This has the wrong sign for the correct principal value.",
+  "This adds an extra half turn to the correct angle.",
+  "This subtracts an extra half turn from the correct angle.",
+  "This adds an extra quarter turn to the correct angle."
+ ]
+},
+{
+ "template_id": "complex_arithmetic_polar_product_to_rectangular_v1",
+ "skill_id": "complex_arithmetic_polar",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": 1, "hi": 4},
+  "r2": {"type": "int", "lo": 1, "hi": 4},
+  "k1": {"type": "int", "lo": -6, "hi": 6},
+  "k2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[k1]], 0)", "Ne([[k2]], 0)"],
+ "stem": "Let \\( z_{1} = [[r1]]\\left(\\cos\\dfrac{[[k1]]\\pi}{6} + i\\sin\\dfrac{[[k1]]\\pi}{6}\\right) \\) and \\( z_{2} = [[r2]]\\left(\\cos\\dfrac{[[k2]]\\pi}{6} + i\\sin\\dfrac{[[k2]]\\pi}{6}\\right) \\). Using \\( z_{1}z_{2} = r_{1}r_{2}\\left(\\cos(\\theta_{1}+\\theta_{2}) + i\\sin(\\theta_{1}+\\theta_{2})\\right) \\), write \\( z_{1}z_{2} \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "expand((([[r1]])*(cos([[k1]]*pi/6)+I*sin([[k1]]*pi/6))) * (([[r2]])*(cos([[k2]]*pi/6)+I*sin([[k2]]*pi/6))))"},
+ "require_rational": false,
+ "distractors": [
+  "expand((([[r1]])*(cos([[k1]]*pi/6)+I*sin([[k1]]*pi/6))) + (([[r2]])*(cos([[k2]]*pi/6)+I*sin([[k2]]*pi/6))))",
+  "expand((([[r1]])*([[r2]]))*(cos([[k1]]*pi/6)+I*sin([[k2]]*pi/6)))",
+  "conjugate([[answer]])",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "Multiply the moduli, \\( r_{1}r_{2} = ([[r1]])([[r2]]) \\), and add the arguments, \\( \\dfrac{[[k1]]\\pi}{6}+\\dfrac{[[k2]]\\pi}{6} \\), then convert to rectangular form: \\( z_{1}z_{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( z_1 \\) and \\( z_2 \\) instead of multiplying them.",
+  "This multiplies the moduli but mismatches the cosine and sine angles instead of using the sum \\( \\theta_1+\\theta_2 \\) in both.",
+  "This is the complex conjugate of the correct product.",
+  "This negates the correct product (a sign slip).",
+  "This is off by one in the real part.",
+  "This adds an extra unit to the imaginary part."
+ ]
+}
+]

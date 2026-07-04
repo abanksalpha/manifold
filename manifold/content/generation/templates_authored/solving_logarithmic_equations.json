@@ -1,0 +1,139 @@
+[
+ {
+  "template_id": "logarithmic_equation_solve_v1",
+  "skill_id": "solving_logarithmic_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3]},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Solve \\( \\log_{[[b]]}(x - ([[c]])) = [[d]] \\). What is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "log(x - ([[c]]), [[b]]) = [[d]]", "var": "x"},
+  "distractors": [
+   "[[b]]**[[d]]",
+   "[[b]]*[[d]] + [[c]]",
+   "[[b]]**[[d]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "\\( \\log_{[[b]]}(x - ([[c]])) = [[d]] \\) means \\( x - ([[c]]) = [[b]]^{[[d]]} \\), so \\( x = [[b]]^{[[d]]} + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( b^{d} \\), the value of \\( x - c \\); you still must add \\( c \\).",
+   "This uses \\( b \\times d \\) instead of \\( b^{d} \\) when undoing the logarithm.",
+   "This subtracts \\( c \\) instead of adding it.",
+   "This is off by one from the correct solution.",
+   "This is off by one from the correct solution.",
+   "This is off by two from the correct solution."
+  ]
+ },
+ {
+  "template_id": "logarithmic_equation_product_form_v1",
+  "skill_id": "solving_logarithmic_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3]},
+   "i": {"type": "int", "lo": 1, "hi": 4},
+   "j": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "derived": {
+   "r1": "[[b]]**[[i]]",
+   "r2neg": "[[b]]**[[j]]",
+   "a": "[[r2neg]] - [[r1]]",
+   "k": "[[i]] + [[j]]"
+  },
+  "stem": "Solve \\( \\log_{[[b]]}(x) + \\log_{[[b]]}(x + ([[a]])) = [[k]] \\). What is \\( x \\)? (The equation has only one solution where both logarithms are defined.)",
+  "answer_spec": {"op": "solve", "equation": "log(x, [[b]]) + log(x + ([[a]]), [[b]]) = [[k]]", "var": "x"},
+  "distractors": [
+   "[[b]]**[[k]]",
+   "-[[a]]",
+   "[[b]]**[[j]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the product rule, \\( \\log_{[[b]]}\\big(x(x+([[a]]))\\big) = [[k]] \\), so \\( x(x+([[a]])) = [[b]]^{[[k]]} \\). This quadratic has roots \\( x = [[b]]^{[[i]]} \\) and \\( x = -[[b]]^{[[j]]} \\); the negative root makes \\( \\log_{[[b]]}(x) \\) undefined, so the only valid solution is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the right-hand side \\( b^{k} \\) itself, the product \\( x(x+a) \\), rather than \\( x \\).",
+   "This reports the negative, extraneous root that is excluded by the logarithm's domain.",
+   "This reports the magnitude of the extraneous root instead of the valid solution.",
+   "This is off by one from the correct solution.",
+   "This is off by one from the correct solution.",
+   "This is off by two from the correct solution."
+  ]
+ },
+ {
+  "template_id": "logarithmic_equation_quadratic_argument_v1",
+  "skill_id": "solving_logarithmic_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "m": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "derived": {
+   "D": "[[m]]**2 - [[b]]**[[k]]"
+  },
+  "stem": "Solve \\( \\log_{[[b]]}\\!\\left(x^{2} - ([[D]])\\right) = [[k]] \\). Which of the following is a solution?",
+  "answer_spec": {"op": "solve", "equation": "log(x**2 - ([[D]]), [[b]]) = [[k]]", "var": "x"},
+  "distractors": [
+   "[[b]]**[[k]]",
+   "[[D]]",
+   "[[m]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "\\( \\log_{[[b]]}(x^{2}-([[D]])) = [[k]] \\) means \\( x^{2} - ([[D]]) = [[b]]^{[[k]]} \\), so \\( x^{2} = [[b]]^{[[k]]} + ([[D]]) = [[m]]^{2} \\), giving \\( x = \\pm [[m]] \\); one solution is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( b^{k} \\), the value of \\( x^{2} - D \\), rather than \\( x \\) itself.",
+   "This reports the shift constant \\( D \\) rather than solving for \\( x \\).",
+   "This reports \\( x^{2} \\) itself rather than taking the square root.",
+   "This is off by one from a genuine solution.",
+   "This is off by one from a genuine solution.",
+   "This is off by two from a genuine solution."
+  ]
+ },
+ {
+  "template_id": "logarithmic_change_of_base_chain_evaluate_v1",
+  "skill_id": "solving_logarithmic_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "c": {"type": "choice", "values": [2, 10, 100]}
+  },
+  "constraints": [],
+  "derived": {
+   "N": "[[b]]**[[k]]"
+  },
+  "stem": "Using the change-of-base formula, evaluate \\( \\dfrac{\\log_{[[c]]}([[N]])}{\\log_{[[c]]}([[b]])} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[N]], [[c]]) / log([[b]], [[c]])"},
+  "distractors": [
+   "[[N]] / [[b]]",
+   "log([[N]], [[c]]) * log([[b]], [[c]])",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the change-of-base formula, \\( \\dfrac{\\log_{[[c]]}([[N]])}{\\log_{[[c]]}([[b]])} = \\log_{[[b]]}([[N]]) = [[k]] = [[answer]] \\), since \\( [[N]] = [[b]]^{[[k]]} \\).",
+  "distractor_rationales": [
+   "This divides the arguments directly rather than dividing their base-\\( c \\) logarithms.",
+   "This multiplies the two logarithms instead of dividing them.",
+   "This reports the common base \\( c \\) rather than the value of the ratio.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

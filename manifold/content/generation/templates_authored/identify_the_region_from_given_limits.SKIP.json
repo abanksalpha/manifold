@@ -1,0 +1,4 @@
+{
+ "skill_id": "identify_the_region_from_given_limits",
+ "reason": "The answer is a geometric description/label of the region of integration, not a single code-computable scalar."
+}

@@ -1,0 +1,226 @@
+[
+{
+ "template_id": "bayes_two_source_v1",
+ "skill_id": "bayes_theorem",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "pAn": {"type": "int", "lo": 1, "hi": 4},
+  "pAd": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]},
+  "dAn": {"type": "int", "lo": 1, "hi": 4},
+  "dAd": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]},
+  "dBn": {"type": "int", "lo": 1, "hi": 4},
+  "dBd": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]}
+ },
+ "constraints": [
+  "Lt([[pAn]], [[pAd]])", "Lt([[dAn]], [[dAd]])", "Lt([[dBn]], [[dBd]])",
+  "Ne([[dAn]]*[[dBd]], [[dBn]]*[[dAd]])"
+ ],
+ "stem": "A factory receives parts from two suppliers. Supplier A provides \\( \\frac{[[pAn]]}{[[pAd]]} \\) of all parts, and Supplier B provides the rest. Historically, \\( \\frac{[[dAn]]}{[[dAd]]} \\) of Supplier A's parts are defective, while \\( \\frac{[[dBn]]}{[[dBd]]} \\) of Supplier B's parts are defective. A part is selected at random from the combined stock and found to be defective. What is the probability that it came from Supplier A?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])/(Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])+(1-Rational([[pAn]],[[pAd]]))*Rational([[dBn]],[[dBd]]))"
+ },
+ "distractors": [
+  "Rational([[dAn]],[[dAd]])",
+  "Rational([[pAn]],[[pAd]])",
+  "Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])",
+  "(1-Rational([[pAn]],[[pAd]]))*Rational([[dBn]],[[dBd]])/(Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])+(1-Rational([[pAn]],[[pAd]]))*Rational([[dBn]],[[dBd]]))",
+  "Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])/(Rational([[dAn]],[[dAd]])+Rational([[dBn]],[[dBd]]))",
+  "Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])/(Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])+Rational([[dBn]],[[dBd]]))"
+ ],
+ "solution": "By Bayes' theorem, \\( P(A\\mid \\text{def}) = \\dfrac{P(A)P(\\text{def}\\mid A)}{P(A)P(\\text{def}\\mid A) + P(B)P(\\text{def}\\mid B)} = \\dfrac{\\frac{[[pAn]]}{[[pAd]]}\\cdot\\frac{[[dAn]]}{[[dAd]]}}{\\frac{[[pAn]]}{[[pAd]]}\\cdot\\frac{[[dAn]]}{[[dAd]]} + \\left(1-\\frac{[[pAn]]}{[[pAd]]}\\right)\\cdot\\frac{[[dBn]]}{[[dBd]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just Supplier A's defect rate, ignoring the prior probabilities entirely.",
+  "This is just the prior probability that a part came from A, ignoring the defect rates.",
+  "This is only the numerator of Bayes' theorem; it forgets to divide by the total probability of a defect.",
+  "This computes \\( P(B\\mid\\text{def}) \\), the complementary posterior, instead of \\( P(A\\mid\\text{def}) \\).",
+  "This weights both suppliers' defect rates equally instead of by their production shares.",
+  "This forgets to weight Supplier B's defect rate by its own prior probability in the denominator."
+ ]
+},
+{
+ "template_id": "bayes_medical_test_v1",
+ "skill_id": "bayes_theorem",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "preN": {"type": "int", "lo": 1, "hi": 9},
+  "preD": {"type": "choice", "values": [10, 20, 25, 50, 100]},
+  "sensN": {"type": "int", "lo": 5, "hi": 9},
+  "sensD": {"type": "choice", "values": [10, 20]},
+  "specN": {"type": "int", "lo": 5, "hi": 9},
+  "specD": {"type": "choice", "values": [10, 20]}
+ },
+ "constraints": [
+  "Lt([[preN]], [[preD]])", "Lt([[sensN]], [[sensD]])", "Lt([[specN]], [[specD]])"
+ ],
+ "stem": "In a population, the prevalence of a disease is \\( \\frac{[[preN]]}{[[preD]]} \\). A diagnostic test has sensitivity \\( \\frac{[[sensN]]}{[[sensD]]} \\) (the probability of a positive result given the disease is present) and specificity \\( \\frac{[[specN]]}{[[specD]]} \\) (the probability of a negative result given the disease is absent). A randomly selected person from this population tests positive. What is the probability that this person actually has the disease?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[preN]],[[preD]])*Rational([[sensN]],[[sensD]])/(Rational([[preN]],[[preD]])*Rational([[sensN]],[[sensD]])+(1-Rational([[preN]],[[preD]]))*(1-Rational([[specN]],[[specD]])))"
+ },
+ "distractors": [
+  "Rational([[sensN]],[[sensD]])",
+  "Rational([[preN]],[[preD]])",
+  "Rational([[preN]],[[preD]])*Rational([[sensN]],[[sensD]])",
+  "Rational([[preN]],[[preD]])*Rational([[sensN]],[[sensD]])/(Rational([[preN]],[[preD]])*Rational([[sensN]],[[sensD]])+(1-Rational([[preN]],[[preD]]))*Rational([[specN]],[[specD]]))",
+  "(1-Rational([[preN]],[[preD]]))*(1-Rational([[specN]],[[specD]]))/(Rational([[preN]],[[preD]])*Rational([[sensN]],[[sensD]])+(1-Rational([[preN]],[[preD]]))*(1-Rational([[specN]],[[specD]])))",
+  "Rational([[sensN]],[[sensD]])*Rational([[specN]],[[specD]])"
+ ],
+ "solution": "By Bayes' theorem, \\( P(\\text{disease}\\mid +) = \\dfrac{P(\\text{disease})\\,P(+\\mid\\text{disease})}{P(\\text{disease})P(+\\mid\\text{disease}) + P(\\text{no disease})P(+\\mid\\text{no disease})} = \\dfrac{\\frac{[[preN]]}{[[preD]]}\\cdot\\frac{[[sensN]]}{[[sensD]]}}{\\frac{[[preN]]}{[[preD]]}\\cdot\\frac{[[sensN]]}{[[sensD]]} + \\left(1-\\frac{[[preN]]}{[[preD]]}\\right)\\left(1-\\frac{[[specN]]}{[[specD]]}\\right)} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the test's sensitivity, ignoring how rare the disease is.",
+  "This is just the disease's prevalence, ignoring the test result entirely.",
+  "This is only the numerator of Bayes' theorem, forgetting to divide by the total probability of testing positive.",
+  "This confuses specificity with the false-positive rate, using \\( \\text{specificity} \\) instead of \\( 1-\\text{specificity} \\) for the false-positive probability.",
+  "This computes \\( P(\\text{no disease}\\mid +) \\), the complementary posterior, instead of \\( P(\\text{disease}\\mid +) \\).",
+  "This multiplies sensitivity and specificity together, an unrelated quantity."
+ ]
+},
+{
+ "template_id": "bayes_three_source_v1",
+ "skill_id": "bayes_theorem",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "n1": {"type": "int", "lo": 2, "hi": 9},
+  "n2": {"type": "int", "lo": 2, "hi": 9},
+  "n3": {"type": "int", "lo": 2, "hi": 9},
+  "dd": {"type": "choice", "values": [5, 8, 10]},
+  "d1n": {"type": "int", "lo": 1, "hi": 4},
+  "d2n": {"type": "int", "lo": 1, "hi": 4},
+  "d3n": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[d1n]], [[dd]])", "Lt([[d2n]], [[dd]])", "Lt([[d3n]], [[dd]])"],
+ "stem": "Three machines A, B, and C produce items in the ratio \\( [[n1]]:[[n2]]:[[n3]] \\). Machine A's defect rate is \\( \\frac{[[d1n]]}{[[dd]]} \\), Machine B's is \\( \\frac{[[d2n]]}{[[dd]]} \\), and Machine C's is \\( \\frac{[[d3n]]}{[[dd]]} \\). An item is chosen at random from the combined output and found to be defective. What is the probability that it came from Machine B?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[n2]]*Rational([[d2n]],[[dd]])/([[n1]]*Rational([[d1n]],[[dd]])+[[n2]]*Rational([[d2n]],[[dd]])+[[n3]]*Rational([[d3n]],[[dd]]))"
+ },
+ "distractors": [
+  "Rational([[d2n]],[[dd]])",
+  "Rational([[n2]],[[n1]]+[[n2]]+[[n3]])",
+  "[[n1]]*Rational([[d1n]],[[dd]])/([[n1]]*Rational([[d1n]],[[dd]])+[[n2]]*Rational([[d2n]],[[dd]])+[[n3]]*Rational([[d3n]],[[dd]]))",
+  "[[n3]]*Rational([[d3n]],[[dd]])/([[n1]]*Rational([[d1n]],[[dd]])+[[n2]]*Rational([[d2n]],[[dd]])+[[n3]]*Rational([[d3n]],[[dd]]))",
+  "[[n2]]*Rational([[d2n]],[[dd]])",
+  "[[n2]]*Rational([[d2n]],[[dd]])/(Rational([[d1n]],[[dd]])+Rational([[d2n]],[[dd]])+Rational([[d3n]],[[dd]]))"
+ ],
+ "solution": "By Bayes' theorem with three sources, \\( P(B\\mid\\text{def}) = \\dfrac{n_B\\,p_B}{n_A p_A + n_B p_B + n_C p_C} = \\dfrac{[[n2]]\\cdot\\frac{[[d2n]]}{[[dd]]}}{[[n1]]\\cdot\\frac{[[d1n]]}{[[dd]]} + [[n2]]\\cdot\\frac{[[d2n]]}{[[dd]]} + [[n3]]\\cdot\\frac{[[d3n]]}{[[dd]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just Machine B's defect rate, ignoring the production ratio entirely.",
+  "This is just Machine B's share of production, ignoring the defect rates.",
+  "This computes the posterior probability for Machine A instead of Machine B.",
+  "This computes the posterior probability for Machine C instead of Machine B.",
+  "This is only the numerator, forgetting to divide by the total probability of a defect across all three machines.",
+  "This weights each machine's defect rate equally instead of by its production share."
+ ]
+},
+{
+ "template_id": "bayes_contingency_table_v1",
+ "skill_id": "bayes_theorem",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "n11": {"type": "int", "lo": 3, "hi": 40},
+  "n12": {"type": "int", "lo": 3, "hi": 40},
+  "n21": {"type": "int", "lo": 3, "hi": 40},
+  "n22": {"type": "int", "lo": 3, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "Among a group of people, [[n11]] have a certain condition and test positive for it, [[n12]] have the condition and test negative, [[n21]] do not have the condition but test positive, and [[n22]] do not have the condition and test negative. A person from this group is selected at random and is found to have tested positive. What is the probability that this person actually has the condition?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[n11]],[[n11]]+[[n21]])"},
+ "distractors": [
+  "Rational([[n11]],[[n11]]+[[n12]])",
+  "Rational([[n11]],[[n11]]+[[n12]]+[[n21]]+[[n22]])",
+  "Rational([[n21]],[[n11]]+[[n21]])",
+  "Rational([[n22]],[[n22]]+[[n12]])",
+  "Rational([[n11]]+[[n21]],[[n11]]+[[n12]]+[[n21]]+[[n22]])",
+  "Rational([[n12]],[[n11]]+[[n12]])"
+ ],
+ "solution": "Restrict attention to the positive-testing subgroup: \\( P(\\text{condition}\\mid +) = \\dfrac{n_{11}}{n_{11}+n_{21}} = \\dfrac{[[n11]]}{[[n11]]+[[n21]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by the condition-present total instead of the positive-test total; that computes sensitivity, not the requested posterior.",
+  "This divides by the grand total of everyone, giving a joint probability rather than a conditional one.",
+  "This is the complementary posterior \\( P(\\text{no condition}\\mid +) \\).",
+  "This computes an unrelated ratio among the negative-testing subgroup.",
+  "This divides by the grand total instead of just the positive-testing subgroup, computing the marginal probability of testing positive.",
+  "This divides by the wrong subgroup total (condition-present) using the negative-test count."
+ ]
+},
+{
+ "template_id": "bayes_odds_form_v1",
+ "skill_id": "bayes_theorem",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "priorA": {"type": "int", "lo": 1, "hi": 9},
+  "priorB": {"type": "int", "lo": 1, "hi": 9},
+  "likeA": {"type": "int", "lo": 1, "hi": 9},
+  "likeB": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Ne([[priorA]]*[[likeA]], [[priorB]]*[[likeB]])"],
+ "stem": "Two competing hypotheses \\( H_1 \\) and \\( H_2 \\) have prior probabilities in the ratio \\( P(H_1):P(H_2) = [[priorA]]:[[priorB]] \\). A new piece of evidence \\( E \\) is observed, with likelihood ratio \\( P(E\\mid H_1):P(E\\mid H_2) = [[likeA]]:[[likeB]] \\). Using Bayes' theorem in odds form, what is the posterior probability \\( P(H_1\\mid E) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[priorA]]*[[likeA]]/([[priorA]]*[[likeA]]+[[priorB]]*[[likeB]])"
+ },
+ "distractors": [
+  "Rational([[priorA]],[[priorA]]+[[priorB]])",
+  "Rational([[likeA]],[[likeA]]+[[likeB]])",
+  "[[priorB]]*[[likeB]]/([[priorA]]*[[likeA]]+[[priorB]]*[[likeB]])",
+  "[[priorA]]*[[likeB]]/([[priorA]]*[[likeB]]+[[priorB]]*[[likeA]])",
+  "Rational([[priorA]]+[[likeA]],[[priorA]]+[[likeA]]+[[priorB]]+[[likeB]])",
+  "[[priorA]]*[[likeA]]/([[priorB]]*[[likeB]])"
+ ],
+ "solution": "The posterior odds are the prior odds times the likelihood ratio: \\( \\dfrac{P(H_1\\mid E)}{P(H_2\\mid E)} = \\dfrac{[[priorA]]}{[[priorB]]}\\cdot\\dfrac{[[likeA]]}{[[likeB]]} \\). Converting odds \\( [[priorA]][[likeA]]:[[priorB]][[likeB]] \\) to a probability gives \\( P(H_1\\mid E) = \\dfrac{[[priorA]]\\cdot[[likeA]]}{[[priorA]]\\cdot[[likeA]]+[[priorB]]\\cdot[[likeB]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the prior odds, ignoring the new evidence's likelihood ratio.",
+  "This uses only the likelihood ratio, ignoring the prior probabilities.",
+  "This computes the complementary posterior \\( P(H_2\\mid E) \\) instead.",
+  "This swaps which likelihood term multiplies which prior term.",
+  "This adds the odds components instead of multiplying prior and likelihood terms.",
+  "This reports the posterior ODDS ratio itself rather than converting it to a probability."
+ ]
+},
+{
+ "template_id": "bayes_total_probability_marginal_v1",
+ "skill_id": "bayes_theorem",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "pAn": {"type": "int", "lo": 1, "hi": 4},
+  "pAd": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]},
+  "dAn": {"type": "int", "lo": 1, "hi": 4},
+  "dAd": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]},
+  "dBn": {"type": "int", "lo": 1, "hi": 4},
+  "dBd": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]}
+ },
+ "constraints": [
+  "Lt([[pAn]], [[pAd]])", "Lt([[dAn]], [[dAd]])", "Lt([[dBn]], [[dBd]])",
+  "Ne([[dAn]]*[[dBd]], [[dBn]]*[[dAd]])"
+ ],
+ "stem": "A factory receives parts from two suppliers. Supplier A provides \\( \\frac{[[pAn]]}{[[pAd]]} \\) of all parts, and Supplier B provides the rest. Historically, \\( \\frac{[[dAn]]}{[[dAd]]} \\) of Supplier A's parts are defective, while \\( \\frac{[[dBn]]}{[[dBd]]} \\) of Supplier B's parts are defective. What is the overall probability that a randomly selected part from the combined stock is defective, regardless of supplier?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])+(1-Rational([[pAn]],[[pAd]]))*Rational([[dBn]],[[dBd]])"
+ },
+ "distractors": [
+  "Rational([[dAn]],[[dAd]])+Rational([[dBn]],[[dBd]])",
+  "Rational([[dAn]],[[dAd]])",
+  "(Rational([[dAn]],[[dAd]])+Rational([[dBn]],[[dBd]]))/2",
+  "Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])/(Rational([[pAn]],[[pAd]])*Rational([[dAn]],[[dAd]])+(1-Rational([[pAn]],[[pAd]]))*Rational([[dBn]],[[dBd]]))",
+  "Rational([[pAn]],[[pAd]])*Rational([[dBn]],[[dBd]])+(1-Rational([[pAn]],[[pAd]]))*Rational([[dAn]],[[dAd]])",
+  "Rational([[pAn]],[[pAd]])+Rational([[dAn]],[[dAd]])+Rational([[dBn]],[[dBd]])"
+ ],
+ "solution": "By the law of total probability, \\( P(\\text{def}) = P(A)P(\\text{def}\\mid A) + P(B)P(\\text{def}\\mid B) = \\frac{[[pAn]]}{[[pAd]]}\\cdot\\frac{[[dAn]]}{[[dAd]]} + \\left(1-\\frac{[[pAn]]}{[[pAd]]}\\right)\\cdot\\frac{[[dBn]]}{[[dBd]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two defect rates without weighting them by each supplier's production share.",
+  "This is just Supplier A's defect rate, ignoring Supplier B entirely.",
+  "This averages the two defect rates unweighted, ignoring the actual production split.",
+  "This computes the Bayes POSTERIOR \\( P(A\\mid\\text{def}) \\) instead of the marginal probability of a defect.",
+  "This swaps which defect rate is paired with which supplier's share.",
+  "This adds the production share and both defect rates together, which mixes incompatible quantities."
+ ]
+}
+]

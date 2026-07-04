@@ -1,0 +1,197 @@
+[
+  {
+    "template_id": "crt_smallest_solution_v1",
+    "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "x0": {"type": "int", "lo": 2, "hi": 104},
+      "m3": {"type": "choice", "values": [7, 11, 13]}
+    },
+    "constraints": [],
+    "derived": {
+      "r1": "Mod([[x0]], 3)",
+      "r2": "Mod([[x0]], 5)",
+      "r3": "Mod([[x0]], [[m3]])",
+      "M": "15*[[m3]]"
+    },
+    "stem": "Find the smallest positive integer \\( x \\) that satisfies all three congruences \\( x \\equiv [[r1]] \\pmod{3} \\), \\( x \\equiv [[r2]] \\pmod{5} \\), and \\( x \\equiv [[r3]] \\pmod{[[m3]]} \\).",
+    "answer_spec": {"op": "evaluate", "expr": "[[x0]]"},
+    "distractors": [
+      "[[r1]] + [[r2]] + [[r3]]",
+      "[[M]] - [[x0]]",
+      "[[x0]] + [[M]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[answer]] + 3"
+    ],
+    "solution": "The moduli \\( 3, 5, [[m3]] \\) are pairwise coprime, so by the Chinese Remainder Theorem the system has a unique solution modulo \\( 3\\cdot 5\\cdot [[m3]] = [[M]] \\). The smallest positive representative is \\( x = [[answer]] \\).",
+    "distractor_rationales": [
+      "This just adds the three remainders, which does not respect the moduli.",
+      "This is \\( [[M]] - x \\), a reflection of the true solution within one period.",
+      "This is the next solution \\( x + [[M]] \\); it satisfies the congruences but is not the smallest positive one.",
+      "This is one more than the correct value.",
+      "This is one less than the correct value.",
+      "This is two more than the correct value.",
+      "This is three more than the correct value."
+    ]
+  },
+  {
+    "template_id": "crt_two_noncoprime_moduli_v1",
+    "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "x0": {"type": "int", "lo": 2, "hi": 143},
+      "g": {"type": "choice", "values": [2, 3, 4]},
+      "p": {"type": "choice", "values": [3, 5, 7]},
+      "q": {"type": "choice", "values": [3, 5, 7]}
+    },
+    "constraints": ["Ne([[p]], [[q]])"],
+    "derived": {
+      "m1": "[[g]]*[[p]]",
+      "m2": "[[g]]*[[q]]",
+      "L": "[[g]]*[[p]]*[[q]]",
+      "xr": "Mod([[x0]], [[L]])",
+      "r1": "Mod([[xr]], [[m1]])",
+      "r2": "Mod([[xr]], [[m2]])"
+    },
+    "stem": "Find the smallest positive integer \\( x \\) satisfying \\( x \\equiv [[r1]] \\pmod{[[m1]]} \\) and \\( x \\equiv [[r2]] \\pmod{[[m2]]} \\). (Note \\( [[m1]] \\) and \\( [[m2]] \\) share a common factor of \\( [[g]] \\), so check the two congruences are consistent before combining them.)",
+    "answer_spec": {"op": "evaluate", "expr": "[[xr]]"},
+    "distractors": [
+      "[[m1]]*[[m2]]",
+      "[[r1]] + [[r2]]",
+      "[[L]] - [[xr]]",
+      "[[xr]] + [[L]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + [[g]]"
+    ],
+    "solution": "Since \\( \\gcd([[m1]],[[m2]])=[[g]] \\) and the two remainders agree modulo \\( [[g]] \\), the congruences are consistent and combine to a unique solution modulo \\( \\operatorname{lcm}([[m1]],[[m2]]) = [[L]] \\). The smallest positive solution is \\( x = [[answer]] \\).",
+    "distractor_rationales": [
+      "This multiplies the two moduli directly, ignoring that they are not coprime (the true period is the lcm, not the product).",
+      "This just adds the two remainders, which does not respect either modulus.",
+      "This is a reflection of the true solution within one period.",
+      "This is the next solution one full period later, not the smallest positive one.",
+      "This is one more than the correct value.",
+      "This is one less than the correct value.",
+      "This is off from the correct value by the shared factor \\( [[g]] \\)."
+    ]
+  },
+  {
+    "template_id": "crt_word_problem_v1",
+    "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "x0": {"type": "int", "lo": 2, "hi": 104},
+      "m3": {"type": "choice", "values": [7, 11, 13]}
+    },
+    "constraints": [],
+    "derived": {
+      "r1": "Mod([[x0]], 3)",
+      "r2": "Mod([[x0]], 5)",
+      "r3": "Mod([[x0]], [[m3]])",
+      "M": "15*[[m3]]"
+    },
+    "stem": "A crate of marbles, when divided evenly into groups of 3, has \\( [[r1]] \\) left over; divided into groups of 5, it has \\( [[r2]] \\) left over; and divided into groups of \\( [[m3]] \\), it has \\( [[r3]] \\) left over. What is the smallest possible number of marbles in the crate?",
+    "answer_spec": {"op": "evaluate", "expr": "[[x0]]"},
+    "distractors": [
+      "[[r1]]*[[r2]]*[[r3]]",
+      "[[r1]] + [[r2]] + [[r3]]",
+      "[[x0]] + [[M]]",
+      "[[M]] - [[x0]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + [[m3]]"
+    ],
+    "solution": "The three remainder conditions form a system of congruences modulo the pairwise-coprime numbers \\( 3, 5, [[m3]] \\). By the Chinese Remainder Theorem, the smallest positive count satisfying all three is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This multiplies the three remainders together, which has no meaning here.",
+      "This just adds the three remainders, which does not respect the moduli.",
+      "This is one full period (\\( [[M]] \\)) too many.",
+      "This is a reflection of the true solution within one period.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This is off by the third modulus \\( [[m3]] \\)."
+    ]
+  },
+  {
+    "template_id": "crt_count_in_range_v1",
+    "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "x0": {"type": "int", "lo": 2, "hi": 104},
+      "m3": {"type": "choice", "values": [7, 11, 13]},
+      "N": {"type": "int", "lo": 300, "hi": 2000}
+    },
+    "constraints": [],
+    "derived": {
+      "r1": "Mod([[x0]], 3)",
+      "r2": "Mod([[x0]], 5)",
+      "r3": "Mod([[x0]], [[m3]])",
+      "M": "15*[[m3]]"
+    },
+    "stem": "How many integers \\( x \\) with \\( 1 \\le x \\le [[N]] \\) satisfy all three congruences \\( x \\equiv [[r1]] \\pmod{3} \\), \\( x \\equiv [[r2]] \\pmod{5} \\), and \\( x \\equiv [[r3]] \\pmod{[[m3]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "floor(([[N]] - [[x0]])/[[M]]) + 1"},
+    "distractors": [
+      "floor([[N]]/[[M]])",
+      "floor([[N]]/[[M]]) + 1",
+      "ceiling(([[N]] - [[x0]])/[[M]]) + 1",
+      "[[N]] - [[x0]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "By the Chinese Remainder Theorem, solutions are exactly the integers congruent to \\( [[x0]] \\) modulo \\( 3\\cdot5\\cdot[[m3]] = [[M]] \\); the smallest positive one is \\( [[x0]] \\). The count of such integers up to \\( [[N]] \\) is \\( \\left\\lfloor \\dfrac{[[N]]-[[x0]]}{[[M]]} \\right\\rfloor + 1 = [[answer]] \\).",
+    "distractor_rationales": [
+      "This ignores the offset \\( [[x0]] \\), as if the smallest solution were 0.",
+      "This ignores the offset \\( [[x0]] \\) but still adds the extra 1.",
+      "This rounds up instead of down, potentially overcounting when the period does not divide evenly.",
+      "This is the raw distance to \\( [[N]] \\), not the count of full periods within it.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This is two more than the correct count."
+    ]
+  },
+  {
+    "template_id": "crt_divisibility_framing_v1",
+    "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "x0": {"type": "int", "lo": 2, "hi": 104},
+      "m3": {"type": "choice", "values": [7, 11, 13]}
+    },
+    "constraints": [],
+    "derived": {
+      "k1": "Mod(-[[x0]], 3)",
+      "k2": "Mod(-[[x0]], 5)",
+      "k3": "Mod(-[[x0]], [[m3]])",
+      "M": "15*[[m3]]"
+    },
+    "stem": "A positive integer \\( x \\) is such that \\( x + [[k1]] \\) is divisible by 3, \\( x + [[k2]] \\) is divisible by 5, and \\( x + [[k3]] \\) is divisible by \\( [[m3]] \\). What is the smallest such positive integer \\( x \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "[[x0]]"},
+    "distractors": [
+      "[[k1]]*[[k2]]*[[k3]]",
+      "[[k1]] + [[k2]] + [[k3]]",
+      "[[x0]] + [[M]]",
+      "[[M]] - [[x0]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + [[m3]]"
+    ],
+    "solution": "The three divisibility conditions say \\( x \\equiv -[[k1]] \\pmod 3 \\), \\( x \\equiv -[[k2]] \\pmod 5 \\), and \\( x \\equiv -[[k3]] \\pmod{[[m3]]} \\). Since \\( 3,5,[[m3]] \\) are pairwise coprime, the Chinese Remainder Theorem gives a unique solution modulo \\( [[M]] \\), and the smallest positive one is \\( x = [[answer]] \\).",
+    "distractor_rationales": [
+      "This multiplies the three offsets together, which has no meaning here.",
+      "This just adds the three offsets, which does not respect the moduli.",
+      "This is one full period (\\( [[M]] \\)) too many.",
+      "This is a reflection of the true solution within one period.",
+      "This is one more than the correct value.",
+      "This is one less than the correct value.",
+      "This is off by the third modulus \\( [[m3]] \\)."
+    ]
+  }
+]

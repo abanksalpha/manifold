@@ -1,0 +1,221 @@
+[
+ {
+  "template_id": "regular_polygon_measurements_area_apothem_diagonals_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 25
+   }
+  },
+  "constraints": [],
+  "stem": "How many diagonals does a convex polygon with \\( [[n]] \\) sides have?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[n]]*([[n]] - 3)/2"
+  },
+  "distractors": [
+   "[[n]]*([[n]] - 1)/2",
+   "[[n]]*([[n]] - 3)",
+   "[[n]]*([[n]] - 2)/2",
+   "[[n]] - 3",
+   "[[answer]] + [[n]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Each vertex connects to \\( n-3 \\) others by a diagonal (excluding itself and its two neighbors). This counts each diagonal twice, so the number of diagonals is \\( \\frac{n(n-3)}{2} = \\frac{[[n]]([[n]]-3)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of segments between vertices \\( \\binom{n}{2} \\), which also counts the \\( n \\) sides.",
+   "This forgets to divide by 2, counting each diagonal from both endpoints.",
+   "This subtracts only 2 (excluding the vertex and one neighbor) instead of 3.",
+   "This counts only the diagonals from a single vertex, \\( n-3 \\).",
+   "This is off from the correct count.",
+   "This is off from the correct count."
+  ]
+ },
+ {
+  "template_id": "regular_polygon_measurements_solve_n_from_diagonals_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 30}
+  },
+  "constraints": [],
+  "derived": {"D": "[[n]]*([[n]]-3)/2"},
+  "stem": "A convex polygon has \\( [[D]] \\) diagonals. How many sides does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "(3 + sqrt(9 + 8*[[D]]))/2"},
+  "distractors": [
+   "(3 - sqrt(9 + 8*[[D]]))/2",
+   "sqrt(2*[[D]])",
+   "2*[[D]]",
+   "(sqrt(9+8*[[D]]))/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solving \\( \\dfrac{x(x-3)}{2} = [[D]] \\), i.e. \\( x^{2}-3x-2\\cdot[[D]]=0 \\), by the quadratic formula gives \\( x = \\dfrac{3+\\sqrt{9+8\\cdot[[D]]}}{2} = [[answer]] \\) (the positive root).",
+  "distractor_rationales": [
+   "This takes the negative root of the quadratic, which is not a valid number of sides.",
+   "This guesses that the count grows like \\( \\sqrt{2D} \\) without deriving it from the actual formula.",
+   "This doubles the diagonal count directly instead of solving the quadratic relationship.",
+   "This drops the \\( +3 \\) in the numerator before dividing by 2.",
+   "This is off from the correct number of sides by one.",
+   "This is off from the correct number of sides by one."
+  ]
+ },
+ {
+  "template_id": "regular_polygon_measurements_area_general_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 6, 8, 12]},
+   "s": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": [],
+  "stem": "What is the area of a regular polygon with \\( [[n]] \\) sides, each of length \\( [[s]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1/4)*[[n]]*[[s]]**2*cot(pi/[[n]])"},
+  "distractors": [
+   "[[n]]*[[s]]",
+   "[[n]]*[[s]]**2",
+   "(1/2)*[[n]]*[[s]]*cot(pi/[[n]])",
+   "(1/4)*[[n]]*[[s]]*cot(pi/[[n]])",
+   "[[answer]] + [[s]]",
+   "[[answer]] - [[s]]"
+  ],
+  "solution": "A regular \\( n \\)-gon with side \\( s \\) has apothem \\( a = \\frac{s}{2}\\cot\\frac{\\pi}{n} \\) and can be split into \\( n \\) congruent triangles of base \\( s \\) and height \\( a \\), so its area is \\( n\\cdot\\frac{1}{2}sa = \\frac{1}{4}ns^{2}\\cot\\frac{\\pi}{n} = \\frac{1}{4}\\cdot [[n]]\\cdot [[s]]^{2}\\cdot\\cot\\frac{\\pi}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the perimeter, not the area.",
+   "This forgets the apothem/cotangent factor entirely.",
+   "This uses the apothem formula (missing the correct area scaling) instead of the full area formula.",
+   "This uses \\( s \\) instead of \\( s^{2} \\), dropping a factor of the side length.",
+   "This is off from the correct area by the side length.",
+   "This is off from the correct area by the side length."
+  ]
+ },
+ {
+  "template_id": "regular_polygon_measurements_apothem_general_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 6, 8, 12]},
+   "s": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": [],
+  "stem": "What is the apothem (the distance from the center to the midpoint of a side) of a regular polygon with \\( [[n]] \\) sides, each of length \\( [[s]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[s]]/2)*cot(pi/[[n]])"},
+  "distractors": [
+   "[[s]]/2",
+   "[[s]]*cot(pi/[[n]])",
+   "([[s]]/2)*tan(pi/[[n]])",
+   "(1/4)*[[n]]*[[s]]**2*cot(pi/[[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Half of one side and the apothem form a right triangle with the center, where the angle at the center is \\( \\frac{\\pi}{n} \\). So the apothem is \\( a = \\frac{s}{2}\\cot\\frac{\\pi}{n} = \\frac{[[s]]}{2}\\cot\\frac{\\pi}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the cotangent factor, treating every regular polygon like a square.",
+   "This forgets to divide the side by 2 before applying the cotangent factor.",
+   "This uses the tangent instead of the cotangent, inverting the ratio.",
+   "This is the area formula, not the apothem.",
+   "This is off from the correct apothem by one.",
+   "This is off from the correct apothem by one."
+  ]
+ },
+ {
+  "template_id": "regular_polygon_measurements_side_from_apothem_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 6, 8, 12]},
+   "a": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A regular polygon with \\( [[n]] \\) sides has apothem \\( [[a]] \\). What is the length of each side?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[a]]*tan(pi/[[n]])"},
+  "distractors": [
+   "2*[[a]]",
+   "[[a]]*tan(pi/[[n]])",
+   "2*[[a]]*cot(pi/[[n]])",
+   "[[a]]/tan(pi/[[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "From \\( a = \\frac{s}{2}\\cot\\frac{\\pi}{n} \\), solving for the side gives \\( s = 2a\\tan\\frac{\\pi}{n} = 2\\cdot [[a]]\\cdot\\tan\\frac{\\pi}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the apothem without applying the tangent factor at all.",
+   "This forgets to double the apothem before applying the tangent factor.",
+   "This uses the cotangent instead of the tangent, inverting the ratio.",
+   "This divides by the tangent instead of multiplying by it.",
+   "This is off from the correct side length by one.",
+   "This is off from the correct side length by one."
+  ]
+ },
+ {
+  "template_id": "regular_polygon_measurements_hexagon_short_diagonal_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A regular hexagon has side length \\( [[s]] \\). What is the length of a \\\"short\\\" diagonal, connecting two vertices that have exactly one vertex between them?",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]]*sqrt(3)"},
+  "distractors": [
+   "2*[[s]]",
+   "[[s]]*sqrt(2)",
+   "[[s]]",
+   "[[s]]*3/2",
+   "[[answer]] + [[s]]",
+   "[[answer]] - [[s]]"
+  ],
+  "solution": "Connecting two vertices separated by one vertex, together with that in-between vertex, forms an isosceles triangle with two sides of length \\( s \\) and an included angle of \\( 120^{\\circ} \\) (the hexagon's interior angle). By the Law of Cosines, the diagonal is \\( \\sqrt{s^{2}+s^{2}-2s^{2}\\cos 120^{\\circ}} = s\\sqrt{3} = [[s]]\\sqrt{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the long diagonal (the diameter), which connects opposite vertices instead.",
+   "This uses \\( \\sqrt{2} \\) (a square-diagonal factor) instead of \\( \\sqrt{3} \\).",
+   "This just repeats the side length without applying any diagonal relationship.",
+   "This uses an unrelated fractional multiple of the side.",
+   "This is off from the correct length by the side length.",
+   "This is off from the correct length by the side length."
+  ]
+ },
+ {
+  "template_id": "regular_polygon_measurements_hexagon_area_from_diagonal_v1",
+  "skill_id": "regular_polygon_measurements_area_apothem_diagonals",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "D": {"type": "int", "lo": 2, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "A regular hexagon has a long diagonal (connecting two opposite vertices) of length \\( [[D]] \\). What is the area of the hexagon?",
+  "answer_spec": {"op": "evaluate", "expr": "(3*sqrt(3)/8)*[[D]]**2"},
+  "distractors": [
+   "(3*sqrt(3)/2)*[[D]]**2",
+   "[[D]]**2/4",
+   "(3*sqrt(3)/8)*[[D]]",
+   "(sqrt(3)/4)*[[D]]**2",
+   "[[answer]] + [[D]]",
+   "[[answer]] - [[D]]"
+  ],
+  "solution": "The long diagonal of a regular hexagon is twice its side length, so the side is \\( s = [[D]]/2 \\). The hexagon's area is \\( \\frac{3\\sqrt{3}}{2}s^{2} = \\frac{3\\sqrt{3}}{2}\\left(\\frac{[[D]]}{2}\\right)^{2} = \\frac{3\\sqrt{3}}{8}[[D]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly treats the given diagonal itself as the side length.",
+   "This drops the \\( \\sqrt{3} \\) factor and uses a plain quarter-square instead.",
+   "This forgets to square the diagonal.",
+   "This uses the equilateral-triangle area formula directly on the diagonal instead of the hexagon formula.",
+   "This is off from the correct area by the diagonal length.",
+   "This is off from the correct area by the diagonal length."
+  ]
+ }
+]

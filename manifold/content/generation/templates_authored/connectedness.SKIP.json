@@ -1,0 +1,1 @@
+{"skill_id": "connectedness", "reason": "Tests a yes/no verdict (is the set/space connected, or can it be split into a separation?) with no scalar SymPy can compute; identifying a separation is a proof/recognition task, not arithmetic."}

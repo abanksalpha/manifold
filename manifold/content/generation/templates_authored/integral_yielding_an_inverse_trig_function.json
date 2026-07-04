@@ -1,0 +1,162 @@
+[
+ {
+  "template_id": "integral_arctan_form_v1",
+  "skill_id": "integral_yielding_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\displaystyle\\int_0^{[[a]]} \\dfrac{[[m]]}{[[a]]^2 + x^2}\\, dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]/([[a]]**2 + x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[m]]*pi/(2*[[a]])",
+   "[[m]]*pi/[[a]]",
+   "[[m]]*pi/(4*[[a]]**2)",
+   "[[m]]*pi/(8*[[a]])",
+   "[[m]]*pi/(3*[[a]])",
+   "[[m]]*pi/(6*[[a]])",
+   "pi/(4*[[a]])"
+  ],
+  "solution": "Since \\( \\int \\dfrac{dx}{a^2+x^2} = \\dfrac{1}{a}\\arctan\\dfrac{x}{a} \\), we get \\( [[m]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_0^{[[a]]} = \\dfrac{[[m]]}{[[a]]}\\arctan(1) = \\dfrac{[[m]]\\pi}{4[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\arctan(1) = \\tfrac{\\pi}{2} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
+   "This drops the factor \\( \\tfrac{1}{a} \\) and mis-scales the arctangent.",
+   "This squares the \\( a \\) in the \\( \\tfrac{1}{a} \\) factor.",
+   "This halves the correct value.",
+   "This uses \\( \\tfrac{\\pi}{3} \\) instead of \\( \\tfrac{\\pi}{4} \\) for the arctangent.",
+   "This uses \\( \\tfrac{\\pi}{6} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
+   "This forgets the constant factor \\( [[m]] \\)."
+  ]
+ },
+ {
+  "template_id": "integral_arcsin_form_v1",
+  "skill_id": "integral_yielding_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\displaystyle\\int_0^{[[a]]} \\dfrac{[[m]]}{\\sqrt{4[[a]]^2 - x^2}}\\, dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]/sqrt(4*[[a]]**2 - x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[m]]*pi/3",
+   "[[m]]*pi/2",
+   "[[m]]*pi/12",
+   "[[m]]*pi/4",
+   "[[m]]*pi/6 + pi/2",
+   "pi/6"
+  ],
+  "solution": "Since \\( \\int \\dfrac{dx}{\\sqrt{(2a)^2 - x^2}} = \\arcsin\\dfrac{x}{2a} \\), we get \\( [[m]]\\left[\\arcsin\\dfrac{x}{2[[a]]}\\right]_0^{[[a]]} = [[m]]\\arcsin\\dfrac{1}{2} = \\dfrac{[[m]]\\pi}{6} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\arcsin\\tfrac12 = \\tfrac{\\pi}{3} \\) instead of \\( \\tfrac{\\pi}{6} \\).",
+   "This uses \\( \\arcsin(1) = \\tfrac{\\pi}{2} \\), mis-reading the upper limit ratio.",
+   "This halves the correct value.",
+   "This uses \\( \\tfrac{\\pi}{4} \\) instead of \\( \\tfrac{\\pi}{6} \\).",
+   "This adds an extra \\( \\tfrac{\\pi}{2} \\) to the correct value.",
+   "This forgets the constant factor \\( [[m]] \\)."
+  ]
+ },
+ {
+  "template_id": "integral_arcsec_form_v1",
+  "skill_id": "integral_yielding_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\displaystyle\\int_{[[a]]}^{2[[a]]} \\dfrac{[[m]]}{x\\sqrt{x^2 - [[a]]^2}}\\, dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]/(x*sqrt(x**2 - [[a]]**2))", "var": "x", "bounds": ["[[a]]", "2*[[a]]"]},
+  "distractors": [
+   "[[m]]*pi/(2*[[a]])",
+   "[[m]]*pi/[[a]]",
+   "[[m]]*pi/(6*[[a]])",
+   "[[m]]*pi/(4*[[a]])",
+   "[[m]]*pi/(9*[[a]])",
+   "pi/(3*[[a]])"
+  ],
+  "solution": "Since \\( \\int \\dfrac{dx}{x\\sqrt{x^2-a^2}} = \\dfrac{1}{a}\\,\\mathrm{arcsec}\\dfrac{x}{a} = \\dfrac{1}{a}\\arccos\\dfrac{a}{x} \\), we get \\( [[m]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arccos\\dfrac{[[a]]}{x}\\right]_{[[a]]}^{2[[a]]} = \\dfrac{[[m]]}{[[a]]}\\left(\\arccos\\tfrac12 - \\arccos 1\\right) = \\dfrac{[[m]]\\pi}{3[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\arccos\\tfrac12=\\tfrac{\\pi}{2} \\) instead of \\( \\tfrac{\\pi}{3} \\).",
+   "This drops the factor \\( \\tfrac1a \\) and mis-scales the result.",
+   "This uses \\( \\tfrac{\\pi}{6} \\) instead of \\( \\tfrac{\\pi}{3} \\) for the bracketed difference.",
+   "This uses \\( \\tfrac{\\pi}{4} \\) instead of \\( \\tfrac{\\pi}{3} \\).",
+   "This uses \\( \\tfrac{\\pi}{9} \\) instead of \\( \\tfrac{\\pi}{3} \\).",
+   "This forgets the constant factor \\( [[m]] \\)."
+  ]
+ },
+ {
+  "template_id": "integral_arctan_word_problem_v1",
+  "skill_id": "integral_yielding_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 6},
+   "a": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "A factory's output rate at time \\( x \\) (in hours) is \\( R(x) = \\dfrac{[[m]][[a]]}{[[a]]^2+x^2} \\) units per hour. How many units are produced from \\( x=0 \\) to \\( x=[[a]] \\)?",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]*[[a]]/([[a]]**2 + x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[m]]*pi/2",
+   "[[m]]*pi",
+   "[[m]]*pi/8",
+   "[[m]]*[[a]]*pi/4",
+   "[[m]]*pi/3",
+   "[[m]]*pi/6"
+  ],
+  "solution": "Total production is \\( \\int_0^{[[a]]} R(x)\\,dx = [[m]][[a]]\\int_0^{[[a]]}\\dfrac{dx}{[[a]]^2+x^2} = [[m]][[a]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_0^{[[a]]} = [[m]]\\arctan(1) = \\dfrac{[[m]]\\pi}{4} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\arctan(1)=\\tfrac{\\pi}{2} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
+   "This doubles the correct total.",
+   "This uses \\( \\tfrac{\\pi}{8} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
+   "This leaves a stray factor of \\( a \\) uncancelled.",
+   "This uses \\( \\tfrac{\\pi}{3} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
+   "This uses \\( \\tfrac{\\pi}{6} \\) instead of \\( \\tfrac{\\pi}{4} \\)."
+  ]
+ },
+ {
+  "template_id": "integral_arctan_solve_for_bound_v1",
+  "skill_id": "integral_yielding_an_inverse_trig_function",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 1, "hi": 9},
+   "theta": {"type": "choice", "values": [6, 4, 3]}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "derived": {
+   "target": "pi/[[theta]]"
+  },
+  "stem": "Suppose \\( \\displaystyle\\int_0^{b} \\dfrac{[[m]]}{[[m]]^2+x^2}\\, dx = \\dfrac{\\pi}{[[theta]]} \\) for some positive number \\( b \\). Find \\( b \\).",
+  "answer_spec": {"op": "solve", "equation": "atan(b/[[m]]) - [[target]]", "var": "b"},
+  "distractors": [
+   "[[m]]*[[theta]]",
+   "[[m]]/[[theta]]",
+   "[[m]]*pi/[[theta]]",
+   "[[theta]]",
+   "[[answer]] + 1",
+   "[[answer]]/2"
+  ],
+  "solution": "Since \\( \\int_0^b \\dfrac{[[m]]}{[[m]]^2+x^2}\\,dx = \\arctan\\dfrac{b}{[[m]]} \\), the equation becomes \\( \\arctan\\dfrac{b}{[[m]]} = \\dfrac{\\pi}{[[theta]]} \\), so \\( b = [[m]]\\tan\\dfrac{\\pi}{[[theta]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies \\( m \\) by \\( [[theta]] \\) directly instead of using the tangent relationship.",
+   "This divides \\( m \\) by \\( [[theta]] \\) instead of applying the tangent.",
+   "This leaves a stray factor of \\( \\pi \\) in the answer.",
+   "This reports the denominator of the target angle instead of solving for \\( b \\).",
+   "This is off by one from the correct value.",
+   "This is half the correct value."
+  ]
+ }
+]

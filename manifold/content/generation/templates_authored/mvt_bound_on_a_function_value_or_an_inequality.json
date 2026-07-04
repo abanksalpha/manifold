@@ -1,0 +1,121 @@
+[
+ {
+  "template_id": "mvt_bound_v1",
+  "skill_id": "mvt_bound_on_a_function_value_or_an_inequality",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "fa": {"type": "int", "lo": -6, "hi": 6},
+   "M": {"type": "int", "lo": 1, "hi": 8},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 9}
+  },
+  "constraints": ["Gt([[b]], [[a]])"],
+  "stem": "If \\( f([[a]])=[[fa]] \\) and \\( |f'(x)|\\le [[M]] \\), the MVT gives the largest possible \\( f([[b]]) \\). What is that bound?",
+  "answer_spec": {"op": "evaluate", "expr": "[[fa]] + [[M]]*([[b]] - [[a]])"},
+  "distractors": [
+   "[[fa]] + [[M]]",
+   "[[fa]] - [[M]]*([[b]] - [[a]])",
+   "[[M]]*([[b]] - [[a]])",
+   "[[fa]] + [[M]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f([[b]])\\le f([[a]])+M(b-a)=[[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "mvt_one_sided_lower_bound_v1",
+  "skill_id": "mvt_bound_on_a_function_value_or_an_inequality",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "fa": {"type": "int", "lo": -8, "hi": 8},
+   "m": {"type": "int", "lo": 1, "hi": 9},
+   "a": {"type": "int", "lo": 0, "hi": 4},
+   "b": {"type": "int", "lo": 5, "hi": 12}
+  },
+  "constraints": ["Gt([[b]], [[a]])"],
+  "stem": "Suppose \\( f([[a]])=[[fa]] \\) and \\( f'(x)\\ge [[m]] \\) for all \\( x \\) in \\( \\left[[[a]],[[b]]\\right] \\) (a one-sided bound, not an absolute value). By the Mean Value Theorem, what is the smallest possible value of \\( f([[b]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[fa]] + [[m]]*([[b]] - [[a]])"},
+  "distractors": [
+   "[[fa]] - [[m]]*([[b]] - [[a]])",
+   "[[fa]] + [[m]]",
+   "[[m]]*([[b]] - [[a]])",
+   "[[fa]]*[[m]]*([[b]] - [[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the MVT, some \\( c\\in([[a]],[[b]]) \\) satisfies \\( f'(c)=\\dfrac{f([[b]])-f([[a]])}{[[b]]-[[a]]}\\ge [[m]] \\), so \\( f([[b]])\\ge f([[a]])+[[m]]([[b]]-[[a]])=[[answer]] \\); this is the smallest value the theorem allows.",
+  "distractor_rationales": [
+   "This subtracts instead of adds, giving an upper-bound-style expression for a lower bound.",
+   "This omits the factor of \\( (b-a) \\).",
+   "This omits \\( f(a) \\) entirely.",
+   "This multiplies by \\( f(a) \\) instead of adding to it.",
+   "This is off by one from the correct bound.",
+   "This is off by one from the correct bound."
+  ]
+ },
+ {
+  "template_id": "mvt_solve_for_bound_v1",
+  "skill_id": "mvt_bound_on_a_function_value_or_an_inequality",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "fa": {"type": "int", "lo": -6, "hi": 6},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 10},
+   "T": {"type": "int", "lo": 10, "hi": 40}
+  },
+  "constraints": ["Gt([[b]], [[a]])", "Gt([[T]], [[fa]])"],
+  "stem": "Suppose \\( f([[a]])=[[fa]] \\) and \\( |f'(x)|\\le M \\) for all \\( x \\) in \\( \\left[[[a]],[[b]]\\right] \\). For what smallest value of \\( M \\) does the Mean Value Theorem guarantee \\( f([[b]])\\le [[T]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[fa]] + M*([[b]] - [[a]]) = [[T]]", "var": "M"},
+  "distractors": [
+   "Rational([[T]] - [[fa]], [[b]])",
+   "Rational([[T]] + [[fa]], [[b]] - [[a]])",
+   "[[T]] - [[fa]]",
+   "Rational([[T]], [[b]] - [[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solve \\( [[fa]] + M([[b]]-[[a]]) = [[T]] \\) for \\( M \\): \\( M=\\dfrac{[[T]]-[[fa]]}{[[b]]-[[a]]}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( b \\) alone instead of \\( b-a \\) in the denominator.",
+   "This adds \\( f(a) \\) instead of subtracting it.",
+   "This omits the division by \\( b-a \\) entirely.",
+   "This omits \\( f(a) \\) from the numerator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "mvt_guaranteed_c_v1",
+  "skill_id": "mvt_bound_on_a_function_value_or_an_inequality",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 12}
+  },
+  "constraints": ["Gt([[b]], [[a]])"],
+  "stem": "Let \\( f(x)=x^{2} \\) on the interval \\( \\left[[[a]],[[b]]\\right] \\). The Mean Value Theorem guarantees some \\( c \\) in \\( ([[a]],[[b]]) \\) with \\( f'(c) = \\dfrac{f([[b]])-f([[a]])}{[[b]]-[[a]]} \\). What is that value of \\( c \\)?",
+  "answer_spec": {"op": "solve", "equation": "2*x = (([[b]])**2 - ([[a]])**2)/([[b]] - [[a]])", "var": "x"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "Rational([[a]] + [[b]], 4)",
+   "[[b]] - [[a]]",
+   "Rational([[b]] - [[a]], 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The average rate of change simplifies to \\( \\dfrac{b^{2}-a^{2}}{b-a}=a+b \\), so \\( 2c=[[a]]+[[b]] \\Rightarrow c=\\dfrac{[[a]]+[[b]]}{2}=[[answer]] \\), which indeed lies in \\( ([[a]],[[b]]) \\).",
+  "distractor_rationales": [
+   "This omits the division by 2 (forgets to solve \\( 2c=a+b \\) for \\( c \\)).",
+   "This divides by 4 instead of 2.",
+   "This confuses \\( c \\) with the interval length \\( b-a \\).",
+   "This computes half the interval length rather than the midpoint of \\( a,b \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,187 @@
+[
+ {
+  "template_id": "linearity_balls_in_box_v1",
+  "skill_id": "linearity_of_expectation_expected_number_of",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [5, 6, 8, 9, 10, 12]},
+   "m": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "stem": "Each of [[n]] balls is placed independently and uniformly at random into one of [[m]] boxes. What is the expected number of balls that land in a particular one of the boxes?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] * Rational(1, [[m]])"},
+  "distractors": [
+   "Rational(1, [[m]])",
+   "Rational([[m]], [[n]])",
+   "[[n]] * [[m]]",
+   "[[n]] - Rational([[n]], [[m]])",
+   "Rational([[n]], [[m]] - 1)",
+   "Rational([[n]] + 1, [[m]])"
+  ],
+  "solution": "By linearity of expectation, each ball lands in the chosen box with probability \\( \\frac{1}{[[m]]} \\), so the expected count is \\( [[n]] \\cdot \\frac{1}{[[m]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability for a single ball, not the expected count over all [[n]] balls.",
+   "This inverts the ratio, dividing the number of boxes by the number of balls.",
+   "This multiplies the counts instead of dividing balls among boxes.",
+   "This is the expected number of balls NOT in the chosen box.",
+   "This divides by \\( [[m]] - 1 \\) instead of [[m]] (miscounting the boxes).",
+   "This adds an extra ball before dividing."
+  ]
+ },
+ {
+  "template_id": "linearity_hand_of_cards_v1",
+  "skill_id": "linearity_of_expectation_expected_number_of",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 10, "hi": 30},
+   "m": {"type": "int", "lo": 2, "hi": 9},
+   "k": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Lt([[m]], [[n]])", "Lt([[k]], [[n]])"],
+  "stem": "A hand of [[k]] cards is dealt at random (without replacement) from a deck of [[n]] cards, of which [[m]] are aces. What is the expected number of aces in the hand?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]] * Rational([[m]], [[n]])"},
+  "distractors": [
+   "Rational([[m]], [[n]])",
+   "[[k]] * Rational([[m]], [[n]] - [[k]])",
+   "[[m]] * Rational([[k]], [[n]] - [[m]])",
+   "Rational([[k]] * [[m]], [[n]] - 1)",
+   "[[k]] + Rational([[m]], [[n]])",
+   "[[n]] * Rational([[m]], [[k]])"
+  ],
+  "solution": "By linearity of expectation, each of the [[k]] cards dealt is an ace with the same marginal probability \\( \\frac{[[m]]}{[[n]]} \\) (by symmetry, even though the draws are without replacement), so the expected number of aces is \\( [[k]] \\cdot \\frac{[[m]]}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability that a single specific card is an ace, not the expected count over all [[k]] cards.",
+   "This uses the wrong denominator \\( [[n]] - [[k]] \\), as if aces became relatively more common after the draw.",
+   "This swaps the roles of the hand size and the number of aces.",
+   "This subtracts one extra from the denominator.",
+   "This adds the counts instead of multiplying the probability by the hand size.",
+   "This inverts the roles of the deck size and hand size."
+  ]
+ },
+ {
+  "template_id": "linearity_empty_boxes_v1",
+  "skill_id": "linearity_of_expectation_expected_number_of",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 12},
+   "m": {"type": "choice", "values": [3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "stem": "Each of [[n]] balls is tossed independently and uniformly at random into one of [[m]] boxes. What is the expected number of boxes that remain completely empty?",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]] * (Rational([[m]] - 1, [[m]]))**[[n]]"},
+  "distractors": [
+   "[[n]] * (Rational([[m]] - 1, [[m]]))**[[m]]",
+   "[[m]] * (Rational([[m]] - 1, [[m]]))**([[n]] - 1)",
+   "[[m]] - [[m]] * (Rational([[m]] - 1, [[m]]))**[[n]]",
+   "[[m]] * Rational(1, [[m]])**[[n]]",
+   "[[n]] * (Rational([[m]] - 1, [[m]]))**[[n]]",
+   "(Rational([[m]] - 1, [[m]]))**[[n]]"
+  ],
+  "solution": "By linearity of expectation, sum an indicator over the [[m]] boxes: a given box is empty iff all [[n]] balls miss it, which has probability \\( \\left(\\frac{[[m]]-1}{[[m]]}\\right)^{[[n]]} \\). Summing over the [[m]] boxes, the expected number of empty boxes is \\( [[m]]\\left(\\frac{[[m]]-1}{[[m]]}\\right)^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the number of balls as the prefactor and the number of boxes as the exponent, swapping their roles.",
+   "This is off by one in the exponent, as if only [[n]]-1 balls were tossed.",
+   "This is the expected number of NON-empty boxes, the complement of what was asked.",
+   "This uses the probability a single ball misses A SPECIFIC ball's box (\\( 1/[[m]] \\)) instead of the probability a box is missed by all balls.",
+   "This uses [[n]] as the prefactor instead of the number of boxes [[m]].",
+   "This omits the prefactor of [[m]] entirely, giving just the per-box probability."
+  ]
+ },
+ {
+  "template_id": "linearity_shared_birthday_pairs_v1",
+  "skill_id": "linearity_of_expectation_expected_number_of",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 15},
+   "d": {"type": "choice", "values": [12, 30, 52, 100]}
+  },
+  "constraints": ["Lt([[n]], [[d]])"],
+  "stem": "In a group of [[n]] people, each person's birthday is chosen independently and uniformly at random among [[d]] equally likely days. What is the expected number of pairs of people who share the same birthday?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2) / [[d]]"},
+  "distractors": [
+   "Rational([[n]], [[d]])",
+   "binomial([[n]], 2) * [[d]]",
+   "Rational([[n]], [[d]]) ** 2",
+   "binomial([[n]], 2) / [[d]] ** 2",
+   "[[n]] * ([[n]] - 1) / [[d]]",
+   "binomial([[n]] - 1, 2) / [[d]]"
+  ],
+  "solution": "By linearity of expectation, sum an indicator over all \\( \\binom{[[n]]}{2} \\) pairs of people: each pair shares a birthday with probability \\( \\frac{1}{[[d]]} \\), so the expected number of matching pairs is \\( \\binom{[[n]]}{2} \\cdot \\frac{1}{[[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats it as one person matching a fixed day, not pairs of people matching each other.",
+   "This multiplies by the number of days instead of dividing.",
+   "This squares the single-person ratio instead of counting pairs.",
+   "This divides by \\( [[d]]^2 \\), double-counting the day count.",
+   "This uses ordered pairs \\( n(n-1) \\) instead of unordered pairs \\( \\binom{n}{2} \\), doubling the true count.",
+   "This is off by one, using \\( \\binom{n-1}{2} \\) instead of \\( \\binom{n}{2} \\)."
+  ]
+ },
+ {
+  "template_id": "linearity_partial_reshuffle_v1",
+  "skill_id": "linearity_of_expectation_expected_number_of",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 6, "hi": 20},
+   "k": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "stem": "A row of [[n]] numbered cards is laid out in order. A chosen set of [[k]] of the positions has its cards removed, shuffled uniformly at random, and put back into those same [[k]] positions; every other card stays exactly where it started. What is the expected number of cards (out of all [[n]]) that end up in their original position?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]] - [[k]]) + [[k]] * Rational(1, [[k]])"},
+  "distractors": [
+   "[[n]] - [[k]]",
+   "[[n]] - [[k]] + [[k]]",
+   "Rational([[n]], [[k]])",
+   "([[n]] - [[k]]) + Rational(1, [[k]])",
+   "[[n]] - [[k]] - 1",
+   "[[k]] * Rational(1, [[k]])"
+  ],
+  "solution": "By linearity of expectation, split the sum into the \\( [[n]] - [[k]] \\) untouched cards (each contributes 1 for certain) and the [[k]] shuffled cards (each returns to its own spot with probability \\( \\frac{1}{[[k]]} \\), contributing \\( [[k]] \\cdot \\frac{1}{[[k]]} = 1 \\) total). The expected total is \\( ([[n]]-[[k]]) + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that the shuffled cards still contribute an expected 1 card in place, not 0.",
+   "This assumes every shuffled card also returns to its own spot for certain, as if there were no shuffling.",
+   "This is an unrelated ratio of the total cards to the shuffled group size.",
+   "This uses only a single card's return probability instead of summing over all [[k]] shuffled cards.",
+   "This subtracts an extra card by mistake.",
+   "This ignores the [[n]] - [[k]] cards that never moved."
+  ]
+ },
+ {
+  "template_id": "linearity_three_biased_coins_v1",
+  "skill_id": "linearity_of_expectation_expected_number_of",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "d1": {"type": "choice", "values": [2, 3, 4, 5]},
+   "n1": {"type": "int", "lo": 1, "hi": 4},
+   "d2": {"type": "choice", "values": [2, 3, 4, 5]},
+   "n2": {"type": "int", "lo": 1, "hi": 4},
+   "d3": {"type": "choice", "values": [2, 3, 4, 5]},
+   "n3": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[n1]], [[d1]])", "Lt([[n2]], [[d2]])", "Lt([[n3]], [[d3]])"],
+  "stem": "Three biased coins are each flipped once, independently. Coin 1 shows heads with probability \\( \\frac{[[n1]]}{[[d1]]} \\), coin 2 with probability \\( \\frac{[[n2]]}{[[d2]]} \\), and coin 3 with probability \\( \\frac{[[n3]]}{[[d3]]} \\). What is the expected total number of heads among the three coins?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[n1]], [[d1]]) + Rational([[n2]], [[d2]]) + Rational([[n3]], [[d3]])"},
+  "distractors": [
+   "Rational([[n1]], [[d1]]) * Rational([[n2]], [[d2]]) * Rational([[n3]], [[d3]])",
+   "Rational([[n1]] + [[n2]] + [[n3]], [[d1]] + [[d2]] + [[d3]])",
+   "Rational([[n1]], [[d1]])",
+   "3 * Rational([[n1]], [[d1]])",
+   "Rational([[n1]], [[d1]]) + Rational([[n2]], [[d2]]) - Rational([[n3]], [[d3]])",
+   "1 - (Rational([[n1]], [[d1]]) + Rational([[n2]], [[d2]]) + Rational([[n3]], [[d3]]))"
+  ],
+  "solution": "By linearity of expectation, the expected total number of heads is the SUM of each coin's individual expectation, even though the coins have different probabilities: \\( \\frac{[[n1]]}{[[d1]]} + \\frac{[[n2]]}{[[d2]]} + \\frac{[[n3]]}{[[d3]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the probabilities, as if computing the chance all three land heads, not the expected count.",
+   "This incorrectly combines the fractions by adding numerators and denominators separately.",
+   "This only accounts for the first coin and ignores the other two.",
+   "This assumes all three coins share coin 1's probability.",
+   "This subtracts the third coin's contribution instead of adding it.",
+   "This computes the complement (expected number of tails-only outcome) rather than the expected number of heads."
+  ]
+ }
+]

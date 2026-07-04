@@ -1,0 +1,152 @@
+[
+{
+ "template_id": "inflection_point_v1",
+ "skill_id": "inflection_points",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "p": {
+   "type": "int",
+   "lo": -18,
+   "hi": 18
+  },
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  }
+ },
+ "constraints": [
+  "Ne([[p]], 0)"
+ ],
+ "stem": "Find the \\( x \\)-coordinate of the inflection point of \\( f(x)=[[a]]x^{3}+([[p]])x^{2} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[p]], 3*[[a]])"
+ },
+ "distractors": [
+  "-Rational([[p]], [[a]])",
+  "Rational([[p]], 3*[[a]])",
+  "-Rational(2*[[p]], 3*[[a]])",
+  "-Rational([[p]], 6*[[a]])",
+  "-Rational([[p]], 3*[[a]]) + 1",
+  "-Rational([[p]], 3*[[a]]) - 1"
+ ],
+ "solution": "\\( f''(x)=6[[a]]x+2[[p]]=0 \\Rightarrow x=-\\frac{[[p]]}{3[[a]]}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "inflection_quartic_two_points_v1",
+ "skill_id": "inflection_points",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"a": "6*[[k]]**2"},
+ "stem": "Let \\( f(x)=x^{4}-([[a]])x^{2}+([[c]])x+([[d]]) \\). Which of the following is an \\( x \\)-coordinate of an inflection point of \\( f \\)?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "12*x**2 - 2*[[a]] = 0",
+  "var": "x"
+ },
+ "distractors": [
+  "[[k]]",
+  "2*[[k]]",
+  "Rational([[k]], 2)",
+  "[[a]]",
+  "-[[k]] + 1",
+  "-[[k]] - 1"
+ ],
+ "solution": "\\( f''(x)=12x^{2}-2([[a]])=0 \\Rightarrow x^{2}=\\frac{[[a]]}{6}=[[k]]^{2}\\Rightarrow x=\\pm[[k]] \\); since \\( f'' \\) changes sign at each, both are inflection points, and one is \\( x=[[answer]] \\). (The linear and constant terms don't affect \\( f'' \\).)",
+ "distractor_rationales": [
+  "This is the positive root; the other real root also works, but this value alone was not selected here.",
+  "This doubles the correct root.",
+  "This halves the correct root.",
+  "This is the coefficient \\( a=6k^{2} \\), not a root of \\( f''=0 \\).",
+  "This is off by one from the negative root.",
+  "This is off by one from the negative root."
+ ]
+},
+{
+ "template_id": "inflection_trig_smallest_positive_v1",
+ "skill_id": "inflection_points",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 24}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x)=\\sin([[k]]x) \\). What is the smallest positive \\( x \\)-value at which \\( f \\) has an inflection point?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "pi/[[k]]"
+ },
+ "distractors": [
+  "pi/(2*[[k]])",
+  "2*pi/[[k]]",
+  "pi*[[k]]",
+  "pi",
+  "pi/[[k]] + 1",
+  "pi/[[k]] - 1"
+ ],
+ "solution": "\\( f''(x)=-[[k]]^{2}\\sin([[k]]x) \\), which is zero and changes sign first at \\( [[k]]x=\\pi \\), i.e. \\( x=\\dfrac{\\pi}{[[k]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is where \\( f \\) has a critical point (an extremum of \\( \\sin \\)), not where \\( f'' \\) changes sign.",
+  "This is the SECOND positive inflection point, not the smallest.",
+  "This has \\( k \\) in the wrong place (multiplying instead of dividing).",
+  "This forgets to divide by \\( k \\) at all.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "inflection_sum_via_second_derivative_vieta_v1",
+ "skill_id": "inflection_points",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "r2": {"type": "int", "lo": -6, "hi": 6},
+  "r3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [
+  "Ne([[r1]], [[r2]])",
+  "Ne([[r1]], [[r3]])",
+  "Ne([[r2]], [[r3]])"
+ ],
+ "derived": {
+  "coefB": "-([[r1]] + [[r2]] + [[r3]])",
+  "coefC": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+  "coefD": "-([[r1]]*[[r2]]*[[r3]])"
+ },
+ "stem": "Suppose \\( f''(x) = x^{3}+([[coefB]])x^{2}+([[coefC]])x+([[coefD]]) \\), which has three distinct real roots. What is the sum of the \\( x \\)-coordinates of all inflection points of \\( f \\)?",
+ "answer_spec": {
+  "op": "vieta",
+  "poly": "x**3 + [[coefB]]*x**2 + [[coefC]]*x + [[coefD]]",
+  "var": "x",
+  "which": "sum"
+ },
+ "distractors": [
+  "[[coefB]]",
+  "[[coefC]]",
+  "[[r1]]*[[r2]]*[[r3]]",
+  "[[r1]] + [[r2]]",
+  "[[r1]] + [[r2]] + [[r3]] + 1",
+  "[[r1]] + [[r2]] + [[r3]] - 1"
+ ],
+ "solution": "Since \\( f'' \\) is a cubic with three distinct real (simple) roots, it changes sign at each one, so all three roots are inflection points of \\( f \\). By Vieta's formulas their sum is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the coefficient of \\( x^{2} \\) itself, off by a sign from the true root sum.",
+  "This is the sum of products of pairs of roots, not the sum of the roots.",
+  "This is the product of all three roots, not their sum.",
+  "This drops one of the three roots from the sum.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

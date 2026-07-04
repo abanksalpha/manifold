@@ -1,0 +1,94 @@
+[
+{
+ "template_id": "area_green_v1",
+ "skill_id": "area_enclosed_via_green_s_theorem",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 4},
+  "k": {"type": "int", "lo": 1, "hi": 5},
+  "W": {"type": "choice", "values": [2, 4]}
+ },
+ "constraints": [],
+ "stem": "Use Green's theorem to find the area of the region \\( R \\) enclosed by the lines \\( x = 0 \\), \\( x = [[W]] \\), \\( y = 0 \\), and \\( y = [[m]]x + [[k]] \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["y", "x"], "bounds": [["0", "([[m]])*x + ([[k]])"], ["0", "[[W]]"]]},
+ "distractors": [
+  "([[m]])*([[W]])**2 + ([[k]])*([[W]])",
+  "([[k]])*([[W]])",
+  "([[m]])*([[W]])**2/2",
+  "([[m]])*([[W]]) + ([[k]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Green's theorem the area equals \\( \\iint_R 1\\,dA \\). Integrating over \\( 0\\le x\\le [[W]] \\), \\( 0\\le y\\le [[m]]x+[[k]] \\) gives \\( \\int_0^{[[W]]} ([[m]]x+[[k]])\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( [[m]][[W]]^{2} \\) (no factor of \\( \\tfrac12 \\)) for the triangular part.",
+  "This counts only the rectangular part \\( [[k]]\\cdot[[W]] \\), dropping the triangular part.",
+  "This counts only the triangular part, dropping the rectangular part \\( [[k]]\\cdot[[W]] \\).",
+  "This evaluates the top boundary height at \\( x=[[W]] \\) instead of integrating for the area.",
+  "This is off by one from the correct area.",
+  "This is off by one from the correct area."
+ ]
+},
+{
+ "template_id": "area_green_boundary_formula_ellipse_v1",
+ "skill_id": "area_enclosed_via_green_s_theorem",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+  "b": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "Green's theorem gives the area enclosed by a simple closed curve \\( C \\) as \\( A = \\tfrac{1}{2}\\displaystyle\\oint_C (x\\,dy - y\\,dx) \\). Use this boundary formula to find the area enclosed by the ellipse \\( \\mathbf{r}(t) = (([[a]])\\cos t,\\; ([[b]])\\sin t) \\), \\( 0 \\le t \\le 2\\pi \\).",
+ "answer_spec": {"op": "integrate", "expr": "Rational(1,2)*(([[a]])*cos(t)*([[b]])*cos(t) - ([[b]])*sin(t)*(-([[a]])*sin(t)))", "var": "t", "bounds": ["0", "2*pi"]},
+ "distractors": [
+  "pi*(([[a]]) + ([[b]]))",
+  "2*pi*([[a]])*([[b]])",
+  "pi*(([[a]]))**2",
+  "pi*(([[b]]))**2",
+  "([[answer]]) / 2",
+  "([[answer]]) + pi"
+ ],
+ "solution": "Here \\( x=([[a]])\\cos t,\\ y=([[b]])\\sin t \\), so \\( x\\,dy-y\\,dx = \\big(([[a]])([[b]])\\cos^{2}t + ([[a]])([[b]])\\sin^{2}t\\big)dt = ([[a]])([[b]])\\,dt \\). Thus \\( A=\\tfrac12\\int_0^{2\\pi} ([[a]])([[b]])\\,dt = \\pi([[a]])([[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the (incorrect) formula \\( \\pi(a+b) \\) for an ellipse's area instead of \\( \\pi a b \\).",
+  "This doubles the correct area, forgetting the \\( \\tfrac12 \\) in the boundary formula.",
+  "This uses only the semi-axis \\( a \\), as if the curve were a circle of radius \\( a \\).",
+  "This uses only the semi-axis \\( b \\), as if the curve were a circle of radius \\( b \\).",
+  "This halves the correct area.",
+  "This adds a spurious \\( \\pi \\) to the correct area."
+ ]
+},
+{
+ "template_id": "area_green_parabolic_arch_v1",
+ "skill_id": "area_enclosed_via_green_s_theorem",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 4},
+  "W": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Use Green's theorem to find the area of the region enclosed between the \\( x \\)-axis and the parabolic arch \\( y = ([[m]])x([[W]]-x) \\) for \\( 0 \\le x \\le [[W]] \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["y", "x"], "bounds": [["0", "([[m]])*x*(([[W]])-x)"], ["0", "[[W]]"]]},
+ "distractors": [
+  "([[m]])*([[W]])**3/2",
+  "([[m]])*([[W]])**3/3",
+  "([[m]])*([[W]])**2/2",
+  "2*([[m]])*([[W]])**3/3",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Green's theorem the area equals \\( \\iint_R 1\\,dA = \\int_0^{[[W]]} ([[m]])x([[W]]-x)\\,dx \\). Expanding and integrating the quadratic boundary gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the area formula for a TRIANGLE of the same base and peak height instead of integrating the actual parabola.",
+  "This drops a factor of 2 from the correct coefficient of the parabolic-arch area formula.",
+  "This only accounts for a linear (triangular) boundary, not the quadratic arch.",
+  "This doubles the correct area.",
+  "This is off by one from the correct area.",
+  "This is off by one from the correct area."
+ ]
+}
+]

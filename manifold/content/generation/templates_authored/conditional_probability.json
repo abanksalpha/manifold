@@ -1,0 +1,158 @@
+[
+{
+ "template_id": "conditional_probability_contingency_counts_v1",
+ "skill_id": "conditional_probability",
+ "topic_id": "probability",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 40, "hi": 100},
+  "nb": {"type": "int", "lo": 10, "hi": 30},
+  "nab": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Lt([[nb]], [[n]])", "Lt([[nab]], [[nb]])"],
+ "stem": "Of the [[n]] students at a school, [[nb]] take Spanish. Among those [[nb]] Spanish students, [[nab]] also take Chemistry. A student is picked at random from the Spanish students. What is the probability that this student also takes Chemistry?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[nab]], [[nb]])"},
+ "distractors": [
+  "Rational([[nab]], [[n]])",
+  "Rational([[nb]], [[n]])",
+  "Rational([[nb]], [[nab]])",
+  "Rational([[nb]] - [[nab]], [[nb]])",
+  "Rational([[nab]], [[n]] - [[nb]])",
+  "Rational([[nab]], [[nb]] - [[nab]])"
+ ],
+ "solution": "Conditioning on taking Spanish restricts the sample space to the [[nb]] Spanish students, of whom [[nab]] also take Chemistry: \\( P(\\text{Chem}\\mid\\text{Spanish}) = \\dfrac{[[nab]]}{[[nb]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by the full school size instead of the [[nb]] Spanish students; that is \\( P(\\text{Spanish and Chem}) \\), not the conditional probability.",
+  "This is \\( P(\\text{Spanish}) \\), the probability of the conditioning event, not the conditional probability.",
+  "This inverts the ratio, computing the reciprocal of the correct conditional probability.",
+  "This is the probability a Spanish student does NOT take Chemistry, the complement of what was asked.",
+  "This divides by the non-Spanish students instead of the Spanish students.",
+  "This divides the both-subjects count by the Chemistry-only count instead of by all Spanish students."
+ ]
+},
+{
+ "template_id": "conditional_probability_sequential_no_replacement_v1",
+ "skill_id": "conditional_probability",
+ "topic_id": "probability",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 10, "hi": 30},
+  "k": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": ["Lt([[k]], [[n]])"],
+ "stem": "A bag contains [[n]] marbles, [[k]] of which are red. Two marbles are drawn at random, one after another, without replacement. Given that the first marble drawn is red, what is the probability that the second marble drawn is also red?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[k]] - 1, [[n]] - 1)"},
+ "distractors": [
+  "Rational([[k]], [[n]])",
+  "Rational([[k]], [[n]] - 1)",
+  "Rational([[k]] - 1, [[n]])",
+  "Rational([[n]] - [[k]], [[n]] - 1)",
+  "Rational([[k]] + 1, [[n]] - 1)",
+  "Rational([[k]] - 1, [[n]] - [[k]])"
+ ],
+ "solution": "Once a red marble is removed, [[k]] - 1 red marbles remain among the [[n]] - 1 marbles left, so \\( P(\\text{2nd red} \\mid \\text{1st red}) = \\dfrac{[[k]] - 1}{[[n]] - 1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores that the first red marble was removed and reuses the original (unconditioned) probability.",
+  "This forgets to remove the drawn marble from the red count in the numerator.",
+  "This forgets to remove the drawn marble from the total count in the denominator.",
+  "This is the probability the second marble is NOT red, the complement of the requested event.",
+  "This adds one to the red count instead of subtracting the marble already drawn.",
+  "This divides by the remaining non-red marbles instead of the remaining total marbles."
+ ]
+},
+{
+ "template_id": "conditional_probability_bare_fractions_v1",
+ "skill_id": "conditional_probability",
+ "topic_id": "probability",
+ "tier": "recognize",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 6},
+  "d": {"type": "choice", "values": [7, 8, 9, 10, 11]},
+  "e": {"type": "int", "lo": 1, "hi": 5},
+  "g": {"type": "choice", "values": [7, 8, 9, 10, 11, 12]}
+ },
+ "constraints": ["Lt([[c]], [[d]])", "Lt([[e]], [[g]])", "Le([[e]] * [[d]], [[g]] * [[c]])"],
+ "stem": "Suppose \\( P(B) = \\dfrac{[[c]]}{[[d]]} \\) and \\( P(A \\cap B) = \\dfrac{[[e]]}{[[g]]} \\). What is \\( P(A \\mid B) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[e]], [[g]]) / Rational([[c]], [[d]])"},
+ "distractors": [
+  "Rational([[c]], [[d]]) / Rational([[e]], [[g]])",
+  "Rational([[e]], [[g]]) * Rational([[c]], [[d]])",
+  "Rational([[c]], [[d]]) - Rational([[e]], [[g]])",
+  "Rational([[e]], [[g]])",
+  "Rational([[c]], [[d]])",
+  "Rational([[e]], [[g]]) + Rational([[c]], [[d]])"
+ ],
+ "solution": "By definition, \\( P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} = \\dfrac{[[e]]/[[g]]}{[[c]]/[[d]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, computing the reciprocal of the correct conditional probability.",
+  "This multiplies the two probabilities instead of dividing them.",
+  "This subtracts the probabilities instead of dividing them.",
+  "This reports \\( P(A \\cap B) \\) itself, forgetting to divide by \\( P(B) \\).",
+  "This reports \\( P(B) \\) itself instead of the conditional probability.",
+  "This adds the two probabilities instead of dividing them."
+ ]
+},
+{
+ "template_id": "conditional_probability_independence_collapse_v1",
+ "skill_id": "conditional_probability",
+ "topic_id": "probability",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "choice", "values": [6, 7, 8, 9, 10]},
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "d": {"type": "choice", "values": [6, 7, 8, 9, 10]}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Lt([[c]], [[d]])"],
+ "stem": "Events \\( A \\) and \\( B \\) are independent, with \\( P(A) = \\dfrac{[[a]]}{[[b]]} \\) and \\( P(B) = \\dfrac{[[c]]}{[[d]]} \\). What is \\( P(A \\mid B) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[a]], [[b]])"},
+ "distractors": [
+  "Rational([[c]], [[d]])",
+  "Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+  "Rational([[a]], [[b]]) / Rational([[c]], [[d]])",
+  "Rational([[a]], [[b]]) + Rational([[c]], [[d]])",
+  "1 - Rational([[a]], [[b]])",
+  "Rational([[a]], [[b]]) - Rational([[c]], [[d]])"
+ ],
+ "solution": "For independent events, conditioning on \\( B \\) does not change the probability of \\( A \\): \\( P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} = \\dfrac{P(A)P(B)}{P(B)} = P(A) = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports \\( P(B) \\) instead of \\( P(A) \\), mixing up which event's probability survives the conditioning.",
+  "This is \\( P(A \\cap B) \\), the joint probability, not the conditional probability.",
+  "This divides \\( P(A) \\) by \\( P(B) \\) instead of recognizing the conditional simplifies to \\( P(A) \\) directly.",
+  "This adds the two probabilities instead of recognizing independence leaves \\( P(A \\mid B) = P(A) \\).",
+  "This is the complement of \\( P(A) \\), not \\( P(A) \\) itself.",
+  "This subtracts \\( P(B) \\) from \\( P(A) \\), which is not a valid probability computation here."
+ ]
+},
+{
+ "template_id": "conditional_probability_complement_within_condition_v1",
+ "skill_id": "conditional_probability",
+ "topic_id": "probability",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 40, "hi": 100},
+  "nb": {"type": "int", "lo": 10, "hi": 30},
+  "nab": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Lt([[nb]], [[n]])", "Lt([[nab]], [[nb]])"],
+ "stem": "Of the [[n]] employees at a company, [[nb]] work remotely. Among those [[nb]] remote workers, [[nab]] live outside the state. An employee is picked at random from the remote workers. What is the probability that this employee does NOT live outside the state?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[nb]] - [[nab]], [[nb]])"},
+ "distractors": [
+  "Rational([[nab]], [[nb]])",
+  "Rational([[nab]], [[n]])",
+  "Rational([[nb]] - [[nab]], [[n]])",
+  "Rational([[nb]], [[n]])",
+  "Rational([[n]] - [[nb]], [[n]])",
+  "Rational([[nb]] - [[nab]], [[nab]])"
+ ],
+ "solution": "Conditioning on remote work restricts the sample space to the [[nb]] remote workers; of these, [[nb]] - [[nab]] live within the state, so \\( P(\\text{in-state} \\mid \\text{remote}) = \\dfrac{[[nb]] - [[nab]]}{[[nb]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the probability the employee DOES live outside the state, the complement of what was asked.",
+  "This divides the out-of-state count by the full company size instead of by the remote workers.",
+  "This divides the correct numerator by the full company size instead of by the remote workers.",
+  "This is \\( P(\\text{out-of-state and remote}) \\)-style, using the wrong numerator entirely.",
+  "This is \\( P(\\text{not remote}) \\), ignoring the out-of-state information entirely.",
+  "This divides by the out-of-state count instead of by all remote workers."
+ ]
+}
+]

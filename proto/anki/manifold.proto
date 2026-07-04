@@ -14,7 +14,7 @@ service ManifoldService {
   // Read-only: decides which eligible skill cards to serve next and in what
   // order over the prerequisite DAG. It reads FSRS state, due timing and the
   // blueprint; it never mutates cards, scheduling or the queue.
-  rpc BuildSessionQueue(generic.Empty) returns (SessionQueueResponse);
+  rpc BuildSessionQueue(SessionQueueRequest) returns (SessionQueueResponse);
 }
 
 // Implicitly includes any of the above methods that are not listed in the
@@ -71,6 +71,18 @@ message ScoringConfig {
   double median_raw_fraction = 6;
   double performance_sd = 7;
   double coverage_band_lambda = 8;
+  // Lapse-rate → readiness confidence widener (D26): fragile graduated
+  // knowledge (cards fallen back to Revisited) widens the projected band.
+  double lapse_band_lambda = 9;
+  // The honest target ladder (D29/D30): median / strong / exceptional, each
+  // with its scaled band — the goals readiness reports progress toward.
+  repeated ReadinessTarget targets = 10;
+  // The logarithmic hours-to-target curve (D29): Messick-style diminishing
+  // returns — each further scaled point costs more study hours than the last.
+  ReadinessHoursCurve hours_curve = 11;
+  // The maturity-residue ceiling (D29/D30): the deep-proof items and top
+  // scaled points the app explicitly does NOT promise it can train.
+  MaturityResidue maturity_residue = 12;
 }
 
 message EtsAnchor {
@@ -78,9 +90,55 @@ message EtsAnchor {
   double percentile_below = 2;
 }
 
+// One rung of the readiness target ladder: a named goal (median / strong /
+// exceptional) with the scaled band that defines it.
+message ReadinessTarget {
+  string id = 1;
+  string label = 2;
+  int32 scaled_point = 3;
+  int32 scaled_low = 4;
+  int32 scaled_high = 5;
+}
+
+// The logarithmic effort→score curve (Messick & Jungeblut 1981, shape only):
+// scaled(hours) = scaled_floor + points_per_log_hour · ln(1 + hours /
+// hours_scale). Convex when inverted, so each additional scaled point costs
+// progressively more hours — the top-percentile tax. Constants are chosen and
+// tunable (like the D19 mapping constants), not derived from a cited hour
+// count.
+message ReadinessHoursCurve {
+  // Scaled score at zero targeted-prep hours (a calculus-ready cold baseline).
+  int32 scaled_floor = 1;
+  // Scaled points gained per e-fold of (1 + hours / hours_scale).
+  double points_per_log_hour = 2;
+  // Hours scale (the curve's knee).
+  double hours_scale = 3;
+}
+
+// The residue the app is honest about NOT promising (D29/D30): the ~2–3
+// live-proof items no drill can manufacture, and the scaled points at the very
+// top (deep-proof + the top-percentile aptitude tax) it therefore withholds.
+message MaturityResidue {
+  // Deep-proof items the app cannot drill (~2–3), left fractional on purpose.
+  double items = 1;
+  // Scaled points at the ceiling the app does not promise (~30–40).
+  int32 scaled_points = 2;
+}
+
+message SessionQueueRequest {
+  // Study-feature toggle for the interleaving ablation (WS5): when true, the
+  // queue spreads consecutive items across topics (the full-Manifold default);
+  // when false, it serves blocked by topic (one topic drained before the next).
+  // Points-at-stake and tier-major ordering are unchanged either way. Optional
+  // so an unset request keeps the default-on behavior — the field's absence
+  // means interleave, not blocked (a plain proto3 bool would default to false).
+  optional bool interleave = 1;
+}
+
 message SessionQueueResponse {
-  // Skill cards to study, already ordered (due before new, interleaved across
-  // topics by points-at-stake). The player walks this list in order.
+  // Skill cards to study, already ordered (due before new, then either
+  // interleaved across topics or blocked by topic per the request, always by
+  // points-at-stake within a tier). The player walks this list in order.
   repeated SessionItem items = 1;
 }
 

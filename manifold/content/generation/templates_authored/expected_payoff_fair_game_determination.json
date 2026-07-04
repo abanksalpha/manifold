@@ -1,0 +1,130 @@
+[
+ {
+  "template_id": "expected_payoff_die_game_v1",
+  "skill_id": "expected_payoff_fair_game_determination",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "w": {"type": "int", "lo": 1, "hi": 6},
+   "l": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne((7 - [[k]]) * [[w]] - ([[k]] - 1) * [[l]], 0)"],
+  "stem": "In a game, a fair six-sided die is rolled once. If the result is at least [[k]], you win \\( [[w]] \\) dollars; otherwise you lose \\( [[l]] \\) dollars. What is the expected value of your payoff, in dollars?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational(7 - [[k]], 6) * [[w]] + Rational([[k]] - 1, 6) * (-[[l]])"},
+  "distractors": [
+   "Rational(7 - [[k]], 6) * [[w]]",
+   "Rational([[k]] - 1, 6) * [[l]]",
+   "Rational(7 - [[k]], 6) * [[w]] + Rational([[k]] - 1, 6) * [[l]]",
+   "[[w]] - [[l]]",
+   "Rational(([[k]] - 1) * [[w]] - (7 - [[k]]) * [[l]], 6)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "There are \\( 7 - [[k]] \\) winning faces and \\( [[k]] - 1 \\) losing faces out of 6. The expected payoff is \\( \\frac{7 - [[k]]}{6}([[w]]) + \\frac{[[k]] - 1}{6}(-[[l]]) = [[answer]] \\) dollars.",
+  "distractor_rationales": [
+   "This counts only the expected winnings and ignores the possibility of losing.",
+   "This gives only the expected loss magnitude, ignoring the winnings.",
+   "This adds the expected loss instead of subtracting it (sign error on the loss).",
+   "This ignores the probabilities and just subtracts the stakes.",
+   "This swaps which outcome each probability multiplies.",
+   "This is off by one dollar from the correct expected value.",
+   "This is off by one dollar from the correct expected value."
+  ]
+ },
+ {
+  "template_id": "expected_payoff_fair_stake_solve_v1",
+  "skill_id": "expected_payoff_fair_game_determination",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "w": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Ge([[k]], 2)"],
+  "stem": "In a game, a fair six-sided die is rolled once. If the result is at least [[k]], you win \\( [[w]] \\) dollars; otherwise you must pay a penalty of \\( x \\) dollars. What value of \\( x \\) makes this a fair game (expected payoff equal to \\( 0 \\))?",
+  "answer_spec": {"op": "solve", "equation": "Rational(7 - [[k]], 6) * [[w]] - Rational([[k]] - 1, 6) * x = 0", "var": "x"},
+  "distractors": [
+   "Rational([[k]] - 1, 7 - [[k]]) * [[w]]",
+   "[[w]]",
+   "Rational(6, [[k]] - 1) * [[w]]",
+   "Rational(7 - [[k]], 6) * [[w]]",
+   "-Rational(7 - [[k]], [[k]] - 1) * [[w]]",
+   "Rational([[k]] - 1, 6) * [[w]]"
+  ],
+  "solution": "Setting expected payoff to zero: \\( \\frac{7-[[k]]}{6}[[w]] = \\frac{[[k]]-1}{6}x \\), so \\( x = \\frac{7-[[k]]}{[[k]]-1}[[w]] = [[answer]] \\) dollars.",
+  "distractor_rationales": [
+   "This inverts the ratio of winning to losing faces.",
+   "This just repeats the win amount, ignoring the different number of winning and losing faces.",
+   "This uses the total number of faces instead of the number of winning faces in the ratio.",
+   "This is the expected winnings term alone, not the penalty that balances it.",
+   "This has the correct ratio but the wrong sign.",
+   "This uses the losing-face ratio instead of the winning-face ratio."
+  ]
+ },
+ {
+  "template_id": "expected_payoff_three_outcome_v1",
+  "skill_id": "expected_payoff_fair_game_determination",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n1": {"type": "int", "lo": 1, "hi": 3},
+   "n2": {"type": "int", "lo": 1, "hi": 3},
+   "w1": {"type": "int", "lo": 1, "hi": 10},
+   "w2": {"type": "int", "lo": -6, "hi": 6},
+   "w3": {"type": "int", "lo": -10, "hi": -1}
+  },
+  "constraints": ["Lt([[n1]] + [[n2]], 6)", "Ne([[w2]], 0)"],
+  "stem": "A fair six-sided die is rolled once. If the result is among the first [[n1]] faces, you win \\( [[w1]] \\) dollars. If it is among the next [[n2]] faces, your payoff is \\( [[w2]] \\) dollars. Otherwise (the remaining faces), your payoff is \\( [[w3]] \\) dollars. What is the expected value of your payoff, in dollars?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[n1]], 6) * [[w1]] + Rational([[n2]], 6) * [[w2]] + Rational(6 - [[n1]] - [[n2]], 6) * [[w3]]"},
+  "distractors": [
+   "Rational([[n1]], 6) * [[w1]] + Rational([[n2]], 6) * [[w2]]",
+   "Rational([[w1]] + [[w2]] + [[w3]], 3)",
+   "Rational([[n1]], 6) * [[w1]] - Rational([[n2]], 6) * [[w2]] - Rational(6 - [[n1]] - [[n2]], 6) * [[w3]]",
+   "Rational(6 - [[n1]] - [[n2]], 6) * [[w1]] + Rational([[n2]], 6) * [[w2]] + Rational([[n1]], 6) * [[w3]]",
+   "[[w1]] + [[w2]] + [[w3]]",
+   "Rational([[n1]] + [[n2]], 6) * ([[w1]] + [[w2]])"
+  ],
+  "solution": "Weight each payoff by the probability of its outcome group: \\( E = \\frac{[[n1]]}{6}([[w1]]) + \\frac{[[n2]]}{6}([[w2]]) + \\frac{6-[[n1]]-[[n2]]}{6}([[w3]]) = [[answer]] \\) dollars.",
+  "distractor_rationales": [
+   "This drops the third outcome group entirely, ignoring its payoff and probability.",
+   "This naively averages the three payoffs as if each outcome group had equal probability \\( \\tfrac{1}{3}\\), ignoring the actual face counts.",
+   "This flips the sign on the second and third terms instead of adding all three weighted payoffs.",
+   "This swaps the probability weights assigned to the first and third outcome groups.",
+   "This just adds the three raw payoffs without weighting by their probabilities at all.",
+   "This merges the first two groups' probabilities but drops their payoffs' distinct weighting."
+  ]
+ },
+ {
+  "template_id": "expected_payoff_urn_draw_v1",
+  "skill_id": "expected_payoff_fair_game_determination",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 2, "hi": 9},
+   "w": {"type": "int", "lo": 1, "hi": 12},
+   "l": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": ["Ne([[r]] * [[w]] - [[b]] * [[l]], 0)"],
+  "stem": "An urn contains [[r]] red balls and [[b]] blue balls. You draw one ball at random. If it is red, you win \\( [[w]] \\) dollars; if it is blue, you lose \\( [[l]] \\) dollars. What is the expected value of your payoff, in dollars?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[r]], [[r]] + [[b]]) * [[w]] - Rational([[b]], [[r]] + [[b]]) * [[l]]"},
+  "distractors": [
+   "Rational([[r]], [[r]] + [[b]]) * [[w]]",
+   "Rational([[b]], [[r]] + [[b]]) * [[l]]",
+   "Rational([[r]], [[r]] + [[b]]) * [[w]] + Rational([[b]], [[r]] + [[b]]) * [[l]]",
+   "Rational([[b]], [[r]] + [[b]]) * [[w]] - Rational([[r]], [[r]] + [[b]]) * [[l]]",
+   "Rational([[r]], [[b]]) * [[w]] - [[l]]",
+   "[[w]] - [[l]]"
+  ],
+  "solution": "The probability of drawing red is \\( \\frac{[[r]]}{[[r]]+[[b]]} \\) and of blue is \\( \\frac{[[b]]}{[[r]]+[[b]]} \\). The expected payoff is \\( \\frac{[[r]]}{[[r]]+[[b]]}([[w]]) - \\frac{[[b]]}{[[r]]+[[b]]}([[l]]) = [[answer]] \\) dollars.",
+  "distractor_rationales": [
+   "This counts only the expected winnings and ignores the possibility of drawing blue.",
+   "This gives only the expected loss magnitude, ignoring the winnings.",
+   "This adds the expected loss instead of subtracting it (sign error on the loss).",
+   "This swaps which color's probability multiplies which payoff.",
+   "This uses the odds ratio \\( r/b \\) instead of the probability \\( r/(r+b) \\).",
+   "This ignores the probabilities entirely and just subtracts the stakes."
+  ]
+ }
+]

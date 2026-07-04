@@ -1,0 +1,181 @@
+[
+{
+ "template_id": "residue_theorem_unfactored_quadratic_partial_enclosure_v1",
+ "skill_id": "residue_theorem",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -10, "hi": 10},
+  "R": {"type": "choice", "values": [5, 6, 7]}
+ },
+ "constraints": ["Ne([[p]], [[q]])", "Ne(([[a]])*([[p]]) + ([[b]]), 0)", "Lt(Abs([[p]]), [[R]])", "Gt(Abs([[q]]), [[R]])"],
+ "derived": {
+  "c": "-([[p]]+[[q]])",
+  "d": "([[p]])*([[q]])"
+ },
+ "stem": "Let \\( f(z) = \\dfrac{([[a]])z + ([[b]])}{z^{2} + ([[c]])z + ([[d]])} \\), whose denominator has simple roots at \\( z = [[p]] \\) and \\( z = [[q]] \\). Let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Using the residue theorem, compute \\( \\oint_{C} f(z)\\,dz \\), counting only the pole that actually lies inside \\( C \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*((([[a]])*([[p]]) + ([[b]]))/(([[p]]) - ([[q]])))"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*( ((([[a]])*([[p]]) + ([[b]]))/(([[p]]) - ([[q]]))) + ((([[a]])*([[q]]) + ([[b]]))/(([[q]]) - ([[p]]))) )",
+  "2*pi*I*((([[a]])*([[q]]) + ([[b]]))/(([[q]]) - ([[p]])))",
+  "0",
+  "[[answer]] + 2*pi*I",
+  "[[answer]] - 2*pi*I",
+  "-([[answer]])"
+ ],
+ "solution": "The denominator factors as \\( (z-([[p]]))(z-([[q]])) \\), so the poles are \\( z=[[p]] \\) and \\( z=[[q]] \\). Since \\( |[[p]]| < [[R]] < |[[q]]| \\), only \\( z=[[p]] \\) lies inside \\( C \\). By the residue theorem, \\( \\oint_C f\\,dz = 2\\pi i\\operatorname{Res}_{z=[[p]]}f = 2\\pi i\\cdot\\dfrac{([[a]])([[p]])+([[b]])}{([[p]])-([[q]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums the residues at both roots, but \\( z=[[q]] \\) lies outside \\( |z|=[[R]] \\) and must be excluded.",
+  "This uses only the residue at \\( z=[[q]] \\), which is not even enclosed by \\( C \\).",
+  "The integral is not \\( 0 \\); the pole at \\( z=[[p]] \\) is genuinely enclosed by \\( C \\).",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This has the wrong sign (contour orientation reversed)."
+ ]
+},
+{
+ "template_id": "residue_theorem_partial_fraction_residues_given_v1",
+ "skill_id": "residue_theorem",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "c1": {"type": "choice", "values": [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]},
+  "c2": {"type": "choice", "values": [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]},
+  "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "Let \\( f(z) = \\dfrac{[[c1]]}{z - ([[p]])} + \\dfrac{[[c2]]}{z - ([[q]])} \\), which has simple poles at \\( z = [[p]] \\) and \\( z = [[q]] \\) with residues \\( [[c1]] \\) and \\( [[c2]] \\) respectively. Let \\( C \\) be a positively oriented simple closed contour enclosing both poles. Using the residue theorem, compute \\( \\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*(([[c1]]) + ([[c2]]))"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*([[c1]])",
+  "2*pi*I*([[c2]])",
+  "pi*I*(([[c1]]) + ([[c2]]))",
+  "([[c1]]) + ([[c2]])",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I"
+ ],
+ "solution": "By the residue theorem, \\( \\oint_C f\\,dz = 2\\pi i\\sum\\operatorname{Res} \\). Reading the residues directly from the partial-fraction form, the sum is \\( [[c1]] + [[c2]] \\), so the integral is \\( 2\\pi i([[c1]]+[[c2]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the residue at \\( z=[[p]] \\); the theorem sums the residues at all enclosed poles.",
+  "This uses only the residue at \\( z=[[q]] \\); the theorem sums the residues at all enclosed poles.",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\).",
+  "This is the sum of the residues but omits the factor \\( 2\\pi i \\).",
+  "This has the wrong sign (contour orientation reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "residue_theorem_three_poles_quadratic_numerator_all_enclosed_v1",
+ "skill_id": "residue_theorem",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "c": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "r": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[p]], [[q]])", "Ne([[q]], [[r]])", "Ne([[p]], [[r]])"],
+ "stem": "Let \\( f(z) = \\dfrac{([[a]])z^{2} + ([[b]])z + ([[c]])}{(z-([[p]]))(z-([[q]]))(z-([[r]]))} \\), which has simple poles at \\( z = [[p]], [[q]], [[r]] \\). Let \\( C \\) be a positively oriented simple closed contour enclosing all three poles. Using the residue theorem, compute \\( \\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*( ((([[a]])*([[p]])**2+([[b]])*([[p]])+([[c]]))/((([[p]])-([[q]]))*(([[p]])-([[r]])))) + ((([[a]])*([[q]])**2+([[b]])*([[q]])+([[c]]))/((([[q]])-([[p]]))*(([[q]])-([[r]])))) + ((([[a]])*([[r]])**2+([[b]])*([[r]])+([[c]]))/((([[r]])-([[p]]))*(([[r]])-([[q]])))) )"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*((([[a]])*([[p]])**2+([[b]])*([[p]])+([[c]]))/((([[p]])-([[q]]))*(([[p]])-([[r]]))))",
+  "2*pi*I*((([[a]])*([[q]])**2+([[b]])*([[q]])+([[c]]))/((([[q]])-([[p]]))*(([[q]])-([[r]]))))",
+  "0",
+  "pi*I*([[a]])",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I"
+ ],
+ "solution": "Summing the residues at all three simple poles, the terms involving \\( b,c \\) and the individual pole locations cancel, leaving the sum of residues equal to the leading coefficient \\( [[a]] \\) (this always happens when the denominator's degree exceeds the numerator's by exactly one). So \\( \\oint_C f\\,dz = 2\\pi i([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the residue at \\( z=[[p]] \\), omitting the other two enclosed poles.",
+  "This uses only the residue at \\( z=[[q]] \\), omitting the other two enclosed poles.",
+  "The integral is not \\( 0 \\); all three poles are genuinely enclosed by \\( C \\), and the numerator does not vanish at all of them.",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\).",
+  "This has the wrong sign (contour orientation reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "residue_theorem_offcenter_circle_single_pole_v1",
+ "skill_id": "residue_theorem",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "w": {"type": "int", "lo": -6, "hi": 6},
+  "R": {"type": "choice", "values": [2, 3]},
+  "far": {"type": "int", "lo": 8, "hi": 14}
+ },
+ "constraints": ["Ne(([[a]])*([[p]]) + ([[b]]), 0)", "Lt(Abs([[p]]-[[w]]), [[R]])", "Gt(Abs(([[w]]+[[far]])-[[w]]), [[R]])"],
+ "derived": {
+  "q": "[[w]]+[[far]]"
+ },
+ "stem": "Let \\( f(z) = \\dfrac{([[a]])z + ([[b]])}{(z-([[p]]))(z-([[q]]))} \\), with simple poles at \\( z = [[p]] \\) and \\( z = [[q]] \\). Let \\( C \\) be the positively oriented circle \\( |z - ([[w]])| = [[R]] \\), centered at \\( z=[[w]] \\). Using the residue theorem, compute \\( \\oint_{C} f(z)\\,dz \\), counting only the pole(s) that lie inside \\( C \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*((([[a]])*([[p]]) + ([[b]]))/(([[p]]) - ([[q]])))"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*( ((([[a]])*([[p]]) + ([[b]]))/(([[p]]) - ([[q]]))) + ((([[a]])*([[q]]) + ([[b]]))/(([[q]]) - ([[p]]))) )",
+  "2*pi*I*((([[a]])*([[q]]) + ([[b]]))/(([[q]]) - ([[p]])))",
+  "0",
+  "[[answer]] + 2*pi*I",
+  "-([[answer]])",
+  "[[answer]] - 2*pi*I"
+ ],
+ "solution": "The pole \\( z=[[p]] \\) satisfies \\( |[[p]]-([[w]]))| < [[R]] \\), so it lies inside \\( C \\); the pole \\( z=[[q]] \\) is farther than \\( [[R]] \\) from the center \\( [[w]] \\), so it lies outside. Only \\( z=[[p]] \\) contributes: \\( \\oint_C f\\,dz = 2\\pi i\\operatorname{Res}_{z=[[p]]}f = 2\\pi i\\cdot\\dfrac{([[a]])([[p]])+([[b]])}{([[p]])-([[q]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums the residues at both poles, but \\( z=[[q]] \\) lies outside the circle centered at \\( [[w]] \\) and must be excluded.",
+  "This uses only the residue at \\( z=[[q]] \\), which is not even enclosed by \\( C \\).",
+  "The integral is not \\( 0 \\); the pole at \\( z=[[p]] \\) is genuinely enclosed by \\( C \\).",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This has the wrong sign (contour orientation reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "residue_theorem_double_pole_plus_simple_pole_partial_v1",
+ "skill_id": "residue_theorem",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -10, "hi": 10},
+  "R": {"type": "choice", "values": [5, 6, 7]}
+ },
+ "constraints": ["Lt(Abs([[p]]), [[R]])", "Gt(Abs([[q]]), [[R]])"],
+ "stem": "Let \\( f(z) = \\dfrac{([[a]])z^{2}+([[b]])z+([[c]])}{(z-([[p]]))^{2}(z-([[q]]))} \\), which has a double pole at \\( z=[[p]] \\) and a simple pole at \\( z=[[q]] \\). Let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Using the residue theorem, compute \\( \\oint_{C} f(z)\\,dz \\), counting only the pole that actually lies inside \\( C \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*diff((([[a]])*z**2+([[b]])*z+([[c]]))/(z-([[q]])), z).subs(z, [[p]])"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*((([[a]])*([[p]])**2+([[b]])*([[p]])+([[c]]))/(([[p]])-([[q]]))**2)",
+  "2*pi*I*((([[a]])*([[q]])**2+([[b]])*([[q]])+([[c]]))/(([[q]])-([[p]]))**2)",
+  "0",
+  "[[answer]] + 2*pi*I",
+  "-([[answer]])",
+  "[[answer]] - 2*pi*I"
+ ],
+ "solution": "Only \\( z=[[p]] \\) lies inside \\( |z|=[[R]] \\) (since \\( |[[q]]| > [[R]] \\)). For a double pole, \\( \\operatorname{Res}_{z=[[p]]}f = \\dfrac{d}{dz}\\!\\left[\\dfrac{([[a]])z^{2}+([[b]])z+([[c]])}{z-([[q]])}\\right]_{z=[[p]]} \\), so \\( \\oint_C f\\,dz = 2\\pi i\\operatorname{Res}_{z=[[p]]}f = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates the numerator-over-denominator ratio directly at \\( z=[[p]] \\) without taking the derivative that a double pole's residue formula requires.",
+  "This uses the simple-pole residue formula at \\( z=[[q]] \\), which is not even enclosed by \\( C \\), and squares the wrong denominator factor.",
+  "The integral is not \\( 0 \\); the double pole at \\( z=[[p]] \\) is genuinely enclosed by \\( C \\).",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This has the wrong sign (contour orientation reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+}
+]

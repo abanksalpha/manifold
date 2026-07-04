@@ -1,0 +1,247 @@
+[
+ {
+  "template_id": "change_of_variables_jacobian_v1",
+  "skill_id": "change_of_variables_jacobian",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "b": {
+    "type": "int",
+    "lo": -3,
+    "hi": 3
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "u0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "v0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   }
+  },
+  "constraints": [
+   "Ne(4*[[a]]*[[d]]*[[u0]]*[[v0]] - [[b]]*[[c]], 0)"
+  ],
+  "stem": "For the transformation \\( x = [[a]]u^2 + ([[b]])v, \\quad y = [[c]]u + [[d]]v^2 \\), compute the Jacobian determinant \\( \\dfrac{\\partial(x,y)}{\\partial(u,v)} \\) at the point \\( (u,v) = ([[u0]], [[v0]]) \\).",
+  "answer_spec": {
+   "op": "det",
+   "matrix": [
+    [
+     "2*[[a]]*[[u0]]",
+     "[[b]]"
+    ],
+    [
+     "[[c]]",
+     "2*[[d]]*[[v0]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "4*[[a]]*[[d]]*[[u0]]*[[v0]] + [[b]]*[[c]]",
+   "[[a]]*[[d]]*[[u0]]*[[v0]] - [[b]]*[[c]]",
+   "[[b]]*[[c]] - 4*[[a]]*[[d]]*[[u0]]*[[v0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The Jacobian is \\( \\det\\begin{bmatrix} x_u & x_v \\\\ y_u & y_v \\end{bmatrix} = \\det\\begin{bmatrix} 2[[a]]u & [[b]] \\\\ [[c]] & 2[[d]]v \\end{bmatrix} = 4[[a]][[d]]uv - [[b]][[c]]. \\) At \\( ([[u0]],[[v0]]) \\) this equals \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This adds \\(x_v y_u\\) instead of subtracting it (wrong sign in the determinant).",
+   "This forgets the factor \\(4\\) coming from \\(x_u y_v = (2[[a]]u)(2[[d]]v)\\).",
+   "This is the negative of the determinant (the two diagonal products were swapped).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "change_of_variables_jacobian_v2",
+  "skill_id": "change_of_variables_jacobian",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "r0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "theta0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "For the scaled-polar transformation \\( x = [[a]]r\\cos\\theta, \\quad y = [[a]]r\\sin\\theta \\), compute the Jacobian determinant \\( \\dfrac{\\partial(x,y)}{\\partial(r,\\theta)} \\) at the point \\( (r,\\theta) = ([[r0]], [[theta0]]) \\) (angle in radians).",
+  "answer_spec": {
+   "op": "det",
+   "matrix": [
+    [
+     "[[a]]*cos([[theta0]])",
+     "-[[a]]*[[r0]]*sin([[theta0]])"
+    ],
+    [
+     "[[a]]*sin([[theta0]])",
+     "[[a]]*[[r0]]*cos([[theta0]])"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[a]]*[[r0]]",
+   "[[a]]**2",
+   "[[r0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The Jacobian is \\( \\det\\begin{bmatrix} [[a]]\\cos\\theta & -[[a]]r\\sin\\theta \\\\ [[a]]\\sin\\theta & [[a]]r\\cos\\theta \\end{bmatrix} = [[a]]^2 r\\cos^2\\theta + [[a]]^2 r\\sin^2\\theta = [[a]]^2 r \\), independent of \\(\\theta\\). At \\(r=[[r0]]\\) this is \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This forgets the extra factor of \\([[a]]\\) that comes from scaling both \\(x\\) and \\(y\\) by \\([[a]]\\).",
+   "This drops the factor of \\(r\\) that comes from \\(y_\\theta = [[a]]r\\cos\\theta\\).",
+   "This drops the scale factor \\([[a]]^2\\) entirely, keeping only the \\(r\\) from the standard polar Jacobian.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "change_of_variables_jacobian_v3",
+  "skill_id": "change_of_variables_jacobian",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne([[a]]*[[b]] - 1, 0)"
+  ],
+  "stem": "For the linear transformation \\( x = [[a]]u + v, \\quad y = u + [[b]]v + w, \\quad z = [[c]]w \\), compute the Jacobian determinant \\( \\dfrac{\\partial(x,y,z)}{\\partial(u,v,w)} \\). (Since the map is linear, this Jacobian is the same at every point.)",
+  "answer_spec": {
+   "op": "det",
+   "matrix": [
+    [
+     "[[a]]",
+     "1",
+     "0"
+    ],
+    [
+     "1",
+     "[[b]]",
+     "1"
+    ],
+    [
+     "0",
+     "0",
+     "[[c]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[a]]*[[b]]*[[c]]",
+   "[[c]]*([[a]]*[[b]]+1)",
+   "-[[c]]*([[a]]*[[b]]-1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Expanding along the bottom row, \\( \\det\\begin{bmatrix} [[a]] & 1 & 0 \\\\ 1 & [[b]] & 1 \\\\ 0 & 0 & [[c]] \\end{bmatrix} = [[c]]\\det\\begin{bmatrix}[[a]] & 1\\\\ 1 & [[b]]\\end{bmatrix} = [[c]]([[a]][[b]]-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the three diagonal entries \\([[a]],[[b]],[[c]]\\) directly, ignoring the off-diagonal \\(1\\)'s.",
+   "This makes a sign error inside the \\(2\\times2\\) cofactor, using \\(ab+1\\) instead of \\(ab-1\\).",
+   "This has the overall sign flipped from the correct cofactor expansion.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "change_of_variables_jacobian_v4",
+  "skill_id": "change_of_variables_jacobian",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "b": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "c": {
+    "type": "int",
+    "lo": -4,
+    "hi": 4
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"
+  ],
+  "stem": "The transformation \\( x = [[a]]u + ([[b]])v, \\quad y = ([[c]])u + [[d]]v \\) is invertible. Using the inverse function theorem, find the Jacobian determinant of the inverse transformation, \\( \\dfrac{\\partial(u,v)}{\\partial(x,y)} \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "1/([[a]]*[[d]] - [[b]]*[[c]])"
+  },
+  "distractors": [
+   "[[a]]*[[d]] - [[b]]*[[c]]",
+   "-1/([[a]]*[[d]] - [[b]]*[[c]])",
+   "1/([[a]]*[[d]] + [[b]]*[[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the inverse function theorem, \\( \\dfrac{\\partial(u,v)}{\\partial(x,y)} = \\left(\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\right)^{-1} \\). Here \\( \\dfrac{\\partial(x,y)}{\\partial(u,v)} = [[a]][[d]]-[[b]][[c]] \\), so the inverse Jacobian is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the forward Jacobian \\(\\partial(x,y)/\\partial(u,v)\\) itself instead of taking its reciprocal.",
+   "This has the wrong sign on the reciprocal.",
+   "This makes a sign error inside the determinant before inverting, using \\(ad+bc\\) instead of \\(ad-bc\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

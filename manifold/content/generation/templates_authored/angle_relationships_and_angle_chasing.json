@@ -1,0 +1,152 @@
+[
+ {
+  "template_id": "angle_relationships_and_angle_chasing_v1",
+  "skill_id": "angle_relationships_and_angle_chasing",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 35, "hi": 100},
+   "b": {"type": "int", "lo": 30, "hi": 95}
+  },
+  "constraints": ["Lt([[a]] + [[b]], 172)", "Gt([[a]] + [[b]], 55)"],
+  "stem": "In triangle \\( ABC \\), \\( \\angle A = [[a]]^{\\circ} \\) and \\( \\angle B = [[b]]^{\\circ} \\). What is the measure, in degrees, of the exterior angle of the triangle at vertex \\( C \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]]"},
+  "distractors": [
+   "180 - [[a]] - [[b]]",
+   "180 - [[a]]",
+   "180 - [[b]]",
+   "[[a]] + [[b]] + 10",
+   "[[a]] + [[b]] - 10",
+   "[[a]] + [[b]] + 20"
+  ],
+  "solution": "By the exterior angle theorem, an exterior angle of a triangle equals the sum of the two remote interior angles. The exterior angle at \\( C \\) has remote interior angles \\( A \\) and \\( B \\), so it measures \\( [[a]] + [[b]] = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This is the interior angle at \\( C \\), which is the supplement of the exterior angle, not the exterior angle itself.",
+   "This subtracts only \\( \\angle A \\) from \\( 180^{\\circ} \\), treating the two given angles as supplementary to the answer.",
+   "This subtracts only \\( \\angle B \\) from \\( 180^{\\circ} \\).",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by twenty degrees."
+  ]
+ },
+ {
+  "template_id": "angle_relationships_and_angle_chasing_v2_point",
+  "skill_id": "angle_relationships_and_angle_chasing",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 20, "hi": 160},
+   "b": {"type": "int", "lo": 20, "hi": 160}
+  },
+  "constraints": ["Lt([[a]] + [[b]], 340)"],
+  "stem": "Three rays from a point \\( P \\) divide the full angle around \\( P \\) into three non-overlapping angles measuring \\( [[a]]^{\\circ} \\), \\( [[b]]^{\\circ} \\), and \\( x^{\\circ} \\). What is \\( x \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "360 - [[a]] - [[b]]"},
+  "distractors": [
+   "180 - [[a]] - [[b]]",
+   "[[a]] + [[b]]",
+   "360 - [[a]]",
+   "360 - [[b]]",
+   "[[answer]] + 10",
+   "[[answer]] - 10"
+  ],
+  "solution": "The angles around a point sum to \\( 360^{\\circ} \\). So \\( x = 360 - [[a]] - [[b]] = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This uses \\( 180^{\\circ} \\) (a straight angle) instead of the full \\( 360^{\\circ} \\) around a point.",
+   "This just adds the two given angles instead of subtracting them from \\( 360^{\\circ} \\).",
+   "This subtracts only \\( \\angle a \\) from \\( 360^{\\circ} \\), ignoring \\( \\angle b \\).",
+   "This subtracts only \\( \\angle b \\) from \\( 360^{\\circ} \\), ignoring \\( \\angle a \\).",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by ten degrees."
+  ]
+ },
+ {
+  "template_id": "angle_relationships_and_angle_chasing_v3_supp_eq",
+  "skill_id": "angle_relationships_and_angle_chasing",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": 5, "hi": 60}
+  },
+  "constraints": ["Eq(Mod(180 - [[k]], 4), 0)"],
+  "stem": "Two angles form a linear pair (they are supplementary and adjacent). One angle exceeds three times the other by \\( [[k]] \\) degrees. What is the measure, in degrees, of the smaller angle?",
+  "answer_spec": {"op": "solve", "equation": "x + (3*x + [[k]]) = 180", "var": "x"},
+  "distractors": [
+   "3*[[answer]] + [[k]]",
+   "(180 - [[k]])/3",
+   "180 - [[answer]]",
+   "[[answer]] + [[k]]",
+   "[[answer]] + 5",
+   "[[answer]] - 5"
+  ],
+  "solution": "Let the smaller angle be \\( x \\). The larger angle is \\( 3x + [[k]] \\), and since the pair is supplementary, \\( x + (3x + [[k]]) = 180 \\). Solving, \\( 4x = 180 - [[k]] \\), so \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the larger angle, \\( 3x + [[k]] \\), not the smaller one.",
+   "This divides \\( 180 - [[k]] \\) by 3 instead of by 4, forgetting the smaller angle's own coefficient of 1.",
+   "This subtracts the correct answer from \\( 180 \\), effectively re-deriving the larger angle by a wrong route.",
+   "This adds \\( [[k]] \\) to the correct smaller angle instead of solving the full equation.",
+   "This is off from the correct value by five degrees.",
+   "This is off from the correct value by five degrees."
+  ]
+ },
+ {
+  "template_id": "angle_relationships_and_angle_chasing_v4_parallel_cointerior",
+  "skill_id": "angle_relationships_and_angle_chasing",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 9},
+   "c": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 5, "hi": 40},
+   "d": {"type": "int", "lo": 5, "hi": 40}
+  },
+  "constraints": ["Ne([[a]], [[c]])", "Eq(Mod(180 - [[b]] - [[d]], [[a]] + [[c]]), 0)", "Gt(180 - [[b]] - [[d]], 0)"],
+  "stem": "Two parallel lines are cut by a transversal. The two same-side interior (co-interior) angles measure \\( ([[a]]x + [[b]])^{\\circ} \\) and \\( ([[c]]x + [[d]])^{\\circ} \\). What is the value of \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "([[a]]*x + [[b]]) + ([[c]]*x + [[d]]) = 180", "var": "x"},
+  "distractors": [
+   "(180 - [[b]] - [[d]])/([[a]] - [[c]])",
+   "(180 - [[b]] + [[d]])/([[a]] + [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]]*2"
+  ],
+  "solution": "Same-side interior angles formed by a transversal across parallel lines are supplementary, so \\( ([[a]]x+[[b]]) + ([[c]]x+[[d]]) = 180 \\). Combining like terms and solving gives \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the coefficients of \\( x \\) instead of adding them, as if the angles were equal rather than supplementary.",
+   "This mishandles the sign on \\( d \\), effectively treating the angles as if they were being set equal instead of summed to \\( 180 \\).",
+   "This is off from the correct value by one.",
+   "This is off from the correct value by one.",
+   "This is off from the correct value by two.",
+   "This doubles the correct value of \\( x \\)."
+  ]
+ },
+ {
+  "template_id": "angle_relationships_and_angle_chasing_v5_isosceles_base",
+  "skill_id": "angle_relationships_and_angle_chasing",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "v": {"type": "int", "lo": 10, "hi": 170}
+  },
+  "constraints": ["Eq(Mod(180 - [[v]], 2), 0)"],
+  "stem": "An isosceles triangle has a vertex angle (the angle between the two equal sides) measuring \\( [[v]]^{\\circ} \\). What is the measure, in degrees, of each base angle?",
+  "answer_spec": {"op": "evaluate", "expr": "(180 - [[v]])/2"},
+  "distractors": [
+   "180 - [[v]]",
+   "[[v]]/2",
+   "180 - 2*[[v]]",
+   "(180 - [[v]])/3",
+   "[[answer]] + 5",
+   "[[answer]] - 5"
+  ],
+  "solution": "The two base angles of an isosceles triangle are equal, and all three angles sum to \\( 180^{\\circ} \\). So each base angle is \\( \\frac{180 - [[v]]}{2} = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This is the sum of the two base angles together, not a single base angle.",
+   "This mistakenly halves the vertex angle instead of the remaining angle sum.",
+   "This subtracts twice the vertex angle from \\( 180^{\\circ} \\) instead of subtracting once and halving.",
+   "This divides the remaining angle sum by 3 instead of 2, as if there were three equal angles.",
+   "This is off from the correct value by five degrees.",
+   "This is off from the correct value by five degrees."
+  ]
+ }
+]

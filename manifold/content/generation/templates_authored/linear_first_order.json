@@ -1,0 +1,168 @@
+[
+ {
+  "template_id": "linear_first_order_constant_v1",
+  "skill_id": "linear_first_order",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "q": {"type": "int", "lo": -8, "hi": 8},
+   "y0": {"type": "int", "lo": -6, "hi": 6},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[q]], 0)"],
+  "require_rational": false,
+  "stem": "Use an integrating factor to solve the linear first-order IVP \\( \\dfrac{dy}{dx} + [[p]]y = [[q]] \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[q]]/[[p]] + ([[y0]]-[[q]]/[[p]])*exp(-[[p]]*[[t0]])"},
+  "distractors": [
+   "[[q]]/[[p]] + ([[y0]]-[[q]]/[[p]])*exp([[p]]*[[t0]])",
+   "[[y0]]*exp(-[[p]]*[[t0]])",
+   "[[q]]/[[p]] - ([[y0]]-[[q]]/[[p]])*exp(-[[p]]*[[t0]])",
+   "[[y0]]+[[q]]*[[t0]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "The integrating factor is \\( \\mu(x)=e^{[[p]]x} \\), so \\( (e^{[[p]]x}y)' = [[q]]e^{[[p]]x} \\), giving \\( y = \\dfrac{[[q]]}{[[p]]} + Ce^{-[[p]]x} \\). Since \\( y(0)=[[y0]] \\), \\( C=[[y0]]-\\dfrac{[[q]]}{[[p]]} \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign in the exponent of the transient term.",
+   "This forgets the steady-state term \\( q/p \\) entirely.",
+   "This flips the sign of the transient's coefficient.",
+   "This treats the forcing as producing linear rather than exponential-approach behavior.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_first_order_power_law_v1",
+  "skill_id": "linear_first_order",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": -5, "hi": 5},
+   "t0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[n]]+[[m]]+1, 0)", "Ne([[t0]], 0)", "Ne([[x0]], [[t0]])"],
+  "stem": "Using the integrating factor \\( \\mu(x)=x^{[[n]]} \\), solve the linear IVP \\( \\dfrac{dy}{dx} + \\dfrac{[[n]]}{x}y = x^{[[m]]} \\), \\( y([[x0]]) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[t0]]**([[m]]+1)/([[n]]+[[m]]+1) + (([[x0]])**[[n]]*[[y0]] - ([[x0]])**([[n]]+[[m]]+1)/([[n]]+[[m]]+1))*[[t0]]**(-[[n]])"},
+  "distractors": [
+   "[[t0]]**([[m]]+1)/([[n]]+[[m]]+1)",
+   "[[y0]]*([[x0]]/[[t0]])**[[n]]",
+   "[[t0]]**([[m]]+1)/([[n]]+[[m]]+1) - (([[x0]])**[[n]]*[[y0]] - ([[x0]])**([[n]]+[[m]]+1)/([[n]]+[[m]]+1))*[[t0]]**(-[[n]])",
+   "[[y0]]*[[t0]]**[[m]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Multiplying by \\( \\mu(x)=x^{[[n]]} \\) makes the left side \\( (x^{[[n]]}y)' \\), so \\( x^{[[n]]}y = \\dfrac{x^{[[n]]+[[m]]+1}}{[[n]]+[[m]]+1}+C \\). Using \\( y([[x0]])=[[y0]] \\) to find \\( C \\) and evaluating at \\( x=[[t0]] \\) gives \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the homogeneous (constant-of-integration) term entirely.",
+   "This uses a pure power-law ratio, ignoring the particular-solution term from the forcing.",
+   "This subtracts the homogeneous term instead of adding it.",
+   "This forgets to divide by the integrating factor before evaluating.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_first_order_exponential_forcing_v1",
+  "skill_id": "linear_first_order",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "k": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": -5, "hi": 5},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[k]]+[[p]], 0)"],
+  "require_rational": false,
+  "stem": "The forcing rate \\( [[k]] \\) does NOT match the equation's own decay rate, so solve the non-resonant linear IVP \\( \\dfrac{dy}{dx} + [[p]]y = e^{[[k]]x} \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*exp(-[[p]]*[[t0]]) + (exp([[k]]*[[t0]])-exp(-[[p]]*[[t0]]))/([[k]]+[[p]])"},
+  "distractors": [
+   "[[y0]]*exp(-[[p]]*[[t0]]) + exp([[k]]*[[t0]])/([[k]]+[[p]])",
+   "[[y0]]*exp([[p]]*[[t0]]) + (exp([[k]]*[[t0]])-exp(-[[p]]*[[t0]]))/([[k]]+[[p]])",
+   "[[y0]]*exp(-[[p]]*[[t0]])",
+   "exp([[k]]*[[t0]])/([[k]]+[[p]])",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "The integrating factor \\( e^{[[p]]x} \\) gives \\( (e^{[[p]]x}y)' = e^{([[k]]+[[p]])x} \\), so \\( y = Ce^{-[[p]]x} + \\dfrac{e^{[[k]]x}}{[[k]]+[[p]]} \\). Since \\( y(0)=[[y0]] \\), \\( C = [[y0]] - \\dfrac{1}{[[k]]+[[p]]} \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the transient's contribution from the particular solution's initial value.",
+   "This uses the wrong sign in the exponent of the homogeneous term.",
+   "This drops the forced response entirely, keeping only the homogeneous solution.",
+   "This drops the homogeneous solution entirely, keeping only the particular solution.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_first_order_trig_forcing_v1",
+  "skill_id": "linear_first_order",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Solve the linear IVP \\( \\dfrac{dy}{dx} + [[p]]y = \\cos([[k]]x) \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = \\dfrac{[[m]]\\pi}{2\\cdot[[k]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[k]]*sin([[m]]*pi/2) + [[p]]*cos([[m]]*pi/2))/([[k]]**2+[[p]]**2) + ([[y0]]-[[p]]/([[k]]**2+[[p]]**2))*exp(-[[p]]*[[m]]*pi/(2*[[k]]))"},
+  "distractors": [
+   "([[k]]*cos([[m]]*pi/2) + [[p]]*sin([[m]]*pi/2))/([[k]]**2+[[p]]**2) + ([[y0]]-[[p]]/([[k]]**2+[[p]]**2))*exp(-[[p]]*[[m]]*pi/(2*[[k]]))",
+   "([[k]]*sin([[m]]*pi/2) + [[p]]*cos([[m]]*pi/2))/([[k]]**2+[[p]]**2)",
+   "[[y0]]*exp(-[[p]]*[[m]]*pi/(2*[[k]]))",
+   "([[k]]*sin([[m]]*pi/2) + [[p]]*cos([[m]]*pi/2))/([[k]]**2+[[p]]**2) + ([[y0]]-[[p]]/([[k]]**2+[[p]]**2))*exp([[p]]*[[m]]*pi/(2*[[k]]))",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Undetermined coefficients (or the integrating factor) gives the particular solution \\( y_p = \\dfrac{[[k]]\\sin([[k]]x)+[[p]]\\cos([[k]]x)}{[[k]]^{2}+[[p]]^{2}} \\), so \\( y(x) = y_p(x) + Ce^{-[[p]]x} \\) with \\( C = [[y0]] - y_p(0) \\). Evaluating at \\( x = \\dfrac{[[m]]\\pi}{2[[k]]} \\) gives \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of sine and cosine in the particular solution.",
+   "This drops the homogeneous (transient) term entirely.",
+   "This drops the particular (forced) response entirely, keeping only the transient.",
+   "This uses the wrong sign in the exponent of the transient term.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_first_order_mixing_tank_v1",
+  "skill_id": "linear_first_order",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "r": {"type": "choice", "values": [1, 2, 3, 4]},
+   "vol": {"type": "int", "lo": 5, "hi": 20},
+   "cin": {"type": "int", "lo": 1, "hi": 6},
+   "q0": {"type": "int", "lo": 0, "hi": 30},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[q0]], [[cin]]*[[vol]])"],
+  "require_rational": false,
+  "stem": "A tank holds \\( [[vol]] \\) liters of brine. Fluid with salt concentration \\( [[cin]] \\) kg/L flows in at \\( [[r]] \\) L/min, and the well-mixed solution drains out at the same rate, so the amount of salt \\( Q(t) \\) (kg) satisfies the linear equation \\( \\dfrac{dQ}{dt} + \\dfrac{[[r]]}{[[vol]]}Q = [[r]]\\cdot[[cin]] \\). If \\( Q(0) = [[q0]] \\), find \\( Q([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[cin]]*[[vol]] + ([[q0]]-[[cin]]*[[vol]])*exp(-([[r]]/[[vol]])*[[t0]])"},
+  "distractors": [
+   "[[cin]]*[[vol]] + ([[q0]]-[[cin]]*[[vol]])*exp(([[r]]/[[vol]])*[[t0]])",
+   "[[q0]]*exp(-([[r]]/[[vol]])*[[t0]])",
+   "[[cin]]*[[vol]] - ([[q0]]-[[cin]]*[[vol]])*exp(-([[r]]/[[vol]])*[[t0]])",
+   "[[q0]]+[[r]]*[[cin]]*[[t0]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "The integrating factor is \\( e^{([[r]]/[[vol]])t} \\), giving \\( Q(t) = [[cin]]\\cdot[[vol]] + Ce^{-([[r]]/[[vol]])t} \\). Since \\( Q(0)=[[q0]] \\), \\( C=[[q0]]-[[cin]]\\cdot[[vol]] \\), so \\( Q([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign in the exponent, growing away from equilibrium instead of decaying toward it.",
+   "This ignores the equilibrium (steady-state) salt level \\( c_{in}\\cdot V \\) entirely.",
+   "This flips the sign of the transient term, overshooting equilibrium instead of approaching it correctly.",
+   "This treats the salt content as changing linearly rather than exponentially toward equilibrium.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

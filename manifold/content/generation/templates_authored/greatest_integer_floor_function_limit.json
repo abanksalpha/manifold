@@ -1,0 +1,158 @@
+[
+ {
+  "template_id": "floor_function_limit_v1",
+  "skill_id": "greatest_integer_floor_function_limit",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": -3, "hi": 4},
+   "a": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( g(x) = \\lfloor x \\rfloor + ([[a]]) \\), where \\( \\lfloor \\cdot \\rfloor \\) denotes the greatest-integer (floor) function. Evaluate \\( \\lim_{x \\to [[n]]^{-}} g(x) \\).",
+  "answer_spec": {"op": "limit", "expr": "floor(x) + [[a]]", "var": "x", "point": "[[n]]", "dir": "-"},
+  "distractors": [
+   "[[n]] + [[a]]",
+   "[[n]] - 1",
+   "[[n]]",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "As \\( x \\) approaches the integer \\( [[n]] \\) from below, \\( \\lfloor x \\rfloor = [[n]] - 1 \\). Hence \\( g(x) \\to ([[n]] - 1) + ([[a]]) = [[answer]] \\). (From the right the value would be \\( [[n]] + ([[a]]) \\).)",
+  "distractor_rationales": [
+   "This is the right-hand limit, where \\( \\lfloor x \\rfloor = n \\).",
+   "This drops the added constant \\( a \\).",
+   "This uses the point itself and ignores that the floor drops by one from the left.",
+   "This keeps only the constant \\( a \\).",
+   "This is off by one from the correct one-sided limit.",
+   "This is off by one from the correct one-sided limit."
+  ]
+ },
+ {
+  "template_id": "floor_function_limit_noninteger_v1",
+  "skill_id": "greatest_integer_floor_function_limit",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": -4, "hi": 4},
+   "p": {"type": "choice", "values": [1, 2, 3]},
+   "q": {"type": "choice", "values": [4, 5]}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"c": "[[n]] + Rational([[p]], [[q]])"},
+  "stem": "Let \\( g(x) = \\lfloor x \\rfloor \\), the greatest-integer (floor) function. Since \\( [[c]] \\) is NOT an integer, \\( g \\) is continuous there. Evaluate \\( \\lim_{x \\to [[c]]} g(x) \\).",
+  "answer_spec": {"op": "limit", "expr": "floor(x)", "var": "x", "point": "[[c]]"},
+  "distractors": [
+   "[[n]] + 1",
+   "[[n]] - 1",
+   "2*[[n]]",
+   "0",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( [[c]] \\) lies strictly between the consecutive integers \\( [[n]] \\) and \\( [[n]]+1 \\), the floor function is constant (equal to \\( [[n]] \\)) on an open interval around \\( [[c]] \\), so it is continuous there and the two-sided limit equals \\( \\lfloor [[c]] \\rfloor = [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds up to the next integer instead of taking the floor.",
+   "This is off by one below the correct integer part.",
+   "This doubles the integer part.",
+   "This ignores the actual value of \\( c \\) entirely.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "floor_function_scaled_argument_v1",
+  "skill_id": "greatest_integer_floor_function_limit",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 5},
+   "m": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {"c": "Rational([[m]], [[k]])"},
+  "stem": "Let \\( h(x) = \\lfloor [[k]]x \\rfloor \\). Evaluate \\( \\lim_{x \\to [[c]]^{-}} h(x) \\).",
+  "answer_spec": {"op": "limit", "expr": "floor([[k]]*x)", "var": "x", "point": "[[c]]", "dir": "-"},
+  "distractors": [
+   "[[m]]",
+   "[[m]] + 1",
+   "[[k]]*[[m]]",
+   "[[m]]/[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "As \\( x \\to \\left(\\frac{[[m]]}{[[k]]}\\right)^{-} \\), the quantity \\( [[k]]x \\) approaches the integer \\( [[m]] \\) from below, so \\( \\lfloor [[k]]x \\rfloor = [[m]] - 1 \\) just before the boundary. Hence \\( h(x) \\to [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the right-hand limit, where \\( \\lfloor [[k]]x \\rfloor = m \\) exactly.",
+   "This is one more than the right-hand limit.",
+   "This multiplies instead of recognizing the scaled variable already hits the integer \\( m \\).",
+   "This divides \\( m \\) by \\( k \\) again, undoing the scaling.",
+   "This is off by one from the correct one-sided limit.",
+   "This is off by two from the correct one-sided limit.",
+   "This is off by one (other direction) from the correct one-sided limit."
+  ]
+ },
+ {
+  "template_id": "floor_function_x_floor_reciprocal_v1",
+  "skill_id": "greatest_integer_floor_function_limit",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to 0^{+}} \\left( [[a]]x \\cdot \\left\\lfloor \\dfrac{[[b]]}{x} \\right\\rfloor \\right) \\).",
+  "answer_spec": {"op": "limit", "expr": "[[a]]*x*floor([[b]]/x)", "var": "x", "point": 0, "dir": "+"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "[[a]]",
+   "[[b]]",
+   "Rational([[a]], [[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Using \\( \\dfrac{[[b]]}{x} - 1 < \\left\\lfloor \\dfrac{[[b]]}{x} \\right\\rfloor \\le \\dfrac{[[b]]}{x} \\), multiplying through by \\( [[a]]x > 0 \\) and squeezing as \\( x \\to 0^{+} \\) gives \\( [[a]]x \\left\\lfloor \\dfrac{[[b]]}{x} \\right\\rfloor \\to [[a]]\\cdot[[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two constants instead of multiplying them.",
+   "This keeps only the coefficient outside the floor.",
+   "This keeps only the constant inside the floor.",
+   "This divides the constants instead of multiplying them.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "floor_function_fractional_part_jump_v1",
+  "skill_id": "greatest_integer_floor_function_limit",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": -8, "hi": 8},
+   "b": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Let \\( r(x) = [[b]] + \\left(x - \\lfloor x \\rfloor\\right) \\), a shift of the fractional-part (sawtooth) function. Evaluate \\( \\lim_{x \\to [[n]]^{-}} r(x) \\).",
+  "answer_spec": {"op": "limit", "expr": "[[b]] + (x - floor(x))", "var": "x", "point": "[[n]]", "dir": "-"},
+  "distractors": [
+   "[[n]] + [[b]]",
+   "[[b]] - 1",
+   "[[n]]",
+   "[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 2"
+  ],
+  "solution": "Just below the integer \\( [[n]] \\), \\( \\lfloor x \\rfloor = [[n]]-1 \\), so \\( x - \\lfloor x \\rfloor \\to [[n]] - ([[n]]-1) = 1 \\). Hence \\( r(x) \\to [[b]] + 1 = [[answer]] \\). (Just above \\( [[n]] \\), \\( r(x) \\to [[b]] \\) instead, so the two-sided limit does not exist.)",
+  "distractor_rationales": [
+   "This uses the point itself plus the shift instead of the fractional-part contribution.",
+   "This subtracts instead of adding the fractional-part contribution of 1.",
+   "This drops the shift \\( b \\) entirely.",
+   "This is the right-hand limit, not the requested left-hand limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ }
+]

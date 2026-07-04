@@ -1,0 +1,170 @@
+[
+  {
+    "template_id": "fermat_prime_power_v1",
+    "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 16},
+      "b": {"type": "int", "lo": 40, "hi": 150},
+      "p": {"type": "choice", "values": [7, 11, 13, 17]}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+    "stem": "Using Fermat's Little Theorem, find the remainder when \\( [[a]]^{[[b]]} \\) is divided by the prime \\( [[p]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], [[p]])"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), [[p]])",
+      "Mod([[a]]**([[b]] - 1), [[p]])",
+      "Mod([[a]], [[p]])",
+      "Mod([[answer]] + 1, [[p]])",
+      "Mod([[answer]] + 2, [[p]])",
+      "Mod([[answer]] + 3, [[p]])",
+      "Mod([[a]]**2, [[p]])"
+    ],
+    "solution": "By Fermat's Little Theorem \\( [[a]]^{[[p]]-1} \\equiv 1 \\pmod{[[p]]} \\). Writing \\( [[b]] = ([[p]]-1)q + r \\) reduces the exponent to \\( r = [[b]] \\bmod ([[p]]-1) \\), so \\( [[a]]^{[[b]]} \\equiv [[a]]^{r} \\equiv [[answer]] \\pmod{[[p]]} \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), overshooting the reduced exponent by one.",
+      "This uses exponent \\( [[b]]-1 \\), undershooting by one.",
+      "This is \\( [[a]] \\bmod [[p]] \\), as if the exponent reduced to 1.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is three more than the correct remainder.",
+      "This is \\( [[a]]^{2} \\bmod [[p]] \\), as if the exponent reduced to 2."
+    ]
+  },
+  {
+    "template_id": "fermat_factorial_exponent_v1",
+    "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 20},
+      "k": {"type": "int", "lo": 3, "hi": 6},
+      "p": {"type": "choice", "values": [7, 11, 13, 17, 19]}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+    "stem": "Using Fermat's Little Theorem, find the remainder when \\( [[a]]^{[[k]]!} \\) is divided by the prime \\( [[p]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(factorial([[k]])), [[p]])"},
+    "distractors": [
+      "Mod([[a]]**[[k]], [[p]])",
+      "Mod([[a]], [[p]])",
+      "Mod(factorial([[k]]), [[p]])",
+      "Mod([[answer]] + 1, [[p]])",
+      "Mod([[answer]] + 2, [[p]])",
+      "Mod([[answer]] + 3, [[p]])",
+      "Mod([[a]]**2, [[p]])"
+    ],
+    "solution": "First compute the exponent itself: \\( [[k]]! \\). By Fermat's Little Theorem \\( [[a]]^{[[p]]-1}\\equiv 1\\pmod{[[p]]} \\), so only \\( [[k]]! \\bmod ([[p]]-1) \\) matters; evaluating gives \\( [[a]]^{[[k]]!} \\equiv [[answer]] \\pmod{[[p]]} \\).",
+    "distractor_rationales": [
+      "This uses the un-evaluated exponent \\( [[k]] \\) instead of \\( [[k]]! \\).",
+      "This is \\( [[a]] \\bmod [[p]] \\), as if the exponent reduced to 1.",
+      "This reduces the exponent \\( [[k]]! \\) itself mod \\( [[p]] \\) instead of using it as a power of \\( [[a]] \\).",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is three more than the correct remainder.",
+      "This is \\( [[a]]^{2} \\bmod [[p]] \\), as if the exponent reduced to 2."
+    ]
+  },
+  {
+    "template_id": "fermat_sum_of_two_powers_v1",
+    "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 20},
+      "b": {"type": "int", "lo": 30, "hi": 80},
+      "c": {"type": "int", "lo": 2, "hi": 20},
+      "d": {"type": "int", "lo": 30, "hi": 80},
+      "p": {"type": "choice", "values": [7, 11, 13, 17]}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)", "Ne(Mod([[c]], [[p]]), 0)"],
+    "stem": "Using Fermat's Little Theorem on each term, find the remainder when \\( [[a]]^{[[b]]} + [[c]]^{[[d]]} \\) is divided by the prime \\( [[p]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] + [[c]]**[[d]], [[p]])"},
+    "distractors": [
+      "Mod([[a]]**[[b]], [[p]])",
+      "Mod([[c]]**[[d]], [[p]])",
+      "Mod([[a]]**[[b]] * [[c]]**[[d]], [[p]])",
+      "Mod([[answer]] + 1, [[p]])",
+      "Mod([[answer]] + 2, [[p]])",
+      "Mod([[answer]] + 3, [[p]])",
+      "Mod([[a]]**[[b]] + [[c]]**([[d]] + 1), [[p]])"
+    ],
+    "solution": "Reduce each term separately by Fermat's Little Theorem, \\( [[a]]^{[[p]]-1}\\equiv1 \\) and \\( [[c]]^{[[p]]-1}\\equiv1\\pmod{[[p]]} \\), then add the residues and reduce mod \\( [[p]] \\): the remainder is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This only reduces the first term, dropping the second entirely.",
+      "This only reduces the second term, dropping the first entirely.",
+      "This multiplies the two reduced terms instead of adding them.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is three more than the correct remainder.",
+      "This uses one extra power on the second term."
+    ]
+  },
+  {
+    "template_id": "fermat_general_form_a_to_p_v1",
+    "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 40},
+      "p": {"type": "choice", "values": [7, 11, 13, 17, 19]}
+    },
+    "constraints": [],
+    "stem": "Fermat's Little Theorem also holds in the unconditional form \\( a^{p} \\equiv a \\pmod{p} \\), true for EVERY integer \\( a \\) (even multiples of \\( p \\)), not just those coprime to \\( p \\). What is \\( [[a]]^{[[p]]} \\bmod [[p]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[p]], [[p]])"},
+    "distractors": [
+      "Mod([[a]]**([[p]] - 1), [[p]])",
+      "[[a]]",
+      "Mod([[a]]**2, [[p]])",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[p]] - [[answer]]"
+    ],
+    "solution": "By the unconditional form of Fermat's Little Theorem, \\( [[a]]^{[[p]]} \\equiv [[a]] \\pmod{[[p]]} \\) regardless of whether \\( [[p]] \\) divides \\( [[a]] \\). Reducing \\( [[a]] \\) itself modulo \\( [[p]] \\) gives \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses the coprime-only exponent \\( p-1 \\), which requires \\( \\gcd(a,p)=1 \\) and is not what this exponent equals.",
+      "This is \\( [[a]] \\) itself, unreduced, rather than \\( [[a]] \\bmod [[p]] \\).",
+      "This is \\( [[a]]^{2} \\bmod [[p]] \\), the wrong exponent.",
+      "This is one more than the correct remainder.",
+      "This is one less than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is the complementary residue \\( p - \\text{answer} \\), the wrong sign class."
+    ]
+  },
+  {
+    "template_id": "fermat_product_of_two_powers_v1",
+    "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 20},
+      "b": {"type": "int", "lo": 30, "hi": 80},
+      "c": {"type": "int", "lo": 2, "hi": 20},
+      "d": {"type": "int", "lo": 30, "hi": 80},
+      "p": {"type": "choice", "values": [7, 11, 13, 17]}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)", "Ne(Mod([[c]], [[p]]), 0)"],
+    "stem": "Using Fermat's Little Theorem on each factor, find the remainder when \\( [[a]]^{[[b]]} \\cdot [[c]]^{[[d]]} \\) is divided by the prime \\( [[p]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] * [[c]]**[[d]], [[p]])"},
+    "distractors": [
+      "Mod([[a]]**[[b]], [[p]])",
+      "Mod([[c]]**[[d]], [[p]])",
+      "Mod([[a]]**[[b]] + [[c]]**[[d]], [[p]])",
+      "Mod([[answer]] + 1, [[p]])",
+      "Mod([[answer]] + 2, [[p]])",
+      "Mod([[answer]] + 3, [[p]])",
+      "Mod([[a]]**[[b]] * [[c]]**([[d]] + 1), [[p]])"
+    ],
+    "solution": "Reduce each factor separately by Fermat's Little Theorem, \\( [[a]]^{[[p]]-1}\\equiv1 \\) and \\( [[c]]^{[[p]]-1}\\equiv1\\pmod{[[p]]} \\), then multiply the residues and reduce mod \\( [[p]] \\): the remainder is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This only reduces the first factor, dropping the second entirely.",
+      "This only reduces the second factor, dropping the first entirely.",
+      "This adds the two reduced factors instead of multiplying them.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is three more than the correct remainder.",
+      "This uses one extra power on the second factor."
+    ]
+  }
+]

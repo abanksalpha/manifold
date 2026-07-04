@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "ratio_and_root_tests_ratio_factorial_exponential_v1",
+ "skill_id": "ratio_and_root_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 9},
+  "m": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Apply the Ratio Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[m]][[c]]^{n}}{n!} \\): compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\left|\\dfrac{a_{n+1}}{a_{n}}\\right| \\).",
+ "answer_spec": {"op": "limit", "expr": "[[c]]/(n+1)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]",
+  "1",
+  "[[c]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The constant \\( [[m]] \\) cancels in the ratio: \\( \\dfrac{a_{n+1}}{a_{n}} = \\dfrac{[[m]][[c]]^{n+1}/(n+1)!}{[[m]][[c]]^{n}/n!} = \\dfrac{[[c]]}{n+1} \\), so \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[c]]}{n+1} = [[answer]] \\); since \\( L=0 < 1 \\), the series converges absolutely for every \\( [[c]] \\).",
+ "distractor_rationales": [
+  "This treats the factorial growth as if it did not affect the ratio at all, keeping only the exponential's base.",
+  "This wrongly assumes the ratio test is inconclusive (\\( L=1 \\)) rather than computing the actual limit.",
+  "This subtracts one from the base of the exponential instead of dividing by the growing factorial ratio.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+},
+{
+ "template_id": "ratio_and_root_tests_ratio_polynomial_exponential_v2",
+ "skill_id": "ratio_and_root_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "Apply the Ratio Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{n^{[[p]]}}{[[c]]^{n}} \\): compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\left|\\dfrac{a_{n+1}}{a_{n}}\\right| \\).",
+ "answer_spec": {"op": "limit", "expr": "((n+1)/n)**[[p]]/[[c]]", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]",
+  "[[p]]/[[c]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "\\( \\dfrac{a_{n+1}}{a_{n}} = \\dfrac{(n+1)^{[[p]]}/[[c]]^{n+1}}{n^{[[p]]}/[[c]]^{n}} = \\dfrac{1}{[[c]]}\\left(\\dfrac{n+1}{n}\\right)^{[[p]]} \\), and since \\( (n+1)/n \\to 1 \\), \\( L = \\dfrac{1}{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct ratio, reporting the exponential base itself instead of its reciprocal.",
+  "This wrongly divides the polynomial degree by the exponential base rather than taking the limit of the ratio of consecutive terms.",
+  "This wrongly assumes the polynomial-degree factor forces the whole ratio to vanish.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+},
+{
+ "template_id": "ratio_and_root_tests_ratio_double_factorial_v3",
+ "skill_id": "ratio_and_root_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 9},
+  "m": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Apply the Ratio Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[m]]\\,(2n)!}{(n!)^{2}\\,[[c]]^{n}} \\): compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\left|\\dfrac{a_{n+1}}{a_{n}}\\right| \\).",
+ "answer_spec": {"op": "limit", "expr": "(2*n+2)*(2*n+1)/((n+1)**2*[[c]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]",
+  "4*[[c]]",
+  "2/[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The constant \\( [[m]] \\) cancels in the ratio: \\( \\dfrac{a_{n+1}}{a_{n}} = \\dfrac{(2n+2)!/((n+1)!)^{2}[[c]]^{n+1}}{(2n)!/(n!)^{2}[[c]]^{n}} = \\dfrac{(2n+2)(2n+1)}{(n+1)^{2}\\,[[c]]} \\), and as \\( n\\to\\infty \\) the polynomial ratio \\( (2n+2)(2n+1)/(n+1)^{2}\\to 4 \\), so \\( L = \\dfrac{4}{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the double-factorial ratio contributes a factor of \\( 1 \\) instead of \\( 4 \\).",
+  "This inverts the correct ratio, multiplying by \\( [[c]] \\) instead of dividing by it.",
+  "This uses a factor of \\( 2 \\) instead of the correct limiting factor of \\( 4 \\) from the binomial-type ratio.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+},
+{
+ "template_id": "ratio_and_root_tests_root_test_direct_v4",
+ "skill_id": "ratio_and_root_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "Apply the Root Test DIRECTLY (without first writing \\( a_{n} \\) as an \\( n \\)th power) to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[a]]n+[[b]]}{[[c]]^{n}} \\): compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\sqrt[n]{|a_{n}|} \\).",
+ "answer_spec": {"op": "limit", "expr": "(([[a]]*n+[[b]])/[[c]]**n)**(1/n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]",
+  "[[a]]/[[c]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "Write \\( \\sqrt[n]{|a_{n}|} = \\dfrac{([[a]]n+[[b]])^{1/n}}{[[c]]} \\). Since any polynomial in \\( n \\) raised to the power \\( 1/n \\) tends to \\( 1 \\) as \\( n\\to\\infty \\) (its \\( n \\)th root grows sub-exponentially), \\( L = \\dfrac{1}{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct value, reporting the exponential base itself instead of its reciprocal.",
+  "This wrongly keeps the linear coefficient \\( [[a]] \\) as if it survived the \\( n \\)th root, rather than tending to \\( 1 \\).",
+  "This wrongly assumes the polynomial numerator forces the whole \\( n \\)th root to vanish.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+}
+]

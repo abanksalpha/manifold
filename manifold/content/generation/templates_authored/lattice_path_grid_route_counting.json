@@ -1,0 +1,186 @@
+[
+{
+ "template_id": "lattice_paths_v1",
+ "skill_id": "lattice_path_grid_route_counting",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 7},
+  "n": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": [],
+ "stem": "How many shortest lattice paths are there from the point \\( (0, 0) \\) to the point \\( ([[m]], [[n]]) \\), if every step moves either one unit to the right or one unit up?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[m]] + [[n]], [[n]])"},
+ "distractors": [
+  "factorial([[m]] + [[n]])",
+  "[[m]]*[[n]]",
+  "2**([[m]] + [[n]])",
+  "binomial([[m]] + [[n]], [[n]] - 1)",
+  "factorial([[m]])*factorial([[n]])",
+  "[[answer]] + [[m]]"
+ ],
+ "solution": "A path is a sequence of \\( [[m]]+[[n]] \\) steps, of which [[n]] are ups; choosing their positions gives \\( \\binom{[[m]]+[[n]]}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( ([[m]]+[[n]])! \\), forgetting that the right-steps and up-steps are each interchangeable.",
+  "This multiplies the coordinates, as if counting grid cells rather than paths.",
+  "This counts all up/right sequences \\( 2^{[[m]]+[[n]]} \\), including ones that overshoot.",
+  "This chooses one too few up-steps in the binomial coefficient.",
+  "This multiplies the factorials of the coordinates instead of using a binomial.",
+  "This is off from the correct count by [[m]]."
+ ]
+},
+{
+ "template_id": "lattice_paths_through_point_v1",
+ "skill_id": "lattice_path_grid_route_counting",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 3, "hi": 9},
+  "n": {"type": "int", "lo": 3, "hi": 9},
+  "p": {"type": "int", "lo": 0, "hi": 9},
+  "q": {"type": "int", "lo": 0, "hi": 9}
+ },
+ "constraints": ["Le([[p]], [[m]])", "Le([[q]], [[n]])", "Or(Gt([[p]], 0), Gt([[q]], 0))", "Or(Lt([[p]], [[m]]), Lt([[q]], [[n]]))"],
+ "stem": "How many shortest lattice paths from \\( (0,0) \\) to \\( ([[m]], [[n]]) \\) (moving only right or up at each step) pass through the point \\( ([[p]], [[q]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[p]] + [[q]], [[q]]) * binomial(([[m]] - [[p]]) + ([[n]] - [[q]]), [[n]] - [[q]])"},
+ "distractors": [
+  "binomial([[m]] + [[n]], [[n]])",
+  "binomial([[p]] + [[q]], [[q]])",
+  "binomial(([[m]] - [[p]]) + ([[n]] - [[q]]), [[n]] - [[q]])",
+  "binomial([[p]] + [[q]], [[q]]) + binomial(([[m]] - [[p]]) + ([[n]] - [[q]]), [[n]] - [[q]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Split the path at \\( ([[p]],[[q]]) \\): there are \\( \\binom{[[p]]+[[q]]}{[[q]]} \\) ways to reach it from \\( (0,0) \\), then \\( \\binom{([[m]]-[[p]])+([[n]]-[[q]])}{[[n]]-[[q]]} \\) ways to continue to \\( ([[m]],[[n]]) \\); by the multiplication principle the total is their product \\( = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the requirement to pass through \\( ([[p]],[[q]]) \\) and counts all paths.",
+  "This only counts the first leg of the trip, from \\( (0,0) \\) to \\( ([[p]],[[q]]) \\).",
+  "This only counts the second leg of the trip, from \\( ([[p]],[[q]]) \\) to \\( ([[m]],[[n]]) \\).",
+  "This adds the two legs instead of multiplying them by the multiplication principle.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "lattice_paths_avoiding_point_v1",
+ "skill_id": "lattice_path_grid_route_counting",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 3, "hi": 9},
+  "n": {"type": "int", "lo": 3, "hi": 9},
+  "p": {"type": "int", "lo": 0, "hi": 9},
+  "q": {"type": "int", "lo": 0, "hi": 9}
+ },
+ "constraints": ["Le([[p]], [[m]])", "Le([[q]], [[n]])", "Or(Gt([[p]], 0), Gt([[q]], 0))", "Or(Lt([[p]], [[m]]), Lt([[q]], [[n]]))"],
+ "stem": "A city grid has a road closure at intersection \\( ([[p]], [[q]]) \\). How many shortest lattice paths from \\( (0,0) \\) to \\( ([[m]], [[n]]) \\) (moving only right or up at each step) AVOID passing through \\( ([[p]], [[q]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[m]] + [[n]], [[n]]) - binomial([[p]] + [[q]], [[q]]) * binomial(([[m]] - [[p]]) + ([[n]] - [[q]]), [[n]] - [[q]])"},
+ "distractors": [
+  "binomial([[m]] + [[n]], [[n]])",
+  "binomial([[p]] + [[q]], [[q]]) * binomial(([[m]] - [[p]]) + ([[n]] - [[q]]), [[n]] - [[q]])",
+  "binomial([[m]] + [[n]], [[n]]) - binomial([[p]] + [[q]], [[q]])",
+  "binomial([[m]] + [[n]], [[n]]) + binomial([[p]] + [[q]], [[q]]) * binomial(([[m]] - [[p]]) + ([[n]] - [[q]]), [[n]] - [[q]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Total unrestricted paths are \\( \\binom{[[m]]+[[n]]}{[[n]]} \\). Of these, \\( \\binom{[[p]]+[[q]]}{[[q]]}\\cdot\\binom{([[m]]-[[p]])+([[n]]-[[q]])}{[[n]]-[[q]]} \\) pass through the closed intersection; subtracting gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to exclude the paths that pass through the closed intersection.",
+  "This reports only the paths through the closed intersection, the complement of what was asked.",
+  "This subtracts only the first leg to the closed point instead of the full through-count.",
+  "This adds the through-count instead of subtracting it.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "lattice_paths_3d_v1",
+ "skill_id": "lattice_path_grid_route_counting",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "In three-dimensional space, how many shortest lattice paths are there from \\( (0,0,0) \\) to \\( ([[a]], [[b]], [[c]]) \\), if every step moves one unit in the positive \\( x \\), \\( y \\), or \\( z \\) direction?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[a]] + [[b]] + [[c]]) / (factorial([[a]]) * factorial([[b]]) * factorial([[c]]))"},
+ "distractors": [
+  "binomial([[a]] + [[b]] + [[c]], [[c]])",
+  "factorial([[a]] + [[b]] + [[c]])",
+  "factorial([[a]]) * factorial([[b]]) * factorial([[c]])",
+  "factorial([[a]] + [[b]] + [[c]]) / (factorial([[a]]) * factorial([[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A path is a sequence of \\( [[a]]+[[b]]+[[c]] \\) steps consisting of [[a]] \\(x\\)-steps, [[b]] \\(y\\)-steps, and [[c]] \\(z\\)-steps; the number of distinguishable orderings is the multinomial coefficient \\( \\dfrac{([[a]]+[[b]]+[[c]])!}{[[a]]!\\,[[b]]!\\,[[c]]!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats it as a 2-step-type grid, ignoring the third direction entirely.",
+  "This treats all the steps as distinguishable, forgetting to divide out the repeats within each direction.",
+  "This inverts the multinomial coefficient formula.",
+  "This forgets to divide out the repeats among the \\( z \\)-steps.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "lattice_paths_below_diagonal_v1",
+ "skill_id": "lattice_path_grid_route_counting",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "How many shortest lattice paths from \\( (0,0) \\) to \\( ([[n]],[[n]]) \\) (moving only right or up at each step) never rise above the line \\( y=x \\), that is, stay on or below the diagonal at every point of the path?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial(2*[[n]], [[n]]) / ([[n]] + 1)"},
+ "distractors": [
+  "binomial(2*[[n]], [[n]])",
+  "binomial(2*[[n]], [[n]]) / 2",
+  "binomial(2*[[n]] - 1, [[n]])",
+  "binomial(2*[[n]], [[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the reflection principle, the number of such paths is the Catalan number \\( C_{[[n]]} = \\dfrac{1}{[[n]]+1}\\binom{2[[n]]}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count of ALL paths to \\( ([[n]],[[n]]) \\), forgetting the reflection-principle correction for the ones that cross the diagonal.",
+  "This uses a naive halving instead of dividing by \\( [[n]]+1 \\).",
+  "This uses the wrong total step count in the binomial coefficient.",
+  "This uses the wrong lower index in the binomial coefficient.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "lattice_paths_with_diagonal_steps_v1",
+ "skill_id": "lattice_path_grid_route_counting",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Le([[m]], [[n]])"],
+ "stem": "A checker moves on a grid from \\( (0,0) \\) to \\( ([[m]], [[n]]) \\). At each step it moves either one unit right, one unit up, or one unit diagonally (one unit right AND one unit up simultaneously); it never moves left or down. How many distinct paths are there from \\( (0,0) \\) to \\( ([[m]], [[n]]) \\)?",
+ "answer_spec": {"op": "sum", "expr": "binomial([[m]], k) * binomial([[n]], k) * 2**k", "var": "k", "lo": "0", "hi": "[[m]]"},
+ "distractors": [
+  "binomial([[m]] + [[n]], [[n]])",
+  "binomial([[m]] + [[n]], [[m]]) * 2**[[m]]",
+  "3**([[m]] + [[n]])",
+  "2**([[m]] + [[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Summing over the number \\( k \\) of diagonal steps used (\\( 0 \\le k \\le [[m]] \\)), choose which \\( k \\) of the [[m]] rightward and which \\( k \\) of the [[n]] upward moves are merged into diagonals: \\( \\sum_{k=0}^{[[m]]} \\binom{[[m]]}{k}\\binom{[[n]]}{k}2^{k} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores diagonal moves entirely and counts only right/up paths.",
+  "This overcounts by pairing up right and up moves independently instead of summing over the number of diagonal steps.",
+  "This treats every one of the \\( [[m]]+[[n]] \\) steps as having 3 independent choices, which overcounts.",
+  "This treats every one of the \\( [[m]]+[[n]] \\) steps as having 2 independent choices, ignoring diagonal moves.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-07-03T05:16:35.760542+00:00",
+  "what_this_measures": "paraphrase quality (surface variety + correctness fidelity) of the multiple verified items per skill in the teach bank; the generation side of 7d.",
+  "skills_with_paraphrases": 36,
+  "total_paraphrase_pairs": 96,
+  "mean_pairwise_similarity_all": 0.099,
+  "genuine_paraphrase_pairs": 96,
+  "genuine_pair_rate": 1.0,
+  "correctness_fidelity": "every item is verify-passed AND blind-cross-solved, so each paraphrase carries a correct, machine-checked answer (same idea survives rewording).",
+  "learner_side_gap": {
+    "status": "PENDING_REAL_LEARNERS",
+    "wants": "student recall on the practiced card vs accuracy on reworded items, and the gap",
+    "pipeline_ready": "Manifold logs memory (FSRS R) and performance (cold Review-kind correctness) separately, so the two channels exist; the gap awaits real learners."
+  },
+  "per_skill": [
+    {
+      "skill_id": "absolute_extrema_on_a_closed_region",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.212,
+      "max_pairwise_similarity": 0.327
+    },
+    {
+      "skill_id": "area_of_a_planar_region_via_a_double_integral",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.129,
+      "max_pairwise_similarity": 0.314
+    },
+    {
+      "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.132,
+      "max_pairwise_similarity": 0.397
+    },
+    {
+      "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.047,
+      "max_pairwise_similarity": 0.069
+    },
+    {
+      "skill_id": "closest_farthest_point_via_a_constraint",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.0,
+      "max_pairwise_similarity": 0.0
+    },
+    {
+      "skill_id": "complex_conjugate_roots_oscillatory_solution",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.07,
+      "max_pairwise_similarity": 0.121
+    },
+    {
+      "skill_id": "compute_a_jacobian_determinant",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.017,
+      "max_pairwise_similarity": 0.028
+    },
+    {
+      "skill_id": "constrained_extremum_via_lagrange_multipliers",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.357,
+      "max_pairwise_similarity": 0.421
+    },
+    {
+      "skill_id": "conversion_to_polar_coordinates",
+      "n_items": 2,
+      "mean_pairwise_similarity": 0.018,
+      "max_pairwise_similarity": 0.018
+    },
+    {
+      "skill_id": "count_or_characterize_saddle_points",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.246,
+      "max_pairwise_similarity": 0.4
+    },
+    {
+      "skill_id": "cylindrical_coordinates_for_axially_symmetric_solids",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.061,
+      "max_pairwise_similarity": 0.156
+    },
+    {
+      "skill_id": "direction_and_rate_of_steepest_ascent",
+      "n_items": 2,
+      "mean_pairwise_similarity": 0.143,
+      "max_pairwise_similarity": 0.143
+    },
+    {
+      "skill_id": "directional_derivative_in_a_given_direction",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.258,
+      "max_pairwise_similarity": 0.321
+    },
+    {
+      "skill_id": "divergence_of_a_vector_field",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.1,
+      "max_pairwise_similarity": 0.183
+    },
+    {
+      "skill_id": "double_integral_over_a_curve_bounded_region_type_i_t",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.055,
+      "max_pairwise_similarity": 0.078
+    },
+    {
+      "skill_id": "evaluate_a_double_integral_via_a_linear_affine_chang",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.089,
+      "max_pairwise_similarity": 0.133
+    },
+    {
+      "skill_id": "first_order_partial_derivative_at_a_point",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.074,
+      "max_pairwise_similarity": 0.128
+    },
+    {
+      "skill_id": "higher_order_and_mixed_partials_clairaut",
+      "n_items": 2,
+      "mean_pairwise_similarity": 0.069,
+      "max_pairwise_similarity": 0.069
+    },
+    {
+      "skill_id": "identify_the_integrating_factor",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.109,
+      "max_pairwise_similarity": 0.167
+    },
+    {
+      "skill_id": "identify_the_region_from_given_limits",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.012,
+      "max_pairwise_similarity": 0.036
+    },
+    {
+      "skill_id": "implicit_differentiation_for_a_partial_derivative",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.053,
+      "max_pairwise_similarity": 0.127
+    },
+    {
+      "skill_id": "iterated_double_integral_over_a_rectangle",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.167,
+      "max_pairwise_similarity": 0.292
+    },
+    {
+      "skill_id": "linear_approximation_and_the_total_differential",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.153,
+      "max_pairwise_similarity": 0.386
+    },
+    {
+      "skill_id": "normal_vector_normal_line_to_a_surface",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.055,
+      "max_pairwise_similarity": 0.109
+    },
+    {
+      "skill_id": "operator_identities_and_type_checking",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.0,
+      "max_pairwise_similarity": 0.0
+    },
+    {
+      "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.012,
+      "max_pairwise_similarity": 0.025
+    },
+    {
+      "skill_id": "repeated_root",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.142,
+      "max_pairwise_similarity": 0.209
+    },
+    {
+      "skill_id": "reverse_the_order_to_make_the_integral_solvable",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.144,
+      "max_pairwise_similarity": 0.302
+    },
+    {
+      "skill_id": "scalar_line_integral_arc_length_form",
+      "n_items": 2,
+      "mean_pairwise_similarity": 0.115,
+      "max_pairwise_similarity": 0.115
+    },
+    {
+      "skill_id": "set_up_the_iterated_integral_for_a_described_region",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.045,
+      "max_pairwise_similarity": 0.086
+    },
+    {
+      "skill_id": "spherical_coordinates_for_balls_cones",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.0,
+      "max_pairwise_similarity": 0.0
+    },
+    {
+      "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.033,
+      "max_pairwise_similarity": 0.1
+    },
+    {
+      "skill_id": "verify_a_function_satisfies_a_pde_harmonic_laplace",
+      "n_items": 2,
+      "mean_pairwise_similarity": 0.194,
+      "max_pairwise_similarity": 0.194
+    },
+    {
+      "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.126,
+      "max_pairwise_similarity": 0.179
+    },
+    {
+      "skill_id": "volume_under_a_surface_between_two_surfaces",
+      "n_items": 3,
+      "mean_pairwise_similarity": 0.087,
+      "max_pairwise_similarity": 0.138
+    },
+    {
+      "skill_id": "work_integral_by_direct_parametrization",
+      "n_items": 2,
+      "mean_pairwise_similarity": 0.042,
+      "max_pairwise_similarity": 0.042
+    }
+  ]
+}

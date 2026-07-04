@@ -1,0 +1,199 @@
+[
+ {
+  "template_id": "compose_sin_arccos_v1",
+  "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\sin\\!\\left( \\arccos\\dfrac{[[a]]}{[[b]]} \\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sin(acos(Rational([[a]],[[b]])))"},
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "sqrt(1 + Rational([[a]],[[b]])**2)",
+   "1 - Rational([[a]],[[b]])**2",
+   "Rational([[a]],[[b]])/sqrt(1 - Rational([[a]],[[b]])**2)",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Let \\( \\theta = \\arccos\\dfrac{[[a]]}{[[b]]} \\), so \\( \\cos\\theta = \\dfrac{[[a]]}{[[b]]} \\). Since \\( \\theta \\in [0,\\pi] \\), \\( \\sin\\theta \\ge 0 \\), so \\( \\sin\\theta = \\sqrt{1 - \\cos^2\\theta} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the argument \\( \\cos\\theta \\) itself instead of \\( \\sin\\theta \\).",
+   "This uses \\( \\sqrt{1+\\cos^2\\theta} \\) with the wrong sign inside the root.",
+   "This stops at \\( 1-\\cos^2\\theta \\) without taking the square root.",
+   "This computes \\( \\tan\\theta \\) rather than \\( \\sin\\theta \\).",
+   "This has the wrong sign; \\( \\sin\\theta \\ge 0 \\) on \\( [0,\\pi] \\).",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compose_cos_arcsin_v1",
+  "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\cos\\!\\left( \\arcsin\\dfrac{[[a]]}{[[b]]} \\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "cos(asin(Rational([[a]],[[b]])))"},
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "sqrt(1 + Rational([[a]],[[b]])**2)",
+   "1 - Rational([[a]],[[b]])**2",
+   "Rational([[a]],[[b]])/sqrt(1 - Rational([[a]],[[b]])**2)",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Let \\( \\theta = \\arcsin\\dfrac{[[a]]}{[[b]]} \\), so \\( \\sin\\theta = \\dfrac{[[a]]}{[[b]]} \\). Since \\( \\theta \\in [-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}] \\), \\( \\cos\\theta \\ge 0 \\), so \\( \\cos\\theta = \\sqrt{1 - \\sin^2\\theta} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the argument \\( \\sin\\theta \\) itself instead of \\( \\cos\\theta \\).",
+   "This uses \\( \\sqrt{1+\\sin^2\\theta} \\) with the wrong sign inside the root.",
+   "This stops at \\( 1-\\sin^2\\theta \\) without taking the square root.",
+   "This computes \\( \\tan\\theta \\) rather than \\( \\cos\\theta \\).",
+   "This has the wrong sign; \\( \\cos\\theta \\ge 0 \\) on \\( [-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}] \\).",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compose_tan_arcsin_v1",
+  "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\tan\\!\\left( \\arcsin\\dfrac{[[a]]}{[[b]]} \\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "tan(asin(Rational([[a]],[[b]])))"},
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "sqrt(1 - Rational([[a]],[[b]])**2)",
+   "sqrt(1 + Rational([[a]],[[b]])**2)",
+   "1 - Rational([[a]],[[b]])**2",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Let \\( \\theta = \\arcsin\\dfrac{[[a]]}{[[b]]} \\), so \\( \\sin\\theta = \\dfrac{[[a]]}{[[b]]} \\) and \\( \\cos\\theta = \\sqrt{1-\\sin^2\\theta} \\) (positive on \\( [-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}] \\)). Then \\( \\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns \\( \\sin\\theta \\) instead of \\( \\tan\\theta \\).",
+   "This returns \\( \\cos\\theta \\) instead of \\( \\tan\\theta \\).",
+   "This uses \\( \\sqrt{1+\\sin^2\\theta} \\) with the wrong sign inside the root.",
+   "This stops at \\( 1-\\sin^2\\theta \\) without finishing the ratio.",
+   "This has the wrong sign for \\( \\tan\\theta \\).",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compose_tan_arccos_v1",
+  "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\tan\\!\\left( \\arccos\\dfrac{[[a]]}{[[b]]} \\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "tan(acos(Rational([[a]],[[b]])))"},
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "sqrt(1 - Rational([[a]],[[b]])**2)",
+   "sqrt(1 + Rational([[a]],[[b]])**2)",
+   "1 - Rational([[a]],[[b]])**2",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Let \\( \\theta = \\arccos\\dfrac{[[a]]}{[[b]]} \\), so \\( \\cos\\theta = \\dfrac{[[a]]}{[[b]]} \\) and \\( \\sin\\theta = \\sqrt{1-\\cos^2\\theta} \\) (nonnegative on \\( [0,\\pi] \\)). Then \\( \\tan\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta} = [[answer]] \\); the sign follows the sign of \\( [[a]] \\) since \\( \\theta \\) lands in Quadrant I or II.",
+  "distractor_rationales": [
+   "This returns \\( \\cos\\theta \\) instead of \\( \\tan\\theta \\).",
+   "This returns \\( \\sin\\theta \\) instead of \\( \\tan\\theta \\).",
+   "This uses \\( \\sqrt{1+\\cos^2\\theta} \\) with the wrong sign inside the root.",
+   "This stops at \\( 1-\\cos^2\\theta \\) without finishing the ratio.",
+   "This has the wrong sign for \\( \\tan\\theta \\).",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compose_sin_arctan_v1",
+  "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 8},
+   "b": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\sin\\!\\left( \\arctan\\dfrac{[[a]]}{[[b]]} \\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sin(atan(Rational([[a]],[[b]])))"},
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "[[a]]/sqrt([[a]]**2 - [[b]]**2)",
+   "[[b]]/sqrt([[a]]**2 + [[b]]**2)",
+   "sqrt([[a]]**2 + [[b]]**2)",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Let \\( \\theta = \\arctan\\dfrac{[[a]]}{[[b]]} \\). Build a right triangle with opposite leg \\( [[a]] \\) and adjacent leg \\( [[b]] \\), so the hypotenuse is \\( \\sqrt{[[a]]^2+[[b]]^2} \\). Then \\( \\sin\\theta = \\dfrac{[[a]]}{\\sqrt{[[a]]^2+[[b]]^2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This returns the input ratio \\( \\tan\\theta \\) itself instead of \\( \\sin\\theta \\).",
+   "This uses \\( a^2-b^2 \\) under the root instead of \\( a^2+b^2 \\).",
+   "This swaps the opposite and adjacent legs, giving \\( \\cos\\theta \\) instead of \\( \\sin\\theta \\).",
+   "This reports the hypotenuse itself rather than a ratio.",
+   "This has the wrong sign.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "compose_sum_arcsin_arccos_v1",
+  "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+  "topic_id": "trigonometry",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": 2, "hi": 6},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": [
+   "Ne([[a]], 0)", "Lt(Abs([[a]]), [[b]])", "Eq(gcd(Abs([[a]]), [[b]]), 1)",
+   "Ne([[c]], 0)", "Lt(Abs([[c]]), [[d]])", "Eq(gcd(Abs([[c]]), [[d]]), 1)"
+  ],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\sin\\!\\left( \\arcsin\\dfrac{[[a]]}{[[b]]} + \\arccos\\dfrac{[[c]]}{[[d]]} \\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sin(asin(Rational([[a]],[[b]])) + acos(Rational([[c]],[[d]])))"},
+  "distractors": [
+   "Rational([[a]],[[b]]) + Rational([[c]],[[d]])",
+   "Rational([[a]],[[b]])*Rational([[c]],[[d]])",
+   "sin(asin(Rational([[a]],[[b]]))) - sin(acos(Rational([[c]],[[d]])))",
+   "sqrt(1-Rational([[a]],[[b]])**2)*sqrt(1-Rational([[c]],[[d]])**2) - Rational([[a]],[[b]])*Rational([[c]],[[d]])",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Let \\( A=\\arcsin\\dfrac{[[a]]}{[[b]]} \\) (so \\( \\sin A=\\tfrac{[[a]]}{[[b]]}, \\cos A=\\sqrt{1-(\\tfrac{[[a]]}{[[b]]})^2}\\ge 0 \\)) and \\( B=\\arccos\\dfrac{[[c]]}{[[d]]} \\) (so \\( \\cos B=\\tfrac{[[c]]}{[[d]]}, \\sin B=\\sqrt{1-(\\tfrac{[[c]]}{[[d]]})^2}\\ge 0 \\)). By the angle-addition identity, \\( \\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two ratios directly instead of applying the sum identity.",
+   "This multiplies the two ratios instead of applying the sum identity.",
+   "This uses a difference of sines rather than the angle-addition formula.",
+   "This computes \\( \\cos(A+B) \\) (uses the cosine sum identity's sign pattern) instead of \\( \\sin(A+B) \\).",
+   "This has the wrong sign.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

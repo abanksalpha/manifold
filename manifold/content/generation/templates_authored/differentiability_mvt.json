@@ -1,0 +1,103 @@
+[
+ {
+  "template_id": "mvt_quadratic_c_v1",
+  "skill_id": "differentiability_mvt",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "C": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "int", "lo": -6, "hi": 3},
+   "gap": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"q": "[[p]]+[[gap]]"},
+  "stem": "Let \\( f(x) = [[A]]x^{2} + ([[B]])x + ([[C]]) \\), which is continuous on \\( [[[p]], [[q]]] \\) and differentiable on \\( ([[p]], [[q]]) \\). The Mean Value Theorem guarantees a point \\( c \\in ([[p]], [[q]]) \\) with \\( f'(c) = \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} \\). What is \\( c \\)?",
+  "answer_spec": {"op": "solve", "equation": "2*[[A]]*x+[[B]] = ([[A]]*[[q]]**2+[[B]]*[[q]]+[[C]] - ([[A]]*[[p]]**2+[[B]]*[[p]]+[[C]]))/([[q]]-[[p]])", "var": "x"},
+  "distractors": [
+   "[[p]]",
+   "[[q]]",
+   "([[p]]+[[q]])/2 + 1",
+   "([[p]]+[[q]])/2 - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Since \\( f \\) is quadratic, \\( f'(x) = 2([[A]])x+([[B]]) \\) is linear, so \\( f'(x) \\) equals the average slope exactly once. The average rate of change is \\( \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} = [[A]]([[p]]+[[q]])+[[B]] \\); setting \\( 2[[A]]c+[[B]] \\) equal to this and solving gives \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), the midpoint of the interval.",
+  "distractor_rationales": [
+   "This reports the left endpoint of the interval instead of the guaranteed interior point.",
+   "This reports the right endpoint of the interval instead of the guaranteed interior point.",
+   "This is the midpoint shifted one unit too high.",
+   "This is the midpoint shifted one unit too low.",
+   "This is off by two from the correct value of \\( c \\).",
+   "This is off by two from the correct value of \\( c \\)."
+  ]
+ },
+ {
+  "template_id": "mvt_avg_rate_polynomial_v1",
+  "skill_id": "differentiability_mvt",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -5, "hi": 5},
+   "C": {"type": "int", "lo": -6, "hi": 6},
+   "D": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "int", "lo": -5, "hi": 2},
+   "gap": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"q": "[[p]]+[[gap]]"},
+  "stem": "Let \\( f(x) = [[A]]x^{3} + ([[B]])x^{2} + ([[C]])x + ([[D]]) \\) on \\( [[[p]], [[q]]] \\). By the Mean Value Theorem there is some \\( c \\in ([[p]], [[q]]) \\) with \\( f'(c) \\) equal to the average rate of change of \\( f \\) over \\( [[[p]], [[q]]] \\). What is that guaranteed value of \\( f'(c) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[A]]*[[q]]**3+[[B]]*[[q]]**2+[[C]]*[[q]]+[[D]] - ([[A]]*[[p]]**3+[[B]]*[[p]]**2+[[C]]*[[p]]+[[D]]))/([[q]]-[[p]])"},
+  "distractors": [
+   "3*[[A]]*[[p]]**2 + 2*[[B]]*[[p]] + [[C]]",
+   "3*[[A]]*[[q]]**2 + 2*[[B]]*[[q]] + [[C]]",
+   "[[A]]*([[p]]**2+[[q]]**2) + [[B]]*([[p]]+[[q]]) + [[C]]",
+   "[[A]]*([[p]]+[[q]])**2 + [[C]]",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "The average rate of change is \\( \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} \\). Expanding \\( f([[q]])-f([[p]]) \\) and dividing by \\( [[q]]-[[p]] \\) gives \\( [[A]](p^{2}+pq+q^{2}) + [[B]](p+q) + [[C]] = [[answer]] \\), which the MVT guarantees equals \\( f'(c) \\) for some interior \\( c \\).",
+  "distractor_rationales": [
+   "This evaluates \\( f'(p) \\), the slope at the left endpoint, not the average rate of change.",
+   "This evaluates \\( f'(q) \\), the slope at the right endpoint, not the average rate of change.",
+   "This drops the cross term \\( pq \\) from the cubic's expansion.",
+   "This mistakenly expands \\( (p+q)^{2} \\) instead of \\( p^{2}+pq+q^{2} \\).",
+   "This is off by three from the correct value.",
+   "This is off by three from the correct value."
+  ]
+ },
+ {
+  "template_id": "mvt_avg_rate_trig_v1",
+  "skill_id": "differentiability_mvt",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -5, "hi": 5},
+   "n": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[B]], 0)"],
+  "derived": {"q": "[[n]]*pi"},
+  "stem": "Let \\( f(x) = [[A]]\\sin(x) + ([[B]])x \\) on \\( [0, [[n]]\\pi] \\). By the Mean Value Theorem there is some \\( c \\in (0, [[n]]\\pi) \\) with \\( f'(c) \\) equal to the average rate of change of \\( f \\) over \\( [0, [[n]]\\pi] \\). What is that guaranteed value of \\( f'(c) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[A]]*sin([[n]]*pi)+[[B]]*[[n]]*pi - ([[A]]*sin(0)+[[B]]*0))/([[n]]*pi - 0)"},
+  "distractors": [
+   "[[A]] + [[B]]",
+   "[[A]]*cos([[n]]*pi) + [[B]]",
+   "-[[A]] + [[B]]",
+   "[[B]]/[[n]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Since \\( \\sin([[n]]\\pi) = 0 = \\sin(0) \\), the average rate of change is \\( \\dfrac{([[A]]\\cdot 0+[[B]]\\cdot [[n]]\\pi) - ([[A]]\\cdot 0+[[B]]\\cdot 0)}{[[n]]\\pi} = [[B]] = [[answer]] \\), which the MVT guarantees equals \\( f'(c) = [[A]]\\cos(c)+[[B]] \\) for some interior \\( c \\).",
+  "distractor_rationales": [
+   "This adds the sine coefficient to \\( B \\) instead of recognizing that the sine terms cancel at multiples of \\( \\pi \\).",
+   "This mistakenly evaluates the derivative formula \\( f'(0) \\) instead of the average rate of change.",
+   "This has the wrong sign on the sine-coefficient contribution.",
+   "This incorrectly divides the linear coefficient by \\( n \\).",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

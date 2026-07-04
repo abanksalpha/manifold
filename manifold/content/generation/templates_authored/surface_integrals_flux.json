@@ -1,0 +1,134 @@
+[
+{
+ "template_id": "surface_flux_tilted_plane_constant_field_v1",
+ "skill_id": "surface_integrals_flux",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "alpha": {"type": "int", "lo": -2, "hi": 2},
+  "beta": {"type": "int", "lo": -2, "hi": 2},
+  "W": {"type": "int", "lo": 1, "hi": 4},
+  "H": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[c]] - [[a]]*[[alpha]] - [[b]]*[[beta]], 0)"],
+ "stem": "Find the flux \\( \\displaystyle\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} \\) of the constant vector field \\( \\mathbf{F} = \\left( [[a]], [[b]], [[c]] \\right) \\) upward through the portion \\( S \\) of the plane \\( z = [[alpha]]x + [[beta]]y \\) lying above the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\) (with upward-pointing normal).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[c]]) - ([[a]])*([[alpha]]) - ([[b]])*([[beta]])", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+ "distractors": [
+  "(([[a]])*([[alpha]]) + ([[b]])*([[beta]]) + ([[c]]))*([[W]])*([[H]])",
+  "([[c]])*([[W]])*([[H]])",
+  "-([[answer]])",
+  "([[answer]]) / 2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For a graph \\( z=g(x,y)=[[alpha]]x+[[beta]]y \\) with upward normal, \\( \\mathbf{F}\\cdot d\\mathbf{S} = (-Pg_x - Qg_y + R)\\,dA = \\big(([[c]]) - ([[a]])([[alpha]]) - ([[b]])([[beta]])\\big)\\,dA \\) (a constant here since \\( \\mathbf{F} \\) is constant). Over the rectangle this equals \\( \\big(([[c]]) - ([[a]])([[alpha]]) - ([[b]])([[beta]])\\big)\\cdot[[W]]\\cdot[[H]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( +Pg_x+Qg_y+R \\), getting every sign in the normal wrong.",
+  "This uses only the \\( z \\)-component \\( R \\), as if the surface were horizontal (ignoring the tilt).",
+  "This points the normal downward, flipping the sign of the flux.",
+  "This is half the correct flux.",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux."
+ ]
+},
+{
+ "template_id": "surface_flux_flat_variable_field_v1",
+ "skill_id": "surface_integrals_flux",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": 1, "hi": 3},
+  "W": {"type": "int", "lo": 1, "hi": 4},
+  "H": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[a]] + [[b]], 0)"],
+ "stem": "Find the flux \\( \\displaystyle\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} \\) of \\( \\mathbf{F}(x,y,z) = \\left( [[a]]xz,\\; [[b]]yz,\\; x+y \\right) \\) upward through the flat square \\( S \\) given by \\( z=[[k]] \\), \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\) (with upward-pointing normal).",
+ "answer_spec": {"op": "dblintegrate", "expr": "x + y", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+ "distractors": [
+  "([[a]])*([[k]])*([[W]])**2*([[H]])/2 + ([[b]])*([[k]])*([[H]])**2*([[W]])/2",
+  "([[W]])*([[H]])*(([[W]])+([[H]]))/2",
+  "-([[answer]])",
+  "([[answer]]) * 2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( S \\) is a flat horizontal plane with upward normal \\( \\mathbf{k} \\), the flux reduces to \\( \\iint_D R(x,y,z)\\,dA \\), where \\( R=x+y \\) (the \\( x \\)- and \\( y \\)-components of \\( \\mathbf{F} \\), and the height \\( z=[[k]] \\), do not enter, since only \\( R \\) contributes on a horizontal surface). So the flux is \\( \\int_0^{[[W]]}\\int_0^{[[H]]} (x+y)\\,dy\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly includes the tangential components \\( P,Q \\) of \\( \\mathbf{F} \\), which never contribute to flux through a horizontal plane with normal \\( \\mathbf{k} \\).",
+  "This uses the average value of \\( x+y \\) over the rectangle's perimeter, rather than integrating it over the full area.",
+  "This has the sign of the flux reversed.",
+  "This double counts the flux.",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux."
+ ]
+},
+{
+ "template_id": "surface_flux_cylinder_side_v1",
+ "skill_id": "surface_integrals_flux",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "R": {"type": "int", "lo": 1, "hi": 3},
+  "H": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Ne([[a]] + [[b]], 0)"],
+ "require_rational": false,
+ "stem": "Find the outward flux \\( \\displaystyle\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} \\) of \\( \\mathbf{F}(x,y,z) = \\left( [[a]]x,\\; [[a]]y,\\; [[b]]z \\right) \\) through the LATERAL (side) surface \\( S \\) of the cylinder \\( x^{2}+y^{2}=[[R]]^{2},\\; 0 \\le z \\le [[H]] \\), oriented outward (not including the top or bottom disks).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[a]])*([[R]])*cos(theta)*[[R]]*cos(theta) + ([[a]])*([[R]])*sin(theta)*[[R]]*sin(theta)", "vars": ["theta", "z"], "bounds": [["0", "2*pi"], ["0", "[[H]]"]]},
+ "distractors": [
+  "-([[answer]])",
+  "(([[a]]) + ([[b]]))*2*pi*([[R]])*([[H]])",
+  "([[a]])*pi*([[R]])**2*([[H]])",
+  "([[answer]])/2",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "Parametrize the cylinder's side as \\( x=[[R]]\\cos\\theta,\\; y=[[R]]\\sin\\theta,\\; z=z \\) for \\( 0\\le\\theta\\le 2\\pi,\\ 0\\le z\\le[[H]] \\). The outward unit normal is \\( (\\cos\\theta,\\sin\\theta,0) \\) and \\( dS=[[R]]\\,d\\theta\\,dz \\). Since \\( \\mathbf{F}\\cdot\\mathbf{n} = ([[a]])[[R]]\\cos^{2}\\theta + ([[a]])[[R]]\\sin^{2}\\theta = ([[a]])[[R]] \\) (the \\( z \\)-component drops out on the side, and \\( \\cos^2\\theta+\\sin^2\\theta=1 \\)), the flux is \\( \\displaystyle\\int_0^{[[H]]}\\int_0^{2\\pi} ([[a]])[[R]]\\cdot[[R]]\\,d\\theta\\,dz = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the sign of the flux reversed.",
+  "This mistakenly includes the \\( \\partial_z(bz)=b \\) contribution, which only affects flux through the TOP/BOTTOM disks, not the lateral surface.",
+  "This uses the cylinder's cross-sectional disk area \\( \\pi R^2 \\) instead of the lateral surface's parametrization.",
+  "This is half the correct flux.",
+  "This adds a spurious \\( \\pi \\) to the correct value.",
+  "This subtracts a spurious \\( \\pi \\) from the correct value."
+ ]
+},
+{
+ "template_id": "surface_flux_sphere_radial_field_v1",
+ "skill_id": "surface_integrals_flux",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": -5, "hi": 5},
+  "R": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "require_rational": false,
+ "stem": "Find the outward flux \\( \\displaystyle\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} \\) of the radial field \\( \\mathbf{F}(x,y,z) = [[k]]\\left(x,y,z\\right) \\) through the sphere \\( S \\) of radius \\( [[R]] \\) centered at the origin, oriented outward.",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[k]])*([[R]])*([[R]])**2*sin(phi)", "vars": ["theta", "phi"], "bounds": [["0", "2*pi"], ["0", "pi"]]},
+ "distractors": [
+  "-([[answer]])",
+  "([[k]])*4*pi*([[R]])**3/3",
+  "([[k]])*2*pi*([[R]])**2",
+  "([[answer]])/2",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "Parametrize the sphere by \\( x=[[R]]\\sin\\phi\\cos\\theta,\\; y=[[R]]\\sin\\phi\\sin\\theta,\\; z=[[R]]\\cos\\phi \\), with outward normal \\( \\mathbf{n}=(x,y,z)/[[R]] \\) and \\( dS=[[R]]^{2}\\sin\\phi\\,d\\phi\\,d\\theta \\). Since \\( \\mathbf{F}\\cdot\\mathbf{n} = [[k]](x,y,z)\\cdot(x,y,z)/[[R]] = [[k]][[R]] \\) (constant, because \\( x^2+y^2+z^2=[[R]]^2 \\) on the sphere), the flux is \\( \\displaystyle\\int_0^{2\\pi}\\int_0^{\\pi} [[k]][[R]]\\cdot[[R]]^{2}\\sin\\phi\\,d\\phi\\,d\\theta = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the sign of the flux reversed.",
+  "This mistakes the flux integral for the sphere's VOLUME formula \\( \\tfrac43\\pi R^3 \\) times \\( k \\), rather than integrating \\( \\mathbf{F}\\cdot\\mathbf{n}\\,dS \\).",
+  "This uses the sphere's surface AREA formula \\( 4\\pi R^2 \\) but drops a needed factor of \\( R \\) from \\( \\mathbf{F}\\cdot\\mathbf{n} \\).",
+  "This is half the correct flux.",
+  "This adds a spurious \\( \\pi \\) to the correct value.",
+  "This subtracts a spurious \\( \\pi \\) from the correct value."
+ ]
+}
+]

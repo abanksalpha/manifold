@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "open_sets_discrete_topology_v1",
+ "skill_id": "open_closed_sets",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "Let \\( X = \\{1, 2, \\ldots, [[n]]\\} \\) be given the discrete topology, in which every subset of \\( X \\) is declared open. How many open subsets does \\( X \\) have (counting \\( \\varnothing \\) and \\( X \\) itself)?",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+ "distractors": [
+  "[[n]]**2",
+  "factorial([[n]])",
+  "2*[[n]]",
+  "2**[[n]] - 1",
+  "2**[[n]] + 1",
+  "2**([[n]]-1)"
+ ],
+ "solution": "In the discrete topology every one of the \\( 2^{[[n]]} \\) subsets of a set with [[n]] elements is open, so there are \\( 2^{[[n]]} = [[answer]] \\) open sets.",
+ "distractor_rationales": [
+  "This counts pairs/relationships between elements, not subsets.",
+  "This counts orderings (permutations) of the elements, not subsets.",
+  "This only doubles the element count instead of counting all subsets.",
+  "This excludes one subset (such as \\(X\\) or \\(\\varnothing\\)) that should still be counted.",
+  "This overcounts by one extra subset.",
+  "This only counts the subsets of a set with one fewer element."
+ ]
+},
+{
+ "template_id": "open_ball_count_v1",
+ "skill_id": "open_closed_sets",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 20},
+  "c": {"type": "int", "lo": 0, "hi": 25},
+  "r": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Le([[c]], [[n]]-1)"],
+ "derived": {"nm1": "[[n]]-1"},
+ "stem": "Let \\( X = \\{0, 1, \\ldots, [[nm1]]\\} \\) carry the usual metric \\( d(x,y) = |x-y| \\), and consider the open ball \\( B([[c]], [[r]]) = \\{x \\in X : |x - [[c]]| < [[r]]\\} \\). How many elements does \\( B([[c]], [[r]]) \\) contain?",
+ "answer_spec": {"op": "evaluate", "expr": "Min([[n]]-1, [[c]]+[[r]]-1) - Max(0, [[c]]-[[r]]+1) + 1"},
+ "distractors": [
+  "2*[[r]] + 1",
+  "2*[[r]] - 1",
+  "Min([[n]]-1, [[c]]+[[r]]) - Max(0, [[c]]-[[r]]) + 1",
+  "[[r]]",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "The open ball consists of the integers strictly within [[r]] of [[c]], clipped to \\(X\\): from \\( \\max(0, [[c]]-[[r]]+1) \\) up to \\( \\min([[nm1]], [[c]]+[[r]]-1) \\), which is \\( [[answer]] \\) integers.",
+ "distractor_rationales": [
+  "This is the naive \\(2r+1\\) span, which ignores that the ball may be clipped by the edges of \\(X\\).",
+  "This is an off-by-one variant of the naive span that also ignores clipping by the edges of \\(X\\).",
+  "This uses \\(\\le\\) instead of \\(<\\), so it counts the closed ball rather than the open ball.",
+  "This is just the radius, not the number of points inside the ball.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "closed_ball_count_v1",
+ "skill_id": "open_closed_sets",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 20},
+  "c": {"type": "int", "lo": 0, "hi": 25},
+  "r": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Le([[c]], [[n]]-1)"],
+ "derived": {"nm1": "[[n]]-1"},
+ "stem": "Let \\( X = \\{0, 1, \\ldots, [[nm1]]\\} \\) carry the usual metric \\( d(x,y) = |x-y| \\), and consider the CLOSED ball \\( \\overline{B}([[c]], [[r]]) = \\{x \\in X : |x - [[c]]| \\le [[r]]\\} \\), which includes its boundary points. How many elements does \\( \\overline{B}([[c]], [[r]]) \\) contain?",
+ "answer_spec": {"op": "evaluate", "expr": "Min([[n]]-1, [[c]]+[[r]]) - Max(0, [[c]]-[[r]]) + 1"},
+ "distractors": [
+  "2*[[r]]+1",
+  "Min([[n]]-1, [[c]]+[[r]]-1) - Max(0, [[c]]-[[r]]+1) + 1",
+  "2*[[r]]",
+  "[[r]]+1",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "The closed ball keeps every integer within [[r]] of [[c]], including the boundary points at distance exactly [[r]] when they lie in \\(X\\): from \\( \\max(0,[[c]]-[[r]]) \\) to \\( \\min([[nm1]], [[c]]+[[r]]) \\), which is \\( [[answer]] \\) integers.",
+ "distractor_rationales": [
+  "This is the naive \\(2r+1\\) span, ignoring that the ball may be clipped by the edges of \\(X\\).",
+  "This uses \\(<\\) instead of \\(\\le\\), so it counts the OPEN ball instead of the closed ball, dropping the boundary points.",
+  "This is the naive span without the \\(+1\\) for the center point.",
+  "This is only one more than the radius, far too small in general.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "open_sets_nested_chain_v1",
+ "skill_id": "open_closed_sets",
+ "topic_id": "metric_topology",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Let \\( X = \\{1, 2, \\ldots, [[n]]\\} \\). Define a topology on \\( X \\) whose open sets are exactly \\( \\varnothing \\) together with every initial segment \\( \\{1\\}, \\{1,2\\}, \\ldots, \\{1,2,\\ldots,[[n]]\\} = X \\) (this nested chain is closed under arbitrary unions and finite intersections, so it is a valid topology). How many open sets does this topology have?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]+1"},
+ "distractors": [
+  "[[n]]",
+  "2*[[n]]",
+  "[[n]]*([[n]]+1)/2",
+  "2**[[n]]",
+  "[[answer]]+1",
+  "[[answer]]-1"
+ ],
+ "solution": "There are [[n]] nonempty initial segments \\( \\{1\\},\\{1,2\\},\\ldots,X \\), plus \\( \\varnothing \\) itself, giving \\( [[n]]+1 = [[answer]] \\) open sets.",
+ "distractor_rationales": [
+  "This forgets to count \\( \\varnothing \\) as one of the open sets.",
+  "This double-counts the open sets.",
+  "This is a triangular-number count, unrelated to the number of nested initial segments.",
+  "This is the open-set count of the DISCRETE topology on \\(X\\), a completely different (much finer) topology.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+}
+]

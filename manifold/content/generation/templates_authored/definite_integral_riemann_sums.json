@@ -1,0 +1,158 @@
+[
+{
+ "template_id": "definite_integral_polynomial_basic_v1",
+ "skill_id": "definite_integral_riemann_sums",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "r": {"type": "int", "lo": -5, "hi": 5},
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 8}
+ },
+ "constraints": ["Ne([[p]], 0)", "Lt([[a]], [[b]])"],
+ "stem": "Evaluate \\( \\displaystyle\\int_{[[a]]}^{[[b]]} \\left([[p]]x^{2} + ([[q]])x + ([[r]])\\right) dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[p]]*x**2 + [[q]]*x + [[r]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[p]]*[[b]]**2 + [[q]]*[[b]] + [[r]]",
+  "([[p]]*[[b]]**2+[[q]]*[[b]]+[[r]])*([[b]]-[[a]])",
+  "([[p]]*[[a]]**2+[[q]]*[[a]]+[[r]])*([[b]]-[[a]])",
+  "[[p]]*([[b]]-[[a]])**3/3 + [[q]]*([[b]]-[[a]])**2/2 + [[r]]*([[b]]-[[a]])",
+  "-[[answer]]",
+  "[[answer]] + [[p]]"
+ ],
+ "solution": "The antiderivative is \\( \\dfrac{[[p]]}{3}x^{3} + \\dfrac{[[q]]}{2}x^{2} + [[r]]x \\); evaluating from \\( [[a]] \\) to \\( [[b]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates the integrand at \\( x=[[b]] \\) instead of computing the integral.",
+  "This uses a right-endpoint rectangle (integrand at \\( [[b]] \\) times the width) instead of the exact integral.",
+  "This uses a left-endpoint rectangle (integrand at \\( [[a]] \\) times the width) instead of the exact integral.",
+  "This mistakenly substitutes \\( [[b]]-[[a]] \\) for \\( x \\) in the antiderivative instead of evaluating at each endpoint separately.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[p]] \\) from the correct value."
+ ]
+},
+{
+ "template_id": "definite_integral_signed_net_area_v1",
+ "skill_id": "definite_integral_riemann_sums",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "int", "lo": -20, "hi": 20},
+  "a": {"type": "int", "lo": -8, "hi": -1},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[m]], 0)"],
+ "stem": "Let \\( f(x) = [[m]]x + ([[k]]) \\). What is the NET (signed) area between the graph of \\( f \\) and the \\( x \\)-axis on \\( \\left[ [[a]], [[b]] \\right] \\), i.e. \\( \\displaystyle\\int_{[[a]]}^{[[b]]} f(x)\\,dx \\)?",
+ "answer_spec": {"op": "integrate", "expr": "[[m]]*x + [[k]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "([[m]]*[[b]]+[[k]])*([[b]]-[[a]])",
+  "([[m]]*[[a]]+[[k]])*([[b]]-[[a]])",
+  "Abs([[answer]])",
+  "-[[answer]]",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "The net signed area equals the definite integral itself (regions below the axis contribute negatively): \\( \\int_{[[a]]}^{[[b]]}\\left([[m]]x+([[k]])\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses a right-endpoint rectangle approximation instead of the exact integral.",
+  "This uses a left-endpoint rectangle approximation instead of the exact integral.",
+  "This wrongly assumes the answer must be positive, taking the absolute value of the true net (signed) area.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[k]] \\) from the correct value.",
+  "This is off by \\( [[k]] \\) from the correct value in the other direction."
+ ]
+},
+{
+ "template_id": "definite_integral_radical_power_v1",
+ "skill_id": "definite_integral_riemann_sums",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "a": {"type": "choice", "values": [0, 1, 4, 9]},
+  "b": {"type": "choice", "values": [4, 9, 16, 25]}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "Evaluate \\( \\displaystyle\\int_{[[a]]}^{[[b]]} [[c]]\\sqrt{x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sqrt(x)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[c]]*([[b]]**(3/2) - [[a]]**(3/2))",
+  "[[c]]*sqrt([[b]]) - [[c]]*sqrt([[a]])",
+  "([[c]]/2)*([[b]] - [[a]])",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "An antiderivative of \\( \\sqrt{x} \\) is \\( \\tfrac{2}{3}x^{3/2} \\), so \\( \\int_{[[a]]}^{[[b]]} [[c]]\\sqrt{x}\\,dx = \\tfrac{2[[c]]}{3}\\left([[b]]^{3/2} - [[a]]^{3/2}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to multiply by the \\( 2/3 \\) coefficient from the power rule.",
+  "This uses \\( \\sqrt{x} \\) itself as its own antiderivative instead of \\( \\tfrac{2}{3}x^{3/2} \\).",
+  "This treats the integrand as if it were the constant \\( [[c]]/2 \\) rather than \\( [[c]]\\sqrt{x} \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is double the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_limit_linear_v1",
+ "skill_id": "definite_integral_riemann_sums",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "The right-endpoint Riemann sum for \\( \\displaystyle\\int_{0}^{[[b]]} [[c]]x\\,dx \\) using \\( n \\) equal subintervals is \\( R_n = \\dfrac{[[c]]\\,[[b]]^{2}(n+1)}{2n} \\). What is \\( \\displaystyle\\lim_{n\\to\\infty} R_n \\) (i.e., the value of the definite integral)?",
+ "answer_spec": {"op": "limit", "expr": "[[c]]*[[b]]**2*(n+1)/(2*n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]*[[b]]**2",
+  "0",
+  "[[c]]*[[b]]**2/2 + [[c]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "As \\( n\\to\\infty \\), \\( \\dfrac{n+1}{n}\\to 1 \\), so \\( R_n \\to \\dfrac{[[c]]\\,[[b]]^{2}}{2} = [[answer]] \\), which matches \\( \\int_{0}^{[[b]]} [[c]]x\\,dx \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( 1/2 \\), forgetting the \\( 2n \\) in the denominator of \\( R_n \\).",
+  "This wrongly assumes the whole expression vanishes as \\( n\\to\\infty \\).",
+  "This incorrectly splits \\( (n+1)/n \\) into a limit of \\( 1 \\) plus a leftover additive \\( [[c]] \\) term.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is half of the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_limit_quadratic_v1",
+ "skill_id": "definite_integral_riemann_sums",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The right-endpoint Riemann sum for \\( \\displaystyle\\int_{0}^{[[b]]} [[c]]x^{2}\\,dx \\) using \\( n \\) equal subintervals is \\( R_n = \\dfrac{[[c]]\\,[[b]]^{3}(n+1)(2n+1)}{6n^{2}} \\). What is \\( \\displaystyle\\lim_{n\\to\\infty} R_n \\)?",
+ "answer_spec": {"op": "limit", "expr": "[[c]]*[[b]]**3*(n+1)*(2*n+1)/(6*n**2)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]*[[b]]**3/2",
+  "[[c]]*[[b]]**3",
+  "0",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "Expanding, \\( R_n = \\dfrac{[[c]]\\,[[b]]^{3}(2n^{2}+3n+1)}{6n^{2}} \\to \\dfrac{[[c]]\\,[[b]]^{3}\\cdot 2}{6} = \\dfrac{[[c]]\\,[[b]]^{3}}{3} = [[answer]] \\) as \\( n\\to\\infty \\), matching \\( \\int_{0}^{[[b]]} [[c]]x^{2}\\,dx \\).",
+ "distractor_rationales": [
+  "This uses the wrong limiting coefficient (\\( 1/2 \\) instead of \\( 1/3 \\)) for the leading term.",
+  "This drops the \\( 1/3 \\) factor entirely.",
+  "This wrongly assumes the whole expression vanishes as \\( n\\to\\infty \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is half of the correct value."
+ ]
+}
+]

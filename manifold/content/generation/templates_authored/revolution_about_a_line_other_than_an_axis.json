@@ -1,0 +1,129 @@
+[
+ {
+  "template_id": "revolution_about_line_v1",
+  "skill_id": "revolution_about_a_line_other_than_an_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 2, "hi": 7},
+   "L": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The region bounded by the line \\( y = x \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\) is revolved about the line \\( y = -[[L]] \\). Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*((x + [[L]])**2 - [[L]]**2)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*([[b]]**3 - [[a]]**3)/3",
+   "[[answer]]/pi",
+   "pi*(([[b]] + [[L]])**3 - ([[a]] + [[L]])**3)/3",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Distances are measured from the line \\( y=-[[L]] \\): the outer radius is \\( x+[[L]] \\) (from \\( y=x \\)) and the inner radius is \\( [[L]] \\) (from \\( y=0 \\)). The volume is \\( \\pi\\int_{[[a]]}^{[[b]]}\\left((x+[[L]])^{2}-[[L]]^{2}\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This revolves about the \\( x \\)-axis, ignoring the shift to \\( y=-[[L]] \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This forgets the inner radius (the gap between the axis and the line \\( y=-[[L]] \\)).",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "revolution_about_vertical_line_washer_v1",
+  "skill_id": "revolution_about_a_line_other_than_an_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 7},
+   "L": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The region bounded by the line \\( x = y \\), the \\( y \\)-axis, and the horizontal lines \\( y = [[a]] \\) and \\( y = [[b]] \\) is revolved about the vertical line \\( x = -[[L]] \\). Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*((y + [[L]])**2 - [[L]]**2)", "var": "y", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*([[b]]**3 - [[a]]**3)/3",
+   "[[answer]]/pi",
+   "pi*(([[b]] + [[L]])**3 - ([[a]] + [[L]])**3)/3",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Because the axis of revolution is vertical, we slice with horizontal washers. Distances are measured from the line \\( x=-[[L]] \\): the outer radius is \\( y+[[L]] \\) (from \\( x=y \\)) and the inner radius is \\( [[L]] \\) (from \\( x=0 \\)). The volume is \\( \\pi\\int_{[[a]]}^{[[b]]}\\left((y+[[L]])^{2}-[[L]]^{2}\\right)dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This revolves about the \\( y \\)-axis, ignoring the shift to \\( x=-[[L]] \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This forgets the inner radius (the gap between the axis and the line \\( x=-[[L]] \\)).",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "revolution_two_curves_off_axis_v1",
+  "skill_id": "revolution_about_a_line_other_than_an_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 1, "hi": 5},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 8},
+   "L": {"type": "int", "lo": 8, "hi": 15}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Gt([[L]] + [[a]] - [[q]], 0)"],
+  "stem": "The region between the lines \\( y = x + [[p]] \\) and \\( y = x - [[q]] \\), for \\( [[a]] \\le x \\le [[b]] \\), is revolved about the horizontal line \\( y = -[[L]] \\), which lies below the entire region. Find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "pi*(((x + [[p]]) + [[L]])**2 - ((x - [[q]]) + [[L]])**2)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*(([[p]]+[[q]])**2)*([[b]]-[[a]])",
+   "[[answer]]/pi",
+   "pi*([[b]]**2*([[p]]+[[q]]) - [[a]]**2*([[p]]+[[q]]) + [[b]]*([[p]]**2-[[q]]**2) - [[a]]*([[p]]**2-[[q]]**2))",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Since neither boundary touches the axis \\( y=-[[L]] \\), BOTH radii are shifted by \\( [[L]] \\): the outer radius is \\( (x+[[p]])+[[L]] \\) and the inner radius is \\( (x-[[q]])+[[L]] \\). The volume is \\( \\pi\\int_{[[a]]}^{[[b]]}\\left(((x+[[p]])+[[L]])^{2}-((x-[[q]])+[[L]])^{2}\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the washer as a constant-radius ring times the width, ignoring how the radii vary with \\( x \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This forgets to shift either radius by \\( [[L]] \\), as if revolving about the \\( x \\)-axis.",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "revolution_shell_off_axis_v1",
+  "skill_id": "revolution_about_a_line_other_than_an_axis",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "choice", "values": [2, 3]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 4, "hi": 7},
+   "L": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The region bounded by the line \\( y = [[k]]x \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\) is revolved about the vertical line \\( x = -[[L]] \\). Using cylindrical shells, find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*(x + [[L]])*([[k]]*x)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "2*pi*[[k]]*([[b]]**3 - [[a]]**3)/3",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*([[b]]**3 - [[a]]**3)/3",
+   "2*[[answer]]",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "Each shell at position \\( x \\) has radius (distance to the axis \\( x=-[[L]] \\)) equal to \\( x+[[L]] \\) and height \\( [[k]]x \\). The volume is \\( \\int_{[[a]]}^{[[b]]} 2\\pi(x+[[L]])([[k]]x)\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the shell radius \\( x \\) as if revolving about the \\( y \\)-axis, ignoring the shift to \\( x=-[[L]] \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This uses the disk/washer method instead of shells.",
+   "This doubles the correct volume.",
+   "This is off by \\( 2\\pi \\) from the correct volume."
+  ]
+ }
+]

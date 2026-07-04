@@ -1,0 +1,5 @@
+{
+    "note": "Deterministic test double for hint.py. It replaces ONLY the model call; get_hint's request validation and honest-abstain logic still run, so the no-fabrication invariant holds. Wired into the isolated e2e runner via MANIFOLD_HINT_FIXTURES. The hint uses delimited-LaTeX (Task 2) so it renders through MathText, and deliberately gives a method nudge without stating any answer or naming a lettered choice. 'default' is returned for any skill; 'by_skill' can override per skill.",
+    "default": "Start from the definition the problem is testing and write down exactly what you are asked to find. Translate the given information into a relation such as \\(a + b = 5\\), then list the cases that satisfy it and count them carefully before you simplify.",
+    "by_skill": {}
+}

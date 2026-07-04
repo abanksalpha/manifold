@@ -1,0 +1,386 @@
+[
+ {
+  "template_id": "tangent_normal_slope_v1",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne(2*[[a]]*[[x0]] + [[b]], 0)"
+  ],
+  "stem": "The curve \\( y=[[a]]x^{2}+([[b]])x \\) has a tangent line at \\( x=[[x0]] \\). What is the slope of the NORMAL line there?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "-1/(2*[[a]]*[[x0]] + [[b]])"
+  },
+  "distractors": [
+   "2*[[a]]*[[x0]] + [[b]]",
+   "1/(2*[[a]]*[[x0]] + [[b]])",
+   "-(2*[[a]]*[[x0]] + [[b]])",
+   "-1/(2*[[a]]*[[x0]])",
+   "-1/(2*[[a]]*[[x0]] + [[b]]) + 1",
+   "-1/(2*[[a]]*[[x0]] + [[b]]) - 1"
+  ],
+  "solution": "Tangent slope \\( =2[[a]][[x0]]+[[b]] \\); the normal slope is its negative reciprocal \\( [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "horizontal_tangent_quadratic_v2",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "q": {
+    "type": "int",
+    "lo": -8,
+    "hi": 8
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [
+   "Ne([[q]], 0)"
+  ],
+  "stem": "At what \\( x \\)-value does the curve \\( y=[[p]]x^{2}+[[q]]x+[[r]] \\) have a horizontal tangent line?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "2*[[p]]*x+[[q]]=0",
+   "var": "x"
+  },
+  "distractors": [
+   "[[q]]/(2*[[p]])",
+   "-[[q]]/[[p]]",
+   "-2*[[p]]*[[q]]",
+   "[[q]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A horizontal tangent occurs where \\( f'(x)=2[[p]]x+[[q]]=0 \\), so \\( x=-\\dfrac{[[q]]}{2[[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from moving \\( q \\) to the other side.",
+   "This forgets to divide by 2 when isolating \\( x \\).",
+   "This confuses the coefficients, multiplying instead of dividing.",
+   "This reports the coefficient \\( q \\) itself instead of solving for \\( x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "horizontal_tangent_cubic_v3",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+  "k": {
+   "type": "choice",
+   "values": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  }
+ },
+ "constraints": [],
+ "derived": {
+  "b": "-3*[[k]]**2"
+ },
+  "stem": "The curve \\( y=x^{3}+([[b]])x \\) has horizontal tangent lines at some values of \\( x \\). Which of the following is one such value?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "3*x**2+([[b]])=0",
+   "var": "x"
+  },
+  "distractors": [
+   "0",
+   "[[k]]",
+   "3*[[k]]",
+   "-3*[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A horizontal tangent occurs where \\( f'(x)=3x^{2}+([[b]])=0 \\), i.e. \\( x^{2}=[[k]]^{2} \\), so \\( x=\\pm [[k]] \\); \\( x=[[answer]] \\) is one such value.",
+  "distractor_rationales": [
+   "This assumes a horizontal tangent always occurs at the origin.",
+   "This reports the OTHER valid horizontal-tangent value, not this one (both are correct, but only one can be the keyed answer here).",
+   "This forgets to take a square root, using \\( 3k \\) instead of \\( k \\).",
+   "This forgets to take a square root, using \\( -3k \\) instead of \\( -k \\).",
+   "This is off by one from a correct value.",
+   "This is off by one from a correct value."
+  ]
+ },
+ {
+  "template_id": "vertical_tangent_circle_v4",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+  "rv": {
+   "type": "choice",
+   "values": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ]
+  }
+ },
+ "constraints": [],
+ "derived": {
+  "R": "[[rv]]**2"
+ },
+  "stem": "The circle \\( x^{2}+y^{2}=[[R]] \\) has a vertical tangent line at some values of \\( x \\). Which of the following is one such value?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "x**2-([[R]])=0",
+   "var": "x"
+  },
+  "distractors": [
+   "0",
+   "[[R]]",
+   "2*[[rv]]",
+   "[[rv]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A vertical tangent occurs where \\( \\frac{dy}{dx} \\) is undefined, i.e. where \\( y=0 \\); substituting into \\( x^{2}+y^{2}=[[R]] \\) gives \\( x^{2}=[[R]] \\), so \\( x=\\pm [[rv]] \\); \\( x=[[answer]] \\) is one such value.",
+  "distractor_rationales": [
+   "This assumes a vertical tangent always occurs at the origin.",
+   "This reports \\( R \\) itself instead of \\( \\pm\\sqrt{R} \\).",
+   "This doubles the radius instead of taking the square root of \\( R \\).",
+   "This reports the OTHER valid vertical-tangent value, not this one (both are correct, but only one can be the keyed answer here).",
+   "This is off by one from a correct value.",
+   "This is off by one from a correct value."
+  ]
+ },
+ {
+  "template_id": "horizontal_tangent_ellipse_implicit_v5",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   },
+   "m": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "C": "[[b]]*[[m]]**2"
+  },
+  "stem": "The curve \\( [[a]]x^{2}+[[b]]y^{2}=[[C]] \\) has horizontal tangent lines at some points. Which of the following is a possible \\( y \\)-coordinate of such a point?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "[[b]]*y**2-([[C]])=0",
+   "var": "y"
+  },
+  "distractors": [
+   "0",
+   "[[C]]",
+   "2*[[m]]",
+   "[[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Implicit differentiation gives \\( \\frac{dy}{dx}=-\\dfrac{[[a]]x}{[[b]]y} \\), which vanishes when \\( x=0 \\); substituting into the curve gives \\( [[b]]y^{2}=[[C]] \\), so \\( y=\\pm [[m]] \\); \\( y=[[answer]] \\) is one such value.",
+  "distractor_rationales": [
+   "This assumes a horizontal tangent always occurs at \\( y=0 \\).",
+   "This reports \\( C \\) itself instead of solving for \\( y \\).",
+   "This doubles the correct magnitude instead of solving \\( by^{2}=C \\).",
+   "This reports the OTHER valid \\( y \\)-coordinate, not this one (both are correct, but only one can be the keyed answer here).",
+   "This is off by one from a correct value.",
+   "This is off by one from a correct value."
+  ]
+ },
+ {
+  "template_id": "normal_slope_implicit_circle_v6",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "x0": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "y0": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "r2": "[[x0]]**2 + [[y0]]**2"
+  },
+  "stem": "The circle \\( x^{2}+y^{2}=[[r2]] \\) passes through \\( ([[x0]],[[y0]]) \\). What is the slope of the NORMAL line to the circle at that point?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[y0]]/[[x0]]"
+  },
+  "distractors": [
+   "-[[y0]]/[[x0]]",
+   "[[x0]]/[[y0]]",
+   "-[[x0]]/[[y0]]",
+   "[[y0]]*[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Implicit differentiation gives the tangent slope \\( \\frac{dy}{dx}=-\\dfrac{x}{y} \\), so at \\( ([[x0]],[[y0]]) \\) the tangent slope is \\( -\\dfrac{[[x0]]}{[[y0]]} \\); the normal slope is its negative reciprocal, \\( \\dfrac{[[y0]]}{[[x0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the TANGENT slope instead of the normal slope.",
+   "This inverts the correct ratio.",
+   "This has the right magnitude but the wrong sign.",
+   "This multiplies the coordinates instead of dividing them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "normal_line_yintercept_explicit_v7",
+  "skill_id": "tangent_normal_line_and_horizontal_or_vertical_tange",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "q": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne(2*[[p]]*[[x0]]+[[q]], 0)"
+  ],
+  "stem": "The NORMAL line to \\( y=[[p]]x^{2}+([[q]])x+([[r]]) \\) at \\( x=[[x0]] \\) crosses the \\( y \\)-axis at what value of \\( y \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]) + [[x0]]/(2*[[p]]*[[x0]]+[[q]])"
+  },
+  "distractors": [
+   "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]) - [[x0]]/(2*[[p]]*[[x0]]+[[q]])",
+   "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]) - [[x0]]*(2*[[p]]*[[x0]]+[[q]])",
+   "[[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]",
+   "[[x0]]/(2*[[p]]*[[x0]]+[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The tangent slope is \\( m=2[[p]]([[x0]])+[[q]] \\), so the normal slope is \\( -1/m \\); the normal line \\( y=f([[x0]])-\\tfrac{1}{m}(x-[[x0]]) \\) has \\( y \\)-intercept \\( f([[x0]])+\\dfrac{[[x0]]}{m} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the correction term instead of adding it.",
+   "This uses the TANGENT line's y-intercept formula instead of the normal line's.",
+   "This reports \\( f([[x0]]) \\), the function value, instead of the normal line's \\( y \\)-intercept.",
+   "This reports only the correction term, forgetting the base value \\( f(x_0) \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

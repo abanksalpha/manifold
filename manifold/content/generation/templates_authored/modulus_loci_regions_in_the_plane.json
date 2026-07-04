@@ -1,0 +1,140 @@
+[
+{
+ "template_id": "modulus_loci_circle_solve_for_coordinate_v1",
+ "skill_id": "modulus_loci_regions_in_the_plane",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a1": {"type": "int", "lo": -6, "hi": 6},
+  "a2": {"type": "int", "lo": -6, "hi": 6},
+  "r": {"type": "choice", "values": [5, 6, 7, 8, 9, 10]},
+  "x0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Lt(([[x0]]-[[a1]])**2, ([[r]])**2)"],
+ "stem": "The locus of points \\( z = x+iy \\) satisfying \\( |z - (([[a1]])+([[a2]])i)| = [[r]] \\) is a circle of radius \\( [[r]] \\) centered at \\( ([[a1]], [[a2]]) \\). Which of the following is a value of \\( y \\) for a point on this circle whose real part is \\( x = [[x0]] \\)?",
+ "answer_spec": {"op": "solve", "equation": "([[x0]]-([[a1]]))**2+(y-([[a2]]))**2-([[r]])**2=0", "var": "y"},
+ "require_rational": false,
+ "distractors": [
+  "([[a2]]) + ([[r]])",
+  "([[a2]]) - ([[r]])",
+  "([[a2]]) + ([[x0]]) - ([[a1]])",
+  "([[answer]]) + 1",
+  "([[answer]]) - 1",
+  "-([[answer]])"
+ ],
+ "solution": "Substituting \\( x=[[x0]] \\) into \\( (x-([[a1]]))^{2}+(y-([[a2]]))^{2}=([[r]])^{2} \\) and solving for \\( y \\) gives two values; one of them is \\( y = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the full radius to the center's \\( y \\)-coordinate, ignoring the horizontal offset \\( x - a_1 \\).",
+  "This subtracts the full radius from the center's \\( y \\)-coordinate, ignoring the horizontal offset.",
+  "This uses the horizontal offset directly as a shift in \\( y \\) without the Pythagorean relationship the circle equation requires.",
+  "This is off by one from a genuine solution.",
+  "This is off by one from a genuine solution.",
+  "This has the wrong sign from a genuine solution."
+ ]
+},
+{
+ "template_id": "modulus_loci_perpendicular_bisector_solve_for_coordinate_v1",
+ "skill_id": "modulus_loci_regions_in_the_plane",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a1": {"type": "int", "lo": -6, "hi": 6},
+  "a2": {"type": "int", "lo": -6, "hi": 6},
+  "b1": {"type": "int", "lo": -6, "hi": 6},
+  "b2": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a2]], [[b2]])", "Or(Ne([[a1]], [[b1]]), Ne([[a2]], [[b2]]))"],
+ "stem": "The locus of points \\( z = x+iy \\) satisfying \\( |z - (([[a1]])+([[a2]])i)| = |z - (([[b1]])+([[b2]])i)| \\) is the perpendicular bisector of the segment joining \\( ([[a1]], [[a2]]) \\) and \\( ([[b1]], [[b2]]) \\). Find the \\( y \\)-coordinate of the point on this locus whose real part is \\( x = [[x0]] \\).",
+ "answer_spec": {"op": "solve", "equation": "([[x0]]-([[a1]]))**2+(y-([[a2]]))**2 - (([[x0]]-([[b1]]))**2+(y-([[b2]]))**2) = 0", "var": "y"},
+ "distractors": [
+  "(([[a2]])+([[b2]]))/2",
+  "(([[a1]])+([[b1]]))/2",
+  "([[a2]]) - ([[b2]])",
+  "([[answer]]) + 1",
+  "([[answer]]) - 1",
+  "-([[answer]])"
+ ],
+ "solution": "Setting the two distances equal, \\( (x-([[a1]]))^{2}+(y-([[a2]]))^{2} = (x-([[b1]]))^{2}+(y-([[b2]]))^{2} \\), the \\( y^{2} \\) terms cancel, leaving a linear equation in \\( y \\). Substituting \\( x=[[x0]] \\) and solving gives \\( y = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the midpoint's \\( y \\)-coordinate, which lies on the bisector only when \\( x_0 \\) equals the midpoint's \\( x \\)-coordinate, not in general.",
+  "This confuses the midpoint's \\( x \\)-coordinate for the requested \\( y \\)-coordinate.",
+  "This is the difference of the two centers' \\( y \\)-coordinates, not a point on the bisector.",
+  "This is off by one from a genuine solution.",
+  "This is off by one from a genuine solution.",
+  "This has the wrong sign from a genuine solution."
+ ]
+},
+{
+ "template_id": "modulus_loci_ray_argument_solve_for_coordinate_v1",
+ "skill_id": "modulus_loci_regions_in_the_plane",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a1": {"type": "int", "lo": -6, "hi": 6},
+  "a2": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -8, "hi": 8},
+  "branch": {"type": "choice", "values": [1, -1]},
+  "updown": {"type": "choice", "values": [1, -1]}
+ },
+ "constraints": ["Eq(sign([[x0]]-[[a1]]), [[branch]])"],
+ "derived": {
+  "theta_num": "[[updown]]*(2-[[branch]])"
+ },
+ "stem": "The locus of points \\( z = x+iy \\) satisfying \\( \\arg\\!\\left(z - (([[a1]])+([[a2]])i)\\right) = \\dfrac{[[theta_num]]\\pi}{4} \\) is a ray starting at \\( ([[a1]], [[a2]]) \\). Find the \\( y \\)-coordinate of the point on this ray whose real part is \\( x = [[x0]] \\).",
+ "answer_spec": {"op": "solve", "equation": "tan(([[theta_num]])*pi/4) - (y-([[a2]]))/(([[x0]])-([[a1]])) = 0", "var": "y"},
+ "distractors": [
+  "([[a2]]) - (([[x0]])-([[a1]]))",
+  "([[a2]])",
+  "([[x0]])",
+  "([[answer]]) + 1",
+  "([[answer]]) - 1",
+  "-([[answer]])"
+ ],
+ "solution": "The ray's slope is \\( \\tan\\!\\left(\\dfrac{[[theta_num]]\\pi}{4}\\right) \\). Setting \\( \\dfrac{y-([[a2]])}{[[x0]]-([[a1]])} \\) equal to this slope and solving for \\( y \\) gives \\( y = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the slope, running the ray in the opposite direction.",
+  "This is just the center's \\( y \\)-coordinate, ignoring the ray's slope entirely.",
+  "This confuses the given \\( x \\)-coordinate for the requested \\( y \\)-coordinate.",
+  "This is off by one from a genuine solution.",
+  "This is off by one from a genuine solution.",
+  "This has the wrong sign from a genuine solution."
+ ]
+},
+{
+ "template_id": "modulus_loci_radius_from_boundary_point_v1",
+ "skill_id": "modulus_loci_regions_in_the_plane",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "a1": {"type": "int", "lo": -8, "hi": 8},
+  "a2": {"type": "int", "lo": -8, "hi": 8},
+  "dx": {"type": "int", "lo": -15, "hi": 15},
+  "dy": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[dx]], 0)", "Ne([[dy]], 0)", "Eq([[dx]]**2+[[dy]]**2, floor(sqrt([[dx]]**2+[[dy]]**2))**2)"],
+ "derived": {
+  "w1": "[[a1]]+[[dx]]",
+  "w2": "[[a2]]+[[dy]]"
+ },
+ "stem": "The point \\( w = ([[w1]]) + ([[w2]])i \\) lies on the locus \\( |z - (([[a1]])+([[a2]])i)| = r \\), a circle centered at \\( ([[a1]], [[a2]]) \\). Find the radius \\( r \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs((([[w1]])+([[w2]])*I) - (([[a1]])+([[a2]])*I))"},
+ "distractors": [
+  "Abs(([[w1]])-([[a1]])) + Abs(([[w2]])-([[a2]]))",
+  "(([[w1]])-([[a1]]))**2+(([[w2]])-([[a2]]))**2",
+  "Abs((([[w1]])+([[w2]])*I) + (([[a1]])+([[a2]])*I))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The radius is the distance from the center to the boundary point: \\( r = |w-a| = \\sqrt{(([[w1]])-([[a1]]))^{2}+(([[w2]])-([[a2]]))^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the absolute values of the coordinate differences instead of using the Pythagorean combination.",
+  "This is \\( r^{2} \\), the square of the radius; the square root is still needed.",
+  "This is the modulus of \\( w+a \\), not the distance \\( |w-a| \\) between them.",
+  "This is off by one from the correct radius.",
+  "This is off by one from the correct radius.",
+  "This doubles the correct radius."
+ ]
+}
+]

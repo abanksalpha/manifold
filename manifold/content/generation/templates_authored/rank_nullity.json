@@ -1,0 +1,148 @@
+[
+{
+ "template_id": "rank_of_a_rectangular_matrix_v1",
+ "skill_id": "rank_nullity",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "s1": {"type": "int", "lo": -3, "hi": 3},
+  "s2": {"type": "int", "lo": -3, "hi": 3},
+  "s3": {"type": "int", "lo": -3, "hi": 3},
+  "p2": {"type": "int", "lo": -3, "hi": 3},
+  "x2": {"type": "int", "lo": -3, "hi": 3},
+  "y2": {"type": "int", "lo": -3, "hi": 3},
+  "p3": {"type": "int", "lo": -3, "hi": 3},
+  "q3": {"type": "int", "lo": -3, "hi": 3},
+  "z3": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "r2_1": "[[p2]]",
+  "r2_2": "[[p2]]*[[s1]] + [[d2]]",
+  "r2_3": "[[p2]]*[[s2]] + [[d2]]*[[x2]]",
+  "r2_4": "[[p2]]*[[s3]] + [[d2]]*[[y2]]",
+  "r3_1": "[[p3]]",
+  "r3_2": "[[p3]]*[[s1]] + [[q3]]*[[d2]]",
+  "r3_3": "[[p3]]*[[s2]] + [[q3]]*[[d2]]*[[x2]] + [[d3]]",
+  "r3_4": "[[p3]]*[[s3]] + [[q3]]*[[d2]]*[[y2]] + [[d3]]*[[z3]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} 1 & [[s1]] & [[s2]] & [[s3]] \\\\ [[r2_1]] & [[r2_2]] & [[r2_3]] & [[r2_4]] \\\\ [[r3_1]] & [[r3_2]] & [[r3_3]] & [[r3_4]] \\end{bmatrix} \\). What is the rank of \\( A \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s1]]", "[[s2]]", "[[s3]]"], ["[[r2_1]]", "[[r2_2]]", "[[r2_3]]", "[[r2_4]]"], ["[[r3_1]]", "[[r3_2]]", "[[r3_3]]", "[[r3_4]]"]]
+ },
+ "distractors": ["4-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0", "3"],
+ "solution": "Row-reducing \\( A \\) leaves \\( [[answer]] \\) nonzero (pivot) rows, so \\( \\operatorname{rank}(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the nullity \\( 4-\\operatorname{rank}(A) \\) (the number of free columns), not the rank itself.",
+  "This overcounts the pivot rows by one.",
+  "This undercounts the pivot rows by one.",
+  "This is a plausible but unverified rank value.",
+  "This is a plausible but unverified rank value.",
+  "This assumes \\( A \\) is the zero matrix.",
+  "This assumes \\( A \\) has full row rank without checking for dependence among the rows."
+ ]
+},
+{
+ "template_id": "nullity_of_a_square_matrix_via_dependent_rows_v2",
+ "skill_id": "rank_nullity",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Let \\( B = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\end{bmatrix} \\). What is the nullity of \\( B \\) (the dimension of the solution set of \\( B\\mathbf{x}=\\mathbf{0}\\))?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "3", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "By the rank\u2013nullity theorem, \\( \\text{nullity}(B) = 3 - \\operatorname{rank}(B) \\). Row-reducing shows \\( \\operatorname{rank}(B) = [[rankval]] \\), so the nullity is \\( 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the rank of \\( B \\), not the nullity; the two are swapped here.",
+  "This assumes \\( B \\) is the zero matrix (rank \\(0\\)), so every column would be free.",
+  "This overcounts the free columns by one.",
+  "This undercounts the free columns by one.",
+  "This is a plausible but unverified nullity value.",
+  "This is a plausible but unverified nullity value.",
+  "This assumes \\( B \\) is invertible (nullity \\(0\\))."
+ ]
+},
+{
+ "template_id": "homogeneous_system_free_parameters_v3",
+ "skill_id": "rank_nullity",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Consider the homogeneous system of linear equations \\[ \\begin{aligned} w + [[s]]x + [[t]]y &= 0 \\\\ [[p]]w + [[m22]]x + [[m23]]y &= 0 \\\\ [[q]]w + [[m32]]x + [[m33]]y &= 0 \\end{aligned} \\] How many free parameters does the general solution have (i.e., what is the dimension of the solution space)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "3", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "The number of free parameters equals the nullity of the coefficient matrix, \\( 3 - \\operatorname{rank} \\). Row-reducing the coefficient matrix shows its rank is \\( [[rankval]] \\), so the solution space has dimension \\( 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the rank of the coefficient matrix, not the number of free parameters.",
+  "This assumes every variable is free (the coefficient matrix is the zero matrix).",
+  "This overcounts the free parameters by one.",
+  "This undercounts the free parameters by one.",
+  "This is a plausible but unverified count.",
+  "This is a plausible but unverified count.",
+  "This assumes the only solution is the trivial one (the system has full rank)."
+ ]
+},
+{
+ "template_id": "rank_nullity_theorem_plug_in_v4",
+ "skill_id": "rank_nullity",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [4, 5, 6, 7, 8, 9]},
+  "m": {"type": "choice", "values": [3, 4, 5, 6, 7, 8]},
+  "r": {"type": "int", "lo": 0, "hi": 8}
+ },
+ "constraints": ["Le([[r]], [[n]])", "Le([[r]], [[m]])"],
+ "stem": "A linear transformation \\( T : \\mathbb{R}^{[[n]]} \\to \\mathbb{R}^{[[m]]} \\) has rank \\( [[r]] \\). By the rank\u2013nullity theorem, what is the nullity of \\( T \\) (the dimension of its kernel)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[r]]"},
+ "distractors": ["[[m]]-[[r]]", "[[r]]", "[[n]]-[[m]]", "[[n]]+[[r]]", "[[answer]]+1", "[[answer]]-1", "[[m]]", "[[n]]"],
+ "solution": "By the rank\u2013nullity theorem, \\( \\dim(\\ker T) = \\dim(\\text{domain}) - \\operatorname{rank}(T) = [[n]] - [[r]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the codomain dimension \\( m \\) instead of the domain dimension \\( n \\) (that formula gives the dimension of the left null space, not the kernel).",
+  "This reports the rank itself instead of subtracting it from the domain dimension.",
+  "This confuses the two given dimensions instead of applying the rank\u2013nullity theorem.",
+  "This adds the rank instead of subtracting it.",
+  "This is off by one from the correct nullity.",
+  "This is off by one from the correct nullity.",
+  "This assumes the rank is \\(0\\) (T is the zero map).",
+  "This assumes the rank is \\(0\\), reporting the full domain dimension."
+ ]
+}
+]

@@ -1,0 +1,133 @@
+[
+{
+ "template_id": "fields_and_irreducibility_quadratic_roots_mod_p_v1",
+ "skill_id": "fields_and_irreducibility",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 14},
+  "b": {"type": "int", "lo": 0, "hi": 14},
+  "p": {"type": "choice", "values": [3, 5, 7, 11, 13]}
+ },
+ "constraints": [],
+ "stem": "Consider \\( f(x) = x^{2} + [[a]]x + [[b]] \\) as a polynomial over the finite field \\( \\mathbb{Z}_{[[p]]} \\) (the field of integers modulo the prime [[p]]). For how many elements \\( k \\in \\{0, 1, \\dots, [[p]]-1\\} \\) is \\( f(k) \\equiv 0 \\pmod{[[p]]} \\)?",
+ "answer_spec": {"op": "sum", "expr": "Piecewise((1, Eq(Mod(k**2 + [[a]]*k + [[b]], [[p]]), 0)), (0, True))", "var": "k", "lo": "0", "hi": "[[p]] - 1"},
+ "distractors": [
+  "[[p]] - 1",
+  "[[p]]",
+  "3",
+  "1",
+  "2",
+  "0",
+  "[[answer]] + 1"
+ ],
+ "solution": "A degree-2 polynomial over a FIELD has at most 2 roots, so we test every residue \\( k = 0, \\dots, [[p]]-1 \\) and count how many satisfy \\( k^{2} + [[a]]k + [[b]] \\equiv 0 \\pmod{[[p]]} \\). Direct substitution gives exactly \\( [[answer]] \\) such \\( k \\). (If this count is \\( 0 \\), \\( f \\) has no root in \\( \\mathbb{Z}_{[[p]]} \\), so — since it is degree 2 — it is irreducible over \\( \\mathbb{Z}_{[[p]]} \\).)",
+ "distractor_rationales": [
+  "This assumes every nonzero residue but one works, wildly overcounting roots for a degree-2 polynomial.",
+  "This is the size of the whole field \\( \\mathbb{Z}_{[[p]]} \\), not the number of roots of \\( f \\) inside it.",
+  "This exceeds the maximum possible number of roots for a degree-2 polynomial over a field (which is 2).",
+  "This assumes exactly one root exists without checking every residue.",
+  "This assumes the polynomial always splits into two distinct roots, which is not checked here.",
+  "This assumes \\( f \\) has no roots without checking every residue mod [[p]].",
+  "This overcounts the true root count by one."
+ ]
+},
+{
+ "template_id": "fields_and_irreducibility_cubic_roots_mod_p_v1",
+ "skill_id": "fields_and_irreducibility",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 9},
+  "b": {"type": "int", "lo": 0, "hi": 9},
+  "c": {"type": "int", "lo": 0, "hi": 9},
+  "p": {"type": "choice", "values": [3, 5, 7, 11]}
+ },
+ "constraints": [],
+ "stem": "Consider \\( g(x) = x^{3} + [[a]]x^{2} + [[b]]x + [[c]] \\) as a polynomial over the finite field \\( \\mathbb{Z}_{[[p]]} \\). For how many elements \\( k \\in \\{0, 1, \\dots, [[p]]-1\\} \\) is \\( g(k) \\equiv 0 \\pmod{[[p]]} \\)?",
+ "answer_spec": {"op": "sum", "expr": "Piecewise((1, Eq(Mod(k**3 + [[a]]*k**2 + [[b]]*k + [[c]], [[p]]), 0)), (0, True))", "var": "k", "lo": "0", "hi": "[[p]] - 1"},
+ "distractors": [
+  "[[p]] - 1",
+  "[[p]]",
+  "4",
+  "1",
+  "2",
+  "0",
+  "[[answer]] + 1"
+ ],
+ "solution": "A degree-3 polynomial over a field has at most 3 roots. Checking every residue \\( k = 0,\\dots,[[p]]-1 \\) for \\( g(k) \\equiv 0 \\pmod{[[p]]} \\) gives exactly \\( [[answer]] \\) roots. (A cubic is reducible over \\( \\mathbb{Z}_{[[p]]} \\) exactly when it has at least one root there, since any factorization of a cubic must include a linear factor; so a count of \\( 0 \\) here means \\( g \\) is irreducible over \\( \\mathbb{Z}_{[[p]]} \\).)",
+ "distractor_rationales": [
+  "This overcounts by assuming almost every residue is a root of a degree-3 polynomial.",
+  "This is the size of the field itself, not the number of roots \\( g \\) has in it.",
+  "This exceeds the maximum possible number of roots of a cubic over a field (which is 3).",
+  "This assumes exactly one root without checking every residue mod [[p]].",
+  "This assumes exactly two roots without checking every residue mod [[p]].",
+  "This assumes the cubic has no roots at all without checking every residue.",
+  "This overcounts the true root count by one."
+ ]
+},
+{
+ "template_id": "fields_and_irreducibility_quadratic_over_q_v1",
+ "skill_id": "fields_and_irreducibility",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "int", "lo": -12, "hi": 12},
+  "c": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": [],
+ "derived": {"disc": "[[b]]**2 - 4*[[c]]"},
+ "stem": "Let \\( h(x) = x^{2} + [[b]]x + [[c]] \\), a polynomial with integer coefficients. Using the discriminant \\( \\Delta = [[b]]^{2} - 4([[c]]) = [[disc]] \\), determine whether \\( h(x) \\) is IRREDUCIBLE over the field of rational numbers \\( \\mathbb{Q} \\). Enter \\( 1 \\) if it is irreducible over \\( \\mathbb{Q} \\), or \\( 0 \\) if it factors into linear factors over \\( \\mathbb{Q} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, Lt([[b]]**2 - 4*[[c]], 0)), (1, Ne([[b]]**2 - 4*[[c]], floor(sqrt([[b]]**2 - 4*[[c]]))**2)), (0, True))"},
+ "distractors": [
+  "1 - Piecewise((1, Lt([[b]]**2 - 4*[[c]], 0)), (1, Ne([[b]]**2 - 4*[[c]], floor(sqrt([[b]]**2 - 4*[[c]]))**2)), (0, True))",
+  "2",
+  "3",
+  "-1",
+  "-2",
+  "5"
+ ],
+ "solution": "A monic quadratic over \\( \\mathbb{Q} \\) is irreducible exactly when it has no rational root, i.e. exactly when its discriminant \\( \\Delta = b^{2}-4c \\) is EITHER negative (no real root) OR positive but not a perfect square (irrational roots). Here \\( \\Delta = [[disc]] \\), so \\( h(x) \\) is irreducible over \\( \\mathbb{Q} \\) exactly when the answer is \\( 1 \\); computing directly gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the flipped verdict — it swaps the irreducible/reducible cases.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1."
+ ]
+},
+{
+ "template_id": "fields_and_irreducibility_biquadratic_roots_mod_p_v1",
+ "skill_id": "fields_and_irreducibility",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 14},
+  "b": {"type": "int", "lo": 0, "hi": 14},
+  "p": {"type": "choice", "values": [3, 5, 7, 11]}
+ },
+ "constraints": [],
+ "stem": "Consider \\( f(x) = x^{4} + [[a]]x^{2} + [[b]] \\) as a polynomial over the finite field \\( \\mathbb{Z}_{[[p]]} \\). For how many elements \\( k \\in \\{0, 1, \\dots, [[p]]-1\\} \\) is \\( f(k) \\equiv 0 \\pmod{[[p]]} \\)?",
+ "answer_spec": {"op": "sum", "expr": "Piecewise((1, Eq(Mod(k**4 + [[a]]*k**2 + [[b]], [[p]]), 0)), (0, True))", "var": "k", "lo": "0", "hi": "[[p]] - 1"},
+ "distractors": [
+  "[[p]] - 1",
+  "[[p]]",
+  "5",
+  "1",
+  "2",
+  "0",
+  "[[answer]] + 1"
+ ],
+ "solution": "A degree-4 polynomial over a field has at most 4 roots. Checking every residue \\( k=0,\\dots,[[p]]-1 \\) for \\( f(k)\\equiv 0 \\pmod{[[p]]} \\) gives exactly \\( [[answer]] \\) roots. (Note: unlike degree \\( \\le 3 \\), a quartic with NO roots in \\( \\mathbb{Z}_{[[p]]} \\) is not automatically irreducible there — it could still split into two irreducible quadratic factors — but the root count itself is exactly what direct substitution gives.)",
+ "distractor_rationales": [
+  "This overcounts by assuming almost every residue is a root of a degree-4 polynomial.",
+  "This is the size of the field itself, not the number of roots \\( f \\) has in it.",
+  "This exceeds the maximum possible number of roots of a quartic over a field (which is 4).",
+  "This assumes exactly one root without checking every residue mod [[p]].",
+  "This assumes exactly two roots without checking every residue mod [[p]].",
+  "This assumes the quartic has no roots at all without checking every residue.",
+  "This overcounts the true root count by one."
+ ]
+}
+]

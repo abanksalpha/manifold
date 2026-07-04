@@ -3,29 +3,44 @@ Copyright: Ankitects Pty Ltd and contributors
 License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 -->
 <!--
-The main page. It opens on the day's action (start a session, and the single
-topic worth studying next), then reads out the full readiness dashboard inline:
-the three honest scores, the prerequisite graph, and a panel that
-reads out whichever topic is selected. One topic is selected on load, the one
-worth studying next, so the map opens on an answer rather than a blank panel.
+The main page. It opens on the day's action (start a session), then reads out the
+full readiness dashboard inline: the two measured inputs (memory, performance),
+the readiness instrument that projects them onto the ETS scale, the prerequisite
+graph, and a panel that reads out whichever topic is selected. One topic is
+selected on load, the one worth studying next, so the map opens on an answer
+rather than a blank panel.
+
+Readiness is never a bare number. Above the give-up line it shows the projected
+scaled range and point, how sure it is, how much of the exam it covers, when it
+was read, what is dragging it down, a target ladder with the logarithmic hours to
+each rung, and the maturity residue it refuses to promise past. Below the line it
+shows the missing evidence and the topic to study next, never a score. Every
+value here is read from scoring.ts; this page renders, it does not compute.
 -->
 <script lang="ts">
     import "@fontsource-variable/outfit/wght.css";
     import "@fontsource-variable/plus-jakarta-sans/wght.css";
     import "$lib/manifold/tokens.scss";
 
+    import { onMount } from "svelte";
+
     import Button from "$lib/manifold/Button.svelte";
     import Dag from "$lib/manifold/Dag.svelte";
+    import Formula from "$lib/manifold/Formula.svelte";
     import { studyNextWithinPrereqs, type TopicNode } from "$lib/manifold/graph";
     import Legend from "$lib/manifold/Legend.svelte";
     import MathText from "$lib/manifold/MathText.svelte";
+    import Meter from "$lib/manifold/Meter.svelte";
     import Metric from "$lib/manifold/Metric.svelte";
     import {
         computeScores,
-        type Readiness,
+        READINESS_MIN_COVERAGE,
+        READINESS_MIN_INDEPENDENT_REVIEWS,
         selectStudyNext,
     } from "$lib/manifold/scoring";
-    import { PROBLEMS_ARE_PLACEHOLDER } from "$lib/manifold/session";
+    import { prewarmSession, PROBLEMS_ARE_PLACEHOLDER } from "$lib/manifold/session";
+    import SyncChip from "$lib/manifold/SyncChip.svelte";
+    import SyncPanel from "$lib/manifold/SyncPanel.svelte";
     import TopicPanel from "$lib/manifold/TopicPanel.svelte";
 
     import type { PageData } from "./$types";
@@ -33,7 +48,8 @@ worth studying next, so the map opens on an answer rather than a blank panel.
     export let data: PageData;
 
     $: nodes = data.nodes as TopicNode[];
-    $: scores = computeScores(nodes, data.scoringConfig);
+    $: config = data.scoringConfig;
+    $: scores = computeScores(nodes, config);
     $: memory = scores.memory;
     $: performance = scores.performance;
     $: readiness = scores.readiness;
@@ -62,7 +78,21 @@ worth studying next, so the map opens on an answer rather than a blank panel.
         ? performance.contributingTopics / performance.totalTopics
         : 0;
 
-    $: studyNext = readiness.state === "abstaining" ? readiness.studyNext : null;
+    // Narrow the readiness union once, so the template reads either the projected
+    // instrument or the abstain state without re-checking the tag each time.
+    $: projected = readiness.state === "projected" ? readiness : null;
+    $: abstaining = readiness.state === "abstaining" ? readiness : null;
+    $: studyNext = abstaining ? abstaining.studyNext : null;
+
+    // The target ladder rung the projection is read against (D29/D30). Default to
+    // the evolved goal, the top-decile "strong" band, not the median; kept valid
+    // if the ladder ever changes shape rather than guessing a missing rung.
+    let selectedTargetId = "strong";
+    $: if (projected && !projected.targets.some((t) => t.id === selectedTargetId)) {
+        selectedTargetId = projected.targets[0].id;
+    }
+    $: selectedTarget =
+        projected?.targets.find((t) => t.id === selectedTargetId) ?? null;
 
     let selectedId: string | null = null;
     // Open the map on the topic worth studying next; fall back to the first topic
@@ -75,18 +105,32 @@ worth studying next, so the map opens on an answer rather than a blank panel.
 
     const memorySymbolTex = "\\bar{R}";
     const performanceSymbolTex = "\\hat{p}";
+    const readinessSymbolTex = "\\hat{s}";
 
-    type Abstaining = Extract<Readiness, { state: "abstaining" }>;
-
-    function abstainNote(r: Abstaining): string {
-        const parts: string[] = [];
-        if (r.reviewsNeeded > 0) {
-            parts.push(`${r.reviewsNeeded} more independent reviews`);
+    const updatedFormat = new Intl.DateTimeFormat(undefined, {
+        dateStyle: "medium",
+        timeStyle: "short",
+    });
+    function formatUpdated(ms: number): string {
+        return updatedFormat.format(new Date(ms));
+    }
+    function isoStamp(ms: number): string {
+        return new Date(ms).toISOString();
+    }
+    function asPercent(fraction: number): number {
+        return Math.round(fraction * 100);
+    }
+    // Whole hours once the estimate is coarse, one decimal while it is small, so a
+    // short target does not round away to a misleading zero.
+    function formatHours(hours: number): string {
+        if (hours <= 0) {
+            return "0";
         }
-        if (r.coverageNeeded > 0) {
-            parts.push(`${Math.ceil(r.coverageNeeded * 100)}% more coverage`);
-        }
-        return parts.length ? `Held until ${parts.join(" and ")}.` : "Held.";
+        return hours < 10 ? hours.toFixed(1) : String(Math.round(hours));
+    }
+    // Position of a scaled score on the axis (scaleMin..scaleMax), as a percent.
+    function scalePercent(scaled: number): number {
+        return ((scaled - config.scaleMin) / (config.scaleMax - config.scaleMin)) * 100;
     }
 
     function memoryCaption(): string {
@@ -106,6 +150,13 @@ worth studying next, so the map opens on an answer rather than a blank panel.
     function onSelect(event: CustomEvent<string>): void {
         selectedId = event.detail;
     }
+
+    // Start generating the first session problem now, so a template-less leading
+    // skill's live generation overlaps the time spent here instead of stalling the
+    // session's first screen when "Start session" is pressed.
+    onMount(() => {
+        prewarmSession();
+    });
 </script>
 
 <div class="manifold mf-page">
@@ -114,6 +165,7 @@ worth studying next, so the map opens on an answer rather than a blank panel.
             <div class="mf-hero-inner">
                 <header class="mf-masthead">
                     <h1 class="mf-wordmark">Manifold</h1>
+                    <SyncChip />
                 </header>
 
                 <section
@@ -141,20 +193,10 @@ worth studying next, so the map opens on an answer rather than a blank panel.
                                 <path d="m13 6 6 6-6 6" />
                             </svg>
                         </Button>
-                        {#if readiness.state === "abstaining"}
-                            <p class="mf-nextup">
-                                <span class="mf-nextup-dot" aria-hidden="true"></span>
-                                {#if studyNext}
-                                    Next up: <strong>
-                                        <MathText text={studyNext.title} />
-                                    </strong>
-                                {:else}
-                                    No topics are open to study yet.
-                                {/if}
-                            </p>
-                        {/if}
                     </div>
                 </section>
+
+                <SyncPanel />
             </div>
         </div>
 
@@ -164,7 +206,10 @@ worth studying next, so the map opens on an answer rather than a blank panel.
             aria-labelledby="mf-measure-label"
         >
             <h2 id="mf-measure-label" class="mf-section-label">Measurements</h2>
-            <div class="mf-score">
+
+            <!-- The two measured inputs sit together; readiness is the projection
+                 drawn from them, so it takes its own wider instrument below. -->
+            <div class="mf-inputs">
                 <Metric
                     label="Memory"
                     symbolTex={memorySymbolTex}
@@ -187,36 +232,228 @@ worth studying next, so the map opens on an answer rather than a blank panel.
                     accent="var(--mf-secondary)"
                     caption={performanceCaption()}
                 />
-                <div
-                    class="mf-readiness-cell"
-                    class:is-projected={readiness.state === "projected"}
-                >
-                    <div class="mf-rc-head">
-                        <span class="mf-rc-mark" aria-hidden="true"></span>
-                        <span class="mf-rc-label">Readiness</span>
-                    </div>
-                    {#if readiness.state === "projected"}
-                        <span class="mf-rc-range">
-                            {readiness.scaledLow}
-                            <span class="mf-rc-dash" aria-hidden="true">–</span>
-                            {readiness.scaledHigh}
+            </div>
+
+            <div class="mf-readiness" class:is-projected={projected !== null}>
+                <div class="mf-rc-head">
+                    <span class="mf-rc-mark" aria-hidden="true"></span>
+                    <span class="mf-rc-label">Readiness</span>
+                    <span class="mf-rc-symbol">
+                        <Formula
+                            tex={readinessSymbolTex}
+                            label="projected scaled score"
+                            fontSize={13}
+                        />
+                    </span>
+                    {#if projected}
+                        <span
+                            class="mf-rc-conf"
+                            class:mf-rc-conf-confident={projected.confidence ===
+                                "confident"}
+                        >
+                            {projected.confidence}
                         </span>
-                        <p class="mf-rc-note">
-                            Point {readiness.scaledPoint} · {readiness.confidence}
-                            confidence · {Math.round(readiness.coverage * 100)}% covered{#if readiness.drivers.length}
-                                · driver: {readiness.drivers[0].title}{/if}
-                        </p>
-                        {#if PROBLEMS_ARE_PLACEHOLDER}
-                            <p class="mf-rc-placeholder">
-                                Estimate from placeholder problems, not a validated
-                                score yet.
-                            </p>
-                        {/if}
                     {:else}
                         <span class="mf-rc-state">Abstaining</span>
-                        <p class="mf-rc-note">{abstainNote(readiness)}</p>
                     {/if}
+                    <time
+                        class="mf-rc-updated"
+                        datetime={isoStamp(readiness.lastUpdated)}
+                    >
+                        Updated {formatUpdated(readiness.lastUpdated)}
+                    </time>
                 </div>
+
+                {#if projected}
+                    <div class="mf-rc-reading">
+                        <span
+                            class="mf-rc-range"
+                            aria-label="projected {projected.scaledLow} to {projected.scaledHigh}"
+                        >
+                            {projected.scaledLow}
+                            <span class="mf-rc-dash" aria-hidden="true">–</span>
+                            {projected.scaledHigh}
+                        </span>
+                        <span class="mf-rc-point">point {projected.scaledPoint}</span>
+                    </div>
+
+                    <div
+                        class="mf-gauge"
+                        style="--conf: {projected.confidence === 'confident' ? 1 : 0.5}"
+                        role="img"
+                        aria-label="Projected {projected.scaledLow} to {projected.scaledHigh}, point {projected.scaledPoint}, on the {config.scaleMin} to {config.scaleMax} scale"
+                    >
+                        <div class="mf-gauge-track">
+                            <div
+                                class="mf-gauge-residue"
+                                style="left: {scalePercent(
+                                    projected.residue.promisedCeiling,
+                                )}%"
+                            ></div>
+                            <div
+                                class="mf-gauge-band"
+                                style="left: {scalePercent(
+                                    projected.scaledLow,
+                                )}%; width: {Math.max(
+                                    0.8,
+                                    scalePercent(projected.scaledHigh) -
+                                        scalePercent(projected.scaledLow),
+                                )}%"
+                            ></div>
+                            <div
+                                class="mf-gauge-point"
+                                style="left: {scalePercent(projected.scaledPoint)}%"
+                            ></div>
+                            {#each projected.targets as t (t.id)}
+                                <div
+                                    class="mf-gauge-target"
+                                    class:is-active={t.id === selectedTargetId}
+                                    style="left: {scalePercent(t.scaledPoint)}%"
+                                ></div>
+                            {/each}
+                        </div>
+                        <div class="mf-gauge-scale" aria-hidden="true">
+                            <span>{config.scaleMin}</span>
+                            <span>{config.scaleMax}</span>
+                        </div>
+                    </div>
+
+                    <dl class="mf-rc-facts">
+                        <div class="mf-rc-fact">
+                            <dt>Covered</dt>
+                            <dd>{asPercent(projected.coverage)}% of the exam</dd>
+                        </div>
+                        <div class="mf-rc-fact">
+                            <dt>Evidence</dt>
+                            <dd>{projected.independentReviews} independent reviews</dd>
+                        </div>
+                    </dl>
+
+                    {#if projected.drivers.length}
+                        <p class="mf-rc-drivers">
+                            Held back by{#each projected.drivers as d, i (d.id)}{i > 0
+                                    ? ", "
+                                    : " "}<MathText text={d.title} /> ({asPercent(
+                                    d.performance,
+                                )}%){/each}.
+                        </p>
+                    {/if}
+
+                    {#if projected.lapseRate > 0}
+                        <p class="mf-rc-lapse">
+                            {asPercent(projected.lapseRate)}% of graduated cards have
+                            lapsed, widening the range.
+                        </p>
+                    {/if}
+
+                    <div class="mf-rc-ladder">
+                        <div class="mf-target-select" role="group" aria-label="Target">
+                            {#each projected.targets as t (t.id)}
+                                <button
+                                    type="button"
+                                    class="mf-target-btn"
+                                    class:is-active={t.id === selectedTargetId}
+                                    aria-pressed={t.id === selectedTargetId}
+                                    on:click={() => (selectedTargetId = t.id)}
+                                >
+                                    <span class="mf-target-name">{t.label}</span>
+                                    <span class="mf-target-band">
+                                        {t.scaledLow}–{t.scaledHigh}
+                                    </span>
+                                </button>
+                            {/each}
+                        </div>
+
+                        {#if selectedTarget}
+                            <p class="mf-target-detail">
+                                {#if selectedTarget.reached}
+                                    {selectedTarget.label} reached. The projection sits at
+                                    or above {selectedTarget.scaledPoint}.
+                                {:else}
+                                    {selectedTarget.gapPoints} scaled points to
+                                    {selectedTarget.label}, about
+                                    {formatHours(selectedTarget.hoursToTarget)} h of focused
+                                    practice on the logarithmic effort curve.
+                                {/if}
+                            </p>
+                        {/if}
+                    </div>
+
+                    <p class="mf-rc-residue">
+                        Capped at {projected.residue.promisedCeiling}. The top
+                        {projected.residue.scaledPoints} scaled points ({projected
+                            .residue.items} deep-proof items) are not promised.
+                    </p>
+
+                    {#if PROBLEMS_ARE_PLACEHOLDER}
+                        <p class="mf-rc-placeholder">
+                            Estimate from placeholder problems, not a validated score
+                            yet.
+                        </p>
+                    {/if}
+                {:else if abstaining}
+                    <p class="mf-rc-lead">Not enough evidence to project a score.</p>
+
+                    <div class="mf-gate">
+                        <div class="mf-gate-row">
+                            <div class="mf-gate-head">
+                                <span class="mf-gate-label">Independent reviews</span>
+                                <span class="mf-gate-count">
+                                    {abstaining.independentReviews} / {READINESS_MIN_INDEPENDENT_REVIEWS}
+                                </span>
+                            </div>
+                            <Meter
+                                value={Math.min(
+                                    1,
+                                    abstaining.independentReviews /
+                                        READINESS_MIN_INDEPENDENT_REVIEWS,
+                                )}
+                                evidence={Math.min(
+                                    1,
+                                    abstaining.independentReviews /
+                                        READINESS_MIN_INDEPENDENT_REVIEWS,
+                                )}
+                                showRange={false}
+                                label="independent reviews, {abstaining.independentReviews} of {READINESS_MIN_INDEPENDENT_REVIEWS}"
+                            />
+                        </div>
+                        <div class="mf-gate-row">
+                            <div class="mf-gate-head">
+                                <span class="mf-gate-label">Coverage</span>
+                                <span class="mf-gate-count">
+                                    {asPercent(abstaining.coverage)}% / {asPercent(
+                                        READINESS_MIN_COVERAGE,
+                                    )}%
+                                </span>
+                            </div>
+                            <Meter
+                                value={Math.min(
+                                    1,
+                                    abstaining.coverage / READINESS_MIN_COVERAGE,
+                                )}
+                                evidence={Math.min(
+                                    1,
+                                    abstaining.coverage / READINESS_MIN_COVERAGE,
+                                )}
+                                showRange={false}
+                                label="coverage, {asPercent(
+                                    abstaining.coverage,
+                                )} percent of the {asPercent(
+                                    READINESS_MIN_COVERAGE,
+                                )} percent needed"
+                            />
+                        </div>
+                    </div>
+
+                    <p class="mf-rc-next">
+                        {#if studyNext}
+                            Study <strong><MathText text={studyNext.title} /></strong>
+                            next to close the gap.
+                        {:else}
+                            No topics are open to study yet.
+                        {/if}
+                    </p>
+                {/if}
             </div>
         </section>
 
@@ -326,8 +563,9 @@ worth studying next, so the map opens on an answer rather than a blank panel.
 
     .mf-masthead {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: var(--mf-space-3);
     }
 
@@ -395,47 +633,28 @@ worth studying next, so the map opens on an answer rather than a blank panel.
         margin-top: var(--mf-space-3);
     }
 
-    .mf-nextup {
-        margin: 0;
-        font-size: var(--mf-text-base);
-        color: var(--mf-ink-muted);
-    }
-
-    /* a small sticker dot marks the "next up" nudge (chrome, not a reading) */
-    .mf-nextup-dot {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        margin-right: var(--mf-space-2);
-        border-radius: var(--mf-radius-full);
-        background: var(--mf-quaternary);
-        border: 2px solid var(--mf-ink);
-        vertical-align: middle;
-    }
-
-    .mf-nextup strong {
-        color: var(--mf-ink);
-        font-weight: 700;
-    }
-
     .mf-measurements {
         margin-top: var(--mf-space-7);
     }
 
-    .mf-score {
+    /* The two measured inputs, side by side; they collapse to one column before
+     * the readiness instrument does, since each is a compact single reading. */
+    .mf-inputs {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: var(--mf-space-5);
         margin-top: var(--mf-space-4);
     }
 
-    /* The readiness cell shares the Metric sticker frame, but its reading stays
-     * honest: no confetti accent, a grey header mark, and the withheld state and
-     * note in calm slate rather than an alarm colour. */
-    .mf-readiness-cell {
+    /* The readiness instrument: same sticker frame as a Metric, but roomier,
+     * because it carries the projection, the target ladder and the honest
+     * caveats rather than a single reading. Saturated colour is spent only on
+     * the confidence and coverage signals inside it; the frame stays ink. */
+    .mf-readiness {
         display: grid;
-        gap: var(--mf-space-3);
+        gap: var(--mf-space-4);
         align-content: start;
+        margin-top: var(--mf-space-5);
         padding: var(--mf-space-5);
         border: var(--mf-outline);
         border-radius: var(--mf-radius-lg);
@@ -446,12 +665,12 @@ worth studying next, so the map opens on an answer rather than a blank panel.
     .mf-rc-head {
         display: flex;
         align-items: center;
-        gap: var(--mf-space-2);
+        gap: var(--mf-space-3);
         min-height: 20px;
     }
 
-    /* the withheld-reading marker stays a plain grey square: no rotation, no pop
-     * colour, so it reads as "no answer yet" rather than a cheerful sticker */
+    /* the reading marker: a plain grey square while abstaining ("no answer yet"),
+     * taking the measured signal colour once a projection exists. */
     .mf-rc-mark {
         flex: none;
         width: 16px;
@@ -459,6 +678,10 @@ worth studying next, so the map opens on an answer rather than a blank panel.
         border-radius: 0;
         background: var(--mf-abstain);
         border: 2.5px solid var(--mf-ink);
+    }
+
+    .mf-readiness.is-projected .mf-rc-mark {
+        background: var(--mf-signal);
     }
 
     .mf-rc-label {
@@ -470,49 +693,342 @@ worth studying next, so the map opens on an answer rather than a blank panel.
         color: var(--mf-ink-muted);
     }
 
+    .mf-rc-symbol {
+        display: inline-flex;
+        align-items: center;
+        opacity: 0.85;
+    }
+
+    /* status sits after the label; the timestamp is pushed to the far edge so the
+     * "when" always lands in the same place across both states. */
     .mf-rc-state {
         font-family: var(--mf-font-display);
-        font-size: var(--mf-text-lg);
+        font-size: var(--mf-text-sm);
         font-weight: 700;
-        line-height: 1.1;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
         color: var(--mf-abstain);
     }
 
-    .mf-rc-note {
-        margin: 0;
-        font-size: var(--mf-text-sm);
+    /* confidence as an outlined pill: provisional stays quiet, confident earns
+     * the measured signal fill (a how-sure signal, so it may carry colour). */
+    .mf-rc-conf {
+        padding: 2px 10px;
+        border: 2px solid var(--mf-ink);
+        border-radius: var(--mf-radius-full);
+        font-family: var(--mf-font-sans);
+        font-size: var(--mf-text-xs);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
         color: var(--mf-ink-muted);
-        max-width: 34ch;
+        background: var(--mf-surface);
     }
 
-    /* Once Readiness can speak, it is a real answer: the marker takes the mastery
-     * signal colour and the reading is drawn in ink, not the grey abstain slate. */
-    .mf-readiness-cell.is-projected .mf-rc-mark {
-        background: var(--mf-signal);
+    .mf-rc-conf-confident {
+        color: var(--mf-accent-ink);
+        background: color-mix(in srgb, var(--mf-signal) 30%, var(--mf-surface));
+    }
+
+    .mf-rc-updated {
+        margin-left: auto;
+        font-size: var(--mf-text-xs);
+        color: var(--mf-ink-faint);
+        white-space: nowrap;
+    }
+
+    /* the headline reading: the range in the big display face, the point beside
+     * it in plain type so the range leads and the point supports it. */
+    .mf-rc-reading {
+        display: flex;
+        align-items: baseline;
+        gap: var(--mf-space-3);
+        flex-wrap: wrap;
     }
 
     .mf-rc-range {
         font-family: var(--mf-font-display);
-        font-size: var(--mf-text-2xl);
+        font-size: var(--mf-readout);
         font-weight: 800;
         line-height: 1;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.02em;
         color: var(--mf-ink);
+        font-variant-numeric: tabular-nums;
     }
 
     .mf-rc-dash {
-        margin: 0 0.15em;
+        margin: 0 0.12em;
         color: var(--mf-ink-faint);
     }
 
-    /* The honesty flag: this estimate rides on placeholder problems until real
+    .mf-rc-point {
+        font-family: var(--mf-font-sans);
+        font-size: var(--mf-text-md);
+        font-weight: 600;
+        color: var(--mf-ink-muted);
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* The scale instrument: the projected band and point drawn on the real
+     * 200..990 axis, with the three targets ticked and the residue it will not
+     * promise hatched off at the top. A gauge, not a progress bar. */
+    .mf-gauge {
+        display: grid;
+        gap: var(--mf-space-2);
+    }
+
+    .mf-gauge-track {
+        position: relative;
+        height: 22px;
+        border: var(--mf-border-width) solid var(--mf-ink);
+        background: var(--mf-surface);
+        overflow: hidden;
+    }
+
+    /* the maturity residue: a hatched dead zone from the promised ceiling to the
+     * scale top, so the "not promised" region is visible, not implied. */
+    .mf-gauge-residue {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-image: repeating-linear-gradient(
+            -45deg,
+            var(--mf-abstain) 0,
+            var(--mf-abstain) 2px,
+            transparent 2px,
+            transparent 7px
+        );
+        opacity: 0.5;
+    }
+
+    /* the projected band, its chroma scaled by confidence so a provisional
+     * projection reads greyer than a confident one. */
+    .mf-gauge-band {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        min-width: 3px;
+        background: oklch(
+            var(--mf-signal-l) calc(var(--mf-signal-c) * var(--conf, 1))
+                var(--mf-signal-h)
+        );
+    }
+
+    .mf-gauge-point {
+        position: absolute;
+        top: -2px;
+        bottom: -2px;
+        width: 3px;
+        margin-left: -1.5px;
+        background: var(--mf-ink);
+    }
+
+    /* target rungs: thin ink ticks; the selected rung grows and takes the action
+     * colour, tying the gauge to the selector below it. */
+    .mf-gauge-target {
+        position: absolute;
+        top: 3px;
+        bottom: 3px;
+        width: 2px;
+        margin-left: -1px;
+        background: var(--mf-ink);
+        opacity: 0.45;
+    }
+
+    .mf-gauge-target.is-active {
+        top: -2px;
+        bottom: -2px;
+        width: 3px;
+        margin-left: -1.5px;
+        background: var(--mf-accent);
+        opacity: 1;
+    }
+
+    .mf-gauge-scale {
+        display: flex;
+        justify-content: space-between;
+        font-size: var(--mf-text-xs);
+        color: var(--mf-ink-faint);
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* the honest facts, in a two-up definition grid: coverage and the evidence
+     * that cleared the give-up gate. */
+    .mf-rc-facts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--mf-space-2) var(--mf-space-5);
+        margin: 0;
+    }
+
+    .mf-rc-fact {
+        display: grid;
+        gap: 2px;
+    }
+
+    .mf-rc-fact dt {
+        font-family: var(--mf-font-display);
+        font-size: var(--mf-text-xs);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mf-ink-muted);
+    }
+
+    .mf-rc-fact dd {
+        margin: 0;
+        font-size: var(--mf-text-sm);
+        color: var(--mf-ink);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .mf-rc-drivers,
+    .mf-rc-lapse {
+        margin: 0;
+        font-size: var(--mf-text-sm);
+        color: var(--mf-ink-muted);
+        max-width: 60ch;
+    }
+
+    .mf-rc-drivers :global(.mf-mathtext) {
+        color: var(--mf-ink);
+        font-weight: 600;
+    }
+
+    /* the target ladder: a segmented selector and the detail for the chosen rung,
+     * inset so it reads as the controllable part of the instrument. */
+    .mf-rc-ladder {
+        display: grid;
+        gap: var(--mf-space-3);
+        padding: var(--mf-space-4);
+        border: var(--mf-outline);
+        border-radius: var(--mf-radius);
+        background: var(--mf-surface-sunken);
+    }
+
+    .mf-target-select {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--mf-space-2);
+    }
+
+    .mf-target-btn {
+        display: grid;
+        gap: 2px;
+        padding: var(--mf-space-2) var(--mf-space-3);
+        border: 2px solid var(--mf-ink);
+        border-radius: var(--mf-radius);
+        background: var(--mf-surface);
+        cursor: pointer;
+        text-align: left;
+        transition: background-color var(--mf-transition);
+    }
+
+    .mf-target-btn:hover {
+        background: var(--mf-hover);
+    }
+
+    .mf-target-btn.is-active {
+        background: var(--mf-accent);
+        color: var(--mf-accent-ink);
+    }
+
+    .mf-target-name {
+        font-family: var(--mf-font-display);
+        font-size: var(--mf-text-sm);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: inherit;
+    }
+
+    .mf-target-band {
+        font-size: var(--mf-text-xs);
+        color: inherit;
+        opacity: 0.75;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .mf-target-detail {
+        margin: 0;
+        font-size: var(--mf-text-sm);
+        color: var(--mf-ink);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .mf-rc-residue {
+        margin: 0;
+        font-size: var(--mf-text-xs);
+        line-height: 1.5;
+        color: var(--mf-ink-faint);
+        max-width: 60ch;
+    }
+
+    /* the honesty flag: this estimate rides on placeholder problems until real
      * generated items exist, so it is never presented as a validated score. */
     .mf-rc-placeholder {
         margin: 0;
         font-size: var(--mf-text-xs);
         line-height: 1.4;
         color: var(--mf-ink-faint);
-        max-width: 34ch;
+        max-width: 60ch;
+    }
+
+    /* --- Abstaining state --- */
+
+    .mf-rc-lead {
+        margin: 0;
+        font-family: var(--mf-font-display);
+        font-size: var(--mf-text-lg);
+        font-weight: 700;
+        line-height: 1.15;
+        color: var(--mf-ink);
+    }
+
+    /* the give-up gate made visible: two bars showing how close each condition is
+     * to letting readiness speak, with the real counts alongside. */
+    .mf-gate {
+        display: grid;
+        gap: var(--mf-space-4);
+    }
+
+    .mf-gate-row {
+        display: grid;
+        gap: var(--mf-space-2);
+    }
+
+    .mf-gate-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--mf-space-3);
+    }
+
+    .mf-gate-label {
+        font-family: var(--mf-font-display);
+        font-size: var(--mf-text-xs);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mf-ink-muted);
+    }
+
+    .mf-gate-count {
+        font-size: var(--mf-text-sm);
+        color: var(--mf-ink);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .mf-rc-next {
+        margin: 0;
+        font-size: var(--mf-text-sm);
+        color: var(--mf-ink-muted);
+        max-width: 60ch;
+    }
+
+    .mf-rc-next strong {
+        color: var(--mf-ink);
+        font-weight: 700;
     }
 
     .mf-levels {
@@ -617,13 +1133,17 @@ worth studying next, so the map opens on an answer rather than a blank panel.
     }
 
     @media (max-width: 900px) {
-        .mf-score {
-            grid-template-columns: 1fr 1fr;
+        .mf-inputs {
+            grid-template-columns: 1fr;
         }
     }
 
-    @media (max-width: 480px) {
-        .mf-score {
+    @media (max-width: 560px) {
+        .mf-target-select {
+            grid-template-columns: 1fr;
+        }
+
+        .mf-rc-facts {
             grid-template-columns: 1fr;
         }
     }

@@ -1,0 +1,268 @@
+[
+{
+ "template_id": "reflection_over_line_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "x0": {
+   "type": "int",
+   "lo": -8,
+   "hi": 8
+  },
+  "y0": {
+   "type": "int",
+   "lo": -8,
+   "hi": 8
+  },
+  "k": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  }
+ },
+ "constraints": [],
+ "stem": "Reflect the point \\( ([[x0]],[[y0]]) \\) over the horizontal line \\( y=[[k]] \\). What is the \\( y \\)-coordinate of the image?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*[[k]] - [[y0]]"
+ },
+ "distractors": [
+  "[[y0]] - 2*[[k]]",
+  "2*[[k]] + [[y0]]",
+  "[[k]] - [[y0]]",
+  "-[[y0]]",
+  "2*[[k]] - [[y0]] + 1",
+  "2*[[k]] - [[y0]] - 1"
+ ],
+ "solution": "Reflecting over \\( y=[[k]] \\) sends \\( y_0 \\mapsto 2[[k]]-y_0=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "reflection_over_general_line_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -8, "hi": 8},
+  "y0": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "Reflect the point \\( ([[x0]],[[y0]]) \\) over the line \\( [[a]]x+[[b]]y+([[c]])=0 \\). Find the \\( x \\)-coordinate of the image.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[x0]] - 2*[[a]]*([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "[[x0]] + 2*[[a]]*([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)",
+  "[[x0]] - 2*[[b]]*([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)",
+  "[[x0]] - ([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)",
+  "[[y0]] - 2*[[a]]*([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)",
+  "[[x0]] - 2*[[a]]*([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2) + 1",
+  "[[x0]] - 2*[[a]]*([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "The reflection formula gives \\( x'=x_0-\\dfrac{2a(ax_0+by_0+c)}{a^{2}+b^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the correction term instead of subtracting it.",
+  "This uses \\( b\\) instead of \\( a\\) in the numerator's leading factor.",
+  "This forgets the factor of \\( 2\\) in the correction term.",
+  "This reports the \\( y\\)-coordinate formula instead of the \\( x\\)-coordinate formula.",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "reflection_over_line_through_origin_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -8, "hi": 8},
+  "y0": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[m]], 0)"],
+ "stem": "Reflect the point \\( ([[x0]],[[y0]]) \\) over the line \\( y=[[m]]x \\). Find the \\( x \\)-coordinate of the image.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "((1-[[m]]**2)*[[x0]] + 2*[[m]]*[[y0]])/(1+[[m]]**2)"
+ },
+ "distractors": [
+  "((1-[[m]]**2)*[[x0]] - 2*[[m]]*[[y0]])/(1+[[m]]**2)",
+  "((1+[[m]]**2)*[[x0]] + 2*[[m]]*[[y0]])/(1+[[m]]**2)",
+  "(2*[[m]]*[[x0]] - (1-[[m]]**2)*[[y0]])/(1+[[m]]**2)",
+  "[[x0]]*[[m]]",
+  "((1-[[m]]**2)*[[x0]] + 2*[[m]]*[[y0]])/(1+[[m]]**2) + 1",
+  "((1-[[m]]**2)*[[x0]] + 2*[[m]]*[[y0]])/(1+[[m]]**2) - 1"
+ ],
+ "solution": "Reflecting over \\( y=mx \\) uses \\( x'=\\dfrac{(1-m^{2})x_0+2my_0}{1+m^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the cross term.",
+  "This uses \\( 1+m^2\\) instead of \\( 1-m^2\\) as the coefficient of \\( x_0\\).",
+  "This reports the \\( y\\)-coordinate formula instead of the \\( x\\)-coordinate formula.",
+  "This uses a naive slope-multiplication instead of the reflection formula.",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "reflection_over_y_equals_x_distance_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": -9, "hi": 9},
+  "y0": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[x0]], [[y0]])"],
+ "stem": "The point \\( P=([[x0]],[[y0]]) \\) is reflected over the line \\( y=x \\) to get \\( P' \\). Find the distance \\( PP' \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt(2)*Abs([[x0]] - [[y0]])"
+ },
+ "distractors": [
+  "Abs([[x0]] - [[y0]])",
+  "2*Abs([[x0]] - [[y0]])",
+  "sqrt(2)*([[x0]] - [[y0]])",
+  "Abs([[x0]] + [[y0]])",
+  "sqrt(2)*Abs([[x0]] - [[y0]]) + 1",
+  "sqrt(2)*Abs([[x0]] - [[y0]]) - 1"
+ ],
+ "solution": "The reflection is \\( P'=([[y0]],[[x0]]) \\), so \\( PP'=\\sqrt{2([[x0]]-[[y0]])^{2}}=\\sqrt{2}\\,|[[x0]]-[[y0]]|=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( \\sqrt{2}\\) from the diagonal distance.",
+  "This uses \\( 2\\) instead of \\( \\sqrt{2}\\) as the scale factor.",
+  "This drops the absolute value, which can go negative.",
+  "This adds the coordinates instead of subtracting them.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "tangent_segment_length_external_point_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "h": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "u": {"type": "int", "lo": 2, "hi": 5},
+  "v": {"type": "int", "lo": 1, "hi": 4},
+  "r": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": ["Gt([[u]], [[v]])", "Lt([[r]], [[u]]**2 + [[v]]**2)"],
+ "derived": {
+  "dx": "[[u]]**2 - [[v]]**2",
+  "dy": "2*[[u]]*[[v]]",
+  "dist": "[[u]]**2 + [[v]]**2"
+ },
+ "stem": "A circle has center \\( ([[h]],[[k]]) \\) and radius \\( [[r]] \\). An external point \\( P \\) is located \\( [[dist]] \\) units from the center. Find the length of the tangent segment from \\( P \\) to the circle.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[dist]]**2 - [[r]]**2)"
+ },
+ "distractors": [
+  "[[dist]] - [[r]]",
+  "sqrt([[dist]] - [[r]])",
+  "sqrt([[dist]]**2 + [[r]]**2)",
+  "[[dist]]**2 - [[r]]**2",
+  "sqrt([[dist]]**2 - [[r]]**2) + 1",
+  "sqrt([[dist]]**2 - [[r]]**2) - 1"
+ ],
+ "solution": "By the Pythagorean theorem (tangent \\( \\perp \\) radius at the point of tangency), the tangent length is \\( \\sqrt{d^{2}-r^{2}}=\\sqrt{[[dist]]^{2}-[[r]]^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the radius directly instead of using the Pythagorean relationship.",
+  "This forgets to square \\( d\\) and \\( r\\) before subtracting.",
+  "This adds the squares instead of subtracting them.",
+  "This reports \\( d^2-r^2\\) without taking the final square root.",
+  "This is off by one from the correct tangent length.",
+  "This is off by one (other direction) from the correct tangent length."
+ ]
+},
+{
+ "template_id": "tangent_slope_at_point_on_circle_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "h": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "u": {"type": "int", "lo": 2, "hi": 5},
+  "v": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Gt([[u]], [[v]])"],
+ "derived": {
+  "dx": "[[u]]**2 - [[v]]**2",
+  "dy": "2*[[u]]*[[v]]",
+  "r": "[[u]]**2 + [[v]]**2",
+  "x0": "[[h]] + [[dx]]",
+  "y0": "[[k]] + [[dy]]"
+ },
+ "stem": "The point \\( ([[x0]],[[y0]]) \\) lies on the circle centered at \\( ([[h]],[[k]]) \\) with radius \\( [[r]] \\). Find the slope of the line tangent to the circle at this point.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[dx]], [[dy]])"
+ },
+ "distractors": [
+  "Rational([[dx]], [[dy]])",
+  "-Rational([[dy]], [[dx]])",
+  "Rational([[dy]], [[dx]])",
+  "-Rational([[dx]], [[dy]]) * 2",
+  "-Rational([[dx]], [[dy]]) + 1",
+  "-Rational([[dx]], [[dy]]) - 1"
+ ],
+ "solution": "The radius to \\( ([[x0]],[[y0]]) \\) has slope \\( \\dfrac{[[dy]]}{[[dx]]} \\); the tangent line is perpendicular to it, so its slope is \\( -\\dfrac{[[dx]]}{[[dy]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign, using the radius slope itself.",
+  "This inverts the ratio before negating.",
+  "This inverts the ratio without negating.",
+  "This doubles the correct slope.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "tangency_condition_line_and_circle_v1",
+ "skill_id": "tangency_and_reflection_over_a_line",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "u": {"type": "int", "lo": 2, "hi": 6},
+  "v": {"type": "int", "lo": 1, "hi": 5},
+  "r": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Gt([[u]], [[v]])"],
+ "derived": {
+  "p": "[[u]]**2 - [[v]]**2",
+  "q": "2*[[u]]*[[v]]",
+  "s": "[[u]]**2 + [[v]]**2"
+ },
+ "stem": "For what positive value of \\( c \\) is the line \\( y=\\dfrac{[[p]]}{[[q]]}x+c \\) tangent to the circle \\( x^{2}+y^{2}=[[r]]^{2} \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[r]]*[[s]], [[q]])"
+ },
+ "distractors": [
+  "Rational([[r]]*[[q]], [[s]])",
+  "Rational([[s]], [[q]])",
+  "Rational([[r]]*[[p]], [[q]])",
+  "[[r]]",
+  "Rational([[r]]*[[s]], [[q]]) + 1",
+  "Rational([[r]]*[[s]], [[q]]) - 1"
+ ],
+ "solution": "Tangency requires the distance from the origin to the line to equal the radius: \\( \\dfrac{|c|}{\\sqrt{(p/q)^{2}+1}}=[[r]] \\); since \\( \\sqrt{(p/q)^{2}+1}=\\dfrac{[[s]]}{[[q]]} \\) (from \\( p^{2}+q^{2}=s^{2}\\)), the positive solution is \\( c=\\dfrac{[[r]]\\cdot[[s]]}{[[q]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps the roles of \\( s\\) and \\( q\\) in the ratio.",
+  "This forgets to multiply by the radius \\( r\\).",
+  "This uses \\( p\\) instead of \\( s\\) in the numerator.",
+  "This reports the radius itself, ignoring the slope's effect on the tangency condition.",
+  "This is off by one from the correct value of \\( c\\).",
+  "This is off by one (other direction) from the correct value of \\( c\\)."
+ ]
+}
+]

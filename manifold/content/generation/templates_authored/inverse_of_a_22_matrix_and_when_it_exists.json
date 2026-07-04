@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "inverse_of_a_22_matrix_and_when_it_exists_v1",
+ "skill_id": "inverse_of_a_22_matrix_and_when_it_exists",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)", "Ne([[d]], 0)", "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). The matrix \\( A \\) is invertible. What is the entry in the first row and first column of \\( A^{-1} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[d]] / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[a]] / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[d]] / ([[b]]*[[c]] - [[a]]*[[d]])",
+  "[[d]]",
+  "[[b]] / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[c]] / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "-[[d]] / ([[a]]*[[d]] - [[b]]*[[c]])"
+ ],
+ "solution": "For \\( A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\), \\( A^{-1} = \\frac{1}{ad-bc}\\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix} \\). With \\( ad-bc = ([[a]])([[d]])-([[b]])([[c]]) \\), the \\( (1,1) \\) entry is \\( \\frac{[[d]]}{([[a]])([[d]])-([[b]])([[c]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This puts \\( a \\) in the \\( (1,1) \\) slot; the adjugate places \\( d \\) there (the diagonal entries are swapped).",
+  "This uses \\( bc-ad \\) in the denominator, flipping the sign of the determinant.",
+  "This forgets to divide by the determinant \\( ad-bc \\).",
+  "This uses the entry \\( b \\) rather than \\( d \\) in the numerator.",
+  "This uses the entry \\( c \\) rather than \\( d \\) in the numerator.",
+  "This has the wrong sign in the numerator."
+ ]
+},
+{
+ "template_id": "inverse_of_a_22_matrix_and_when_it_exists_v2",
+ "skill_id": "inverse_of_a_22_matrix_and_when_it_exists",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)", "Eq(Mod([[b]]*[[c]], [[d]]), 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} k & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), where \\( k \\) is a real parameter. For which value of \\( k \\) does \\( A^{-1} \\) fail to exist?",
+ "answer_spec": {"op": "solve", "equation": "[[d]]*k - [[b]]*[[c]] = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[c]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "\\( A^{-1} \\) exists exactly when \\( \\det(A) = [[d]]k - ([[b]])([[c]]) \\ne 0 \\). It fails to exist when \\( [[d]]k = ([[b]])([[c]]) \\), i.e. \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the product \\( bc \\); one must still divide by \\( [[d]] \\) to isolate \\( k \\).",
+  "This solves the singularity equation with the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "inverse_of_a_22_matrix_and_when_it_exists_v3",
+ "skill_id": "inverse_of_a_22_matrix_and_when_it_exists",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), so \\( \\det(A) = [[detA]] \\) and \\( A \\) is invertible. What is \\( \\det(A^{-1}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1 / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "-1 / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "-([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( \\det(A^{-1}) = \\dfrac{1}{\\det(A)} \\), we get \\( \\det(A^{-1}) = \\dfrac{1}{[[detA]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the reciprocal and just gives \\( \\det(A) \\) back.",
+  "This has the right magnitude but the wrong sign.",
+  "This negates \\( \\det(A) \\) instead of taking its reciprocal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "inverse_of_a_22_matrix_and_when_it_exists_v4",
+ "skill_id": "inverse_of_a_22_matrix_and_when_it_exists",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), so \\( \\det(A) = [[detA]] \\) and \\( A \\) is invertible. What is \\( \\operatorname{tr}(A^{-1}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]] + [[d]]) / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[a]] + [[d]]",
+  "-([[a]] + [[d]]) / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "([[a]] + [[d]]) * ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( A^{-1} = \\frac{1}{\\det A}\\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix} \\), its trace is \\( \\dfrac{a+d}{\\det A} = \\dfrac{[[a]]+[[d]]}{[[detA]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( \\det(A) \\), giving just \\( \\operatorname{tr}(A) \\).",
+  "This has the right magnitude but the wrong sign.",
+  "This multiplies by \\( \\det(A) \\) instead of dividing by it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

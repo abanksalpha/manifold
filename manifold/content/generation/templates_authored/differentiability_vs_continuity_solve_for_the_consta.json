@@ -1,0 +1,141 @@
+[
+{
+ "template_id": "diffability_solve_const_v1",
+ "skill_id": "differentiability_vs_continuity_solve_for_the_consta",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 8
+  },
+  "p": {
+   "type": "int",
+   "lo": 2,
+   "hi": 8
+  }
+ },
+ "constraints": [],
+ "stem": "The function \\( f(x)= [[a]]x^{2} \\) for \\( x\\le [[p]] \\) and \\( f(x)=mx+b \\) for \\( x>[[p]] \\) is differentiable at \\( x=[[p]] \\). What is \\( m \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*[[a]]*[[p]]"
+ },
+ "distractors": [
+  "[[a]]*[[p]]**2",
+  "[[a]]*[[p]]",
+  "2*[[a]]",
+  "[[a]]*2*[[p]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiability forces \\( m=f'([[p]])=2[[a]][[p]]=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "diffability_solve_intercept_via_continuity_v2",
+ "skill_id": "differentiability_vs_continuity_solve_for_the_consta",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The function \\( f(x)= [[a]]x^{2}+[[e]] \\) for \\( x\\le [[p]] \\) and \\( f(x)=m(x-[[p]])+b \\) for \\( x>[[p]] \\) is both continuous and differentiable at \\( x=[[p]] \\), where \\( m \\) is chosen to match the slope. What is \\( b \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[a]]*[[p]]**2 + [[e]]"
+ },
+ "distractors": [
+  "2*[[a]]*[[p]]",
+  "[[a]]*[[p]]**2",
+  "[[e]]",
+  "[[a]]*[[p]]**2 + [[e]] + [[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Continuity at \\( x=[[p]] \\) requires the two pieces to agree there: \\( b = f([[p]]) = [[a]]\\cdot[[p]]^{2}+[[e]] = [[answer]] \\) (the slope-matching condition on \\( m \\) does not affect \\( b \\)).",
+ "distractor_rationales": [
+  "This is the slope \\( m=f'(p) \\), not the value \\( b=f(p) \\).",
+  "This drops the constant term \\( e \\) from \\( f(p) \\).",
+  "This uses only the constant term, ignoring the quadratic contribution at \\( x=p \\).",
+  "This adds an extra, unjustified term \\( p \\) to the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "diffability_both_quadratic_v3",
+ "skill_id": "differentiability_vs_continuity_solve_for_the_consta",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "p": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], [[c]])"],
+ "stem": "The function \\( f(x)=[[a]]x^{2}+[[b]]x \\) for \\( x\\le [[p]] \\) and \\( f(x)=[[c]]x^{2}+kx+d \\) for \\( x>[[p]] \\) is differentiable at \\( x=[[p]] \\) (with \\( d \\) chosen so \\( f \\) is also continuous there). What is \\( k \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*[[a]]*[[p]] + [[b]] - 2*[[c]]*[[p]]"
+ },
+ "distractors": [
+  "2*[[a]]*[[p]] + [[b]]",
+  "2*([[a]]-[[c]])*[[p]]",
+  "2*[[a]]*[[p]] + [[b]] + 2*[[c]]*[[p]]",
+  "[[b]] - 2*[[c]]*[[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Matching slopes at \\( x=[[p]] \\): \\( 2[[a]][[p]]+[[b]] = 2[[c]][[p]]+k \\), so \\( k = 2[[a]][[p]]+[[b]]-2[[c]][[p]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the left piece's slope, forgetting to subtract the right piece's quadratic contribution.",
+  "This drops the linear term \\( b \\) from the left piece's slope.",
+  "This adds instead of subtracts the right piece's quadratic slope term.",
+  "This omits the left piece's quadratic contribution \\( 2ap \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "diffability_system_two_constants_v4",
+ "skill_id": "differentiability_vs_continuity_solve_for_the_consta",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The function \\( f(x)=[[a]]x^{2}+[[e]] \\) for \\( x\\le [[p]] \\) and \\( f(x)=mx+b \\) for \\( x>[[p]] \\) is both continuous and differentiable at \\( x=[[p]] \\). Solve the resulting system for \\( m \\) and \\( b \\); what is \\( b \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["m*[[p]]+b=[[a]]*[[p]]**2+[[e]]", "m=2*[[a]]*[[p]]"],
+  "vars": ["m", "b"],
+  "want": "b"
+ },
+ "distractors": [
+  "2*[[a]]*[[p]]",
+  "[[a]]*[[p]]**2",
+  "[[e]]",
+  "-[[a]]*[[p]]**2 + [[e]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiability gives \\( m=2[[a]][[p]] \\); substituting into the continuity equation \\( m[[p]]+b=[[a]][[p]]^{2}+[[e]] \\) and solving gives \\( b = [[a]][[p]]^{2}+[[e]]-2[[a]][[p]]\\cdot[[p]] = -[[a]][[p]]^{2}+[[e]] \\), which simplifies to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the slope \\( m \\) instead of the intercept \\( b \\).",
+  "This forgets to subtract the extra \\( mp \\) term when solving for \\( b \\).",
+  "This drops the quadratic contribution entirely.",
+  "This flips the sign of the quadratic term.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

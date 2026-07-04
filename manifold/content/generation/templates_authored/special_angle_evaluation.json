@@ -1,0 +1,126 @@
+[
+{
+ "template_id": "special_angle_eval_v1",
+ "skill_id": "special_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 23
+  }
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\sin\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sin([[k]]*pi/6)"
+ },
+ "distractors": [
+  "cos([[k]]*pi/6)",
+  "-sin([[k]]*pi/6)",
+  "sin([[k]]*pi/6) + 1",
+  "sin([[k]]*pi/6) - 1",
+  "1 - sin([[k]]*pi/6)",
+  "-cos([[k]]*pi/6)"
+ ],
+ "solution": "Reduce \\( \\tfrac{[[k]]\\pi}{6} \\) to a reference angle: \\( \\sin\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "special_angle_cos_quarter_v1",
+ "skill_id": "special_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 31}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\cos\\!\\left(\\dfrac{[[k]]\\pi}{4}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "cos([[k]]*pi/4)"},
+ "distractors": [
+  "sin([[k]]*pi/4)",
+  "-cos([[k]]*pi/4)",
+  "cos([[k]]*pi/4) + 1",
+  "cos([[k]]*pi/4) - 1",
+  "1 - cos([[k]]*pi/4)",
+  "-sin([[k]]*pi/4)"
+ ],
+ "solution": "Use the \\( 45^\\circ \\)-\\( 45^\\circ \\)-\\( 90^\\circ \\) special values: \\( \\cos\\!\\left(\\tfrac{[[k]]\\pi}{4}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the value with \\( \\sin \\) of the same angle.",
+  "This has the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This subtracts the correct value from \\( 1 \\) instead of reporting it directly.",
+  "This confuses the value with the negative sine of the same angle."
+ ]
+},
+{
+ "template_id": "special_angle_tan_sixth_v1",
+ "skill_id": "special_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 35}
+ },
+ "constraints": ["Ne(Mod([[k]], 6), 3)"],
+ "stem": "Evaluate \\( \\tan\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "tan([[k]]*pi/6)"},
+ "distractors": [
+  "-tan([[k]]*pi/6)",
+  "1/tan([[k]]*pi/6)",
+  "tan([[k]]*pi/6) + 1",
+  "tan([[k]]*pi/6) - 1",
+  "sin([[k]]*pi/6)",
+  "cos([[k]]*pi/6)"
+ ],
+ "solution": "Use the \\( 30^\\circ \\)-\\( 60^\\circ \\)-\\( 90^\\circ \\) special values: \\( \\tan\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign.",
+  "This confuses the value with its reciprocal, \\( \\cot \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This confuses the tangent value with \\( \\sin \\) of the same angle.",
+  "This confuses the tangent value with \\( \\cos \\) of the same angle."
+ ]
+},
+{
+ "template_id": "special_angle_degrees_table_v1",
+ "skill_id": "special_angle_evaluation",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 23}
+ },
+ "constraints": [],
+ "derived": {
+  "deg": "30*[[k]]"
+ },
+ "stem": "Evaluate \\( \\cos([[deg]]^\\circ) \\) using the special-angle table.",
+ "answer_spec": {"op": "evaluate", "expr": "cos([[k]]*pi/6)"},
+ "distractors": [
+  "sin([[k]]*pi/6)",
+  "-cos([[k]]*pi/6)",
+  "cos([[k]]*pi/6) + 1",
+  "cos([[k]]*pi/6) - 1",
+  "1 - cos([[k]]*pi/6)",
+  "-sin([[k]]*pi/6)"
+ ],
+ "solution": "Reduce \\( [[deg]]^\\circ \\) to an angle between \\( 0^\\circ \\) and \\( 360^\\circ \\) if needed, then read the value off the special-angle table: \\( \\cos([[deg]]^\\circ)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the value with \\( \\sin \\) of the same angle.",
+  "This has the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This subtracts the correct value from \\( 1 \\) instead of reporting it directly.",
+  "This confuses the value with the negative sine of the same angle."
+ ]
+}
+
+]

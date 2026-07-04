@@ -1,0 +1,161 @@
+[
+ {
+  "template_id": "binomial_exactly_k_v1",
+  "skill_id": "binomial_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "choice", "values": [3, 4, 5, 6]},
+   "k": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])", "Lt([[k]], [[n]])", "Ge([[k]], 1)"],
+  "stem": "A biased coin lands heads with probability \\( \\frac{[[pn]]}{[[pd]]} \\) on each flip, independently. The coin is flipped [[n]] times. What is the probability of getting exactly [[k]] heads?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[k]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]])"},
+  "distractors": [
+   "Rational([[pn]], [[pd]]) ** [[k]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]])",
+   "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[k]]",
+   "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[n]]",
+   "Rational([[pn]], [[pd]]) ** [[n]]",
+   "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) * (1 - Rational([[pn]], [[pd]]))",
+   "1 - binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[k]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]])"
+  ],
+  "solution": "The number of heads is binomial, so \\( P(X = [[k]]) = \\binom{[[n]]}{[[k]]}\\left(\\frac{[[pn]]}{[[pd]]}\\right)^{[[k]]}\\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[n]] - [[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the binomial coefficient \\( \\binom{[[n]]}{[[k]]} \\) that counts which flips are heads.",
+   "This omits the failure factor \\( (1-p)^{[[n]] - [[k]]} \\) for the tails.",
+   "This raises the success probability to the power [[n]] instead of [[k]].",
+   "This is the probability of all [[n]] flips being heads.",
+   "This uses first powers instead of the exponents [[k]] and \\( [[n]] - [[k]] \\).",
+   "This is the complementary probability of NOT getting exactly [[k]] heads."
+  ]
+ },
+ {
+  "template_id": "binomial_at_least_k_v1",
+  "skill_id": "binomial_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "choice", "values": [4, 5, 6, 7, 8]},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])", "Lt([[k]], [[n]])", "Ge([[k]], 1)"],
+  "stem": "A certain free-throw shooter makes each attempt independently with probability \\( \\frac{[[pn]]}{[[pd]]} \\). Out of [[n]] attempts, what is the probability that the shooter makes AT LEAST [[k]] of them?",
+  "answer_spec": {"op": "sum", "expr": "binomial([[n]], i) * Rational([[pn]], [[pd]]) ** i * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - i)", "var": "i", "lo": "[[k]]", "hi": "[[n]]"},
+  "distractors": [
+   "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[k]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]])",
+   "Rational([[pn]], [[pd]]) ** [[k]]",
+   "1 - Rational([[pn]], [[pd]]) ** [[k]]",
+   "Rational([[k]], [[n]])",
+   "1 - binomial([[n]], [[k]] - 1) * Rational([[pn]], [[pd]]) ** ([[k]] - 1) * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]] + 1)",
+   "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[n]]"
+  ],
+  "solution": "Sum the exact-count probabilities from [[k]] through [[n]] makes: \\( P(X \\ge [[k]]) = \\sum_{i=[[k]]}^{[[n]]} \\binom{[[n]]}{i}\\left(\\frac{[[pn]]}{[[pd]]}\\right)^{i}\\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[n]]-i} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives only the probability of EXACTLY [[k]] makes, omitting all the higher counts.",
+   "This treats the event as needing every one of the first [[k]] attempts to succeed, ignoring the binomial structure.",
+   "This complements a single-attempt-style probability rather than summing the tail of the binomial distribution.",
+   "This is just the naive fraction of attempts needed, not a probability computed from the distribution.",
+   "This attempts a complement using the wrong boundary (\\( [[k]]-1 \\) makes) with a sign/direction error.",
+   "This is the probability of getting exactly [[k]] successes ANd exactly [[n]]-[[k]] more, i.e. all [[n]] attempts landing on probability [[pn]]/[[pd]] raised to [[n]], not a valid decomposition."
+  ]
+ },
+ {
+  "template_id": "binomial_at_most_k_v1",
+  "skill_id": "binomial_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "choice", "values": [4, 5, 6, 7, 8]},
+   "k": {"type": "int", "lo": 0, "hi": 5}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])", "Lt([[k]], [[n]])"],
+  "stem": "A machine part fails a quality test independently with probability \\( \\frac{[[pn]]}{[[pd]]} \\). Out of [[n]] parts tested, what is the probability that NO MORE THAN [[k]] of them fail?",
+  "answer_spec": {"op": "sum", "expr": "binomial([[n]], i) * Rational([[pn]], [[pd]]) ** i * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - i)", "var": "i", "lo": "0", "hi": "[[k]]"},
+  "distractors": [
+   "binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[k]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]])",
+   "1 - Rational([[pn]], [[pd]]) ** [[k]]",
+   "(1 - Rational([[pn]], [[pd]])) ** [[n]]",
+   "Rational([[k]], [[n]])",
+   "1 - binomial([[n]], [[k]]) * Rational([[pn]], [[pd]]) ** [[k]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[k]])",
+   "binomial([[n]], [[k]]) * (1 - Rational([[pn]], [[pd]])) ** [[k]] * Rational([[pn]], [[pd]]) ** ([[n]] - [[k]])"
+  ],
+  "solution": "Sum the exact-count probabilities from 0 through [[k]] failures: \\( P(X \\le [[k]]) = \\sum_{i=0}^{[[k]]} \\binom{[[n]]}{i}\\left(\\frac{[[pn]]}{[[pd]]}\\right)^{i}\\left(1 - \\frac{[[pn]]}{[[pd]]}\\right)^{[[n]]-i} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives only the probability of EXACTLY [[k]] failures, omitting the counts below [[k]].",
+   "This complements a single-attempt-style probability rather than the correct cumulative sum.",
+   "This is the probability of zero failures out of [[n]], ignoring that up to [[k]] failures are also allowed.",
+   "This is just the naive fraction of allowed failures, not a probability computed from the distribution.",
+   "This is the complementary tail \\( P(X > [[k]]) \\) using the exact-[[k]] term instead of the true cumulative sum.",
+   "This swaps the roles of the success and failure probabilities in the exact-count formula."
+  ]
+ },
+ {
+  "template_id": "binomial_even_count_parity_v1",
+  "skill_id": "binomial_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [3, 4, 5, 6, 7]},
+   "pn": {"type": "int", "lo": 1, "hi": 6},
+   "n": {"type": "int", "lo": 3, "hi": 12}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "A machine independently produces a defective unit with probability \\( \\frac{[[pn]]}{[[pd]]} \\) on each of [[n]] production runs. What is the probability that the total number of defective units is EVEN (counting zero as even)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 + (1 - 2 * Rational([[pn]], [[pd]])) ** [[n]]) / 2"},
+  "distractors": [
+   "(1 - (1 - 2 * Rational([[pn]], [[pd]])) ** [[n]]) / 2",
+   "(1 - Rational([[pn]], [[pd]])) ** [[n]]",
+   "Rational(1, 2)",
+   "(1 + (1 - 2 * Rational([[pn]], [[pd]])) ** [[n]])",
+   "1 - (1 + (1 - 2 * Rational([[pn]], [[pd]])) ** [[n]]) / 2",
+   "(1 + (2 * Rational([[pn]], [[pd]]) - 1) ** [[n]]) / 2"
+  ],
+  "solution": "Using the identity \\( P(\\text{even count}) = \\frac{1 + (1-2p)^{[[n]]}}{2} \\) (from expanding \\( (q+p)^{[[n]]} \\) and \\( (q-p)^{[[n]]} \\) and averaging), with \\( p = \\frac{[[pn]]}{[[pd]]} \\), the probability is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability of an ODD count, the complementary parity.",
+   "This is the probability that NO units are defective, a single term rather than the full even-parity sum.",
+   "This is the naive guess that even and odd counts are equally likely, which is only true when \\( p = 1/2 \\).",
+   "This forgets to divide by 2 when averaging the two binomial expansions.",
+   "This computes the odd-count probability via the complement, but with a sign error in applying it.",
+   "This flips the sign inside the power, using \\( (2p-1)^{[[n]]} \\) instead of \\( (1-2p)^{[[n]]} \\) (these agree only when [[n]] is even)."
+  ]
+ },
+ {
+  "template_id": "binomial_negative_binomial_rth_success_v1",
+  "skill_id": "binomial_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5]},
+   "pn": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "int", "lo": 4, "hi": 12},
+   "r": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])", "Lt([[r]], [[n]])"],
+  "stem": "On each independent trial, the probability of success is \\( \\frac{[[pn]]}{[[pd]]} \\). Trials continue until the [[r]]th success occurs. What is the probability that the [[r]]th success happens on exactly trial number [[n]]?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] - 1, [[r]] - 1) * Rational([[pn]], [[pd]]) ** [[r]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[r]])"},
+  "distractors": [
+   "binomial([[n]], [[r]]) * Rational([[pn]], [[pd]]) ** [[r]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[r]])",
+   "binomial([[n]] - 1, [[r]] - 1) * Rational([[pn]], [[pd]]) ** [[r]]",
+   "binomial([[n]] - 1, [[r]]) * Rational([[pn]], [[pd]]) ** [[r]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[r]])",
+   "Rational([[pn]], [[pd]]) ** [[r]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[r]])",
+   "binomial([[n]] - 1, [[r]] - 1) * Rational([[pn]], [[pd]]) ** [[r]] * (1 - Rational([[pn]], [[pd]])) ** ([[n]] - [[r]] - 1)",
+   "Rational([[r]], [[n]])"
+  ],
+  "solution": "For the [[r]]th success to fall exactly on trial [[n]], exactly \\( [[r]] - 1 \\) of the first \\( [[n]] - 1 \\) trials must succeed (any arrangement) and trial [[n]] itself must succeed: \\( \\binom{[[n]]-1}{[[r]]-1}\\left(\\frac{[[pn]]}{[[pd]]}\\right)^{[[r]]}\\left(1-\\frac{[[pn]]}{[[pd]]}\\right)^{[[n]]-[[r]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\binom{[[n]]}{[[r]]} \\), the ordinary binomial coefficient over all [[n]] trials, instead of restricting to the first \\( [[n]]-1 \\) trials before the final guaranteed success.",
+   "This drops the failure factor for the trials among the first \\( [[n]]-1 \\) that were NOT successes.",
+   "This counts arrangements of [[r]] successes among the first \\( [[n]]-1 \\) trials instead of \\( [[r]]-1 \\), miscounting since the last trial is fixed as a success.",
+   "This is the ordinary binomial probability of exactly [[r]] successes in [[n]] trials in any order, not requiring the last trial to be the [[r]]th success.",
+   "This uses one fewer failure than needed in the exponent, an off-by-one error in the number of failed trials.",
+   "This is a naive ratio of successes needed to trials available, not a probability computed from the distribution."
+  ]
+ }
+]

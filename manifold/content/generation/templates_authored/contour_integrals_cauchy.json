@@ -1,0 +1,104 @@
+[
+{
+ "template_id": "contour_integrals_cauchy_v1_sum_of_enclosed_residues",
+ "skill_id": "contour_integrals_cauchy",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "c1": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+  "c2": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+  "c3": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+  "p1": {"type": "int", "lo": -2, "hi": 2},
+  "p2": {"type": "int", "lo": -2, "hi": 2},
+  "p3": {"type": "choice", "values": [6, 7, 8, 9, -6, -7, -8, -9]},
+  "R": {"type": "choice", "values": [3, 4, 5]}
+ },
+ "constraints": ["Ne([[p1]], [[p2]])"],
+ "stem": "Let \\( f(z) = \\dfrac{[[c1]]}{z-([[p1]])} + \\dfrac{[[c2]]}{z-([[p2]])} + \\dfrac{[[c3]]}{z-([[p3]])} \\), and let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). The poles \\( z=[[p1]] \\) and \\( z=[[p2]] \\) lie inside \\( C \\), while \\( z=[[p3]] \\) lies outside \\( C \\). By the residue theorem, compute \\( \\displaystyle\\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*(([[c1]])+([[c2]]))"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*(([[c1]])+([[c2]])+([[c3]]))",
+  "2*pi*I*[[c3]]",
+  "2*pi*I*(([[c1]])+([[c3]]))",
+  "pi*I*(([[c1]])+([[c2]]))",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I"
+ ],
+ "solution": "Each term \\( \\dfrac{c}{z-p} \\) has a simple pole at \\( z=p \\) with residue \\( c \\) there. By the residue theorem, \\( \\oint_{C} f(z)\\,dz = 2\\pi i \\) times the sum of residues at poles INSIDE \\( C \\). Only \\( z=[[p1]] \\) and \\( z=[[p2]] \\) are enclosed, so the integral is \\( 2\\pi i\\big(([[c1]])+([[c2]])\\big) = [[answer]] \\); the pole at \\( z=[[p3]] \\) is outside \\( C \\) and contributes nothing.",
+ "distractor_rationales": [
+  "This mistakenly includes the residue at \\( z=[[p3]] \\), which lies outside \\( C \\) and should not be counted.",
+  "This uses only the excluded pole's residue, forgetting the two enclosed poles entirely.",
+  "This swaps which pole is excluded, wrongly including \\( z=[[p3]] \\) instead of \\( z=[[p2]] \\).",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\) as the residue-theorem constant.",
+  "This has the wrong sign (the contour orientation was reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+},
+{
+ "template_id": "contour_integrals_cauchy_v2_partial_fraction_residue",
+ "skill_id": "contour_integrals_cauchy",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "k": {"type": "choice", "values": [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]},
+  "p1": {"type": "int", "lo": -2, "hi": 2},
+  "p2": {"type": "choice", "values": [7, 8, 9, 10, -7, -8, -9, -10]},
+  "R": {"type": "choice", "values": [3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = \\dfrac{[[k]]}{(z-([[p1]]))(z-([[p2]]))} \\), and let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Only the pole \\( z=[[p1]] \\) lies inside \\( C \\) (the pole \\( z=[[p2]] \\) lies outside). Compute \\( \\displaystyle\\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*[[k]]/(([[p1]])-([[p2]]))"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*[[k]]/(([[p2]])-([[p1]]))",
+  "2*pi*I*[[k]]",
+  "pi*I*[[k]]/(([[p1]])-([[p2]]))",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I",
+  "[[answer]]/2"
+ ],
+ "solution": "By partial fractions, the residue of \\( f \\) at the simple pole \\( z=[[p1]] \\) is \\( \\displaystyle\\lim_{z\\to [[p1]]} (z-([[p1]]))f(z) = \\dfrac{[[k]]}{[[p1]]-([[p2]])} \\). Since \\( z=[[p2]] \\) lies outside \\( C \\) and contributes nothing, the residue theorem gives \\( \\oint_{C} f(z)\\,dz = 2\\pi i \\cdot \\dfrac{[[k]]}{[[p1]]-([[p2]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes the residue at \\( z=[[p1]] \\) with the denominator terms swapped, giving the wrong sign.",
+  "This forgets to divide by \\( p_1-p_2 \\) entirely, as if the pole were simple with residue \\( k \\).",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\) as the residue-theorem constant.",
+  "This has the wrong sign (the contour orientation was reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value.",
+  "This halves the correct value, as if only part of the residue were counted."
+ ]
+},
+{
+ "template_id": "contour_integrals_cauchy_v3_higher_order_pole_terms",
+ "skill_id": "contour_integrals_cauchy",
+ "topic_id": "complex_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+  "c": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+  "z0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = \\dfrac{[[a]]}{z-([[z0]])} + \\dfrac{[[b]]}{(z-([[z0]]))^{2}} + \\dfrac{[[c]]}{(z-([[z0]]))^{3}} \\), and let \\( C \\) be a positively oriented simple closed contour enclosing only the point \\( z=[[z0]] \\). Compute \\( \\displaystyle\\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*I*[[a]]"},
+ "require_rational": false,
+ "distractors": [
+  "2*pi*I*(([[a]])+([[b]])+([[c]]))",
+  "2*pi*I*[[b]]",
+  "2*pi*I*[[c]]",
+  "pi*I*[[a]]",
+  "-([[answer]])",
+  "[[answer]] + 2*pi*I"
+ ],
+ "solution": "Only the SIMPLE pole term \\( \\dfrac{[[a]]}{z-[[z0]]} \\) contributes to the contour integral: the residue of \\( f \\) at \\( z=[[z0]] \\) is the coefficient of the \\( (z-z0)^{-1} \\) term in its Laurent expansion, which is \\( [[a]] \\). The higher-order terms \\( \\frac{[[b]]}{(z-z0)^{2}} \\) and \\( \\frac{[[c]]}{(z-z0)^{3}} \\) have single-valued antiderivatives, so they integrate to \\( 0 \\) around any closed contour avoiding \\( z_0 \\). Hence \\( \\oint_{C} f(z)\\,dz = 2\\pi i\\,([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly adds the coefficients of the higher-order pole terms, which do not contribute to the integral.",
+  "This uses the coefficient of the \\( (z-z_0)^{-2} \\) term, which integrates to \\( 0 \\), not \\( [[a]] \\).",
+  "This uses the coefficient of the \\( (z-z_0)^{-3} \\) term, which integrates to \\( 0 \\), not \\( [[a]] \\).",
+  "This uses \\( \\pi i \\) instead of \\( 2\\pi i \\) as the residue-theorem constant.",
+  "This has the wrong sign (the contour orientation was reversed).",
+  "This is off by \\( 2\\pi i \\) from the correct value."
+ ]
+}
+]

@@ -1,0 +1,166 @@
+[
+ {
+  "template_id": "symmetry_odd_integrand_vanishing_shortcut_v1",
+  "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "r": {"type": "int", "lo": -3, "hi": 3},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Ne([[p]]**2 + [[q]]**2 + [[r]]**2, 0)"],
+  "stem": "Evaluate \\( \\int_{-[[c]]}^{[[c]]} \\int_{-[[a]]}^{[[a]]} \\left( ([[p]])x^3 + ([[q]])xy^2 + ([[r]])x \\right)\\,dx\\,dy \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[p]])*x**3 + ([[q]])*x*y**2 + ([[r]])*x", "vars": ["x", "y"], "bounds": [["-[[a]]", "[[a]]"], ["-[[c]]", "[[c]]"]]},
+  "distractors": [
+   "[[p]]*[[a]]**4*[[c]]",
+   "2*[[q]]*[[a]]**2*[[c]]**3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Every term of the integrand contains an odd power of \\(x\\), so the integrand is an odd function of \\(x\\). Integrating an odd function of \\(x\\) over the symmetric interval \\([-[[a]],[[a]]]\\) gives \\(0\\) for each fixed \\(y\\), so the whole double integral is \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This comes from integrating a term as if it did not cancel, keeping a bogus nonzero piece.",
+   "This mishandles the \\(xy^2\\) term and keeps a nonzero remnant.",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by two from the correct value of \\(0\\)."
+  ]
+ },
+ {
+  "template_id": "symmetry_odd_integrand_vanishing_shortcut_v2",
+  "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "r": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Ne([[p]]**2 + [[q]]**2 + [[r]]**2, 0)"],
+  "stem": "Evaluate \\( \\int_{0}^{[[b]]} \\int_{-[[c]]}^{[[c]]} \\left( ([[p]])y^3 + ([[q]])x^2y + ([[r]])y \\right)\\,dy\\,dx \\). Note the region \\(0 \\le x \\le [[b]]\\) is NOT symmetric, but the \\(y\\)-interval \\([-[[c]],[[c]]]\\) is.",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[p]])*y**3 + ([[q]])*x**2*y + ([[r]])*y", "vars": ["y", "x"], "bounds": [["-[[c]]", "[[c]]"], ["0", "[[b]]"]]},
+  "distractors": [
+   "[[p]]*[[c]]**4*[[b]]",
+   "2*[[q]]*[[b]]**3*[[c]]**2/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Every term of the integrand contains an odd power of \\(y\\), so for each fixed \\(x\\) the inner integral \\( \\int_{-[[c]]}^{[[c]]}\\left(([[p]])y^3+([[q]])x^2y+([[r]])y\\right)dy = 0\\) by odd symmetry in \\(y\\) — the asymmetry of the \\(x\\)-interval is irrelevant, since the shortcut only needs the INNER variable's interval to be symmetric. Hence the whole double integral is \\([[answer]]\\).",
+  "distractor_rationales": [
+   "This mistakenly requires the OUTER (\\(x\\)) interval to also be symmetric, and keeps a bogus nonzero piece since it is not.",
+   "This mishandles the \\(x^2y\\) cross term and keeps a nonzero remnant.",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by two from the correct value of \\(0\\)."
+  ]
+ },
+ {
+  "template_id": "symmetry_odd_integrand_vanishing_shortcut_v3",
+  "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3},
+   "s": {"type": "int", "lo": 1, "hi": 5},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{-[[a]]}^{[[a]]} \\int_{0}^{[[c]]} \\left( [[p]]x^3 + [[q]]xy^2 + [[s]] \\right)\\,dy\\,dx \\). Two of the three terms are odd in \\(x\\) and vanish by symmetry on \\([-[[a]],[[a]]]\\); only the constant term survives.",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[p]]*x**3 + [[q]]*x*y**2 + [[s]]", "vars": ["y", "x"], "bounds": [["0", "[[c]]"], ["-[[a]]", "[[a]]"]]},
+  "distractors": [
+   "0",
+   "[[p]]*[[a]]**4*[[c]]/2 + 2*[[a]]*[[c]]*[[s]]",
+   "[[a]]*[[c]]*[[s]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The terms \\([[p]]x^3\\) and \\([[q]]xy^2\\) are both odd in \\(x\\), so each contributes \\(0\\) when integrated over the symmetric interval \\([-[[a]],[[a]]]\\). Only the constant \\([[s]]\\) survives: \\( \\int_{-[[a]]}^{[[a]]}\\int_0^{[[c]]} [[s]]\\,dy\\,dx = [[s]]\\cdot 2[[a]]\\cdot[[c]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly assumes the ENTIRE integrand vanishes by symmetry, missing that the constant term does not depend on \\(x\\) and survives.",
+   "This keeps a bogus nonzero contribution from the odd terms instead of letting them cancel.",
+   "This drops the factor of \\(2\\) from the symmetric interval \\([-[[a]],[[a]]]\\) having length \\(2[[a]]\\), using \\([[a]]\\) instead.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "symmetry_odd_integrand_vanishing_shortcut_v4",
+  "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "r": {"type": "int", "lo": -3, "hi": 3},
+   "R": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[p]]**2 + [[q]]**2 + [[r]]**2, 0)"],
+  "stem": "Let \\(D\\) be the disk \\(x^2+y^2 \\le [[R]]^2\\). Evaluate \\( \\iint_D \\left( ([[p]])x^3 + ([[q]])xy^2 + ([[r]])x \\right)\\,dA \\) using symmetry, without computing an antiderivative.",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[p]])*x**3 + ([[q]])*x*y**2 + ([[r]])*x", "vars": ["y", "x"], "bounds": [["-sqrt([[R]]**2-x**2)", "sqrt([[R]]**2-x**2)"], ["-[[R]]", "[[R]]"]]},
+  "distractors": [
+   "[[p]]*pi*[[R]]**5/5",
+   "[[q]]*pi*[[R]]**5/8",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The disk \\(D\\) is symmetric about the \\(y\\)-axis (i.e. under \\(x\\to -x\\)), and every term of the integrand is odd in \\(x\\). An odd function of \\(x\\) integrated over an \\(x\\)-symmetric region vanishes, so \\( \\iint_D \\left(([[p]])x^3+([[q]])xy^2+([[r]])x\\right)dA = [[answer]] \\) with no computation needed.",
+  "distractor_rationales": [
+   "This treats the \\(x^3\\) term as if it survived, using a polar-style area formula that does not apply here.",
+   "This treats the \\(xy^2\\) term as if it survived, using a bogus polar-style formula.",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by two from the correct value of \\(0\\)."
+  ]
+ },
+ {
+  "template_id": "symmetry_odd_integrand_vanishing_shortcut_v5",
+  "skill_id": "symmetry_odd_integrand_vanishing_shortcut",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Ne([[p]]**2 + [[q]]**2, 0)"],
+  "stem": "Let \\(B\\) be the box \\( \\{(x,y,z): -[[a]] \\le x \\le [[a]],\\ 0 \\le y \\le [[b]],\\ 0 \\le z \\le [[c]]\\} \\). Evaluate the triple integral \\( \\iiint_B \\left( ([[p]])x^3 + ([[q]])xyz \\right)\\,dV \\) using symmetry.",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[p]])*x**3 + ([[q]])*x*y*z", "vars": ["x", "y", "z"], "bounds": [["-[[a]]", "[[a]]"], ["0", "[[b]]"], ["0", "[[c]]"]]},
+  "distractors": [
+   "[[p]]*[[a]]**4*[[b]]*[[c]]",
+   "[[q]]*[[a]]**2*[[b]]**2*[[c]]**2/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Only \\(x\\) appears with odd powers in every term (\\(x^3\\) and \\(xyz\\) are both odd in \\(x\\)), and the box is symmetric in \\(x\\) about \\(0\\) (though NOT in \\(y\\) or \\(z\\)). Since the \\(x\\)-interval alone is symmetric and every term is odd in \\(x\\), the whole triple integral vanishes: \\( \\iiint_B \\left(([[p]])x^3+([[q]])xyz\\right)dV = [[answer]] \\).",
+  "distractor_rationales": [
+   "This keeps a bogus nonzero contribution from the \\(x^3\\) term instead of letting it cancel.",
+   "This keeps a bogus nonzero contribution from the \\(xyz\\) cross term instead of letting it cancel.",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by one from the correct value of \\(0\\).",
+   "This is off by two from the correct value of \\(0\\)."
+  ]
+ }
+]

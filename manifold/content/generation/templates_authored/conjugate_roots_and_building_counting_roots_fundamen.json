@@ -1,0 +1,194 @@
+[
+ {
+  "template_id": "conjugate_roots_min_degree_v1",
+  "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 4]},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "m": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "A polynomial \\( p(x) \\) with real coefficients has the complex number \\( [[a]] + [[b]]i \\) as a root and has the real number \\( [[c]] \\) as a root of multiplicity [[m]]. What is the smallest possible degree of \\( p(x) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]] + 2"},
+  "distractors": [
+   "[[m]]",
+   "[[m]] + 1",
+   "2*[[m]] + 2",
+   "[[answer]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Because the coefficients are real, the non-real root \\( [[a]] + [[b]]i \\) forces its conjugate \\( [[a]] - [[b]]i \\) to be a root too, contributing 2 roots. The real root \\( [[c]] \\) contributes [[m]] more (its multiplicity). By the Fundamental Theorem of Algebra the smallest degree is \\( 2 + [[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts only the real root's multiplicity and ignores the complex conjugate pair entirely.",
+   "This counts the complex root as a single root instead of a conjugate pair (adding 1 instead of 2).",
+   "This doubles the real multiplicity as well, but only the complex root comes as a pair.",
+   "This is one more than the minimum degree.",
+   "This is two more than the minimum degree.",
+   "This is three more than the minimum degree."
+  ]
+ },
+ {
+  "template_id": "conjugate_roots_two_pairs_min_degree_v1",
+  "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 4]},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "choice", "values": [1, 2, 5, 6]},
+   "m1": {"type": "int", "lo": 1, "hi": 3},
+   "m2": {"type": "int", "lo": 1, "hi": 3},
+   "r": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Or(Ne([[a]], [[c]]), Ne([[b]], [[d]]))"],
+  "stem": "A polynomial \\( p(x) \\) with real coefficients has \\( [[a]] + [[b]]i \\) as a root of multiplicity [[m1]], has \\( [[c]] + [[d]]i \\) as a root of multiplicity [[m2]] (a distinct, non-conjugate non-real number), and also has the real number \\( [[r]] \\) as a simple root. What is the smallest possible degree of \\( p(x) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[m1]] + 2*[[m2]] + 1"},
+  "distractors": [
+   "[[m1]] + [[m2]] + 1",
+   "2*[[m1]] + [[m2]] + 1",
+   "[[m1]] + 2*[[m2]] + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Real coefficients force the conjugate of each non-real root to also be a root with the SAME multiplicity, so \\( [[a]] + [[b]]i \\) contributes \\( 2([[m1]]) \\) roots and \\( [[c]] + [[d]]i \\) contributes \\( 2([[m2]]) \\) more. Together with the simple real root \\( [[r]] \\), the smallest possible degree is \\( 2([[m1]]) + 2([[m2]]) + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that BOTH conjugate pairs need doubling, only doubling neither.",
+   "This doubles only the first pair's multiplicity, not the second.",
+   "This doubles only the second pair's multiplicity, not the first.",
+   "This is one more than the minimum degree.",
+   "This is one less than the minimum degree.",
+   "This is two more than the minimum degree."
+  ]
+ },
+ {
+  "template_id": "conjugate_root_multiplicity_min_degree_v1",
+  "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "r": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "A polynomial \\( p(x) \\) with real coefficients has the non-real number \\( [[a]] + [[b]]i \\) as a root of multiplicity [[m]], and has the real number \\( [[r]] \\) as a simple root. What is the smallest possible degree of \\( p(x) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[m]] + 1"},
+  "distractors": [
+   "[[m]] + 1",
+   "2*[[m]]",
+   "[[m]] + 2",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 4"
+  ],
+  "solution": "Real coefficients force the conjugate \\( [[a]] - [[b]]i \\) to be a root with the SAME multiplicity [[m]], so the conjugate pair together contributes \\( 2 \\times [[m]] \\) roots. Adding the simple real root \\( [[r]] \\) gives a smallest possible degree of \\( 2([[m]]) + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that the conjugate also carries multiplicity [[m]], only adding 1 for it.",
+   "This ignores the real root entirely.",
+   "This adds only 2 for the conjugate pair regardless of the multiplicity [[m]].",
+   "This is two more than the minimum degree.",
+   "This is two less than the minimum degree.",
+   "This is four more than the minimum degree."
+  ]
+ },
+ {
+  "template_id": "irrational_conjugate_min_degree_v1",
+  "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "choice", "values": [2, 3, 5, 6, 7, 10, 11]},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "m": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "A polynomial \\( p(x) \\) with RATIONAL coefficients has the irrational number \\( [[a]] + \\sqrt{[[q]]} \\) as a root, and has the rational number \\( [[c]] \\) as a root of multiplicity [[m]]. What is the smallest possible degree of \\( p(x) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]] + 2"},
+  "distractors": [
+   "[[m]]",
+   "[[m]] + 1",
+   "2*[[m]] + 2",
+   "[[answer]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Since the coefficients are rational and \\( \\sqrt{[[q]]} \\) is irrational, the irrational conjugate root theorem forces \\( [[a]] - \\sqrt{[[q]]} \\) to also be a root, contributing 2 roots. The rational root \\( [[c]] \\) contributes [[m]] more, so the smallest degree is \\( 2 + [[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts only the rational root's multiplicity and ignores the forced irrational conjugate.",
+   "This treats the irrational root as if it needed no conjugate partner.",
+   "This doubles the rational root's multiplicity as well, but only the irrational root comes as a pair.",
+   "This is one more than the minimum degree.",
+   "This is two more than the minimum degree.",
+   "This is three more than the minimum degree."
+  ]
+ },
+ {
+  "template_id": "build_polynomial_coefficient_v1",
+  "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "choice", "values": [2, 3, 4]},
+   "r": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "The monic cubic polynomial \\( p(x) \\) with real coefficients has smallest possible degree and has \\( [[a]] + [[b]]i \\) and \\( [[r]] \\) among its roots. What is the coefficient of \\( x^{2} \\) in \\( p(x) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-(2*[[a]] + [[r]])"},
+  "distractors": [
+   "2*[[a]] + [[r]]",
+   "-([[a]] + [[r]])",
+   "-(2*[[b]] + [[r]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The forced conjugate \\( [[a]] - [[b]]i \\) makes \\( p(x) = (x-([[r]]))(x-([[a]]+[[b]]i))(x-([[a]]-[[b]]i)) \\). By Vieta's formulas the coefficient of \\( x^{2} \\) is the negative of the sum of all three roots: \\( -\\big(([[r]]) + 2([[a]])\\big) = [[answer]] \\), since the imaginary parts of the conjugate pair cancel.",
+  "distractor_rationales": [
+   "This has the correct magnitude but the wrong sign; the coefficient is the negative of the root sum.",
+   "This forgets to double the real part \\( [[a]] \\) coming from the conjugate pair.",
+   "This mistakenly uses the imaginary part \\( [[b]] \\) instead of the real part \\( [[a]] \\) of the complex root.",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "count_nonreal_roots_v1",
+  "skill_id": "conjugate_roots_and_building_counting_roots_fundamen",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 18},
+   "k": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Lt([[k]], [[n]])", "Eq(Mod([[n]] - [[k]], 2), 0)"],
+  "stem": "A polynomial of degree [[n]] with real coefficients has exactly [[k]] distinct real roots, each a simple root, and no other real roots. How many non-real roots does it have, counted with multiplicity?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[k]]"},
+  "distractors": [
+   "[[n]]",
+   "[[k]]",
+   "([[n]] - [[k]])/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the Fundamental Theorem of Algebra, a degree-[[n]] polynomial has exactly [[n]] roots counted with multiplicity. Removing the [[k]] simple real roots leaves \\( [[n]] - [[k]] = [[answer]] \\) non-real roots (which must come in conjugate pairs, consistent with this count being even).",
+  "distractor_rationales": [
+   "This reports the total degree instead of subtracting the real roots.",
+   "This reports the number of real roots instead of the non-real ones.",
+   "This mistakenly halves the count, confusing the number of non-real roots with the number of conjugate pairs.",
+   "This is one more than the correct count.",
+   "This is one less than the correct count.",
+   "This is two more than the correct count."
+  ]
+ }
+]

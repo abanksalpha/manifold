@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "diagonals_distances_and_angles_in_solids_v1",
+  "skill_id": "diagonals_distances_and_angles_in_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 9},
+   "b": {"type": "int", "lo": 1, "hi": 9},
+   "c": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "A rectangular box has edge lengths \\( [[a]] \\), \\( [[b]] \\), and \\( [[c]] \\). What is the length of a space diagonal of the box (the segment joining two opposite corners)? (Give the exact length.)",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2 + [[c]]**2)"},
+  "distractors": [
+   "[[a]] + [[b]] + [[c]]",
+   "sqrt([[a]]**2 + [[b]]**2)",
+   "[[a]]**2 + [[b]]**2 + [[c]]**2",
+   "sqrt([[b]]**2 + [[c]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The space diagonal of a rectangular box with edges \\( a, b, c \\) has length \\( \\sqrt{a^{2} + b^{2} + c^{2}} \\). Here that is \\( \\sqrt{[[a]]^{2} + [[b]]^{2} + [[c]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just adds the three edge lengths instead of combining them under a square root.",
+   "This is a face diagonal (using only two edges), not the space diagonal.",
+   "This forgets the square root, giving the sum of the squares.",
+   "This is a different face diagonal, again using only two of the three edges.",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ },
+ {
+  "template_id": "diagonals_distances_and_angles_in_solids_v2_center_to_vertex",
+  "skill_id": "diagonals_distances_and_angles_in_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A cube has edge length \\( [[s]] \\). What is the distance from the center of the cube to any one of its vertices?",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]]*sqrt(3)/2"},
+  "distractors": [
+   "[[s]]*sqrt(3)",
+   "[[s]]/2",
+   "[[s]]*sqrt(2)/2",
+   "[[s]]*sqrt(2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The center of a cube is the midpoint of every space diagonal, which has length \\( [[s]]\\sqrt{3} \\). So the distance from the center to a vertex is half of that: \\( \\frac{[[s]]\\sqrt{3}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the full space diagonal, forgetting to take the midpoint distance.",
+   "This is half the edge length, ignoring the three-dimensional diagonal entirely.",
+   "This uses a face-diagonal ratio (\\( \\sqrt{2} \\)) halved instead of the space-diagonal ratio (\\( \\sqrt{3} \\)) halved.",
+   "This is the full face diagonal, not half the space diagonal.",
+   "This is off from the correct distance by one.",
+   "This is off from the correct distance by one."
+  ]
+ },
+ {
+  "template_id": "diagonals_distances_and_angles_in_solids_v3_surface_shortest_path",
+  "skill_id": "diagonals_distances_and_angles_in_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 8},
+   "b": {"type": "int", "lo": 1, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "A rectangular box has edge lengths \\( [[a]] \\), \\( [[b]] \\), and \\( [[c]] \\), where \\( [[a]] \\) and \\( [[b]] \\) are the two edges of the base and \\( [[c]] \\) is the height. An ant crawls along the OUTER SURFACE of the box from one corner of the base to the diagonally opposite top corner, taking the shortest such path. What is the length of this shortest surface path?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt(([[a]] + [[b]])**2 + [[c]]**2)"},
+  "distractors": [
+   "sqrt([[a]]**2 + [[b]]**2 + [[c]]**2)",
+   "[[a]] + [[b]] + [[c]]",
+   "sqrt([[a]]**2 + [[b]]**2) + [[c]]",
+   "sqrt(([[a]]*[[b]])**2 + [[c]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Unfolding two adjacent faces of the box into a flat plane turns the shortest surface path into a straight line across a rectangle with legs \\( [[a]]+[[b]] \\) (the unfolded base and side) and \\( [[c]] \\) (the height). By the Pythagorean theorem, that shortest path has length \\( \\sqrt{([[a]]+[[b]])^{2} + [[c]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the space diagonal THROUGH the interior of the box, not the shortest path along its surface.",
+   "This just adds the three edge lengths instead of unfolding the surface into a right triangle.",
+   "This computes a face diagonal and then adds the height on top, rather than combining them under one square root.",
+   "This uses the product \\( ab \\) instead of the sum \\( a+b \\) as the unfolded base length.",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ },
+ {
+  "template_id": "diagonals_distances_and_angles_in_solids_v4_diagonal_base_angle",
+  "skill_id": "diagonals_distances_and_angles_in_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 15},
+   "theta": {"type": "choice", "values": [30, 45, 60]}
+  },
+  "constraints": [],
+  "derived": {"h": "[[s]]*sqrt(2)*tan([[theta]]*pi/180)"},
+  "stem": "A rectangular box has a square base with side length \\( [[s]] \\) and height \\( [[h]] \\). What is the measure, in degrees, of the angle between the box's space diagonal and its base?",
+  "answer_spec": {"op": "evaluate", "expr": "atan([[h]]/([[s]]*sqrt(2)))*180/pi"},
+  "distractors": [
+   "atan([[h]]/[[s]])*180/pi",
+   "90 - atan([[h]]/([[s]]*sqrt(2)))*180/pi",
+   "atan([[s]]*sqrt(2)/[[h]])*180/pi",
+   "[[answer]] + 15",
+   "[[answer]] - 15",
+   "[[answer]] + 5"
+  ],
+  "solution": "The space diagonal's angle with the base is measured between the diagonal and its projection onto the base, which is the base's own diagonal of length \\( [[s]]\\sqrt{2} \\). The height \\( [[h]] \\) is the leg opposite that angle, so \\( \\tan(\\text{angle}) = \\frac{[[h]]}{[[s]]\\sqrt{2}} \\), giving an angle of \\( [[answer]]^{\\circ} \\).",
+  "distractor_rationales": [
+   "This divides the height by the side length instead of by the base's diagonal.",
+   "This gives the complementary angle (between the diagonal and the vertical edge) instead of the angle with the base.",
+   "This inverts the tangent ratio, effectively swapping which leg is opposite the angle.",
+   "This is off from the correct angle by fifteen degrees.",
+   "This is off from the correct angle by fifteen degrees.",
+   "This is off from the correct angle by five degrees."
+  ]
+ },
+ {
+  "template_id": "diagonals_distances_and_angles_in_solids_v5_cube_face_diagonal_angle",
+  "skill_id": "diagonals_distances_and_angles_in_solids",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A cube has edge length \\( [[s]] \\). From one vertex, two face diagonals are drawn: one across each of the two different faces that meet at that vertex. What is the angle, in degrees, between these two face diagonals?",
+  "answer_spec": {"op": "evaluate", "expr": "acos(Rational(1,2))*180/pi"},
+  "distractors": [
+   "45",
+   "90",
+   "acos(Rational(1,3))*180/pi",
+   "30",
+   "75",
+   "120"
+  ],
+  "solution": "Place the shared vertex at the origin with edges along the axes. One face diagonal points along \\( (1,1,0) \\) and the other along \\( (1,0,1) \\) (each of length \\( [[s]]\\sqrt{2} \\), regardless of the edge length \\( [[s]] \\)). Their dot product is \\( [[s]]^{2} \\), so \\( \\cos(\\text{angle}) = \\frac{[[s]]^{2}}{[[s]]\\sqrt{2}\\cdot [[s]]\\sqrt{2}} = \\frac{1}{2} \\), giving an angle of \\( [[answer]]^{\\circ} \\).",
+  "distractor_rationales": [
+   "This is the angle you would get if the two diagonals were perpendicular projections onto a single plane at 45 degrees, which is not the actual angle here.",
+   "This treats the two face diagonals as perpendicular, which would be true only for diagonals of the SAME face, not two different faces.",
+   "This uses the wrong cosine ratio, as if only one coordinate contributed to the dot product.",
+   "This is the complement-style angle rather than the true angle between the diagonals.",
+   "This is off from the correct value.",
+   "This is off from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,181 @@
+[
+  {
+    "template_id": "legendre_prime_in_factorial_v1",
+    "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7]},
+      "N": {"type": "int", "lo": 20, "hi": 200}
+    },
+    "constraints": [],
+    "stem": "What is the exponent of the highest power of the prime \\( [[p]] \\) that divides \\( [[N]]! \\)? (That is, the largest integer \\( k \\) such that \\( [[p]]^{k} \\) divides \\( [[N]]! \\).)",
+    "answer_spec": {"op": "sum", "expr": "floor([[N]]/[[p]]**k)", "var": "k", "lo": "1", "hi": "10"},
+    "distractors": [
+      "floor([[N]]/[[p]])",
+      "floor([[N]]/[[p]]) + floor([[N]]/[[p]]**2) + floor([[N]]/[[p]]**3) + 1",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[answer]] - 2",
+      "[[answer]] + 3"
+    ],
+    "solution": "By Legendre's formula the exponent is \\( \\sum_{i\\ge 1} \\lfloor [[N]]/[[p]]^{i} \\rfloor = \\lfloor [[N]]/[[p]] \\rfloor + \\lfloor [[N]]/[[p]]^{2} \\rfloor + \\cdots = [[answer]] \\).",
+    "distractor_rationales": [
+      "This keeps only the first term \\( \\lfloor [[N]]/[[p]] \\rfloor \\), ignoring higher powers.",
+      "This truncates the sum after three terms and adds a spurious one.",
+      "This is one more than the correct exponent.",
+      "This is one less than the correct exponent.",
+      "This is two more than the correct exponent.",
+      "This is two less than the correct exponent.",
+      "This is three more than the correct exponent."
+    ]
+  },
+  {
+    "template_id": "trailing_zeros_of_factorial_v1",
+    "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "N": {"type": "int", "lo": 15, "hi": 500}
+    },
+    "constraints": [],
+    "stem": "How many trailing zeros does \\( [[N]]! \\) end in when written in base 10?",
+    "answer_spec": {"op": "sum", "expr": "floor([[N]]/5**k)", "var": "k", "lo": "1", "hi": "10"},
+    "distractors": [
+      "floor([[N]]/5)",
+      "floor([[N]]/2)",
+      "floor([[N]]/10)",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[answer]] - 2"
+    ],
+    "solution": "Each trailing zero comes from a factor of \\( 10 = 2\\cdot 5 \\), and factors of 2 are far more abundant than factors of 5 in \\( [[N]]! \\), so the number of trailing zeros equals the exponent of 5 in \\( [[N]]! \\): \\( \\lfloor [[N]]/5 \\rfloor + \\lfloor [[N]]/25 \\rfloor + \\cdots = [[answer]] \\).",
+    "distractor_rationales": [
+      "This keeps only the first term of the exponent-of-5 sum, ignoring higher powers of 5.",
+      "This counts factors of 2 instead of the scarcer factor of 5, which actually limits the trailing zeros.",
+      "This divides by 10 directly instead of summing powers of 5.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This is two more than the correct count.",
+      "This is two less than the correct count."
+    ]
+  },
+  {
+    "template_id": "highest_power_of_composite_in_factorial_v1",
+    "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3]},
+      "q": {"type": "choice", "values": [3, 5, 7]},
+      "e": {"type": "choice", "values": [2, 3]},
+      "N": {"type": "int", "lo": 30, "hi": 200}
+    },
+    "constraints": ["Ne([[p]], [[q]])"],
+    "derived": {
+      "base": "[[p]]**[[e]] * [[q]]",
+      "epx": "floor([[N]]/[[p]]) + floor([[N]]/[[p]]**2) + floor([[N]]/[[p]]**3) + floor([[N]]/[[p]]**4) + floor([[N]]/[[p]]**5) + floor([[N]]/[[p]]**6) + floor([[N]]/[[p]]**7) + floor([[N]]/[[p]]**8) + floor([[N]]/[[p]]**9) + floor([[N]]/[[p]]**10)",
+      "eqx": "floor([[N]]/[[q]]) + floor([[N]]/[[q]]**2) + floor([[N]]/[[q]]**3) + floor([[N]]/[[q]]**4) + floor([[N]]/[[q]]**5) + floor([[N]]/[[q]]**6) + floor([[N]]/[[q]]**7) + floor([[N]]/[[q]]**8) + floor([[N]]/[[q]]**9) + floor([[N]]/[[q]]**10)",
+      "capp": "floor([[epx]]/[[e]])"
+    },
+    "stem": "What is the highest power \\( k \\) such that \\( [[base]]^{k} \\) divides \\( [[N]]! \\), where \\( [[base]] = [[p]]^{[[e]]} \\cdot [[q]] \\)?",
+    "answer_spec": {
+      "op": "evaluate",
+      "expr": "([[capp]] + [[eqx]] - Abs([[capp]] - [[eqx]]))/2"
+    },
+    "distractors": [
+      "[[eqx]]",
+      "[[epx]]",
+      "[[capp]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[answer]] + 3"
+    ],
+    "solution": "Write \\( [[base]] = [[p]]^{[[e]]}\\cdot[[q]] \\). The Legendre exponent of \\( [[p]] \\) in \\( [[N]]! \\) is \\( [[epx]] \\), so \\( [[p]]^{[[e]]} \\) can appear \\( \\lfloor [[epx]]/[[e]] \\rfloor = [[capp]] \\) times; the Legendre exponent of \\( [[q]] \\) is \\( [[eqx]] \\). The highest power of \\( [[base]] \\) dividing \\( [[N]]! \\) is limited by whichever runs out first: \\( \\min([[capp]], [[eqx]]) = [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses only the exponent of \\( [[q]] \\), ignoring the constraint from \\( [[p]] \\).",
+      "This uses the raw exponent of \\( [[p]] \\) without dividing by \\( [[e]] \\), and ignores \\( [[q]] \\).",
+      "This uses \\( \\lfloor e_{[[p]]}/[[e]]\\rfloor \\) alone, ignoring whichever prime is actually the bottleneck.",
+      "This is one more than the correct exponent.",
+      "This is one less than the correct exponent.",
+      "This is two more than the correct exponent.",
+      "This is three more than the correct exponent."
+    ]
+  },
+  {
+    "template_id": "legendre_exponent_of_binomial_coefficient_v1",
+    "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [2, 3, 5, 7]},
+      "N": {"type": "int", "lo": 30, "hi": 90},
+      "k": {"type": "int", "lo": 5, "hi": 40}
+    },
+    "constraints": ["Lt([[k]] + 5, [[N]])"],
+    "derived": {
+      "eN": "floor([[N]]/[[p]]) + floor([[N]]/[[p]]**2) + floor([[N]]/[[p]]**3) + floor([[N]]/[[p]]**4) + floor([[N]]/[[p]]**5) + floor([[N]]/[[p]]**6) + floor([[N]]/[[p]]**7) + floor([[N]]/[[p]]**8) + floor([[N]]/[[p]]**9) + floor([[N]]/[[p]]**10)",
+      "ek": "floor([[k]]/[[p]]) + floor([[k]]/[[p]]**2) + floor([[k]]/[[p]]**3) + floor([[k]]/[[p]]**4) + floor([[k]]/[[p]]**5) + floor([[k]]/[[p]]**6) + floor([[k]]/[[p]]**7) + floor([[k]]/[[p]]**8) + floor([[k]]/[[p]]**9) + floor([[k]]/[[p]]**10)",
+      "eNk": "floor(([[N]]-[[k]])/[[p]]) + floor(([[N]]-[[k]])/[[p]]**2) + floor(([[N]]-[[k]])/[[p]]**3) + floor(([[N]]-[[k]])/[[p]]**4) + floor(([[N]]-[[k]])/[[p]]**5) + floor(([[N]]-[[k]])/[[p]]**6) + floor(([[N]]-[[k]])/[[p]]**7) + floor(([[N]]-[[k]])/[[p]]**8) + floor(([[N]]-[[k]])/[[p]]**9) + floor(([[N]]-[[k]])/[[p]]**10)"
+    },
+    "stem": "What is the exponent of the highest power of the prime \\( [[p]] \\) that divides the binomial coefficient \\( \\binom{[[N]]}{[[k]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "[[eN]] - [[ek]] - [[eNk]]"},
+    "distractors": [
+      "[[eN]]",
+      "[[ek]]",
+      "[[eNk]]",
+      "[[eN]] - [[ek]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "By Legendre's formula, the exponent of \\( [[p]] \\) in \\( [[N]]! \\), \\( [[k]]! \\), and \\( ([[N]]-[[k]])! \\) are \\( [[eN]] \\), \\( [[ek]] \\), and \\( [[eNk]] \\) respectively. Since \\( \\binom{[[N]]}{[[k]]} = \\dfrac{[[N]]!}{[[k]]!([[N]]-[[k]])!} \\), the exponent of \\( [[p]] \\) in the binomial coefficient is \\( [[eN]] - [[ek]] - [[eNk]] = [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses only the exponent from \\( [[N]]! \\), forgetting to subtract the denominator's contributions.",
+      "This uses only the exponent from \\( [[k]]! \\), an unrelated single term.",
+      "This uses only the exponent from \\( ([[N]]-[[k]])! \\), an unrelated single term.",
+      "This subtracts only the \\( [[k]]! \\) contribution, forgetting the \\( ([[N]]-[[k]])! \\) term in the denominator.",
+      "This is one more than the correct exponent.",
+      "This is one less than the correct exponent.",
+      "This is two more than the correct exponent."
+    ]
+  },
+  {
+    "template_id": "legendre_exponent_of_double_factorial_v1",
+    "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "N": {"type": "int", "lo": 10, "hi": 300}
+    },
+    "constraints": ["Eq(Mod([[N]], 2), 0)"],
+    "derived": {
+      "M": "[[N]]/2",
+      "eM": "floor([[M]]/2) + floor([[M]]/4) + floor([[M]]/8) + floor([[M]]/16) + floor([[M]]/32) + floor([[M]]/64) + floor([[M]]/128) + floor([[M]]/256) + floor([[M]]/512) + floor([[M]]/1024)"
+    },
+    "stem": "For the even number \\( [[N]] \\), the double factorial is \\( [[N]]!! = 2\\cdot 4\\cdot 6\\cdots [[N]] \\). What is the exponent of the highest power of 2 that divides \\( [[N]]!! \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "[[M]] + [[eM]]"},
+    "distractors": [
+      "[[eM]]",
+      "[[M]]",
+      "2*[[eM]]",
+      "[[M]] + 2*[[eM]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "Factor a 2 out of each of the \\( [[M]] \\) even terms: \\( [[N]]!! = 2^{[[M]]}\\cdot [[M]]! \\) where \\( [[M]] = [[N]]/2 \\). The exponent of 2 in \\( [[M]]! \\) is, by Legendre's formula, \\( [[eM]] \\). So the total exponent of 2 in \\( [[N]]!! \\) is \\( [[M]] + [[eM]] = [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses only the exponent of 2 inside \\( [[M]]! \\), forgetting the \\( 2^{[[M]]} \\) factored out of the even terms.",
+      "This uses only the factored-out power \\( 2^{[[M]]} \\), forgetting the extra factors of 2 already inside \\( [[M]]! \\).",
+      "This doubles the internal exponent instead of adding the factored-out power once.",
+      "This double-counts the internal exponent of 2 in \\( [[M]]! \\).",
+      "This is one more than the correct exponent.",
+      "This is one less than the correct exponent.",
+      "This is two more than the correct exponent."
+    ]
+  }
+]

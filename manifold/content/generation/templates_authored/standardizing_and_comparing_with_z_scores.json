@@ -1,0 +1,134 @@
+[
+ {
+  "template_id": "z_score_of_a_value_v1",
+  "skill_id": "standardizing_and_comparing_with_z_scores",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "mu": {"type": "int", "lo": 40, "hi": 80},
+   "sigma": {"type": "choice", "values": [3, 4, 5, 6, 8, 10]},
+   "z": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {"xval": "[[mu]] + [[z]]*[[sigma]]"},
+  "stem": "A score of \\( [[xval]] \\) comes from a distribution with mean \\( [[mu]] \\) and standard deviation \\( [[sigma]] \\). What is the z-score of this value?",
+  "answer_spec": {"op": "evaluate", "expr": "([[xval]] - [[mu]])/[[sigma]]"},
+  "distractors": [
+   "([[mu]] - [[xval]])/[[sigma]]",
+   "[[xval]] - [[mu]]",
+   "([[xval]] - [[mu]])/[[mu]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The z-score measures how many standard deviations the value is from the mean: \\( z = \\frac{[[xval]] - [[mu]]}{[[sigma]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reverses the subtraction, giving the opposite sign of the correct z-score.",
+   "This is the raw deviation from the mean; a z-score also divides by the standard deviation.",
+   "This divides by the mean instead of by the standard deviation.",
+   "This is off by one from the correct z-score."
+  ]
+ },
+ {
+  "template_id": "raw_value_from_z_score_v1",
+  "skill_id": "standardizing_and_comparing_with_z_scores",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "mu": {"type": "int", "lo": 40, "hi": 80},
+   "sigma": {"type": "choice", "values": [3, 4, 5, 6, 8, 10]},
+   "z": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "A distribution has mean \\( [[mu]] \\) and standard deviation \\( [[sigma]] \\). What raw value has a z-score of \\( [[z]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[mu]] + [[z]]*[[sigma]]"},
+  "distractors": [
+   "[[mu]] - [[z]]*[[sigma]]",
+   "[[z]]*[[sigma]]",
+   "[[mu]] + [[z]]",
+   "[[mu]]*[[z]]*[[sigma]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A raw value is the mean plus the z-score times the standard deviation: \\( x = [[mu]] + [[z]]\\cdot[[sigma]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts instead of adds, giving the value on the opposite side of the mean.",
+   "This reports only the deviation from the mean and forgets to add the mean itself.",
+   "This adds the z-score directly to the mean and forgets to scale it by the standard deviation.",
+   "This multiplies all three quantities together instead of adding the scaled deviation to the mean.",
+   "This is off by one from the correct raw value."
+  ]
+ },
+ {
+  "template_id": "z_score_difference_same_distribution_v1",
+  "skill_id": "standardizing_and_comparing_with_z_scores",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "mu": {"type": "int", "lo": 40, "hi": 80},
+   "sigma": {"type": "choice", "values": [3, 4, 5, 6, 8, 10]},
+   "z1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[z1]], [[z2]])"],
+  "derived": {
+   "x1": "[[mu]] + [[z1]]*[[sigma]]",
+   "x2": "[[mu]] + [[z2]]*[[sigma]]"
+  },
+  "stem": "Scores on a test are approximately normal with mean \\( [[mu]] \\) and standard deviation \\( [[sigma]] \\). Two students score \\( [[x1]] \\) and \\( [[x2]] \\), respectively. By how much does the first student's z-score exceed the second student's z-score?",
+  "answer_spec": {"op": "evaluate", "expr": "([[x1]] - [[x2]])/[[sigma]]"},
+  "distractors": [
+   "([[x2]] - [[x1]])/[[sigma]]",
+   "([[x1]] - [[x2]])/[[mu]]",
+   "[[x1]] - [[x2]]",
+   "([[x1]] - [[mu]])/[[sigma]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since both scores share the same mean and standard deviation, the mean cancels in the difference of z-scores: \\( \\frac{[[x1]]-[[mu]]}{[[sigma]]} - \\frac{[[x2]]-[[mu]]}{[[sigma]]} = \\frac{[[x1]]-[[x2]]}{[[sigma]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign, giving the second student's z-score minus the first's.",
+   "This divides by the mean instead of by the standard deviation.",
+   "This is the raw difference in scores, without dividing by the standard deviation.",
+   "This reports only the first student's z-score, forgetting to subtract the second's.",
+   "This is off by one from the correct difference."
+  ]
+ },
+ {
+  "template_id": "z_score_difference_two_distributions_v1",
+  "skill_id": "standardizing_and_comparing_with_z_scores",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "mu1": {"type": "int", "lo": 30, "hi": 90},
+   "sigma1": {"type": "choice", "values": [3, 4, 5, 6, 8, 10]},
+   "z1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "mu2": {"type": "int", "lo": 30, "hi": 90},
+   "sigma2": {"type": "choice", "values": [3, 4, 5, 6, 8, 10]},
+   "z2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "x1": "[[mu1]] + [[z1]]*[[sigma1]]",
+   "x2": "[[mu2]] + [[z2]]*[[sigma2]]"
+  },
+  "stem": "Two students each take a different exam. The first exam has mean \\( [[mu1]] \\) and standard deviation \\( [[sigma1]] \\); that student scores \\( [[x1]] \\). The second exam has mean \\( [[mu2]] \\) and standard deviation \\( [[sigma2]] \\); that student scores \\( [[x2]] \\). By how much does the first student's z-score exceed the second student's z-score?",
+  "answer_spec": {"op": "evaluate", "expr": "([[x1]] - [[mu1]])/[[sigma1]] - ([[x2]] - [[mu2]])/[[sigma2]]"},
+  "distractors": [
+   "([[x2]] - [[mu2]])/[[sigma2]] - ([[x1]] - [[mu1]])/[[sigma1]]",
+   "([[x1]] - [[x2]])/([[sigma1]] + [[sigma2]])",
+   "([[x1]] - [[mu1]])/[[sigma1]]",
+   "([[x2]] - [[mu2]])/[[sigma2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Standardize each score against its OWN exam's mean and standard deviation, then subtract: \\( \\dfrac{[[x1]]-[[mu1]]}{[[sigma1]]} - \\dfrac{[[x2]]-[[mu2]]}{[[sigma2]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign, giving the second student's z-score minus the first's.",
+   "This treats the two exams as if they shared a single combined standard deviation, rather than standardizing each separately.",
+   "This reports only the first student's z-score, forgetting to subtract the second's.",
+   "This reports only the second student's z-score, forgetting to subtract it from the first's.",
+   "This is off by one from the correct difference."
+  ]
+ }
+]

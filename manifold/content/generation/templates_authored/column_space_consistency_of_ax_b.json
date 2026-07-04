@@ -1,0 +1,152 @@
+[
+{
+ "template_id": "rank_of_coefficient_matrix_v1",
+ "skill_id": "column_space_consistency_of_ax_b",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "b2": {"type": "int", "lo": -5, "hi": 5},
+  "b3": {"type": "int", "lo": -5, "hi": 5},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]"
+ },
+ "stem": "Consider the linear system \\( A\\mathbf{x} = \\mathbf{b} \\) with \\[ A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\end{bmatrix}, \\qquad \\mathbf{b} = \\begin{bmatrix} [[b1]] \\\\ [[b2]] \\\\ [[b3]] \\end{bmatrix}. \\] As the first step in deciding whether the system is consistent, what is the rank of the coefficient matrix \\( A \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s]]", "[[t]]"], ["[[p]]", "[[m22]]", "[[m23]]"], ["[[q]]", "[[m32]]", "[[m33]]"]]
+ },
+ "distractors": ["3-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "0", "3"],
+ "solution": "Row-reducing \\( A \\) (ignoring \\( \\mathbf{b} \\) for now) shows it has \\( [[answer]] \\) pivot rows, so \\( \\operatorname{rank}(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the nullity \\(3-\\operatorname{rank}(A)\\), not the rank itself.",
+  "This overcounts the pivot rows by one.",
+  "This undercounts the pivot rows by one.",
+  "This overcounts the pivot rows, which cannot exceed the number of rows or columns.",
+  "This assumes \\(A\\) is the zero matrix.",
+  "This assumes \\(A\\) has full rank without checking for dependence among its rows."
+ ]
+},
+{
+ "template_id": "rank_of_augmented_matrix_v2",
+ "skill_id": "column_space_consistency_of_ax_b",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "b2": {"type": "int", "lo": -5, "hi": 5},
+  "b3": {"type": "int", "lo": -5, "hi": 5},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]"
+ },
+ "stem": "Consider the linear system \\( A\\mathbf{x} = \\mathbf{b} \\) with \\[ A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\end{bmatrix}, \\qquad \\mathbf{b} = \\begin{bmatrix} [[b1]] \\\\ [[b2]] \\\\ [[b3]] \\end{bmatrix}. \\] To check consistency, form the augmented matrix \\( [A \\mid \\mathbf{b}] \\). What is the rank of \\( [A \\mid \\mathbf{b}] \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s]]", "[[t]]", "[[b1]]"], ["[[p]]", "[[m22]]", "[[m23]]", "[[b2]]"], ["[[q]]", "[[m32]]", "[[m33]]", "[[b3]]"]]
+ },
+ "distractors": ["3-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]-2", "0", "4"],
+ "solution": "Row-reducing the augmented matrix \\( [A\\mid \\mathbf{b}] \\) shows it has \\( [[answer]] \\) pivot rows, so \\( \\operatorname{rank}([A\\mid\\mathbf{b}]) = [[answer]] \\). (The system is consistent exactly when this equals \\( \\operatorname{rank}(A) \\).)",
+ "distractor_rationales": [
+  "This subtracts the rank from the ambient dimension \\(3\\) instead of reporting it directly.",
+  "This overcounts the pivot rows by one, more than the number of rows allows.",
+  "This undercounts the pivot rows by one.",
+  "This undercounts the pivot rows by two.",
+  "This assumes the augmented matrix is entirely zero.",
+  "This overcounts the rank, which cannot exceed the number of rows (3), regardless of the number of columns."
+ ]
+},
+{
+ "template_id": "solution_set_dimension_when_consistent_v3",
+ "skill_id": "column_space_consistency_of_ax_b",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "bb1": {"type": "int", "lo": -3, "hi": 3},
+  "eb2": {"type": "int", "lo": -3, "hi": 3},
+  "eb3": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "bb2": "[[p]]*[[bb1]] + [[d2]]*[[eb2]]",
+  "bb3": "[[q]]*[[bb1]] + [[r]]*[[d2]]*[[eb2]] + [[d3]]*[[eb3]]",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "The linear system \\( A\\mathbf{x} = \\mathbf{b} \\), with \\[ A = \\begin{bmatrix} 1 & [[s]] & [[t]] \\\\ [[p]] & [[m22]] & [[m23]] \\\\ [[q]] & [[m32]] & [[m33]] \\end{bmatrix}, \\qquad \\mathbf{b} = \\begin{bmatrix} [[bb1]] \\\\ [[bb2]] \\\\ [[bb3]] \\end{bmatrix}, \\] is known to be consistent. What is the dimension of its solution set (the number of free parameters in the general solution)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": ["[[rankval]]", "3", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[answer]]-2", "0"],
+ "solution": "Since the system is consistent, the solution set is a coset of \\( \\operatorname{Null}(A) \\), of dimension \\( 3 - \\operatorname{rank}(A) \\). Row-reducing \\( A \\) gives \\( \\operatorname{rank}(A) = [[rankval]] \\), so the solution set has dimension \\( 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\operatorname{rank}(A) \\), not the dimension of the solution set.",
+  "This assumes \\(A\\) is the zero matrix, so every variable would be free.",
+  "This overcounts the free parameters by one.",
+  "This undercounts the free parameters by one.",
+  "This is a plausible but unverified count.",
+  "This is a plausible but unverified count.",
+  "This assumes \\(A\\) is invertible, giving a unique solution."
+ ]
+},
+{
+ "template_id": "consistency_theorem_pure_data_v4",
+ "skill_id": "column_space_consistency_of_ax_b",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [4, 5, 6, 7, 8]},
+  "m": {"type": "choice", "values": [3, 4, 5, 6, 7]},
+  "rA": {"type": "int", "lo": 1, "hi": 7}
+ },
+ "constraints": ["Le([[rA]], [[n]])", "Le([[rA]], [[m]])"],
+ "stem": "A linear system \\( A\\mathbf{x} = \\mathbf{b} \\) has \\( [[m]] \\) equations in \\( [[n]] \\) unknowns. The coefficient matrix \\( A \\) has rank \\( [[rA]] \\), and the augmented matrix \\( [A\\mid\\mathbf{b}] \\) also has rank \\( [[rA]] \\) (so the system is consistent). What is the dimension of the solution set?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[rA]]"},
+ "distractors": ["[[m]]-[[rA]]", "[[rA]]", "[[n]]-[[m]]", "[[n]]+[[rA]]", "[[answer]]+1", "[[answer]]-1", "[[m]]", "[[n]]"],
+ "solution": "Since \\( \\operatorname{rank}(A) = \\operatorname{rank}([A\\mid\\mathbf{b}]) = [[rA]] \\), the system is consistent, and its solution set has dimension \\( n - \\operatorname{rank}(A) = [[n]] - [[rA]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the number of equations \\(m\\) instead of the number of unknowns \\(n\\).",
+  "This reports the rank itself instead of subtracting it from the number of unknowns.",
+  "This subtracts the number of equations from the number of unknowns, ignoring the given rank.",
+  "This adds the rank instead of subtracting it.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This assumes the rank is \\(0\\), reporting the number of equations.",
+  "This assumes the rank is \\(0\\), reporting the full number of unknowns."
+ ]
+}
+]

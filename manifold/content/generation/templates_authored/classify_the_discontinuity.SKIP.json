@@ -1,0 +1,4 @@
+{
+ "skill_id": "classify_the_discontinuity",
+ "reason": "Classifying a discontinuity as removable, jump, or infinite yields a categorical label rather than a single code-computable numeric or expression answer, so it cannot be encoded as a solver op-spec."
+}

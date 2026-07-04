@@ -75,6 +75,19 @@ covered by four Rust unit tests in `rslib/src/manifold/test.rs` and a Python
 integration test in `pylib/tests/test_manifold.py`, meeting D7's ">=3 Rust unit
 tests + 1 Python test" bar.
 
+## The interleave flag rides the same engine
+
+A second, smaller engine change lives in Rust for the same reasons. The
+study-feature ablation adds an `interleave` flag to `build_session_queue`: a new
+`SessionQueueRequest` field in `proto/anki/manifold.proto`, threaded through
+`service.rs` into `session.rs`, which orders the already-due queue either
+interleaved across topics or blocked by topic while keeping the points-at-stake
+and tier ordering intact. It belongs in `rslib` because it reads the same
+in-process card and DAG data the rollup does, so no per-card data crosses the
+Python or TypeScript boundary, and because a change in `rslib` ships to desktop
+and AnkiDroid from one source (PRD section 8.1). Like the rollup it only reorders
+what is already due and never changes FSRS state, so undo and sync stay intact.
+
 ## Touched upstream files (merge difficulty)
 
 - New module `rslib/src/manifold/` (`mod.rs`, `mastery.rs`, `service.rs`,

@@ -1,0 +1,128 @@
+[
+{
+ "template_id": "polar_to_rect_x_v1",
+ "skill_id": "polar_coordinates",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 1, "hi": 12},
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "A point has polar coordinates \\( \\left(r,\\theta\\right)=\\left([[r]],\\dfrac{[[k]]\\pi}{[[n]]}\\right) \\). Find its rectangular \\( x \\)-coordinate.",
+ "answer_spec": {"op": "evaluate", "expr": "[[r]]*cos([[k]]*pi/[[n]])"},
+ "distractors": [
+  "[[r]]*sin([[k]]*pi/[[n]])",
+  "-[[r]]*cos([[k]]*pi/[[n]])",
+  "[[r]]*cos(pi/[[n]])",
+  "cos([[k]]*pi/[[n]])",
+  "[[r]]*cos([[k]]*pi/[[n]]) + 1",
+  "[[r]]*cos([[k]]*pi/[[n]]) - 1"
+ ],
+ "solution": "The conversion is \\( x=r\\cos\\theta=[[r]]\\cos\\dfrac{[[k]]\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( r\\sin\\theta\\) (the \\( y\\)-formula) instead of \\( r\\cos\\theta\\).",
+  "This has the wrong sign for the quadrant containing \\( \\theta\\).",
+  "This drops the numerator \\( k\\), using the base angle \\( \\pi/n\\) instead of the full angle.",
+  "This forgets to multiply by \\( r\\) entirely.",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "polar_to_rect_y_v1",
+ "skill_id": "polar_coordinates",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 1, "hi": 12},
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "A point has polar coordinates \\( \\left(r,\\theta\\right)=\\left([[r]],\\dfrac{[[k]]\\pi}{[[n]]}\\right) \\). Find its rectangular \\( y \\)-coordinate.",
+ "answer_spec": {"op": "evaluate", "expr": "[[r]]*sin([[k]]*pi/[[n]])"},
+ "distractors": [
+  "[[r]]*cos([[k]]*pi/[[n]])",
+  "-[[r]]*sin([[k]]*pi/[[n]])",
+  "[[r]]*sin(pi/[[n]])",
+  "sin([[k]]*pi/[[n]])",
+  "[[r]]*sin([[k]]*pi/[[n]]) + 1",
+  "[[r]]*sin([[k]]*pi/[[n]]) - 1"
+ ],
+ "solution": "The conversion is \\( y=r\\sin\\theta=[[r]]\\sin\\dfrac{[[k]]\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( r\\cos\\theta\\) (the \\( x\\)-formula) instead of \\( r\\sin\\theta\\).",
+  "This has the wrong sign for the quadrant containing \\( \\theta\\).",
+  "This drops the numerator \\( k\\), using the base angle \\( \\pi/n\\) instead of the full angle.",
+  "This forgets to multiply by \\( r\\) entirely.",
+  "This is off by one from the correct \\( y\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( y\\)-coordinate."
+ ]
+},
+{
+ "template_id": "rect_to_polar_r_v1",
+ "skill_id": "polar_coordinates",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x": {"type": "int", "lo": -12, "hi": 12},
+  "y": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[x]]**2 + [[y]]**2, 0)"],
+ "stem": "A point has rectangular coordinates \\( ([[x]],[[y]]) \\). Find its polar radial coordinate \\( r=\\sqrt{x^{2}+y^{2}} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[x]]**2 + [[y]]**2)"},
+ "distractors": [
+  "[[x]]**2 + [[y]]**2",
+  "Abs([[x]]) + Abs([[y]])",
+  "sqrt(Abs([[x]]**2 - [[y]]**2))",
+  "sqrt([[x]]**2) + sqrt([[y]]**2)",
+  "sqrt([[x]]**2 + [[y]]**2) + 1",
+  "sqrt([[x]]**2 + [[y]]**2) - 1"
+ ],
+ "solution": "By definition, \\( r=\\sqrt{x^{2}+y^{2}}=\\sqrt{[[x]]^{2}+[[y]]^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the square root, reporting \\( r^{2}\\) instead of \\( r\\).",
+  "This uses taxicab (Manhattan) distance instead of the true radial distance.",
+  "This subtracts the squared coordinates instead of adding them.",
+  "This takes the square root of each coordinate separately before adding, instead of adding first.",
+  "This is off by one from the correct value of \\( r\\).",
+  "This is off by one (other direction) from the correct value of \\( r\\)."
+ ]
+},
+{
+ "template_id": "rect_to_polar_angle_first_quadrant_v1",
+ "skill_id": "polar_coordinates",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x": {"type": "int", "lo": 1, "hi": 12},
+  "y": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": [],
+ "stem": "A point has rectangular coordinates \\( ([[x]],[[y]]) \\), which lies in the first quadrant. Find its polar angle \\( \\theta \\) (in radians), where \\( 0<\\theta<\\dfrac{\\pi}{2} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "atan(Rational([[y]],[[x]]))"},
+ "distractors": [
+  "atan(Rational([[x]],[[y]]))",
+  "-atan(Rational([[y]],[[x]]))",
+  "pi/2 - atan(Rational([[y]],[[x]]))",
+  "pi - atan(Rational([[y]],[[x]]))",
+  "atan(Rational([[y]],[[x]])) + Rational(1,10)",
+  "atan(Rational([[y]],[[x]])) - Rational(1,10)"
+ ],
+ "solution": "In the first quadrant, \\( \\theta=\\arctan\\dfrac{y}{x}=\\arctan\\dfrac{[[y]]}{[[x]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, using \\( x/y\\) instead of \\( y/x\\).",
+  "This gives a negative angle rather than a first-quadrant angle.",
+  "This reports the complementary angle instead of \\( \\theta\\) itself.",
+  "This reports the supplementary angle instead of \\( \\theta\\) itself.",
+  "This is off by a small additive amount from the correct angle.",
+  "This is off by a small additive amount (other direction) from the correct angle."
+ ]
+}
+]

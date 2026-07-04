@@ -1,0 +1,165 @@
+[
+ {
+  "template_id": "affine_recurrence_eval_v1",
+  "skill_id": "recursive_procedure_evaluation",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3]},
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "int", "lo": 1, "hi": 5},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "A function \\( T \\) on the nonnegative integers is defined by \\( T(0) = [[x0]] \\) and \\( T(k) = [[a]]\\,T(k-1) + ([[b]]) \\) for \\( k \\ge 1 \\). What is \\( T([[n]]) \\)?",
+  "answer_spec": {"op": "iterate", "f": "[[a]]*x + [[b]]", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "[[a]]**[[n]] * [[x0]]",
+   "[[a]]**[[n]] * [[x0]] + [[b]]",
+   "[[a]] * [[x0]] + [[b]]",
+   "[[answer]] + [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Apply the rule repeatedly from \\( T(0) = [[x0]] \\): each step multiplies by [[a]] and adds ([[b]]). After [[n]] steps, \\( T([[n]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies only the multiplicative part and drops the added constant at every step.",
+   "This adds the constant just once instead of at each of the [[n]] steps.",
+   "This performs only a single step, computing \\( T(1) \\) instead of \\( T([[n]]) \\).",
+   "This is off by the constant [[b]] from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "quadratic_recurrence_eval_v1",
+  "skill_id": "recursive_procedure_evaluation",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "x0": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "choice", "values": [2, 3]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "A function \\( T \\) on the nonnegative integers is defined by \\( T(0) = [[x0]] \\) and \\( T(k) = T(k-1)^{2} + ([[c]]) \\) for \\( k \\ge 1 \\). What is \\( T([[n]]) \\)?",
+  "answer_spec": {"op": "iterate", "f": "x**2 + [[c]]", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "[[x0]]**2 + [[c]]",
+   "([[x0]]**2 + [[c]])**2",
+   "[[x0]]**([[n]]*2)",
+   "[[x0]]**2 + [[c]]*[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Apply the rule repeatedly from \\( T(0) = [[x0]] \\), squaring the previous value and adding ([[c]]) each time. After [[n]] steps, \\( T([[n]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes only \\( T(1) \\) instead of continuing to \\( T([[n]]) \\).",
+   "This squares the whole expression an extra time rather than following the recursive rule step by step.",
+   "This confuses repeated squaring with a single larger exponent on the initial value.",
+   "This adds the constant [[n]] times to a single squaring instead of re-squaring at every step.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "index_dependent_additive_recurrence_v1",
+  "skill_id": "recursive_procedure_evaluation",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "x0": {"type": "int", "lo": -5, "hi": 5},
+   "n": {"type": "int", "lo": 4, "hi": 15}
+  },
+  "constraints": [],
+  "stem": "A function \\( T \\) on the nonnegative integers is defined by \\( T(0) = [[x0]] \\) and \\( T(k) = T(k-1) + k \\) for \\( k \\ge 1 \\). What is \\( T([[n]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]] + [[n]]*([[n]] + 1)/2"},
+  "distractors": [
+   "[[x0]] + [[n]]",
+   "[[x0]]*[[n]]*([[n]] + 1)/2",
+   "[[n]]*([[n]] + 1)/2",
+   "[[x0]] + ([[n]] - 1)*[[n]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Unrolling, \\( T([[n]]) = T(0) + \\sum_{k=1}^{[[n]]} k = [[x0]] + \\frac{[[n]]([[n]]+1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( k \\) only once, at the final step, instead of accumulating it at every step from 1 to [[n]].",
+   "This multiplies the initial value into the sum instead of just adding it once at the start.",
+   "This drops the initial value \\( T(0) = [[x0]] \\) entirely.",
+   "This sums only \\( 1 \\) through \\( [[n]]-1 \\), stopping the accumulation one step early.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "index_dependent_multiplicative_recurrence_v1",
+  "skill_id": "recursive_procedure_evaluation",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "x0": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "int", "lo": 3, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A function \\( T \\) on the positive integers is defined by \\( T(0) = [[x0]] \\) and \\( T(k) = k \\cdot T(k-1) \\) for \\( k \\ge 1 \\). What is \\( T([[n]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]]*factorial([[n]])"},
+  "distractors": [
+   "[[x0]]*[[n]]",
+   "factorial([[n]])",
+   "[[x0]]*factorial([[n]] - 1)",
+   "[[x0]]*[[n]]**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Unrolling, \\( T([[n]]) = T(0) \\cdot 1 \\cdot 2 \\cdots [[n]] = [[x0]] \\cdot [[n]]! = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by the final index [[n]] only once, instead of by every index from 1 to [[n]].",
+   "This drops the initial value \\( T(0) = [[x0]] \\) entirely.",
+   "This stops the multiplication one step early, omitting the final factor of [[n]].",
+   "This confuses the repeated multiplication by increasing indices with a fixed power of [[n]].",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "floor_halving_recurrence_eval_v1",
+  "skill_id": "recursive_procedure_evaluation",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "x0": {"type": "int", "lo": 40, "hi": 500},
+   "n": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne(Mod([[x0]], 2**[[n]]), 0)"],
+  "stem": "A function \\( T \\) on the nonnegative integers is defined by \\( T(0) = [[x0]] \\) and \\( T(k) = \\left\\lfloor T(k-1)/2 \\right\\rfloor \\) for \\( k \\ge 1 \\). What is \\( T([[n]]) \\)?",
+  "answer_spec": {"op": "iterate", "f": "floor(x/2)", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "floor([[x0]]/2)",
+   "ceiling([[x0]]/2**[[n]])",
+   "[[x0]]/2**[[n]]",
+   "[[x0]] - [[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Each step halves the value and rounds down; applying this [[n]] times to \\( T(0) = [[x0]] \\) gives \\( T([[n]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This performs only a single halving, computing \\( T(1) \\) instead of \\( T([[n]]) \\).",
+   "This rounds up at the end instead of rounding down after every step.",
+   "This leaves the final value as a raw (non-integer) fraction instead of the correctly rounded-down result.",
+   "This confuses repeated halving with subtracting [[n]] once.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

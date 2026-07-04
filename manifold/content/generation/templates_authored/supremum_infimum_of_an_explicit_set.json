@@ -1,0 +1,158 @@
+[
+ {
+  "template_id": "supremum_of_increasing_set_v1",
+  "skill_id": "supremum_infimum_of_an_explicit_set",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Let \\( S = \\left\\{\\, [[a]] - \\dfrac{[[b]]}{n} \\;:\\; n = 1, 2, 3, \\ldots \\,\\right\\} \\subseteq \\mathbb{R} \\). What is \\( \\sup S \\), the least upper bound of \\( S \\)?",
+  "answer_spec": {"op": "limit", "expr": "[[a]] - [[b]]/n", "var": "n", "point": "oo"},
+  "distractors": [
+   "[[a]] - [[b]]",
+   "[[a]] + [[b]]",
+   "[[a]] - 2*[[b]]",
+   "[[a]] + 1",
+   "[[a]] - 1",
+   "[[a]] + 2"
+  ],
+  "solution": "Since \\( b = [[b]] > 0 \\), the terms \\( [[a]] - \\dfrac{[[b]]}{n} \\) strictly increase toward \\( [[a]] \\) and never reach it. Thus \\( [[a]] \\) is an upper bound and every smaller number is exceeded, so \\( \\sup S = [[answer]] \\) (a supremum not attained by any element).",
+  "distractor_rationales": [
+   "This is \\( \\min S = \\inf S \\), the value at \\( n = 1 \\), not the supremum.",
+   "This flips the sign of the correction term, overshooting the true bound.",
+   "This is the \\( n = 1 \\) term shifted by another \\( b \\), well below the supremum.",
+   "This is one more than the correct supremum, so it is not the least upper bound.",
+   "This is one less than the correct supremum; some elements exceed it, so it is not an upper bound.",
+   "This is two more than the correct supremum, not the least such bound."
+  ]
+ },
+ {
+  "template_id": "supremum_of_ratio_form_set_v1",
+  "skill_id": "supremum_infimum_of_an_explicit_set",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 9},
+   "B": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "Let \\( S = \\left\\{\\, \\dfrac{[[A]]n}{n + [[B]]} \\;:\\; n = 1, 2, 3, \\ldots \\,\\right\\} \\subseteq \\mathbb{R} \\). What is \\( \\sup S \\)?",
+  "answer_spec": {"op": "limit", "expr": "[[A]]*n/(n + [[B]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[A]], 1 + [[B]])",
+   "[[A]] + [[B]]",
+   "[[A]] - 1",
+   "[[A]] + 1",
+   "Rational([[A]], [[B]])",
+   "[[A]] - [[B]]"
+  ],
+  "solution": "Rewrite \\( \\dfrac{[[A]]n}{n+[[B]]} = [[A]] - \\dfrac{[[A]]\\cdot [[B]]}{n+[[B]]} \\). As \\( n \\to \\infty \\) the subtracted term shrinks to \\( 0 \\), and it is always positive, so the terms increase strictly toward \\( [[A]] \\) without ever reaching it. Hence \\( \\sup S = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the \\( n=1 \\) term, the minimum of \\( S \\), not its supremum.",
+   "This adds the coefficient and the shift instead of taking the limiting ratio.",
+   "This is one less than the correct supremum.",
+   "This is one more than the correct supremum, so it is not a least upper bound.",
+   "This divides by \\( [[B]] \\) instead of recognizing the limiting ratio is just \\( [[A]] \\).",
+   "This subtracts instead of recognizing the shift term vanishes in the limit."
+  ]
+ },
+ {
+  "template_id": "supremum_of_alternating_set_v1",
+  "skill_id": "supremum_infimum_of_an_explicit_set",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 8},
+   "b": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Let \\( S = \\left\\{\\, [[a]] + (-1)^{n}\\dfrac{[[b]]}{n} \\;:\\; n = 1, 2, 3, \\ldots \\,\\right\\} \\subseteq \\mathbb{R} \\). What is \\( \\sup S \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]]/2"},
+  "distractors": [
+   "[[a]] - [[b]]",
+   "[[a]]",
+   "[[a]] + [[b]]",
+   "[[a]] + Rational([[b]], 4)",
+   "[[a]] + [[b]]/2 + 1",
+   "[[a]] + [[b]]/2 - 1"
+  ],
+  "solution": "For even \\( n \\), the terms are \\( [[a]] + [[b]]/n \\), decreasing toward \\( [[a]] \\) as \\( n \\) grows, so their largest value is at \\( n=2 \\): \\( [[a]] + [[b]]/2 \\). For odd \\( n \\), the terms are \\( [[a]] - [[b]]/n < [[a]] \\), all below every even term. So the maximum of the whole set — attained at \\( n=2 \\) — is \\( \\sup S = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( \\inf S \\) (the odd-\\( n \\) minimum at \\( n=1 \\)), not the supremum.",
+   "This is the common limit \\( [[a]] \\) that both parities approach, but the even terms exceed it, so it is not an upper bound.",
+   "This uses the \\( n=1 \\) even-style correction instead of the true \\( n=2 \\) maximum.",
+   "This uses the \\( n=4 \\) term, which is smaller than the true maximum at \\( n=2 \\).",
+   "This is one more than the correct supremum.",
+   "This is one less than the correct supremum."
+  ]
+ },
+ {
+  "template_id": "infimum_of_finite_quadratic_set_v1",
+  "skill_id": "supremum_infimum_of_an_explicit_set",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "nstar": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "extra": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "2*[[a]]*[[nstar]]",
+   "N": "[[nstar]] + [[extra]]"
+  },
+  "stem": "Let \\( S = \\left\\{\\, [[a]]n^{2} - [[b]]n \\;:\\; n = 1, 2, \\ldots, [[N]] \\,\\right\\} \\), a FINITE set of \\( [[N]] \\) real numbers. What is \\( \\inf S \\) (equivalently, \\( \\min S \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[nstar]]**2 - [[b]]*[[nstar]]"},
+  "distractors": [
+   "[[a]] - [[b]]",
+   "[[a]]*[[N]]**2 - [[b]]*[[N]]",
+   "[[a]]*([[nstar]]+1)**2 - [[b]]*([[nstar]]+1)",
+   "[[a]]*([[nstar]]-1)**2 - [[b]]*([[nstar]]-1)",
+   "[[a]]*[[nstar]]**2 - [[b]]*[[nstar]] + 1",
+   "[[a]]*[[nstar]]**2 - [[b]]*[[nstar]] - 1"
+  ],
+  "solution": "Since \\( S \\) is finite, its infimum is attained: it is the smallest value of \\( f(n) = [[a]]n^2 - [[b]]n \\) over integers \\( 1 \\le n \\le [[N]] \\). Treating \\( f \\) as a parabola opening upward, its vertex is at \\( n = \\dfrac{[[b]]}{2\\cdot [[a]]} = [[nstar]] \\), an integer inside the range. So \\( \\inf S = f([[nstar]]) = [[a]]\\cdot [[nstar]]^{2} - [[b]]\\cdot [[nstar]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the value at \\( n=1 \\), an endpoint, not the true minimum at the parabola's vertex.",
+   "This is the value at \\( n=[[N]] \\), the other endpoint, which is larger since the parabola rises away from the vertex.",
+   "This is the value one step to the right of the vertex, not at the vertex itself.",
+   "This is the value one step to the left of the vertex, not at the vertex itself.",
+   "This is one more than the correct minimum.",
+   "This is one less than the correct minimum."
+  ]
+ },
+ {
+  "template_id": "supremum_of_union_of_two_families_v1",
+  "skill_id": "supremum_infimum_of_an_explicit_set",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 12},
+   "B": {"type": "int", "lo": 1, "hi": 12},
+   "C": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Ne([[A]], [[B]])"],
+  "stem": "Let \\( S = \\left\\{\\, \\dfrac{[[A]]}{n} \\;:\\; n = 1, 2, 3, \\ldots \\,\\right\\} \\cup \\left\\{\\, [[B]] - \\dfrac{[[C]]}{n} \\;:\\; n = 1, 2, 3, \\ldots \\,\\right\\} \\subseteq \\mathbb{R} \\). What is \\( \\sup S \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[A]] + [[B]] + Abs([[A]] - [[B]]))/2"},
+  "distractors": [
+   "([[A]] + [[B]] - Abs([[A]] - [[B]]))/2",
+   "[[A]]",
+   "[[B]]",
+   "[[A]] + [[B]]",
+   "Rational([[A]] + [[B]], 2)",
+   "Abs([[A]] - [[B]])"
+  ],
+  "solution": "The first family \\( [[A]]/n \\) is decreasing, so its largest value (attained at \\( n=1 \\)) is \\( [[A]] \\), and it is a valid candidate upper bound only for that piece. The second family \\( [[B]] - [[C]]/n \\) increases toward \\( [[B]] \\) without reaching it. So \\( \\sup S \\) is whichever of \\( [[A]] \\) and \\( [[B]] \\) is larger: \\( \\sup S = \\max([[A]], [[B]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes \\( \\min([[A]],[[B]]) \\) instead of the maximum.",
+   "This only considers the first family's bound, ignoring whether the second family's limit is larger.",
+   "This only considers the second family's limiting bound, ignoring whether the first family's maximum is larger.",
+   "This adds the two candidate bounds instead of taking the larger one.",
+   "This averages the two candidate bounds instead of taking the larger one.",
+   "This is just the gap between the two candidates, not the supremum itself."
+  ]
+ }
+]

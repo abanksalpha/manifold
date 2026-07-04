@@ -1,0 +1,140 @@
+[
+{
+ "template_id": "absolute_max_vertex_v1",
+ "skill_id": "absolute_global_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "h": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "k": {
+   "type": "int",
+   "lo": -9,
+   "hi": 9
+  },
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  }
+ },
+ "constraints": [],
+ "stem": "Find the absolute maximum value of \\( f(x)=-[[a]](x-([[h]]))^{2}+([[k]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k]]"
+ },
+ "distractors": [
+  "[[h]]",
+  "[[k]] + [[a]]",
+  "-[[k]]",
+  "[[h]] + [[k]]",
+  "[[k]] + 1",
+  "[[k]] - 1"
+ ],
+ "solution": "The downward parabola peaks at its vertex, so the maximum value is \\( [[k]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "absolute_extrema_closed_interval_candidates_v1",
+ "skill_id": "absolute_global_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 3, "hi": 16}
+ },
+ "constraints": ["Gt([[b]], 2*[[p]])"],
+ "stem": "On the closed interval \\( [0, [[b]]] \\), let \\( f(x) = x^{3} - 3([[p]])^{2}x \\). Comparing the value of \\( f \\) at the endpoints and at its critical point in \\( (0,[[b]]) \\), what is the absolute maximum value of \\( f \\) on this interval?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[b]]**3 - 3*[[p]]**2*[[b]]"
+ },
+ "distractors": [
+  "0",
+  "-2*[[p]]**3",
+  "[[b]]**3",
+  "[[b]]**3 - 3*[[p]]*[[b]]",
+  "[[b]]**3 - 3*[[p]]**2*[[b]] + 1",
+  "[[b]]**3 - 3*[[p]]**2*[[b]] - 1"
+ ],
+ "solution": "\\( f'(x)=3x^{2}-3([[p]])^{2}=0 \\) at \\( x=[[p]] \\), a local minimum since \\( f \\) decreases then increases. The candidates are \\( f(0)=0 \\), \\( f([[p]])=-2([[p]])^{3} \\), and \\( f([[b]])=[[b]]^{3}-3([[p]])^{2}[[b]] \\); since \\( [[b]]>2[[p]] \\) the last value is largest, so the absolute maximum is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f(0) \\), an endpoint but not the largest value.",
+  "This is the local minimum value \\( f([[p]]) \\), not the maximum.",
+  "This drops the \\( -3([[p]])^{2}x \\) term when evaluating the right endpoint.",
+  "This uses \\( p \\) instead of \\( p^{2} \\) in the endpoint evaluation.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "absolute_max_revenue_standard_form_v1",
+ "skill_id": "absolute_global_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 6},
+  "t": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"p0": "2*[[m]]*[[t]]"},
+ "stem": "A company's revenue from selling \\( x \\) units is \\( R(x) = [[p0]]x - [[m]]x^{2} \\) dollars, for \\( x \\ge 0 \\). What is the maximum possible revenue, in dollars?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[p0]]**2/(4*[[m]])"
+ },
+ "distractors": [
+  "[[p0]]**2/(2*[[m]])",
+  "Rational([[p0]], 2*[[m]])",
+  "[[p0]]*[[m]]",
+  "[[p0]]**2/[[m]]",
+  "[[p0]]**2/(4*[[m]]) + 1",
+  "[[p0]]**2/(4*[[m]]) - 1"
+ ],
+ "solution": "\\( R(x) \\) is a downward parabola with vertex at \\( x=\\frac{[[p0]]}{2([[m]])} \\); the maximum revenue is \\( R\\!\\left(\\frac{[[p0]]}{2[[m]]}\\right)=\\frac{[[p0]]^{2}}{4[[m]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops a factor of 2 in the denominator.",
+  "This is the optimal quantity \\( x^{*} \\), not the maximum revenue.",
+  "This multiplies the intercept by the coefficient instead of using the vertex formula.",
+  "This drops the factor of 4 entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "absolute_min_quartic_substitution_v1",
+ "skill_id": "absolute_global_extrema",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = x^{4} - 2([[c]])x^{2} \\) for all real \\( x \\). What is the absolute minimum value of \\( f \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-[[c]]**2"
+ },
+ "distractors": [
+  "-[[c]]",
+  "[[c]]**2",
+  "-2*[[c]]**2",
+  "0",
+  "-[[c]]**2 + 1",
+  "-[[c]]**2 - 1"
+ ],
+ "solution": "Writing \\( u=x^{2}\\ge 0 \\), \\( f=u^{2}-2([[c]])u=(u-[[c]])^{2}-[[c]]^{2} \\), minimized at \\( u=[[c]] \\) (i.e. \\( x=\\pm\\sqrt{[[c]]} \\)) with value \\( -[[c]]^{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to square \\( c \\).",
+  "This has the wrong sign.",
+  "This doubles the correct minimum.",
+  "This is the value at \\( x=0 \\), a local maximum, not the global minimum.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

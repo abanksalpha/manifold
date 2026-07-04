@@ -1,0 +1,183 @@
+[
+ {
+  "template_id": "largest_domain_determination_v1",
+  "skill_id": "largest_domain_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "What real number is excluded from the (largest possible) domain of \\( f(x) = \\dfrac{x^{2} + 1}{[[a]]x + ([[b]])} \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = 0", "var": "x"},
+  "distractors": [
+   "[[b]]/[[a]]",
+   "-[[a]]/[[b]]",
+   "-[[b]]",
+   "[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A rational function is undefined only where its denominator is zero. Solving \\( [[a]]x + ([[b]]) = 0 \\) gives \\( x = [[answer]] \\); the numerator \\( x^{2}+1 \\) is never zero, so this is the only excluded value.",
+  "distractor_rationales": [
+   "This forgets the negative sign when solving \\( [[a]]x + ([[b]]) = 0 \\).",
+   "This inverts the fraction, dividing \\( a \\) by \\( b \\) instead of solving for \\( x \\).",
+   "This forgets to divide by the leading coefficient \\( [[a]] \\).",
+   "This both forgets the sign and forgets to divide by \\( [[a]] \\).",
+   "This is off by one from the excluded value.",
+   "This is off by one from the excluded value."
+  ]
+ },
+ {
+  "template_id": "largest_domain_determination_sqrt_boundary_v1",
+  "skill_id": "largest_domain_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne(Mod([[b]], [[a]]), 0)"],
+  "stem": "What is the smallest real number in the (largest possible) domain of \\( f(x) = \\sqrt{[[a]]x + ([[b]])} \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = 0", "var": "x"},
+  "distractors": [
+   "-[[b]]/[[a]]",
+   "[[b]]/[[a]]",
+   "-[[a]]/[[b]]",
+   "[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A square root requires a non-negative radicand: \\( [[a]]x + ([[b]]) \\ge 0 \\), i.e. \\( x \\ge \\dfrac{-([[b]])}{[[a]]} \\). The smallest allowed value, where the radicand is exactly zero, is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the boundary value.",
+   "This forgets the negative sign when isolating \\( x \\).",
+   "This inverts the fraction, dividing \\( a \\) by \\( b \\) instead of solving for \\( x \\).",
+   "This reports the constant term directly instead of solving for the boundary.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "largest_domain_determination_quadratic_denominator_v1",
+  "skill_id": "largest_domain_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "B": {"type": "int", "lo": -9, "hi": 9},
+   "C": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Gt([[B]]**2 - 4*[[C]], 0)"],
+  "stem": "The (largest possible) domain of \\( f(x) = \\dfrac{1}{x^{2} + ([[B]])x + ([[C]])} \\) excludes exactly two real numbers. What is their product?",
+  "answer_spec": {"op": "vieta", "poly": "x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "prod"},
+  "distractors": [
+   "[[B]]",
+   "-[[B]]",
+   "[[C]]**2",
+   "[[B]]*[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The excluded values are the roots of \\( x^{2} + ([[B]])x + ([[C]]) = 0 \\). By Vieta's formulas, the product of the roots of a monic quadratic \\( x^{2}+Bx+C \\) is \\( C \\), so the product of the excluded values is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the linear coefficient \\( B \\) directly instead of the product of the roots.",
+   "This gives the sum of the roots (negated), not their product.",
+   "This squares the constant term instead of using it directly as the product.",
+   "This multiplies the two coefficients together, which has no basis in Vieta's formulas.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product."
+  ]
+ },
+ {
+  "template_id": "largest_domain_determination_log_boundary_v1",
+  "skill_id": "largest_domain_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "The (largest possible) domain of \\( f(x) = \\ln([[a]]x + ([[b]])) \\) is an interval \\( (k, \\infty) \\), where \\( k \\) itself is NOT in the domain. What is \\( k \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = 0", "var": "x"},
+  "distractors": [
+   "-[[b]]/[[a]]",
+   "[[b]]/[[a]]",
+   "[[b]]",
+   "-[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A logarithm requires a strictly positive argument: \\( [[a]]x + ([[b]]) > 0 \\), i.e. \\( x > \\dfrac{-([[b]])}{[[a]]} \\). So the domain is \\( (k, \\infty) \\) with \\( k = [[answer]] \\), and \\( k \\) itself is excluded since the inequality is strict.",
+  "distractor_rationales": [
+   "This flips the sign of the boundary value.",
+   "This forgets the negative sign when isolating \\( x \\).",
+   "This reports the constant term directly instead of solving for the boundary.",
+   "This negates the constant term instead of solving the full equation for \\( x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "largest_domain_determination_sqrt_smallest_integer_v1",
+  "skill_id": "largest_domain_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5]},
+   "b": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne(Mod([[b]], [[a]]), 0)"],
+  "stem": "What is the smallest integer in the (largest possible) domain of \\( f(x) = \\sqrt{[[a]]x + ([[b]])} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "ceiling(-Rational([[b]], [[a]]))"},
+  "distractors": [
+   "floor(-Rational([[b]], [[a]]))",
+   "ceiling(Rational([[b]], [[a]]))",
+   "-[[b]]/[[a]]",
+   "[[b]]/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The domain requires \\( [[a]]x + ([[b]]) \\ge 0 \\), i.e. \\( x \\ge \\dfrac{-([[b]])}{[[a]]} \\). Since this boundary is not an integer, the smallest integer in the domain is the next integer up: \\( \\left\\lceil \\dfrac{-([[b]])}{[[a]]} \\right\\rceil = [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds down instead of up, giving an integer that does not satisfy the inequality.",
+   "This forgets the negative sign before rounding.",
+   "This reports the exact (non-integer) boundary rather than rounding to the smallest valid integer.",
+   "This forgets the negative sign entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "largest_domain_determination_compound_v1",
+  "skill_id": "largest_domain_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "gap": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {"b": "[[a]] + [[gap]]"},
+  "stem": "The (largest possible) domain of \\( f(x) = \\dfrac{\\sqrt{x - ([[a]])}}{x - ([[b]])} \\) is the interval \\( [\\,[[a]],\\, \\infty) \\) with exactly one additional point excluded (where the denominator vanishes). What is that excluded point?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]"},
+  "distractors": [
+   "[[a]]",
+   "[[a]] + [[b]]",
+   "[[b]] - [[a]]",
+   "-[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The square root requires \\( x \\ge [[a]] \\), and the denominator requires \\( x \\ne [[b]] \\). Since \\( [[b]] > [[a]] \\), the point \\( x = [[b]] \\) lies inside \\( [[[a]], \\infty) \\) and must be separately excluded.",
+  "distractor_rationales": [
+   "This is the left endpoint of the square-root restriction, which is included, not excluded.",
+   "This adds the two boundary values together, which has no meaning here.",
+   "This computes the gap between the two boundary values instead of the excluded point itself.",
+   "This negates the correct excluded point.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

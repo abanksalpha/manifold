@@ -1,0 +1,306 @@
+[
+{
+ "template_id": "roots_v1_quadratic_two_real",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[a]], 0)", "Gt([[b]]**2 - 4*[[a]]*[[c]], 0)"],
+ "stem": "How many real solutions does \\( [[a]]x^{2} + [[b]]x + [[c]] = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["0", "1", "3", "4"],
+ "solution": "The discriminant is \\( [[b]]^{2} - 4([[a]])([[c]]) > 0 \\), so the quadratic has two distinct real roots.",
+ "distractor_rationales": [
+  "This wrongly assumes a positive discriminant gives no real roots.",
+  "This wrongly assumes a positive discriminant gives a repeated (double) root.",
+  "A quadratic equation cannot have three real roots.",
+  "A quadratic equation cannot have four real roots."
+ ]
+},
+{
+ "template_id": "roots_v2_quadratic_one_real_double",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "r": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"b": "-2*[[a]]*[[r]]", "c": "[[a]]*[[r]]**2"},
+ "stem": "The quadratic \\( [[a]]x^{2} + [[b]]x + [[c]] \\) is a perfect square times \\( [[a]] \\) (that is, \\( [[a]](x-[[r]])^{2} \\)). How many real solutions does \\( [[a]]x^{2} + [[b]]x + [[c]] = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": ["0", "2", "3", "4"],
+ "solution": "The discriminant is \\( [[b]]^{2} - 4([[a]])([[c]]) = 0 \\), so the quadratic has exactly one real solution (a repeated root, at \\( x=[[r]] \\)).",
+ "distractor_rationales": [
+  "This wrongly assumes a zero discriminant gives no real solutions.",
+  "This double-counts the repeated root as two distinct solutions.",
+  "A quadratic equation cannot have three real roots.",
+  "A quadratic equation cannot have four real roots."
+ ]
+},
+{
+ "template_id": "roots_v3_quadratic_zero_real",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[a]], 0)", "Lt([[b]]**2 - 4*[[a]]*[[c]], 0)"],
+ "stem": "The parabola \\( y = [[a]]x^{2} + [[b]]x + [[c]] \\) never crosses the \\( x \\)-axis. How many real solutions does \\( [[a]]x^{2} + [[b]]x + [[c]] = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": ["1", "2", "3", "4"],
+ "solution": "The discriminant is \\( [[b]]^{2} - 4([[a]])([[c]]) < 0 \\), so the quadratic has no real solutions (its two roots are complex conjugates).",
+ "distractor_rationales": [
+  "This wrongly assumes a negative discriminant still gives one real (repeated) root.",
+  "This wrongly assumes a negative discriminant still gives two real roots.",
+  "A quadratic equation cannot have three real roots.",
+  "A quadratic equation cannot have four real roots."
+ ]
+},
+{
+ "template_id": "roots_v4_absolute_value_two",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "How many real solutions does \\( |[[a]]x + [[b]]| = [[c]] \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["0", "1", "3", "4"],
+ "solution": "Since \\( [[c]] > 0 \\), the equation splits into \\( [[a]]x+[[b]]=[[c]] \\) and \\( [[a]]x+[[b]]=-[[c]] \\), each with one solution, giving two distinct real solutions in total.",
+ "distractor_rationales": [
+  "This wrongly assumes a positive right-hand side gives no real solutions.",
+  "This keeps only one of the two branches of the absolute value equation.",
+  "This overcounts, as if a third branch existed.",
+  "This overcounts, as if a fourth branch existed."
+ ]
+},
+{
+ "template_id": "roots_v5_absolute_value_zero",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -12, "hi": -1}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "The right-hand side of \\( |[[a]]x + [[b]]| = [[c]] \\) is negative. How many real solutions does this equation have?",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": ["1", "2", "3", "4"],
+ "solution": "An absolute value is never negative, so \\( |[[a]]x+[[b]]| = [[c]] \\) (with \\( [[c]] < 0 \\)) has no real solutions.",
+ "distractor_rationales": [
+  "This wrongly treats the negative right-hand side as if it still gave one solution.",
+  "This wrongly assumes the two usual absolute-value branches both still apply here.",
+  "This overcounts an already-impossible equation.",
+  "This overcounts an already-impossible equation."
+ ]
+},
+{
+ "template_id": "roots_v6_absolute_value_one",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "How many real solutions does the absolute-value equation \\( |[[a]]x + [[b]]| = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": ["0", "2", "3", "4"],
+ "solution": "\\( |[[a]]x+[[b]]| = 0 \\) exactly when \\( [[a]]x+[[b]]=0 \\), which has exactly one real solution, \\( x=-\\dfrac{[[b]]}{[[a]]} \\).",
+ "distractor_rationales": [
+  "This wrongly assumes an absolute value equal to zero has no solution.",
+  "This wrongly double-counts as if the two usual absolute-value branches gave distinct solutions here (they coincide).",
+  "This overcounts, as if a third branch existed.",
+  "This overcounts, as if a fourth branch existed."
+ ]
+},
+{
+ "template_id": "roots_v7_cubic_three_real",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "g2": {"type": "choice", "values": [1, 2, 3]},
+  "g3": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {
+  "r2": "[[r1]] + [[g2]]",
+  "r3": "[[r1]] + [[g2]] + [[g3]]",
+  "S1": "[[r1]] + [[r2]] + [[r3]]",
+  "S2": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]",
+  "S3": "[[r1]]*[[r2]]*[[r3]]",
+  "B": "-[[a]]*[[S1]]",
+  "C": "[[a]]*[[S2]]",
+  "D": "-[[a]]*[[S3]]"
+ },
+ "stem": "How many real solutions does \\( [[a]]x^{3} + [[B]]x^{2} + [[C]]x + [[D]] = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "3"},
+ "distractors": ["0", "1", "2", "4"],
+ "solution": "This cubic factors as \\( [[a]](x-[[r1]])(x-[[r2]])(x-[[r3]]) = 0 \\), giving three distinct real solutions: \\( x=[[r1]], [[r2]], [[r3]] \\).",
+ "distractor_rationales": [
+  "Every cubic with real coefficients has at least one real root, so the count cannot be zero.",
+  "This misses two of the three real roots.",
+  "This misses one of the three real roots.",
+  "A cubic equation has at most three roots in total, so it cannot have four real solutions."
+ ]
+},
+{
+ "template_id": "roots_v8_cubic_one_real_irreducible_quadratic",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "cc": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"B": "-[[a]]*[[r1]]", "C": "[[a]]*[[cc]]", "D": "-[[a]]*[[r1]]*[[cc]]", "negD": "-[[D]]"},
+ "stem": "How many real solutions does \\( [[a]]x^{3} + [[B]]x^{2} + [[C]]x = [[negD]] \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": ["0", "2", "3", "4"],
+ "solution": "Rearranged, this is \\( [[a]]x^{3} + [[B]]x^{2} + [[C]]x + [[D]] = 0 \\), which factors as \\( [[a]](x-[[r1]])(x^{2}+[[cc]]) = 0 \\). Since \\( x^{2}+[[cc]]=0 \\) has no real solution ( \\( [[cc]] > 0 \\) ), the only real solution is \\( x=[[r1]] \\).",
+ "distractor_rationales": [
+  "Every cubic with real coefficients has at least one real root, so the count cannot be zero.",
+  "This wrongly treats the irreducible quadratic factor as contributing two real roots.",
+  "A cubic equation has at most three real roots, but the quadratic factor here contributes none.",
+  "A cubic equation has at most three roots in total, so it cannot have four real solutions."
+ ]
+},
+{
+ "template_id": "roots_v9_quartic_two_real_irreducible_quadratic",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "g2": {"type": "choice", "values": [1, 2, 3]},
+  "cc": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {
+  "r2": "[[r1]] + [[g2]]",
+  "S1": "[[r1]] + [[r2]]",
+  "P": "[[r1]]*[[r2]]",
+  "B": "-[[a]]*[[S1]]",
+  "C": "[[a]]*([[P]]+[[cc]])",
+  "D": "-[[a]]*[[S1]]*[[cc]]",
+  "E": "[[a]]*[[P]]*[[cc]]"
+ },
+ "stem": "How many real solutions does \\( [[a]]x^{4} + [[B]]x^{3} + [[C]]x^{2} + [[D]]x + [[E]] = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["0", "1", "3", "4"],
+ "solution": "This quartic factors as \\( [[a]](x-[[r1]])(x-[[r2]])(x^{2}+[[cc]]) = 0 \\). Since \\( x^{2}+[[cc]]=0 \\) has no real solution, the real solutions are just \\( x=[[r1]] \\) and \\( x=[[r2]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the irreducible quadratic factor removes ALL real solutions.",
+  "This keeps only one of the two genuine real solutions.",
+  "This wrongly treats the irreducible quadratic factor as contributing two real roots on top of the other two.",
+  "A quartic has at most four roots in total, but the quadratic factor here contributes none of them."
+ ]
+},
+{
+ "template_id": "roots_v10_exponential_quadratic_two",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "u1": {"type": "int", "lo": 1, "hi": 9},
+  "gap": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "derived": {"u2": "[[u1]] + [[gap]]", "coefB": "-([[u1]]+[[u2]])", "coefC": "[[u1]]*[[u2]]"},
+ "stem": "How many real solutions does \\( e^{2x} + [[coefB]]e^{x} + [[coefC]] = 0 \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["0", "1", "3", "4"],
+ "solution": "Substituting \\( u=e^{x} \\) gives \\( u^{2} + [[coefB]]u + [[coefC]] = (u-[[u1]])(u-[[u2]])=0 \\), so \\( u=[[u1]] \\) or \\( u=[[u2]] \\). Both are positive, so both give a real \\( x=\\ln u \\), for two real solutions in total.",
+ "distractor_rationales": [
+  "This wrongly assumes neither root of the substituted quadratic is achievable by \\( e^{x} \\).",
+  "This keeps only one of the two valid positive roots.",
+  "This overcounts, as if the substituted quadratic had a third root.",
+  "This overcounts, as if the substituted quadratic had a fourth root."
+ ]
+},
+{
+ "template_id": "roots_v11_exponential_quadratic_one",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "u1": {"type": "int", "lo": 1, "hi": 9},
+  "u2": {"type": "int", "lo": -8, "hi": 0}
+ },
+ "constraints": [],
+ "derived": {"coefB": "-([[u1]]+[[u2]])", "coefC": "[[u1]]*[[u2]]", "negCoefC": "-[[coefC]]"},
+ "stem": "How many real solutions does \\( e^{2x} + [[coefB]]e^{x} = [[negCoefC]] \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": ["0", "2", "3", "4"],
+ "solution": "Rearranged, this is \\( e^{2x} + [[coefB]]e^{x} + [[coefC]] = 0 \\). Substituting \\( u=e^{x} \\) gives \\( u^{2} + [[coefB]]u + [[coefC]] = (u-[[u1]])(u-[[u2]])=0 \\), so \\( u=[[u1]] \\) or \\( u=[[u2]] \\). Since \\( u=e^{x} \\) must be positive, only \\( u=[[u1]] \\) is achievable, giving exactly one real solution, \\( x=\\ln([[u1]]) \\).",
+ "distractor_rationales": [
+  "This wrongly assumes even the one valid positive root is not achievable by \\( e^{x} \\).",
+  "This wrongly counts the negative-or-zero root as also giving a valid real \\( x \\).",
+  "This overcounts, as if the substituted quadratic had a third root.",
+  "This overcounts, as if the substituted quadratic had a fourth root."
+ ]
+},
+{
+ "template_id": "roots_v12_sine_equation_interval",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "num": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": [],
+ "stem": "How many real solutions does \\( \\sin(x) = \\dfrac{[[num]]}{8} \\) have on \\( 0 \\le x < 2\\pi \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2"},
+ "distractors": ["0", "1", "3", "4"],
+ "solution": "Since \\( -1 < \\frac{[[num]]}{8} < 1 \\), the horizontal line \\( y=\\frac{[[num]]}{8} \\) crosses one full period of \\( y=\\sin(x) \\) exactly twice on \\( [0,2\\pi) \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the right-hand side is outside the range of \\( \\sin(x) \\).",
+  "This applies the count for the special cases \\( \\sin(x)=\\pm 1 \\), which do not apply here.",
+  "This overcounts, as if a third crossing occurred in one period.",
+  "This overcounts, as if a fourth crossing occurred in one period."
+ ]
+},
+{
+ "template_id": "roots_v13_exponential_monotonic_one",
+ "skill_id": "count_real_roots_of_an_equation",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "base": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+  "rhs": {"type": "int", "lo": 1, "hi": 60}
+ },
+ "constraints": [],
+ "stem": "How many real solutions does \\( [[base]]^{x} = [[rhs]] \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "1"},
+ "distractors": ["0", "2", "3", "4"],
+ "solution": "\\( [[base]]^{x} \\) is strictly increasing over all real \\( x \\) and takes every positive value exactly once, so \\( [[base]]^{x}=[[rhs]] \\) (with \\( [[rhs]] > 0 \\)) has exactly one real solution, \\( x=\\log_{[[base]]}([[rhs]]) \\).",
+ "distractor_rationales": [
+  "This wrongly assumes a positive right-hand side is unreachable.",
+  "This wrongly assumes an exponential equation behaves like a quadratic with two solutions.",
+  "This overcounts, as if the equation could have three solutions.",
+  "This overcounts, as if the equation could have four solutions."
+ ]
+}
+]

@@ -1,0 +1,134 @@
+[
+{
+ "template_id": "numint_trapezoidal_composite_v1",
+ "skill_id": "numerical_integration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "h": {"type": "choice", "values": ["1", "2", "3", "Rational(1,2)", "Rational(1,4)", "Rational(3,2)"]},
+  "y0": {"type": "int", "lo": 1, "hi": 30},
+  "y1": {"type": "int", "lo": 1, "hi": 30},
+  "y2": {"type": "int", "lo": 1, "hi": 30},
+  "y3": {"type": "int", "lo": 1, "hi": 30},
+  "y4": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "A function is sampled at 5 equally spaced points with spacing \\( h = [[h]] \\), giving values \\( y_0=[[y0]] \\), \\( y_1=[[y1]] \\), \\( y_2=[[y2]] \\), \\( y_3=[[y3]] \\), \\( y_4=[[y4]] \\). Use the (composite) trapezoidal rule with these 4 subintervals to estimate \\( \\int y\\,dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[h]]/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + 2*[[y3]] + [[y4]])"},
+ "distractors": [
+  "[[h]]*([[y0]] + [[y1]] + [[y2]] + [[y3]] + [[y4]])",
+  "([[h]]/2)*([[y0]] + [[y1]] + [[y2]] + [[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + 4*[[y1]] + 2*[[y2]] + 4*[[y3]] + [[y4]])",
+  "([[h]]/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + 2*[[y3]] + 2*[[y4]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The composite trapezoidal rule gives \\( \\frac{h}{2}\\left(y_0+2y_1+2y_2+2y_3+y_4\\right) = \\dfrac{[[h]]}{2}\\left([[y0]]+2\\cdot[[y1]]+2\\cdot[[y2]]+2\\cdot[[y3]]+[[y4]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( \\frac{1}{2} \\) and the doubled interior weights entirely.",
+  "This forgets to double the interior sample weights, treating every point the same as the endpoints.",
+  "This uses Simpson's rule weights (1,4,2,4,1) instead of the trapezoidal weights (1,2,2,2,1).",
+  "This mistakenly doubles the LAST endpoint's weight too.",
+  "This is one more than the correct estimate.",
+  "This is one less than the correct estimate."
+ ]
+},
+{
+ "template_id": "numint_simpson_basic_v1",
+ "skill_id": "numerical_integration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "h": {"type": "choice", "values": ["1", "2", "3", "Rational(1,2)", "Rational(1,3)", "Rational(1,4)"]},
+  "y0": {"type": "int", "lo": 1, "hi": 30},
+  "y1": {"type": "int", "lo": 1, "hi": 30},
+  "y2": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "A function is sampled at 3 equally spaced points with spacing \\( h = [[h]] \\), giving values \\( y_0=[[y0]] \\), \\( y_1=[[y1]] \\), \\( y_2=[[y2]] \\). Use Simpson's \\( \\frac{1}{3} \\) rule (with these 2 subintervals) to estimate \\( \\int y\\,dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[h]]/3)*([[y0]] + 4*[[y1]] + [[y2]])"},
+ "distractors": [
+  "([[h]]/2)*([[y0]] + 2*[[y1]] + [[y2]])",
+  "([[h]]/3)*([[y0]] + [[y1]] + [[y2]])",
+  "([[h]]/3)*([[y0]] + 2*[[y1]] + [[y2]])",
+  "[[h]]*([[y0]] + 4*[[y1]] + [[y2]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Simpson's \\( \\frac{1}{3} \\) rule gives \\( \\frac{h}{3}\\left(y_0+4y_1+y_2\\right) = \\dfrac{[[h]]}{3}\\left([[y0]]+4\\cdot[[y1]]+[[y2]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the trapezoidal rule's weights and factor \\( \\frac{1}{2} \\) instead of Simpson's rule.",
+  "This forgets to weight the midpoint sample by 4.",
+  "This weights the midpoint sample by 2 instead of the correct factor of 4.",
+  "This forgets to divide by 3 in Simpson's rule.",
+  "This is one more than the correct estimate.",
+  "This is one less than the correct estimate."
+ ]
+},
+{
+ "template_id": "numint_simpson_composite_v1",
+ "skill_id": "numerical_integration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "h": {"type": "choice", "values": ["1", "2", "Rational(1,2)", "Rational(1,3)", "Rational(1,4)"]},
+  "y0": {"type": "int", "lo": 1, "hi": 25},
+  "y1": {"type": "int", "lo": 1, "hi": 25},
+  "y2": {"type": "int", "lo": 1, "hi": 25},
+  "y3": {"type": "int", "lo": 1, "hi": 25},
+  "y4": {"type": "int", "lo": 1, "hi": 25}
+ },
+ "constraints": [],
+ "stem": "A function is sampled at 5 equally spaced points with spacing \\( h = [[h]] \\), giving values \\( y_0=[[y0]] \\), \\( y_1=[[y1]] \\), \\( y_2=[[y2]] \\), \\( y_3=[[y3]] \\), \\( y_4=[[y4]] \\). Use the composite Simpson's rule with these 4 subintervals to estimate \\( \\int y\\,dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[h]]/3)*([[y0]] + 4*[[y1]] + 2*[[y2]] + 4*[[y3]] + [[y4]])"},
+ "distractors": [
+  "([[h]]/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + 2*[[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + 2*[[y1]] + 4*[[y2]] + 2*[[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + 4*[[y1]] + 4*[[y2]] + 4*[[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + [[y1]] + [[y2]] + [[y3]] + [[y4]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Composite Simpson's rule alternates weights 4, 2, 4 on the interior points: \\( \\frac{h}{3}\\left(y_0+4y_1+2y_2+4y_3+y_4\\right) = \\dfrac{[[h]]}{3}\\left([[y0]]+4\\cdot[[y1]]+2\\cdot[[y2]]+4\\cdot[[y3]]+[[y4]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the composite trapezoidal rule's weights and factor \\( \\frac{1}{2} \\) instead of Simpson's rule.",
+  "This swaps the 4-2-4 weighting pattern, putting 2 where 4 belongs and vice versa.",
+  "This weights every interior point by 4, forgetting that alternating points get weight 2.",
+  "This forgets the alternating 4,2,4 weights entirely.",
+  "This is one more than the correct estimate.",
+  "This is one less than the correct estimate."
+ ]
+},
+{
+ "template_id": "numint_midpoint_rule_v1",
+ "skill_id": "numerical_integration",
+ "topic_id": "numerical_analysis",
+ "tier": "relearn",
+ "params": {
+  "h": {"type": "choice", "values": ["1", "2", "3", "Rational(1,2)", "Rational(1,3)", "Rational(1,4)"]},
+  "m1": {"type": "int", "lo": 1, "hi": 30},
+  "m2": {"type": "int", "lo": 1, "hi": 30},
+  "m3": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "An interval is divided into 3 equal subintervals of width \\( h = [[h]] \\); the function values at the MIDPOINT of each subinterval are \\( [[m1]] \\), \\( [[m2]] \\), and \\( [[m3]] \\). Use the midpoint rule to estimate \\( \\int y\\,dx \\) over the interval.",
+ "answer_spec": {"op": "evaluate", "expr": "[[h]]*([[m1]] + [[m2]] + [[m3]])"},
+ "distractors": [
+  "([[h]]/2)*([[m1]] + [[m2]] + [[m3]])",
+  "[[h]]*([[m1]] + [[m2]] + [[m3]])/3",
+  "[[m1]] + [[m2]] + [[m3]]",
+  "[[h]]*([[m1]] + 2*[[m2]] + [[m3]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The midpoint rule sums \\( h \\) times each midpoint sample: \\( h(m_1+m_2+m_3) = [[h]]\\left([[m1]]+[[m2]]+[[m3]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies an unrelated factor of \\( \\frac{1}{2} \\) that belongs to the trapezoidal rule, not the midpoint rule.",
+  "This divides by the number of subintervals, effectively averaging instead of summing scaled areas.",
+  "This forgets to scale by the subinterval width \\( h \\) at all.",
+  "This mistakenly doubles the weight of the middle sample.",
+  "This is one more than the correct estimate.",
+  "This is one less than the correct estimate."
+ ]
+}
+]

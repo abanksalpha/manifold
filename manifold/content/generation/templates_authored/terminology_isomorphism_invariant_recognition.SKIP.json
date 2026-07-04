@@ -1,0 +1,4 @@
+{
+ "skill_id": "terminology_isomorphism_invariant_recognition",
+ "reason": "This is a recognition/classification skill (identifying which properties are isomorphism invariants), which is answered by selecting terms rather than by computing a single numeric or symbolic scalar."
+}

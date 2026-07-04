@@ -1,0 +1,190 @@
+[
+ {
+  "template_id": "range_determination_v1",
+  "skill_id": "range_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "The range of \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\) is an interval of the form \\( [k, \\infty) \\). What is \\( k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[c]]) - ([[b]])**2/(4*[[a]])"},
+  "distractors": [
+   "-[[b]]/(2*[[a]])",
+   "[[c]]",
+   "([[c]]) + ([[b]])**2/(4*[[a]])",
+   "([[c]]) - ([[b]])**2/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( [[a]] > 0 \\), the parabola opens upward and its minimum value is the lower end of the range. That minimum is \\( f\\!\\left(-\\dfrac{[[b]]}{2\\cdot[[a]]}\\right) = ([[c]]) - \\dfrac{([[b]])^{2}}{4\\cdot[[a]]} = [[answer]] \\), so \\( k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the \\( x \\)-coordinate of the vertex, not the minimum value of \\( f \\).",
+   "This reports the constant term, ignoring the \\( -\\frac{b^{2}}{4a} \\) correction.",
+   "This adds the vertex correction instead of subtracting it.",
+   "This forgets the factor of \\( [[a]] \\) in the denominator \\( 4a \\).",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "range_determination_reciprocal_excluded_v1",
+  "skill_id": "range_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -6, "hi": 6},
+   "k": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "stem": "What real number is NOT in the range of \\( f(x) = \\dfrac{1}{x - ([[h]])} + ([[k]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]"},
+  "distractors": [
+   "[[h]]",
+   "-[[k]]",
+   "[[h]] + [[k]]",
+   "[[h]] - [[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\dfrac{1}{x-([[h]])} \\) can never equal \\( 0 \\) for any real \\( x \\), \\( f(x) \\) can never equal \\( [[k]] \\); every other real number IS attained. So the excluded value is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the excluded \\( x \\)-value (where \\( f \\) is undefined), not the excluded output value.",
+   "This negates the correct excluded value.",
+   "This adds the horizontal and vertical shifts together, which has no bearing on the excluded output.",
+   "This subtracts the horizontal shift from the vertical one, which has no bearing on the excluded output.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "range_determination_sqrt_boundary_v1",
+  "skill_id": "range_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-3, -2, 2, 3]},
+   "b": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "d": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[d]], 0)"],
+  "stem": "The range of \\( f(x) = [[a]]\\sqrt{[[b]]x + ([[c]])} + ([[d]]) \\) is bounded on exactly one side by a value \\( M \\). What is \\( M \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[d]]"},
+  "distractors": [
+   "[[c]]",
+   "-[[d]]",
+   "[[a]] + [[d]]",
+   "[[c]] + [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\sqrt{[[b]]x + ([[c]])} \\ge 0 \\) always, \\( [[a]]\\sqrt{[[b]]x+([[c]])} \\) takes every value with the same sign as \\( [[a]] \\) (or zero), so \\( f(x) \\) is bounded on one side by \\( M = [[answer]] \\) (attained when the radicand is \\( 0 \\)).",
+  "distractor_rationales": [
+   "This reports the radicand's constant term instead of the vertical shift that actually bounds the range.",
+   "This negates the correct boundary value.",
+   "This adds the leading coefficient \\( [[a]] \\) to the vertical shift for no valid reason.",
+   "This adds the radicand's constant term to the vertical shift, which has no bearing on the range.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "range_determination_restricted_domain_v1",
+  "skill_id": "range_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "m": {"type": "int", "lo": -8, "hi": 4},
+   "gap": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "derived": {"n": "[[m]] + [[gap]]"},
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\), restricted to the domain \\( [\\,[[m]], [[n]]\\,] \\). What is the minimum value of \\( f \\) on this domain?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*Max([[m]], Min([[n]], -[[b]]/(2*[[a]])))**2 + [[b]]*Max([[m]], Min([[n]], -[[b]]/(2*[[a]]))) + [[c]]"},
+  "distractors": [
+   "Min([[a]]*[[m]]**2+[[b]]*[[m]]+[[c]], [[a]]*[[n]]**2+[[b]]*[[n]]+[[c]])",
+   "([[c]]) - ([[b]])**2/(4*[[a]])",
+   "[[a]]*[[m]]**2 + [[b]]*[[m]] + [[c]]",
+   "[[a]]*[[n]]**2 + [[b]]*[[n]] + [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The unrestricted vertex is at \\( x = -\\dfrac{[[b]]}{2\\cdot[[a]]} \\). If that point lies in \\( [\\,[[m]],[[n]]\\,] \\), the minimum is the vertex value; otherwise the minimum occurs at whichever endpoint is closer to the vertex. Evaluating \\( f \\) at the vertex clamped into \\( [\\,[[m]],[[n]]\\,] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This takes the smaller of the two ENDPOINT values, which is wrong whenever the true vertex lies inside the domain and dips below both endpoints.",
+   "This uses the unrestricted global vertex value even though the vertex may fall outside \\( [\\,[[m]],[[n]]\\,] \\), where it is not attainable.",
+   "This always uses the left endpoint, ignoring where the true vertex actually falls relative to the domain.",
+   "This always uses the right endpoint, ignoring where the true vertex actually falls relative to the domain.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "range_determination_smallest_integer_v1",
+  "skill_id": "range_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4]},
+   "b": {"type": "int", "lo": -9, "hi": 9},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne(Mod([[b]]**2, 4*[[a]]), 0)"],
+  "stem": "What is the smallest integer in the range of \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "ceiling(([[c]]) - ([[b]])**2/(4*[[a]]))"},
+  "distractors": [
+   "floor(([[c]]) - ([[b]])**2/(4*[[a]]))",
+   "([[c]]) - ([[b]])**2/(4*[[a]])",
+   "-[[b]]/(2*[[a]])",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The minimum value of \\( f \\) is \\( ([[c]]) - \\dfrac{([[b]])^{2}}{4\\cdot[[a]]} \\), which is not an integer here. Since the range is \\( [\\text{min}, \\infty) \\), the smallest integer actually attained is the next integer at or above the minimum: \\( \\left\\lceil ([[c]]) - \\dfrac{([[b]])^{2}}{4\\cdot[[a]]} \\right\\rceil = [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds down instead of up, giving an integer below the actual minimum that is never attained.",
+   "This reports the exact (non-integer) minimum rather than the smallest integer in the range.",
+   "This gives the \\( x \\)-coordinate of the vertex, not a value in the range at all.",
+   "This reports the constant term, ignoring the vertex correction entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "range_determination_reciprocal_quadratic_max_v1",
+  "skill_id": "range_determination",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "C": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": ["Lt([[B]]**2 - 4*[[C]], 0)"],
+  "stem": "What is the maximum value of \\( f(x) = \\dfrac{1}{x^{2} + ([[B]])x + ([[C]])} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "1/(([[C]]) - ([[B]])**2/4)"},
+  "distractors": [
+   "([[C]]) - ([[B]])**2/4",
+   "1/[[C]]",
+   "-1/(([[C]]) - ([[B]])**2/4)",
+   "1/(([[C]]) + ([[B]])**2/4)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since the denominator \\( x^{2}+([[B]])x+([[C]]) \\) is always positive (its discriminant is negative), \\( f \\) is maximized exactly where the denominator is minimized. That minimum is \\( ([[C]]) - \\dfrac{([[B]])^{2}}{4} \\), so the maximum of \\( f \\) is \\( \\dfrac{1}{([[C]]) - ([[B]])^{2}/4} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the minimum of the denominator itself instead of taking its reciprocal.",
+   "This uses the constant term alone instead of the true minimum of the denominator.",
+   "This negates the correct maximum.",
+   "This adds instead of subtracts the vertex correction when finding the denominator's minimum.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

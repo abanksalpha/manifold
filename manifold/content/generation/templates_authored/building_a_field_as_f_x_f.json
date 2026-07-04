@@ -1,0 +1,127 @@
+[
+ {
+  "template_id": "quotient_field_order_v1",
+  "skill_id": "building_a_field_as_f_x_f",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "d": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "Let \\( p = [[p]] \\), and let \\( f(x) \\) be an irreducible polynomial of degree \\( [[d]] \\) over the field \\( \\mathbb{Z}_{[[p]]} \\). The quotient ring \\( \\mathbb{Z}_{[[p]]}[x]/(f(x)) \\) is a field. How many elements does this field have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**[[d]]"},
+  "distractors": [
+   "[[p]]*[[d]]",
+   "[[d]]**[[p]]",
+   "[[p]]**[[d]] - 1",
+   "[[p]]**([[d]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Elements of \\( \\mathbb{Z}_{[[p]]}[x]/(f(x)) \\) are represented by remainders of degree less than \\( [[d]] \\): polynomials \\( c_{0} + c_{1}x + \\dots + c_{[[d]]-1}x^{[[d]]-1} \\) with each \\( c_i \\in \\mathbb{Z}_{[[p]]} \\). There are \\( [[p]] \\) choices for each of the \\( [[d]] \\) coefficients, giving \\( [[p]]^{[[d]]} = [[answer]] \\) elements.",
+  "distractor_rationales": [
+   "This multiplies \\( p \\cdot d \\) instead of counting \\( p^{d} \\) coefficient vectors.",
+   "This swaps base and exponent, using \\( d^{p} \\) instead of \\( p^{d} \\).",
+   "This is \\( p^{d} - 1 \\), the number of nonzero (invertible) elements, not the size of the whole field.",
+   "This uses \\( d-1 \\) coefficients; remainders modulo a degree-\\( d \\) polynomial have \\( d \\) coefficients.",
+   "This is one more than the correct number of elements.",
+   "This is two more than the correct number of elements."
+  ]
+ },
+ {
+  "template_id": "irreducible_poly_count_v1",
+  "skill_id": "building_a_field_as_f_x_f",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "n": {"type": "choice", "values": [2, 3, 5, 7]}
+  },
+  "constraints": [],
+  "stem": "To build the field \\( \\mathbb{Z}_{[[p]]}[x]/(f(x)) \\) with \\( [[p]]^{[[n]]} \\) elements you need a monic irreducible polynomial \\( f(x) \\) of degree \\( [[n]] \\) over \\( \\mathbb{Z}_{[[p]]} \\), where \\( [[n]] \\) is prime. How many such monic irreducible degree-\\( [[n]] \\) polynomials are there over \\( \\mathbb{Z}_{[[p]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[p]]**[[n]] - [[p]])/[[n]]"},
+  "distractors": [
+   "[[p]]**[[n]] - [[p]]",
+   "[[p]]**[[n]]/[[n]]",
+   "([[p]]**[[n]] - 1)/[[n]]",
+   "[[p]]**[[n]] - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Every element of \\( \\mathbb{Z}_{[[p]]^{[[n]]}} \\setminus \\mathbb{Z}_{[[p]]} \\) is a root of exactly one monic irreducible polynomial of degree \\( [[n]] \\) over \\( \\mathbb{Z}_{[[p]]} \\) (since \\( [[n]] \\) is prime, no smaller factor field sits in between), and each such polynomial has exactly \\( [[n]] \\) roots (its \\( [[n]] \\) distinct conjugates). So the count is \\( \\dfrac{[[p]]^{[[n]]}-[[p]]}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the division by \\( [[n]] \\); it counts the elements outside \\( \\mathbb{Z}_{[[p]]} \\) but not the polynomials, since each polynomial accounts for \\( [[n]] \\) of them.",
+   "This divides the WHOLE field size \\( p^{n} \\) by \\( n \\) instead of the size minus the \\( p \\) elements already in the base field.",
+   "This uses \\( p^{n}-1 \\) (excluding only \\( 0 \\)) instead of \\( p^{n}-p \\) (excluding the whole base field \\( \\mathbb{Z}_{[[p]]} \\)) in the numerator.",
+   "This omits the division by \\( [[n]] \\) and also fails to remove the base-field elements.",
+   "This is one more than the correct count.",
+   "This is one fewer than the correct count."
+  ]
+ },
+ {
+  "template_id": "extension_new_elements_v1",
+  "skill_id": "building_a_field_as_f_x_f",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "d": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x) \\) be an irreducible polynomial of degree \\( [[d]] \\) over \\( \\mathbb{Z}_{[[p]]} \\), and let \\( F = \\mathbb{Z}_{[[p]]}[x]/(f(x)) \\). The constant polynomials form a copy of \\( \\mathbb{Z}_{[[p]]} \\) sitting inside \\( F \\). How many elements of \\( F \\) are genuinely new, i.e. lie outside this copy of \\( \\mathbb{Z}_{[[p]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**[[d]] - [[p]]"},
+  "distractors": [
+   "[[p]]**[[d]] - 1",
+   "[[p]]**([[d]]-1)",
+   "[[p]]**[[d]]",
+   "[[d]] - [[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + [[p]]"
+  ],
+  "solution": "\\( F \\) has \\( [[p]]^{[[d]]} \\) elements in total, and exactly \\( [[p]] \\) of them (the constant remainders \\( 0,1,\\dots,[[p]]-1 \\)) belong to the embedded copy of \\( \\mathbb{Z}_{[[p]]} \\). So \\( [[p]]^{[[d]]} - [[p]] = [[answer]] \\) elements lie outside it.",
+  "distractor_rationales": [
+   "This removes only the single element \\( 0 \\) instead of all \\( [[p]] \\) constant remainders.",
+   "This is \\( p^{d-1} \\), the count of remainders with a fixed leading coefficient, not the count outside the base field.",
+   "This is the size of the whole field \\( F \\), without removing the base-field elements at all.",
+   "This subtracts \\( p \\) from \\( d \\) instead of from \\( p^{d} \\).",
+   "This is one more than the correct count.",
+   "This is one fewer than the correct count."
+  ]
+ },
+ {
+  "template_id": "subfield_order_v1",
+  "skill_id": "building_a_field_as_f_x_f",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "d": {"type": "choice", "values": [4, 6, 8, 9, 10, 12]},
+   "k": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Ne([[k]], [[d]])", "Eq(Mod([[d]], [[k]]), 0)"],
+  "stem": "Let \\( f(x) \\) be irreducible of degree \\( [[d]] \\) over \\( \\mathbb{Z}_{[[p]]} \\), and let \\( F = \\mathbb{Z}_{[[p]]}[x]/(f(x)) \\), a field with \\( [[p]]^{[[d]]} \\) elements. Since \\( [[k]] \\) divides \\( [[d]] \\), \\( F \\) contains a unique subfield isomorphic to the field with \\( [[p]]^{[[k]]} \\) elements. How many elements does this subfield have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**[[k]]"},
+  "distractors": [
+   "[[p]]**[[d]]",
+   "[[p]]**([[d]]/[[k]])",
+   "[[d]]/[[k]]",
+   "[[p]]*[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + [[p]]"
+  ],
+  "solution": "A finite field with \\( p^{d} \\) elements contains, for each divisor \\( k \\) of \\( d \\), a unique subfield with \\( p^{k} \\) elements. Here \\( k = [[k]] \\) divides \\( d = [[d]] \\), so the subfield has \\( [[p]]^{[[k]]} = [[answer]] \\) elements.",
+  "distractor_rationales": [
+   "This is the size of the WHOLE field \\( F \\), not the smaller subfield.",
+   "This uses the wrong exponent \\( d/k \\) instead of \\( k \\) itself.",
+   "This gives the exponent ratio \\( d/k \\) rather than \\( p^{k} \\), the number of elements.",
+   "This multiplies \\( p \\cdot k \\) instead of raising \\( p \\) to the power \\( k \\).",
+   "This is one more than the correct number of elements.",
+   "This is one fewer than the correct number of elements."
+  ]
+ }
+]

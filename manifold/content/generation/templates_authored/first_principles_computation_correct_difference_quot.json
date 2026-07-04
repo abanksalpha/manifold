@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "first_principles_quadratic_v1",
+ "skill_id": "first_principles_computation_correct_difference_quot",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "q": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "r": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "x0": {
+   "type": "int",
+   "lo": -3,
+   "hi": 4
+  }
+ },
+ "constraints": [],
+ "stem": "Using the definition \\( f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h} \\) for \\( f(x)=[[p]]x^{2}+([[q]])x+([[r]]) \\), find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[p]]*x**2 + [[q]]*x + [[r]]",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "2*[[p]]*[[x0]]",
+  "[[p]]*[[x0]]**2 + [[q]]*[[x0]] + [[r]]",
+  "[[p]]*[[x0]] + [[q]]",
+  "2*[[p]]*[[x0]] + [[q]] + [[r]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "\\( f'(x)=2[[p]]x+([[q]]) \\), so \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "first_principles_cubic_v2",
+ "skill_id": "first_principles_computation_correct_difference_quot",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Using the definition \\( f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h} \\) for \\( f(x)=[[p]]x^{3}+([[q]])x \\), expand \\( (x+h)^{3} \\), cancel the terms without an \\( h \\), divide by \\( h \\), and let \\( h\\to 0 \\) to find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[p]]*x**3 + [[q]]*x",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "3*[[p]]*[[x0]]**2",
+  "[[p]]*[[x0]]**3 + [[q]]*[[x0]]",
+  "3*[[p]]*[[x0]] + [[q]]",
+  "[[p]]*[[x0]]**2 + [[q]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Expanding \\( (x+h)^3=x^3+3x^2h+3xh^2+h^3 \\), the difference quotient reduces to \\( 3x^2+3xh+h^2 \\) plus the constant term's slope \\( [[q]] \\); letting \\( h\\to 0 \\) gives \\( f'(x)=3[[p]]x^2+([[q]]) \\), so \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the linear term's contribution \\( q \\).",
+  "This evaluates \\( f(x_0) \\) itself rather than the limiting difference quotient.",
+  "This uses the wrong power on \\( x_0 \\), as if differentiating \\( x^2 \\) instead of \\( x^3 \\).",
+  "This drops the exponent from the power rule, using \\( x_0^2 \\) with no leading coefficient of 3.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "first_principles_rational_v3",
+ "skill_id": "first_principles_computation_correct_difference_quot",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "x0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[x0]] + [[c]], 0)"],
+ "stem": "Using the definition \\( f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h} \\) for \\( f(x)=\\dfrac{1}{x+[[c]]} \\), combine the two fractions over a common denominator before taking the limit to find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "1/(x + [[c]])",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "1/([[x0]] + [[c]])**2",
+  "-1/([[x0]] + [[c]])",
+  "1/[[x0]]**2",
+  "-1/[[x0]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Combining fractions, \\( \\frac{1}{x+h+[[c]]}-\\frac{1}{x+[[c]]} = \\frac{-h}{(x+h+[[c]])(x+[[c]])} \\); dividing by \\( h \\) and letting \\( h\\to 0 \\) gives \\( f'(x)=-\\frac{1}{(x+[[c]])^{2}} \\), so \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that comes from the numerator of the combined fraction.",
+  "This forgets to square the denominator.",
+  "This uses \\( x_0 \\) in place of \\( x_0+c \\) in the denominator.",
+  "This uses \\( x_0 \\) instead of \\( x_0+c \\), keeping the correct sign but the wrong shift.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "first_principles_sqrt_v4",
+ "skill_id": "first_principles_computation_correct_difference_quot",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "s": {"type": "int", "lo": 1, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {
+  "c": "[[s]]**2 - [[x0]]"
+ },
+ "stem": "Using the definition \\( f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h} \\) for \\( f(x)=\\sqrt{x+[[c]]} \\), multiply the difference quotient by its conjugate before taking the limit to find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "sqrt(x + [[c]])",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "1/[[s]]",
+  "1/(4*[[s]])",
+  "[[s]]",
+  "2*[[s]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Rationalizing, \\( \\frac{\\sqrt{x+h+[[c]]}-\\sqrt{x+[[c]]}}{h} = \\frac{1}{\\sqrt{x+h+[[c]]}+\\sqrt{x+[[c]]}} \\); letting \\( h\\to 0 \\) gives \\( f'(x)=\\frac{1}{2\\sqrt{x+[[c]]}} \\). Since \\( [[x0]]+[[c]]=[[s]]^{2} \\), this is \\( f'([[x0]]) = \\dfrac{1}{2\\cdot[[s]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of 2 in the denominator from \\( 2\\sqrt{x+c} \\).",
+  "This uses \\( 4s \\) instead of \\( 2s \\) in the denominator.",
+  "This reports \\( \\sqrt{x_0+c} \\) itself instead of its reciprocal-times-a-half.",
+  "This doubles \\( s \\) instead of taking a reciprocal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

@@ -1,0 +1,234 @@
+[
+ {
+  "template_id": "inverse_functions_linear_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {"y0": "[[a]]*[[x0]] + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = [[y0]]", "var": "x"},
+  "distractors": [
+   "[[a]]*[[y0]] + [[b]]",
+   "[[y0]] - [[b]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "To invert, set \\( [[a]]x + ([[b]]) = [[y0]] \\) and solve for \\( x \\): \\( x = \\dfrac{[[y0]] - ([[b]])}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies \\( f \\) itself to \\( [[y0]] \\) instead of inverting \\( f \\).",
+   "This subtracts \\( b \\) but forgets to divide by \\( a \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_functions_mobius_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "s": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)", "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[c]]*[[s]] + [[d]], 0)"],
+  "derived": {"y0": "([[a]]*[[s]] + [[b]])/([[c]]*[[s]] + [[d]])"},
+  "stem": "Let \\( f(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "([[a]]*x + [[b]])/([[c]]*x + [[d]]) = [[y0]]", "var": "x"},
+  "distractors": [
+   "[[y0]]",
+   "-[[answer]]",
+   "([[d]]*[[y0]] - [[b]])/[[a]]",
+   "([[b]] - [[d]]*[[y0]])/([[c]]*[[y0]] - [[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Set \\( \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} = [[y0]] \\), cross-multiply to get \\( [[a]]x + ([[b]]) = [[y0]]\\big([[c]]x + ([[d]])\\big) \\), and collect the \\( x \\) terms to solve: \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just restates the given output value \\( [[y0]] \\) instead of solving for \\( x \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This cross-multiplies but uses the wrong side's coefficients when isolating \\( x \\).",
+   "This swaps which coefficients multiply \\( y_0 \\) versus which stand alone, a common bookkeeping slip.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_functions_composition_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "derived": {"y0": "[[a]]*([[c]]*[[x0]] + [[d]]) + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\) and \\( g(x) = [[c]]x + ([[d]]) \\), and let \\( h(x) = f(g(x)) \\). Compute \\( h^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*([[c]]*x + [[d]]) + [[b]] = [[y0]]", "var": "x"},
+  "distractors": [
+   "([[y0]] - [[b]])/[[a]]",
+   "([[y0]] - [[d]])/[[c]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( h(x) = [[a]]([[c]]x + ([[d]])) + ([[b]]) \\), setting \\( h(x) = [[y0]] \\) and solving for \\( x \\) (equivalently, applying \\( g^{-1} \\) then \\( f^{-1} \\) in reverse order) gives \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies only \\( f^{-1} \\) to \\( [[y0]] \\), stopping before undoing \\( g \\) as well.",
+   "This applies only \\( g^{-1} \\) to \\( [[y0]] \\), forgetting that \\( f \\) must be undone FIRST since it was applied last.",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_functions_exponential_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5]},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "int", "lo": -3, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {"y0": "[[a]]**[[x0]] + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]^{x} + ([[b]]) \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[y0]] - [[b]], [[a]])"},
+  "distractors": [
+   "[[y0]] - [[b]]",
+   "log([[y0]], [[a]])",
+   "[[y0]]/[[a]] - [[b]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Set \\( [[a]]^{x} + ([[b]]) = [[y0]] \\), isolate the exponential as \\( [[a]]^{x} = [[y0]] - ([[b]]) \\), then take \\( \\log_{[[a]]} \\) of both sides: \\( x = \\log_{[[a]]}\\!\\big([[y0]] - ([[b]])\\big) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to take the logarithm, leaving the isolated power itself.",
+   "This forgets to subtract \\( [[b]] \\) before taking the logarithm.",
+   "This divides by \\( [[a]] \\) instead of taking a logarithm base \\( [[a]] \\).",
+   "This negates the correct exponent (a sign slip).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_functions_logarithmic_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "h": {"type": "int", "lo": -6, "hi": 6},
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {"y0": "[[t]] + [[k]]"},
+  "stem": "Let \\( f(x) = \\log_{[[b]]}(x - ([[h]])) + ([[k]]) \\), for \\( x > [[h]] \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]**([[y0]] - [[k]]) + [[h]]"},
+  "distractors": [
+   "[[b]]**[[y0]] + [[h]]",
+   "[[b]]**([[y0]] - [[k]])",
+   "[[b]]**([[y0]] + [[k]]) + [[h]]",
+   "[[h]] - [[b]]**([[y0]] - [[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Set \\( \\log_{[[b]]}(x-([[h]])) + ([[k]]) = [[y0]] \\), isolate the logarithm as \\( \\log_{[[b]]}(x-([[h]])) = [[y0]] - ([[k]]) \\), then exponentiate: \\( x - ([[h]]) = [[b]]^{[[y0]]-[[k]]} \\), so \\( x = [[b]]^{[[y0]]-[[k]]} + ([[h]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract [[k]] before exponentiating.",
+   "This exponentiates correctly but forgets to add back the shift [[h]].",
+   "This adds [[k]] instead of subtracting it before exponentiating.",
+   "This subtracts the exponential term from [[h]] instead of adding it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_functions_square_root_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "h": {"type": "int", "lo": -6, "hi": 6},
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": 0, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {"y0": "[[a]]*[[t]] + [[k]]"},
+  "stem": "Let \\( f(x) = [[a]]\\sqrt{x - ([[h]])} + ([[k]]) \\) for \\( x \\ge [[h]] \\). Compute \\( f^{-1}([[y0]]) \\).",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*sqrt(x - [[h]]) + [[k]] = [[y0]]", "var": "x"},
+  "distractors": [
+   "[[h]] + ([[y0]] - [[k]])/[[a]]",
+   "[[h]] - ([[y0]] - [[k]])**2/[[a]]**2",
+   "([[y0]] - [[k]])**2/[[a]]**2",
+   "[[h]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Set \\( [[a]]\\sqrt{x-([[h]])} + ([[k]]) = [[y0]] \\), isolate the radical as \\( \\sqrt{x-([[h]])} = \\dfrac{[[y0]] - ([[k]])}{[[a]]} \\), then square both sides: \\( x = [[h]] + \\left(\\dfrac{[[y0]]-([[k]])}{[[a]]}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This isolates the radical correctly but forgets to square it before adding to \\( [[h]] \\).",
+   "This subtracts the squared term instead of adding it.",
+   "This squares the isolated radical correctly but forgets to add \\( [[h]] \\).",
+   "This reports the domain's left endpoint \\( [[h]] \\) rather than solving for the actual input.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_functions_definition_property_v1",
+  "skill_id": "inverse_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "derived": {"V": "([[x0]])**5 + [[a]]*([[x0]])**3 + [[b]]*[[x0]]"},
+  "stem": "Let \\( f(x) = x^{5} + [[a]]x^{3} + [[b]]x \\), which is one-to-one on the real numbers. Given that \\( f([[x0]]) = [[V]] \\), what is \\( f^{-1}([[V]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]]"},
+  "distractors": [
+   "[[V]]",
+   "-[[x0]]",
+   "[[V]] - [[x0]]",
+   "1/[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the defining property of an inverse function, \\( f^{-1}(f(a)) = a \\) for any \\( a \\) where \\( f \\) is one-to-one. Since \\( f([[x0]]) = [[V]] \\), it follows immediately that \\( f^{-1}([[V]]) = [[x0]] = [[answer]] \\) — no algebraic inversion of the quintic is needed.",
+  "distractor_rationales": [
+   "This reports the OUTPUT value \\( [[V]] \\) itself, confusing it with the input that \\( f^{-1} \\) should recover.",
+   "This negates the correct input value.",
+   "This subtracts the input from the output for no valid reason.",
+   "This reports the reciprocal of the input instead of the input itself.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

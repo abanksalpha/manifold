@@ -1,0 +1,62 @@
+[
+{
+ "template_id": "integral_test_and_p_series_v1_companion_integral",
+ "skill_id": "integral_test_and_p_series",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "C": {"type": "int", "lo": 1, "hi": 9},
+  "p": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "stem": "The integral test compares the p-series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\frac{[[C]]}{n^{[[p]]}} \\) to the improper integral \\( \\displaystyle\\int_{1}^{\\infty} \\frac{[[C]]}{x^{[[p]]}}\\,dx \\). Since \\( p=[[p]]>1 \\), this companion integral converges (confirming the series converges). Compute the value of the integral.",
+ "answer_spec": {"op": "integrate", "expr": "[[C]]/x**[[p]]", "var": "x", "bounds": ["1", "oo"]},
+ "distractors": [
+  "Rational([[C]],[[p]])",
+  "[[C]]*([[p]]-1)",
+  "Rational([[C]],[[p]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "By the power rule, \\( \\int_{1}^{\\infty} [[C]]x^{-[[p]]}\\,dx = \\left[\\dfrac{[[C]]x^{1-[[p]]}}{1-[[p]]}\\right]_{1}^{\\infty} = \\dfrac{[[C]]}{[[p]]-1} = [[answer]] \\), since \\( x^{1-[[p]]}\\to 0 \\) as \\( x\\to\\infty \\) (because \\( p>1 \\)).",
+ "distractor_rationales": [
+  "This divides by \\( p \\) instead of \\( p-1 \\), forgetting the antiderivative shifts the exponent by one.",
+  "This multiplies by \\( p-1 \\) instead of dividing, inverting the correct relationship.",
+  "This divides by \\( p+1 \\), using the wrong sign on the exponent shift.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "integral_test_and_p_series_v2_remainder_bound",
+ "skill_id": "integral_test_and_p_series",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "N": {"type": "int", "lo": 2, "hi": 20},
+  "p": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "The convergent p-series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\frac{1}{n^{[[p]]}} \\) has tail \\( R_{[[N]]} = \\displaystyle\\sum_{n=[[N]]+1}^{\\infty} \\frac{1}{n^{[[p]]}} \\). The integral test gives the bound \\( R_{[[N]]} \\le \\displaystyle\\int_{[[N]]}^{\\infty} \\frac{dx}{x^{[[p]]}} \\). Compute this upper bound for \\( N=[[N]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "1/x**[[p]]", "var": "x", "bounds": ["[[N]]", "oo"]},
+ "distractors": [
+  "Rational(1,[[N]]**([[p]]-1))",
+  "Rational(1,([[p]]-1)*[[N]]**[[p]])",
+  "Rational(1,[[N]]**[[p]])",
+  "[[answer]] + 1",
+  "[[answer]]*2",
+  "Rational([[p]]-1,[[N]]**([[p]]-1))"
+ ],
+ "solution": "By the power rule, \\( \\displaystyle\\int_{[[N]]}^{\\infty} x^{-[[p]]}\\,dx = \\left[\\dfrac{x^{1-[[p]]}}{1-[[p]]}\\right]_{[[N]]}^{\\infty} = \\dfrac{[[N]]^{1-[[p]]}}{[[p]]-1} = [[answer]] \\), since \\( x^{1-[[p]]}\\to 0 \\) as \\( x\\to\\infty \\).",
+ "distractor_rationales": [
+  "This forgets the \\( \\frac{1}{p-1} \\) prefactor that comes from integrating the power function.",
+  "This raises \\( N \\) to the \\( p \\) power instead of \\( p-1 \\), an off-by-one error in the exponent.",
+  "This uses \\( N^{-p} \\), the value of the series' \\( N \\)th term itself, not the integral bound.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value.",
+  "This inverts the role of \\( p-1 \\), multiplying instead of dividing."
+ ]
+}
+]

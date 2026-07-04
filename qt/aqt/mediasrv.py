@@ -4,11 +4,14 @@
 from __future__ import annotations
 
 import enum
+import json
 import logging
 import mimetypes
 import os
 import re
 import secrets
+import select
+import subprocess
 import sys
 import threading
 import traceback
@@ -133,6 +136,15 @@ class MediaServer(threading.Thread):
                 host=desired_host,
                 port=desired_port,
                 clear_untrusted_proxy_headers=True,
+                # Manifold generates each problem by shelling out to serve_live.py,
+                # and that handler blocks its worker thread for the whole subprocess
+                # (up to _MANIFOLD_SERVE_TIMEOUT). The session page keeps a few of
+                # those generating in the background, so with waitress's default of 4
+                # threads a burst of prefetches could hold every worker and stall an
+                # unrelated request — e.g. the dashboard route's backend load — until
+                # one finished. Give the pool enough headroom that navigation and the
+                # page's own asset requests always get a free worker during generation.
+                threads=12,
             )
             logger.info(
                 "Serving on http://%s:%s",
@@ -303,8 +315,11 @@ def _handle_local_file_request(request: LocalFileRequest) -> Response:
                 # caching css files prevents flicker in the webview, but we want
                 # a short cache
                 max_age = 10
-            elif fullpath.endswith(".js"):
-                # don't cache js files
+            elif fullpath.endswith(".js") or fullpath.endswith(".mjs"):
+                # don't cache js/mjs files. SvelteKit ships ES modules as .mjs; if
+                # those fall through to the long-cache branch the webview keeps
+                # serving stale bundles after a rebuild, so a code change appears to
+                # have no effect until the cache expires.
                 max_age = 0
             else:
                 max_age = 60 * 60
@@ -707,6 +722,529 @@ def save_custom_colours() -> bytes:
     return b""
 
 
+# --- Manifold live problem generation (D44) ------------------------------------
+# The runtime problem source is on-the-fly generation, not a persisted bank. The
+# session page POSTs a due skill here; we shell out to the content-generation venv
+# (which owns SymPy/Z3, kept out of the Anki runtime) to run serve_live.py, which
+# generates a candidate, verifies it with verify.py (verification stays in the
+# loop), and returns a verified item or an explicit ABSTAIN. No fabrication, no
+# bank fallback: when a verified problem cannot be produced, the honest ABSTAIN is
+# passed straight through for the UI to show.
+
+_MANIFOLD_SERVE_TIMEOUT = 120  # generous: up to ~3 generate+verify attempts
+_MANIFOLD_HINT_TIMEOUT = 60  # a hint is one model call, so far quicker than a problem
+
+
+def _manifold_abstain_bytes(reason: str, detail: str) -> bytes:
+    return json.dumps({"status": "abstain", "reason": reason, "detail": detail}).encode(
+        "utf-8"
+    )
+
+
+def _manifold_generation_paths(
+    script_name: str = "serve_live.py",
+    script_override_env: str = "MANIFOLD_SERVE_LIVE",
+) -> tuple[str, str] | None:
+    """(python, <script>) for the content-generation venv, or None if absent.
+
+    Honors the given script-override env and MANIFOLD_GEN_PYTHON, else walks up from
+    this file to find manifold/content/generation/<script_name> (works whether aqt
+    runs from source or an out/ copy). Both live-problem generation and the hint
+    assistant share this venv resolution."""
+    script = os.environ.get(script_override_env)
+    python = os.environ.get("MANIFOLD_GEN_PYTHON")
+    if not script:
+        for parent in Path(__file__).resolve().parents:
+            # Source checkout: the generation dir with its own .venv.
+            candidate = parent / "manifold" / "content" / "generation" / script_name
+            if candidate.exists():
+                script = str(candidate)
+                break
+            # Packaged (Briefcase) standalone: a bundled generation dir + a relocatable
+            # sidecar Python (with sympy/z3/numpy) sit in the app's Resources, so the
+            # signed app generates problems with no dev source tree or venv present.
+            bundled = parent / "manifold_gen" / script_name
+            if bundled.exists():
+                script = str(bundled)
+                if not python:
+                    for pyname in ("python3.13", "python3", "python"):
+                        cand_py = parent / "manifold_py" / "bin" / pyname
+                        if cand_py.exists():
+                            python = str(cand_py)
+                            break
+                break
+    if not script or not os.path.exists(script):
+        return None
+    if not python:
+        python = str(Path(script).resolve().parent / ".venv" / "bin" / "python")
+    if not os.path.exists(python):
+        return None
+    return python, script
+
+
+# --- warm generation worker (deterministic fast path) --------------------------
+# Shelling out a fresh Python per problem re-imports sympy/z3 and re-parses the
+# template bank each time (~0.3s of pure cold-start) — which dominates a templated
+# problem whose actual work is milliseconds. This keeps ONE serve_live.py
+# --serve-daemon alive with all of that loaded, so a templated / banked problem is
+# served in ms. A skill needing live LLM generation returns needs_live and is
+# served by the cold path below (unchanged). Access is serialized: a fast serve is
+# ms and a needs_live verdict returns at once, so the lock never wraps an LLM call.
+_MANIFOLD_WORKER: subprocess.Popen | None = None
+_MANIFOLD_WORKER_LOCK = threading.Lock()
+_MANIFOLD_WORKER_READ_TIMEOUT = 15.0  # ms in practice; only guards a wedged worker
+
+
+def _manifold_start_worker(python: str, script: str) -> subprocess.Popen | None:
+    try:
+        proc = subprocess.Popen(  # noqa: S603
+            [python, script, "--serve-daemon"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        return None
+    # Block until the daemon signals it has warmed (imports + banks loaded).
+    ready = proc.stdout.readline() if proc.stdout else b""
+    if not ready:
+        proc.kill()
+        return None
+    return proc
+
+
+def _manifold_serve_fast(python: str, script: str, body: bytes) -> bytes | None:
+    """Serve one problem via the warm worker's deterministic path, or None to tell
+    the caller to use the cold (LLM) path. Never raises: any worker trouble simply
+    falls back to the cold path so a problem is still served."""
+    if os.name != "posix":
+        return None  # the worker read uses select(); other platforms use the cold path
+    global _MANIFOLD_WORKER
+    with _MANIFOLD_WORKER_LOCK:
+        if _MANIFOLD_WORKER is None or _MANIFOLD_WORKER.poll() is not None:
+            _MANIFOLD_WORKER = _manifold_start_worker(python, script)
+        worker = _MANIFOLD_WORKER
+        if worker is None or worker.stdin is None or worker.stdout is None:
+            return None
+        try:
+            worker.stdin.write(body.strip() + b"\n")
+            worker.stdin.flush()
+            readable, _, _ = select.select(
+                [worker.stdout], [], [], _MANIFOLD_WORKER_READ_TIMEOUT
+            )
+            if not readable:
+                worker.kill()
+                _MANIFOLD_WORKER = None
+                return None
+            line = worker.stdout.readline()
+        except (BrokenPipeError, OSError, ValueError):
+            _MANIFOLD_WORKER = None
+            return None
+    if not line:
+        return None
+    try:
+        status = json.loads(line).get("status")
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return None
+    # A served (or honestly-abstained) deterministic item is passed straight through;
+    # needs_live / error falls through to the cold path.
+    return line.strip() if status in ("ok", "abstain") else None
+
+
+def manifold_next_problem() -> bytes:
+    """Serve one Manifold problem, or a JSON ABSTAIN.
+
+    Always returns a JSON verdict (``status`` ``ok`` or ``abstain``); the real
+    reason is surfaced, never hidden and never faked. Templated / banked skills are
+    served from the warm worker in milliseconds; skills that need live generation
+    take the cold verify-in-the-loop path. The request body is the JSON skill spec
+    from the session page."""
+    paths = _manifold_generation_paths()
+    if paths is None:
+        return _manifold_abstain_bytes(
+            "serve_live_unavailable",
+            "the content-generation runtime (serve_live.py + its .venv) was not found; "
+            "cannot generate a verified problem",
+        )
+    python, script = paths
+    body = request.data or b"{}"
+    # Fast path: a templated or banked problem, served from the warm worker in ms.
+    fast = _manifold_serve_fast(python, script, body)
+    if fast is not None:
+        return fast
+    try:
+        proc = subprocess.run(
+            [python, script, "--request-json", "-"],
+            input=body,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=_MANIFOLD_SERVE_TIMEOUT,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        return _manifold_abstain_bytes(
+            "generation_timeout",
+            f"live generation did not finish within {_MANIFOLD_SERVE_TIMEOUT}s",
+        )
+    if proc.returncode != 0:
+        detail = (proc.stderr or proc.stdout).decode("utf-8", "replace").strip()
+        logger.warning(
+            "manifold serve_live failed (exit %s): %s", proc.returncode, detail
+        )
+        return _manifold_abstain_bytes(
+            "generation_failed", detail[:500] or f"serve_live exited {proc.returncode}"
+        )
+    out = proc.stdout.strip()
+    if not out:
+        return _manifold_abstain_bytes(
+            "generation_failed", "serve_live produced no output"
+        )
+    try:
+        json.loads(out)  # validate; pass the verdict through verbatim
+    except json.JSONDecodeError as exc:
+        return _manifold_abstain_bytes(
+            "generation_failed", f"serve_live output was not valid JSON: {exc}"
+        )
+    return out
+
+
+# --- Manifold lectures (Task 1) ------------------------------------------------
+# New-skill teaching: a teach ("new") skill can carry a short, pre-authored lecture
+# (method name + when to use it, a worked walk-through of a VERIFIED banked item, and
+# a key takeaway) anchored to an item in teach_bank.json. Lectures are served from a
+# static, pre-authored artifact (manifold/content/lectures/lectures.json), never
+# generated live — the same "vetted content, no runtime fabrication" rule as the
+# teach bank. A skill with no lecture yet is an honest "none", never a faked one.
+
+_MANIFOLD_LECTURES_CACHE: dict[str, dict] | None = None
+
+
+def _manifold_lectures_path() -> str | None:
+    """Path to lectures.json (MANIFOLD_LECTURES override, else walk up to the repo)."""
+    override = os.environ.get("MANIFOLD_LECTURES")
+    if override:
+        return override
+    for parent in Path(__file__).resolve().parents:
+        candidate = parent / "manifold" / "content" / "lectures" / "lectures.json"
+        if candidate.exists():
+            return str(candidate)
+    return None
+
+
+def _load_manifold_lectures() -> dict[str, dict]:
+    """Index lectures as skill_id -> lecture object, cached.
+
+    A missing default file means "no lectures authored yet" (every lookup is an
+    honest 'none'); an explicitly-configured MANIFOLD_LECTURES path that is missing
+    or malformed fails loudly rather than degrading silently."""
+    global _MANIFOLD_LECTURES_CACHE
+    if _MANIFOLD_LECTURES_CACHE is not None:
+        return _MANIFOLD_LECTURES_CACHE
+    index: dict[str, dict] = {}
+    path = _manifold_lectures_path()
+    override = os.environ.get("MANIFOLD_LECTURES")
+    if path and os.path.exists(path):
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        lectures = data.get("lectures") if isinstance(data, dict) else data
+        for sid, lec in (lectures or {}).items():
+            if isinstance(lec, dict) and lec.get("lecture_latex"):
+                index[sid] = lec
+    elif override:
+        # A configured path that does not exist is a real setup error, not a gap.
+        raise FileNotFoundError(
+            f"MANIFOLD_LECTURES points to a missing file: {override}"
+        )
+    _MANIFOLD_LECTURES_CACHE = index
+    return index
+
+
+def manifold_lecture() -> bytes:
+    """Return the pre-authored lecture for a teach skill, or an honest 'none'.
+
+    Body is the JSON skill spec from the session page ({"skill_id": ...}). Returns
+    ``{"status":"ok","lecture":{...}}`` when a lecture is authored for that skill, or
+    ``{"status":"none","reason":"no_lecture"}`` when none exists yet. Never fabricates
+    a lecture; a skill without one simply teaches through its worked solution."""
+    body = request.data or b"{}"
+    try:
+        skill = json.loads(body.decode("utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        return json.dumps(
+            {
+                "status": "none",
+                "reason": "bad_request",
+                "detail": f"invalid request: {exc}",
+            }
+        ).encode("utf-8")
+    skill_id = (skill or {}).get("skill_id")
+    if not skill_id:
+        return json.dumps(
+            {"status": "none", "reason": "bad_request", "detail": "missing skill_id"}
+        ).encode("utf-8")
+    lecture = _load_manifold_lectures().get(skill_id)
+    if lecture is None:
+        return json.dumps({"status": "none", "reason": "no_lecture"}).encode("utf-8")
+    return json.dumps({"status": "ok", "lecture": lecture}, ensure_ascii=False).encode(
+        "utf-8"
+    )
+
+
+# --- Manifold hint assistant ---------------------------------------------------
+# The session page lets a stuck learner ask a question about the current problem and
+# get one hint back. We shell out to hint.py in the content-generation venv (same
+# runtime resolution as live generation), which asks the model for a nudge toward
+# the method and is given only the stem and choices the learner already sees, never
+# the answer or the worked solution. It returns a verified-shape JSON verdict
+# ({"status":"ok","hint":...} or an honest {"status":"abstain",...}); no fabricated
+# hint, no canned fallback.
+
+
+def manifold_hint() -> bytes:
+    """Serve one answer-free hint for the current problem, or a JSON ABSTAIN.
+
+    Always returns a JSON verdict (``status`` ``ok`` or ``abstain``); the real reason
+    is surfaced, never hidden and never faked. The request body is the JSON problem
+    context ({stem, choices, question, ...}) the session page POSTs."""
+    paths = _manifold_generation_paths("hint.py", "MANIFOLD_HINT_SCRIPT")
+    if paths is None:
+        return _manifold_abstain_bytes(
+            "hint_unavailable",
+            "the content-generation runtime (hint.py + its .venv) was not found; "
+            "cannot produce a hint",
+        )
+    python, script = paths
+    body = request.data or b"{}"
+    try:
+        proc = subprocess.run(
+            [python, script, "--request-json", "-"],
+            input=body,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=_MANIFOLD_HINT_TIMEOUT,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        return _manifold_abstain_bytes(
+            "hint_timeout",
+            f"the hint did not finish within {_MANIFOLD_HINT_TIMEOUT}s",
+        )
+    if proc.returncode != 0:
+        detail = (proc.stderr or proc.stdout).decode("utf-8", "replace").strip()
+        logger.warning("manifold hint failed (exit %s): %s", proc.returncode, detail)
+        return _manifold_abstain_bytes(
+            "hint_error", detail[:500] or f"hint.py exited {proc.returncode}"
+        )
+    out = proc.stdout.strip()
+    if not out:
+        return _manifold_abstain_bytes("hint_error", "hint.py produced no output")
+    try:
+        json.loads(out)  # validate; pass the verdict through verbatim
+    except json.JSONDecodeError as exc:
+        return _manifold_abstain_bytes(
+            "hint_error", f"hint.py output was not valid JSON: {exc}"
+        )
+    return out
+
+
+# --- desktop Google sign-in (system-browser loopback) --------------------------
+# Google blocks its OAuth consent screen inside embedded webviews
+# ("disallowed_useragent"), so the Qt desktop shell cannot run signInWithPopup in
+# its own webview. Instead this endpoint runs a one-shot loopback: it opens the
+# user's real system browser to a tiny local page that performs the normal
+# Firebase `signInWithPopup`, harvests the resulting Google ID token, and posts it
+# back to this loopback server. The desktop webview then completes sign-in with
+# `signInWithCredential(GoogleAuthProvider.credential(idToken))`.
+#
+# No secret and no extra OAuth client are needed: the popup runs in a REAL browser
+# (where Google allows it) on the `localhost` authorized domain, using the same
+# public web config as the app, and the harvested ID token's audience is exactly
+# the project's web client — the one Firebase expects. Fails loud on any error.
+
+_MANIFOLD_SIGNIN_PORT = 41599
+_MANIFOLD_SIGNIN_TIMEOUT = 300  # seconds for the human to finish Google sign-in
+_MANIFOLD_FIREBASE_SDK_VERSION = "12.15.0"
+# Public web config (mirrors ts/lib/manifold/firebase.config.ts). Not a secret.
+_MANIFOLD_FIREBASE_WEB_CONFIG = {
+    "apiKey": "AIzaSyBI__PYNZ29WGUkk5nm6Y8Qay4sBQE-sAU",
+    "authDomain": "manifold-gre.firebaseapp.com",
+    "projectId": "manifold-gre",
+    "storageBucket": "manifold-gre.firebasestorage.app",
+    "messagingSenderId": "451162963698",
+    "appId": "1:451162963698:web:7a00e66f0866fab4709a6b",
+}
+
+
+def _manifold_signin_html() -> str:
+    """The standalone page served on the loopback: a real-browser Google popup
+    that harvests the Google ID token and posts it back to /token."""
+    template = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sign in to Manifold</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#f4f1ea; color:#16131c;
+    display:flex; min-height:100vh; margin:0; align-items:center; justify-content:center; }
+  .card { border:3px solid #16131c; background:#fff; box-shadow:6px 6px 0 0 #16131c;
+    padding:28px 32px; max-width:380px; text-align:center; }
+  h1 { margin:0 0 6px; font-size:1.3rem; }
+  p { opacity:0.8; }
+  button { border:3px solid #16131c; background:#ff6b6b; color:#16131c; font-weight:800;
+    box-shadow:3px 3px 0 0 #16131c; padding:12px 20px; font-size:1rem; cursor:pointer; }
+  button:disabled { opacity:0.6; cursor:default; }
+  .err { color:#b00020; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Manifold</h1>
+  <p id="status">Sign in with Google to sync your progress to this device.</p>
+  <button id="go">Continue with Google</button>
+</div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/__SDK__/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup }
+    from "https://www.gstatic.com/firebasejs/__SDK__/firebase-auth.js";
+
+  const app = initializeApp(__CONFIG__);
+  const auth = getAuth(app);
+  const statusEl = document.getElementById("status");
+  const btn = document.getElementById("go");
+
+  async function post(payload) {
+    await fetch("/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  }
+
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    statusEl.textContent = "Opening Google sign-in…";
+    try {
+      const result = await signInWithPopup(auth, new GoogleAuthProvider());
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const idToken = credential && credential.idToken;
+      if (!idToken) {
+        throw new Error("Google did not return an ID token");
+      }
+      await post({ id_token: idToken });
+      statusEl.textContent = "Signed in. You can close this tab and return to Manifold.";
+    } catch (e) {
+      statusEl.className = "err";
+      statusEl.textContent = "Sign-in failed: " + (e && e.message ? e.message : e);
+      await post({ error: (e && e.message) ? e.message : String(e) });
+    }
+  });
+</script>
+</body>
+</html>"""
+    return template.replace("__SDK__", _MANIFOLD_FIREBASE_SDK_VERSION).replace(
+        "__CONFIG__", json.dumps(_MANIFOLD_FIREBASE_WEB_CONFIG)
+    )
+
+
+def manifold_google_sign_in() -> bytes:
+    """Run the system-browser loopback and return the Google ID token as JSON.
+
+    Returns ``{"status":"ok","id_token":...}`` on success, or
+    ``{"status":"error","reason":...,"detail":...}`` on any failure (port in use,
+    the user cancelling, a timeout) — never a fabricated token."""
+    import webbrowser
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+
+    result: dict[str, str] = {}
+    done = threading.Event()
+    html = _manifold_signin_html().encode("utf-8")
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *_args: object) -> None:  # silence access logs
+            pass
+
+        def do_GET(self) -> None:  # noqa: N802
+            if self.path in ("/", "/index.html") or self.path.startswith("/?"):
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(html)))
+                self.end_headers()
+                self.wfile.write(html)
+            else:
+                self.send_response(HTTPStatus.NO_CONTENT)
+                self.end_headers()
+
+        def do_POST(self) -> None:  # noqa: N802
+            if self.path != "/token":
+                self.send_response(HTTPStatus.NOT_FOUND)
+                self.end_headers()
+                return
+            length = int(self.headers.get("Content-Length", "0") or "0")
+            raw = self.rfile.read(length) if length else b"{}"
+            try:
+                payload = json.loads(raw.decode("utf-8"))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                payload = {}
+            if isinstance(payload.get("id_token"), str):
+                result["id_token"] = payload["id_token"]
+            elif isinstance(payload.get("error"), str):
+                result["error"] = payload["error"]
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain")
+            self.end_headers()
+            self.wfile.write(b"ok")
+            done.set()
+
+    try:
+        server = HTTPServer(("127.0.0.1", _MANIFOLD_SIGNIN_PORT), Handler)
+    except OSError as exc:
+        return json.dumps(
+            {
+                "status": "error",
+                "reason": "loopback_unavailable",
+                "detail": f"could not start the sign-in loopback on port "
+                f"{_MANIFOLD_SIGNIN_PORT}: {exc}",
+            }
+        ).encode("utf-8")
+
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        opened = webbrowser.open(f"http://localhost:{_MANIFOLD_SIGNIN_PORT}/")
+        if not opened:
+            return json.dumps(
+                {
+                    "status": "error",
+                    "reason": "browser_unavailable",
+                    "detail": "could not open a system browser for Google sign-in",
+                }
+            ).encode("utf-8")
+        finished = done.wait(timeout=_MANIFOLD_SIGNIN_TIMEOUT)
+    finally:
+        server.shutdown()
+        server.server_close()
+
+    if not finished:
+        return json.dumps(
+            {
+                "status": "error",
+                "reason": "timeout",
+                "detail": f"no sign-in completed within {_MANIFOLD_SIGNIN_TIMEOUT}s",
+            }
+        ).encode("utf-8")
+    if "id_token" in result:
+        return json.dumps({"status": "ok", "id_token": result["id_token"]}).encode(
+            "utf-8"
+        )
+    return json.dumps(
+        {
+            "status": "error",
+            "reason": "sign_in_failed",
+            "detail": result.get("error", "the browser did not return a token"),
+        }
+    ).encode("utf-8")
+
+
 post_handler_list = [
     congrats_info,
     get_deck_configs_for_update,
@@ -723,6 +1261,10 @@ post_handler_list = [
     deck_options_require_close,
     deck_options_ready,
     save_custom_colours,
+    manifold_next_problem,
+    manifold_lecture,
+    manifold_hint,
+    manifold_google_sign_in,
 ]
 
 

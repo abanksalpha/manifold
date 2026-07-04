@@ -1,0 +1,166 @@
+[
+  {
+    "template_id": "last_two_digits_power_v1",
+    "skill_id": "last_two_digits_of_a_large_power_mod_100",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [3, 7, 9, 11, 13, 17, 19, 21, 23, 27, 29, 31, 33, 37, 39]},
+      "b": {"type": "int", "lo": 20, "hi": 50}
+    },
+    "constraints": [],
+    "stem": "What are the last two digits of \\( [[a]]^{[[b]]} \\)? (That is, the value of \\( [[a]]^{[[b]]} \\bmod 100 \\).)",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], 100)"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), 100)",
+      "Mod([[a]]**([[b]] - 1), 100)",
+      "Mod([[a]]**2, 100)",
+      "Mod([[answer]] + 1, 100)",
+      "Mod([[answer]] + 10, 100)",
+      "Mod([[answer]] + 11, 100)",
+      "Mod([[a]], 100)"
+    ],
+    "solution": "The last two digits are \\( [[a]]^{[[b]]} \\bmod 100 \\). Since \\( \\gcd([[a]], 100) = 1 \\), Euler's theorem gives \\( [[a]]^{40} \\equiv 1 \\pmod{100} \\); reducing the exponent \\( [[b]] \\) modulo 40 yields the value \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one power too many.",
+      "This uses exponent \\( [[b]]-1 \\), one power too few.",
+      "This is \\( [[a]]^{2} \\bmod 100 \\), not the value at exponent \\( [[b]] \\).",
+      "This differs from the correct last two digits by 1.",
+      "This differs from the correct last two digits by 10 (a tens-digit slip).",
+      "This differs from the correct last two digits by 11.",
+      "This is \\( [[a]] \\bmod 100 \\), the base itself."
+    ]
+  },
+  {
+    "template_id": "last_two_digits_even_base_v1",
+    "skill_id": "last_two_digits_of_a_large_power_mod_100",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [2, 4, 6, 8, 12, 14, 16, 18, 22, 24, 26, 28, 32, 34, 36, 38]},
+      "b": {"type": "int", "lo": 22, "hi": 60}
+    },
+    "constraints": [],
+    "stem": "The base \\( [[a]] \\) shares a common factor with 100, so Euler's theorem does not apply directly. What are the last two digits of \\( [[a]]^{[[b]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], 100)"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), 100)",
+      "Mod([[a]]**([[b]] - 1), 100)",
+      "Mod([[a]]**([[b]] - 2), 100)",
+      "Mod([[answer]] + 1, 100)",
+      "Mod([[answer]] + 10, 100)",
+      "Mod([[answer]] - 10, 100)",
+      "Mod([[a]], 100)"
+    ],
+    "solution": "Since \\( [[a]] \\) is even, \\( \\gcd([[a]],100)\\ne 1 \\) and Euler's theorem cannot be applied to the whole modulus directly. Instead reduce mod 4 and mod 25 separately (or note the power sequence mod 100 becomes eventually periodic once enough factors of 2 accumulate) and recombine: \\( [[a]]^{[[b]]} \\equiv [[answer]] \\pmod{100} \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one power too many.",
+      "This uses exponent \\( [[b]]-1 \\), one power too few.",
+      "This uses exponent \\( [[b]]-2 \\), two powers too few.",
+      "This differs from the correct last two digits by 1.",
+      "This differs from the correct last two digits by 10 (a tens-digit slip).",
+      "This differs from the correct last two digits by 10 in the other direction.",
+      "This is \\( [[a]] \\bmod 100 \\), the base itself, as if \\( [[b]]=1 \\)."
+    ]
+  },
+  {
+    "template_id": "last_two_digits_of_a_product_of_powers_v1",
+    "skill_id": "last_two_digits_of_a_large_power_mod_100",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [3, 7, 9, 11, 13, 17, 19, 21, 23]},
+      "b": {"type": "int", "lo": 20, "hi": 44},
+      "c": {"type": "choice", "values": [3, 7, 9, 11, 13, 17, 19, 21, 23]},
+      "d": {"type": "int", "lo": 20, "hi": 44}
+    },
+    "constraints": ["Ne([[a]], [[c]])"],
+    "stem": "What are the last two digits of \\( [[a]]^{[[b]]} \\cdot [[c]]^{[[d]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] * [[c]]**[[d]], 100)"},
+    "distractors": [
+      "Mod([[a]]**[[b]], 100)",
+      "Mod([[c]]**[[d]], 100)",
+      "Mod([[a]]**[[b]], 100) + Mod([[c]]**[[d]], 100)",
+      "Mod([[answer]] + 1, 100)",
+      "Mod([[answer]] + 10, 100)",
+      "Mod([[answer]] - 10, 100)",
+      "Mod([[a]]**[[b]] * [[c]]**([[d]]+1), 100)"
+    ],
+    "solution": "Reduce each factor's last two digits separately using Euler's theorem (\\( [[a]]^{40}\\equiv 1 \\), \\( [[c]]^{40}\\equiv 1 \\pmod{100} \\)), then multiply the residues and reduce mod 100 once more: \\( [[a]]^{[[b]]}\\cdot[[c]]^{[[d]]} \\equiv [[answer]] \\pmod{100} \\).",
+    "distractor_rationales": [
+      "This only reduces the first factor, dropping the second entirely.",
+      "This only reduces the second factor, dropping the first entirely.",
+      "This adds the two reduced factors instead of multiplying them.",
+      "This differs from the correct last two digits by 1.",
+      "This differs from the correct last two digits by 10 (a tens-digit slip).",
+      "This differs from the correct last two digits by 10 in the other direction.",
+      "This uses one extra power of the second factor."
+    ]
+  },
+  {
+    "template_id": "last_two_digits_multiple_of_five_base_v1",
+    "skill_id": "last_two_digits_of_a_large_power_mod_100",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [5, 15, 25, 35, 45, 55, 65, 75, 85, 95]},
+      "b": {"type": "int", "lo": 20, "hi": 50}
+    },
+    "constraints": [],
+    "stem": "The base \\( [[a]] \\) is a multiple of 5, so \\( [[a]]^{[[b]]} \\) is automatically divisible by 25; combining that with \\( [[a]]^{[[b]]} \\bmod 4 \\) via the Chinese Remainder Theorem pins down the last two digits exactly. What are the last two digits of \\( [[a]]^{[[b]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], 100)"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), 100)",
+      "Mod([[a]]*[[b]], 100)",
+      "Mod([[a]] + [[b]], 100)",
+      "Mod([[a]]**2, 100)",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "Mod([[a]], 100)"
+    ],
+    "solution": "Since \\( [[a]] \\) is a multiple of 5 and \\( [[b]] \\ge 2 \\), \\( [[a]]^{[[b]]} \\) is a multiple of 25, so the last two digits lie in \\( \\{00, 25, 50, 75\\} \\); checking \\( [[a]]^{[[b]]} \\bmod 4 \\) selects which one. Combining via CRT gives \\( [[a]]^{[[b]]} \\equiv [[answer]] \\pmod{100} \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one power too many, flipping which multiple of 25 it lands on.",
+      "This multiplies the base by the exponent instead of exponentiating.",
+      "This adds the base and exponent instead of exponentiating.",
+      "This uses \\( [[a]]^{2} \\bmod 100 \\), as if the exponent were 2.",
+      "This is one more than the correct last two digits.",
+      "This is one less than the correct last two digits.",
+      "This is \\( [[a]] \\bmod 100 \\), the base itself, as if \\( [[b]]=1 \\)."
+    ]
+  },
+  {
+    "template_id": "last_two_digits_of_a_power_tower_v1",
+    "skill_id": "last_two_digits_of_a_large_power_mod_100",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [3, 7, 9, 11, 13, 17, 19, 21, 23, 27, 29, 31, 33, 37, 39]},
+      "b": {"type": "choice", "values": [2, 3, 4, 5]},
+      "c": {"type": "choice", "values": [2, 3, 4]}
+    },
+    "constraints": [],
+    "derived": {"expo": "[[b]]**[[c]]"},
+    "stem": "What are the last two digits of \\( [[a]]^{[[b]]^{[[c]]}} \\)? (The exponent itself is \\( [[b]]^{[[c]]} = [[expo]] \\); reduce THAT exponent modulo 40 using Euler's theorem to finish.)",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**([[b]]**[[c]]), 100)"},
+    "distractors": [
+      "Mod([[a]]**([[b]]*[[c]]), 100)",
+      "Mod([[a]]**([[expo]] + 1), 100)",
+      "Mod([[a]]**([[expo]] - 1), 100)",
+      "Mod([[a]]**[[b]], 100)",
+      "Mod([[answer]] + 10, 100)",
+      "Mod([[answer]] + 11, 100)",
+      "Mod([[a]], 100)"
+    ],
+    "solution": "First evaluate the tower exponent itself: \\( [[b]]^{[[c]]} = [[expo]] \\). Then, since \\( \\gcd([[a]],100)=1 \\), Euler's theorem reduces \\( [[expo]] \\) modulo \\( \\varphi(100)=40 \\), giving \\( [[a]]^{[[expo]]} \\equiv [[answer]] \\pmod{100} \\).",
+    "distractor_rationales": [
+      "This multiplies \\( [[b]] \\) and \\( [[c]] \\) instead of raising \\( [[b]] \\) to the power \\( [[c]] \\).",
+      "This uses one more than the correct tower exponent.",
+      "This uses one less than the correct tower exponent.",
+      "This uses only \\( [[b]] \\) as the exponent, dropping \\( [[c]] \\) entirely.",
+      "This differs from the correct last two digits by 10 (a tens-digit slip).",
+      "This differs from the correct last two digits by 11.",
+      "This is \\( [[a]] \\bmod 100 \\), the base itself, as if the tower exponent were 1."
+    ]
+  }
+]

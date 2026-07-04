@@ -1,0 +1,128 @@
+[
+{
+ "template_id": "multiset_permutations_v1",
+ "skill_id": "permutations_with_identical_objects_multiset_arrange",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"n": "[[a]] + [[b]] + [[c]]"},
+ "stem": "A row of [[n]] flags is to be displayed, made up of [[a]] identical red flags, [[b]] identical blue flags, and [[c]] identical green flags. How many distinguishable arrangements of the [[n]] flags in a row are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[a]] + [[b]] + [[c]])/(factorial([[a]])*factorial([[b]])*factorial([[c]]))"},
+ "distractors": [
+  "factorial([[a]] + [[b]] + [[c]])",
+  "factorial([[a]] + [[b]] + [[c]])/(factorial([[a]])*factorial([[b]]))",
+  "factorial([[a]] + [[b]] + [[c]])/(factorial([[a]]) + factorial([[b]]) + factorial([[c]]))",
+  "binomial([[a]] + [[b]] + [[c]], [[a]])",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[b]]"
+ ],
+ "solution": "With repeated identical items the count is \\( \\frac{[[n]]!}{[[a]]!\\,[[b]]!\\,[[c]]!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats all [[n]] flags as distinct and forgets to divide by the repeats.",
+  "This divides by the red and blue repeats but forgets the green repeats.",
+  "This adds the factorials in the denominator instead of multiplying them.",
+  "This counts only the ways to place the red flags, ignoring blue vs. green.",
+  "This is off from the correct count by the number of red flags.",
+  "This is off from the correct count by the number of blue flags."
+ ]
+},
+{
+ "template_id": "multiset_permutations_no_two_adjacent_v1",
+ "skill_id": "permutations_with_identical_objects_multiset_arrange",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "nA": {"type": "int", "lo": 2, "hi": 6},
+  "nB": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": ["Ge([[nB]] + 1, [[nA]])"],
+ "derived": {"n": "[[nA]] + [[nB]]"},
+ "stem": "A row of [[n]] tiles is formed using [[nA]] identical red tiles and [[nB]] identical blue tiles, arranged so that NO TWO red tiles are adjacent. How many distinguishable arrangements are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[nB]] + 1, [[nA]])"},
+ "distractors": [
+  "binomial([[nA]] + [[nB]], [[nA]])",
+  "binomial([[nB]], [[nA]])",
+  "binomial([[nB]] - 1, [[nA]])",
+  "[[nA]]*[[nB]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Place the [[nB]] identical blue tiles first; this creates \\( [[nB]]+1 \\) gaps (including the two ends) in which to place red tiles, at most one per gap so no two reds touch. Choosing [[nA]] of these gaps gives \\( \\binom{[[nB]]+1}{[[nA]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the non-adjacency requirement and counts all multiset arrangements.",
+  "This uses only [[nB]] gaps instead of the correct \\( [[nB]]+1 \\) (forgetting the two end gaps).",
+  "This uses one fewer gap than even the previous mistake.",
+  "This multiplies the two tile counts, an unrelated formula.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "multiset_permutations_fixed_endpoints_v1",
+ "skill_id": "permutations_with_identical_objects_multiset_arrange",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"n": "[[a]] + [[b]] + [[c]]"},
+ "stem": "A row of [[n]] flags is formed from [[a]] identical red flags, [[b]] identical blue flags, and [[c]] identical green flags. If the FIRST flag in the row must be red and the LAST flag must be green, how many distinguishable arrangements of the entire row are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 2)/(factorial([[a]] - 1)*factorial([[b]])*factorial([[c]] - 1))"},
+ "distractors": [
+  "factorial([[n]])/(factorial([[a]])*factorial([[b]])*factorial([[c]]))",
+  "factorial([[n]] - 2)/(factorial([[a]])*factorial([[b]])*factorial([[c]]))",
+  "factorial([[n]] - 1)/(factorial([[a]] - 1)*factorial([[b]])*factorial([[c]] - 1))",
+  "factorial([[n]] - 2)/(factorial([[a]] - 1)*factorial([[b]] - 1)*factorial([[c]] - 1))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Fix one red flag first and one green flag last; the remaining \\( [[n]]-2 \\) positions hold the leftover \\( [[a]]-1 \\) red, [[b]] blue, and \\( [[c]]-1 \\) green flags: \\( \\dfrac{([[n]]-2)!}{([[a]]-1)!\\,[[b]]!\\,([[c]]-1)!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the fixed endpoints entirely and counts all arrangements of the full row.",
+  "This shortens the row for the fixed ends but forgets to also remove one red and one green flag from the counts.",
+  "This only shortens the row by one position instead of two.",
+  "This mistakenly also reduces the blue flag count, which was not fixed at either end.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "multiset_permutations_block_together_v1",
+ "skill_id": "permutations_with_identical_objects_multiset_arrange",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "nA": {"type": "int", "lo": 2, "hi": 6},
+  "nB": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "derived": {"n": "[[nA]] + [[nB]]"},
+ "stem": "A row of [[n]] tiles is formed using [[nA]] identical red tiles and [[nB]] identical blue tiles, with the requirement that ALL [[nA]] red tiles appear together as a single contiguous block. How many distinguishable arrangements of the row are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "[[nB]] + 1"},
+ "distractors": [
+  "binomial([[nA]] + [[nB]], [[nA]])",
+  "[[nA]] + [[nB]]",
+  "factorial([[nB]] + 1)",
+  "[[nA]]*([[nB]] + 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Treat the block of [[nA]] red tiles as a single unit; together with the [[nB]] identical blue tiles there are \\( [[nB]]+1 \\) units in a row, so the block can go in any of \\( [[nB]]+1 \\) positions among them: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the together-requirement and counts all multiset arrangements.",
+  "This reports the total tile count instead of the number of block positions.",
+  "This mistakenly treats the [[nB]] blue tiles as distinguishable from each other.",
+  "This mistakenly multiplies by the red-tile count as if the block itself had internal orderings.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

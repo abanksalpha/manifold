@@ -1,0 +1,130 @@
+[
+ {
+  "template_id": "surface_area_plane_v1",
+  "skill_id": "scalar_surface_integral_surface_area",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "choice", "values": [-8, -4, -2, 2, 4, 8]},
+   "beta": {"type": "choice", "values": [-8, -4, -2, 2, 4, 8]},
+   "W": {"type": "int", "lo": 1, "hi": 4},
+   "H": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Eq(floor(sqrt(1 + [[alpha]]**2 + [[beta]]**2)), sqrt(1 + [[alpha]]**2 + [[beta]]**2))"],
+  "stem": "Find the surface area of the portion of the plane \\( z = ([[alpha]])x + ([[beta]])y \\) lying above the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\). (This is the scalar surface integral \\( \\iint_S 1\\,dS \\).)",
+  "answer_spec": {"op": "dblintegrate", "expr": "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+  "distractors": [
+   "([[W]])*([[H]])",
+   "(1 + ([[alpha]])**2 + ([[beta]])**2)*([[W]])*([[H]])",
+   "[[answer]] + ([[W]])*([[H]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "For \\( z=g(x,y) \\), \\( dS=\\sqrt{1+g_x^{2}+g_y^{2}}\\,dA=\\sqrt{1+([[alpha]])^{2}+([[beta]])^{2}}\\,dA \\). Since the integrand is constant, the area is \\( \\sqrt{1+([[alpha]])^{2}+([[beta]])^{2}}\\cdot[[W]]\\cdot[[H]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the flat base area \\( [[W]]\\cdot[[H]] \\), ignoring the tilt of the plane.",
+   "This forgets the square root in \\( dS \\).",
+   "This adds the base area to the correct value.",
+   "This is off by one from the correct area.",
+   "This is off by one from the correct area.",
+   "This is off by two from the correct area."
+  ]
+ },
+ {
+  "template_id": "surface_integral_weighted_height_v1",
+  "skill_id": "scalar_surface_integral_surface_area",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "choice", "values": [-8, -4, -2, 2, 4, 8]},
+   "beta": {"type": "choice", "values": [-8, -4, -2, 2, 4, 8]},
+   "W": {"type": "int", "lo": 1, "hi": 4},
+   "H": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Eq(floor(sqrt(1 + [[alpha]]**2 + [[beta]]**2)), sqrt(1 + [[alpha]]**2 + [[beta]]**2))"],
+  "stem": "A thin sheet occupies the portion \\( S \\) of the plane \\( z = ([[alpha]])x + ([[beta]])y \\) lying above the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\). Evaluate the scalar surface integral \\( \\displaystyle\\iint_S z\\,dS \\) (i.e., integrate the height function \\( z \\) over the surface \\( S \\), not just its area).",
+  "answer_spec": {"op": "dblintegrate", "expr": "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*(([[alpha]])*x + ([[beta]])*y)", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+  "distractors": [
+   "([[alpha]])*([[W]])**2*([[H]])/2 + ([[beta]])*([[H]])**2*([[W]])/2",
+   "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*([[W]])*([[H]])",
+   "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*(([[alpha]])*([[W]])/2 + ([[beta]])*([[H]])/2)*([[W]])*([[H]])",
+   "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*(([[alpha]])*([[H]])**2*([[W]])/2 + ([[beta]])*([[W]])**2*([[H]])/2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( z=g(x,y)=([[alpha]])x+([[beta]])y \\), \\( dS=\\sqrt{1+g_x^2+g_y^2}\\,dA=\\sqrt{1+([[alpha]])^2+([[beta]])^2}\\,dA \\) (constant, since the surface is planar). So \\( \\iint_S z\\,dS = \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\displaystyle\\int_0^{[[H]]}\\!\\!\\int_0^{[[W]]} \\big(([[alpha]])x+([[beta]])y\\big)\\,dx\\,dy = \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\left(\\dfrac{([[alpha]])[[W]]^2[[H]]}{2}+\\dfrac{([[beta]])[[H]]^2[[W]]}{2}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates \\( z \\) over the flat rectangle \\( dA \\) instead of over the surface \\( dS \\), dropping the \\( \\sqrt{1+g_x^2+g_y^2} \\) factor.",
+   "This computes the plain surface AREA \\( \\iint_S 1\\,dS \\) instead of \\( \\iint_S z\\,dS \\).",
+   "This evaluates \\( z \\) only at the rectangle's midpoint and multiplies by the area, instead of integrating \\( z \\) over the region.",
+   "This swaps the roles of \\( [[W]] \\) and \\( [[H]] \\) in the two terms of the antiderivative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "surface_area_plane_first_octant_intercept_v1",
+  "skill_id": "scalar_surface_integral_surface_area",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 1, "hi": 5},
+   "r": {"type": "int", "lo": 1, "hi": 8},
+   "n": {"type": "int", "lo": 12, "hi": 48}
+  },
+  "constraints": ["Eq(floor(sqrt([[p]]**2 + [[q]]**2 + [[r]]**2)), sqrt([[p]]**2 + [[q]]**2 + [[r]]**2))"],
+  "stem": "The plane \\( ([[p]])x + ([[q]])y + ([[r]])z = [[n]] \\) cuts off a triangular region in the first octant (where \\( x,y,z \\ge 0 \\)). Find the surface area of this triangular portion of the plane.",
+  "answer_spec": {"op": "dblintegrate", "expr": "sqrt(([[p]])**2 + ([[q]])**2 + ([[r]])**2)/([[r]])", "vars": ["y", "x"], "bounds": [["0", "([[n]] - ([[p]])*x)/([[q]])"], ["0", "[[n]]/([[p]])"]]},
+  "distractors": [
+   "(Rational(1,2))*([[n]]/([[p]]))*([[n]]/([[q]]))",
+   "sqrt(([[p]])**2 + ([[q]])**2 + ([[r]])**2)/([[p]])*(Rational(1,2))*([[n]]/([[p]]))*([[n]]/([[q]]))",
+   "sqrt(([[p]])**2 + ([[q]])**2)/([[r]])*(Rational(1,2))*([[n]]/([[p]]))*([[n]]/([[q]]))",
+   "sqrt(([[p]])**2 + ([[q]])**2 + ([[r]])**2)/([[r]])*[[n]]*[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solving for \\( z \\): \\( z=\\dfrac{[[n]]-([[p]])x-([[q]])y}{[[r]]} \\), so \\( g_x=-\\dfrac{[[p]]}{[[r]]}, g_y=-\\dfrac{[[q]]}{[[r]]} \\), and \\( dS=\\sqrt{1+g_x^2+g_y^2}\\,dA=\\dfrac{\\sqrt{([[p]])^2+([[q]])^2+([[r]])^2}}{[[r]]}\\,dA \\) (constant, since the plane is flat). The plane meets the axes at \\( x=[[n]]/[[p]] \\) and \\( y=[[n]]/[[q]] \\), so its shadow in the \\( xy \\)-plane is a right triangle with legs \\( [[n]]/[[p]] \\) and \\( [[n]]/[[q]] \\) and area \\( \\tfrac12\\cdot\\frac{[[n]]}{[[p]]}\\cdot\\frac{[[n]]}{[[q]]} \\). Multiplying by the constant \\( dS \\) factor gives the surface area \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is only the flat shadow (projected) triangle's area in the \\( xy \\)-plane, omitting the \\( dS \\) tilt factor entirely.",
+   "This divides the tilt factor by \\( [[p]] \\) instead of by \\( [[r]] \\) (the coefficient of \\( z \\)).",
+   "This omits \\( ([[r]])^2 \\) from inside the square root, as if the plane had no \\( z \\)-tilt contribution.",
+   "This uses \\( [[n]]\\cdot[[n]] \\) for the base area instead of the correct \\( \\tfrac12\\cdot\\frac{[[n]]}{[[p]]}\\cdot\\frac{[[n]]}{[[q]]} \\).",
+   "This is off by one from the correct area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "surface_area_plane_over_disk_v1",
+  "skill_id": "scalar_surface_integral_surface_area",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "choice", "values": [-8, -4, -2, 2, 4, 8]},
+   "beta": {"type": "choice", "values": [-8, -4, -2, 2, 4, 8]},
+   "R": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Eq(floor(sqrt(1 + [[alpha]]**2 + [[beta]]**2)), sqrt(1 + [[alpha]]**2 + [[beta]]**2))"],
+  "require_rational": false,
+  "stem": "Find the surface area of the portion of the plane \\( z = ([[alpha]])x + ([[beta]])y \\) that lies directly above the disk \\( x^{2}+y^{2} \\le [[R]]^{2} \\) in the \\( xy \\)-plane.",
+  "answer_spec": {"op": "dblintegrate", "expr": "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)", "vars": ["y", "x"], "bounds": [["-sqrt([[R]]**2 - x**2)", "sqrt([[R]]**2 - x**2)"], ["-[[R]]", "[[R]]"]]},
+  "distractors": [
+   "pi*([[R]])**2",
+   "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*pi*(2*[[R]])**2",
+   "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*pi*[[R]]",
+   "sqrt(1 + ([[alpha]])**2 + ([[beta]])**2)*(2*[[R]])**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "As in any planar graph, \\( dS=\\sqrt{1+g_x^2+g_y^2}\\,dA=\\sqrt{1+([[alpha]])^2+([[beta]])^2}\\,dA \\) is constant. The base region is the disk \\( x^2+y^2\\le [[R]]^2 \\), with area \\( \\pi([[R]])^2 \\). So the surface area is \\( \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\cdot\\pi([[R]])^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the flat disk's area \\( \\pi R^2 \\), ignoring the tilt factor of the plane entirely.",
+   "This uses the diameter \\( 2R \\) in place of the radius \\( R \\) when computing the disk's area.",
+   "This uses \\( \\pi R \\) (circumference-like) instead of \\( \\pi R^2 \\) for the disk's area.",
+   "This uses the area of a \\( 2R\\times 2R \\) bounding square instead of the disk's area \\( \\pi R^2 \\).",
+   "This adds an extra factor of \\( \\pi \\) to the correct answer.",
+   "This subtracts an extra factor of \\( \\pi \\) from the correct answer."
+  ]
+ }
+]

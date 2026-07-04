@@ -1,0 +1,65 @@
+[
+{
+ "template_id": "convergence_by_comparison_limit_comparison_v1_rational",
+ "skill_id": "convergence_by_comparison_limit_comparison",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": 1, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "To test \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{[[a]]n^{2} + [[b]]n + [[c]]}{[[d]]n^{3} + [[e]]n} \\) by limit comparison against the harmonic series \\( b_n = \\dfrac{1}{n} \\), compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{a_n}{b_n} \\).",
+ "answer_spec": {"op": "limit", "expr": "n*([[a]]*n**2 + [[b]]*n + [[c]])/([[d]]*n**3 + [[e]]*n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[d]],[[a]])",
+  "-Rational([[a]],[[d]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "Multiplying out, \\( \\dfrac{a_n}{b_n} = \\dfrac{n([[a]]n^{2}+[[b]]n+[[c]])}{[[d]]n^{3}+[[e]]n} = \\dfrac{[[a]]n^{3}+[[b]]n^{2}+[[c]]n}{[[d]]n^{3}+[[e]]n} \\); both numerator and denominator have degree \\( 3 \\), so the limit is the ratio of leading coefficients \\( L = \\dfrac{[[a]]}{[[d]]} = [[answer]] \\). Since \\( 0<L<\\infty \\), the limit comparison test says \\( \\sum a_n \\) behaves like \\( \\sum b_n \\) (both diverge, since \\( \\sum 1/n \\) diverges).",
+ "distractor_rationales": [
+  "This inverts the ratio of leading coefficients.",
+  "This has the right magnitude but the wrong sign.",
+  "This assumes the terms vanish in the ratio, but the degrees match so the limit is a nonzero constant.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "convergence_by_comparison_limit_comparison_v2_radical",
+ "skill_id": "convergence_by_comparison_limit_comparison",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [1, 4, 9, 16, 25, 36]},
+  "b": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "To test \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{1}{\\sqrt{[[a]]n^{3} + [[b]]n}} \\) by limit comparison against \\( b_n = \\dfrac{1}{n^{3/2}} \\), compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{a_n}{b_n} \\).",
+ "answer_spec": {"op": "limit", "expr": "n**(Rational(3,2))/sqrt([[a]]*n**3 + [[b]]*n)", "var": "n", "point": "oo"},
+ "distractors": [
+  "sqrt([[a]])",
+  "Rational(1,[[a]])",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]*2",
+  "Rational(1,[[a]]-1)"
+ ],
+ "solution": "\\( \\dfrac{a_n}{b_n} = \\dfrac{n^{3/2}}{\\sqrt{[[a]]n^{3}+[[b]]n}} = \\sqrt{\\dfrac{n^{3}}{[[a]]n^{3}+[[b]]n}} \\to \\sqrt{\\dfrac{1}{[[a]]}} = \\dfrac{1}{\\sqrt{[[a]]}} = [[answer]] \\) as \\( n\\to\\infty \\). Since \\( 0<L<\\infty \\), \\( \\sum a_n \\) behaves like \\( \\sum 1/n^{3/2} \\), which converges (a convergent p-series with \\( p=3/2 \\)).",
+ "distractor_rationales": [
+  "This forgets to take the reciprocal, using \\( \\sqrt{a} \\) instead of \\( 1/\\sqrt{a} \\).",
+  "This forgets the square root, using \\( 1/a \\) instead of \\( 1/\\sqrt{a} \\).",
+  "This has the right magnitude but the wrong sign; both \\( a_n \\) and \\( b_n \\) are eventually positive, so \\( L \\) must be positive.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value.",
+  "This uses \\( a-1 \\) under the square root instead of \\( a \\)."
+ ]
+}
+]

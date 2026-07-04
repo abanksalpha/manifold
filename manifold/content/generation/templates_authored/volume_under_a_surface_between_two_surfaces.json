@@ -1,0 +1,172 @@
+[
+ {
+  "template_id": "volume_under_a_surface_between_two_surfaces_v1",
+  "skill_id": "volume_under_a_surface_between_two_surfaces",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "d": {"type": "int", "lo": 1, "hi": 3},
+   "e": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {"u": "[[p]]*[[b]] + [[q]]*[[d]] + [[e]]"},
+  "stem": "Find the volume of the solid that lies below the plane \\( z = [[u]] \\) and above the surface \\( z = [[p]]x + [[q]]y \\), over the rectangle \\( 0 \\le x \\le [[b]],\\ 0 \\le y \\le [[d]] \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[u]] - [[p]]*x - [[q]]*y", "vars": ["x", "y"], "bounds": [["0", "[[b]]"], ["0", "[[d]]"]]},
+  "distractors": [
+   "[[u]]*[[b]]*[[d]]",
+   "[[p]]*[[b]]**2*[[d]]/2 + [[q]]*[[b]]*[[d]]**2/2",
+   "-([[u]]*[[b]]*[[d]] - [[p]]*[[b]]**2*[[d]]/2 - [[q]]*[[b]]*[[d]]**2/2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The volume is \\( \\iint_R \\left( \\text{top} - \\text{bottom} \\right)\\,dA = \\int_{0}^{[[d]]}\\int_{0}^{[[b]]} \\left( [[u]] - [[p]]x - [[q]]y \\right)\\,dx\\,dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates only the top surface \\(z=[[u]]\\), forgetting to subtract the bottom surface.",
+   "This integrates only the bottom surface \\(z=[[p]]x+[[q]]y\\).",
+   "This computes bottom minus top, giving the negative of the volume.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_under_a_surface_between_two_surfaces_v2",
+  "skill_id": "volume_under_a_surface_between_two_surfaces",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Two planes, \\( z = [[c]] \\) (top) and \\( z = x+y \\) (bottom), intersect over the first-octant region where \\( x+y \\le [[c]],\\ x\\ge0,\\ y\\ge0 \\). Find the volume of the solid between the two planes over this region (you must first determine the footprint from where top \\(\\ge\\) bottom, since it is not given directly).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[c]] - x - y", "vars": ["y", "x"], "bounds": [["0", "[[c]]-x"], ["0", "[[c]]"]]},
+  "distractors": [
+   "[[c]]**3/3",
+   "[[c]]**3/2",
+   "[[c]]**2/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The two planes meet along the line \\(x+y=[[c]]\\), so the footprint is the triangle \\(0\\le x\\le [[c]],\\ 0\\le y\\le [[c]]-x\\). Then \\( \\int_0^{[[c]]}\\int_0^{[[c]]-x} \\left([[c]]-x-y\\right)dy\\,dx = \\dfrac{[[c]]^3}{6} = [[answer]] \\), the volume of the tetrahedron with vertices \\((0,0,0),([[c]],0,0),(0,[[c]],0),(0,0,[[c]])\\).",
+  "distractor_rationales": [
+   "This uses \\(\\tfrac13\\), the coefficient for a cone/pyramid over a full square base, instead of \\(\\tfrac16\\) for this tetrahedron.",
+   "This uses \\(\\tfrac12\\), the coefficient for a triangular prism, instead of \\(\\tfrac16\\).",
+   "This reports only the base triangle's area, forgetting to integrate the height at all.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_under_a_surface_between_two_surfaces_v3",
+  "skill_id": "volume_under_a_surface_between_two_surfaces",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the solid that lies below the paraboloid \\( z = [[c]] - x^2 - y^2 \\) and above the plane \\( z = 0 \\). (The footprint is not given directly: first find where the paraboloid meets \\(z=0\\).)",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[c]] - x**2 - y**2",
+   "vars": ["y", "x"],
+   "bounds": [["-sqrt([[c]]-x**2)", "sqrt([[c]]-x**2)"], ["-sqrt([[c]])", "sqrt([[c]])"]]
+  },
+  "distractors": [
+   "pi*[[c]]**2",
+   "pi*[[c]]**2/4",
+   "4*pi*[[c]]**Rational(3,2)/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "The paraboloid meets \\(z=0\\) where \\(x^2+y^2=[[c]]\\), a disk of radius \\(\\sqrt{[[c]]}\\). Integrating \\( [[c]]-x^2-y^2 \\) over that disk (in Cartesian coordinates) gives \\( \\dfrac{\\pi [[c]]^2}{2} = [[answer]] \\), matching the standard paraboloid-cap volume formula.",
+  "distractor_rationales": [
+   "This uses \\(\\pi c^2\\), double the correct coefficient, as if the cap were a full cylinder of the same height.",
+   "This uses \\(\\pi c^2/4\\), half the correct coefficient.",
+   "This confuses the paraboloid cap with a hemisphere's volume formula.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_under_a_surface_between_two_surfaces_v4",
+  "skill_id": "volume_under_a_surface_between_two_surfaces",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the solid between the two paraboloids \\( z = x^2+y^2 \\) (bottom) and \\( z = 2([[c]]) - x^2 - y^2 \\) (top). (The footprint is not given directly: first find where the two paraboloids meet.)",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "(2*[[c]] - x**2 - y**2) - (x**2+y**2)",
+   "vars": ["y", "x"],
+   "bounds": [["-sqrt([[c]]-x**2)", "sqrt([[c]]-x**2)"], ["-sqrt([[c]])", "sqrt([[c]])"]]
+  },
+  "distractors": [
+   "pi*[[c]]**2/2",
+   "2*pi*[[c]]**2",
+   "pi*[[c]]**2/4",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "The two paraboloids meet where \\(x^2+y^2=[[c]]\\), a disk of radius \\(\\sqrt{[[c]]}\\). The difference top\\(-\\)bottom \\(=2([[c]]-x^2-y^2)\\), so the volume is twice the single-paraboloid-cap volume: \\( 2\\cdot\\dfrac{\\pi[[c]]^2}{2} = \\pi[[c]]^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is exactly half the correct value, as if only one paraboloid's cap volume were used instead of doubling it.",
+   "This is exactly double the correct value.",
+   "This is a quarter of the correct value.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_under_a_surface_between_two_surfaces_v5",
+  "skill_id": "volume_under_a_surface_between_two_surfaces",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "e": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {"K": "[[a]]*[[b]] + [[e]]"},
+  "stem": "Find the volume of the solid that lies below the plane \\( z = [[K]] \\) and above the saddle surface \\( z = xy \\), over the rectangle \\( 0 \\le x \\le [[a]],\\ 0 \\le y \\le [[b]] \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "[[K]] - x*y", "vars": ["x", "y"], "bounds": [["0", "[[a]]"], ["0", "[[b]]"]]},
+  "distractors": [
+   "[[K]]*[[a]]*[[b]]",
+   "[[a]]**2*[[b]]**2/4",
+   "[[K]]*[[a]]*[[b]] + [[a]]**2*[[b]]**2/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The volume is \\( \\int_0^{[[a]]}\\int_0^{[[b]]} \\left([[K]]-xy\\right)dy\\,dx = [[K]][[a]][[b]] - \\dfrac{[[a]]^2[[b]]^2}{4} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates only the flat top surface, forgetting to subtract the saddle \\(xy\\) contribution.",
+   "This reports only the (subtracted) saddle contribution, forgetting the flat top's box volume.",
+   "This adds instead of subtracts the saddle contribution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

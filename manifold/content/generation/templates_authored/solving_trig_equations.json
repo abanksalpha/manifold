@@ -1,0 +1,126 @@
+[
+{
+ "template_id": "solving_trig_smallest_positive_cos_v1",
+ "skill_id": "solving_trig_equations",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9},
+  "b": {"type": "int", "lo": 2, "hi": 10}
+ },
+ "constraints": ["Lt(Abs([[a]]), [[b]])", "Ne([[a]], 0)", "Eq(gcd(Abs([[a]]), [[b]]), 1)"],
+ "stem": "Find the smallest positive solution \\( x \\) (in radians) of \\( \\cos x=\\dfrac{[[a]]}{[[b]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "acos(Rational([[a]],[[b]]))"},
+ "distractors": [
+  "-acos(Rational([[a]],[[b]]))",
+  "pi - acos(Rational([[a]],[[b]]))",
+  "pi + acos(Rational([[a]],[[b]]))",
+  "2*pi - acos(Rational([[a]],[[b]]))",
+  "acos(Rational([[a]],[[b]])) + pi",
+  "acos(Rational([[a]],[[b]])) - pi"
+ ],
+ "solution": "Since \\( \\arccos \\) returns a value in \\( [0,\\pi] \\), and this is the smallest nonnegative angle with the given cosine (the next solution, \\( 2\\pi-\\arccos\\dfrac{[[a]]}{[[b]]} \\), is larger), the smallest positive solution is \\( x=\\arccos\\dfrac{[[a]]}{[[b]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This gives a negative angle rather than the smallest POSITIVE solution.",
+  "This uses the reflection rule for sine instead of the direct arccos value for cosine.",
+  "This adds a full extra period, overshooting the smallest solution.",
+  "This uses the OTHER solution in \\( [0,2\\pi) \\), which is larger, not the smallest one.",
+  "This adds an extra \\( \\pi \\) to the correct smallest solution.",
+  "This subtracts an extra \\( \\pi \\), producing a non-positive value."
+ ]
+},
+{
+ "template_id": "solving_trig_smallest_positive_sin_v1",
+ "skill_id": "solving_trig_equations",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "b": {"type": "int", "lo": 2, "hi": 10}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)"],
+ "stem": "Find the smallest positive solution \\( x \\) (in radians) of \\( \\sin x=\\dfrac{[[a]]}{[[b]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "asin(Rational([[a]],[[b]]))"},
+ "distractors": [
+  "pi - asin(Rational([[a]],[[b]]))",
+  "-asin(Rational([[a]],[[b]]))",
+  "pi + asin(Rational([[a]],[[b]]))",
+  "2*pi - asin(Rational([[a]],[[b]]))",
+  "asin(Rational([[a]],[[b]])) + pi",
+  "asin(Rational([[a]],[[b]])) - pi"
+ ],
+ "solution": "Since \\( 0<\\dfrac{[[a]]}{[[b]]}<1 \\), \\( \\arcsin\\dfrac{[[a]]}{[[b]]} \\) lies in \\( \\left(0,\\tfrac{\\pi}{2}\\right) \\); \\( \\sin \\) is increasing there, and the only other solution in \\( [0,2\\pi) \\), namely \\( \\pi-\\arcsin\\dfrac{[[a]]}{[[b]]} \\), is larger. So the smallest positive solution is \\( x=\\arcsin\\dfrac{[[a]]}{[[b]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the OTHER solution in \\( [0,2\\pi) \\) (the second-quadrant angle), which is larger, not the smallest one.",
+  "This gives a negative angle rather than the smallest POSITIVE solution.",
+  "This adds a full extra period, overshooting the smallest solution.",
+  "This uses the wrong quadrant reflection entirely.",
+  "This adds an extra \\( \\pi \\) to the correct smallest solution.",
+  "This subtracts an extra \\( \\pi \\), producing a non-positive value."
+ ]
+},
+{
+ "template_id": "solving_trig_smallest_positive_tan_coefficient_v1",
+ "skill_id": "solving_trig_equations",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 9},
+  "B": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Eq(gcd([[A]], [[B]]), 1)"],
+ "stem": "Find the smallest positive solution \\( x \\) (in radians) of \\( [[A]]\\tan x=[[B]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "atan(Rational([[B]],[[A]]))"},
+ "distractors": [
+  "atan(Rational([[A]],[[B]]))",
+  "-atan(Rational([[B]],[[A]]))",
+  "pi - atan(Rational([[B]],[[A]]))",
+  "atan(Rational([[B]],[[A]])) + pi",
+  "atan(Rational([[B]],[[A]])) - pi",
+  "pi + atan(Rational([[B]],[[A]]))"
+ ],
+ "solution": "Dividing gives \\( \\tan x=\\dfrac{[[B]]}{[[A]]}>0 \\), so \\( x=\\arctan\\dfrac{[[B]]}{[[A]]} \\) lies in \\( \\left(0,\\tfrac{\\pi}{2}\\right) \\); since \\( \\tan \\) has period \\( \\pi \\), this is the smallest positive solution, \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio \\( B/A\\) before taking the arctangent.",
+  "This gives a negative angle rather than the smallest POSITIVE solution.",
+  "This uses the sine/cosine reflection rule instead of tangent's period-\\( \\pi \\) shift.",
+  "This adds a full extra period, overshooting the smallest solution.",
+  "This subtracts a full period, producing a non-positive value.",
+  "This adds an extra \\( \\pi \\) on top of a sign flip."
+ ]
+},
+{
+ "template_id": "solving_trig_count_solutions_sin_kx_v1",
+ "skill_id": "solving_trig_equations",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 8},
+  "c_num": {"type": "int", "lo": -3, "hi": 3},
+  "c_den": {"type": "int", "lo": 4, "hi": 5}
+ },
+ "constraints": ["Ne([[c_num]], 0)", "Lt(Abs([[c_num]]), [[c_den]])"],
+ "stem": "How many solutions does \\( \\sin([[k]]x)=\\dfrac{[[c_num]]}{[[c_den]]} \\) have for \\( x \\) in \\( [0,2\\pi) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[k]]"},
+ "distractors": [
+  "[[k]]",
+  "4*[[k]]",
+  "2*[[k]] + 1",
+  "2*[[k]] - 1",
+  "[[k]] + 1",
+  "2*[[k]] + 2"
+ ],
+ "solution": "Substituting \\( \\theta=[[k]]x \\), as \\( x \\) ranges over \\( [0,2\\pi) \\), \\( \\theta \\) ranges over \\( [0,2([[k]])\\pi) \\), which is exactly \\( [[k]] \\) full periods of \\( \\sin\\theta \\). Since \\( \\dfrac{[[c_num]]}{[[c_den]]}\\ne\\pm1 \\), each period contributes exactly \\( 2 \\) solutions, for a total of \\( 2\\cdot[[k]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This counts only \\( 1 \\) solution per period instead of \\( 2 \\).",
+  "This counts \\( 4 \\) solutions per period instead of \\( 2 \\).",
+  "This overcounts by one solution.",
+  "This undercounts by one solution.",
+  "This forgets that each period of \\( \\sin\\theta=c\\) (with \\( -1<c<1 \\)) contributes two solutions, not one.",
+  "This overcounts by two solutions."
+ ]
+}
+]

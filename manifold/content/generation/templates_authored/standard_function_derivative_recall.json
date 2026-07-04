@@ -1,0 +1,705 @@
+[
+ {
+  "template_id": "std_derivative_recall_v1",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   },
+   "n": {
+    "type": "int",
+    "lo": 2,
+    "hi": 5
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "If \\( f(x) = [[a]]x^{[[n]]} \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*x**[[n]]",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]*[[x0]]**[[n]]",
+   "[[a]]*[[n]]*[[x0]]**[[n]]",
+   "[[n]]*[[x0]]**([[n]]-1)",
+   "[[a]]*([[n]]-1)*[[x0]]**([[n]]-1)",
+   "[[answer]] + [[a]]",
+   "[[answer]] - [[a]]"
+  ],
+  "solution": "\\( f'(x) = [[a]]\\cdot[[n]]\\,x^{[[n]]-1} \\), so \\( f'([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "std_derivative_recall_exp_e_v2",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "If \\( f(x) = [[a]]e^{[[k]]x} \\), what is \\( f'(0) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*exp([[k]]*x)",
+   "var": "x",
+   "at": "0",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]",
+   "[[a]]*[[k]]**2",
+   "[[k]]",
+   "[[a]]+[[k]]",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]"
+  ],
+  "solution": "\\( f'(x) = [[a]][[k]]e^{[[k]]x} \\), so \\( f'(0) = [[a]][[k]]e^{0} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to multiply by the chain-rule factor \\( k \\).",
+   "This squares \\( k \\) instead of using it as a single linear factor.",
+   "This reports \\( k \\) alone, dropping the leading coefficient \\( a \\).",
+   "This adds \\( a \\) and \\( k \\) instead of multiplying them.",
+   "This is off by \\( k \\) from the correct value.",
+   "This is off by \\( k \\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_exp_base_b_v3",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "c": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "b": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   }
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "If \\( f(x) = [[c]]\\cdot [[b]]^{x} \\), what is \\( f'(0) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[c]]*[[b]]**x",
+   "var": "x",
+   "at": "0",
+   "order": 1
+  },
+  "distractors": [
+   "[[c]]",
+   "[[c]]*[[b]]",
+   "log([[b]])",
+   "[[c]]/log([[b]])",
+   "[[answer]] + [[c]]",
+   "[[answer]] - [[c]]"
+  ],
+  "solution": "\\( f'(x) = [[c]][[b]]^{x}\\ln([[b]]) \\), so \\( f'(0) = [[c]]\\cdot [[b]]^{0}\\cdot\\ln([[b]]) = [[c]]\\ln([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f(0)=c \\) itself, forgetting the factor of \\( \\ln(b) \\) entirely.",
+   "This multiplies by \\( b \\) instead of by \\( \\ln(b) \\).",
+   "This drops the leading coefficient \\( c \\) entirely.",
+   "This divides by \\( \\ln(b) \\) instead of multiplying by it.",
+   "This is off by \\( c \\) from the correct value.",
+   "This is off by \\( c \\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_ln_v4",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   }
+  },
+  "constraints": [],
+  "stem": "If \\( f(x) = [[a]]\\ln(x) \\) for \\( x>0 \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*log(x)",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]*[[x0]]",
+   "[[a]]/[[x0]]**2",
+   "1/([[a]]*[[x0]])",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = \\dfrac{[[a]]}{x} \\), so \\( f'([[x0]]) = \\dfrac{[[a]]}{[[x0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( x_0 \\) instead of dividing by it.",
+   "This squares \\( x_0 \\) in the denominator instead of using it to the first power.",
+   "This puts the coefficient \\( a \\) in the denominator instead of the numerator.",
+   "This drops the point \\( x_0 \\) entirely, reporting just the coefficient.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_log_base_b_v5",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "b": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     5,
+     7,
+     10
+    ]
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   }
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "If \\( f(x) = [[a]]\\log_{[[b]]}(x) \\) for \\( x>0 \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*log(x,[[b]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]/[[x0]]",
+   "[[a]]*log([[b]])/[[x0]]",
+   "1/([[x0]]*log([[b]]))",
+   "[[a]]*[[x0]]*log([[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = \\dfrac{[[a]]}{x\\ln([[b]])} \\), so \\( f'([[x0]]) = \\dfrac{[[a]]}{[[x0]]\\ln([[b]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of \\( \\ln(b) \\) in the denominator entirely, as if the base were \\( e \\).",
+   "This multiplies by \\( \\ln(b) \\) instead of dividing by it.",
+   "This drops the leading coefficient \\( a \\) entirely.",
+   "This multiplies by \\( x_0 \\) instead of dividing by it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_sin_v6",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "k": {
+    "type": "choice",
+    "values": [
+     -6,
+     -4,
+     -2,
+     0,
+     2,
+     4,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "pi*[[k]]/2"
+  },
+  "stem": "If \\( f(x) = [[a]]\\sin(x) \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*sin(x)",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "-[[a]]*cos([[x0]])",
+   "[[a]]*sin([[x0]])",
+   "-[[a]]*sin([[x0]])",
+   "[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = [[a]]\\cos(x) \\), so \\( f'([[x0]]) = [[a]]\\cos([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign.",
+   "This uses the derivative of cosine (\\( -\\sin \\)) as if differentiating sine gave \\( \\sin \\) again.",
+   "This uses the derivative of cosine, with the wrong sign, in place of the derivative of sine.",
+   "This reports the point \\( x_0 \\) itself instead of the derivative there.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_cos_v7",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "k": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "pi*[[k]]/2"
+  },
+  "stem": "If \\( f(x) = [[a]]\\cos(x) \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*cos(x)",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]*sin([[x0]])",
+   "[[a]]*cos([[x0]])",
+   "-[[a]]*cos([[x0]])",
+   "[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = -[[a]]\\sin(x) \\), so \\( f'([[x0]]) = -[[a]]\\sin([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the negative sign from the derivative of cosine.",
+   "This uses the derivative of sine (\\( \\cos \\)) instead of cosine (\\( -\\sin \\)).",
+   "This uses the derivative of sine with the wrong sign, instead of the derivative of cosine.",
+   "This reports the point \\( x_0 \\) itself instead of the derivative there.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_tan_given_value_v8",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   },
+   "r": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "If \\( f(x) = [[a]]\\tan(x) \\) and \\( \\tan(x_0)=[[r]] \\) for some \\( x_0 \\), find \\( f'(x_0) \\) in terms of the given information.",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[a]]*(1+[[r]]**2)"
+  },
+  "distractors": [
+   "[[a]]*[[r]]**2",
+   "[[a]]*(1-[[r]]**2)",
+   "[[a]]/(1+[[r]]**2)",
+   "[[a]]*[[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = [[a]]\\sec^{2}(x) = [[a]](1+\\tan^{2}x) \\), so \\( f'(x_0) = [[a]](1+[[r]]^{2}) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( +1 \\) from the Pythagorean identity \\( \\sec^{2}x=1+\\tan^{2}x \\).",
+   "This uses \\( 1-\\tan^{2}x \\) instead of \\( 1+\\tan^{2}x \\).",
+   "This divides by \\( 1+\\tan^{2}x \\) instead of multiplying by it.",
+   "This reports \\( a\\tan(x_0) \\) itself instead of the derivative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_sqrt_v9",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "s": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "[[s]]**2"
+  },
+  "stem": "If \\( f(x) = [[a]]\\sqrt{x} \\) for \\( x>0 \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*sqrt(x)",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "2*[[a]]*sqrt([[x0]])",
+   "[[a]]/sqrt([[x0]])",
+   "sqrt([[x0]])/(2*[[a]])",
+   "[[a]]*[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = \\dfrac{[[a]]}{2\\sqrt{x}} \\), so \\( f'([[x0]]) = \\dfrac{[[a]]}{2\\cdot [[s]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( 2\\sqrt{x_0} \\) instead of dividing by it.",
+   "This drops the factor of 2 in the denominator.",
+   "This inverts the correct ratio.",
+   "This treats \\( \\sqrt{x} \\) like \\( x \\), applying the power rule for \\( n=1 \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_reciprocal_v10",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   }
+  },
+  "constraints": [],
+  "stem": "If \\( f(x) = \\dfrac{[[a]]}{x} \\) for \\( x\\ne 0 \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]/x",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]/[[x0]]**2",
+   "-[[a]]/[[x0]]",
+   "[[a]]/[[x0]]",
+   "-[[a]]*[[x0]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = -\\dfrac{[[a]]}{x^{2}} \\), so \\( f'([[x0]]) = -\\dfrac{[[a]]}{([[x0]])^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign from the power rule applied to \\( x^{-1} \\).",
+   "This forgets to square \\( x_0 \\) in the denominator.",
+   "This reports \\( f([[x0]]) \\) itself instead of the derivative.",
+   "This has the correct sign pattern reversed and multiplies instead of dividing.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "std_derivative_recall_arctan_v11",
+  "skill_id": "standard_function_derivative_recall",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -4,
+     -3,
+     -2,
+     -1,
+     0,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  },
+  "constraints": [],
+  "stem": "If \\( f(x) = [[a]]\\arctan(x) \\), what is \\( f'([[x0]]) \\)?",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "[[a]]*atan(x)",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]/(1-[[x0]]**2)",
+   "[[a]]*(1+[[x0]]**2)",
+   "1/(1+[[x0]]**2)",
+   "[[a]]/(1+[[x0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f'(x) = \\dfrac{[[a]]}{1+x^{2}} \\), so \\( f'([[x0]]) = \\dfrac{[[a]]}{1+([[x0]])^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( 1-x^{2} \\) instead of \\( 1+x^{2} \\) in the denominator.",
+   "This multiplies by \\( 1+x_0^{2} \\) instead of dividing by it.",
+   "This drops the leading coefficient \\( a \\) entirely.",
+   "This uses \\( 1+x_0 \\) instead of \\( 1+x_0^{2} \\) in the denominator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

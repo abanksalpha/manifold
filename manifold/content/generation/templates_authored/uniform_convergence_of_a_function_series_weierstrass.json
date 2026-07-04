@@ -1,0 +1,62 @@
+[
+{
+ "template_id": "weierstrass_mtest_geometric_majorant_v1",
+ "skill_id": "uniform_convergence_of_a_function_series_weierstrass",
+ "topic_id": "real_analysis_sequences",
+ "tier": "recognize",
+ "params": {
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Lt([[b]], [[c]])"],
+ "stem": "For \\( n \\ge 1 \\), define \\( f_n(x) = \\left(\\dfrac{x}{[[c]]}\\right)^{n} \\) on \\( [-[[b]], [[b]]] \\). Since \\( |x| \\le [[b]] \\), we have \\( |f_n(x)| \\le M_n = \\left(\\dfrac{[[b]]}{[[c]]}\\right)^{n} \\) for every \\( x \\) in this interval, and \\( \\displaystyle\\sum_{n=1}^{\\infty} M_n \\) converges (a geometric series with ratio \\( \\dfrac{[[b]]}{[[c]]} < 1 \\)), so by the Weierstrass M-test \\( \\displaystyle\\sum_{n=1}^{\\infty} f_n(x) \\) converges uniformly on \\( [-[[b]],[[b]]] \\). What is the value of \\( \\displaystyle\\sum_{n=1}^{\\infty} M_n \\), the majorizing series that certifies this?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[b]],[[c]])/(1 - Rational([[b]],[[c]]))"},
+ "distractors": [
+  "Rational([[b]], [[c]])",
+  "Rational([[c]], [[b]])",
+  "1/(1 - Rational([[b]],[[c]]))",
+  "Rational([[c]]-[[b]], [[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The majorant series \\( \\sum_{n=1}^{\\infty} M_n \\) is geometric with first term \\( M_1 = \\dfrac{[[b]]}{[[c]]} \\) and ratio \\( r=\\dfrac{[[b]]}{[[c]]} \\), so \\( \\sum_{n=1}^{\\infty} M_n = \\dfrac{r}{1-r} = \\dfrac{[[b]]/[[c]]}{1-[[b]]/[[c]]} = \\dfrac{[[b]]}{[[c]]-[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the first term \\( M_1 \\) of the series, not the sum of the whole series.",
+  "This inverts the ratio \\( b/c \\) itself.",
+  "This uses \\( \\frac{1}{1-r} \\), dropping the first-term factor \\( r \\) (this is the sum starting the series from \\( M_0=1 \\), not \\( M_1 \\)).",
+  "This computes \\( 1-r \\) directly instead of the sum \\( \\frac{r}{1-r} \\).",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+},
+{
+ "template_id": "weierstrass_mtest_telescoping_majorant_v2",
+ "skill_id": "uniform_convergence_of_a_function_series_weierstrass",
+ "topic_id": "real_analysis_sequences",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 0, "hi": 20},
+  "d": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "For \\( n \\ge 1 \\), define \\( f_n(x) = \\dfrac{x}{(n+[[a]])(n+[[a]]+1)} \\) on \\( [-[[d]], [[d]]] \\). Since \\( |x| \\le [[d]] \\), we have \\( |f_n(x)| \\le M_n = \\dfrac{[[d]]}{(n+[[a]])(n+[[a]]+1)} \\) for every \\( x \\) in this interval, and \\( \\displaystyle\\sum_{n=1}^{\\infty} M_n \\) converges (it telescopes), so by the Weierstrass M-test \\( \\displaystyle\\sum_{n=1}^{\\infty} f_n(x) \\) converges uniformly on \\( [-[[d]],[[d]]] \\). What is the value of \\( \\displaystyle\\sum_{n=1}^{\\infty} M_n \\), the majorizing series that certifies this?",
+ "answer_spec": {"op": "limit", "expr": "[[d]]*(1/([[a]]+1) - 1/(n+[[a]]+1))", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational(1, [[a]]+1)",
+  "[[d]]*([[a]]+1)",
+  "Rational([[d]], ([[a]]+1)**2)",
+  "2*Rational([[d]],[[a]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The \\( N \\)th partial sum telescopes: \\( \\sum_{n=1}^{N} \\dfrac{[[d]]}{(n+[[a]])(n+[[a]]+1)} = [[d]]\\left(\\dfrac{1}{[[a]]+1} - \\dfrac{1}{N+[[a]]+1}\\right) \\). As \\( N \\to \\infty \\) the tail term vanishes, leaving \\( \\displaystyle\\sum_{n=1}^{\\infty} M_n = \\dfrac{[[d]]}{[[a]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the factor \\( d \\), the bound on \\( |x| \\) that scales every \\( M_n \\).",
+  "This inverts the correct ratio, multiplying by \\( a+1 \\) instead of dividing by it.",
+  "This squares the denominator instead of leaving it linear.",
+  "This doubles the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum."
+ ]
+}
+]

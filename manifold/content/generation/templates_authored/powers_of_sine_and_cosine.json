@@ -1,0 +1,125 @@
+[
+{
+ "template_id": "powers_of_sine_and_cosine_v1",
+ "skill_id": "powers_of_sine_and_cosine",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "m": {"type": "choice", "values": [1, 2, 3, 4]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi/2} \\sin^{[[m]]} x\\,\\cos^{[[n]]} x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "sin(x)**[[m]]*cos(x)**[[n]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "3*[[answer]]",
+  "[[answer]]/3",
+  "3*[[answer]]/2",
+  "2*[[answer]]/3"
+ ],
+ "solution": "When a power is odd, peel off one factor and substitute (\\( u = \\cos x \\) if \\( \\sin \\) is odd, \\( u = \\sin x \\) if \\( \\cos \\) is odd); when both are even, use half-angle identities. Over \\( [0, \\pi/2] \\) this gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This doubles the correct value, e.g. from mishandling the substitution's factor.",
+  "This halves the correct value.",
+  "This triples the correct value through an arithmetic slip.",
+  "This scales the correct value by 1/3.",
+  "This scales the correct value by 3/2.",
+  "This scales the correct value by 2/3."
+ ]
+},
+{
+ "template_id": "powers_of_sine_pure_odd_power_v2",
+ "skill_id": "powers_of_sine_and_cosine",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [1, 3, 5, 7]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi} [[c]]\\sin^{[[n]]} x\\,dx \\) (a pure odd power of sine, no cosine factor).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)**[[n]]", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[c]]*[[n]]",
+  "[[c]]/[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( [[n]] \\) is odd, peel off one factor of \\( \\sin x \\), write the rest as \\( (1-\\cos^{2}x)^{([[n]]-1)/2} \\), and substitute \\( u=\\cos x \\). Carrying this out from \\( 0 \\) to \\( \\pi \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This halves the correct value, as if only integrating over \\( [0,\\pi/2] \\).",
+  "This doubles the correct value.",
+  "This multiplies \\( c \\) and \\( n \\) directly instead of carrying out the substitution.",
+  "This divides \\( c \\) by \\( n \\) instead of carrying out the substitution.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "powers_of_cosine_pure_even_power_wallis_v3",
+ "skill_id": "powers_of_sine_and_cosine",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [2, 4, 6, 8]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi/2} [[c]]\\cos^{[[n]]} x\\,dx \\) (a pure even power of cosine, no sine factor) using the Wallis formula.",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*cos(x)**[[n]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[c]]*pi/2",
+  "[[c]]*pi/4",
+  "3*[[answer]]/2",
+  "2*[[answer]]/3"
+ ],
+ "solution": "By the Wallis formula, \\( \\int_{0}^{\\pi/2}\\cos^{n}x\\,dx = \\dfrac{(n-1)!!}{n!!}\\cdot\\dfrac{\\pi}{2} \\) for even \\( n \\). With \\( n=[[n]] \\), multiplying by \\( [[c]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This uses the \\( n=0 \\) Wallis value \\( \\tfrac{\\pi}{2} \\) regardless of the actual power.",
+  "This uses the odd-power Wallis pattern instead of the even-power one.",
+  "This scales the correct value by 3/2.",
+  "This scales the correct value by 2/3."
+ ]
+},
+{
+ "template_id": "powers_of_sine_cosine_double_angle_full_period_v4",
+ "skill_id": "powers_of_sine_and_cosine",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{2\\pi} [[c]]\\sin^{2}([[k]]x)\\cos^{2}([[k]]x)\\,dx \\) by first rewriting the integrand with a double-angle identity.",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin([[k]]*x)**2*cos([[k]]*x)**2", "var": "x", "bounds": ["0", "2*pi"]},
+ "distractors": [
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[c]]*pi/2",
+  "[[c]]*pi",
+  "3*[[answer]]/2",
+  "2*[[answer]]/3"
+ ],
+ "solution": "Since \\( \\sin^{2}([[k]]x)\\cos^{2}([[k]]x) = \\tfrac{1}{4}\\sin^{2}(2[[k]]x) = \\tfrac{1}{8}\\left(1-\\cos(4[[k]]x)\\right) \\), integrating the constant term \\( \\tfrac{1}{8} \\) over \\( [0,2\\pi] \\) (the cosine term integrates to \\( 0 \\) over whole periods) gives \\( [[c]]\\cdot\\tfrac{1}{8}\\cdot 2\\pi = [[answer]] \\).",
+ "distractor_rationales": [
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This uses \\( \\tfrac{1}{4} \\) instead of \\( \\tfrac{1}{8} \\) for the average value of \\( \\sin^{2}(2kx) \\).",
+  "This uses \\( \\tfrac{1}{4} \\) as the average value and forgets to halve it again.",
+  "This scales the correct value by 3/2.",
+  "This scales the correct value by 2/3."
+ ]
+}
+]

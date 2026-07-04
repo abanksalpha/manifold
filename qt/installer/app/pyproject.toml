@@ -3,20 +3,24 @@ requires-python = ">=3.10"
 
 # This project was generated with 0.3.26 using template: https://github.com/beeware/briefcase-template @ v0.3.26
 [tool.briefcase]
-project_name = "Anki"
-bundle = "net.ankiweb"
+project_name = "Manifold"
+bundle = "com.manifold"
 url = "https://apps.ankiweb.net"
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE"]
 author = "Damien Elmes"
 
 [tool.briefcase.app.anki]
-formal_name = "Anki"
-description = "An intelligent spaced-repetition learning system"
-long_description = """Anki is a flashcard program that helps you spend more time on challenging material, and less on what you already know."""
+formal_name = "Manifold"
+description = "A spaced-repetition trainer for the GRE Mathematics Subject Test"
+long_description = """Manifold is a spaced-repetition trainer for the GRE Mathematics Subject Test. It builds a drillable library of math skills and reports separate scores for memory, performance, and readiness."""
 sources = [
   "src/anki",
 ]
+# TODO(manifold): supply a Manifold icon (resources/manifold.{icns,ico,png}) and
+# point this at "resources/manifold". Kept on the Anki icon until one exists;
+# the template names the bundled icon after the app key (anki), so do not repoint
+# this to a nonexistent file or the build will fail.
 icon = "resources/anki"
 cleanup_paths = [
   # document_type icons

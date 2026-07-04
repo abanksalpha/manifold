@@ -1,0 +1,141 @@
+[
+{
+ "template_id": "inverse_function_deriv_v1",
+ "skill_id": "derivative_of_an_inverse_function_f1_b",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 4
+  }
+ },
+ "constraints": [],
+ "derived": {
+  "b": "[[a]]**3 + [[k]]*[[a]]"
+ },
+ "stem": "Let \\( f(x)=x^{3}+[[k]]x \\), so \\( f([[a]])=[[b]] \\). Find \\( (f^{-1})'([[b]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "1/(3*[[a]]**2 + [[k]])"
+ },
+ "distractors": [
+  "3*[[a]]**2 + [[k]]",
+  "1/([[a]]**3 + [[k]]*[[a]])",
+  "1/(3*[[a]]**2)",
+  "1/(3*[[a]]**2 + [[k]] + 1)",
+  "1/(3*[[a]]**2 + [[k]] - 1)",
+  "2/(3*[[a]]**2 + [[k]])"
+ ],
+ "solution": "\\( (f^{-1})'(b) = 1/f'([[a]]) = 1/(3[[a]]^2+[[k]]) = [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "inverse_function_deriv_table_v2",
+ "skill_id": "derivative_of_an_inverse_function_f1_b",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "A differentiable, invertible function \\( f \\) satisfies \\( f([[a]])=[[b]] \\) and \\( f'([[a]])=[[c]] \\). Find \\( (f^{-1})'([[b]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "1/[[c]]"
+ },
+ "distractors": [
+  "[[c]]",
+  "-1/[[c]]",
+  "1/[[a]]",
+  "[[a]]/[[c]]",
+  "1/[[c]] + 1",
+  "1/[[c]] - 1"
+ ],
+ "solution": "By the inverse function derivative rule, \\( (f^{-1})'([[b]]) = 1/f'([[a]]) = 1/[[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( f'(a) \\) directly instead of its reciprocal.",
+  "This has the right magnitude but the wrong sign.",
+  "This mistakenly takes the reciprocal of \\( a \\) instead of \\( f'(a) \\).",
+  "This confuses \\( a/f'(a) \\) with the correct reciprocal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "inverse_function_deriv_reciprocal_direction_v3",
+ "skill_id": "derivative_of_an_inverse_function_f1_b",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "A differentiable, invertible function \\( f \\) satisfies \\( f([[a]])=[[b]] \\) and \\( (f^{-1})'([[b]])=\\dfrac{1}{[[k]]} \\). Find \\( f'([[a]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k]]"
+ },
+ "distractors": [
+  "1/[[k]]",
+  "-[[k]]",
+  "[[k]] + [[a]]",
+  "[[a]]/[[k]]",
+  "[[k]] + 1",
+  "[[k]] - 1"
+ ],
+ "solution": "Since \\( (f^{-1})'(b) = 1/f'(a) \\), we get \\( f'([[a]]) = 1/(f^{-1})'([[b]]) = [[k]] \\).",
+ "distractor_rationales": [
+  "This reports \\( (f^{-1})'(b) \\) itself instead of inverting it to get \\( f'(a) \\).",
+  "This has the right magnitude but the wrong sign.",
+  "This adds \\( a \\) to the reciprocal instead of just inverting.",
+  "This divides \\( a \\) by \\( k \\) rather than inverting the given slope.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "inverse_function_deriv_tangent_framing_v4",
+ "skill_id": "derivative_of_an_inverse_function_f1_b",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[m]], 0)"],
+ "stem": "The graph of a differentiable, invertible function \\( f \\) passes through \\( ([[a]],[[b]]) \\), and the tangent line to \\( y=f(x) \\) there has slope \\( [[m]] \\). What is the slope of the tangent line to \\( y=f^{-1}(x) \\) at the point \\( ([[b]],[[a]]) \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "1/[[m]]"
+ },
+ "distractors": [
+  "[[m]]",
+  "-1/[[m]]",
+  "-[[m]]",
+  "[[a]]/[[b]]",
+  "1/[[m]] + 1",
+  "1/[[m]] - 1"
+ ],
+ "solution": "The graphs of \\( f \\) and \\( f^{-1} \\) are reflections across \\( y=x \\), swapping the point to \\( ([[b]],[[a]]) \\) and inverting the slope: \\( (f^{-1})'([[b]]) = 1/[[m]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the original slope without inverting it.",
+  "This has the right magnitude but the wrong sign.",
+  "This negates the original slope instead of taking its reciprocal.",
+  "This confuses the coordinates of the point with the slope.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

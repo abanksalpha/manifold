@@ -1,0 +1,4 @@
+{
+ "skill_id": "rewrite_match_the_swapped_iterated_integral_setup_on",
+ "reason": "The task is to match/rewrite the correctly swapped iterated-integral SETUP (bounds and order), whose answer is a set of limits, not a single code-computable scalar value."
+}

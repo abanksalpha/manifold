@@ -1,0 +1,299 @@
+[
+{
+ "template_id": "max_independent_count_v1",
+ "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 2},
+  "q": {"type": "int", "lo": 1, "hi": 2},
+  "r": {"type": "int", "lo": 1, "hi": 2},
+  "s": {"type": "int", "lo": 1, "hi": 3},
+  "t": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "v4a": "[[p]] + [[q]]",
+  "v4b": "([[p]]*[[s]] + [[d2]]) + ([[q]]*[[s]] + [[r]]*[[d2]])",
+  "v4c": "([[p]]*[[t]] + [[d2]]*[[u]]) + ([[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]])"
+ },
+ "stem": "Consider the four vectors in \\( \\mathbb{R}^3 \\) \\[ \\mathbf{v}_1 = (1,\\ [[s]],\\ [[t]]),\\quad \\mathbf{v}_2 = ([[p]],\\ [[m22]],\\ [[m23]]),\\quad \\mathbf{v}_3 = ([[q]],\\ [[m32]],\\ [[m33]]),\\quad \\mathbf{v}_4 = ([[v4a]],\\ [[v4b]],\\ [[v4c]]). \\] What is the largest number of these vectors that form a linearly independent set?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [
+   ["1", "[[s]]", "[[t]]"],
+   ["[[p]]", "[[m22]]", "[[m23]]"],
+   ["[[q]]", "[[m32]]", "[[m33]]"],
+   ["[[v4a]]", "[[v4b]]", "[[v4c]]"]
+  ]
+ },
+ "distractors": [
+  "4",
+  "[[answer]] - 1",
+  "[[answer]] + 1",
+  "3",
+  "0",
+  "[[answer]] - 2",
+  "2",
+  "3 - [[answer]]"
+ ],
+ "solution": "The largest independent subset has size equal to the rank of the matrix formed by these vectors, which is \\( [[answer]] \\). (Since four vectors in \\( \\mathbb{R}^3 \\) are always dependent, the answer is at most \\( 3 \\).)",
+ "distractor_rationales": [
+  "All four vectors cannot be independent: four vectors in \\( \\mathbb{R}^3 \\) are always dependent.",
+  "This undercounts the size of a maximal independent subset by one.",
+  "This overcounts the size of a maximal independent subset by one.",
+  "This assumes the vectors span all of \\( \\mathbb{R}^3 \\) without checking.",
+  "This treats every vector as redundant.",
+  "This undercounts the maximal independent subset.",
+  "This miscounts the number of independent vectors.",
+  "This counts the redundant vectors instead of the independent ones."
+ ]
+},
+{
+ "template_id": "basis_check_square_rank_v2",
+ "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 2},
+  "q": {"type": "int", "lo": 1, "hi": 2},
+  "r": {"type": "int", "lo": 1, "hi": 2},
+  "s": {"type": "int", "lo": 1, "hi": 3},
+  "t": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]"
+ },
+ "stem": "Consider the three vectors in \\( \\mathbb{R}^3 \\): \\[ \\mathbf{v}_1 = (1,\\ [[s]],\\ [[t]]),\\quad \\mathbf{v}_2 = ([[p]],\\ [[m22]],\\ [[m23]]),\\quad \\mathbf{v}_3 = ([[q]],\\ [[m32]],\\ [[m33]]). \\] What is the rank of the matrix whose rows are these three vectors? (They form a basis of \\( \\mathbb{R}^3 \\) precisely when this rank is as large as possible.)",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [
+   ["1", "[[s]]", "[[t]]"],
+   ["[[p]]", "[[m22]]", "[[m23]]"],
+   ["[[q]]", "[[m32]]", "[[m33]]"]
+  ]
+ },
+ "distractors": [
+  "3",
+  "0",
+  "[[answer]] - 1",
+  "[[answer]] + 1",
+  "2",
+  "1",
+  "[[answer]] - 2",
+  "3 - [[answer]]"
+ ],
+ "solution": "Row-reducing the \\( 3 \\times 3 \\) matrix with rows \\( \\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3 \\) shows its rank is \\( [[answer]] \\); the vectors form a basis of \\( \\mathbb{R}^3 \\) exactly when this rank equals \\( 3 \\).",
+ "distractor_rationales": [
+  "This assumes any three vectors in \\( \\mathbb{R}^3 \\) automatically form a basis, without checking for dependence.",
+  "This assumes the vectors are always dependent, which is not guaranteed.",
+  "This undercounts the rank by one.",
+  "This overcounts the rank by one, which cannot exceed the number of rows or columns.",
+  "This is a plausible but unverified rank value.",
+  "This treats the vectors as spanning only a line.",
+  "This undercounts the rank by two.",
+  "This subtracts the rank from the ambient dimension instead of reporting the rank itself."
+ ]
+},
+{
+ "template_id": "span_dimension_underdetermined_v3",
+ "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 2},
+  "q": {"type": "int", "lo": 1, "hi": 2},
+  "r": {"type": "int", "lo": 1, "hi": 2},
+  "s": {"type": "int", "lo": 1, "hi": 3},
+  "t": {"type": "int", "lo": 1, "hi": 3},
+  "w": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 1, "hi": 3},
+  "y": {"type": "int", "lo": 1, "hi": 3},
+  "z": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m24": "[[p]]*[[w]] + [[d2]]*[[y]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "m34": "[[q]]*[[w]] + [[r]]*[[d2]]*[[y]] + [[d3]]*[[z]]"
+ },
+ "stem": "Consider the three vectors in \\( \\mathbb{R}^4 \\): \\[ \\mathbf{v}_1 = (1,\\ [[s]],\\ [[t]],\\ [[w]]),\\quad \\mathbf{v}_2 = ([[p]],\\ [[m22]],\\ [[m23]],\\ [[m24]]),\\quad \\mathbf{v}_3 = ([[q]],\\ [[m32]],\\ [[m33]],\\ [[m34]]). \\] What is the dimension of the subspace spanned by \\( \\{\\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3\\} \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [
+   ["1", "[[s]]", "[[t]]", "[[w]]"],
+   ["[[p]]", "[[m22]]", "[[m23]]", "[[m24]]"],
+   ["[[q]]", "[[m32]]", "[[m33]]", "[[m34]]"]
+  ]
+ },
+ "distractors": [
+  "4",
+  "0",
+  "[[answer]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "1"
+ ],
+ "solution": "The dimension of the span of \\( \\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3 \\) equals the rank of the \\( 3 \\times 4 \\) matrix they form, which is \\( [[answer]] \\). Three vectors can never span more than a \\( 3 \\)-dimensional subspace, even inside \\( \\mathbb{R}^4 \\).",
+ "distractor_rationales": [
+  "This wrongly assumes three vectors can span all of the ambient \\( 4 \\)-dimensional space.",
+  "This wrongly assumes the vectors are always fully dependent.",
+  "This undercounts the dimension of the span by one.",
+  "This overcounts the dimension of the span, which cannot exceed the number of vectors.",
+  "This undercounts the dimension of the span by two.",
+  "This assumes the vectors span only a line."
+ ]
+},
+{
+ "template_id": "dependent_parameter_solve_v4",
+ "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d]] - [[a]]*[[c]], 0)"],
+ "stem": "Let \\( \\mathbf{v}_1 = (1,\\ [[a]],\\ [[b]]) \\), \\( \\mathbf{v}_2 = ([[c]],\\ [[d]],\\ [[e]]) \\), and \\( \\mathbf{v}_3 = ([[f]],\\ [[g]],\\ t) \\), where \\( t \\) is a real parameter. For what value of \\( t \\) are \\( \\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3 \\) linearly dependent (equivalently, for what \\( t \\) do they fail to form a basis of \\( \\mathbb{R}^3 \\))?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "1*([[d]]*t - [[e]]*[[g]]) - [[a]]*([[c]]*t - [[e]]*[[f]]) + [[b]]*([[c]]*[[g]] - [[d]]*[[f]]) = 0",
+  "var": "t"
+ },
+ "distractors": [
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[g]]",
+  "[[f]]"
+ ],
+ "solution": "The vectors are linearly dependent exactly when \\( \\det\\begin{bmatrix} 1 & [[a]] & [[b]] \\\\ [[c]] & [[d]] & [[e]] \\\\ [[f]] & [[g]] & t \\end{bmatrix} = 0 \\). Expanding along the first row gives a linear equation in \\( t \\), whose solution is \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the negative of the correct value, from a sign error in the cofactor expansion.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This mistakes the given entry \\( g \\) for the dependence-causing value of \\( t \\).",
+  "This mistakes the given entry \\( f \\) for the dependence-causing value of \\( t \\)."
+ ]
+},
+{
+ "template_id": "linear_combination_coefficient_v5",
+ "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "i": {"type": "int", "lo": -4, "hi": 4},
+  "w1": {"type": "int", "lo": -6, "hi": 6},
+  "w2": {"type": "int", "lo": -6, "hi": 6},
+  "w3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]]), 0)"],
+ "stem": "The vectors \\( \\mathbf{v}_1 = ([[a]],\\ [[d]],\\ [[g]]) \\), \\( \\mathbf{v}_2 = ([[b]],\\ [[e]],\\ [[h]]) \\), \\( \\mathbf{v}_3 = ([[c]],\\ [[f]],\\ [[i]]) \\) form a basis for \\( \\mathbb{R}^3 \\). The vector \\( \\mathbf{w} = ([[w1]],\\ [[w2]],\\ [[w3]]) \\) is written as \\( \\mathbf{w} = x\\mathbf{v}_1 + y\\mathbf{v}_2 + z\\mathbf{v}_3 \\). What is the value of \\( x \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": [
+   "[[a]]*x+[[b]]*y+[[c]]*z=[[w1]]",
+   "[[d]]*x+[[e]]*y+[[f]]*z=[[w2]]",
+   "[[g]]*x+[[h]]*y+[[i]]*z=[[w3]]"
+  ],
+  "vars": ["x", "y", "z"],
+  "want": "x"
+ },
+ "distractors": [
+  "[[w1]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[w1]] - [[w2]]",
+  "[[w1]] + [[w2]] + [[w3]]"
+ ],
+ "solution": "Writing \\( \\mathbf{w} = x\\mathbf{v}_1+y\\mathbf{v}_2+z\\mathbf{v}_3 \\) componentwise gives the linear system \\( [[a]]x+[[b]]y+[[c]]z=[[w1]] \\), \\( [[d]]x+[[e]]y+[[f]]z=[[w2]] \\), \\( [[g]]x+[[h]]y+[[i]]z=[[w3]] \\). Solving this system for \\( x \\) gives \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakes the first coordinate of \\( \\mathbf{w} \\) itself for the coefficient \\( x \\).",
+  "This is the negative of the correct coefficient.",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient.",
+  "This combines the wrong coordinates of \\( \\mathbf{w} \\) instead of solving the system.",
+  "This sums the coordinates of \\( \\mathbf{w} \\) instead of solving the system."
+ ]
+},
+{
+ "template_id": "span_membership_parameter_v6",
+ "skill_id": "test_independence_spanning_basis_of_explicit_vectors",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "w1": {"type": "int", "lo": -5, "hi": 5},
+  "w2": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)"],
+ "stem": "The vectors \\( \\mathbf{v}_1 = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v}_2 = ([[d]],\\ [[e]],\\ [[f]]) \\) span a two-dimensional subspace of \\( \\mathbb{R}^3 \\). For what value of \\( t \\) does the vector \\( \\mathbf{w} = ([[w1]],\\ [[w2]],\\ t) \\) lie in this subspace, i.e. in the span of \\( \\mathbf{v}_1 \\) and \\( \\mathbf{v}_2 \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": [
+   "[[a]]*x+[[d]]*y=[[w1]]",
+   "[[b]]*x+[[e]]*y=[[w2]]",
+   "[[c]]*x+[[f]]*y=t"
+  ],
+  "vars": ["x", "y", "t"],
+  "want": "t"
+ },
+ "distractors": [
+  "[[w1]] + [[w2]]",
+  "[[c]] + [[f]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[w1]] - [[w2]]"
+ ],
+ "solution": "Solving \\( [[a]]x+[[d]]y=[[w1]] \\) and \\( [[b]]x+[[e]]y=[[w2]] \\) for \\( x, y \\) (unique since \\( \\mathbf{v}_1, \\mathbf{v}_2 \\) are independent), then substituting into \\( [[c]]x+[[f]]y=t \\) gives \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums the two given coordinates of \\( \\mathbf{w} \\) instead of solving the system.",
+  "This sums the third-coordinate entries of \\( \\mathbf{v}_1, \\mathbf{v}_2 \\) instead of solving for the combination.",
+  "This is the negative of the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This subtracts the two given coordinates of \\( \\mathbf{w} \\) instead of solving the system."
+ ]
+}
+]

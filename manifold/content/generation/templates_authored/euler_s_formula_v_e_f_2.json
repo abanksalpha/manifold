@@ -1,0 +1,153 @@
+[
+ {
+  "template_id": "euler_formula_faces_v1",
+  "skill_id": "euler_s_formula_v_e_f_2",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 4, "hi": 9},
+   "E": {"type": "int", "lo": 3, "hi": 21}
+  },
+  "constraints": ["Ge([[E]], [[V]] - 1)", "Le([[E]], 3*[[V]] - 6)"],
+  "stem": "A connected planar graph is drawn in the plane with \\( [[V]] \\) vertices and \\( [[E]] \\) edges. Into how many faces (regions, including the unbounded outer region) does it divide the plane?",
+  "answer_spec": {"op": "evaluate", "expr": "[[E]] - [[V]] + 2"},
+  "distractors": [
+   "[[V]] - [[E]] + 2",
+   "[[E]] - [[V]] - 2",
+   "[[E]] - [[V]]",
+   "[[E]] + [[V]] - 2",
+   "[[E]] + [[V]] + 2",
+   "[[answer]] + 1"
+  ],
+  "solution": "Euler's formula for a connected planar graph is \\( V - E + F = 2 \\). Solving for the number of faces gives \\( F = E - V + 2 = [[E]] - [[V]] + 2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of \\( V \\) and \\( E \\) in Euler's formula.",
+   "This subtracts 2 instead of adding it when solving \\( V - E + F = 2 \\).",
+   "This drops the constant 2 from Euler's formula.",
+   "This adds \\( V \\) and \\( E \\) instead of subtracting \\( V \\).",
+   "This adds all three quantities rather than using \\( F = E - V + 2 \\).",
+   "This is off by one from the correct number of faces."
+  ]
+ },
+ {
+  "template_id": "euler_formula_edges_v2",
+  "skill_id": "euler_s_formula_v_e_f_2",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 4, "hi": 10},
+   "F": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": ["Le([[F]], 2*[[V]] - 4)"],
+  "stem": "A connected planar graph is drawn in the plane with \\( [[V]] \\) vertices, and it divides the plane into \\( [[F]] \\) faces (regions, including the unbounded outer region). How many edges does the graph have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[F]] + [[V]] - 2"},
+  "distractors": [
+   "[[F]] - [[V]] + 2",
+   "[[F]] + [[V]] + 2",
+   "[[F]] - [[V]] - 2",
+   "[[F]]*[[V]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Euler's formula for a connected planar graph is \\( V - E + F = 2 \\). Solving for the number of edges gives \\( E = F + V - 2 = [[F]] + [[V]] - 2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts \\( V \\) instead of adding it when isolating \\( E \\).",
+   "This adds 2 instead of subtracting it when isolating \\( E \\).",
+   "This subtracts both \\( V \\) and 2 instead of adding \\( V \\) and subtracting 2.",
+   "This multiplies \\( F \\) and \\( V \\) instead of using Euler's formula.",
+   "This is off by one from the correct number of edges.",
+   "This is off by one from the correct number of edges."
+  ]
+ },
+ {
+  "template_id": "euler_formula_vertices_v3",
+  "skill_id": "euler_s_formula_v_e_f_2",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "E": {"type": "int", "lo": 3, "hi": 30},
+   "F": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": ["Ge([[E]] - [[F]] + 2, 4)", "Le(3*[[F]], 2*[[E]])"],
+  "stem": "A connected planar graph is drawn in the plane with \\( [[E]] \\) edges, and it divides the plane into \\( [[F]] \\) faces (regions, including the unbounded outer region). How many vertices does the graph have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[E]] - [[F]] + 2"},
+  "distractors": [
+   "[[F]] - [[E]] + 2",
+   "[[E]] + [[F]] - 2",
+   "[[E]] + [[F]] + 2",
+   "[[E]] - [[F]] - 2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Euler's formula for a connected planar graph is \\( V - E + F = 2 \\). Solving for the number of vertices gives \\( V = E - F + 2 = [[E]] - [[F]] + 2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of \\( E \\) and \\( F \\) in Euler's formula.",
+   "This adds \\( F \\) instead of subtracting it when isolating \\( V \\).",
+   "This adds all three quantities rather than using \\( V = E - F + 2 \\).",
+   "This subtracts 2 instead of adding it when isolating \\( V \\).",
+   "This is off by one from the correct number of vertices.",
+   "This is off by one from the correct number of vertices."
+  ]
+ },
+ {
+  "template_id": "euler_formula_polyhedron_v4",
+  "skill_id": "euler_s_formula_v_e_f_2",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 4, "hi": 9},
+   "E": {"type": "int", "lo": 3, "hi": 21}
+  },
+  "constraints": ["Ge([[E]], [[V]] - 1)", "Le([[E]], 3*[[V]] - 6)"],
+  "stem": "A convex polyhedron has \\( [[V]] \\) vertices and \\( [[E]] \\) edges. By Euler's formula for polyhedra, how many faces does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[E]] - [[V]] + 2"},
+  "distractors": [
+   "[[V]] - [[E]] + 2",
+   "[[E]] - [[V]] - 2",
+   "[[E]] - [[V]]",
+   "[[E]] + [[V]] - 2",
+   "[[E]] + [[V]] + 2",
+   "[[answer]] + 1"
+  ],
+  "solution": "Euler's formula for a convex polyhedron is \\( V - E + F = 2 \\), the same relation that holds for connected planar graphs. Solving for the number of faces gives \\( F = E - V + 2 = [[E]] - [[V]] + 2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of \\( V \\) and \\( E \\) in Euler's formula.",
+   "This subtracts 2 instead of adding it when solving \\( V - E + F = 2 \\).",
+   "This drops the constant 2 from Euler's formula.",
+   "This adds \\( V \\) and \\( E \\) instead of subtracting \\( V \\).",
+   "This adds all three quantities rather than using \\( F = E - V + 2 \\).",
+   "This is off by one from the correct number of faces."
+  ]
+ },
+ {
+  "template_id": "euler_formula_disconnected_v5",
+  "skill_id": "euler_s_formula_v_e_f_2",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 5, "hi": 12},
+   "C": {"type": "int", "lo": 1, "hi": 4},
+   "E": {"type": "int", "lo": 3, "hi": 30}
+  },
+  "constraints": ["Lt([[C]], [[V]])", "Ge([[E]], [[V]] - [[C]])", "Le([[E]], 3*[[V]] - 6)"],
+  "stem": "A (possibly disconnected) planar graph is drawn in the plane with \\( [[V]] \\) vertices, \\( [[E]] \\) edges, and exactly \\( [[C]] \\) connected components. Into how many faces (regions, including the unbounded outer region) does it divide the plane?",
+  "answer_spec": {"op": "evaluate", "expr": "[[E]] - [[V]] + 1 + [[C]]"},
+  "distractors": [
+   "[[E]] - [[V]] + 2",
+   "[[E]] - [[V]] + [[C]]",
+   "[[V]] - [[E]] + 1 + [[C]]",
+   "[[E]] - [[V]] - 1 - [[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The generalized Euler's formula for a planar graph with \\( C \\) connected components is \\( V - E + F = 1 + C \\) (it reduces to the usual \\( V - E + F = 2 \\) when \\( C = 1 \\)). Solving for the faces gives \\( F = E - V + 1 + C = [[E]] - [[V]] + 1 + [[C]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the connected-graph formula \\( F = E - V + 2 \\), ignoring that the graph has \\( [[C]] \\) components.",
+   "This uses \\( C \\) alone instead of \\( 1 + C \\) as the correction term.",
+   "This swaps the roles of \\( V \\) and \\( E \\) in the generalized formula.",
+   "This flips the sign of the correction term entirely.",
+   "This is off by one from the correct number of faces.",
+   "This is off by one from the correct number of faces."
+  ]
+ }
+]

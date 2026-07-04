@@ -1,0 +1,208 @@
+[
+{
+ "template_id": "polar_r_v1",
+ "skill_id": "polar_rectangular_conversion",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x": {
+   "type": "int",
+   "lo": -9,
+   "hi": 9
+  },
+  "y": {
+   "type": "int",
+   "lo": -9,
+   "hi": 9
+  }
+ },
+ "constraints": [
+  "Ne([[x]]**2 + [[y]]**2, 0)"
+ ],
+ "stem": "Convert the point \\( ([[x]],[[y]]) \\) to polar form: find \\( r \\) (with \\( r\\ge 0 \\)).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[x]]**2 + [[y]]**2)"
+ },
+ "distractors": [
+  "[[x]]**2 + [[y]]**2",
+  "Abs([[x]]) + Abs([[y]])",
+  "sqrt(Abs([[x]]*[[y]]))",
+  "sqrt([[x]]**2 + [[y]]**2) + 1",
+  "sqrt([[x]]**2 + [[y]]**2) - 1",
+  "Abs([[x]] + [[y]])"
+ ],
+ "solution": "\\( r=\\sqrt{x^{2}+y^{2}}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "polar_theta_from_point_v1",
+ "skill_id": "polar_rectangular_conversion",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[x0]], 0)"],
+ "stem": "Convert the point \\( ([[x0]],[[x0]]\\sqrt{3}) \\) to polar form: find \\( \\theta \\), with \\( -\\pi<\\theta\\le\\pi \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*atan(([[x0]]*sqrt(3))/(sqrt([[x0]]**2 + 3*[[x0]]**2) + [[x0]]))"
+ },
+ "distractors": [
+  "pi/6",
+  "pi/2",
+  "2*pi/3",
+  "-pi/3",
+  "pi/3 + pi/12",
+  "pi/3 - pi/12"
+ ],
+ "solution": "Since \\( \\tan\\theta=\\dfrac{[[x0]]\\sqrt{3}}{[[x0]]}=\\sqrt{3} \\) and the point is in the first quadrant, \\( \\theta=\\dfrac{\\pi}{3}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\tan\\theta=\\frac{1}{\\sqrt3}\\) (the angle whose tangent is the reciprocal) instead of \\( \\sqrt3\\).",
+  "This mistakes the ratio for an undefined tangent (as if \\( x=0\\)).",
+  "This uses the reference angle's supplement instead of the angle itself.",
+  "This gives the correct reference angle but in the wrong (negative) quadrant.",
+  "This is off by a small additive amount from the correct angle.",
+  "This is off by a small additive amount (other direction) from the correct angle."
+ ]
+},
+{
+ "template_id": "polar_to_rectangular_x_from_r_theta_v1",
+ "skill_id": "polar_rectangular_conversion",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 20},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "A point has polar coordinates \\( \\left(r,\\theta\\right)=\\left([[r]],\\dfrac{\\pi}{[[n]]}\\right) \\). Find its rectangular \\( x \\)-coordinate.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[r]]*cos(pi/[[n]])"
+ },
+ "distractors": [
+  "[[r]]*sin(pi/[[n]])",
+  "[[r]]*cos(pi/[[n]])**2",
+  "[[r]]/cos(pi/[[n]])",
+  "[[r]]*cos(2*pi/[[n]])",
+  "[[r]]*cos(pi/[[n]]) + 1",
+  "[[r]]*cos(pi/[[n]]) - 1"
+ ],
+ "solution": "\\( x=r\\cos\\theta=[[r]]\\cos\\dfrac{\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\sin\\theta\\) instead of \\( \\cos\\theta\\).",
+  "This squares the cosine instead of using it linearly.",
+  "This divides by \\( \\cos\\theta\\) instead of multiplying.",
+  "This doubles the angle before taking the cosine.",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "polar_ray_find_y_from_x_and_angle_v1",
+ "skill_id": "polar_rectangular_conversion",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": 1, "hi": 15},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "A point in the first quadrant has \\( x \\)-coordinate \\( [[x0]] \\) and lies on the ray \\( \\theta=\\dfrac{\\pi}{[[n]]} \\) from the origin. Find its \\( y \\)-coordinate.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[x0]]*tan(pi/[[n]])"
+ },
+ "distractors": [
+  "[[x0]]/tan(pi/[[n]])",
+  "[[x0]]*sin(pi/[[n]])",
+  "[[x0]]*tan(pi/[[n]])**2",
+  "[[x0]]*tan(2*pi/[[n]])",
+  "[[x0]]*tan(pi/[[n]]) + 1",
+  "[[x0]]*tan(pi/[[n]]) - 1"
+ ],
+ "solution": "On the ray \\( \\theta=\\frac{\\pi}{[[n]]} \\), \\( y=x\\tan\\theta=[[x0]]\\tan\\dfrac{\\pi}{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the tangent ratio.",
+  "This uses \\( \\sin\\theta\\) instead of \\( \\tan\\theta\\).",
+  "This squares the tangent instead of using it linearly.",
+  "This doubles the angle before taking the tangent.",
+  "This is off by one from the correct \\( y\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( y\\)-coordinate."
+ ]
+},
+{
+ "template_id": "polar_circle_equation_radius_v1",
+ "skill_id": "polar_rectangular_conversion",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "b": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "The polar equation \\( r=2[[a]]\\cos\\theta+2[[b]]\\sin\\theta \\) describes a circle through the origin. Converting to rectangular form, find the circle's radius.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "[[a]] + [[b]]",
+  "sqrt([[a]]**2 - [[b]]**2)",
+  "[[a]]**2 + [[b]]**2",
+  "sqrt(2*[[a]]**2 + 2*[[b]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2) + 1",
+  "sqrt([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "Multiplying by \\( r \\): \\( x^{2}+y^{2}=2[[a]]x+2[[b]]y \\), so \\( (x-[[a]])^{2}+(y-[[b]])^{2}=[[a]]^{2}+[[b]]^{2} \\); the radius is \\( \\sqrt{a^{2}+b^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( a\\) and \\( b\\) directly instead of combining them under a square root.",
+  "This subtracts \\( b^2\\) from \\( a^2\\) instead of adding.",
+  "This reports the radius squared instead of the radius itself.",
+  "This doubles both terms under the root unnecessarily.",
+  "This is off by one from the correct radius.",
+  "This is off by one (other direction) from the correct radius."
+ ]
+},
+{
+ "template_id": "polar_line_r_at_angle_v1",
+ "skill_id": "polar_rectangular_conversion",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 12},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "The vertical line \\( x=[[k]] \\) has polar equation \\( r\\cos\\theta=[[k]] \\). Find \\( r \\) when \\( \\theta=\\dfrac{\\pi}{[[n]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k]]/cos(pi/[[n]])"
+ },
+ "distractors": [
+  "[[k]]*cos(pi/[[n]])",
+  "[[k]]/sin(pi/[[n]])",
+  "[[k]]/cos(pi/[[n]])**2",
+  "[[k]]/cos(2*pi/[[n]])",
+  "[[k]]/cos(pi/[[n]]) + 1",
+  "[[k]]/cos(pi/[[n]]) - 1"
+ ],
+ "solution": "From \\( r\\cos\\theta=[[k]] \\), \\( r=\\dfrac{[[k]]}{\\cos\\theta}=\\dfrac{[[k]]}{\\cos(\\pi/[[n]])}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( \\cos\\theta\\) instead of dividing.",
+  "This divides by \\( \\sin\\theta\\) instead of \\( \\cos\\theta\\).",
+  "This divides by the square of the cosine instead of the cosine itself.",
+  "This doubles the angle before dividing.",
+  "This is off by one from the correct value of \\( r\\).",
+  "This is off by one (other direction) from the correct value of \\( r\\)."
+ ]
+}
+]

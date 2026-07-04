@@ -1,0 +1,4 @@
+{
+ "skill_id": "deduce_f_s_behavior_from_the_graph_or_sign_of_f_or_f",
+ "reason": "reads behavior from a graph / sign chart, not a code-computable scalar."
+}

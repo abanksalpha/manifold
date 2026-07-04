@@ -1,0 +1,121 @@
+[
+{
+ "template_id": "decide_diagonalizable_v1_2x2_repeated",
+ "skill_id": "decide_whether_a_matrix_is_diagonalizable",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Eq([[b]]*[[e]], 0)"],
+ "stem": "The matrix \\( A = \\begin{pmatrix} [[c]] & [[b]] \\\\ [[e]] & [[c]] \\end{pmatrix} \\) has \\( \\lambda=[[c]] \\) as a repeated eigenvalue (algebraic multiplicity 2). To decide whether \\( A \\) is diagonalizable, compute \\( \\operatorname{rank}(A - [[c]]I) \\) (its geometric multiplicity is \\( 2 - \\operatorname{rank}(A-[[c]]I) \\)). What is \\( \\operatorname{rank}(A-[[c]]I) \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["0", "[[b]]"], ["[[e]]", "0"]]},
+ "distractors": [
+  "2",
+  "3",
+  "-1",
+  "4",
+  "-2"
+ ],
+ "solution": "\\( A - [[c]]I = \\begin{pmatrix} 0 & [[b]] \\\\ [[e]] & 0 \\end{pmatrix} \\); this is the zero matrix only if both off-diagonal entries vanish (rank 0), and otherwise has exactly one independent row (rank 1). Here \\( \\operatorname{rank}(A-[[c]]I) = [[answer]] \\).",
+ "distractor_rationales": [
+  "The rank of a \\(2\\times2\\) matrix with a zero diagonal and \\(bc=0\\) can be at most 1, never 2.",
+  "The rank of any \\(2\\times2\\) matrix can never exceed 2.",
+  "A rank can never be negative.",
+  "The rank of any \\(2\\times2\\) matrix can never exceed 2.",
+  "A rank can never be negative."
+ ]
+},
+{
+ "template_id": "decide_diagonalizable_v2_3x3_mult2_triangular",
+ "skill_id": "decide_whether_a_matrix_is_diagonalizable",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[c]], [[d]])"],
+ "derived": {"dc": "[[d]] - [[c]]"},
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[c]] & [[p]] & [[q]] \\\\ 0 & [[c]] & [[r]] \\\\ 0 & 0 & [[d]] \\end{pmatrix} \\) has \\( \\lambda=[[c]] \\) as a repeated eigenvalue (algebraic multiplicity 2). What is \\( \\operatorname{rank}(A-[[c]]I) \\) (this determines the geometric multiplicity of \\( \\lambda=[[c]] \\), and hence whether \\( A \\) is diagonalizable)?",
+ "answer_spec": {"op": "rank", "matrix": [["0", "[[p]]", "[[q]]"], ["0", "0", "[[r]]"], ["0", "0", "[[dc]]"]]},
+ "distractors": [
+  "0",
+  "3",
+  "4",
+  "-1",
+  "-2",
+  "5"
+ ],
+ "solution": "\\( A - [[c]]I = \\begin{pmatrix} 0 & [[p]] & [[q]] \\\\ 0 & 0 & [[r]] \\\\ 0 & 0 & [[dc]] \\end{pmatrix} \\), which has rank [[answer]] (the first column is entirely zero; since \\( [[dc]] \\ne 0\\) the third column always contributes one pivot, and the second column contributes an extra pivot exactly when \\( [[p]] \\ne 0 \\)).",
+ "distractor_rationales": [
+  "Since \\( [[c]] \\ne [[d]] \\), the last row is not entirely zero, so the rank cannot be 0.",
+  "The first column of \\( A-[[c]]I \\) is entirely zero, so the rank can never reach the full size 3.",
+  "The rank of a \\(3\\times3\\) matrix can never exceed 3.",
+  "A rank can never be negative.",
+  "A rank can never be negative.",
+  "The rank of a \\(3\\times3\\) matrix can never exceed 3."
+ ]
+},
+{
+ "template_id": "decide_diagonalizable_v3_3x3_mult3",
+ "skill_id": "decide_whether_a_matrix_is_diagonalizable",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[c]] & [[p]] & [[q]] \\\\ 0 & [[c]] & [[r]] \\\\ 0 & 0 & [[c]] \\end{pmatrix} \\) has \\( \\lambda=[[c]] \\) as its only eigenvalue, with algebraic multiplicity 3. What is \\( \\operatorname{rank}(A-[[c]]I) \\) (this determines the geometric multiplicity of \\( \\lambda=[[c]] \\), and hence whether \\( A \\) is diagonalizable)?",
+ "answer_spec": {"op": "rank", "matrix": [["0", "[[p]]", "[[q]]"], ["0", "0", "[[r]]"], ["0", "0", "0"]]},
+ "distractors": [
+  "3",
+  "4",
+  "-1",
+  "-2",
+  "5"
+ ],
+ "solution": "\\( A - [[c]]I = \\begin{pmatrix} 0 & [[p]] & [[q]] \\\\ 0 & 0 & [[r]] \\\\ 0 & 0 & 0 \\end{pmatrix} \\) is strictly upper triangular, so it can never be invertible (rank \\( <3 \\)); its exact rank is [[answer]], determined by how many of \\( [[p]], [[r]] \\) are nonzero.",
+ "distractor_rationales": [
+  "A strictly upper-triangular \\(3\\times3\\) matrix always has a zero row, which forces rank below 3.",
+  "The rank of a \\(3\\times3\\) matrix can never exceed 3.",
+  "A rank can never be negative.",
+  "A rank can never be negative.",
+  "The rank of a \\(3\\times3\\) matrix can never exceed 3."
+ ]
+},
+{
+ "template_id": "decide_diagonalizable_v4_diagonal_trivial",
+ "skill_id": "decide_whether_a_matrix_is_diagonalizable",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], [[d]])"],
+ "stem": "The matrix \\( A = \\begin{pmatrix} [[c]] & 0 \\\\ 0 & [[d]] \\end{pmatrix} \\) is already diagonal, so it is diagonalizable with \\( D=A \\). As a check, what is \\( \\operatorname{rank}(A-[[c]]I) \\) (the amount by which the rank falls short of full rank gives the geometric multiplicity of \\( \\lambda=[[c]] \\))?",
+ "answer_spec": {"op": "rank", "matrix": [["0", "0"], ["0", "[[d]]-[[c]]"]]},
+ "distractors": [
+  "2",
+  "3",
+  "-1",
+  "4"
+ ],
+ "solution": "\\( A - [[c]]I = \\begin{pmatrix} 0 & 0 \\\\ 0 & [[d]]-[[c]] \\end{pmatrix} \\); since \\( [[c]] \\ne [[d]] \\), this matrix has exactly one nonzero row, so its rank is [[answer]] (matching the geometric multiplicity \\( 2-1=1 \\) of the simple eigenvalue \\( \\lambda=[[c]] \\)).",
+ "distractor_rationales": [
+  "The rank of any \\(2\\times2\\) matrix can never exceed 2.",
+  "The rank of any \\(2\\times2\\) matrix can never exceed 2.",
+  "A rank can never be negative.",
+  "The rank of any \\(2\\times2\\) matrix can never exceed 2."
+ ]
+}
+]

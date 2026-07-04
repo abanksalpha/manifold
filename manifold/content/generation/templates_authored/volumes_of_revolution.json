@@ -1,0 +1,159 @@
+[
+{
+ "template_id": "volumes_of_revolution_disk_x_axis_v1",
+ "skill_id": "volumes_of_revolution",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 0, "hi": 4},
+  "a": {"type": "int", "lo": 0, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 6}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "The region in the first quadrant under the line \\( y = [[k]]x + [[c]] \\), from \\( x=[[a]] \\) to \\( x=[[b]] \\), is revolved about the \\( x \\)-axis. Find the volume of the solid generated.",
+ "answer_spec": {"op": "integrate", "expr": "pi*([[k]]*x + [[c]])**2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[answer]]/pi",
+  "2*[[answer]]",
+  "pi*([[k]]*[[b]]+[[c]])**2*([[b]]-[[a]])",
+  "pi*(([[k]]*[[b]]+[[c]]) - ([[k]]*[[a]]+[[c]]))**2",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "By the disk method, each cross-section perpendicular to the \\( x \\)-axis is a disk of radius \\( y=[[k]]x+[[c]] \\), so the volume is \\( \\pi\\int_{[[a]]}^{[[b]]}([[k]]x+[[c]])^{2}\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( \\pi \\).",
+  "This doubles the correct volume.",
+  "This treats the solid as a single cylinder using the radius at \\( x=[[b]] \\) only, instead of integrating the varying radius.",
+  "This squares the CHANGE in radius over the interval rather than integrating the radius squared.",
+  "This is off by \\( \\pi \\) from the correct volume."
+ ]
+},
+{
+ "template_id": "volumes_of_revolution_washer_x_axis_v1",
+ "skill_id": "volumes_of_revolution",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"k": "[[m]]*[[n]]"},
+ "require_rational": false,
+ "stem": "The region bounded by the line \\( y=[[m]]x \\), the horizontal line \\( y=[[k]] \\), and the \\( y \\)-axis, with \\( 0 \\le x \\le [[n]] \\), is revolved about the \\( x \\)-axis. Find the volume of the solid generated.",
+ "answer_spec": {"op": "integrate", "expr": "pi*([[k]]**2 - ([[m]]*x)**2)", "var": "x", "bounds": ["0", "[[n]]"]},
+ "distractors": [
+  "[[answer]]/pi",
+  "pi*[[k]]**2*[[n]]",
+  "pi*[[k]]**2*[[n]]/2",
+  "2*[[answer]]",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "Using washers perpendicular to the \\( x \\)-axis, the outer radius is \\( [[k]] \\) and the inner radius is \\( [[m]]x \\), for \\( 0\\le x\\le [[n]] \\) (where the line meets \\( y=[[k]] \\)). The volume is \\( \\pi\\int_{0}^{[[n]]}\\left([[k]]^{2}-([[m]]x)^{2}\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( \\pi \\).",
+  "This uses only the outer radius, as if the solid were a solid cylinder with no hole removed.",
+  "This halves the solid-cylinder (no-hole) volume, as if using a triangular cross-section instead of a circular washer.",
+  "This doubles the correct volume.",
+  "This is off by \\( \\pi \\) from the correct volume."
+ ]
+},
+{
+ "template_id": "volumes_of_revolution_shell_y_axis_v1",
+ "skill_id": "volumes_of_revolution",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 0, "hi": 4},
+  "a": {"type": "int", "lo": 0, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 6}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "The region in the first quadrant under the line \\( y = [[k]]x + [[c]] \\), from \\( x=[[a]] \\) to \\( x=[[b]] \\), is revolved about the \\( y \\)-axis. Use the shell method to find the volume of the solid generated.",
+ "answer_spec": {"op": "integrate", "expr": "2*pi*x*([[k]]*x + [[c]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[answer]]/(2*pi)",
+  "pi*([[k]]*[[b]]+[[c]])**2*([[b]]-[[a]])",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "Using cylindrical shells of radius \\( x \\), height \\( [[k]]x+[[c]] \\), and thickness \\( dx \\), the volume is \\( 2\\pi\\int_{[[a]]}^{[[b]]}x([[k]]x+[[c]])\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( 2\\pi \\).",
+  "This mistakenly applies the disk method (about the \\( x \\)-axis) instead of the shell method requested about the \\( y \\)-axis.",
+  "This drops a factor of 2 from the shell circumference \\( 2\\pi x \\), using \\( \\pi x \\) instead.",
+  "This doubles the correct volume.",
+  "This is off by \\( \\pi \\) from the correct volume."
+ ]
+},
+{
+ "template_id": "volumes_of_revolution_disk_y_axis_v1",
+ "skill_id": "volumes_of_revolution",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 0, "hi": 4},
+  "p": {"type": "int", "lo": 0, "hi": 2},
+  "q": {"type": "int", "lo": 3, "hi": 6}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "require_rational": false,
+ "stem": "The region in the first quadrant to the left of the curve \\( x = [[k]]y + [[c]] \\), from \\( y=[[p]] \\) to \\( y=[[q]] \\), is revolved about the \\( y \\)-axis. Find the volume of the solid generated.",
+ "answer_spec": {"op": "integrate", "expr": "pi*([[k]]*y + [[c]])**2", "var": "y", "bounds": ["[[p]]", "[[q]]"]},
+ "distractors": [
+  "[[answer]]/pi",
+  "2*[[answer]]",
+  "pi*([[k]]*[[q]]+[[c]])**2*([[q]]-[[p]])",
+  "pi*(([[k]]*[[q]]+[[c]]) - ([[k]]*[[p]]+[[c]]))**2",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "By the disk method, each cross-section perpendicular to the \\( y \\)-axis is a disk of radius \\( x=[[k]]y+[[c]] \\), so the volume is \\( \\pi\\int_{[[p]]}^{[[q]]}([[k]]y+[[c]])^{2}\\,dy = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( \\pi \\).",
+  "This doubles the correct volume.",
+  "This treats the solid as a single cylinder using the radius at \\( y=[[q]] \\) only, instead of integrating the varying radius.",
+  "This squares the CHANGE in radius over the interval rather than integrating the radius squared.",
+  "This is off by \\( \\pi \\) from the correct volume."
+ ]
+},
+{
+ "template_id": "volumes_of_revolution_shell_between_curves_v1",
+ "skill_id": "volumes_of_revolution",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 8},
+  "b": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": ["Ge([[k]], [[b]])"],
+ "require_rational": false,
+ "stem": "The region enclosed between \\( y=[[k]]x \\) and \\( y=x^{2} \\), for \\( 0 \\le x \\le [[b]] \\), where the line lies above the parabola on this interval, is revolved about the \\( y \\)-axis. Use the shell method to find the volume of the solid generated.",
+ "answer_spec": {"op": "integrate", "expr": "2*pi*x*([[k]]*x - x**2)", "var": "x", "bounds": ["0", "[[b]]"]},
+ "distractors": [
+  "[[answer]]/(2*pi)",
+  "2*pi*[[b]]*([[k]]*[[b]] - [[b]]**2)",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "Using shells of radius \\( x \\), height \\( ([[k]]x) - x^{2} \\) (top curve minus bottom curve), and thickness \\( dx \\), the volume is \\( 2\\pi\\int_{0}^{[[b]]}x\\left([[k]]x - x^{2}\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( 2\\pi \\).",
+  "This uses the shell height at \\( x=[[b]] \\) for every shell, instead of integrating the varying height.",
+  "This drops a factor of 2 from the shell circumference \\( 2\\pi x \\), using \\( \\pi x \\) instead.",
+  "This doubles the correct volume.",
+  "This is off by \\( \\pi \\) from the correct volume."
+ ]
+}
+]

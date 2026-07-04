@@ -1,0 +1,207 @@
+[
+{
+ "template_id": "extrema_v1_quadratic_min",
+ "skill_id": "extrema_and_derivative_tests",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = [[a]]x^{2} + [[b]]x + [[c]] \\). Since \\( f'(x) = 2([[a]])x + [[b]] \\) changes sign from negative to positive at its unique zero, \\( f \\) has an absolute minimum there. What is the minimum value of \\( f \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]] - [[b]]**2/(4*[[a]])"},
+ "distractors": [
+  "[[c]]",
+  "-[[b]]/(2*[[a]])",
+  "[[c]] + [[b]]**2/(4*[[a]])",
+  "[[b]]**2/(4*[[a]]) - [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The critical point is at \\( x=-\\dfrac{[[b]]}{2[[a]]} \\) (where \\( f'(x)=0 \\)). Substituting back into \\( f \\) gives the minimum value \\( f\\!\\left(-\\dfrac{[[b]]}{2[[a]]}\\right) = [[c]] - \\dfrac{[[b]]^{2}}{4[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f(0) \\), not the minimum value at the vertex.",
+  "This is the \\( x \\)-coordinate of the minimum, not the minimum VALUE.",
+  "This has the wrong sign on the vertex correction term.",
+  "This has the correct terms but the wrong overall sign.",
+  "This is off by one from the correct minimum value.",
+  "This is off by one from the correct minimum value."
+ ]
+},
+{
+ "template_id": "extrema_v2_quadratic_max",
+ "skill_id": "extrema_and_derivative_tests",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": -1},
+  "b": {"type": "int", "lo": -10, "hi": 10},
+  "c": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = [[a]]x^{2} + [[b]]x + [[c]] \\). Since \\( f'(x) = 2([[a]])x + [[b]] \\) changes sign from positive to negative at its unique zero, \\( f \\) has an absolute maximum there. What is the maximum value of \\( f \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]] - [[b]]**2/(4*[[a]])"},
+ "distractors": [
+  "[[c]]",
+  "-[[b]]/(2*[[a]])",
+  "[[c]] + [[b]]**2/(4*[[a]])",
+  "[[b]]**2/(4*[[a]]) - [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The critical point is at \\( x=-\\dfrac{[[b]]}{2[[a]]} \\) (where \\( f'(x)=0 \\)). Substituting back into \\( f \\) gives the maximum value \\( f\\!\\left(-\\dfrac{[[b]]}{2[[a]]}\\right) = [[c]] - \\dfrac{[[b]]^{2}}{4[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f(0) \\), not the maximum value at the vertex.",
+  "This is the \\( x \\)-coordinate of the maximum, not the maximum VALUE.",
+  "This has the wrong sign on the vertex correction term.",
+  "This has the correct terms but the wrong overall sign.",
+  "This is off by one from the correct maximum value.",
+  "This is off by one from the correct maximum value."
+ ]
+},
+{
+ "template_id": "extrema_v3_cubic_local_min_value",
+ "skill_id": "extrema_and_derivative_tests",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "r1": {"type": "int", "lo": -4, "hi": 4},
+  "gap": {"type": "choice", "values": [2, 4, 6]},
+  "d": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {
+  "r2": "[[r1]] + [[gap]]",
+  "B": "-3*[[a]]*([[r1]]+[[r2]])/2",
+  "C": "3*[[a]]*[[r1]]*[[r2]]"
+ },
+ "stem": "Let \\( f(x) = [[a]]x^{3} + ([[B]])x^{2} + ([[C]])x + ([[d]]) \\). Its derivative \\( f'(x) = 3([[a]])(x-[[r1]])(x-[[r2]]) \\) is zero at \\( x=[[r1]] \\) and \\( x=[[r2]] \\), giving \\( f \\) a local maximum and a local minimum. Using the first derivative test, find the local MINIMUM value of \\( f \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[r2]]**3 + [[B]]*[[r2]]**2 + [[C]]*[[r2]] + [[d]]"},
+ "distractors": [
+  "[[a]]*[[r1]]**3 + [[B]]*[[r1]]**2 + [[C]]*[[r1]] + [[d]]",
+  "[[d]]",
+  "[[r2]]",
+  "[[a]]*[[r2]]**3 + [[B]]*[[r2]]**2 + [[C]]*[[r2]] - [[d]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Since \\( [[a]]>0 \\) and \\( [[r1]]<[[r2]] \\), \\( f \\) decreases on \\( ([[r1]],[[r2]]) \\) and increases outside it, so the local minimum is at \\( x=[[r2]] \\). Evaluating, \\( f([[r2]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the local MAXIMUM value (at \\( x=[[r1]] \\)), not the minimum.",
+  "This is \\( f(0) \\), the constant term, not the local minimum value.",
+  "This is the \\( x \\)-location of the minimum, not the minimum VALUE.",
+  "This has the wrong sign on the constant term \\( [[d]] \\).",
+  "This is off by two from the correct minimum value.",
+  "This is off by two from the correct minimum value."
+ ]
+},
+{
+ "template_id": "extrema_v4_cubic_sum_of_extrema",
+ "skill_id": "extrema_and_derivative_tests",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "r1": {"type": "int", "lo": -4, "hi": 4},
+  "gap": {"type": "choice", "values": [2, 4, 6]},
+  "d": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {
+  "r2": "[[r1]] + [[gap]]",
+  "B": "-3*[[a]]*([[r1]]+[[r2]])/2",
+  "C": "3*[[a]]*[[r1]]*[[r2]]"
+ },
+ "stem": "Let \\( f(x) = [[a]]x^{3} + ([[B]])x^{2} + ([[C]])x + ([[d]]) \\), which has a local maximum at \\( x=[[r1]] \\) and a local minimum at \\( x=[[r2]] \\). What is the SUM of the local maximum value and the local minimum value of \\( f \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[r1]]**3 + [[B]]*[[r1]]**2 + [[C]]*[[r1]] + [[d]]) + ([[a]]*[[r2]]**3 + [[B]]*[[r2]]**2 + [[C]]*[[r2]] + [[d]])"},
+ "distractors": [
+  "[[a]]*[[r1]]**3 + [[B]]*[[r1]]**2 + [[C]]*[[r1]] + [[d]]",
+  "[[a]]*[[r2]]**3 + [[B]]*[[r2]]**2 + [[C]]*[[r2]] + [[d]]",
+  "([[a]]*[[r1]]**3 + [[B]]*[[r1]]**2 + [[C]]*[[r1]] + [[d]]) - ([[a]]*[[r2]]**3 + [[B]]*[[r2]]**2 + [[C]]*[[r2]] + [[d]])",
+  "2*[[d]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The local maximum value is \\( f([[r1]]) \\) and the local minimum value is \\( f([[r2]]) \\). Adding them gives \\( f([[r1]]) + f([[r2]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the local maximum value, not the sum of both extrema.",
+  "This is only the local minimum value, not the sum of both extrema.",
+  "This is the DIFFERENCE of the two extreme values, not their sum.",
+  "This mistakenly assumes both extreme values equal the constant term \\( [[d]] \\).",
+  "This is off by two from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+},
+{
+ "template_id": "extrema_v5_cubic_local_max_location",
+ "skill_id": "extrema_and_derivative_tests",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "r1": {"type": "int", "lo": -5, "hi": 5},
+  "gap": {"type": "choice", "values": [2, 4, 6]},
+  "d": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {
+  "r2": "[[r1]] + [[gap]]",
+  "B": "-3*[[a]]*([[r1]]+[[r2]])/2",
+  "C": "3*[[a]]*[[r1]]*[[r2]]"
+ },
+ "stem": "Let \\( f(x) = [[a]]x^{3} + ([[B]])x^{2} + ([[C]])x + ([[d]]) \\). Applying the first derivative test to \\( f'(x)=0 \\), at what \\( x \\)-value does \\( f \\) have a local MAXIMUM?",
+ "answer_spec": {"op": "solve", "equation": "3*[[a]]*x**2 + 2*([[B]])*x + [[C]] = 0", "var": "x"},
+ "distractors": [
+  "[[r2]]",
+  "[[r1]] + [[r2]]",
+  "-[[r1]]",
+  "[[gap]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Solving \\( f'(x) = 3([[a]])x^{2} + 2([[B]])x + [[C]] = 0 \\) gives the two critical points \\( x=[[r1]] \\) and \\( x=[[r2]] \\). Since \\( [[a]]>0 \\), \\( f \\) increases then decreases through the smaller one, so the local maximum is at \\( x=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is the location of the local MINIMUM, not the maximum.",
+  "This adds the two critical points together instead of picking the smaller one.",
+  "This has the wrong sign.",
+  "This is the gap between the two critical points, not a critical point itself.",
+  "This is off by one from the correct location.",
+  "This is off by one from the correct location."
+ ]
+},
+{
+ "template_id": "extrema_v6_vertex_form_global_min",
+ "skill_id": "extrema_and_derivative_tests",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 0, "hi": 8},
+  "r": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = [[a]](x-[[r]])^{4} + [[b]](x-[[r]])^{2} + [[k]] \\). Since \\( f'(x) = 4([[a]])(x-[[r]])^{3} + 2([[b]])(x-[[r]]) \\) has \\( x=[[r]] \\) as its only real zero (with \\( [[a]] > 0 \\) and \\( [[b]] \\ge 0 \\)), \\( f \\) has a single global minimum there. What is the minimum value of \\( f \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]]"},
+ "distractors": [
+  "[[r]]",
+  "[[k]] + [[r]]",
+  "[[a]] + [[b]] + [[k]]",
+  "-[[k]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "At \\( x=[[r]] \\), both \\( (x-[[r]])^{4} \\) and \\( (x-[[r]])^{2} \\) vanish, so \\( f([[r]]) = [[k]] \\). Since every other term is non-negative, this is the global minimum value, \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( x \\)-location of the minimum, not the minimum VALUE.",
+  "This mistakenly adds the location \\( [[r]] \\) to the minimum value.",
+  "This mistakenly adds the leading coefficients into the minimum value.",
+  "This has the wrong sign on the minimum value.",
+  "This is off by two from the correct minimum value.",
+  "This is off by two from the correct minimum value."
+ ]
+}
+]

@@ -58,10 +58,12 @@ These are net-new and live in Manifold-owned paths (or are new files in an
 upstream folder), so they do not conflict on merge:
 
 - `proto/anki/manifold.proto`: the `ManifoldService` contract (`GetTopicGraph`
-  and the read-only `BuildSessionQueue`).
+  and the read-only `BuildSessionQueue`, whose `SessionQueueRequest` carries the
+  `interleave` flag for the study-feature ablation).
 - `rslib/src/manifold/*`: the engine module, made of `mod.rs`, `mastery.rs` (the
   rollup plus the shared lock-state/recall helpers), `session.rs` (the read-only
-  DAG-gated session-queue builder), `service.rs` (the trait impl), `blueprint.rs`
+  DAG-gated session-queue builder with the interleaved or blocked ordering flag),
+  `service.rs` (the trait impl), `blueprint.rs`
   - `blueprint.json` (the DAG, weights, and thresholds), and `test.rs` (the Rust
     unit tests).
 - `pylib/tests/test_manifold.py`: the Python integration test for

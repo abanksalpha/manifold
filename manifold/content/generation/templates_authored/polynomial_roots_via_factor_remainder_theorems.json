@@ -1,0 +1,193 @@
+[
+ {
+  "template_id": "polynomial_roots_via_factor_remainder_theorems_v1",
+  "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "r": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "stem": "Let \\( p(x) = x^{3} + ([[a]])x^{2} + ([[b]])x + ([[c]]) \\). By the Remainder Theorem, what is the remainder when \\( p(x) \\) is divided by \\( x - ([[r]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[r]])**3 + ([[a]])*([[r]])**2 + ([[b]])*([[r]]) + ([[c]])"},
+  "distractors": [
+   "(-[[r]])**3 + ([[a]])*(-[[r]])**2 + ([[b]])*(-[[r]]) + ([[c]])",
+   "([[r]])**3 + ([[a]])*([[r]])**2 + ([[b]])*([[r]])",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the Remainder Theorem, the remainder on division by \\( x - ([[r]]) \\) is \\( p([[r]]) = ([[r]])^{3} + ([[a]])([[r]])^{2} + ([[b]])([[r]]) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( p(-[[r]]) \\), as if dividing by \\( x + ([[r]]) \\) instead of \\( x - ([[r]]) \\).",
+   "This drops the constant term \\( ([[c]]) \\) when evaluating \\( p([[r]]) \\).",
+   "This reports the constant term of \\( p \\) rather than \\( p([[r]]) \\).",
+   "This is off by one from the correct remainder.",
+   "This is off by one from the correct remainder.",
+   "This is off by two from the correct remainder."
+  ]
+ },
+ {
+  "template_id": "polynomial_roots_via_factor_remainder_theorems_factor_theorem_v1",
+  "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "stem": "The polynomial \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + c \\) has \\( x - ([[r]]) \\) as a factor, for some constant \\( c \\). What is \\( c \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-(([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]))"},
+  "distractors": [
+   "([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]])",
+   "-(([[r]])**3 + ([[A]])*([[r]])**2)",
+   "([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]) + 1",
+   "-[[B]]*[[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the Factor Theorem, \\( x - ([[r]]) \\) is a factor exactly when \\( p([[r]]) = 0 \\): \\( ([[r]])^{3} + ([[A]])([[r]])^{2} + ([[B]])([[r]]) + c = 0 \\), so \\( c = -\\big(([[r]])^{3} + ([[A]])([[r]])^{2} + ([[B]])([[r]])\\big) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to negate the sum, leaving \\( p([[r]]) \\) itself set equal to \\( c \\) rather than solving \\( p([[r]])=0 \\) for \\( c \\).",
+   "This drops the linear term \\( ([[B]])([[r]]) \\) before negating.",
+   "This computes the correct expression but adds an extra 1 before negating.",
+   "This drops the cubic term entirely, using only the linear contribution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "polynomial_roots_via_factor_remainder_theorems_remaining_root_sum_v1",
+  "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "derived": {"C": "-(([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]))"},
+  "stem": "The cubic \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) has \\( x = [[r]] \\) as one of its roots. What is the sum of its other two roots?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[A]] - [[r]]"},
+  "distractors": [
+   "-[[A]]",
+   "[[A]] + [[r]]",
+   "[[A]] - [[r]]",
+   "[[r]] - [[A]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, the sum of ALL three roots is \\( -([[A]]) \\). Subtracting off the known root \\( [[r]] \\) leaves the sum of the other two: \\( -([[A]]) - ([[r]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the sum of all three roots, forgetting to subtract off the known root \\( [[r]] \\).",
+   "This forgets to negate the coefficient \\( [[A]] \\) before subtracting the known root.",
+   "This forgets to negate the coefficient \\( [[A]] \\) and also adds \\( [[r]] \\) instead of subtracting it.",
+   "This swaps the order and sign of the two quantities being combined.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "polynomial_roots_via_factor_remainder_theorems_rational_root_candidates_v1",
+  "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "C": {"type": "int", "lo": -30, "hi": 30}
+  },
+  "constraints": ["Ne([[C]], 0)"],
+  "stem": "According to the Rational Root Theorem, how many candidate rational roots does \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\) admit?",
+  "answer_spec": {"op": "evaluate", "expr": "2*divisor_count(Abs([[C]]))"},
+  "distractors": [
+   "divisor_count(Abs([[C]]))",
+   "divisor_count(Abs([[C]])) + 1",
+   "2*divisor_count(Abs([[C]])) - 1",
+   "2*divisor_count(Abs([[C]])) + 2",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Since \\( p \\) is monic, every candidate rational root is \\( \\pm d \\) for a positive divisor \\( d \\) of the constant term \\( [[C]] \\). The number of positive divisors of \\( |[[C]]| \\) is \\( \\text{divisor\\_count}(|[[C]]|) \\), and doubling for the \\( \\pm \\) sign gives \\( [[answer]] \\) candidates.",
+  "distractor_rationales": [
+   "This forgets to double the divisor count to account for both positive and negative candidates.",
+   "This adds one to the (undoubled) divisor count instead of doubling it.",
+   "This doubles correctly but then subtracts one for no valid reason.",
+   "This doubles correctly but then adds two extra spurious candidates.",
+   "This overcounts by two.",
+   "This undercounts by two."
+  ]
+ },
+ {
+  "template_id": "polynomial_roots_via_factor_remainder_theorems_nonmonic_factor_v1",
+  "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "C": {"type": "int", "lo": -8, "hi": 8},
+   "m": {"type": "int", "lo": 2, "hi": 5},
+   "n": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[n]], 0)"],
+  "stem": "Let \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\). What is the remainder when \\( p(x) \\) is divided by \\( [[m]]x - ([[n]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[n]],[[m]])**3 + [[A]]*Rational([[n]],[[m]])**2 + [[B]]*Rational([[n]],[[m]]) + [[C]]"},
+  "distractors": [
+   "[[m]]**3 + [[A]]*[[m]]**2 + [[B]]*[[m]] + [[C]]",
+   "[[n]]**3 + [[A]]*[[n]]**2 + [[B]]*[[n]] + [[C]]",
+   "Rational([[m]],[[n]])**3 + [[A]]*Rational([[m]],[[n]])**2 + [[B]]*Rational([[m]],[[n]]) + [[C]]",
+   "[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The linear factor \\( [[m]]x - ([[n]]) \\) vanishes at \\( x = \\dfrac{[[n]]}{[[m]]} \\), so by the Remainder Theorem the remainder is \\( p\\!\\left(\\dfrac{[[n]]}{[[m]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( p \\) at the coefficient \\( [[m]] \\) itself instead of at the actual root \\( [[n]]/[[m]] \\).",
+   "This evaluates \\( p \\) at the coefficient \\( [[n]] \\) itself, forgetting to divide by \\( [[m]] \\).",
+   "This inverts the fraction, using \\( [[m]]/[[n]] \\) instead of \\( [[n]]/[[m]] \\) as the root.",
+   "This reports the constant term of \\( p \\) rather than \\( p([[n]]/[[m]]) \\).",
+   "This is off by one from the correct remainder.",
+   "This is off by one from the correct remainder."
+  ]
+ },
+ {
+  "template_id": "polynomial_roots_via_factor_remainder_theorems_unknown_coeff_nonzero_remainder_v1",
+  "skill_id": "polynomial_roots_via_factor_remainder_theorems",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": -4, "hi": 4},
+   "R": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[r]], 0)", "Ne([[R]], 0)"],
+  "stem": "The polynomial \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + k \\) leaves a remainder of \\( [[R]] \\) when divided by \\( x - ([[r]]) \\), for some constant \\( k \\). What is \\( k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[R]] - (([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]))"},
+  "distractors": [
+   "[[R]] + (([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]))",
+   "-(([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]))",
+   "([[r]])**3 + ([[A]])*([[r]])**2 + ([[B]])*([[r]]) - [[R]]",
+   "[[R]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the Remainder Theorem, \\( p([[r]]) = [[R]] \\): \\( ([[r]])^{3} + ([[A]])([[r]])^{2} + ([[B]])([[r]]) + k = [[R]] \\), so \\( k = [[R]] - \\big(([[r]])^{3} + ([[A]])([[r]])^{2} + ([[B]])([[r]])\\big) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the remainder instead of subtracting the other terms from it.",
+   "This ignores the given remainder \\( [[R]] \\) entirely, solving as if the remainder were 0.",
+   "This negates the correct value (a sign slip when isolating \\( k \\)).",
+   "This reports the given remainder itself instead of solving for \\( k \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

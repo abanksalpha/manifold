@@ -1,0 +1,4 @@
+{
+ "skill_id": "general_group_property_assertions_which_must_be_true",
+ "reason": "This is a conceptual 'which must be true' assertion task about group properties, evaluated by proof/counterexample rather than by computing a single scalar."
+}

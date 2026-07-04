@@ -1,0 +1,336 @@
+[
+ {
+  "template_id": "binomial_variance_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [4, 5, 6, 8, 10, 12]},
+   "pd": {"type": "choice", "values": [2, 3, 4, 5]},
+   "pn": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "Let \\( X \\) be the number of successes in [[n]] independent trials, each having success probability \\( \\frac{[[pn]]}{[[pd]]} \\) (so \\( X \\) is binomial). What is the variance of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] * Rational([[pn]], [[pd]]) * (1 - Rational([[pn]], [[pd]]))"},
+  "distractors": [
+   "[[n]] * Rational([[pn]], [[pd]])",
+   "Rational([[pn]], [[pd]]) * (1 - Rational([[pn]], [[pd]]))",
+   "[[n]] * Rational([[pn]], [[pd]]) ** 2",
+   "[[n]] * (1 - Rational([[pn]], [[pd]]))",
+   "[[n]] * Rational([[pn]], [[pd]]) * (1 + Rational([[pn]], [[pd]]))",
+   "Rational([[pn]], [[pd]])"
+  ],
+  "solution": "A binomial variable has variance \\( np(1-p) = [[n]] \\cdot \\frac{[[pn]]}{[[pd]]}\\left(1 - \\frac{[[pn]]}{[[pd]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the mean \\( np \\), not the variance.",
+   "This omits the factor of [[n]], giving the variance of a single trial.",
+   "This uses \\( np^2 \\) instead of \\( np(1-p) \\).",
+   "This is \\( n(1-p) \\), mismatching the mean and complement factors.",
+   "This uses \\( 1 + p \\) instead of \\( 1 - p \\).",
+   "This is just the success probability \\( p \\)."
+  ]
+ },
+ {
+  "template_id": "binomial_mean_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [4, 5, 6, 8, 10, 12, 15, 20]},
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "pn": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "Let \\( X \\) be the number of successes in [[n]] independent trials, each having success probability \\( \\frac{[[pn]]}{[[pd]]} \\) (so \\( X \\) is binomial). What is the mean (expected value) of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] * Rational([[pn]], [[pd]])"},
+  "distractors": [
+   "[[n]] * Rational([[pn]], [[pd]]) * (1 - Rational([[pn]], [[pd]]))",
+   "Rational([[pn]], [[pd]])",
+   "[[n]] * (1 - Rational([[pn]], [[pd]]))",
+   "Rational([[pd]], [[pn]]) * [[n]]",
+   "[[n]] + Rational([[pn]], [[pd]])",
+   "[[n]] * Rational([[pn]], [[pd]]) ** 2"
+  ],
+  "solution": "A binomial variable has mean \\( np = [[n]] \\cdot \\frac{[[pn]]}{[[pd]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the variance \\( np(1-p) \\), not the mean.",
+   "This is just the per-trial success probability, forgetting to scale by [[n]].",
+   "This uses \\( n(1-p) \\) (the expected number of FAILURES) instead of \\( np \\).",
+   "This inverts the success probability before multiplying.",
+   "This adds instead of multiplying.",
+   "This squares the probability before scaling by [[n]]."
+  ]
+ },
+ {
+  "template_id": "geometric_mean_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]},
+   "pn": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "A weighted coin lands heads with probability \\( \\frac{[[pn]]}{[[pd]]} \\) on each independent flip. Let \\( X \\) be the number of the flip on which the first head occurs (so \\( X \\) is geometric, taking values \\( 1, 2, 3, \\ldots \\)). What is the mean of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "1 / Rational([[pn]], [[pd]])"},
+  "distractors": [
+   "Rational([[pn]], [[pd]])",
+   "(1 - Rational([[pn]], [[pd]])) / Rational([[pn]], [[pd]])",
+   "1 / Rational([[pn]], [[pd]]) ** 2",
+   "1 / (1 - Rational([[pn]], [[pd]]))",
+   "Rational([[pd]], [[pn]]) - 1",
+   "(1 - Rational([[pn]], [[pd]])) / Rational([[pn]], [[pd]]) ** 2"
+  ],
+  "solution": "For a geometric random variable counting the trial of the first success, the mean is \\( \\frac{1}{p} = \\frac{[[pd]]}{[[pn]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the success probability itself, not the reciprocal.",
+   "This is the mean of the related \\( \\text{Geometric}_0 \\) variable (number of FAILURES before the first success), \\( \\frac{1-p}{p} \\), not \\( \\frac{1}{p} \\).",
+   "This uses \\( 1/p^2 \\), confusing the mean formula with part of the variance formula.",
+   "This uses \\( \\frac{1}{1-p} \\), the wrong complement in the denominator.",
+   "This subtracts 1 without dividing correctly.",
+   "This is the variance of the failures-counted geometric variable, not the mean of \\( X \\)."
+  ]
+ },
+ {
+  "template_id": "geometric_variance_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]},
+   "pn": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "A weighted coin lands heads with probability \\( \\frac{[[pn]]}{[[pd]]} \\) on each independent flip. Let \\( X \\) be the number of the flip on which the first head occurs (so \\( X \\) is geometric). What is the variance of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - Rational([[pn]], [[pd]])) / Rational([[pn]], [[pd]]) ** 2"},
+  "distractors": [
+   "1 / Rational([[pn]], [[pd]])",
+   "1 / Rational([[pn]], [[pd]]) ** 2",
+   "(1 - Rational([[pn]], [[pd]])) / Rational([[pn]], [[pd]])",
+   "Rational([[pn]], [[pd]]) / (1 - Rational([[pn]], [[pd]])) ** 2",
+   "(1 - Rational([[pn]], [[pd]])) ** 2 / Rational([[pn]], [[pd]]) ** 2",
+   "Rational([[pn]], [[pd]]) * (1 - Rational([[pn]], [[pd]]))"
+  ],
+  "solution": "For a geometric random variable counting the trial of the first success, the variance is \\( \\frac{1-p}{p^2} = \\frac{1 - \\frac{[[pn]]}{[[pd]]}}{\\left(\\frac{[[pn]]}{[[pd]]}\\right)^2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the mean \\( 1/p \\), not the variance.",
+   "This drops the \\( (1-p) \\) factor from the numerator entirely.",
+   "This forgets to square the denominator.",
+   "This inverts which factor is squared, putting \\( p \\) over \\( (1-p)^2 \\) instead.",
+   "This squares the numerator as well, which is not part of the formula.",
+   "This is the binomial-style variance \\( p(1-p) \\), the wrong named distribution's formula."
+  ]
+ },
+ {
+  "template_id": "poisson_mean_variance_identity_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "lamn": {"type": "int", "lo": 3, "hi": 30},
+   "lamd": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "stem": "A random variable \\( X \\) follows a Poisson distribution with mean \\( \\frac{[[lamn]]}{[[lamd]]} \\). What is the variance of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[lamn]], [[lamd]])"},
+  "distractors": [
+   "Rational([[lamn]], [[lamd]]) ** 2",
+   "2 * Rational([[lamn]], [[lamd]])",
+   "Rational([[lamn]], [[lamd]]) + 1",
+   "Rational([[lamd]], [[lamn]])",
+   "Rational([[lamn]], [[lamd]]) - 1",
+   "3 * Rational([[lamn]], [[lamd]])"
+  ],
+  "solution": "A defining property of the Poisson distribution is that its variance always equals its mean: \\( \\operatorname{Var}(X) = \\lambda = \\frac{[[lamn]]}{[[lamd]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This squares the mean, confusing Poisson with a distribution whose variance is \\( \\mu^2 \\).",
+   "This doubles the mean instead of using the mean directly.",
+   "This adds 1 to the mean instead of using it directly.",
+   "This inverts the fraction.",
+   "This subtracts 1 from the mean instead of using it directly.",
+   "This triples the mean instead of using the mean directly."
+  ]
+ },
+ {
+  "template_id": "discrete_uniform_mean_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\) be a value chosen uniformly at random from the integers \\( 1, 2, \\ldots, [[n]] \\). What is the mean of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[n]] + 1, 2)"},
+  "distractors": [
+   "Rational([[n]], 2)",
+   "Rational([[n]] - 1, 2)",
+   "Rational([[n]] ** 2 - 1, 12)",
+   "[[n]]",
+   "Rational([[n]] + 1, 3)",
+   "Rational([[n]], 3)"
+  ],
+  "solution": "For a discrete uniform variable on \\( 1, \\ldots, n \\), the mean is \\( \\frac{n+1}{2} = \\frac{[[n]]+1}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\(+1\\), which is a common off-by-one error for the discrete (as opposed to continuous) uniform mean.",
+   "This is off by using \\( n-1 \\) instead of \\( n+1 \\) in the numerator.",
+   "This is the formula for the VARIANCE, not the mean.",
+   "This is just the maximum value, ignoring the minimum.",
+   "This divides by 3 instead of 2.",
+   "This divides by 3 without the \\(+1\\) correction either."
+  ]
+ },
+ {
+  "template_id": "discrete_uniform_variance_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\) be a value chosen uniformly at random from the integers \\( 1, 2, \\ldots, [[n]] \\). What is the variance of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[n]] ** 2 - 1, 12)"},
+  "distractors": [
+   "Rational([[n]] + 1, 2)",
+   "Rational([[n]] ** 2 - 1, 6)",
+   "Rational([[n]] ** 2 + 1, 12)",
+   "Rational(([[n]] - 1) ** 2, 12)",
+   "Rational([[n]] ** 2, 12)",
+   "Rational([[n]] ** 2 - 1, 4)"
+  ],
+  "solution": "For a discrete uniform variable on \\( 1, \\ldots, n \\), the variance is \\( \\frac{n^2-1}{12} = \\frac{[[n]]^2-1}{12} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the mean, not the variance.",
+   "This divides by 6 instead of 12.",
+   "This uses \\( n^2+1 \\) instead of \\( n^2-1 \\) in the numerator.",
+   "This squares \\( n-1 \\) instead of using \\( n^2-1 \\).",
+   "This drops the \\(-1\\) correction from the numerator.",
+   "This divides by 4 instead of 12."
+  ]
+ },
+ {
+  "template_id": "continuous_uniform_mean_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 8},
+   "b": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Lt([[a]], [[a]] + [[b]])"],
+  "derived": {"hi": "[[a]] + [[b]]"},
+  "stem": "Let \\( X \\) be a continuous random variable distributed uniformly on the interval \\( [[[a]], [[hi]]] \\). What is the mean of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]] + [[hi]], 2)"},
+  "distractors": [
+   "Rational(([[hi]] - [[a]]) ** 2, 12)",
+   "[[hi]] - [[a]]",
+   "Rational([[hi]] - [[a]], 2)",
+   "[[hi]]",
+   "[[a]]",
+   "Rational([[a]] + [[hi]], 3)"
+  ],
+  "solution": "For a continuous uniform variable on \\( [a,b] \\), the mean is the midpoint \\( \\frac{a+b}{2} = \\frac{[[a]] + [[hi]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the variance formula, not the mean.",
+   "This is just the width of the interval, not its midpoint.",
+   "This halves the width instead of averaging the endpoints.",
+   "This is only the right endpoint, ignoring the left.",
+   "This is only the left endpoint, ignoring the right.",
+   "This divides by 3 instead of 2."
+  ]
+ },
+ {
+  "template_id": "continuous_uniform_variance_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 8},
+   "b": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Lt([[a]], [[a]] + [[b]])"],
+  "derived": {"hi": "[[a]] + [[b]]"},
+  "stem": "Let \\( X \\) be a continuous random variable distributed uniformly on the interval \\( [[[a]], [[hi]]] \\). What is the variance of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational(([[hi]] - [[a]]) ** 2, 12)"},
+  "distractors": [
+   "Rational([[a]] + [[hi]], 2)",
+   "Rational(([[hi]] - [[a]]) ** 2, 6)",
+   "Rational([[hi]] - [[a]], 12)",
+   "Rational(([[hi]] - [[a]]) ** 2, 4)",
+   "([[hi]] - [[a]]) ** 2",
+   "Rational(([[hi]] - [[a]]) ** 2, 3)"
+  ],
+  "solution": "For a continuous uniform variable on \\( [a,b] \\), the variance is \\( \\frac{(b-a)^2}{12} = \\frac{([[hi]] - [[a]])^2}{12} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the mean, not the variance.",
+   "This divides by 6 instead of 12.",
+   "This forgets to square the width before dividing.",
+   "This divides by 4 instead of 12.",
+   "This forgets to divide by 12 at all.",
+   "This divides by 3 instead of 12."
+  ]
+ },
+ {
+  "template_id": "hypergeometric_mean_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "N": {"type": "int", "lo": 10, "hi": 30},
+   "K": {"type": "int", "lo": 2, "hi": 9},
+   "k": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Lt([[K]], [[N]])", "Lt([[k]], [[N]])"],
+  "stem": "A sample of [[k]] items is drawn without replacement from a population of [[N]] items, of which [[K]] are defective. Let \\( X \\) be the number of defective items in the sample (so \\( X \\) is hypergeometric). What is the mean of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]] * Rational([[K]], [[N]])"},
+  "distractors": [
+   "Rational([[K]], [[N]])",
+   "[[k]] * Rational([[K]], [[N]]) * (1 - Rational([[K]], [[N]]))",
+   "[[N]] * Rational([[K]], [[k]])",
+   "[[k]] * Rational([[N]], [[K]])",
+   "Rational([[K]], [[N]]) * (1 - Rational([[K]], [[N]]))",
+   "[[k]] + Rational([[K]], [[N]])"
+  ],
+  "solution": "The hypergeometric mean matches the binomial mean formula with \\( p = K/N \\): \\( E[X] = k \\cdot \\frac{K}{N} = [[k]] \\cdot \\frac{[[K]]}{[[N]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the population proportion, forgetting to scale by the sample size [[k]].",
+   "This is the hypergeometric VARIANCE, not the mean.",
+   "This inverts the roles of the sample size and defective count.",
+   "This inverts the defective proportion.",
+   "This omits the factor of [[k]] and includes an extra complement factor.",
+   "This adds the sample size instead of multiplying by the proportion."
+  ]
+ },
+ {
+  "template_id": "negative_binomial_mean_v1",
+  "skill_id": "mean_and_variance_of_a_named_distribution_recall",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 8},
+   "pd": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "pn": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[pn]], [[pd]])"],
+  "stem": "A weighted coin lands heads with probability \\( \\frac{[[pn]]}{[[pd]]} \\) on each independent flip. Let \\( X \\) be the number of the flip on which the [[r]]-th head occurs (so \\( X \\) is negative binomial). What is the mean of \\( X \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]] / Rational([[pn]], [[pd]])"},
+  "distractors": [
+   "[[r]] * Rational([[pn]], [[pd]])",
+   "1 / Rational([[pn]], [[pd]])",
+   "[[r]] * (1 - Rational([[pn]], [[pd]])) / Rational([[pn]], [[pd]]) ** 2",
+   "[[r]] / (1 - Rational([[pn]], [[pd]]))",
+   "Rational([[pd]], [[pn]]) - [[r]]",
+   "[[r]] ** 2 / Rational([[pn]], [[pd]])"
+  ],
+  "solution": "Waiting for the [[r]]-th success generalizes the geometric mean: \\( E[X] = \\frac{r}{p} = \\frac{[[r]]}{[[pn]]/[[pd]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( p \\) instead of dividing by it.",
+   "This forgets the factor of \\( r \\), giving only the mean for a single success.",
+   "This is the variance formula, not the mean.",
+   "This uses the wrong complement \\( 1-p \\) in the denominator.",
+   "This subtracts \\( r \\) from the reciprocal probability instead of dividing.",
+   "This squares \\( r \\) instead of using it linearly."
+  ]
+ }
+]

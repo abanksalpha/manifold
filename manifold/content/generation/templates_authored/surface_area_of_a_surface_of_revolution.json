@@ -1,0 +1,128 @@
+[
+ {
+  "template_id": "surface_area_revolution_v1",
+  "skill_id": "surface_area_of_a_surface_of_revolution",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3]},
+   "cc": {"type": "int", "lo": 1, "hi": 5},
+   "a": {"type": "int", "lo": 0, "hi": 3},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The line segment \\( y = [[m]]x + [[cc]] \\), for \\( [[a]] \\le x \\le [[b]] \\), is revolved about the \\( x \\)-axis. Find the area of the surface generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*([[m]]*x + [[cc]])*sqrt(1 + [[m]]**2)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "[[answer]]/sqrt(1 + [[m]]**2)",
+   "[[answer]]/pi",
+   "[[answer]]/2",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "With \\( f(x)=[[m]]x+[[cc]] \\) and \\( f'(x)=[[m]] \\), the surface area is \\( \\int_{[[a]]}^{[[b]]} 2\\pi f(x)\\sqrt{1+(f'(x))^{2}}\\,dx = 2\\pi\\sqrt{1+[[m]]^{2}}\\int_{[[a]]}^{[[b]]}([[m]]x+[[cc]])\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the slant factor \\( \\sqrt{1+(f')^{2}} \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This drops the factor of \\( 2 \\) in \\( 2\\pi f\\sqrt{1+(f')^{2}} \\).",
+   "This doubles the correct surface area.",
+   "This is off by \\( \\pi \\) from the correct surface area."
+  ]
+ },
+ {
+  "template_id": "surface_area_spherical_zone_v1",
+  "skill_id": "surface_area_of_a_surface_of_revolution",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "r": {"type": "int", "lo": 3, "hi": 10},
+   "a": {"type": "int", "lo": -10, "hi": 5},
+   "b": {"type": "int", "lo": -4, "hi": 10}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Ge([[a]], -[[r]])", "Le([[b]], [[r]])"],
+  "derived": {"rsq": "[[r]]**2"},
+  "stem": "The arc of the circle \\( x^{2}+y^{2}=[[rsq]] \\) given by \\( y=\\sqrt{[[rsq]]-x^{2}} \\), for \\( [[a]] \\le x \\le [[b]] \\), is revolved about the \\( x \\)-axis, forming a band (zone) on a sphere of radius \\( [[r]] \\). Find the surface area of this band.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*[[r]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "4*pi*[[rsq]]",
+   "2*pi*[[r]]*([[b]]**2 - [[a]]**2)",
+   "pi*([[b]] - [[a]])**2",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "For a sphere, the surface-of-revolution integrand \\( 2\\pi y\\sqrt{1+(y')^{2}} \\) simplifies to the CONSTANT \\( 2\\pi [[r]] \\) (Archimedes' hat-box theorem: a zone's area depends only on its height, not its position). So the area is \\( \\int_{[[a]]}^{[[b]]} 2\\pi[[r]]\\,dx = 2\\pi[[r]]([[b]]-[[a]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the surface area of the WHOLE sphere, not just this band.",
+   "This mistakenly reintroduces an \\( x \\)-dependence that canceled out of the integrand.",
+   "This treats the band as a flat annulus with no geometric basis.",
+   "This doubles the correct surface area.",
+   "This is off by \\( \\pi \\) from the correct surface area."
+  ]
+ },
+ {
+  "template_id": "surface_area_about_y_axis_v1",
+  "skill_id": "surface_area_of_a_surface_of_revolution",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3]},
+   "c": {"type": "int", "lo": 1, "hi": 5},
+   "p": {"type": "int", "lo": 0, "hi": 3},
+   "q": {"type": "int", "lo": 4, "hi": 9}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "The line segment \\( x = [[m]]y + [[c]] \\), for \\( [[p]] \\le y \\le [[q]] \\), is revolved about the \\( y \\)-axis. Find the area of the surface generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*([[m]]*y + [[c]])*sqrt(1 + [[m]]**2)", "var": "y", "bounds": ["[[p]]", "[[q]]"]},
+  "require_rational": false,
+  "distractors": [
+   "[[answer]]/sqrt(1 + [[m]]**2)",
+   "[[answer]]/pi",
+   "[[answer]]/2",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "With \\( g(y)=[[m]]y+[[c]] \\) and \\( g'(y)=[[m]] \\), revolving about the \\( y \\)-axis gives surface area \\( \\int_{[[p]]}^{[[q]]} 2\\pi g(y)\\sqrt{1+(g'(y))^{2}}\\,dy = 2\\pi\\sqrt{1+[[m]]^{2}}\\int_{[[p]]}^{[[q]]}([[m]]y+[[c]])\\,dy = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the slant factor \\( \\sqrt{1+(g')^{2}} \\).",
+   "This drops the factor of \\( \\pi \\).",
+   "This drops the factor of \\( 2 \\) in \\( 2\\pi g\\sqrt{1+(g')^{2}} \\).",
+   "This doubles the correct surface area.",
+   "This is off by \\( \\pi \\) from the correct surface area."
+  ]
+ },
+ {
+  "template_id": "surface_area_catenary_v1",
+  "skill_id": "surface_area_of_a_surface_of_revolution",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 0},
+   "b": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "The curve \\( y = \\cosh(x) \\), for \\( [[a]] \\le x \\le [[b]] \\), is revolved about the \\( x \\)-axis, forming a catenoid. Find the area of the surface generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*cosh(x)**2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "2*pi*(sinh([[b]]) - sinh([[a]]))",
+   "[[answer]]/2",
+   "[[answer]]/pi",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Here \\( y'=\\sinh(x) \\), so \\( \\sqrt{1+(y')^{2}} = \\sqrt{1+\\sinh^{2}(x)} = \\cosh(x) \\). The surface area is \\( \\int_{[[a]]}^{[[b]]} 2\\pi\\cosh(x)\\cdot\\cosh(x)\\,dx = \\int_{[[a]]}^{[[b]]} 2\\pi\\cosh^{2}(x)\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( 2\\pi\\int\\cosh(x)\\,dx \\) (the arc-length-style integral), forgetting the extra factor of \\( y=\\cosh(x) \\) itself.",
+   "This halves the correct surface area.",
+   "This drops the factor of \\( \\pi \\).",
+   "This doubles the correct surface area.",
+   "This is off by \\( \\pi \\) from the correct surface area."
+  ]
+ }
+]

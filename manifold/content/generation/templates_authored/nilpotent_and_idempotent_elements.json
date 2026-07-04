@@ -1,0 +1,134 @@
+[
+ {
+  "template_id": "nilpotent_count_z_n_v1",
+  "skill_id": "nilpotent_and_idempotent_elements",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "How many elements of the ring \\( \\mathbb{Z}_{[[nval]]} \\), where \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\), are nilpotent? (An element \\( x \\) is nilpotent if \\( x^{k} \\equiv 0 \\pmod{[[nval]]} \\) for some positive integer \\( k \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**([[a]] - 1)*[[q]]**([[b]] - 1)"},
+  "distractors": [
+   "[[p]]*[[q]]",
+   "[[nval]]/[[p]]",
+   "[[nval]]/[[q]]",
+   "[[answer]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4"
+  ],
+  "solution": "In \\( \\mathbb{Z}_{n} \\) an element is nilpotent exactly when it is a multiple of the radical \\( pq \\) (the product of the distinct primes dividing \\( n \\)). The multiples of \\( [[p]]\\cdot[[q]] \\) in \\( \\{0, 1, \\dots, [[nval]]-1\\} \\) number \\( \\dfrac{[[nval]]}{[[p]]\\cdot[[q]]} = [[p]]^{[[a]]-1}[[q]]^{[[b]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the radical \\( pq \\) itself, not the count of its multiples in \\( \\mathbb{Z}_{[[nval]]} \\).",
+   "This counts the multiples of \\( [[p]] \\) alone; nilpotents must be divisible by every prime factor, i.e. by \\( [[p]][[q]] \\).",
+   "This counts the multiples of \\( [[q]] \\) alone; nilpotents must be divisible by \\( [[p]][[q]] \\), not just \\( [[q]] \\).",
+   "This is one more than the correct count.",
+   "This is two more than the correct count.",
+   "This is three more than the correct count."
+  ]
+ },
+ {
+  "template_id": "idempotent_count_v1",
+  "skill_id": "nilpotent_and_idempotent_elements",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "How many elements \\( e \\) of the ring \\( \\mathbb{Z}_{[[nval]]} \\), where \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\), are idempotent (satisfy \\( e^{2} \\equiv e \\pmod{[[nval]]} \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "4"},
+  "distractors": [
+   "2",
+   "3",
+   "6",
+   "8",
+   "[[p]]",
+   "[[q]]"
+  ],
+  "solution": "By the Chinese Remainder Theorem, \\( \\mathbb{Z}_{[[nval]]} \\cong \\mathbb{Z}_{[[p]]^{[[a]]}} \\times \\mathbb{Z}_{[[q]]^{[[b]]}} \\), and each factor \\( \\mathbb{Z}_{[[p]]^{[[a]]}} \\), \\( \\mathbb{Z}_{[[q]]^{[[b]]}} \\) (a local ring) has exactly the two idempotents \\( 0, 1 \\). So the number of idempotents of the product is \\( 2 \\times 2 = 4 \\), one for each choice of \\( (0\\text{ or }1) \\) in each coordinate.",
+  "distractor_rationales": [
+   "This counts only the two 'obvious' idempotents \\( 0 \\) and \\( 1 \\), missing the two nontrivial ones coming from the CRT decomposition.",
+   "This is an arbitrary small count that does not match \\( 2^{2} \\) idempotents from the two-factor CRT decomposition.",
+   "This would be the count if there were three independent factors (\\( 2^{3}=8 \\) minus 2), not two.",
+   "This is \\( 2^{3} \\), the idempotent count for a THREE-factor CRT decomposition; here \\( n \\) has only two distinct prime factors.",
+   "This confuses a prime factor of \\( n \\) with the count of idempotents.",
+   "This confuses the other prime factor of \\( n \\) with the count of idempotents."
+  ]
+ },
+ {
+  "template_id": "nontrivial_idempotent_count_v1",
+  "skill_id": "nilpotent_and_idempotent_elements",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "q": {"type": "choice", "values": [2, 3, 5, 7]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+  "stem": "The elements \\( 0 \\) and \\( 1 \\) always satisfy \\( e^{2} \\equiv e \\pmod{[[nval]]} \\); call these the TRIVIAL idempotents. In the ring \\( \\mathbb{Z}_{[[nval]]} \\), where \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\), how many NONTRIVIAL idempotents (elements \\( e \\ne 0,1 \\) with \\( e^{2}\\equiv e \\)) are there?",
+  "answer_spec": {"op": "evaluate", "expr": "4 - 2"},
+  "distractors": [
+   "0",
+   "1",
+   "3",
+   "4",
+   "[[p]] - [[q]]",
+   "[[nval]] - 2"
+  ],
+  "solution": "\\( \\mathbb{Z}_{[[nval]]} \\) has \\( 2^{2}=4 \\) idempotents in total (by CRT over its two distinct prime-power factors), and exactly \\( 2 \\) of these (\\( 0 \\) and \\( 1 \\)) are trivial. So there are \\( 4-2=[[answer]] \\) nontrivial idempotents.",
+  "distractor_rationales": [
+   "This wrongly assumes a ring with two distinct prime factors has NO nontrivial idempotents; in fact it always has exactly \\( 2 \\).",
+   "This undercounts by one; there are two nontrivial idempotents, arising as a matching pair from the CRT decomposition.",
+   "This overcounts by one relative to the correct total of \\( 2 \\) nontrivial idempotents.",
+   "This is the TOTAL idempotent count (including the trivial ones \\( 0,1 \\)), not just the nontrivial ones.",
+   "This computes an unrelated difference of the two prime factors instead of counting idempotents.",
+   "This is far too large; it does not account for the fact that idempotents are rare, not almost every element."
+  ]
+ },
+ {
+  "template_id": "nilpotency_index_v1",
+  "skill_id": "nilpotent_and_idempotent_elements",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+   "a": {"type": "int", "lo": 2, "hi": 6},
+   "c": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Lt([[c]], [[p]])"],
+  "derived": {"nval": "[[p]]**[[a]]", "xval": "[[c]]*[[p]]"},
+  "stem": "In the ring \\( \\mathbb{Z}_{[[nval]]} \\) with \\( [[nval]] = [[p]]^{[[a]]} \\), let \\( x = [[xval]] = [[c]]\\cdot [[p]] \\). What is the nilpotency index of \\( x \\), i.e. the SMALLEST positive integer \\( k \\) such that \\( x^{k} \\equiv 0 \\pmod{[[nval]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]"},
+  "distractors": [
+   "[[a]] - 1",
+   "[[a]] + 1",
+   "[[p]]",
+   "[[c]]",
+   "[[a]]*[[c]]",
+   "[[nval]]/[[p]]"
+  ],
+  "solution": "Since \\( x = [[c]]\\cdot [[p]] \\) with \\( [[c]] \\) not divisible by \\( [[p]] \\), \\( x \\) is divisible by \\( [[p]] \\) exactly once, so \\( x^{k} = [[c]]^{k}[[p]]^{k} \\) is divisible by \\( [[p]]^{[[a]]} \\) exactly when \\( k \\ge [[a]] \\). The smallest such \\( k \\) is \\( [[a]] \\).",
+  "distractor_rationales": [
+   "This is one less than \\( a \\); \\( x^{a-1} \\) still has only \\( p^{a-1} \\) dividing it, not enough to vanish mod \\( p^{a} \\).",
+   "This is one more than needed; \\( k=a \\) already suffices, since \\( p^{a} \\mid p^{a} \\).",
+   "This is the prime \\( p \\) itself, confusing the base of the ring with the required exponent.",
+   "This is the coefficient \\( c \\), which has no effect on the nilpotency index since it is coprime to \\( p \\).",
+   "This multiplies \\( a \\) and \\( c \\), but \\( c \\) (being coprime to \\( p \\)) does not change the required exponent.",
+   "This is \\( p^{a-1} \\), the size of an unrelated quantity, not the nilpotency index."
+  ]
+ }
+]

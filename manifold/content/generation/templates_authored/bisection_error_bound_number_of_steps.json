@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "bisection_num_steps_v1",
+ "skill_id": "bisection_error_bound_number_of_steps",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -2, "hi": 3},
+  "b": {"type": "int", "lo": 4, "hi": 11},
+  "d": {"type": "choice", "values": [8, 16, 32, 64, 128, 1000]}
+ },
+ "constraints": ["Gt([[b]] - [[a]], 0)"],
+ "stem": "The bisection method is applied on the interval \\( [a, b] \\) with \\( a = [[a]] \\) and \\( b = [[b]] \\), which brackets a root of a continuous function. What is the least number of bisection steps that guarantees the bracketing interval has length at most \\( \\frac{1}{[[d]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "ceiling(log(([[b]] - [[a]])*[[d]], 2))"},
+ "distractors": [
+  "floor(log(([[b]] - [[a]])*[[d]], 2))",
+  "[[answer]] + 1",
+  "ceiling(log([[b]] - [[a]], 2))",
+  "ceiling(log(([[b]] - [[a]])*[[d]], 10))",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "After \\( n \\) bisection steps the bracketing interval has length \\( \\dfrac{b-a}{2^{n}} \\). Requiring \\( \\dfrac{b-a}{2^{n}} \\le \\dfrac{1}{[[d]]} \\) gives \\( 2^{n} \\ge ([[b]]-[[a]])\\cdot[[d]] \\), so \\( n = \\left\\lceil \\log_2\\big(([[b]]-[[a]])\\cdot[[d]]\\big) \\right\\rceil = [[answer]] \\).",
+ "distractor_rationales": [
+  "This rounds down instead of up; the smallest integer with \\( 2^{n} \\ge (b-a)d \\) requires the ceiling.",
+  "This overshoots by one step.",
+  "This forgets to divide by the tolerance, using only \\( \\log_2(b-a) \\).",
+  "This uses base-10 logarithms instead of base 2.",
+  "This is one step short of the guarantee.",
+  "This overshoots the required number of steps."
+ ]
+},
+{
+ "template_id": "bisection_bracket_width_after_n_v1",
+ "skill_id": "bisection_error_bound_number_of_steps",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": 5, "hi": 14},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Gt([[b]] - [[a]], 0)"],
+ "stem": "The bisection method is started on the bracketing interval \\( [[[a]], [[b]]] \\), which contains a root of a continuous function. Each step halves the current bracket by keeping the half that still contains a sign change. After \\( [[n]] \\) bisection steps, what is the length of the resulting bracketing interval?",
+ "answer_spec": {"op": "evaluate", "expr": "([[b]] - [[a]])/2**[[n]]"},
+ "distractors": [
+  "([[b]] - [[a]])/2**([[n]] - 1)",
+  "([[b]] - [[a]])/2**([[n]] + 1)",
+  "([[b]] - [[a]])*2**[[n]]",
+  "([[b]] - [[a]])/[[n]]",
+  "[[answer]]*2",
+  "[[answer]]/2"
+ ],
+ "solution": "Each bisection step halves the bracket, so after \\( n \\) steps the length is \\( \\dfrac{b-a}{2^{n}} = \\dfrac{[[b]]-([[a]])}{2^{[[n]]}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one step short (uses \\( n-1 \\) halvings).",
+  "This is off by one step too many (uses \\( n+1 \\) halvings).",
+  "This multiplies by \\( 2^{n} \\) instead of dividing.",
+  "This divides by \\( n \\) instead of \\( 2^{n} \\), confusing linear shrinkage with the actual geometric shrinkage.",
+  "This is twice the correct length.",
+  "This is half the correct length."
+ ]
+},
+{
+ "template_id": "bisection_midpoint_error_after_n_v1",
+ "skill_id": "bisection_error_bound_number_of_steps",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": 5, "hi": 14},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Gt([[b]] - [[a]], 0)"],
+ "stem": "The bisection method is started on the bracketing interval \\( [[[a]], [[b]]] \\), which contains a root \\( r \\) of a continuous function. After \\( [[n]] \\) bisection steps, the midpoint of the current bracket is reported as the estimate \\( x_{[[n]]} \\) of the root. What is the greatest possible value of the error \\( |x_{[[n]]} - r| \\), guaranteed by the bracket at that stage?",
+ "answer_spec": {"op": "evaluate", "expr": "([[b]] - [[a]])/2**([[n]] + 1)"},
+ "distractors": [
+  "([[b]] - [[a]])/2**[[n]]",
+  "([[b]] - [[a]])/2**([[n]] + 2)",
+  "([[b]] - [[a]])/2**([[n]] - 1)",
+  "([[b]] - [[a]])*2**[[n]]",
+  "[[answer]]*2",
+  "[[answer]]/2"
+ ],
+ "solution": "After \\( n \\) steps the bracket has length \\( \\dfrac{b-a}{2^{n}} \\), and the true root can lie anywhere in that bracket, so the midpoint estimate is off by at most half that length: \\( \\dfrac{b-a}{2^{n+1}} = \\dfrac{[[b]]-([[a]])}{2^{[[n]]+1}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the bracket WIDTH after \\( n \\) steps, forgetting the extra halving from using the midpoint as the estimate.",
+  "This halves the bracket one time too many.",
+  "This uses one fewer bisection step than performed.",
+  "This multiplies by \\( 2^{n} \\) instead of dividing.",
+  "This is twice the correct error bound.",
+  "This is half the correct error bound."
+ ]
+},
+{
+ "template_id": "bisection_steps_for_decimal_places_v1",
+ "skill_id": "bisection_error_bound_number_of_steps",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": 5, "hi": 14},
+  "k": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Gt([[b]] - [[a]], 0)"],
+ "stem": "The bisection method is started on the bracketing interval \\( [[[a]], [[b]]] \\), which contains a root of a continuous function. At each step the midpoint of the current bracket is used as the estimate of the root, with guaranteed error at most half the current bracket width. What is the least number of bisection steps \\( n \\) that guarantees the estimate is correct to at least \\( [[k]] \\) decimal place(s), i.e. has error at most \\( 0.5 \\times 10^{-[[k]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "ceiling(log(([[b]] - [[a]])*10**[[k]], 2))"},
+ "distractors": [
+  "floor(log(([[b]] - [[a]])*10**[[k]], 2))",
+  "ceiling(log([[b]] - [[a]], 2))",
+  "ceiling(log(([[b]] - [[a]])*10**[[k]], 10))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The midpoint-estimate error after \\( n \\) steps is at most \\( \\dfrac{b-a}{2^{n+1}} \\). Requiring this at most \\( 0.5\\times10^{-[[k]]} = \\dfrac{1}{2}\\cdot10^{-[[k]]} \\) gives \\( 2^{n+1}\\ge 2([[b]]-[[a]])\\cdot10^{[[k]]} \\), i.e. \\( 2^{n}\\ge([[b]]-[[a]])\\cdot10^{[[k]]} \\), so \\( n=\\left\\lceil\\log_2\\big(([[b]]-[[a]])\\cdot10^{[[k]]}\\big)\\right\\rceil=[[answer]] \\).",
+ "distractor_rationales": [
+  "This rounds down instead of up.",
+  "This forgets the required decimal precision and only accounts for the initial bracket width.",
+  "This uses base-10 logarithms instead of base 2.",
+  "This overshoots by one step.",
+  "This is one step short of the guarantee.",
+  "This overshoots the required number of steps by two."
+ ]
+},
+{
+ "template_id": "bisection_additional_steps_v1",
+ "skill_id": "bisection_error_bound_number_of_steps",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": 5, "hi": 14},
+  "d": {"type": "choice", "values": [8, 16, 32, 64, 128, 1000]},
+  "m": {"type": "int", "lo": 0, "hi": 3}
+ },
+ "constraints": [
+  "Gt([[b]] - [[a]], 0)",
+  "Gt(ceiling(log(([[b]] - [[a]])*[[d]], 2)), [[m]])"
+ ],
+ "stem": "A student applying the bisection method on the bracket \\( [[[a]], [[b]]] \\) (which contains a root) has already carried out \\( [[m]] \\) bisection steps. How many ADDITIONAL bisection steps, beyond the \\( [[m]] \\) already performed, are needed to guarantee the bracket length is at most \\( \\frac{1}{[[d]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "ceiling(log(([[b]] - [[a]])*[[d]], 2)) - [[m]]"},
+ "distractors": [
+  "ceiling(log(([[b]] - [[a]])*[[d]], 2))",
+  "[[answer]] + [[m]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[m]] - [[answer]]",
+  "[[answer]] + 2"
+ ],
+ "solution": "The total number of steps needed from the original bracket is \\( N = \\left\\lceil \\log_2(([[b]]-[[a]])\\cdot[[d]]) \\right\\rceil \\). Since \\( [[m]] \\) steps are already done, the additional steps needed are \\( N - [[m]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the TOTAL number of steps needed from scratch, forgetting to subtract the \\( [[m]] \\) already performed.",
+  "This adds back the steps already done instead of having already subtracted them.",
+  "This overshoots by one additional step.",
+  "This is one step short of the guarantee.",
+  "This has the subtraction backwards.",
+  "This overshoots the required number of additional steps by two."
+ ]
+}
+]

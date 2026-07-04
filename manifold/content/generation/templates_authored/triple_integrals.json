@@ -1,0 +1,237 @@
+[
+ {
+  "template_id": "triple_integrals_box_linear_v1",
+  "skill_id": "triple_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 0,
+    "hi": 3
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "r": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   }
+  },
+  "constraints": [],
+  "stem": "Evaluate the triple integral \\( \\int_{0}^{[[p]]} \\int_{0}^{[[q]]} \\int_{0}^{[[r]]} \\left( [[a]] + [[b]]x + [[c]]y + [[d]]z \\right) \\, dz \\, dy \\, dx \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[a]] + [[b]]*x + [[c]]*y + [[d]]*z",
+   "vars": [
+    "z",
+    "y",
+    "x"
+   ],
+   "bounds": [
+    [
+     "0",
+     "[[r]]"
+    ],
+    [
+     "0",
+     "[[q]]"
+    ],
+    [
+     "0",
+     "[[p]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[a]]*[[p]]*[[q]]*[[r]]",
+   "([[a]]+[[b]]+[[c]]+[[d]])*[[p]]*[[q]]*[[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Integrate innermost in \\(z\\), then \\(y\\), then \\(x\\). By linearity each term integrates independently over the box, giving \\([[answer]]\\).",
+  "distractor_rationales": [
+   "Keeps only the constant term times the volume, dropping the variable terms.",
+   "Treats every coefficient as if the integrand were constant over the box.",
+   "Off by one.",
+   "Off by one.",
+   "Off by two.",
+   "Off by two."
+  ]
+ },
+ {
+  "template_id": "triple_integrals_box_separable_v2",
+  "skill_id": "triple_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "r": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[p]]} \\int_{0}^{[[q]]} \\int_{0}^{[[r]]} [[k]]\\,xyz \\, dz \\, dy \\, dx \\), whose integrand is the separable product \\([[k]]xyz\\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]*x*y*z",
+   "vars": [
+    "z",
+    "y",
+    "x"
+   ],
+   "bounds": [
+    [
+     "0",
+     "[[r]]"
+    ],
+    [
+     "0",
+     "[[q]]"
+    ],
+    [
+     "0",
+     "[[p]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[k]]*[[p]]*[[q]]*[[r]]",
+   "[[k]]*([[p]]*[[q]]*[[r]])**2/8",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The integral separates into a product of three single-variable integrals: \\( [[k]]\\left(\\int_0^{[[p]]}x\\,dx\\right)\\left(\\int_0^{[[q]]}y\\,dy\\right)\\left(\\int_0^{[[r]]}z\\,dz\\right) = [[k]]\\cdot\\frac{[[p]]^2}{2}\\cdot\\frac{[[q]]^2}{2}\\cdot\\frac{[[r]]^2}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "Uses the endpoints directly instead of the \\(t^2/2\\) antiderivatives.",
+   "Mishandles the product of the three quadratic factors.",
+   "Off by one.",
+   "Off by one.",
+   "Off by two.",
+   "Off by two."
+  ]
+ },
+ {
+  "template_id": "triple_integrals_box_quadratic_v3",
+  "skill_id": "triple_integrals",
+  "topic_id": "multivariable_int",
+  "tier": "relearn",
+  "params": {
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   },
+   "r": {
+    "type": "int",
+    "lo": 1,
+    "hi": 3
+   }
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[p]]} \\int_{0}^{[[q]]} \\int_{0}^{[[r]]} \\left( [[b]]x^2 + [[c]]y^2 + [[d]]z^2 \\right) \\, dz \\, dy \\, dx \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[b]]*x**2 + [[c]]*y**2 + [[d]]*z**2",
+   "vars": [
+    "z",
+    "y",
+    "x"
+   ],
+   "bounds": [
+    [
+     "0",
+     "[[r]]"
+    ],
+    [
+     "0",
+     "[[q]]"
+    ],
+    [
+     "0",
+     "[[p]]"
+    ]
+   ]
+  },
+  "distractors": [
+   "[[b]]*[[p]]**2 + [[c]]*[[q]]**2 + [[d]]*[[r]]**2",
+   "([[b]]+[[c]]+[[d]])*[[p]]*[[q]]*[[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Each pure square integrates over its own variable (\\(\\int_0^L t^2 dt = L^3/3\\)) and is multiplied by the widths of the other two variables. Summing the three contributions gives \\([[answer]]\\).",
+  "distractor_rationales": [
+   "Drops the factor-of-3 denominators and the widths of the other two variables.",
+   "Treats the integrand as constant over the box.",
+   "Off by one.",
+   "Off by one.",
+   "Off by two.",
+   "Off by two."
+  ]
+ }
+]

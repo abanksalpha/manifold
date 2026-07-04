@@ -1,0 +1,161 @@
+[
+ {
+  "template_id": "function_decomposition_v1",
+  "skill_id": "function_decomposition",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": -4, "hi": 8},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "The function \\( h(x) = \\sqrt{[[a]]x + ([[b]])} \\) is written as a composition \\( h(x) = f(g(x)) \\) whose outer function is \\( f(u) = \\sqrt{u} \\). What is the value of the inner function \\( g \\) at \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]] + [[b]]"},
+  "distractors": [
+   "[[a]]*[[x0]] - [[b]]",
+   "[[x0]] + [[b]]",
+   "[[a]]*[[x0]]",
+   "[[a]] + [[x0]] + [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The outer function is \\( f(u)=\\sqrt{u} \\), so the inner function is everything inside the root: \\( g(x) = [[a]]x + ([[b]]) \\). Therefore \\( g([[x0]]) = ([[a]])([[x0]]) + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the constant term of \\( g \\).",
+   "This drops the coefficient \\( [[a]] \\) on \\( x \\).",
+   "This keeps only the \\( x \\)-term and forgets the constant \\( ([[b]]) \\).",
+   "This adds the coefficient in as if it were a separate term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "function_decomposition_outer_power_v1",
+  "skill_id": "function_decomposition",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4]},
+   "u0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[b]], 0)", "Ne([[u0]], 0)"],
+  "stem": "The function \\( h(x) = \\left([[a]]x + ([[b]])\\right)^{[[n]]} \\) is written as a composition \\( h(x) = f(g(x)) \\) with inner function \\( g(x) = [[a]]x + ([[b]]) \\) and outer function \\( f(u) = u^{[[n]]} \\). What is \\( f([[u0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[u0]]**[[n]]"},
+  "distractors": [
+   "[[n]]*[[u0]]",
+   "[[u0]]**([[n]]-1)",
+   "[[u0]]**([[n]]+1)",
+   "-([[u0]]**[[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The outer function is \\( f(u) = u^{[[n]]} \\), so evaluating it at \\( u = [[u0]] \\) means raising [[u0]] to the [[n]]-th power directly (the coefficients \\( [[a]] \\) and \\( [[b]] \\) belong to the inner function and play no role here): \\( f([[u0]]) = ([[u0]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by the exponent instead of raising to that power.",
+   "This uses one less than the correct exponent.",
+   "This uses one more than the correct exponent.",
+   "This negates the correct value even though the exponent does not force a sign change.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "function_decomposition_triple_v1",
+  "skill_id": "function_decomposition",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "e": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[d]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( k(x) = [[a]]x + ([[b]]) \\), \\( g(u) = u^{2} + ([[c]]) \\), and \\( f(v) = [[d]]v + ([[e]]) \\), so that \\( h(x) = f(g(k(x))) \\) is a triple composition. What is the value of the middle function applied to the inner one, i.e. \\( g(k([[x0]])) \\)? (Do not apply \\( f \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]] + [[b]])**2 + [[c]]"},
+  "distractors": [
+   "[[d]]*(([[a]]*[[x0]] + [[b]])**2 + [[c]]) + [[e]]",
+   "([[a]]*[[x0]] + [[b]])**2",
+   "[[a]]*[[x0]] + [[b]]",
+   "([[a]]*[[x0]])**2 + [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First apply the innermost function: \\( k([[x0]]) = [[a]]([[x0]]) + ([[b]]) \\). Then apply the middle function to that result: \\( g(k([[x0]])) = \\big(k([[x0]])\\big)^{2} + ([[c]]) = [[answer]] \\). The outer function \\( f \\) is not applied.",
+  "distractor_rationales": [
+   "This goes one step too far and also applies the outer function \\( f \\).",
+   "This applies the middle function's squaring correctly but forgets to add the constant \\( ([[c]]) \\).",
+   "This stops after the innermost function and never applies the middle one.",
+   "This squares only the \\( x \\)-term of \\( k \\), forgetting the constant \\( ([[b]]) \\) before squaring.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "function_decomposition_inner_solve_v1",
+  "skill_id": "function_decomposition",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "target": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[target]], 0)"],
+  "stem": "The function \\( h(x) = \\dfrac{1}{[[a]]x + ([[b]])} \\) is written as \\( h(x) = f(g(x)) \\) with outer function \\( f(u) = \\dfrac{1}{u} \\) and inner function \\( g(x) = [[a]]x + ([[b]]) \\). For what value of \\( x \\) does the inner function satisfy \\( g(x) = [[target]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = [[target]]", "var": "x"},
+  "distractors": [
+   "([[target]] + [[b]])/[[a]]",
+   "[[target]] - [[b]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Set the inner function equal to the target: \\( [[a]]x + ([[b]]) = [[target]] \\), so \\( x = \\dfrac{[[target]] - ([[b]])}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( [[b]] \\) instead of subtracting it before dividing by \\( [[a]] \\).",
+   "This subtracts \\( [[b]] \\) from the target but forgets to divide by \\( [[a]] \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "function_decomposition_outer_abs_v1",
+  "skill_id": "function_decomposition",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "u0": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[b]], 0)", "Ne([[u0]], 0)"],
+  "stem": "The function \\( h(x) = |[[a]]x + ([[b]])| \\) is written as \\( h(x) = f(g(x)) \\) with inner function \\( g(x) = [[a]]x + ([[b]]) \\) and outer function \\( f(u) = |u| \\). What is \\( f([[u0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[u0]])"},
+  "distractors": [
+   "[[u0]]",
+   "-[[u0]]",
+   "[[u0]] + [[a]]",
+   "[[u0]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The outer function is \\( f(u) = |u| \\), which strips the sign of its input regardless of the inner function's coefficients. So \\( f([[u0]]) = |[[u0]]| = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the absolute value and reports the raw (possibly negative) input.",
+   "This negates the input outright instead of taking its absolute value, which is wrong whenever the input is already positive.",
+   "This confuses the outer function's input with the inner function's coefficient \\( [[a]] \\).",
+   "This squares the input instead of taking its absolute value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

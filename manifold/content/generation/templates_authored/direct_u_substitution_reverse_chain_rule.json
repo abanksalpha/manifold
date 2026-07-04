@@ -1,0 +1,159 @@
+[
+ {
+  "template_id": "direct_u_substitution_reverse_chain_rule_v1",
+  "skill_id": "direct_u_substitution_reverse_chain_rule",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Evaluate the definite integral \\( \\int_{0}^{[[a]]} x\\left(x^{2} + [[c]]\\right)^{[[n]]}\\,dx \\).",
+  "answer_spec": {"op": "integrate", "expr": "x*(x**2 + [[c]])**[[n]]", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "2*[[answer]]",
+   "(([[a]]**2 + [[c]])**([[n]] + 1))/(2*([[n]] + 1))",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Let \\( u = x^{2} + [[c]] \\), so \\( du = 2x\\,dx \\) and \\( x\\,dx = \\tfrac{1}{2}\\,du \\). The limits become \\( u = [[c]] \\) and \\( u = [[a]]^{2} + [[c]] \\), giving \\( \\tfrac{1}{2}\\int u^{[[n]]}\\,du = \\left.\\tfrac{u^{[[n]]+1}}{2([[n]]+1)}\\right| = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor \\( \\tfrac{1}{2} \\) coming from \\( du = 2x\\,dx \\).",
+   "This evaluates the antiderivative only at the upper limit, dropping the lower-limit term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "direct_u_substitution_reverse_chain_rule_v2",
+  "skill_id": "direct_u_substitution_reverse_chain_rule",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[a]]} [[c]]\\,x\\,e^{x^{2}}\\,dx \\), recognizing \\( x \\) as (up to a constant) the derivative of the exponent.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*x*exp(x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*exp([[a]]**2)",
+   "2*[[c]]*(exp([[a]]**2) - 1)",
+   "[[c]]*(exp([[a]]**2) - 1)/4",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "-[[answer]]"
+  ],
+  "solution": "Let \\( u = x^{2} \\), so \\( du = 2x\\,dx \\). Then \\( [[c]]\\int_{0}^{[[a]]} x e^{x^{2}}\\,dx = \\tfrac{[[c]]}{2}\\int_{0}^{[[a]]^{2}} e^{u}\\,du = \\tfrac{[[c]]}{2}\\left(e^{[[a]]^{2}} - 1\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the value of \\( e^{u} \\) at the lower limit \\( u=0 \\).",
+   "This forgets the factor \\( \\tfrac{1}{2} \\) from \\( du=2x\\,dx \\) and doubles instead.",
+   "This uses \\( \\tfrac{1}{4} \\) instead of \\( \\tfrac{1}{2} \\) as the leading constant.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This flips the sign of the correct value."
+  ]
+ },
+ {
+  "template_id": "direct_u_substitution_reverse_chain_rule_v3",
+  "skill_id": "direct_u_substitution_reverse_chain_rule",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]\\,x}{1 + x^{4}}\\,dx \\), recognizing \\( x \\) as (up to a constant) the derivative of \\( x^{2} \\), the argument of an arctangent form.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*x/(1 + x**4)", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*atan([[a]]**2)",
+   "2*[[c]]*atan([[a]]**2)",
+   "[[c]]*atan([[a]])/2",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "-[[answer]]"
+  ],
+  "solution": "Let \\( u = x^{2} \\), so \\( du = 2x\\,dx \\). Then \\( [[c]]\\int_{0}^{[[a]]} \\frac{x}{1+x^{4}}\\,dx = \\tfrac{[[c]]}{2}\\int_{0}^{[[a]]^{2}} \\frac{du}{1+u^{2}} = \\tfrac{[[c]]}{2}\\arctan([[a]]^{2}) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor \\( \\tfrac{1}{2} \\) from \\( du = 2x\\,dx \\).",
+   "This doubles the leading constant instead of halving it.",
+   "This uses \\( \\arctan([[a]]) \\) instead of \\( \\arctan([[a]]^{2}) \\), forgetting the substitution.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This flips the sign of the correct value."
+  ]
+ },
+ {
+  "template_id": "direct_u_substitution_reverse_chain_rule_v4",
+  "skill_id": "direct_u_substitution_reverse_chain_rule",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "d": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{2[[c]]\\,x}{x^{2} + [[d]]}\\,dx \\), recognizing the numerator as the derivative of the denominator.",
+  "answer_spec": {"op": "integrate", "expr": "2*[[c]]*x/(x**2 + [[d]])", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*log([[a]]**2 + [[d]])",
+   "[[c]]*log([[a]]**2)",
+   "2*[[c]]*log([[a]]**2 + [[d]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "-[[answer]]"
+  ],
+  "solution": "Let \\( u = x^{2} + [[d]] \\), so \\( du = 2x\\,dx \\). Then \\( \\int_{0}^{[[a]]} \\frac{2[[c]]x}{x^{2}+[[d]]}\\,dx = [[c]]\\int_{[[d]]}^{[[a]]^{2}+[[d]]} \\frac{du}{u} = [[c]]\\left(\\ln([[a]]^{2}+[[d]]) - \\ln([[d]])\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the leading constant \\( [[c]] \\) and the subtraction of \\( \\ln([[d]]) \\).",
+   "This uses \\( \\ln([[a]]^{2}) \\), dropping the \\( [[d]] \\) shift entirely.",
+   "This doubles the correct value.",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This flips the sign of the correct value."
+  ]
+ },
+ {
+  "template_id": "direct_u_substitution_reverse_chain_rule_v5",
+  "skill_id": "direct_u_substitution_reverse_chain_rule",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "d": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{[[c]]\\,x}{\\sqrt{x^{2} + [[d]]}}\\,dx \\), recognizing the numerator as (up to a constant) the derivative of the quantity under the radical.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*x/sqrt(x**2 + [[d]])", "var": "x", "bounds": ["0", "[[a]]"]},
+  "distractors": [
+   "[[c]]*sqrt([[a]]**2 + [[d]])",
+   "2*[[c]]*(sqrt([[a]]**2 + [[d]]) - sqrt([[d]]))",
+   "[[c]]*(sqrt([[a]]**2 + [[d]]) - [[d]])",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "-[[answer]]"
+  ],
+  "solution": "Let \\( u = x^{2} + [[d]] \\), so \\( du = 2x\\,dx \\). Then \\( [[c]]\\int_{0}^{[[a]]} \\frac{x}{\\sqrt{x^{2}+[[d]]}}\\,dx = \\tfrac{[[c]]}{2}\\int_{[[d]]}^{[[a]]^{2}+[[d]]} u^{-1/2}\\,du = [[c]]\\left(\\sqrt{[[a]]^{2}+[[d]]} - \\sqrt{[[d]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract the value of \\( \\sqrt{u} \\) at the lower limit \\( u=[[d]] \\).",
+   "This doubles the correct value through a factor-of-2 slip in the substitution.",
+   "This subtracts \\( [[d]] \\) directly instead of \\( \\sqrt{[[d]]} \\).",
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This flips the sign of the correct value."
+  ]
+ }
+]

@@ -1,0 +1,193 @@
+[
+ {
+  "template_id": "arc_length_and_sector_area_v1",
+  "skill_id": "arc_length_and_sector_area",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "theta": {"type": "choice", "values": [30, 45, 60, 72, 90, 120, 135, 150, 180, 240, 270, 300]},
+   "r": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "A circular sector has radius \\( [[r]] \\) and central angle \\( [[theta]]^{\\circ} \\). What is the area of the sector? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "([[theta]]/360)*pi*[[r]]**2"},
+  "distractors": [
+   "([[theta]]/360)*2*pi*[[r]]",
+   "pi*[[r]]**2",
+   "([[theta]]/360)*[[r]]**2",
+   "pi*[[r]]**2/2",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "2*[[answer]]"
+  ],
+  "solution": "A sector is the fraction \\( \\frac{[[theta]]}{360} \\) of the full circle, whose area is \\( \\pi r^{2} \\). So the sector area is \\( \\frac{[[theta]]}{360}\\cdot\\pi\\cdot[[r]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes the arc length \\( \\frac{\\theta}{360}\\cdot 2\\pi r \\) instead of the sector area.",
+   "This is the area of the whole circle, ignoring the central-angle fraction.",
+   "This drops the factor of \\( \\pi \\) from the circle's area.",
+   "This uses half the circle regardless of the actual central angle.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This doubles the correct sector area."
+  ]
+ },
+ {
+  "template_id": "arc_length_and_sector_area_v2_arclen_deg",
+  "skill_id": "arc_length_and_sector_area",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "theta": {"type": "choice", "values": [15, 30, 40, 45, 60, 72, 90, 120, 135, 150, 180, 225, 270, 300]},
+   "r": {"type": "int", "lo": 3, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "An arc of a circle of radius \\( [[r]] \\) subtends a central angle of \\( [[theta]]^{\\circ} \\). What is the length of the arc? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "([[theta]]/360)*2*pi*[[r]]"},
+  "distractors": [
+   "([[theta]]/360)*pi*[[r]]**2",
+   "2*pi*[[r]]",
+   "([[theta]]/360)*[[r]]",
+   "pi*[[r]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]]/2"
+  ],
+  "solution": "An arc is the fraction \\( \\frac{[[theta]]}{360} \\) of the full circumference \\( 2\\pi r \\). So the arc length is \\( \\frac{[[theta]]}{360}\\cdot 2\\pi\\cdot[[r]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes the sector area instead of the arc length.",
+   "This is the full circumference, ignoring the central-angle fraction.",
+   "This drops the factor of \\( \\pi \\) entirely.",
+   "This uses half the circumference regardless of the actual central angle.",
+   "This is off from the correct arc length by \\( \\pi \\).",
+   "This is off from the correct arc length by \\( \\pi \\).",
+   "This is half the correct arc length."
+  ]
+ },
+ {
+  "template_id": "arc_length_and_sector_area_v3_arclen_rad",
+  "skill_id": "arc_length_and_sector_area",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "num": {"type": "int", "lo": 1, "hi": 11},
+   "den": {"type": "choice", "values": [2, 3, 4, 6, 8, 12]},
+   "r": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": ["Lt([[num]], 2*[[den]])", "Eq(gcd([[num]], [[den]]), 1)"],
+  "stem": "An arc of a circle of radius \\( [[r]] \\) subtends a central angle of \\( \\dfrac{[[num]]\\pi}{[[den]]} \\) radians. What is the length of the arc?",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]]*[[num]]*pi/[[den]]"},
+  "distractors": [
+   "[[r]]**2*[[num]]*pi/(2*[[den]])",
+   "[[num]]*pi/[[den]]",
+   "2*[[r]]*[[num]]*pi/[[den]]",
+   "[[r]]*[[den]]*pi/[[num]]",
+   "[[answer]] + pi",
+   "[[answer]]/2"
+  ],
+  "solution": "In radians, arc length is simply \\( s = r\\theta \\). Here \\( \\theta = \\frac{[[num]]\\pi}{[[den]]} \\), so \\( s = [[r]]\\cdot\\frac{[[num]]\\pi}{[[den]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the sector-area formula \\( \\frac{1}{2}r^{2}\\theta \\) instead of the arc-length formula \\( r\\theta \\).",
+   "This drops the radius entirely, using just the angle in radians.",
+   "This doubles the radius as if using a diameter instead of a radius.",
+   "This inverts the angle, swapping the numerator and denominator.",
+   "This is off from the correct arc length by \\( \\pi \\).",
+   "This is half the correct arc length."
+  ]
+ },
+ {
+  "template_id": "arc_length_and_sector_area_v4_solve_angle",
+  "skill_id": "arc_length_and_sector_area",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "k": {"type": "int", "lo": 1, "hi": 11}
+  },
+  "constraints": ["Lt([[k]], 2*[[r]])"],
+  "derived": {"area_num": "[[k]]*[[r]]"},
+  "stem": "A circular sector of radius \\( [[r]] \\) has area \\( [[area_num]]\\pi \\). What is the measure, in degrees, of the sector's central angle?",
+  "answer_spec": {"op": "evaluate", "expr": "360*[[area_num]]*pi/(pi*[[r]]**2)"},
+  "distractors": [
+   "180*[[area_num]]*pi/(pi*[[r]]**2)",
+   "[[area_num]]",
+   "360*[[area_num]]/[[r]]",
+   "[[area_num]]*[[r]]",
+   "[[answer]] + 10",
+   "[[answer]] - 10"
+  ],
+  "solution": "Since the area of a sector is \\( \\frac{\\theta}{360}\\pi r^{2} \\), solving for \\( \\theta \\) gives \\( \\theta = \\frac{360\\cdot[[area_num]]\\pi}{\\pi\\cdot[[r]]^{2}} = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This uses \\( 180 \\) instead of \\( 360 \\) in the numerator, as if the sector were compared to a semicircle.",
+   "This just reports the area's coefficient instead of solving for the angle.",
+   "This forgets to square the radius in the denominator.",
+   "This multiplies by the radius instead of dividing by its square.",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by ten degrees."
+  ]
+ },
+ {
+  "template_id": "arc_length_and_sector_area_v5_solve_radius",
+  "skill_id": "arc_length_and_sector_area",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "theta": {"type": "choice", "values": [30, 45, 60, 90, 120, 150, 180, 270]},
+   "k": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": [],
+  "derived": {"arclen_num": "[[theta]]*[[k]]/180"},
+  "stem": "An arc of a circle has length \\( [[arclen_num]]\\pi \\) and subtends a central angle of \\( [[theta]]^{\\circ} \\). What is the radius of the circle?",
+  "answer_spec": {"op": "evaluate", "expr": "[[arclen_num]]*pi/(([[theta]]/360)*2*pi)"},
+  "distractors": [
+   "[[arclen_num]]*pi/(([[theta]]/360)*pi)",
+   "[[arclen_num]]",
+   "[[arclen_num]]*[[theta]]",
+   "2*[[arclen_num]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Arc length is \\( s = \\frac{\\theta}{360}\\cdot 2\\pi r \\). Solving for \\( r \\): \\( r = \\dfrac{[[arclen_num]]\\pi}{\\frac{[[theta]]}{360}\\cdot 2\\pi} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the factor of 2 from the circumference, as if arc length were \\( \\frac{\\theta}{360}\\pi r \\).",
+   "This just reports the arc length's coefficient of \\( \\pi \\) instead of solving for the radius.",
+   "This multiplies by the angle instead of dividing it out.",
+   "This doubles the correct radius.",
+   "This is off from the correct radius by one.",
+   "This is off from the correct radius by one."
+  ]
+ },
+ {
+  "template_id": "arc_length_and_sector_area_v6_perimeter",
+  "skill_id": "arc_length_and_sector_area",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "theta": {"type": "choice", "values": [30, 45, 60, 72, 90, 120, 135, 150, 180, 240]},
+   "r": {"type": "int", "lo": 3, "hi": 18}
+  },
+  "constraints": [],
+  "stem": "A circular sector has radius \\( [[r]] \\) and central angle \\( [[theta]]^{\\circ} \\). What is the perimeter of the sector (the two straight radii plus the curved arc)? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[r]] + ([[theta]]/360)*2*pi*[[r]]"},
+  "distractors": [
+   "([[theta]]/360)*2*pi*[[r]]",
+   "2*[[r]] + ([[theta]]/360)*pi*[[r]]**2",
+   "[[r]] + ([[theta]]/360)*2*pi*[[r]]",
+   "2*pi*[[r]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The sector's boundary consists of two radii, each of length \\( [[r]] \\), plus the arc of length \\( \\frac{[[theta]]}{360}\\cdot 2\\pi[[r]] \\). Adding these gives the perimeter \\( 2[[r]] + \\frac{[[theta]]}{360}\\cdot 2\\pi[[r]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the two straight radii, giving only the arc length.",
+   "This mistakenly adds the sector's area instead of the arc length to the radii.",
+   "This includes only one radius instead of two.",
+   "This is just the full circumference, ignoring both the angle fraction and the two straight radii.",
+   "This is off from the correct perimeter by \\( \\pi \\).",
+   "This is off from the correct perimeter by \\( \\pi \\)."
+  ]
+ }
+]

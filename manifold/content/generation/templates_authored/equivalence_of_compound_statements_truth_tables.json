@@ -1,0 +1,108 @@
+[
+{
+ "template_id": "equivalence_of_compound_statements_truth_tables_de_morgan_v1",
+ "skill_id": "equivalence_of_compound_statements_truth_tables",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [3, 4, 5]},
+  "letter": {"type": "choice", "values": ["p", "q", "x", "y", "a", "b", "m", "s"]}
+ },
+ "constraints": [],
+ "derived": {"rows": "2**[[n]]"},
+ "stem": "Let \\( [[letter]]_1, [[letter]]_2, \\ldots, [[letter]]_{[[n]]} \\) be [[n]] propositional variables. Define \\( P: \\neg([[letter]]_1 \\wedge [[letter]]_2 \\wedge \\cdots \\wedge [[letter]]_{[[n]]}) \\) and \\( Q: \\neg [[letter]]_1 \\vee \\neg [[letter]]_2 \\vee \\cdots \\vee \\neg [[letter]]_{[[n]]} \\). Over all \\( 2^{[[n]]} = [[rows]] \\) possible truth-value assignments to \\( [[letter]]_1,\\ldots,[[letter]]_{[[n]]} \\), for how many assignments do \\(P\\) and \\(Q\\) have the same truth value?",
+ "answer_spec": {
+  "op": "sum", "var": "k",
+  "expr": "1-((1-(Mod(k,2))*(Mod(floor(k/2),2))*(Mod(floor(k/4),2))*(Mod(floor(k/8),2))*(Mod(floor(k/16),2)))-(1-(Mod(k,2))*(Mod(floor(k/2),2))*(Mod(floor(k/4),2))*(Mod(floor(k/8),2))*(Mod(floor(k/16),2))))**2",
+  "lo": 0, "hi": "[[rows]]-1"
+ },
+ "distractors": [
+  "0",
+  "[[rows]]-[[n]]",
+  "[[rows]]/2",
+  "[[n]]",
+  "[[rows]]-1",
+  "2*[[n]]"
+ ],
+ "solution": "By De Morgan's law, \\( \\neg([[letter]]_1 \\wedge \\cdots \\wedge [[letter]]_{[[n]]}) \\) and \\( \\neg [[letter]]_1 \\vee \\cdots \\vee \\neg [[letter]]_{[[n]]} \\) are LOGICALLY EQUIVALENT, so \\(P\\) and \\(Q\\) agree on EVERY row of the truth table: all \\( [[rows]] \\) assignments, so the answer is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the two statements never agree, but De Morgan's law makes them logically equivalent.",
+  "This guesses the two statements disagree on exactly \\( [[n]] \\) of the rows.",
+  "This assumes the statements agree on only half the rows, as if they were unrelated formulas.",
+  "This confuses the number of AGREEING rows with the number of VARIABLES.",
+  "This assumes exactly one row of disagreement rather than full agreement.",
+  "This is an arbitrary multiple of the variable count, not the row-agreement count."
+ ]
+},
+{
+ "template_id": "equivalence_of_compound_statements_truth_tables_and_vs_or_v1",
+ "skill_id": "equivalence_of_compound_statements_truth_tables",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "ra": {"type": "choice", "values": [0, 1]},
+  "sa": {"type": "choice", "values": [0, 1]},
+  "letter": {"type": "choice", "values": ["p", "q", "x", "y", "a", "b", "m", "s"]}
+ },
+ "constraints": ["Le([[sa]], [[ra]])"],
+ "derived": {"n": "2+[[ra]]+[[sa]]", "rows": "2**(2+[[ra]]+[[sa]])"},
+ "stem": "Let \\( [[letter]]_1, [[letter]]_2, \\ldots, [[letter]]_{[[n]]} \\) be [[n]] propositional variables. Let \\( P \\) be their CONJUNCTION \\( [[letter]]_1 \\wedge [[letter]]_2 \\wedge \\cdots \\wedge [[letter]]_{[[n]]} \\) and let \\( Q \\) be their DISJUNCTION \\( [[letter]]_1 \\vee [[letter]]_2 \\vee \\cdots \\vee [[letter]]_{[[n]]} \\). Over all \\( 2^{[[n]]} = [[rows]] \\) possible truth-value assignments, for how many assignments do \\(P\\) and \\(Q\\) have the same truth value?",
+ "answer_spec": {
+  "op": "sum", "var": "k",
+  "expr": "1-(((Mod(k,2))*(Mod(floor(k/2),2))*((1-[[ra]])+[[ra]]*Mod(floor(k/4),2))*((1-[[sa]])+[[sa]]*Mod(floor(k/8),2)))-(1-(1-Mod(k,2))*(1-Mod(floor(k/2),2))*((1-[[ra]])+[[ra]]*(1-Mod(floor(k/4),2)))*((1-[[sa]])+[[sa]]*(1-Mod(floor(k/8),2)))))**2",
+  "lo": 0, "hi": "[[rows]]-1"
+ },
+ "distractors": [
+  "0",
+  "1",
+  "[[rows]]",
+  "[[rows]]-1",
+  "[[rows]]-3",
+  "[[n]]*3"
+ ],
+ "solution": "The conjunction \\(P\\) is true only on the ALL-TRUE row, and the disjunction \\(Q\\) is false only on the ALL-FALSE row; every OTHER row has \\(P\\) false and \\(Q\\) true, so they DISAGREE there. \\(P\\) and \\(Q\\) agree only on the all-false row (both false) and the all-true row (both true): exactly \\( [[answer]] \\) of the \\( [[rows]] \\) assignments.",
+ "distractor_rationales": [
+  "This assumes the conjunction and disjunction never coincide, but they always agree on the all-false and all-true rows.",
+  "This assumes only a single row agrees and forgets that BOTH the all-false and all-true rows agree.",
+  "This assumes the conjunction and disjunction are logically equivalent and always agree, which is false whenever not every row is extreme.",
+  "This is off by one from the total row count, as if all but one row agreed.",
+  "This is off by three from the total row count, an arbitrary miscount of the agreeing rows.",
+  "This is an arbitrary multiple of the variable count, not the true row-agreement count."
+ ]
+},
+{
+ "template_id": "equivalence_of_compound_statements_truth_tables_parity_vs_or_v1",
+ "skill_id": "equivalence_of_compound_statements_truth_tables",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [2, 3, 4]},
+  "letter": {"type": "choice", "values": ["p", "q", "x", "y", "a", "b", "m", "s"]}
+ },
+ "constraints": [],
+ "derived": {"rows": "2**[[n]]"},
+ "stem": "Let \\( [[letter]]_1, [[letter]]_2, \\ldots, [[letter]]_{[[n]]} \\) be [[n]] propositional variables. Let \\( P \\) be true exactly when an ODD number of \\( [[letter]]_1,\\ldots,[[letter]]_{[[n]]} \\) are true (their XOR / parity), and let \\( Q: [[letter]]_1 \\vee [[letter]]_2 \\vee \\cdots \\vee [[letter]]_{[[n]]} \\) (their disjunction). Over all \\( 2^{[[n]]} = [[rows]] \\) possible truth-value assignments, for how many assignments do \\(P\\) and \\(Q\\) have the same truth value?",
+ "answer_spec": {
+  "op": "sum", "var": "k",
+  "expr": "1-((Mod(Mod(k,2)+Mod(floor(k/2),2)+Mod(floor(k/4),2)+Mod(floor(k/8),2),2))-(1-(1-Mod(k,2))*(1-Mod(floor(k/2),2))*(1-Mod(floor(k/4),2))*(1-Mod(floor(k/8),2))))**2",
+  "lo": 0, "hi": "[[rows]]-1"
+ },
+ "distractors": [
+  "[[rows]]",
+  "0",
+  "[[rows]]/2",
+  "[[n]]",
+  "[[rows]]-[[n]]-1",
+  "2*[[n]]"
+ ],
+ "solution": "\\(P\\) and \\(Q\\) agree exactly when the number of true variables is 0 (both false) or when it is odd (both true, since an odd count is at least 1). They disagree exactly when the true-count is a positive EVEN number. Counting rows: the all-false row (1 way) plus every row with an odd number of true variables (\\(2^{[[n]]-1}\\) of the \\( [[rows]] \\) rows) gives \\( 1+2^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes parity and disjunction are logically equivalent and always agree, but they disagree whenever an even number \\(\\ge 2\\) of variables are true.",
+  "This assumes they never agree, ignoring the all-false row and every odd-count row where both are true.",
+  "This assumes they agree on exactly half the rows, which overcounts the disagreement from even-but-nonzero true counts.",
+  "This confuses the number of AGREEING rows with the number of VARIABLES.",
+  "This subtracts too many rows, as if only a single row of agreement existed beyond the odd-count rows.",
+  "This is an arbitrary multiple of the variable count, not the true row-agreement count."
+ ]
+}
+]

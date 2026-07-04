@@ -1,0 +1,127 @@
+[
+{
+ "template_id": "comparison_tests_limit_comparison_rational_v1",
+ "skill_id": "comparison_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "To apply the Limit Comparison Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[a]]n^{2}+[[b]]n}{[[c]]n^{3}+1} \\) against the benchmark series \\( \\displaystyle\\sum \\dfrac{1}{n} \\), compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{([[a]]n^{2}+[[b]]n)/([[c]]n^{3}+1)}{1/n} \\).",
+ "answer_spec": {"op": "limit", "expr": "n*([[a]]*n**2+[[b]]*n)/([[c]]*n**3+1)", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[c]],[[a]])",
+  "0",
+  "[[a]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "\\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{n([[a]]n^{2}+[[b]]n)}{[[c]]n^{3}+1} = \\lim_{n\\to\\infty}\\dfrac{[[a]]n^{3}+[[b]]n^{2}}{[[c]]n^{3}+1} = \\dfrac{[[a]]}{[[c]]} = [[answer]] \\), a finite positive number, so \\( \\sum a_n \\) and \\( \\sum 1/n \\) share the same convergence behavior.",
+ "distractor_rationales": [
+  "This inverts the ratio of the leading coefficients.",
+  "This wrongly assumes the numerator's lower-degree terms make the ratio vanish.",
+  "This multiplies the leading coefficients together instead of taking their ratio.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+},
+{
+ "template_id": "comparison_tests_limit_comparison_radical_v2",
+ "skill_id": "comparison_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "choice", "values": [1, 4, 9, 16, 25]},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "To apply the Limit Comparison Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[c]]}{\\sqrt{[[a]]n^{2}+[[b]]n+1}} \\) against the benchmark series \\( \\displaystyle\\sum \\dfrac{1}{n} \\), compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[c]]/\\sqrt{[[a]]n^{2}+[[b]]n+1}}{1/n} \\).",
+ "answer_spec": {"op": "limit", "expr": "[[c]]*n/sqrt([[a]]*n**2+[[b]]*n+1)", "var": "n", "point": "oo"},
+ "distractors": [
+  "[[c]]/[[a]]",
+  "[[c]]*sqrt([[a]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "\\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[c]]n}{\\sqrt{[[a]]n^{2}+[[b]]n+1}} = \\dfrac{[[c]]}{\\sqrt{[[a]]}} = [[answer]] \\), a finite positive number, so \\( \\sum a_n \\) and \\( \\sum 1/n \\) share the same convergence behavior.",
+ "distractor_rationales": [
+  "This divides by \\( [[a]] \\) directly instead of by \\( \\sqrt{[[a]]} \\), forgetting the square root survives the limit.",
+  "This inverts the correct ratio, multiplying by \\( \\sqrt{[[a]]} \\) instead of dividing by it.",
+  "This wrongly assumes the radical in the denominator dominates and sends the ratio to \\( 0 \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+},
+{
+ "template_id": "comparison_tests_limit_comparison_geometric_v3",
+ "skill_id": "comparison_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "To apply the Limit Comparison Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[a]]n+[[b]]}{[[k]]^{n}} \\) against the benchmark series \\( \\displaystyle\\sum \\dfrac{n}{[[k]]^{n}} \\), compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{([[a]]n+[[b]])/[[k]]^{n}}{n/[[k]]^{n}} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*n+[[b]])/n", "var": "n", "point": "oo"},
+ "distractors": [
+  "0",
+  "[[a]]*[[k]]",
+  "[[a]]/[[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The \\( [[k]]^{n} \\) factors cancel exactly, leaving \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[a]]n+[[b]]}{n} = [[a]] = [[answer]] \\), a finite positive number, so \\( \\sum a_n \\) and \\( \\sum n/[[k]]^{n} \\) share the same convergence behavior.",
+ "distractor_rationales": [
+  "This wrongly assumes the exponential factors do not cancel and instead force the ratio to \\( 0 \\).",
+  "This wrongly reintroduces a factor of \\( [[k]] \\) after the exponential terms have already cancelled.",
+  "This divides by \\( [[k]] \\) as though the exponential factors only partially cancelled.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+},
+{
+ "template_id": "comparison_tests_limit_comparison_log_dominated_v4",
+ "skill_id": "comparison_tests",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "To apply the Limit Comparison Test to \\( \\displaystyle\\sum_{n=2}^{\\infty} \\dfrac{[[a]]n + [[c]]\\ln n}{n^{2}} \\) against the benchmark series \\( \\displaystyle\\sum \\dfrac{1}{n} \\), compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{([[a]]n+[[c]]\\ln n)/n^{2}}{1/n} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*n+[[c]]*log(n))/n", "var": "n", "point": "oo"},
+ "distractors": [
+  "0",
+  "oo",
+  "[[a]]+[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "\\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[a]]n+[[c]]\\ln n}{n} = [[a]] + [[c]]\\lim_{n\\to\\infty}\\dfrac{\\ln n}{n} = [[a]] + 0 = [[answer]] \\), a finite positive number, since \\( \\ln n \\) grows slower than \\( n \\), so \\( \\sum a_n \\) and \\( \\sum 1/n \\) share the same convergence behavior.",
+ "distractor_rationales": [
+  "This wrongly assumes the logarithmic term dominates and drives the whole ratio to \\( 0 \\).",
+  "This wrongly assumes the logarithmic term grows faster than \\( n \\), sending the limit to infinity.",
+  "This adds the coefficients \\( [[a]] \\) and \\( [[c]] \\) directly, as if \\( \\ln n/n \\) tended to \\( 1 \\) instead of \\( 0 \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit.",
+  "This doubles the correct limit."
+ ]
+}
+]

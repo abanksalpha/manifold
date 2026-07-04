@@ -1,0 +1,164 @@
+[
+{
+ "template_id": "implicit_conic_v1",
+ "skill_id": "implicit_differentiation",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "derived": {"k": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2"},
+ "stem": "The curve \\( [[a]]x^{2} + [[b]]y^{2} = [[k]] \\) passes through the point \\( ([[x0]], [[y0]]) \\). Using implicit differentiation, what is \\( \\dfrac{dy}{dx} \\) at that point?",
+ "answer_spec": {"op": "solve", "equation": "2*[[a]]*[[x0]] + 2*[[b]]*[[y0]]*yp = 0", "var": "yp"},
+ "distractors": [
+  "([[a]]*[[x0]])/([[b]]*[[y0]])",
+  "-([[b]]*[[y0]])/([[a]]*[[x0]])",
+  "-2*([[a]]*[[x0]])/([[b]]*[[y0]])",
+  "-([[a]]*[[x0]])/([[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( [[a]]x^{2}+[[b]]y^{2}=[[k]] \\) with respect to \\( x \\) gives \\( 2([[a]])x + 2([[b]])y\\,\\dfrac{dy}{dx} = 0 \\). Solving for \\( \\dfrac{dy}{dx} \\) and substituting \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that comes from moving the \\( x \\)-term to the other side.",
+  "This inverts the correct ratio, computing \\( -y/x \\)-style terms swapped.",
+  "This keeps an extra, unneeded factor of 2 from the differentiated equation instead of letting it cancel.",
+  "This forgets to include \\( y \\) in the denominator entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "implicit_cross_term_v2",
+ "skill_id": "implicit_differentiation",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]]*[[x0]] + [[c]], 0)"],
+ "derived": {"k": "[[a]]*[[x0]]*[[y0]] + [[b]]*[[x0]] + [[c]]*[[y0]]"},
+ "stem": "The curve \\( [[a]]xy + [[b]]x + [[c]]y = [[k]] \\) passes through the point \\( ([[x0]], [[y0]]) \\). Using implicit differentiation, what is \\( \\dfrac{dy}{dx} \\) at that point?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[y0]] + [[a]]*[[x0]]*yp + [[b]] + [[c]]*yp = 0", "var": "yp"},
+ "distractors": [
+  "([[a]]*[[y0]] + [[b]])/([[a]]*[[x0]] + [[c]])",
+  "-([[a]]*[[x0]] + [[c]])/([[a]]*[[y0]] + [[b]])",
+  "-([[a]]*[[y0]])/([[a]]*[[x0]])",
+  "-([[b]])/([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( [[a]]xy+[[b]]x+[[c]]y=[[k]] \\) with respect to \\( x \\) (product rule on \\( xy \\)) gives \\( [[a]]y + [[a]]x\\,\\dfrac{dy}{dx} + [[b]] + [[c]]\\dfrac{dy}{dx} = 0 \\). Solving for \\( \\dfrac{dy}{dx} \\) and substituting \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that comes from isolating \\( dy/dx \\) on one side.",
+  "This inverts the correct ratio of numerator and denominator.",
+  "This drops the constants \\( b \\) and \\( c \\) entirely, keeping only the \\( xy \\)-term's contribution.",
+  "This uses only the linear coefficients \\( b,c \\) and ignores the product-rule term from \\( xy \\) altogether.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "implicit_power_sum_v3",
+ "skill_id": "implicit_differentiation",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "n": {"type": "choice", "values": [3, 4]}
+ },
+ "constraints": ["Ne([[y0]], 0)"],
+ "derived": {"k": "[[x0]]**[[n]] + [[y0]]**[[n]]"},
+ "stem": "The curve \\( x^{[[n]]} + y^{[[n]]} = [[k]] \\) passes through the point \\( ([[x0]], [[y0]]) \\). Using implicit differentiation, what is \\( \\dfrac{dy}{dx} \\) at that point?",
+ "answer_spec": {"op": "solve", "equation": "[[n]]*[[x0]]**([[n]]-1) + [[n]]*[[y0]]**([[n]]-1)*yp = 0", "var": "yp"},
+ "distractors": [
+  "([[x0]]/[[y0]])**([[n]]-1)",
+  "-([[y0]]/[[x0]])**([[n]]-1)",
+  "-[[x0]]**([[n]]-1)/[[y0]]**([[n]])",
+  "-[[n]]*[[x0]]**([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( x^{[[n]]}+y^{[[n]]}=[[k]] \\) with respect to \\( x \\) gives \\( [[n]]x^{[[n]]-1} + [[n]]y^{[[n]]-1}\\,\\dfrac{dy}{dx} = 0 \\). Solving for \\( \\dfrac{dy}{dx} \\) and substituting \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that comes from isolating \\( dy/dx \\).",
+  "This inverts the correct ratio \\( -(x/y)^{n-1} \\).",
+  "This forgets to lower the exponent on \\( y \\) by one, leaving it at \\( n \\).",
+  "This omits the \\( y^{n-1} \\) term in the denominator entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "implicit_exponential_v4",
+ "skill_id": "implicit_differentiation",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -12, "hi": 10}
+ },
+ "constraints": ["Ne([[x0]] + 1, 0)"],
+ "derived": {"k": "[[x0]]"},
+ "stem": "The curve \\( x e^{y} + y = [[k]] \\) passes through the point \\( ([[x0]], 0) \\) (note \\( e^{0}=1 \\)). Using implicit differentiation, what is \\( \\dfrac{dy}{dx} \\) at that point?",
+ "answer_spec": {"op": "solve", "equation": "1 + [[x0]]*yp + yp = 0", "var": "yp"},
+ "distractors": [
+  "Rational(1,[[x0]])",
+  "-Rational(1,[[x0]])",
+  "Rational(-1,[[x0]]+2)",
+  "[[x0]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( xe^{y}+y=[[k]] \\) with respect to \\( x \\) (product rule on \\( xe^{y}\\)) gives \\( e^{y} + xe^{y}\\dfrac{dy}{dx} + \\dfrac{dy}{dx} = 0 \\). At \\( ([[x0]],0) \\), \\( e^{0}=1 \\), so \\( 1 + [[x0]]\\dfrac{dy}{dx} + \\dfrac{dy}{dx} = 0 \\), giving \\( \\dfrac{dy}{dx} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign and forgets the extra \\( +1 \\) from the plain \\( y \\) term in the denominator.",
+  "This has the right sign structure but forgets the extra \\( +1 \\) from the plain \\( y \\) term entirely.",
+  "This adds 2 instead of 1 to the denominator, over-correcting for the extra term.",
+  "This reports \\( x_{0} \\) itself instead of solving the implicit-differentiation equation.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "implicit_reciprocal_sum_v5",
+ "skill_id": "implicit_differentiation",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "derived": {"k": "Rational([[a]],[[x0]]) + Rational([[b]],[[y0]])"},
+ "stem": "The curve \\( \\dfrac{[[a]]}{x} + \\dfrac{[[b]]}{y} = [[k]] \\) passes through the point \\( ([[x0]], [[y0]]) \\). Using implicit differentiation, what is \\( \\dfrac{dy}{dx} \\) at that point?",
+ "answer_spec": {"op": "solve", "equation": "-Rational([[a]],[[x0]]**2) - Rational([[b]],[[y0]]**2)*yp = 0", "var": "yp"},
+ "distractors": [
+  "Rational([[a]]*[[y0]]**2,[[b]]*[[x0]]**2)",
+  "-Rational([[b]]*[[y0]]**2,[[a]]*[[x0]]**2)",
+  "Rational(-[[a]],[[b]])",
+  "Rational(-[[a]]*[[y0]],[[b]]*[[x0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( \\dfrac{[[a]]}{x}+\\dfrac{[[b]]}{y}=[[k]] \\) with respect to \\( x \\) gives \\( -\\dfrac{[[a]]}{x^{2}} - \\dfrac{[[b]]}{y^{2}}\\dfrac{dy}{dx} = 0 \\). Solving for \\( \\dfrac{dy}{dx} \\) and substituting \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct ratio, computing \\( ay^2/(bx^2) \\) with the wrong sign as well.",
+  "This inverts the correct ratio \\( -ay^{2}/(bx^{2}) \\).",
+  "This forgets to include the squared \\( x \\) and \\( y \\) factors entirely.",
+  "This uses \\( x \\) and \\( y \\) to the first power instead of squared.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

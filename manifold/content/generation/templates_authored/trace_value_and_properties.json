@@ -1,0 +1,179 @@
+[
+{
+ "template_id": "trace_value_and_properties_v1",
+ "skill_id": "trace_value_and_properties",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -6, "hi": 6},
+  "a12": {"type": "int", "lo": -6, "hi": 6},
+  "a13": {"type": "int", "lo": -6, "hi": 6},
+  "a21": {"type": "int", "lo": -6, "hi": 6},
+  "a22": {"type": "int", "lo": -6, "hi": 6},
+  "a23": {"type": "int", "lo": -6, "hi": 6},
+  "a31": {"type": "int", "lo": -6, "hi": 6},
+  "a32": {"type": "int", "lo": -6, "hi": 6},
+  "a33": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "What is the trace of the matrix \\( A = \\begin{bmatrix} [[a11]] & [[a12]] & [[a13]] \\\\ [[a21]] & [[a22]] & [[a23]] \\\\ [[a31]] & [[a32]] & [[a33]] \\end{bmatrix} \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a11]]", "[[a12]]", "[[a13]]"], ["[[a21]]", "[[a22]]", "[[a23]]"], ["[[a31]]", "[[a32]]", "[[a33]]"]]},
+ "distractors": [
+  "[[a11]]+[[a12]]+[[a13]]+[[a21]]+[[a22]]+[[a23]]+[[a31]]+[[a32]]+[[a33]]",
+  "[[a13]]+[[a22]]+[[a31]]",
+  "[[a11]]*[[a22]]*[[a33]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The trace is the sum of the main-diagonal entries: \\( ([[a11]]) + ([[a22]]) + ([[a33]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums every entry of the matrix, not just the main diagonal.",
+  "This sums the anti-diagonal instead of the main diagonal.",
+  "This multiplies the diagonal entries rather than adding them.",
+  "This is off by one from the correct trace.",
+  "This is off by one from the correct trace.",
+  "This is off by two from the correct trace."
+ ]
+},
+{
+ "template_id": "trace_value_and_properties_v2_linearity",
+ "skill_id": "trace_value_and_properties",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -6, "hi": 6},
+  "a12": {"type": "int", "lo": -6, "hi": 6},
+  "a21": {"type": "int", "lo": -6, "hi": 6},
+  "a22": {"type": "int", "lo": -6, "hi": 6},
+  "b11": {"type": "int", "lo": -6, "hi": 6},
+  "b12": {"type": "int", "lo": -6, "hi": 6},
+  "b21": {"type": "int", "lo": -6, "hi": 6},
+  "b22": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\end{bmatrix} \\). What is \\( \\operatorname{tr}([[p]]A + [[q]]B) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[p]]*[[a11]]+[[q]]*[[b11]]", "[[p]]*[[a12]]+[[q]]*[[b12]]"], ["[[p]]*[[a21]]+[[q]]*[[b21]]", "[[p]]*[[a22]]+[[q]]*[[b22]]"]]},
+ "distractors": [
+  "[[p]]*([[a11]]+[[a22]]) * [[q]]*([[b11]]+[[b22]])",
+  "([[a11]]+[[a22]]) + ([[b11]]+[[b22]])",
+  "[[p]]*([[a11]]+[[a22]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Trace is linear: \\( \\operatorname{tr}([[p]]A+[[q]]B) = [[p]]\\operatorname{tr}(A) + [[q]]\\operatorname{tr}(B) = [[p]]\\,([[a11]]+[[a22]]) + [[q]]\\,([[b11]]+[[b22]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the two scaled traces instead of adding them.",
+  "This forgets to scale each trace by its own coefficient before adding.",
+  "This uses only \\( \\operatorname{tr}(A) \\) scaled by \\( p \\), forgetting the \\( qB \\) term entirely.",
+  "This is off by one from the correct trace.",
+  "This is off by one from the correct trace.",
+  "This is off by two from the correct trace."
+ ]
+},
+{
+ "template_id": "trace_value_and_properties_v3_product",
+ "skill_id": "trace_value_and_properties",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -5, "hi": 5},
+  "a12": {"type": "int", "lo": -5, "hi": 5},
+  "a21": {"type": "int", "lo": -5, "hi": 5},
+  "a22": {"type": "int", "lo": -5, "hi": 5},
+  "b11": {"type": "int", "lo": -5, "hi": 5},
+  "b12": {"type": "int", "lo": -5, "hi": 5},
+  "b21": {"type": "int", "lo": -5, "hi": 5},
+  "b22": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\end{bmatrix} \\). What is \\( \\operatorname{tr}(AB) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a11]]*[[b11]]+[[a12]]*[[b21]]", "[[a11]]*[[b12]]+[[a12]]*[[b22]]"], ["[[a21]]*[[b11]]+[[a22]]*[[b21]]", "[[a21]]*[[b12]]+[[a22]]*[[b22]]"]]},
+ "distractors": [
+  "([[a11]]+[[a22]])*([[b11]]+[[b22]])",
+  "[[a11]]*[[b11]]+[[a22]]*[[b22]]",
+  "[[a11]]*[[b12]]+[[a22]]*[[b21]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The trace of a product satisfies \\( \\operatorname{tr}(AB) = \\sum_{i,j} A_{ij}B_{ji} \\), so \\( \\operatorname{tr}(AB) = [[a11]]\\cdot[[b11]] + [[a12]]\\cdot[[b21]] + [[a21]]\\cdot[[b12]] + [[a22]]\\cdot[[b22]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\operatorname{tr}(A)\\cdot\\operatorname{tr}(B) \\), which does not equal \\( \\operatorname{tr}(AB) \\) in general.",
+  "This only multiplies matching diagonal entries, omitting the off-diagonal cross terms.",
+  "This swaps which off-diagonal entries get multiplied together.",
+  "This is off by one from the correct trace.",
+  "This is off by one from the correct trace.",
+  "This is off by two from the correct trace."
+ ]
+},
+{
+ "template_id": "trace_value_and_properties_v4_eigsum",
+ "skill_id": "trace_value_and_properties",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -6, "hi": 6},
+  "a22": {"type": "int", "lo": -6, "hi": 6},
+  "a33": {"type": "int", "lo": -6, "hi": 6},
+  "a12": {"type": "int", "lo": -5, "hi": 5},
+  "a13": {"type": "int", "lo": -5, "hi": 5},
+  "a23": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a12]], 0)", "Ne([[a13]], 0)", "Ne([[a23]], 0)"],
+ "stem": "The upper-triangular matrix \\( A = \\begin{bmatrix} [[a11]] & [[a12]] & [[a13]] \\\\ 0 & [[a22]] & [[a23]] \\\\ 0 & 0 & [[a33]] \\end{bmatrix} \\) has eigenvalues equal to its diagonal entries. What is the sum of the eigenvalues of \\( A \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a11]]", "[[a12]]", "[[a13]]"], ["0", "[[a22]]", "[[a23]]"], ["0", "0", "[[a33]]"]]},
+ "distractors": [
+  "[[a11]]*[[a22]]*[[a33]]",
+  "[[a12]]+[[a13]]+[[a23]]",
+  "[[a11]]+[[a22]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "For any square matrix, the sum of the eigenvalues always equals the trace. Since \\( A \\) is triangular, its eigenvalues are exactly its diagonal entries \\( [[a11]], [[a22]], [[a33]] \\), and their sum is \\( \\operatorname{tr}(A) = [[a11]]+[[a22]]+[[a33]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the PRODUCT of the eigenvalues (the determinant), not their sum.",
+  "This sums the off-diagonal entries instead of the diagonal (eigenvalue) entries.",
+  "This omits the third eigenvalue \\( a_{33} \\) from the sum.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+},
+{
+ "template_id": "trace_value_and_properties_v5_square",
+ "skill_id": "trace_value_and_properties",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -5, "hi": 5},
+  "a12": {"type": "int", "lo": -5, "hi": 5},
+  "a21": {"type": "int", "lo": -5, "hi": 5},
+  "a22": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a12]], 0)", "Ne([[a21]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\). What is \\( \\operatorname{tr}(A^2) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a11]]*[[a11]]+[[a12]]*[[a21]]", "[[a11]]*[[a12]]+[[a12]]*[[a22]]"], ["[[a21]]*[[a11]]+[[a22]]*[[a21]]", "[[a21]]*[[a12]]+[[a22]]*[[a22]]"]]},
+ "distractors": [
+  "([[a11]]+[[a22]])**2",
+  "[[a11]]**2+[[a22]]**2",
+  "([[a11]]+[[a22]])*2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Multiplying out, \\( A^2 \\) has diagonal entries \\( [[a11]]^2+[[a12]]\\cdot[[a21]] \\) and \\( [[a21]]\\cdot[[a12]]+[[a22]]^2 \\), so \\( \\operatorname{tr}(A^2) = [[a11]]^2 + [[a22]]^2 + 2\\cdot[[a12]]\\cdot[[a21]] = [[answer]] \\). (Note \\( \\operatorname{tr}(A^2) \\ne \\operatorname{tr}(A)^2 \\) in general.)",
+ "distractor_rationales": [
+  "This squares the TRACE of \\( A \\) first, which does not equal \\( \\operatorname{tr}(A^2) \\) in general.",
+  "This omits the cross term \\( 2a_{12}a_{21} \\) that comes from matrix multiplication.",
+  "This doubles the trace of \\( A \\) instead of computing the trace of \\( A^2 \\).",
+  "This is off by one from the correct trace.",
+  "This is off by one from the correct trace.",
+  "This is off by two from the correct trace."
+ ]
+}
+]

@@ -1,0 +1,4 @@
+{
+ "skill_id": "deciding_whether_a_group_is_cyclic",
+ "reason": "The task is a yes/no determination (is the group cyclic?), which yields a boolean verdict rather than a single code-computable scalar with five distinct MCQ choices."
+}

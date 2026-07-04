@@ -1,0 +1,279 @@
+[
+{
+ "template_id": "point_line_distance_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "c": {
+   "type": "int",
+   "lo": -8,
+   "hi": 8
+  },
+  "x0": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "y0": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  }
+ },
+ "constraints": [],
+ "stem": "Find the distance from the point \\( ([[x0]],[[y0]]) \\) to the line \\( [[a]]x+[[b]]y+([[c]])=0 \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/sqrt([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])",
+  "([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/sqrt([[a]]**2 + [[b]]**2)",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]])/sqrt([[a]]**2 + [[b]]**2)",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/sqrt([[a]] + [[b]])",
+  "sqrt([[a]]**2 + [[b]]**2)"
+ ],
+ "solution": "Distance \\( =\\frac{|ax_0+by_0+c|}{\\sqrt{a^{2}+b^{2}}}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "point_line_distance_slope_intercept_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "m": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Find the distance from the point \\( ([[x0]],[[y0]]) \\) to the line \\( y=[[m]]x+[[k]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[m]]*[[x0]] - [[y0]] + [[k]])/sqrt([[m]]**2 + 1)"
+ },
+ "distractors": [
+  "Abs([[m]]*[[x0]] - [[y0]] + [[k]])/([[m]]**2 + 1)",
+  "Abs([[m]]*[[x0]] + [[y0]] + [[k]])/sqrt([[m]]**2 + 1)",
+  "Abs([[m]]*[[x0]] - [[y0]] + [[k]])",
+  "Abs([[y0]] - [[m]]*[[x0]] - [[k]])/[[m]]",
+  "Abs([[m]]*[[x0]] - [[y0]] + [[k]])/sqrt([[m]]**2 + 1) + 1",
+  "Abs([[m]]*[[x0]] - [[y0]] + [[k]])/sqrt([[m]]**2 + 1) - 1"
+ ],
+ "solution": "Rewriting as \\( [[m]]x-y+[[k]]=0 \\), the distance is \\( \\dfrac{|[[m]]([[x0]])-[[y0]]+[[k]]|}{\\sqrt{[[m]]^{2}+1}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the square root in the denominator.",
+  "This flips the sign of \\( y_0 \\) when converting to general form.",
+  "This forgets to divide by \\( \\sqrt{m^2+1}\\) entirely.",
+  "This divides by \\( m\\) instead of \\( \\sqrt{m^2+1}\\).",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "distance_between_parallel_lines_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "c1": {"type": "int", "lo": -10, "hi": 10},
+  "c2": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[c1]], [[c2]])"],
+ "stem": "Find the distance between the parallel lines \\( [[a]]x+[[b]]y+([[c1]])=0 \\) and \\( [[a]]x+[[b]]y+([[c2]])=0 \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[c1]] - [[c2]])/sqrt([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "Abs([[c1]] - [[c2]])/([[a]]**2 + [[b]]**2)",
+  "Abs([[c1]] + [[c2]])/sqrt([[a]]**2 + [[b]]**2)",
+  "Abs([[c1]] - [[c2]])",
+  "sqrt([[a]]**2 + [[b]]**2)/Abs([[c1]] - [[c2]])",
+  "Abs([[c1]] - [[c2]])/sqrt([[a]]**2 + [[b]]**2) + 1",
+  "Abs([[c1]] - [[c2]])/sqrt([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "For parallel lines \\( ax+by+c_1=0 \\) and \\( ax+by+c_2=0 \\), the distance between them is \\( \\dfrac{|c_1-c_2|}{\\sqrt{a^{2}+b^{2}}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the square root in the denominator.",
+  "This adds \\( c_1\\) and \\( c_2\\) instead of subtracting them.",
+  "This forgets to divide by \\( \\sqrt{a^2+b^2}\\) entirely.",
+  "This inverts the correct ratio.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "point_line_distance_line_through_two_points_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6},
+  "x1": {"type": "int", "lo": -7, "hi": -1},
+  "y1": {"type": "int", "lo": -6, "hi": 6},
+  "x2": {"type": "int", "lo": 1, "hi": 7},
+  "y2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[x2]], [[x1]])", "Ne([[y2]], [[y1]])"],
+ "derived": {
+  "a": "[[y2]] - [[y1]]",
+  "b": "[[x1]] - [[x2]]",
+  "c": "([[x2]] - [[x1]])*[[y1]] - ([[y2]] - [[y1]])*[[x1]]"
+ },
+ "stem": "Find the distance from the point \\( ([[x0]],[[y0]]) \\) to the line through \\( ([[x1]],[[y1]]) \\) and \\( ([[x2]],[[y2]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/sqrt([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/([[a]]**2 + [[b]]**2)",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] - [[c]])/sqrt([[a]]**2 + [[b]]**2)",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]])/sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt(([[x0]]-[[x1]])**2 + ([[y0]]-[[y1]])**2)",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/sqrt([[a]]**2 + [[b]]**2) + 1",
+  "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + [[c]])/sqrt([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "The line through \\( ([[x1]],[[y1]]) \\) and \\( ([[x2]],[[y2]]) \\) can be written as \\( ([[a]])x+([[b]])y+([[c]])=0 \\); the distance from \\( ([[x0]],[[y0]]) \\) to it is \\( \\dfrac{|[[a]]([[x0]])+[[b]]([[y0]])+[[c]]|}{\\sqrt{[[a]]^{2}+[[b]]^{2}}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the square root in the denominator.",
+  "This flips the sign of the constant term \\( c\\).",
+  "This forgets the constant term \\( c\\) entirely.",
+  "This computes the distance to one of the defining points instead of to the line itself.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "point_line_distance_vertical_line_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": -10, "hi": 10},
+  "x0": {"type": "int", "lo": -10, "hi": 10},
+  "y0": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[x0]], [[k]])"],
+ "stem": "Find the distance from the point \\( ([[x0]],[[y0]]) \\) to the vertical line \\( x=[[k]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[x0]] - [[k]])"
+ },
+ "distractors": [
+  "Abs([[y0]] - [[k]])",
+  "[[x0]] - [[k]]",
+  "Abs([[x0]] + [[k]])",
+  "sqrt(([[x0]]-[[k]])**2 + [[y0]]**2)",
+  "Abs([[x0]] - [[k]]) + 1",
+  "Abs([[x0]] - [[k]]) - 1"
+ ],
+ "solution": "For a vertical line \\( x=k \\), the distance from any point \\( (x_0,y_0) \\) is simply the horizontal gap \\( |x_0-k|=[[answer]] \\); the \\( y \\)-coordinate is irrelevant.",
+ "distractor_rationales": [
+  "This uses the point's \\( y\\)-coordinate instead of its \\( x\\)-coordinate.",
+  "This drops the absolute value, which can be negative.",
+  "This adds instead of subtracts before taking the absolute value.",
+  "This mistakenly includes the \\( y\\)-coordinate as if the line were not vertical.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "point_line_distance_intercept_form_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 1, "hi": 9},
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "A line has \\( x \\)-intercept \\( [[p]] \\) and \\( y \\)-intercept \\( [[q]] \\), so its equation is \\( \\dfrac{x}{[[p]]}+\\dfrac{y}{[[q]]}=1 \\). Find the distance from the point \\( ([[x0]],[[y0]]) \\) to this line.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Abs([[q]]*[[x0]] + [[p]]*[[y0]] - [[p]]*[[q]])/sqrt([[p]]**2 + [[q]]**2)"
+ },
+ "distractors": [
+  "Abs([[q]]*[[x0]] + [[p]]*[[y0]] - [[p]]*[[q]])/([[p]]**2 + [[q]]**2)",
+  "Abs([[p]]*[[x0]] + [[q]]*[[y0]] - [[p]]*[[q]])/sqrt([[p]]**2 + [[q]]**2)",
+  "Abs([[q]]*[[x0]] + [[p]]*[[y0]])/sqrt([[p]]**2 + [[q]]**2)",
+  "Abs([[q]]*[[x0]] + [[p]]*[[y0]] + [[p]]*[[q]])/sqrt([[p]]**2 + [[q]]**2)",
+  "Abs([[q]]*[[x0]] + [[p]]*[[y0]] - [[p]]*[[q]])/sqrt([[p]]**2 + [[q]]**2) + 1",
+  "Abs([[q]]*[[x0]] + [[p]]*[[y0]] - [[p]]*[[q]])/sqrt([[p]]**2 + [[q]]**2) - 1"
+ ],
+ "solution": "Clearing denominators, \\( \\frac{x}{p}+\\frac{y}{q}=1 \\) becomes \\( qx+py-pq=0 \\), so the distance is \\( \\dfrac{|q([[x0]])+p([[y0]])-pq|}{\\sqrt{p^{2}+q^{2}}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the square root in the denominator.",
+  "This swaps the coefficients \\( p\\) and \\( q\\) when clearing denominators.",
+  "This forgets the constant term \\( -pq\\) entirely.",
+  "This flips the sign of the constant term \\( -pq\\).",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "point_line_find_k_for_given_distance_v1",
+ "skill_id": "point_to_line_distance",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Gt([[m]], [[n]])"],
+ "derived": {
+  "a": "[[m]]**2 - [[n]]**2",
+  "b": "2*[[m]]*[[n]]",
+  "c": "[[m]]**2 + [[n]]**2"
+ },
+ "stem": "The distance from the point \\( ([[x0]],[[y0]]) \\) to the line \\( [[a]]x+[[b]]y+k=0 \\) is \\( [[d]] \\). Which of the following is a possible value of \\( k \\)?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "Abs([[a]]*[[x0]] + [[b]]*[[y0]] + k) = [[d]]*[[c]]",
+  "var": "k"
+ },
+ "distractors": [
+  "[[d]]*[[c]] - [[a]]*[[x0]] - [[b]]*[[y0]] + 1",
+  "-[[d]]*[[c]] - [[a]]*[[x0]] - [[b]]*[[y0]] - 1",
+  "[[d]] - [[a]]*[[x0]] - [[b]]*[[y0]]",
+  "[[d]]*[[c]]",
+  "-[[a]]*[[x0]] - [[b]]*[[y0]]",
+  "[[d]]*[[c]] - [[a]]*[[x0]] - [[b]]*[[y0]] + 2"
+ ],
+ "solution": "Since \\( \\sqrt{[[a]]^{2}+[[b]]^{2}}=[[c]] \\), the distance condition is \\( |[[a]]([[x0]])+[[b]]([[y0]])+k|=[[d]]\\cdot[[c]] \\); solving for \\( k \\) gives \\( [[answer]] \\) as one solution.",
+ "distractor_rationales": [
+  "This is off by a small additive amount from a genuine solution.",
+  "This uses the other sign of the absolute value but is then also off by one.",
+  "This uses \\( d\\) instead of \\( d\\cdot c\\) (forgetting \\( \\sqrt{a^2+b^2}=c\\)).",
+  "This reports \\( d\\cdot c\\) itself rather than solving for \\( k\\).",
+  "This drops the distance term \\( d\\cdot c\\) entirely.",
+  "This is off by a different small additive amount from a genuine solution."
+ ]
+}
+]

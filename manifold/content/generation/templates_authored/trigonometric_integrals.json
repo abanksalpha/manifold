@@ -1,0 +1,154 @@
+[
+{
+ "template_id": "trig_integral_sine_frequency_v1",
+ "skill_id": "trigonometric_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\int_{0}^{\\pi} [[c]]\\sin([[n]]x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin([[n]]*x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "[[c]]*(1+cos([[n]]*pi))/[[n]]",
+  "[[c]]*cos([[n]]*pi)/[[n]]",
+  "[[c]]*[[n]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "Using \\( \\int \\sin([[n]]x)\\,dx = -\\tfrac{1}{[[n]]}\\cos([[n]]x) \\), \\( \\int_{0}^{\\pi} [[c]]\\sin([[n]]x)\\,dx = \\dfrac{[[c]]}{[[n]]}\\left(1-\\cos([[n]]\\pi)\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign inside the parentheses, adding \\( \\cos([[n]]\\pi) \\) instead of subtracting it from 1.",
+  "This keeps only the \\( \\cos([[n]]\\pi) \\) term, forgetting the leading 1 from evaluating at \\( x=0 \\).",
+  "This multiplies by \\( [[n]] \\) instead of dividing by it.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is half of the correct value."
+ ]
+},
+{
+ "template_id": "trig_integral_odd_power_sine_v1",
+ "skill_id": "trigonometric_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 8},
+  "m": {"type": "choice", "values": [1, 3, 5, 7]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\displaystyle\\int_{0}^{\\pi/2} [[c]]\\sin^{[[m]]}(x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)**[[m]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[c]]*pi/4",
+  "[[c]]/[[m]]",
+  "[[c]]*[[m]]",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "For an ODD power, \\( \\sin^{[[m]]}(x) \\) is handled by substituting \\( u=\\cos x \\) (splitting off one factor of \\( \\sin x \\)); over \\( [0,\\pi/2] \\) this always yields a clean RATIONAL value (unlike even powers, which give a multiple of \\( \\pi \\)). Here \\( \\int_{0}^{\\pi/2} [[c]]\\sin^{[[m]]}(x)\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly applies the EVEN-power Wallis result (a multiple of \\( \\pi \\)) to this odd power.",
+  "This divides by the exponent instead of applying the correct odd-power reduction.",
+  "This multiplies by the exponent instead of applying the correct odd-power reduction.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is double the correct value."
+ ]
+},
+{
+ "template_id": "trig_integral_even_power_cosine_v1",
+ "skill_id": "trigonometric_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 8},
+  "m": {"type": "choice", "values": [2, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\displaystyle\\int_{0}^{\\pi/2} [[c]]\\cos^{[[m]]}(x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*cos(x)**[[m]]", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[c]]/[[m]]",
+  "[[c]]*[[m]]",
+  "[[c]]*pi/2",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "By the Wallis reduction formula, an EVEN power of cosine integrated over \\( [0,\\pi/2] \\) always yields a rational multiple of \\( \\pi \\) (unlike odd powers, which give a clean rational number with no \\( \\pi \\)). Here \\( \\int_{0}^{\\pi/2} [[c]]\\cos^{[[m]]}(x)\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by the exponent instead of applying the correct Wallis reduction.",
+  "This multiplies by the exponent instead of applying the correct Wallis reduction.",
+  "This wrongly uses the \\( m=2 \\) result (\\( \\pi/4 \\), scaled by \\( c \\)) regardless of the actual exponent.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is double the correct value."
+ ]
+},
+{
+ "template_id": "trig_integral_product_to_sum_orthogonality_v1",
+ "skill_id": "trigonometric_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "Evaluate \\( \\displaystyle\\int_{0}^{\\pi} \\sin([[m]]x)\\cos([[n]]x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "sin([[m]]*x)*cos([[n]]*x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "0",
+  "sin([[m]]*pi)*cos([[n]]*pi)",
+  "pi/2",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "Using the product-to-sum identity \\( \\sin([[m]]x)\\cos([[n]]x) = \\tfrac12\\left[\\sin(([[m]]+[[n]])x) + \\sin(([[m]]-[[n]])x)\\right] \\) and integrating each sine term over \\( [0,\\pi] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly overgeneralizes the sine/cosine ORTHOGONALITY result (which gives 0 for \\( \\sin(mx)\\sin(nx) \\) or \\( \\cos(mx)\\cos(nx) \\) with \\( m\\ne n \\)) to this mixed sine-cosine product, which is generally nonzero.",
+  "This evaluates the integrand at \\( x=\\pi \\) instead of integrating it.",
+  "This is a leftover value from the wrong even-power Wallis pattern, unrelated to this product integral.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is half of the correct value.",
+  "This is double the correct value."
+ ]
+},
+{
+ "template_id": "trig_integral_secant_squared_arctan_bounds_v1",
+ "skill_id": "trigonometric_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[c]], 0)", "Lt([[p]], [[q]])"],
+ "stem": "Evaluate \\( \\displaystyle\\int_{\\arctan([[p]])}^{\\arctan([[q]])} [[c]]\\sec^{2}(x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sec(x)**2", "var": "x", "bounds": ["atan([[p]])", "atan([[q]])"]},
+ "distractors": [
+  "[[c]]*([[p]]-[[q]])",
+  "[[q]]-[[p]]",
+  "[[c]]*([[q]]**2-[[p]]**2)/2",
+  "-[[answer]]",
+  "[[answer]] + [[c]]",
+  "[[answer]]/2"
+ ],
+ "solution": "Since \\( \\dfrac{d}{dx}\\tan x = \\sec^{2}x \\), an antiderivative of \\( \\sec^{2}x \\) is \\( \\tan x \\). Evaluating at the endpoints, \\( \\tan(\\arctan([[q]])) - \\tan(\\arctan([[p]])) = [[q]]-[[p]] \\), so the integral is \\( [[c]]\\left([[q]]-[[p]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reverses the subtraction order, giving the negative of the correct value.",
+  "This forgets to multiply by the coefficient \\( [[c]] \\).",
+  "This mistakenly applies a power-rule antiderivative (as if integrating \\( x \\)) instead of \\( \\sec^{2}x \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by \\( [[c]] \\) from the correct value.",
+  "This is half of the correct value."
+ ]
+}
+]

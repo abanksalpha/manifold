@@ -1,0 +1,4 @@
+{
+ "skill_id": "ivp_existence_uniqueness",
+ "reason": "This skill tests whether a given initial value problem is guaranteed a unique solution by Picard-Lindelof / the linear existence-uniqueness theorem (checking continuity of f and df/dy, or of p(x) and q(x), near the initial point). The correct response is a yes/no (or which-hypothesis-fails) VERDICT about the hypotheses, not a single solver-computable scalar or closed-form expression; solver.py has no op that judges continuity/hypothesis-satisfaction, so faking a numeric answer would misrepresent what the skill actually assesses."
+}

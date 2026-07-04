@@ -1,0 +1,166 @@
+[
+ {
+  "template_id": "p_series_recognition_v1",
+  "skill_id": "p_series_recognition",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "b": {
+    "type": "int",
+    "lo": 2,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "The series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{1}{n^{[[a]]}\\,\\sqrt[[[b]]]{n}} \\) is a \\( p \\)-series of the form \\( \\sum 1/n^{p} \\). What is the value of \\( p \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[a]] + Rational(1,[[b]])"
+  },
+  "distractors": [
+   "[[a]]",
+   "[[a]] + [[b]]",
+   "[[a]] - Rational(1,[[b]])",
+   "[[a]]*Rational(1,[[b]])",
+   "[[a]] + 1",
+   "Rational(1,[[b]])"
+  ],
+  "solution": "Write the \\( [[b]] \\)-th root as an exponent: \\( \\sqrt[[[b]]]{n} = n^{1/[[b]]} \\). Then \\( n^{[[a]]}\\,n^{1/[[b]]} = n^{[[a]] + 1/[[b]]} \\), so \\( p = [[a]] + \\dfrac{1}{[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the root factor, using only the integer power of \\( n \\).",
+   "This adds the root index \\( [[b]] \\) instead of its reciprocal \\( 1/[[b]] \\).",
+   "This subtracts the root's exponent instead of adding it.",
+   "This multiplies the exponents rather than adding them.",
+   "This treats the root as contributing \\( 1 \\) to the exponent.",
+   "This keeps only the root's exponent and drops \\( n^{[[a]]} \\)."
+  ]
+ },
+ {
+  "template_id": "p_series_recognition_v2_product_of_powers",
+  "skill_id": "p_series_recognition",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "The series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{1}{n^{[[a]]}\\cdot n^{[[b]]}} \\) is a \\( p \\)-series of the form \\( \\sum 1/n^{p} \\). What is the value of \\( p \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[a]] + [[b]]"
+  },
+  "distractors": [
+   "[[a]]*[[b]]",
+   "[[a]]",
+   "[[b]]",
+   "[[a]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Combine the powers of \\( n \\): \\( n^{[[a]]}\\cdot n^{[[b]]} = n^{[[a]]+[[b]]} \\), so \\( p = [[a]]+[[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the exponents instead of adding them.",
+   "This keeps only the first factor's exponent.",
+   "This keeps only the second factor's exponent.",
+   "This subtracts the exponents instead of adding them.",
+   "This is off by one from the correct exponent.",
+   "This is off by one from the correct exponent."
+  ]
+ },
+ {
+  "template_id": "p_series_recognition_v3_root_of_power",
+  "skill_id": "p_series_recognition",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": 2,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "The series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{1}{\\sqrt[[[b]]]{n^{[[a]]}}} \\) is a \\( p \\)-series of the form \\( \\sum 1/n^{p} \\). What is the value of \\( p \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[a]],[[b]])"
+  },
+  "distractors": [
+   "[[a]]",
+   "[[b]]",
+   "Rational([[b]],[[a]])",
+   "[[a]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Write the root as an exponent: \\( \\sqrt[[[b]]]{n^{[[a]]}} = n^{[[a]]/[[b]]} \\), so \\( p = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the root entirely, using only the inner power \\( a \\).",
+   "This ignores the inner power entirely, using only the root index \\( b \\).",
+   "This inverts the exponent \\( a/b \\).",
+   "This multiplies \\( a \\) and \\( b \\) instead of dividing.",
+   "This is off by one from the correct exponent.",
+   "This is off by one from the correct exponent."
+  ]
+ },
+ {
+  "template_id": "p_series_recognition_v4_root_in_numerator",
+  "skill_id": "p_series_recognition",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "c": {
+    "type": "int",
+    "lo": 2,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "The series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{\\sqrt[[[c]]]{n}}{n^{[[a]]}} \\) is a \\( p \\)-series of the form \\( \\sum 1/n^{p} \\). What is the value of \\( p \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[a]] - Rational(1,[[c]])"
+  },
+  "distractors": [
+   "[[a]]",
+   "[[a]] + Rational(1,[[c]])",
+   "Rational(1,[[c]]) - [[a]]",
+   "[[a]]*Rational(1,[[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Write the numerator's root as an exponent: \\( \\sqrt[[[c]]]{n} = n^{1/[[c]]} \\), so the whole term is \\( n^{1/[[c]] - [[a]]} \\), i.e. \\( \\dfrac{1}{n^{[[a]] - 1/[[c]]}} \\). Hence \\( p = [[a]] - \\dfrac{1}{[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the numerator's root factor entirely.",
+   "This adds the root's exponent instead of subtracting it (the root is in the numerator, reducing \\( p \\)).",
+   "This has the wrong sign on the whole expression.",
+   "This multiplies the exponents rather than combining them by subtraction.",
+   "This is off by one from the correct exponent.",
+   "This is off by one from the correct exponent."
+  ]
+ }
+]

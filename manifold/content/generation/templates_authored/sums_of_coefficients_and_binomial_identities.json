@@ -1,0 +1,154 @@
+[
+ {
+  "template_id": "sum_of_coefficients_p1_v1",
+  "skill_id": "sums_of_coefficients_and_binomial_identities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3]},
+   "b": {"type": "int", "lo": 1, "hi": 13},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Le([[a]] + [[b]], 5)"],
+  "stem": "What is the sum of the coefficients of the polynomial \\( P(x) = ([[a]]x + [[b]])^{[[n]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]] + [[b]])**[[n]]"},
+  "distractors": [
+   "[[a]]**[[n]] + [[b]]**[[n]]",
+   "([[a]] + [[b]])*[[n]]",
+   "([[a]] + [[b]])**([[n]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The sum of the coefficients of \\( P(x) \\) equals \\( P(1) = ([[a]] \\cdot 1 + [[b]])^{[[n]]} = ([[a]] + [[b]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This distributes the exponent over the sum; \\( (a+b)^{n} \\ne a^{n} + b^{n} \\).",
+   "This multiplies by \\( n \\) instead of raising to the \\( n \\)th power.",
+   "This uses an exponent one too small.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "sum_of_even_power_coefficients_v1",
+  "skill_id": "sums_of_coefficients_and_binomial_identities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": 1, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "For \\( P(x) = ([[a]]x + [[b]])^{[[n]]} \\), what is the sum of the coefficients of the EVEN-power terms of \\( P(x) \\) (i.e. the coefficients of \\( x^{0}, x^{2}, x^{4}, \\ldots \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "(([[a]] + [[b]])**[[n]] + ([[b]] - [[a]])**[[n]])/2"},
+  "distractors": [
+   "([[a]] + [[b]])**[[n]]",
+   "(([[a]] + [[b]])**[[n]] - ([[b]] - [[a]])**[[n]])/2",
+   "([[b]] - [[a]])**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( P(1) \\) sums ALL coefficients and \\( P(-1) \\) sums them with alternating sign, adding the two cancels the odd-power terms and doubles the even-power ones: the even-power sum is \\( \\dfrac{P(1) + P(-1)}{2} = \\dfrac{([[a]]+[[b]])^{[[n]]} + ([[b]]-[[a]])^{[[n]]}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(1) \\), the sum of ALL coefficients, not just the even-power ones.",
+   "This uses the ODD-power combination formula (a difference, not a sum) instead of the even one.",
+   "This is \\( P(-1) \\) alone, the alternating sum, not the even-power sum.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ },
+ {
+  "template_id": "binomial_theorem_finite_sum_v1",
+  "skill_id": "sums_of_coefficients_and_binomial_identities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 8},
+   "r": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k} [[r]]^{k} \\).",
+  "answer_spec": {"op": "sum", "expr": "binomial([[n]], k) * [[r]]**k", "var": "k", "lo": "0", "hi": "[[n]]"},
+  "distractors": [
+   "[[r]]**[[n]]",
+   "[[n]]*(1+[[r]])",
+   "(1+[[r]])**([[n]]-1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the Binomial Theorem, \\( \\displaystyle\\sum_{k=0}^{n}\\binom{n}{k}r^{k} = (1+r)^{n} \\). Here that is \\( (1+[[r]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This raises only \\( r \\) to the power \\( n \\), ignoring the binomial coefficients and the \\( 1 \\) term entirely.",
+   "This multiplies \\( n \\) by \\( 1+r \\) instead of raising \\( 1+r \\) to the power \\( n \\).",
+   "This uses an exponent one too small.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ },
+ {
+  "template_id": "alternating_sum_of_coefficients_v1",
+  "skill_id": "sums_of_coefficients_and_binomial_identities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": 1, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "The polynomial \\( P(x) = ([[a]]x + [[b]])^{[[n]]} \\) has coefficients \\( c_0, c_1, \\ldots, c_{[[n]]} \\) (from the constant term up to the \\( x^{[[n]]} \\) term). What is the alternating sum \\( c_0 - c_1 + c_2 - \\cdots \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]] - [[a]])**[[n]]"},
+  "distractors": [
+   "([[a]] + [[b]])**[[n]]",
+   "([[a]] - [[b]])**[[n]]",
+   "[[b]]**[[n]] - [[a]]**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The alternating sum of the coefficients equals \\( P(-1) = ([[a]](-1) + [[b]])^{[[n]]} = ([[b]] - [[a]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(1) \\), the ordinary (non-alternating) sum of the coefficients.",
+   "This has the subtraction reversed inside the parentheses before raising to the power \\( n \\).",
+   "This distributes the exponent over the difference; \\( (b-a)^{n} \\ne b^{n} - a^{n} \\) in general.",
+   "This is off by one from the correct alternating sum.",
+   "This is off by one from the correct alternating sum.",
+   "This is off by two from the correct alternating sum."
+  ]
+ },
+ {
+  "template_id": "sum_of_squares_of_binomial_coefficients_v1",
+  "skill_id": "sums_of_coefficients_and_binomial_identities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^{2} \\).",
+  "answer_spec": {"op": "sum", "expr": "binomial([[n]], k)**2", "var": "k", "lo": "0", "hi": "[[n]]"},
+  "distractors": [
+   "2**[[n]]",
+   "binomial([[n]], [[n]]/2)",
+   "4**[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By Vandermonde's identity, \\( \\displaystyle\\sum_{k=0}^{n}\\binom{n}{k}^{2} = \\binom{2n}{n} \\). Here that is \\( \\binom{2\\cdot[[n]]}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the sum of the UNSQUARED binomial coefficients, \\( \\sum \\binom{n}{k} = 2^{n} \\), not their squares.",
+   "This reports only the single largest (middle) binomial coefficient, not the sum of all squares.",
+   "This overshoots using \\( 4^{n} \\), which would only be right if every term equaled \\( \\binom{n}{k}^2 \\approx \\) the largest term.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ }
+]

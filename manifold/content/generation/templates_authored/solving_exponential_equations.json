@@ -1,0 +1,208 @@
+[
+ {
+  "template_id": "exponential_equation_solve_v1",
+  "skill_id": "solving_exponential_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "a": {"type": "choice", "values": [2, 3]},
+   "x0": {"type": "int", "lo": 0, "hi": 3},
+   "c": {"type": "int", "lo": -2, "hi": 4}
+  },
+  "constraints": ["Ge([[a]]*[[x0]] + [[c]], 1)", "Le([[a]]*[[x0]] + [[c]], 4)"],
+  "derived": {
+   "E": "[[a]]*[[x0]] + [[c]]",
+   "rhs": "[[b]]**([[a]]*[[x0]] + [[c]])"
+  },
+  "stem": "Solve \\( [[b]]^{[[a]]x + ([[c]])} = [[rhs]] \\). What is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[b]]**([[a]]*x + [[c]]) = [[rhs]]", "var": "x"},
+  "distractors": [
+   "[[E]] - [[c]]",
+   "[[E]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Write the right side as a power of [[b]]: \\( [[rhs]] = [[b]]^{[[E]]} \\). Since the bases match, \\( [[a]]x + ([[c]]) = [[E]] \\), so \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This solves \\( [[a]]x + c = [[E]] \\) but forgets to divide by the coefficient [[a]].",
+   "This reports the exponent \\( [[E]] \\) rather than the value of \\( x \\).",
+   "This is off by one from the correct solution.",
+   "This is off by one from the correct solution.",
+   "This is off by two from the correct solution."
+  ]
+ },
+ {
+  "template_id": "exponential_equation_common_root_bases_v1",
+  "skill_id": "solving_exponential_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "choice", "values": [2, 3, 5]},
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "n": {"type": "int", "lo": 2, "hi": 4},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[m]], [[n]])"],
+  "derived": {
+   "base1": "[[c]]**[[m]]",
+   "base2": "[[c]]**[[n]]"
+  },
+  "stem": "Solve \\( [[base1]]^{x} = [[base2]]^{[[k]]} \\). What is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[base1]]**x = [[base2]]**[[k]]", "var": "x"},
+  "distractors": [
+   "[[k]]",
+   "[[n]]*[[k]]",
+   "[[m]]*[[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Rewrite both sides with the common base [[c]]: \\( [[base1]] = [[c]]^{[[m]]} \\) and \\( [[base2]] = [[c]]^{[[n]]} \\), so the equation becomes \\( [[c]]^{[[m]]x} = [[c]]^{[[n]][[k]]} \\). Matching exponents, \\( [[m]]x = [[n]]([[k]]) \\), so \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the given exponent \\( k \\) directly, without converting to the common base.",
+   "This forgets to divide by \\( m \\) after matching the common-base exponents.",
+   "This uses \\( m \\) instead of \\( n \\) when forming the numerator.",
+   "This is off by one from the correct solution.",
+   "This is off by one from the correct solution.",
+   "This is off by two from the correct solution."
+  ]
+ },
+ {
+  "template_id": "exponential_equation_variable_both_sides_v1",
+  "skill_id": "solving_exponential_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "c1": {"type": "int", "lo": -4, "hi": 4},
+   "a": {"type": "choice", "values": [2, 3]},
+   "c2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[c1]], [[c2]])"],
+  "stem": "Solve \\( [[b]]^{x + ([[c1]])} = [[b]]^{[[a]]x + ([[c2]])} \\). What is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[b]]**(x + [[c1]]) = [[b]]**([[a]]*x + [[c2]])", "var": "x"},
+  "distractors": [
+   "[[c2]] - [[c1]]",
+   "([[c1]] - [[c2]])/(1 - [[a]])",
+   "[[c1]] - [[c2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Matching bases means the exponents must be equal: \\( x + ([[c1]]) = [[a]]x + ([[c2]]) \\). Collecting the \\( x \\) terms gives \\( x(1 - [[a]]) = [[c2]] - [[c1]] \\), so \\( x = \\dfrac{[[c2]] - [[c1]]}{1 - [[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the difference of the constants directly, forgetting the coefficient of \\( x \\) is not 1 on both sides.",
+   "This has the numerator's subtraction reversed relative to the denominator's sign convention.",
+   "This has the correct value but the wrong sign.",
+   "This is off by one from the correct solution.",
+   "This is off by one from the correct solution.",
+   "This is off by two from the correct solution."
+  ]
+ },
+ {
+  "template_id": "exponential_equation_quadratic_form_v1",
+  "skill_id": "solving_exponential_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 0, "hi": 6},
+   "q": {"type": "int", "lo": 0, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {
+   "s": "[[b]]**[[p]] + [[b]]**[[q]]",
+   "prod": "[[b]]**([[p]] + [[q]])"
+  },
+  "stem": "Solve \\( [[b]]^{2x} - ([[s]])\\cdot [[b]]^{x} + [[prod]] = 0 \\). Which of the following is a solution for \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[b]]**(2*x) - ([[s]])*[[b]]**x + [[prod]] = 0", "var": "x"},
+  "distractors": [
+   "[[s]]",
+   "[[p]] + [[q]]",
+   "[[p]] * [[q]]",
+   "[[answer]] + 3",
+   "[[answer]] - 3",
+   "[[answer]] + 4"
+  ],
+  "solution": "Substituting \\( y = [[b]]^{x} \\) gives the quadratic \\( y^{2} - ([[s]])y + [[prod]] = 0 \\), which factors as \\( (y - [[b]]^{[[p]]})(y - [[b]]^{[[q]]}) = 0 \\). So \\( [[b]]^{x} = [[b]]^{[[p]]} \\) or \\( [[b]]^{x} = [[b]]^{[[q]]} \\), giving \\( x = [[p]] \\) or \\( x = [[q]] \\); one solution is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the sum \\( s = b^{p}+b^{q}\\) itself rather than either exponent solution.",
+   "This adds the two exponent solutions instead of reporting a single one of them.",
+   "This multiplies the two exponent solutions instead of reporting a single one of them.",
+   "This is well outside the two genuine solutions.",
+   "This is well outside the two genuine solutions.",
+   "This is well outside the two genuine solutions."
+  ]
+ },
+ {
+  "template_id": "exponential_equation_isolate_first_v1",
+  "skill_id": "solving_exponential_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "n": {"type": "int", "lo": -8, "hi": 8},
+   "k": {"type": "int", "lo": 0, "hi": 4}
+  },
+  "constraints": ["Ne([[n]], 0)"],
+  "derived": {
+   "rhs": "[[m]]*[[b]]**[[k]] + [[n]]"
+  },
+  "stem": "Solve \\( [[m]]\\cdot [[b]]^{x} + ([[n]]) = [[rhs]] \\). What is \\( x \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[m]]*[[b]]**x + [[n]] = [[rhs]]", "var": "x"},
+  "distractors": [
+   "[[rhs]] - [[n]]",
+   "[[rhs]]/[[m]]",
+   "[[k]] + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "First isolate the exponential term: \\( [[m]]\\cdot [[b]]^{x} = [[rhs]] - ([[n]]) = [[m]]\\cdot [[b]]^{[[k]]} \\), so \\( [[b]]^{x} = [[b]]^{[[k]]} \\) and \\( x = [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts \\( n \\) but forgets to also divide by the coefficient \\( m \\) before matching exponents.",
+   "This divides by \\( m \\) but forgets to first subtract \\( n \\) from the right side.",
+   "This is off by one from the actual exponent that makes the equation true.",
+   "This is off by one from the correct solution.",
+   "This is off by one from the correct solution.",
+   "This is off by two from the correct solution."
+  ]
+ },
+ {
+  "template_id": "exponential_inequality_least_integer_v1",
+  "skill_id": "solving_exponential_equations",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5, 7]},
+   "k": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "derived": {
+   "N": "[[b]]**[[k]] - 1"
+  },
+  "stem": "What is the smallest integer \\( x \\) for which \\( [[b]]^{x} > [[N]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "ceiling(log([[N]], [[b]]))"},
+  "distractors": [
+   "[[k]] - 1",
+   "[[k]] + 1",
+   "floor(log([[N]], [[b]]))",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Since \\( [[N]] = [[b]]^{[[k]]} - 1 < [[b]]^{[[k]]} \\), and \\( [[b]]^{[[k]]-1} \\le [[N]] \\), the smallest integer with \\( [[b]]^{x} > [[N]] \\) is \\( x = [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is one less than the correct threshold; at that exponent the inequality is not yet satisfied.",
+   "This is one more than needed; the threshold is already reached one step earlier.",
+   "This rounds down instead of up, giving an exponent where the inequality can fail.",
+   "This is larger than the correct threshold.",
+   "This is smaller than the correct threshold.",
+   "This is larger than the correct threshold."
+  ]
+ }
+]

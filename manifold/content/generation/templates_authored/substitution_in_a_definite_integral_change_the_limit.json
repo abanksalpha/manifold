@@ -1,0 +1,193 @@
+[
+{
+ "template_id": "substitution_in_a_definite_integral_change_the_limit_v1",
+ "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "c": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( u = x^{3} + [[c]] \\) and changing the limits of integration accordingly, evaluate \\( \\int_{0}^{[[a]]} 3x^{2}\\left(x^{3} + [[c]]\\right)^{[[n]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "3*x**2*(x**3 + [[c]])**[[n]]", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "(([[a]]**3 + [[c]])**([[n]] + 1))/([[n]] + 1)",
+  "[[answer]]/3",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "With \\( u = x^{3} + [[c]] \\) we have \\( du = 3x^{2}\\,dx \\), and the limits change from \\( x = 0,\\,[[a]] \\) to \\( u = [[c]],\\,[[a]]^{3} + [[c]] \\). Then \\( \\int u^{[[n]]}\\,du = \\left.\\tfrac{u^{[[n]]+1}}{[[n]]+1}\\right| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the upper limit and forgets to subtract the value at the lower limit.",
+  "This divides by 3 even though \\( 3x^{2}\\,dx \\) already equals \\( du \\) exactly.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by three from the correct value."
+ ]
+},
+{
+ "template_id": "substitution_change_limits_linear_v1",
+ "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 5},
+  "k": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "a": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[m]]*[[a]] + [[k]], 0)"],
+ "derived": {"lo_u": "[[k]]", "hi_u": "[[m]]*[[a]] + [[k]]"},
+ "stem": "Using the LINEAR substitution \\( u = [[m]]x + [[k]] \\) (so \\( du = [[m]]\\,dx \\)) and changing the limits from \\( x=0,\\,[[a]] \\) to \\( u=[[lo_u]],\\,[[hi_u]] \\), evaluate \\( \\int_{0}^{[[a]]} [[c]]\\left([[m]]x + [[k]]\\right)^{[[n]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*([[m]]*x + [[k]])**[[n]]", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*(([[hi_u]])**([[n]]+1) - ([[lo_u]])**([[n]]+1))/([[n]]+1)",
+  "[[c]]*[[m]]*(([[hi_u]])**([[n]]+1) - ([[lo_u]])**([[n]]+1))/([[n]]+1)",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=[[m]]x+[[k]] \\), \\( dx = \\dfrac{du}{[[m]]} \\), and the limits become \\( u=[[lo_u]] \\) to \\( u=[[hi_u]] \\). Then \\( [[c]]\\displaystyle\\int_{[[lo_u]]}^{[[hi_u]]} \\dfrac{u^{[[n]]}}{[[m]]}\\,du = \\dfrac{[[c]]}{[[m]]}\\cdot\\dfrac{u^{[[n]]+1}}{[[n]]+1}\\bigg|_{[[lo_u]]}^{[[hi_u]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( [[m]] \\) to convert \\( dx \\) into \\( du \\).",
+  "This multiplies by \\( [[m]] \\) instead of dividing by it, the opposite mistake.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "substitution_change_limits_trig_v1",
+ "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( u = \\sin x \\) (so \\( du = \\cos x\\,dx \\)) and changing the limits from \\( x=0,\\,\\pi/2 \\) to \\( u=0,\\,1 \\), evaluate \\( \\int_{0}^{\\pi/2} [[c]]\\sin^{[[n]]} x\\cos x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(x)**[[n]]*cos(x)", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[c]]/[[n]]",
+  "[[c]]*[[n]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\sin x \\), the integral becomes \\( [[c]]\\displaystyle\\int_{0}^{1} u^{[[n]]}\\,du = \\dfrac{[[c]]}{[[n]]+1}u^{[[n]]+1}\\bigg|_{0}^{1} = [[answer]] \\); no trigonometric evaluation of the antiderivative is needed once the limits are changed to \\( u \\)-values.",
+ "distractor_rationales": [
+  "This uses \\( n \\) instead of \\( n+1 \\) in the denominator of the power rule.",
+  "This multiplies instead of dividing by \\( n+1 \\), inverting the power rule.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "substitution_change_limits_exponential_v1",
+ "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "b": {"type": "int", "lo": 2, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"lnb": "log([[b]])"},
+ "stem": "Using the substitution \\( u = e^{x} + [[a]] \\) (so \\( du = e^{x}\\,dx \\)) and changing the limits from \\( x = 0,\\,\\ln [[b]] \\) to \\( u = 1+[[a]],\\,[[b]]+[[a]] \\), evaluate \\( \\int_{0}^{\\ln [[b]]} [[c]]e^{x}\\left(e^{x} + [[a]]\\right)^{[[n]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*exp(x)*(exp(x) + [[a]])**[[n]]", "var": "x", "bounds": ["0", "[[lnb]]"]},
+ "distractors": [
+  "[[c]]*(([[b]])**([[n]]+1) - (1)**([[n]]+1))/([[n]]+1)",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=e^{x}+[[a]] \\), the exponential's derivative supplies \\( du \\) exactly. The limits become \\( u=1+[[a]] \\) (at \\( x=0 \\)) and \\( u=[[b]]+[[a]] \\) (at \\( x=\\ln [[b]] \\)), so \\( [[c]]\\displaystyle\\int_{1+[[a]]}^{[[b]]+[[a]]} u^{[[n]]}\\,du = \\dfrac{[[c]]}{[[n]]+1}\\left(([[b]]+[[a]])^{[[n]]+1} - (1+[[a]])^{[[n]]+1}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to shift the limits by \\( [[a]] \\), using \\( u=1 \\) and \\( u=[[b]] \\) instead of \\( u=1+[[a]] \\) and \\( u=[[b]]+[[a]] \\).",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "substitution_change_limits_logarithmic_v1",
+ "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "k": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( u = \\ln x \\) (so \\( du = \\dfrac{dx}{x} \\)) and changing the limits from \\( x=1,\\,e^{[[k]]} \\) to \\( u=0,\\,[[k]] \\), evaluate \\( \\int_{1}^{e^{[[k]]}} \\frac{[[c]]\\left(\\ln x\\right)^{[[n]]}}{x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*log(x)**[[n]]/x", "var": "x", "bounds": ["1", "exp([[k]])"]},
+ "distractors": [
+  "[[c]]*[[k]]**[[n]]",
+  "[[c]]*[[k]]**([[n]]+1)",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\ln x \\), the factor \\( \\tfrac{1}{x}\\,dx \\) is exactly \\( du \\); the limits become \\( u=\\ln 1 = 0 \\) and \\( u=\\ln(e^{[[k]]})=[[k]] \\). So \\( [[c]]\\displaystyle\\int_{0}^{[[k]]} u^{[[n]]}\\,du = \\dfrac{[[c]]}{[[n]]+1}[[k]]^{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( n+1 \\) after applying the power rule.",
+  "This uses \\( k^{n+1} \\) but forgets the \\( 1/(n+1) \\) scaling, an off-by-power error.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "substitution_change_limits_radical_v1",
+ "skill_id": "substitution_in_a_definite_integral_change_the_limit",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "a": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"asq": "[[a]]**2"},
+ "stem": "Using the substitution \\( u = \\sqrt{x} \\) (so \\( du = \\dfrac{dx}{2\\sqrt{x}} \\)) and changing the limits from \\( x=0,\\,[[asq]] \\) to \\( u=0,\\,[[a]] \\), evaluate \\( \\int_{0}^{[[asq]]} \\frac{[[c]]\\left(1+\\sqrt{x}\\right)^{[[n]]}}{\\sqrt{x}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*(1+sqrt(x))**[[n]]/sqrt(x)", "var": "x", "bounds": ["0", "[[asq]]"]},
+ "distractors": [
+  "[[c]]*((1+[[a]])**([[n]]+1) - 1)/([[n]]+1)",
+  "2*[[c]]*(1+[[a]])**[[n]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\sqrt{x} \\), \\( \\dfrac{dx}{\\sqrt{x}} = 2\\,du \\), so the integral becomes \\( 2[[c]]\\displaystyle\\int_{0}^{[[a]]}(1+u)^{[[n]]}\\,du = \\dfrac{2[[c]]}{[[n]]+1}\\left((1+[[a]])^{[[n]]+1} - 1\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 that comes from \\( dx/\\sqrt{x}=2\\,du \\).",
+  "This uses the value at the upper limit alone without integrating (a plug-in error), and drops the 1/(n+1) scaling.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+}
+]

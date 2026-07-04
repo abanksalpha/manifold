@@ -1,0 +1,219 @@
+[
+ {
+  "template_id": "general_triangle_area_and_metric_relations_v1",
+  "skill_id": "general_triangle_area_and_metric_relations",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 16
+   },
+   "t": {
+    "type": "choice",
+    "values": [
+     0,
+     1
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "sa": "5*[[k]]",
+   "sb": "5*[[k]]",
+   "sc": "(6 + 2*[[t]])*[[k]]",
+   "sp": "(8 + [[t]])*[[k]]"
+  },
+  "stem": "A triangle has sides of length \\( [[sa]] \\), \\( [[sb]] \\), and \\( [[sc]] \\). What is its area?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "sqrt([[sp]]*([[sp]] - [[sa]])*([[sp]] - [[sb]])*([[sp]] - [[sc]]))"
+  },
+  "distractors": [
+   "[[sa]] + [[sb]] + [[sc]]",
+   "[[sp]]",
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]"
+  ],
+  "solution": "Use Heron's formula. The semiperimeter is \\( s = \\frac{[[sa]] + [[sb]] + [[sc]]}{2} = [[sp]] \\), so the area is \\( \\sqrt{s(s-a)(s-b)(s-c)} = \\sqrt{[[sp]]([[sp]]-[[sa]])([[sp]]-[[sb]])([[sp]]-[[sc]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the perimeter of the triangle, not its area.",
+   "This is the semiperimeter, an intermediate quantity, not the area.",
+   "This doubles the area, as if the \\( \\sqrt{\\;} \\) were dropped from one factor.",
+   "This halves the correct Heron area.",
+   "This is off from the correct area by a small amount.",
+   "This is off from the correct area by a small amount."
+  ]
+ },
+ {
+  "template_id": "general_triangle_area_and_metric_relations_v2_sas_area",
+  "skill_id": "general_triangle_area_and_metric_relations",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 3, "hi": 20},
+   "b": {"type": "int", "lo": 3, "hi": 20},
+   "angle": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150]}
+  },
+  "constraints": [],
+  "stem": "A triangle has two sides of length \\( [[a]] \\) and \\( [[b]] \\), with an included angle of \\( [[angle]]^{\\circ} \\) between them. What is the area of the triangle?",
+  "answer_spec": {"op": "evaluate", "expr": "(1/2)*[[a]]*[[b]]*sin([[angle]]*pi/180)"},
+  "distractors": [
+   "[[a]]*[[b]]*sin([[angle]]*pi/180)",
+   "(1/2)*[[a]]*[[b]]*cos([[angle]]*pi/180)",
+   "(1/2)*[[a]]*[[b]]",
+   "(1/2)*([[a]] + [[b]])*sin([[angle]]*pi/180)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The SAS area formula gives \\( \\text{Area} = \\frac{1}{2}ab\\sin(C) = \\frac{1}{2}\\cdot[[a]]\\cdot[[b]]\\cdot\\sin([[angle]]^{\\circ}) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of \\( \\frac{1}{2} \\).",
+   "This uses cosine instead of sine in the area formula.",
+   "This ignores the angle entirely, as if the sides were perpendicular with \\( \\sin(90^{\\circ}) \\) replaced by 1 regardless of the actual angle.",
+   "This uses the sum of the sides instead of their product.",
+   "This is off from the correct area by a small amount.",
+   "This is off from the correct area by a small amount."
+  ]
+ },
+ {
+  "template_id": "general_triangle_area_and_metric_relations_v3_law_of_cosines",
+  "skill_id": "general_triangle_area_and_metric_relations",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 3, "hi": 18},
+   "b": {"type": "int", "lo": 3, "hi": 18},
+   "angle": {"type": "choice", "values": [60, 90, 120]}
+  },
+  "constraints": [],
+  "stem": "A triangle has two sides of length \\( [[a]] \\) and \\( [[b]] \\), with an included angle of \\( [[angle]]^{\\circ} \\) between them. What is the length of the third side?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos([[angle]]*pi/180))"},
+  "distractors": [
+   "sqrt([[a]]**2 + [[b]]**2 + 2*[[a]]*[[b]]*cos([[angle]]*pi/180))",
+   "sqrt([[a]]**2 + [[b]]**2)",
+   "[[a]] + [[b]] - 2*[[a]]*[[b]]*cos([[angle]]*pi/180)",
+   "[[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos([[angle]]*pi/180)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the Law of Cosines, the third side \\( c \\) satisfies \\( c^{2} = a^{2}+b^{2}-2ab\\cos(C) \\). Here \\( c = \\sqrt{[[a]]^{2}+[[b]]^{2}-2\\cdot[[a]]\\cdot[[b]]\\cdot\\cos([[angle]]^{\\circ})} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the cosine term, as if the angle were supplementary to the given one.",
+   "This uses the Pythagorean theorem, ignoring the included angle entirely (only valid at \\( 90^{\\circ} \\)).",
+   "This forgets to square \\( a \\) and \\( b \\) individually and to take a square root at the end.",
+   "This forgets the final square root, leaving \\( c^{2} \\) instead of \\( c \\).",
+   "This is off from the correct length by a small amount.",
+   "This is off from the correct length by a small amount."
+  ]
+ },
+ {
+  "template_id": "general_triangle_area_and_metric_relations_v4_law_of_sines",
+  "skill_id": "general_triangle_area_and_metric_relations",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 3, "hi": 24},
+   "angleA": {"type": "choice", "values": [30, 45, 60, 90]},
+   "angleB": {"type": "choice", "values": [30, 45, 60, 90]}
+  },
+  "constraints": ["Lt([[angleA]] + [[angleB]], 180)"],
+  "stem": "In a triangle, the side opposite angle \\( A \\) has length \\( [[a]] \\), with \\( \\angle A = [[angleA]]^{\\circ} \\) and \\( \\angle B = [[angleB]]^{\\circ} \\). What is the length of the side opposite angle \\( B \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*sin([[angleB]]*pi/180)/sin([[angleA]]*pi/180)"},
+  "distractors": [
+   "[[a]]*sin([[angleA]]*pi/180)/sin([[angleB]]*pi/180)",
+   "[[a]]*[[angleB]]/[[angleA]]",
+   "[[a]]*cos([[angleB]]*pi/180)/cos([[angleA]]*pi/180)",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the Law of Sines, \\( \\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} \\), so \\( b = a\\cdot\\dfrac{\\sin B}{\\sin A} = [[a]]\\cdot\\dfrac{\\sin([[angleB]]^{\\circ})}{\\sin([[angleA]]^{\\circ})} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the sine ratio, using \\( \\frac{\\sin A}{\\sin B} \\) instead of \\( \\frac{\\sin B}{\\sin A} \\).",
+   "This uses the angle measures directly in a ratio instead of their sines.",
+   "This uses cosine instead of sine in the ratio.",
+   "This just repeats the given side, ignoring the angle difference altogether.",
+   "This is off from the correct length by a small amount.",
+   "This is off from the correct length by a small amount."
+  ]
+ },
+ {
+  "template_id": "general_triangle_area_and_metric_relations_v5_inradius",
+  "skill_id": "general_triangle_area_and_metric_relations",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "sa": {"type": "int", "lo": 4, "hi": 16},
+   "sb": {"type": "int", "lo": 4, "hi": 16},
+   "sc": {"type": "int", "lo": 4, "hi": 16}
+  },
+  "constraints": [
+   "Gt([[sa]] + [[sb]], [[sc]] + 1)",
+   "Gt([[sb]] + [[sc]], [[sa]] + 1)",
+   "Gt([[sa]] + [[sc]], [[sb]] + 1)"
+  ],
+  "stem": "A triangle has sides of length \\( [[sa]] \\), \\( [[sb]] \\), and \\( [[sc]] \\). What is the radius of its inscribed circle (its inradius)?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((([[sa]]+[[sb]]+[[sc]])/2)*((([[sa]]+[[sb]]+[[sc]])/2)-[[sa]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sb]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sc]]))/(([[sa]]+[[sb]]+[[sc]])/2)"},
+  "distractors": [
+   "sqrt((([[sa]]+[[sb]]+[[sc]])/2)*((([[sa]]+[[sb]]+[[sc]])/2)-[[sa]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sb]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sc]]))",
+   "[[sa]]+[[sb]]+[[sc]]",
+   "([[sa]]+[[sb]]+[[sc]])/2",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The inradius relates area and semiperimeter by \\( r = \\dfrac{\\text{Area}}{s} \\). By Heron's formula the area is \\( \\sqrt{s(s-a)(s-b)(s-c)} \\) with \\( s = \\frac{[[sa]]+[[sb]]+[[sc]]}{2} \\), so \\( r = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the triangle's AREA (Heron's formula), not the inradius; it still needs to be divided by the semiperimeter.",
+   "This is the perimeter of the triangle, not the inradius.",
+   "This is the semiperimeter, an intermediate quantity, not the inradius.",
+   "This doubles the correct inradius.",
+   "This is off from the correct inradius by a small amount.",
+   "This is off from the correct inradius by a small amount."
+  ]
+ },
+ {
+  "template_id": "general_triangle_area_and_metric_relations_v6_circumradius",
+  "skill_id": "general_triangle_area_and_metric_relations",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "sa": {"type": "int", "lo": 4, "hi": 16},
+   "sb": {"type": "int", "lo": 4, "hi": 16},
+   "sc": {"type": "int", "lo": 4, "hi": 16}
+  },
+  "constraints": [
+   "Gt([[sa]] + [[sb]], [[sc]] + 1)",
+   "Gt([[sb]] + [[sc]], [[sa]] + 1)",
+   "Gt([[sa]] + [[sc]], [[sb]] + 1)"
+  ],
+  "stem": "A triangle has sides of length \\( [[sa]] \\), \\( [[sb]] \\), and \\( [[sc]] \\). What is the radius of its circumscribed circle (its circumradius)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[sa]]*[[sb]]*[[sc]])/(4*sqrt((([[sa]]+[[sb]]+[[sc]])/2)*((([[sa]]+[[sb]]+[[sc]])/2)-[[sa]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sb]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sc]])))"},
+  "distractors": [
+   "([[sa]]*[[sb]]*[[sc]])/(2*sqrt((([[sa]]+[[sb]]+[[sc]])/2)*((([[sa]]+[[sb]]+[[sc]])/2)-[[sa]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sb]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sc]])))",
+   "[[sa]]+[[sb]]+[[sc]]",
+   "sqrt((([[sa]]+[[sb]]+[[sc]])/2)*((([[sa]]+[[sb]]+[[sc]])/2)-[[sa]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sb]])*((([[sa]]+[[sb]]+[[sc]])/2)-[[sc]]))",
+   "[[answer]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The circumradius formula is \\( R = \\dfrac{abc}{4\\cdot\\text{Area}} \\), where the area is found from Heron's formula. Here \\( R = \\dfrac{[[sa]]\\cdot[[sb]]\\cdot[[sc]]}{4\\cdot\\text{Area}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( 2\\cdot\\text{Area} \\) in the denominator instead of \\( 4\\cdot\\text{Area} \\).",
+   "This is the perimeter of the triangle, not the circumradius.",
+   "This is just the triangle's area (Heron's formula), not the circumradius.",
+   "This is half the correct circumradius.",
+   "This is off from the correct circumradius by a small amount.",
+   "This is off from the correct circumradius by a small amount."
+  ]
+ }
+]

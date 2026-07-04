@@ -1,0 +1,154 @@
+[
+{
+ "template_id": "implicit_slope_v1",
+ "skill_id": "implicit_dy_dx_and_slope_at_a_point",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  },
+  "x0": {
+   "type": "int",
+   "lo": -4,
+   "hi": 4
+  },
+  "y0": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  }
+ },
+ "constraints": [
+  "Ne([[x0]], 0)"
+ ],
+ "stem": "For the curve \\( [[a]]x^{2}+[[b]]y^{2}=C \\) (passing through \\( ([[x0]],[[y0]]) \\)), find \\( \\dfrac{dy}{dx} \\) at \\( ([[x0]],[[y0]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-([[a]]*[[x0]])/([[b]]*[[y0]])"
+ },
+ "distractors": [
+  "([[a]]*[[x0]])/([[b]]*[[y0]])",
+  "-([[b]]*[[y0]])/([[a]]*[[x0]])",
+  "-([[a]]*[[x0]])/[[y0]]",
+  "-[[x0]]/[[y0]]",
+  "-([[a]]*[[x0]])/([[b]]*[[y0]]) + 1",
+  "-([[a]]*[[x0]])/([[b]]*[[y0]]) - 1"
+ ],
+ "solution": "Implicit differentiation gives \\( \\frac{dy}{dx}=-\\frac{[[a]]x}{[[b]]y} = [[answer]] \\) at \\( ([[x0]],[[y0]]) \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "implicit_slope_product_curve_v2",
+ "skill_id": "implicit_dy_dx_and_slope_at_a_point",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[x0]], 0)", "Ne([[y0]], 0)"],
+ "stem": "For the curve \\( xy=C \\), passing through \\( ([[x0]],[[y0]]) \\), find \\( \\dfrac{dy}{dx} \\) at \\( ([[x0]],[[y0]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-[[y0]]/[[x0]]"
+ },
+ "distractors": [
+  "[[y0]]/[[x0]]",
+  "-[[x0]]/[[y0]]",
+  "[[x0]]/[[y0]]",
+  "-[[x0]]*[[y0]]",
+  "-[[y0]]/[[x0]] + 1",
+  "-[[y0]]/[[x0]] - 1"
+ ],
+ "solution": "Differentiating \\( xy=C \\) implicitly: \\( y+x\\dfrac{dy}{dx}=0 \\), so \\( \\dfrac{dy}{dx}=-\\dfrac{y}{x} = [[answer]] \\) at \\( ([[x0]],[[y0]]) \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that comes from moving \\( y \\) to the other side.",
+  "This inverts the ratio of \\( y \\) to \\( x \\).",
+  "This has the wrong sign AND the inverted ratio.",
+  "This multiplies \\( x \\) and \\( y \\) instead of dividing.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "implicit_slope_conic_cross_term_v3",
+ "skill_id": "implicit_dy_dx_and_slope_at_a_point",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 4},
+  "x0": {"type": "int", "lo": 1, "hi": 4},
+  "y0": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[b]]*[[x0]] + 2*[[c]]*[[y0]], 0)"],
+ "stem": "For the curve \\( [[a]]x^{2}+[[b]]xy+[[c]]y^{2}=C \\), passing through \\( ([[x0]],[[y0]]) \\), find \\( \\dfrac{dy}{dx} \\) at \\( ([[x0]],[[y0]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-(2*[[a]]*[[x0]] + [[b]]*[[y0]])/([[b]]*[[x0]] + 2*[[c]]*[[y0]])"
+ },
+ "distractors": [
+  "-(2*[[a]]*[[x0]])/(2*[[c]]*[[y0]])",
+  "(2*[[a]]*[[x0]] + [[b]]*[[y0]])/([[b]]*[[x0]] + 2*[[c]]*[[y0]])",
+  "-(2*[[a]]*[[x0]] + [[b]]*[[y0]])/(2*[[c]]*[[y0]])",
+  "-([[b]]*[[x0]] + 2*[[c]]*[[y0]])/(2*[[a]]*[[x0]] + [[b]]*[[y0]])",
+  "-(2*[[a]]*[[x0]] + [[b]]*[[y0]])/([[b]]*[[x0]] + 2*[[c]]*[[y0]]) + 1",
+  "-(2*[[a]]*[[x0]] + [[b]]*[[y0]])/([[b]]*[[x0]] + 2*[[c]]*[[y0]]) - 1"
+ ],
+ "solution": "Differentiating implicitly with the product rule on the cross term: \\( 2[[a]]x+[[b]](y+xy')+2[[c]]yy'=0 \\), so \\( y'=-\\dfrac{2[[a]]x+[[b]]y}{[[b]]x+2[[c]]y} \\), giving \\( [[answer]] \\) at \\( ([[x0]],[[y0]]) \\).",
+ "distractor_rationales": [
+  "This drops the cross-term contributions from both the numerator and denominator entirely.",
+  "This drops the negative sign from moving terms across the equation.",
+  "This drops the cross-term contribution from the denominator only.",
+  "This inverts the correct fraction.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "implicit_slope_trig_v4",
+ "skill_id": "implicit_dy_dx_and_slope_at_a_point",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "choice", "values": [0, 2, 4, 6, 8, 10, 12]}
+ },
+ "constraints": [],
+ "derived": {
+  "y0": "pi*[[k]]/6"
+ },
+ "stem": "The curve \\( [[a]]x + \\sin(y) = C \\) passes through \\( ([[x0]],[[y0]]) \\). Find \\( \\dfrac{dy}{dx} \\) at that point.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-[[a]]/cos([[y0]])"
+ },
+ "distractors": [
+  "[[a]]/cos([[y0]])",
+  "-[[a]]*cos([[y0]])",
+  "-cos([[y0]])/[[a]]",
+  "-[[a]]",
+  "-[[a]]/cos([[y0]]) + 1",
+  "-[[a]]/cos([[y0]]) - 1"
+ ],
+ "solution": "Differentiating implicitly: \\( [[a]] + \\cos(y)\\dfrac{dy}{dx}=0 \\), so \\( \\dfrac{dy}{dx}=-\\dfrac{[[a]]}{\\cos(y)} \\), giving \\( [[answer]] \\) at \\( y=[[y0]] \\) (note the slope does not depend on \\( x_0 \\)).",
+ "distractor_rationales": [
+  "This drops the negative sign from moving \\( a \\) across the equation.",
+  "This multiplies by \\( \\cos(y) \\) instead of dividing by it.",
+  "This inverts the correct ratio.",
+  "This forgets to divide by \\( \\cos(y) \\) entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

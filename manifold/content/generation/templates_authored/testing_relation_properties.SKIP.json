@@ -1,0 +1,4 @@
+{
+ "skill_id": "testing_relation_properties",
+ "reason": "The answer is a set of property labels (reflexive / symmetric / transitive), not a single code-computable scalar."
+}

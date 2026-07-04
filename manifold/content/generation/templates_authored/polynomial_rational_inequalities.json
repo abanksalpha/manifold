@@ -1,0 +1,223 @@
+[
+ {
+  "template_id": "polynomial_rational_inequalities_quadratic_factored_count_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Ge([[q]] - [[p]], 4)"],
+  "stem": "For how many integers \\( x \\) is \\( (x - ([[p]]))(x - ([[q]])) < 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[q]] - [[p]] - 1"},
+  "distractors": [
+   "[[q]] - [[p]]",
+   "[[q]] - [[p]] + 1",
+   "[[q]] - [[p]] - 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4",
+   "[[answer]] + 5"
+  ],
+  "solution": "The quadratic factors as \\( (x-([[p]]))(x-([[q]])) \\), which is negative exactly on the open interval \\( ([[p]], [[q]]) \\). The integers strictly between [[p]] and [[q]] number \\( [[q]] - ([[p]]) - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the length of the interval, but counting integers strictly inside requires subtracting 1.",
+   "This counts as if both endpoints were included, but the inequality is strict.",
+   "This excludes one integer too many.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_inequalities_quadratic_standard_form_count_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -7, "hi": 7},
+   "q": {"type": "int", "lo": -7, "hi": 7},
+   "L": {"type": "int", "lo": -14, "hi": -8},
+   "U": {"type": "int", "lo": 8, "hi": 14}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Lt([[L]], [[p]])", "Gt([[U]], [[q]])"],
+  "derived": {"B": "-([[p]] + [[q]])", "C": "[[p]]*[[q]]"},
+  "stem": "For how many integers \\( x \\) with \\( [[L]] \\le x \\le [[U]] \\) is \\( x^{2} + ([[B]])x + ([[C]]) \\ge 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[U]] - [[L]] + 1) - ([[q]] - [[p]] - 1)"},
+  "distractors": [
+   "([[U]] - [[L]] + 1) - ([[q]] - [[p]] + 1)",
+   "[[q]] - [[p]] - 1",
+   "[[U]] - [[L]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Factoring, \\( x^{2}+([[B]])x+([[C]]) = (x-([[p]]))(x-([[q]])) \\), which is negative only on the OPEN interval \\( ([[p]], [[q]]) \\) (containing \\( [[q]]-([[p]])-1 \\) integers). So \\( \\ge 0 \\) holds on all other integers in the window: \\( ([[U]]-([[L]])+1) - ([[q]]-([[p]])-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This removes the CLOSED interval's integer count instead of the open interval's, forgetting the inequality is non-strict so the roots themselves ARE included in the answer.",
+   "This reports only the excluded open interval's count, not its complement in the window.",
+   "This reports the size of the whole window without removing the excluded interval at all.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_inequalities_rational_half_open_count_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Ge([[q]] - [[p]], 3)"],
+  "stem": "For how many integers \\( x \\) is \\( \\dfrac{x - ([[p]])}{x - ([[q]])} \\le 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[q]] - [[p]]"},
+  "distractors": [
+   "[[q]] - [[p]] + 1",
+   "[[q]] - [[p]] - 1",
+   "[[q]] - [[p]] + 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "The quotient is zero at \\( x=[[p]] \\) (included, since the numerator vanishing satisfies \\( \\le 0 \\)) and undefined at \\( x=[[q]] \\) (must be excluded). Between them the quotient is negative. The solution set is the half-open interval \\( [[[p]], [[q]]) \\), which contains \\( [[q]]-([[p]]) = [[answer]] \\) integers.",
+  "distractor_rationales": [
+   "This treats \\( [[q]] \\) as included, but the expression is undefined there and must be excluded.",
+   "This also excludes \\( [[p]] \\), but the numerator vanishing there is allowed by \\( \\le 0 \\).",
+   "This treats both endpoints as included, ignoring that the denominator's zero must be excluded.",
+   "This is larger than the correct count.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_inequalities_squared_denominator_count_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6},
+   "L": {"type": "int", "lo": -14, "hi": -8},
+   "U": {"type": "int", "lo": 8, "hi": 14}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Lt([[L]], [[p]])", "Gt([[U]], [[p]])"],
+  "stem": "For how many integers \\( x \\) with \\( [[L]] \\le x \\le [[U]] \\) is \\( \\dfrac{x - ([[p]])}{(x - ([[q]]))^{2}} < 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]] - [[L]]"},
+  "distractors": [
+   "[[p]] - [[L]] + 1",
+   "[[p]] - [[L]] - 1",
+   "[[U]] - [[L]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "Since \\( (x-([[q]]))^{2} > 0 \\) whenever it is defined, the quotient has the SAME sign as \\( x-([[p]]) \\), except that \\( x=[[q]] \\) must be excluded from the domain (though it does not satisfy the strict inequality anyway). So the quotient is negative exactly when \\( x < [[p]] \\), giving the integers from [[L]] up to (but not including) [[p]]: a count of \\( [[p]] - ([[L]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly includes \\( x=[[p]] \\) itself, but the inequality there equals 0, which fails \\( < 0 \\).",
+   "This excludes one integer too many below \\( [[p]] \\).",
+   "This reports the size of the whole window, forgetting the squared denominator never flips the sign.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_inequalities_cubic_sign_chart_count_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -7, "hi": 1},
+   "q": {"type": "int", "lo": -2, "hi": 2},
+   "r": {"type": "int", "lo": 3, "hi": 8},
+   "L": {"type": "int", "lo": -16, "hi": -9},
+   "U": {"type": "int", "lo": 9, "hi": 16}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Lt([[q]], [[r]])", "Lt([[L]], [[p]])", "Gt([[U]], [[r]])"],
+  "stem": "For how many integers \\( x \\) with \\( [[L]] \\le x \\le [[U]] \\) is \\( (x - ([[p]]))(x - ([[q]]))(x - ([[r]]))> 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[q]] - [[p]] - 1) + ([[U]] - [[r]])"},
+  "distractors": [
+   "([[q]] - [[p]]) + ([[U]] - [[r]])",
+   "([[q]] - [[p]] - 1) + ([[U]] - [[r]] + 1)",
+   "[[U]] - [[L]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "A sign chart on the cubic \\( (x-p)(x-q)(x-r) \\) with \\( p<q<r \\) shows the product is positive exactly on \\( (p,q)\\cup(r,\\infty) \\). Within the window, this gives the open interval \\( ([[p]],[[q]]) \\) (\\( [[q]]-([[p]])-1 \\) integers) together with the integers strictly above \\( [[r]] \\) up to \\( [[U]] \\) (\\( [[U]]-[[r]] \\) integers), totaling \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the middle interval as closed instead of open (the roots themselves give a zero product, which fails \\( >0 \\)).",
+   "This also treats the upper ray's endpoint at \\( [[r]] \\) as included, but the product is zero there.",
+   "This reports the size of the entire window, ignoring where the product is actually positive.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_inequalities_repeated_root_touch_count_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 0},
+   "q": {"type": "int", "lo": 1, "hi": 6},
+   "L": {"type": "int", "lo": -16, "hi": -9},
+   "U": {"type": "int", "lo": 7, "hi": 14}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Lt([[L]], [[p]])", "Gt([[U]], [[q]])"],
+  "stem": "For how many integers \\( x \\) with \\( [[L]] \\le x \\le [[U]] \\) is \\( (x - ([[p]]))^{2}(x - ([[q]])) \\ge 0 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "1 + ([[U]] - [[q]] + 1)"},
+  "distractors": [
+   "[[U]] - [[q]] + 1",
+   "1 + ([[U]] - [[q]])",
+   "[[U]] - [[L]] + 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The squared factor \\( (x-([[p]]))^{2} \\) is never negative, so the whole product has the same sign as \\( x-([[q]]) \\) EXCEPT it also equals 0 (satisfying \\( \\ge 0 \\)) at the isolated repeated root \\( x=[[p]] \\). So the solution set is \\( \\{[[p]]\\} \\cup [[[q]], \\infty) \\): the single point \\( x=[[p]] \\) plus the \\( [[U]]-[[q]]+1 \\) integers from [[q]] to [[U]], totaling \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to include the isolated repeated root \\( x=[[p]] \\), where the product is exactly zero.",
+   "This includes the isolated root but miscounts the upper range by one.",
+   "This reports the size of the whole window, ignoring the sign chart entirely.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count.",
+   "This is larger than the correct count."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_inequalities_boundary_via_solve_v1",
+  "skill_id": "polynomial_rational_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -9, "hi": 9},
+   "q": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "derived": {"B": "-([[p]] + [[q]])", "C": "[[p]]*[[q]]"},
+  "stem": "The inequality \\( x^{2} + ([[B]])x + ([[C]]) \\le 0 \\) has solution set \\( [m, M] \\) for real numbers \\( m \\le M \\). What is \\( m \\), the left endpoint?",
+  "answer_spec": {"op": "solve", "equation": "x**2 + ([[B]])*x + ([[C]]) = 0", "var": "x"},
+  "distractors": [
+   "[[q]]",
+   "-[[answer]]",
+   "[[B]]",
+   "[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since the leading coefficient is positive, the quadratic is \\( \\le 0 \\) exactly between its two roots, so the left endpoint \\( m \\) is the SMALLER root of \\( x^{2}+([[B]])x+([[C]])=0 \\): \\( m = [[p]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the LARGER root \\( M \\), the right endpoint, instead of the left one.",
+   "This negates the correct left endpoint.",
+   "This reads the linear coefficient directly instead of solving for the roots.",
+   "This reads the constant term directly instead of solving for the roots.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,137 @@
+[
+ {
+  "template_id": "ivt_sign_change_product_v1",
+  "skill_id": "intermediate_value_theorem_guaranteed_root_sign_chan",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "p": {"type": "int", "lo": -3, "hi": 0},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Lt(([[p]]**3 + [[a]]*[[p]] + [[b]])*([[q]]**3 + [[a]]*[[q]] + [[b]]), 0)"],
+  "stem": "Let \\( f(x) = x^{3} + ([[a]])x + ([[b]]) \\), a continuous function. By the Intermediate Value Theorem, \\( f \\) is guaranteed to have a root between \\( x = [[p]] \\) and \\( x = [[q]] \\) exactly when \\( f([[p]])\\cdot f([[q]]) < 0 \\). Compute \\( f([[p]])\\cdot f([[q]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[p]]**3 + [[a]]*[[p]] + [[b]])*([[q]]**3 + [[a]]*[[q]] + [[b]])"},
+  "distractors": [
+   "([[p]]**3 + [[a]]*[[p]] + [[b]]) + ([[q]]**3 + [[a]]*[[q]] + [[b]])",
+   "-(([[p]]**3 + [[a]]*[[p]] + [[b]])*([[q]]**3 + [[a]]*[[q]] + [[b]]))",
+   "[[p]]**3 + [[a]]*[[p]] + [[b]]",
+   "[[q]]**3 + [[a]]*[[q]] + [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Evaluate the endpoints: \\( f([[p]]) = [[p]]^{3} + ([[a]])([[p]]) + ([[b]]) \\) and \\( f([[q]]) = [[q]]^{3} + ([[a]])([[q]]) + ([[b]]) \\). Their product is \\( [[answer]] \\). Since it is negative, \\( f \\) changes sign on \\( ([[p]], [[q]]) \\), so the Intermediate Value Theorem guarantees a root there.",
+  "distractor_rationales": [
+   "This adds the endpoint values instead of multiplying them.",
+   "This is the absolute value (sign dropped); the sign is exactly what signals a root.",
+   "This is only \\( f([[p]]) \\), a single endpoint value.",
+   "This is only \\( f([[q]]) \\), a single endpoint value.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product."
+  ]
+ },
+ {
+  "template_id": "ivt_guaranteed_intermediate_value_v1",
+  "skill_id": "intermediate_value_theorem_guaranteed_root_sign_chan",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "p": {"type": "int", "lo": -4, "hi": 0},
+   "q": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( f(x) = x^{3} + ([[a]])x + ([[b]]) \\), continuous on \\( [[[p]], [[q]]] \\). By the Intermediate Value Theorem, \\( f \\) must attain the value \\( M = \\dfrac{f([[p]]) + f([[q]])}{2} \\), the average of its endpoint values, at some point in \\( ([[p]], [[q]]) \\) (since \\( M \\) lies between \\( f([[p]]) \\) and \\( f([[q]]) \\)). Compute \\( M \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(([[p]]**3 + [[a]]*[[p]] + [[b]]) + ([[q]]**3 + [[a]]*[[q]] + [[b]]))/2"},
+  "distractors": [
+   "([[p]]**3 + [[a]]*[[p]] + [[b]])*([[q]]**3 + [[a]]*[[q]] + [[b]])",
+   "[[p]]**3 + [[a]]*[[p]] + [[b]]",
+   "[[q]]**3 + [[a]]*[[q]] + [[b]]",
+   "(([[p]]**3 + [[a]]*[[p]] + [[b]]) + ([[q]]**3 + [[a]]*[[q]] + [[b]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Evaluate the endpoints: \\( f([[p]]) = [[p]]^{3} + ([[a]])([[p]]) + ([[b]]) \\) and \\( f([[q]]) = [[q]]^{3} + ([[a]])([[q]]) + ([[b]]) \\). Their average is \\( M = [[answer]] \\); since \\( M \\) lies between the two endpoint values, the Intermediate Value Theorem guarantees some \\( c \\in ([[p]], [[q]]) \\) with \\( f(c) = M \\).",
+  "distractor_rationales": [
+   "This multiplies the endpoint values instead of averaging them.",
+   "This is only \\( f([[p]]) \\), a single endpoint value.",
+   "This is only \\( f([[q]]) \\), a single endpoint value.",
+   "This forgets to divide the sum by 2.",
+   "This is off by one from the correct average.",
+   "This is off by one from the correct average."
+  ]
+ },
+ {
+  "template_id": "ivt_two_functions_intersect_v1",
+  "skill_id": "intermediate_value_theorem_guaranteed_root_sign_chan",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "p": {"type": "int", "lo": -3, "hi": 0},
+   "q": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [
+   "Ne([[a]], 0)",
+   "Lt(([[p]]**3 + [[a]]*[[p]] - [[c]]*[[p]] - [[d]])*([[q]]**3 + [[a]]*[[q]] - [[c]]*[[q]] - [[d]]), 0)"
+  ],
+  "stem": "Let \\( f(x) = x^{3} + ([[a]])x \\) and \\( g(x) = ([[c]])x + ([[d]]) \\), both continuous. Define \\( h(x) = f(x) - g(x) \\). By the Intermediate Value Theorem, the graphs of \\( f \\) and \\( g \\) are guaranteed to cross somewhere in \\( ([[p]], [[q]]) \\) exactly when \\( h([[p]])\\cdot h([[q]]) < 0 \\). Compute \\( h([[p]])\\cdot h([[q]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[p]]**3 + [[a]]*[[p]] - [[c]]*[[p]] - [[d]])*([[q]]**3 + [[a]]*[[q]] - [[c]]*[[q]] - [[d]])"},
+  "distractors": [
+   "([[p]]**3 + [[a]]*[[p]] - [[c]]*[[p]] - [[d]]) + ([[q]]**3 + [[a]]*[[q]] - [[c]]*[[q]] - [[d]])",
+   "-(([[p]]**3 + [[a]]*[[p]] - [[c]]*[[p]] - [[d]])*([[q]]**3 + [[a]]*[[q]] - [[c]]*[[q]] - [[d]]))",
+   "[[p]]**3 + [[a]]*[[p]] - [[c]]*[[p]] - [[d]]",
+   "[[q]]**3 + [[a]]*[[q]] - [[c]]*[[q]] - [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Let \\( h(x) = f(x) - g(x) = x^{3} + ([[a]] - [[c]])x - ([[d]]) \\). Evaluating, \\( h([[p]]) = [[p]]^{3} + ([[a]])([[p]]) - ([[c]])([[p]]) - ([[d]]) \\) and \\( h([[q]]) = [[q]]^{3} + ([[a]])([[q]]) - ([[c]])([[q]]) - ([[d]]) \\); their product is \\( [[answer]] \\). Since it is negative, \\( h \\) changes sign, so by IVT \\( h \\) has a root in \\( ([[p]], [[q]]) \\) — the point where \\( f \\) and \\( g \\) intersect.",
+  "distractor_rationales": [
+   "This adds the endpoint values of \\( h \\) instead of multiplying them.",
+   "This is the absolute value (sign dropped); the sign is exactly what signals an intersection.",
+   "This is only \\( h([[p]]) \\), a single endpoint value.",
+   "This is only \\( h([[q]]) \\), a single endpoint value.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product."
+  ]
+ },
+ {
+  "template_id": "ivt_transcendental_sign_change_v1",
+  "skill_id": "intermediate_value_theorem_guaranteed_root_sign_chan",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "p": {"type": "choice", "values": [0, 1]},
+   "q": {"type": "choice", "values": [2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)", "Lt([[p]], [[q]])", "Lt((exp([[p]]) - [[b]]*[[p]] - [[c]])*(exp([[q]]) - [[b]]*[[q]] - [[c]]), 0)"],
+  "require_rational": false,
+  "stem": "Let \\( f(x) = e^{x} - ([[b]])x - ([[c]]) \\), a continuous function. By the Intermediate Value Theorem, \\( f \\) is guaranteed to have a root between \\( x = [[p]] \\) and \\( x = [[q]] \\) exactly when \\( f([[p]])\\cdot f([[q]]) < 0 \\). Compute \\( f([[p]])\\cdot f([[q]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(exp([[p]]) - [[b]]*[[p]] - [[c]])*(exp([[q]]) - [[b]]*[[q]] - [[c]])"},
+  "distractors": [
+   "(exp([[p]]) - [[b]]*[[p]] - [[c]]) + (exp([[q]]) - [[b]]*[[q]] - [[c]])",
+   "-((exp([[p]]) - [[b]]*[[p]] - [[c]])*(exp([[q]]) - [[b]]*[[q]] - [[c]]))",
+   "exp([[p]]) - [[b]]*[[p]] - [[c]]",
+   "exp([[q]]) - [[b]]*[[q]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Evaluate the endpoints: \\( f([[p]]) = e^{[[p]]} - ([[b]])([[p]]) - ([[c]]) \\) and \\( f([[q]]) = e^{[[q]]} - ([[b]])([[q]]) - ([[c]]) \\). Their product is \\( [[answer]] \\). Since it is negative, \\( f \\) changes sign on \\( ([[p]], [[q]]) \\), so the Intermediate Value Theorem guarantees a root there.",
+  "distractor_rationales": [
+   "This adds the endpoint values instead of multiplying them.",
+   "This is the absolute value (sign dropped); the sign is exactly what signals a root.",
+   "This is only \\( f([[p]]) \\), a single endpoint value.",
+   "This is only \\( f([[q]]) \\), a single endpoint value.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product."
+  ]
+ }
+]

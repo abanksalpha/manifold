@@ -1,0 +1,186 @@
+[
+{
+ "template_id": "modular_compound_expression_v1",
+ "skill_id": "modular_arithmetic",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 60},
+  "b": {"type": "int", "lo": 2, "hi": 60},
+  "c": {"type": "int", "lo": 1, "hi": 60},
+  "m": {"type": "int", "lo": 3, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "What is the remainder when \\( [[a]]\\cdot[[b]] + [[c]] \\) is divided by \\( [[m]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]*[[b]] + [[c]], [[m]])"},
+ "distractors": [
+  "Mod([[a]]*[[b]], [[m]]) + [[c]]",
+  "Mod([[a]] + [[b]]*[[c]], [[m]])",
+  "Mod([[a]], [[m]]) + Mod([[b]], [[m]]) + Mod([[c]], [[m]])",
+  "Mod([[a]]*[[b]]*[[c]], [[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute the expression, then reduce modulo \\( [[m]] \\): \\( [[a]]\\cdot[[b]]+[[c]] \\equiv [[answer]] \\pmod{[[m]]} \\).",
+ "distractor_rationales": [
+  "This reduces the product before adding \\( c \\), but forgets to take the final modulus of the whole sum.",
+  "This applies the wrong order of operations, multiplying \\( b \\) and \\( c \\) instead of \\( a \\) and \\( b \\).",
+  "This reduces each number separately and adds them, without accounting for the multiplication.",
+  "This multiplies all three numbers together instead of computing \\( ab+c \\).",
+  "This is one more than the correct remainder.",
+  "This is one less than the correct remainder."
+ ]
+},
+{
+ "template_id": "modular_exponentiation_basic_v1",
+ "skill_id": "modular_arithmetic",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 25},
+  "k": {"type": "int", "lo": 2, "hi": 15},
+  "m": {"type": "int", "lo": 3, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "What is the remainder when \\( [[a]]^{[[k]]} \\) is divided by \\( [[m]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[k]], [[m]])"},
+ "distractors": [
+  "Mod([[a]], [[m]])**[[k]]",
+  "Mod([[a]]*[[k]], [[m]])",
+  "Mod([[k]]**[[a]], [[m]])",
+  "Mod([[a]], [[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute \\( [[a]]^{[[k]]} \\) and reduce modulo \\( [[m]] \\) (or reduce the base first and reduce again at the end): \\( [[a]]^{[[k]]} \\equiv [[answer]] \\pmod{[[m]]} \\).",
+ "distractor_rationales": [
+  "This reduces the base modulo \\( m \\) first but forgets to reduce AGAIN after raising it to the power.",
+  "This multiplies the base and exponent instead of raising the base to that power.",
+  "This swaps the roles of the base and the exponent.",
+  "This forgets to apply the exponent at all.",
+  "This is one more than the correct remainder.",
+  "This is one less than the correct remainder."
+ ]
+},
+{
+ "template_id": "modular_inverse_basic_v1",
+ "skill_id": "modular_arithmetic",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 70},
+  "m": {"type": "int", "lo": 5, "hi": 70}
+ },
+ "constraints": ["Eq(gcd([[a]], [[m]]), 1)", "Lt([[a]], [[m]])"],
+ "stem": "What is the modular inverse of \\( [[a]] \\) modulo \\( [[m]] \\) — that is, the integer \\( x \\) with \\( 0 \\le x < [[m]] \\) such that \\( [[a]]x \\equiv 1 \\pmod{[[m]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "mod_inverse([[a]], [[m]])"},
+ "distractors": [
+  "mod_inverse([[m]], [[a]])",
+  "[[m]] - mod_inverse([[a]], [[m]])",
+  "Mod([[a]], [[m]])",
+  "[[m]] - [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Find \\( x \\) satisfying \\( [[a]]x\\equiv 1 \\pmod{[[m]]} \\) (e.g. via the extended Euclidean algorithm): \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps which number is inverted modulo the other.",
+  "This subtracts the correct inverse from the modulus, giving the wrong residue.",
+  "This just reports \\( a \\) itself reduced mod \\( m \\), not its inverse.",
+  "This subtracts \\( a \\) from the modulus, unrelated to the actual inverse.",
+  "This is one more than the correct inverse.",
+  "This is one less than the correct inverse."
+ ]
+},
+{
+ "template_id": "modular_units_digit_v1",
+ "skill_id": "modular_arithmetic",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 30},
+  "k": {"type": "int", "lo": 2, "hi": 80}
+ },
+ "constraints": [],
+ "stem": "What is the units (ones) digit of \\( [[a]]^{[[k]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[k]], 10)"},
+ "distractors": [
+  "Mod([[a]], 10)",
+  "Mod([[a]]**[[k]], 100)",
+  "Mod([[k]], 10)",
+  "Mod([[a]]*[[k]], 10)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The units digit is the remainder modulo 10, which cycles with a short period: \\( [[a]]^{[[k]]} \\equiv [[answer]] \\pmod{10} \\).",
+ "distractor_rationales": [
+  "This just reports the units digit of the BASE, ignoring the effect of raising it to a power.",
+  "This computes the last TWO digits (mod 100) instead of just the units digit.",
+  "This reports a digit of the exponent, unrelated to the units digit of the power.",
+  "This multiplies the base and exponent instead of computing the power.",
+  "This is one more than the correct units digit.",
+  "This is one less than the correct units digit."
+ ]
+},
+{
+ "template_id": "modular_linear_congruence_v1",
+ "skill_id": "modular_arithmetic",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 40},
+  "m": {"type": "int", "lo": 5, "hi": 50},
+  "b": {"type": "int", "lo": 0, "hi": 49}
+ },
+ "constraints": ["Eq(gcd([[a]], [[m]]), 1)", "Lt([[b]], [[m]])"],
+ "stem": "What is the smallest non-negative integer \\( x \\) satisfying \\( [[a]]x \\equiv [[b]] \\pmod{[[m]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[b]]*mod_inverse([[a]], [[m]]), [[m]])"},
+ "distractors": [
+  "Mod([[a]]*[[b]], [[m]])",
+  "mod_inverse([[a]], [[m]])",
+  "Mod([[b]], [[m]])",
+  "[[m]] - Mod([[b]]*mod_inverse([[a]], [[m]]), [[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Multiply both sides by the modular inverse of \\( [[a]] \\) modulo \\( [[m]] \\): \\( x \\equiv [[b]]\\cdot a^{-1} \\equiv [[answer]] \\pmod{[[m]]} \\).",
+ "distractor_rationales": [
+  "This multiplies \\( a \\) and \\( b \\) instead of multiplying \\( b \\) by the inverse of \\( a \\).",
+  "This forgets to multiply by \\( b \\), reporting only the inverse of \\( a \\).",
+  "This just reports \\( b \\) reduced mod \\( m \\), ignoring the coefficient \\( a \\) entirely.",
+  "This subtracts the correct solution from the modulus, giving the wrong residue.",
+  "This is one more than the correct solution.",
+  "This is one less than the correct solution."
+ ]
+},
+{
+ "template_id": "modular_sum_remainder_v1",
+ "skill_id": "modular_arithmetic",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 10, "hi": 500},
+  "m": {"type": "int", "lo": 3, "hi": 50}
+ },
+ "constraints": [],
+ "stem": "What is the remainder when \\( 1 + 2 + 3 + \\cdots + [[n]] \\) is divided by \\( [[m]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[n]]*([[n]] + 1)/2, [[m]])"},
+ "distractors": [
+  "Mod([[n]]*([[n]] + 1), [[m]])",
+  "Mod([[n]]**2, [[m]])",
+  "Mod(Mod([[n]], [[m]])*(Mod([[n]], [[m]]) + 1)/2, [[m]])",
+  "Mod([[n]], [[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The sum is \\( \\frac{n(n+1)}{2} \\); reduce it modulo \\( [[m]] \\): \\( \\dfrac{[[n]]([[n]]+1)}{2} \\equiv [[answer]] \\pmod{[[m]]} \\).",
+ "distractor_rationales": [
+  "This forgets to divide by 2 in the sum formula.",
+  "This uses \\( n^2 \\) instead of the correct triangular-number formula \\( n(n+1)/2 \\).",
+  "This reduces \\( n \\) modulo \\( m \\) before applying the formula, which does not commute correctly with the division by 2.",
+  "This just reports \\( n \\) reduced mod \\( m \\), ignoring the summation entirely.",
+  "This is one more than the correct remainder.",
+  "This is one less than the correct remainder."
+ ]
+}
+]

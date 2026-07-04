@@ -1,0 +1,149 @@
+[
+{
+ "template_id": "line_integral_scalar_segment_v1",
+ "skill_id": "line_integrals",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "choice", "values": [3, 4, 5, 6, 8, 12]},
+  "q": {"type": "choice", "values": [3, 4, 5, 6, 8, 12]},
+  "T": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [
+  "Eq(floor(sqrt([[p]]**2 + [[q]]**2)), sqrt([[p]]**2 + [[q]]**2))",
+  "Ne([[a]]*[[p]] + [[b]]*[[q]], 0)"
+ ],
+ "stem": "Evaluate the scalar line integral \\( \\displaystyle\\int_C f\\,ds \\), where \\( f(x,y) = [[a]]x + [[b]]y \\) and \\( C \\) is the segment \\( \\mathbf{r}(t) = ([[p]]t,\\; [[q]]t) \\) for \\( 0 \\le t \\le [[T]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "sqrt([[p]]**2 + [[q]]**2) * (([[a]])*([[p]])*t + ([[b]])*([[q]])*t)", "var": "t", "bounds": ["0", "[[T]]"]},
+ "distractors": [
+  "([[a]])*([[p]]) + ([[b]])*([[q]])",
+  "sqrt([[p]]**2 + [[q]]**2) * (([[a]])*([[p]]) + ([[b]])*([[q]])) * [[T]]",
+  "-([[answer]])",
+  "([[answer]]) / 2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( \\mathbf{r}'(t) = ([[p]],[[q]]) \\), so \\( ds = |\\mathbf{r}'(t)|\\,dt = \\sqrt{[[p]]^{2}+[[q]]^{2}}\\,dt \\) (constant speed). Also \\( f(\\mathbf{r}(t)) = ([[a]])([[p]]t) + ([[b]])([[q]]t) = \\big(([[a]])([[p]])+([[b]])([[q]])\\big)t \\). Thus \\( \\int_0^{[[T]]} \\big(([[a]])([[p]])+([[b]])([[q]])\\big)t\\,\\sqrt{[[p]]^{2}+[[q]]^{2}}\\,dt = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( ds=dt \\), forgetting the arc-length speed factor \\( |\\mathbf{r}'(t)| \\), and also drops the factor of \\( t \\).",
+  "This treats \\( f(\\mathbf{r}(t)) \\) as constant over \\( [0,[[T]]] \\) instead of integrating the linear-in-\\(t\\) integrand.",
+  "This has the wrong overall sign.",
+  "This is half the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "line_integral_vector_work_segment_v1",
+ "skill_id": "line_integrals",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "x1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "y1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "x2": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "y2": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": [
+  "Ne([[a]], 0)", "Ne([[b]], 0)",
+  "Or(Ne([[x1]], [[x2]]), Ne([[y1]], [[y2]]))"
+ ],
+ "stem": "Evaluate the work integral \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( \\mathbf{F}(x,y) = \\left( [[a]]y,\\; [[b]]x^{2} \\right) \\) and \\( C \\) is the straight segment from \\( ([[x1]],[[y1]]) \\) to \\( ([[x2]],[[y2]]) \\), traversed once directly.",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "([[a]])*(([[y1]]) + t*(([[y2]])-([[y1]]))) * (([[x2]])-([[x1]])) + ([[b]])*(([[x1]]) + t*(([[x2]])-([[x1]])))**2 * (([[y2]])-([[y1]]))",
+  "var": "t", "bounds": ["0", "1"]
+ },
+ "distractors": [
+  "([[a]])*(([[y2]])-([[y1]])) + ([[b]])*(([[x2]])-([[x1]]))",
+  "([[a]])*([[y2]])*([[x2]]-[[x1]]) + ([[b]])*([[x2]])**2*([[y2]]-[[y1]])",
+  "-([[answer]])",
+  "([[answer]]) * 2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Parametrize \\( \\mathbf{r}(t) = ([[x1]],[[y1]]) + t\\big(([[x2]])-([[x1]]),\\,([[y2]])-([[y1]])\\big) \\) for \\( 0\\le t\\le 1 \\), so \\( d\\mathbf{r} = \\big(([[x2]])-([[x1]]),\\,([[y2]])-([[y1]])\\big)dt \\). Substituting into \\( \\mathbf{F}\\cdot d\\mathbf{r} \\) and integrating from \\( t=0 \\) to \\( t=1 \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\( \\mathbf{F} \\) only at the displacement vector itself, skipping the actual parametrized integration.",
+  "This evaluates \\( \\mathbf{F} \\) only at the endpoint \\( B \\) and multiplies by the displacement, instead of integrating along the path.",
+  "This has the wrong overall sign.",
+  "This double counts the work integral.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "line_integral_differential_form_v1",
+ "skill_id": "line_integrals",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "x1": {"type": "int", "lo": -2, "hi": 1},
+  "x2": {"type": "int", "lo": 2, "hi": 4}
+ },
+ "constraints": ["Ne([[a]] + 2*[[b]], 0)", "Lt([[x1]], [[x2]])"],
+ "stem": "Evaluate \\( \\displaystyle\\int_C [[a]]xy\\,dx + [[b]]y\\,dy \\), where \\( C \\) is the portion of the curve \\( y = x^{2} \\) from \\( x=[[x1]] \\) to \\( x=[[x2]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "([[a]])*x*(x**2) + ([[b]])*(x**2)*(2*x)", "var": "x", "bounds": ["[[x1]]", "[[x2]]"]},
+ "distractors": [
+  "(([[a]])*([[x2]])**3)/3 - (([[a]])*([[x1]])**3)/3",
+  "(([[b]])*([[x2]])**4)/2 - (([[b]])*([[x1]])**4)/2",
+  "-([[answer]])",
+  "([[answer]]) / 2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "On \\( C \\), substitute \\( y=x^{2} \\) and \\( dy=2x\\,dx \\), so the integral becomes a single-variable integral in \\( x \\): \\( \\int_{[[x1]]}^{[[x2]]} \\big[ ([[a]])x(x^{2}) + ([[b]])(x^{2})(2x) \\big]\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the \\( [[b]]y\\,dy \\) term entirely, integrating only the \\( dx \\)-piece.",
+  "This drops the \\( [[a]]xy\\,dx \\) term entirely, integrating only the \\( dy \\)-piece.",
+  "This has the wrong overall sign.",
+  "This is half the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "line_integral_vector_work_helix_v1",
+ "skill_id": "line_integrals",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": 1, "hi": 3},
+  "R": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Ne(2*[[a]]*[[k]] + [[b]]*[[R]], 0)"],
+ "require_rational": false,
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( [[a]]z,\\; [[b]]x,\\; [[c]]y \\right) \\) and let \\( C \\) be one full turn of the helix \\( \\mathbf{r}(t) = ([[R]]\\cos t,\\; [[R]]\\sin t,\\; [[k]]t) \\) for \\( 0 \\le t \\le 2\\pi \\). Evaluate \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "([[a]])*([[k]]*t)*(-([[R]])*sin(t)) + ([[b]])*([[R]])*cos(t)*([[R]])*cos(t) + ([[c]])*([[R]])*sin(t)*([[k]])",
+  "var": "t", "bounds": ["0", "2*pi"]
+ },
+ "distractors": [
+  "pi*([[R]])*(2*([[a]])*([[k]]) - ([[b]])*([[R]]))",
+  "2*pi*([[R]])*(([[a]])*([[k]]) + ([[b]])*([[R]]))",
+  "-([[answer]])",
+  "([[answer]]) / 2",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "With \\( \\mathbf{r}'(t) = (-[[R]]\\sin t,\\,[[R]]\\cos t,\\,[[k]]) \\), \\( \\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t) = -([[a]])([[k]])[[R]]\\,t\\sin t + ([[b]])[[R]]^{2}\\cos^{2}t + ([[c]])[[R]][[k]]\\sin t \\). Over \\( 0\\le t\\le 2\\pi \\) the last term vanishes (a full period of \\( \\sin t \\)), \\( \\int_0^{2\\pi} t\\sin t\\,dt = -2\\pi \\), and \\( \\int_0^{2\\pi}\\cos^{2}t\\,dt = \\pi \\), giving \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} = 2\\pi([[a]])([[k]])([[R]]) + \\pi([[b]])([[R]])^{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the \\( ([[a]])([[k]]) \\)-term relative to the \\( ([[b]])([[R]]) \\)-term.",
+  "This uses \\( \\int_0^{2\\pi}\\cos^2 t\\,dt = 2\\pi \\) (the period length) instead of the correct value \\( \\pi \\).",
+  "This has the wrong overall sign.",
+  "This is half the correct value.",
+  "This adds a spurious \\( \\pi \\) to the correct value.",
+  "This subtracts a spurious \\( \\pi \\) from the correct value."
+ ]
+}
+]

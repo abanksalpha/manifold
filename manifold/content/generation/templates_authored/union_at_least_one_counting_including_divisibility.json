@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "union_divisibility_ie_v1",
+ "skill_id": "union_at_least_one_counting_including_divisibility",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [3, 4, 5, 7]},
+  "N": {"type": "int", "lo": 30, "hi": 90}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)"],
+ "stem": "How many integers \\( n \\) with \\( 1 \\le n \\le [[N]] \\) are divisible by [[a]] or by [[b]] (or by both)?",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/([[a]]*[[b]]))"},
+ "distractors": [
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]])",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/[[a]])",
+  "floor([[N]]/[[b]])",
+  "[[answer]] + 1"
+ ],
+ "solution": "By inclusion-exclusion (and since \\( [[a]] \\) and \\( [[b]] \\) are coprime), the count is \\( \\lfloor [[N]]/[[a]] \\rfloor + \\lfloor [[N]]/[[b]] \\rfloor - \\lfloor [[N]]/([[a]]\\cdot[[b]]) \\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the numbers counted twice (divisible by both).",
+  "This adds the overlap instead of subtracting it.",
+  "This counts only the integers divisible by both [[a]] and [[b]].",
+  "This counts only the multiples of [[a]].",
+  "This counts only the multiples of [[b]].",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "union_divisibility_three_sets_v1",
+ "skill_id": "union_at_least_one_counting_including_divisibility",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 4},
+  "b": {"type": "int", "lo": 2, "hi": 5},
+  "c": {"type": "int", "lo": 2, "hi": 6},
+  "N": {"type": "int", "lo": 80, "hi": 250}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Lt([[b]], [[c]])", "Eq(gcd([[a]], [[b]]), 1)", "Eq(gcd([[a]], [[c]]), 1)", "Eq(gcd([[b]], [[c]]), 1)"],
+ "stem": "How many integers \\( n \\) with \\( 1 \\le n \\le [[N]] \\) are divisible by at least one of [[a]], [[b]], or [[c]]?",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]]) - floor([[N]]/([[a]]*[[b]])) - floor([[N]]/([[a]]*[[c]])) - floor([[N]]/([[b]]*[[c]])) + floor([[N]]/([[a]]*[[b]]*[[c]]))"},
+ "distractors": [
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]])",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) + floor([[N]]/[[c]]) - floor([[N]]/([[a]]*[[b]])) - floor([[N]]/([[a]]*[[c]])) - floor([[N]]/([[b]]*[[c]]))",
+  "floor([[N]]/([[a]]*[[b]]*[[c]]))",
+  "floor([[N]]/[[a]]) - floor([[N]]/[[b]]) - floor([[N]]/[[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By inclusion-exclusion on the three (pairwise coprime) divisors: \\( \\left(\\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor+\\lfloor N/c\\rfloor\\right) - \\left(\\lfloor N/ab\\rfloor+\\lfloor N/ac\\rfloor+\\lfloor N/bc\\rfloor\\right) + \\lfloor N/abc\\rfloor = [[answer]] \\), with \\(N=[[N]]\\), \\(a=[[a]]\\), \\(b=[[b]]\\), \\(c=[[c]]\\).",
+ "distractor_rationales": [
+  "This forgets to subtract any of the pairwise overlaps.",
+  "This subtracts all three pairwise overlaps but forgets to add back the triple overlap.",
+  "This counts only the integers divisible by all three simultaneously.",
+  "This subtracts instead of adds the individual counts, an unrelated formula.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "exactly_one_divisibility_v1",
+ "skill_id": "union_at_least_one_counting_including_divisibility",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [3, 4, 5, 7]},
+  "N": {"type": "int", "lo": 30, "hi": 90}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)"],
+ "stem": "How many integers \\( n \\) with \\( 1 \\le n \\le [[N]] \\) are divisible by EXACTLY ONE of [[a]] or [[b]] (that is, by one of them but not both)?",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - 2*floor([[N]]/([[a]]*[[b]]))"},
+ "distractors": [
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]])",
+  "floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/[[a]]) - floor([[N]]/[[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Start from the \"at least one\" count \\( \\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor-\\lfloor N/ab\\rfloor \\), then remove the numbers divisible by BOTH (counted once there but belonging to neither exclusive group) once more: \\( \\lfloor [[N]]/[[a]]\\rfloor+\\lfloor [[N]]/[[b]]\\rfloor-2\\lfloor [[N]]/([[a]][[b]])\\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \"at least one\" (divisible by [[a]] or [[b]]) count, which still includes numbers divisible by both.",
+  "This forgets to remove the overlap at all.",
+  "This counts only the integers divisible by both [[a]] and [[b]], the opposite of what was asked.",
+  "This subtracts one count from the other instead of using the symmetric-difference formula.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "neither_divisibility_v1",
+ "skill_id": "union_at_least_one_counting_including_divisibility",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [3, 4, 5, 7]},
+  "N": {"type": "int", "lo": 30, "hi": 90}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Eq(gcd([[a]], [[b]]), 1)"],
+ "stem": "How many integers \\( n \\) with \\( 1 \\le n \\le [[N]] \\) are divisible by NEITHER [[a]] NOR [[b]]?",
+ "answer_spec": {"op": "evaluate", "expr": "[[N]] - floor([[N]]/[[a]]) - floor([[N]]/[[b]]) + floor([[N]]/([[a]]*[[b]]))"},
+ "distractors": [
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]]) - floor([[N]]/([[a]]*[[b]]))",
+  "[[N]] - floor([[N]]/[[a]]) - floor([[N]]/[[b]])",
+  "[[N]] - floor([[N]]/([[a]]*[[b]]))",
+  "floor([[N]]/[[a]]) + floor([[N]]/[[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By De Morgan and inclusion-exclusion, the count divisible by [[a]] or [[b]] is \\( \\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor-\\lfloor N/ab\\rfloor \\); subtracting this from the total \\(N=[[N]]\\) leaves those divisible by neither: \\( [[N]] - \\lfloor [[N]]/[[a]]\\rfloor - \\lfloor [[N]]/[[b]]\\rfloor + \\lfloor [[N]]/([[a]][[b]])\\rfloor = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the count divisible by [[a]] or [[b]], the complement of what was asked.",
+  "This subtracts both individual counts from the total but forgets to add back the double-subtracted overlap.",
+  "This only removes the numbers divisible by both, leaving in those divisible by exactly one.",
+  "This reports the raw \"or\" count before ever subtracting from the total.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "committee_at_least_one_of_two_v1",
+ "skill_id": "union_at_least_one_counting_including_divisibility",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 8, "hi": 20},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Le([[k]], [[n]] - 2)"],
+ "stem": "A committee of [[k]] people is to be chosen from a group of [[n]] people that includes two particular people, X and Y. In how many ways can the committee be selected so that AT LEAST ONE of X or Y is included?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]]) - binomial([[n]] - 2, [[k]])"},
+ "distractors": [
+  "binomial([[n]], [[k]])",
+  "binomial([[n]] - 2, [[k]])",
+  "2*binomial([[n]] - 1, [[k]] - 1)",
+  "binomial([[n]], [[k]]) - binomial([[n]] - 1, [[k]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the complement rule, subtract the committees using NEITHER X nor Y (chosen from the other \\( [[n]]-2 \\) people) from the total: \\( \\binom{[[n]]}{[[k]]} - \\binom{[[n]]-2}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to exclude any committees and counts all of them.",
+  "This is the count of committees with NEITHER X nor Y, the complement of what was asked.",
+  "This double-counts committees containing both X and Y, since it never subtracts that overlap.",
+  "This only accounts for including X, ignoring the possibility of including Y instead.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

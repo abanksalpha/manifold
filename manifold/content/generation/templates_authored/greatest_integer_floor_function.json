@@ -1,0 +1,179 @@
+[
+ {
+  "template_id": "greatest_integer_floor_function_v1",
+  "skill_id": "greatest_integer_floor_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -12, "hi": 12},
+   "q": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne(Mod([[p]], [[q]]), 0)"],
+  "stem": "Evaluate \\( \\left\\lfloor \\dfrac{[[p]]}{[[q]]} \\right\\rfloor \\), where \\( \\lfloor \\cdot \\rfloor \\) denotes the greatest integer less than or equal to its argument.",
+  "answer_spec": {"op": "evaluate", "expr": "floor(Rational([[p]], [[q]]))"},
+  "distractors": [
+   "ceiling(Rational([[p]], [[q]]))",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "\\( \\dfrac{[[p]]}{[[q]]} \\) is not an integer, so it lies strictly between two consecutive integers. The greatest integer not exceeding it is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds up toward \\( +\\infty \\) (or truncates toward zero for a negative value), giving the ceiling instead of the floor.",
+   "This is one less than the greatest integer that fits.",
+   "This is two more than the correct floor.",
+   "This is two less than the correct floor.",
+   "This is three more than the correct floor."
+  ]
+ },
+ {
+  "template_id": "greatest_integer_floor_function_ceiling_v1",
+  "skill_id": "greatest_integer_floor_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -12, "hi": 12},
+   "q": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne(Mod([[p]], [[q]]), 0)"],
+  "stem": "Evaluate \\( \\left\\lceil \\dfrac{[[p]]}{[[q]]} \\right\\rceil \\), where \\( \\lceil \\cdot \\rceil \\) denotes the least integer greater than or equal to its argument.",
+  "answer_spec": {"op": "evaluate", "expr": "ceiling(Rational([[p]], [[q]]))"},
+  "distractors": [
+   "floor(Rational([[p]], [[q]]))",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "\\( \\dfrac{[[p]]}{[[q]]} \\) is not an integer, so it lies strictly between two consecutive integers. The least integer not smaller than it is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds down instead of up, giving the floor instead of the ceiling.",
+   "This is one less than the correct ceiling.",
+   "This is two more than the correct ceiling.",
+   "This is two less than the correct ceiling.",
+   "This is three more than the correct ceiling."
+  ]
+ },
+ {
+  "template_id": "greatest_integer_floor_function_identity_v1",
+  "skill_id": "greatest_integer_floor_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -15, "hi": 15},
+   "q": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Ne(Mod([[p]], [[q]]), 0)"],
+  "stem": "Let \\( x = \\dfrac{[[p]]}{[[q]]} \\). What is \\( \\lfloor x \\rfloor + \\lfloor -x \\rfloor \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(Rational([[p]],[[q]])) + floor(-Rational([[p]],[[q]]))"},
+  "distractors": [
+   "0",
+   "1",
+   "2*floor(Rational([[p]],[[q]]))",
+   "-2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For any \\( x \\) that is not an integer, \\( \\lfloor x \\rfloor \\) and \\( \\lfloor -x \\rfloor \\) are \\( n \\) and \\( -n-1 \\) for the integer \\( n = \\lfloor x \\rfloor \\), so their sum is always \\( -1 \\). Here \\( \\lfloor x \\rfloor + \\lfloor -x \\rfloor = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes \\( \\lfloor -x \\rfloor = -\\lfloor x \\rfloor \\), which only holds when \\( x \\) is an integer.",
+   "This assumes the two floors partially cancel to a small positive number rather than always giving \\( -1 \\).",
+   "This doubles \\( \\lfloor x \\rfloor \\) as if \\( \\lfloor -x \\rfloor = \\lfloor x \\rfloor \\), ignoring the sign flip.",
+   "This is off by one from the correct (constant) value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "greatest_integer_floor_function_smallest_x_v1",
+  "skill_id": "greatest_integer_floor_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "choice", "values": [2, 3, 4, 5]},
+   "n": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "What is the smallest real number \\( x \\) for which \\( \\left\\lfloor \\dfrac{x - ([[a]])}{[[b]]} \\right\\rfloor = [[n]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[n]]*[[b]]"},
+  "distractors": [
+   "[[a]] + ([[n]]+1)*[[b]]",
+   "[[a]] - [[n]]*[[b]]",
+   "[[a]]*[[n]] + [[b]]",
+   "[[n]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( \\left\\lfloor \\frac{x-([[a]])}{[[b]]} \\right\\rfloor = [[n]] \\) exactly when \\( [[n]] \\le \\frac{x-([[a]])}{[[b]]} < [[n]]+1 \\), i.e. \\( [[a]] + [[n]]\\cdot[[b]] \\le x < [[a]] + ([[n]]+1)\\cdot[[b]] \\). The smallest such \\( x \\) is the left endpoint, \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the right endpoint of the interval, which is excluded (the interval is closed only on the left).",
+   "This flips the sign when solving for the endpoint.",
+   "This multiplies \\( a \\) and \\( n \\) instead of scaling \\( n \\) by \\( b \\) and adding \\( a \\).",
+   "This forgets to add \\( [[a]] \\), the horizontal shift.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "greatest_integer_floor_function_bounded_count_v1",
+  "skill_id": "greatest_integer_floor_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [3, 4, 5, 6]},
+   "k": {"type": "int", "lo": 0, "hi": 6},
+   "N": {"type": "int", "lo": 0, "hi": 60}
+  },
+  "constraints": ["Ge([[N]], [[k]]*[[a]])"],
+  "stem": "How many integers \\( n \\) with \\( 1 \\le n \\le [[N]] \\) satisfy \\( \\left\\lfloor \\dfrac{n}{[[a]]} \\right\\rfloor = [[k]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Min([[N]], ([[k]]+1)*[[a]]-1) - Max(1, [[k]]*[[a]]) + 1"},
+  "distractors": [
+   "[[N]] - [[k]]*[[a]]",
+   "[[N]] - [[k]]*[[a]] + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "\\( \\lfloor n/[[a]] \\rfloor = [[k]] \\) exactly when \\( [[a]]\\cdot[[k]] \\le n \\le [[a]]\\cdot([[k]]+1)-1 \\). Intersecting this range with \\( 1 \\le n \\le [[N]] \\) and counting the integers gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This measures from \\( [[a]]\\cdot[[k]] \\) to \\( [[N]] \\) but forgets to add 1 when counting an inclusive range of integers.",
+   "This measures from \\( [[a]]\\cdot[[k]] \\) to \\( [[N]] \\) directly, forgetting to also cap at the upper end of the block \\( [[a]]\\cdot([[k]]+1)-1 \\) when it is smaller than \\( [[N]] \\).",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by two from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ },
+ {
+  "template_id": "greatest_integer_floor_function_sqrt_v1",
+  "skill_id": "greatest_integer_floor_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "N": {"type": "int", "lo": 2, "hi": 200}
+  },
+  "constraints": ["Ne(sqrt([[N]]), floor(sqrt([[N]])))"],
+  "stem": "What is \\( \\left\\lfloor \\sqrt{[[N]]} \\right\\rfloor \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(sqrt([[N]]))"},
+  "distractors": [
+   "ceiling(sqrt([[N]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "floor([[N]]/2)"
+  ],
+  "solution": "Find the two consecutive perfect squares that bracket [[N]]: \\( [[answer]]^{2} \\le [[N]] < ([[answer]]+1)^{2} \\). So \\( \\left\\lfloor \\sqrt{[[N]]} \\right\\rfloor = [[answer]] \\).",
+  "distractor_rationales": [
+   "This rounds up to the next integer instead of down, giving the ceiling instead of the floor.",
+   "This overshoots to the next integer above the correct floor.",
+   "This undershoots to the integer below the correct floor.",
+   "This is off by two above the correct floor.",
+   "This is off by two below the correct floor.",
+   "This halves \\( [[N]] \\) instead of taking its square root."
+  ]
+ }
+]

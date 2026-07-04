@@ -1,0 +1,64 @@
+[
+ {
+  "template_id": "path_limit_linear_v1",
+  "skill_id": "existence_of_a_limit_continuity_at_the_origin_in_r2",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "m_num": {"type": "int", "lo": -5, "hi": 5},
+   "m_den": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "stem": "Let \\( f(x,y) = \\dfrac{[[A]]xy}{x^{2}+y^{2}} \\) for \\( (x,y) \\ne (0,0) \\). What is \\( \\displaystyle\\lim_{x\\to 0} f\\!\\left(x, \\dfrac{[[m_num]]}{[[m_den]]}x\\right) \\), the limit of \\( f \\) as \\( (x,y)\\to(0,0) \\) along the line \\( y = \\dfrac{[[m_num]]}{[[m_den]]}x \\)?",
+  "answer_spec": {"op": "limit", "expr": "[[A]]*x*(Rational([[m_num]],[[m_den]])*x)/(x**2+(Rational([[m_num]],[[m_den]])*x)**2)", "var": "x", "point": 0},
+  "distractors": [
+   "0",
+   "[[A]]",
+   "[[A]]*Rational([[m_num]],[[m_den]])",
+   "Rational([[m_num]],[[m_den]])/(1+Rational([[m_num]],[[m_den]])**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( y = mx \\) with \\( m = \\dfrac{[[m_num]]}{[[m_den]]} \\) gives \\( f(x,mx) = \\dfrac{[[A]]mx^{2}}{x^{2}(1+m^{2})} = \\dfrac{[[A]]m}{1+m^{2}} \\) for \\( x\\ne 0 \\), a constant independent of \\( x \\), so the limit as \\( x\\to 0 \\) is \\( \\dfrac{[[A]]m}{1+m^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the limit is always \\( 0 \\), which only happens for the special slope \\( m=0 \\).",
+   "This reports \\( A \\) alone, dropping the dependence on the slope \\( m \\).",
+   "This drops the \\( 1+m^{2} \\) denominator that comes from \\( x^{2}+y^{2} \\).",
+   "This drops the coefficient \\( A \\) entirely.",
+   "This is off by one from the correct limit along this line.",
+   "This is off by one from the correct limit along this line."
+  ]
+ },
+ {
+  "template_id": "path_limit_parabola_v1",
+  "skill_id": "existence_of_a_limit_continuity_at_the_origin_in_r2",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "k_num": {"type": "int", "lo": -5, "hi": 5},
+   "k_den": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[k_num]], 0)"],
+  "stem": "Let \\( f(x,y) = \\dfrac{[[A]]x^{2}y}{x^{4}+y^{2}} \\) for \\( (x,y) \\ne (0,0) \\). What is \\( \\displaystyle\\lim_{x\\to 0} f\\!\\left(x, \\dfrac{[[k_num]]}{[[k_den]]}x^{2}\\right) \\), the limit of \\( f \\) as \\( (x,y)\\to(0,0) \\) along the parabola \\( y = \\dfrac{[[k_num]]}{[[k_den]]}x^{2} \\)?",
+  "answer_spec": {"op": "limit", "expr": "[[A]]*x**2*(Rational([[k_num]],[[k_den]])*x**2)/(x**4+(Rational([[k_num]],[[k_den]])*x**2)**2)", "var": "x", "point": 0},
+  "distractors": [
+   "0",
+   "[[A]]",
+   "[[A]]*Rational([[k_num]],[[k_den]])",
+   "Rational([[k_num]],[[k_den]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( y = kx^{2} \\) with \\( k = \\dfrac{[[k_num]]}{[[k_den]]} \\) gives \\( f(x,kx^{2}) = \\dfrac{[[A]]kx^{4}}{x^{4}(1+k^{2})} = \\dfrac{[[A]]k}{1+k^{2}} \\) for \\( x\\ne 0 \\), a constant independent of \\( x \\), so the limit as \\( x\\to 0 \\) is \\( \\dfrac{[[A]]k}{1+k^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the limit along every path through the origin is \\( 0 \\), which is false for this function.",
+   "This reports \\( A \\) alone, dropping the dependence on \\( k \\).",
+   "This drops the \\( 1+k^{2} \\) denominator that comes from \\( x^{4}+y^{2} \\).",
+   "This reports \\( k \\) alone, dropping the coefficient \\( A \\).",
+   "This is off by one from the correct limit along this parabola.",
+   "This is off by one from the correct limit along this parabola."
+  ]
+ }
+]

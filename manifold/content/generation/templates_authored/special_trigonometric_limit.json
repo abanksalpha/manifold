@@ -1,0 +1,150 @@
+[
+{
+ "template_id": "special_trigonometric_limit_v1",
+ "skill_id": "special_trigonometric_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "b": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{\\sin([[a]]x)}{\\sin([[b]]x)} \\).",
+ "answer_spec": {"op": "limit", "expr": "sin([[a]]*x)/sin([[b]]*x)", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "[[a]]*[[b]]",
+  "1",
+  "-Rational([[a]], [[b]])",
+  "[[a]] - [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( \\sin(kx) \\sim kx \\) as \\( x \\to 0 \\), \\( \\frac{\\sin([[a]]x)}{\\sin([[b]]x)} \\to \\frac{[[a]]x}{[[b]]x} = \\frac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of the coefficients.",
+  "This multiplies the coefficients instead of dividing them.",
+  "This assumes both sines contribute a factor of 1, ignoring the coefficients.",
+  "This has the wrong sign.",
+  "This subtracts the coefficients instead of dividing them.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "special_trig_one_minus_cos_v1",
+ "skill_id": "special_trigonometric_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -14, "hi": 14}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\frac{1 - \\cos([[a]]x)}{x^{2}} \\).",
+ "answer_spec": {"op": "limit", "expr": "(1 - cos([[a]]*x))/x**2", "var": "x", "point": 0},
+ "distractors": [
+  "[[a]]**2",
+  "Rational([[a]], 2)",
+  "0",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Using the standard limit \\( \\frac{1-\\cos(kx)}{x^{2}} \\to \\frac{k^{2}}{2} \\), here \\( k = [[a]] \\), so the limit is \\( \\frac{[[a]]^{2}}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by 2.",
+  "This uses \\( a \\) instead of \\( a^{2} \\) in the numerator.",
+  "This assumes the numerator and denominator both vanish to give 0.",
+  "This drops the square and the factor of 2 entirely.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "special_trig_x_sin_reciprocal_v1",
+ "skill_id": "special_trigonometric_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} x\\sin\\!\\left(\\frac{[[a]]}{x}\\right) \\).",
+ "answer_spec": {"op": "limit", "expr": "x*sin([[a]]/x)", "var": "x", "point": "oo"},
+ "distractors": [
+  "0",
+  "1",
+  "[[a]]**2",
+  "Rational(1, [[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Substitute \\( u = \\frac{[[a]]}{x} \\to 0 \\): \\( x\\sin\\!\\left(\\frac{[[a]]}{x}\\right) = [[a]]\\cdot\\dfrac{\\sin u}{u} \\to [[a]]\\cdot 1 = [[answer]] \\), using the special limit \\( \\frac{\\sin u}{u} \\to 1 \\) as \\( u \\to 0 \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the sine term forces the whole product to 0.",
+  "This assumes the limit is always 1, ignoring the coefficient \\( a \\).",
+  "This squares the coefficient instead of returning it directly.",
+  "This inverts the coefficient instead of returning it directly.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "special_trig_composite_v1",
+ "skill_id": "special_trigonometric_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 8},
+  "b": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\frac{1 - \\cos([[a]]x)}{x\\sin([[b]]x)} \\).",
+ "answer_spec": {"op": "limit", "expr": "(1 - cos([[a]]*x))/(x*sin([[b]]*x))", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[a]], [[b]])",
+  "Rational([[a]]**2, [[b]])",
+  "Rational([[a]], 2*[[b]])",
+  "Rational([[b]], 2*[[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Combine the two standard limits: \\( 1 - \\cos([[a]]x) \\sim \\dfrac{([[a]]x)^{2}}{2} \\) and \\( \\sin([[b]]x) \\sim [[b]]x \\), so \\( \\dfrac{1-\\cos([[a]]x)}{x\\sin([[b]]x)} \\to \\dfrac{[[a]]^{2}x^{2}/2}{[[b]]x^{2}} = \\dfrac{[[a]]^{2}}{2[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the square on \\( a \\) and the factor of 2, treating both special limits as simple ratios.",
+  "This forgets the factor of 2 from the cosine limit.",
+  "This has \\( a \\) and \\( b \\) transposed.",
+  "This treats \\( a \\) linearly and forgets to square it.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "special_trig_third_order_v1",
+ "skill_id": "special_trigonometric_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to 0} \\frac{\\sin([[a]]x) - [[a]]x}{x^{3}} \\).",
+ "answer_spec": {"op": "limit", "expr": "(sin([[a]]*x) - [[a]]*x)/x**3", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[a]]**3, 6)",
+  "Rational([[a]], 6)",
+  "0",
+  "-[[a]]**3",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "From the Taylor series \\( \\sin(kx) = kx - \\dfrac{(kx)^{3}}{6} + \\cdots \\), the leading remainder term gives \\( \\dfrac{\\sin([[a]]x) - [[a]]x}{x^{3}} \\to -\\dfrac{[[a]]^{3}}{6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign on the correct value.",
+  "This uses \\( a \\) instead of \\( a^{3} \\) in the numerator.",
+  "This wrongly assumes the numerator and denominator cancel exactly to give 0.",
+  "This drops the factor of 6 entirely.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

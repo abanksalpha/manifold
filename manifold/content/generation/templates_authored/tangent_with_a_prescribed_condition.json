@@ -1,0 +1,319 @@
+[
+ {
+  "template_id": "tangent_prescribed_slope_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": -8,
+    "hi": 8
+   },
+   "m": {
+    "type": "int",
+    "lo": -12,
+    "hi": 12
+   }
+  },
+  "constraints": [
+   "Ne(Mod([[m]] - [[b]], 2*[[a]]), 0)",
+   "Ne([[m]] - [[b]], 0)"
+  ],
+  "stem": "At what \\( x \\) does the curve \\( y=[[a]]x^{2}+([[b]])x \\) have a tangent line of slope \\( [[m]] \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[m]] - [[b]], 2*[[a]])"
+  },
+  "distractors": [
+   "Rational([[m]] + [[b]], 2*[[a]])",
+   "Rational([[m]] - [[b]], [[a]])",
+   "Rational([[m]], 2*[[a]])",
+   "[[m]] - [[b]]",
+   "Rational([[m]] - [[b]], 2*[[a]]) + 1",
+   "Rational([[m]] - [[b]], 2*[[a]]) - 1"
+  ],
+  "solution": "\\( y'=2[[a]]x+[[b]]=[[m]] \\Rightarrow x=\\frac{[[m]]-[[b]]}{2[[a]]}=[[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "tangent_prescribed_slope_cubic_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "choice", "values": [-9, -6, -3, 3, 6, 9]},
+   "r1": {"type": "int", "lo": -4, "hi": 4},
+   "r2": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": [
+   "Ne([[r1]], [[r2]])",
+   "Eq(Mod([[A]]*([[r1]]+[[r2]]), 2), 0)"
+  ],
+  "derived": {
+   "a": "[[A]]/3",
+   "b": "-[[A]]*([[r1]]+[[r2]])/2",
+   "m": "-[[A]]*[[r1]]*[[r2]]"
+  },
+  "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]])x^{2} \\). Which of the following is a value of \\( x \\) at which the curve \\( y=f(x) \\) has a tangent line of slope \\( [[m]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "3*[[a]]*x**2+2*[[b]]*x-([[m]])=0", "var": "x"},
+  "distractors": [
+   "-[[r1]]",
+   "-[[r2]]",
+   "[[r1]] + [[r2]]",
+   "[[r1]]*[[r2]]",
+   "[[r1]] + 1",
+   "[[r2]] + 1"
+  ],
+  "solution": "\\( f'(x) = 3([[a]])x^{2} + 2([[b]])x \\). Setting \\( f'(x)=[[m]] \\) gives \\( 3([[a]])x^{2}+2([[b]])x-([[m]])=0 \\), which factors with roots \\( x=[[r1]] \\) and \\( x=[[r2]] \\); \\( [[answer]] \\) is one of them.",
+  "distractor_rationales": [
+   "This is the negative of one correct root.",
+   "This is the negative of the other correct root.",
+   "This is the sum of the two roots, not a root itself.",
+   "This is the product of the two roots, not a root itself.",
+   "This is off by one from a correct root.",
+   "This is off by one from the other correct root."
+  ]
+ },
+ {
+  "template_id": "tangent_horizontal_cubic_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "choice", "values": [-9, -6, -3, 3, 6, 9]},
+   "r1": {"type": "int", "lo": -4, "hi": 4},
+   "r2": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": [
+   "Ne([[r1]], [[r2]])",
+   "Eq(Mod([[A]]*([[r1]]+[[r2]]), 2), 0)"
+  ],
+  "derived": {
+   "a": "[[A]]/3",
+   "b": "-[[A]]*([[r1]]+[[r2]])/2",
+   "c": "[[A]]*[[r1]]*[[r2]]"
+  },
+  "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]])x^{2} + ([[c]])x \\). Which of the following is a value of \\( x \\) at which the curve \\( y=f(x) \\) has a horizontal tangent line?",
+  "answer_spec": {"op": "solve", "equation": "3*[[a]]*x**2+2*[[b]]*x+[[c]]=0", "var": "x"},
+  "distractors": [
+   "-[[r1]]",
+   "-[[r2]]",
+   "[[r1]] + [[r2]]",
+   "[[r1]]*[[r2]]",
+   "[[r1]] + 1",
+   "[[r2]] + 1"
+  ],
+  "solution": "A horizontal tangent occurs where \\( f'(x)=0 \\). Since \\( f'(x) = 3([[a]])x^{2}+2([[b]])x+([[c]]) \\), setting this to \\( 0 \\) gives roots \\( x=[[r1]] \\) and \\( x=[[r2]] \\); \\( [[answer]] \\) is one of them.",
+  "distractor_rationales": [
+   "This is the negative of one correct root.",
+   "This is the negative of the other correct root.",
+   "This is the sum of the two roots, not a root itself.",
+   "This is the product of the two roots, not a root itself.",
+   "This is off by one from a correct root.",
+   "This is off by one from the other correct root."
+  ]
+ },
+ {
+  "template_id": "tangent_vertical_cube_root_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": -8, "hi": 8},
+   "n": {"type": "int", "lo": -8, "hi": 8},
+   "k": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[m]], 0)", "Ne([[n]], 0)"],
+  "stem": "The curve \\( y = \\sqrt[3]{[[m]]x + ([[n]])} + ([[k]]) \\) has a vertical tangent line at \\( x = ? \\)",
+  "answer_spec": {"op": "evaluate", "expr": "-Rational([[n]], [[m]])"},
+  "distractors": [
+   "Rational([[n]], [[m]])",
+   "Rational([[m]], [[n]])",
+   "-Rational([[m]], [[n]])",
+   "[[n]] - [[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The derivative of \\( \\sqrt[3]{[[m]]x+([[n]])} \\) blows up (is undefined) exactly where the radicand \\( [[m]]x+([[n]]) \\) equals \\( 0 \\), i.e. at \\( x = -\\dfrac{[[n]]}{[[m]]} = [[answer]] \\); the vertical shift by \\( [[k]] \\) does not affect where this happens.",
+  "distractor_rationales": [
+   "This has the wrong sign.",
+   "This inverts the ratio of coefficients.",
+   "This inverts the ratio and has the wrong sign.",
+   "This subtracts the coefficients instead of dividing them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_parallel_to_line_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "int", "lo": -10, "hi": 10},
+   "q": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[p]], [[b]])"],
+  "stem": "At what value of \\( x \\) is the tangent line to the curve \\( y=[[a]]x^{2}+([[b]])x \\) parallel to the line \\( y=[[p]]x+([[q]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[p]] - [[b]], 2*[[a]])"},
+  "distractors": [
+   "Rational([[p]] + [[b]], 2*[[a]])",
+   "Rational([[p]] - [[b]], [[a]])",
+   "Rational([[p]], 2*[[a]])",
+   "[[p]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A line \\( y=[[p]]x+([[q]]) \\) has slope \\( [[p]] \\). Setting \\( y'=2[[a]]x+([[b]])=[[p]] \\) gives \\( x=\\dfrac{[[p]]-([[b]])}{2[[a]]}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This adds instead of subtracts \\( b \\) from the line's slope.",
+   "This forgets the factor of \\( 2 \\) from differentiating \\( ax^{2} \\).",
+   "This drops \\( b \\) entirely from the slope condition.",
+   "This forgets to divide by \\( 2a \\) at all.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_perpendicular_to_line_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[p]], 0)"],
+  "stem": "At what value of \\( x \\) is the tangent line to the curve \\( y=[[a]]x^{2}+([[b]])x \\) perpendicular to the line \\( y=[[p]]x+([[q]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(-Rational(1,[[p]]) - [[b]])/(2*[[a]])"},
+  "distractors": [
+   "(Rational(1,[[p]]) - [[b]])/(2*[[a]])",
+   "(-[[p]] - [[b]])/(2*[[a]])",
+   "(-Rational(1,[[p]]) + [[b]])/(2*[[a]])",
+   "Rational([[p]] - [[b]], 2*[[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A line \\( y=[[p]]x+([[q]]) \\) has slope \\( [[p]] \\), so a perpendicular tangent has slope \\( -\\frac{1}{[[p]]} \\). Setting \\( y'=2[[a]]x+([[b]])=-\\frac{1}{[[p]]} \\) gives \\( x=\\dfrac{-\\frac{1}{[[p]]}-([[b]])}{2[[a]]}=[[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the reciprocal slope.",
+   "This uses \\( -p \\) instead of the negative reciprocal \\( -\\frac{1}{p} \\).",
+   "This has the wrong sign on \\( b \\).",
+   "This uses the parallel-line condition instead of the perpendicular one.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_from_external_point_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "t1": {"type": "int", "lo": -5, "hi": 5},
+   "t2": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [
+   "Ne([[a]], 0)",
+   "Ne([[t1]], [[t2]])",
+   "Eq(Mod([[t1]]+[[t2]], 2), 0)"
+  ],
+  "derived": {
+   "p": "([[t1]]+[[t2]])/2",
+   "q": "[[a]]*[[t1]]*[[t2]]"
+  },
+  "stem": "From the external point \\( ([[p]], [[q]]) \\), which does not lie on the curve \\( y=[[a]]x^{2} \\), two tangent lines are drawn to the curve. Which of the following is the \\( x \\)-coordinate of one of the two points of tangency?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x**2 - 2*[[a]]*[[p]]*x + [[q]]=0", "var": "x"},
+  "distractors": [
+   "[[p]]",
+   "-[[t1]]",
+   "-[[t2]]",
+   "[[t1]] + [[t2]]",
+   "[[t1]] + 1",
+   "[[t2]] - 1"
+  ],
+  "solution": "The tangent to \\( y=[[a]]x^{2} \\) at \\( (t, [[a]]t^{2}) \\) is \\( y = 2([[a]])t\\,x - ([[a]])t^{2} \\). Requiring this to pass through \\( ([[p]],[[q]]) \\) gives \\( ([[a]])t^{2} - 2([[a]])([[p]])t + ([[q]]) = 0 \\), whose roots are \\( t=[[t1]] \\) and \\( t=[[t2]] \\); \\( [[answer]] \\) is one of them.",
+  "distractor_rationales": [
+   "This is the external point's own \\( x \\)-coordinate, not a point of tangency.",
+   "This is the negative of one correct tangency point.",
+   "This is the negative of the other correct tangency point.",
+   "This is the sum of the two tangency points, not a point of tangency itself.",
+   "This is off by one from a correct tangency point.",
+   "This is off by one from the other correct tangency point."
+  ]
+ },
+ {
+  "template_id": "tangent_solve_for_parameter_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "m": {"type": "int", "lo": -10, "hi": 10},
+   "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "stem": "For what value of \\( k \\) does the curve \\( y = kx^{2} + ([[b]])x \\) have a tangent line of slope \\( [[m]] \\) at the point where \\( x=[[x0]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[m]] - [[b]], 2*[[x0]])"},
+  "distractors": [
+   "Rational([[m]] + [[b]], 2*[[x0]])",
+   "Rational([[m]] - [[b]], [[x0]])",
+   "Rational([[m]], 2*[[x0]])",
+   "[[m]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( y' = 2kx+([[b]]) \\). Setting \\( y'([[x0]]) = [[m]] \\) gives \\( 2k([[x0]])+([[b]]) = [[m]] \\), so \\( k = \\dfrac{[[m]]-([[b]])}{2([[x0]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds instead of subtracts \\( b \\).",
+   "This forgets the factor of \\( 2 \\) from differentiating \\( kx^{2} \\).",
+   "This drops \\( b \\) entirely from the slope condition.",
+   "This forgets to divide by \\( 2x_0 \\) at all.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_parallel_two_curves_v1",
+  "skill_id": "tangent_with_a_prescribed_condition",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], [[c]])"],
+  "stem": "At what value of \\( x \\) do the curves \\( y=[[a]]x^{2}+([[b]])x \\) and \\( y=[[c]]x^{2}+([[d]])x \\) have parallel tangent lines?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[d]] - [[b]], 2*([[a]] - [[c]]))"},
+  "distractors": [
+   "Rational([[b]] - [[d]], 2*([[a]] - [[c]]))",
+   "Rational([[d]] - [[b]], 2*([[a]] + [[c]]))",
+   "Rational([[d]] - [[b]], [[a]] - [[c]])",
+   "[[d]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Parallel tangent lines require equal slopes: \\( 2([[a]])x+([[b]]) = 2([[c]])x+([[d]]) \\). Solving gives \\( x = \\dfrac{([[d]])-([[b]])}{2(([[a]])-([[c]]))} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the numerator's sign flipped.",
+   "This adds instead of subtracts the leading coefficients in the denominator.",
+   "This forgets the factor of \\( 2 \\) in the denominator.",
+   "This is missing the denominator's factor of \\( 2(a-c) \\) entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,156 @@
+[
+{
+ "template_id": "taylor_series_lagrange_remainder_nth_derivative_exp_v1",
+ "skill_id": "taylor_series_lagrange_remainder",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [3, 4, 5, 6, 7]}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "In building the Maclaurin series of \\( f(x) = [[c]]e^{[[k]]x} \\), one needs the \\( n \\)th derivative at \\( 0 \\). Compute \\( f^{([[n]])}(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[c]]*exp([[k]]*x)", "var": "x", "at": "0", "order": "[[n]]"},
+ "distractors": [
+  "[[c]]*[[k]]",
+  "[[c]]*[[n]]*[[k]]",
+  "[[c]]*[[k]]**([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Each derivative of \\( e^{[[k]]x} \\) picks up a factor of \\( [[k]] \\), so \\( f^{(n)}(x) = [[c]][[k]]^{n}e^{[[k]]x} \\), and at \\( x=0 \\), \\( f^{([[n]])}(0) = [[c]][[k]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the exponent entirely, keeping only the first derivative's factor of \\( [[k]] \\).",
+  "This multiplies by \\( n \\) instead of raising \\( [[k]] \\) to the \\( n \\)th power.",
+  "This is off by one power of \\( [[k]] \\), as if the derivative order were \\( n-1 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "taylor_series_lagrange_remainder_geometric_coefficient_v2",
+ "skill_id": "taylor_series_lagrange_remainder",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "The function \\( f(x) = \\dfrac{1}{1-[[k]]x} \\) has Maclaurin series \\( \\displaystyle\\sum_{i=0}^{\\infty} [[k]]^{i}x^{i} \\). What is the coefficient of \\( x^{[[n]]} \\) in this series?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]]**[[n]]"},
+ "distractors": [
+  "[[k]]*[[n]]",
+  "[[n]]*[[k]]**([[n]]-1)",
+  "[[k]]**([[n]]-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Since \\( \\dfrac{1}{1-[[k]]x} = \\displaystyle\\sum_{i=0}^{\\infty} ([[k]]x)^{i} = \\sum_{i=0}^{\\infty} [[k]]^{i}x^{i} \\), the coefficient of \\( x^{[[n]]} \\) is \\( [[k]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( k \\) and \\( n \\) together instead of raising \\( k \\) to the \\( n \\)th power.",
+  "This applies a power-rule-style derivative factor \\( n \\cdot k^{n-1} \\), confusing this with a derivative coefficient.",
+  "This is off by one power of \\( [[k]] \\), as if the coefficient of \\( x^{n-1} \\) were being asked for.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "taylor_series_lagrange_remainder_partial_sum_exp_v3",
+ "skill_id": "taylor_series_lagrange_remainder",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ne([[x0]], 0)"],
+ "stem": "The \\( n \\)th-degree Maclaurin polynomial for \\( f(x)=e^{x} \\) is \\( P_{n}(x) = \\displaystyle\\sum_{i=0}^{n} \\dfrac{x^{i}}{i!} \\). Compute \\( P_{[[n]]}([[x0]]) \\).",
+ "answer_spec": {"op": "sum", "expr": "[[x0]]**k/factorial(k)", "var": "k", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "exp([[x0]])",
+  "[[x0]]**[[n]]/factorial([[n]])",
+  "[[answer]] - [[x0]]**[[n]]/factorial([[n]])",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "\\( P_{[[n]]}([[x0]]) = \\displaystyle\\sum_{i=0}^{[[n]]} \\dfrac{([[x0]])^{i}}{i!} = [[answer]] \\), a finite partial sum, not the exact value \\( e^{[[x0]]} \\) of the full infinite series.",
+ "distractor_rationales": [
+  "This reports the exact value \\( e^{x_0} \\) of the infinite series, not the finite \\( n \\)th-degree partial sum.",
+  "This keeps only the LAST term of the partial sum, dropping every earlier term.",
+  "This drops the last term of the partial sum, stopping the sum one term too early.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "taylor_series_lagrange_remainder_bound_sin_v4",
+ "skill_id": "taylor_series_lagrange_remainder",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "For \\( f(x)=\\sin x \\), every derivative is bounded by \\( 1 \\) in absolute value, so the Lagrange remainder after the degree-\\( [[n]] \\) Taylor polynomial about \\( 0 \\), evaluated at \\( x=[[x0]] \\), satisfies \\( |R_{[[n]]}([[x0]])| \\le \\dfrac{|[[x0]]|^{[[n]]+1}}{([[n]]+1)!} \\). Compute this Lagrange error bound.",
+ "answer_spec": {"op": "evaluate", "expr": "[[x0]]**([[n]]+1)/factorial([[n]]+1)"},
+ "distractors": [
+  "[[x0]]**[[n]]/factorial([[n]])",
+  "[[x0]]**([[n]]+1)/factorial([[n]])",
+  "[[x0]]**[[n]]/factorial([[n]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The Lagrange remainder bound is \\( \\dfrac{|x|^{n+1}}{(n+1)!} \\) here (since the \\( (n+1) \\)th derivative of \\( \\sin \\) or \\( \\cos \\) is bounded by \\( 1 \\)). Substituting \\( x=[[x0]] \\) and \\( n=[[n]] \\) gives \\( \\dfrac{[[x0]]^{[[n]]+1}}{([[n]]+1)!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong degree throughout, computing the bound for a degree-\\( (n-1) \\) polynomial instead of degree \\( n \\).",
+  "This uses the correct power of \\( x \\) but the wrong factorial (\\( n! \\) instead of \\( (n+1)! \\)).",
+  "This uses the correct factorial but the wrong power of \\( x \\) (\\( x^{n} \\) instead of \\( x^{n+1} \\)).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "taylor_series_lagrange_remainder_partial_sum_ln_v5",
+ "skill_id": "taylor_series_lagrange_remainder",
+ "topic_id": "sequences_series",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "x0": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The Maclaurin series for \\( f(x)=\\ln(1+x) \\) is \\( \\displaystyle\\sum_{i=1}^{\\infty} \\dfrac{(-1)^{i+1}x^{i}}{i} \\). Compute the degree-\\( [[n]] \\) partial sum \\( P_{[[n]]}([[x0]]) = \\displaystyle\\sum_{i=1}^{[[n]]} \\dfrac{(-1)^{i+1}([[x0]])^{i}}{i} \\).",
+ "answer_spec": {"op": "sum", "expr": "(-1)**(k+1)*[[x0]]**k/k", "var": "k", "lo": "1", "hi": "[[n]]"},
+ "distractors": [
+  "log(1+[[x0]])",
+  "(-1)**([[n]]+1)*[[x0]]**[[n]]/[[n]]",
+  "-[[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "\\( P_{[[n]]}([[x0]]) = \\displaystyle\\sum_{i=1}^{[[n]]} \\dfrac{(-1)^{i+1}([[x0]])^{i}}{i} = [[answer]] \\), the finite alternating partial sum, not the exact value \\( \\ln(1+[[x0]]) \\) of the full series (which may not even converge here if \\( |x_0|>1 \\)).",
+ "distractor_rationales": [
+  "This reports the exact value \\( \\ln(1+x_0) \\) of the infinite series, not the finite partial sum (and the series may not even converge for this \\( x_0 \\)).",
+  "This keeps only the last term of the partial sum, dropping every earlier term.",
+  "This flips the sign of the correct value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

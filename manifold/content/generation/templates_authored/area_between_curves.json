@@ -1,0 +1,122 @@
+[
+{
+ "template_id": "area_between_curves_parabola_line_v1",
+ "skill_id": "area_between_curves",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -5, "hi": 4},
+  "r2": {"type": "int", "lo": -4, "hi": 5}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])", "Ne([[r1]], 0)", "Ne([[r2]], 0)", "Ne([[r1]] + [[r2]], 0)"],
+ "derived": {"m": "[[r1]] + [[r2]]", "c": "-[[r1]]*[[r2]]"},
+ "stem": "The line \\( y = [[m]]x + ([[c]]) \\) and the parabola \\( y = x^{2} \\) intersect at two points. Find the area of the region enclosed between them.",
+ "answer_spec": {"op": "integrate", "expr": "[[m]]*x + [[c]] - x**2", "var": "x", "bounds": ["[[r1]]", "[[r2]]"]},
+ "distractors": [
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "([[r2]] - [[r1]])**2",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The curves meet where \\( x^{2} = [[m]]x + ([[c]]) \\), i.e. at \\( x=[[r1]] \\) and \\( x=[[r2]] \\); between these the line lies above the parabola, so the area is \\( \\int_{[[r1]]}^{[[r2]]}\\left(([[m]]x+([[c]])) - x^{2}\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This doubles the correct area, as if the leading antiderivative factor were \\( \\tfrac13 \\) instead of \\( \\tfrac16 \\).",
+  "This halves the correct area.",
+  "This is the square of the horizontal width between the intersection points, not the enclosed area.",
+  "This integrates bottom minus top instead of top minus bottom, giving the negative of the area.",
+  "This is off by one from the correct area."
+ ]
+},
+{
+ "template_id": "area_between_curves_hump_vs_axis_v1",
+ "skill_id": "area_between_curves",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 3},
+  "b": {"type": "int", "lo": 4, "hi": 9}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "The curve \\( y = (x-[[a]])([[b]]-x) \\) touches the \\( x \\)-axis at \\( x=[[a]] \\) and \\( x=[[b]] \\) and lies above it in between. Find the area of the region enclosed between the curve and the \\( x \\)-axis.",
+ "answer_spec": {"op": "integrate", "expr": "(x - [[a]])*([[b]] - x)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "([[b]] - [[a]])**3/3",
+  "([[b]] - [[a]])**2",
+  "2*[[answer]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "This is a downward-opening arch between its two roots; expanding and integrating, \\( \\int_{[[a]]}^{[[b]]}(x-[[a]])([[b]]-x)\\,dx = \\dfrac{([[b]]-[[a]])^{3}}{6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\tfrac13 \\) instead of the correct \\( \\tfrac16 \\) coefficient in the closed-form area formula for this arch.",
+  "This is the square of the base width \\( [[b]]-[[a]] \\), not an area under a curved arch.",
+  "This doubles the correct area.",
+  "This integrates the curve with the wrong sign, giving the negative of the enclosed area.",
+  "This is off by one from the correct area."
+ ]
+},
+{
+ "template_id": "area_between_curves_horizontal_strips_v1",
+ "skill_id": "area_between_curves",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 6},
+  "p": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"c": "[[p]] + [[m]]**2"},
+ "stem": "Find the area of the region enclosed between the sideways parabola \\( x = y^{2} + ([[p]]) \\) and the vertical line \\( x = [[c]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]] - (y**2 + [[p]])", "var": "y", "bounds": ["-[[m]]", "[[m]]"]},
+ "distractors": [
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "(2*[[m]])**3",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The curves meet where \\( y^{2}+([[p]])=[[c]] \\), i.e. \\( y=\\pm [[m]] \\). Integrating horizontal strips of width \\( [[c]] - (y^{2}+([[p]])) \\) (the line minus the parabola, as functions of \\( y \\)) gives \\( \\int_{-[[m]]}^{[[m]]}\\left([[c]] - (y^{2}+([[p]]))\\right)dy = [[answer]] \\).",
+ "distractor_rationales": [
+  "This doubles the correct area.",
+  "This halves the correct area.",
+  "This treats the region as a \\( 2[[m]] \\) by \\( 2[[m]] \\) by \\( 2[[m]] \\) box instead of integrating the strip widths.",
+  "This integrates the strip width with the wrong sign, giving the negative of the area.",
+  "This is off by one from the correct area."
+ ]
+},
+{
+ "template_id": "area_between_curves_signed_regions_v1",
+ "skill_id": "area_between_curves",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 1},
+  "gap": {"type": "int", "lo": 3, "hi": 6},
+  "d": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {"b": "[[a]] + [[gap]]", "lo": "[[a]] - [[d]]", "hi": "[[b]] + [[d]]"},
+ "stem": "The curve \\( y = (x-[[a]])(x-[[b]]) \\) lies BELOW the \\( x \\)-axis on \\( ([[a]],[[b]]) \\) and ABOVE it elsewhere. Find the TOTAL area of the region(s) enclosed between the curve and the \\( x \\)-axis on the interval \\( [[lo]] \\le x \\le [[hi]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "Abs((x - [[a]])*(x - [[b]]))", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "(([[hi]])**3/3 - ([[a]]+[[b]])/2*(([[hi]])**2) + [[a]]*[[b]]*([[hi]])) - ((([[lo]])**3/3 - ([[a]]+[[b]])/2*(([[lo]])**2) + [[a]]*[[b]]*([[lo]])))",
+  "([[b]] - [[a]])**3/6",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since the curve changes sign at \\( x=[[a]] \\) and \\( x=[[b]] \\), the TOTAL enclosed area needs \\( \\int_{[[lo]]}^{[[hi]]}\\left|(x-[[a]])(x-[[b]])\\right|dx = [[answer]] \\), not the plain (signed) integral, which would let the regions cancel.",
+ "distractor_rationales": [
+  "This is the plain SIGNED integral \\( \\int_{[[lo]]}^{[[hi]]}(x-[[a]])(x-[[b]])\\,dx \\), which lets the positive and negative regions partially cancel.",
+  "This only accounts for the dip between the roots \\( [[a]] \\) and \\( [[b]] \\), ignoring the regions above the axis outside them.",
+  "This halves the correct total area.",
+  "This doubles the correct total area.",
+  "This is off by one from the correct total area."
+ ]
+}
+]

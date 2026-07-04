@@ -1,0 +1,123 @@
+[
+ {
+  "template_id": "shell_method_v1",
+  "skill_id": "shell_method_volume",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The region bounded by the curve \\( y = [[m]]x \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\) is revolved about the \\( y \\)-axis. Using cylindrical shells, find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*x*([[m]]*x)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*[[m]]**2*([[b]]**3 - [[a]]**3)/3",
+   "[[answer]]/pi",
+   "pi*[[m]]*([[b]]**2 - [[a]]**2)",
+   "2*[[answer]]",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "A shell at radius \\( x \\) has height \\( [[m]]x \\), so the volume is \\( \\int_{[[a]]}^{[[b]]} 2\\pi x\\,([[m]]x)\\,dx = \\dfrac{2\\pi[[m]]}{3}\\left([[b]]^{3}-[[a]]^{3}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the disk method \\( \\pi\\int (\\,[[m]]x)^{2}dx \\) instead of shells.",
+   "This drops the factor of \\( \\pi \\).",
+   "This omits the shell radius \\( x \\), integrating \\( 2\\pi\\,([[m]]x) \\).",
+   "This doubles the correct volume.",
+   "This is off by \\( 2\\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "shell_method_about_x_axis_v1",
+  "skill_id": "shell_method_volume",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3]},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The region bounded by the curve \\( x = [[m]]y \\), the \\( y \\)-axis, and the horizontal lines \\( y = [[a]] \\) and \\( y = [[b]] \\) is revolved about the \\( x \\)-axis. Using cylindrical shells, find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*y*([[m]]*y)", "var": "y", "bounds": ["[[a]]", "[[b]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*[[m]]**2*([[b]]**3 - [[a]]**3)/3",
+   "[[answer]]/pi",
+   "pi*[[m]]*([[b]]**2 - [[a]]**2)",
+   "2*[[answer]]",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "Because the axis of revolution is horizontal, each shell is stacked along \\( y \\) with radius \\( y \\) and height \\( [[m]]y \\), so the volume is \\( \\int_{[[a]]}^{[[b]]} 2\\pi y\\,([[m]]y)\\,dy = \\dfrac{2\\pi[[m]]}{3}\\left([[b]]^{3}-[[a]]^{3}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the disk method instead of shells.",
+   "This drops the factor of \\( \\pi \\).",
+   "This omits the shell radius \\( y \\), integrating \\( 2\\pi\\,([[m]]y) \\).",
+   "This doubles the correct volume.",
+   "This is off by \\( 2\\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "shell_method_between_two_curves_v1",
+  "skill_id": "shell_method_volume",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {"s": {"type": "int", "lo": 1, "hi": 20}},
+  "constraints": [],
+  "derived": {"k": "[[s]]**2"},
+  "stem": "The region bounded above by the line \\( y = [[k]] \\) and below by the parabola \\( y = x^{2} \\), for \\( 0 \\le x \\le [[s]] \\), is revolved about the \\( y \\)-axis. Using cylindrical shells, find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*x*([[k]] - x**2)", "var": "x", "bounds": ["0", "[[s]]"]},
+  "require_rational": false,
+  "distractors": [
+   "2*pi*[[s]]*([[k]] - [[s]]**2)",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*[[s]]",
+   "2*[[answer]]",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "A shell at radius \\( x \\) has height equal to the vertical gap between the curves, \\( [[k]] - x^{2} \\), so the volume is \\( \\int_{0}^{[[s]]} 2\\pi x\\,([[k]] - x^{2})\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates the shell height only at \\( x=[[s]] \\) instead of integrating.",
+   "This drops the factor of \\( \\pi \\).",
+   "This treats the region as a disk of constant radius, with no calculus basis.",
+   "This doubles the correct volume.",
+   "This is off by \\( 2\\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "shell_method_hyperbola_v1",
+  "skill_id": "shell_method_volume",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 8},
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 5, "hi": 10}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "The region bounded by the curve \\( y = \\dfrac{[[k]]}{x} \\), the \\( x \\)-axis, and the vertical lines \\( x = [[a]] \\) and \\( x = [[b]] \\) is revolved about the \\( y \\)-axis. Using cylindrical shells, find the volume of the solid generated.",
+  "answer_spec": {"op": "integrate", "expr": "2*pi*x*([[k]]/x)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "2*pi*[[k]]*([[b]]**2 - [[a]]**2)",
+   "[[answer]]/pi",
+   "pi*[[k]]**2*([[b]] - [[a]])",
+   "2*[[answer]]",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi"
+  ],
+  "solution": "A shell at radius \\( x \\) has height \\( \\dfrac{[[k]]}{x} \\), so the shell's surface area \\( 2\\pi x \\cdot \\dfrac{[[k]]}{x} = 2\\pi[[k]] \\) is CONSTANT. The volume is \\( \\int_{[[a]]}^{[[b]]} 2\\pi[[k]]\\,dx = 2\\pi[[k]]([[b]]-[[a]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly keeps a factor of \\( x \\) after it should have canceled with the height.",
+   "This drops the factor of \\( \\pi \\).",
+   "This uses the disk method instead of shells.",
+   "This doubles the correct volume.",
+   "This is off by \\( 2\\pi \\) from the correct volume."
+  ]
+ }
+]

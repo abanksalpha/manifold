@@ -1,0 +1,225 @@
+[
+ {
+  "template_id": "spherical_coordinates_for_balls_cones_v1",
+  "skill_id": "spherical_coordinates_for_balls_cones",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 13},
+   "b": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "Using spherical coordinates, find the volume of the spherical shell \\( [[a]] \\le \\sqrt{x^2+y^2+z^2} \\le [[b]] \\) (the region between the spheres of radius \\([[a]]\\) and \\([[b]]\\) centered at the origin).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "rho**2*sin(phi)",
+   "vars": ["rho", "phi", "theta"],
+   "bounds": [["[[a]]", "[[b]]"], ["0", "pi"], ["0", "2*pi"]]
+  },
+  "distractors": [
+   "4*pi*[[b]]**3/3",
+   "4*pi*([[b]]**3 + [[a]]**3)/3",
+   "4*pi*([[b]] - [[a]])**3/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV = \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{0}^{\\pi}\\int_{[[a]]}^{[[b]]} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = 2\\pi \\cdot 2 \\cdot \\frac{[[b]]^3-[[a]]^3}{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the whole outer ball, forgetting to subtract the inner ball.",
+   "This adds the two radii cubed instead of subtracting them.",
+   "This subtracts the radii first and then cubes, which is not \\(b^3-a^3\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "spherical_coordinates_for_balls_cones_v2",
+  "skill_id": "spherical_coordinates_for_balls_cones",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "R": {"type": "int", "lo": 1, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 6]}
+  },
+  "constraints": [],
+  "stem": "A solid (an 'ice-cream cone') is bounded above by the sphere \\( \\rho = [[R]] \\) and below by the cone \\( \\phi = \\pi/[[n]] \\) (measuring \\(\\phi\\) from the positive \\(z\\)-axis). Using spherical coordinates, find the volume of the solid.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "rho**2*sin(phi)",
+   "vars": ["rho", "phi", "theta"],
+   "bounds": [["0", "[[R]]"], ["0", "pi/[[n]]"], ["0", "2*pi"]]
+  },
+  "distractors": [
+   "4*pi*[[R]]**3/3",
+   "2*pi*[[R]]**3*cos(pi/[[n]])/3",
+   "pi*[[R]]**3/[[n]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{0}^{\\pi/[[n]]}\\int_{0}^{[[R]]} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = 2\\pi\\cdot\\dfrac{[[R]]^3}{3}\\cdot\\left(1-\\cos(\\pi/[[n]])\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the entire ball, forgetting the cone restricts \\(\\phi\\) to \\([0,\\pi/[[n]]]\\).",
+   "This uses \\(\\cos(\\phi_0)\\) alone instead of \\(1-\\cos(\\phi_0)\\), dropping the constant term from the \\(\\phi\\)-antiderivative.",
+   "This uses the wedge-fraction formula (dividing by \\([[n]]\\)) as if the restriction were on \\(\\theta\\) rather than \\(\\phi\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "spherical_coordinates_for_balls_cones_v3",
+  "skill_id": "spherical_coordinates_for_balls_cones",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "R": {"type": "int", "lo": 1, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 5, 6, 8]}
+  },
+  "constraints": [],
+  "stem": "A solid wedge is cut from a ball of radius \\([[R]]\\) centered at the origin by two half-planes through the \\(z\\)-axis, taking \\( 0 \\le \\theta \\le 2\\pi/[[n]] \\) (i.e. \\(\\tfrac{1}{[[n]]}\\) of a full revolution, with \\(\\phi\\) and \\(\\rho\\) unrestricted). Using spherical coordinates, find the volume of the wedge.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "rho**2*sin(phi)",
+   "vars": ["rho", "phi", "theta"],
+   "bounds": [["0", "[[R]]"], ["0", "pi"], ["0", "2*pi/[[n]]"]]
+  },
+  "distractors": [
+   "4*pi*[[R]]**3/3",
+   "4*pi*[[R]]**3/(3*2*[[n]])",
+   "2*pi*[[R]]**3/(3*[[n]])",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi/[[n]]}\\int_{0}^{\\pi}\\int_{0}^{[[R]]} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\dfrac{2\\pi}{[[n]]}\\cdot 2\\cdot\\dfrac{[[R]]^3}{3} = \\dfrac{4\\pi[[R]]^3}{3[[n]]} = [[answer]] \\), exactly \\(\\tfrac1{[[n]]}\\) of the full ball's volume.",
+  "distractor_rationales": [
+   "This uses the volume of the full ball, forgetting to restrict to the \\(\\tfrac1{[[n]]}\\)-wedge.",
+   "This has an extra stray factor of \\(\\tfrac12\\) from double-counting the wedge fraction.",
+   "This uses \\(2\\pi/3\\) instead of \\(4\\pi/3\\) for the full-ball coefficient, dropping a factor of \\(2\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "spherical_coordinates_for_balls_cones_v4",
+  "skill_id": "spherical_coordinates_for_balls_cones",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "R": {"type": "int", "lo": 1, "hi": 6},
+   "n1": {"type": "choice", "values": [3, 4, 6]},
+   "n2": {"type": "choice", "values": [2, 3]}
+  },
+  "constraints": ["Lt(pi/[[n1]], 2*pi/[[n2]])"],
+  "stem": "A solid lies inside the ball \\( \\rho \\le [[R]] \\) and between the two cones \\( \\phi = \\pi/[[n1]] \\) and \\( \\phi = 2\\pi/[[n2]] \\) (measuring \\(\\phi\\) from the positive \\(z\\)-axis, with \\(\\pi/[[n1]] < 2\\pi/[[n2]]\\)). Using spherical coordinates, find the volume of the solid.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "rho**2*sin(phi)",
+   "vars": ["rho", "phi", "theta"],
+   "bounds": [["0", "[[R]]"], ["pi/[[n1]]", "2*pi/[[n2]]"], ["0", "2*pi"]]
+  },
+  "distractors": [
+   "4*pi*[[R]]**3/3",
+   "2*pi*[[R]]**3*(cos(pi/[[n1]])+cos(2*pi/[[n2]]))/3",
+   "2*pi*[[R]]**3*(2*pi/[[n2]]-pi/[[n1]])/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi}\\int_{\\pi/[[n1]]}^{2\\pi/[[n2]]}\\int_{0}^{[[R]]} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = 2\\pi\\cdot\\dfrac{[[R]]^3}{3}\\left(\\cos(\\pi/[[n1]])-\\cos(2\\pi/[[n2]])\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the whole ball, ignoring the cone restrictions on \\(\\phi\\) entirely.",
+   "This adds the two cosines instead of subtracting them (a sign error).",
+   "This uses the raw angle difference \\(\\phi_2-\\phi_1\\) in place of \\(\\cos\\phi_1-\\cos\\phi_2\\), forgetting the \\(\\sin\\phi\\) Jacobian.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "spherical_coordinates_for_balls_cones_v5",
+  "skill_id": "spherical_coordinates_for_balls_cones",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "H": {"type": "int", "lo": 1, "hi": 8},
+   "n": {"type": "choice", "values": [3, 4, 6]}
+  },
+  "constraints": [],
+  "stem": "A right circular cone has its apex at the origin, opens upward along the positive \\(z\\)-axis with half-angle \\(\\phi_0=\\pi/[[n]]\\), and is capped by the horizontal plane \\(z=[[H]]\\). Using spherical coordinates (with \\(\\rho\\) ranging up to where the ray meets the plane \\(z=[[H]]\\), i.e. \\(\\rho = [[H]]/\\cos\\phi\\)), find the volume of the cone.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "rho**2*sin(phi)",
+   "vars": ["rho", "phi", "theta"],
+   "bounds": [["0", "[[H]]/cos(phi)"], ["0", "pi/[[n]]"], ["0", "2*pi"]]
+  },
+  "distractors": [
+   "4*pi*[[H]]**3/3",
+   "pi*[[H]]**3*tan(pi/[[n]])**2",
+   "2*pi*[[H]]**3*(1-cos(pi/[[n]]))/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "With \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\) and the ray bounded by the plane at \\(\\rho=[[H]]/\\cos\\phi\\), \\( \\int_0^{2\\pi}\\int_0^{\\pi/[[n]]}\\int_0^{[[H]]/\\cos\\phi} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = [[answer]] \\), matching the elementary cone-volume formula \\(\\tfrac13\\pi r^2 [[H]]\\) with base radius \\(r=[[H]]\\tan(\\pi/[[n]])\\).",
+  "distractor_rationales": [
+   "This is the volume of a full sphere of radius \\([[H]]\\), an unrelated formula.",
+   "This drops the required factor of \\(\\tfrac13\\) from the cone-volume formula.",
+   "This uses the ice-cream-cone formula (sphere cap) instead of the flat-plane cap appropriate here.",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "spherical_coordinates_for_balls_cones_v6",
+  "skill_id": "spherical_coordinates_for_balls_cones",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 5},
+   "R": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "A solid ball of radius \\([[R]]\\) centered at the origin has mass density \\( \\delta(x,y,z) = [[k]]\\sqrt{x^2+y^2+z^2} \\) (proportional to the distance from the center). Using spherical coordinates, find the total mass of the ball.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]*rho*rho**2*sin(phi)",
+   "vars": ["rho", "phi", "theta"],
+   "bounds": [["0", "[[R]]"], ["0", "pi"], ["0", "2*pi"]]
+  },
+  "distractors": [
+   "4*pi*[[k]]*[[R]]**3/3",
+   "2*pi*[[k]]*[[R]]**4/3",
+   "[[k]]*pi*[[R]]**5/4",
+   "[[answer]] + pi",
+   "[[answer]] - pi",
+   "[[answer]] + 2*pi",
+   "[[answer]] - 2*pi",
+   "[[answer]] + 3*pi"
+  ],
+  "solution": "In spherical coordinates \\(\\delta=[[k]]\\rho\\) and \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), so the mass is \\( \\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^{[[R]]} [[k]]\\rho\\cdot\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = 2\\pi\\cdot 2\\cdot [[k]]\\dfrac{[[R]]^4}{4} = \\pi [[k]] [[R]]^4 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume formula for a uniform-density ball, ignoring the density factor \\(\\rho\\) entirely.",
+   "This drops a factor of \\(2\\) from the \\(\\phi\\)-integral (as if \\(\\int_0^\\pi \\sin\\phi\\,d\\phi=1\\) instead of \\(2\\)).",
+   "This uses \\(\\rho^5\\) instead of \\(\\rho^4\\) in the radial antiderivative, an extra power of \\(\\rho\\).",
+   "This adds a stray multiple of \\(\\pi\\) to the correct value.",
+   "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
+  ]
+ }
+]

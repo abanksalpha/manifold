@@ -1,0 +1,272 @@
+[
+ {
+  "template_id": "directional_derivative_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "u": {"type": "choice", "values": [2, 3]},
+   "v": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Gt([[u]], [[v]])"],
+  "derived": {
+   "p": "[[u]]**2 - [[v]]**2",
+   "q": "2*[[u]]*[[v]]",
+   "m": "[[u]]**2 + [[v]]**2"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\). Compute the directional derivative of \\( f \\) at the point \\( ([[x0]], [[y0]]) \\) in the direction of the vector \\( \\mathbf{v} = \\langle [[p]], [[q]] \\rangle \\). (Use the unit vector in the direction of \\( \\mathbf{v} \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[p]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[q]])/[[m]]"},
+  "distractors": [
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[p]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[q]]",
+   "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[q]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[p]])/[[m]]",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])",
+   "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[p]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[q]])/[[m]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f = \\langle 2([[a]])x + ([[c]])y,\\ 2([[b]])y + ([[c]])x \\rangle \\), so \\( \\nabla f([[x0]], [[y0]]) = \\langle 2([[a]])([[x0]]) + ([[c]])([[y0]]),\\ 2([[b]])([[y0]]) + ([[c]])([[x0]]) \\rangle \\). The unit vector is \\( \\frac{1}{[[m]]}\\langle [[p]], [[q]] \\rangle \\). The directional derivative is \\( \\nabla f \\cdot \\hat{\\mathbf{u}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\mathbf{v} \\) without normalizing it to a unit vector.",
+   "This swaps the two components of the direction vector in the dot product.",
+   "This adds the gradient components instead of dotting with the unit direction.",
+   "This divides by the squared magnitude instead of the magnitude of \\( \\mathbf{v} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_derivative_toward_point_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "m": {"type": "int", "lo": 2, "hi": 4},
+   "n": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "p": "[[m]]**2 - [[n]]**2",
+   "q": "2*[[m]]*[[n]]",
+   "h": "[[m]]**2 + [[n]]**2",
+   "x1": "[[x0]] + [[p]]",
+   "y1": "[[y0]] + [[q]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\). Compute the directional derivative of \\( f \\) at the point \\( P = ([[x0]], [[y0]]) \\) in the direction of the point \\( Q = ([[x1]], [[y1]]) \\) (that is, in the direction of the unit vector from \\( P \\) toward \\( Q \\)).",
+  "answer_spec": {"op": "evaluate", "expr": "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[p]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[q]])/[[h]]"},
+  "distractors": [
+   "((2*[[a]]*[[x1]] + [[c]]*[[y1]])*[[p]] + (2*[[b]]*[[y1]] + [[c]]*[[x1]])*[[q]])/[[h]]",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[p]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[q]]",
+   "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[q]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[p]])/[[h]]",
+   "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[x1]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[y1]])/[[h]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The direction from \\( P \\) toward \\( Q \\) is \\( \\mathbf{v} = Q - P = \\langle [[p]], [[q]] \\rangle \\), with magnitude \\( [[h]] \\). The gradient at \\( P \\) is \\( \\nabla f([[x0]], [[y0]]) = \\langle 2([[a]])([[x0]]) + ([[c]])([[y0]]),\\ 2([[b]])([[y0]]) + ([[c]])([[x0]]) \\rangle \\), so the directional derivative is \\( \\nabla f(P) \\cdot \\frac{\\mathbf{v}}{[[h]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates the gradient at \\( Q \\) instead of at \\( P \\).",
+   "This uses \\( \\mathbf{v} = Q-P \\) without normalizing it to a unit vector.",
+   "This swaps the two components of \\( \\mathbf{v} \\) in the dot product.",
+   "This dots the gradient with the coordinates of \\( Q \\) itself rather than with \\( Q - P \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_derivative_3var_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "z0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "s": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Let \\( f(x, y, z) = [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} \\). Compute the directional derivative of \\( f \\) at the point \\( ([[x0]], [[y0]], [[z0]]) \\) in the direction of the vector \\( \\mathbf{v} = \\langle [[p]], [[q]], [[s]] \\rangle \\). (Use the unit vector in the direction of \\( \\mathbf{v}\\).)",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[a]]*[[x0]]*[[p]] + 2*[[b]]*[[y0]]*[[q]] + 2*[[c]]*[[z0]]*[[s]])/sqrt([[p]]**2 + [[q]]**2 + [[s]]**2)"},
+  "distractors": [
+   "2*[[a]]*[[x0]]*[[p]] + 2*[[b]]*[[y0]]*[[q]] + 2*[[c]]*[[z0]]*[[s]]",
+   "(2*[[a]]*[[x0]]*[[q]] + 2*[[b]]*[[y0]]*[[s]] + 2*[[c]]*[[z0]]*[[p]])/sqrt([[p]]**2 + [[q]]**2 + [[s]]**2)",
+   "(2*[[a]]*[[x0]]*[[p]] + 2*[[b]]*[[y0]]*[[q]])/sqrt([[p]]**2 + [[q]]**2 + [[s]]**2)",
+   "(2*[[a]]*[[x0]]*[[p]] + 2*[[b]]*[[y0]]*[[q]] + 2*[[c]]*[[z0]]*[[s]])/([[p]]**2 + [[q]]**2 + [[s]]**2)",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f = \\langle 2([[a]])x,\\ 2([[b]])y,\\ 2([[c]])z \\rangle \\), so \\( \\nabla f([[x0]],[[y0]],[[z0]]) = \\langle 2([[a]])([[x0]]),\\ 2([[b]])([[y0]]),\\ 2([[c]])([[z0]]) \\rangle \\). The unit vector in the direction of \\( \\mathbf{v} \\) is \\( \\mathbf{v}/\\lVert \\mathbf{v} \\rVert \\) with \\( \\lVert \\mathbf{v} \\rVert = \\sqrt{[[p]]^{2}+[[q]]^{2}+[[s]]^{2}} \\). The directional derivative is \\( \\nabla f \\cdot \\hat{\\mathbf{u}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\mathbf{v} \\) without normalizing it to a unit vector.",
+   "This cyclically shifts the components of \\( \\mathbf{v} \\) in the dot product.",
+   "This drops the \\( z \\)-term of the dot product entirely.",
+   "This divides by the squared magnitude instead of the magnitude of \\( \\mathbf{v} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_derivative_via_cosine_angle_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "u": {"type": "int", "lo": 2, "hi": 5},
+   "v": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Gt([[u]], [[v]])"],
+  "require_rational": false,
+  "derived": {
+   "cosv": "([[u]]**2 - [[v]]**2)/([[u]]**2 + [[v]]**2)",
+   "sinv": "2*[[u]]*[[v]]/([[u]]**2 + [[v]]**2)"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\). The direction \\( \\mathbf{u} \\) makes an angle \\( \\theta \\) with the positive \\( x \\)-axis where \\( \\cos\\theta = [[cosv]] \\) and \\( \\sin\\theta = [[sinv]] \\). Compute the directional derivative of \\( f \\) at \\( ([[x0]], [[y0]]) \\) in the direction \\( \\mathbf{u} = \\langle \\cos\\theta, \\sin\\theta \\rangle \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[cosv]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[sinv]]"},
+  "distractors": [
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[sinv]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[cosv]]",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[cosv]]",
+   "((2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[cosv]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[sinv]])*([[u]]**2+[[v]]**2)",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient at \\( ([[x0]], [[y0]]) \\) is \\( \\langle 2([[a]])([[x0]]) + ([[c]])([[y0]]),\\ 2([[b]])([[y0]]) + ([[c]])([[x0]]) \\rangle \\). Since \\( \\mathbf{u}=\\langle\\cos\\theta,\\sin\\theta\\rangle \\) is already a unit vector, the directional derivative is simply the dot product \\( \\nabla f \\cdot \\mathbf{u} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps \\( \\cos\\theta \\) and \\( \\sin\\theta \\) between the two gradient components.",
+   "This adds the gradient components instead of dotting with \\( \\mathbf{u} \\).",
+   "This drops the \\( \\sin\\theta \\) term (the \\( y \\)-contribution) entirely.",
+   "This forgets that \\( \\langle \\cos\\theta,\\sin\\theta\\rangle \\) is already a unit vector and re-scales by \\( u^{2}+v^{2} \\) as if it still needed normalizing.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_derivative_along_axis_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\). Compute the directional derivative of \\( f \\) at \\( ([[x0]], [[y0]]) \\) in the direction of the vector \\( \\mathbf{i} = \\langle 1, 0 \\rangle \\) (the positive \\( x \\)-axis).",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[a]]*[[x0]] + [[c]]*[[y0]]"},
+  "distractors": [
+   "2*[[b]]*[[y0]] + [[c]]*[[x0]]",
+   "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]",
+   "sqrt((2*[[a]]*[[x0]] + [[c]]*[[y0]])**2 + (2*[[b]]*[[y0]] + [[c]]*[[x0]])**2)",
+   "2*[[a]]*[[x0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\mathbf{i}=\\langle 1,0\\rangle \\) is already a unit vector along the \\( x \\)-axis, the directional derivative in this direction equals the partial derivative \\( f_{x} \\). Here \\( f_{x} = 2([[a]])x + ([[c]])y \\), which at \\( ([[x0]], [[y0]]) \\) is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes \\( f_{y} \\) (the directional derivative along the \\( y \\)-axis) instead of \\( f_{x} \\).",
+   "This is the function value \\( f([[x0]],[[y0]]) \\), not a directional derivative.",
+   "This is the rate of steepest ascent (the full gradient magnitude), not the directional derivative along just the \\( x \\)-axis.",
+   "This drops the mixed-term contribution \\( [[c]]y \\) from \\( f_{x} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_derivative_from_given_gradient_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "g1": {"type": "int", "lo": -6, "hi": 6},
+   "g2": {"type": "int", "lo": -6, "hi": 6},
+   "u": {"type": "int", "lo": 2, "hi": 5},
+   "v": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Gt([[u]], [[v]])", "Ne([[g1]], 0)"],
+  "derived": {
+   "p": "[[u]]**2 - [[v]]**2",
+   "q": "2*[[u]]*[[v]]",
+   "mag": "[[u]]**2 + [[v]]**2"
+  },
+  "stem": "Suppose \\( f \\) is a differentiable function and, at some point \\( (a, b) \\), the gradient is \\( \\nabla f(a, b) = \\langle [[g1]], [[g2]] \\rangle \\). What is the directional derivative of \\( f \\) at \\( (a, b) \\) in the direction of the vector \\( \\langle [[p]], [[q]] \\rangle \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[g1]]*[[p]] + [[g2]]*[[q]])/[[mag]]"},
+  "distractors": [
+   "[[g1]]*[[p]] + [[g2]]*[[q]]",
+   "([[g1]]*[[q]] + [[g2]]*[[p]])/[[mag]]",
+   "([[g1]]*[[p]] + [[g2]]*[[q]])/[[mag]]**2",
+   "[[g1]] + [[g2]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The directional derivative is the dot product of the gradient with the UNIT vector in the given direction: \\( D_{\\mathbf{v}}f = \\nabla f \\cdot \\dfrac{\\langle [[p]],[[q]]\\rangle}{\\lVert\\langle [[p]],[[q]]\\rangle\\rVert} = \\dfrac{[[g1]]([[p]]) + [[g2]]([[q]])}{[[mag]]} = [[answer]]\\).",
+  "distractor_rationales": [
+   "This uses the direction vector without normalizing it to a unit vector.",
+   "This swaps the two components of the direction vector in the dot product.",
+   "This divides by the squared magnitude instead of the magnitude itself.",
+   "This just adds the two given gradient components, ignoring the direction vector entirely.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_derivative_find_coefficient_v1",
+  "skill_id": "directional_derivative_in_a_given_direction",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "b": {"type": "int", "lo": 1, "hi": 5},
+   "u": {"type": "int", "lo": 2, "hi": 5},
+   "v": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Gt([[u]], [[v]])"],
+  "derived": {
+   "p": "[[u]]**2 - [[v]]**2",
+   "q": "2*[[u]]*[[v]]",
+   "mag": "[[u]]**2 + [[v]]**2",
+   "d": "(2*[[a]]*[[x0]]*[[p]] + 2*[[b]]*[[y0]]*[[q]])/[[mag]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + by^{2} \\) for an unknown positive coefficient \\( b \\). At the point \\( ([[x0]], [[y0]]) \\), the directional derivative of \\( f \\) in the direction of the unit vector \\( \\dfrac{1}{[[mag]]}\\langle [[p]], [[q]] \\rangle \\) equals \\( [[d]] \\). What is the value of \\( b \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[d]]*[[mag]] - 2*[[a]]*[[x0]]*[[p]])/(2*[[y0]]*[[q]])"},
+  "distractors": [
+   "([[d]]*[[mag]] + 2*[[a]]*[[x0]]*[[p]])/(2*[[y0]]*[[q]])",
+   "([[d]]*[[mag]] - 2*[[a]]*[[x0]]*[[p]])/([[y0]]*[[q]])",
+   "[[d]]*[[mag]]/(2*[[y0]]*[[q]])",
+   "([[d]] - 2*[[a]]*[[x0]]*[[p]])/(2*[[y0]]*[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The directional derivative equation is \\( \\dfrac{2([[a]])([[x0]])([[p]]) + 2b([[y0]])([[q]])}{[[mag]]} = [[d]] \\). Solving for \\( b \\) gives \\( b = \\dfrac{[[d]]([[mag]]) - 2([[a]])([[x0]])([[p]])}{2([[y0]])([[q]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has a sign error, adding instead of subtracting the known term before isolating \\( b \\).",
+   "This forgets to divide by \\( [[mag]] \\) when moving the directional-derivative equation's denominator across.",
+   "This drops the known term \\( 2ax_0p \\) entirely before solving for \\( b \\).",
+   "This forgets to multiply \\( [[d]] \\) by \\( [[mag]] \\) before isolating \\( b \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

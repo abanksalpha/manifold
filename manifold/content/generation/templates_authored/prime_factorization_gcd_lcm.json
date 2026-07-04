@@ -1,0 +1,196 @@
+[
+{
+ "template_id": "prime_factorization_gcd_lcm_bare_gcd_v1",
+ "skill_id": "prime_factorization_gcd_lcm",
+ "topic_id": "number_theory",
+ "tier": "recognize",
+ "params": {
+  "m": {"type": "int", "lo": 12, "hi": 400},
+  "n": {"type": "int", "lo": 12, "hi": 400}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "What is the greatest common divisor of [[m]] and [[n]]?",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[m]], [[n]])"},
+ "distractors": [
+  "lcm([[m]], [[n]])",
+  "[[m]]*[[n]]",
+  "Abs([[m]] - [[n]])",
+  "gcd([[m]], [[n]]) + 1",
+  "gcd([[m]], [[n]]) - 1",
+  "gcd([[m]], [[n]])*2"
+ ],
+ "solution": "Factoring [[m]] and [[n]] into primes and taking the shared prime powers at their lowest exponent gives \\( \\gcd([[m]],[[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the LEAST COMMON MULTIPLE of the two numbers, not their greatest common divisor.",
+  "This is the product of the two numbers, not their greatest common divisor.",
+  "This is the absolute difference of the two numbers, unrelated to their greatest common divisor.",
+  "This is off by one from the correct greatest common divisor.",
+  "This is off by one from the correct greatest common divisor.",
+  "This doubles the correct greatest common divisor for no valid reason."
+ ]
+},
+{
+ "template_id": "prime_factorization_gcd_lcm_bare_lcm_v1",
+ "skill_id": "prime_factorization_gcd_lcm",
+ "topic_id": "number_theory",
+ "tier": "recognize",
+ "params": {
+  "m": {"type": "int", "lo": 6, "hi": 60},
+  "n": {"type": "int", "lo": 6, "hi": 60}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "What is the least common multiple of [[m]] and [[n]]?",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[m]], [[n]])"},
+ "distractors": [
+  "gcd([[m]], [[n]])",
+  "[[m]]*[[n]]",
+  "[[m]] + [[n]]",
+  "lcm([[m]], [[n]]) + [[m]]",
+  "lcm([[m]], [[n]])/2",
+  "lcm([[m]], [[n]]) - [[n]]"
+ ],
+ "solution": "Factoring [[m]] and [[n]] into primes and taking each prime power at its highest exponent gives \\( \\operatorname{lcm}([[m]],[[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the GREATEST COMMON DIVISOR of the two numbers, not their least common multiple.",
+  "This is the product of the two numbers; this only equals the LCM when the numbers are coprime.",
+  "This is the sum of the two numbers, unrelated to their least common multiple.",
+  "This adds an unrelated adjustment to the correct least common multiple.",
+  "This halves the correct least common multiple for no valid reason.",
+  "This subtracts an unrelated adjustment from the correct least common multiple."
+ ]
+},
+{
+ "template_id": "prime_factorization_gcd_lcm_gcd_from_factorization_v1",
+ "skill_id": "prime_factorization_gcd_lcm",
+ "topic_id": "number_theory",
+ "tier": "recognize",
+ "params": {
+  "a1": {"type": "int", "lo": 0, "hi": 4},
+  "b1": {"type": "int", "lo": 0, "hi": 3},
+  "c1": {"type": "int", "lo": 0, "hi": 2},
+  "a2": {"type": "int", "lo": 0, "hi": 4},
+  "b2": {"type": "int", "lo": 0, "hi": 3},
+  "d2": {"type": "int", "lo": 0, "hi": 2}
+ },
+ "constraints": ["Gt([[a1]] + [[b1]] + [[c1]], 0)", "Gt([[a2]] + [[b2]] + [[d2]], 0)"],
+ "derived": {
+  "M": "2**[[a1]]*3**[[b1]]*5**[[c1]]",
+  "N": "2**[[a2]]*3**[[b2]]*7**[[d2]]"
+ },
+ "stem": "Let \\( M = 2^{[[a1]]}\\cdot 3^{[[b1]]}\\cdot 5^{[[c1]]} \\) and \\( N = 2^{[[a2]]}\\cdot 3^{[[b2]]}\\cdot 7^{[[d2]]} \\). What is \\( \\gcd(M, N) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[M]], [[N]])"},
+ "distractors": [
+  "lcm([[M]], [[N]])",
+  "2**Max([[a1]],[[a2]])*3**Max([[b1]],[[b2]])",
+  "[[M]]*[[N]]",
+  "gcd([[M]], [[N]]) + 1",
+  "gcd([[M]], [[N]]) - 1",
+  "gcd([[M]], [[N]])*2"
+ ],
+ "solution": "For each prime, the gcd takes the SMALLER of the two exponents (0 if a prime is absent from one factorization): \\( \\gcd(M,N) = 2^{\\min([[a1]],[[a2]])}\\cdot 3^{\\min([[b1]],[[b2]])} = [[answer]] \\) (the primes 5 and 7 each appear in only one number, so they contribute nothing to the gcd).",
+ "distractor_rationales": [
+  "This is the least common multiple of \\( M \\) and \\( N \\), which uses the LARGER exponent of each prime, not the smaller.",
+  "This mistakenly uses the larger exponent of each shared prime instead of the smaller.",
+  "This is the product \\( M\\cdot N \\), not their greatest common divisor.",
+  "This is off by one from the correct greatest common divisor.",
+  "This is off by one from the correct greatest common divisor.",
+  "This doubles the correct greatest common divisor for no valid reason."
+ ]
+},
+{
+ "template_id": "prime_factorization_gcd_lcm_lcm_from_factorization_v1",
+ "skill_id": "prime_factorization_gcd_lcm",
+ "topic_id": "number_theory",
+ "tier": "recognize",
+ "params": {
+  "a1": {"type": "int", "lo": 0, "hi": 3},
+  "b1": {"type": "int", "lo": 0, "hi": 2},
+  "a2": {"type": "int", "lo": 0, "hi": 3},
+  "c2": {"type": "int", "lo": 0, "hi": 2}
+ },
+ "constraints": ["Gt([[a1]] + [[b1]], 0)", "Gt([[a2]] + [[c2]], 0)"],
+ "derived": {
+  "M": "2**[[a1]]*3**[[b1]]",
+  "N": "2**[[a2]]*5**[[c2]]"
+ },
+ "stem": "Let \\( M = 2^{[[a1]]}\\cdot 3^{[[b1]]} \\) and \\( N = 2^{[[a2]]}\\cdot 5^{[[c2]]} \\). What is \\( \\operatorname{lcm}(M, N) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[M]], [[N]])"},
+ "distractors": [
+  "gcd([[M]], [[N]])",
+  "2**Min([[a1]],[[a2]])*3**[[b1]]*5**[[c2]]",
+  "[[M]]*[[N]]",
+  "lcm([[M]], [[N]]) + 1",
+  "lcm([[M]], [[N]]) - 1",
+  "lcm([[M]], [[N]])/2"
+ ],
+ "solution": "For each prime, the lcm takes the LARGER of the two exponents: \\( \\operatorname{lcm}(M,N) = 2^{\\max([[a1]],[[a2]])}\\cdot 3^{[[b1]]}\\cdot 5^{[[c2]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the greatest common divisor of \\( M \\) and \\( N \\), which uses the SMALLER exponent of each prime, not the larger.",
+  "This mistakenly uses the smaller exponent of the shared prime 2 instead of the larger.",
+  "This is the product \\( M\\cdot N \\); this only equals the LCM when \\( M \\) and \\( N \\) are coprime.",
+  "This is off by one from the correct least common multiple.",
+  "This is off by one from the correct least common multiple.",
+  "This halves the correct least common multiple for no valid reason."
+ ]
+},
+{
+ "template_id": "prime_factorization_gcd_lcm_tile_word_problem_v1",
+ "skill_id": "prime_factorization_gcd_lcm",
+ "topic_id": "number_theory",
+ "tier": "recognize",
+ "params": {
+  "L": {"type": "int", "lo": 24, "hi": 240},
+  "W": {"type": "int", "lo": 18, "hi": 200}
+ },
+ "constraints": ["Ne([[L]], [[W]])"],
+ "stem": "A rectangular floor measuring [[L]] inches by [[W]] inches is to be tiled with the largest possible identical square tiles, with no tile cut and no gaps. What is the side length, in inches, of each square tile?",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[L]], [[W]])"},
+ "distractors": [
+  "lcm([[L]], [[W]])",
+  "[[L]]*[[W]]",
+  "Abs([[L]] - [[W]])",
+  "gcd([[L]], [[W]]) + 1",
+  "gcd([[L]], [[W]]) - 1",
+  "gcd([[L]], [[W]])*2"
+ ],
+ "solution": "The largest square tile that evenly divides both dimensions has side length equal to the greatest common divisor of the two dimensions: \\( \\gcd([[L]],[[W]]) = [[answer]] \\) inches.",
+ "distractor_rationales": [
+  "This is the least common multiple of the dimensions, not their greatest common divisor.",
+  "This is the total floor area, not a tile side length.",
+  "This is the difference of the two dimensions, unrelated to the tile size.",
+  "This is off by one from the correct tile side length.",
+  "This is off by one from the correct tile side length.",
+  "This doubles the correct tile side length for no valid reason."
+ ]
+},
+{
+ "template_id": "prime_factorization_gcd_lcm_cycle_word_problem_v1",
+ "skill_id": "prime_factorization_gcd_lcm",
+ "topic_id": "number_theory",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 4, "hi": 30},
+  "b": {"type": "int", "lo": 4, "hi": 30}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Two satellites pass over a tracking station every [[a]] days and every [[b]] days, respectively. Both satellites pass over the station today. In how many days will both satellites next pass over the station on the same day?",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[a]], [[b]])"},
+ "distractors": [
+  "gcd([[a]], [[b]])",
+  "[[a]]*[[b]]",
+  "[[a]] + [[b]]",
+  "lcm([[a]], [[b]]) + [[a]]",
+  "lcm([[a]], [[b]]) - [[b]]",
+  "lcm([[a]], [[b]])/2"
+ ],
+ "solution": "Both satellites coincide again after a number of days that is a multiple of both [[a]] and [[b]]; the soonest such day is \\( \\operatorname{lcm}([[a]],[[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the greatest common divisor of the two periods, not their least common multiple.",
+  "This is the product of the two periods; this only equals the LCM when the periods are coprime.",
+  "This is the sum of the two periods, unrelated to when they next coincide.",
+  "This adds an unrelated adjustment to the correct least common multiple.",
+  "This subtracts an unrelated adjustment from the correct least common multiple.",
+  "This halves the correct least common multiple for no valid reason."
+ ]
+}
+]

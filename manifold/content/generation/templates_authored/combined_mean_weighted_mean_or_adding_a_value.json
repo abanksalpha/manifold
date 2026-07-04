@@ -1,0 +1,167 @@
+[
+ {
+  "template_id": "combined_mean_two_groups_v1",
+  "skill_id": "combined_mean_weighted_mean_or_adding_a_value",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "w1": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "w2": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "m1": {"type": "int", "lo": 1, "hi": 12},
+   "m2": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": [
+   "Ne([[w1]], [[w2]])",
+   "Ne([[m1]], [[m2]])",
+   "Eq(Mod([[w1]]*[[m1]] + [[w2]]*[[m2]], [[w1]] + [[w2]]), 0)"
+  ],
+  "stem": "One group of \\( [[w1]] \\) numbers has mean \\( [[m1]] \\), and a second group of \\( [[w2]] \\) numbers has mean \\( [[m2]] \\). What is the mean of all \\( [[w1]] + [[w2]] \\) numbers combined?",
+  "answer_spec": {"op": "evaluate", "expr": "([[w1]]*[[m1]] + [[w2]]*[[m2]])/([[w1]] + [[w2]])"},
+  "distractors": [
+   "([[m1]] + [[m2]])/2",
+   "[[w1]]*[[m1]] + [[w2]]*[[m2]]",
+   "([[w2]]*[[m1]] + [[w1]]*[[m2]])/([[w1]] + [[w2]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The combined mean is the total of all values divided by the total count: \\( \\frac{[[w1]]\\cdot[[m1]] + [[w2]]\\cdot[[m2]]}{[[w1]] + [[w2]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the plain average of the two group means; it ignores that the groups have different sizes.",
+   "This adds the two group totals but forgets to divide by the combined count.",
+   "This swaps the two group sizes as weights, pairing each mean with the wrong count.",
+   "This is off by one from the correct combined mean."
+  ]
+ },
+ {
+  "template_id": "adding_a_value_to_a_set_v1",
+  "skill_id": "combined_mean_weighted_mean_or_adding_a_value",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 7, 8, 9]},
+   "m": {"type": "int", "lo": 1, "hi": 20},
+   "v": {"type": "int", "lo": -10, "hi": 30}
+  },
+  "constraints": [
+   "Ne([[v]], [[m]])",
+   "Eq(Mod([[n]]*[[m]] + [[v]], [[n]] + 1), 0)"
+  ],
+  "stem": "A set of \\( [[n]] \\) numbers has mean \\( [[m]] \\). A new value, \\( [[v]] \\), is added to the set. What is the mean of the resulting \\( [[n]] + 1 \\) numbers?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]]*[[m]] + [[v]])/([[n]] + 1)"},
+  "distractors": [
+   "([[m]] + [[v]])/2",
+   "[[n]]*[[m]] + [[v]]",
+   "([[n]]*[[m]] + [[v]])/[[n]]",
+   "[[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The new total is \\( [[n]]\\cdot[[m]] + [[v]] \\), spread over \\( [[n]]+1 \\) numbers: \\( \\frac{[[n]]\\cdot[[m]] + [[v]]}{[[n]]+1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the plain average of the old mean and the new value, ignoring how many numbers were already in the set.",
+   "This adds the new value to the old total but forgets to divide by the new count.",
+   "This divides by the OLD count \\( [[n]] \\) instead of the new count \\( [[n]]+1 \\).",
+   "This assumes adding one value never changes the mean.",
+   "This is off by one from the correct new mean."
+  ]
+ },
+ {
+  "template_id": "removing_a_value_from_a_set_v1",
+  "skill_id": "combined_mean_weighted_mean_or_adding_a_value",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 7, 8, 9, 10]},
+   "m": {"type": "int", "lo": 1, "hi": 20},
+   "v": {"type": "int", "lo": -10, "hi": 30}
+  },
+  "constraints": [
+   "Ne([[v]], [[m]])",
+   "Eq(Mod([[n]]*[[m]] - [[v]], [[n]] - 1), 0)"
+  ],
+  "stem": "A set of \\( [[n]] \\) numbers has mean \\( [[m]] \\). One value, \\( [[v]] \\), is removed from the set. What is the mean of the remaining \\( [[n]] - 1 \\) numbers?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]]*[[m]] - [[v]])/([[n]] - 1)"},
+  "distractors": [
+   "([[n]]*[[m]] - [[v]])/[[n]]",
+   "[[n]]*[[m]] - [[v]]",
+   "([[v]] - [[n]]*[[m]])/([[n]] - 1)",
+   "[[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The remaining total is \\( [[n]]\\cdot[[m]] - [[v]] \\), spread over \\( [[n]]-1 \\) numbers: \\( \\frac{[[n]]\\cdot[[m]] - [[v]]}{[[n]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This still divides by the OLD count \\( [[n]] \\) instead of the new count \\( [[n]]-1 \\).",
+   "This is the remaining total without dividing by the new count at all.",
+   "This has the wrong sign on the subtraction, negating the whole result.",
+   "This assumes removing one value never changes the mean.",
+   "This is off by one from the correct new mean."
+  ]
+ },
+ {
+  "template_id": "solve_second_group_mean_v1",
+  "skill_id": "combined_mean_weighted_mean_or_adding_a_value",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "w1": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "w2": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "m1": {"type": "int", "lo": 1, "hi": 15},
+   "M": {"type": "int", "lo": 1, "hi": 15}
+  },
+  "constraints": [
+   "Ne([[w1]], [[w2]])",
+   "Ne([[M]], [[m1]])",
+   "Eq(Mod([[M]]*([[w1]] + [[w2]]) - [[w1]]*[[m1]], [[w2]]), 0)"
+  ],
+  "stem": "A group of \\( [[w1]] \\) numbers has mean \\( [[m1]] \\). When combined with a second group of \\( [[w2]] \\) numbers, the mean of all \\( [[w1]] + [[w2]] \\) numbers together is \\( [[M]] \\). What is the mean of the second group?",
+  "answer_spec": {"op": "evaluate", "expr": "([[M]]*([[w1]] + [[w2]]) - [[w1]]*[[m1]])/[[w2]]"},
+  "distractors": [
+   "[[M]]",
+   "([[M]]*[[w2]] - [[w1]]*[[m1]])/[[w2]]",
+   "([[M]]*([[w1]] + [[w2]]) - [[w2]]*[[m1]])/[[w1]]",
+   "2*[[M]] - [[m1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The combined total is \\( [[M]]\\cdot([[w1]]+[[w2]]) \\), and the first group already contributes \\( [[w1]]\\cdot[[m1]] \\), so the second group's total is \\( [[M]]([[w1]]+[[w2]]) - [[w1]][[m1]] \\); dividing by \\( [[w2]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the second group has the same mean as the combined group.",
+   "This uses only \\( [[w2]] \\) (not the full combined count) when computing the combined total.",
+   "This swaps the two group sizes, dividing by \\( [[w1]] \\) instead of \\( [[w2]] \\).",
+   "This is the 'reflection' trick \\( 2M-m_1 \\), which only works when the group sizes are equal.",
+   "This is off by one from the correct mean."
+  ]
+ },
+ {
+  "template_id": "solve_added_value_from_means_v1",
+  "skill_id": "combined_mean_weighted_mean_or_adding_a_value",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 7, 8, 9]},
+   "m": {"type": "int", "lo": 1, "hi": 20},
+   "mnew": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Ne([[mnew]], [[m]])"],
+  "stem": "A set of \\( [[n]] \\) numbers has mean \\( [[m]] \\). After one new value is added, the mean of the resulting \\( [[n]] + 1 \\) numbers becomes \\( [[mnew]] \\). What value was added?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]] + 1)*[[mnew]] - [[n]]*[[m]]"},
+  "distractors": [
+   "[[mnew]]",
+   "[[n]]*[[mnew]] - ([[n]] + 1)*[[m]]",
+   "[[mnew]] - [[m]]",
+   "([[n]] + 1)*[[m]] - [[n]]*[[mnew]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The new total is \\( ([[n]]+1)\\cdot[[mnew]] \\) and the old total was \\( [[n]]\\cdot[[m]] \\), so the added value is the difference: \\( ([[n]]+1)[[mnew]] - [[n]][[m]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the added value simply equals the new mean.",
+   "This swaps which mean gets multiplied by \\( [[n]]+1\\) versus \\( [[n]] \\).",
+   "This is just the change in the mean, not the value that produced that change.",
+   "This has the wrong sign, giving the negative of the correct added value.",
+   "This is off by one from the correct added value."
+  ]
+ }
+]

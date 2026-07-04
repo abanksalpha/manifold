@@ -1,0 +1,234 @@
+[
+{
+ "template_id": "trapezoidal_rule_v1",
+ "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "h": {"type": "choice", "values": [1, 2]},
+  "y0": {"type": "int", "lo": 1, "hi": 9},
+  "y1": {"type": "int", "lo": 1, "hi": 9},
+  "y2": {"type": "int", "lo": 1, "hi": 9},
+  "y3": {"type": "int", "lo": 1, "hi": 9},
+  "y4": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "derived": {"x1": "[[h]]", "x2": "2*[[h]]", "x3": "3*[[h]]", "x4": "4*[[h]]"},
+ "stem": "A function \\( f \\) is sampled at five equally spaced points with spacing \\( h = [[h]] \\): \\( f(0) = [[y0]] \\), \\( f([[x1]]) = [[y1]] \\), \\( f([[x2]]) = [[y2]] \\), \\( f([[x3]]) = [[y3]] \\), \\( f([[x4]]) = [[y4]] \\). Using the trapezoidal rule with these four subintervals, approximate \\( \\displaystyle\\int_{0}^{[[x4]]} f(x)\\,dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[h]]/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + 2*[[y3]] + [[y4]])"},
+ "distractors": [
+  "([[h]]/2)*([[y0]] + [[y1]] + [[y2]] + [[y3]] + [[y4]])",
+  "[[h]]*([[y0]] + 2*[[y1]] + 2*[[y2]] + 2*[[y3]] + [[y4]])",
+  "[[h]]*([[y0]] + [[y1]] + [[y2]] + [[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + 4*[[y1]] + 2*[[y2]] + 4*[[y3]] + [[y4]])",
+  "([[h]]/2)*(2*[[y0]] + [[y1]] + [[y2]] + [[y3]] + 2*[[y4]])",
+  "[[answer]] + 1"
+ ],
+ "solution": "The trapezoidal rule with spacing \\( h \\) gives \\( \\dfrac{h}{2}\\big(y_0 + 2y_1 + 2y_2 + 2y_3 + y_4\\big) = \\dfrac{[[h]]}{2}\\big([[y0]] + 2([[y1]]) + 2([[y2]]) + 2([[y3]]) + [[y4]]\\big) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double the interior ordinates \\( y_1, y_2, y_3 \\).",
+  "This omits the factor of \\( \\tfrac{1}{2} \\) in \\( \\tfrac{h}{2} \\).",
+  "This both omits the \\( \\tfrac{1}{2} \\) and fails to double the interior ordinates.",
+  "This applies Simpson's weights \\( (1,4,2,4,1)\\tfrac{h}{3} \\) instead of the trapezoidal rule.",
+  "This doubles the endpoints instead of the interior ordinates.",
+  "This is off by one from the correct approximation."
+ ]
+},
+{
+ "template_id": "simpson_rule_table_v1",
+ "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "h": {"type": "choice", "values": [1, 2]},
+  "y0": {"type": "int", "lo": 1, "hi": 9},
+  "y1": {"type": "int", "lo": 1, "hi": 9},
+  "y2": {"type": "int", "lo": 1, "hi": 9},
+  "y3": {"type": "int", "lo": 1, "hi": 9},
+  "y4": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "derived": {"x1": "[[h]]", "x2": "2*[[h]]", "x3": "3*[[h]]", "x4": "4*[[h]]"},
+ "stem": "A function \\( f \\) is sampled at five equally spaced points with spacing \\( h = [[h]] \\): \\( f(0) = [[y0]] \\), \\( f([[x1]]) = [[y1]] \\), \\( f([[x2]]) = [[y2]] \\), \\( f([[x3]]) = [[y3]] \\), \\( f([[x4]]) = [[y4]] \\). Using Simpson's rule (with these four subintervals grouped into two double-panels), approximate \\( \\displaystyle\\int_{0}^{[[x4]]} f(x)\\,dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[h]]/3)*([[y0]] + 4*[[y1]] + 2*[[y2]] + 4*[[y3]] + [[y4]])"},
+ "distractors": [
+  "([[h]]/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + 2*[[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + 2*[[y1]] + 4*[[y2]] + 2*[[y3]] + [[y4]])",
+  "([[h]]/3)*([[y0]] + [[y1]] + [[y2]] + [[y3]] + [[y4]])",
+  "[[h]]*([[y0]] + 4*[[y1]] + 2*[[y2]] + 4*[[y3]] + [[y4]])",
+  "([[h]]/3)*(4*[[y0]] + 2*[[y1]] + 4*[[y2]] + 2*[[y3]] + 4*[[y4]])",
+  "[[answer]] + 1"
+ ],
+ "solution": "Simpson's rule with spacing \\( h \\) gives \\( \\dfrac{h}{3}\\big(y_0 + 4y_1 + 2y_2 + 4y_3 + y_4\\big) = \\dfrac{[[h]]}{3}\\big([[y0]] + 4([[y1]]) + 2([[y2]]) + 4([[y3]]) + [[y4]]\\big) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies the trapezoidal rule's weights instead of Simpson's.",
+  "This swaps the \\( 4 \\) and \\( 2 \\) weights on the interior points.",
+  "This omits all the Simpson weights, just averaging with \\( \\tfrac{h}{3} \\).",
+  "This omits the \\( \\tfrac{1}{3} \\) factor entirely.",
+  "This shifts the alternating weight pattern by one position.",
+  "This is off by one from the correct approximation."
+ ]
+},
+{
+ "template_id": "trapezoidal_from_function_v1",
+ "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": 1, "hi": 3},
+  "A": {"type": "int", "lo": 1, "hi": 3},
+  "B": {"type": "int", "lo": -3, "hi": 3},
+  "C": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {
+  "h": "[[k]]",
+  "b": "[[a]] + 4*[[k]]",
+  "x1": "[[a]] + [[k]]",
+  "x2": "[[a]] + 2*[[k]]",
+  "x3": "[[a]] + 3*[[k]]"
+ },
+ "stem": "Let \\( f(x) = [[A]]x^{2} + ([[B]])x + ([[C]]) \\). Using the composite trapezoidal rule with 4 equal subintervals of width \\( h = [[h]] \\) on \\( [[[a]], [[b]]] \\), approximate \\( \\displaystyle\\int_{[[a]]}^{[[b]]} f(x)\\,dx \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "([[h]]/2)*(([[A]]*[[a]]**2+[[B]]*[[a]]+[[C]]) + 2*([[A]]*[[x1]]**2+[[B]]*[[x1]]+[[C]]) + 2*([[A]]*[[x2]]**2+[[B]]*[[x2]]+[[C]]) + 2*([[A]]*[[x3]]**2+[[B]]*[[x3]]+[[C]]) + ([[A]]*[[b]]**2+[[B]]*[[b]]+[[C]]))"
+ },
+ "distractors": [
+  "[[h]]*(([[A]]*[[a]]**2+[[B]]*[[a]]+[[C]]) + ([[A]]*[[x1]]**2+[[B]]*[[x1]]+[[C]]) + ([[A]]*[[x2]]**2+[[B]]*[[x2]]+[[C]]) + ([[A]]*[[x3]]**2+[[B]]*[[x3]]+[[C]]) + ([[A]]*[[b]]**2+[[B]]*[[b]]+[[C]]))",
+  "([[h]]/3)*(([[A]]*[[a]]**2+[[B]]*[[a]]+[[C]]) + 4*([[A]]*[[x1]]**2+[[B]]*[[x1]]+[[C]]) + 2*([[A]]*[[x2]]**2+[[B]]*[[x2]]+[[C]]) + 4*([[A]]*[[x3]]**2+[[B]]*[[x3]]+[[C]]) + ([[A]]*[[b]]**2+[[B]]*[[b]]+[[C]]))",
+  "(([[A]])*([[b]]**3-[[a]]**3)/3 + ([[B]])*([[b]]**2-[[a]]**2)/2 + ([[C]])*([[b]]-[[a]]))",
+  "([[h]]/2)*(([[A]]*[[a]]**2+[[B]]*[[a]]+[[C]]) + ([[A]]*[[x1]]**2+[[B]]*[[x1]]+[[C]]) + ([[A]]*[[x2]]**2+[[B]]*[[x2]]+[[C]]) + ([[A]]*[[x3]]**2+[[B]]*[[x3]]+[[C]]) + ([[A]]*[[b]]**2+[[B]]*[[b]]+[[C]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Evaluating \\( f \\) at the five equally spaced nodes and combining with trapezoidal weights \\( \\dfrac{h}{2}(1,2,2,2,1) \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets both the \\( \\tfrac{1}{2} \\) factor and the doubling of interior nodes.",
+  "This applies Simpson's weights instead of the trapezoidal rule's.",
+  "This reports the EXACT integral of \\( f \\), not the trapezoidal approximation.",
+  "This forgets to double the interior node values.",
+  "This is off by one from the correct approximation.",
+  "This is off by one from the correct approximation."
+ ]
+},
+{
+ "template_id": "simpson_from_function_v1",
+ "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": 1, "hi": 3},
+  "A": {"type": "int", "lo": 1, "hi": 3},
+  "B": {"type": "int", "lo": -3, "hi": 3},
+  "C": {"type": "int", "lo": -3, "hi": 3},
+  "D": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {
+  "b": "[[a]] + 2*[[k]]",
+  "m": "[[a]] + [[k]]"
+ },
+ "stem": "Let \\( f(x) = [[A]]x^{3} + [[B]]x^{2} + ([[C]])x + ([[D]]) \\). Using Simpson's rule with the midpoint \\( m = [[m]] \\) (so two subintervals of width \\( [[k]] \\)) on \\( [[[a]], [[b]]] \\), approximate \\( \\displaystyle\\int_{[[a]]}^{[[b]]} f(x)\\,dx \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "([[k]]/3)*(([[A]]*[[a]]**3+[[B]]*[[a]]**2+[[C]]*[[a]]+[[D]]) + 4*([[A]]*[[m]]**3+[[B]]*[[m]]**2+[[C]]*[[m]]+[[D]]) + ([[A]]*[[b]]**3+[[B]]*[[b]]**2+[[C]]*[[b]]+[[D]]))"
+ },
+ "distractors": [
+  "([[k]]/2)*(([[A]]*[[a]]**3+[[B]]*[[a]]**2+[[C]]*[[a]]+[[D]]) + 2*([[A]]*[[m]]**3+[[B]]*[[m]]**2+[[C]]*[[m]]+[[D]]) + ([[A]]*[[b]]**3+[[B]]*[[b]]**2+[[C]]*[[b]]+[[D]]))",
+  "[[k]]*(([[A]]*[[a]]**3+[[B]]*[[a]]**2+[[C]]*[[a]]+[[D]]) + 4*([[A]]*[[m]]**3+[[B]]*[[m]]**2+[[C]]*[[m]]+[[D]]) + ([[A]]*[[b]]**3+[[B]]*[[b]]**2+[[C]]*[[b]]+[[D]]))",
+  "([[k]]/3)*(([[A]]*[[a]]**3+[[B]]*[[a]]**2+[[C]]*[[a]]+[[D]]) + ([[A]]*[[m]]**3+[[B]]*[[m]]**2+[[C]]*[[m]]+[[D]]) + ([[A]]*[[b]]**3+[[B]]*[[b]]**2+[[C]]*[[b]]+[[D]]))",
+  "(([[A]])*([[b]]**4-[[a]]**4)/4 + ([[B]])*([[b]]**3-[[a]]**3)/3 + ([[C]])*([[b]]**2-[[a]]**2)/2 + ([[D]])*([[b]]-[[a]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Evaluating \\( f \\) at \\( a, m, b \\) and combining with Simpson's weights \\( \\dfrac{k}{3}(1,4,1) \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies the trapezoidal rule's weights instead of Simpson's.",
+  "This forgets the \\( \\tfrac{1}{3} \\) factor entirely.",
+  "This forgets to weight the midpoint value by \\( 4 \\).",
+  "This reports the EXACT integral of \\( f \\), not Simpson's approximation.",
+  "This is off by one from the correct approximation.",
+  "This is off by one from the correct approximation."
+ ]
+},
+{
+ "template_id": "trapezoidal_unequal_spacing_v1",
+ "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "x0": {"type": "int", "lo": -2, "hi": 2},
+  "h1": {"type": "choice", "values": [1, 2, 3]},
+  "h2": {"type": "choice", "values": [1, 2, 3]},
+  "h3": {"type": "choice", "values": [1, 2, 3]},
+  "y0": {"type": "int", "lo": 1, "hi": 8},
+  "y1": {"type": "int", "lo": 1, "hi": 8},
+  "y2": {"type": "int", "lo": 1, "hi": 8},
+  "y3": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[h1]], [[h2]])", "Ne([[h2]], [[h3]])"],
+ "derived": {
+  "x1": "[[x0]] + [[h1]]",
+  "x2": "[[x0]] + [[h1]] + [[h2]]",
+  "x3": "[[x0]] + [[h1]] + [[h2]] + [[h3]]"
+ },
+ "stem": "A function \\( f \\) is sampled at four UNEVENLY spaced points: \\( f([[x0]]) = [[y0]] \\), \\( f([[x1]]) = [[y1]] \\), \\( f([[x2]]) = [[y2]] \\), \\( f([[x3]]) = [[y3]] \\), where the subinterval widths are \\( x_1-x_0 = [[h1]] \\), \\( x_2-x_1 = [[h2]] \\), \\( x_3-x_2 = [[h3]] \\). Using the trapezoidal rule on each subinterval, approximate \\( \\displaystyle\\int_{[[x0]]}^{[[x3]]} f(x)\\,dx \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "([[h1]]/2)*([[y0]] + [[y1]]) + ([[h2]]/2)*([[y1]] + [[y2]]) + ([[h3]]/2)*([[y2]] + [[y3]])"
+ },
+ "distractors": [
+  "((([[h1]]+[[h2]]+[[h3]])/3)/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + [[y3]])",
+  "[[h1]]*([[y0]] + [[y1]]) + [[h2]]*([[y1]] + [[y2]]) + [[h3]]*([[y2]] + [[y3]])",
+  "([[h1]]/2)*([[y0]] + [[y1]]) + ([[h2]]/2)*([[y1]] + [[y2]])",
+  "([[h3]]/2)*([[y0]] + [[y1]]) + ([[h2]]/2)*([[y1]] + [[y2]]) + ([[h1]]/2)*([[y2]] + [[y3]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Summing the trapezoidal area of each (possibly different-width) panel gives \\( \\dfrac{h_1}{2}(y_0+y_1) + \\dfrac{h_2}{2}(y_1+y_2) + \\dfrac{h_3}{2}(y_2+y_3) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes uniform spacing, using the average width for every panel.",
+  "This forgets the \\( \\tfrac{1}{2} \\) factor on each panel.",
+  "This drops the last panel entirely.",
+  "This uses the subinterval widths in the wrong order.",
+  "This is off by one from the correct approximation.",
+  "This is off by one from the correct approximation."
+ ]
+},
+{
+ "template_id": "trapezoidal_solve_missing_value_v1",
+ "skill_id": "trapezoidal_or_simpson_approximation_of_a_definite_i",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "h": {"type": "choice", "values": [1, 2]},
+  "y0": {"type": "int", "lo": 1, "hi": 8},
+  "y1": {"type": "int", "lo": 1, "hi": 8},
+  "y2": {"type": "int", "lo": 1, "hi": 8},
+  "y3": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"T": "([[h]]/2)*([[y0]] + 2*[[y1]] + 2*[[y2]] + [[y3]])"},
+ "stem": "A function \\( f \\) is sampled at four equally spaced points with spacing \\( h = [[h]] \\): \\( f(x_0) = [[y0]] \\), \\( f(x_1) = [[y1]] \\), \\( f(x_2) = [[y2]] \\), and \\( f(x_3) = y_3 \\) (unknown). The trapezoidal rule estimate of \\( \\int_{x_0}^{x_3} f(x)\\,dx \\) using these four points is \\( [[T]] \\). What is \\( y_3 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[T]]/[[h]] - [[y0]] - 2*[[y1]] - 2*[[y2]]"},
+ "distractors": [
+  "2*[[T]]/[[h]] - [[y0]] - [[y1]] - [[y2]]",
+  "[[T]]/[[h]] - [[y0]] - 2*[[y1]] - 2*[[y2]]",
+  "2*[[T]]/[[h]] + [[y0]] + 2*[[y1]] + 2*[[y2]]",
+  "[[T]] - [[y0]] - [[y1]] - [[y2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "From \\( T = \\dfrac{h}{2}(y_0+2y_1+2y_2+y_3) \\), solving for \\( y_3 \\) gives \\( y_3 = \\dfrac{2T}{h} - y_0 - 2y_1 - 2y_2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double \\( y_1 \\) and \\( y_2 \\) when inverting the formula.",
+  "This forgets the factor of \\( 2 \\) multiplying \\( T/h \\).",
+  "This has the sign of the known terms flipped.",
+  "This ignores the spacing \\( h \\) and the required doubling of interior terms entirely.",
+  "This is off by one from the correct missing value.",
+  "This is off by one from the correct missing value."
+ ]
+}
+]

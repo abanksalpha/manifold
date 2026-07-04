@@ -1,0 +1,133 @@
+[
+ {
+  "template_id": "sample_variance_n_minus_1_v1",
+  "skill_id": "unbiased_estimators_and_the_n_1_divisor",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "x1": {"type": "int", "lo": 1, "hi": 9},
+   "x2": {"type": "int", "lo": 1, "hi": 9},
+   "x3": {"type": "int", "lo": 1, "hi": 9},
+   "x4": {"type": "int", "lo": 1, "hi": 9},
+   "x5": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": ["Eq(Mod([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]], 5), 0)"],
+  "derived": {
+   "mbar": "([[x1]] + [[x2]] + [[x3]] + [[x4]] + [[x5]])/5",
+   "ssq": "([[x1]] - [[mbar]])**2 + ([[x2]] - [[mbar]])**2 + ([[x3]] - [[mbar]])**2 + ([[x4]] - [[mbar]])**2 + ([[x5]] - [[mbar]])**2"
+  },
+  "stem": "A random sample of five observations, \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\), has sample mean \\( [[mbar]] \\). What is the sample variance (the unbiased estimate that divides by \\( n-1 \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "[[ssq]]/4"},
+  "distractors": [
+   "[[ssq]]/5",
+   "[[ssq]]",
+   "[[ssq]]/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The unbiased sample variance divides the summed squared deviations from \\( \\bar{x} = [[mbar]] \\) by \\( n-1 = 4 \\): \\( s^2 = \\frac{[[ssq]]}{4} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( n = 5 \\); that is the (biased) population variance, not the unbiased sample variance.",
+   "This is the total of the squared deviations without dividing at all.",
+   "This divides by \\( n-2 = 3 \\); the unbiased divisor is \\( n-1 \\), not \\( n-2 \\).",
+   "This is off by one from the correct sample variance."
+  ]
+ },
+ {
+  "template_id": "sample_standard_deviation_n_minus_1_v1",
+  "skill_id": "unbiased_estimators_and_the_n_1_divisor",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": -10, "hi": 10},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "x1": "[[m]] - 2*[[k]]",
+   "x2": "[[m]] - 2*[[k]]",
+   "x3": "[[m]]",
+   "x4": "[[m]] + 2*[[k]]",
+   "x5": "[[m]] + 2*[[k]]"
+  },
+  "stem": "A random sample of five observations, \\( \\{ [[x1]],\\, [[x2]],\\, [[x3]],\\, [[x4]],\\, [[x5]] \\} \\), has sample mean \\( [[x3]] \\). What is the sample standard deviation (the square root of the unbiased variance, dividing by \\( n-1 \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((([[x1]]-[[x3]])**2 + ([[x2]]-[[x3]])**2 + ([[x3]]-[[x3]])**2 + ([[x4]]-[[x3]])**2 + ([[x5]]-[[x3]])**2)/4)"},
+  "distractors": [
+   "sqrt((([[x1]]-[[x3]])**2 + ([[x2]]-[[x3]])**2 + ([[x3]]-[[x3]])**2 + ([[x4]]-[[x3]])**2 + ([[x5]]-[[x3]])**2)/5)",
+   "(([[x1]]-[[x3]])**2 + ([[x2]]-[[x3]])**2 + ([[x3]]-[[x3]])**2 + ([[x4]]-[[x3]])**2 + ([[x5]]-[[x3]])**2)/4",
+   "sqrt([[x1]]**2 + [[x2]]**2 + [[x3]]**2 + [[x4]]**2 + [[x5]]**2)/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Take the square root of the unbiased sample variance: \\( s = \\sqrt{\\dfrac{(-2[[k]])^2+(-2[[k]])^2+0^2+(2[[k]])^2+(2[[k]])^2}{4}} = \\sqrt{4[[k]]^2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( n=5 \\) inside the square root; that gives the population standard deviation, not the sample one.",
+   "This is the sample variance itself, without taking the square root.",
+   "This takes the square root of the sum of squared VALUES (not deviations from the mean) before dividing.",
+   "This is off by one from the correct sample standard deviation.",
+   "This is off by one from the correct sample standard deviation."
+  ]
+ },
+ {
+  "template_id": "biased_to_unbiased_variance_ratio_v1",
+  "skill_id": "unbiased_estimators_and_the_n_1_divisor",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "choice", "values": [4, 5, 6, 8, 10, 12, 15, 20]},
+   "base": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": [],
+  "derived": {"V": "([[n]] - 1)*[[base]]"},
+  "stem": "For a sample of \\( [[n]] \\) observations, the biased (population-formula) variance — dividing the summed squared deviations by \\( n \\) — is \\( [[V]] \\). What is the unbiased sample variance (dividing that same sum by \\( n-1 \\) instead)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[V]]*[[n]]/([[n]] - 1)"},
+  "distractors": [
+   "[[V]]",
+   "[[V]]*([[n]] - 1)/[[n]]",
+   "[[V]]/[[n]]",
+   "[[V]]*[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both formulas share the same sum of squared deviations, \\( n\\cdot[[V]] \\), so the unbiased variance is \\( \\dfrac{n\\cdot[[V]]}{n-1} = \\dfrac{[[n]]\\cdot[[V]]}{[[n]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the biased and unbiased variances are always equal.",
+   "This inverts the adjustment ratio, multiplying by \\( (n-1)/n \\) instead of \\( n/(n-1) \\).",
+   "This divides the biased variance by \\( n \\) again instead of rescaling by \\( n/(n-1) \\).",
+   "This multiplies the biased variance by \\( n \\) without dividing by \\( n-1 \\) at all.",
+   "This is off by one from the correct unbiased variance."
+  ]
+ },
+ {
+  "template_id": "solve_sample_size_from_ssq_and_variance_v1",
+  "skill_id": "unbiased_estimators_and_the_n_1_divisor",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 1, "hi": 15},
+   "base": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "derived": {"S": "[[V]]*[[base]]"},
+  "stem": "A sample has sum of squared deviations from the mean equal to \\( [[S]] \\). If the unbiased sample variance (dividing by \\( n-1 \\)) is \\( [[V]] \\), what is the sample size \\( n \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[S]]/[[V]] + 1"},
+  "distractors": [
+   "[[S]]/[[V]]",
+   "[[S]]/[[V]] - 1",
+   "[[V]]/[[S]] + 1",
+   "[[S]]*[[V]] + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( [[V]] = \\dfrac{[[S]]}{n-1} \\), solving for \\( n \\) gives \\( n = \\dfrac{[[S]]}{[[V]]} + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This finds \\( n-1 \\) but forgets to add 1 to get \\( n \\) itself.",
+   "This subtracts 1 instead of adding it, moving in the wrong direction from \\( n-1 \\).",
+   "This inverts the ratio, dividing \\( [[V]] \\) by \\( [[S]] \\) instead of the other way around.",
+   "This multiplies the sum of squares by the variance instead of dividing.",
+   "This is off by one from the correct sample size."
+  ]
+ }
+]

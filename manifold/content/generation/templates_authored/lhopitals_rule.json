@@ -1,0 +1,155 @@
+[
+{
+ "template_id": "lhopital_power_form_v1",
+ "skill_id": "lhopitals_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": ["Ne([[x0]], 0)"],
+ "stem": "Evaluate the limit \\( \\displaystyle\\lim_{x \\to [[x0]]} \\dfrac{x^{[[n]]} - ([[x0]])^{[[n]]}}{x - [[x0]]} \\), which has the indeterminate form \\( \\frac{0}{0} \\).",
+ "answer_spec": {"op": "limit", "expr": "(x**[[n]] - ([[x0]])**[[n]])/(x-[[x0]])", "var": "x", "point": "[[x0]]"},
+ "distractors": [
+  "([[x0]])**[[n]]",
+  "[[n]]*([[x0]])**[[n]]",
+  "([[n]]-1)*([[x0]])**([[n]]-2)",
+  "[[x0]]",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "By L'Hopital's rule, differentiate top and bottom: \\( \\displaystyle\\lim_{x\\to [[x0]]}\\dfrac{[[n]]x^{[[n]]-1}}{1} = [[n]]([[x0]])^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This plugs \\( x=[[x0]] \\) into the original numerator instead of applying L'Hopital's rule.",
+  "This forgets to lower the exponent by one after differentiating.",
+  "This differentiates a second time even though the limit was already determinate after one application.",
+  "This reports the point of evaluation itself, not the value of the limit.",
+  "This is off by \\( [[n]] \\) from the correct value.",
+  "This is off by \\( [[n]] \\) from the correct value."
+ ]
+},
+{
+ "template_id": "lhopital_trig_ratio_v2",
+ "skill_id": "lhopitals_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Evaluate the limit \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{\\sin([[a]]x)}{\\sin([[b]]x)} \\), which has the indeterminate form \\( \\frac{0}{0} \\).",
+ "answer_spec": {"op": "limit", "expr": "sin([[a]]*x)/sin([[b]]*x)", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[b]],[[a]])",
+  "[[a]]*[[b]]",
+  "Rational([[a]]**2,[[b]]**2)",
+  "[[a]] - [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By L'Hopital's rule, differentiate top and bottom: \\( \\displaystyle\\lim_{x\\to 0}\\dfrac{[[a]]\\cos([[a]]x)}{[[b]]\\cos([[b]]x)} = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\) (since \\( \\cos(0)=1 \\)).",
+ "distractor_rationales": [
+  "This inverts the correct ratio \\( a/b \\).",
+  "This multiplies the coefficients instead of taking their ratio.",
+  "This squares both coefficients before taking the ratio.",
+  "This subtracts the coefficients instead of dividing them.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "lhopital_rational_infinity_v3",
+ "skill_id": "lhopitals_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -8, "hi": 8},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -8, "hi": 8},
+  "f": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "Evaluate the limit \\( \\displaystyle\\lim_{x \\to \\infty} \\dfrac{[[a]]x^{2} + ([[b]])x + ([[c]])}{[[d]]x^{2} + ([[e]])x + ([[f]])} \\), which has the indeterminate form \\( \\frac{\\infty}{\\infty} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x**2+[[b]]*x+[[c]])/([[d]]*x**2+[[e]]*x+[[f]])", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[b]],[[e]])",
+  "Rational([[c]],[[f]])",
+  "Rational([[d]],[[a]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Applying L'Hopital's rule twice (or dividing every term by \\( x^{2} \\)): \\( \\displaystyle\\lim_{x\\to\\infty}\\dfrac{2[[a]]x+([[b]])}{2[[d]]x+([[e]])} = \\lim_{x\\to\\infty}\\dfrac{2[[a]]}{2[[d]]} = \\dfrac{[[a]]}{[[d]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This takes the ratio of the linear coefficients instead of the leading quadratic coefficients.",
+  "This takes the ratio of the constant terms instead of the leading coefficients.",
+  "This inverts the correct ratio of leading coefficients.",
+  "This mistakenly assumes a rational function with equal degrees always tends to 0 at infinity.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "lhopital_exp_over_trig_v4",
+ "skill_id": "lhopitals_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Evaluate the limit \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{e^{[[a]]x} - 1}{\\sin([[b]]x)} \\), which has the indeterminate form \\( \\frac{0}{0} \\).",
+ "answer_spec": {"op": "limit", "expr": "(exp([[a]]*x)-1)/sin([[b]]*x)", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[b]],[[a]])",
+  "[[a]]*[[b]]",
+  "Rational([[a]],[[b]]**2)",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By L'Hopital's rule, differentiate top and bottom: \\( \\displaystyle\\lim_{x\\to 0}\\dfrac{[[a]]e^{[[a]]x}}{[[b]]\\cos([[b]]x)} = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\) (since \\( e^{0}=1 \\) and \\( \\cos(0)=1 \\)).",
+ "distractor_rationales": [
+  "This inverts the correct ratio \\( a/b \\).",
+  "This multiplies the rate constants instead of dividing them.",
+  "This squares the denominator's constant instead of leaving it linear.",
+  "This mistakenly assumes the limit vanishes just because the numerator does at \\( x=0 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "lhopital_double_application_v5",
+ "skill_id": "lhopitals_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Evaluate the limit \\( \\displaystyle\\lim_{x \\to 0} \\dfrac{1 - \\cos([[a]]x)}{x^{2}} \\), which has the indeterminate form \\( \\frac{0}{0} \\) (L'Hopital's rule must be applied twice).",
+ "answer_spec": {"op": "limit", "expr": "(1-cos([[a]]*x))/x**2", "var": "x", "point": 0},
+ "distractors": [
+  "Rational([[a]],2)",
+  "[[a]]**2",
+  "Rational([[a]]**2,4)",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Applying L'Hopital's rule once gives \\( \\displaystyle\\lim_{x\\to 0}\\dfrac{[[a]]\\sin([[a]]x)}{2x} \\), still \\( \\frac{0}{0} \\). Applying it again gives \\( \\displaystyle\\lim_{x\\to 0}\\dfrac{[[a]]^{2}\\cos([[a]]x)}{2} = \\dfrac{[[a]]^{2}}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This stops after only one application of L'Hopital's rule, which is still indeterminate.",
+  "This forgets to divide by 2 after the second application.",
+  "This divides by an extra factor of 2, undercounting the correct value.",
+  "This mistakenly assumes the limit is 0 just because the numerator vanishes at \\( x=0 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

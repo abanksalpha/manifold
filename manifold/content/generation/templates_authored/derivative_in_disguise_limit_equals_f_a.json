@@ -1,0 +1,171 @@
+[
+{
+ "template_id": "derivative_in_disguise_limit_v1",
+ "skill_id": "derivative_in_disguise_limit_equals_f_a",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 15
+  },
+  "n": {
+   "type": "choice",
+   "values": [
+    2,
+    3,
+    4
+   ]
+  }
+ },
+ "constraints": [],
+ "derived": {
+  "an": "[[a]]**[[n]]"
+ },
+ "stem": "Evaluate \\( \\lim_{h \\to 0} \\frac{([[a]] + h)^{[[n]]} - [[an]]}{h} \\).",
+ "answer_spec": {
+  "op": "limit",
+  "expr": "(([[a]] + h)**[[n]] - ([[an]]))/h",
+  "var": "h",
+  "point": 0
+ },
+ "distractors": [
+  "[[a]]**[[n]]",
+  "[[n]]*[[a]]**[[n]]",
+  "[[a]]**([[n]] - 1)",
+  "([[n]] - 1)*[[a]]**([[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "This difference quotient is the derivative of \\( f(x) = x^{[[n]]} \\) at \\( x = [[a]] \\). Since \\( f'(x) = [[n]]x^{[[n]]-1} \\), the limit is \\( [[n]]\\cdot[[a]]^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\( f([[a]]) \\), the function value, instead of its derivative.",
+  "This keeps the full power \\( a^{n} \\) instead of reducing it by one.",
+  "This forgets to multiply by the exponent \\( n \\).",
+  "This lowers the exponent used as the coefficient by one.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "derivative_in_disguise_exp_v2",
+ "skill_id": "derivative_in_disguise_limit_equals_f_a",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "require_rational": false,
+ "stem": "Evaluate \\( \\lim_{h \\to 0} \\frac{e^{[[a]] + h} - e^{[[a]]}}{h} \\).",
+ "answer_spec": {"op": "limit", "expr": "(exp([[a]] + h) - exp([[a]]))/h", "var": "h", "point": 0},
+ "distractors": [
+  "exp([[a]])*[[a]]",
+  "[[a]]*E",
+  "exp(-[[a]])",
+  "exp([[a]] + 1)",
+  "[[a]]",
+  "E"
+ ],
+ "solution": "This difference quotient is the derivative of \\( f(x) = e^{x} \\) at \\( x = [[a]] \\). Since \\( f'(x) = e^{x} \\), the limit is \\( f'([[a]]) = e^{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the correct value by \\( a \\), confusing \\( f'(x)=e^{x} \\) with the derivative of \\( a e^{x} \\).",
+  "This multiplies \\( a \\) by \\( e \\) instead of exponentiating.",
+  "This has the wrong sign in the exponent.",
+  "This shifts the exponent by one instead of leaving it unchanged.",
+  "This evaluates the exponent alone rather than \\( e \\) raised to it.",
+  "This drops the exponent \\( a \\) entirely."
+ ]
+},
+{
+ "template_id": "derivative_in_disguise_reciprocal_v3",
+ "skill_id": "derivative_in_disguise_limit_equals_f_a",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\lim_{h \\to 0} \\frac{1}{h}\\left( \\frac{1}{[[a]] + h} - \\frac{1}{[[a]]} \\right) \\).",
+ "answer_spec": {"op": "limit", "expr": "(1/([[a]] + h) - Rational(1, [[a]]))/h", "var": "h", "point": 0},
+ "distractors": [
+  "Rational(1, [[a]]**2)",
+  "-Rational(1, [[a]])",
+  "Rational(1, [[a]])",
+  "-[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "This difference quotient is the derivative of \\( f(x) = \\dfrac{1}{x} \\) at \\( x = [[a]] \\). Since \\( f'(x) = -\\dfrac{1}{x^{2}} \\), the limit is \\( f'([[a]]) = -\\dfrac{1}{[[a]]^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the minus sign from \\( f'(x) = -1/x^{2} \\).",
+  "This uses \\( f(x)=1/x \\) itself rather than its derivative.",
+  "This flips both the sign and the missing square.",
+  "This confuses the derivative with \\( -a \\) instead of \\( -1/a^{2} \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "derivative_in_disguise_log_v4",
+ "skill_id": "derivative_in_disguise_limit_equals_f_a",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\lim_{h \\to 0} \\frac{\\ln([[a]] + h) - \\ln([[a]])}{h} \\).",
+ "answer_spec": {"op": "limit", "expr": "(log([[a]] + h) - log([[a]]))/h", "var": "h", "point": 0},
+ "distractors": [
+  "[[a]]",
+  "-Rational(1, [[a]])",
+  "Rational(1, [[a]]**2)",
+  "log([[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "This difference quotient is the derivative of \\( f(x) = \\ln(x) \\) at \\( x = [[a]] \\). Since \\( f'(x) = \\dfrac{1}{x} \\), the limit is \\( f'([[a]]) = \\dfrac{1}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the derivative \\( 1/a \\) with \\( a \\) itself.",
+  "This has the wrong sign.",
+  "This squares the denominator, confusing \\( \\ln \\) with \\( 1/x \\)'s derivative rule.",
+  "This returns \\( \\ln(a) \\), the function value, instead of the derivative.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "derivative_in_disguise_trig_v5",
+ "skill_id": "derivative_in_disguise_limit_equals_f_a",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "choice", "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+ },
+ "constraints": [],
+ "stem": "Let \\( \\theta_0 = \\dfrac{[[k]]\\pi}{2} \\). Evaluate \\( \\lim_{h \\to 0} \\frac{\\sin(\\theta_0 + h) - \\sin(\\theta_0)}{h} \\).",
+ "answer_spec": {"op": "limit", "expr": "(sin([[k]]*pi/2 + h) - sin([[k]]*pi/2))/h", "var": "h", "point": 0},
+ "distractors": [
+  "sin([[k]]*pi/2)",
+  "[[k]] + 10",
+  "[[k]] - 10",
+  "3*[[k]] + 4",
+  "[[answer]] + 5",
+  "[[answer]] - 5"
+ ],
+ "solution": "This difference quotient is the derivative of \\( f(x) = \\sin(x) \\) at \\( x = \\theta_0 \\). Since \\( f'(x) = \\cos(x) \\), the limit is \\( \\cos(\\theta_0) = \\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This returns \\( \\sin(\\theta_0) \\), the function value, instead of its derivative \\( \\cos(\\theta_0) \\).",
+  "This confuses the answer with the raw index \\( k \\) shifted by 10.",
+  "This confuses the answer with the raw index \\( k \\) shifted by -10.",
+  "This confuses the answer with a linear function of the index \\( k \\) instead of \\( \\cos(k\\pi/2) \\).",
+  "This is off by 5 from the correct value.",
+  "This is off by 5 from the correct value."
+ ]
+}
+]

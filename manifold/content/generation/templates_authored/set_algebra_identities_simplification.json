@@ -1,0 +1,193 @@
+[
+{
+ "template_id": "set_algebra_demorgan_union_v1",
+ "skill_id": "set_algebra_identities_simplification",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "U": {"type": "int", "lo": 30, "hi": 70},
+  "a": {"type": "int", "lo": 5, "hi": 25},
+  "b": {"type": "int", "lo": 5, "hi": 25},
+  "ab": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Le([[ab]], [[a]])", "Le([[ab]], [[b]])", "Le([[a]] + [[b]] - [[ab]], [[U]])"],
+ "stem": "Let \\( U \\) be a universal set with \\( |U| = [[U]] \\), and let \\( A, B \\subseteq U \\) with \\( |A| = [[a]] \\), \\( |B| = [[b]] \\), and \\( |A \\cap B| = [[ab]] \\). By De Morgan's law, \\( A^{c} \\cap B^{c} = (A \\cup B)^{c} \\). Find \\( |A^{c} \\cap B^{c}| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[U]] - ([[a]] + [[b]] - [[ab]])"},
+ "distractors": [
+  "[[U]] - [[a]] - [[b]]",
+  "[[a]] + [[b]] - [[ab]]",
+  "[[U]] - [[ab]]",
+  "[[U]] - [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By De Morgan's law, \\( A^{c}\\cap B^{c} = (A\\cup B)^{c} \\), so \\( |A^{c}\\cap B^{c}| = |U| - |A\\cup B| = [[U]] - ([[a]]+[[b]]-[[ab]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add back the overlap \\( |A\\cap B| \\) that was subtracted twice when removing \\( A \\) and \\( B \\) separately.",
+  "This is \\( |A \\cup B| \\) itself, forgetting to take the complement.",
+  "This complements only the intersection \\( A\\cap B \\), not the union \\( A \\cup B \\).",
+  "This complements only \\( A \\), ignoring \\( B \\) entirely.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_algebra_distributive_v1",
+ "skill_id": "set_algebra_identities_simplification",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "ab": {"type": "int", "lo": 4, "hi": 20},
+  "ac": {"type": "int", "lo": 4, "hi": 20},
+  "abc": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Le([[abc]], [[ab]])", "Le([[abc]], [[ac]])"],
+ "stem": "Sets \\( A, B, C \\) satisfy \\( |A \\cap B| = [[ab]] \\), \\( |A \\cap C| = [[ac]] \\), and \\( |A \\cap B \\cap C| = [[abc]] \\). Using the distributive law \\( A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C) \\), find \\( |A \\cap (B \\cup C)| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[ab]] + [[ac]] - [[abc]]"},
+ "distractors": [
+  "[[ab]] + [[ac]]",
+  "[[ab]] + [[ac]] + [[abc]]",
+  "[[ab]]*[[ac]]",
+  "[[ac]] - [[abc]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( (A\\cap B) \\) and \\( (A\\cap C) \\) overlap in exactly \\( A\\cap B\\cap C \\), so by inclusion-exclusion on the union on the right-hand side: \\( |A\\cap(B\\cup C)| = |A\\cap B| + |A\\cap C| - |A\\cap B\\cap C| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the triple overlap \\( |A\\cap B\\cap C| \\), double-counting it.",
+  "This adds the triple overlap instead of subtracting it.",
+  "This multiplies the two intersection sizes instead of combining them by inclusion-exclusion.",
+  "This drops the \\( |A\\cap B| \\) term entirely.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_algebra_demorgan_difference_v1",
+ "skill_id": "set_algebra_identities_simplification",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 20, "hi": 45},
+  "ab": {"type": "int", "lo": 1, "hi": 8},
+  "ac": {"type": "int", "lo": 1, "hi": 8},
+  "abc": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [
+  "Le([[abc]], [[ab]])", "Le([[abc]], [[ac]])",
+  "Le([[ab]], [[a]])", "Le([[ac]], [[a]])",
+  "Le([[ab]] + [[ac]] - [[abc]], [[a]])"
+ ],
+ "stem": "Sets \\( A, B, C \\) satisfy \\( |A| = [[a]] \\), \\( |A \\cap B| = [[ab]] \\), \\( |A \\cap C| = [[ac]] \\), and \\( |A \\cap B \\cap C| = [[abc]] \\). Using the identity \\( A \\setminus (B \\cup C) = (A \\setminus B) \\cap (A \\setminus C) \\), find \\( |A \\setminus (B \\cup C)| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] - [[ab]] - [[ac]] + [[abc]]"},
+ "distractors": [
+  "[[a]] - [[ab]] - [[ac]]",
+  "[[a]] - [[ab]] - [[ac]] - [[abc]]",
+  "[[a]] - [[ab]]",
+  "[[a]] - [[ac]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A\\setminus(B\\cup C) = A \\setminus (A\\cap(B\\cup C)) \\), and \\( |A\\cap(B\\cup C)| = |A\\cap B|+|A\\cap C|-|A\\cap B\\cap C| \\), so \\( |A\\setminus(B\\cup C)| = |A| - |A\\cap B| - |A\\cap C| + |A\\cap B\\cap C| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add back the triple overlap, subtracting it out too many times.",
+  "This subtracts the triple overlap again instead of adding it back.",
+  "This only removes \\( A\\cap B \\), ignoring \\( C \\) entirely.",
+  "This only removes \\( A\\cap C \\), ignoring \\( B \\) entirely.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_algebra_demorgan_intersection_v1",
+ "skill_id": "set_algebra_identities_simplification",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "U": {"type": "int", "lo": 30, "hi": 90},
+  "ab": {"type": "int", "lo": 1, "hi": 25}
+ },
+ "constraints": ["Lt([[ab]], [[U]])"],
+ "stem": "Let \\( U \\) be a universal set with \\( |U| = [[U]] \\), and let \\( A, B \\subseteq U \\) with \\( |A \\cap B| = [[ab]] \\). By De Morgan's law, \\( A^{c} \\cup B^{c} = (A \\cap B)^{c} \\). Find \\( |A^{c} \\cup B^{c}| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[U]] - [[ab]]"},
+ "distractors": [
+  "[[U]] + [[ab]]",
+  "[[ab]]",
+  "[[U]]",
+  "2*[[U]] - [[ab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By De Morgan's law, \\( A^{c}\\cup B^{c} = (A\\cap B)^{c} \\), so \\( |A^{c}\\cup B^{c}| = |U| - |A\\cap B| = [[U]] - [[ab]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the overlap instead of subtracting it.",
+  "This reports the overlap itself, which is the complement of the correct set.",
+  "This forgets to remove the overlap at all.",
+  "This double-counts the universe before subtracting.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_algebra_distributive_dual_v1",
+ "skill_id": "set_algebra_identities_simplification",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 10, "hi": 35},
+  "bc": {"type": "int", "lo": 4, "hi": 20},
+  "abc": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Le([[abc]], [[bc]])", "Le([[abc]], [[a]])"],
+ "stem": "Sets \\( A, B, C \\) satisfy \\( |A| = [[a]] \\), \\( |B \\cap C| = [[bc]] \\), and \\( |A \\cap B \\cap C| = [[abc]] \\). Using the distributive law \\( A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C) \\), find \\( |A \\cup (B \\cap C)| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[bc]] - [[abc]]"},
+ "distractors": [
+  "[[a]] + [[bc]]",
+  "[[a]] + [[bc]] + [[abc]]",
+  "[[a]]*[[bc]]",
+  "[[bc]] - [[abc]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A \\) and \\( B\\cap C \\) overlap in exactly \\( A\\cap B\\cap C \\), so by inclusion-exclusion: \\( |A\\cup(B\\cap C)| = |A| + |B\\cap C| - |A\\cap B\\cap C| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the overlap \\( |A\\cap B\\cap C| \\), double-counting it.",
+  "This adds the overlap instead of subtracting it.",
+  "This multiplies the two sizes instead of combining them by inclusion-exclusion.",
+  "This drops the \\( |A| \\) term entirely.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "set_algebra_complement_of_difference_v1",
+ "skill_id": "set_algebra_identities_simplification",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "U": {"type": "int", "lo": 30, "hi": 90},
+  "a": {"type": "int", "lo": 10, "hi": 30},
+  "ab": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Le([[ab]], [[a]])", "Lt([[a]], [[U]])"],
+ "stem": "Let \\( U \\) be a universal set with \\( |U| = [[U]] \\), and let \\( A, B \\subseteq U \\) with \\( |A| = [[a]] \\) and \\( |A \\cap B| = [[ab]] \\). Using the identity \\( A^{c} \\cup B = (A \\setminus B)^{c} \\), find \\( |A^{c} \\cup B| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[U]] - [[a]] + [[ab]]"},
+ "distractors": [
+  "[[U]] - [[a]]",
+  "[[U]] - [[a]] - [[ab]]",
+  "[[U]] + [[a]] - [[ab]]",
+  "[[a]] - [[ab]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A\\setminus B \\) has \\( |A|-|A\\cap B| \\) elements, and \\( A^{c}\\cup B = (A\\setminus B)^{c} \\), so \\( |A^{c}\\cup B| = |U| - (|A|-|A\\cap B|) = [[U]] - [[a]] + [[ab]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add back the overlap \\( |A\\cap B| \\).",
+  "This subtracts the overlap instead of adding it back.",
+  "This adds \\( |A| \\) instead of subtracting it.",
+  "This reports \\( |A\\setminus B| \\) itself, forgetting to take the complement.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+}
+]

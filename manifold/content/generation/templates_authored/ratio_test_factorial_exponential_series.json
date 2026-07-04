@@ -1,0 +1,178 @@
+[
+ {
+  "template_id": "ratio_test_factorial_exponential_series_v1",
+  "skill_id": "ratio_test_factorial_exponential_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Ne([[q]], 4*[[p]])"
+  ],
+  "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dbinom{2n}{n}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\). Apply the ratio test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty}\\left|\\dfrac{a_{n+1}}{a_n}\\right| \\).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "((2*n+2)*(2*n+1)/(n+1)**2) * Rational([[p]],[[q]])",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])",
+   "4*Rational([[q]],[[p]])",
+   "2*Rational([[p]],[[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( \\binom{2n}{n} = \\dfrac{(2n)!}{(n!)^2} \\), the ratio is \\( \\dfrac{a_{n+1}}{a_n} = \\dfrac{(2n+2)(2n+1)}{(n+1)^2}\\cdot\\dfrac{[[p]]}{[[q]]} \\). As \\( n\\to\\infty \\) the fraction tends to \\( 4 \\), so \\( L = 4\\cdot\\dfrac{[[p]]}{[[q]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only the geometric ratio \\( \\frac{[[p]]}{[[q]]} \\), forgetting that \\( \\binom{2n}{n} \\) contributes a factor of \\( 4 \\).",
+   "This inverts the geometric ratio (and keeps the \\( 4 \\)).",
+   "This uses a factor of \\( 2 \\) instead of \\( 4 \\) for the binomial growth.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ },
+ {
+  "template_id": "ratio_test_factorial_exp_v2_factorial_denominator",
+  "skill_id": "ratio_test_factorial_exponential_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   }
+  },
+  "constraints": [],
+  "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{1}{n!}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\). Apply the ratio test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty}\\left|\\dfrac{a_{n+1}}{a_n}\\right| \\).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "(Rational([[p]],[[q]])/(n+1))",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])",
+   "Rational([[q]],[[p]])",
+   "1",
+   "[[p]]",
+   "[[q]]",
+   "4*Rational([[p]],[[q]])"
+  ],
+  "solution": "\\( \\dfrac{a_{n+1}}{a_n} = \\dfrac{1}{n+1}\\cdot\\dfrac{[[p]]}{[[q]]} \\), and as \\( n\\to\\infty \\) the factor \\( \\dfrac{1}{n+1}\\to 0 \\), so \\( L = 0 \\). Since \\( L=0 < 1 \\), the factorial in the denominator forces convergence regardless of \\( p,q \\).",
+  "distractor_rationales": [
+   "This drops the \\( \\frac{1}{n+1}\\to 0 \\) factor entirely, treating it as if it were a plain geometric series.",
+   "This drops the \\( \\frac{1}{n+1}\\to 0 \\) factor AND inverts the ratio.",
+   "This assumes the ratio test limit for a factorial-free geometric series (\\( L=1 \\)), the boundary case.",
+   "This mistakes the numerator parameter for the ratio-test limit.",
+   "This mistakes the denominator parameter for the ratio-test limit.",
+   "This mistakenly applies the central-binomial factor of \\( 4 \\) here, but there is no binomial coefficient."
+  ]
+ },
+ {
+  "template_id": "ratio_test_factorial_exp_v3_factorial_numerator",
+  "skill_id": "ratio_test_factorial_exponential_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   }
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = n!\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\). Apply the ratio test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty}\\left|\\dfrac{a_{n+1}}{a_n}\\right| \\).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "(n+1)*Rational([[p]],[[q]])",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])",
+   "Rational([[q]],[[p]])",
+   "1",
+   "0",
+   "4*Rational([[p]],[[q]])",
+   "[[p]]"
+  ],
+  "solution": "\\( \\dfrac{a_{n+1}}{a_n} = (n+1)\\cdot\\dfrac{[[p]]}{[[q]]} \\), and as \\( n\\to\\infty \\) this grows without bound, so \\( L = \\infty \\). Since \\( L>1 \\), the factorial in the numerator forces divergence regardless of \\( p,q \\).",
+  "distractor_rationales": [
+   "This drops the growing factor \\( (n+1) \\) entirely, treating this as if it were a plain geometric series.",
+   "This drops \\( (n+1) \\) AND inverts the ratio.",
+   "This assumes the boundary ratio-test value for a factorial-free geometric series.",
+   "This wrongly assumes the factorial in the numerator forces the ratio to vanish, the opposite of what happens.",
+   "This mistakenly applies the central-binomial factor of \\( 4 \\) here, but there is no binomial coefficient.",
+   "This mistakes the numerator parameter for the ratio-test limit."
+  ]
+ },
+ {
+  "template_id": "ratio_test_factorial_exp_v4_stirling_growth",
+  "skill_id": "ratio_test_factorial_exponential_series",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Consider \\( \\displaystyle\\sum_{n=1}^{\\infty} a_n \\) with \\( a_n = \\dfrac{n^{n}}{n!}\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{n} \\). Apply the ratio test: compute \\( L = \\displaystyle\\lim_{n\\to\\infty}\\left|\\dfrac{a_{n+1}}{a_n}\\right| \\).",
+  "answer_spec": {
+   "op": "limit",
+   "expr": "((n+1)/n)**n * Rational([[p]],[[q]])",
+   "var": "n",
+   "point": "oo"
+  },
+  "distractors": [
+   "Rational([[p]],[[q]])",
+   "Rational([[q]],[[p]])",
+   "exp(-1)*Rational([[p]],[[q]])",
+   "1",
+   "4*Rational([[p]],[[q]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "\\( \\dfrac{a_{n+1}}{a_n} = \\left(\\dfrac{n+1}{n}\\right)^{n}\\cdot\\dfrac{[[p]]}{[[q]]} \\), and \\( \\left(1+\\frac{1}{n}\\right)^{n}\\to e \\), so \\( L = e\\cdot\\dfrac{[[p]]}{[[q]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( \\left(\\frac{n+1}{n}\\right)^n \\to e \\) growth factor entirely.",
+   "This drops the \\( e \\) factor AND inverts the ratio.",
+   "This uses \\( 1/e \\) instead of \\( e \\), the reciprocal of the correct growth factor.",
+   "This assumes the boundary ratio-test value for a plain geometric series.",
+   "This mistakenly applies the central-binomial factor of \\( 4 \\) here instead of \\( e \\).",
+   "This is off by one from the correct limit."
+  ]
+ }
+]

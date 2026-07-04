@@ -1,0 +1,237 @@
+[
+ {
+  "template_id": "tangent_plane_constant_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "The tangent plane to the surface \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy + ([[d]]) \\) at the point where \\( (x, y) = ([[x0]], [[y0]]) \\) can be written in the form \\( z = \\alpha x + \\beta y + \\gamma \\). What is the constant term \\( \\gamma \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]) - (2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[x0]] - (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[y0]]"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]",
+   "([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]) + (2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[x0]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[y0]]",
+   "2*[[a]]*[[x0]] + [[c]]*[[y0]]",
+   "2*[[b]]*[[y0]] + [[c]]*[[x0]]",
+   "[[d]]",
+   "[[answer]] + 2"
+  ],
+  "solution": "The tangent plane is \\( z = f([[x0]], [[y0]]) + f_{x}(x - [[x0]]) + f_{y}(y - [[y0]]) \\). Expanding, \\( \\gamma = f([[x0]], [[y0]]) - f_{x}([[x0]]) - f_{y}([[y0]]) \\), where \\( f_{x} = 2([[a]])x + ([[c]])y \\) and \\( f_{y} = 2([[b]])y + ([[c]])x \\). This gives \\( \\gamma = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the height \\( f([[x0]], [[y0]]) \\); the constant term also subtracts the linear parts.",
+   "This adds the linear corrections instead of subtracting them.",
+   "This is the coefficient \\( \\alpha = f_{x} \\), not the constant term \\( \\gamma \\).",
+   "This is the coefficient \\( \\beta = f_{y} \\), not the constant term \\( \\gamma \\).",
+   "This keeps only the additive constant of \\( f \\), ignoring the rest of the expansion.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_implicit_sphere_intercept_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[z0]]**2"
+  },
+  "stem": "The surface \\( [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} = [[k]] \\) is given implicitly by \\( F(x,y,z) = [[a]]x^{2}+[[b]]y^{2}+[[c]]z^{2}-[[k]] \\). The tangent plane at the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface, is \\( F_{x}(x-[[x0]])+F_{y}(y-[[y0]])+F_{z}(z-[[z0]])=0 \\), which simplifies to \\( [[a]][[x0]]x + [[b]][[y0]]y + [[c]][[z0]]z = [[k]] \\). What is the \\( z \\)-intercept of this tangent plane (its \\( z \\)-value when \\( x=0, y=0 \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]/([[c]]*[[z0]])"},
+  "distractors": [
+   "[[k]]/([[a]]*[[x0]])",
+   "[[c]]*[[z0]]/[[k]]",
+   "[[z0]]",
+   "[[k]]/(2*[[c]]*[[z0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 2"
+  ],
+  "solution": "Setting \\( x=0, y=0 \\) in \\( [[a]]([[x0]])x + [[b]]([[y0]])y + [[c]]([[z0]])z = [[k]] \\) gives \\( [[c]]([[z0]])z = [[k]] \\), so \\( z = \\dfrac{[[k]]}{[[c]]([[z0]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the \\( x \\)-coefficient \\( a x_{0} \\) in the denominator instead of the \\( z \\)-coefficient \\( c z_{0} \\).",
+   "This inverts the correct ratio.",
+   "This assumes the tangent plane has the same \\( z \\)-intercept as the point itself.",
+   "This introduces an extra factor of 2 in the denominator.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_product_surface_coefficient_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "y0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "z0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[x0]]*[[y0]]*[[z0]]"
+  },
+  "stem": "The surface \\( xyz = [[k]] \\) is given implicitly by \\( F(x,y,z) = xyz - [[k]] \\). The tangent plane at the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface, can be written in the form \\( Ax + By + Cz = D \\) using \\( F_{x}(x-[[x0]])+F_{y}(y-[[y0]])+F_{z}(z-[[z0]])=0 \\). What is the coefficient \\( C \\) (that is, \\( F_{z} \\) evaluated at that point)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]]*[[y0]]"},
+  "distractors": [
+   "[[y0]]*[[z0]]",
+   "[[x0]]*[[z0]]",
+   "[[k]]",
+   "[[x0]] + [[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The partials of \\( F=xyz-[[k]] \\) are \\( F_{x}=yz \\), \\( F_{y}=xz \\), \\( F_{z}=xy \\). At \\( ([[x0]], [[y0]], [[z0]]) \\), the coefficient of \\( z \\) in the tangent plane is \\( F_{z} = ([[x0]])([[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( F_{x} = yz \\), the coefficient of \\( x \\), not \\( F_{z} \\).",
+   "This is \\( F_{y} = xz \\), the coefficient of \\( y \\), not \\( F_{z} \\).",
+   "This returns the constant \\( k \\) instead of the coefficient \\( F_{z} \\).",
+   "This adds \\( x_{0} \\) and \\( y_{0} \\) instead of multiplying them.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_exponential_surface_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "The tangent plane to the surface \\( z = [[a]]e^{x} + [[b]]y^{2} \\) at the point where \\( (x, y) = (0, [[y0]]) \\) (note \\( e^{0}=1 \\)) can be written in the form \\( z = \\alpha x + \\beta y + \\gamma \\). What is the constant term \\( \\gamma \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]] + [[b]]*[[y0]]**2) - [[a]]*0 - (2*[[b]]*[[y0]])*[[y0]]"},
+  "distractors": [
+   "[[a]] + [[b]]*[[y0]]**2",
+   "[[a]] - [[b]]*[[y0]]**2",
+   "[[a]]",
+   "2*[[b]]*[[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The tangent plane is \\( z = f(0,[[y0]]) + f_{x}(x-0) + f_{y}(y-[[y0]]) \\), with \\( f_{x}=[[a]]e^{x} \\) (which is \\( [[a]] \\) at \\( x=0 \\)) and \\( f_{y}=2([[b]])y \\). Expanding, \\( \\gamma = f(0,[[y0]]) - f_{y}\\cdot[[y0]] = ([[a]]+[[b]]([[y0]])^{2}) - 2([[b]])([[y0]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the surface height \\( f(0,[[y0]]) \\) itself, not the tangent plane's constant term.",
+   "This flips the sign of the squared term when computing the height.",
+   "This drops the \\( y \\)-dependent part of the height entirely.",
+   "This is the coefficient \\( \\beta = f_{y} \\), not the constant term \\( \\gamma \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_cylinder_distance_from_origin_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "x0": "2*[[m]]*[[n]]",
+   "y0": "[[m]]**2 - [[n]]**2",
+   "radius": "[[m]]**2 + [[n]]**2"
+  },
+  "stem": "The cylindrical surface \\( x^{2} + y^{2} = [[radius]]^{2} \\) (independent of \\( z \\)) is given implicitly by \\( F(x,y,z) = x^{2}+y^{2}-[[radius]]^{2} \\). The tangent plane at the point \\( ([[x0]], [[y0]], 0) \\) is \\( F_{x}(x-[[x0]]) + F_{y}(y-[[y0]]) = 0 \\), which simplifies to \\( [[x0]]x + [[y0]]y = [[radius]]^{2} \\). What is the distance from the origin to this tangent plane?",
+  "answer_spec": {"op": "evaluate", "expr": "[[radius]]"},
+  "distractors": [
+   "[[radius]]**2",
+   "2*[[radius]]",
+   "[[radius]]/2",
+   "sqrt([[radius]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The plane \\( [[x0]]x+[[y0]]y+0\\cdot z = [[radius]]^{2} \\) has distance from the origin \\( \\dfrac{[[radius]]^{2}}{\\sqrt{[[x0]]^{2}+[[y0]]^{2}}} \\). Since \\( ([[x0]], [[y0]]) \\) lies on the circle of radius \\( [[radius]] \\), \\( \\sqrt{[[x0]]^{2}+[[y0]]^{2}} = [[radius]] \\), so the distance is \\( [[radius]]^{2}/[[radius]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by the normal vector's magnitude, leaving \\( [[radius]]^{2} \\).",
+   "This doubles the correct distance.",
+   "This halves the correct distance.",
+   "This takes the square root of the radius instead of recognizing the magnitude cancels exactly.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_parametric_surface_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "u0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "v0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "A surface is given parametrically by \\( \\mathbf{r}(u, v) = \\langle u,\\ v,\\ [[a]]u^{2} + [[b]]v^{2} + ([[c]])uv \\rangle \\). The tangent plane at \\( (u,v)=([[u0]],[[v0]]) \\) is spanned by \\( \\mathbf{r}_{u} \\) and \\( \\mathbf{r}_{v} \\), and can be written \\( z = Ax + By + \\gamma \\) using \\( x=u, y=v \\). What is the constant term \\( \\gamma \\) (that is, the plane's \\( z \\)-intercept)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[a]]*[[u0]]**2 + [[b]]*[[v0]]**2 + [[c]]*[[u0]]*[[v0]])"},
+  "distractors": [
+   "[[a]]*[[u0]]**2 + [[b]]*[[v0]]**2 + [[c]]*[[u0]]*[[v0]]",
+   "2*([[a]]*[[u0]]**2 + [[b]]*[[v0]]**2 + [[c]]*[[u0]]*[[v0]])",
+   "-(2*[[a]]*[[u0]] + [[c]]*[[v0]])",
+   "-(2*[[b]]*[[v0]] + [[c]]*[[u0]])",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Here \\( z_{0} = [[a]]([[u0]])^{2}+[[b]]([[v0]])^{2}+([[c]])([[u0]])([[v0]]) \\), and the plane's coefficients are \\( A=-(2([[a]])([[u0]])+([[c]])([[v0]])) \\), \\( B=-(2([[b]])([[v0]])+([[c]])([[u0]])) \\), giving \\( z = z_{0}+A(x-[[u0]])+B(y-[[v0]]) \\). Expanding and collecting the constant term (using the fact that \\( z_{0} \\) is homogeneous of degree 2 in \\( u,v \\)) gives \\( \\gamma = -z_{0} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the surface height \\( z_{0} \\) itself, without the sign flip that the tangent-plane expansion produces.",
+   "This doubles the surface height instead of negating it.",
+   "This is the coefficient \\( A \\), not the constant term \\( \\gamma \\).",
+   "This is the coefficient \\( B \\), not the constant term \\( \\gamma \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_plane_horizontal_in_x_solve_v1",
+  "skill_id": "tangent_plane_to_a_surface",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "For the surface \\( z = [[a]]x^{2} + ([[c]])xy \\), the tangent plane at a point \\( (x, y) = (x_{0}, [[y0]]) \\) has the form \\( z = \\alpha x + \\beta y + \\gamma \\), where the coefficient \\( \\alpha \\) equals \\( f_{x}(x_{0}, [[y0]]) \\). For what value of \\( x_{0} \\) is \\( \\alpha = 0 \\) (that is, the tangent plane is momentarily \"horizontal\" in the \\( x \\)-direction)?",
+  "answer_spec": {"op": "solve", "equation": "2*[[a]]*x + [[c]]*[[y0]] = 0", "var": "x"},
+  "distractors": [
+   "[[c]]*[[y0]]/(2*[[a]])",
+   "-[[c]]*[[y0]]/[[a]]",
+   "-2*[[a]]/([[c]]*[[y0]])",
+   "[[y0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Here \\( f_{x}(x,y) = 2([[a]])x + ([[c]])y \\). Setting \\( f_{x}(x_{0}, [[y0]]) = 2([[a]])x_{0} + ([[c]])([[y0]]) = 0 \\) and solving for \\( x_{0} \\) gives \\( x_{0} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from moving the term to the other side.",
+   "This forgets to divide by 2 when solving for \\( x_{0} \\).",
+   "This inverts the correct ratio.",
+   "This uses \\( y_{0} \\) itself, ignoring the actual equation to be solved.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

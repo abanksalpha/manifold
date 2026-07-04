@@ -1,0 +1,193 @@
+[
+{
+ "template_id": "derivative_definition_v1_quadratic",
+ "skill_id": "derivative_definition",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "By definition, \\( f'(x_0) = \\lim_{h\\to 0} \\dfrac{f(x_0+h)-f(x_0)}{h} \\). Let \\( f(x) = [[a]]x^{2} + [[b]]x + [[c]] \\). Using this limit definition, find \\( f'([[x0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]",
+  "[[a]]*[[x0]] + [[b]]",
+  "2*[[a]]*[[x0]]",
+  "2*([[a]]*[[x0]] + [[b]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Forming the difference quotient \\( \\frac{f(x_0+h)-f(x_0)}{h} \\) and letting \\( h\\to 0 \\) gives \\( f'(x) = 2([[a]])x + [[b]] \\). Evaluating at \\( x_0=[[x0]] \\) gives \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f([[x0]]) \\), the function value, not its derivative.",
+  "This drops the factor of 2 that comes from differentiating \\( [[a]]x^{2} \\).",
+  "This forgets the \\( +[[b]] \\) term of the derivative entirely.",
+  "This mistakenly doubles the \\( [[b]] \\) term as well as the \\( [[a]] \\) term.",
+  "This is off by two from the correct derivative.",
+  "This is off by two from the correct derivative."
+ ]
+},
+{
+ "template_id": "derivative_definition_v2_product",
+ "skill_id": "derivative_definition",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+ "stem": "By definition, \\( f'(x_0) = \\lim_{h\\to 0} \\dfrac{f(x_0+h)-f(x_0)}{h} \\). Let \\( f(x) = ([[a]]x + [[b]])([[c]]x + [[d]]) \\). Using this limit definition (expand \\( f \\) first, or apply the product rule it produces), find \\( f'([[x0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])*([[c]]*x+[[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[a]]*([[c]]*[[x0]]+[[d]])",
+  "[[c]]*([[a]]*[[x0]]+[[b]])",
+  "[[a]]*[[c]]",
+  "([[a]]*[[x0]]+[[b]])*([[c]]*[[x0]]+[[d]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Expanding, \\( f(x) = [[a]]\\cdot[[c]]x^{2} + ([[a]]\\cdot[[d]]+[[b]]\\cdot[[c]])x + [[b]]\\cdot[[d]] \\), so \\( f'(x) = [[a]]([[c]]x+[[d]]) + [[c]]([[a]]x+[[b]]) \\). Evaluating at \\( x_0=[[x0]] \\) gives \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the first product-rule term, dropping the second factor's contribution.",
+  "This keeps only the second product-rule term, dropping the first factor's contribution.",
+  "This multiplies only the leading coefficients instead of applying the product rule.",
+  "This is \\( f([[x0]]) \\), the function value, not its derivative.",
+  "This is off by two from the correct derivative.",
+  "This is off by two from the correct derivative."
+ ]
+},
+{
+ "template_id": "derivative_definition_v3_reciprocal",
+ "skill_id": "derivative_definition",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": -8, "hi": 8},
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[k]], 0)", "Ne([[a]], 0)", "Ne([[a]]*[[x0]] + [[b]], 0)"],
+ "stem": "By definition, \\( f'(x_0) = \\lim_{h\\to 0} \\dfrac{f(x_0+h)-f(x_0)}{h} \\). Let \\( f(x) = \\dfrac{[[k]]}{[[a]]x + [[b]]} \\). Using this limit definition (combine the fractions in the difference quotient before taking the limit), find \\( f'([[x0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[k]]/([[a]]*x+[[b]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "-[[k]]/([[a]]*[[x0]]+[[b]])**2",
+  "[[k]]/([[a]]*[[x0]]+[[b]])",
+  "-[[k]]*[[a]]/([[a]]*[[x0]]+[[b]])",
+  "[[k]]*[[a]]/([[a]]*[[x0]]+[[b]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Combining the difference quotient over a common denominator and letting \\( h \\to 0 \\) gives \\( f'(x) = \\dfrac{-[[k]]\\cdot[[a]]}{([[a]]x+[[b]])^{2}} \\). Evaluating at \\( x_0=[[x0]] \\) gives \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( [[a]] \\) coming from the chain rule on the denominator.",
+  "This is \\( f([[x0]]) \\), the function value, not its derivative.",
+  "This forgets to square the denominator.",
+  "This has the wrong sign on the derivative.",
+  "This is off by one from the correct derivative.",
+  "This is off by one from the correct derivative."
+ ]
+},
+{
+ "template_id": "derivative_definition_v4_radical",
+ "skill_id": "derivative_definition",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"b": "[[k]]**2 - [[a]]*[[x0]]"},
+ "stem": "By definition, \\( f'(x_0) = \\lim_{h\\to 0} \\dfrac{f(x_0+h)-f(x_0)}{h} \\). Let \\( f(x) = \\sqrt{[[a]]x + [[b]]} \\). Using this limit definition (multiply the difference quotient by its conjugate before taking the limit), find \\( f'([[x0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "sqrt([[a]]*x+[[b]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "sqrt([[a]]*[[x0]]+[[b]])",
+  "[[a]]/sqrt([[a]]*[[x0]]+[[b]])",
+  "[[a]]",
+  "[[a]]**2/(2*sqrt([[a]]*[[x0]]+[[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Rationalizing the difference quotient's numerator and letting \\( h\\to 0 \\) gives \\( f'(x) = \\dfrac{[[a]]}{2\\sqrt{[[a]]x+[[b]]}} \\). Since \\( [[a]]\\cdot[[x0]]+[[b]] = [[k]]^{2} \\), evaluating at \\( x_0=[[x0]] \\) gives \\( f'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f([[x0]]) \\), the function value, not its derivative.",
+  "This drops the factor of 2 in the denominator from the conjugate/chain-rule step.",
+  "This ignores the radical entirely and reports only the inner coefficient.",
+  "This squares the numerator instead of rationalizing correctly.",
+  "This is off by one from the correct derivative.",
+  "This is off by one from the correct derivative."
+ ]
+},
+{
+ "template_id": "derivative_definition_v5_sine_at_zero",
+ "skill_id": "derivative_definition",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "By definition, \\( f'(0) = \\lim_{h\\to 0} \\dfrac{f(h)-f(0)}{h} \\). Let \\( f(x) = [[a]]\\sin([[b]]x) + [[c]] \\). Using this limit definition (and the fact that \\( \\lim_{h\\to 0}\\frac{\\sin h}{h}=1 \\)), find \\( f'(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[a]]*sin([[b]]*x) + [[c]]", "var": "x", "at": "0", "order": 1},
+ "distractors": [
+  "[[a]]",
+  "[[c]]",
+  "-[[a]]*[[b]]",
+  "[[a]]*[[b]]**2",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Writing \\( \\frac{f(h)-f(0)}{h} = [[a]]\\cdot[[b]]\\cdot\\frac{\\sin([[b]]h)}{[[b]]h} \\) and letting \\( h\\to 0 \\) gives \\( f'(0) = [[a]]\\cdot[[b]]\\cdot 1 = [[answer]] \\) (the constant \\( [[c]] \\) contributes nothing).",
+ "distractor_rationales": [
+  "This drops the factor of \\( [[b]] \\) that comes from the chain rule.",
+  "This is \\( f(0) \\), the function value, not its derivative.",
+  "This has the wrong sign on the derivative.",
+  "This squares the chain-rule factor instead of using it once.",
+  "This is off by two from the correct derivative.",
+  "This is off by two from the correct derivative."
+ ]
+},
+{
+ "template_id": "derivative_definition_v6_exp_at_zero",
+ "skill_id": "derivative_definition",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "By definition, \\( f'(0) = \\lim_{h\\to 0} \\dfrac{f(h)-f(0)}{h} \\). Let \\( f(x) = [[a]]e^{[[b]]x} + [[c]] \\). Using this limit definition (and the fact that \\( \\lim_{h\\to 0}\\frac{e^{h}-1}{h}=1 \\)), find \\( f'(0) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[a]]*exp([[b]]*x) + [[c]]", "var": "x", "at": "0", "order": 1},
+ "distractors": [
+  "[[a]]",
+  "[[a]] + [[c]]",
+  "-[[a]]*[[b]]",
+  "[[a]]*[[b]] - [[c]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Writing \\( \\frac{f(h)-f(0)}{h} = [[a]]\\cdot[[b]]\\cdot\\frac{e^{[[b]]h}-1}{[[b]]h} \\) and letting \\( h\\to 0 \\) gives \\( f'(0) = [[a]]\\cdot[[b]]\\cdot 1 = [[answer]] \\) (the constant \\( [[c]] \\) contributes nothing).",
+ "distractor_rationales": [
+  "This drops the chain-rule factor of \\( [[b]] \\).",
+  "This is \\( f(0) \\), the function value, not its derivative.",
+  "This has the wrong sign on the derivative.",
+  "This mistakenly subtracts the constant term, which does not affect the derivative.",
+  "This is off by two from the correct derivative.",
+  "This is off by two from the correct derivative."
+ ]
+}
+]

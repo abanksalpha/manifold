@@ -1,0 +1,131 @@
+[
+ {
+  "template_id": "exact_polynomial_potential_v1",
+  "skill_id": "exact_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 5},
+   "x0": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "The equation \\( \\left(2[[a]]xy+3\\right)dx + \\left([[a]]x^{2}+3[[b]]y^{2}\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = [[a]]x^{2}y+3x+[[b]]y^{3} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]**2*[[y0]]+3*[[x0]]+[[b]]*[[y0]]**3"},
+  "distractors": [
+   "[[a]]*[[x0]]**2*[[y0]]+3*[[x0]]-[[b]]*[[y0]]**3",
+   "[[a]]*[[x0]]*[[y0]]**2+3*[[x0]]+[[b]]*[[y0]]**3",
+   "2*[[a]]*[[x0]]*[[y0]]+3+[[a]]*[[x0]]**2+3*[[b]]*[[y0]]**2",
+   "[[a]]*[[x0]]**2*[[y0]]+3*[[y0]]+[[b]]*[[y0]]**3",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Integrating \\( M=2[[a]]xy+3 \\) with respect to \\( x \\) gives \\( F = [[a]]x^{2}y+3x+g(y) \\); matching \\( F_y=[[a]]x^{2}+g'(y) \\) to \\( N=[[a]]x^{2}+3[[b]]y^{2} \\) gives \\( g(y)=[[b]]y^{3} \\), so \\( F(x,y) = [[a]]x^{2}y+3x+[[b]]y^{3} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the \\( g(y) \\) term.",
+   "This swaps the powers of \\( x \\) and \\( y \\) in the mixed term.",
+   "This evaluates \\( M+N \\) at the point instead of the potential function \\( F \\).",
+   "This uses \\( y_0 \\) instead of \\( x_0 \\) in the linear term.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_trig_potential_v1",
+  "skill_id": "exact_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "x0": {"type": "int", "lo": -4, "hi": 4},
+   "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "The equation \\( [[a]]\\sin(y)\\,dx + \\left([[a]]x\\cos(y)+2y\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = [[a]]x\\sin(y)+y^{2} \\) at \\( (x,y) = \\left([[x0]], \\dfrac{[[m]]\\pi}{2}\\right) \\), the constant defining the implicit solution curve through that point.",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]*sin([[m]]*pi/2)+([[m]]*pi/2)**2"},
+  "distractors": [
+   "[[a]]*[[x0]]*cos([[m]]*pi/2)+([[m]]*pi/2)**2",
+   "[[a]]*[[x0]]*sin([[m]]*pi/2)-([[m]]*pi/2)**2",
+   "[[a]]*sin([[m]]*pi/2)+([[m]]*pi/2)**2",
+   "[[a]]*[[x0]]*sin([[m]]*pi/2)+[[m]]*pi/2",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Integrating \\( M=[[a]]\\sin(y) \\) with respect to \\( x \\) gives \\( F=[[a]]x\\sin(y)+g(y) \\); matching \\( F_y=[[a]]x\\cos(y)+g'(y) \\) to \\( N=[[a]]x\\cos(y)+2y \\) gives \\( g(y)=y^{2} \\), so \\( F(x,y)=[[a]]x\\sin(y)+y^{2} \\). At \\( \\left([[x0]],\\dfrac{[[m]]\\pi}{2}\\right) \\), \\( F = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\cos(y) \\) instead of \\( \\sin(y) \\) in the potential.",
+   "This has the wrong sign on the \\( g(y)=y^{2} \\) term.",
+   "This forgets the factor of \\( x_0 \\) in the mixed term.",
+   "This forgets to square \\( y \\) in the \\( g(y) \\) term.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_exponential_potential_v1",
+  "skill_id": "exact_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "The equation \\( \\left(e^{[[a]]x}y+2x\\right)dx + \\dfrac{1}{[[a]]}e^{[[a]]x}\\,dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = \\dfrac{1}{[[a]]}e^{[[a]]x}y+x^{2} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
+  "answer_spec": {"op": "evaluate", "expr": "(1/[[a]])*exp([[a]]*[[x0]])*[[y0]]+[[x0]]**2"},
+  "distractors": [
+   "exp([[a]]*[[x0]])*[[y0]]+[[x0]]**2",
+   "(1/[[a]])*exp([[a]]*[[x0]])*[[y0]]-[[x0]]**2",
+   "(1/[[a]])*exp([[x0]])*[[y0]]+[[x0]]**2",
+   "(1/[[a]])*exp([[a]]*[[y0]])*[[x0]]+[[x0]]**2",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Integrating \\( N=\\dfrac{1}{[[a]]}e^{[[a]]x} \\) with respect to \\( y \\) gives \\( F=\\dfrac{1}{[[a]]}e^{[[a]]x}y+h(x) \\); matching \\( F_x=e^{[[a]]x}y+h'(x) \\) to \\( M=e^{[[a]]x}y+2x \\) gives \\( h(x)=x^{2} \\), so \\( F(x,y)=\\dfrac{1}{[[a]]}e^{[[a]]x}y+x^{2} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the \\( 1/[[a]] \\) factor from integrating the exponential.",
+   "This has the wrong sign on the \\( h(x)=x^{2} \\) term.",
+   "This omits the rate \\( [[a]] \\) inside the exponent entirely.",
+   "This swaps the roles of \\( x_0 \\) and \\( y_0 \\) in the exponential term.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_logarithmic_potential_v1",
+  "skill_id": "exact_equations",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "int", "lo": 1, "hi": 6},
+   "y0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "For \\( x>0 \\), the equation \\( \\left(\\dfrac{y}{x}+2[[a]]x\\right)dx + \\left(\\ln x+2[[b]]y\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = y\\ln x+[[a]]x^{2}+[[b]]y^{2} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*log([[x0]])+[[a]]*[[x0]]**2+[[b]]*[[y0]]**2"},
+  "distractors": [
+   "[[y0]]*log([[x0]])-[[a]]*[[x0]]**2-[[b]]*[[y0]]**2",
+   "[[x0]]*log([[y0]])+[[a]]*[[x0]]**2+[[b]]*[[y0]]**2",
+   "[[y0]]*log([[x0]])+[[a]]*[[x0]]+[[b]]*[[y0]]",
+   "log([[x0]])+[[a]]*[[x0]]**2+[[b]]*[[y0]]**2",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Integrating \\( M=\\tfrac{y}{x}+2[[a]]x \\) with respect to \\( x \\) gives \\( F=y\\ln x+[[a]]x^{2}+g(y) \\); matching \\( F_y=\\ln x+g'(y) \\) to \\( N=\\ln x+2[[b]]y \\) gives \\( g(y)=[[b]]y^{2} \\), so \\( F(x,y)=y\\ln x+[[a]]x^{2}+[[b]]y^{2} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the entire potential.",
+   "This swaps \\( x \\) and \\( y \\) inside and outside the logarithm.",
+   "This forgets to square \\( x_0 \\) and \\( y_0 \\) in the last two terms.",
+   "This forgets the \\( y\\ln x \\) coefficient of \\( y_0 \\) entirely.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

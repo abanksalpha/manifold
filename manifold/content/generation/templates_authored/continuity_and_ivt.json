@@ -1,0 +1,162 @@
+[
+{
+ "template_id": "continuity_piecewise_solve_constant_v1",
+ "skill_id": "continuity_and_ivt",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Let \\( f(x) = \\begin{cases} kx + ([[b]]) & x < [[c]] \\\\ ([[d]])x^{2} + ([[e]]) & x \\ge [[c]] \\end{cases} \\), where \\( k \\) is a constant. For what value of \\( k \\) is \\( f \\) continuous at \\( x=[[c]] \\)?",
+ "answer_spec": {"op": "solve", "equation": "k*[[c]] + [[b]] = [[d]]*[[c]]**2 + [[e]]", "var": "k"},
+ "distractors": [
+  "[[d]]*[[c]] + [[e]]",
+  "Rational([[d]]*[[c]]**2 + [[e]] - [[b]], [[c]])",
+  "Rational([[d]]*[[c]]**2 + [[e]] + [[b]], [[c]])",
+  "2*[[d]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Continuity at \\( x=[[c]] \\) requires the two pieces to agree there: \\( k([[c]]) + ([[b]]) = ([[d]])([[c]])^{2} + ([[e]]) \\). Solving for \\( k \\) gives \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the required VALUE at \\( x=c \\) (the quadratic piece) with \\( k \\) itself.",
+  "This forgets to subtract \\( b \\) before dividing by \\( c \\), effectively dropping it with the wrong sign.",
+  "This adds \\( b \\) instead of subtracting it before dividing by \\( c \\).",
+  "This is the derivative of the quadratic piece at \\( x=c \\), not the value needed for continuity.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "continuity_removable_rational_limit_v2",
+ "skill_id": "continuity_and_ivt",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "r": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[r]], 0)"],
+ "derived": {"k": "[[a]]*[[r]]**2"},
+ "stem": "Let \\( f(x) = \\dfrac{[[a]]x^{2} - [[k]]}{x - [[r]]} \\) for \\( x \\ne [[r]] \\). For what value \\( L \\) should \\( f([[r]]) \\) be DEFINED so that \\( f \\) is continuous at \\( x=[[r]] \\)?",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x**2 - [[k]])/(x-[[r]])", "var": "x", "point": "[[r]]"},
+ "distractors": [
+  "[[a]]*[[r]]",
+  "[[a]]*[[r]]**2",
+  "2*[[a]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Factoring, \\( [[a]]x^{2}-[[k]] = [[a]](x-[[r]])(x+[[r]]) \\), so for \\( x\\ne [[r]] \\), \\( f(x) = [[a]](x+[[r]]) \\). The limit as \\( x\\to [[r]] \\) is \\( L = 2[[a]]\\cdot[[r]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double \\( a \\cdot r \\), dropping the factor of 2 that comes from \\( x+r\\to 2r \\).",
+  "This reports the removed factor \\( k=ar^{2} \\) itself, not the limit.",
+  "This forgets the factor of \\( r \\) entirely.",
+  "This mistakenly assumes the hole's limit is always 0.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "continuity_ivt_find_guaranteed_root_v3",
+ "skill_id": "continuity_and_ivt",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "int", "lo": -8, "hi": 8},
+  "a": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"lo": "[[r]] - 3", "hi": "[[r]] + 3"},
+ "stem": "Let \\( f(x) = [[a]](x - [[r]])^{3} \\), which is continuous everywhere. Since \\( f([[lo]]) < 0 < f([[hi]]) \\) (or vice versa), the Intermediate Value Theorem guarantees a root of \\( f \\) in \\( ([[lo]], [[hi]]) \\). Find that root.",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*(x-[[r]])**3 = 0", "var": "x"},
+ "distractors": [
+  "[[lo]]",
+  "[[hi]]",
+  "[[r]] + 3",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( f(x) = [[a]](x-[[r]])^{3} = 0 \\) exactly when \\( x=[[r]] \\), which lies in \\( ([[lo]], [[hi]]) \\); this is the guaranteed root, \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the left endpoint of the interval, not the root.",
+  "This is the right endpoint of the interval, not the root.",
+  "This is off by three from the interval's midpoint, matching the right endpoint by coincidence of construction.",
+  "This reports the leading coefficient instead of solving \\( f(x)=0 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "continuity_three_piece_system_v4",
+ "skill_id": "continuity_and_ivt",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "c1": {"type": "int", "lo": -4, "hi": 0},
+  "c2": {"type": "int", "lo": 2, "hi": 6},
+  "m": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c1]], [[c2]])"],
+ "stem": "Let \\( f(x) = \\begin{cases} a & x < [[c1]] \\\\ [[m]]x + b & [[c1]] \\le x \\le [[c2]] \\\\ [[n]]x & x > [[c2]] \\end{cases} \\), where \\( a \\) and \\( b \\) are constants chosen so \\( f \\) is continuous everywhere. What is \\( a \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["a = [[m]]*[[c1]] + b", "[[m]]*[[c2]] + b = [[n]]*[[c2]]"],
+  "vars": ["a", "b"],
+  "want": "a"
+ },
+ "distractors": [
+  "[[m]]*[[c1]]",
+  "[[n]]*[[c1]]",
+  "[[m]]*[[c2]]",
+  "[[n]]*[[c2]] - [[m]]*[[c2]] + [[m]]*[[c1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Matching the last two pieces at \\( x=[[c2]] \\) gives \\( b = ([[n]]-[[m]])([[c2]]) \\). Matching the first two pieces at \\( x=[[c1]] \\) gives \\( a = [[m]]([[c1]]) + b = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add the constant \\( b \\) from the second piece, using only its slope contribution.",
+  "This uses the third piece's slope \\( n \\) at \\( x=c_{1} \\) instead of matching through the middle piece.",
+  "This evaluates the middle piece's linear part at \\( x=c_{2}\\) instead of \\( x=c_{1} \\), and drops \\( b \\).",
+  "This has a sign error while trying to combine both continuity conditions at once.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "continuity_trig_removable_v5",
+ "skill_id": "continuity_and_ivt",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = \\dfrac{\\sin([[a]]x)}{x} \\) for \\( x \\ne 0 \\). For what value \\( L \\) should \\( f(0) \\) be DEFINED so that \\( f \\) is continuous at \\( x=0 \\)?",
+ "answer_spec": {"op": "limit", "expr": "sin([[a]]*x)/x", "var": "x", "point": 0},
+ "distractors": [
+  "0",
+  "1",
+  "Rational(1,[[a]])",
+  "[[a]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Using the standard limit \\( \\lim_{u\\to 0}\\frac{\\sin u}{u}=1 \\) with \\( u=[[a]]x \\): \\( \\displaystyle\\lim_{x\\to 0}\\frac{\\sin([[a]]x)}{x} = [[a]]\\lim_{x\\to 0}\\frac{\\sin([[a]]x)}{[[a]]x} = [[a]]\\cdot 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly assumes the limit is always 0 because the numerator vanishes at \\( x=0 \\).",
+  "This forgets to scale by \\( a \\), using the bare standard limit value of 1.",
+  "This inverts the scaling factor, dividing by \\( a \\) instead of multiplying.",
+  "This squares the coefficient instead of leaving it linear.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

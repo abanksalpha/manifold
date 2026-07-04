@@ -1,0 +1,96 @@
+[
+ {
+  "template_id": "round_robin_c_n_2_v1",
+  "skill_id": "disguised_c_n_2_counts_round_robins_segments_diagona",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 24
+   }
+  },
+  "constraints": [],
+  "stem": "In a round-robin tournament, each of the \\( [[n]] \\) teams plays every other team exactly once. How many games are played in total?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "binomial([[n]], 2)"
+  },
+  "distractors": [
+   "[[n]]*([[n]] - 1)",
+   "[[n]]**2",
+   "[[n]]",
+   "binomial([[n]], 3)",
+   "[[answer]] + [[n]]",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each game corresponds to an unordered pair of distinct teams, so the number of games is \\( \\binom{[[n]]}{2} = \\frac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts each game twice, once for each ordering of the two teams; divide by 2.",
+   "This includes a team playing itself; only distinct pairs count.",
+   "This mistakes the number of teams for the number of games.",
+   "This counts unordered triples of teams \\( \\binom{[[n]]}{3} \\), not pairs.",
+   "This overcounts the games by the number of teams.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "points_segments_c_n_2_v2",
+  "skill_id": "disguised_c_n_2_counts_round_robins_segments_diagona",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "\\( [[n]] \\) points are placed in the plane so that no three are collinear. A line segment is drawn between every pair of points. How many line segments are drawn in total?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2)"},
+  "distractors": [
+   "[[n]]*([[n]] - 1)",
+   "[[n]]**2",
+   "[[n]]",
+   "binomial([[n]], 3)",
+   "[[answer]] + 1",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Each segment corresponds to an unordered pair of the \\( [[n]] \\) points, so the number of segments is \\( \\binom{[[n]]}{2} = \\frac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts each segment twice, once from each endpoint's perspective; divide by 2.",
+   "This treats each point as connected to itself as well as to the others.",
+   "This mistakes the number of points for the number of segments.",
+   "This counts unordered triples of points \\( \\binom{[[n]]}{3} \\), not pairs.",
+   "This is off by one from the correct total.",
+   "This subtracts the number of points for no valid reason."
+  ]
+ },
+ {
+  "template_id": "polygon_diagonals_v3",
+  "skill_id": "disguised_c_n_2_counts_round_robins_segments_diagona",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "A convex polygon has \\( [[n]] \\) vertices. How many diagonals (segments joining two non-adjacent vertices) does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2) - [[n]]"},
+  "distractors": [
+   "binomial([[n]], 2)",
+   "[[n]]*([[n]] - 3)",
+   "binomial([[n]], 2) + [[n]]",
+   "[[n]]*([[n]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "There are \\( \\binom{[[n]]}{2} \\) segments joining pairs of the \\( [[n]] \\) vertices in total, and exactly \\( [[n]] \\) of them are the polygon's sides (joining adjacent vertices), not diagonals. So the number of diagonals is \\( \\binom{[[n]]}{2} - [[n]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts ALL vertex-pairs, forgetting to remove the \\( n \\) sides of the polygon.",
+   "This forgets to divide by 2 in the equivalent diagonal formula \\( \\frac{n(n-3)}{2} \\).",
+   "This adds the sides back in instead of subtracting them.",
+   "This double counts every pair of vertices instead of choosing them as an unordered pair.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

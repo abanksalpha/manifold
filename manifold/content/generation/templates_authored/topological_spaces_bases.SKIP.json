@@ -1,0 +1,1 @@
+{"skill_id": "topological_spaces_bases", "reason": "Tests whether a given collection is (or generates) a basis for a topology, or which topology a basis generates -- a verdict/recognition task about set families, not a code-computable scalar."}

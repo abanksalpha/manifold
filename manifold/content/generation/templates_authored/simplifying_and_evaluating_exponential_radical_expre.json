@@ -1,0 +1,259 @@
+[
+ {
+  "template_id": "exponent_laws_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3]},
+   "e1": {"type": "int", "lo": 1, "hi": 3},
+   "e2": {"type": "int", "lo": 1, "hi": 3},
+   "e3": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ge([[e1]] + [[e2]] - [[e3]], 1)", "Le([[e1]] + [[e2]] - [[e3]], 4)"],
+  "derived": {
+   "E": "[[e1]] + [[e2]] - [[e3]]"
+  },
+  "stem": "Evaluate \\( \\dfrac{[[b]]^{[[e1]]} \\cdot [[b]]^{[[e2]]}}{[[b]]^{[[e3]]}} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]**([[E]])"},
+  "distractors": [
+   "[[b]] * [[E]]",
+   "[[E]]",
+   "[[b]]**([[E]] + 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Using \\( b^{m} \\cdot b^{n} = b^{m+n} \\) and \\( b^{m}/b^{n} = b^{m-n} \\), the expression is \\( [[b]]^{[[e1]] + [[e2]] - [[e3]]} = [[b]]^{[[E]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the base by the exponent instead of raising the base to that power.",
+   "This reports the exponent \\( [[E]] \\) itself instead of \\( [[b]]^{[[E]]} \\).",
+   "This uses an exponent that is one too large.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "power_of_a_power_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3]},
+   "e1": {"type": "int", "lo": 1, "hi": 3},
+   "e2": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": ["Le([[e1]] * [[e2]], 6)"],
+  "stem": "Evaluate \\( \\left([[b]]^{[[e1]]}\\right)^{[[e2]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]]**[[e1]])**[[e2]]"},
+  "distractors": [
+   "[[b]]**([[e1]] + [[e2]])",
+   "[[b]]*[[e1]]*[[e2]]",
+   "[[b]]**([[e1]] + [[e2]] + 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the power-of-a-power rule, \\( (b^{m})^{n} = b^{mn} \\), so this equals \\( [[b]]^{[[e1]] \\cdot [[e2]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the exponents, as if multiplying two powers, rather than multiplying them as required for a power raised to a power.",
+   "This multiplies the base by both exponents instead of raising it to their product.",
+   "This adds an extra 1 to the sum of the exponents.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "negative_exponent_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 4, 5]},
+   "n": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( [[b]]^{-[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]**(-[[n]])"},
+  "distractors": [
+   "-[[b]]**[[n]]",
+   "[[b]]**[[n]]",
+   "-1/[[b]]**[[n]]",
+   "1/([[n]]*[[b]])",
+   "[[answer]] + 1",
+   "[[answer]]*2"
+  ],
+  "solution": "A negative exponent means take the reciprocal: \\( [[b]]^{-[[n]]} = \\dfrac{1}{[[b]]^{[[n]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This negates the value instead of taking its reciprocal.",
+   "This drops the negative sign entirely, giving a positive power instead of its reciprocal.",
+   "This takes the reciprocal but keeps an incorrect negative sign.",
+   "This multiplies the base by the exponent in the denominator instead of raising the base to a power.",
+   "This is larger than the correct value.",
+   "This is double the correct value."
+  ]
+ },
+ {
+  "template_id": "fractional_exponent_as_root_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "[[k]]**[[n]]"
+  },
+  "stem": "Evaluate \\( [[b]]^{1/[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]])**(Rational(1,[[n]]))"},
+  "distractors": [
+   "[[b]]/[[n]]",
+   "[[b]] - [[n]]",
+   "[[k]]**([[n]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "A \\( 1/n \\) power is the same as an \\( n \\)-th root. Since \\( [[b]] = [[k]]^{[[n]]} \\), \\( [[b]]^{1/[[n]]} = [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( n \\) instead of taking the \\( n \\)-th root.",
+   "This subtracts \\( n \\) instead of taking the \\( n \\)-th root.",
+   "This uses the wrong exponent on \\( k \\), one less than needed to recover the base.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "power_of_a_product_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 5]},
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "n": {"type": "int", "lo": 2, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "Evaluate \\( \\dfrac{([[a]] \\cdot [[b]])^{[[n]]}}{[[a]]^{[[n]]}} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[b]])**[[n]] / [[a]]**[[n]]"},
+  "distractors": [
+   "[[b]]",
+   "[[a]]**[[n]]",
+   "[[b]]**([[n]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the power-of-a-product rule, \\( (ab)^{n} = a^{n}b^{n} \\), so \\( \\dfrac{([[a]][[b]])^{[[n]]}}{[[a]]^{[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to raise \\( b \\) to the power \\( n \\), leaving it unraised.",
+   "This reports \\( a^{n} \\) instead of \\( b^{n} \\), the term that should remain after cancellation.",
+   "This uses an exponent one too small on \\( b \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "square_root_of_even_power_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5, 6, 7]},
+   "n": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\sqrt{[[b]]^{2[[n]]}} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[b]]**(2*[[n]]))"},
+  "distractors": [
+   "[[b]]**[[n]]/2",
+   "[[b]]**(2*[[n]])",
+   "[[b]]**([[n]] - 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since the exponent \\( 2[[n]] \\) is even and \\( [[b]] > 0 \\), \\( \\sqrt{[[b]]^{2[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This halves the whole power instead of halving just the exponent.",
+   "This leaves the expression unrooted, forgetting the square root entirely.",
+   "This uses an exponent one too small.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "mixed_index_radical_product_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "[[k]]**6"
+  },
+  "stem": "Evaluate \\( \\sqrt{[[b]]} \\cdot \\sqrt[3]{[[b]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[b]]) * ([[b]])**(Rational(1,3))"},
+  "distractors": [
+   "[[k]]**6",
+   "[[k]]**4",
+   "[[k]]**6/6",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Write both radicals as exponents of \\( [[k]] \\): \\( [[b]] = [[k]]^{6} \\), so \\( \\sqrt{[[b]]} = [[k]]^{3} \\) and \\( \\sqrt[3]{[[b]]} = [[k]]^{2} \\). Using a common index (sixths: \\( 1/2 + 1/3 = 5/6 \\)), the product is \\( [[k]]^{3} \\cdot [[k]]^{2} = [[k]]^{5} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( b \\) itself, forgetting to combine the two different radical indices at all.",
+   "This uses the wrong combined exponent, \\( 4 \\) instead of \\( 5 \\), on \\( k \\).",
+   "This divides by 6 instead of combining the fractional exponents \\( 1/2 \\) and \\( 1/3 \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "negative_fractional_exponent_evaluate_v1",
+  "skill_id": "simplifying_and_evaluating_exponential_radical_expre",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 5},
+   "n": {"type": "choice", "values": [2, 3]},
+   "m": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "[[k]]**[[n]]"
+  },
+  "stem": "Evaluate \\( [[b]]^{-[[m]]/[[n]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]])**(-Rational([[m]],[[n]]))"},
+  "distractors": [
+   "[[k]]**[[m]]",
+   "-1/[[k]]**[[m]]",
+   "[[k]]**(-[[n]]/[[m]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Write \\( [[b]] = [[k]]^{[[n]]} \\), so \\( [[b]]^{-[[m]]/[[n]]} = \\left([[k]]^{[[n]]}\\right)^{-[[m]]/[[n]]} = [[k]]^{-[[m]]} = \\dfrac{1}{[[k]]^{[[m]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign, giving a positive power of \\( k \\) instead of its reciprocal.",
+   "This has the reciprocal but an incorrect negative sign in front.",
+   "This inverts the fractional exponent, using \\( n/m \\) instead of \\( m/n \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,218 @@
+[
+{
+ "template_id": "polar_area_spiral_v1",
+ "skill_id": "area_enclosed_by_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  }
+ },
+ "constraints": [],
+ "stem": "Find the area swept by the polar curve \\( r=[[a]]\\theta \\) for \\( \\theta\\in[0,[[b]]] \\): \\( \\frac{1}{2}\\int_0^{[[b]]} r^{2}\\,d\\theta \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "Rational(1,2)*([[a]]*theta)**2",
+  "var": "theta",
+  "bounds": [
+   "0",
+   "[[b]]"
+  ]
+ },
+ "distractors": [
+  "([[a]]*[[b]])**2",
+  "Rational(1,2)*[[a]]**2*[[b]]**2",
+  "Rational([[a]]**2*[[b]]**3, 3)",
+  "Rational([[a]]**2*[[b]]**3, 6) + 1",
+  "Rational([[a]]**2*[[b]]**3, 6) - 1",
+  "Rational([[a]]*[[b]]**3, 6)"
+ ],
+ "solution": "\\( \\frac{1}{2}\\int_0^{[[b]]}([[a]]\\theta)^{2}d\\theta=\\frac{[[a]]^{2}[[b]]^{3}}{6}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "polar_area_sector_constant_r_v1",
+ "skill_id": "area_enclosed_by_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "m": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Lt([[m]], 2*[[n]])"],
+ "stem": "A circular sector is bounded by the polar curve \\( r=[[a]] \\) and the rays \\( \\theta=0 \\) and \\( \\theta=\\dfrac{[[m]]\\pi}{[[n]]} \\). Find the area of the sector.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational(1,2)*[[a]]**2*([[m]]*pi/[[n]])"
+ },
+ "distractors": [
+  "[[a]]**2*([[m]]*pi/[[n]])",
+  "Rational(1,2)*[[a]]*([[m]]*pi/[[n]])",
+  "Rational(1,2)*[[a]]**2*([[m]]/[[n]])",
+  "[[a]]**2*pi",
+  "Rational(1,2)*[[a]]**2*([[m]]*pi/[[n]]) + 1",
+  "Rational(1,4)*[[a]]**2*([[m]]*pi/[[n]])"
+ ],
+ "solution": "For constant \\( r=[[a]] \\), the sector area is \\( \\frac{1}{2}r^{2}\\theta=\\frac{1}{2}([[a]])^{2}\\cdot\\frac{[[m]]\\pi}{[[n]]}=[[answer]] \\); no integration is needed since \\( r \\) does not depend on \\( \\theta \\).",
+ "distractor_rationales": [
+  "This drops the \\( \\tfrac12 \\) factor from the sector-area formula.",
+  "This uses \\( r \\) instead of \\( r^{2}\\) in the formula.",
+  "This forgets to include \\( \\pi \\) when converting the angle.",
+  "This uses the full-circle area formula instead of the sector's central angle.",
+  "This is off by an additive constant from the correct sector area.",
+  "This uses \\( \\tfrac14 r^2\\theta \\) instead of \\( \\tfrac12 r^2\\theta \\)."
+ ]
+},
+{
+ "template_id": "polar_area_cardioid_full_v1",
+ "skill_id": "area_enclosed_by_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Find the total area enclosed by the cardioid \\( r=[[a]](1+\\cos\\theta) \\) as \\( \\theta \\) ranges over \\( [0,2\\pi] \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "Rational(1,2)*([[a]]*(1+cos(theta)))**2",
+  "var": "theta",
+  "bounds": ["0", "2*pi"]
+ },
+ "distractors": [
+  "pi*[[a]]**2",
+  "2*pi*[[a]]**2",
+  "Rational(1,2)*pi*[[a]]**2",
+  "3*pi*[[a]]**2",
+  "Rational(3,2)*pi*[[a]]**2 + 1",
+  "Rational(3,2)*pi*[[a]]**2 - 1"
+ ],
+ "solution": "\\( \\frac{1}{2}\\int_0^{2\\pi}[[a]]^{2}(1+\\cos\\theta)^{2}d\\theta=\\frac{3}{2}\\pi [[a]]^{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the area of a circle of radius \\( a \\) instead of expanding \\( (1+\\cos\\theta)^2 \\).",
+  "This doubles the circle-of-radius-\\(a\\) area rather than expanding the square.",
+  "This uses a bare sector formula instead of integrating the squared cardioid.",
+  "This triples \\( \\pi a^2 \\) instead of using the correct coefficient \\( \\tfrac32 \\).",
+  "This is off by one from the correct total area.",
+  "This is off by one (other direction) from the correct total area."
+ ]
+},
+{
+ "template_id": "polar_area_limacon_full_v1",
+ "skill_id": "area_enclosed_by_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 4, "hi": 12},
+  "b": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Lt([[b]], [[a]])"],
+ "stem": "The limaçon \\( r=[[a]]+[[b]]\\cos\\theta \\) has no inner loop since \\( [[a]]>[[b]] \\). Find the total area it encloses as \\( \\theta \\) ranges over \\( [0,2\\pi] \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "Rational(1,2)*([[a]]+[[b]]*cos(theta))**2",
+  "var": "theta",
+  "bounds": ["0", "2*pi"]
+ },
+ "distractors": [
+  "pi*[[a]]**2",
+  "pi*([[a]]**2 + [[b]]**2)",
+  "pi*([[a]]+[[b]])**2",
+  "Rational(1,2)*pi*(2*[[a]]**2+[[b]]**2)*2",
+  "pi*(2*[[a]]**2+[[b]]**2)/2 + 1",
+  "pi*(2*[[a]]**2+[[b]]**2)/2 - 1"
+ ],
+ "solution": "\\( \\frac{1}{2}\\int_0^{2\\pi}([[a]]+[[b]]\\cos\\theta)^{2}d\\theta=\\frac{\\pi(2[[a]]^{2}+[[b]]^{2})}{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the \\( b\\cos\\theta \\) term entirely, using only the circle of radius \\( a \\).",
+  "This drops the cross-term contribution, treating the area as if \\( a \\) and \\( b \\) were independent circles.",
+  "This mistakenly uses \\( (a+b)^2 \\) as if \\( r \\) were constant at its maximum value.",
+  "This doubles the correct coefficient of \\( \\pi \\).",
+  "This is off by one from the correct total area.",
+  "This is off by one (other direction) from the correct total area."
+ ]
+},
+{
+ "template_id": "polar_area_rose_petal_v1",
+ "skill_id": "area_enclosed_by_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "k": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "stem": "One petal of the rose \\( r=[[a]]\\sin([[k]]\\theta) \\) is traced out for \\( \\theta\\in\\left[0,\\dfrac{\\pi}{[[k]]}\\right] \\). Find the area enclosed by that single petal.",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "Rational(1,2)*([[a]]*sin([[k]]*theta))**2",
+  "var": "theta",
+  "bounds": ["0", "pi/[[k]]"]
+ },
+ "distractors": [
+  "pi*[[a]]**2/[[k]]",
+  "pi*[[a]]**2/(2*[[k]])",
+  "pi*[[a]]**2/(4*[[k]]**2)",
+  "pi*[[a]]**2*[[k]]/4",
+  "pi*[[a]]**2/(4*[[k]]) + 1",
+  "pi*[[a]]**2/(4*[[k]]) - 1"
+ ],
+ "solution": "\\( \\frac{1}{2}\\int_0^{\\pi/[[k]]}[[a]]^{2}\\sin^{2}([[k]]\\theta)\\,d\\theta=\\frac{\\pi [[a]]^{2}}{4[[k]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the full-rose sweep \\( [0,\\pi] \\) instead of one petal's range.",
+  "This drops the \\( \\tfrac12 \\) factor from the area formula.",
+  "This uses \\( k^{2}\\) in the denominator instead of \\( k \\).",
+  "This multiplies by \\( k \\) instead of dividing by it.",
+  "This is off by one from the correct petal area.",
+  "This is off by one (other direction) from the correct petal area."
+ ]
+},
+{
+ "template_id": "polar_area_between_cardioid_circle_v1",
+ "skill_id": "area_enclosed_by_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "Find the area of the region that lies inside the cardioid \\( r=[[a]](1+\\cos\\theta) \\) and outside the circle \\( r=[[a]] \\), for \\( \\theta\\in\\left[-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right] \\).",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "Rational(1,2)*(([[a]]*(1+cos(theta)))**2 - [[a]]**2)",
+  "var": "theta",
+  "bounds": ["-pi/2", "pi/2"]
+ },
+ "distractors": [
+  "Rational(1,2)*pi*[[a]]**2",
+  "pi*[[a]]**2",
+  "Rational(1,2)*([[a]]**2*(pi+8))/2",
+  "[[a]]**2*(pi+8)",
+  "[[a]]**2*(pi+8)/4 + 1",
+  "[[a]]**2*(pi+8)/4 - 1"
+ ],
+ "solution": "The shaded area is \\( \\frac{1}{2}\\int_{-\\pi/2}^{\\pi/2}\\left[([[a]](1+\\cos\\theta))^{2}-[[a]]^{2}\\right]d\\theta=\\frac{[[a]]^{2}(\\pi+8)}{4}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the circle's own area instead of the region between the two curves.",
+  "This uses the full cardioid-circle area rather than the region between them.",
+  "This halves the correct coefficient incorrectly.",
+  "This forgets to divide by the leading factor of \\( \\tfrac14 \\).",
+  "This is off by one from the correct area.",
+  "This is off by one (other direction) from the correct area."
+ ]
+}
+]

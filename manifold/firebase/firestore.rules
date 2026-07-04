@@ -1,0 +1,102 @@
+rules_version = '2';
+
+// ===============================================================
+// Manifold — progress mirror security rules
+// ===============================================================
+//
+// Manifold keeps the Anki collection (cards/revlog) as the scheduling source of
+// truth, synced by Anki's own protocol. Firestore holds ONLY a per-user,
+// derived progress snapshot (the three scores + per-topic mastery) so a signed-in
+// user sees the same live progress on every device. One document per user.
+//
+// Collection: users
+// Document ID: {uid}  (MUST equal request.auth.uid)
+// Fields (all required, strict schema — no extra fields allowed):
+//   - uid: string (immutable; == request.auth.uid == document id)
+//   - schemaVersion: int (== 1)
+//   - updatedAt: timestamp (server time; must be recent, never back/forward dated)
+//   - platform: string in ['desktop','android','web']
+//   - deviceId: string (1..64) — opaque per-install id of the writer
+//   - appVersion: string (1..40)
+//   - coverage: number (0..1) — blueprint-weighted exam coverage
+//   - totalIndependentReviews: int (>= 0)
+//   - readinessState: string in ['projected','abstaining']
+//   - memory: metric map {present:bool, value:number, low:number, high:number}
+//   - performance: metric map {present:bool, value:number, low:number, high:number}
+//   - readiness: map (<= 24 keys) — the readiness detail (scaled range or gap)
+//   - topics: list (<= 64) — small per-topic mastery entries for the dashboard
+//
+// Access model: strictly owner-only. A user can only read or write their own
+// document; nobody can read another user's progress. Writes are validated on
+// BOTH create and update (each write is a full overwrite of the snapshot).
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- helpers -------------------------------------------------
+    function isAuthed() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isAuthed() && request.auth.uid == userId;
+    }
+    function isBoundedStr(v, maxLen) {
+      return v is string && v.size() >= 1 && v.size() <= maxLen;
+    }
+    // A three-number metric estimate, always present as a map (present=false
+    // when there is no evidence yet, rather than a null the rules can't type).
+    function isMetric(m) {
+      return m is map
+        && m.keys().hasOnly(['present', 'value', 'low', 'high'])
+        && m.keys().hasAll(['present', 'value', 'low', 'high'])
+        && m.present is bool
+        && m.value is number
+        && m.low is number
+        && m.high is number;
+    }
+
+    // Full-snapshot validator, used on create AND update.
+    function isValidSnapshot(userId, data) {
+      return data.keys().hasOnly([
+              'uid', 'schemaVersion', 'updatedAt', 'platform', 'deviceId',
+              'appVersion', 'coverage', 'totalIndependentReviews',
+              'readinessState', 'memory', 'performance', 'readiness', 'topics'
+            ])
+        && data.keys().hasAll([
+              'uid', 'schemaVersion', 'updatedAt', 'platform', 'deviceId',
+              'appVersion', 'coverage', 'totalIndependentReviews',
+              'readinessState', 'memory', 'performance', 'readiness', 'topics'
+            ])
+        && data.uid == userId
+        && data.schemaVersion == 1
+        && data.updatedAt is timestamp
+        && data.updatedAt <= request.time
+        && data.updatedAt > request.time - duration.value(1, 'h')
+        && data.platform in ['desktop', 'android', 'web']
+        && isBoundedStr(data.deviceId, 64)
+        && isBoundedStr(data.appVersion, 40)
+        && data.coverage is number && data.coverage >= 0 && data.coverage <= 1
+        && data.totalIndependentReviews is int && data.totalIndependentReviews >= 0
+        && data.readinessState in ['projected', 'abstaining']
+        && isMetric(data.memory)
+        && isMetric(data.performance)
+        && data.readiness is map && data.readiness.size() <= 24
+        && data.topics is list && data.topics.size() <= 64;
+    }
+
+    // --- the one collection this app uses ------------------------
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId)
+                    && isValidSnapshot(userId, request.resource.data);
+      allow update: if isOwner(userId)
+                    && isValidSnapshot(userId, request.resource.data)
+                    && request.resource.data.uid == resource.data.uid;
+      allow delete: if isOwner(userId);
+    }
+
+    // Everything else: no match ⇒ denied by default. (Firestore denies any path
+    // without an explicit allow, so no catch-all is needed.)
+  }
+}

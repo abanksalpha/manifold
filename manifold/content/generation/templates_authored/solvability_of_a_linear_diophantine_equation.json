@@ -1,0 +1,170 @@
+[
+  {
+    "template_id": "diophantine_solvability_v1",
+    "skill_id": "solvability_of_a_linear_diophantine_equation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "d": {"type": "choice", "values": [4, 6, 8, 9, 10, 12, 14, 15]},
+      "m": {"type": "int", "lo": 2, "hi": 7},
+      "n": {"type": "int", "lo": 2, "hi": 7}
+    },
+    "constraints": ["Eq(gcd([[m]], [[n]]), 1)", "Gt([[m]], [[n]])"],
+    "derived": {"A": "[[d]]*[[m]]", "B": "[[d]]*[[n]]"},
+    "stem": "For the linear Diophantine equation \\( [[A]]x + [[B]]y = c \\), what is the smallest positive integer value of \\( c \\) for which the equation has a solution in integers \\( x \\) and \\( y \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "gcd([[A]], [[B]])"},
+    "distractors": [
+      "[[A]] + [[B]]",
+      "[[d]]*[[m]]*[[n]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[answer]] - 2",
+      "[[answer]] + 3"
+    ],
+    "solution": "The equation \\( [[A]]x + [[B]]y = c \\) has an integer solution iff \\( \\gcd([[A]], [[B]]) \\) divides \\( c \\). The smallest positive multiple of the gcd is the gcd itself, so \\( c = \\gcd([[A]], [[B]]) = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( [[A]] + [[B]] \\); it is representable but is not the smallest positive value.",
+      "This is a common multiple of the coefficients, not the smallest representable value.",
+      "This is one more than the gcd.",
+      "This is one less than the gcd.",
+      "This is two more than the gcd.",
+      "This is two less than the gcd.",
+      "This is three more than the gcd."
+    ]
+  },
+  {
+    "template_id": "diophantine_frobenius_number_v1",
+    "skill_id": "solvability_of_a_linear_diophantine_equation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "A": {"type": "int", "lo": 3, "hi": 12},
+      "B": {"type": "int", "lo": 3, "hi": 12}
+    },
+    "constraints": ["Eq(gcd([[A]], [[B]]), 1)", "Ne([[A]], [[B]])"],
+    "stem": "Suppose \\( [[A]] \\) and \\( [[B]] \\) are coprime positive integers. What is the largest positive integer \\( c \\) for which \\( [[A]]x + [[B]]y = c \\) has NO solution in non-negative integers \\( x, y \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "[[A]]*[[B]] - [[A]] - [[B]]"},
+    "distractors": [
+      "[[A]]*[[B]]",
+      "[[A]] + [[B]]",
+      "[[A]]*[[B]] - [[A]]",
+      "[[A]]*[[B]] - [[B]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "For coprime \\( A,B \\), the Chicken McNugget (Frobenius) theorem gives the largest non-representable positive integer (using non-negative \\( x,y \\)) as \\( AB - A - B = [[A]]\\cdot[[B]] - [[A]] - [[B]] = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is the product \\( AB \\) itself, which IS representable (\\( x=B, y=0\\) or similar).",
+      "This is just the sum of the two coefficients, not the Frobenius number.",
+      "This subtracts only one of the two coefficients from the product.",
+      "This subtracts only the other coefficient from the product.",
+      "This is one more than the correct Frobenius number.",
+      "This is one less than the correct Frobenius number.",
+      "This is two more than the correct Frobenius number."
+    ]
+  },
+  {
+    "template_id": "diophantine_count_representable_v1",
+    "skill_id": "solvability_of_a_linear_diophantine_equation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "d": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 9]},
+      "m": {"type": "int", "lo": 2, "hi": 7},
+      "n": {"type": "int", "lo": 2, "hi": 7},
+      "N": {"type": "int", "lo": 100, "hi": 500}
+    },
+    "constraints": ["Eq(gcd([[m]], [[n]]), 1)", "Gt([[m]], [[n]])"],
+    "derived": {"A": "[[d]]*[[m]]", "B": "[[d]]*[[n]]"},
+    "stem": "For the equation \\( [[A]]x + [[B]]y = c \\) with integers \\( x,y \\) (not necessarily non-negative), how many positive integers \\( c \\) with \\( 1 \\le c \\le [[N]] \\) admit a solution?",
+    "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/gcd([[A]], [[B]]))"},
+    "distractors": [
+      "[[N]]",
+      "gcd([[A]], [[B]])",
+      "floor([[N]]/[[A]])",
+      "floor([[N]]/[[B]])",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "A value \\( c \\) is representable exactly when \\( \\gcd([[A]], [[B]]) \\) divides \\( c \\); the number of multiples of \\( \\gcd([[A]],[[B]]) \\) in \\( [1,[[N]]] \\) is \\( \\lfloor [[N]]/\\gcd([[A]],[[B]]) \\rfloor = [[answer]] \\).",
+    "distractor_rationales": [
+      "This assumes every value up to \\( N \\) is representable, ignoring the gcd condition.",
+      "This is the gcd itself, not the count of multiples of it up to \\( N \\).",
+      "This counts multiples of \\( [[A]] \\) instead of the (smaller) gcd.",
+      "This counts multiples of \\( [[B]] \\) instead of the (smaller) gcd.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This is two more than the correct count."
+    ]
+  },
+  {
+    "template_id": "diophantine_mod_gcd_test_v1",
+    "skill_id": "solvability_of_a_linear_diophantine_equation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "d": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 9]},
+      "m": {"type": "int", "lo": 2, "hi": 7},
+      "n": {"type": "int", "lo": 2, "hi": 7},
+      "c": {"type": "int", "lo": 1, "hi": 500}
+    },
+    "constraints": ["Eq(gcd([[m]], [[n]]), 1)", "Gt([[m]], [[n]])"],
+    "derived": {"A": "[[d]]*[[m]]", "B": "[[d]]*[[n]]"},
+    "stem": "The equation \\( [[A]]x + [[B]]y = [[c]] \\) has an integer solution if and only if \\( \\gcd([[A]],[[B]]) \\) divides \\( [[c]] \\). What is the remainder when \\( [[c]] \\) is divided by \\( \\gcd([[A]],[[B]]) \\)? (A remainder of 0 means the equation IS solvable.)",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[c]], gcd([[A]], [[B]]))"},
+    "distractors": [
+      "Mod([[c]], [[A]])",
+      "Mod([[c]], [[B]])",
+      "gcd([[A]], [[B]])",
+      "Mod([[c]], [[d]])",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "Compute \\( g = \\gcd([[A]],[[B]]) \\), then reduce \\( [[c]] \\) modulo \\( g \\): the remainder is \\( [[answer]] \\); a remainder of 0 would mean \\( g \\mid [[c]] \\) and the equation is solvable in integers.",
+    "distractor_rationales": [
+      "This reduces \\( c \\) modulo \\( [[A]] \\) instead of modulo the gcd.",
+      "This reduces \\( c \\) modulo \\( [[B]] \\) instead of modulo the gcd.",
+      "This is the gcd itself, not the remainder of \\( c \\) upon division by it.",
+      "This reduces \\( c \\) modulo the shared factor \\( [[d]] \\) alone rather than the full gcd \\( [[A]],[[B]] \\) share.",
+      "This is one more than the correct remainder.",
+      "This is one less than the correct remainder.",
+      "This is two more than the correct remainder."
+    ]
+  },
+  {
+    "template_id": "diophantine_total_nonrepresentable_count_v1",
+    "skill_id": "solvability_of_a_linear_diophantine_equation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "A": {"type": "int", "lo": 3, "hi": 15},
+      "B": {"type": "int", "lo": 3, "hi": 15}
+    },
+    "constraints": ["Eq(gcd([[A]], [[B]]), 1)", "Ne([[A]], [[B]])"],
+    "stem": "Suppose \\( [[A]] \\) and \\( [[B]] \\) are coprime positive integers. Using ONLY non-negative integers \\( x,y \\), how many positive integers \\( c \\) can NEVER be written as \\( [[A]]x + [[B]]y \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "([[A]] - 1)*([[B]] - 1)/2"},
+    "distractors": [
+      "[[A]]*[[B]] - [[A]] - [[B]]",
+      "[[A]]*[[B]]",
+      "([[A]] - 1)*([[B]] - 1)",
+      "[[A]] + [[B]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "By Sylvester's theorem, for coprime \\( A,B \\) the TOTAL number of positive integers not representable as a non-negative combination \\( Ax+By \\) is exactly \\( \\dfrac{(A-1)(B-1)}{2} = \\dfrac{([[A]]-1)([[B]]-1)}{2} = [[answer]] \\) (half of all the \"gaps\", the other half being representable, up to and beyond the Frobenius number).",
+    "distractor_rationales": [
+      "This is the Frobenius number (the LARGEST non-representable value), not the total COUNT of non-representable values.",
+      "This is the product \\( AB \\), an unrelated quantity.",
+      "This forgets to halve the product of the shifted factors.",
+      "This is just the sum of the two coefficients, not the gap count.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This is two more than the correct count."
+    ]
+  }
+]

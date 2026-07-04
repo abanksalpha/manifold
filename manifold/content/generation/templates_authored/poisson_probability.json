@@ -1,0 +1,185 @@
+[
+ {
+  "template_id": "poisson_exactly_k_v1",
+  "skill_id": "poisson_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lam": {"type": "choice", "values": [1, 2, 3, 4]},
+   "k": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "The number of calls arriving at a switchboard in one hour follows a Poisson distribution with mean \\( \\lambda = [[lam]] \\). What is the probability that exactly [[k]] calls arrive in a given hour?",
+  "answer_spec": {"op": "evaluate", "expr": "exp(-[[lam]]) * [[lam]] ** [[k]] / factorial([[k]])"},
+  "distractors": [
+   "exp(-[[lam]]) * [[lam]] ** [[k]]",
+   "[[lam]] ** [[k]] / factorial([[k]])",
+   "exp(-[[lam]]) * [[lam]] ** ([[k]] + 1) / factorial([[k]] + 1)",
+   "exp(-[[lam]]) * [[lam]] ** ([[k]] - 1) / factorial([[k]] - 1)",
+   "exp(-[[lam]]) * [[lam]] ** [[k]] / factorial([[k]] + 1)",
+   "1 - exp(-[[lam]]) * [[lam]] ** [[k]] / factorial([[k]])"
+  ],
+  "solution": "For a Poisson variable with mean \\( \\lambda = [[lam]] \\), \\( P(X = [[k]]) = \\frac{e^{-\\lambda}\\lambda^{[[k]]}}{[[k]]!} = \\frac{e^{-[[lam]]}\\,[[lam]]^{[[k]]}}{[[k]]!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the \\( \\frac{1}{[[k]]!} \\) normalizing factor.",
+   "This omits the \\( e^{-\\lambda} \\) factor.",
+   "This is \\( P(X = [[k]] + 1) \\), shifted up by one event.",
+   "This is \\( P(X = [[k]] - 1) \\), shifted down by one event.",
+   "This divides by \\( ([[k]] + 1)! \\) instead of \\( [[k]]! \\).",
+   "This is the complement \\( 1 - P(X = [[k]]) \\)."
+  ]
+ },
+ {
+  "template_id": "poisson_cumulative_at_most_k_v1",
+  "skill_id": "poisson_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lam": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7, 8]},
+   "k": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "The number of typos on a page follows a Poisson distribution with mean \\( \\lambda = [[lam]] \\). What is the probability that a given page has AT MOST [[k]] typos (that is, \\( P(X \\le [[k]]) \\))?",
+  "answer_spec": {"op": "sum", "expr": "exp(-[[lam]]) * [[lam]] ** i / factorial(i)", "var": "i", "lo": "0", "hi": "[[k]]"},
+  "distractors": [
+   "exp(-[[lam]]) * [[lam]] ** [[k]] / factorial([[k]])",
+   "1 - exp(-[[lam]])",
+   "exp(-[[lam]]) * (1 + [[lam]])",
+   "exp(-[[lam]]) * [[lam]] ** ([[k]] + 1) / factorial([[k]] + 1)",
+   "1 - exp(-[[lam]]) * [[lam]] ** [[k]] / factorial([[k]])",
+   "exp(-[[lam]]) * [[k]]"
+  ],
+  "solution": "The CDF sums the pmf over all counts up to [[k]]: \\( P(X \\le [[k]]) = \\sum_{i=0}^{[[k]]} \\frac{e^{-\\lambda}\\lambda^i}{i!} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is only the single term \\( P(X = [[k]]) \\), not the cumulative sum up to it.",
+   "This is the complement of \\( P(X=0) \\), i.e. \\( P(X \\ge 1) \\), regardless of [[k]].",
+   "This uses the wrong number of terms (fixed at two), not matching the requested cutoff [[k]].",
+   "This is \\( P(X = [[k]]+1) \\), a single shifted term, not the cumulative sum.",
+   "This is the complement \\( P(X > [[k]]) \\) rather than \\( P(X \\le [[k]]) \\).",
+   "This linearly scales \\( e^{-\\lambda} \\) by [[k]] instead of summing the pmf terms."
+  ]
+ },
+ {
+  "template_id": "poisson_at_least_one_v1",
+  "skill_id": "poisson_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lamn": {"type": "int", "lo": 1, "hi": 8},
+   "lamd": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "stem": "The number of flaws on a sheet of material follows a Poisson distribution with mean \\( \\lambda = \\frac{[[lamn]]}{[[lamd]]} \\). What is the probability that a given sheet has AT LEAST one flaw?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - exp(-Rational([[lamn]], [[lamd]]))"},
+  "distractors": [
+   "exp(-Rational([[lamn]], [[lamd]]))",
+   "Rational([[lamn]], [[lamd]])",
+   "1 - exp(-Rational([[lamn]], [[lamd]])) * (1 + Rational([[lamn]], [[lamd]]))",
+   "exp(-Rational([[lamn]], [[lamd]])) * Rational([[lamn]], [[lamd]])",
+   "1 - Rational([[lamn]], [[lamd]])",
+   "exp(Rational([[lamn]], [[lamd]])) - 1"
+  ],
+  "solution": "\\( P(X \\ge 1) = 1 - P(X = 0) = 1 - e^{-\\lambda} = 1 - e^{-[[lamn]]/[[lamd]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(X = 0) \\) itself, not its complement.",
+   "This treats \\( \\lambda \\) as if it were already a probability, ignoring the Poisson structure entirely.",
+   "This is \\( 1 - P(X \\le 1) \\), i.e. \\( P(X \\ge 2) \\), one flaw too many excluded.",
+   "This is \\( P(X = 1) \\), a single pmf term, not the complement of \\( P(X=0) \\).",
+   "This incorrectly complements \\( \\lambda \\) directly instead of \\( e^{-\\lambda} \\).",
+   "This uses \\( e^{\\lambda} \\) with the wrong sign in the exponent."
+  ]
+ },
+ {
+  "template_id": "poisson_at_least_two_v1",
+  "skill_id": "poisson_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lamn": {"type": "int", "lo": 1, "hi": 8},
+   "lamd": {"type": "choice", "values": [1, 2, 3, 4]}
+  },
+  "constraints": [],
+  "stem": "The number of accidents at an intersection in a month follows a Poisson distribution with mean \\( \\lambda = \\frac{[[lamn]]}{[[lamd]]} \\). What is the probability of AT LEAST two accidents in a given month?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - exp(-Rational([[lamn]], [[lamd]])) * (1 + Rational([[lamn]], [[lamd]]))"},
+  "distractors": [
+   "1 - exp(-Rational([[lamn]], [[lamd]]))",
+   "exp(-Rational([[lamn]], [[lamd]])) * (1 + Rational([[lamn]], [[lamd]]))",
+   "exp(-Rational([[lamn]], [[lamd]])) * Rational([[lamn]], [[lamd]]) ** 2 / 2",
+   "1 - exp(-Rational([[lamn]], [[lamd]])) * Rational([[lamn]], [[lamd]])",
+   "exp(-Rational([[lamn]], [[lamd]]))",
+   "Rational([[lamn]], [[lamd]]) ** 2 / 2"
+  ],
+  "solution": "\\( P(X \\ge 2) = 1 - P(X=0) - P(X=1) = 1 - e^{-\\lambda}(1+\\lambda) = 1 - e^{-[[lamn]]/[[lamd]]}\\left(1+\\frac{[[lamn]]}{[[lamd]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This only excludes \\( P(X=0) \\), giving \\( P(X \\ge 1) \\) instead of \\( P(X \\ge 2) \\).",
+   "This is \\( P(X \\le 1) \\) itself, not its complement.",
+   "This is just the \\( P(X=2) \\) pmf term, not the tail probability.",
+   "This excludes only part of the \\( P(X=1) \\) term, forgetting the constant piece.",
+   "This is \\( P(X=0) \\) alone.",
+   "This omits the \\( e^{-\\lambda} \\) factor and the complement entirely."
+  ]
+ },
+ {
+  "template_id": "poisson_consecutive_ratio_v1",
+  "skill_id": "poisson_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "lam": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8]},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "For a Poisson random variable \\( X \\) with mean \\( \\lambda = [[lam]] \\), what is the ratio \\( \\dfrac{P(X = [[k]] + 1)}{P(X = [[k]])} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[lam]], [[k]] + 1)"},
+  "distractors": [
+   "Rational([[lam]], [[k]])",
+   "Rational([[k]] + 1, [[lam]])",
+   "Rational([[lam]], [[k]] - 1)",
+   "[[lam]] * ([[k]] + 1)",
+   "Rational([[lam]], [[k]] + 2)",
+   "Rational([[k]], [[lam]])"
+  ],
+  "solution": "The Poisson pmf satisfies \\( \\frac{P(X=k+1)}{P(X=k)} = \\frac{\\lambda}{k+1} \\), so with \\( k = [[k]] \\) and \\( \\lambda = [[lam]] \\), the ratio is \\( \\frac{[[lam]]}{[[k]] + 1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( k \\) instead of \\( k+1 \\) in the denominator.",
+   "This inverts the true ratio.",
+   "This uses \\( k-1 \\) instead of \\( k+1 \\) in the denominator.",
+   "This multiplies instead of dividing.",
+   "This is off by one, using \\( k+2 \\) instead of \\( k+1 \\).",
+   "This has the numerator and denominator's roles swapped."
+  ]
+ },
+ {
+  "template_id": "poisson_solve_lambda_from_equal_probs_v1",
+  "skill_id": "poisson_probability",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "j": {"type": "int", "lo": 0, "hi": 17}
+  },
+  "constraints": [],
+  "stem": "A Poisson random variable \\( X \\) with mean \\( \\lambda \\) satisfies \\( P(X = [[j]]) = P(X = [[j]] + 1) \\). What is the value of \\( \\lambda \\)?",
+  "answer_spec": {"op": "solve", "equation": "exp(-x) * x ** [[j]] / factorial([[j]]) - exp(-x) * x ** ([[j]] + 1) / factorial([[j]] + 1) = 0", "var": "x"},
+  "distractors": [
+   "[[j]]",
+   "[[j]] - 1",
+   "[[j]] + 2",
+   "Rational(1, [[j]] + 1)",
+   "2 * ([[j]] + 1)",
+   "Rational([[j]] + 1, 2)"
+  ],
+  "solution": "Dividing the equal-probability condition through, \\( 1 = \\frac{\\lambda}{[[j]]+1} \\), so \\( \\lambda = [[j]] + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( j \\) itself instead of \\( j+1 \\).",
+   "This is off by one below the correct value.",
+   "This is off by one above the correct value (using \\( j+2 \\)).",
+   "This inverts the correct value.",
+   "This doubles the correct value.",
+   "This halves the correct value."
+  ]
+ }
+]

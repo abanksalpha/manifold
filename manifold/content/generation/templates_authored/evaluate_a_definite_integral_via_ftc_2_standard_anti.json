@@ -1,0 +1,269 @@
+[
+{
+ "template_id": "ftc2_polynomial_definite_integral_v1",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "lo": {"type": "int", "lo": -2, "hi": 2},
+  "hi": {"type": "int", "lo": -1, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], 0)", "Lt([[lo]], [[hi]])"],
+ "stem": "Use the Fundamental Theorem of Calculus to evaluate \\( \\int_{[[lo]]}^{[[hi]]} \\left( ([[a]])x^{3} + ([[b]])x^{2} + ([[c]])x + ([[d]]) \\right)\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*x**3 + [[b]]*x**2 + [[c]]*x + [[d]]", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "[[a]]*[[hi]]**4/4 + [[b]]*[[hi]]**3/3 + [[c]]*[[hi]]**2/2 + [[d]]*[[hi]]",
+  "[[a]]*[[hi]]**3 + [[b]]*[[hi]]**2 + [[c]]*[[hi]] + [[d]] - ([[a]]*[[lo]]**3 + [[b]]*[[lo]]**2 + [[c]]*[[lo]] + [[d]])",
+  "[[a]]*([[hi]]**4 - [[lo]]**4) + [[b]]*([[hi]]**3 - [[lo]]**3) + [[c]]*([[hi]]**2 - [[lo]]**2) + [[d]]*([[hi]] - [[lo]])",
+  "[[answer]] + [[hi]] - [[lo]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "An antiderivative is \\( F(x) = \\frac{[[a]]}{4}x^{4} + \\frac{[[b]]}{3}x^{3} + \\frac{[[c]]}{2}x^{2} + ([[d]])x \\). By the Fundamental Theorem of Calculus the integral equals \\( F([[hi]]) - F([[lo]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates the antiderivative only at the upper limit and forgets to subtract its value at the lower limit.",
+  "This subtracts the integrand's values \\( f([[hi]]) - f([[lo]]) \\) instead of antidifferentiating first.",
+  "This applies the power rule without dividing each term by its new exponent.",
+  "This is off by the width of the interval.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_sine_cosine_pi_bounds_v2",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7, 8]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Use the standard antiderivatives of sine and cosine to evaluate \\( \\int_{0}^{[[k]]\\pi/2} \\left( ([[a]])\\sin x + ([[b]])\\cos x \\right) dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*sin(x) + [[b]]*cos(x)", "var": "x", "bounds": ["0", "[[k]]*pi/2"]},
+ "distractors": [
+  "[[a]]*cos([[k]]*pi/2) + [[b]]*sin([[k]]*pi/2) - [[a]]",
+  "-[[a]]*cos([[k]]*pi/2) + [[b]]*sin([[k]]*pi/2)",
+  "[[b]]*sin([[k]]*pi/2) - [[a]]*cos([[k]]*pi/2) - [[a]]",
+  "[[a]]*sin([[k]]*pi/2) + [[b]]*cos([[k]]*pi/2) - [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "An antiderivative is \\( F(x) = -([[a]])\\cos x + ([[b]])\\sin x \\). By the Fundamental Theorem of Calculus the integral equals \\( F([[k]]\\pi/2) - F(0) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the sign flip on the antiderivative of cosine (uses \\( +a\\cos x \\) instead of \\( -a\\cos x \\)).",
+  "This forgets to subtract \\( F(0) = -([[a]]) \\), i.e. omits the \\( +[[a]] \\) term.",
+  "This mixes up which coefficient multiplies sine versus cosine in the antiderivative.",
+  "This uses \\( \\sin x \\) as the antiderivative of sine instead of \\( -\\cos x \\), then still subtracts the wrong constant.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_exponential_log_bounds_v3",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 4},
+  "p": {"type": "int", "lo": 2, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "Use the standard antiderivative of an exponential to evaluate \\( \\int_{\\ln [[p]]}^{\\ln [[q]]} e^{[[n]] x}\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "exp([[n]]*x)", "var": "x", "bounds": ["log([[p]])", "log([[q]])"]},
+ "distractors": [
+  "[[q]]**[[n]] - [[p]]**[[n]]",
+  "([[q]]**[[n]] - [[p]]**[[n]])/[[q]]",
+  "([[q]] - [[p]])/[[n]]",
+  "([[q]]**([[n]]+1) - [[p]]**([[n]]+1))/([[n]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "An antiderivative of \\( e^{[[n]]x} \\) is \\( \\frac{1}{[[n]]}e^{[[n]]x} \\). Since \\( e^{[[n]]\\ln [[q]]} = [[q]]^{[[n]]} \\) and \\( e^{[[n]]\\ln [[p]]} = [[p]]^{[[n]]} \\), the integral equals \\( \\frac{[[q]]^{[[n]]} - [[p]]^{[[n]]}}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by the coefficient \\( [[n]] \\) from the antiderivative \\( \\tfrac{1}{[[n]]}e^{[[n]]x} \\).",
+  "This divides by \\( [[q]] \\) instead of by \\( [[n]] \\).",
+  "This treats the exponent as if the integrand were linear, using \\( q - p \\) instead of \\( q^{[[n]]} - p^{[[n]]} \\).",
+  "This applies the power rule to the exponent, using \\( [[n]]+1 \\) as if this were \\( x^{[[n]]} \\) rather than \\( e^{[[n]]x} \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_logarithm_antiderivative_v4",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": -3, "hi": 6},
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": 9, "hi": 20}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Gt([[a]] + [[c]], 0)"],
+ "stem": "Use the standard antiderivative \\( \\int \\frac{1}{x+c}\\,dx = \\ln|x+c| \\) to evaluate \\( \\int_{[[a]]}^{[[b]]} \\frac{1}{x + ([[c]])}\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "1/(x+[[c]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "log([[b]] + [[c]]) + log([[a]] + [[c]])",
+  "log([[b]] - [[a]])",
+  "-1/([[b]]+[[c]]) + 1/([[a]]+[[c]])",
+  "log([[b]]) - log([[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "An antiderivative is \\( F(x) = \\ln|x + ([[c]])| \\). By the Fundamental Theorem of Calculus the integral equals \\( F([[b]]) - F([[a]]) = \\ln\\!\\left( \\frac{[[b]] + ([[c]])}{[[a]] + ([[c]])} \\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two log values instead of subtracting them.",
+  "This takes the log of the interval width instead of the ratio of shifted endpoints.",
+  "This mistakes \\( 1/(x+c) \\) for having antiderivative \\( -1/(x+c) \\), as if it were a power rule term.",
+  "This forgets to shift by \\( c \\) before taking the logarithm of each endpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_sec_squared_tangent_v5",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Use the standard antiderivative \\( \\int \\sec^{2}(u)\\,du = \\tan(u) \\) to evaluate \\( \\int_{0}^{\\pi/(4\\cdot [[k]])} ([[a]])\\sec^{2}([[k]]x)\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*sec([[k]]*x)**2", "var": "x", "bounds": ["0", "pi/(4*[[k]])"]},
+ "distractors": [
+  "[[a]]*[[k]]",
+  "[[a]]/([[k]]**2)",
+  "[[a]]*[[k]]*pi/4",
+  "[[a]]*pi/4",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( u = [[k]]x \\), an antiderivative of \\( ([[a]])\\sec^{2}([[k]]x) \\) is \\( \\frac{[[a]]}{[[k]]}\\tan([[k]]x) \\). At \\( x = \\pi/(4[[k]]) \\), \\( [[k]]x = \\pi/4 \\) so \\( \\tan([[k]]x) = 1 \\), giving \\( \\frac{[[a]]}{[[k]]}\\left(1 - 0\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( [[k]] \\) instead of dividing by it when undoing the chain rule.",
+  "This divides by \\( [[k]]^{2} \\) instead of \\( [[k]] \\).",
+  "This treats the bound \\( \\pi/(4[[k]]) \\) as the value of \\( \\tan \\) itself rather than evaluating \\( \\tan(\\pi/4) = 1 \\).",
+  "This uses the bound value \\( \\pi/4 \\) directly as \\( \\tan([[k]]x) \\) and forgets to divide by \\( [[k]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_arctan_antiderivative_v6",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Use the standard antiderivative \\( \\int \\frac{du}{1+u^{2}} = \\arctan(u) \\) to evaluate \\( \\int_{0}^{1/[[k]]} \\frac{[[a]]}{1 + ([[k]]x)^{2}}\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]/(1+([[k]]*x)**2)", "var": "x", "bounds": ["0", "1/[[k]]"]},
+ "distractors": [
+  "[[a]]*[[k]]*pi/4",
+  "[[a]]*pi/2/[[k]]",
+  "[[a]]/[[k]]",
+  "[[a]]*pi/4",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( u = [[k]]x \\), an antiderivative of \\( \\frac{[[a]]}{1+([[k]]x)^{2}} \\) is \\( \\frac{[[a]]}{[[k]]}\\arctan([[k]]x) \\). At \\( x = 1/[[k]] \\), \\( [[k]]x = 1 \\) so \\( \\arctan([[k]]x) = \\pi/4 \\), giving \\( \\frac{[[a]]}{[[k]]}\\cdot\\frac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( [[k]] \\) instead of dividing by it when undoing the chain rule.",
+  "This uses \\( \\arctan(1) = \\pi/2 \\) instead of the correct \\( \\pi/4 \\).",
+  "This drops the \\( \\pi/4 \\) factor from \\( \\arctan(1) \\) entirely.",
+  "This forgets to divide by \\( [[k]] \\) after undoing the chain rule.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_arcsin_antiderivative_v7",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Use the standard antiderivative \\( \\int \\frac{du}{\\sqrt{1-u^{2}}} = \\arcsin(u) \\) to evaluate \\( \\int_{0}^{1/[[k]]} \\frac{[[a]]}{\\sqrt{1 - ([[k]]x)^{2}}}\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]/sqrt(1-([[k]]*x)**2)", "var": "x", "bounds": ["0", "1/[[k]]"]},
+ "distractors": [
+  "[[a]]*[[k]]*pi/2",
+  "[[a]]*pi/4/[[k]]",
+  "[[a]]/[[k]]",
+  "[[a]]*pi/4",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( u = [[k]]x \\), an antiderivative of \\( \\frac{[[a]]}{\\sqrt{1-([[k]]x)^{2}}} \\) is \\( \\frac{[[a]]}{[[k]]}\\arcsin([[k]]x) \\). At \\( x = 1/[[k]] \\), \\( [[k]]x = 1 \\) so \\( \\arcsin([[k]]x) = \\pi/2 \\), giving \\( \\frac{[[a]]}{[[k]]}\\cdot\\frac{\\pi}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies by \\( [[k]] \\) instead of dividing by it when undoing the chain rule.",
+  "This uses \\( \\pi/4 \\) instead of the correct \\( \\arcsin(1) = \\pi/2 \\).",
+  "This drops the \\( \\pi/2 \\) factor from \\( \\arcsin(1) \\) entirely.",
+  "This uses \\( \\pi/4 \\) and also forgets to divide by \\( [[k]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "ftc2_negative_power_rule_v8",
+ "skill_id": "evaluate_a_definite_integral_via_ftc_2_standard_anti",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "p": {"type": "int", "lo": 1, "hi": 6},
+  "q": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[p]], [[q]])"],
+ "stem": "Use the power rule \\( \\int x^{-2}\\,dx = -x^{-1} \\) to evaluate \\( \\int_{[[p]]}^{[[q]]} \\frac{[[a]]}{x^{2}}\\, dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]/x**2", "var": "x", "bounds": ["[[p]]", "[[q]]"]},
+ "distractors": [
+  "[[a]]/[[q]] - [[a]]/[[p]]",
+  "[[a]]*(1/[[q]]**3 - 1/[[p]]**3)/3",
+  "[[a]]*([[q]] - [[p]])",
+  "[[a]]/([[q]]-[[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "An antiderivative of \\( \\frac{[[a]]}{x^{2}} \\) is \\( -\\frac{[[a]]}{x} \\). By the Fundamental Theorem of Calculus the integral equals \\( -\\frac{[[a]]}{[[q]]} - \\left(-\\frac{[[a]]}{[[p]]}\\right) = \\frac{[[a]]}{[[p]]} - \\frac{[[a]]}{[[q]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the sign flip from the negative exponent, using \\( a/x \\) as the antiderivative instead of \\( -a/x \\).",
+  "This applies the power rule as if the exponent were \\( -3 \\) rather than \\( -2 \\).",
+  "This treats the integrand as constant equal to \\( a \\) times the interval width.",
+  "This divides by the interval width instead of antidifferentiating.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

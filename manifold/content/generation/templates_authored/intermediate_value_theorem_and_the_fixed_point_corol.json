@@ -1,0 +1,111 @@
+[
+ {
+  "template_id": "ivt_monotone_cubic_root_v1",
+  "skill_id": "intermediate_value_theorem_and_the_fixed_point_corol",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 4},
+   "B": {"type": "int", "lo": 1, "hi": 5},
+   "r": {"type": "int", "lo": -4, "hi": 4},
+   "gap1": {"type": "int", "lo": 1, "hi": 4},
+   "gap2": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "C": "-[[A]]*[[r]]**3-[[B]]*[[r]]",
+   "p": "[[r]]-[[gap1]]",
+   "q": "[[r]]+[[gap2]]",
+   "fp": "[[A]]*([[r]]-[[gap1]])**3+[[B]]*([[r]]-[[gap1]])-[[A]]*[[r]]**3-[[B]]*[[r]]",
+   "fq": "[[A]]*([[r]]+[[gap2]])**3+[[B]]*([[r]]+[[gap2]])-[[A]]*[[r]]**3-[[B]]*[[r]]"
+  },
+  "stem": "Let \\( f(x) = [[A]]x^{3} + [[B]]x + ([[C]]) \\). Since \\( [[A]]>0 \\) and \\( [[B]]>0 \\), \\( f'(x) = 3([[A]])x^{2}+[[B]] \\) is always positive, so \\( f \\) is continuous and strictly increasing on all of \\( \\mathbb{R} \\). Direct computation gives \\( f([[p]]) = [[fp]] \\) and \\( f([[q]]) = [[fq]] \\), which have opposite signs, so the Intermediate Value Theorem guarantees a root \\( c \\in ([[p]], [[q]]) \\) with \\( f(c) = 0 \\). Which of the following is \\( c \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[A]]*x**3+[[B]]*x+[[C]] = 0", "var": "x"},
+  "distractors": [
+   "[[p]]",
+   "[[q]]",
+   "[[r]] + 1",
+   "[[r]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By construction \\( [[C]] = -[[A]]([[r]])^{3}-[[B]]([[r]]) \\), so \\( f([[r]]) = [[A]]([[r]])^{3}+[[B]]([[r]])+([[C]]) = 0 \\). Since \\( f \\) is strictly increasing, this is the ONLY real root, and \\( [[p]] < [[r]] < [[q]] \\), so \\( c = [[r]] = [[answer]] \\) is the root the IVT guarantees.",
+  "distractor_rationales": [
+   "This reports the left endpoint of the bracketing interval, not the actual root.",
+   "This reports the right endpoint of the bracketing interval, not the actual root.",
+   "This is the root shifted one unit too high.",
+   "This is the root shifted one unit too low.",
+   "This is off by two from the correct root.",
+   "This is off by two from the correct root."
+  ]
+ },
+ {
+  "template_id": "fixed_point_contraction_v1",
+  "skill_id": "intermediate_value_theorem_and_the_fixed_point_corol",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "m_num": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "m_den": {"type": "choice", "values": [5, 6, 7, 8]},
+   "k": {"type": "int", "lo": -30, "hi": 30}
+  },
+  "constraints": ["Lt(Abs([[m_num]]), [[m_den]])"],
+  "stem": "Define \\( g(x) = \\dfrac{[[m_num]]}{[[m_den]]}x + ([[k]]) \\). Since \\( \\left|\\dfrac{[[m_num]]}{[[m_den]]}\\right| < 1 \\), \\( g \\) is continuous and maps some closed bounded interval into itself, so the fixed-point corollary of the IVT guarantees a point \\( c \\) with \\( g(c) = c \\). What is \\( c \\)?",
+  "answer_spec": {"op": "solve", "equation": "Rational([[m_num]],[[m_den]])*x+[[k]] = x", "var": "x"},
+  "distractors": [
+   "[[k]]/(1+Rational([[m_num]],[[m_den]]))",
+   "[[k]]*(1-Rational([[m_num]],[[m_den]]))",
+   "-[[k]]/(1-Rational([[m_num]],[[m_den]]))",
+   "[[k]]/Rational([[m_num]],[[m_den]])",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Setting \\( g(c)=c \\) gives \\( \\dfrac{[[m_num]]}{[[m_den]]}c + ([[k]]) = c \\), so \\( c\\left(1-\\dfrac{[[m_num]]}{[[m_den]]}\\right) = [[k]] \\), which gives \\( c = \\dfrac{[[k]]}{1-\\frac{[[m_num]]}{[[m_den]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the slope term in the denominator.",
+   "This multiplies by \\( 1-m \\) instead of dividing by it.",
+   "This has the wrong overall sign on the correct expression.",
+   "This divides \\( k \\) by \\( m \\) instead of by \\( 1-m \\).",
+   "This is off by two from the correct fixed point.",
+   "This is off by two from the correct fixed point."
+  ]
+ },
+ {
+  "template_id": "ivt_intermediate_value_sqrt_v1",
+  "skill_id": "intermediate_value_theorem_and_the_fixed_point_corol",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": 1, "hi": 5},
+   "B": {"type": "int", "lo": -10, "hi": 10},
+   "s": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]},
+   "gap1": {"type": "int", "lo": 1, "hi": 4},
+   "gap2": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Le([[gap1]], [[s]]**2)"],
+  "derived": {
+   "T": "[[A]]*[[s]]+[[B]]",
+   "p": "[[s]]**2-[[gap1]]",
+   "q": "[[s]]**2+[[gap2]]"
+  },
+  "stem": "Let \\( f(x) = [[A]]\\sqrt{x} + ([[B]]) \\), which is continuous and strictly increasing on \\( [[[p]], [[q]]] \\subset [0,\\infty) \\). Since \\( f([[p]]) < [[T]] < f([[q]]) \\), the Intermediate Value Theorem guarantees a point \\( c \\in ([[p]], [[q]]) \\) with \\( f(c) = [[T]] \\). What is \\( c \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[A]]*sqrt(x)+[[B]] = [[T]]", "var": "x"},
+  "distractors": [
+   "(([[T]]+[[B]])/[[A]])**2",
+   "([[T]]-[[B]])/[[A]]",
+   "(([[T]]-[[B]])/[[A]])**2 + 1",
+   "([[T]]-[[B]])**2/[[A]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Setting \\( f(c) = [[T]] \\) gives \\( [[A]]\\sqrt{c} = [[T]]-([[B]]) \\), so \\( \\sqrt{c} = \\dfrac{[[T]]-([[B]])}{[[A]]} \\), and squaring gives \\( c = \\left(\\dfrac{[[T]]-([[B]])}{[[A]]}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on \\( B \\) inside the ratio before squaring.",
+   "This forgets to square the ratio after isolating \\( \\sqrt{c} \\).",
+   "This is the correct squared ratio shifted one unit too high.",
+   "This squares only the numerator, forgetting to divide \\( A \\) before squaring.",
+   "This is off by two from the correct value of \\( c \\).",
+   "This is off by two from the correct value of \\( c \\)."
+  ]
+ }
+]

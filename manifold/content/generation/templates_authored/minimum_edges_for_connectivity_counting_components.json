@@ -1,0 +1,120 @@
+[
+ {
+  "template_id": "forest_edges_components_v1",
+  "skill_id": "minimum_edges_for_connectivity_counting_components",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 14},
+   "c": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Lt([[c]], [[n]])"],
+  "stem": "A forest (a graph with no cycles) has \\( [[n]] \\) vertices and \\( [[c]] \\) connected components. How many edges does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[c]]"},
+  "distractors": [
+   "[[n]] - 1",
+   "[[n]]",
+   "[[c]] - 1",
+   "[[n]] - [[c]] - 1",
+   "[[n]] - [[c]] + 1",
+   "[[n]] + [[c]]"
+  ],
+  "solution": "Each of the \\( [[c]] \\) components is a tree, and a tree on \\( k \\) vertices has \\( k-1 \\) edges. Summing over the components, the total number of edges is \\( [[n]] - [[c]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the whole forest is a single tree (one component), ignoring the \\( [[c]] \\) components.",
+   "This uses the number of vertices, forgetting that a forest has fewer edges than vertices.",
+   "This is the number of edges needed to connect the \\( [[c]] \\) components together, not the edges already present.",
+   "This subtracts one edge too many.",
+   "This adds one edge too many, which would create a cycle.",
+   "This adds the counts instead of subtracting the components."
+  ]
+ },
+ {
+  "template_id": "forest_components_from_edges_v2",
+  "skill_id": "minimum_edges_for_connectivity_counting_components",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 20},
+   "e": {"type": "int", "lo": 0, "hi": 18}
+  },
+  "constraints": ["Lt([[e]], [[n]])"],
+  "stem": "A forest (a graph with no cycles) has \\( [[n]] \\) vertices and \\( [[e]] \\) edges. Into how many connected components is it split?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[e]]"},
+  "distractors": [
+   "[[e]] - [[n]]",
+   "[[n]] + [[e]]",
+   "[[n]]",
+   "[[e]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each edge added to a forest of isolated vertices merges two components into one, reducing the component count by 1. Starting from \\( [[n]] \\) isolated vertices, adding \\( [[e]] \\) edges (each merging two components, since a forest has no cycles) leaves \\( [[n]] - [[e]] = [[answer]] \\) components.",
+  "distractor_rationales": [
+   "This has the subtraction backwards, giving a negative number of components.",
+   "This adds the edges to the vertices instead of subtracting them.",
+   "This ignores the edges entirely, as if none were present.",
+   "This mistakes the edge count itself for the number of components.",
+   "This is off by one from the correct number of components.",
+   "This is off by one from the correct number of components."
+  ]
+ },
+ {
+  "template_id": "min_edges_to_connect_components_v3",
+  "skill_id": "minimum_edges_for_connectivity_counting_components",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": [],
+  "stem": "A graph currently consists of \\( [[c]] \\) separate connected components. What is the MINIMUM number of edges that must be added (each edge joining two different components) to make the whole graph connected?",
+  "answer_spec": {"op": "evaluate", "expr": "[[c]] - 1"},
+  "distractors": [
+   "[[c]]",
+   "[[c]] + 1",
+   "binomial([[c]], 2)",
+   "2*[[c]] - 2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each added edge that joins two different components merges them into one, reducing the number of components by exactly 1. To go from \\( [[c]] \\) components down to 1, the minimum number of edges needed is \\( [[c]] - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the component count directly, forgetting that the last edge already leaves the graph connected.",
+   "This adds one too many edges beyond what is needed.",
+   "This is the number of edges to join EVERY pair of components directly, far more than the minimum needed.",
+   "This double counts the merges required.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "min_edges_connected_graph_v4",
+  "skill_id": "minimum_edges_for_connectivity_counting_components",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 25}
+  },
+  "constraints": [],
+  "stem": "What is the minimum possible number of edges in a connected (simple) graph on \\( [[n]] \\) vertices?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1"},
+  "distractors": [
+   "[[n]]",
+   "[[n]] + 1",
+   "binomial([[n]], 2)",
+   "[[n]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The fewest edges that can keep \\( [[n]] \\) vertices connected occur exactly when the graph is a tree (connected with no extra, cycle-creating edges), and a tree on \\( [[n]] \\) vertices has \\( [[n]] - 1 \\) edges. So the minimum is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the number of vertices, one more edge than the minimum tree requires.",
+   "This adds an extra edge, which would create a cycle and is not needed for connectivity.",
+   "This is the MAXIMUM possible number of edges (a complete graph), not the minimum.",
+   "This roughly halves the vertex count, far below what is needed to stay connected.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ }
+]

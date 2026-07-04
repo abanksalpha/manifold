@@ -1,0 +1,207 @@
+[
+{
+ "template_id": "determinant_transformation_rules_v1",
+ "skill_id": "determinant_transformation_rules",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), so that \\( \\det(A) = [[detA]] \\). The matrix \\( B \\) is obtained from \\( A \\) by multiplying every entry of the first row by \\( [[k]] \\). What is \\( \\det(B) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]] * ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[k]]**2 * ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[b]]*[[c]] - [[a]]*[[d]]",
+  "([[a]]*[[d]] - [[b]]*[[c]]) + [[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Scaling a single row by \\( [[k]] \\) multiplies the determinant by \\( [[k]] \\): \\( \\det(B) = [[k]]\\cdot\\det(A) = [[k]]\\cdot([[detA]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\det(A) \\); it forgets that scaling a row scales the determinant.",
+  "This scales by \\( [[k]]^2 \\), the factor for scaling the whole \\( 2\\times2 \\) matrix, not a single row.",
+  "This is \\( -\\det(A) \\), the effect of a row swap rather than a row scaling.",
+  "This adds \\( [[k]] \\) to the determinant instead of multiplying by it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "determinant_transformation_rules_v2",
+ "skill_id": "determinant_transformation_rules",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), so that \\( \\det(A) = [[detA]] \\). The matrix \\( C \\) is obtained from \\( A \\) by swapping its two rows. What is \\( \\det(C) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "-([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "2*([[a]]*[[d]] - [[b]]*[[c]])",
+  "-2*([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Swapping two rows negates the determinant: \\( \\det(C) = -\\det(A) = -([[detA]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\det(A) \\); it forgets that a row swap flips the sign of the determinant.",
+  "This doubles the determinant instead of negating it.",
+  "This negates and doubles the determinant at once.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "determinant_transformation_rules_v3",
+ "skill_id": "determinant_transformation_rules",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "choice", "values": [-2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[f]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]]*[[f]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{bmatrix} \\), an upper-triangular matrix with \\( \\det(A) = [[detA]] \\) (the product of the diagonal entries). Let \\( B = [[k]]A \\) (every entry of \\( A \\) multiplied by \\( [[k]] \\)). What is \\( \\det(B) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]]**3 * [[a]]*[[d]]*[[f]]"},
+ "distractors": [
+  "[[k]] * [[a]]*[[d]]*[[f]]",
+  "[[k]]**2 * [[a]]*[[d]]*[[f]]",
+  "[[a]]*[[d]]*[[f]]",
+  "[[k]]**3 * [[a]]*[[d]]*[[f]] * (-1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Scaling every entry of an \\( n\\times n \\) matrix by \\( [[k]] \\) multiplies its determinant by \\( [[k]]^n \\). Here \\( n=3 \\), so \\( \\det(B) = [[k]]^3\\det(A) = [[k]]^3\\cdot([[detA]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This scales by \\( [[k]] \\), the factor for scaling only a single row, not the whole \\( 3\\times3 \\) matrix.",
+  "This scales by \\( [[k]]^2 \\), the factor that would apply to a \\( 2\\times2 \\) matrix.",
+  "This is \\( \\det(A) \\); it forgets to scale at all.",
+  "This has the right magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "determinant_transformation_rules_v4",
+ "skill_id": "determinant_transformation_rules",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) and let \\( A^{T} \\) denote its transpose. What is \\( \\det(A^{T}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "distractors": [
+  "-([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[b]]*[[c]] - [[a]]*[[d]]",
+  "[[a]]*[[c]] - [[b]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Transposing a matrix does not change its determinant: \\( \\det(A^{T}) = \\det(A) = ([[a]])([[d]]) - ([[b]])([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This incorrectly assumes transposing negates the determinant, like a row swap does.",
+  "This is also \\( -\\det(A) \\), computed a different way.",
+  "This multiplies down the wrong pairs of entries entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "determinant_transformation_rules_v5",
+ "skill_id": "determinant_transformation_rules",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[e]]*[[h]] - [[f]]*[[g]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]] - [[b]]*[[c]]", "detB": "[[e]]*[[h]] - [[f]]*[[g]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) with \\( \\det(A) = [[detA]] \\), and \\( B = \\begin{bmatrix} [[e]] & [[f]] \\\\ [[g]] & [[h]] \\end{bmatrix} \\) with \\( \\det(B) = [[detB]] \\). Using the multiplicative property of determinants, what is \\( \\det(AB) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[d]] - [[b]]*[[c]]) * ([[e]]*[[h]] - [[f]]*[[g]])"},
+ "distractors": [
+  "([[a]]*[[d]] - [[b]]*[[c]]) + ([[e]]*[[h]] - [[f]]*[[g]])",
+  "([[a]]+[[e]])*([[d]]+[[h]]) - ([[b]]+[[f]])*([[c]]+[[g]])",
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[e]]*[[h]] - [[f]]*[[g]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For square matrices, \\( \\det(AB) = \\det(A)\\det(B) \\). Here that is \\( ([[detA]])\\cdot([[detB]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two determinants instead of multiplying them.",
+  "This computes \\( \\det(A+B) \\) instead of \\( \\det(AB) \\); addition and multiplication of determinants follow different rules.",
+  "This is just \\( \\det(A) \\), ignoring \\( B \\) entirely.",
+  "This is just \\( \\det(B) \\), ignoring \\( A \\) entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "determinant_transformation_rules_v6",
+ "skill_id": "determinant_transformation_rules",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {"detA": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), so that \\( \\det(A) = [[detA]] \\). Since \\( A \\) is invertible, what is \\( \\det(A^{-1}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1 / ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "-1 / ([[a]]*[[d]] - [[b]]*[[c]])",
+  "-([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "For an invertible matrix, \\( \\det(A^{-1}) = \\dfrac{1}{\\det(A)} = \\dfrac{1}{[[detA]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to take the reciprocal and just gives \\( \\det(A) \\) back.",
+  "This has the right magnitude but the wrong sign.",
+  "This negates \\( \\det(A) \\) instead of taking its reciprocal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

@@ -1,0 +1,204 @@
+[
+ {
+  "template_id": "numeric_composite_evaluation_v1",
+  "skill_id": "numeric_composite_evaluation",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\) and \\( g(x) = [[c]]x + ([[d]]) \\). What is \\( f(g([[x0]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*([[c]]*[[x0]] + [[d]]) + [[b]]"},
+  "distractors": [
+   "[[c]]*([[a]]*[[x0]] + [[b]]) + [[d]]",
+   "([[a]]*[[x0]] + [[b]]) + ([[c]]*[[x0]] + [[d]])",
+   "([[a]]*[[x0]] + [[b]]) * ([[c]]*[[x0]] + [[d]])",
+   "[[c]]*[[x0]] + [[d]]",
+   "[[a]]*[[x0]] + [[b]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "Evaluate the inner function first: \\( g([[x0]]) = ([[c]])([[x0]]) + ([[d]]) \\). Then apply \\( f \\): \\( f(g([[x0]])) = ([[a]])\\big(g([[x0]])\\big) + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes \\( g(f([[x0]])) \\), applying the functions in the reverse order.",
+   "This adds \\( f([[x0]]) \\) and \\( g([[x0]]) \\) instead of composing them.",
+   "This multiplies \\( f([[x0]]) \\) and \\( g([[x0]]) \\) instead of composing them.",
+   "This stops after the inner function and reports \\( g([[x0]]) \\).",
+   "This applies only the outer function to \\( [[x0]] \\), ignoring \\( g \\).",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "numeric_composite_evaluation_quadratic_outer_v1",
+  "skill_id": "numeric_composite_evaluation",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "stem": "Let \\( f(u) = [[a]]u^{2} + ([[b]]) \\) and \\( g(x) = [[c]]x + ([[d]]) \\). What is \\( f(g([[x0]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*([[c]]*[[x0]] + [[d]])**2 + [[b]]"},
+  "distractors": [
+   "[[a]]*([[c]]*[[x0]])**2 + [[b]]",
+   "([[a]]*([[c]]*[[x0]] + [[d]]) + [[b]])**2",
+   "[[a]]*([[c]]*[[x0]] + [[d]])**2",
+   "[[c]]*([[a]]*[[x0]]**2 + [[b]]) + [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Evaluate the inner function first: \\( g([[x0]]) = ([[c]])([[x0]]) + ([[d]]) \\). Then apply the outer function: \\( f(g([[x0]])) = [[a]]\\big(g([[x0]])\\big)^{2} + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This squares only the \\( x \\)-term of \\( g \\), forgetting the constant \\( ([[d]]) \\) before squaring.",
+   "This applies \\( f \\)'s addition before squaring, then squares the whole thing an extra time.",
+   "This computes the squared term correctly but forgets to add the constant \\( ([[b]]) \\) of \\( f \\).",
+   "This computes \\( g(f([[x0]])) \\), applying the functions in the reverse order.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "numeric_composite_evaluation_triple_v1",
+  "skill_id": "numeric_composite_evaluation",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "e": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "int", "lo": -2, "hi": 2}
+  },
+  "constraints": ["Ne([[e]], 0)", "Ne([[b]], 0)", "Ne([[d]], 0)"],
+  "stem": "Let \\( k(x) = [[a]]x + ([[b]]) \\), \\( g(u) = [[c]]u + ([[d]]) \\), and \\( f(v) = [[e]]v^{2} \\). What is \\( f(g(k([[x0]]))) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[e]]*([[c]]*([[a]]*[[x0]]+[[b]]) + [[d]])**2"},
+  "distractors": [
+   "[[e]]*([[a]]*[[x0]]+[[b]])**2",
+   "[[c]]*([[a]]*[[x0]]+[[b]]) + [[d]]",
+   "([[e]]*([[c]]*([[a]]*[[x0]]+[[b]]) + [[d]]))**2",
+   "[[e]]*([[c]]*[[a]]*[[x0]]+[[d]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Work from the inside out: \\( k([[x0]]) = [[a]]([[x0]]) + ([[b]]) \\); then \\( g(k([[x0]])) = [[c]]\\big(k([[x0]])\\big) + ([[d]]) \\); then \\( f(g(k([[x0]]))) = [[e]]\\big(g(k([[x0]]))\\big)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This skips the middle function \\( g \\) entirely and applies \\( f \\) directly to \\( k([[x0]]) \\).",
+   "This stops after the middle function and never applies the outer function \\( f \\).",
+   "This squares the whole expression \\( e \\) times over rather than only inside \\( f \\).",
+   "This forgets to add the middle function's constant \\( ([[b]]) \\) before scaling by \\( [[c]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "numeric_composite_evaluation_table_v1",
+  "skill_id": "numeric_composite_evaluation",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "x1": {"type": "int", "lo": -8, "hi": 8},
+   "x2": {"type": "int", "lo": -8, "hi": 8},
+   "x3": {"type": "int", "lo": -8, "hi": 8},
+   "y1": {"type": "int", "lo": -6, "hi": 6},
+   "y2": {"type": "int", "lo": -6, "hi": 6},
+   "y3": {"type": "int", "lo": -6, "hi": 6},
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [
+   "Ne([[x1]], [[x2]])", "Ne([[x1]], [[x3]])", "Ne([[x2]], [[x3]])", "Ne([[A]], 0)"
+  ],
+  "stem": "A function \\( g \\) satisfies \\( g([[x1]]) = [[y1]] \\), \\( g([[x2]]) = [[y2]] \\), and \\( g([[x3]]) = [[y3]] \\). Let \\( f(u) = [[A]]u + ([[B]]) \\). What is \\( f(g([[x2]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]]*[[y2]] + [[B]]"},
+  "distractors": [
+   "[[A]]*[[y1]] + [[B]]",
+   "[[A]]*[[y3]] + [[B]]",
+   "[[A]]*[[x2]] + [[B]]",
+   "[[y2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "From the table, \\( g([[x2]]) = [[y2]] \\). Applying \\( f \\): \\( f(g([[x2]])) = [[A]]([[y2]]) + ([[B]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the output of a different (mismatched) row of the table.",
+   "This uses the output of a different (mismatched) row of the table.",
+   "This applies \\( f \\) to the input \\( [[x2]] \\) itself instead of to \\( g([[x2]]) \\).",
+   "This stops after reading the table and never applies \\( f \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "numeric_composite_evaluation_reciprocal_outer_v1",
+  "skill_id": "numeric_composite_evaluation",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[a]]*[[x0]] + [[b]] + [[c]], 0)"],
+  "stem": "Let \\( f(u) = \\dfrac{1}{u + ([[c]])} \\) and \\( g(x) = [[a]]x + ([[b]]) \\). What is \\( f(g([[x0]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "1/([[a]]*[[x0]] + [[b]] + [[c]])"},
+  "distractors": [
+   "[[a]]*[[x0]] + [[b]] + [[c]]",
+   "1/([[a]]*[[x0]] + [[b]])",
+   "1/([[a]]*[[x0]] + [[c]])",
+   "-1/([[a]]*[[x0]] + [[b]] + [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Evaluate the inner function first: \\( g([[x0]]) = ([[a]])([[x0]]) + ([[b]]) \\). Then apply \\( f \\): \\( f(g([[x0]])) = \\dfrac{1}{g([[x0]]) + [[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the reciprocal's denominator itself instead of taking the reciprocal.",
+   "This forgets to add \\( [[c]] \\) before taking the reciprocal.",
+   "This forgets to include \\( g([[x0]]) \\)'s constant term \\( ([[b]]) \\) before taking the reciprocal.",
+   "This flips the sign of the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "numeric_composite_evaluation_abs_outer_v1",
+  "skill_id": "numeric_composite_evaluation",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[a]]*[[x0]] + [[b]], 0)"],
+  "stem": "Let \\( f(u) = |u| + ([[c]]) \\) and \\( g(x) = [[a]]x + ([[b]]) \\). What is \\( f(g([[x0]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[a]]*[[x0]] + [[b]]) + [[c]]"},
+  "distractors": [
+   "[[a]]*[[x0]] + [[b]] + [[c]]",
+   "-Abs([[a]]*[[x0]] + [[b]]) + [[c]]",
+   "Abs([[a]]*[[x0]] + [[b]])",
+   "Abs([[a]]*[[x0]] + [[b]] + [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Evaluate the inner function first: \\( g([[x0]]) = ([[a]])([[x0]]) + ([[b]]) \\). Then apply \\( f \\): \\( f(g([[x0]])) = |g([[x0]])| + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the absolute value bars entirely, keeping the raw (possibly negative) value of \\( g([[x0]]) \\).",
+   "This negates the absolute value instead of leaving it positive.",
+   "This computes the absolute value correctly but forgets to add \\( ([[c]]) \\).",
+   "This takes the absolute value after adding \\( [[c]] \\) instead of before, changing the sign contribution of \\( [[c]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,134 @@
+[
+ {
+  "template_id": "independence_and_product_v1",
+  "skill_id": "independence_and_mutual_exclusivity_use_and_distingu",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "choice", "values": [5, 6, 7, 8]},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "d": {"type": "choice", "values": [5, 6, 7, 8]}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Lt([[c]], [[d]])"],
+  "stem": "Events \\( A \\) and \\( B \\) are independent, with \\( P(A) = \\frac{[[a]]}{[[b]]} \\) and \\( P(B) = \\frac{[[c]]}{[[d]]} \\). What is \\( P(A \\cap B) \\), the probability that both events occur?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]], [[b]]) * Rational([[c]], [[d]])"},
+  "distractors": [
+   "Rational([[a]], [[b]]) + Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) + Rational([[c]], [[d]]) - Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]])",
+   "Rational([[c]], [[d]])",
+   "Rational([[a]] + [[c]], [[b]] + [[d]])",
+   "Rational([[a]] * [[c]], [[b]] + [[d]])"
+  ],
+  "solution": "For independent events the joint probability is the product: \\( P(A \\cap B) = P(A)\\,P(B) = \\frac{[[a]]}{[[b]]} \\cdot \\frac{[[c]]}{[[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the probabilities, which would treat the events as mutually exclusive and compute a union, not an intersection.",
+   "This is \\( P(A \\cup B) \\), the probability that at least one event occurs.",
+   "This gives only \\( P(A) \\), ignoring event \\( B \\).",
+   "This gives only \\( P(B) \\), ignoring event \\( A \\).",
+   "This adds numerators and denominators separately, which is not a valid probability operation.",
+   "This multiplies the numerators but adds the denominators, mishandling the fractions."
+  ]
+ },
+ {
+  "template_id": "mutual_exclusivity_union_sum_v1",
+  "skill_id": "independence_and_mutual_exclusivity_use_and_distingu",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "choice", "values": [7, 8, 9, 10]},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "d": {"type": "choice", "values": [7, 8, 9, 10]}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Lt([[c]], [[d]])", "Le([[a]] * [[d]] + [[c]] * [[b]], [[b]] * [[d]])"],
+  "stem": "Events \\( C \\) and \\( D \\) are mutually exclusive (they cannot both occur), with \\( P(C) = \\frac{[[a]]}{[[b]]} \\) and \\( P(D) = \\frac{[[c]]}{[[d]]} \\). What is \\( P(C \\cup D) \\), the probability that at least one of them occurs?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]], [[b]]) + Rational([[c]], [[d]])"},
+  "distractors": [
+   "Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) + Rational([[c]], [[d]]) - Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]])",
+   "Rational([[c]], [[d]])",
+   "1 - Rational([[a]], [[b]]) - Rational([[c]], [[d]])",
+   "Rational([[a]] + [[c]], [[b]] + [[d]])"
+  ],
+  "solution": "Because \\( C \\) and \\( D \\) cannot overlap, \\( P(C \\cap D) = 0 \\), so the general union formula reduces to a plain sum: \\( P(C \\cup D) = P(C) + P(D) - 0 = \\frac{[[a]]}{[[b]]} + \\frac{[[c]]}{[[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the probabilities as if the events were independent, but mutual exclusivity means their intersection is 0, not this product.",
+   "This subtracts a nonzero 'independent-style' intersection term, but for mutually exclusive events that intersection is already 0.",
+   "This gives only \\( P(C) \\), ignoring event \\( D \\).",
+   "This gives only \\( P(D) \\), ignoring event \\( C \\).",
+   "This is the complement of the sum, not the union probability itself.",
+   "This adds numerators and denominators separately, which is not a valid probability operation."
+  ]
+ },
+ {
+  "template_id": "independence_union_formula_v1",
+  "skill_id": "independence_and_mutual_exclusivity_use_and_distingu",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "choice", "values": [5, 6, 7, 8]},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "d": {"type": "choice", "values": [5, 6, 7, 8]}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Lt([[c]], [[d]])"],
+  "stem": "Events \\( A \\) and \\( B \\) are independent (NOT mutually exclusive — both can occur together), with \\( P(A) = \\frac{[[a]]}{[[b]]} \\) and \\( P(B) = \\frac{[[c]]}{[[d]]} \\). What is \\( P(A \\cup B) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]], [[b]]) + Rational([[c]], [[d]]) - Rational([[a]], [[b]]) * Rational([[c]], [[d]])"},
+  "distractors": [
+   "Rational([[a]], [[b]]) + Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) - Rational([[c]], [[d]]) + Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "1 - Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]])",
+   "Rational([[c]], [[d]])"
+  ],
+  "solution": "Since the events can overlap, use the general union formula with the overlap given by independence: \\( P(A \\cup B) = P(A) + P(B) - P(A)P(B) = \\frac{[[a]]}{[[b]]} + \\frac{[[c]]}{[[d]]} - \\frac{[[a]]}{[[b]]}\\cdot\\frac{[[c]]}{[[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly assumes the events are mutually exclusive and just adds the probabilities, double-counting the overlap.",
+   "This is \\( P(A \\cap B) \\) alone, not the union.",
+   "This has a sign error, adding the overlap term instead of subtracting it.",
+   "This is the complement of the overlap, not the union of the two events.",
+   "This gives only \\( P(A) \\), ignoring event \\( B \\) and the overlap correction.",
+   "This gives only \\( P(B) \\), ignoring event \\( A \\) and the overlap correction."
+  ]
+ },
+ {
+  "template_id": "inclusion_exclusion_find_intersection_v1",
+  "skill_id": "independence_and_mutual_exclusivity_use_and_distingu",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [12, 15, 18, 20, 24, 30]},
+   "a": {"type": "int", "lo": 3, "hi": 10},
+   "c": {"type": "int", "lo": 3, "hi": 10},
+   "u": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [
+   "Lt([[a]], [[n]])", "Lt([[c]], [[n]])",
+   "Ge([[u]], [[a]])", "Ge([[u]], [[c]])",
+   "Le([[u]], [[a]] + [[c]])", "Le([[u]], [[n]])", "Lt([[u]], [[a]] + [[c]])"
+  ],
+  "stem": "Events \\( A \\) and \\( B \\) are not assumed to be independent or mutually exclusive. It is known that \\( P(A) = \\frac{[[a]]}{[[n]]} \\), \\( P(B) = \\frac{[[c]]}{[[n]]} \\), and \\( P(A \\cup B) = \\frac{[[u]]}{[[n]]} \\). What is \\( P(A \\cap B) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]] + [[c]] - [[u]], [[n]])"},
+  "distractors": [
+   "Rational([[u]] - [[a]] - [[c]], [[n]])",
+   "Rational([[u]], [[n]]) - Rational([[a]], [[n]])",
+   "Rational([[a]], [[n]]) * Rational([[c]], [[n]])",
+   "Rational([[a]] + [[c]] + [[u]], [[n]])",
+   "Rational([[u]], [[n]])",
+   "Rational([[a]] + [[c]], [[n]])"
+  ],
+  "solution": "Rearrange the inclusion-exclusion formula: \\( P(A \\cap B) = P(A) + P(B) - P(A \\cup B) = \\dfrac{[[a]] + [[c]] - [[u]]}{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign, subtracting \\( P(A) \\) and \\( P(B) \\) from \\( P(A \\cup B) \\) instead of the reverse.",
+   "This subtracts only \\( P(A) \\) from \\( P(A \\cup B) \\), forgetting to also subtract \\( P(B) \\).",
+   "This wrongly assumes independence and multiplies the individual probabilities instead of using inclusion-exclusion.",
+   "This adds \\( P(A \\cup B) \\) instead of subtracting it.",
+   "This is just \\( P(A \\cup B) \\), not the intersection.",
+   "This omits \\( P(A \\cup B) \\) entirely and just adds \\( P(A) \\) and \\( P(B) \\)."
+  ]
+ }
+]

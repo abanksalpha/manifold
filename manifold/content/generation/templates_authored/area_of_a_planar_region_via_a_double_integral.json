@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "area_of_a_planar_region_via_a_double_integral_v1",
+ "skill_id": "area_of_a_planar_region_via_a_double_integral",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Find the area of the region \\(D\\) enclosed by the parabola \\( y = [[a]]x^2 \\) and the line \\( y = [[m]]x \\), by evaluating \\( \\iint_D 1\\,dA \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["y", "x"], "bounds": [["[[a]]*x**2", "[[m]]*x"], ["0", "[[m]]/[[a]]"]]},
+ "distractors": [
+  "[[m]]**3/(2*[[a]]**2)",
+  "[[m]]**3/(3*[[a]]**2)",
+  "-[[m]]**3/(6*[[a]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "The curves meet where \\([[a]]x^2 = [[m]]x\\), i.e. at \\(x=0\\) and \\(x=[[m]]/[[a]]\\), with the line above the parabola. Thus the area is \\( \\int_{0}^{[[m]]/[[a]]}\\int_{[[a]]x^2}^{[[m]]x} 1\\,dy\\,dx = \\int_{0}^{[[m]]/[[a]]} ([[m]]x - [[a]]x^2)\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This integrates only under the line (down to \\(y=0\\)), forgetting to subtract the area under the parabola.",
+  "This keeps only the parabola contribution \\(\\int a x^2\\,dx\\) with the wrong overall structure.",
+  "This computes parabola minus line, giving the negative of the true area.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "area_of_a_planar_region_via_a_double_integral_v2_typeII",
+ "skill_id": "area_of_a_planar_region_via_a_double_integral",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Find the area of the region \\(D\\) enclosed by the curve \\( x = [[a]]y^2 \\) and the line \\( x = [[m]]y \\), by setting up \\( \\iint_D 1\\,dA \\) as a Type II integral (integrating in \\(x\\) first).",
+ "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["x", "y"], "bounds": [["[[a]]*y**2", "[[m]]*y"], ["0", "[[m]]/[[a]]"]]},
+ "distractors": [
+  "[[m]]**3/(2*[[a]]**2)",
+  "[[m]]**3/(3*[[a]]**2)",
+  "-[[m]]**3/(6*[[a]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "Treat \\(D\\) as a Type II region: for each \\(y\\) between \\(0\\) and \\([[m]]/[[a]]\\), \\(x\\) runs from the curve \\(x=[[a]]y^2\\) to the line \\(x=[[m]]y\\). So the area is \\( \\int_{0}^{[[m]]/[[a]]}\\int_{[[a]]y^2}^{[[m]]y} 1\\,dx\\,dy = \\int_{0}^{[[m]]/[[a]]} ([[m]]y - [[a]]y^2)\\,dy = [[answer]] \\).",
+ "distractor_rationales": [
+  "This integrates only out to the line (down to \\(x=0\\)), forgetting to subtract the region under the curve.",
+  "This keeps only the curve's contribution \\(\\int a y^2\\,dy\\) with the wrong overall structure.",
+  "This computes curve minus line, giving the negative of the true area.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "area_of_a_planar_region_via_a_double_integral_v3_under_one_curve",
+ "skill_id": "area_of_a_planar_region_via_a_double_integral",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "p": {"type": "int", "lo": 0, "hi": 3},
+  "q": {"type": "int", "lo": 4, "hi": 7}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "stem": "Let \\(D\\) be the region bounded by \\( y = 0 \\), \\( y = [[a]]x^2 + [[c]] \\), \\( x = [[p]] \\), and \\( x = [[q]] \\). Find the area of \\(D\\) by evaluating \\( \\iint_D 1\\,dA \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["y", "x"], "bounds": [["0", "[[a]]*x**2+[[c]]"], ["[[p]]", "[[q]]"]]},
+ "distractors": [
+  "[[a]]*([[q]]**3-[[p]]**3)/2 + [[c]]*([[q]]-[[p]])",
+  "[[a]]*([[q]]**2-[[p]]**2)/3 + [[c]]*([[q]]-[[p]])",
+  "[[a]]*([[q]]**3-[[p]]**3) + [[c]]*([[q]]-[[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "For each \\(x\\) between \\([[p]]\\) and \\([[q]]\\), \\(y\\) runs from \\(0\\) up to the curve \\(y=[[a]]x^2+[[c]]\\), so \\( \\text{Area} = \\int_{[[p]]}^{[[q]]}\\int_{0}^{[[a]]x^2+[[c]]} 1\\,dy\\,dx = \\int_{[[p]]}^{[[q]]}([[a]]x^2+[[c]])\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong power \\(x^3/2\\) instead of \\(x^3/3\\) for the antiderivative of \\(x^2\\).",
+  "This uses \\(x^2/3\\)-style bookkeeping and drops a factor from the correct antiderivative.",
+  "This forgets to divide by 3 when antidifferentiating \\([[a]]x^2\\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "area_of_a_planar_region_via_a_double_integral_v4_two_parabolas",
+ "skill_id": "area_of_a_planar_region_via_a_double_integral",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 1, "hi": 3},
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "c1": {"type": "int", "lo": 0, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"cgap": "[[k]]**2*([[a]]+[[b]])", "c2": "[[c1]]+[[k]]**2*([[a]]+[[b]])"},
+ "stem": "Find the area of the region \\(D\\) enclosed between the upward-opening parabola \\( y = [[a]]x^2 + [[c1]] \\) and the downward-opening parabola \\( y = [[c2]] - [[b]]x^2 \\), by evaluating \\( \\iint_D 1\\,dA \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["y", "x"], "bounds": [["[[a]]*x**2+[[c1]]", "[[c2]]-[[b]]*x**2"], ["-[[k]]", "[[k]]"]]},
+ "distractors": [
+  "2*[[cgap]]*[[k]]",
+  "2*([[a]]+[[b]])*[[k]]**3",
+  "([[a]]+[[b]])*[[k]]**3/3",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "The two parabolas meet where \\([[a]]x^2+[[c1]] = [[c2]]-[[b]]x^2\\), i.e. \\( ([[a]]+[[b]])x^2 = [[cgap]] \\), giving \\(x = \\pm[[k]]\\). So the area is \\( \\int_{-[[k]]}^{[[k]]} \\left(([[c2]]-[[b]]x^2) - ([[a]]x^2+[[c1]])\\right)dx = \\int_{-[[k]]}^{[[k]]} \\left([[cgap]] - ([[a]]+[[b]])x^2\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the cubic term entirely and just uses \\(2\\cdot[[cgap]]\\cdot[[k]]\\) doubled incorrectly.",
+  "This doubles the correct antiderivative coefficient by mistake.",
+  "This drops the leading \\(2[[cgap]][[k]]\\) term, keeping only the cubic correction.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

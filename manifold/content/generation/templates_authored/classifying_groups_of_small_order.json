@@ -1,0 +1,103 @@
+[
+{
+ "template_id": "classifying_abelian_groups_one_prime_v1",
+ "skill_id": "classifying_groups_of_small_order",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+  "a": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"n": "[[p]]**[[a]]"},
+ "stem": "By the Fundamental Theorem of Finite Abelian Groups, the number of ABELIAN groups of order \\( [[n]] = [[p]]^{[[a]]} \\) (up to isomorphism) equals the number of ways to write the exponent [[a]] as a sum of positive integers (an integer partition of [[a]]). How many abelian groups of order [[n]] are there, up to isomorphism?",
+ "answer_spec": {"op": "evaluate", "expr": "partition([[a]])"},
+ "distractors": [
+  "[[a]]",
+  "[[a]] - 1",
+  "divisor_count([[p]]**[[a]])",
+  "2**([[a]] - 1)",
+  "[[a]]*([[a]] + 1)/2",
+  "partition([[a]]) + 2",
+  "partition([[a]]) + 3"
+ ],
+ "solution": "The abelian groups of order \\( p^{a} \\) correspond exactly to the partitions of the exponent [[a]] (each partition \\( a=\\lambda_1+\\lambda_2+\\dots \\) gives \\( \\mathbb{Z}_{p^{\\lambda_1}}\\times\\mathbb{Z}_{p^{\\lambda_2}}\\times\\cdots \\)). Here that count is \\( p([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just restates the exponent [[a]] instead of counting its partitions.",
+  "This is one less than the exponent, not the number of partitions.",
+  "This is the number of DIVISORS of \\( [[p]]^{[[a]]} \\) (i.e., \\( [[a]]+1 \\)), which counts subgroups of \\( \\mathbb{Z}_{[[p]]^{[[a]]}} \\), not the number of isomorphism types of abelian groups of that order.",
+  "This mistakenly doubles the partition count with each unit increase in the exponent, like counting subsets rather than partitions.",
+  "This uses the triangular-number formula, an unrelated count.",
+  "This overshoots the correct partition count by 2.",
+  "This overshoots the correct partition count by 3."
+ ]
+},
+{
+ "template_id": "classifying_abelian_groups_two_primes_v1",
+ "skill_id": "classifying_groups_of_small_order",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"n": "[[p]]**[[a]] * [[q]]**[[b]]"},
+ "stem": "The integer \\( [[n]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\) factors into the distinct primes [[p]] and [[q]]. By the Fundamental Theorem of Finite Abelian Groups, the number of abelian groups of order [[n]] (up to isomorphism) is the PRODUCT of the number of partitions of each prime's exponent. How many abelian groups of order [[n]] are there, up to isomorphism?",
+ "answer_spec": {"op": "evaluate", "expr": "partition([[a]]) * partition([[b]])"},
+ "distractors": [
+  "partition([[a]]) + partition([[b]])",
+  "[[a]] * [[b]]",
+  "([[a]] + 1) * ([[b]] + 1)",
+  "partition([[a]] + [[b]])",
+  "partition([[a]]) * partition([[b]]) + 1",
+  "partition([[a]]) * partition([[b]]) - 1"
+ ],
+ "solution": "Since [[p]] and [[q]] are distinct primes, the count of abelian groups of order \\( [[p]]^{[[a]]}[[q]]^{[[b]]} \\) is the product of the partition counts for each exponent: \\( p([[a]])\\cdot p([[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two partition counts instead of multiplying them.",
+  "This multiplies the exponents themselves, not the partition counts.",
+  "This uses \\( (a+1)(b+1) \\), the divisor-count formula, instead of partition counts.",
+  "This wrongly combines the exponents into one partition instead of partitioning each prime's exponent separately.",
+  "This is off by one from \\( p([[a]])p([[b]]) \\).",
+  "This is off by one from \\( p([[a]])p([[b]]) \\)."
+ ]
+},
+{
+ "template_id": "classifying_abelian_groups_three_primes_v1",
+ "skill_id": "classifying_groups_of_small_order",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3]},
+  "q": {"type": "choice", "values": [5, 7]},
+  "r": {"type": "choice", "values": [11, 13, 17, 19]},
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 1, "hi": 3},
+  "c": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {"n": "[[p]]**[[a]] * [[q]]**[[b]] * [[r]]**[[c]]"},
+ "stem": "The integer \\( [[n]] = [[p]]^{[[a]]}\\cdot[[q]]^{[[b]]}\\cdot[[r]]^{[[c]]} \\) has three distinct prime factors [[p]], [[q]], [[r]]. Using the Fundamental Theorem of Finite Abelian Groups, how many abelian groups of order [[n]] are there, up to isomorphism?",
+ "answer_spec": {"op": "evaluate", "expr": "partition([[a]]) * partition([[b]]) * partition([[c]])"},
+ "distractors": [
+  "partition([[a]]) + partition([[b]]) + partition([[c]])",
+  "[[a]] * [[b]] * [[c]]",
+  "([[a]] + 1) * ([[b]] + 1) * ([[c]] + 1)",
+  "partition([[a]] + [[b]] + [[c]])",
+  "partition([[a]]) * partition([[b]]) * partition([[c]]) + 1",
+  "partition([[a]]) * partition([[b]]) * partition([[c]]) - 1"
+ ],
+ "solution": "The abelian-group count factors over the distinct primes, one partition-count factor per prime power: \\( p([[a]])\\cdot p([[b]])\\cdot p([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the three partition counts instead of multiplying them.",
+  "This multiplies the exponents directly instead of their partition counts.",
+  "This uses the divisor-count formula \\( (a+1)(b+1)(c+1) \\) instead of partition counts.",
+  "This wrongly partitions the combined exponent \\( a+b+c \\) instead of each prime's exponent separately.",
+  "This is off by one from the correct product of partition counts.",
+  "This is off by one from the correct product of partition counts."
+ ]
+}
+]

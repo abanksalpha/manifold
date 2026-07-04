@@ -1,0 +1,233 @@
+[
+ {
+  "template_id": "chain_rule_path_v1",
+  "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "m": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[n]], 0)"],
+  "derived": {
+   "xt": "[[m]]*[[t0]]**2 + [[p]]",
+   "yt": "[[n]]*[[t0]] + [[q]]"
+  },
+  "stem": "Let \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\), where \\( x = [[m]]t^{2} + ([[p]]) \\) and \\( y = ([[n]])t + ([[q]]) \\). Using the chain rule, what is \\( \\dfrac{dz}{dt} \\) at \\( t = [[t0]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[a]]*[[xt]] + [[c]]*[[yt]])*(2*[[m]]*[[t0]]) + (2*[[b]]*[[yt]] + [[c]]*[[xt]])*[[n]]"},
+  "distractors": [
+   "(2*[[a]]*[[xt]] + [[c]]*[[yt]])*([[m]]*[[t0]]) + (2*[[b]]*[[yt]] + [[c]]*[[xt]])*[[n]]",
+   "(2*[[a]]*[[xt]] + [[c]]*[[yt]]) + (2*[[b]]*[[yt]] + [[c]]*[[xt]])",
+   "(2*[[a]]*[[xt]] + [[c]]*[[yt]])*[[n]] + (2*[[b]]*[[yt]] + [[c]]*[[xt]])*(2*[[m]]*[[t0]])",
+   "(2*[[a]]*[[xt]] + [[c]]*[[yt]])*(2*[[m]]*[[t0]])",
+   "[[answer]] + 3",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the chain rule, \\( \\frac{dz}{dt} = z_{x}\\frac{dx}{dt} + z_{y}\\frac{dy}{dt} \\) with \\( z_{x} = 2([[a]])x + ([[c]])y \\), \\( z_{y} = 2([[b]])y + ([[c]])x \\), \\( \\frac{dx}{dt} = 2([[m]])t \\), \\( \\frac{dy}{dt} = ([[n]]) \\). At \\( t = [[t0]] \\), \\( x = [[xt]] \\) and \\( y = [[yt]] \\), giving \\( \\frac{dz}{dt} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\frac{dx}{dt} = [[m]]t \\), forgetting the factor of 2 from differentiating \\( [[m]]t^{2} \\).",
+   "This adds the partial derivatives without multiplying by the path derivatives.",
+   "This swaps \\( \\frac{dx}{dt} \\) and \\( \\frac{dy}{dt} \\) between the two terms.",
+   "This uses only the \\( x \\)-term of the chain rule and drops the \\( y \\)-term.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_path_three_vars_v1",
+  "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "m1": {"type": "int", "lo": 1, "hi": 3},
+   "m2": {"type": "int", "lo": 1, "hi": 3},
+   "m3": {"type": "int", "lo": 1, "hi": 3},
+   "p1": {"type": "int", "lo": -3, "hi": 3},
+   "p2": {"type": "int", "lo": -3, "hi": 3},
+   "p3": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "derived": {
+   "xt": "[[m1]]*[[t0]] + [[p1]]",
+   "yt": "[[m2]]*[[t0]] + [[p2]]",
+   "zt": "[[m3]]*[[t0]] + [[p3]]"
+  },
+  "stem": "Let \\( w = [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} \\), where \\( x = [[m1]]t + ([[p1]]) \\), \\( y = [[m2]]t + ([[p2]]) \\), and \\( z = [[m3]]t + ([[p3]]) \\). Using the (three-variable) chain rule, what is \\( \\dfrac{dw}{dt} \\) at \\( t = [[t0]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[a]]*[[xt]]*[[m1]] + 2*[[b]]*[[yt]]*[[m2]] + 2*[[c]]*[[zt]]*[[m3]]"},
+  "distractors": [
+   "[[a]]*[[xt]]*[[m1]] + [[b]]*[[yt]]*[[m2]] + [[c]]*[[zt]]*[[m3]]",
+   "2*[[a]]*[[xt]]*[[m1]] + 2*[[b]]*[[yt]]*[[m2]]",
+   "2*[[a]]*[[xt]] + 2*[[b]]*[[yt]] + 2*[[c]]*[[zt]]",
+   "2*[[a]]*[[xt]]*[[m2]] + 2*[[b]]*[[yt]]*[[m3]] + 2*[[c]]*[[zt]]*[[m1]]",
+   "[[answer]] + 3",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the chain rule for a function of three variables, \\( \\frac{dw}{dt} = w_{x}\\frac{dx}{dt} + w_{y}\\frac{dy}{dt} + w_{z}\\frac{dz}{dt} \\), with \\( w_{x} = 2([[a]])x \\), \\( w_{y} = 2([[b]])y \\), \\( w_{z} = 2([[c]])z \\), and \\( \\frac{dx}{dt} = [[m1]] \\), \\( \\frac{dy}{dt} = [[m2]] \\), \\( \\frac{dz}{dt} = [[m3]] \\). At \\( t = [[t0]] \\), \\( x = [[xt]] \\), \\( y = [[yt]] \\), \\( z = [[zt]] \\), giving \\( \\frac{dw}{dt} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of 2 that comes from differentiating each squared term.",
+   "This drops the \\( z \\)-term of the chain rule entirely.",
+   "This forgets to multiply each partial derivative by the corresponding path derivative.",
+   "This cyclically shifts which path derivative multiplies which partial derivative.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_given_rates_v1",
+  "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "dxdt": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "dydt": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Suppose \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\), and at a certain instant \\( x = [[x0]] \\), \\( y = [[y0]] \\), with \\( \\dfrac{dx}{dt} = [[dxdt]] \\) and \\( \\dfrac{dy}{dt} = [[dydt]] \\). Using the chain rule, what is \\( \\dfrac{dz}{dt} \\) at that instant?",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dxdt]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dydt]]"},
+  "distractors": [
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dydt]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dxdt]]",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dxdt]]",
+   "([[a]]*[[x0]] + [[c]]*[[y0]])*[[dxdt]] + ([[b]]*[[y0]] + [[c]]*[[x0]])*[[dydt]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "By the chain rule, \\( \\frac{dz}{dt} = z_{x}\\frac{dx}{dt} + z_{y}\\frac{dy}{dt} \\), with \\( z_{x} = 2([[a]])x + ([[c]])y \\) and \\( z_{y} = 2([[b]])y + ([[c]])x \\) evaluated at \\( ([[x0]], [[y0]]) \\). Substituting the given rates, \\( \\frac{dz}{dt} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps \\( \\frac{dx}{dt} \\) and \\( \\frac{dy}{dt} \\) between the two terms.",
+   "This adds the partial derivatives without multiplying by the given rates.",
+   "This uses only the \\( x \\)-term of the chain rule and drops the \\( y \\)-term.",
+   "This drops the factor of 2 that comes from differentiating each squared term.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_implicit_surface_rates_v1",
+  "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "z0": {"type": "choice", "values": [1, 2, 3]},
+   "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "n": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[z0]]**2"
+  },
+  "stem": "A point moves along a curve lying on the ellipsoid \\( [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} = [[k]] \\), which implicitly defines \\( z \\) as a function of \\( x \\) and \\( y \\) (for \\( z > 0 \\)). At a certain instant, \\( x = [[x0]] \\), \\( y = [[y0]] \\), \\( z = [[z0]] \\), and \\( \\dfrac{dx}{dt} = [[m]] \\), \\( \\dfrac{dy}{dt} = [[n]] \\). Using implicit differentiation together with the chain rule, what is \\( \\dfrac{dz}{dt} \\) at that instant?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[a]]*[[x0]]*[[m]] + [[b]]*[[y0]]*[[n]])/([[c]]*[[z0]])"},
+  "distractors": [
+   "([[a]]*[[x0]]*[[m]] + [[b]]*[[y0]]*[[n]])/([[c]]*[[z0]])",
+   "-([[a]]*[[x0]]*[[n]] + [[b]]*[[y0]]*[[m]])/([[c]]*[[z0]])",
+   "-([[a]]*[[x0]]*[[m]] + [[b]]*[[y0]]*[[n]])/([[c]])",
+   "-([[a]]*[[x0]]*[[m]])/([[c]]*[[z0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Differentiating \\( [[a]]x^{2}+[[b]]y^{2}+[[c]]z^{2}=[[k]] \\) implicitly gives \\( z_{x} = -\\dfrac{[[a]]x}{[[c]]z} \\) and \\( z_{y} = -\\dfrac{[[b]]y}{[[c]]z} \\). By the chain rule, \\( \\dfrac{dz}{dt} = z_{x}\\dfrac{dx}{dt} + z_{y}\\dfrac{dy}{dt} = -\\dfrac{[[a]]([[x0]])([[m]]) + [[b]]([[y0]])([[n]])}{[[c]]([[z0]])} = [[answer]]\\).",
+  "distractor_rationales": [
+   "This drops the negative sign that comes from implicit differentiation.",
+   "This swaps \\( \\frac{dx}{dt} \\) and \\( \\frac{dy}{dt} \\) between the two terms.",
+   "This forgets to divide by \\( [[c]]z \\) at all.",
+   "This drops the \\( y \\)-term of the chain rule entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_dzdx_via_y_of_x_v1",
+  "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "m": {"type": "int", "lo": 1, "hi": 3},
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "derived": {
+   "y0": "[[m]]*[[x0]]**2 + [[p]]"
+  },
+  "stem": "Let \\( z = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy \\), where \\( y \\) itself depends on \\( x \\) via \\( y = [[m]]x^{2} + ([[p]]) \\). Using the chain rule, what is \\( \\dfrac{dz}{dx} \\) at \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[a]]*[[x0]] + [[c]]*[[y0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*(2*[[m]]*[[x0]])"},
+  "distractors": [
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])",
+   "(2*[[b]]*[[y0]] + [[c]]*[[x0]])*(2*[[m]]*[[x0]])",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*(2*[[m]]*[[x0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]]) + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[m]]*[[x0]]",
+   "[[answer]] + 3",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dx} = z_{x} + z_{y}\\dfrac{dy}{dx} \\), since \\( x \\) is its own parameter (\\( dx/dx=1 \\)). Here \\( z_{x} = 2([[a]])x + ([[c]])y \\), \\( z_{y} = 2([[b]])y + ([[c]])x \\), and \\( \\dfrac{dy}{dx} = 2([[m]])x \\). At \\( x=[[x0]] \\), \\( y=[[y0]] \\), giving \\( \\dfrac{dz}{dx} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( z_{y}\\,dy/dx \\) term entirely, treating \\( z \\) as if it depended only on \\( x \\) explicitly.",
+   "This drops the direct \\( z_{x} \\) term, keeping only the indirect dependence through \\( y \\).",
+   "This swaps which term gets multiplied by \\( dy/dx \\).",
+   "This drops the factor of 2 that comes from differentiating \\( y=[[m]]x^{2}+[[p]] \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_product_form_v1",
+  "skill_id": "chain_rule_along_a_parametrized_path_dz_dt",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "int", "lo": -3, "hi": 3},
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[m]], 0)", "Ne([[n]], 0)"],
+  "derived": {
+   "xt": "[[m]]*[[t0]] + [[p]]",
+   "yt": "[[n]]*[[t0]] + [[q]]"
+  },
+  "stem": "Let \\( z = xy \\), where \\( x = [[m]]t + ([[p]]) \\) and \\( y = [[n]]t + ([[q]]) \\). Using the chain rule together with the product rule (since \\( z_{x}=y \\) and \\( z_{y}=x \\)), what is \\( \\dfrac{dz}{dt} \\) at \\( t = [[t0]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[yt]]*[[m]] + [[xt]]*[[n]]"},
+  "distractors": [
+   "[[xt]]*[[m]] + [[yt]]*[[n]]",
+   "[[yt]]*[[m]]",
+   "[[xt]]*[[yt]]",
+   "[[m]]*[[n]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the product rule, \\( \\dfrac{dz}{dt} = \\dfrac{d(xy)}{dt} = y\\dfrac{dx}{dt} + x\\dfrac{dy}{dt} \\). At \\( t=[[t0]] \\), \\( x=[[xt]] \\), \\( y=[[yt]] \\), \\( \\dfrac{dx}{dt}=[[m]] \\), \\( \\dfrac{dy}{dt}=[[n]] \\), giving \\( \\dfrac{dz}{dt} = [[yt]]([[m]]) + [[xt]]([[n]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps which path derivative multiplies which variable, using \\( x\\,dx/dt+y\\,dy/dt \\) instead of \\( y\\,dx/dt+x\\,dy/dt \\).",
+   "This drops the \\( x\\,dy/dt \\) term entirely, keeping only \\( y\\,dx/dt \\).",
+   "This multiplies \\( x \\) and \\( y \\) directly instead of applying the product rule for \\( dz/dt \\).",
+   "This multiplies the two path rates together instead of applying the product rule.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

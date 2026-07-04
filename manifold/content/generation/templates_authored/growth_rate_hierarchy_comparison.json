@@ -1,0 +1,125 @@
+[
+ {
+  "template_id": "growth_rate_hierarchy_v1",
+  "skill_id": "growth_rate_hierarchy_comparison",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "n": {"type": "choice", "values": [2, 3, 4, 5]},
+   "b": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{x^{[[n]]}}{[[b]]^{x}} \\), comparing polynomial growth against exponential growth.",
+  "answer_spec": {"op": "limit", "expr": "x**[[n]]/[[b]]**x", "var": "x", "point": "oo"},
+  "distractors": [
+   "1",
+   "-1",
+   "[[n]]",
+   "[[b]]",
+   "[[n]] + [[b]]",
+   "[[n]]*[[b]]",
+   "[[b]] + 1",
+   "2*[[b]]"
+  ],
+  "solution": "Exponential growth \\( [[b]]^{x} \\) dominates any fixed power \\( x^{[[n]]} \\), so the ratio tends to \\( 0 \\): \\( \\lim_{x \\to \\infty} \\frac{x^{[[n]]}}{[[b]]^{x}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes numerator and denominator grow at the same rate.",
+   "This has the wrong sign; the ratio of positive terms cannot be negative.",
+   "This mistakes the limit for the polynomial's degree.",
+   "This mistakes the limit for the exponential base.",
+   "This adds the two parameters.",
+   "This multiplies the two parameters."
+  ]
+ },
+ {
+  "template_id": "growth_rate_log_vs_polynomial_v1",
+  "skill_id": "growth_rate_hierarchy_comparison",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [1, 2, 3, 4]},
+   "q": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{(\\ln x)^{[[p]]}}{x^{[[q]]}} \\), comparing logarithmic growth against polynomial growth.",
+  "answer_spec": {"op": "limit", "expr": "log(x)**[[p]]/x**[[q]]", "var": "x", "point": "oo"},
+  "distractors": [
+   "1",
+   "-1",
+   "[[p]]",
+   "[[q]]",
+   "[[p]] + [[q]]",
+   "[[p]]*[[q]]",
+   "Rational([[p]], [[q]])"
+  ],
+  "solution": "Every power of a logarithm grows more slowly than every positive power of \\( x \\), so \\( (\\ln x)^{[[p]]} \\) is dominated by \\( x^{[[q]]} \\) and the ratio tends to \\( 0 \\): \\( \\lim_{x \\to \\infty} \\frac{(\\ln x)^{[[p]]}}{x^{[[q]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes numerator and denominator grow at the same rate.",
+   "This has the wrong sign; the ratio of positive terms cannot be negative.",
+   "This mistakes the limit for the logarithm's exponent.",
+   "This mistakes the limit for the polynomial's degree.",
+   "This adds the two exponents.",
+   "This multiplies the two exponents."
+  ]
+ },
+ {
+  "template_id": "growth_rate_exponential_vs_exponential_v1",
+  "skill_id": "growth_rate_hierarchy_comparison",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [3, 4, 5, 6, 7, 8]},
+   "b": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Gt([[a]], [[b]])"],
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{[[b]]^{x}}{[[a]]^{x}} \\), comparing the growth rates of two exponential functions with bases \\( [[b]] < [[a]] \\).",
+  "answer_spec": {"op": "limit", "expr": "[[b]]**x/[[a]]**x", "var": "x", "point": "oo"},
+  "distractors": [
+   "1",
+   "-1",
+   "Rational([[a]], [[b]])",
+   "[[a]] - [[b]]",
+   "[[b]] - [[a]]",
+   "[[a]]*[[b]]"
+  ],
+  "solution": "Since \\( \\frac{[[b]]^{x}}{[[a]]^{x}} = \\left(\\frac{[[b]]}{[[a]]}\\right)^{x} \\) and \\( 0 < \\frac{[[b]]}{[[a]]} < 1 \\), the larger base \\( [[a]] \\) dominates and the ratio decays to \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the two exponentials grow at the same rate.",
+   "This has the wrong sign; the ratio of positive terms cannot be negative.",
+   "This inverts the ratio of the bases.",
+   "This subtracts the bases instead of taking the ratio to a power.",
+   "This subtracts the bases in the wrong order.",
+   "This multiplies the bases instead of comparing their growth."
+  ]
+ },
+ {
+  "template_id": "growth_rate_sum_dominance_v1",
+  "skill_id": "growth_rate_hierarchy_comparison",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "n": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{[[a]]^{x} + x^{[[n]]}}{[[a]]^{x}} \\), which tests whether the additive polynomial term affects the exponential's dominant behavior.",
+  "answer_spec": {"op": "limit", "expr": "([[a]]**x + x**[[n]])/[[a]]**x", "var": "x", "point": "oo"},
+  "distractors": [
+   "0",
+   "[[n]]",
+   "[[a]]",
+   "2",
+   "1 + [[n]]",
+   "[[a]] + [[n]]"
+  ],
+  "solution": "Split the fraction: \\( \\frac{[[a]]^{x} + x^{[[n]]}}{[[a]]^{x}} = 1 + \\frac{x^{[[n]]}}{[[a]]^{x}} \\). Since exponential growth dominates the polynomial term, \\( \\frac{x^{[[n]]}}{[[a]]^{x}} \\to 0 \\), so the whole expression \\( \\to [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the polynomial term vanishes entirely from the numerator, dropping the leading \\( 1 \\).",
+   "This mistakes the limit for the polynomial's degree.",
+   "This mistakes the limit for the exponential's base.",
+   "This overcounts, doubling the leading term.",
+   "This adds the degree to the correct limiting value incorrectly.",
+   "This adds the base to the degree instead of recognizing the polynomial term vanishes."
+  ]
+ }
+]

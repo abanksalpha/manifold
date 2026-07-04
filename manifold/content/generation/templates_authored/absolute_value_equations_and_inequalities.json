@@ -1,0 +1,183 @@
+[
+ {
+  "template_id": "absolute_value_equation_v1",
+  "skill_id": "absolute_value_equations_and_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": ["Ge([[c]], 2)"],
+  "stem": "Solve \\( |x - ([[b]])| = [[c]] \\). Which of the following is a solution?",
+  "answer_spec": {"op": "solve", "equation": "Abs(x - ([[b]])) = [[c]]", "var": "x"},
+  "distractors": [
+   "[[b]]",
+   "[[b]] + 2*[[c]]",
+   "[[b]] - 2*[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[b]] + 3*[[c]]"
+  ],
+  "solution": "\\( |x - ([[b]])| = [[c]] \\) means \\( x - ([[b]]) = \\pm [[c]] \\), so \\( x = [[b]] - [[c]] \\) or \\( x = [[b]] + [[c]] \\). One solution is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the value that makes the expression inside the bars zero, not a point at distance [[c]] from it.",
+   "This overshoots the correct solution by an extra \\( [[c]] \\).",
+   "This overshoots the correct solution by an extra \\( [[c]] \\) in the other direction.",
+   "This is off by one from a genuine solution.",
+   "This is off by one from a genuine solution.",
+   "This lies far outside both solutions."
+  ]
+ },
+ {
+  "template_id": "absolute_value_strict_inequality_count_v1",
+  "skill_id": "absolute_value_equations_and_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Ge([[c]], 2)"],
+  "stem": "For how many integers \\( x \\) is \\( |x - ([[b]])| < [[c]] \\) true?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[c]] - 1"},
+  "distractors": [
+   "2*[[c]]",
+   "2*[[c]] + 1",
+   "2*[[c]] - 2",
+   "[[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "\\( |x-([[b]])| < [[c]] \\) means \\( ([[b]]) - [[c]] < x < ([[b]]) + [[c]] \\), an open interval of length \\( 2[[c]] \\). The number of integers strictly inside it is \\( 2[[c]] - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the length of the interval; an open interval of integer length \\( 2c \\) contains \\( 2c - 1 \\) integers, not \\( 2c \\).",
+   "This over-counts by treating the interval as if its endpoints were included.",
+   "This under-counts by one from the correct number of integers.",
+   "This is only half the interval's worth of integers.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count."
+  ]
+ },
+ {
+  "template_id": "absolute_value_unbounded_inequality_least_v1",
+  "skill_id": "absolute_value_equations_and_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "What is the smallest integer \\( x \\) greater than [[b]] for which \\( |x - ([[b]])| > [[c]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]] + [[c]] + 1"},
+  "distractors": [
+   "[[b]] + [[c]]",
+   "[[b]] + [[c]] + 2",
+   "[[b]] - [[c]] - 1",
+   "[[c]] + 1",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "For \\( x > [[b]] \\), \\( |x-([[b]])| = x - ([[b]]) \\), so the inequality becomes \\( x - ([[b]]) > [[c]] \\), i.e. \\( x > ([[b]]) + [[c]] \\). The smallest integer beyond this threshold is \\( ([[b]]) + [[c]] + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This sits exactly at the boundary, where the inequality is not yet strict.",
+   "This overshoots the smallest qualifying integer by one.",
+   "This looks on the wrong side of [[b]], using the lower branch of the absolute value instead.",
+   "This omits [[b]] entirely from the threshold.",
+   "This is larger than the correct value.",
+   "This is smaller than the correct value."
+  ]
+ },
+ {
+  "template_id": "absolute_value_equidistant_point_v1",
+  "skill_id": "absolute_value_equations_and_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "What is the value of \\( x \\) that satisfies \\( |x - ([[a]])| = |x - ([[b]])| \\)?",
+  "answer_spec": {"op": "solve", "equation": "Abs(x - ([[a]])) = Abs(x - ([[b]]))", "var": "x"},
+  "distractors": [
+   "[[a]]",
+   "[[b]]",
+   "[[a]] + [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The point equidistant from \\( [[a]] \\) and \\( [[b]] \\) is their midpoint, \\( x = \\dfrac{[[a]] + [[b]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is one of the two given points, not the point equidistant from both.",
+   "This is the other given point, not the point equidistant from both.",
+   "This is the sum of the two points rather than their average.",
+   "This is off by one from the true midpoint.",
+   "This is off by one from the true midpoint.",
+   "This is off by two from the true midpoint."
+  ]
+ },
+ {
+  "template_id": "absolute_value_sum_distance_minimum_v1",
+  "skill_id": "absolute_value_equations_and_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "What is the minimum possible value of \\( |x - ([[a]])| + |x - ([[b]])| \\) over all real numbers \\( x \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[a]] - [[b]])"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "Abs([[a]] + [[b]])",
+   "([[a]] - [[b]])/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The sum of distances from \\( x \\) to \\( [[a]] \\) and to \\( [[b]] \\) is minimized whenever \\( x \\) lies between them, and that minimum equals the distance between the two points themselves: \\( |[[a]] - [[b]]| = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two points instead of measuring the distance between them.",
+   "This takes the absolute value of the sum rather than the difference of the two points.",
+   "This is half the distance between the points, not the full distance.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum.",
+   "This is off by two from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "absolute_value_coefficient_sum_of_solutions_v1",
+  "skill_id": "absolute_value_equations_and_inequalities",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5]},
+   "b": {"type": "int", "lo": -12, "hi": 12},
+   "c": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": ["Ge([[c]], 2)"],
+  "stem": "The equation \\( |[[a]]x - ([[b]])| = [[c]] \\) has two real solutions. What is their sum?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[b]]/[[a]]"},
+  "distractors": [
+   "2*[[c]]/[[a]]",
+   "[[b]]/[[a]]",
+   "2*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The two solutions are \\( x = \\dfrac{[[b]] - [[c]]}{[[a]]} \\) and \\( x = \\dfrac{[[b]] + [[c]]}{[[a]]} \\); their sum is \\( \\dfrac{2([[b]])}{[[a]]} = [[answer]] \\), since the \\( [[c]] \\) terms cancel.",
+  "distractor_rationales": [
+   "This uses \\( [[c]] \\) (the distance) instead of \\( [[b]] \\) (the center) when forming the sum.",
+   "This forgets to double \\( [[b]]/[[a]] \\); both roots contribute a \\( [[b]]/[[a]] \\) term.",
+   "This forgets to divide by the coefficient \\( [[a]] \\) of \\( x \\).",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum.",
+   "This is off by two from the correct sum."
+  ]
+ }
+]

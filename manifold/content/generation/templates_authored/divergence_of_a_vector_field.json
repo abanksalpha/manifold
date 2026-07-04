@@ -1,0 +1,107 @@
+[
+{
+ "template_id": "divergence_const_v1",
+ "skill_id": "divergence_of_a_vector_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d]], 0)", "Ne([[e]], 0)", "Ne([[f]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( ([[a]])x + ([[d]])y,\\; ([[b]])y + ([[e]])z,\\; ([[c]])z + ([[f]])x \\right) \\). Compute the divergence \\( \\nabla \\cdot \\mathbf{F} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]) + ([[b]]) + ([[c]])"},
+ "distractors": [
+  "([[a]]) + ([[b]]) + ([[c]]) + ([[d]]) + ([[e]]) + ([[f]])",
+  "([[d]]) + ([[e]]) + ([[f]])",
+  "([[a]])*([[b]])*([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The divergence is \\( \\partial_x P + \\partial_y Q + \\partial_z R \\). Only the \\( x \\)-term of \\( P \\), the \\( y \\)-term of \\( Q \\), and the \\( z \\)-term of \\( R \\) survive (the cross terms differentiate to 0), so \\( \\nabla\\cdot\\mathbf{F} = ([[a]]) + ([[b]]) + ([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums every coefficient in the field; the cross terms \\( ([[d]])y,\\ ([[e]])z,\\ ([[f]])x \\) vanish under the divergence.",
+  "This keeps only the cross-term coefficients, which contribute nothing to the divergence.",
+  "This multiplies the three diagonal coefficients instead of adding them.",
+  "This is off by one from the correct divergence.",
+  "This is off by one from the correct divergence.",
+  "This is off by two from the correct divergence.",
+  "This is off by two from the correct divergence."
+ ]
+},
+{
+ "template_id": "divergence_point_eval_v1",
+ "skill_id": "divergence_of_a_vector_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "y0": {"type": "int", "lo": -3, "hi": 3},
+  "z0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)", "Ne([[x0]], 0)", "Ne([[y0]], 0)", "Ne([[z0]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( ([[a]])x^{2},\\; ([[b]])y^{2},\\; ([[c]])z^{2} \\right) \\). Compute the divergence \\( \\nabla \\cdot \\mathbf{F} \\) at the point \\( ([[x0]], [[y0]], [[z0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "2*([[a]])*([[x0]]) + 2*([[b]])*([[y0]]) + 2*([[c]])*([[z0]])"},
+ "distractors": [
+  "([[a]])*([[x0]]) + ([[b]])*([[y0]]) + ([[c]])*([[z0]])",
+  "2*([[a]])*([[y0]]) + 2*([[b]])*([[z0]]) + 2*([[c]])*([[x0]])",
+  "-(2*([[a]])*([[x0]]) + 2*([[b]])*([[y0]]) + 2*([[c]])*([[z0]]))",
+  "([[a]]) + ([[b]]) + ([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The divergence is \\( \\nabla\\cdot\\mathbf{F} = \\partial_x(([[a]])x^{2}) + \\partial_y(([[b]])y^{2}) + \\partial_z(([[c]])z^{2}) = 2([[a]])x + 2([[b]])y + 2([[c]])z \\). Evaluating at \\( ([[x0]], [[y0]], [[z0]]) \\) gives \\( 2([[a]])([[x0]]) + 2([[b]])([[y0]]) + 2([[c]])([[z0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of 2 that comes from differentiating each squared term.",
+  "This evaluates the divergence formula at the coordinates cyclically shifted, mismatching each partial with the wrong coordinate.",
+  "This has the sign of the divergence reversed.",
+  "This is the divergence of the LINEAR analogue field, not this quadratic one; it forgets the point evaluation entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "divergence_solve_solenoidal_v1",
+ "skill_id": "divergence_of_a_vector_field",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]] + [[b]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( kx,\\; ([[a]])y + ([[p]])z,\\; ([[b]])z \\right) \\), where \\( k \\) is a constant. For what value of \\( k \\) is \\( \\mathbf{F} \\) divergence-free (\\( \\nabla\\cdot\\mathbf{F}=0 \\) everywhere)?",
+ "answer_spec": {"op": "solve", "equation": "k + ([[a]]) + ([[b]]) = 0", "var": "k"},
+ "distractors": [
+  "([[a]]) + ([[b]])",
+  "([[a]]) - ([[b]])",
+  "-([[a]]) + ([[b]])",
+  "([[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The divergence is \\( \\nabla\\cdot\\mathbf{F} = k + ([[a]]) + ([[b]]) \\) (the cross term \\( ([[p]])z \\) in the middle component does not depend on \\( y \\), so it drops out). Setting this to 0 and solving gives \\( k = -\\left(([[a]]) + ([[b]])\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign, solving \\( k = a+b \\) instead of \\( k=-(a+b) \\).",
+  "This subtracts instead of adds the two known coefficients before negating.",
+  "This negates only the first coefficient.",
+  "This is the unrelated cross-term coefficient \\( p \\), which never affects the divergence.",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by two from the correct value of \\( k \\)."
+ ]
+}
+]

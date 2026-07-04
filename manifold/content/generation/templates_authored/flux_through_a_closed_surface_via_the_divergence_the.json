@@ -1,0 +1,101 @@
+[
+{
+ "template_id": "divergence_theorem_box_v1",
+ "skill_id": "flux_through_a_closed_surface_via_the_divergence_the",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "W": {"type": "int", "lo": 1, "hi": 3},
+  "H": {"type": "int", "lo": 1, "hi": 3},
+  "D": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Ne([[a]]*[[W]]**2*[[H]]*[[D]] + [[b]]*[[H]]**2*[[W]]*[[D]] + [[c]]*[[D]]**2*[[W]]*[[H]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = ( ([[a]])x^{2},\\; ([[b]])y^{2},\\; ([[c]])z^{2} ) \\). Using the divergence theorem, find the outward flux of \\( \\mathbf{F} \\) through the closed surface bounding the box \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]],\\; 0 \\le z \\le [[D]] \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "2*([[a]])*x + 2*([[b]])*y + 2*([[c]])*z", "vars": ["x", "y", "z"], "bounds": [["0", "[[W]]"], ["0", "[[H]]"], ["0", "[[D]]"]]},
+ "distractors": [
+  "(([[a]]) + ([[b]]) + ([[c]]))*([[W]])*([[H]])*([[D]])",
+  "-([[answer]])",
+  "([[a]])*([[W]])**2*([[H]])*([[D]]) + ([[b]])*([[H]])**2*([[W]])*([[D]]) - ([[c]])*([[D]])**2*([[W]])*([[H]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the divergence theorem the outward flux equals \\( \\iiint_V (\\nabla\\cdot\\mathbf{F})\\,dV \\). Here \\( \\nabla\\cdot\\mathbf{F} = 2([[a]])x + 2([[b]])y + 2([[c]])z \\); integrating over the box gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the divergence as the constant \\( [[a]]+[[b]]+[[c]] \\) times the volume, forgetting that \\( \\nabla\\cdot\\mathbf{F} \\) varies linearly.",
+  "This has the sign reversed (inward instead of outward flux).",
+  "This flips the sign of the \\( z \\)-term of the divergence.",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux.",
+  "This is off by two from the correct flux."
+ ]
+},
+{
+ "template_id": "divergence_theorem_tetrahedron_v1",
+ "skill_id": "flux_through_a_closed_surface_via_the_divergence_the",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[a]] + [[b]] + [[c]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = ( ([[a]])x,\\; ([[b]])y,\\; ([[c]])z ) \\). Using the divergence theorem, find the outward flux of \\( \\mathbf{F} \\) through the closed surface bounding the solid tetrahedron \\( x \\ge 0,\\ y \\ge 0,\\ z \\ge 0,\\ x+y+z \\le [[k]] \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[a]]) + ([[b]]) + ([[c]])", "vars": ["z", "y", "x"], "bounds": [["0", "([[k]])-x-y"], ["0", "([[k]])-x"], ["0", "[[k]]"]]},
+ "distractors": [
+  "(([[a]]) + ([[b]]) + ([[c]]))*([[k]])**3",
+  "(([[a]]) + ([[b]]) + ([[c]]))*([[k]])**3/2",
+  "-([[answer]])",
+  "(([[a]]) + ([[b]]) + ([[c]]))*([[k]])**2/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the divergence theorem the outward flux equals \\( \\iiint_V (\\nabla\\cdot\\mathbf{F})\\,dV \\). Here \\( \\nabla\\cdot\\mathbf{F} = ([[a]])+([[b]])+([[c]]) \\), a constant, so the flux is this constant times the tetrahedron's volume \\( \\tfrac{[[k]]^{3}}{6} \\), giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the volume of the full cube \\( k^{3} \\) instead of the tetrahedron's volume \\( k^{3}/6 \\).",
+  "This uses half the cube's volume instead of a sixth of it.",
+  "This has the sign reversed (inward instead of outward flux).",
+  "This uses a triangle's area formula \\( k^{2}/2 \\) instead of the tetrahedron's volume \\( k^{3}/6 \\).",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux."
+ ]
+},
+{
+ "template_id": "divergence_theorem_solve_zero_flux_v1",
+ "skill_id": "flux_through_a_closed_surface_via_the_divergence_the",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "W": {"type": "int", "lo": 1, "hi": 3},
+  "H": {"type": "int", "lo": 1, "hi": 3},
+  "D": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Ne([[a]] + [[b]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = ( kx,\\; ([[a]])y,\\; ([[b]])z ) \\), where \\( k \\) is a constant. For what value of \\( k \\) is the total outward flux of \\( \\mathbf{F} \\) through the closed surface bounding the box \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]],\\; 0 \\le z \\le [[D]] \\) equal to zero?",
+ "answer_spec": {"op": "solve", "equation": "(k + ([[a]]) + ([[b]]))*([[W]])*([[H]])*([[D]]) = 0", "var": "k"},
+ "distractors": [
+  "([[a]]) + ([[b]])",
+  "([[a]]) - ([[b]])",
+  "-([[a]]) + ([[b]])",
+  "([[W]])*([[H]])*([[D]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the divergence theorem the total flux equals \\( \\big(\\nabla\\cdot\\mathbf{F}\\big)\\cdot\\text{Volume} = \\big(k+([[a]])+([[b]])\\big)\\cdot[[W]]\\cdot[[H]]\\cdot[[D]] \\). Since the box has nonzero volume, the flux is 0 exactly when \\( k = -\\big(([[a]])+([[b]])\\big) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign, solving \\( k=a+b \\) instead of \\( k=-(a+b) \\).",
+  "This subtracts instead of adds the two known coefficients before negating.",
+  "This negates only the first coefficient.",
+  "This is the box's volume, which is irrelevant once you divide it out of the flux equation.",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by one from the correct value of \\( k \\)."
+ ]
+}
+]

@@ -1,0 +1,211 @@
+[
+{
+ "template_id": "dimension_of_matrix_space_v1",
+ "skill_id": "dimension_of_a_familiar_vector_space",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {
+   "type": "int",
+   "lo": 2,
+   "hi": 16
+  }
+ },
+ "constraints": [],
+ "stem": "What is the dimension of the vector space of all \\( [[n]] \\times [[n]] \\) real matrices (with the usual entrywise addition and scalar multiplication)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[n]]**2"
+ },
+ "distractors": [
+  "2*[[n]]",
+  "[[n]]*([[n]] + 1)",
+  "([[n]] + 1)**2",
+  "[[n]]**2 - 1",
+  "[[n]]**2 + 1",
+  "[[n]]*([[n]] - 1)",
+  "([[n]] - 1)**2"
+ ],
+ "solution": "A basis is given by the \\( [[n]]^2 \\) matrices with a single \\( 1 \\) entry and \\( 0 \\) elsewhere, so the dimension is \\( [[n]]^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts \\( 2[[n]] \\) (for example one entry per row and column), not all entries.",
+  "This is \\( [[n]]([[n]]+1) \\), the dimension counted with an extra column.",
+  "This is the dimension of \\( ([[n]]+1)\\times([[n]]+1) \\) matrices.",
+  "This undercounts the free entries by one.",
+  "This overcounts the free entries by one.",
+  "This is the dimension of the strictly triangular part only.",
+  "This counts only an \\( ([[n]]-1)\\times([[n]]-1) \\) block."
+ ]
+},
+{
+ "template_id": "dimension_of_rectangular_matrix_space_v2",
+ "skill_id": "dimension_of_a_familiar_vector_space",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 12},
+  "n": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "A vector space consists of all real matrices having \\( [[m]] \\) rows and \\( [[n]] \\) columns, under the usual entrywise addition and scalar multiplication. What is its dimension?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[m]]*[[n]]"
+ },
+ "distractors": [
+  "[[m]] + [[n]]",
+  "[[m]]*[[n]] + 1",
+  "[[m]]*[[n]] - 1",
+  "([[m]] + 1)*([[n]] + 1)",
+  "[[m]]*([[n]] - 1)",
+  "([[m]] - 1)*[[n]]",
+  "[[m]]**2 * [[n]]**2"
+ ],
+ "solution": "A basis is given by the \\( [[m]]\\cdot[[n]] \\) matrices with a single \\( 1 \\) entry and \\( 0 \\) elsewhere (one for each of the \\( [[m]] \\) rows and \\( [[n]] \\) columns), so the dimension is \\( [[m]]\\cdot[[n]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the row and column counts instead of multiplying them.",
+  "This overcounts the free entries by one.",
+  "This undercounts the free entries by one.",
+  "This is the dimension of an \\( ([[m]]+1)\\times([[n]]+1) \\) matrix space.",
+  "This undercounts the columns by one.",
+  "This undercounts the rows by one.",
+  "This squares both dimensions instead of just multiplying them."
+ ]
+},
+{
+ "template_id": "dimension_of_polynomial_space_v3",
+ "skill_id": "dimension_of_a_familiar_vector_space",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "What is the dimension of \\( P_{[[n]]} \\), the vector space of all real polynomials of degree at most \\( [[n]] \\) (with the usual addition and scalar multiplication)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[n]] + 1"
+ },
+ "distractors": [
+  "[[n]]",
+  "[[n]] + 2",
+  "[[n]] - 1",
+  "2*[[n]]",
+  "[[n]]*([[n]] + 1)/2",
+  "2*([[n]] + 1)",
+  "[[n]]**2"
+ ],
+ "solution": "A basis is \\( \\{1, x, x^2, \\dots, x^{[[n]]}\\} \\), which has \\( [[n]]+1 \\) elements, so \\( \\dim P_{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the constant term \\( 1 = x^0 \\), undercounting the basis by one.",
+  "This overcounts the basis by one.",
+  "This undercounts the basis by two.",
+  "This doubles the degree instead of counting monomials \\( x^0,\\dots,x^{[[n]]} \\).",
+  "This applies the symmetric-matrix dimension formula instead of counting monomials.",
+  "This doubles the correct dimension.",
+  "This squares the degree instead of adding one to it."
+ ]
+},
+{
+ "template_id": "dimension_of_symmetric_matrix_space_v4",
+ "skill_id": "dimension_of_a_familiar_vector_space",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 14}
+ },
+ "constraints": [],
+ "stem": "What is the dimension of the vector space of all symmetric \\( [[n]] \\times [[n]] \\) real matrices (matrices \\( A \\) with \\( A^T = A \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[n]]*([[n]] + 1)/2"
+ },
+ "distractors": [
+  "[[n]]**2",
+  "[[n]]*([[n]] - 1)/2",
+  "[[n]]",
+  "[[n]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[n]]*([[n]] + 1)"
+ ],
+ "solution": "A symmetric matrix is free on and above the diagonal: \\( [[n]] \\) diagonal entries plus \\( \\binom{[[n]]}{2} \\) entries above it, giving \\( [[n]] + \\dfrac{[[n]]([[n]]-1)}{2} = \\dfrac{[[n]]([[n]]+1)}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts every entry as free, ignoring the symmetry constraint.",
+  "This is the dimension of the SKEW-symmetric matrices (strictly above the diagonal only), omitting the diagonal.",
+  "This counts only the diagonal entries.",
+  "This is off by design from the diagonal count, not the full symmetric count.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This forgets to divide by \\( 2 \\)."
+ ]
+},
+{
+ "template_id": "dimension_of_skew_symmetric_matrix_space_v5",
+ "skill_id": "dimension_of_a_familiar_vector_space",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 14}
+ },
+ "constraints": [],
+ "stem": "What is the dimension of the vector space of all skew-symmetric \\( [[n]] \\times [[n]] \\) real matrices (matrices \\( A \\) with \\( A^T = -A \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[n]]*([[n]] - 1)/2"
+ },
+ "distractors": [
+  "[[n]]**2",
+  "[[n]]*([[n]] + 1)/2",
+  "[[n]]",
+  "[[n]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[n]]*([[n]] - 1)"
+ ],
+ "solution": "Skew-symmetry forces every diagonal entry to be \\( 0 \\) (since \\( a_{ii} = -a_{ii} \\)), leaving only the entries strictly above the diagonal free: \\( \\binom{[[n]]}{2} = \\dfrac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts every entry as free, ignoring the skew-symmetry constraint.",
+  "This is the dimension of the SYMMETRIC matrices, which wrongly includes the diagonal.",
+  "This counts only the diagonal entries, which are actually forced to be \\( 0 \\).",
+  "This is off by design from the correct count.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This forgets to divide by \\( 2 \\)."
+ ]
+},
+{
+ "template_id": "dimension_of_traceless_matrix_space_v6",
+ "skill_id": "dimension_of_a_familiar_vector_space",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "What is the dimension of the vector space of all traceless \\( [[n]] \\times [[n]] \\) real matrices (matrices \\( A \\) with \\( \\operatorname{tr}(A) = 0 \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[n]]**2 - 1"
+ },
+ "distractors": [
+  "[[n]]**2",
+  "[[n]]**2 + 1",
+  "[[n]]*([[n]] - 1)",
+  "([[n]] - 1)**2",
+  "[[n]] - 1",
+  "[[answer]] + 2",
+  "[[n]]*([[n]] + 1)"
+ ],
+ "solution": "The trace-zero condition is a single independent linear constraint (\\( a_{11}+\\cdots+a_{[[n]][[n]]}=0 \\)) on the \\( [[n]]^2 \\)-dimensional space of all matrices, cutting the dimension by exactly \\( 1 \\): \\( [[n]]^2 - 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the trace-zero constraint entirely.",
+  "This adds instead of subtracts the single constraint.",
+  "This drops an entire off-diagonal row's worth of entries instead of just one constraint.",
+  "This treats the constraint as removing a whole row and column.",
+  "This treats the space as one-dimensional data instead of matrices.",
+  "This is off by two from the correct dimension.",
+  "This is the dimension of a strictly larger matrix space."
+ ]
+}
+]

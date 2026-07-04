@@ -1,0 +1,171 @@
+[
+{
+ "template_id": "real_symmetric_matrices_v1",
+ "skill_id": "real_symmetric_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[b]] & [[a]] \\end{bmatrix} \\), a real symmetric matrix. What is its largest eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["[[b]]", "[[a]]"]], "which": "max"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[a]]",
+  "2*[[a]]",
+  "[[b]]",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "For \\( A = \\begin{bmatrix} a & b \\\\ b & a \\end{bmatrix} \\) the eigenvectors are \\( (1,1) \\) and \\( (1,-1) \\), giving eigenvalues \\( a+b \\) and \\( a-b \\). Here these are \\( [[a]]+[[b]] \\) and \\( [[a]]-[[b]] \\); the larger is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the eigenvalue \\( a+b \\), which is not the larger one when \\( b<0 \\).",
+  "This is the eigenvalue \\( a-b \\), which is not the larger one when \\( b>0 \\).",
+  "This is the shared diagonal entry, the average of the two eigenvalues, not the largest eigenvalue.",
+  "This doubles the diagonal entry rather than adding the correct offset \\( |b| \\).",
+  "This is the off-diagonal entry, not an eigenvalue of the matrix.",
+  "This is one less than the correct largest eigenvalue.",
+  "This is two more than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "real_symmetric_general_largest_v2",
+ "skill_id": "real_symmetric_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [2, 3, 4, 5]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Gt([[m]], [[n]])", "Eq(gcd([[m]], [[n]]), 1)"],
+ "derived": {
+  "aa": "[[c]] + [[m]]**2 - [[n]]**2",
+  "dd": "[[c]] - [[m]]**2 + [[n]]**2",
+  "bb": "2*[[m]]*[[n]]",
+  "r": "[[m]]**2 + [[n]]**2"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[aa]] & [[bb]] \\\\ [[bb]] & [[dd]] \\end{bmatrix} \\), a real symmetric matrix with unequal diagonal entries. What is its largest eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[aa]]", "[[bb]]"], ["[[bb]]", "[[dd]]"]], "which": "max"},
+ "distractors": [
+  "[[c]]",
+  "[[c]] - [[r]]",
+  "[[aa]] + [[dd]]",
+  "([[aa]] + [[dd]])/2",
+  "[[aa]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The eigenvalues of a general \\( 2\\times2 \\) symmetric matrix \\( \\begin{bmatrix} a & b \\\\ b & d \\end{bmatrix} \\) are \\( \\frac{a+d}{2} \\pm \\sqrt{\\left(\\frac{a-d}{2}\\right)^2 + b^2} \\). Here the midpoint is \\( [[c]] \\) and the radius is \\( [[r]] \\), so the eigenvalues are \\( [[c]]+[[r]] \\) and \\( [[c]]-[[r]] \\); the largest is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the midpoint \\( \\frac{a+d}{2} \\), not the largest eigenvalue.",
+  "This is the smallest eigenvalue, not the largest.",
+  "This is the trace \\( a+d \\), not a single eigenvalue.",
+  "This is the average of the diagonal entries only, ignoring the off-diagonal contribution.",
+  "This is just one diagonal entry, not an eigenvalue in general.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "real_symmetric_eigenvalue_spread_v3",
+ "skill_id": "real_symmetric_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [2, 3, 4, 5]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Gt([[m]], [[n]])", "Eq(gcd([[m]], [[n]]), 1)"],
+ "derived": {
+  "aa": "[[c]] + [[m]]**2 - [[n]]**2",
+  "dd": "[[c]] - [[m]]**2 + [[n]]**2",
+  "bb": "2*[[m]]*[[n]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[aa]] & [[bb]] \\\\ [[bb]] & [[dd]] \\end{bmatrix} \\), a real symmetric matrix with eigenvalues \\( \\lambda_1 \\ge \\lambda_2 \\). What is \\( \\lambda_1 - \\lambda_2 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt(([[aa]] - [[dd]])**2 + 4*[[bb]]**2)"},
+ "distractors": [
+  "[[aa]] - [[dd]]",
+  "[[aa]] + [[dd]]",
+  "2*[[bb]]",
+  "([[aa]] - [[dd]])**2 + 4*[[bb]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "For a symmetric \\( \\begin{bmatrix} a & b \\\\ b & d \\end{bmatrix} \\), the eigenvalue spread is \\( \\lambda_1-\\lambda_2 = \\sqrt{(a-d)^2+4b^2} = [[answer]] \\) (twice the discriminant radius).",
+ "distractor_rationales": [
+  "This is just the difference of the diagonal entries, omitting the off-diagonal contribution under the square root.",
+  "This is the trace \\( a+d \\), not the spread between the two eigenvalues.",
+  "This doubles the off-diagonal entry directly instead of combining it with \\( (a-d)^2 \\) under a square root.",
+  "This forgets to take the square root of the discriminant.",
+  "This is one more than the correct spread.",
+  "This is two less than the correct spread."
+ ]
+},
+{
+ "template_id": "real_symmetric_sum_of_squares_v4",
+ "skill_id": "real_symmetric_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[b]] & [[d]] \\end{bmatrix} \\), a real symmetric matrix with (real) eigenvalues \\( \\lambda_1 \\) and \\( \\lambda_2 \\). What is \\( \\lambda_1^2 + \\lambda_2^2 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**2 + 2*[[b]]**2 + [[d]]**2"},
+ "distractors": [
+  "[[a]]**2 + [[d]]**2",
+  "([[a]] + [[d]])**2",
+  "[[a]]**2 + [[b]]**2 + [[d]]**2",
+  "[[a]]*[[d]] - [[b]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "For a symmetric matrix, \\( \\lambda_1^2+\\lambda_2^2 = \\operatorname{tr}(A^2) \\). Squaring \\( A \\) gives diagonal entries \\( a^2+b^2 \\) and \\( b^2+d^2 \\), so \\( \\operatorname{tr}(A^2) = a^2 + 2b^2 + d^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the off-diagonal entry's contribution \\( 2b^2 \\) entirely.",
+  "This squares the trace \\( (a+d)^2 = \\lambda_1^2+2\\lambda_1\\lambda_2+\\lambda_2^2 \\) instead of the sum of squares.",
+  "This only counts the off-diagonal contribution once instead of twice (it appears in both diagonal entries of \\( A^2 \\)).",
+  "This is the determinant \\( ad-b^2 \\), which equals \\( \\lambda_1\\lambda_2 \\), not \\( \\lambda_1^2+\\lambda_2^2 \\).",
+  "This is one more than the correct sum of squares.",
+  "This is two less than the correct sum of squares."
+ ]
+},
+{
+ "template_id": "real_symmetric_block_diagonal_3x3_v5",
+ "skill_id": "real_symmetric_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] & 0 \\\\ [[b]] & [[a]] & 0 \\\\ 0 & 0 & [[e]] \\end{bmatrix} \\), a real symmetric block-diagonal matrix. What is its largest eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "0"], ["[[b]]", "[[a]]", "0"], ["0", "0", "[[e]]"]], "which": "max"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[e]]",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The matrix is block-diagonal: the top-left \\( 2\\times2 \\) symmetric block has eigenvalues \\( [[a]]+[[b]] \\) and \\( [[a]]-[[b]] \\), and the bottom-right \\( 1\\times1 \\) block contributes the eigenvalue \\( [[e]] \\). The full set of eigenvalues of \\( A \\) is the union of these; the largest is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one eigenvalue of the top block, but not necessarily the overall largest once the scalar block's eigenvalue \\( e \\) is included.",
+  "This is the other eigenvalue of the top block, but not necessarily the overall largest.",
+  "This is the scalar block's eigenvalue, but not necessarily the overall largest.",
+  "This is just the shared diagonal entry of the top block, not one of its actual eigenvalues in general.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue."
+ ]
+}
+]

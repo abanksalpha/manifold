@@ -1,0 +1,167 @@
+[
+{
+ "template_id": "solve_ax_b_using_the_inverse_and_consistency_v1",
+ "skill_id": "solve_ax_b_using_the_inverse_and_consistency",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "a1": {"type": "int", "lo": 1, "hi": 5},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "a2": {"type": "int", "lo": -5, "hi": 5},
+  "b2": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)"],
+ "derived": {
+  "c1": "[[a1]]*[[p]] + [[b1]]*[[q]]",
+  "c2": "[[a2]]*[[p]] + [[b2]]*[[q]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a1]] & [[b1]] \\\\ [[a2]] & [[b2]] \\end{bmatrix} \\) and \\( \\mathbf{b} = \\begin{bmatrix} [[c1]] \\\\ [[c2]] \\end{bmatrix} \\). Since \\( A \\) is invertible, the equation \\( A\\mathbf{x} = \\mathbf{b} \\) has the unique solution \\( \\mathbf{x} = A^{-1}\\mathbf{b} = \\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix} \\). What is \\( x_1 \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y = [[c1]]", "[[a2]]*x + [[b2]]*y = [[c2]]"], "vars": ["x", "y"], "want": "x"},
+ "distractors": [
+  "[[q]]",
+  "-[[answer]]",
+  "[[p]] + [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Computing \\( A^{-1}\\mathbf{b} \\) (equivalently, solving the two scalar equations) gives \\( x_1 = [[answer]] \\), with \\( x_2 = [[q]] \\).",
+ "distractor_rationales": [
+  "This is the second component \\( x_2 \\), not \\( x_1 \\).",
+  "This has the right magnitude but the wrong sign.",
+  "This adds the two components together.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_ax_b_using_the_inverse_and_consistency_v2_3x3",
+ "skill_id": "solve_ax_b_using_the_inverse_and_consistency",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "a1": {"type": "int", "lo": 1, "hi": 4},
+  "b1": {"type": "int", "lo": -3, "hi": 3},
+  "c1": {"type": "int", "lo": -3, "hi": 3},
+  "a2": {"type": "int", "lo": -3, "hi": 3},
+  "b2": {"type": "int", "lo": 1, "hi": 4},
+  "c2": {"type": "int", "lo": -3, "hi": 3},
+  "a3": {"type": "int", "lo": -3, "hi": 3},
+  "b3": {"type": "int", "lo": -3, "hi": 3},
+  "c3": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[a1]]*([[b2]]*[[c3]]-[[b3]]*[[c2]]) - [[b1]]*([[a2]]*[[c3]]-[[a3]]*[[c2]]) + [[c1]]*([[a2]]*[[b3]]-[[a3]]*[[b2]]), 0)"
+ ],
+ "derived": {
+  "d1": "[[a1]]*[[p]] + [[b1]]*[[q]] + [[c1]]*[[t]]",
+  "d2": "[[a2]]*[[p]] + [[b2]]*[[q]] + [[c2]]*[[t]]",
+  "d3": "[[a3]]*[[p]] + [[b3]]*[[q]] + [[c3]]*[[t]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a1]] & [[b1]] & [[c1]] \\\\ [[a2]] & [[b2]] & [[c2]] \\\\ [[a3]] & [[b3]] & [[c3]] \\end{bmatrix} \\) and \\( \\mathbf{b} = \\begin{bmatrix} [[d1]] \\\\ [[d2]] \\\\ [[d3]] \\end{bmatrix} \\). Since \\( \\det(A) \\ne 0 \\), \\( A \\) has an inverse (built from its \\( 3\\times3 \\) adjugate), and \\( A\\mathbf{x}=\\mathbf{b} \\) has the unique solution \\( \\mathbf{x}=A^{-1}\\mathbf{b} \\). What is the first component \\( x_1 \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y + [[c1]]*z = [[d1]]", "[[a2]]*x + [[b2]]*y + [[c2]]*z = [[d2]]", "[[a3]]*x + [[b3]]*y + [[c3]]*z = [[d3]]"], "vars": ["x", "y", "z"], "want": "x"},
+ "distractors": [
+  "[[q]]",
+  "[[t]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Computing \\( A^{-1}\\mathbf{b} \\) via the adjugate matrix (or solving the three scalar equations directly) gives \\( x_1 = [[answer]] \\) (with \\( x_2=[[q]] \\), \\( x_3=[[t]] \\)).",
+ "distractor_rationales": [
+  "This is \\( x_2 \\), not \\( x_1 \\).",
+  "This is \\( x_3 \\), not \\( x_1 \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_ax_b_using_the_inverse_and_consistency_v3_singular_consistent",
+ "skill_id": "solve_ax_b_using_the_inverse_and_consistency",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b1": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [-3, -2, -1, 2, 3]},
+  "r1": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[b1]], 0)", "Ne([[r1]], 0)", "Eq(Mod([[r1]], [[a]]), 0)"],
+ "derived": {
+  "ka": "[[k]]*[[a]]",
+  "kb1": "[[k]]*[[b1]]",
+  "kr1": "[[k]]*[[r1]]"
+ },
+ "stem": "The matrix \\( A = \\begin{bmatrix} [[a]] & [[b1]] \\\\ [[ka]] & [[kb1]] \\end{bmatrix} \\) has no inverse (its second row is [[k]] times its first). Even so, the system \\( A\\mathbf{x} = \\begin{bmatrix} [[r1]] \\\\ [[kr1]] \\end{bmatrix} \\) is consistent, since the right-hand side is also [[k]] times the first equation's value; it has infinitely many solutions. What is the value of \\( x_1 \\) in the particular solution with \\( x_2 = 0 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r1]] / [[a]]"},
+ "distractors": [
+  "[[a]]",
+  "[[b1]]",
+  "[[k]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Setting \\( x_2=0 \\) in the first row's equation \\( [[a]]x_1 + ([[b1]])x_2 = [[r1]] \\) gives \\( [[a]]x_1 = [[r1]] \\), so \\( x_1 = [[answer]] \\). (The second row, being [[k]] times the first, is automatically satisfied too, confirming consistency.)",
+ "distractor_rationales": [
+  "This is the coefficient \\( a \\) itself, not the solved value \\( x_1 \\).",
+  "This is the coefficient \\( b_1 \\), unrelated to \\( x_1 \\) once \\( x_2=0 \\).",
+  "This is the row-scaling factor \\( k \\), not \\( x_1 \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "solve_ax_b_using_the_inverse_and_consistency_v4_sum",
+ "skill_id": "solve_ax_b_using_the_inverse_and_consistency",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "a1": {"type": "int", "lo": 1, "hi": 5},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "a2": {"type": "int", "lo": -5, "hi": 5},
+  "b2": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)"],
+ "derived": {
+  "c1": "[[a1]]*[[p]] + [[b1]]*[[q]]",
+  "c2": "[[a2]]*[[p]] + [[b2]]*[[q]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a1]] & [[b1]] \\\\ [[a2]] & [[b2]] \\end{bmatrix} \\) and \\( \\mathbf{b} = \\begin{bmatrix} [[c1]] \\\\ [[c2]] \\end{bmatrix} \\). Since \\( A \\) is invertible, \\( A\\mathbf{x}=\\mathbf{b} \\) has the unique solution \\( \\mathbf{x}=A^{-1}\\mathbf{b}=\\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix} \\). What is \\( x_1 + x_2 \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y = [[c1]]", "[[a2]]*x + [[b2]]*y = [[c2]]"], "vars": ["x", "y"], "want": "x + y"},
+ "distractors": [
+  "[[p]]",
+  "[[q]]",
+  "[[p]] - [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Computing \\( A^{-1}\\mathbf{b} \\) gives \\( x_1=[[p]] \\) and \\( x_2=[[q]] \\), so \\( x_1+x_2=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( x_1 \\) alone, not the sum \\( x_1+x_2 \\).",
+  "This is \\( x_2 \\) alone, not the sum \\( x_1+x_2 \\).",
+  "This is the DIFFERENCE \\( x_1-x_2 \\), not the sum.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by two from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+}
+]

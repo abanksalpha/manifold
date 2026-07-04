@@ -1,0 +1,125 @@
+[
+{
+ "template_id": "concavity_evaluate_second_derivative_v1",
+ "skill_id": "curve_sketching_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]])x^{2} + ([[c]])x + ([[d]]) \\). What is the value of \\( f''([[x0]]) \\), which tells you the concavity of \\( f \\) at \\( x=[[x0]] \\)?",
+ "answer_spec": {"op": "diff", "expr": "[[a]]*x**3+[[b]]*x**2+[[c]]*x+[[d]]", "var": "x", "at": "[[x0]]", "order": 2},
+ "distractors": [
+  "3*[[a]]*[[x0]]**2 + 2*[[b]]*[[x0]] + [[c]]",
+  "6*[[a]]*[[x0]] + [[b]]",
+  "[[a]]*[[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]] + [[d]]",
+  "6*[[a]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "\\( f'(x)=3[[a]]x^{2}+2[[b]]x+[[c]] \\), and \\( f''(x)=6[[a]]x+2[[b]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f'([[x0]]) \\), the first derivative (slope), not the second derivative.",
+  "This drops the factor of 2 on the constant term \\( 2[[b]] \\) of \\( f'' \\).",
+  "This evaluates \\( f([[x0]]) \\), the function value, not its second derivative.",
+  "This omits the constant term \\( 2[[b]] \\) of \\( f'' \\) entirely, keeping only the \\( x \\)-dependent part's coefficient.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "concavity_word_problem_inflection_v2",
+ "skill_id": "curve_sketching_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "p": {"type": "int", "lo": -15, "hi": 15}
+ },
+ "constraints": ["Ne([[p]], 0)"],
+ "stem": "A firm's marginal cost model gives total cost \\( C(x) = [[a]]x^{3} + ([[p]])x^{2} \\) (in thousands of dollars) for producing \\( x \\) thousand units. For \\( x \\) beyond what value does the cost curve \\( C \\) switch from concave down to concave up?",
+ "answer_spec": {"op": "evaluate", "expr": "-Rational([[p]], 3*[[a]])"},
+ "distractors": [
+  "-Rational([[p]], [[a]])",
+  "Rational([[p]], 3*[[a]])",
+  "-Rational(2*[[p]], 3*[[a]])",
+  "-Rational([[p]], 6*[[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( C''(x) = 6[[a]]x + 2([[p]]) \\), which is zero (and changes sign) at \\( x = -\\dfrac{[[p]]}{3[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 3 in the denominator, using \\( C'(x) \\)'s structure instead of \\( C''(x) \\)'s.",
+  "This has the wrong sign on the inflection point.",
+  "This doubles the correct value.",
+  "This halves the correct value incorrectly (dividing by 6 instead of 3).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "concavity_rational_function_v3",
+ "skill_id": "curve_sketching_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "x0": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x) = x + \\dfrac{[[a]]}{x} \\). What is \\( f''([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "x+[[a]]/x", "var": "x", "at": "[[x0]]", "order": 2},
+ "distractors": [
+  "-[[a]]/[[x0]]**2",
+  "2*[[a]]/[[x0]]",
+  "[[a]]/[[x0]]**3",
+  "-2*[[a]]/[[x0]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( f'(x)=1-\\dfrac{[[a]]}{x^{2}} \\), and \\( f''(x)=\\dfrac{2[[a]]}{x^{3}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( f'([[x0]]) \\), the first derivative, not the second.",
+  "This has the wrong sign and power, mixing up the first-derivative structure.",
+  "This forgets the factor of 2 that appears when differentiating \\( -a/x^{2} \\) again.",
+  "This has the correct factor of 2 but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "concavity_solve_for_coefficient_v4",
+ "skill_id": "curve_sketching_concavity",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "x0": {"type": "int", "lo": -10, "hi": 10},
+  "b": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[x0]], 0)"],
+ "stem": "Let \\( f(x) = x^{3} + kx^{2} + ([[b]])x \\), where \\( k \\) is a constant. If \\( f \\) has an inflection point at \\( x = [[x0]] \\), what is the value of \\( k \\)?",
+ "answer_spec": {"op": "solve", "equation": "6*[[x0]] + 2*k = 0", "var": "k"},
+ "distractors": [
+  "3*[[x0]]",
+  "Rational(-[[x0]],3)",
+  "-6*[[x0]]",
+  "Rational([[x0]],2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( f''(x)=6x+2k \\). Setting \\( f''([[x0]])=0 \\) gives \\( 6([[x0]])+2k=0 \\), so \\( k=-3([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 on \\( k \\), solving \\( 6x_{0}+k=0 \\) instead.",
+  "This has the wrong sign and divides instead of multiplying by 3.",
+  "This doubles the correct coefficient.",
+  "This mistakenly halves \\( x_{0}\\) instead of multiplying by \\( -3 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

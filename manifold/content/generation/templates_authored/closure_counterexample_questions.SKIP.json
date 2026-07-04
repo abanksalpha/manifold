@@ -1,0 +1,4 @@
+{
+ "skill_id": "closure_counterexample_questions",
+ "reason": "The answer is a yes/no closure judgment plus a counterexample, not a single code-computable scalar."
+}

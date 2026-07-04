@@ -1,0 +1,276 @@
+[
+ {
+  "template_id": "closest_point_to_line_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x1": {"type": "int", "lo": -3, "hi": 3},
+   "y1": {"type": "int", "lo": -3, "hi": 3},
+   "s": {"type": "int", "lo": 2, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "c": "[[a]]*[[x1]] + [[b]]*[[y1]] - ([[a]]**2 + [[b]]**2)*[[s]]"
+  },
+  "stem": "Consider the point \\( P = ([[x1]], [[y1]]) \\) and the line \\( [[a]]x + [[b]]y = [[c]] \\). Find the point on the line closest to \\( P \\). What is the square of the minimum distance from \\( P \\) to the line?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*(x - [[x1]]) = L*[[a]]", "2*(y - [[y1]]) = L*[[b]]", "[[a]]*x + [[b]]*y = [[c]]"],
+   "vars": ["x", "y", "L"],
+   "want": "(x - [[x1]])**2 + (y - [[y1]])**2"
+  },
+  "distractors": [
+   "([[a]]*[[x1]] + [[b]]*[[y1]] - [[c]])**2",
+   "Abs([[a]]*[[x1]] + [[b]]*[[y1]] - [[c]])",
+   "[[a]]**2 + [[b]]**2",
+   "2*[[answer]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The squared distance is minimized where \\( (x - [[x1]], y - [[y1]]) \\) is parallel to the normal \\( ([[a]], [[b]]) \\). The classic result gives \\( \\dfrac{([[a]]([[x1]]) + [[b]]([[y1]]) - [[c]]))^{2}}{[[a]]^{2} + [[b]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the squared numerator \\( (ax_1 + by_1 - c)^{2} \\) without dividing by \\( a^{2}+b^{2} \\).",
+   "This is the magnitude of \\( ax_1 + by_1 - c \\), missing both the square and the division.",
+   "This is only \\( a^{2}+b^{2} \\), the denominator of the distance formula.",
+   "This doubles the correct squared distance.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "farthest_point_on_circle_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 5},
+   "n": {"type": "int", "lo": 1, "hi": 4},
+   "r": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "p": "[[m]]**2 - [[n]]**2",
+   "q": "2*[[m]]*[[n]]",
+   "h": "[[m]]**2 + [[n]]**2"
+  },
+  "stem": "Consider the point \\( P = ([[p]], [[q]]) \\) and the circle \\( x^{2} + y^{2} = [[r]]^{2} \\) centered at the origin. Find the point on the circle farthest from \\( P \\). What is the square of that maximum distance?",
+  "answer_spec": {"op": "evaluate", "expr": "([[h]] + [[r]])**2"},
+  "distractors": [
+   "([[h]] - [[r]])**2",
+   "[[h]] + [[r]]",
+   "[[h]]**2 + [[r]]**2",
+   "([[p]] + [[r]])**2 + [[q]]**2",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "The point on the circle farthest from \\( P \\) lies on the ray from \\( P \\) through the origin, on the opposite side of the circle from \\( P \\). Its distance from \\( P \\) is \\( |OP| + r = [[h]] + [[r]] \\) (since \\( |OP| = \\sqrt{[[p]]^{2}+[[q]]^{2}} = [[h]] \\)), so the squared maximum distance is \\( ([[h]] + [[r]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( |OP| - r \\), which gives the squared MINIMUM distance to the circle, not the maximum.",
+   "This forgets to square the sum \\( |OP| + r \\).",
+   "This adds the squares of \\( |OP| \\) and \\( r \\) instead of squaring their sum.",
+   "This shifts only the \\( x \\)-coordinate of \\( P \\) by \\( r \\) rather than moving along the ray through the origin.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "closest_point_to_plane_3d_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "x1": {"type": "int", "lo": -3, "hi": 3},
+   "y1": {"type": "int", "lo": -3, "hi": 3},
+   "z1": {"type": "int", "lo": -3, "hi": 3},
+   "s": {"type": "int", "lo": 2, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "d": "[[a]]*[[x1]] + [[b]]*[[y1]] + [[c]]*[[z1]] - ([[a]]**2 + [[b]]**2 + [[c]]**2)*[[s]]"
+  },
+  "stem": "Consider the point \\( P = ([[x1]], [[y1]], [[z1]]) \\) and the plane \\( [[a]]x + [[b]]y + [[c]]z = [[d]] \\) in three-dimensional space. Find the point on the plane closest to \\( P \\). What is the square of the minimum distance from \\( P \\) to the plane?",
+  "answer_spec": {
+   "op": "system",
+   "equations": [
+    "2*(x - [[x1]]) = L*[[a]]",
+    "2*(y - [[y1]]) = L*[[b]]",
+    "2*(z - [[z1]]) = L*[[c]]",
+    "[[a]]*x + [[b]]*y + [[c]]*z = [[d]]"
+   ],
+   "vars": ["x", "y", "z", "L"],
+   "want": "(x - [[x1]])**2 + (y - [[y1]])**2 + (z - [[z1]])**2"
+  },
+  "distractors": [
+   "([[a]]*[[x1]] + [[b]]*[[y1]] + [[c]]*[[z1]] - [[d]])**2",
+   "Abs([[a]]*[[x1]] + [[b]]*[[y1]] + [[c]]*[[z1]] - [[d]])",
+   "[[a]]**2 + [[b]]**2 + [[c]]**2",
+   "2*[[answer]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The squared distance is minimized where \\( (x - [[x1]], y - [[y1]], z - [[z1]]) \\) is parallel to the plane's normal \\( ([[a]], [[b]], [[c]]) \\). The classic result gives \\( \\dfrac{([[a]]([[x1]]) + [[b]]([[y1]]) + [[c]]([[z1]]) - [[d]]))^{2}}{[[a]]^{2} + [[b]]^{2} + [[c]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the squared numerator without dividing by \\( a^{2}+b^{2}+c^{2}\\).",
+   "This is the magnitude of the numerator, missing both the square and the division.",
+   "This is only \\( a^{2}+b^{2}+c^{2}\\), the denominator of the distance formula.",
+   "This doubles the correct squared distance.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "closest_point_to_line_3d_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -3, "hi": 3},
+   "z0": {"type": "int", "lo": -3, "hi": 3},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dz": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "px": {"type": "int", "lo": -4, "hi": 4},
+   "py": {"type": "int", "lo": -4, "hi": 4},
+   "pz": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Consider the point \\( P = ([[px]], [[py]], [[pz]]) \\) and the line \\( L \\) in three-dimensional space given parametrically by \\( (x, y, z) = ([[x0]] + [[dx]]t,\\ [[y0]] + [[dy]]t,\\ [[z0]] + [[dz]]t) \\). Minimize the squared distance from \\( P \\) to a point on \\( L \\) over all \\( t \\). What is this minimum squared distance?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "(([[px]]-[[x0]])**2+([[py]]-[[y0]])**2+([[pz]]-[[z0]])**2) - (([[px]]-[[x0]])*[[dx]]+([[py]]-[[y0]])*[[dy]]+([[pz]]-[[z0]])*[[dz]])**2/([[dx]]**2+[[dy]]**2+[[dz]]**2)"
+  },
+  "distractors": [
+   "([[px]]-[[x0]])**2+([[py]]-[[y0]])**2+([[pz]]-[[z0]])**2",
+   "(([[px]]-[[x0]])*[[dx]]+([[py]]-[[y0]])*[[dy]]+([[pz]]-[[z0]])*[[dz]])**2/([[dx]]**2+[[dy]]**2+[[dz]]**2)",
+   "[[dx]]**2+[[dy]]**2+[[dz]]**2",
+   "(([[px]]-[[x0]])*[[dx]]+([[py]]-[[y0]])*[[dy]]+([[pz]]-[[z0]])*[[dz]])/([[dx]]**2+[[dy]]**2+[[dz]]**2)",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( \\mathbf{w} = P - ([[x0]],[[y0]],[[z0]]) \\) and \\( \\mathbf{d} = \\langle [[dx]],[[dy]],[[dz]] \\rangle \\), calculus (\\( d(D^{2})/dt = 0 \\)) gives the minimum squared distance \\( \\lVert \\mathbf{w} \\rVert^{2} - \\dfrac{(\\mathbf{w}\\cdot\\mathbf{d})^{2}}{\\lVert \\mathbf{d} \\rVert^{2}} = [[answer]] \\), the standard point-to-line projection formula.",
+  "distractor_rationales": [
+   "This is just \\( \\lVert \\mathbf{w} \\rVert^{2} \\), the squared distance to the line's reference point \\( ([[x0]],[[y0]],[[z0]]) \\) itself, not the minimum over the whole line.",
+   "This is only the projection term, without subtracting it from \\( \\lVert \\mathbf{w} \\rVert^{2} \\).",
+   "This is only \\( \\lVert \\mathbf{d} \\rVert^{2} \\), the squared length of the direction vector.",
+   "This forgets to square the dot product \\( \\mathbf{w}\\cdot\\mathbf{d} \\) before dividing.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "closest_point_to_line_cable_word_problem_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "x1": {"type": "int", "lo": -4, "hi": 4},
+   "y1": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[m]], 0)"],
+  "stem": "A relay station sits at the point \\( P = ([[x1]], [[y1]]) \\) on a map, and a straight highway follows the line \\( y = [[m]]x + ([[b]]) \\). An engineer wants to run the shortest possible cable from the station to the highway. Using calculus (or Lagrange multipliers) to minimize the squared distance from \\( P \\) to a point \\( (x, y) \\) on the highway, what is the square of the length of the shortest cable?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*(x - [[x1]]) = L*[[m]]", "2*(y - [[y1]]) = -L", "y = [[m]]*x + [[b]]"],
+   "vars": ["x", "y", "L"],
+   "want": "(x - [[x1]])**2 + (y - [[y1]])**2"
+  },
+  "distractors": [
+   "([[m]]*[[x1]] - [[y1]] + [[b]])**2",
+   "Abs([[m]]*[[x1]] - [[y1]] + [[b]])",
+   "[[m]]**2 + 1",
+   "([[m]]*[[x1]] + [[b]] - [[y1]])**2/([[m]]**2+1)**2",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing the highway as \\( [[m]]x - y = -[[b]] \\), the squared distance from \\( P \\) is minimized where \\( (x-[[x1]], y-[[y1]]) \\) is parallel to the normal \\( ([[m]], -1) \\). The classic point-to-line formula gives \\( \\dfrac{([[m]]([[x1]]) - ([[y1]]) + [[b]])^{2}}{[[m]]^{2}+1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the squared numerator alone, without dividing by \\( m^{2}+1 \\).",
+   "This is the (unsquared) magnitude of the numerator, missing both the square and the division.",
+   "This is only \\( m^{2}+1 \\), the denominator of the distance formula.",
+   "This squares the denominator as well as the numerator instead of leaving the denominator to the first power.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "farthest_point_on_sphere_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "px": {"type": "int", "lo": 2, "hi": 6},
+   "py": {"type": "int", "lo": 2, "hi": 3},
+   "pz": {"type": "int", "lo": 2, "hi": 4},
+   "r": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "derived": {
+   "h2": "[[px]]**2 + [[py]]**2 + [[pz]]**2"
+  },
+  "stem": "Consider the point \\( P = ([[px]], [[py]], [[pz]]) \\) and the sphere \\( x^{2} + y^{2} + z^{2} = [[r]]^{2} \\) centered at the origin. Find the point on the sphere farthest from \\( P \\). What is the square of that maximum distance?",
+  "answer_spec": {"op": "evaluate", "expr": "(sqrt([[h2]]) + [[r]])**2"},
+  "distractors": [
+   "(sqrt([[h2]]) - [[r]])**2",
+   "[[h2]] + [[r]]**2",
+   "sqrt([[h2]]) + [[r]]",
+   "[[h2]] + 2*[[r]]*sqrt([[h2]]) - [[r]]**2",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "The point on the sphere farthest from \\( P \\) lies on the ray from \\( P \\) through the origin, on the opposite side of the sphere. Its distance from \\( P \\) is \\( |OP| + r \\), where \\( |OP| = \\sqrt{[[px]]^{2}+[[py]]^{2}+[[pz]]^{2}} = \\sqrt{[[h2]]} \\), so the squared maximum distance is \\( (\\sqrt{[[h2]]} + [[r]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( |OP| - r \\), which gives the squared MINIMUM distance to the sphere, not the maximum.",
+   "This adds the squares of \\( |OP| \\) and \\( r \\) instead of squaring their sum.",
+   "This forgets to square the sum \\( |OP| + r \\).",
+   "This has a sign error in the expansion of the square.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ],
+  "require_rational": false
+ },
+ {
+  "template_id": "closest_point_on_circle_abs_v1",
+  "skill_id": "closest_farthest_point_via_a_constraint",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 5},
+   "n": {"type": "int", "lo": 1, "hi": 4},
+   "r": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "p": "[[m]]**2 - [[n]]**2",
+   "q": "2*[[m]]*[[n]]",
+   "h": "[[m]]**2 + [[n]]**2"
+  },
+  "stem": "Consider the point \\( P = ([[p]], [[q]]) \\) and the circle \\( x^{2} + y^{2} = [[r]]^{2} \\) centered at the origin. Find the point on the circle closest to \\( P \\) (the circle itself, not the disk it bounds). What is that minimum distance (not squared)?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs([[h]] - [[r]])"},
+  "distractors": [
+   "[[h]] + [[r]]",
+   "([[h]] - [[r]])**2",
+   "[[h]] - [[r]]",
+   "[[r]] - [[h]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The closest point on the circle to \\( P \\) lies on the ray from the origin through \\( P \\) (or its extension). Since \\( |OP| = \\sqrt{[[p]]^{2}+[[q]]^{2}} = [[h]] \\), the minimum distance from \\( P \\) to the circle is \\( \\lvert |OP| - r \\rvert = \\lvert [[h]] - [[r]] \\rvert = [[answer]] \\) (this handles both the case where \\( P \\) is outside the circle and where it is inside).",
+  "distractor_rationales": [
+   "This is \\( |OP| + r \\), the distance to the FARTHEST point on the circle, not the closest.",
+   "This squares the distance instead of leaving it as a plain length.",
+   "This drops the absolute value, giving a negative result when \\( P \\) is inside the circle.",
+   "This has the subtraction backwards, giving a negative result when \\( P \\) is outside the circle.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

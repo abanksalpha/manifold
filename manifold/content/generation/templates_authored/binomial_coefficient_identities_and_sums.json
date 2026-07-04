@@ -1,0 +1,218 @@
+[
+{
+ "template_id": "binomial_row_sum_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {
+   "type": "int",
+   "lo": 3,
+   "hi": 20
+  }
+ },
+ "constraints": [],
+ "stem": "What is the value of the sum \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k} = \\binom{[[n]]}{0} + \\binom{[[n]]}{1} + \\dots + \\binom{[[n]]}{[[n]]} \\)?",
+ "answer_spec": {
+  "op": "sum",
+  "expr": "binomial([[n]], k)",
+  "var": "k",
+  "lo": "0",
+  "hi": "[[n]]"
+ },
+ "distractors": [
+  "2**([[n]] - 1)",
+  "2**([[n]] + 1)",
+  "[[n]]**2",
+  "factorial([[n]])",
+  "2*[[n]]",
+  "[[answer]] - 2"
+ ],
+ "solution": "The sum of a full row of Pascal's triangle is \\( \\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k} = 2^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( 2^{[[n]]-1} \\), half of the correct total.",
+  "This is \\( 2^{[[n]]+1} \\), twice the correct total.",
+  "This confuses the row sum with \\( n^2 \\).",
+  "This uses \\( [[n]]! \\) instead of the sum of the binomial coefficients.",
+  "This is \\( 2n \\), a linear expression rather than the exponential sum.",
+  "This is off from the correct total by two."
+ ]
+},
+{
+ "template_id": "binomial_alternating_sum_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "What is the value of the alternating sum \\( \\displaystyle\\sum_{k=0}^{[[n]]} (-1)^k \\binom{[[n]]}{k} = \\binom{[[n]]}{0} - \\binom{[[n]]}{1} + \\binom{[[n]]}{2} - \\dots \\)?",
+ "answer_spec": {"op": "sum", "expr": "(-1)**k*binomial([[n]], k)", "var": "k", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "2**[[n]]",
+  "[[n]]",
+  "-[[n]]",
+  "1",
+  "-1",
+  "2*[[n]]"
+ ],
+ "solution": "By the binomial theorem, \\( \\sum_{k=0}^{[[n]]} (-1)^k \\binom{[[n]]}{k} = (1-1)^{[[n]]} = 0 = [[answer]] \\) since \\( [[n]] \\ge 1 \\).",
+ "distractor_rationales": [
+  "This is the sum WITHOUT alternating signs, \\( 2^{[[n]]} \\).",
+  "This mistakes the alternating binomial sum for a simple count of terms.",
+  "This is off by a sign from a common (also incorrect) guess of [[n]].",
+  "This assumes only the first two terms survive, leaving 1.",
+  "This assumes only the first two terms survive with a sign flip.",
+  "This doubles \\( [[n]] \\) for no valid reason."
+ ]
+},
+{
+ "template_id": "binomial_sum_of_squares_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "What is the value of \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^2 = \\binom{[[n]]}{0}^2 + \\binom{[[n]]}{1}^2 + \\dots + \\binom{[[n]]}{[[n]]}^2 \\)?",
+ "answer_spec": {"op": "sum", "expr": "binomial([[n]], k)**2", "var": "k", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "2**[[n]]",
+  "4**[[n]]",
+  "binomial(2*[[n]], [[n]] - 1)",
+  "factorial([[n]])**2",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "By Vandermonde's identity with \\( m=w=[[n]] \\) and \\( r=[[n]] \\), \\( \\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^2 = \\binom{2[[n]]}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the sum of squares with the plain row sum \\( 2^{[[n]]} \\).",
+  "This squares the row sum \\( 2^{[[n]]} \\) itself instead of applying Vandermonde's identity.",
+  "This chooses the wrong lower index, one less than [[n]] in the bottom of the coefficient.",
+  "This squares \\( [[n]]! \\), unrelated to the identity.",
+  "This is off from the correct total by [[n]].",
+  "This is off from the correct total by [[n]]."
+ ]
+},
+{
+ "template_id": "binomial_weighted_sum_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "What is the value of \\( \\displaystyle\\sum_{k=0}^{[[n]]} k\\binom{[[n]]}{k} = 0\\cdot\\binom{[[n]]}{0} + 1\\cdot\\binom{[[n]]}{1} + \\dots + [[n]]\\cdot\\binom{[[n]]}{[[n]]} \\)?",
+ "answer_spec": {"op": "sum", "expr": "k*binomial([[n]], k)", "var": "k", "lo": "0", "hi": "[[n]]"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]] - 1)",
+  "[[n]]*2**[[n]]",
+  "factorial([[n]])",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Using \\( k\\binom{n}{k} = n\\binom{n-1}{k-1} \\) and summing, \\( \\sum_{k=0}^{[[n]]} k\\binom{[[n]]}{k} = [[n]]\\cdot 2^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of [[n]] entirely, leaving the plain row sum.",
+  "This is the unweighted row sum for \\( n-1 \\) rather than \\( n\\cdot 2^{n-1} \\).",
+  "This uses \\( n\\cdot 2^n \\), a power too high.",
+  "This confuses the weighted sum with \\( n! \\).",
+  "This is off from the correct total by [[n]].",
+  "This is off from the correct total by [[n]]."
+ ]
+},
+{
+ "template_id": "binomial_hockey_stick_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "r": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "int", "lo": 6, "hi": 20}
+ },
+ "constraints": ["Lt([[r]], [[n]])"],
+ "stem": "What is the value of \\( \\displaystyle\\sum_{i=[[r]]}^{[[n]]} \\binom{i}{[[r]]} = \\binom{[[r]]}{[[r]]} + \\binom{[[r]]+1}{[[r]]} + \\dots + \\binom{[[n]]}{[[r]]} \\)?",
+ "answer_spec": {"op": "sum", "expr": "binomial(i, [[r]])", "var": "i", "lo": "[[r]]", "hi": "[[n]]"},
+ "distractors": [
+  "binomial([[n]], [[r]] + 1)",
+  "binomial([[n]] + 1, [[r]])",
+  "binomial([[n]], [[r]])",
+  "binomial([[n]] + 1, [[r]] + 2)",
+  "[[answer]] + [[r]]",
+  "[[answer]] - [[r]]"
+ ],
+ "solution": "By the hockey-stick identity, \\( \\sum_{i=[[r]]}^{[[n]]} \\binom{i}{[[r]]} = \\binom{[[n]]+1}{[[r]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This bumps the bottom index instead of the top one.",
+  "This forgets to also increase the bottom index alongside the top one.",
+  "This is just the last term of the sum, \\( \\binom{[[n]]}{[[r]]} \\), not the full sum.",
+  "This increases both indices by too much.",
+  "This is off from the correct total by [[r]].",
+  "This is off from the correct total by [[r]]."
+ ]
+},
+{
+ "template_id": "binomial_vandermonde_convolution_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 8},
+  "w": {"type": "int", "lo": 2, "hi": 8},
+  "r": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Lt([[r]], [[m]] + [[w]])"],
+ "stem": "For positive integers with \\( [[r]] \\le [[m]] + [[w]] \\), what is the value of \\( \\displaystyle\\sum_{k=0}^{[[r]]} \\binom{[[m]]}{k}\\binom{[[w]]}{[[r]]-k} \\)?",
+ "answer_spec": {"op": "sum", "expr": "binomial([[m]], k)*binomial([[w]], [[r]] - k)", "var": "k", "lo": "0", "hi": "[[r]]"},
+ "distractors": [
+  "binomial([[m]] + [[w]], [[r]] - 1)",
+  "binomial([[m]]*[[w]], [[r]])",
+  "binomial([[m]], [[r]])*binomial([[w]], [[r]])",
+  "binomial([[m]] + [[w]] + 1, [[r]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Vandermonde's identity, \\( \\sum_{k=0}^{[[r]]} \\binom{[[m]]}{k}\\binom{[[w]]}{[[r]]-k} = \\binom{[[m]]+[[w]]}{[[r]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This shifts the bottom index down by one on the combined total.",
+  "This multiplies [[m]] and [[w]] instead of adding them before choosing.",
+  "This wrongly applies \\( \\binom{[[r]]} \\) to each group separately and multiplies.",
+  "This adds one too many to the combined total before choosing.",
+  "This is off from the correct total by one.",
+  "This is off from the correct total by one."
+ ]
+},
+{
+ "template_id": "binomial_even_indexed_sum_v1",
+ "skill_id": "binomial_coefficient_identities_and_sums",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "What is the value of \\( \\displaystyle\\binom{[[n]]}{0} + \\binom{[[n]]}{2} + \\binom{[[n]]}{4} + \\dots \\), the sum of the binomial coefficients \\( \\binom{[[n]]}{k} \\) over only the EVEN values of \\( k \\)?",
+ "answer_spec": {"op": "sum", "expr": "binomial([[n]], 2*j)", "var": "j", "lo": "0", "hi": "floor([[n]]/2)"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]] - 2)",
+  "[[n]]*2**([[n]] - 1)",
+  "factorial([[n]])",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Adding the row sum \\( (1+1)^{[[n]]} \\) and the alternating sum \\( (1-1)^{[[n]]} \\) and halving cancels the odd-indexed terms: the even-indexed sum is \\( 2^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the full row sum \\( 2^{[[n]]} \\), including the odd-indexed terms.",
+  "This divides by 4 instead of 2, removing too much.",
+  "This multiplies by [[n]] for no valid reason.",
+  "This confuses the even-indexed sum with \\( [[n]]! \\).",
+  "This is off from the correct total by [[n]].",
+  "This is off from the correct total by [[n]]."
+ ]
+}
+]

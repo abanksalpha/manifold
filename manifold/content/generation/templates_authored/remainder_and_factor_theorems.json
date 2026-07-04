@@ -1,0 +1,171 @@
+[
+ {
+  "template_id": "remainder_theorem_eval_v1",
+  "skill_id": "remainder_and_factor_theorems",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "stem": "Let \\( p(x) = x^{3} + ([[a]])x^{2} + ([[b]])x + ([[c]]) \\). What is the remainder when \\( p(x) \\) is divided by \\( x - ([[r]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[r]])**3 + ([[a]])*([[r]])**2 + ([[b]])*([[r]]) + ([[c]])"},
+  "distractors": [
+   "(-[[r]])**3 + ([[a]])*(-[[r]])**2 + ([[b]])*(-[[r]]) + ([[c]])",
+   "([[r]])**3 + ([[a]])*([[r]])**2 + ([[b]])*([[r]])",
+   "([[a]])*([[r]])**2 + ([[b]])*([[r]]) + ([[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the Remainder Theorem, the remainder on division by \\( x - r \\) is \\( p(r) \\). Here \\( p([[r]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( p(-r) \\), the remainder for division by \\( x + r \\), not \\( x - r \\).",
+   "This drops the constant term \\( c \\) when evaluating \\( p(r) \\).",
+   "This drops the leading \\( x^{3} \\) term when evaluating \\( p(r) \\).",
+   "This is off by one from the correct remainder.",
+   "This is off by one from the correct remainder.",
+   "This is off by two from the correct remainder."
+  ]
+ },
+ {
+  "template_id": "factor_theorem_solve_coefficient_v1",
+  "skill_id": "remainder_and_factor_theorems",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "r": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "stem": "For what value of \\( k \\) is \\( x - ([[r]]) \\) a factor of \\( p(x) = x^{3} + ([[a]])x^{2} + kx + ([[c]]) \\)?",
+  "answer_spec": {"op": "solve", "equation": "([[r]])**3 + ([[a]])*([[r]])**2 + k*([[r]]) + ([[c]]) = 0", "var": "k"},
+  "distractors": [
+   "-(([[r]])**3 + ([[a]])*([[r]])**2 + ([[c]]))",
+   "([[r]])**3 + ([[a]])*([[r]])**2 + ([[c]])",
+   "([[r]])**2 + ([[a]])*([[r]]) + ([[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the Factor Theorem, \\( x - ([[r]]) \\) is a factor exactly when \\( p([[r]]) = 0 \\): \\( ([[r]])^{3} + ([[a]])([[r]])^{2} + k([[r]]) + ([[c]]) = 0 \\), so \\( k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This solves for \\( k \\) but forgets to divide by \\( r \\), leaving the equation unsolved.",
+   "This has the correct terms but the wrong sign for \\( k \\cdot r \\).",
+   "This drops the leading \\( x^3 \\) term's contribution \\( r^3 \\) before solving.",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by two from the correct value of \\( k \\)."
+  ]
+ },
+ {
+  "template_id": "generalized_remainder_theorem_v1",
+  "skill_id": "remainder_and_factor_theorems",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "m": {"type": "choice", "values": [2, 3, 4]},
+   "n": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[n]], 0)"],
+  "stem": "Let \\( p(x) = x^{3} + ([[a]])x^{2} + ([[b]])x + ([[c]]) \\). What is the remainder when \\( p(x) \\) is divided by \\( [[m]]x - ([[n]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]]/[[m]])**3 + ([[a]])*([[n]]/[[m]])**2 + ([[b]])*([[n]]/[[m]]) + ([[c]])"},
+  "distractors": [
+   "([[n]])**3 + ([[a]])*([[n]])**2 + ([[b]])*([[n]]) + ([[c]])",
+   "(-[[n]]/[[m]])**3 + ([[a]])*(-[[n]]/[[m]])**2 + ([[b]])*(-[[n]]/[[m]]) + ([[c]])",
+   "([[m]]/[[n]])**3 + ([[a]])*([[m]]/[[n]])**2 + ([[b]])*([[m]]/[[n]]) + ([[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "For a linear divisor \\( mx - n \\), the root is \\( x = \\dfrac{n}{m} \\), and the generalized Remainder Theorem gives remainder \\( p\\!\\left(\\dfrac{[[n]]}{[[m]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( p(n) \\) instead of \\( p(n/m) \\), forgetting to divide by the leading coefficient \\( m \\).",
+   "This evaluates at the wrong sign, \\( -n/m \\), the root of \\( mx+n \\) instead of \\( mx-n \\).",
+   "This inverts the fraction, using \\( m/n \\) instead of \\( n/m \\) as the root.",
+   "This is off by one from the correct remainder.",
+   "This is off by one from the correct remainder.",
+   "This is off by two from the correct remainder."
+  ]
+ },
+ {
+  "template_id": "remainder_theorem_reverse_solve_v1",
+  "skill_id": "remainder_and_factor_theorems",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": -4, "hi": 4},
+   "k_target": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "derived": {
+   "R": "([[r]])**3 + ([[a]])*([[r]])**2 + ([[k_target]])*([[r]]) + ([[c]])"
+  },
+  "stem": "The remainder when \\( p(x) = x^{3} + ([[a]])x^{2} + kx + ([[c]]) \\) is divided by \\( x - ([[r]]) \\) is \\( [[R]] \\). What is \\( k \\)?",
+  "answer_spec": {"op": "solve", "equation": "([[r]])**3 + ([[a]])*([[r]])**2 + k*([[r]]) + ([[c]]) - ([[R]]) = 0", "var": "k"},
+  "distractors": [
+   "([[R]] - ([[r]])**3 - ([[a]])*([[r]])**2 - ([[c]]))",
+   "([[R]])/[[r]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Setting \\( p([[r]]) = [[R]] \\) gives \\( ([[r]])^{3} + ([[a]])([[r]])^{2} + k([[r]]) + ([[c]]) = [[R]] \\). Solving for \\( k \\) gives \\( k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( r \\) after isolating the \\( kr \\) term.",
+   "This divides the whole remainder by \\( r \\) without first subtracting the other terms of \\( p(r) \\).",
+   "This has the correct magnitude but the wrong sign.",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by two from the correct value of \\( k \\)."
+  ]
+ },
+ {
+  "template_id": "remainder_upon_quadratic_divisor_slope_v1",
+  "skill_id": "remainder_and_factor_theorems",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -3, "hi": 3},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": -5, "hi": 5},
+   "a": {"type": "int", "lo": -4, "hi": 3},
+   "b": {"type": "int", "lo": -3, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "derived": {
+   "pa": "([[a]])**3 + ([[A]])*([[a]])**2 + ([[B]])*([[a]]) + ([[C]])",
+   "pb": "([[b]])**3 + ([[A]])*([[b]])**2 + ([[B]])*([[b]]) + ([[C]])"
+  },
+  "stem": "Let \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\). When \\( p(x) \\) is divided by \\( (x-([[a]]))(x-([[b]])) \\), the remainder has the form \\( mx + n \\). What is \\( m \\)?",
+  "answer_spec": {"op": "system", "equations": ["m*([[a]]) + n = [[pa]]", "m*([[b]]) + n = [[pb]]"], "vars": ["m", "n"], "want": "m"},
+  "distractors": [
+   "[[pb]] - [[pa]]",
+   "([[pa]] - [[pb]])/([[a]] - [[b]])",
+   "([[pa]] + [[pb]])/([[a]] + [[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The remainder \\( R(x) = mx+n \\) must agree with \\( p(x) \\) at both roots of the divisor: \\( R([[a]]) = p([[a]]) = [[pa]] \\) and \\( R([[b]]) = p([[b]]) = [[pb]] \\). Solving this pair of equations for the slope gives \\( m = \\dfrac{[[pb]] - [[pa]]}{[[b]] - [[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by the difference \\( b-a \\) between the two points.",
+   "This has the sign of the numerator reversed relative to the denominator.",
+   "This averages the two remainder values instead of taking the slope between them.",
+   "This is off by one from the correct slope.",
+   "This is off by one from the correct slope.",
+   "This is off by two from the correct slope."
+  ]
+ }
+]

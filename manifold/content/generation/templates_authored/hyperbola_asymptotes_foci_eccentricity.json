@@ -1,0 +1,276 @@
+[
+{
+ "template_id": "hyperbola_focal_distance_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 10
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 10
+  }
+ },
+ "constraints": [],
+ "stem": "For the hyperbola \\( \\dfrac{x^{2}}{[[a]]^{2}}-\\dfrac{y^{2}}{[[b]]^{2}}=1 \\), find the focal distance \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "sqrt(Abs([[a]]**2 - [[b]]**2))",
+  "[[a]] + [[b]]",
+  "sqrt([[a]] + [[b]])",
+  "[[a]]**2 + [[b]]**2",
+  "sqrt([[a]]**2 + [[b]]**2) + 1",
+  "sqrt([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "For a hyperbola, \\( c=\\sqrt{a^{2}+b^{2}}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "hyperbola_eccentricity_from_axes_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 12},
+  "b": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": [],
+ "stem": "For the hyperbola \\( \\dfrac{x^{2}}{[[a]]^{2}}-\\dfrac{y^{2}}{[[b]]^{2}}=1 \\), find the eccentricity \\( e \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 + [[b]]**2)/[[a]]"
+ },
+ "distractors": [
+  "sqrt([[a]]**2 + [[b]]**2)/[[b]]",
+  "sqrt(Abs([[a]]**2 - [[b]]**2))/[[a]]",
+  "[[b]]/[[a]]",
+  "([[a]]**2 + [[b]]**2)/[[a]]**2",
+  "sqrt([[a]]**2 + [[b]]**2)/[[a]] + Rational(1,10)",
+  "sqrt([[a]]**2 + [[b]]**2)/[[a]] - Rational(1,10)"
+ ],
+ "solution": "\\( e=\\dfrac{c}{a}=\\dfrac{\\sqrt{a^{2}+b^{2}}}{a}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( b\\) instead of \\( a\\).",
+  "This uses \\( \\sqrt{|a^2-b^2|}\\) (the ellipse-style formula) instead of \\( \\sqrt{a^2+b^2}\\).",
+  "This reports the asymptote-slope ratio \\( b/a\\) instead of the eccentricity.",
+  "This forgets to take the square root of \\( a^2+b^2\\) before dividing.",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+},
+{
+ "template_id": "hyperbola_asymptote_slope_horizontal_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "b": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "For the hyperbola \\( \\dfrac{x^{2}}{[[a]]^{2}}-\\dfrac{y^{2}}{[[b]]^{2}}=1 \\), find the slope of the asymptote \\( y=mx \\) with \\( m>0 \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[b]], [[a]])"
+ },
+ "distractors": [
+  "Rational([[a]], [[b]])",
+  "-Rational([[b]], [[a]])",
+  "[[b]]*[[a]]",
+  "Rational([[b]]**2, [[a]]**2)",
+  "Rational([[b]], [[a]]) + 1",
+  "Rational([[b]], [[a]]) - 1"
+ ],
+ "solution": "For \\( \\frac{x^{2}}{a^{2}}-\\frac{y^{2}}{b^{2}}=1 \\), the asymptotes are \\( y=\\pm\\frac{b}{a}x \\), so the positive slope is \\( \\frac{[[b]]}{[[a]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, using \\( a/b\\) instead of \\( b/a\\).",
+  "This uses the negative asymptote's slope instead of the positive one.",
+  "This multiplies \\( a\\) and \\( b\\) instead of dividing.",
+  "This squares the ratio instead of leaving it linear.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "hyperbola_vertical_transverse_axis_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 10},
+  "b": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "For the hyperbola \\( \\dfrac{y^{2}}{[[a]]^{2}}-\\dfrac{x^{2}}{[[b]]^{2}}=1 \\) (opening up and down), find the slope of the asymptote \\( y=mx \\) with \\( m>0 \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[a]], [[b]])"
+ },
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "-Rational([[a]], [[b]])",
+  "[[a]]*[[b]]",
+  "Rational([[a]]**2, [[b]]**2)",
+  "Rational([[a]], [[b]]) + 1",
+  "Rational([[a]], [[b]]) - 1"
+ ],
+ "solution": "For a hyperbola with vertical transverse axis, \\( \\frac{y^{2}}{a^{2}}-\\frac{x^{2}}{b^{2}}=1 \\), the asymptotes are \\( y=\\pm\\frac{a}{b}x \\), so the positive slope is \\( \\frac{[[a]]}{[[b]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the horizontal-transverse-axis formula \\( b/a\\) instead of \\( a/b\\).",
+  "This uses the negative asymptote's slope instead of the positive one.",
+  "This multiplies \\( a\\) and \\( b\\) instead of dividing.",
+  "This squares the ratio instead of leaving it linear.",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "hyperbola_shifted_center_focus_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "h": {"type": "int", "lo": -8, "hi": 8},
+  "k": {"type": "int", "lo": -8, "hi": 8},
+  "a": {"type": "int", "lo": 1, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "For the hyperbola \\( \\dfrac{(x-[[h]])^{2}}{[[a]]^{2}}-\\dfrac{(y-[[k]])^{2}}{[[b]]^{2}}=1 \\), find the \\( x \\)-coordinate of the focus to the right of the center.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[h]] + sqrt([[a]]**2 + [[b]]**2)"
+ },
+ "distractors": [
+  "[[h]] - sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "[[h]] + sqrt(Abs([[a]]**2 - [[b]]**2))",
+  "[[k]] + sqrt([[a]]**2 + [[b]]**2)",
+  "[[h]] + sqrt([[a]]**2 + [[b]]**2) + 1",
+  "[[h]] + sqrt([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "The center is \\( ([[h]],[[k]]) \\) and \\( c=\\sqrt{a^{2}+b^{2}} \\), so the right focus has \\( x=[[h]]+c=[[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts \\( c\\) instead of adding it, giving the left focus.",
+  "This forgets to shift by the center's \\( x\\)-coordinate \\( h\\).",
+  "This uses the ellipse-style \\( \\sqrt{|a^2-b^2|}\\) instead of \\( \\sqrt{a^2+b^2}\\).",
+  "This shifts by \\( k\\) instead of \\( h\\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+},
+{
+ "template_id": "hyperbola_focal_distance_from_asymptote_slope_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "m": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Eq(gcd([[m]], [[n]]), 1)"],
+ "stem": "A hyperbola centered at the origin has transverse axis along the \\( x \\)-axis with \\( a=[[a]] \\) and asymptotes of slope \\( \\pm\\dfrac{[[m]]}{[[n]]} \\). Find the focal distance \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]**2 + ([[a]]*Rational([[m]],[[n]]))**2)"
+ },
+ "distractors": [
+  "[[a]]*Rational([[m]], [[n]])",
+  "sqrt([[a]]**2 - ([[a]]*Rational([[m]],[[n]]))**2)",
+  "[[a]] + [[a]]*Rational([[m]], [[n]])",
+  "sqrt([[a]]**2 + ([[a]]*Rational([[n]],[[m]]))**2)",
+  "sqrt([[a]]**2 + ([[a]]*Rational([[m]],[[n]]))**2) + 1",
+  "sqrt([[a]]**2 + ([[a]]*Rational([[m]],[[n]]))**2) - 1"
+ ],
+ "solution": "Since the asymptote slope is \\( b/a=\\frac{[[m]]}{[[n]]} \\), we get \\( b=a\\cdot\\frac{[[m]]}{[[n]]} \\), and then \\( c=\\sqrt{a^{2}+b^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports \\( b\\) itself instead of computing \\( c=\\sqrt{a^2+b^2}\\).",
+  "This uses the ellipse-style formula \\( \\sqrt{a^2-b^2}\\) instead of \\( \\sqrt{a^2+b^2}\\).",
+  "This adds \\( a\\) and \\( b\\) directly instead of combining them under a square root.",
+  "This inverts the asymptote slope before computing \\( b\\).",
+  "This is off by one from the correct focal distance.",
+  "This is off by one (other direction) from the correct focal distance."
+ ]
+},
+{
+ "template_id": "hyperbola_eccentricity_from_asymptote_slope_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Eq(gcd([[m]], [[n]]), 1)"],
+ "stem": "A hyperbola with a horizontal transverse axis has asymptotes of slope \\( \\pm\\dfrac{[[m]]}{[[n]]} \\). Find its eccentricity \\( e \\) (this does not depend on the overall scale of the hyperbola).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt(1 + Rational([[m]],[[n]])**2)"
+ },
+ "distractors": [
+  "sqrt(1 - Rational([[m]],[[n]])**2)",
+  "1 + Rational([[m]],[[n]])",
+  "Rational([[m]],[[n]])",
+  "sqrt(Rational([[m]],[[n]])**2 - 1)",
+  "sqrt(1 + Rational([[m]],[[n]])**2) + Rational(1,10)",
+  "sqrt(1 + Rational([[m]],[[n]])**2) - Rational(1,10)"
+ ],
+ "solution": "With slope \\( b/a=\\frac{[[m]]}{[[n]]} \\), \\( e=\\sqrt{1+(b/a)^{2}}=\\sqrt{1+\\left(\\frac{[[m]]}{[[n]]}\\right)^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the ellipse-style \\( \\sqrt{1-(b/a)^2}\\) instead of \\( \\sqrt{1+(b/a)^2}\\).",
+  "This forgets to take the square root.",
+  "This reports the asymptote slope itself rather than the eccentricity.",
+  "This subtracts \\( 1\\) from the squared slope before the root instead of adding it.",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+},
+{
+ "template_id": "hyperbola_eccentricity_general_form_v1",
+ "skill_id": "hyperbola_asymptotes_foci_eccentricity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 10},
+  "q": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "The hyperbola \\( [[p]]x^{2}-[[q]]y^{2}=1 \\) is not yet in standard form \\( \\dfrac{x^{2}}{a^{2}}-\\dfrac{y^{2}}{b^{2}}=1 \\). Find its eccentricity.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt(Rational([[p]] + [[q]], [[q]]))"
+ },
+ "distractors": [
+  "sqrt(Rational([[p]], [[q]]))",
+  "sqrt(Rational([[p]] + [[q]], [[p]]))",
+  "Rational([[q]], [[p]])",
+  "sqrt(Rational([[q]] - [[p]], [[q]]))",
+  "sqrt(Rational([[p]] + [[q]], [[q]])) + Rational(1,10)",
+  "sqrt(Rational([[p]] + [[q]], [[q]])) - Rational(1,10)"
+ ],
+ "solution": "Dividing by \\( 1 \\), \\( a^{2}=\\dfrac{1}{[[p]]} \\) and \\( b^{2}=\\dfrac{1}{[[q]]} \\), so \\( e=\\dfrac{\\sqrt{a^{2}+b^{2}}}{a}=\\sqrt{\\dfrac{[[p]]+[[q]]}{[[q]]}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This omits \\( q\\) from the numerator, using \\( p/q\\) instead of \\( (p+q)/q\\).",
+  "This divides by \\( p\\) instead of \\( q\\) in the final ratio.",
+  "This reports the reciprocal coefficient ratio instead of the eccentricity.",
+  "This uses the ellipse-style subtraction instead of addition under the root.",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+}
+]

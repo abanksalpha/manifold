@@ -1,0 +1,163 @@
+[
+ {
+  "template_id": "finite_field_mult_group_order_v1",
+  "skill_id": "multiplicative_structure_of_a_finite_field",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7]},
+   "k": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "derived": {"qval": "[[p]]**[[k]]"},
+  "stem": "Let \\( F \\) be the finite field with \\( [[qval]] = [[p]]^{[[k]]} \\) elements. Its nonzero elements form a group under multiplication. What is the order of this multiplicative group \\( F^{\\times} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]**[[k]] - 1"},
+  "distractors": [
+   "[[p]]**[[k]]",
+   "[[p]]**[[k]] - 2",
+   "[[p]]*[[k]] - 1",
+   "[[k]]**[[p]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] + 3",
+   "[[answer]] + 4"
+  ],
+  "solution": "The multiplicative group \\( F^{\\times} \\) consists of all nonzero elements of \\( F \\). Since \\( F \\) has \\( [[qval]] \\) elements, exactly one of which is \\( 0 \\), the order of \\( F^{\\times} \\) is \\( [[qval]] - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the order of the whole field \\( [[qval]] \\); the multiplicative group excludes \\( 0 \\).",
+   "This subtracts two, excluding both \\( 0 \\) and \\( 1 \\); but \\( 1 \\) is the identity and belongs to \\( F^{\\times} \\).",
+   "This computes \\( p \\cdot k - 1 \\), using \\( p \\cdot k \\) instead of \\( p^{k} \\) for the field size.",
+   "This swaps base and exponent, using \\( k^{p} - 1 \\) instead of \\( p^{k} - 1 \\).",
+   "This is two more than the correct order.",
+   "This is three more than the correct order."
+  ]
+ },
+ {
+  "template_id": "generators_count_prime_field_v1",
+  "skill_id": "multiplicative_structure_of_a_finite_field",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [7, 11, 23, 47, 59, 83, 107, 167, 179, 227, 263, 347, 359, 383, 467, 479, 503, 563, 587]}
+  },
+  "constraints": [],
+  "stem": "Let \\( F = \\mathbb{Z}_{[[p]]} \\) be the finite field with \\( [[p]] \\) elements. Its multiplicative group \\( F^{\\times} \\) is cyclic of order \\( [[p]]-1 \\). How many of the \\( [[p]]-1 \\) nonzero elements are generators of \\( F^{\\times} \\) (that is, have multiplicative order exactly \\( [[p]]-1 \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "(([[p]]) - 3)/2"},
+  "distractors": [
+   "[[p]] - 1",
+   "[[p]] - 2",
+   "([[p]] - 1)/2",
+   "[[p]] - 3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "A cyclic group of order \\( n \\) has exactly \\( \\varphi(n) \\) generators. Here \\( [[p]] \\) is a safe prime, \\( [[p]] - 1 = 2r \\) with \\( r = \\dfrac{[[p]]-1}{2} \\) an odd prime, so \\( \\varphi([[p]]-1) = \\varphi(2)\\varphi(r) = 1\\cdot(r-1) = \\dfrac{[[p]]-1}{2} - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the full order of \\( F^{\\times} \\); not every nonzero element is a generator, only the primitive ones.",
+   "This is one less than the group order, not the count of generators.",
+   "This is \\( r = \\frac{p-1}{2} \\) itself, i.e. \\( \\varphi(2)\\varphi(r) \\) computed as \\( r \\) instead of \\( r - 1 \\) (forgetting \\( \\varphi(r) = r-1 \\), not \\( r \\)).",
+   "This is three less than the group order, an arbitrary offset rather than the totient count.",
+   "This is one more than the correct count of generators.",
+   "This is one fewer than the correct count of generators."
+  ]
+ },
+ {
+  "template_id": "solutions_of_xd_eq_1_v1",
+  "skill_id": "multiplicative_structure_of_a_finite_field",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "d": {"type": "int", "lo": 2, "hi": 100}
+  },
+  "constraints": ["Eq(Mod([[p]]**[[k]] - 1, [[d]]), 0)"],
+  "derived": {"qval": "[[p]]**[[k]]", "qm1": "[[p]]**[[k]] - 1"},
+  "stem": "Let \\( F \\) be a finite field with \\( [[qval]] \\) elements, so its multiplicative group \\( F^{\\times} \\) is cyclic of order \\( [[qm1]] \\). Given that \\( [[d]] \\) divides \\( [[qm1]] \\), how many elements \\( x \\in F^{\\times} \\) satisfy \\( x^{[[d]]} = 1 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[d]]"},
+  "distractors": [
+   "[[qm1]]",
+   "[[qm1]]/[[d]]",
+   "[[d]] + 1",
+   "[[d]] - 1",
+   "[[d]]*2",
+   "[[qm1]] - [[d]]"
+  ],
+  "solution": "A cyclic group of order \\( n \\) has, for each divisor \\( d \\mid n \\), a UNIQUE subgroup of order \\( d \\), and that subgroup is exactly the set of solutions to \\( x^{d}=1 \\). So the number of solutions is \\( d = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the order of the whole group \\( F^{\\times} \\); by Lagrange every element satisfies \\( x^{[[qm1]]}=1 \\), but far fewer satisfy the smaller exponent \\( [[d]] \\).",
+   "This is the index \\( [[qm1]]/[[d]] \\) of the subgroup, not its order.",
+   "This is one more than the number of solutions.",
+   "This is one fewer than the number of solutions.",
+   "This doubles \\( d \\) instead of using it directly as the subgroup order.",
+   "This is the size of the complement, not of the solution set itself."
+  ]
+ },
+ {
+  "template_id": "elements_of_exact_order_v1",
+  "skill_id": "multiplicative_structure_of_a_finite_field",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "r": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+   "s": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19]},
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13, 17, 19, 23]},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Lt([[r]], [[s]])", "Eq(Mod([[p]]**[[k]] - 1, [[r]]*[[s]]), 0)"],
+  "derived": {"qval": "[[p]]**[[k]]", "qm1": "[[p]]**[[k]] - 1", "dval": "[[r]]*[[s]]"},
+  "stem": "Let \\( F \\) be a finite field with \\( [[qval]] \\) elements, so \\( F^{\\times} \\) is cyclic of order \\( [[qm1]] \\). Since \\( [[dval]] = [[r]] \\cdot [[s]] \\) (a product of the distinct primes \\( [[r]] \\) and \\( [[s]] \\)) divides \\( [[qm1]] \\), how many elements of \\( F^{\\times} \\) have multiplicative order EXACTLY \\( [[dval]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[r]] - 1)*([[s]] - 1)"},
+  "distractors": [
+   "[[dval]]",
+   "[[dval]] - 1",
+   "[[r]] + [[s]] - 2",
+   "[[qm1]]/[[dval]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "In a cyclic group of order \\( n \\), the number of elements of order exactly \\( d \\mid n \\) is \\( \\varphi(d) \\). Here \\( d = [[dval]] = [[r]]\\cdot[[s]] \\) with \\( [[r]], [[s]] \\) distinct primes, so \\( \\varphi(d) = \\varphi([[r]])\\varphi([[s]]) = ([[r]]-1)([[s]]-1) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts elements with \\( x^{[[dval]]}=1 \\) (order DIVIDING \\( d \\)), not elements of order EXACTLY \\( d \\).",
+   "This is one less than \\( d \\), not the totient of \\( d \\).",
+   "This adds \\( r+s-2 \\) instead of multiplying \\( (r-1)(s-1) \\); \\( \\varphi \\) is multiplicative, not additive, on coprime factors.",
+   "This is the index \\( [[qm1]]/d \\) of the order-\\( d \\) subgroup, not the count of order-exactly-\\( d \\) elements within it.",
+   "This is one more than the correct count.",
+   "This is one fewer than the correct count."
+  ]
+ },
+ {
+  "template_id": "order_of_generator_power_v1",
+  "skill_id": "multiplicative_structure_of_a_finite_field",
+  "topic_id": "rings_fields",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "e": {"type": "int", "lo": 2, "hi": 60}
+  },
+  "constraints": [],
+  "derived": {"qval": "[[p]]**[[k]]", "qm1": "[[p]]**[[k]] - 1"},
+  "stem": "Let \\( F \\) be a finite field with \\( [[qval]] \\) elements and let \\( g \\) be a generator of the cyclic group \\( F^{\\times} \\), which has order \\( [[qm1]] \\). What is the multiplicative order of \\( g^{[[e]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[qm1]]/gcd([[qm1]], [[e]])"},
+  "distractors": [
+   "[[qm1]]",
+   "[[e]]",
+   "gcd([[qm1]], [[e]])",
+   "[[qm1]] - [[e]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]]*2"
+  ],
+  "solution": "In a cyclic group of order \\( n \\), the element \\( g^{e} \\) has order \\( \\dfrac{n}{\\gcd(n,e)} \\). Here \\( n = [[qm1]] \\) and \\( e = [[e]] \\), so the order of \\( g^{[[e]]} \\) is \\( \\dfrac{[[qm1]]}{\\gcd([[qm1]],[[e]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the order of \\( g \\) itself; raising \\( g \\) to a power \\( e>1 \\) generally shrinks the order unless \\( e \\) is coprime to \\( [[qm1]] \\).",
+   "This treats the exponent \\( e \\) itself as the order, ignoring the group's actual order \\( [[qm1]] \\) entirely.",
+   "This reports \\( \\gcd([[qm1]],[[e]]) \\), the reciprocal factor, instead of \\( [[qm1]]/\\gcd([[qm1]],[[e]]) \\).",
+   "This subtracts \\( e \\) from \\( [[qm1]] \\) instead of dividing by the gcd.",
+   "This is one more than the correct order.",
+   "This is one fewer than the correct order."
+  ]
+ }
+]

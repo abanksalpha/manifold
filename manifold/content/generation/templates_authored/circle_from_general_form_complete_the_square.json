@@ -1,0 +1,249 @@
+[
+{
+ "template_id": "circle_center_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "D": {
+   "type": "int",
+   "lo": -10,
+   "hi": 10
+  },
+  "E": {
+   "type": "int",
+   "lo": -10,
+   "hi": 10
+  }
+ },
+ "constraints": [
+  "Ne([[D]], 0)"
+ ],
+ "stem": "The circle \\( x^{2}+y^{2}+([[D]])x+([[E]])y+F=0 \\) has center \\( (h,k) \\). Find \\( h \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[D]], 2)"
+ },
+ "distractors": [
+  "Rational([[D]], 2)",
+  "-[[D]]",
+  "-Rational([[E]], 2)",
+  "[[D]]",
+  "-Rational([[D]], 2) + 1",
+  "-Rational([[D]], 2) - 1"
+ ],
+ "solution": "Completing the square, \\( h=-\\frac{D}{2}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "circle_radius_from_general_form_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "D": {"type": "int", "lo": -10, "hi": 10},
+  "E": {"type": "int", "lo": -10, "hi": 10},
+  "F": {"type": "int", "lo": -20, "hi": 20}
+ },
+ "constraints": ["Gt([[D]]**2 + [[E]]**2 - 4*[[F]], 0)"],
+ "stem": "The circle \\( x^{2}+y^{2}+([[D]])x+([[E]])y+([[F]])=0 \\) is written in general form. Find its radius \\( r \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2"
+ },
+ "distractors": [
+  "sqrt([[D]]**2 + [[E]]**2 - [[F]])/2",
+  "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])",
+  "sqrt([[D]]**2 + [[E]]**2 + 4*[[F]])/2",
+  "([[D]]**2 + [[E]]**2 - 4*[[F]])/4",
+  "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2 + 1",
+  "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2 - 1"
+ ],
+ "solution": "Completing the square gives center \\( \\left(-\\frac{D}{2},-\\frac{E}{2}\\right) \\) and \\( r^{2}=\\left(\\frac{D}{2}\\right)^{2}+\\left(\\frac{E}{2}\\right)^{2}-F \\), so \\( r=\\frac{\\sqrt{D^{2}+E^{2}-4F}}{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to multiply \\( F \\) by \\( 4 \\) before subtracting under the root.",
+  "This forgets to divide by \\( 2 \\) at the end (reports \\( r^2\\)'s square root of the doubled expression).",
+  "This adds \\( F \\) instead of subtracting it.",
+  "This reports \\( r^{2}\\) (without taking the square root) instead of \\( r \\).",
+  "This is off by one from the correct radius.",
+  "This is off by one (other direction) from the correct radius."
+ ]
+},
+{
+ "template_id": "circle_center_distance_to_origin_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "D": {"type": "int", "lo": -12, "hi": 12},
+  "E": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[D]]**2 + [[E]]**2, 0)"],
+ "stem": "The circle \\( x^{2}+y^{2}+([[D]])x+([[E]])y+F=0 \\) has center \\( (h,k) \\). Find the distance from the center to the origin.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt(([[D]])**2 + ([[E]])**2)/2"
+ },
+ "distractors": [
+  "sqrt([[D]]**2 + [[E]]**2)",
+  "([[D]]**2 + [[E]]**2)/4",
+  "(Abs([[D]]) + Abs([[E]]))/2",
+  "sqrt([[D]]**2 - [[E]]**2)/2",
+  "sqrt([[D]]**2 + [[E]]**2)/2 + 1",
+  "sqrt([[D]]**2 + [[E]]**2)/2 - 1"
+ ],
+ "solution": "The center is \\( \\left(-\\frac{D}{2},-\\frac{E}{2}\\right) \\), so its distance to the origin is \\( \\sqrt{\\left(\\frac{D}{2}\\right)^{2}+\\left(\\frac{E}{2}\\right)^{2}}=\\frac{\\sqrt{D^{2}+E^{2}}}{2}=[[answer]] \\); note this does not depend on \\( F \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( 2 \\) after taking the square root.",
+  "This squares and averages instead of using the distance formula correctly.",
+  "This uses \\( |h|+|k|\\) (taxicab distance) instead of Euclidean distance.",
+  "This uses a minus sign instead of a plus sign under the root.",
+  "This is off by one from the correct distance.",
+  "This is off by one (other direction) from the correct distance."
+ ]
+},
+{
+ "template_id": "circle_general_form_reverse_find_F_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "h0": {"type": "int", "lo": -8, "hi": 8},
+  "k0": {"type": "int", "lo": -8, "hi": 8},
+  "r": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "A circle has center \\( ([[h0]],[[k0]]) \\) and radius \\( [[r]] \\). When its equation is written in the general form \\( x^{2}+y^{2}+Dx+Ey+F=0 \\), what is \\( F \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[h0]]**2 + [[k0]]**2 - [[r]]**2"
+ },
+ "distractors": [
+  "[[h0]]**2 + [[k0]]**2 + [[r]]**2",
+  "[[r]]**2 - [[h0]]**2 - [[k0]]**2",
+  "-[[h0]]**2 - [[k0]]**2 - [[r]]**2",
+  "[[h0]]**2 - [[k0]]**2 - [[r]]**2",
+  "[[h0]]**2 + [[k0]]**2 - [[r]]**2 + 1",
+  "[[h0]]**2 + [[k0]]**2 - [[r]]**2 - 1"
+ ],
+ "solution": "Expanding \\( (x-[[h0]])^{2}+(y-[[k0]])^{2}=[[r]]^{2} \\) gives \\( x^{2}+y^{2}-2([[h0]])x-2([[k0]])y+([[h0]]^{2}+[[k0]]^{2}-[[r]]^{2})=0 \\), so \\( F=[[h0]]^{2}+[[k0]]^{2}-[[r]]^{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( r^2 \\) instead of subtracting it.",
+  "This swaps the roles of \\( h^2+k^2 \\) and \\( r^2\\), flipping the sign of the whole expression.",
+  "This negates \\( h^2+k^2\\) as well as \\( r^2\\).",
+  "This drops the \\( k^2 \\) term with a sign error.",
+  "This is off by one from the correct value of \\( F \\).",
+  "This is off by one (other direction) from the correct value of \\( F \\)."
+ ]
+},
+{
+ "template_id": "circle_leading_coefficient_center_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "choice", "values": [2, 3, 4, 5]},
+  "D": {"type": "int", "lo": -10, "hi": 10},
+  "E": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[D]], 0)"],
+ "stem": "The equation \\( [[c]]x^{2}+[[c]]y^{2}+([[D]])x+([[E]])y+F=0 \\) describes a circle. Divide through by the leading coefficient and complete the square to find the \\( x \\)-coordinate \\( h \\) of the center.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[D]], 2*[[c]])"
+ },
+ "distractors": [
+  "-Rational([[D]], 2)",
+  "Rational([[D]], 2*[[c]])",
+  "-Rational([[D]]*[[c]], 2)",
+  "-Rational([[D]], [[c]])",
+  "-Rational([[D]], 2*[[c]]) + 1",
+  "-Rational([[D]], 2*[[c]]) - 1"
+ ],
+ "solution": "Dividing by \\( [[c]] \\) gives \\( x^{2}+y^{2}+\\frac{[[D]]}{[[c]]}x+\\frac{[[E]]}{[[c]]}y+\\frac{F}{[[c]]}=0 \\), so \\( h=-\\frac{D}{2c}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by the leading coefficient \\( c \\) before completing the square.",
+  "This drops the required minus sign.",
+  "This multiplies by \\( c \\) instead of dividing by it.",
+  "This forgets the factor of \\( 2 \\) in the denominator.",
+  "This is off by one from the correct value of \\( h \\).",
+  "This is off by one (other direction) from the correct value of \\( h \\)."
+ ]
+},
+{
+ "template_id": "circle_area_from_general_form_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "D": {"type": "int", "lo": -10, "hi": 10},
+  "E": {"type": "int", "lo": -10, "hi": 10},
+  "F": {"type": "int", "lo": -20, "hi": 20}
+ },
+ "constraints": ["Gt([[D]]**2 + [[E]]**2 - 4*[[F]], 0)"],
+ "stem": "Find the area enclosed by the circle \\( x^{2}+y^{2}+([[D]])x+([[E]])y+([[F]])=0 \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "pi*([[D]]**2 + [[E]]**2 - 4*[[F]])/4"
+ },
+ "distractors": [
+  "pi*sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2",
+  "pi*([[D]]**2 + [[E]]**2 - 4*[[F]])/2",
+  "pi*([[D]]**2 + [[E]]**2 - [[F]])/4",
+  "2*pi*sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])",
+  "pi*([[D]]**2 + [[E]]**2 - 4*[[F]])/4 + 1",
+  "pi*([[D]]**2 + [[E]]**2 - 4*[[F]])/4 - 1"
+ ],
+ "solution": "Completing the square gives \\( r^{2}=\\frac{D^{2}+E^{2}-4F}{4} \\), so the area is \\( \\pi r^{2}=\\frac{\\pi(D^{2}+E^{2}-4F)}{4}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports \\( \\pi r \\) (the circumference formula's radius factor) instead of \\( \\pi r^{2}\\).",
+  "This forgets to divide by \\( 4 \\) after computing \\( D^2+E^2-4F \\).",
+  "This forgets to multiply \\( F \\) by \\( 4 \\) before subtracting.",
+  "This uses \\( 2\\pi r \\) (circumference) instead of \\( \\pi r^2\\) (area).",
+  "This is off by one from the correct area.",
+  "This is off by one (other direction) from the correct area."
+ ]
+},
+{
+ "template_id": "circle_radius_from_point_on_circle_v1",
+ "skill_id": "circle_from_general_form_complete_the_square",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "D": {"type": "int", "lo": -6, "hi": 6},
+  "E": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4},
+  "y0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne(2*[[x0]] + [[D]], 0)"],
+ "stem": "A circle in general form \\( x^{2}+y^{2}+([[D]])x+([[E]])y+F=0 \\) passes through the point \\( ([[x0]],[[y0]]) \\). Find the radius of the circle.",
+ "derived": {
+  "F": "-([[x0]]**2 + [[y0]]**2 + [[D]]*[[x0]] + [[E]]*[[y0]])"
+ },
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2"
+ },
+ "distractors": [
+  "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])",
+  "sqrt([[D]]**2 + [[E]]**2 + 4*[[F]])/2",
+  "sqrt([[x0]]**2 + [[y0]]**2)",
+  "([[D]]**2 + [[E]]**2 - 4*[[F]])/4",
+  "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2 + 1",
+  "sqrt([[D]]**2 + [[E]]**2 - 4*[[F]])/2 - 1"
+ ],
+ "solution": "Substituting the point gives \\( F=-\\left([[x0]]^{2}+[[y0]]^{2}+([[D]])([[x0]])+([[E]])([[y0]])\\right)=[[F]] \\). Then completing the square, \\( r=\\frac{\\sqrt{D^{2}+E^{2}-4F}}{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( 2 \\) at the end.",
+  "This adds \\( 4F \\) instead of subtracting it.",
+  "This uses the distance from the point to the origin instead of solving for \\( F \\) and completing the square.",
+  "This reports \\( r^{2}\\) instead of \\( r \\).",
+  "This is off by one from the correct radius.",
+  "This is off by one (other direction) from the correct radius."
+ ]
+}
+]

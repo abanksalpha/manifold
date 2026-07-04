@@ -1,0 +1,129 @@
+[
+{
+ "template_id": "law_of_cosines_third_side_sas_v1",
+ "skill_id": "law_of_sines_and_cosines",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "b": {"type": "int", "lo": 2, "hi": 12},
+  "n": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "In \\( \\triangle ABC \\), \\( AB=[[a]] \\), \\( AC=[[b]] \\), and the included angle \\( A=\\dfrac{\\pi}{[[n]]} \\). Find \\( BC \\) using the Law of Cosines.",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos(pi/[[n]]))"},
+ "distractors": [
+  "sqrt([[a]]**2 + [[b]]**2 + 2*[[a]]*[[b]]*cos(pi/[[n]]))",
+  "sqrt([[a]]**2 - [[b]]**2 - 2*[[a]]*[[b]]*cos(pi/[[n]]))",
+  "[[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos(pi/[[n]])",
+  "sqrt([[a]]**2 + [[b]]**2 - [[a]]*[[b]]*cos(pi/[[n]]))",
+  "[[a]] + [[b]] - 2*cos(pi/[[n]])",
+  "sqrt([[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos(pi/[[n]])) + 1"
+ ],
+ "solution": "By the Law of Cosines, \\( BC^{2}=AB^{2}+AC^{2}-2\\cdot AB\\cdot AC\\cdot\\cos A=[[a]]^{2}+[[b]]^{2}-2([[a]])([[b]])\\cos\\dfrac{\\pi}{[[n]]} \\), so \\( BC=[[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign in front of the cosine term, effectively using the exterior angle instead of the included angle.",
+  "This subtracts \\( AC^{2}\\) instead of adding it before subtracting the cosine term.",
+  "This reports \\( BC^{2}\\) itself instead of taking the square root.",
+  "This drops the required factor of \\( 2\\) in front of \\( AB\\cdot AC\\cos A\\).",
+  "This uses the sides and cosine additively instead of applying the Law of Cosines formula.",
+  "This is off by a small additive amount from the correct side length."
+ ]
+},
+{
+ "template_id": "law_of_cosines_cosine_of_angle_from_sss_v1",
+ "skill_id": "law_of_sines_and_cosines",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 15},
+  "b": {"type": "int", "lo": 2, "hi": 15},
+  "c": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": ["Lt([[a]], [[b]] + [[c]])", "Lt([[b]], [[a]] + [[c]])", "Lt([[c]], [[a]] + [[b]])"],
+ "stem": "A triangle has sides \\( a=[[a]] \\), \\( b=[[b]] \\), \\( c=[[c]] \\), where \\( C \\) is the angle opposite side \\( c \\). Find \\( \\cos C \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[a]]**2 + [[b]]**2 - [[c]]**2, 2*[[a]]*[[b]])"},
+ "distractors": [
+  "Rational([[a]]**2 + [[b]]**2 + [[c]]**2, 2*[[a]]*[[b]])",
+  "Rational([[a]]**2 - [[b]]**2 + [[c]]**2, 2*[[a]]*[[b]])",
+  "Rational([[a]]**2 + [[b]]**2 - [[c]]**2, [[a]]*[[b]])",
+  "Rational([[c]]**2 - [[a]]**2 - [[b]]**2, 2*[[a]]*[[b]])",
+  "Rational([[a]]**2 + [[b]]**2 - [[c]]**2, 2*[[a]]*[[b]]) + 1",
+  "Rational([[a]]**2 + [[b]]**2 - [[c]]**2, 2*[[a]]*[[b]]) - 1"
+ ],
+ "solution": "By the Law of Cosines, \\( c^{2}=a^{2}+b^{2}-2ab\\cos C \\), so \\( \\cos C=\\dfrac{a^{2}+b^{2}-c^{2}}{2ab}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This adds \\( c^{2}\\) instead of subtracting it in the numerator.",
+  "This swaps the sign on \\( b^{2}\\) instead of \\( c^{2}\\).",
+  "This drops the required factor of \\( 2\\) in the denominator.",
+  "This negates the whole numerator, as if solving for the angle opposite a different side.",
+  "This is off by one from the correct value of \\( \\cos C\\).",
+  "This is off by one (other direction) from the correct value of \\( \\cos C\\)."
+ ]
+},
+{
+ "template_id": "law_of_sines_missing_side_aas_v1",
+ "skill_id": "law_of_sines_and_cosines",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 15},
+  "nA": {"type": "choice", "values": [3, 4, 6]},
+  "nB": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Ne([[nA]], [[nB]])"],
+ "stem": "In \\( \\triangle ABC \\), \\( a=[[a]] \\), \\( A=\\dfrac{\\pi}{[[nA]]} \\), and \\( B=\\dfrac{\\pi}{[[nB]]} \\). Find side \\( b \\) using the Law of Sines.",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*sin(pi/[[nB]])/sin(pi/[[nA]])"},
+ "distractors": [
+  "[[a]]*sin(pi/[[nA]])/sin(pi/[[nB]])",
+  "[[a]]*cos(pi/[[nB]])/cos(pi/[[nA]])",
+  "[[a]]*sin(pi/[[nB]])*sin(pi/[[nA]])",
+  "sin(pi/[[nB]])/sin(pi/[[nA]])",
+  "[[a]]*sin(pi/[[nB]])/sin(pi/[[nA]]) + 1",
+  "[[a]]*sin(pi/[[nB]])/sin(pi/[[nA]]) - 1"
+ ],
+ "solution": "By the Law of Sines, \\( \\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B} \\), so \\( b=\\dfrac{a\\sin B}{\\sin A}=\\dfrac{[[a]]\\sin\\left(\\pi/[[nB]]\\right)}{\\sin\\left(\\pi/[[nA]]\\right)}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the sine ratio, using \\( \\sin A/\\sin B\\) instead of \\( \\sin B/\\sin A\\).",
+  "This uses cosines instead of sines in the ratio.",
+  "This multiplies the two sines instead of dividing them.",
+  "This drops the given side \\( a\\) entirely.",
+  "This is off by one from the correct side length.",
+  "This is off by one (other direction) from the correct side length."
+ ]
+},
+{
+ "template_id": "law_of_sines_sine_of_angle_from_ssa_v1",
+ "skill_id": "law_of_sines_and_cosines",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 5, "hi": 20},
+  "b": {"type": "int", "lo": 2, "hi": 19},
+  "nA": {"type": "choice", "values": [2, 3, 4, 6]}
+ },
+ "constraints": ["Lt([[b]], [[a]])"],
+ "require_rational": false,
+ "stem": "In \\( \\triangle ABC \\), \\( a=[[a]] \\), \\( b=[[b]] \\), and \\( A=\\dfrac{\\pi}{[[nA]]} \\). Find \\( \\sin B \\) using the Law of Sines.",
+ "answer_spec": {"op": "evaluate", "expr": "[[b]]*sin(pi/[[nA]])/[[a]]"},
+ "distractors": [
+  "[[a]]*sin(pi/[[nA]])/[[b]]",
+  "[[b]]*cos(pi/[[nA]])/[[a]]",
+  "[[b]]/([[a]]*sin(pi/[[nA]]))",
+  "[[b]]*sin(pi/[[nA]])",
+  "[[b]]*sin(pi/[[nA]])/[[a]] + Rational(1,10)",
+  "[[b]]*sin(pi/[[nA]])/[[a]] - Rational(1,10)"
+ ],
+ "solution": "By the Law of Sines, \\( \\dfrac{\\sin A}{a}=\\dfrac{\\sin B}{b} \\), so \\( \\sin B=\\dfrac{b\\sin A}{a}=\\dfrac{[[b]]\\sin\\left(\\pi/[[nA]]\\right)}{[[a]]}=[[answer]] \\); since \\( b<a \\), this is a valid triangle with \\( B \\) acute.",
+ "distractor_rationales": [
+  "This inverts the ratio, using side \\( a\\) in the numerator instead of \\( b\\).",
+  "This uses \\( \\cos A\\) instead of \\( \\sin A\\).",
+  "This inverts the whole expression, dividing \\( b\\) by \\( a\\sin A\\) instead of multiplying.",
+  "This drops the given side \\( a\\) from the denominator entirely.",
+  "This is off by a small additive amount from the correct value of \\( \\sin B\\).",
+  "This is off by a small additive amount (other direction) from the correct value of \\( \\sin B\\)."
+ ]
+}
+]

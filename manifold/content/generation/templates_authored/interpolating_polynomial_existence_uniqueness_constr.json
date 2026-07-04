@@ -1,0 +1,146 @@
+[
+{
+ "template_id": "interpolate_quadratic_eval_v1",
+ "skill_id": "interpolating_polynomial_existence_uniqueness_constr",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 3},
+  "B": {"type": "int", "lo": -4, "hi": 4},
+  "C": {"type": "int", "lo": -6, "hi": 6},
+  "xq": {"type": "choice", "values": [-2, -1, 0, 4, 5]}
+ },
+ "constraints": [],
+ "derived": {
+  "y1": "[[A]]*1 + [[B]]*1 + [[C]]",
+  "y2": "[[A]]*4 + [[B]]*2 + [[C]]",
+  "y3": "[[A]]*9 + [[B]]*3 + [[C]]"
+ },
+ "stem": "Let \\( p(x) \\) be the polynomial of degree at most \\( 2 \\) that interpolates the three data points \\( (1, [[y1]]) \\), \\( (2, [[y2]]) \\), \\( (3, [[y3]]) \\). Such a \\( p \\) exists and is unique. What is \\( p([[xq]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[A]]*[[xq]]**2 + [[B]]*[[xq]] + [[C]]"},
+ "distractors": [
+  "[[y3]] + ([[y3]] - [[y2]])*([[xq]] - 3)",
+  "[[y1]] + ([[y2]] - [[y1]])*([[xq]] - 1)",
+  "[[y3]]",
+  "[[y1]]",
+  "[[answer]] + 2",
+  "[[answer]] - 3"
+ ],
+ "solution": "The three points determine a unique quadratic \\( p(x) = [[A]]x^{2} + ([[B]])x + ([[C]]) \\) (its values at \\( x = 1, 2, 3 \\) are exactly \\( [[y1]], [[y2]], [[y3]] \\)). Evaluating at \\( x = [[xq]] \\) gives \\( p([[xq]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This extrapolates linearly using only the last two points, ignoring the curvature the third point requires.",
+  "This extrapolates linearly using only the first two points, ignoring the quadratic term.",
+  "This just reports the nearest tabulated value \\( y \\) at \\( x = 3 \\) instead of interpolating.",
+  "This just reports the tabulated value \\( y \\) at \\( x = 1 \\) instead of interpolating.",
+  "This is off by two from the interpolated value.",
+  "This is off by three from the interpolated value."
+ ]
+},
+{
+ "template_id": "interpolation_min_points_theorem_v1",
+ "skill_id": "interpolating_polynomial_existence_uniqueness_constr",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 0, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "By the polynomial interpolation existence\\(-\\)uniqueness theorem, what is the minimum number of data points (with distinct \\( x \\)-values) needed to guarantee that there is exactly one interpolating polynomial of degree at most \\( [[n]] \\) through them?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] + 1"},
+ "distractors": [
+  "[[n]]",
+  "[[n]] + 2",
+  "2*[[n]]",
+  "2*[[n]] + 1",
+  "[[n]] - 1",
+  "[[answer]] + 3"
+ ],
+ "solution": "A polynomial of degree at most \\( n \\) has \\( n+1 \\) free coefficients, and \\( n+1 \\) points with distinct \\( x \\)-values give a linear system (Vandermonde) with a unique solution for those coefficients. So the minimum number of points is \\( n + 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the degree itself with the number of points needed.",
+  "This is one more point than actually required.",
+  "This doubles the required count, confusing it with some unrelated rule of thumb.",
+  "This doubles the degree and adds one, overcounting the required points.",
+  "This is one point short of what is required (the system would be underdetermined).",
+  "This overcounts the required number of points by three."
+ ]
+},
+{
+ "template_id": "interpolation_lagrange_basis_value_v1",
+ "skill_id": "interpolating_polynomial_existence_uniqueness_constr",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "x0": {"type": "int", "lo": -4, "hi": -1},
+  "x1": {"type": "int", "lo": 0, "hi": 1},
+  "x2": {"type": "int", "lo": 2, "hi": 5},
+  "xq": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [
+  "Lt([[x0]], [[x1]])",
+  "Lt([[x1]], [[x2]])",
+  "Ne([[xq]], [[x0]])",
+  "Ne([[xq]], [[x1]])",
+  "Ne([[xq]], [[x2]])"
+ ],
+ "stem": "For the interpolation nodes \\( x_0 = [[x0]] \\), \\( x_1 = [[x1]] \\), \\( x_2 = [[x2]] \\), the interpolating polynomial is constructed in Lagrange form as \\( p(x) = y_0 L_0(x) + y_1 L_1(x) + y_2 L_2(x) \\), where the basis polynomial associated with \\( x_1 \\) is \\( L_1(x) = \\dfrac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)} \\). What is \\( L_1([[xq]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[xq]] - [[x0]])*([[xq]] - [[x2]]))/(([[x1]] - [[x0]])*([[x1]] - [[x2]]))"},
+ "distractors": [
+  "(([[xq]] - [[x0]])*([[xq]] - [[x1]]))/(([[x2]] - [[x0]])*([[x2]] - [[x1]]))",
+  "(([[xq]] - [[x1]])*([[xq]] - [[x2]]))/(([[x0]] - [[x1]])*([[x0]] - [[x2]]))",
+  "(([[xq]] - [[x0]])*([[xq]] - [[x2]]))/(([[x1]] - [[x0]]) + ([[x1]] - [[x2]]))",
+  "1 - [[answer]]",
+  "-[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "Substituting \\( x = [[xq]] \\) into \\( L_1(x) = \\dfrac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)} \\) gives \\( L_1([[xq]]) = \\dfrac{([[xq]]-([[x0]]))([[xq]]-([[x2]]))}{([[x1]]-([[x0]]))([[x1]]-([[x2]]))} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( L_2([[xq]]) \\), the basis polynomial for node \\( x_2 \\), instead of \\( L_1 \\).",
+  "This computes \\( L_0([[xq]]) \\), the basis polynomial for node \\( x_0 \\), instead of \\( L_1 \\).",
+  "This adds the two denominator factors instead of multiplying them.",
+  "This subtracts the correct value from 1, as if it were a complementary weight.",
+  "This has the wrong sign.",
+  "This is off by one from the correct basis value."
+ ]
+},
+{
+ "template_id": "interpolation_leading_coeff_divided_diff_v1",
+ "skill_id": "interpolating_polynomial_existence_uniqueness_constr",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "x0": {"type": "int", "lo": -5, "hi": -1},
+  "x1": {"type": "int", "lo": 0, "hi": 1},
+  "x2": {"type": "int", "lo": 2, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6},
+  "y1": {"type": "int", "lo": -6, "hi": 6},
+  "y2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [
+  "Lt([[x0]], [[x1]])",
+  "Lt([[x1]], [[x2]])"
+ ],
+ "stem": "The unique polynomial \\( p(x) = Ax^{2} + Bx + C \\) of degree at most \\( 2 \\) passes through \\( ([[x0]], [[y0]]) \\), \\( ([[x1]], [[y1]]) \\), \\( ([[x2]], [[y2]]) \\). Using the Newton divided-difference formula for the leading coefficient, \\( A = \\dfrac{y_0}{(x_0-x_1)(x_0-x_2)} + \\dfrac{y_1}{(x_1-x_0)(x_1-x_2)} + \\dfrac{y_2}{(x_2-x_0)(x_2-x_1)} \\), find \\( A \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[y0]]/(([[x0]]-[[x1]])*([[x0]]-[[x2]])) + [[y1]]/(([[x1]]-[[x0]])*([[x1]]-[[x2]])) + [[y2]]/(([[x2]]-[[x0]])*([[x2]]-[[x1]]))"
+ },
+ "distractors": [
+  "[[y0]]/(([[x0]]-[[x1]])*([[x0]]-[[x2]])) + [[y1]]/(([[x1]]-[[x0]])*([[x1]]-[[x2]]))",
+  "[[y2]]/(([[x2]]-[[x0]])*([[x2]]-[[x1]]))",
+  "([[y0]]+[[y1]]+[[y2]])/(([[x2]]-[[x0]])*3)",
+  "[[y1]]/(([[x1]]-[[x0]])*([[x1]]-[[x2]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Summing the three divided-difference terms gives the leading coefficient: \\( A = \\dfrac{[[y0]]}{([[x0]]-([[x1]]))([[x0]]-([[x2]]))} + \\dfrac{[[y1]]}{([[x1]]-([[x0]]))([[x1]]-([[x2]]))} + \\dfrac{[[y2]]}{([[x2]]-([[x0]]))([[x2]]-([[x1]]))} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the third (\\( y_2 \\)) term of the sum.",
+  "This keeps only the \\( y_2 \\) term and drops the other two.",
+  "This uses a bogus averaging formula instead of the divided-difference sum.",
+  "This keeps only the middle (\\( y_1 \\)) term and drops the other two.",
+  "This is one more than the correct leading coefficient.",
+  "This is one less than the correct leading coefficient."
+ ]
+}
+]

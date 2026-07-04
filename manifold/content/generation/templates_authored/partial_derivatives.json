@@ -1,0 +1,201 @@
+[
+ {
+  "template_id": "partial_x_poly_cross_v1",
+  "skill_id": "partial_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x,y) = [[a]]x^{2}y + [[b]]xy^{2} + [[c]]x + [[d]]y \\). What is \\( f_x([[x0]],[[y0]]) \\), the partial derivative of \\( f \\) with respect to \\( x \\), evaluated at \\( (x,y)=([[x0]],[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**2*[[y0]] + [[b]]*x*[[y0]]**2 + [[c]]*x + [[d]]*[[y0]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[x0]]**2*[[y0]] + [[b]]*[[x0]]*[[y0]]**2 + [[c]]*[[x0]] + [[d]]*[[y0]]",
+   "[[a]]*[[x0]]**2 + 2*[[b]]*[[x0]]*[[y0]] + [[d]]",
+   "[[a]]*[[x0]]*[[y0]] + [[b]]*[[y0]]**2 + [[c]]",
+   "2*[[a]]*[[x0]]*[[y0]] + [[b]]*[[y0]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]x^{2}([[y0]]) + [[b]]x([[y0]])^{2} + [[c]]x + [[d]]([[y0]]) \\), so \\( f_x(x,[[y0]]) = 2[[a]]([[y0]])x + [[b]]([[y0]])^{2} + [[c]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_x([[x0]],[[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f([[x0]],[[y0]]) \\), the function value, not the partial derivative.",
+   "This is \\( f_y([[x0]],[[y0]]) \\), the partial with respect to \\( y \\), not \\( x \\).",
+   "This drops the factor of 2 on the \\( x^2y \\) term's derivative.",
+   "This forgets the constant term \\( c \\) from the derivative.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "partial_y_product_rule_v1",
+  "skill_id": "partial_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)", "Ne([[d]], 0)"],
+  "stem": "Let \\( f(x,y) = ([[a]]x + [[b]]y)([[c]]x + [[d]]y) \\). What is \\( f_y([[x0]],[[y0]]) \\), the partial derivative of \\( f \\) with respect to \\( y \\), evaluated at \\( (x,y)=([[x0]],[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*[[x0]]+[[b]]*y)*([[c]]*[[x0]]+[[d]]*y)", "var": "y", "at": "[[y0]]", "order": 1},
+  "distractors": [
+   "([[a]]+[[b]]*[[y0]])*([[c]]+[[d]]*[[y0]])",
+   "([[a]]*[[x0]]+[[b]]*[[y0]])*([[c]]*[[x0]]+[[d]]*[[y0]])",
+   "[[b]]*[[d]]",
+   "[[b]]*([[c]]*[[x0]]+[[d]]*[[y0]])",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "Holding \\( x=[[x0]] \\) fixed, \\( f([[x0]],y) = ([[a]]([[x0]])+[[b]]y)([[c]]([[x0]])+[[d]]y) \\). By the product rule, \\( f_y([[x0]],y) = [[b]]([[c]]([[x0]])+[[d]]y) + [[d]]([[a]]([[x0]])+[[b]]y) \\). Evaluating at \\( y=[[y0]] \\) gives \\( f_y([[x0]],[[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly differentiates with respect to \\( x \\) (holding \\( y \\) fixed instead of \\( x \\)).",
+   "This is \\( f([[x0]],[[y0]]) \\), the function value, not the partial derivative.",
+   "This multiplies only the leading \\( y \\)-coefficients instead of applying the product rule.",
+   "This keeps only the second term of the product rule, dropping the first factor's contribution.",
+   "This is off by three from the correct value.",
+   "This is off by three from the correct value."
+  ]
+ },
+ {
+  "template_id": "partial_x_chain_power_v1",
+  "skill_id": "partial_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[a]]*[[x0]]+[[b]]*[[y0]], 0)"],
+  "stem": "Let \\( f(x,y) = ([[a]]x + [[b]]y)^{[[n]]} \\). What is \\( f_x([[x0]],[[y0]]) \\), the partial derivative of \\( f \\) with respect to \\( x \\), evaluated at \\( (x,y)=([[x0]],[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]]*[[y0]])**[[n]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[n]]*([[a]]*[[x0]]+[[b]]*[[y0]])**([[n]]-1)",
+   "[[n]]*[[a]]*([[a]]*[[x0]]+[[b]]*[[y0]])**[[n]]",
+   "[[a]]",
+   "([[a]]*[[x0]]+[[b]]*[[y0]])**[[n]]",
+   "[[answer]] + [[n]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = ([[a]]x+[[b]]([[y0]]))^{[[n]]} \\). By the chain rule, \\( f_x(x,[[y0]]) = [[n]]([[a]]x+[[b]]([[y0]]))^{[[n]]-1}\\cdot [[a]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_x([[x0]],[[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the chain-rule factor of \\( [[a]] \\) from the outer derivative.",
+   "This forgets to lower the exponent by one.",
+   "This treats \\( f \\) as if it were linear, reporting only the inner \\( x \\)-coefficient.",
+   "This is \\( f([[x0]],[[y0]]) \\), the function value, not the partial derivative.",
+   "This is off by \\( [[n]] \\) from the correct value.",
+   "This is off by \\( [[n]] \\) from the correct value."
+  ]
+ },
+ {
+  "template_id": "partial_x_exponential_at_zero_v1",
+  "skill_id": "partial_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "y0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[y0]], 0)"],
+  "stem": "Let \\( f(x,y) = [[a]]y\\,e^{x} + [[b]]xy^{2} + [[c]]x \\). What is \\( f_x(0,[[y0]]) \\), the partial derivative of \\( f \\) with respect to \\( x \\), evaluated at \\( (x,y)=(0,[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*[[y0]]*exp(x) + [[b]]*x*[[y0]]**2 + [[c]]*x", "var": "x", "at": "0", "order": 1},
+  "distractors": [
+   "[[a]]*[[y0]] + [[b]]*[[y0]]**2 + [[c]] + 1",
+   "[[a]] + [[b]]*[[y0]]**2 + [[c]]",
+   "[[a]]*[[y0]]*[[b]]*[[y0]]**2",
+   "[[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]([[y0]])e^{x} + [[b]]([[y0]])^{2}x + [[c]]x \\), so \\( f_x(x,[[y0]]) = [[a]]([[y0]])e^{x} + [[b]]([[y0]])^{2} + [[c]] \\). Since \\( e^{0}=1 \\), evaluating at \\( x=0 \\) gives \\( f_x(0,[[y0]]) = [[a]]\\cdot[[y0]] + [[b]]\\cdot[[y0]]^{2} + [[c]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly adds an extra 1 as if \\( e^{x} \\) contributed an extra unit factor.",
+   "This drops the coefficient \\( [[y0]] \\) on the exponential term.",
+   "This multiplies the two coefficient groups instead of adding the derivative terms.",
+   "This keeps only the constant-coefficient term, dropping the exponential and product contributions.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "partial_x_log_cancel_v1",
+  "skill_id": "partial_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-4, -2, -1, 1, 2, 4]},
+   "y0": {"type": "choice", "values": [-4, -2, -1, 1, 2, 4]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Gt([[x0]]*[[y0]], 0)"],
+  "stem": "Let \\( f(x,y) = [[a]]\\ln(xy) + [[b]]x + [[c]]y \\), for \\( xy>0 \\). What is \\( f_x([[x0]],[[y0]]) \\), the partial derivative of \\( f \\) with respect to \\( x \\), evaluated at \\( (x,y)=([[x0]],[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*log(x*[[y0]]) + [[b]]*x + [[c]]*[[y0]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "Rational([[a]],[[x0]]) + [[b]] + [[c]]",
+   "Rational([[a]],([[x0]]*[[y0]])) + [[b]]",
+   "[[a]]*[[y0]] + [[b]]",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\ln(xy) = \\ln x + \\ln y \\) for \\( xy>0 \\), \\( f_x(x,y) = \\dfrac{[[a]]}{x} + [[b]] \\) (the \\( y \\)-dependence drops out). Evaluating at \\( x=[[x0]] \\) gives \\( f_x([[x0]],[[y0]]) = \\dfrac{[[a]]}{[[x0]]} + [[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly adds the \\( y \\)-coefficient \\( c \\), which does not appear in \\( f_x \\).",
+   "This treats \\( \\ln(xy) \\) as if its \\( x \\)-derivative were \\( \\frac{1}{xy} \\) instead of \\( \\frac{1}{x} \\).",
+   "This differentiates as if \\( \\ln(xy) \\) behaved like \\( xy \\) itself.",
+   "This is \\( f_y([[x0]],[[y0]]) \\) evaluated incorrectly, not \\( f_x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "partial_xx_second_order_v1",
+  "skill_id": "partial_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x,y) = [[a]]x^{3}y + [[b]]x^{2}y^{2} + [[c]]xy \\). What is \\( f_{xx}([[x0]],[[y0]]) \\), the second-order partial derivative of \\( f \\) with respect to \\( x \\) (twice), evaluated at \\( (x,y)=([[x0]],[[y0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**3*[[y0]] + [[b]]*x**2*[[y0]]**2 + [[c]]*x*[[y0]]", "var": "x", "at": "[[x0]]", "order": 2},
+  "distractors": [
+   "3*[[a]]*[[x0]]**2*[[y0]] + 2*[[b]]*[[x0]]*[[y0]]**2 + [[c]]*[[y0]]",
+   "[[a]]*[[x0]]**3*[[y0]] + [[b]]*[[x0]]**2*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]",
+   "6*[[a]]*[[x0]]*[[y0]] + [[b]]*[[y0]]**2",
+   "6*[[a]]*[[x0]] + 2*[[b]]*[[y0]]",
+   "[[answer]] + 4",
+   "[[answer]] - 4"
+  ],
+  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]([[y0]])x^{3} + [[b]]([[y0]])^{2}x^{2} + [[c]]([[y0]])x \\), so \\( f_x(x,[[y0]]) = 3[[a]]([[y0]])x^{2} + 2[[b]]([[y0]])^{2}x + [[c]]([[y0]]) \\) and \\( f_{xx}(x,[[y0]]) = 6[[a]]([[y0]])x + 2[[b]]([[y0]])^{2} \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_{xx}([[x0]],[[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f_x([[x0]],[[y0]]) \\), the first partial derivative, not the second.",
+   "This is \\( f([[x0]],[[y0]]) \\), the function value, not a derivative.",
+   "This drops the factor of 2 on the \\( x^2y^2 \\) term's second derivative.",
+   "This forgets to substitute \\( y=[[y0]] \\) into the \\( x^2y^2 \\) coefficient correctly (uses \\( y \\) instead of \\( y^2 \\)).",
+   "This is off by four from the correct value.",
+   "This is off by four from the correct value."
+  ]
+ }
+]

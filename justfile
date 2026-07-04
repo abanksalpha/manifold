@@ -178,6 +178,11 @@ complexipy-diff:
 clean *args:
     ./tools/clean {{ args }}
 
+# Benchmark the Manifold engine on the 50k reference deck (p50/p95/worst per section-10 action)
+bench *args:
+    {{ ninja }} pyenv pylib
+    {{ if os() == "windows" { "$env:PYTHONPATH='out\\pylib'; out\\pyenv\\Scripts\\python.exe" } else { "PYTHONPATH=out/pylib out/pyenv/bin/python" } }} manifold/bench/bench_mastery.py {{ args }}
+
 # Helpers to get the right commands for the platform
 
 ninja := if os() == "windows" { "tools\\ninja" } else { "./ninja" }

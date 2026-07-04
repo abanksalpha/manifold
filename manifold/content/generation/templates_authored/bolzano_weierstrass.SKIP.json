@@ -1,0 +1,1 @@
+{"skill_id": "bolzano_weierstrass", "reason": "Tests the theorem itself (every bounded sequence has a convergent subsequence) via statement recognition, hypothesis-checking, or true/false application; there is no single code-computable scalar answer (same conclusion as the sibling skill convergent_subsequence_existence_bolzanoweierstrass)."}

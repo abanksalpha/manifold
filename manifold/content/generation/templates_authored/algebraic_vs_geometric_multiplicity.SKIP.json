@@ -1,0 +1,4 @@
+{
+ "skill_id": "algebraic_vs_geometric_multiplicity",
+ "reason": "Geometric multiplicity is the eigenspace dimension n - rank(A - lambda*I) (a nullity); no solver op returns nullity, so the multiplicity comparison cannot be honestly computed as a single scalar without hardcoding it."
+}

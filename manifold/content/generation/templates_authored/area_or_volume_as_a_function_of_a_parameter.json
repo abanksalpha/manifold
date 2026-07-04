@@ -1,0 +1,122 @@
+[
+ {
+  "template_id": "area_as_function_of_parameter_v1",
+  "skill_id": "area_or_volume_as_a_function_of_a_parameter",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "For a positive parameter \\( t \\), let \\( A(t) \\) be the area of the region under the curve \\( y = [[k]]x^{2} \\) and above the \\( x \\)-axis from \\( x = 0 \\) to \\( x = t \\). Find \\( A(t) \\) when \\( t = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[k]]*x**2", "var": "x", "bounds": ["0", "[[b]]"]},
+  "distractors": [
+   "[[k]]*[[b]]**2/2",
+   "[[k]]*[[b]]**3",
+   "[[k]]**2*[[b]]**3/3",
+   "[[b]]**3/3",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]"
+  ],
+  "solution": "\\( A(t) = \\int_{0}^{t} [[k]]x^{2}\\,dx = \\dfrac{[[k]]\\,t^{3}}{3} \\). At \\( t = [[b]] \\) this gives \\( A([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates \\( [[k]]x \\) instead of \\( [[k]]x^{2} \\).",
+   "This forgets to divide by 3 when integrating \\( x^{2} \\).",
+   "This squares the parameter \\( [[k]] \\) in the coefficient.",
+   "This drops the coefficient \\( [[k]] \\) entirely.",
+   "This is off by \\( [[k]] \\) from the correct area."
+  ]
+ },
+ {
+  "template_id": "volume_as_function_of_parameter_v1",
+  "skill_id": "area_or_volume_as_a_function_of_a_parameter",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "For a positive parameter \\( t \\), let \\( V(t) \\) be the volume of the solid formed by revolving about the \\( x \\)-axis the region under the line \\( y = [[k]]x \\) from \\( x = 0 \\) to \\( x = t \\). Find \\( V(t) \\) when \\( t = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "pi*([[k]]*x)**2", "var": "x", "bounds": ["0", "[[b]]"]},
+  "distractors": [
+   "[[k]]**2*[[b]]**3/3",
+   "pi*[[k]]**2*[[b]]**2",
+   "pi*[[k]]*[[b]]**3/3",
+   "2*[[answer]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "\\( V(t) = \\pi\\int_{0}^{t} ([[k]]x)^{2}\\,dx = \\dfrac{\\pi [[k]]^{2} t^{3}}{3} \\). At \\( t = [[b]] \\) this gives \\( V([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of \\( \\pi \\) entirely.",
+   "This forgets to divide by 3, using \\( b^{2} \\) instead of \\( b^{3}/3 \\).",
+   "This drops the square on the coefficient \\( [[k]] \\).",
+   "This doubles the correct volume.",
+   "This is off by \\( \\pi \\) from the correct volume."
+  ]
+ },
+ {
+  "template_id": "solve_for_parameter_given_area_v1",
+  "skill_id": "area_or_volume_as_a_function_of_a_parameter",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "t0": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {"M": "[[k]]*[[t0]]**3"},
+  "stem": "For a positive parameter \\( t \\), let \\( A(t) \\) be the area of the region under the curve \\( y = 3[[k]]x^{2} \\) and above the \\( x \\)-axis from \\( x=0 \\) to \\( x=t \\), so that \\( A(t) = [[k]]t^{3} \\). For what value of \\( t \\) does \\( A(t) = [[M]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[k]]*t**3 - [[M]] = 0", "var": "t"},
+  "distractors": [
+   "[[M]]/[[k]]",
+   "([[M]]/[[k]])**(1/2)",
+   "[[M]]**(1/3)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "3*[[answer]]"
+  ],
+  "solution": "Solving \\( [[k]]t^{3} = [[M]] \\) gives \\( t^{3} = [[M]]/[[k]] \\), so \\( t = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to take a cube root, leaving \\( t^{3} \\) instead of \\( t \\).",
+   "This takes a square root instead of a cube root.",
+   "This takes the cube root of \\( M \\) alone, without first dividing by \\( k \\).",
+   "This is off by one from the correct value of \\( t \\).",
+   "This is off by one from the correct value of \\( t \\).",
+   "This triples the correct value of \\( t \\)."
+  ]
+ },
+ {
+  "template_id": "area_between_curves_as_function_of_parameter_v1",
+  "skill_id": "area_or_volume_as_a_function_of_a_parameter",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 4, "hi": 9},
+   "b": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Lt([[b]], [[k]])"],
+  "stem": "For a parameter \\( t \\) with \\( 0 \\le t \\le [[k]] \\), let \\( A(t) \\) be the area of the region between the line \\( y = [[k]]x \\) and the parabola \\( y = x^{2} \\), from \\( x = 0 \\) to \\( x = t \\). Find \\( A(t) \\) when \\( t = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[k]]*x - x**2", "var": "x", "bounds": ["0", "[[b]]"]},
+  "distractors": [
+   "[[k]]*[[b]]**2/2",
+   "[[b]]**3/3",
+   "[[k]]*[[b]] - [[b]]**2",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]",
+   "2*[[answer]]"
+  ],
+  "solution": "\\( A(t) = \\int_{0}^{t}\\left([[k]]x - x^{2}\\right)dx = \\dfrac{[[k]]t^{2}}{2} - \\dfrac{t^{3}}{3} \\). At \\( t = [[b]] \\) this gives \\( A([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( -x^{2} \\) term of the integrand.",
+   "This drops the \\( [[k]]x \\) term of the integrand.",
+   "This evaluates the integrand at \\( x=[[b]] \\) instead of integrating it.",
+   "This is off by \\( [[k]] \\) from the correct area.",
+   "This is off by \\( [[k]] \\) from the correct area.",
+   "This doubles the correct area."
+  ]
+ }
+]

@@ -1,0 +1,4 @@
+{
+ "skill_id": "theorem_screen_counterexamples_the_i_ii_iii_format",
+ "reason": "This is the 'which of I / II / III must be true' format requiring counterexample screening of statements; the answer is a subset of statements, not a single computable scalar."
+}

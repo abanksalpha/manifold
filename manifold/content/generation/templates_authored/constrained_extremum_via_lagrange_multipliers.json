@@ -1,0 +1,277 @@
+[
+ {
+  "template_id": "lagrange_min_on_line_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "t": {"type": "int", "lo": 2, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "c": "([[a]]**2 + [[b]]**2)*[[t]]"
+  },
+  "stem": "Use Lagrange multipliers to minimize \\( f(x, y) = x^{2} + y^{2} \\) subject to the constraint \\( [[a]]x + [[b]]y = [[c]] \\). What is the minimum value of \\( f \\)?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*x = L*[[a]]", "2*y = L*[[b]]", "[[a]]*x + [[b]]*y = [[c]]"],
+   "vars": ["x", "y", "L"],
+   "want": "x**2 + y**2"
+  },
+  "distractors": [
+   "[[c]]",
+   "[[a]]**2 + [[b]]**2",
+   "2*([[a]]**2 + [[b]]**2)*[[t]]**2",
+   "[[t]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( 2x = \\lambda([[a]]) \\), \\( 2y = \\lambda([[b]]) \\), so \\( x = \\frac{([[a]])[[c]]}{[[a]]^{2}+[[b]]^{2}} \\), \\( y = \\frac{([[b]])[[c]]}{[[a]]^{2}+[[b]]^{2}} \\). Then \\( f = \\frac{[[c]]^{2}}{[[a]]^{2}+[[b]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the constraint value \\( [[c]] \\), not the minimized \\( x^{2}+y^{2} \\).",
+   "This is \\( a^{2}+b^{2} \\), the denominator, without accounting for the size of the constraint.",
+   "This doubles the correct minimum value.",
+   "This ignores the coefficients of the constraint entirely.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_max_product_on_line_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "k": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "stem": "Use Lagrange multipliers to find the maximum value of \\( f(x, y) = xy \\) subject to the constraint \\( [[a]]x + [[b]]y = [[k]] \\).",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["y = L*[[a]]", "x = L*[[b]]", "[[a]]*x + [[b]]*y = [[k]]"],
+   "vars": ["x", "y", "L"],
+   "want": "x*y"
+  },
+  "distractors": [
+   "[[k]]**2/(2*[[a]]*[[b]])",
+   "[[k]]**2/([[a]]*[[b]])",
+   "[[k]]/(4*[[a]]*[[b]])",
+   "[[a]]*[[b]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( y = \\lambda([[a]]) \\) and \\( x = \\lambda([[b]]) \\), so \\( x/[[b]] = y/[[a]] \\). Substituting \\( x = \\frac{[[b]][[k]]}{2[[a]][[b]]} = \\frac{[[k]]}{2([[a]])} \\) and \\( y = \\frac{[[k]]}{2([[b]])} \\) into the constraint and simplifying gives \\( f = xy = \\dfrac{[[k]]^{2}}{4([[a]])([[b]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses a denominator of \\( 2ab \\) instead of \\( 4ab \\).",
+   "This forgets the factor of 4 in the denominator entirely.",
+   "This forgets to square \\( [[k]] \\) in the numerator.",
+   "This ignores \\( [[k]] \\) and returns just \\( ab \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_min_on_plane_3d_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "t": {"type": "int", "lo": 2, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "d": "([[a]]**2 + [[b]]**2 + [[c]]**2)*[[t]]"
+  },
+  "stem": "Use Lagrange multipliers to minimize \\( f(x, y, z) = x^{2} + y^{2} + z^{2} \\) subject to the constraint \\( [[a]]x + [[b]]y + [[c]]z = [[d]] \\). What is the minimum value of \\( f \\)?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*x = L*[[a]]", "2*y = L*[[b]]", "2*z = L*[[c]]", "[[a]]*x + [[b]]*y + [[c]]*z = [[d]]"],
+   "vars": ["x", "y", "z", "L"],
+   "want": "x**2 + y**2 + z**2"
+  },
+  "distractors": [
+   "[[d]]",
+   "[[a]]**2 + [[b]]**2 + [[c]]**2",
+   "2*([[a]]**2 + [[b]]**2 + [[c]]**2)*[[t]]**2",
+   "[[t]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( 2x = \\lambda([[a]]) \\), \\( 2y = \\lambda([[b]]) \\), \\( 2z = \\lambda([[c]]) \\), so each coordinate is proportional to its constraint coefficient. Substituting into the constraint gives \\( f = \\dfrac{[[d]]^{2}}{[[a]]^{2}+[[b]]^{2}+[[c]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the constraint value \\( [[d]] \\), not the minimized \\( x^{2}+y^{2}+z^{2} \\).",
+   "This is \\( a^{2}+b^{2}+c^{2}\\), the denominator, without accounting for the size of the constraint.",
+   "This doubles the correct minimum value.",
+   "This ignores the coefficients of the constraint entirely.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_max_product_on_circle_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 1, "hi": 24}
+  },
+  "constraints": [],
+  "require_rational": true,
+  "stem": "Use Lagrange multipliers to find the maximum value of \\( f(x, y) = xy \\) subject to the constraint \\( x^{2} + y^{2} = [[r]]^{2} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]]**2/2"},
+  "distractors": [
+   "[[r]]**2",
+   "[[r]]**2/4",
+   "-[[r]]**2/2",
+   "[[r]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 2"
+  ],
+  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( y = 2\\lambda x \\) and \\( x = 2\\lambda y \\), so \\( x^{2} = y^{2} \\). On the constraint \\( x^{2}+y^{2}=[[r]]^{2} \\) this forces \\( x^{2}=y^{2}=\\tfrac{[[r]]^{2}}{2} \\), and the maximum of \\( xy \\) occurs where \\( x \\) and \\( y \\) have the same sign, giving \\( f = xy = \\dfrac{[[r]]^{2}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 2 after solving \\( x^{2}=y^{2}=r^{2}/2 \\).",
+   "This uses a denominator of 4 instead of 2.",
+   "This is the MINIMUM value of \\( xy \\) on the circle (where \\( x \\) and \\( y \\) have opposite signs), not the maximum.",
+   "This forgets to square \\( [[r]] \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_min_sum_given_product_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "s": {"type": "int", "lo": 1, "hi": 24}
+  },
+  "constraints": [],
+  "derived": {
+   "k": "[[s]]**2"
+  },
+  "stem": "Use Lagrange multipliers to find the minimum value of \\( f(x, y) = x + y \\) subject to the constraint \\( xy = [[k]] \\), with \\( x > 0 \\) and \\( y > 0 \\).",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[s]]"},
+  "distractors": [
+   "[[k]]",
+   "[[s]]",
+   "[[s]]**2",
+   "[[k]]/2",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( 1 = \\lambda y \\) and \\( 1 = \\lambda x \\), so \\( x = y \\). On the constraint \\( xy=[[k]] \\) this forces \\( x=y=\\sqrt{[[k]]}=[[s]] \\), so the minimum value is \\( f = x+y = 2([[s]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the constraint value \\( [[k]] \\), not the minimized sum \\( x+y \\).",
+   "This is only one of the two equal coordinates \\( x=y=[[s]] \\), not their sum.",
+   "This is \\( x^{2} \\) (or \\( [[k]] \\) again in disguise), not \\( x+y \\).",
+   "This halves the constraint value instead of taking \\( 2\\sqrt{[[k]]} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_min_surface_area_box_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "e": {"type": "int", "lo": 2, "hi": 21}
+  },
+  "constraints": [],
+  "derived": {
+   "v": "[[e]]**3"
+  },
+  "stem": "A closed rectangular box with dimensions \\( x \\), \\( y \\), \\( z \\) (in cm) must have volume \\( xyz = [[v]] \\) cubic cm. Using Lagrange multipliers to minimize the total surface area \\( S(x,y,z) = 2(xy + yz + zx) \\) subject to this volume constraint, what is the minimum possible surface area (in square cm)?",
+  "answer_spec": {"op": "evaluate", "expr": "6*[[e]]**2"},
+  "distractors": [
+   "[[v]]",
+   "3*[[e]]**2",
+   "2*[[e]]**2",
+   "6*[[e]]",
+   "[[answer]] + 4",
+   "[[answer]] - 6"
+  ],
+  "solution": "Setting \\( \\nabla S = \\lambda \\nabla(xyz) \\) gives \\( y+z=\\lambda yz \\), \\( x+z=\\lambda xz \\), \\( x+y=\\lambda xy \\); by symmetry the minimizer is the CUBE \\( x=y=z=[[e]] \\) (since \\( [[e]]^{3}=[[v]] \\)). There \\( S = 2(3\\cdot[[e]]^{2}) = 6([[e]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume \\( [[v]] \\), not the surface area.",
+   "This forgets the factor of 2 in \\( S=2(xy+yz+zx) \\).",
+   "This uses only 2 of the 3 face-pairs instead of all 3.",
+   "This uses the edge length linearly instead of squaring it.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_two_constraints_line_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -5, "hi": 5},
+   "m": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Use Lagrange multipliers (with two multipliers, one per constraint) to minimize \\( f(x, y, z) = x^{2} + y^{2} + z^{2} \\) subject to BOTH \\( x + y + z = [[k]] \\) and \\( x - y = [[m]] \\) (the intersection of two planes, a line). What is the minimum value of \\( f \\)?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*x = L + M", "2*y = L - M", "2*z = L", "x + y + z = [[k]]", "x - y = [[m]]"],
+   "vars": ["x", "y", "z", "L", "M"],
+   "want": "x**2 + y**2 + z**2"
+  },
+  "distractors": [
+   "[[k]]**2 + [[m]]**2",
+   "([[k]]**2 + [[m]]**2)/2",
+   "[[k]]**2/3",
+   "[[k]]**2 + [[m]]**2/2",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( \\nabla f = \\lambda\\nabla(x+y+z) + \\mu\\nabla(x-y) \\) gives \\( 2x=\\lambda+\\mu \\), \\( 2y=\\lambda-\\mu \\), \\( 2z=\\lambda \\). Solving this together with the two constraints \\( x+y+z=[[k]] \\) and \\( x-y=[[m]] \\) gives the unique closest point on the line to the origin, and \\( f = x^{2}+y^{2}+z^{2} = [[answer]] \\) there.",
+  "distractor_rationales": [
+   "This simply adds the squares of the two constraint constants, ignoring how they interact geometrically.",
+   "This halves the naive sum of squared constants instead of solving the actual Lagrange system.",
+   "This divides only the first constraint's square by 3 (as if it were the sole constraint on 3 equal coordinates), ignoring the second constraint.",
+   "This only averages the contribution of the second constraint, not both.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "lagrange_multiplier_value_v1",
+  "skill_id": "constrained_extremum_via_lagrange_multipliers",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "Minimize \\( f(x, y) = x^{2} + y^{2} \\) subject to \\( [[a]]x + [[b]]y = [[c]] \\). The Lagrange condition \\( \\nabla f = \\lambda \\nabla g \\) introduces a multiplier \\( \\lambda \\), which also equals the rate of change of the minimum value of \\( f \\) with respect to the constraint constant \\( [[c]] \\) (the envelope theorem). What is the value of \\( \\lambda \\) at the optimum?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[c]]/([[a]]**2 + [[b]]**2)"},
+  "distractors": [
+   "[[c]]/([[a]]**2 + [[b]]**2)",
+   "[[c]]**2/([[a]]**2 + [[b]]**2)",
+   "2*[[c]]/([[a]] + [[b]])",
+   "[[a]]**2 + [[b]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( 2x=\\lambda [[a]] \\), \\( 2y=\\lambda [[b]] \\) gives \\( x=\\lambda [[a]]/2 \\), \\( y=\\lambda [[b]]/2 \\). Substituting into \\( [[a]]x+[[b]]y=[[c]] \\) gives \\( \\lambda\\dfrac{[[a]]^{2}+[[b]]^{2}}{2}=[[c]] \\), so \\( \\lambda = \\dfrac{2[[c]]}{[[a]]^{2}+[[b]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of 2 that comes from \\( f_{x}=2x \\) and \\( f_{y}=2y \\).",
+   "This squares the constraint constant \\( [[c]] \\) instead of using it linearly.",
+   "This uses \\( a+b \\) instead of \\( a^{2}+b^{2} \\) in the denominator.",
+   "This returns the denominator \\( a^{2}+b^{2} \\) itself instead of \\( \\lambda \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

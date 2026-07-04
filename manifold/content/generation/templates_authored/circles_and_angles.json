@@ -1,0 +1,278 @@
+[
+{
+ "template_id": "circles_arc_length_radians_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 20},
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 7, 8, 9, 10, 11]}
+ },
+ "constraints": [],
+ "stem": "A circle has radius \\( [[r]] \\). An arc of the circle subtends a central angle of \\( \\dfrac{[[k]]\\pi}{6} \\) radians. What is the length of the arc?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r]]*[[k]]*pi/6"},
+ "distractors": [
+  "Rational(1,2)*[[r]]**2*[[k]]*pi/6",
+  "2*[[r]]*[[k]]*pi/6",
+  "[[r]]*[[k]]/6",
+  "[[r]]*[[k]]*pi/3",
+  "[[answer]] + pi",
+  "[[answer]]/2"
+ ],
+ "solution": "Arc length equals radius times the central angle in radians: \\( s = r\\theta = [[r]]\\cdot\\dfrac{[[k]]\\pi}{6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the sector-area formula \\( \\frac{1}{2}r^2\\theta \\) instead of the arc-length formula.",
+  "This doubles the correct arc length.",
+  "This drops the factor of \\( \\pi \\), forgetting the angle is in radians (a pure number times \\( \\pi \\)).",
+  "This doubles the angle before applying the formula.",
+  "This adds an unrelated amount to the correct arc length.",
+  "This halves the correct arc length."
+ ]
+},
+{
+ "template_id": "circles_arc_length_degrees_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 18},
+  "deg": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150, 180, 210, 240, 270, 300, 315, 330]}
+ },
+ "constraints": [],
+ "stem": "A circle has radius \\( [[r]] \\). What is the length of an arc that subtends a central angle of \\( [[deg]]^{\\circ} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*[[r]]*([[deg]]/360)"},
+ "distractors": [
+  "pi*[[r]]**2*([[deg]]/360)",
+  "2*pi*[[r]]*([[deg]]/180)",
+  "[[r]]*[[deg]]/360",
+  "2*pi*[[r]]",
+  "[[answer]] + pi",
+  "[[answer]]/2"
+ ],
+ "solution": "The arc is the fraction \\( \\frac{[[deg]]}{360} \\) of the full circumference \\( 2\\pi r \\): \\( 2\\pi([[r]])\\cdot\\dfrac{[[deg]]}{360} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the full circle's area formula instead of its circumference.",
+  "This divides by 180 instead of 360, doubling the fraction of the circle used.",
+  "This forgets the factor of \\( 2\\pi \\), treating the arc length as a bare fraction of the radius.",
+  "This reports the full circumference, ignoring the fraction of the circle.",
+  "This adds an unrelated amount to the correct arc length.",
+  "This halves the correct arc length."
+ ]
+},
+{
+ "template_id": "circles_sector_area_radians_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 16},
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 7, 8, 9, 10, 11]}
+ },
+ "constraints": [],
+ "stem": "A circular sector has radius \\( [[r]] \\) and central angle \\( \\dfrac{[[k]]\\pi}{6} \\) radians. What is the area of the sector?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(1,2)*[[r]]**2*[[k]]*pi/6"},
+ "distractors": [
+  "[[r]]*[[k]]*pi/6",
+  "[[r]]**2*[[k]]*pi/6",
+  "Rational(1,2)*[[r]]*[[k]]*pi/6",
+  "Rational(1,2)*[[r]]**2*[[k]]*pi/3",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "A sector's area is \\( \\frac{1}{2}r^2\\theta = \\frac{1}{2}([[r]])^2\\cdot\\dfrac{[[k]]\\pi}{6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the arc-length formula \\( r\\theta \\) instead of the sector-area formula.",
+  "This forgets the \\( \\frac{1}{2} \\) factor in the sector-area formula.",
+  "This uses \\( r \\) instead of \\( r^2 \\) in the formula.",
+  "This doubles the angle before applying the formula.",
+  "This adds an unrelated amount to the correct area.",
+  "This doubles the correct area."
+ ]
+},
+{
+ "template_id": "circles_sector_area_degrees_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 16},
+  "deg": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150, 180, 210, 240, 270, 300, 315, 330]}
+ },
+ "constraints": [],
+ "stem": "A circular sector has radius \\( [[r]] \\) and central angle \\( [[deg]]^{\\circ} \\). What is the area of the sector?",
+ "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2*([[deg]]/360)"},
+ "distractors": [
+  "2*pi*[[r]]*([[deg]]/360)",
+  "pi*[[r]]**2*([[deg]]/180)",
+  "[[r]]**2*([[deg]]/360)",
+  "pi*[[r]]**2",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "The sector is the fraction \\( \\frac{[[deg]]}{360} \\) of the full circle's area \\( \\pi r^2 \\): \\( \\pi([[r]])^2\\cdot\\dfrac{[[deg]]}{360} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the circumference formula instead of the area formula.",
+  "This divides by 180 instead of 360, doubling the fraction of the circle used.",
+  "This forgets the factor of \\( \\pi \\).",
+  "This reports the full circle's area, ignoring the fraction used.",
+  "This adds an unrelated amount to the correct area.",
+  "This doubles the correct area."
+ ]
+},
+{
+ "template_id": "circles_central_angle_from_arc_length_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 15},
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 7, 8, 9, 10, 11]}
+ },
+ "derived": {"arclen": "[[r]]*[[k]]*pi/6"},
+ "constraints": [],
+ "stem": "An arc of a circle with radius \\( [[r]] \\) has length \\( [[arclen]] \\). What is the measure of the central angle it subtends, in radians?",
+ "answer_spec": {"op": "evaluate", "expr": "([[r]]*[[k]]*pi/6)/[[r]]"},
+ "distractors": [
+  "[[r]]*([[r]]*[[k]]*pi/6)",
+  "([[r]]*[[k]]*pi/6)*[[r]]/2",
+  "2*(([[r]]*[[k]]*pi/6)/[[r]])",
+  "(([[r]]*[[k]]*pi/6)/[[r]])/2",
+  "[[answer]] + pi",
+  "[[answer]] + 1"
+ ],
+ "solution": "Since \\( s = r\\theta \\), the central angle is \\( \\theta = \\dfrac{s}{r} = \\dfrac{[[arclen]]}{[[r]]} = [[answer]] \\) radians.",
+ "distractor_rationales": [
+  "This multiplies by \\( r \\) instead of dividing by it.",
+  "This mixes the sector-area formula's factor into a length relationship.",
+  "This doubles the correct angle.",
+  "This halves the correct angle.",
+  "This adds an unrelated amount to the correct angle.",
+  "This adds an unrelated amount to the correct angle."
+ ]
+},
+{
+ "template_id": "circles_inscribed_angle_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "central": {"type": "int", "lo": 4, "hi": 176}
+ },
+ "constraints": [],
+ "stem": "A central angle of a circle measures \\( [[central]]^{\\circ} \\). An inscribed angle subtends the same arc as this central angle. What is the measure, in degrees, of the inscribed angle?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[central]], 2)"},
+ "distractors": [
+  "[[central]]",
+  "2*[[central]]",
+  "180 - [[central]]",
+  "Rational([[central]], 3)",
+  "[[answer]] + 10",
+  "[[answer]] - 10"
+ ],
+ "solution": "The Inscribed Angle Theorem says an inscribed angle is half of the central angle subtending the same arc: \\( \\dfrac{[[central]]}{2} = [[answer]] \\)\\(^{\\circ}\\).",
+ "distractor_rationales": [
+  "This reports the central angle itself instead of halving it.",
+  "This doubles the central angle instead of halving it.",
+  "This uses the supplementary angle instead of the Inscribed Angle Theorem.",
+  "This divides by 3 instead of 2.",
+  "This adjusts the correct angle by an unrelated amount.",
+  "This adjusts the correct angle by an unrelated amount."
+ ]
+},
+{
+ "template_id": "circles_intersecting_chords_angle_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "arc1": {"type": "int", "lo": 10, "hi": 150},
+  "arc2": {"type": "int", "lo": 10, "hi": 150}
+ },
+ "constraints": ["Lt([[arc1]] + [[arc2]], 340)"],
+ "stem": "Two chords of a circle intersect inside the circle. The two arcs intercepted by the pair of vertical angles at the intersection point measure \\( [[arc1]]^{\\circ} \\) and \\( [[arc2]]^{\\circ} \\). What is the measure, in degrees, of the angle formed at the intersection?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[arc1]] + [[arc2]], 2)"},
+ "distractors": [
+  "[[arc1]] + [[arc2]]",
+  "Rational([[arc1]] - [[arc2]], 2)",
+  "Abs([[arc1]] - [[arc2]])",
+  "Rational([[arc1]], 2) + [[arc2]]",
+  "[[answer]] + 10",
+  "[[answer]] - 10"
+ ],
+ "solution": "The angle formed by two chords intersecting inside a circle equals half the SUM of the two intercepted arcs: \\( \\dfrac{[[arc1]]+[[arc2]]}{2} = [[answer]] \\)\\(^{\\circ}\\).",
+ "distractor_rationales": [
+  "This forgets to divide by 2, using the raw sum of the two arcs.",
+  "This uses the external-angle (difference) formula instead of the internal-angle (sum) formula.",
+  "This takes the absolute difference of the arcs rather than half their sum.",
+  "This only halves one of the two arcs before adding.",
+  "This adjusts the correct angle by an unrelated amount.",
+  "This adjusts the correct angle by an unrelated amount."
+ ]
+},
+{
+ "template_id": "circles_external_secants_angle_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "far": {"type": "int", "lo": 60, "hi": 300},
+  "near": {"type": "int", "lo": 10, "hi": 100}
+ },
+ "constraints": ["Gt([[far]], [[near]])", "Lt([[far]] + [[near]], 360)"],
+ "stem": "Two secants drawn from a point outside a circle intercept arcs of measure \\( [[far]]^{\\circ} \\) (far arc) and \\( [[near]]^{\\circ} \\) (near arc). What is the measure, in degrees, of the angle formed at the external point?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational([[far]] - [[near]], 2)"},
+ "distractors": [
+  "Rational([[far]] + [[near]], 2)",
+  "[[far]] - [[near]]",
+  "Rational([[near]] - [[far]], 2)",
+  "Rational([[far]], 2) - [[near]]",
+  "[[answer]] + 10",
+  "[[answer]] - 10"
+ ],
+ "solution": "The angle formed by two secants meeting outside a circle equals half the DIFFERENCE of the intercepted arcs: \\( \\dfrac{[[far]]-[[near]]}{2} = [[answer]] \\)\\(^{\\circ}\\).",
+ "distractor_rationales": [
+  "This uses the internal-angle (sum) formula instead of the external-angle (difference) formula.",
+  "This forgets to divide by 2, using the raw difference of the two arcs.",
+  "This computes the difference with the wrong sign before halving.",
+  "This only halves the far arc before subtracting the near arc.",
+  "This adjusts the correct angle by an unrelated amount.",
+  "This adjusts the correct angle by an unrelated amount."
+ ]
+},
+{
+ "template_id": "circles_segment_area_v1",
+ "skill_id": "circles_and_angles",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 14},
+  "theta": {"type": "choice", "values": ["pi/6", "pi/3", "pi/2", "2*pi/3", "5*pi/6", "pi", "4*pi/3", "3*pi/2"]}
+ },
+ "constraints": [],
+ "stem": "A circular segment is cut off by a chord of a circle with radius \\( [[r]] \\), where the chord subtends a central angle of \\( [[theta]] \\) radians. What is the area of the segment (the region between the chord and the arc)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(1,2)*[[r]]**2*([[theta]] - sin([[theta]]))"},
+ "distractors": [
+  "Rational(1,2)*[[r]]**2*[[theta]]",
+  "Rational(1,2)*[[r]]**2*sin([[theta]])",
+  "[[r]]**2*([[theta]] - sin([[theta]]))",
+  "Rational(1,2)*[[r]]**2*([[theta]] + sin([[theta]]))",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "The segment area is the sector area minus the triangle area: \\( \\frac{1}{2}r^2(\\theta - \\sin\\theta) = \\frac{1}{2}([[r]])^2\\left([[theta]] - \\sin([[theta]])\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the full sector area, forgetting to subtract the triangular piece.",
+  "This reports just the triangle's area, forgetting the sector.",
+  "This forgets the \\( \\frac{1}{2} \\) factor.",
+  "This adds the triangle area back instead of subtracting it.",
+  "This adjusts the correct area by an unrelated amount.",
+  "This doubles the correct area."
+ ]
+}
+]

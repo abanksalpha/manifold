@@ -1,0 +1,97 @@
+[
+{
+ "template_id": "cauchy_goursat_closed_integral_v1",
+ "skill_id": "cauchygoursat_theorem_closed_integral_of_an_analytic",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "a1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "a0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "R": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(z) = ([[a2]])z^{2} + ([[a1]])z + ([[a0]]) \\), a polynomial (hence entire), and let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Compute the closed contour integral \\( \\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2*pi*I",
+  "-2*pi*I",
+  "pi*I",
+  "-pi*I",
+  "2*pi*I*([[a0]])",
+  "2*pi*I*([[a2]])"
+ ],
+ "solution": "\\( f \\) is a polynomial, so it is analytic everywhere inside and on \\( C \\). By the Cauchy-Goursat theorem the integral of an analytic function around a closed contour is \\( \\oint_{C} f(z)\\,dz = 0 \\).",
+ "distractor_rationales": [
+  "This is \\( 2\\pi i \\), the value of \\( \\oint dz/z \\); but \\( f \\) here has no singularity inside \\( C \\).",
+  "This is \\( -2\\pi i \\); Cauchy-Goursat gives exactly 0 for an analytic integrand.",
+  "This treats the integral as \\( \\pi i \\); an entire integrand contributes 0.",
+  "This treats the integral as \\( -\\pi i \\); an entire integrand contributes 0.",
+  "This applies a residue-style factor to the constant term, but there is no pole to enclose.",
+  "This applies a residue-style factor to the leading coefficient, but there is no pole to enclose."
+ ]
+},
+{
+ "template_id": "cauchy_goursat_poles_outside_contour_v1",
+ "skill_id": "cauchygoursat_theorem_closed_integral_of_an_analytic",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "b1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "R": {"type": "choice", "values": [1, 2, 3]},
+  "p": {"type": "choice", "values": [5, 6, 7, -5, -6, -7]},
+  "q": {"type": "choice", "values": [5, 6, 7, -5, -6, -7]}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "Let \\( f(z) = \\dfrac{([[b1]])z + ([[b0]])}{(z-([[p]]))(z-([[q]]))} \\), and let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Since both \\( z=[[p]] \\) and \\( z=[[q]] \\) lie outside \\( C \\), \\( f \\) is analytic on and inside \\( C \\). Compute \\( \\oint_{C} f(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2*pi*I",
+  "-2*pi*I",
+  "pi*I",
+  "2*pi*I*(([[b1]])*([[p]]) + ([[b0]]))",
+  "2*pi*I*(([[b1]])*([[q]]) + ([[b0]]))",
+  "([[b1]]) + ([[b0]])"
+ ],
+ "solution": "Both singularities of \\( f \\) lie outside \\( C \\), so \\( f \\) is analytic everywhere inside and on \\( C \\). By the Cauchy-Goursat theorem, \\( \\oint_{C} f(z)\\,dz = 0 \\), regardless of the values of the poles themselves.",
+ "distractor_rationales": [
+  "This treats the boundary as if it enclosed \\( 1/(z) \\)-type singularity; no pole lies inside \\( C \\) here.",
+  "This is the negative of the same mistaken residue-style value.",
+  "This treats the integral as \\( \\pi i \\), but an integrand analytic inside \\( C \\) contributes 0.",
+  "This mistakenly applies a residue formula at \\( z=[[p]] \\), which is not enclosed by \\( C \\).",
+  "This mistakenly applies a residue formula at \\( z=[[q]] \\), which is not enclosed by \\( C \\).",
+  "This evaluates the numerator's coefficients as if they were the answer, ignoring the theorem entirely."
+ ]
+},
+{
+ "template_id": "cauchy_goursat_entire_transcendental_v1",
+ "skill_id": "cauchygoursat_theorem_closed_integral_of_an_analytic",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "R": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Let \\( g(z) = ([[m]])e^{z} \\), which is entire, and let \\( C \\) be the positively oriented circle \\( |z| = [[R]] \\). Compute the closed contour integral \\( \\oint_{C} g(z)\\,dz \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2*pi*I*([[m]])",
+  "-2*pi*I*([[m]])",
+  "2*pi*I*([[m]])*E",
+  "pi*I*([[m]])",
+  "2*pi*I",
+  "([[m]])*E"
+ ],
+ "solution": "\\( g(z) = ([[m]])e^{z} \\) is entire (analytic on all of \\( \\mathbb{C} \\)), so it has no singularities inside or on \\( C \\). By the Cauchy-Goursat theorem, \\( \\oint_{C} g(z)\\,dz = 0 \\).",
+ "distractor_rationales": [
+  "This mistakenly applies a residue-style factor of \\( 2\\pi i \\) to the coefficient, but \\( g \\) has no pole inside \\( C \\).",
+  "This is the negative of the same mistaken residue-style computation.",
+  "This mistakenly evaluates \\( g \\) at a point and scales by \\( 2\\pi i \\), as if using Cauchy's integral formula on a singularity.",
+  "This uses \\( \\pi i \\) instead of the correct value of 0 for an entire integrand.",
+  "This drops the coefficient \\( m \\) from the same mistaken residue-style computation.",
+  "This evaluates \\( g(1) \\) as if that were the integral, ignoring the theorem entirely."
+ ]
+}
+]

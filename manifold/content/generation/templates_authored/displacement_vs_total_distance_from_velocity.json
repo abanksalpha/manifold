@@ -1,0 +1,128 @@
+[
+ {
+  "template_id": "total_distance_from_velocity_v1",
+  "skill_id": "displacement_vs_total_distance_from_velocity",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3]},
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "c": {"type": "int", "lo": -2, "hi": 4},
+   "b": {"type": "int", "lo": 0, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[c]])", "Lt([[c]], [[b]])"],
+  "stem": "A particle moves along a straight line so that its velocity at time \\( t \\) seconds is \\( v(t) = [[m]](t - ([[c]])) \\) meters per second, for \\( [[a]] \\le t \\le [[b]] \\). Find the total distance (in meters) traveled by the particle over this interval.",
+  "answer_spec": {"op": "integrate", "expr": "Abs([[m]]*(t - [[c]]))", "var": "t", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[m]]*(([[b]] - [[c]])**2 - ([[a]] - [[c]])**2)/2",
+   "Abs([[m]]*(([[b]] - [[c]])**2 - ([[a]] - [[c]])**2)/2)",
+   "[[m]]*(([[c]] - [[a]])**2 + ([[b]] - [[c]])**2)",
+   "[[answer]]/[[m]]",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[m]]"
+  ],
+  "solution": "Since \\( v \\) changes sign at \\( t=[[c]] \\), the total distance is \\( \\int_{[[a]]}^{[[b]]}|v(t)|\\,dt = \\int_{[[a]]}^{[[b]]}\\bigl|[[m]](t-([[c]]))\\bigr|\\,dt = [[answer]] \\), larger than the net displacement.",
+  "distractor_rationales": [
+   "This is the net displacement \\( \\int v\\,dt \\), not the total distance.",
+   "This is the magnitude of the net displacement, still less than the distance.",
+   "This forgets the factor \\( \\tfrac12 \\) from integrating a linear speed.",
+   "This drops the speed multiplier \\( [[m]] \\).",
+   "This is off by \\( [[m]] \\) from the correct distance."
+  ]
+ },
+ {
+  "template_id": "displacement_from_velocity_v1",
+  "skill_id": "displacement_vs_total_distance_from_velocity",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3]},
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "c": {"type": "int", "lo": -2, "hi": 4},
+   "b": {"type": "int", "lo": 0, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[c]])", "Lt([[c]], [[b]])"],
+  "stem": "A particle moves along a straight line so that its velocity at time \\( t \\) seconds is \\( v(t) = [[m]](t - ([[c]])) \\) meters per second, for \\( [[a]] \\le t \\le [[b]] \\). Find the particle's DISPLACEMENT (net change in position, in meters) over this interval.",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]*(t - [[c]])", "var": "t", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[m]]*(([[c]] - [[a]])**2 + ([[b]] - [[c]])**2)/2",
+   "Abs([[answer]])",
+   "-[[answer]]",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[m]]",
+   "2*[[answer]]"
+  ],
+  "solution": "The displacement is the net (signed) integral of velocity: \\( \\int_{[[a]]}^{[[b]]} [[m]](t-([[c]]))\\,dt = [[answer]] \\); this is smaller in magnitude than the total distance, which would instead integrate \\( |v(t)| \\).",
+  "distractor_rationales": [
+   "This is the total distance traveled (integrating \\( |v| \\)), not the net displacement.",
+   "This takes the absolute value of the correct displacement, discarding its sign.",
+   "This has the wrong sign for the displacement.",
+   "This is off by \\( [[m]] \\) from the correct displacement.",
+   "This is off by \\( [[m]] \\) from the correct displacement."
+  ]
+ },
+ {
+  "template_id": "total_distance_quadratic_velocity_v1",
+  "skill_id": "displacement_vs_total_distance_from_velocity",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "p": {"type": "int", "lo": 0, "hi": 2},
+   "q": {"type": "int", "lo": 3, "hi": 6},
+   "a": {"type": "int", "lo": -4, "hi": -1},
+   "b": {"type": "int", "lo": 7, "hi": 10}
+  },
+  "constraints": ["Lt([[a]], [[p]])", "Lt([[p]], [[q]])", "Lt([[q]], [[b]])"],
+  "stem": "A particle moves along a straight line so that its velocity at time \\( t \\) seconds is \\( v(t) = [[k]](t - [[p]])(t - [[q]]) \\) meters per second, for \\( [[a]] \\le t \\le [[b]] \\). The velocity changes sign at both \\( t = [[p]] \\) and \\( t = [[q]] \\). Find the total distance (in meters) traveled by the particle over this interval.",
+  "answer_spec": {"op": "integrate", "expr": "Abs([[k]]*(t - [[p]])*(t - [[q]]))", "var": "t", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "[[k]]*(([[b]]-[[p]])*([[b]]-[[q]])**2/2 - ([[a]]-[[p]])*([[a]]-[[q]])**2/2)",
+   "[[answer]]/2",
+   "2*[[answer]]",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]",
+   "-[[answer]]"
+  ],
+  "solution": "Because \\( v \\) changes sign twice, in \\( ([[a]],[[p]]) \\), \\( ([[p]],[[q]]) \\), and \\( ([[q]],[[b]]) \\), the total distance is \\( \\int_{[[a]]}^{[[b]]}\\left|[[k]](t-[[p]])(t-[[q]])\\right|dt = [[answer]] \\), found by summing the (positive) areas over each of the three sub-intervals.",
+  "distractor_rationales": [
+   "This is a nonsensical antiderivative that does not correspond to the correct piecewise integral.",
+   "This only counts about half the sub-intervals' contribution.",
+   "This double-counts the total distance.",
+   "This is off by \\( [[k]] \\) from the correct total distance.",
+   "This is off by \\( [[k]] \\) from the correct total distance."
+  ]
+ },
+ {
+  "template_id": "total_distance_from_position_function_v1",
+  "skill_id": "displacement_vs_total_distance_from_velocity",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [2, 3, 4]},
+   "x0": {"type": "int", "lo": 1, "hi": 20},
+   "c": {"type": "int", "lo": -2, "hi": 4},
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "b": {"type": "int", "lo": 5, "hi": 9}
+  },
+  "constraints": ["Lt([[a]], [[c]])", "Lt([[c]], [[b]])"],
+  "stem": "A particle's position on a line at time \\( t \\) seconds is \\( x(t) = \\dfrac{[[m]]}{2}(t-[[c]])^{2} + [[x0]] \\) meters, for \\( [[a]] \\le t \\le [[b]] \\). Find the total distance (in meters) traveled by the particle over this interval.",
+  "answer_spec": {"op": "integrate", "expr": "Abs([[m]]*(t - [[c]]))", "var": "t", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "Abs(([[m]]/2)*(([[b]]-[[c]])**2) - ([[m]]/2)*(([[a]]-[[c]])**2))",
+   "[[m]]*(([[b]] - [[c]])**2 - ([[a]] - [[c]])**2)/2",
+   "[[answer]]/[[m]]",
+   "[[answer]] + [[x0]]",
+   "[[answer]] - [[x0]]",
+   "[[answer]]/2"
+  ],
+  "solution": "The velocity is \\( v(t) = x'(t) = [[m]](t-[[c]]) \\), which changes sign at \\( t=[[c]] \\). The total distance is \\( \\int_{[[a]]}^{[[b]]}|v(t)|\\,dt = \\int_{[[a]]}^{[[b]]}\\bigl|[[m]](t-[[c]])\\bigr|\\,dt = [[answer]] \\); the initial position \\( [[x0]] \\) has no effect on distance traveled.",
+  "distractor_rationales": [
+   "This is \\( |x([[b]])-x([[a]])| \\), the magnitude of the net displacement, not the total distance.",
+   "This is the net (signed) displacement, not the total distance.",
+   "This drops the speed multiplier \\( [[m]] \\).",
+   "This incorrectly lets the initial position \\( [[x0]] \\) affect the distance traveled.",
+   "This incorrectly lets the initial position \\( [[x0]] \\) affect the distance traveled."
+  ]
+ }
+]

@@ -1,0 +1,4 @@
+{
+ "skill_id": "cauchyriemann_test_for_analyticity",
+ "reason": "The task is a yes/no analyticity verdict (do the Cauchy-Riemann equations hold?), a true/false judgment rather than a single code-computable scalar answer."
+}

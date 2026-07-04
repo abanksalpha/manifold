@@ -1,0 +1,163 @@
+[
+ {
+  "template_id": "conditional_probability_counts_v1",
+  "skill_id": "conditional_probability_p_a_mid_b",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 30, "hi": 60},
+   "nb": {"type": "int", "lo": 8, "hi": 20},
+   "nab": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Lt([[nb]], [[n]])", "Lt([[nab]], [[nb]])"],
+  "stem": "In a survey of [[n]] households, [[nb]] own a car. Among those car-owning households, [[nab]] also own a bicycle. A household is chosen at random from the car owners. What is the probability that it also owns a bicycle?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[nab]], [[nb]])"},
+  "distractors": [
+   "Rational([[nab]], [[n]])",
+   "Rational([[nb]], [[n]])",
+   "Rational([[nb]], [[nab]])",
+   "Rational([[nb]] - [[nab]], [[nb]])",
+   "Rational([[nab]], [[nb]] - [[nab]])",
+   "Rational([[nab]], [[n]] - [[nb]])"
+  ],
+  "solution": "Conditioning on car ownership restricts the sample space to the [[nb]] car owners, of whom [[nab]] also own a bicycle: \\( P(\\text{bike}\\mid\\text{car}) = \\frac{[[nab]]}{[[nb]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by the full survey size instead of the [[nb]] car owners; that is \\( P(\\text{car and bike}) \\), not the conditional probability.",
+   "This is \\( P(\\text{car}) \\), the probability the conditioning event occurs, not the conditional probability.",
+   "This inverts the ratio, computing \\( P(\\text{car}\\mid\\text{bike}) \\)-style backwards.",
+   "This is the probability a car owner does NOT own a bicycle, the complement.",
+   "This divides the both-owners by the car-only owners rather than by all car owners.",
+   "This divides by the non-car owners instead of the car owners."
+  ]
+ },
+ {
+  "template_id": "conditional_probability_sequential_no_replacement_v1",
+  "skill_id": "conditional_probability_p_a_mid_b",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 10, "hi": 30},
+   "k": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "stem": "A box contains [[n]] raffle tickets, [[k]] of which are winning tickets. Two tickets are drawn at random, one after another, without replacement. Given that the first ticket drawn is a winning ticket, what is the probability that the second ticket drawn is also a winning ticket?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[k]] - 1, [[n]] - 1)"},
+  "distractors": [
+   "Rational([[k]], [[n]])",
+   "Rational([[k]], [[n]] - 1)",
+   "Rational([[k]] - 1, [[n]])",
+   "Rational([[n]] - [[k]], [[n]] - 1)",
+   "Rational([[k]] + 1, [[n]] - 1)",
+   "Rational([[k]] - 1, [[n]] - [[k]])"
+  ],
+  "solution": "Once a winning ticket is removed, [[k]] - 1 winning tickets remain among the [[n]] - 1 tickets left, so \\( P(\\text{2nd wins} \\mid \\text{1st wins}) = \\dfrac{[[k]] - 1}{[[n]] - 1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores that the first winning ticket was removed and reuses the original probability.",
+   "This forgets to remove the drawn ticket from the winner count in the numerator.",
+   "This forgets to remove the drawn ticket from the total count in the denominator.",
+   "This is the probability the second ticket is NOT a winner, the complement of the requested event.",
+   "This adds one to the winner count instead of subtracting the ticket already drawn.",
+   "This divides by the remaining losing tickets instead of the remaining total tickets."
+  ]
+ },
+ {
+  "template_id": "conditional_probability_inclusion_exclusion_v1",
+  "skill_id": "conditional_probability_p_a_mid_b",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [12, 15, 18, 20, 24, 30]},
+   "a": {"type": "int", "lo": 3, "hi": 10},
+   "c": {"type": "int", "lo": 3, "hi": 10},
+   "u": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [
+   "Lt([[a]], [[n]])", "Lt([[c]], [[n]])",
+   "Ge([[u]], [[a]])", "Ge([[u]], [[c]])",
+   "Le([[u]], [[a]] + [[c]])", "Le([[u]], [[n]])", "Lt([[u]], [[a]] + [[c]])"
+  ],
+  "stem": "Events \\( A \\) and \\( B \\) satisfy \\( P(A) = \\frac{[[a]]}{[[n]]} \\), \\( P(B) = \\frac{[[c]]}{[[n]]} \\), and \\( P(A \\cup B) = \\frac{[[u]]}{[[n]]} \\). What is \\( P(A \\mid B) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]] + [[c]] - [[u]], [[c]])"},
+  "distractors": [
+   "Rational([[a]] + [[c]] - [[u]], [[n]])",
+   "Rational([[a]], [[c]])",
+   "Rational([[u]] - [[c]], [[a]])",
+   "Rational([[a]] + [[c]] - [[u]], [[a]])",
+   "Rational([[a]], [[n]])",
+   "Rational([[u]], [[n]])"
+  ],
+  "solution": "First recover the intersection with inclusion-exclusion: \\( P(A \\cap B) = P(A) + P(B) - P(A \\cup B) = \\dfrac{[[a]] + [[c]] - [[u]]}{[[n]]} \\). Then \\( P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} = \\dfrac{[[a]] + [[c]] - [[u]]}{[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( P(B) \\) and reports \\( P(A \\cap B) \\) itself instead of the conditional probability.",
+   "This skips inclusion-exclusion and just divides \\( P(A) \\) by \\( P(B) \\).",
+   "This computes the intersection count backwards, subtracting \\( P(B) \\)'s numerator from the union instead of using inclusion-exclusion correctly.",
+   "This divides the intersection count by [[a]] instead of [[c]], computing \\( P(B \\mid A) \\) instead.",
+   "This is just \\( P(A) \\), ignoring the conditioning on \\( B \\) entirely.",
+   "This is just \\( P(A \\cup B) \\), not a conditional probability at all."
+  ]
+ },
+ {
+  "template_id": "conditional_probability_independence_collapse_v1",
+  "skill_id": "conditional_probability_p_a_mid_b",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "choice", "values": [6, 7, 8, 9, 10]},
+   "c": {"type": "int", "lo": 1, "hi": 5},
+   "d": {"type": "choice", "values": [6, 7, 8, 9, 10]}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Lt([[c]], [[d]])"],
+  "stem": "Events \\( A \\) and \\( B \\) are independent, with \\( P(A) = \\frac{[[a]]}{[[b]]} \\) and \\( P(B) = \\frac{[[c]]}{[[d]]} \\). What is \\( P(A \\mid B) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[a]], [[b]])"},
+  "distractors": [
+   "Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) / Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) + Rational([[c]], [[d]])",
+   "1 - Rational([[a]], [[b]])",
+   "Rational([[a]], [[b]]) - Rational([[c]], [[d]])"
+  ],
+  "solution": "For independent events, conditioning on \\( B \\) does not change the probability of \\( A \\): \\( P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} = \\dfrac{P(A)P(B)}{P(B)} = P(A) = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( P(B) \\) instead of \\( P(A) \\), mixing up which event's probability survives the conditioning.",
+   "This is \\( P(A \\cap B) \\), the joint probability, not the conditional probability.",
+   "This divides \\( P(A) \\) by \\( P(B) \\) instead of recognizing the conditional simplifies to \\( P(A) \\) directly.",
+   "This adds the two probabilities instead of recognizing independence leaves \\( P(A \\mid B) = P(A) \\).",
+   "This is the complement of \\( P(A) \\), not \\( P(A) \\) itself.",
+   "This subtracts \\( P(B) \\) from \\( P(A) \\), which is not a valid probability computation here."
+  ]
+ },
+ {
+  "template_id": "conditional_probability_bare_fractions_v1",
+  "skill_id": "conditional_probability_p_a_mid_b",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 6},
+   "d": {"type": "choice", "values": [7, 8, 9, 10, 11]},
+   "e": {"type": "int", "lo": 1, "hi": 5},
+   "g": {"type": "choice", "values": [7, 8, 9, 10, 11, 12]}
+  },
+  "constraints": ["Lt([[c]], [[d]])", "Lt([[e]], [[g]])", "Le([[e]] * [[d]], [[g]] * [[c]])"],
+  "stem": "Suppose \\( P(B) = \\dfrac{[[c]]}{[[d]]} \\) and \\( P(A \\cap B) = \\dfrac{[[e]]}{[[g]]} \\). What is \\( P(A \\mid B) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[e]], [[g]]) / Rational([[c]], [[d]])"},
+  "distractors": [
+   "Rational([[c]], [[d]]) / Rational([[e]], [[g]])",
+   "Rational([[e]], [[g]]) * Rational([[c]], [[d]])",
+   "Rational([[c]], [[d]]) - Rational([[e]], [[g]])",
+   "Rational([[e]], [[g]])",
+   "Rational([[c]], [[d]])",
+   "Rational([[e]], [[g]]) + Rational([[c]], [[d]])"
+  ],
+  "solution": "By definition, \\( P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} = \\dfrac{[[e]]/[[g]]}{[[c]]/[[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio, computing \\( P(B \\mid A) \\)-style backwards.",
+   "This multiplies the two probabilities instead of dividing.",
+   "This subtracts the probabilities instead of dividing them.",
+   "This reports \\( P(A \\cap B) \\) itself, forgetting to divide by \\( P(B) \\).",
+   "This reports \\( P(B) \\) itself instead of the conditional probability.",
+   "This adds the two probabilities instead of dividing them."
+  ]
+ }
+]

@@ -54,10 +54,10 @@ const SKILL_TAG_SEARCH: &str = "tag:mf::skill::*";
 /// Per-topic accumulator built during the single pass over manifold cards.
 #[derive(Default)]
 struct TopicAgg {
-    /// skill id → FSRS stability (days) of that skill's cards that have a memory
-    /// state. Present (possibly empty) for every authored skill in the topic,
-    /// so its length is the topic's `total`, and its per-skill mean drives
-    /// `mastered` (D25).
+    /// skill id → FSRS stability (days) of that skill's cards that have a
+    /// memory state. Present (possibly empty) for every authored skill in
+    /// the topic, so its length is the topic's `total`, and its per-skill
+    /// mean drives `mastered` (D25).
     skill_stabilities: HashMap<String, Vec<f32>>,
     /// Sum and count of per-card `R` over cards with a memory state.
     recall_sum: f32,
@@ -304,7 +304,9 @@ fn gather_topic_aggs(col: &mut Collection) -> Result<HashMap<String, TopicAgg>> 
 
         let agg = aggs.entry(topic_id.to_string()).or_default();
         // Register the skill so it counts toward `total` even if never studied.
-        agg.skill_stabilities.entry(skill_id.to_string()).or_default();
+        agg.skill_stabilities
+            .entry(skill_id.to_string())
+            .or_default();
 
         // The card's teaching level is competence-driven (see `teaching_level`),
         // not a direct read of its Anki CardType.

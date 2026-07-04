@@ -1,0 +1,145 @@
+[
+{
+ "template_id": "invertible_matrix_theorem_v1_det_decides",
+ "skill_id": "invertible_matrix_theorem",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "i": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "By the Invertible Matrix Theorem, \\( A \\) is invertible if and only if \\( \\det(A) \\ne 0 \\). What is \\( \\det(A) \\) for \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{pmatrix} \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[g]]", "[[h]]", "[[i]]"]]},
+ "distractors": [
+  "[[a]]*([[e]]*[[i]]-[[f]]*[[h]]) + [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]])",
+  "[[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) - [[c]]*([[d]]*[[h]]-[[e]]*[[g]])",
+  "[[a]]*[[e]]*[[i]] + [[b]]*[[f]]*[[g]] + [[c]]*[[d]]*[[h]]",
+  "[[a]]+[[e]]+[[i]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Cofactor-expanding along row 1: \\( \\det(A) = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses all plus signs instead of the alternating \\( +,-,+ \\) cofactor pattern.",
+  "This uses all minus signs after the first term instead of the alternating pattern.",
+  "This is the 'rule of Sarrus' diagonal-product sum, but with the second triple of diagonals omitted.",
+  "This is the trace (sum of diagonal entries), not the determinant.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "invertible_matrix_theorem_v2_rank_decides",
+ "skill_id": "invertible_matrix_theorem",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "k1": {"type": "choice", "values": [-3, -2, 2, 3]},
+  "k2": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)", "Ne([[k1]], [[k2]])"],
+ "derived": {
+  "r31": "[[k1]]*[[a]] + [[k2]]*[[d]]",
+  "r32": "[[k1]]*[[b]] + [[k2]]*[[e]]",
+  "r33": "[[k1]]*[[c]] + [[k2]]*[[f]]"
+ },
+ "stem": "By the Invertible Matrix Theorem, an \\( n\\times n \\) matrix is invertible if and only if its rank equals \\( n \\). What is the rank of \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{pmatrix} \\), where row 3 is \\( [[k1]] \\) times row 1 plus \\( [[k2]] \\) times row 2?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "3",
+  "0",
+  "1",
+  "4",
+  "-2",
+  "5"
+ ],
+ "solution": "Since row 3 is a linear combination of rows 1 and 2, it contributes no new pivot; rows 1 and 2 remain independent since \\( ([[a]])([[e]])-([[b]])([[d]]) \\ne 0 \\). The rank is [[answer]], which is less than \\( n=3 \\), so \\( A \\) is NOT invertible.",
+ "distractor_rationales": [
+  "This treats all three rows as independent, ignoring the dependency in row 3.",
+  "A matrix with a nonzero row cannot have rank 0.",
+  "This under-counts the independent rows; both of the first two rows survive elimination.",
+  "The rank of a \\(3\\times3\\) matrix can never exceed 3.",
+  "A rank cannot be negative.",
+  "The rank of a \\(3\\times3\\) matrix can never exceed 3."
+ ]
+},
+{
+ "template_id": "invertible_matrix_theorem_v3_singular_parameter",
+ "skill_id": "invertible_matrix_theorem",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)", "Eq(Mod([[b]]*[[c]], [[a]]), 0)"],
+ "stem": "By the Invertible Matrix Theorem, \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[c]] & k \\end{pmatrix} \\) fails to be invertible exactly when \\( \\det(A) = 0 \\). For which value of \\( k \\) does this happen?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*k - [[b]]*[[c]] = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[c]]",
+  "-[[answer]]",
+  "[[b]]",
+  "[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A \\) is singular exactly when \\( \\det(A) = [[a]]k - ([[b]])([[c]]) = 0 \\), i.e. \\( k = \\dfrac{([[b]])([[c]])}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the product \\( bc \\); one must still divide by \\( a \\) to isolate \\( k \\).",
+  "This solves the determinant equation with the wrong sign.",
+  "This is the top-right entry, not the value of \\( k \\).",
+  "This is the bottom-left entry, not the value of \\( k \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "invertible_matrix_theorem_v4_eigenvalue_product",
+ "skill_id": "invertible_matrix_theorem",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[f]], 0)"],
+ "stem": "By the Invertible Matrix Theorem, \\( A \\) is invertible if and only if \\( 0 \\) is not an eigenvalue of \\( A \\), equivalently the product of its eigenvalues is nonzero. For the upper-triangular matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\), what is the product of its eigenvalues?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]], "which": "prod"},
+ "distractors": [
+  "[[a]]+[[d]]+[[f]]",
+  "-[[a]]*[[d]]*[[f]]",
+  "[[a]]*[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The eigenvalues of a triangular matrix are its diagonal entries \\( [[a]], [[d]], [[f]] \\), all nonzero, so their product is \\( ([[a]])([[d]])([[f]]) = [[answer]] \\) (which equals \\( \\det(A) \\), confirming \\( A \\) is invertible).",
+ "distractor_rationales": [
+  "This sums the diagonal entries (the trace) instead of multiplying them.",
+  "This has the right magnitude but the wrong sign.",
+  "This multiplies entries from the first row instead of the diagonal eigenvalues.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

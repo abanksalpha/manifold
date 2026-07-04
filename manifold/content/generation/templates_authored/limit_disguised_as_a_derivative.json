@@ -1,0 +1,154 @@
+[
+{
+ "template_id": "limit_is_derivative_v1",
+ "skill_id": "limit_disguised_as_a_derivative",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "n": {
+   "type": "int",
+   "lo": 2,
+   "hi": 4
+  },
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  }
+ },
+ "constraints": [],
+ "derived": {
+  "K": "[[c]]*[[a]]**[[n]]"
+ },
+ "stem": "Evaluate \\( \\lim_{x \\to [[a]]} \\dfrac{[[c]]x^{[[n]]} - [[K]]}{x - [[a]]} \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[c]]*x**[[n]]",
+  "var": "x",
+  "at": "[[a]]",
+  "order": 1
+ },
+ "distractors": [
+  "[[K]]",
+  "[[c]]*[[n]]*[[a]]**[[n]]",
+  "[[n]]*[[a]]**([[n]]-1)",
+  "[[c]]*([[n]]-1)*[[a]]**([[n]]-1)",
+  "[[answer]] + [[c]]",
+  "[[answer]] - [[c]]"
+ ],
+ "solution": "The limit is \\( f'([[a]]) \\) for \\( f(x)=[[c]]x^{[[n]]} \\): \\( [[c]]\\cdot[[n]]\\,[[a]]^{[[n]]-1} = [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "limit_is_derivative_trig_v2",
+ "skill_id": "limit_disguised_as_a_derivative",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 8},
+  "k": {"type": "choice", "values": [0, 3, 6, 9, 12]}
+ },
+ "constraints": [],
+ "derived": {
+  "a": "pi*[[k]]/6",
+  "S": "[[c]]*sin(pi*[[k]]/6)"
+ },
+ "stem": "Evaluate \\( \\lim_{x \\to [[a]]} \\dfrac{[[c]]\\sin(x) - [[S]]}{x - [[a]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[c]]*cos([[a]])"
+ },
+ "distractors": [
+  "[[S]]",
+  "-[[c]]*cos([[a]])",
+  "[[c]]*sin([[a]])",
+  "-[[c]]*sin([[a]])",
+  "[[c]]*cos([[a]]) + 1",
+  "[[c]]*cos([[a]]) - 1"
+ ],
+ "solution": "The limit is \\( f'([[a]]) \\) for \\( f(x)=[[c]]\\sin(x) \\): \\( f'(x)=[[c]]\\cos(x) \\), so the limit is \\( [[c]]\\cos([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the function value \\( f(a) \\) itself instead of the derivative.",
+  "This has the right magnitude but the wrong sign.",
+  "This uses \\( \\sin(a) \\) instead of \\( \\cos(a) \\), forgetting the derivative of sine changes function.",
+  "This uses \\( -\\sin(a) \\), confusing this with the derivative of cosine.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "limit_is_derivative_reciprocal_v3",
+ "skill_id": "limit_disguised_as_a_derivative",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 20},
+  "c": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\lim_{x \\to [[a]]} \\dfrac{\\frac{[[c]]}{x} - \\frac{[[c]]}{[[a]]}}{x - [[a]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-[[c]]/[[a]]**2"
+ },
+ "distractors": [
+  "[[c]]/[[a]]**2",
+  "[[c]]/[[a]]",
+  "-[[c]]/[[a]]",
+  "0",
+  "-[[c]]/[[a]]**2 + 1",
+  "-[[c]]/[[a]]**2 - 1"
+ ],
+ "solution": "The limit is \\( f'([[a]]) \\) for \\( f(x)=[[c]]/x \\): \\( f'(x)=-[[c]]/x^{2} \\), so the limit is \\( -[[c]]/[[a]]^{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that comes from differentiating \\( 1/x \\).",
+  "This forgets to square the denominator.",
+  "This has the wrong power on \\( a \\) but the correct sign.",
+  "This mistakenly assumes the two fractions cancel to give a limit of zero.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "limit_is_derivative_sqrt_v4",
+ "skill_id": "limit_disguised_as_a_derivative",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "s": {"type": "int", "lo": 1, "hi": 15},
+  "c": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "derived": {
+  "a": "[[s]]**2",
+  "S": "[[c]]*[[s]]"
+ },
+ "stem": "Evaluate \\( \\lim_{x \\to [[a]]} \\dfrac{[[c]]\\sqrt{x} - [[S]]}{x - [[a]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[c]]/(2*[[s]])"
+ },
+ "distractors": [
+  "2*[[s]]/[[c]]",
+  "[[c]]*[[s]]",
+  "[[c]]/[[s]]",
+  "[[c]]/(4*[[s]])",
+  "[[c]]/(2*[[s]]) + 1",
+  "[[c]]/(2*[[s]]) - 1"
+ ],
+ "solution": "The limit is \\( f'([[a]]) \\) for \\( f(x)=[[c]]\\sqrt{x} \\): \\( f'(x)=\\dfrac{[[c]]}{2\\sqrt{x}} \\), so the limit is \\( \\dfrac{[[c]]}{2\\sqrt{[[a]]}}=\\dfrac{[[c]]}{2\\cdot[[s]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the correct value.",
+  "This reports \\( \\sqrt{a} \\) itself instead of its reciprocal-times-a-half.",
+  "This forgets the factor of 2 in the denominator.",
+  "This uses \\( 4s \\) instead of \\( 2s \\) in the denominator.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

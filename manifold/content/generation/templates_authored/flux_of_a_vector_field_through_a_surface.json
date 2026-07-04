@@ -1,0 +1,102 @@
+[
+{
+ "template_id": "flux_tilted_plane_v1",
+ "skill_id": "flux_of_a_vector_field_through_a_surface",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "alpha": {"type": "int", "lo": -2, "hi": 2},
+  "beta": {"type": "int", "lo": -2, "hi": 2},
+  "W": {"type": "int", "lo": 1, "hi": 4},
+  "H": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[c]] - [[a]]*[[alpha]] - [[b]]*[[beta]], 0)"],
+ "stem": "Find the flux of the constant vector field \\( \\mathbf{F} = ( [[a]], [[b]], [[c]] ) \\) upward through the portion of the plane \\( z = ([[alpha]])x + ([[beta]])y \\) lying above the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\) (with upward-pointing normal).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[c]]) - ([[a]])*([[alpha]]) - ([[b]])*([[beta]])", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+ "distractors": [
+  "(([[a]])*([[alpha]]) + ([[b]])*([[beta]]) + ([[c]]))*([[W]])*([[H]])",
+  "([[c]]) - ([[a]])*([[alpha]]) - ([[b]])*([[beta]])",
+  "([[c]])*([[W]])*([[H]])",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For \\( z=g(x,y)=([[alpha]])x+([[beta]])y \\) with upward normal, the flux is \\( \\iint_D (-P g_x - Q g_y + R)\\,dA = \\iint_D \\big(([[c]]) - ([[a]])([[alpha]]) - ([[b]])([[beta]])\\big)\\,dA \\). Over the rectangle this equals \\( \\big(([[c]]) - ([[a]])([[alpha]]) - ([[b]])([[beta]])\\big)\\cdot[[W]]\\cdot[[H]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( +P g_x + Q g_y + R \\), getting every sign in the normal wrong.",
+  "This forgets to multiply by the base area \\( [[W]]\\cdot[[H]] \\).",
+  "This uses only the \\( z \\)-component \\( R \\), as if the surface were horizontal (ignoring the tilt).",
+  "This points the normal downward, flipping the sign of the flux.",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux."
+ ]
+},
+{
+ "template_id": "flux_flat_variable_field_v1",
+ "skill_id": "flux_of_a_vector_field_through_a_surface",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": 1, "hi": 3},
+  "W": {"type": "int", "lo": 1, "hi": 4},
+  "H": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Find the flux of the vector field \\( \\mathbf{F}(x,y,z) = ( 0,\\; 0,\\; ([[a]])xy ) \\) upward through the flat square \\( S \\) given by \\( z=[[k]] \\), \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\) (with upward-pointing normal).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[a]])*x*y", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+ "distractors": [
+  "([[a]])*([[W]])*([[H]])",
+  "([[a]])*([[k]])*([[W]])*([[H]])",
+  "-([[answer]])",
+  "([[answer]])*2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( S \\) is a flat horizontal plane with upward normal \\( \\mathbf{k} \\), the flux reduces to \\( \\iint_D R(x,y,z)\\,dA \\) where \\( R=([[a]])xy \\) (the value of \\( z=[[k]] \\) does not enter, since \\( R \\) does not depend on \\( z \\)). So the flux is \\( \\int_0^{[[W]]}\\int_0^{[[H]]} ([[a]])xy\\,dy\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats \\( R \\) as if it were the CONSTANT \\( a \\) instead of the variable field \\( axy \\), skipping the double integration.",
+  "This mistakenly multiplies by the height \\( k \\) of the plane, which never enters (\\( R \\) does not depend on \\( z \\)).",
+  "This has the sign of the flux reversed.",
+  "This double counts the flux.",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux."
+ ]
+},
+{
+ "template_id": "flux_tilted_plane_triangle_v1",
+ "skill_id": "flux_of_a_vector_field_through_a_surface",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 3},
+  "W": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[c]] - [[b]], 0)"],
+ "stem": "Find the flux of the constant vector field \\( \\mathbf{F} = ( [[a]], [[b]], [[c]] ) \\) upward through the portion of the horizontal plane \\( z = 0 \\) lying above the triangle \\( D \\) with vertices \\( (0,0) \\), \\( ([[W]],0) \\), and \\( (0, [[m]][[W]]) \\) (with upward-pointing normal \\( \\mathbf{k} \\)). The triangle's hypotenuse is the line \\( y = [[m]]([[W]]-x) \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[c]])", "vars": ["y", "x"], "bounds": [["0", "([[m]])*(([[W]])-x)"], ["0", "[[W]]"]]},
+ "distractors": [
+  "(([[a]]) + ([[b]]) + ([[c]]))*([[W]])**2*([[m]])/2",
+  "([[c]])*([[W]])**2*([[m]])",
+  "-([[answer]])",
+  "([[c]])*([[W]])*([[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( S \\) is a flat horizontal plane with upward normal \\( \\mathbf{k} \\), the flux is \\( \\iint_D R\\,dA = ([[c]])\\cdot\\text{Area}(D) \\). The triangle has area \\( \\int_0^{[[W]]}([[m]])([[W]]-x)\\,dx = \\tfrac{1}{2}([[m]])([[W]])^{2} \\), so the flux is \\( ([[c]])\\cdot\\tfrac{1}{2}([[m]])([[W]])^{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two unrelated horizontal components \\( a,b \\) to \\( c \\); only \\( R=c \\) contributes to flux through a horizontal plane.",
+  "This forgets the factor of \\( \\tfrac12 \\) in the triangle's area.",
+  "This has the sign of the flux reversed.",
+  "This uses the bounding rectangle's dimensions directly instead of the triangle's actual area.",
+  "This is off by one from the correct flux.",
+  "This is off by one from the correct flux."
+ ]
+}
+]

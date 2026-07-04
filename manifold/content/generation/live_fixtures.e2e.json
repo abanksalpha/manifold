@@ -1,0 +1,45 @@
+{
+    "note": "Deterministic test double for serve_live.py (D44). It replaces ONLY the model call; verify.py still runs in the loop, so every served item is really verified and the no-fabrication invariant holds. Wired into the isolated e2e runner via MANIFOLD_LIVE_FIXTURES. Display fields (stem/solution/distractor_rationales) use delimited-LaTeX per Task 2 (so they pass serve_live's display-LaTeX gate and render through MathText); the CHOICES stay sympy-ASCII because verify.py parses them. 'default' is a verifiable draft returned for any skill (exercises serve->verify->grade); 'by_skill' can force an unverifiable draft so the abstain path (verify-in-the-loop, no fabrication) is exercised too.",
+    "default": {
+        "stem": "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers shown equals \\(5\\)?",
+        "correct_choice": "1/9",
+        "distractors": ["1/12", "1/6", "2/9", "5/36"],
+        "distractor_rationales": [
+            "\\(\\frac{1}{12} = \\frac{3}{36}\\) counts only three favorable ordered pairs, dropping one of the four that sum to \\(5\\).",
+            "\\(\\frac{1}{6} = \\frac{6}{36}\\) is the probability the sum is \\(7\\), the single most likely total, not \\(5\\).",
+            "\\(\\frac{2}{9} = \\frac{8}{36}\\) double-counts the four ordered pairs as if there were eight.",
+            "\\(\\frac{5}{36}\\) uses five favorable outcomes, the count for a sum of \\(6\\), not \\(5\\)."
+        ],
+        "solution": "There are \\(6 \\cdot 6 = 36\\) equally likely ordered outcomes. Exactly four of them sum to \\(5\\): \\((1,4), (2,3), (3,2), (4,1)\\). So \\(P(\\text{sum} = 5) = \\frac{4}{36} = \\frac{1}{9}\\).",
+        "check": {
+            "type": "prob_exact",
+            "expr": "Rational(1, 9)",
+            "brute": {
+                "vars": { "a": [1, 6], "b": [1, 6] },
+                "event": "Eq(a + b, 5)"
+            }
+        }
+    },
+    "by_skill": {
+        "mf_e2e_force_abstain": {
+            "stem": "Two fair six-sided dice are rolled. What is the probability that the sum equals \\(5\\)?",
+            "correct_choice": "1/10",
+            "distractors": ["1/12", "1/6", "2/9", "5/36"],
+            "distractor_rationales": [
+                "wrong on purpose: this fixture makes the claimed answer 1/10, which the verifier recomputes as false.",
+                "wrong on purpose.",
+                "wrong on purpose.",
+                "wrong on purpose."
+            ],
+            "solution": "This fixture is deliberately unverifiable: the true probability is \\(\\frac{1}{9}\\), but no listed choice equals \\(\\frac{1}{9}\\), so verify.py rejects every attempt and serve_live abstains (no fabrication).",
+            "check": {
+                "type": "prob_exact",
+                "expr": "Rational(1, 9)",
+                "brute": {
+                    "vars": { "a": [1, 6], "b": [1, 6] },
+                    "event": "Eq(a + b, 5)"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,167 @@
+[
+{
+ "template_id": "gaussian_elimination_v1_2var",
+ "skill_id": "gaussian_elimination",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "q": {"type": "int", "lo": -6, "hi": 6},
+  "a1": {"type": "int", "lo": 1, "hi": 5},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "a2": {"type": "int", "lo": 1, "hi": 5},
+  "b2": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)"],
+ "derived": {
+  "c1": "[[a1]]*[[p]] + [[b1]]*[[q]]",
+  "c2": "[[a2]]*[[p]] + [[b2]]*[[q]]"
+ },
+ "stem": "Use Gaussian elimination on \\( \\begin{pmatrix} [[a1]] & [[b1]] & | & [[c1]] \\\\ [[a2]] & [[b2]] & | & [[c2]] \\end{pmatrix} \\) to solve \\( ([[a1]])x + ([[b1]])y = [[c1]] \\), \\( ([[a2]])x + ([[b2]])y = [[c2]] \\). What is \\( x \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y = [[c1]]", "[[a2]]*x + [[b2]]*y = [[c2]]"], "vars": ["x", "y"], "want": "x"},
+ "distractors": [
+  "[[q]]",
+  "-[[p]]",
+  "[[p]] + [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Eliminating \\( y \\) (multiply row 1 by \\( [[b2]] \\), row 2 by \\( [[b1]] \\), and subtract) isolates \\( x = [[p]] \\) (with \\( y = [[q]] \\)), so \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value of \\( y \\), not \\( x \\).",
+  "This has the correct magnitude but the wrong sign for \\( x \\).",
+  "This adds the two unknowns instead of reporting \\( x \\) alone.",
+  "This is off by one from the correct value of \\( x \\).",
+  "This is off by one from the correct value of \\( x \\).",
+  "This is off by two from the correct value of \\( x \\)."
+ ]
+},
+{
+ "template_id": "gaussian_elimination_v2_3var",
+ "skill_id": "gaussian_elimination",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "a1": {"type": "choice", "values": [1, 2, 3]},
+  "b1": {"type": "int", "lo": -3, "hi": 3},
+  "c1": {"type": "int", "lo": -3, "hi": 3},
+  "a2": {"type": "int", "lo": -3, "hi": 3},
+  "b2": {"type": "choice", "values": [1, 2, 3]},
+  "c2": {"type": "int", "lo": -3, "hi": 3},
+  "a3": {"type": "int", "lo": -3, "hi": 3},
+  "b3": {"type": "int", "lo": -3, "hi": 3},
+  "c3": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [
+  "Ne([[a1]]*([[b2]]*[[c3]] - [[b3]]*[[c2]]) - [[b1]]*([[a2]]*[[c3]] - [[a3]]*[[c2]]) + [[c1]]*([[a2]]*[[b3]] - [[a3]]*[[b2]]), 0)"
+ ],
+ "derived": {
+  "d1": "[[a1]]*[[p]] + [[b1]]*[[q]] + [[c1]]*[[r]]",
+  "d2": "[[a2]]*[[p]] + [[b2]]*[[q]] + [[c2]]*[[r]]",
+  "d3": "[[a3]]*[[p]] + [[b3]]*[[q]] + [[c3]]*[[r]]"
+ },
+ "stem": "Row-reduce the augmented matrix for \\( ([[a1]])x + ([[b1]])y + ([[c1]])z = [[d1]] \\), \\( ([[a2]])x + ([[b2]])y + ([[c2]])z = [[d2]] \\), \\( ([[a3]])x + ([[b3]])y + ([[c3]])z = [[d3]] \\). What is \\( z \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[a1]]*x + [[b1]]*y + [[c1]]*z = [[d1]]", "[[a2]]*x + [[b2]]*y + [[c2]]*z = [[d2]]", "[[a3]]*x + [[b3]]*y + [[c3]]*z = [[d3]]"],
+  "vars": ["x", "y", "z"], "want": "z"
+ },
+ "distractors": [
+  "[[p]]",
+  "[[q]]",
+  "[[p]] + [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Elimination reduces the system to a unique solution \\( x=[[p]] \\), \\( y=[[q]] \\), \\( z=[[r]] \\) (the coefficient determinant is nonzero), so \\( z = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value of \\( x \\), not \\( z \\).",
+  "This is the value of \\( y \\), not \\( z \\).",
+  "This mixes up two of the other unknowns instead of reporting \\( z \\).",
+  "This is off by one from the correct value of \\( z \\).",
+  "This is off by one from the correct value of \\( z \\).",
+  "This is off by two from the correct value of \\( z \\)."
+ ]
+},
+{
+ "template_id": "gaussian_elimination_v3_rank_coefficient_matrix",
+ "skill_id": "gaussian_elimination",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)"],
+ "derived": {
+  "r31": "[[a]] + [[d]]",
+  "r32": "[[b]] + [[e]]",
+  "r33": "[[c]] + [[f]] + [[g]]"
+ },
+ "stem": "After forward elimination on the coefficient matrix \\( \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{pmatrix} \\) of a \\( 3\\times3 \\) linear system, how many pivots (i.e. what is the rank) does it produce?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "3",
+  "1",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Row 3 is the sum of rows 1 and 2, so it is eliminated to an all-zero row with no new pivot, while rows 1 and 2 remain independent (their leading \\( 2\\times2 \\) minor \\( ([[a]])([[e]])-([[b]])([[d]]) \\ne 0 \\)). Elimination therefore produces [[answer]] pivots.",
+ "distractor_rationales": [
+  "This counts all three rows as independent, missing that row 3 reduces to zero.",
+  "This under-counts the independent rows; TWO rows survive elimination, not one.",
+  "A matrix with a nonzero row cannot reduce to zero pivots.",
+  "This over-counts the number of pivots produced by elimination.",
+  "This under-counts the number of pivots produced by elimination."
+ ]
+},
+{
+ "template_id": "gaussian_elimination_v4_word_problem",
+ "skill_id": "gaussian_elimination",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 3, "hi": 15},
+  "q": {"type": "int", "lo": 2, "hi": 12},
+  "a1": {"type": "int", "lo": 1, "hi": 6},
+  "b1": {"type": "int", "lo": 1, "hi": 6},
+  "a2": {"type": "int", "lo": 1, "hi": 6},
+  "b2": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)", "Ne([[p]], [[q]])"],
+ "derived": {
+  "c1": "[[a1]]*[[p]] + [[b1]]*[[q]]",
+  "c2": "[[a2]]*[[p]] + [[b2]]*[[q]]"
+ },
+ "stem": "A vendor sells burgers for \\( p \\) dollars and fries for \\( q \\) dollars. One order of \\( [[a1]] \\) burgers and \\( [[b1]] \\) fries costs \\( [[c1]] \\) dollars; another order of \\( [[a2]] \\) burgers and \\( [[b2]] \\) fries costs \\( [[c2]] \\) dollars. Setting up and eliminating one variable from this linear system, what is the price \\( q \\) of an order of fries, in dollars?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*p + [[b1]]*q = [[c1]]", "[[a2]]*p + [[b2]]*q = [[c2]]"], "vars": ["p", "q"], "want": "q"},
+ "distractors": [
+  "[[p]]",
+  "([[c1]] + [[c2]])/([[b1]] + [[b2]])",
+  "[[c1]]/[[b1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Eliminating \\( p \\) from the two order equations and solving gives \\( p=[[p]] \\) and \\( q=[[q]] \\), so the price of fries is \\( q = [[answer]] \\) dollars.",
+ "distractor_rationales": [
+  "This is the price of a burger, not fries.",
+  "This lumps both orders' totals together instead of solving the system properly.",
+  "This ignores the burgers entirely when isolating the fry price from just one order.",
+  "This is off by one from the correct price.",
+  "This is off by one from the correct price.",
+  "This is off by two from the correct price."
+ ]
+}
+]

@@ -1,0 +1,158 @@
+[
+{
+ "template_id": "u_substitution_polynomial_chain_v1",
+ "skill_id": "u_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "Using \\( u = x^{2}+[[k]] \\) (so \\( du = 2x\\,dx \\)), evaluate \\( \\displaystyle\\int_{0}^{[[a]]} [[c]]x\\left(x^{2}+[[k]]\\right)^{[[n]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x*(x**2+[[k]])**[[n]]", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*(([[a]]**2+[[k]])**([[n]]+1) - [[k]]**([[n]]+1))/([[n]]+1)",
+  "[[answer]]*2",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=x^{2}+[[k]] \\), \\( du=2x\\,dx \\), the limits change from \\( x=0,\\,[[a]] \\) to \\( u=[[k]],\\,[[a]]^{2}+[[k]] \\). The integral becomes \\( \\dfrac{[[c]]}{2}\\displaystyle\\int_{[[k]]}^{[[a]]^{2}+[[k]]} u^{[[n]]}\\,du = \\dfrac{[[c]]}{2}\\cdot\\dfrac{u^{[[n]]+1}}{[[n]]+1}\\bigg|_{[[k]]}^{[[a]]^{2}+[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by 2 to convert \\( x\\,dx \\) into \\( \\tfrac12 du \\).",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "u_substitution_exponential_log_result_v2",
+ "skill_id": "u_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Using \\( u = e^{x}+[[k]] \\) (so \\( du = e^{x}\\,dx \\)), evaluate \\( \\displaystyle\\int_{0}^{\\ln [[b]]} \\frac{[[c]]e^{x}}{e^{x}+[[k]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*exp(x)/(exp(x)+[[k]])", "var": "x", "bounds": ["0", "log([[b]])"]},
+ "distractors": [
+  "[[c]]*log([[b]])",
+  "[[c]]*log([[b]]+[[k]])",
+  "[[c]]*log([[k]])",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=e^{x}+[[k]] \\), \\( du=e^{x}\\,dx \\) exactly matches the numerator, and the limits change from \\( x=0,\\,\\ln [[b]] \\) to \\( u=1+[[k]],\\,[[b]]+[[k]] \\). The integral becomes \\( [[c]]\\displaystyle\\int_{1+[[k]]}^{[[b]]+[[k]]} \\frac{du}{u} = [[c]]\\ln\\!\\left(\\dfrac{[[b]]+[[k]]}{1+[[k]]}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to shift the limits by \\( [[k]] \\), using \\( u=1 \\) and \\( u=[[b]] \\) instead of \\( u=1+[[k]] \\) and \\( u=[[b]]+[[k]] \\).",
+  "This keeps only the upper shifted limit and forgets to divide by the lower one inside the log.",
+  "This keeps only the lower shifted limit's value rather than the ratio of the two.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "u_substitution_trig_cosine_power_v3",
+ "skill_id": "u_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Using \\( u = \\cos x \\) (so \\( du = -\\sin x\\,dx \\)), evaluate \\( \\displaystyle\\int_{0}^{\\pi/2} [[c]]\\cos^{[[n]]}x\\sin x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*cos(x)**[[n]]*sin(x)", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[c]]/[[n]]",
+  "-[[c]]/([[n]]+1)",
+  "[[c]]*[[n]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\cos x \\), \\( -du=\\sin x\\,dx \\), and the limits change from \\( x=0,\\,\\pi/2 \\) to \\( u=1,\\,0 \\). The integral becomes \\( -[[c]]\\displaystyle\\int_{1}^{0} u^{[[n]]}\\,du = [[c]]\\displaystyle\\int_{0}^{1} u^{[[n]]}\\,du = \\dfrac{[[c]]}{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( n \\) instead of \\( n+1 \\) in the denominator of the power rule.",
+  "This picks up the wrong sign from mishandling the flipped limits after substitution.",
+  "This multiplies instead of dividing by \\( n+1 \\), inverting the power rule.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "u_substitution_trig_tangent_secant_v4",
+ "skill_id": "u_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Using \\( u = \\tan x \\) (so \\( du = \\sec^{2}x\\,dx \\)), evaluate \\( \\displaystyle\\int_{0}^{\\pi/4} [[c]]\\tan^{[[n]]}x\\sec^{2}x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*tan(x)**[[n]]*sec(x)**2", "var": "x", "bounds": ["0", "pi/4"]},
+ "distractors": [
+  "[[c]]*[[n]]",
+  "[[c]]*([[n]]+1)",
+  "[[c]]/[[n]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\tan x \\), \\( du=\\sec^{2}x\\,dx \\), and the limits change from \\( x=0,\\,\\pi/4 \\) to \\( u=0,\\,1 \\). The integral becomes \\( [[c]]\\displaystyle\\int_{0}^{1} u^{[[n]]}\\,du = \\dfrac{[[c]]}{[[n]]+1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports \\( n \\) itself rather than the power-rule result \\( 1/(n+1) \\) scaled by \\( c \\).",
+  "This uses \\( n+1 \\) as a multiplier rather than the correct divisor.",
+  "This uses \\( n \\) instead of \\( n+1 \\) in the denominator of the power rule.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "u_substitution_linear_inside_arctan_v5",
+ "skill_id": "u_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "a": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Using \\( u = [[k]]x \\) (so \\( du = [[k]]\\,dx \\)), evaluate \\( \\displaystyle\\int_{0}^{[[a]]} \\frac{[[c]]}{1+\\left([[k]]x\\right)^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(1+([[k]]*x)**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*atan([[k]]*[[a]])",
+  "[[c]]*[[k]]*atan([[k]]*[[a]])",
+  "[[c]]*atan([[a]])/[[k]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=[[k]]x \\), \\( dx=\\dfrac{du}{[[k]]} \\), and the limits change from \\( x=0,\\,[[a]] \\) to \\( u=0,\\,[[k]][[a]] \\). The integral becomes \\( \\dfrac{[[c]]}{[[k]]}\\displaystyle\\int_{0}^{[[k]][[a]]} \\frac{du}{1+u^{2}} = \\dfrac{[[c]]}{[[k]]}\\arctan([[k]][[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( [[k]] \\) after substituting \\( dx=du/[[k]] \\).",
+  "This multiplies by \\( [[k]] \\) instead of dividing, the opposite mistake.",
+  "This uses \\( \\arctan([[a]]) \\) instead of \\( \\arctan([[k]][[a]]) \\), forgetting the substitution changes the arctan's argument too.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+}
+]

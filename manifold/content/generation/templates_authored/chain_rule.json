@@ -1,0 +1,189 @@
+[
+{
+ "template_id": "chain_rule_power_linear_inner_v1",
+ "skill_id": "chain_rule",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[a]]*[[x0]] + [[b]], 0)"],
+ "stem": "Let \\( h(x) = ([[a]]x + ([[b]]))^{[[n]]} \\). Using the chain rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])**[[n]]", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[n]]*([[a]]*[[x0]]+[[b]])**([[n]]-1)",
+  "[[n]]*[[a]]*([[a]]*[[x0]]+[[b]])**[[n]]",
+  "([[a]]*[[x0]]+[[b]])**[[n]]",
+  "[[n]]*([[a]]*[[x0]]+[[b]])**[[n]]",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[n]]"
+ ],
+ "solution": "Writing \\( h(x)=u^{[[n]]} \\) with \\( u=[[a]]x+([[b]]) \\), the chain rule gives \\( h'(x)=[[n]]u^{[[n]]-1}\\cdot u' = [[n]]([[a]]x+([[b]]))^{[[n]]-1}\\cdot [[a]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the chain-rule factor \\( u'=[[a]] \\) from the outer power rule.",
+  "This multiplies by \\( [[a]] \\) but forgets to lower the exponent by one.",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This lowers neither the exponent nor multiplies by \\( u' \\), just restates \\( n\\cdot u^{n} \\).",
+  "This is off by \\( [[n]] \\) from the correct value.",
+  "This is off by \\( [[n]] \\) from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_power_quadratic_inner_v2",
+ "skill_id": "chain_rule",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne([[x0]], 0)", "Ne([[a]]*[[x0]]**2 + [[b]], 0)"],
+ "stem": "Let \\( h(x) = ([[a]]x^{2} + ([[b]]))^{[[n]]} \\). Using the chain rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "([[a]]*x**2+[[b]])**[[n]]", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[n]]*([[a]]*[[x0]]**2+[[b]])**([[n]]-1)",
+  "[[n]]*([[a]]*[[x0]]**2+[[b]])**([[n]]-1)*[[a]]*[[x0]]",
+  "2*[[a]]*[[x0]]",
+  "[[n]]*([[a]]*[[x0]]**2+[[b]])**([[n]]-1)*(2*[[a]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Writing \\( h(x)=u^{[[n]]} \\) with \\( u=[[a]]x^{2}+([[b]]) \\), the chain rule gives \\( h'(x)=[[n]]u^{[[n]]-1}\\cdot u' = [[n]]([[a]]x^{2}+([[b]]))^{[[n]]-1}\\cdot 2[[a]]x \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the entire inner-derivative factor \\( u'=2[[a]]x \\).",
+  "This uses \\( u'=[[a]]x \\), forgetting the factor of 2 from differentiating \\( x^{2} \\).",
+  "This reports only the inner derivative \\( u'=2ax \\), forgetting the outer power-rule factor entirely.",
+  "This uses \\( u'=2[[a]] \\), forgetting to multiply by \\( x \\).",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_radical_v3",
+ "skill_id": "chain_rule",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"b": "[[k]]**2 - [[a]]*[[x0]]"},
+ "stem": "Let \\( h(x) = \\sqrt{[[a]]x + ([[b]])} \\). Using the chain rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "sqrt([[a]]*x+[[b]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[a]]/sqrt([[a]]*[[x0]]+[[b]])",
+  "sqrt([[a]])",
+  "sqrt([[a]]*[[x0]]+[[b]])",
+  "1/(2*sqrt([[a]]*[[x0]]+[[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Writing \\( h(x)=\\sqrt{u} \\) with \\( u=[[a]]x+([[b]]) \\), the chain rule gives \\( h'(x)=\\dfrac{u'}{2\\sqrt{u}}=\\dfrac{[[a]]}{2\\sqrt{[[a]]x+([[b]])}} \\). Since \\( [[a]]\\cdot[[x0]]+([[b]])=[[k]]^{2} \\), evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 in the denominator from the chain rule.",
+  "This ignores the inner expression entirely, using only the coefficient \\( a \\).",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This drops the chain-rule factor of \\( [[a]] \\) in the numerator.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_exponential_shift_v4",
+ "skill_id": "chain_rule",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( h(x) = e^{[[a]](x - ([[p]]))} \\). Using the chain rule, what is \\( h'([[p]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "exp([[a]]*(x-[[p]]))", "var": "x", "at": "[[p]]", "order": 1},
+ "distractors": [
+  "1",
+  "-[[a]]",
+  "exp([[a]])",
+  "[[a]]*exp([[a]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Writing \\( h(x)=e^{u} \\) with \\( u=[[a]](x-([[p]])) \\), the chain rule gives \\( h'(x)=[[a]]e^{u} \\). At \\( x=[[p]] \\), \\( u=0 \\) so \\( e^{u}=1 \\), giving \\( h'([[p]]) = [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the chain-rule factor of \\( [[a]] \\) entirely, reporting \\( e^{0} \\) alone.",
+  "This has the wrong sign on the chain-rule factor.",
+  "This evaluates \\( e^{[[a]]} \\), mistakenly treating the exponent as if \\( x-p=1 \\).",
+  "This multiplies by an extra, unneeded factor of \\( e^{[[a]]} \\).",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_logarithm_v5",
+ "skill_id": "chain_rule",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Gt([[a]]*[[x0]]+[[b]], 0)"],
+ "stem": "Let \\( h(x) = \\ln([[a]]x + ([[b]])) \\). Using the chain rule, what is \\( h'([[x0]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "log([[a]]*x+[[b]])", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "Rational(1,[[a]])",
+  "[[a]]",
+  "log([[a]]*[[x0]]+[[b]])",
+  "Rational([[a]],[[a]]*[[x0]]+[[b]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Writing \\( h(x)=\\ln(u) \\) with \\( u=[[a]]x+([[b]]) \\), the chain rule gives \\( h'(x)=\\dfrac{u'}{u}=\\dfrac{[[a]]}{[[a]]x+([[b]])} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the inner coefficient as if it were \\( u=x \\), giving \\( 1/a \\) instead of \\( a/u \\).",
+  "This reports only the chain-rule factor \\( u'=[[a]] \\), forgetting to divide by \\( u \\).",
+  "This evaluates \\( h([[x0]]) \\), the function value, not its derivative.",
+  "This divides by \\( u+1 \\) instead of \\( u \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "chain_rule_trig_shift_v6",
+ "skill_id": "chain_rule",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( h(x) = \\sin\\!\\big([[a]](x - ([[p]]))\\big) \\). Using the chain rule, what is \\( h'([[p]]) \\)?",
+ "answer_spec": {"op": "diff", "expr": "sin([[a]]*(x-[[p]]))", "var": "x", "at": "[[p]]", "order": 1},
+ "distractors": [
+  "0",
+  "-[[a]]",
+  "cos([[a]])",
+  "[[a]]*cos([[a]])",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Writing \\( h(x)=\\sin(u) \\) with \\( u=[[a]](x-([[p]])) \\), the chain rule gives \\( h'(x)=[[a]]\\cos(u) \\). At \\( x=[[p]] \\), \\( u=0 \\) so \\( \\cos(u)=1 \\), giving \\( h'([[p]]) = [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly evaluates \\( \\sin(0) \\) instead of the derivative \\( [[a]]\\cos(0) \\).",
+  "This has the wrong sign on the chain-rule factor.",
+  "This evaluates \\( \\cos([[a]]) \\), mistakenly treating the argument as if \\( x-p=1 \\).",
+  "This multiplies by an extra, unneeded factor of \\( \\cos([[a]]) \\).",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

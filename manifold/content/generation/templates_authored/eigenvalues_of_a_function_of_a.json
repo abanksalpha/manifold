@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "eigenvalues_of_a_function_of_a_v1",
+ "skill_id": "eigenvalues_of_a_function_of_a",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "lam": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "int", "lo": -4, "hi": 4},
+  "m": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Suppose \\( \\lambda = [[lam]] \\) is an eigenvalue of a matrix \\( A \\). What is the corresponding eigenvalue of the matrix \\( A^{2} + ([[k]])A + ([[m]])I \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[lam]]**2 + [[k]]*[[lam]] + [[m]]"},
+ "distractors": [
+  "[[lam]]**2 + [[m]]",
+  "[[lam]]**2 + [[k]]*[[lam]]",
+  "[[lam]]**2 - [[k]]*[[lam]] + [[m]]",
+  "2*[[lam]] + [[k]]",
+  "[[lam]] + [[k]]*[[lam]] + [[m]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "If \\( \\lambda \\) is an eigenvalue of \\( A \\), then \\( p(\\lambda) \\) is the corresponding eigenvalue of \\( p(A) \\). Here \\( p(\\lambda) = \\lambda^{2} + ([[k]])\\lambda + ([[m]]) = ([[lam]])^{2} + ([[k]])([[lam]]) + ([[m]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the linear term \\( k\\lambda \\).",
+  "This drops the constant term \\( m \\).",
+  "This uses the wrong sign on the linear term.",
+  "This differentiates \\( p \\) instead of evaluating it at \\( \\lambda \\).",
+  "This replaces \\( \\lambda^{2} \\) with \\( \\lambda \\), forgetting to square.",
+  "This is one more than the correct eigenvalue.",
+  "This is two less than the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalue_of_inverse_v1",
+ "skill_id": "eigenvalues_of_a_function_of_a",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Ne(gcd([[p]], [[q]]), [[q]])", "Ne([[p]], [[q]])"],
+ "derived": {"lam": "[[p]]/[[q]]"},
+ "stem": "Suppose \\( \\lambda = \\dfrac{[[p]]}{[[q]]} \\) is an eigenvalue of an invertible matrix \\( A \\). What is the corresponding eigenvalue of \\( A^{-1} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1/([[lam]])"},
+ "distractors": [
+  "-[[lam]]",
+  "[[lam]]",
+  "[[lam]]**2",
+  "-1/([[lam]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "If \\( \\lambda \\) is an eigenvalue of an invertible \\( A \\), the corresponding eigenvalue of \\( A^{-1} \\) is \\( \\dfrac{1}{\\lambda} = \\dfrac{[[q]]}{[[p]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This negates \\( \\lambda \\) instead of taking its reciprocal.",
+  "This returns \\( \\lambda \\) itself, the eigenvalue of \\( A \\), not of \\( A^{-1} \\).",
+  "This squares \\( \\lambda \\) instead of inverting it.",
+  "This takes the reciprocal but with the wrong sign.",
+  "This is one more than the correct eigenvalue.",
+  "This is one less than the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalue_of_resolvent_v1",
+ "skill_id": "eigenvalues_of_a_function_of_a",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "lam": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[lam]], [[c]])"],
+ "stem": "Suppose \\( \\lambda = [[lam]] \\) is an eigenvalue of a matrix \\( A \\), and \\( A - ([[c]])I \\) is invertible. What is the corresponding eigenvalue of \\( \\left(A - ([[c]])I\\right)^{-1} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1/([[lam]] - [[c]])"},
+ "distractors": [
+  "[[lam]] - [[c]]",
+  "1/([[c]] - [[lam]])",
+  "1/[[lam]]",
+  "[[lam]] + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A - ([[c]])I \\) has eigenvalue \\( \\lambda - [[c]] = [[lam]] - [[c]] \\), so its inverse has eigenvalue \\( \\dfrac{1}{[[lam]] - [[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives the eigenvalue of \\( A - cI \\) itself, forgetting to take the reciprocal for the inverse.",
+  "This has the sign of the shift reversed inside the reciprocal.",
+  "This uses \\( \\lambda \\) alone, ignoring the shift by \\( c \\).",
+  "This adds \\( c \\) instead of subtracting it before inverting.",
+  "This is one more than the correct eigenvalue.",
+  "This is one less than the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalue_of_a_power_v1",
+ "skill_id": "eigenvalues_of_a_function_of_a",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "lam": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": ["Ne([[lam]], 0)"],
+ "stem": "Suppose \\( \\lambda = [[lam]] \\) is an eigenvalue of a matrix \\( A \\). What is the corresponding eigenvalue of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[lam]]**[[n]]"},
+ "distractors": [
+  "[[n]]*[[lam]]",
+  "[[lam]]",
+  "[[lam]]**([[n]]-1)",
+  "[[lam]]**([[n]]+1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "If \\( \\lambda \\) is an eigenvalue of \\( A \\), the corresponding eigenvalue of \\( A^{n} \\) is \\( \\lambda^{n} \\). Here that is \\( ([[lam]])^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( \\lambda \\) by \\( n \\) instead of raising it to the \\( n \\)-th power.",
+  "This returns \\( \\lambda \\) itself, the eigenvalue of \\( A \\), not of \\( A^{n} \\).",
+  "This is off by one in the exponent, using \\( n-1 \\) instead of \\( n \\).",
+  "This is off by one in the exponent, using \\( n+1 \\) instead of \\( n \\).",
+  "This is one more than the correct eigenvalue.",
+  "This is one less than the correct eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalue_of_adjugate_v1",
+ "skill_id": "eigenvalues_of_a_function_of_a",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6},
+  "l3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])", "Ne([[l1]], [[l3]])", "Ne([[l2]], [[l3]])", "Ne([[l1]], 0)", "Ne([[l2]], 0)", "Ne([[l3]], 0)"],
+ "stem": "A \\( 3 \\times 3 \\) invertible matrix \\( A \\) has eigenvalues \\( [[l1]] \\), \\( [[l2]] \\), and \\( [[l3]] \\). Since \\( \\operatorname{adj}(A) = \\det(A)\\,A^{-1} \\), the eigenvalue of the adjugate \\( \\operatorname{adj}(A) \\) corresponding to the eigenvalue \\( [[l1]] \\) of \\( A \\) is the product of the OTHER two eigenvalues. What is that eigenvalue of \\( \\operatorname{adj}(A) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[l2]]*[[l3]]"},
+ "distractors": [
+  "[[l1]]*[[l2]]*[[l3]]",
+  "[[l1]]*[[l2]]",
+  "[[l1]]*[[l3]]",
+  "[[l2]] + [[l3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( \\operatorname{adj}(A) = \\det(A) A^{-1} \\), the eigenvalue of \\( \\operatorname{adj}(A) \\) paired with \\( [[l1]] \\) is \\( \\det(A)/[[l1]] = \\dfrac{[[l1]][[l2]][[l3]]}{[[l1]]} = [[l2]]\\cdot[[l3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\det(A) \\) itself, not the eigenvalue of the adjugate.",
+  "This multiplies \\( [[l1]] \\) with only one of the other eigenvalues instead of using the two OTHER eigenvalues.",
+  "This multiplies \\( [[l1]] \\) with only one of the other eigenvalues instead of using the two OTHER eigenvalues.",
+  "This adds the two other eigenvalues instead of multiplying them.",
+  "This is one more than the correct eigenvalue.",
+  "This is one less than the correct eigenvalue."
+ ]
+}
+]

@@ -1,0 +1,153 @@
+[
+ {
+  "template_id": "variance_of_sum_v1",
+  "skill_id": "variance_of_a_sum_of_independent_variables",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "sx": {"type": "int", "lo": 1, "hi": 7},
+   "sy": {"type": "int", "lo": 1, "hi": 7},
+   "sz": {"type": "int", "lo": 1, "hi": 7}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\), \\( Y \\), and \\( Z \\) be independent random variables with standard deviations \\( [[sx]] \\), \\( [[sy]] \\), and \\( [[sz]] \\), respectively. What is \\( \\mathrm{Var}(X + Y + Z) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[sx]]**2 + [[sy]]**2 + [[sz]]**2"},
+  "distractors": [
+   "([[sx]] + [[sy]] + [[sz]])**2",
+   "[[sx]] + [[sy]] + [[sz]]",
+   "[[sx]]**2 + [[sy]]**2 - [[sz]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "For independent variables the variances add, and each variance is the square of the standard deviation: \\( \\mathrm{Var}(X+Y+Z) = [[sx]]^2 + [[sy]]^2 + [[sz]]^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the standard deviations first and then squares; standard deviations of independent variables do not add that way.",
+   "This adds the standard deviations instead of the variances.",
+   "This subtracts one variance; for independent variables all variances add, even for a difference of variables.",
+   "This is off by one from the correct variance."
+  ]
+ },
+ {
+  "template_id": "variance_of_difference_v1",
+  "skill_id": "variance_of_a_sum_of_independent_variables",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "sx": {"type": "int", "lo": 1, "hi": 10},
+   "sy": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": ["Ne([[sx]], [[sy]])"],
+  "stem": "Let \\( X \\) and \\( Y \\) be independent random variables with standard deviations \\( [[sx]] \\) and \\( [[sy]] \\), respectively. What is \\( \\mathrm{Var}(X - Y) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[sx]]**2 + [[sy]]**2"},
+  "distractors": [
+   "([[sx]] - [[sy]])**2",
+   "[[sx]]**2 - [[sy]]**2",
+   "[[sx]] - [[sy]]",
+   "[[sx]]**2 - [[sy]]**2 + 2*[[sx]]*[[sy]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For independent variables, variance is always ADDITIVE — even for a difference: \\( \\mathrm{Var}(X-Y) = [[sx]]^2 + [[sy]]^2 = [[answer]] \\); the minus sign inside \\( X-Y \\) does not flip the sign between the two variances.",
+  "distractor_rationales": [
+   "This subtracts the standard deviations first and then squares, mimicking how the values themselves are subtracted.",
+   "This subtracts the variances, assuming a difference of variables makes variance subtract as well; variance is never negative-additive here.",
+   "This subtracts the standard deviations directly without squaring anything.",
+   "This expands \\( (X-Y)^2 \\)-style but keeps a spurious cross term instead of the true sum of variances.",
+   "This is off by one from the correct variance."
+  ]
+ },
+ {
+  "template_id": "variance_of_linear_combination_v1",
+  "skill_id": "variance_of_a_sum_of_independent_variables",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]},
+   "b": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]},
+   "sx": {"type": "int", "lo": 1, "hi": 8},
+   "sy": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "Let \\( X \\) and \\( Y \\) be independent random variables with standard deviations \\( [[sx]] \\) and \\( [[sy]] \\), respectively. What is \\( \\mathrm{Var}([[a]]X + ([[b]])Y) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]**2*[[sx]]**2 + [[b]]**2*[[sy]]**2"},
+  "distractors": [
+   "[[a]]*[[sx]]**2 + [[b]]*[[sy]]**2",
+   "([[a]]*[[sx]] + [[b]]*[[sy]])**2",
+   "[[a]]**2*[[sx]]**2 - [[b]]**2*[[sy]]**2",
+   "[[a]]*[[sx]] + [[b]]*[[sy]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Scaling a variable by a constant scales its variance by the constant squared, and independent variances still add: \\( \\mathrm{Var}([[a]]X+([[b]])Y) = [[a]]^2[[sx]]^2 + [[b]]^2[[sy]]^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square the coefficients \\( [[a]] \\) and \\( [[b]] \\) before scaling each variance.",
+   "This squares the entire combination \\( aX+bY \\) as if it were a single already-added standard deviation, introducing a spurious cross term.",
+   "This subtracts the second scaled variance instead of adding it, even though the coefficient \\( [[b]] \\) is squared elsewhere.",
+   "This computes the corresponding linear combination of standard deviations rather than of variances.",
+   "This is off by one from the correct variance."
+  ]
+ },
+ {
+  "template_id": "sd_of_sum_from_variances_v1",
+  "skill_id": "variance_of_a_sum_of_independent_variables",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "legA": {"type": "int", "lo": 3, "hi": 30},
+   "legB": {"type": "int", "lo": 3, "hi": 30}
+  },
+  "constraints": [
+   "Ne([[legA]], [[legB]])",
+   "Eq(sqrt([[legA]]**2 + [[legB]]**2), floor(sqrt([[legA]]**2 + [[legB]]**2)))"
+  ],
+  "derived": {"vx": "[[legA]]**2", "vy": "[[legB]]**2"},
+  "stem": "Let \\( X \\) and \\( Y \\) be independent random variables with \\( \\mathrm{Var}(X) = [[vx]] \\) and \\( \\mathrm{Var}(Y) = [[vy]] \\). What is the standard deviation of \\( X + Y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[vx]] + [[vy]])"},
+  "distractors": [
+   "sqrt([[vx]]) + sqrt([[vy]])",
+   "[[vx]] + [[vy]]",
+   "sqrt([[vx]])",
+   "sqrt([[vy]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The variances of independent variables add first, and only THEN do you take the square root to get the standard deviation: \\( \\sigma_{X+Y} = \\sqrt{[[vx]] + [[vy]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two individual standard deviations directly; standard deviations of independent variables do not add that way.",
+   "This is the variance of the sum, without taking the final square root.",
+   "This reports only \\( X \\)'s standard deviation, ignoring \\( Y \\) entirely.",
+   "This reports only \\( Y \\)'s standard deviation, ignoring \\( X \\) entirely.",
+   "This is off by one from the correct standard deviation."
+  ]
+ },
+ {
+  "template_id": "variance_of_sum_of_n_iid_v1",
+  "skill_id": "variance_of_a_sum_of_independent_variables",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 10, 12]},
+   "sigma": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "Let \\( X_1, X_2, \\ldots, X_{[[n]]} \\) be independent random variables, each with standard deviation \\( [[sigma]] \\). What is \\( \\mathrm{Var}(X_1 + X_2 + \\cdots + X_{[[n]]}) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]*[[sigma]]**2"},
+  "distractors": [
+   "[[n]]**2*[[sigma]]**2",
+   "[[n]]*[[sigma]]",
+   "[[sigma]]**2",
+   "sqrt([[n]])*[[sigma]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each of the \\( [[n]] \\) independent variables contributes its own variance \\( [[sigma]]^2 \\), and independent variances add: \\( \\mathrm{Var}\\left(\\sum X_i\\right) = [[n]]\\cdot[[sigma]]^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the sum as if it were \\( n \\) copies of the SAME variable added together (\\( (n\\sigma)^2 \\)), rather than \\( n \\) independent variables.",
+   "This forgets to square the standard deviation before multiplying by \\( n \\).",
+   "This reports only a single variable's variance, forgetting the other \\( n-1 \\) variables entirely.",
+   "This confuses this sum with a sample-mean standard error, scaling by \\( \\sqrt{n} \\) instead of \\( n \\).",
+   "This is off by one from the correct variance."
+  ]
+ }
+]

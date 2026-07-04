@@ -1,0 +1,151 @@
+[
+ {
+  "template_id": "inscribed_and_central_angles_including_thales_semici_v1",
+  "skill_id": "inscribed_and_central_angles_including_thales_semici",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "h": {"type": "int", "lo": 10, "hi": 85}
+  },
+  "constraints": [],
+  "derived": {"c": "2*[[h]]"},
+  "stem": "In a circle, a central angle subtending arc \\( AB \\) measures \\( [[c]]^{\\circ} \\). What is the measure, in degrees, of an inscribed angle that subtends the same arc \\( AB \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[c]]/2"},
+  "distractors": [
+   "[[c]]",
+   "2*[[c]]",
+   "180 - [[c]]",
+   "90 - [[c]]/2",
+   "[[c]]/2 + 10",
+   "[[c]]/2 - 10"
+  ],
+  "solution": "An inscribed angle is half the central angle that subtends the same arc. Here the central angle is \\( [[c]]^{\\circ} \\), so the inscribed angle measures \\( \\frac{[[c]]}{2} = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This repeats the central angle, forgetting that the inscribed angle is half of it.",
+   "This doubles the central angle instead of halving it (inverting the relationship).",
+   "This takes the supplement of the central angle rather than half of it.",
+   "This is the complement of the correct inscribed angle.",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by ten degrees."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_central_angles_including_thales_semici_v2_thales",
+  "skill_id": "inscribed_and_central_angles_including_thales_semici",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "acute": {"type": "int", "lo": 5, "hi": 85}
+  },
+  "constraints": [],
+  "stem": "Triangle \\( ABC \\) is inscribed in a circle so that side \\( AC \\) is a diameter of the circle. If \\( \\angle A = [[acute]]^{\\circ} \\), what is the measure, in degrees, of \\( \\angle B \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "90"},
+  "distractors": [
+   "180 - [[acute]]",
+   "90 - [[acute]]",
+   "[[acute]]",
+   "2*[[acute]]",
+   "45",
+   "180"
+  ],
+  "solution": "By Thales' theorem, an angle inscribed in a semicircle (i.e., subtending a diameter) is always a right angle. Since \\( AC \\) is a diameter, \\( \\angle B = 90^{\\circ} \\) regardless of the value of \\( \\angle A \\).",
+  "distractor_rationales": [
+   "This treats the triangle's angles as summing with \\( \\angle B \\) unknown from a linear equation, but ignores that \\( \\angle B \\) is fixed at \\( 90^{\\circ} \\) by Thales' theorem.",
+   "This subtracts \\( \\angle A \\) from \\( 90^{\\circ} \\) rather than recognizing \\( \\angle B \\) itself is the fixed right angle.",
+   "This just repeats \\( \\angle A \\) instead of identifying the right angle at \\( B \\).",
+   "This doubles \\( \\angle A \\), confusing it with an inscribed-central angle relationship.",
+   "This is half of the correct right angle.",
+   "This is a full straight angle, not the inscribed right angle."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_central_angles_including_thales_semici_v3_cyclic_quad",
+  "skill_id": "inscribed_and_central_angles_including_thales_semici",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "angA": {"type": "int", "lo": 30, "hi": 150}
+  },
+  "constraints": [],
+  "stem": "Quadrilateral \\( ABCD \\) is inscribed in a circle (a cyclic quadrilateral). If \\( \\angle A = [[angA]]^{\\circ} \\), what is the measure, in degrees, of the opposite angle \\( \\angle C \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "180 - [[angA]]"},
+  "distractors": [
+   "[[angA]]",
+   "360 - [[angA]]",
+   "90 - [[angA]]/2",
+   "[[angA]]/2",
+   "[[answer]] + 10",
+   "[[answer]] - 10"
+  ],
+  "solution": "In a cyclic quadrilateral, opposite angles are supplementary. So \\( \\angle C = 180^{\\circ} - \\angle A = 180 - [[angA]] = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This treats opposite angles of a cyclic quadrilateral as equal instead of supplementary.",
+   "This subtracts from \\( 360^{\\circ} \\) instead of \\( 180^{\\circ} \\), as if all four angles summed differently.",
+   "This applies an inscribed-angle-style halving that doesn't belong to this relationship.",
+   "This halves \\( \\angle A \\) instead of finding its supplement.",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by ten degrees."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_central_angles_including_thales_semici_v4_arc_from_inscribed",
+  "skill_id": "inscribed_and_central_angles_including_thales_semici",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "insc": {"type": "int", "lo": 5, "hi": 89}
+  },
+  "constraints": [],
+  "stem": "An inscribed angle in a circle subtends arc \\( XY \\) and measures \\( [[insc]]^{\\circ} \\). What is the measure, in degrees, of arc \\( XY \\) (the arc not containing the inscribed angle's vertex)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[insc]]"},
+  "distractors": [
+   "[[insc]]",
+   "[[insc]]/2",
+   "180 - [[insc]]",
+   "360 - 2*[[insc]]",
+   "[[answer]] + 10",
+   "[[answer]] - 10"
+  ],
+  "solution": "The measure of an arc equals twice the inscribed angle that subtends it. So arc \\( XY = 2\\cdot[[insc]] = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This confuses the arc measure with the inscribed angle itself, forgetting to double it.",
+   "This halves the inscribed angle instead of doubling it, inverting the relationship.",
+   "This takes the supplement of the inscribed angle rather than doubling it.",
+   "This finds the REMAINING arc (the rest of the circle) instead of arc \\( XY \\) itself.",
+   "This is off from the correct value by ten degrees.",
+   "This is off from the correct value by ten degrees."
+  ]
+ },
+ {
+  "template_id": "inscribed_and_central_angles_including_thales_semici_v5_solve_equal_inscribed",
+  "skill_id": "inscribed_and_central_angles_including_thales_semici",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 8},
+   "b": {"type": "int", "lo": 5, "hi": 40},
+   "c": {"type": "int", "lo": 2, "hi": 8},
+   "d": {"type": "int", "lo": 5, "hi": 40}
+  },
+  "constraints": ["Ne([[a]], [[c]])", "Eq(Mod([[d]] - [[b]], [[a]] - [[c]]), 0)", "Gt([[a]]*(([[d]]-[[b]])/([[a]]-[[c]])) + [[b]], 0)", "Lt([[a]]*(([[d]]-[[b]])/([[a]]-[[c]])) + [[b]], 180)"],
+  "stem": "Two inscribed angles in a circle stand on the same arc, so they are equal. One measures \\( ([[a]]x + [[b]])^{\\circ} \\) and the other measures \\( ([[c]]x + [[d]])^{\\circ} \\). What is the measure, in degrees, of either angle?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*(([[d]]-[[b]])/([[a]]-[[c]])) + [[b]]"},
+  "distractors": [
+   "[[c]]*(([[d]]-[[b]])/([[a]]-[[c]])) + [[d]] + 5",
+   "([[d]]-[[b]])/([[a]]-[[c]])",
+   "180 - ([[a]]*(([[d]]-[[b]])/([[a]]-[[c]])) + [[b]])",
+   "[[b]] + [[d]]",
+   "[[answer]] + 5",
+   "[[answer]] - 5"
+  ],
+  "solution": "Since the two inscribed angles stand on the same arc, they are equal: \\( [[a]]x+[[b]] = [[c]]x+[[d]] \\). Solving gives \\( x = \\frac{[[d]]-[[b]]}{[[a]]-[[c]]} \\), and substituting back gives an angle measure of \\( [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This reports just the value of \\( x \\) rather than substituting it back to find the angle measure.",
+   "This reports \\( x \\) itself, not the resulting angle.",
+   "This takes the supplement of the correct angle instead of the angle itself.",
+   "This simply adds the two constant terms instead of solving the equation for \\( x \\) first.",
+   "This is off from the correct value by five degrees.",
+   "This is off from the correct value by five degrees."
+  ]
+ }
+]

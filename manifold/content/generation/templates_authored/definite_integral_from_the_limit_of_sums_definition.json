@@ -1,0 +1,103 @@
+[
+{
+ "template_id": "riemann_sum_definition_definite_integral_v1",
+ "skill_id": "definite_integral_from_the_limit_of_sums_definition",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "a": {"type": "int", "lo": -3, "hi": 1},
+  "b": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Ne([[r]], 0)", "Lt([[a]], [[b]])"],
+ "stem": "The definite integral \\( \\int_{a}^{b} h(x)\\, dx \\) is defined as the limit of Riemann sums \\( \\lim_{n\\to\\infty} \\sum_{i=1}^{n} h(x_i)\\,\\Delta x \\). Evaluate \\( \\int_{[[a]]}^{[[b]]} \\left( ([[r]])x^{2} + ([[p]])x + ([[q]]) \\right) dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[r]]*x**2 + [[p]]*x + [[q]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[r]]*[[b]]**3/3 + [[p]]*[[b]]**2/2 + [[q]]*[[b]]",
+  "[[r]]*([[b]]**3 - [[a]]**3) + [[p]]*([[b]]**2 - [[a]]**2) + [[q]]*([[b]] - [[a]])",
+  "[[r]]*([[b]]**2 - [[a]]**2) + [[p]]*([[b]] - [[a]])",
+  "[[answer]] + [[b]] - [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Antidifferentiating term by term gives \\( F(x) = \\frac{[[r]]}{3}x^{3} + \\frac{[[p]]}{2}x^{2} + ([[q]])x \\); the Riemann-sum limit equals \\( F([[b]]) - F([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates the antiderivative only at the upper limit, omitting the lower-limit term.",
+  "This applies the power rule but forgets to divide each term by its new exponent.",
+  "This is \\( h([[b]]) - h([[a]]) \\), the change in the integrand, not its integral.",
+  "This is off by the width of the interval.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_definition_trig_v1",
+ "skill_id": "definite_integral_from_the_limit_of_sums_definition",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 6},
+  "B": {"type": "int", "lo": -6, "hi": 6},
+  "n_half_periods": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "derived": {"hi": "[[n_half_periods]]*pi"},
+ "require_rational": false,
+ "stem": "By definition, \\( \\int_{0}^{[[hi]]} h(x)\\, dx = \\lim_{n\\to\\infty} \\sum_{i=1}^{n} h(x_i)\\,\\Delta x \\) for any partition of \\( [0, [[hi]]] \\) into \\( n \\) pieces. Use this to evaluate \\( \\int_{0}^{[[hi]]} \\left( ([[A]])\\cos(x) + ([[B]]) \\right) dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[A]]*cos(x) + [[B]]", "var": "x", "bounds": ["0", "[[hi]]"]},
+ "distractors": [
+  "[[A]]*sin([[hi]]) + [[B]]*[[hi]]",
+  "[[A]]*([[hi]]) + [[B]]*[[hi]]",
+  "[[B]]*[[hi]]",
+  "[[answer]] + [[A]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "An antiderivative of the integrand is \\( F(x) = ([[A]])\\sin(x) + ([[B]])x \\), so the Riemann-sum limit equals \\( F([[hi]]) - F(0) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\sin([[hi]]) \\) directly as the antiderivative value without subtracting the value at 0, and misses that \\( \\sin \\) at a multiple of \\( \\pi \\) is 0.",
+  "This mistakenly antidifferentiates \\( \\cos(x) \\) as \\( x \\) instead of \\( \\sin(x) \\).",
+  "This drops the contribution from the cosine term entirely.",
+  "This is off by the amplitude \\( [[A]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "riemann_sum_definition_exponential_v1",
+ "skill_id": "definite_integral_from_the_limit_of_sums_definition",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "choice", "values": [1, 2, 3]},
+  "m": {"type": "choice", "values": [2, 4, 8]}
+ },
+ "constraints": [],
+ "derived": {"hi": "log([[m]], 2)/[[k]]"},
+ "require_rational": false,
+ "stem": "By definition, \\( \\int_{0}^{b} h(x)\\, dx \\) is the limit, as \\( n\\to\\infty \\), of Riemann sums \\( \\sum_{i=1}^{n} h(x_i)\\,\\Delta x \\) over \\( [0,b] \\). Using this definition (i.e. the resulting Fundamental Theorem computation), evaluate \\( \\int_{0}^{[[hi]]} ([[A]])\\,2^{[[k]]x}\\, dx \\), given that \\( 2^{[[k]]\\cdot [[hi]]} = [[m]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[A]]*2**([[k]]*x)", "var": "x", "bounds": ["0", "[[hi]]"]},
+ "distractors": [
+  "[[A]]*([[m]] - 1)",
+  "[[A]]*[[m]]/([[k]]*log(2))",
+  "[[A]]*([[m]] - 1)*[[k]]",
+  "[[A]]*[[hi]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "An antiderivative is \\( F(x) = \\dfrac{[[A]]\\cdot 2^{[[k]]x}}{[[k]]\\ln 2} \\), so the limit equals \\( F([[hi]]) - F(0) = \\dfrac{[[A]]([[m]]-1)}{[[k]]\\ln 2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( [[k]]\\ln 2 \\) when antidifferentiating the exponential.",
+  "This uses \\( [[m]] \\) instead of \\( [[m]]-1 \\) in the numerator, forgetting to subtract the value at \\( x=0 \\).",
+  "This multiplies by \\( [[k]] \\) instead of dividing by it.",
+  "This treats the integrand as constant and multiplies by the width \\( [[hi]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

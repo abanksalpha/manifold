@@ -1,0 +1,107 @@
+[
+{
+ "template_id": "scalar_line_arclen_v1",
+ "skill_id": "scalar_line_integral_arc_length_form",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "choice", "values": [3, 4, 5, 6, 8, 12]},
+  "q": {"type": "choice", "values": [3, 4, 5, 6, 8, 12]}
+ },
+ "constraints": [
+  "Eq(floor(sqrt([[p]]**2 + [[q]]**2)), sqrt([[p]]**2 + [[q]]**2))",
+  "Ne([[a]]*[[p]] + [[b]]*[[q]], 0)"
+ ],
+ "stem": "Evaluate the scalar line integral \\( \\displaystyle\\int_C f\\,ds \\), where \\( f(x,y) = ([[a]])x + ([[b]])y \\) and \\( C \\) is the segment \\( \\mathbf{r}(t) = ([[p]]t,\\; [[q]]t) \\) for \\( 0 \\le t \\le 2 \\).",
+ "answer_spec": {"op": "integrate", "expr": "(([[a]])*([[p]])*t + ([[b]])*([[q]])*t) * sqrt(([[p]])**2 + ([[q]])**2)", "var": "t", "bounds": ["0", "2"]},
+ "distractors": [
+  "2*(([[a]])*([[p]]) + ([[b]])*([[q]]))",
+  "([[answer]]) / 2",
+  "2*(([[p]])**2 + ([[q]])**2)*(([[a]])*([[p]]) + ([[b]])*([[q]]))",
+  "-([[answer]])",
+  "([[answer]]) + 1",
+  "([[answer]]) - 1"
+ ],
+ "solution": "Since \\( \\mathbf{r}'(t)=([[p]],[[q]]) \\), \\( ds=|\\mathbf{r}'(t)|\\,dt=\\sqrt{([[p]])^{2}+([[q]])^{2}}\\,dt \\). Also \\( f(\\mathbf{r}(t)) = \\big(([[a]])([[p]])+([[b]])([[q]])\\big)t \\). Thus \\( \\int_0^2 \\big(([[a]])([[p]])+([[b]])([[q]])\\big)t\\,\\sqrt{([[p]])^{2}+([[q]])^{2}}\\,dt = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( ds = dt \\), forgetting the arc-length speed factor \\( |\\mathbf{r}'(t)| \\).",
+  "This integrates over \\( 0 \\le t \\le 1 \\) instead of \\( 0 \\le t \\le 2 \\), halving the result.",
+  "This uses \\( |\\mathbf{r}'(t)|^{2} \\) instead of \\( |\\mathbf{r}'(t)| \\) for the speed.",
+  "This has the wrong overall sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "scalar_line_arclen_helix_v1",
+ "skill_id": "scalar_line_integral_arc_length_form",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "choice", "values": [3, 4, 5, 6, 8, 12]},
+  "q": {"type": "choice", "values": [3, 4, 5, 6, 8, 12]},
+  "T": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [
+  "Eq(floor(sqrt([[p]]**2 + [[q]]**2)), sqrt([[p]]**2 + [[q]]**2))",
+  "Ne([[c]], 0)"
+ ],
+ "stem": "Evaluate the scalar line integral \\( \\displaystyle\\int_C f\\,ds \\), where \\( f(x,y,z) = ([[c]])z \\) and \\( C \\) is the helix \\( \\mathbf{r}(t) = ([[p]]\\cos t,\\; [[p]]\\sin t,\\; [[q]]t) \\) for \\( 0 \\le t \\le [[T]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "([[c]])*([[q]])*t * sqrt(([[p]])**2 + ([[q]])**2)", "var": "t", "bounds": ["0", "[[T]]"]},
+ "distractors": [
+  "([[c]])*([[q]])*([[T]])**2 / 2",
+  "([[answer]]) / ([[p]])",
+  "-([[answer]])",
+  "([[answer]]) * ([[p]])",
+  "([[answer]]) + 1",
+  "([[answer]]) - 1",
+  "([[answer]]) + 2"
+ ],
+ "solution": "Here \\( \\mathbf{r}'(t) = (-[[p]]\\sin t,\\; [[p]]\\cos t,\\; [[q]]) \\), so the speed is \\( |\\mathbf{r}'(t)| = \\sqrt{([[p]])^{2}\\sin^{2}t + ([[p]])^{2}\\cos^{2}t + ([[q]])^{2}} = \\sqrt{([[p]])^{2}+([[q]])^{2}} \\), a CONSTANT (a helix has constant speed). Also \\( f(\\mathbf{r}(t)) = ([[c]])([[q]])t \\). Thus \\( \\int_0^{[[T]]} ([[c]])([[q]])t\\,\\sqrt{([[p]])^{2}+([[q]])^{2}}\\,dt = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the constant speed factor \\( \\sqrt{p^{2}+q^{2}} \\) entirely, using \\( ds = dt \\).",
+  "This divides by the helix radius \\( p \\) instead of leaving the speed factor as \\( \\sqrt{p^2+q^2} \\).",
+  "This has the wrong overall sign.",
+  "This multiplies by an extra spurious factor of \\( p \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "scalar_line_arclen_circular_arc_v1",
+ "skill_id": "scalar_line_integral_arc_length_form",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "R": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": ["Ne([[a]] + [[b]], 0)"],
+ "stem": "Evaluate the scalar line integral \\( \\displaystyle\\int_C f\\,ds \\), where \\( f(x,y) = ([[a]])x + ([[b]])y \\) and \\( C \\) is the quarter-circle \\( \\mathbf{r}(t) = ([[R]]\\cos t,\\; [[R]]\\sin t) \\) for \\( 0 \\le t \\le \\pi/2 \\).",
+ "answer_spec": {"op": "integrate", "expr": "(([[a]])*([[R]])*cos(t) + ([[b]])*([[R]])*sin(t)) * ([[R]])", "var": "t", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "(([[a]]) + ([[b]]))*([[R]])",
+  "-([[answer]])",
+  "2*([[answer]])",
+  "(([[a]]) - ([[b]]))*([[R]])**2",
+  "([[answer]]) + 1",
+  "([[answer]]) - 1",
+  "([[answer]]) + 2"
+ ],
+ "solution": "Here \\( \\mathbf{r}'(t) = (-[[R]]\\sin t, [[R]]\\cos t) \\), so \\( ds = |\\mathbf{r}'(t)|\\,dt = [[R]]\\,dt \\) (constant speed on a circle). Also \\( f(\\mathbf{r}(t)) = ([[a]])[[R]]\\cos t + ([[b]])[[R]]\\sin t \\). Thus \\( \\int_0^{\\pi/2} \\big(([[a]])[[R]]\\cos t+([[b]])[[R]]\\sin t\\big)[[R]]\\,dt = ([[a]])([[R]])^{2}\\big[\\sin t\\big]_0^{\\pi/2} + ([[b]])([[R]])^{2}\\big[-\\cos t\\big]_0^{\\pi/2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the speed factor \\( R \\) entirely, using \\( ds=dt \\) and integrating only the raw trig antiderivatives.",
+  "This has the wrong overall sign.",
+  "This double counts, as if integrating over the full quarter TWICE.",
+  "This subtracts instead of adds the two trig contributions, and drops a factor of R.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

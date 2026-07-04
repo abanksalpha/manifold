@@ -1,0 +1,150 @@
+[
+ {
+  "template_id": "reverse_the_order_to_make_the_integral_solvable_v1",
+  "skill_id": "reverse_the_order_to_make_the_integral_solvable",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 14},
+   "b": {"type": "int", "lo": 1, "hi": 13}
+  },
+  "constraints": [],
+  "stem": "By reversing the order of integration, evaluate \\( \\int_{0}^{[[b]]} \\int_{x}^{[[b]]} [[k]]e^{y^2} \\, dy \\, dx \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]*exp(y**2)",
+   "vars": ["x", "y"],
+   "bounds": [["0", "y"], ["0", "[[b]]"]]
+  },
+  "distractors": [
+   "[[k]]*(exp([[b]]**2) - 1)",
+   "[[k]]*exp([[b]]**2)/2",
+   "[[k]]*(exp([[b]]**2) + 1)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "In the given order the inner integral \\( \\int e^{y^2}\\,dy \\) has no elementary antiderivative. The region is the triangle \\( 0 \\le x \\le y \\le [[b]] \\), so reversing the order gives \\( \\int_{0}^{[[b]]} \\int_{0}^{y} [[k]]e^{y^2}\\,dx\\,dy = \\int_{0}^{[[b]]} [[k]]y\\,e^{y^2}\\,dy = \\tfrac{[[k]]}{2}\\left(e^{[[b]]^2}-1\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of \\(1/2\\) from \\(\\int y e^{y^2}\\,dy = \\tfrac12 e^{y^2}\\).",
+   "This drops the lower-limit term \\(-1\\) (i.e. the value at \\(y=0\\)).",
+   "This uses \\(+1\\) instead of \\(-1\\) for the lower-limit contribution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "reverse_the_order_to_make_the_integral_solvable_v2",
+  "skill_id": "reverse_the_order_to_make_the_integral_solvable",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 10},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "By reversing the order of integration, evaluate \\( \\int_{0}^{[[b]]} \\int_{x}^{[[b]]} [[k]]\\sin(y^2) \\, dy \\, dx \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]*sin(y**2)",
+   "vars": ["x", "y"],
+   "bounds": [["0", "y"], ["0", "[[b]]"]]
+  },
+  "distractors": [
+   "[[k]]*(1 + cos([[b]]**2))/2",
+   "[[k]]*cos([[b]]**2)",
+   "-[[k]]*(1 - cos([[b]]**2))/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "In the given order the inner integral \\( \\int \\sin(y^2)\\,dy \\) has no elementary antiderivative (a Fresnel-type integral). The region is the triangle \\( 0 \\le x \\le y \\le [[b]] \\), so reversing the order gives \\( \\int_{0}^{[[b]]}\\int_{0}^{y} [[k]]\\sin(y^2)\\,dx\\,dy = \\int_{0}^{[[b]]} [[k]]y\\sin(y^2)\\,dy = \\tfrac{[[k]]}{2}\\left(1-\\cos([[b]]^2)\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign inside the parentheses, as if \\(\\int y\\sin(y^2)\\,dy = \\tfrac12(1+\\cos(y^2))\\).",
+   "This reports only \\(\\cos([[b]]^2)\\), forgetting the \\(\\tfrac{[[k]]}{2}(1-\\cdots)\\) structure entirely.",
+   "This has the overall sign flipped from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "reverse_the_order_to_make_the_integral_solvable_v3",
+  "skill_id": "reverse_the_order_to_make_the_integral_solvable",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 10},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Let \\(D\\) be the 'V'-shaped region \\( \\{(x,y): -y \\le x \\le y,\\ 0 \\le y \\le [[b]]\\} \\), symmetric about the \\(y\\)-axis. Written with \\(x\\) as the OUTER variable, evaluating \\( \\iint_D [[k]]e^{y^2}\\,dA \\) forces splitting the integral at \\(x=0\\) (the lower bound involves \\(|x|\\)) and integrating \\(e^{y^2}\\) directly, which has no elementary antiderivative. Reverse the order of integration (make \\(y\\) outer) to evaluate \\( \\iint_D [[k]]e^{y^2}\\,dA \\) as a single integral.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]*exp(y**2)",
+   "vars": ["x", "y"],
+   "bounds": [["-y", "y"], ["0", "[[b]]"]]
+  },
+  "distractors": [
+   "[[k]]*(exp([[b]]**2) - 1)/2",
+   "2*[[k]]*[[b]]*exp([[b]]**2)",
+   "[[k]]*exp([[b]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "With \\(y\\) outer, for each fixed \\(y\\) the inner variable \\(x\\) ranges over the FULL interval \\([-y,y]\\) (length \\(2y\\)), with no split needed: \\( \\int_{0}^{[[b]]}\\int_{-y}^{y} [[k]]e^{y^2}\\,dx\\,dy = \\int_{0}^{[[b]]} 2[[k]]y\\,e^{y^2}\\,dy = [[k]]\\left(e^{[[b]]^2}-1\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is exactly half the correct value, as if the \\(x\\)-length were \\(y\\) instead of \\(2y\\) (forgetting the region extends to both \\(-y\\) and \\(y\\)).",
+   "This evaluates the integrand at \\(y=[[b]]\\) and multiplies by a bogus width \\(2[[b]]\\), instead of integrating.",
+   "This drops the \\(-1\\) lower-limit contribution entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "reverse_the_order_to_make_the_integral_solvable_v4",
+  "skill_id": "reverse_the_order_to_make_the_integral_solvable",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 8},
+   "n": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "stem": "By reversing the order of integration, evaluate \\( \\int_{0}^{1/[[n]]} \\int_{x}^{1/[[n]]} \\dfrac{[[k]]}{1+y^4} \\, dy \\, dx \\).",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "[[k]]/(1+y**4)",
+   "vars": ["x", "y"],
+   "bounds": [["0", "y"], ["0", "1/[[n]]"]]
+  },
+  "distractors": [
+   "[[k]]*atan(1/[[n]]**2)",
+   "[[k]]*atan(1/[[n]]**4)/2",
+   "2*[[k]]*atan(1/[[n]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "In the given order the inner integral \\( \\int \\dfrac{dy}{1+y^4} \\) has no simple elementary antiderivative. The region is the triangle \\( 0 \\le x \\le y \\le 1/[[n]] \\), so reversing the order gives \\( \\int_{0}^{1/[[n]]} \\int_{0}^{y} \\dfrac{[[k]]}{1+y^4}\\,dx\\,dy = \\int_{0}^{1/[[n]]} \\dfrac{[[k]]y}{1+y^4}\\,dy \\). Substituting \\(u=y^2\\) gives \\( \\tfrac{[[k]]}{2}\\arctan(y^2)\\Big|_0^{1/[[n]]} = \\tfrac{[[k]]}{2}\\arctan\\!\\left(1/[[n]]^2\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of \\(1/2\\) that comes from the substitution \\(u=y^2\\).",
+   "This uses \\(1/n^4\\) inside the arctangent instead of \\(1/n^2\\), forgetting that \\(u=y^2\\) already accounts for one power.",
+   "This is twice the correct value (a doubled substitution factor).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

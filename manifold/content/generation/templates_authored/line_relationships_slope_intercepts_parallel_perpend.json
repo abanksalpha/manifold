@@ -1,0 +1,409 @@
+[
+{
+ "template_id": "line_slope_two_points_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "x1": {
+   "type": "int",
+   "lo": -6,
+   "hi": 3
+  },
+  "y1": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  },
+  "x2": {
+   "type": "int",
+   "lo": 4,
+   "hi": 9
+  },
+  "y2": {
+   "type": "int",
+   "lo": -6,
+   "hi": 6
+  }
+ },
+ "constraints": [
+  "Ne([[x2]], [[x1]])"
+ ],
+ "stem": "Find the slope of the line through \\( ([[x1]],[[y1]]) \\) and \\( ([[x2]],[[y2]]) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[y2]] - [[y1]], [[x2]] - [[x1]])"
+ },
+ "distractors": [
+  "Rational([[x2]] - [[x1]], [[y2]] - [[y1]])",
+  "Rational([[y2]] + [[y1]], [[x2]] + [[x1]])",
+  "Rational([[y1]] - [[y2]], [[x2]] - [[x1]])",
+  "[[y2]] - [[y1]]",
+  "Rational([[y2]] - [[y1]], [[x2]] - [[x1]]) + 1",
+  "Rational([[y2]] - [[y1]], [[x2]] - [[x1]]) - 1"
+ ],
+ "solution": "Slope \\( =\\frac{y_2-y_1}{x_2-x_1}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "line_slope_from_general_form_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -9, "hi": 9},
+  "B": {"type": "int", "lo": -9, "hi": 9},
+  "C": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+ "stem": "Find the slope of the line \\( [[A]]x+[[B]]y=[[C]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[A]], [[B]])"
+ },
+ "distractors": [
+  "Rational([[A]], [[B]])",
+  "-Rational([[B]], [[A]])",
+  "Rational([[B]], [[A]])",
+  "-Rational([[A]]*[[C]], [[B]])",
+  "-Rational([[A]], [[B]]) + 1",
+  "-Rational([[A]], [[B]]) - 1"
+ ],
+ "solution": "Solving for \\( y \\): \\( y=-\\frac{A}{B}x+\\frac{C}{B} \\), so the slope is \\( -\\frac{A}{B}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign.",
+  "This inverts the ratio, using \\( B/A\\) instead of \\( A/B\\).",
+  "This drops the minus sign and inverts the ratio.",
+  "This mistakenly multiplies by the constant term \\( C\\).",
+  "This is off by one from the correct slope.",
+  "This is off by one (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "line_x_intercept_general_form_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -9, "hi": 9},
+  "B": {"type": "int", "lo": -9, "hi": 9},
+  "C": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+ "stem": "Find the \\( x \\)-intercept of the line \\( [[A]]x+[[B]]y=[[C]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[C]], [[A]])"
+ },
+ "distractors": [
+  "Rational([[C]], [[B]])",
+  "-Rational([[C]], [[A]])",
+  "Rational([[A]], [[C]])",
+  "Rational([[C]]*[[B]], [[A]])",
+  "Rational([[C]], [[A]]) + 1",
+  "Rational([[C]], [[A]]) - 1"
+ ],
+ "solution": "Setting \\( y=0 \\): \\( [[A]]x=[[C]] \\), so \\( x=\\frac{C}{A}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( B\\) (the \\( y\\)-coefficient) instead of \\( A\\) in the denominator.",
+  "This drops a needed minus sign.",
+  "This inverts the fraction.",
+  "This multiplies by \\( B\\) instead of leaving the ratio alone.",
+  "This is off by one from the correct \\( x\\)-intercept.",
+  "This is off by one (other direction) from the correct \\( x\\)-intercept."
+ ]
+},
+{
+ "template_id": "line_y_intercept_general_form_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -9, "hi": 9},
+  "B": {"type": "int", "lo": -9, "hi": 9},
+  "C": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+ "stem": "Find the \\( y \\)-intercept of the line \\( [[A]]x+[[B]]y=[[C]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[C]], [[B]])"
+ },
+ "distractors": [
+  "Rational([[C]], [[A]])",
+  "-Rational([[C]], [[B]])",
+  "Rational([[B]], [[C]])",
+  "Rational([[C]]*[[A]], [[B]])",
+  "Rational([[C]], [[B]]) + 1",
+  "Rational([[C]], [[B]]) - 1"
+ ],
+ "solution": "Setting \\( x=0 \\): \\( [[B]]y=[[C]] \\), so \\( y=\\frac{C}{B}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( A\\) (the \\( x\\)-coefficient) instead of \\( B\\) in the denominator.",
+  "This drops a needed minus sign.",
+  "This inverts the fraction.",
+  "This multiplies by \\( A\\) instead of leaving the ratio alone.",
+  "This is off by one from the correct \\( y\\)-intercept.",
+  "This is off by one (other direction) from the correct \\( y\\)-intercept."
+ ]
+},
+{
+ "template_id": "line_parallel_through_point_y_intercept_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -8, "hi": 8},
+  "B": {"type": "int", "lo": -8, "hi": 8},
+  "C": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+ "stem": "Line \\( L \\) is given by \\( [[A]]x+[[B]]y=[[C]] \\). Find the \\( y \\)-intercept of the line through \\( ([[x0]],[[y0]]) \\) that is parallel to \\( L \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[y0]] + Rational([[A]], [[B]])*[[x0]]"
+ },
+ "distractors": [
+  "[[y0]] - Rational([[A]], [[B]])*[[x0]]",
+  "[[y0]] - Rational([[B]], [[A]])*[[x0]]",
+  "Rational([[A]], [[B]])*[[x0]]",
+  "[[y0]] + Rational([[B]], [[A]])*[[x0]]",
+  "[[y0]] + Rational([[A]], [[B]])*[[x0]] + 1",
+  "[[y0]] + Rational([[A]], [[B]])*[[x0]] - 1"
+ ],
+ "solution": "\\( L \\) has slope \\( m=-\\frac{A}{B} \\); a parallel line through \\( ([[x0]],[[y0]]) \\) is \\( y-[[y0]]=m(x-[[x0]]) \\), which has \\( y \\)-intercept \\( [[y0]]-m\\cdot[[x0]]=[[y0]]+\\frac{A}{B}\\cdot[[x0]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign when solving for the intercept.",
+  "This uses the perpendicular slope instead of the parallel (same) slope.",
+  "This forgets to add the point's \\( y \\)-coordinate.",
+  "This uses the perpendicular slope with the correct sign convention, still the wrong relationship.",
+  "This is off by one from the correct \\( y\\)-intercept.",
+  "This is off by one (other direction) from the correct \\( y\\)-intercept."
+ ]
+},
+{
+ "template_id": "line_perpendicular_through_point_y_intercept_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -8, "hi": 8},
+  "B": {"type": "int", "lo": -8, "hi": 8},
+  "C": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+ "stem": "Line \\( L \\) is given by \\( [[A]]x+[[B]]y=[[C]] \\). Find the \\( y \\)-intercept of the line through \\( ([[x0]],[[y0]]) \\) that is perpendicular to \\( L \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[y0]] - Rational([[B]], [[A]])*[[x0]]"
+ },
+ "distractors": [
+  "[[y0]] + Rational([[B]], [[A]])*[[x0]]",
+  "[[y0]] + Rational([[A]], [[B]])*[[x0]]",
+  "Rational([[B]], [[A]])*[[x0]]",
+  "[[y0]] - Rational([[A]], [[B]])*[[x0]]",
+  "[[y0]] - Rational([[B]], [[A]])*[[x0]] + 1",
+  "[[y0]] - Rational([[B]], [[A]])*[[x0]] - 1"
+ ],
+ "solution": "\\( L \\) has slope \\( -\\frac{A}{B} \\), so a perpendicular line has slope \\( m=\\frac{B}{A} \\). Through \\( ([[x0]],[[y0]]) \\) this is \\( y-[[y0]]=m(x-[[x0]]) \\), with \\( y \\)-intercept \\( [[y0]]-m\\cdot[[x0]]=[[y0]]-\\frac{B}{A}\\cdot[[x0]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the wrong sign when solving for the intercept.",
+  "This uses the parallel (same) slope instead of the perpendicular slope.",
+  "This forgets to negate the reciprocal slope.",
+  "This uses only the magnitude of the perpendicular slope without a sign.",
+  "This is off by one from the correct \\( y\\)-intercept.",
+  "This is off by one (other direction) from the correct \\( y\\)-intercept."
+ ]
+},
+{
+ "template_id": "line_intersection_slope_intercept_form_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "m1": {"type": "int", "lo": -6, "hi": 6},
+  "b1": {"type": "int", "lo": -8, "hi": 8},
+  "m2": {"type": "int", "lo": -6, "hi": 6},
+  "b2": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[m1]], [[m2]])"],
+ "stem": "Find the \\( x \\)-coordinate of the intersection point of \\( y=[[m1]]x+[[b1]] \\) and \\( y=[[m2]]x+[[b2]] \\).",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["y = [[m1]]*x + [[b1]]", "y = [[m2]]*x + [[b2]]"],
+  "vars": ["x", "y"],
+  "want": "x"
+ },
+ "distractors": [
+  "Rational([[b1]] - [[b2]], [[m1]] - [[m2]])",
+  "Rational([[b2]] - [[b1]], [[m1]] + [[m2]])",
+  "Rational([[b1]] + [[b2]], [[m1]] - [[m2]])",
+  "[[m1]] - [[m2]]",
+  "Rational([[b2]] - [[b1]], [[m1]] - [[m2]]) + 1",
+  "Rational([[b2]] - [[b1]], [[m1]] - [[m2]]) - 1"
+ ],
+ "solution": "Setting the equations equal: \\( [[m1]]x+[[b1]]=[[m2]]x+[[b2]] \\Rightarrow x=\\dfrac{[[b2]]-[[b1]]}{[[m1]]-[[m2]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the numerator.",
+  "This adds the slopes in the denominator instead of subtracting.",
+  "This adds the intercepts in the numerator instead of subtracting.",
+  "This reports only the difference of slopes, not a solved coordinate.",
+  "This is off by one from the correct \\( x\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( x\\)-coordinate."
+ ]
+},
+{
+ "template_id": "line_intersection_general_form_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A1": {"type": "int", "lo": -6, "hi": 6},
+  "B1": {"type": "int", "lo": -6, "hi": 6},
+  "C1": {"type": "int", "lo": -8, "hi": 8},
+  "A2": {"type": "int", "lo": -6, "hi": 6},
+  "B2": {"type": "int", "lo": -6, "hi": 6},
+  "C2": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[A1]]*[[B2]] - [[A2]]*[[B1]], 0)"],
+ "stem": "Find the \\( y \\)-coordinate of the intersection point of \\( [[A1]]x+[[B1]]y=[[C1]] \\) and \\( [[A2]]x+[[B2]]y=[[C2]] \\).",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[A1]]*x + [[B1]]*y = [[C1]]", "[[A2]]*x + [[B2]]*y = [[C2]]"],
+  "vars": ["x", "y"],
+  "want": "y"
+ },
+ "distractors": [
+  "Rational([[C1]]*[[A2]] - [[C2]]*[[A1]], [[A1]]*[[B2]] - [[A2]]*[[B1]])",
+  "Rational([[C1]] - [[C2]], [[B1]] - [[B2]])",
+  "Rational([[C2]]*[[A1]] - [[C1]]*[[A2]], [[A2]]*[[B1]] - [[A1]]*[[B2]])",
+  "[[A1]] - [[A2]]",
+  "Rational([[C1]]*[[A2]] - [[C2]]*[[A1]], [[A2]]*[[B1]] - [[A1]]*[[B2]]) + 1",
+  "Rational([[C1]]*[[A2]] - [[C2]]*[[A1]], [[A2]]*[[B1]] - [[A1]]*[[B2]]) - 1"
+ ],
+ "solution": "Solving the two equations simultaneously gives \\( y=[[answer]] \\) (by elimination or Cramer's rule).",
+ "distractor_rationales": [
+  "This uses a Cramer's-rule numerator/denominator with the wrong sign.",
+  "This uses a naive (and generally wrong) ratio of the constants over the \\( y \\)-coefficients.",
+  "This has both the numerator and denominator sign-flipped from the correct value.",
+  "This reports only the difference of \\( x\\)-coefficients, not a solved coordinate.",
+  "This is off by one from the correct \\( y\\)-coordinate.",
+  "This is off by one (other direction) from the correct \\( y\\)-coordinate."
+ ]
+},
+{
+ "template_id": "line_find_k_for_parallel_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -8, "hi": 8},
+  "B": {"type": "int", "lo": -8, "hi": 8},
+  "C": {"type": "int", "lo": -8, "hi": 8},
+  "D": {"type": "int", "lo": -8, "hi": 8},
+  "E": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)", "Ne([[D]], 0)"],
+ "stem": "For which value of \\( k \\) are the lines \\( [[A]]x+[[B]]y=[[C]] \\) and \\( [[D]]x+ky=[[E]] \\) parallel?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "[[A]]*k = [[D]]*[[B]]",
+  "var": "k"
+ },
+ "distractors": [
+  "Rational([[A]]*[[D]], [[B]])",
+  "Rational([[D]]*[[B]], [[A]]) * -1",
+  "Rational([[A]]*[[B]], [[D]])",
+  "Rational([[B]], [[D]]*[[A]])",
+  "Rational([[D]]*[[B]], [[A]]) + 1",
+  "Rational([[D]]*[[B]], [[A]]) - 1"
+ ],
+ "solution": "The slopes are \\( -\\frac{A}{B} \\) and \\( -\\frac{D}{k} \\); setting them equal gives \\( Ak=DB \\), so \\( k=\\dfrac{DB}{A}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( A\\) and \\( D\\) together instead of solving the proportion correctly.",
+  "This negates the correct value.",
+  "This swaps the roles of \\( D\\) and \\( A\\) in the ratio.",
+  "This inverts the correct ratio entirely.",
+  "This is off by one from the correct value of \\( k\\).",
+  "This is off by one (other direction) from the correct value of \\( k\\)."
+ ]
+},
+{
+ "template_id": "line_find_k_for_perpendicular_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -8, "hi": 8},
+  "B": {"type": "int", "lo": -8, "hi": 8},
+  "C": {"type": "int", "lo": -8, "hi": 8},
+  "D": {"type": "int", "lo": -8, "hi": 8},
+  "E": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)", "Ne([[D]], 0)"],
+ "stem": "For which value of \\( k \\) are the lines \\( [[A]]x+[[B]]y=[[C]] \\) and \\( [[D]]x+ky=[[E]] \\) perpendicular?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "[[B]]*k = -[[A]]*[[D]]",
+  "var": "k"
+ },
+ "distractors": [
+  "Rational([[A]]*[[D]], [[B]])",
+  "Rational([[B]], [[A]]*[[D]]) * -1",
+  "Rational([[A]]*[[B]], [[D]]) * -1",
+  "Rational([[A]]*[[D]], [[B]]) * -1 + 1",
+  "-Rational([[A]]*[[D]], [[B]]) + 1",
+  "-Rational([[A]]*[[D]], [[B]]) - 1"
+ ],
+ "solution": "The slopes are \\( -\\frac{A}{B}\\) and \\( -\\frac{D}{k}\\); perpendicularity requires their product to be \\( -1 \\), so \\( \\frac{AD}{Bk}=-1 \\Rightarrow Bk=-AD \\Rightarrow k=-\\dfrac{AD}{B}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign.",
+  "This inverts the ratio before negating.",
+  "This swaps which coefficient is divided by which before negating.",
+  "This is off by one from a sign-flipped version of the answer.",
+  "This is off by one from the correct value of \\( k\\).",
+  "This is off by one (other direction) from the correct value of \\( k\\)."
+ ]
+},
+{
+ "template_id": "line_collinearity_find_k_v1",
+ "skill_id": "line_relationships_slope_intercepts_parallel_perpend",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "x1": {"type": "int", "lo": -8, "hi": -1},
+  "y1": {"type": "int", "lo": -6, "hi": 6},
+  "x2": {"type": "int", "lo": 0, "hi": 3},
+  "y3": {"type": "int", "lo": -6, "hi": 6},
+  "x3": {"type": "int", "lo": 4, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "For what value of \\( k \\) are the points \\( ([[x1]],[[y1]]) \\), \\( ([[x2]],k) \\), and \\( ([[x3]],[[y3]]) \\) collinear?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "(k - [[y1]])*([[x3]] - [[x2]]) - ([[y3]] - k)*([[x2]] - [[x1]]) = 0",
+  "var": "k"
+ },
+ "distractors": [
+  "Rational([[y1]] + [[y3]], 2)",
+  "[[y1]] + [[y3]]",
+  "Rational([[y3]] - [[y1]], [[x3]] - [[x1]])",
+  "[[y3]] - [[y1]]",
+  "Rational([[x1]]*[[y3]] + [[x2]]*[[y1]] - [[x2]]*[[y3]] - [[x3]]*[[y1]], [[x1]] - [[x3]]) + 1",
+  "Rational([[x1]]*[[y3]] + [[x2]]*[[y1]] - [[x2]]*[[y3]] - [[x3]]*[[y1]], [[x1]] - [[x3]]) - 1"
+ ],
+ "solution": "Collinearity requires the slope from \\( ([[x1]],[[y1]]) \\) to \\( ([[x2]],k) \\) to equal the slope from \\( ([[x2]],k) \\) to \\( ([[x3]],[[y3]]) \\); solving \\( (k-[[y1]])([[x3]]-[[x2]])=([[y3]]-k)([[x2]]-[[x1]]) \\) gives \\( k=[[answer]] \\).",
+ "distractor_rationales": [
+  "This averages the two given \\( y \\)-coordinates instead of solving the collinearity condition.",
+  "This adds the two given \\( y \\)-coordinates instead of solving for \\( k\\).",
+  "This reports the overall slope between the two known points rather than the required \\( y \\)-value.",
+  "This reports a raw difference instead of a coordinate value.",
+  "This is off by one from the correct value of \\( k\\).",
+  "This is off by one (other direction) from the correct value of \\( k\\)."
+ ]
+}
+]

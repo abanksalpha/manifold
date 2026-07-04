@@ -1,0 +1,171 @@
+[
+{
+ "template_id": "odd_even_symmetric_integral_v1",
+ "skill_id": "odd_even_symmetry_shortcut",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c3": {"type": "int", "lo": -4, "hi": 4},
+  "c2": {"type": "int", "lo": -4, "hi": 4},
+  "c1": {"type": "int", "lo": -5, "hi": 5},
+  "c0": {"type": "int", "lo": -5, "hi": 5},
+  "h": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[c3]], 0)", "Ne([[c1]], 0)", "Ne([[c2]]*[[h]]**2 + 3*[[c0]], 0)"],
+ "stem": "Evaluate \\( \\int_{-[[h]]}^{[[h]]} \\left( ([[c3]])x^{3} + ([[c2]])x^{2} + ([[c1]])x + ([[c0]]) \\right) dx \\), using the symmetry of the integrand over the symmetric interval.",
+ "answer_spec": {"op": "integrate", "expr": "[[c3]]*x**3 + [[c2]]*x**2 + [[c1]]*x + [[c0]]", "var": "x", "bounds": ["-[[h]]", "[[h]]"]},
+ "distractors": [
+  "[[c2]]*[[h]]**3/3 + [[c0]]*[[h]]",
+  "2*([[c3]]*[[h]]**4/4 + [[c2]]*[[h]]**3/3 + [[c1]]*[[h]]**2/2 + [[c0]]*[[h]])",
+  "2*[[c2]]*[[h]]**3/3",
+  "2*[[c0]]*[[h]]",
+  "[[answer]] + 2*[[h]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The odd-power terms \\( ([[c3]])x^{3} \\) and \\( ([[c1]])x \\) integrate to 0 over the symmetric interval \\( [-[[h]], [[h]]] \\). Only the even part contributes: \\( \\int_{-[[h]]}^{[[h]]} \\left( ([[c2]])x^{2} + ([[c0]]) \\right) dx = 2\\left( \\frac{[[c2]]}{3}[[h]]^{3} + ([[c0]])[[h]] \\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This integrates the even part only over \\( [0, [[h]]] \\), forgetting to double it.",
+  "This doubles the entire antiderivative, wrongly keeping the odd terms that actually cancel.",
+  "This keeps the doubled \\( x^{2} \\) term but drops the constant term's contribution.",
+  "This keeps only the constant term and drops the \\( x^{2} \\) contribution.",
+  "This is off by the full interval width.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "pure_odd_transcendental_recognition_v2",
+ "skill_id": "odd_even_symmetry_shortcut",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "h": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+ "stem": "Without computing an antiderivative, use symmetry to evaluate \\( \\int_{-[[h]]}^{[[h]]} \\left( ([[a]])x\\cos([[b]]x) + ([[c]])x^{3} \\right) dx \\). (Note that \\( x\\cos([[b]]x) \\) and \\( x^{3} \\) are both odd functions.)",
+ "answer_spec": {"op": "evaluate", "expr": "integrate([[a]]*x*cos([[b]]*x) + [[c]]*x**3, (x, -[[h]], [[h]]))"},
+ "distractors": [
+  "2*[[c]]*[[h]]**3",
+  "2*[[a]]*[[h]]*cos([[b]]*[[h]])",
+  "[[a]] + [[c]]",
+  "[[h]]",
+  "1",
+  "-1",
+  "[[a]]*[[c]]"
+ ],
+ "solution": "Both \\( x\\cos([[b]]x) \\) (odd times even is odd) and \\( x^{3} \\) (odd) are odd functions, and a sum of odd functions is odd. The integral of any odd function over a symmetric interval \\( [-[[h]], [[h]]] \\) is exactly 0 — no antidifferentiation needed. So the integral equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This tries to double the cubic term's contribution as if it were even, instead of recognizing it vanishes.",
+  "This tries to double the cosine term's contribution as if it were even, instead of recognizing it vanishes.",
+  "This adds the coefficients as if the interval width mattered, ignoring the symmetry shortcut entirely.",
+  "This reports the half-width instead of recognizing the odd-function shortcut gives 0.",
+  "This guesses a generic nonzero constant instead of applying the odd-function shortcut.",
+  "This guesses a generic nonzero constant instead of applying the odd-function shortcut.",
+  "This multiplies the coefficients instead of recognizing the odd-function shortcut gives 0."
+ ]
+},
+{
+ "template_id": "trig_odd_even_pi_bounds_v3",
+ "skill_id": "odd_even_symmetry_shortcut",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "q": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7, 8]}
+ },
+ "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)"],
+ "stem": "Use the symmetry of sine (odd) and cosine (even) to evaluate \\( \\int_{-[[k]]\\pi/2}^{[[k]]\\pi/2} \\left( ([[p]])\\sin x + ([[q]])\\cos x \\right) dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[p]]*sin(x) + [[q]]*cos(x)", "var": "x", "bounds": ["-[[k]]*pi/2", "[[k]]*pi/2"]},
+ "distractors": [
+  "2*[[p]]*sin([[k]]*pi/2)",
+  "[[p]]*sin([[k]]*pi/2)",
+  "[[q]]*sin([[k]]*pi/2)",
+  "2*[[q]]*cos([[k]]*pi/2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "\\( \\sin x \\) is odd, so \\( \\int_{-[[k]]\\pi/2}^{[[k]]\\pi/2} ([[p]])\\sin x\\, dx = 0 \\). \\( \\cos x \\) is even, so its contribution doubles the half-integral: \\( \\int_{-[[k]]\\pi/2}^{[[k]]\\pi/2} ([[q]])\\cos x\\, dx = 2([[q]])\\sin([[k]]\\pi/2) \\). The total is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly doubles the SINE term's contribution, treating it as even instead of odd.",
+  "This keeps the sine term without doubling and drops the cosine term entirely.",
+  "This mixes up the coefficients, applying \\( q \\) where \\( p \\) belongs.",
+  "This uses \\( \\cos([[k]]\\pi/2) \\) instead of the correct \\( \\sin([[k]]\\pi/2) \\) from antidifferentiating cosine.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_for_vanishing_parameter_v4",
+ "skill_id": "odd_even_symmetry_shortcut",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c3": {"type": "int", "lo": -5, "hi": 5},
+  "c2": {"type": "int", "lo": 1, "hi": 6},
+  "c1": {"type": "int", "lo": -5, "hi": 5},
+  "h": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[c3]], 0)", "Ne([[c1]], 0)"],
+ "stem": "For which value of \\( k \\) does \\( \\int_{-[[h]]}^{[[h]]} \\left( ([[c3]])x^{3} + ([[c2]])x^{2} + ([[c1]])x + k \\right) dx = 0 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "-[[c2]]*[[h]]**2/3"},
+ "distractors": [
+  "[[c2]]*[[h]]**2/3",
+  "-[[c2]]*[[h]]/3",
+  "-[[c2]]*[[h]]**2",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By symmetry, the odd terms \\( ([[c3]])x^{3} \\) and \\( ([[c1]])x \\) always integrate to 0 over \\( [-[[h]],[[h]]] \\), regardless of \\( k \\). So the whole integral vanishes exactly when the even part does: \\( \\int_{-[[h]]}^{[[h]]} \\left( ([[c2]])x^{2} + k \\right) dx = 2\\left(\\frac{[[c2]]}{3}[[h]]^{3} + k[[h]]\\right) = 0 \\), which gives \\( k = -\\frac{[[c2]]}{3}[[h]]^{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the minus sign when solving \\( \\tfrac{c_2}{3}h^2 + k = 0 \\) for \\( k \\).",
+  "This uses \\( h \\) instead of \\( h^{2} \\), as if the \\( x^{2} \\) term contributed only one power of \\( h \\).",
+  "This forgets to divide by 3 when isolating \\( k \\).",
+  "This wrongly assumes no constant shift is ever needed, ignoring the nonzero even term \\( c_2 x^2 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "symmetry_about_general_center_v5",
+ "skill_id": "odd_even_symmetry_shortcut",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "h": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Evaluate \\( \\int_{[[m]]-[[h]]}^{[[m]]+[[h]]} \\left( (x-([[m]]))^{3} + (x - ([[m]])) + ([[k]]) \\right) dx \\), using symmetry about the center \\( x=[[m]] \\) of the interval.",
+ "answer_spec": {"op": "integrate", "expr": "(x-[[m]])**3 + (x-[[m]]) + [[k]]", "var": "x", "bounds": ["[[m]]-[[h]]", "[[m]]+[[h]]"]},
+ "distractors": [
+  "2*[[h]]**3 + 2*[[h]]",
+  "2*[[k]]*[[h]] + 2*[[h]]",
+  "[[k]]*[[h]]",
+  "2*[[m]]*[[h]] + 2*[[k]]*[[h]]",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "Substituting \\( u = x - [[m]] \\) centers the interval at 0: the integral becomes \\( \\int_{-[[h]]}^{[[h]]} \\left( u^{3} + u + ([[k]]) \\right) du \\). The odd terms \\( u^{3} \\) and \\( u \\) vanish by symmetry, leaving only the constant: \\( 2([[k]])([[h]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly keeps the odd terms \\( u^3 \\) and \\( u \\) as if they doubled instead of vanishing.",
+  "This wrongly keeps the \\( u \\) term's contribution alongside the correct constant term.",
+  "This forgets to double the constant term's contribution.",
+  "This mistakenly reintroduces the center \\( m \\) as if the shift did not remove it.",
+  "This is off by 2 from the correct value.",
+  "This is off by 2 from the correct value.",
+  "This is off by 4 from the correct value."
+ ]
+}
+]

@@ -1,0 +1,181 @@
+[
+{
+ "template_id": "planarity_euler_solve_faces_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 4, "hi": 20},
+  "e": {"type": "int", "lo": 4, "hi": 55}
+ },
+ "constraints": ["Ge([[e]], [[v]] - 1)", "Le([[e]], 3*[[v]] - 6)"],
+ "stem": "A connected planar graph drawn in the plane has [[v]] vertices and [[e]] edges. By Euler's formula \\( V - E + F = 2 \\), how many faces (including the unbounded outer face) does the drawing have?",
+ "answer_spec": {"op": "evaluate", "expr": "2 - [[v]] + [[e]]"},
+ "distractors": ["2 + [[v]] - [[e]]", "[[v]] - [[e]]", "[[e]] - [[v]]", "[[v]] + [[e]] - 2", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Rearranging Euler's formula gives \\( F = 2 - V + E = 2 - [[v]] + [[e]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This solves for \\(V\\) instead of \\(F\\), swapping the signs of \\(V\\) and \\(E\\).",
+  "This drops the \\(+2\\) from Euler's formula entirely.",
+  "This drops the \\(+2\\) and also flips the sign of the difference.",
+  "This uses \\(+2\\) with the wrong sign convention, adding \\(E\\) and \\(V\\) together.",
+  "This overshoots the correct face count by 1.",
+  "This undershoots the correct face count by 1."
+ ]
+},
+{
+ "template_id": "planarity_euler_solve_edges_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "v": {"type": "int", "lo": 4, "hi": 20},
+  "f": {"type": "int", "lo": 1, "hi": 25}
+ },
+ "constraints": ["Le([[f]], 2*[[v]] - 4)"],
+ "stem": "A connected planar graph drawn in the plane has [[v]] vertices and [[f]] faces (including the unbounded outer face). By Euler's formula \\( V - E + F = 2 \\), how many edges does the graph have?",
+ "answer_spec": {"op": "evaluate", "expr": "[[v]] + [[f]] - 2"},
+ "distractors": ["[[v]] - [[f]] + 2", "[[v]] + [[f]]", "[[v]] - [[f]]", "2 - [[v]] - [[f]]", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Rearranging Euler's formula gives \\( E = V + F - 2 = [[v]] + [[f]] - 2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of \\(F\\) instead of subtracting 2.",
+  "This forgets to subtract 2 from the sum of vertices and faces.",
+  "This drops the face count entirely instead of adding it.",
+  "This flips the sign of the whole expression instead of solving correctly for \\(E\\).",
+  "This overshoots the correct edge count by 1.",
+  "This undershoots the correct edge count by 1."
+ ]
+},
+{
+ "template_id": "planarity_euler_solve_vertices_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "e": {"type": "int", "lo": 6, "hi": 60},
+  "f": {"type": "int", "lo": 2, "hi": 25}
+ },
+ "constraints": ["Ge(2 + [[e]] - [[f]], 3)"],
+ "stem": "A connected planar graph drawn in the plane has [[e]] edges and [[f]] faces (including the unbounded outer face). By Euler's formula \\( V - E + F = 2 \\), how many vertices does the graph have?",
+ "answer_spec": {"op": "evaluate", "expr": "2 + [[e]] - [[f]]"},
+ "distractors": ["2 - [[e]] + [[f]]", "[[e]] - [[f]]", "[[e]] + [[f]]", "[[e]] + [[f]] - 2", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Rearranging Euler's formula gives \\( V = 2 + E - F = 2 + [[e]] - [[f]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of \\(E\\) and \\(F\\) instead of solving correctly for \\(V\\).",
+  "This drops the \\(+2\\) from Euler's formula entirely.",
+  "This drops the \\(+2\\) and also flips the sign of \\(F\\).",
+  "This uses \\(-2\\) instead of \\(+2\\) when rearranging Euler's formula.",
+  "This overshoots the correct vertex count by 1.",
+  "This undershoots the correct vertex count by 1."
+ ]
+},
+{
+ "template_id": "planarity_max_edges_bound_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 100}
+ },
+ "constraints": [],
+ "stem": "A simple planar graph has [[n]] vertices (with \\( [[n]] \\ge 3 \\)). What is the MAXIMUM possible number of edges it can have while remaining planar?",
+ "answer_spec": {"op": "evaluate", "expr": "3*[[n]] - 6"},
+ "distractors": ["2*[[n]] - 4", "3*[[n]]", "[[n]]*([[n]] - 1)/2", "3*([[n]] - 6)", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Every simple planar graph on \\( [[n]]\\ge 3 \\) vertices satisfies \\( E \\le 3V - 6 \\), so the maximum edge count is \\( 3([[n]]) - 6 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the tighter bound that applies only to BIPARTITE planar graphs, not general planar graphs.",
+  "This forgets to subtract the constant 6 from the bound.",
+  "This uses the complete-graph edge count instead of the planar edge bound.",
+  "This multiplies the constant 6 into the vertex count instead of subtracting it afterward.",
+  "This overshoots the correct maximum by 1, which would violate planarity.",
+  "This undershoots the true maximum by 1."
+ ]
+},
+{
+ "template_id": "planarity_max_edges_bipartite_bound_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 100}
+ },
+ "constraints": [],
+ "stem": "A simple planar BIPARTITE graph has [[n]] vertices (with \\( [[n]] \\ge 3 \\)); recall that a bipartite graph has no odd cycles, in particular no triangular faces. What is the MAXIMUM possible number of edges it can have while remaining planar?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[n]] - 4"},
+ "distractors": ["3*[[n]] - 6", "2*[[n]]", "[[n]]*([[n]] - 1)/2", "2*([[n]] - 4)", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Since a bipartite graph has no triangles, every face uses at least 4 edges, tightening Euler's bound to \\( E \\le 2V - 4 \\), so the maximum is \\( 2([[n]]) - 4 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the looser bound for general (not necessarily bipartite) planar graphs.",
+  "This forgets to subtract the constant 4 from the bound.",
+  "This uses the complete-graph edge count instead of the bipartite planar bound.",
+  "This multiplies the constant 4 into the vertex count instead of subtracting it afterward.",
+  "This overshoots the correct maximum by 1, which would violate planarity.",
+  "This undershoots the true maximum by 1."
+ ]
+},
+{
+ "template_id": "planarity_chromatic_number_cycle_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "What is the chromatic number of the cycle graph \\( C_{[[n]]} \\) (a single cycle on [[n]] vertices)?",
+ "answer_spec": {"op": "evaluate", "expr": "2 + Mod([[n]], 2)"},
+ "distractors": ["2", "3", "[[n]]", "Mod([[n]], 2)", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "An even cycle is bipartite and needs only 2 colors, but an odd cycle forces a third color to avoid a same-color clash where the cycle closes; so \\( \\chi(C_{[[n]]}) = 2 + ([[n]] \\bmod 2) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the cycle is always bipartite, ignoring what happens when [[n]] is odd.",
+  "This assumes the cycle always needs a third color, ignoring what happens when [[n]] is even.",
+  "This uses the vertex count itself instead of the actual chromatic number.",
+  "This reports only the parity bit (0 or 1) instead of adding it to the base of 2 colors.",
+  "This overshoots the correct chromatic number by 1.",
+  "This undershoots the correct chromatic number by 1, which would not properly color an odd cycle."
+ ]
+},
+{
+ "template_id": "planarity_chromatic_number_complete_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "What is the chromatic number of the complete graph \\( K_{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+ "distractors": ["[[n]] - 1", "[[n]] + 1", "2", "binomial([[n]], 2)", "[[answer]] + 2", "[[answer]] - 2"],
+ "solution": "Every pair of vertices in \\( K_{[[n]]} \\) is adjacent, so all [[n]] vertices need pairwise distinct colors: \\( \\chi(K_{[[n]]}) = [[n]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This undershoots by 1, which would force two adjacent vertices to share a color.",
+  "This overshoots by 1, using more colors than necessary.",
+  "This assumes every graph can be 2-colored, ignoring that \\(K_{[[n]]}\\) is far from bipartite.",
+  "This confuses the chromatic number with the total number of edges in \\(K_{[[n]]}\\).",
+  "This overshoots the correct chromatic number by 2.",
+  "This undershoots the correct chromatic number by 2, leaving many adjacent pairs sharing a color."
+ ]
+},
+{
+ "template_id": "planarity_chromatic_number_wheel_v1",
+ "skill_id": "planarity_and_coloring",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "The wheel graph \\( W_{[[n]]} \\) consists of a cycle on [[n]] rim vertices plus one hub vertex connected to every rim vertex. What is the chromatic number of \\( W_{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 + Mod([[n]], 2)"},
+ "distractors": ["2 + Mod([[n]], 2)", "1", "5", "6", "7", "8"],
+ "solution": "The hub needs a color different from every rim vertex, and the rim cycle itself needs \\( 2+([[n]]\\bmod 2) \\) colors, so overall \\( \\chi(W_{[[n]]}) = 3 + ([[n]] \\bmod 2) = [[answer]] \\) (3 when the rim is even, 4 when the rim is odd).",
+ "distractor_rationales": [
+  "This forgets to add the extra color needed for the hub, using only the rim cycle's own chromatic number.",
+  "This guesses a small fixed value with no relation to the actual coloring argument.",
+  "This wildly overshoots the true chromatic number for a wheel graph.",
+  "This wildly overshoots the true chromatic number for a wheel graph.",
+  "This wildly overshoots the true chromatic number for a wheel graph.",
+  "This wildly overshoots the true chromatic number for a wheel graph."
+ ]
+}
+]

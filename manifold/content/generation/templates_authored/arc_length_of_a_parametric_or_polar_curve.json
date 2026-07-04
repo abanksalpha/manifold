@@ -1,0 +1,134 @@
+[
+{
+ "template_id": "arc_length_parametric_circle_v1",
+ "skill_id": "arc_length_of_a_parametric_or_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "t0": {"type": "choice", "values": [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240]},
+  "t1": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360]}
+ },
+ "constraints": ["Lt([[t0]], [[t1]])"],
+ "derived": {"t0r": "[[t0]]*pi/180", "t1r": "[[t1]]*pi/180"},
+ "require_rational": false,
+ "stem": "A particle traces the curve given parametrically by \\( x(t) = [[a]]\\cos t \\), \\( y(t) = [[a]]\\sin t \\) as \\( t \\) runs from \\( [[t0]]^\\circ \\) to \\( [[t1]]^\\circ \\). Find the length of the path traveled.",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]", "var": "t", "bounds": ["[[t0r]]", "[[t1r]]"]},
+ "distractors": [
+  "[[a]]*([[t1]] - [[t0]])",
+  "2*pi*[[a]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( x'(t)=-[[a]]\\sin t \\) and \\( y'(t)=[[a]]\\cos t \\), so the speed \\( \\sqrt{x'(t)^{2}+y'(t)^{2}} = [[a]] \\) is constant. Converting the angles to radians, the arc length is \\( \\int_{[[t0]]^\\circ}^{[[t1]]^\\circ} [[a]]\\,dt = [[a]]\\cdot\\dfrac{([[t1]]-[[t0]])\\pi}{180} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the angle sweep in DEGREES directly as if it were already in radians, skipping the \\( \\pi/180 \\) conversion.",
+  "This is the full circumference of the circle of radius \\( [[a]] \\), ignoring that the particle only traces part of it.",
+  "This halves the correct arc length.",
+  "This doubles the correct arc length.",
+  "This is off by one from the correct arc length."
+ ]
+},
+{
+ "template_id": "arc_length_polar_circle_v1",
+ "skill_id": "arc_length_of_a_parametric_or_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "th0": {"type": "choice", "values": [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240]},
+  "th1": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360]}
+ },
+ "constraints": ["Lt([[th0]], [[th1]])"],
+ "derived": {"th0r": "[[th0]]*pi/180", "th1r": "[[th1]]*pi/180"},
+ "require_rational": false,
+ "stem": "Find the length of the polar curve \\( r = [[a]] \\) (a circle of radius \\( [[a]] \\)) for \\( \\theta \\) from \\( [[th0]]^\\circ \\) to \\( [[th1]]^\\circ \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]", "var": "theta", "bounds": ["[[th0r]]", "[[th1r]]"]},
+ "distractors": [
+  "[[a]]*([[th1]] - [[th0]])",
+  "2*pi*[[a]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The polar arc-length formula is \\( L=\\int\\sqrt{r^{2}+(dr/d\\theta)^{2}}\\,d\\theta \\). Since \\( r=[[a]] \\) is constant, \\( dr/d\\theta=0 \\), so the integrand is just \\( [[a]] \\). Converting the angles to radians, \\( L = \\int_{[[th0]]^\\circ}^{[[th1]]^\\circ} [[a]]\\,d\\theta = [[a]]\\cdot\\dfrac{([[th1]]-[[th0]])\\pi}{180} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the angle sweep in DEGREES directly as if it were already in radians, skipping the \\( \\pi/180 \\) conversion.",
+  "This is the full circumference of the circle, ignoring that only part of it is swept out.",
+  "This halves the correct arc length.",
+  "This doubles the correct arc length.",
+  "This is off by one from the correct arc length."
+ ]
+},
+{
+ "template_id": "arc_length_parametric_line_v1",
+ "skill_id": "arc_length_of_a_parametric_or_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 40},
+  "q": {"type": "int", "lo": 1, "hi": 40},
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "y0": {"type": "int", "lo": -5, "hi": 5},
+  "t0": {"type": "int", "lo": -4, "hi": 2},
+  "t1": {"type": "int", "lo": 3, "hi": 9}
+ },
+ "constraints": [
+  "Eq([[p]]**2 + [[q]]**2, floor(sqrt([[p]]**2 + [[q]]**2))**2)",
+  "Lt([[t0]], [[t1]])"
+ ],
+ "derived": {"hyp": "sqrt([[p]]**2 + [[q]]**2)"},
+ "stem": "A curve is given parametrically by \\( x(t) = [[x0]] + [[p]]t \\), \\( y(t) = [[y0]] + [[q]]t \\), for \\( [[t0]] \\le t \\le [[t1]] \\). Find the arc length of this curve.",
+ "answer_spec": {"op": "integrate", "expr": "sqrt([[p]]**2 + [[q]]**2)", "var": "t", "bounds": ["[[t0]]", "[[t1]]"]},
+ "distractors": [
+  "[[p]]*([[t1]] - [[t0]])",
+  "[[q]]*([[t1]] - [[t0]])",
+  "([[p]] + [[q]])*([[t1]] - [[t0]])",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "This is a line, so the speed \\( \\sqrt{x'(t)^{2}+y'(t)^{2}} = \\sqrt{[[p]]^{2}+[[q]]^{2}} = [[hyp]] \\) is constant. The arc length is \\( \\int_{[[t0]]}^{[[t1]]} [[hyp]]\\,dt = [[hyp]]\\cdot([[t1]]-[[t0]]) = [[answer]] \\), matching the distance formula.",
+ "distractor_rationales": [
+  "This uses only the \\( x \\)-component's rate \\( [[p]] \\) as the speed, ignoring the \\( y \\)-component.",
+  "This uses only the \\( y \\)-component's rate \\( [[q]] \\) as the speed, ignoring the \\( x \\)-component.",
+  "This adds the two component rates instead of combining them via the Pythagorean theorem.",
+  "This doubles the correct arc length.",
+  "This is off by one from the correct arc length."
+ ]
+},
+{
+ "template_id": "arc_length_cardioid_v1",
+ "skill_id": "arc_length_of_a_parametric_or_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "theta1": {"type": "choice", "values": [30, 45, 60, 72, 90, 108, 120, 135, 150, 160, 180]}
+ },
+ "constraints": [],
+ "derived": {"theta1r": "[[theta1]]*pi/180"},
+ "require_rational": false,
+ "stem": "Find the length of the portion of the cardioid \\( r = [[a]](1+\\cos\\theta) \\) traced as \\( \\theta \\) runs from \\( 0 \\) to \\( [[theta1]]^\\circ \\).",
+ "answer_spec": {"op": "integrate", "expr": "2*[[a]]*cos(theta/2)", "var": "theta", "bounds": ["0", "[[theta1r]]"]},
+ "distractors": [
+  "8*[[a]]",
+  "4*[[a]]",
+  "[[a]]*[[theta1r]]",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Using \\( 1+\\cos\\theta = 2\\cos^{2}(\\theta/2) \\), the polar speed \\( \\sqrt{r^{2}+(dr/d\\theta)^{2}} \\) simplifies to \\( 2[[a]]\\cos(\\theta/2) \\) (non-negative here since \\( \\theta/2 \\le 90^\\circ \\)). The arc length is \\( \\int_{0}^{[[theta1]]^\\circ} 2[[a]]\\cos(\\theta/2)\\,d\\theta = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the length of the ENTIRE cardioid (a full \\( 360^\\circ \\) sweep), not just the given portion.",
+  "This is the length of exactly the HALF cardioid (\\( 180^\\circ \\)), regardless of the actual angle given.",
+  "This treats the speed as the constant \\( [[a]] \\) (as for a circle), ignoring the \\( \\cos(\\theta/2) \\) factor entirely.",
+  "This doubles the correct arc length.",
+  "This is off by one from the correct arc length."
+ ]
+}
+]

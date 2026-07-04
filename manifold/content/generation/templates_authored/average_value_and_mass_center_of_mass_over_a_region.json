@@ -1,0 +1,201 @@
+[
+{
+ "template_id": "average_value_and_mass_center_of_mass_over_a_region_v1",
+ "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "d": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Find the average value of \\( f(x,y) = [[p]]x + [[q]]y \\) over the rectangle \\( R = [0,[[b]]] \\times [0,[[d]]] \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[p]]*x + [[q]]*y)/(([[b]])*([[d]]))", "vars": ["x", "y"], "bounds": [["0", "[[b]]"], ["0", "[[d]]"]]},
+ "distractors": [
+  "[[p]]*[[b]]**2*[[d]]/2 + [[q]]*[[b]]*[[d]]**2/2",
+  "[[p]]*[[b]] + [[q]]*[[d]]",
+  "[[p]]*[[b]]/2 - [[q]]*[[d]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "The average value is \\( \\frac{1}{\\text{area}(R)}\\iint_R f\\,dA = \\frac{1}{[[b]]\\cdot[[d]]}\\int_{0}^{[[d]]}\\int_{0}^{[[b]]}([[p]]x+[[q]]y)\\,dx\\,dy = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the integral \\(\\iint_R f\\,dA\\) itself, without dividing by the area of \\(R\\).",
+  "This evaluates \\(f\\) at the far corner \\(([[b]],[[d]])\\) instead of averaging.",
+  "This makes a sign error on the \\(y\\)-term of the average.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_and_mass_center_of_mass_over_a_region_v2_triangle",
+ "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": 1, "hi": 5},
+  "m": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"areaT": "[[m]]*[[b]]**2/2"},
+ "stem": "Let \\(D\\) be the triangular region \\( 0 \\le y \\le [[m]]x,\\ 0 \\le x \\le [[b]] \\). Find the average value of \\( f(x,y) = [[p]]x + [[q]]y \\) over \\(D\\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[p]]*x + [[q]]*y)/([[areaT]])", "vars": ["y", "x"], "bounds": [["0", "[[m]]*x"], ["0", "[[b]]"]]},
+ "distractors": [
+  "([[p]]*[[b]]/2 + [[q]]*[[m]]*[[b]]/2)",
+  "([[p]]*[[b]]+[[q]]*[[m]]*[[b]])/([[m]]*[[b]])",
+  "[[answer]]*2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The area of \\(D\\) is \\( \\int_{0}^{[[b]]}[[m]]x\\,dx = [[areaT]] \\). The average value is \\( \\frac{1}{[[areaT]]}\\int_{0}^{[[b]]}\\int_{0}^{[[m]]x}([[p]]x+[[q]]y)\\,dy\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\(f\\) at the vertex \\((x,y)=([[b]],[[m]][[b]])\\) instead of averaging over \\(D\\).",
+  "This divides by \\([[m]][[b]]\\) (a rectangle's dimensions) instead of the true triangle area \\([[areaT]]\\).",
+  "This is twice the correct average (forgot the factor of \\(\\tfrac12\\) in the triangle's area).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_and_mass_center_of_mass_over_a_region_v3_mass_rect",
+ "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "r0": {"type": "int", "lo": 1, "hi": 4},
+  "r1": {"type": "int", "lo": 1, "hi": 4},
+  "r2": {"type": "int", "lo": 1, "hi": 4},
+  "bb": {"type": "int", "lo": 1, "hi": 4},
+  "dd": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "A flat lamina occupies the rectangle \\( R = [0,[[bb]]] \\times [0,[[dd]]] \\) and has density \\( \\delta(x,y) = [[r0]] + [[r1]]x + [[r2]]y \\) (mass per unit area). Find the total mass of the lamina, \\( \\iint_R \\delta(x,y)\\,dA \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "[[r0]] + [[r1]]*x + [[r2]]*y", "vars": ["x", "y"], "bounds": [["0", "[[bb]]"], ["0", "[[dd]]"]]},
+ "distractors": [
+  "[[r0]]*[[bb]]*[[dd]]",
+  "([[r0]]+[[r1]]*[[bb]]+[[r2]]*[[dd]])*[[bb]]*[[dd]]",
+  "[[r1]]*[[bb]]**2*[[dd]]/2 + [[r2]]*[[bb]]*[[dd]]**2/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "The mass is \\( \\iint_R \\delta\\,dA = \\int_{0}^{[[dd]]}\\int_{0}^{[[bb]]} ([[r0]]+[[r1]]x+[[r2]]y)\\,dx\\,dy = [[r0]]\\cdot[[bb]]\\cdot[[dd]] + \\frac{[[r1]][[bb]]^2[[dd]]}{2} + \\frac{[[r2]][[bb]][[dd]]^2}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the constant part \\([[r0]]\\) of the density, ignoring the \\(x\\) and \\(y\\) terms.",
+  "This evaluates the density at the far corner and multiplies by the area, instead of integrating.",
+  "This drops the constant term \\([[r0]]\\cdot[[bb]]\\cdot[[dd]]\\) of the mass.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_and_mass_center_of_mass_over_a_region_v4_mass_triangle",
+ "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "r0": {"type": "int", "lo": 1, "hi": 4},
+  "r1": {"type": "int", "lo": 1, "hi": 4},
+  "r2": {"type": "int", "lo": 1, "hi": 4},
+  "m": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "A flat lamina occupies the triangular region \\( D = \\{(x,y): 0 \\le y \\le [[m]]x,\\ 0 \\le x \\le [[b]]\\} \\) and has density \\( \\delta(x,y) = [[r0]] + [[r1]]x + [[r2]]y \\). Find the total mass of the lamina.",
+ "answer_spec": {"op": "dblintegrate", "expr": "[[r0]] + [[r1]]*x + [[r2]]*y", "vars": ["y", "x"], "bounds": [["0", "[[m]]*x"], ["0", "[[b]]"]]},
+ "distractors": [
+  "([[r0]]+[[r1]]*[[b]]+[[r2]]*[[m]]*[[b]])*[[m]]*[[b]]**2/2",
+  "[[r0]]*[[m]]*[[b]]**2/2",
+  "[[r0]]*[[m]]*[[b]]**2 + [[r1]]*[[b]]**2 + [[r2]]*[[m]]*[[b]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "The mass is \\( \\int_{0}^{[[b]]}\\int_{0}^{[[m]]x} ([[r0]]+[[r1]]x+[[r2]]y)\\,dy\\,dx = [[answer]] \\), integrating the density over the triangular base.",
+ "distractor_rationales": [
+  "This evaluates the density at the vertex and multiplies by the triangle's area, instead of integrating.",
+  "This keeps only the constant density term \\([[r0]]\\) times the triangle's area.",
+  "This forgets to divide by \\(2\\) anywhere in the triangle-area bookkeeping.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_and_mass_center_of_mass_over_a_region_v5_com_x",
+ "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "r0": {"type": "int", "lo": 1, "hi": 3},
+  "r1": {"type": "int", "lo": 1, "hi": 3},
+  "r2": {"type": "int", "lo": 1, "hi": 3},
+  "bb": {"type": "int", "lo": 1, "hi": 4},
+  "dd": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"M": "[[r0]]*[[bb]]*[[dd]] + [[r1]]*[[bb]]**2*[[dd]]/2 + [[r2]]*[[bb]]*[[dd]]**2/2"},
+ "stem": "A flat lamina occupies the rectangle \\( R = [0,[[bb]]] \\times [0,[[dd]]] \\) and has density \\( \\delta(x,y) = [[r0]] + [[r1]]x + [[r2]]y \\). Find the \\(x\\)-coordinate of its center of mass, \\( \\bar{x} = \\dfrac{1}{M}\\iint_R x\\,\\delta(x,y)\\,dA \\), where \\(M\\) is the total mass.",
+ "answer_spec": {"op": "dblintegrate", "expr": "x*([[r0]] + [[r1]]*x + [[r2]]*y)/([[M]])", "vars": ["x", "y"], "bounds": [["0", "[[bb]]"], ["0", "[[dd]]"]]},
+ "distractors": [
+  "[[bb]]/2",
+  "[[bb]]*[[dd]]/(2*[[M]])",
+  "[[r0]]*[[bb]]**2*[[dd]]/(2*[[M]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The mass is \\(M = [[M]]\\). Then \\( \\bar{x} = \\dfrac{1}{[[M]]}\\int_{0}^{[[dd]]}\\int_{0}^{[[bb]]} x([[r0]]+[[r1]]x+[[r2]]y)\\,dx\\,dy = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the geometric midpoint of the rectangle, ignoring how the density is weighted.",
+  "This divides the rectangle's centroid-times-area by \\(M\\) instead of directly weighting by density.",
+  "This keeps only the constant part of the density in the numerator, dropping the \\(x\\) and \\(y\\) terms.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_and_mass_center_of_mass_over_a_region_v6_avg_disk",
+ "skill_id": "average_value_and_mass_center_of_mass_over_a_region",
+ "topic_id": "multivariable_int",
+ "tier": "teach",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "R": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"R2": "[[R]]**2"},
+ "stem": "Find the average value of \\( f(x,y) = [[c]](x^2+y^2) \\) over the disk \\( D: x^2+y^2 \\le [[R2]] \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "[[c]]*r**3/(pi*[[R]]**2)", "vars": ["r", "theta"], "bounds": [["0", "[[R]]"], ["0", "2*pi"]]},
+ "distractors": [
+  "[[c]]*[[R]]**2",
+  "[[c]]*[[R]]**2/4",
+  "[[c]]*[[R]]**4/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "In polar coordinates \\(x^2+y^2=r^2\\), \\(dA=r\\,dr\\,d\\theta\\), and \\(\\text{area}(D)=\\pi[[R]]^2\\). So the average value is \\( \\dfrac{1}{\\pi[[R]]^2}\\int_{0}^{2\\pi}\\int_{0}^{[[R]]} [[c]]\\,r^2\\cdot r\\,dr\\,d\\theta = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\(f\\) evaluated at the boundary radius \\(R\\) directly rather than averaging over the whole disk.",
+  "This drops a factor of \\(2\\) somewhere in the radial antiderivative.",
+  "This forgets to divide by the area \\(\\pi R^2\\), leaving an extra factor of \\(R^2\\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

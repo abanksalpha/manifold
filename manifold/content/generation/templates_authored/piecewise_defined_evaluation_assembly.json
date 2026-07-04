@@ -1,0 +1,215 @@
+[
+ {
+  "template_id": "piecewise_defined_evaluation_assembly_v1",
+  "skill_id": "piecewise_defined_evaluation_assembly",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[x0]], [[t]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x < [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x \\ge [[t]] \\end{cases} \\). What is \\( f([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "((Abs([[x0]] - [[t]]) + ([[x0]] - [[t]]))/(2*([[x0]] - [[t]])))*([[c]]*[[x0]] + [[d]]) + (1 - (Abs([[x0]] - [[t]]) + ([[x0]] - [[t]]))/(2*([[x0]] - [[t]])))*([[a]]*[[x0]] + [[b]])"},
+  "distractors": [
+   "[[a]]*[[x0]] + [[b]]",
+   "[[c]]*[[x0]] + [[d]]",
+   "[[a]]*[[t]] + [[b]]",
+   "[[c]]*[[t]] + [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Compare \\( [[x0]] \\) with the breakpoint \\( [[t]] \\) to pick the correct piece, then substitute. This gives \\( f([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the rule for \\( x < [[t]] \\); check which side of \\( [[t]] \\) the input \\( [[x0]] \\) is on.",
+   "This uses the rule for \\( x \\ge [[t]] \\); check which side of \\( [[t]] \\) the input \\( [[x0]] \\) is on.",
+   "This substitutes the breakpoint \\( [[t]] \\) into the lower piece instead of the input \\( [[x0]] \\).",
+   "This substitutes the breakpoint \\( [[t]] \\) into the upper piece instead of the input \\( [[x0]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "piecewise_defined_evaluation_assembly_three_piece_v1",
+  "skill_id": "piecewise_defined_evaluation_assembly",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a0": {"type": "int", "lo": -3, "hi": 3},
+   "b0": {"type": "int", "lo": -5, "hi": 5},
+   "a1": {"type": "int", "lo": -3, "hi": 3},
+   "b1": {"type": "int", "lo": -5, "hi": 5},
+   "a2": {"type": "int", "lo": -3, "hi": 3},
+   "b2": {"type": "int", "lo": -5, "hi": 5},
+   "t1": {"type": "int", "lo": -6, "hi": 0},
+   "gap": {"type": "int", "lo": 2, "hi": 6},
+   "x0": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[x0]], [[t1]])", "Ne([[x0]], [[t1]]+[[gap]])"],
+  "derived": {"t2": "[[t1]] + [[gap]]"},
+  "stem": "Let \\( f(x) = \\begin{cases} [[a0]]x + ([[b0]]) & \\text{if } x < [[t1]] \\\\ [[a1]]x + ([[b1]]) & \\text{if } [[t1]] \\le x < [[t2]] \\\\ [[a2]]x + ([[b2]]) & \\text{if } x \\ge [[t2]] \\end{cases} \\). What is \\( f([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - ((Abs([[x0]]-[[t1]])+([[x0]]-[[t1]]))/(2*([[x0]]-[[t1]]))))*([[a0]]*[[x0]]+[[b0]]) + (((Abs([[x0]]-[[t1]])+([[x0]]-[[t1]]))/(2*([[x0]]-[[t1]]))) - ((Abs([[x0]]-[[t2]])+([[x0]]-[[t2]]))/(2*([[x0]]-[[t2]]))))*([[a1]]*[[x0]]+[[b1]]) + (((Abs([[x0]]-[[t2]])+([[x0]]-[[t2]]))/(2*([[x0]]-[[t2]]))))*([[a2]]*[[x0]]+[[b2]])"},
+  "distractors": [
+   "[[a0]]*[[x0]] + [[b0]]",
+   "[[a1]]*[[x0]] + [[b1]]",
+   "[[a2]]*[[x0]] + [[b2]]",
+   "[[a1]]*[[t1]] + [[b1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Locate \\( [[x0]] \\) among the three intervals determined by the breakpoints \\( [[t1]] \\) and \\( [[t2]] \\), then apply that piece's rule. This gives \\( f([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the first piece's rule; check which of the three intervals \\( [[x0]] \\) actually falls in.",
+   "This uses the middle piece's rule; check which of the three intervals \\( [[x0]] \\) actually falls in.",
+   "This uses the last piece's rule; check which of the three intervals \\( [[x0]] \\) actually falls in.",
+   "This substitutes the breakpoint \\( [[t1]] \\) into the middle piece instead of the input \\( [[x0]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "piecewise_defined_evaluation_assembly_mixed_types_v1",
+  "skill_id": "piecewise_defined_evaluation_assembly",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "t": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[x0]], [[t]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x^{2} + ([[b]]) & \\text{if } x < [[t]] \\\\ [[c]]x - ([[b]]) & \\text{if } x \\ge [[t]] \\end{cases} \\). What is \\( f([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "((Abs([[x0]] - [[t]]) + ([[x0]] - [[t]]))/(2*([[x0]] - [[t]])))*([[c]]*[[x0]] - [[b]]) + (1 - (Abs([[x0]] - [[t]]) + ([[x0]] - [[t]]))/(2*([[x0]] - [[t]])))*([[a]]*[[x0]]**2 + [[b]])"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[b]]",
+   "[[c]]*[[x0]] - [[b]]",
+   "[[a]]*[[t]]**2 + [[b]]",
+   "[[c]]*[[t]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Compare \\( [[x0]] \\) with the breakpoint \\( [[t]] \\) to pick the quadratic or linear piece, then substitute. This gives \\( f([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the quadratic rule for \\( x < [[t]] \\); check which side of \\( [[t]] \\) the input \\( [[x0]] \\) is on.",
+   "This uses the linear rule for \\( x \\ge [[t]] \\); check which side of \\( [[t]] \\) the input \\( [[x0]] \\) is on.",
+   "This substitutes the breakpoint into the quadratic piece instead of the input \\( [[x0]] \\).",
+   "This substitutes the breakpoint into the linear piece instead of the input \\( [[x0]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "piecewise_defined_evaluation_assembly_composition_v1",
+  "skill_id": "piecewise_defined_evaluation_assembly",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -3, "hi": 3},
+   "m": {"type": "int", "lo": 1, "hi": 3},
+   "n": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[m]]*[[x0]] + [[n]], [[t]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x < [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x \\ge [[t]] \\end{cases} \\) and \\( g(x) = [[m]]x + ([[n]]) \\). What is \\( f(g([[x0]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "((Abs(([[m]]*[[x0]]+[[n]]) - [[t]]) + (([[m]]*[[x0]]+[[n]]) - [[t]]))/(2*(([[m]]*[[x0]]+[[n]]) - [[t]])))*([[c]]*([[m]]*[[x0]]+[[n]]) + [[d]]) + (1 - (Abs(([[m]]*[[x0]]+[[n]]) - [[t]]) + (([[m]]*[[x0]]+[[n]]) - [[t]]))/(2*(([[m]]*[[x0]]+[[n]]) - [[t]])))*([[a]]*([[m]]*[[x0]]+[[n]]) + [[b]])"},
+  "distractors": [
+   "[[a]]*[[x0]] + [[b]]",
+   "[[c]]*[[x0]] + [[d]]",
+   "[[a]]*([[m]]*[[x0]]+[[n]]) + [[b]]",
+   "[[c]]*([[m]]*[[x0]]+[[n]]) + [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First evaluate the inner function: \\( g([[x0]]) = [[m]]([[x0]]) + ([[n]]) \\). Compare THIS value (not \\( [[x0]] \\) itself) with the breakpoint \\( [[t]] \\) to pick the correct piece of \\( f \\), then substitute. This gives \\( f(g([[x0]])) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies \\( f \\)'s lower piece directly to \\( [[x0]] \\), forgetting to first evaluate \\( g \\) and compare its output (not \\( [[x0]] \\)) to the breakpoint.",
+   "This applies \\( f \\)'s upper piece directly to \\( [[x0]] \\), forgetting to first evaluate \\( g \\) and compare its output (not \\( [[x0]] \\)) to the breakpoint.",
+   "This correctly substitutes \\( g([[x0]]) \\) into \\( f \\) but uses the wrong piece (compared \\( [[x0]] \\) rather than \\( g([[x0]]) \\) to the breakpoint).",
+   "This correctly substitutes \\( g([[x0]]) \\) into \\( f \\) but uses the wrong piece (compared \\( [[x0]] \\) rather than \\( g([[x0]]) \\) to the breakpoint).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "piecewise_defined_evaluation_assembly_solve_branch_v1",
+  "skill_id": "piecewise_defined_evaluation_assembly",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -4, "hi": 4},
+   "gap": {"type": "int", "lo": 0, "hi": 6}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "derived": {"s": "[[t]] + [[gap]]", "V": "[[c]]*([[t]]+[[gap]]) + [[d]]"},
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x < [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x \\ge [[t]] \\end{cases} \\). Given that \\( V = [[V]] \\) is attained on the \\( x \\ge [[t]] \\) piece, which of the following is a solution of \\( f(x) = [[V]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[c]]*x + [[d]] = [[V]]", "var": "x"},
+  "distractors": [
+   "[[t]]",
+   "([[V]] - [[b]])/[[a]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since we are told \\( V \\) is attained on the \\( x \\ge [[t]] \\) piece, solve that piece's equation: \\( [[c]]x + ([[d]]) = [[V]] \\), giving \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the breakpoint itself instead of solving the branch equation.",
+   "This incorrectly solves the OTHER piece's equation, which does not apply here.",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "piecewise_defined_evaluation_assembly_boundary_v1",
+  "skill_id": "piecewise_defined_evaluation_assembly",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]]*[[t]]+[[b]], [[c]]*[[t]]+[[d]])"],
+  "stem": "Let \\( f(x) = \\begin{cases} [[a]]x + ([[b]]) & \\text{if } x \\le [[t]] \\\\ [[c]]x + ([[d]]) & \\text{if } x > [[t]] \\end{cases} \\). What is \\( f([[t]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[t]] + [[b]]"},
+  "distractors": [
+   "[[c]]*[[t]] + [[d]]",
+   "[[a]]*[[t]] - [[b]]",
+   "[[c]]*[[t]] - [[d]]",
+   "[[t]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The breakpoint \\( x = [[t]] \\) satisfies \\( x \\le [[t]] \\) (the inequality is not strict there), so the FIRST piece applies: \\( f([[t]]) = [[a]]([[t]]) + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the second piece, but the condition \\( x \\le [[t]] \\) on the first piece includes the breakpoint itself.",
+   "This flips the sign of the constant term.",
+   "This uses the wrong piece and also flips the sign of its constant term.",
+   "This reports the input value itself instead of evaluating \\( f \\) at it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

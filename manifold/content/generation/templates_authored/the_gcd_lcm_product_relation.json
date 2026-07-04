@@ -1,0 +1,102 @@
+[
+  {
+    "template_id": "gcd_lcm_product_v1",
+    "skill_id": "the_gcd_lcm_product_relation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 6, "hi": 60},
+      "b": {"type": "int", "lo": 6, "hi": 60}
+    },
+    "constraints": ["Gt(gcd([[a]], [[b]]), 1)"],
+    "stem": "Let \\( a = [[a]] \\) and \\( b = [[b]] \\). Using the identity \\( \\gcd(a,b)\\cdot\\operatorname{lcm}(a,b) = ab \\), what is the value of \\( \\gcd(a,b)\\cdot\\operatorname{lcm}(a,b) \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]"},
+    "distractors": [
+      "[[a]] + [[b]]",
+      "[[a]]*[[b]]/gcd([[a]], [[b]])",
+      "gcd([[a]], [[b]])*([[a]] + [[b]])",
+      "[[answer]] + gcd([[a]], [[b]])",
+      "[[answer]] - gcd([[a]], [[b]])",
+      "[[answer]] + 2",
+      "[[answer]] - 2"
+    ],
+    "solution": "The product \\( \\gcd(a,b)\\cdot\\operatorname{lcm}(a,b) \\) always equals \\( ab \\). Hence the value is \\( [[a]]\\cdot[[b]] = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is \\( a + b \\); the identity involves the product \\( ab \\), not the sum.",
+      "This is \\( \\operatorname{lcm}(a,b) \\) alone, forgetting the factor of \\( \\gcd(a,b) \\).",
+      "This multiplies the gcd by the sum instead of forming the product \\( ab \\).",
+      "This overshoots \\( ab \\) by one gcd.",
+      "This undershoots \\( ab \\) by one gcd.",
+      "This is two more than the correct product.",
+      "This is two less than the correct product."
+    ]
+  },
+  {
+    "template_id": "gcd_lcm_find_missing_number_v1",
+    "skill_id": "the_gcd_lcm_product_relation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "G": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]},
+      "m": {"type": "int", "lo": 2, "hi": 9},
+      "n": {"type": "int", "lo": 2, "hi": 9}
+    },
+    "constraints": ["Eq(gcd([[m]], [[n]]), 1)", "Ne([[m]], [[n]])"],
+    "derived": {"a": "[[G]]*[[m]]", "L": "[[G]]*[[m]]*[[n]]"},
+    "stem": "Two positive integers \\( a \\) and \\( b \\) have \\( \\gcd(a,b) = [[G]] \\) and \\( \\operatorname{lcm}(a,b) = [[L]] \\). If \\( a = [[a]] \\), what is \\( b \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "[[G]]*[[L]]/[[a]]"},
+    "distractors": [
+      "[[L]]/[[a]]",
+      "[[a]]",
+      "[[L]] - [[a]]",
+      "[[L]]*[[a]]/[[G]]",
+      "[[answer]] + [[G]]",
+      "[[answer]] - [[G]]",
+      "[[answer]] + 1"
+    ],
+    "solution": "Since \\( \\gcd(a,b)\\cdot\\operatorname{lcm}(a,b) = ab \\), we get \\( b = \\dfrac{\\gcd(a,b)\\cdot\\operatorname{lcm}(a,b)}{a} = \\dfrac{[[G]]\\cdot[[L]]}{[[a]]} = [[answer]] \\).",
+    "distractor_rationales": [
+      "This forgets to multiply by \\( \\gcd(a,b) \\) before dividing by \\( a \\).",
+      "This just returns \\( a \\) itself, as if \\( a=b \\).",
+      "This subtracts instead of using the product-quotient relation.",
+      "This divides by \\( \\gcd(a,b) \\) instead of by \\( a \\).",
+      "This overshoots the correct value by \\( \\gcd(a,b) \\).",
+      "This undershoots the correct value by \\( \\gcd(a,b) \\).",
+      "This is one more than the correct value."
+    ]
+  },
+  {
+    "template_id": "gcd_lcm_word_problem_v1",
+    "skill_id": "the_gcd_lcm_product_relation",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "G": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]},
+      "m": {"type": "int", "lo": 2, "hi": 9},
+      "n": {"type": "int", "lo": 2, "hi": 9}
+    },
+    "constraints": ["Eq(gcd([[m]], [[n]]), 1)", "Ne([[m]], [[n]])"],
+    "derived": {"P": "[[G]]*[[G]]*[[m]]*[[n]]"},
+    "stem": "Two rotating gears in a machine each complete a whole number of cycles per minute. The product of their two cycle-lengths (in seconds) is \\( [[P]] \\), and the greatest common divisor of the two cycle-lengths is \\( [[G]] \\). What is the least common multiple of the two cycle-lengths, i.e. after how many seconds will both gears next complete a cycle at exactly the same moment?",
+    "answer_spec": {"op": "evaluate", "expr": "[[P]]/[[G]]"},
+    "distractors": [
+      "[[P]]*[[G]]",
+      "[[P]]",
+      "[[G]]",
+      "[[P]]/([[G]]*[[G]])",
+      "[[answer]] + [[G]]",
+      "[[answer]] - [[G]]",
+      "[[answer]] + 1"
+    ],
+    "solution": "Since \\( \\gcd \\cdot \\operatorname{lcm} = \\text{product} \\) for any two positive integers, the lcm equals \\( \\dfrac{P}{\\gcd} = \\dfrac{[[P]]}{[[G]]} = [[answer]] \\).",
+    "distractor_rationales": [
+      "This multiplies by the gcd instead of dividing by it.",
+      "This is just the product itself, forgetting to divide out the gcd at all.",
+      "This is just the gcd itself, not the lcm.",
+      "This divides by the gcd squared instead of the gcd.",
+      "This overshoots the lcm by one gcd.",
+      "This undershoots the lcm by one gcd.",
+      "This is one more than the correct lcm."
+    ]
+  }
+]

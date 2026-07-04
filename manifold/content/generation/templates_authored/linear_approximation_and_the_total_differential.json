@@ -1,0 +1,251 @@
+[
+ {
+  "template_id": "linear_approximation_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy + ([[d]]) \\). Using the linear approximation (total differential) of \\( f \\) based at \\( ([[x0]], [[y0]]) \\), estimate \\( f([[x0]] + ([[dx]]),\\ [[y0]] + ([[dy]])) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]) + (2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dx]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dy]]"},
+  "distractors": [
+   "[[a]]*([[x0]] + [[dx]])**2 + [[b]]*([[y0]] + [[dy]])**2 + [[c]]*([[x0]] + [[dx]])*([[y0]] + [[dy]]) + [[d]]",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dx]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dy]]",
+   "([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]) - (2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dx]] - (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dy]]",
+   "([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]) + (2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dy]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dx]]",
+   "[[answer]] + 3",
+   "[[answer]] - 2"
+  ],
+  "solution": "The linear approximation is \\( f([[x0]], [[y0]]) + f_{x}\\,\\Delta x + f_{y}\\,\\Delta y \\), with \\( f_{x} = 2([[a]])x + ([[c]])y \\) and \\( f_{y} = 2([[b]])y + ([[c]])x \\) evaluated at \\( ([[x0]], [[y0]]) \\), and \\( \\Delta x = [[dx]] \\), \\( \\Delta y = [[dy]] \\). This gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the exact value \\( f([[x0]] + [[dx]], [[y0]] + [[dy]]) \\), not the linear estimate.",
+   "This is only the differential \\( df \\); it forgets to add the base value \\( f([[x0]], [[y0]]) \\).",
+   "This subtracts the differential instead of adding it.",
+   "This swaps \\( \\Delta x \\) and \\( \\Delta y \\) in the differential.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "total_differential_change_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy + ([[d]]) \\). As \\( (x, y) \\) moves from \\( ([[x0]], [[y0]]) \\) to \\( ([[x0]] + ([[dx]]),\\ [[y0]] + ([[dy]])) \\), use the total differential \\( df = f_{x}\\,dx + f_{y}\\,dy \\) to estimate the resulting CHANGE in \\( f \\) (not the new function value).",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dx]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dy]]"},
+  "distractors": [
+   "([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]]) + (2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dx]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dy]]",
+   "[[a]]*([[x0]] + [[dx]])**2 + [[b]]*([[y0]] + [[dy]])**2 + [[c]]*([[x0]] + [[dx]])*([[y0]] + [[dy]]) + [[d]] - ([[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[x0]]*[[y0]] + [[d]])",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dy]] + (2*[[b]]*[[y0]] + [[c]]*[[x0]])*[[dx]]",
+   "(2*[[a]]*[[x0]] + [[c]]*[[y0]])*[[dx]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "The total differential is \\( df = f_{x}\\,dx + f_{y}\\,dy \\), with \\( f_{x} = 2([[a]])x + ([[c]])y \\) and \\( f_{y} = 2([[b]])y + ([[c]])x \\) evaluated at \\( ([[x0]], [[y0]]) \\). Substituting \\( dx=[[dx]] \\), \\( dy=[[dy]] \\) gives \\( df = [[answer]] \\), the estimated change in \\( f \\).",
+  "distractor_rationales": [
+   "This is the estimated NEW function value \\( f([[x0]]+[[dx]], [[y0]]+[[dy]]) \\), not just the change \\( df \\).",
+   "This is the EXACT change in \\( f \\) (computed from the actual function values), not the linear-approximation estimate \\( df \\).",
+   "This swaps \\( dx \\) and \\( dy \\) in the differential.",
+   "This uses only the \\( x \\)-term of the differential and drops the \\( y \\)-term.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "total_differential_box_volume_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "int", "lo": 2, "hi": 8},
+   "y0": {"type": "int", "lo": 2, "hi": 8},
+   "z0": {"type": "int", "lo": 2, "hi": 8},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dz": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "stem": "A rectangular box has dimensions \\( x = [[x0]] \\), \\( y = [[y0]] \\), \\( z = [[z0]] \\) (in cm), each measured with a small error. Its volume is \\( V = xyz \\). If the measurement errors are \\( dx = [[dx]] \\), \\( dy = [[dy]] \\), \\( dz = [[dz]] \\) (in cm), use the total differential of \\( V \\) to estimate the resulting change in volume \\( dV \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*[[z0]]*[[dx]] + [[x0]]*[[z0]]*[[dy]] + [[x0]]*[[y0]]*[[dz]]"},
+  "distractors": [
+   "([[x0]] + [[dx]])*([[y0]] + [[dy]])*([[z0]] + [[dz]]) - [[x0]]*[[y0]]*[[z0]]",
+   "[[y0]]*[[z0]]*[[dx]]",
+   "[[dx]]*[[dy]]*[[dz]]",
+   "[[x0]]*[[y0]]*[[dx]] + [[y0]]*[[z0]]*[[dy]] + [[z0]]*[[x0]]*[[dz]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The total differential of \\( V = xyz \\) is \\( dV = V_{x}\\,dx + V_{y}\\,dy + V_{z}\\,dz = yz\\,dx + xz\\,dy + xy\\,dz \\). Substituting the given dimensions and errors gives \\( dV = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the EXACT change in volume, not the linear-approximation estimate \\( dV \\).",
+   "This keeps only the \\( dx \\)-term of the differential and drops the other two.",
+   "This multiplies the three errors together instead of forming the weighted sum \\( yz\\,dx+xz\\,dy+xy\\,dz \\).",
+   "This cyclically shifts which pairwise product multiplies which error.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "relative_error_power_law_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "choice", "values": [1, 2, 3]},
+   "n": {"type": "choice", "values": [1, 2, 3]},
+   "x0": {"type": "int", "lo": 4, "hi": 10},
+   "y0": {"type": "int", "lo": 4, "hi": 10},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "stem": "A quantity is modeled by \\( Q = x^{[[m]]}y^{[[n]]} \\). Measurements give \\( x = [[x0]] \\), \\( y = [[y0]] \\), with small measurement errors \\( dx = [[dx]] \\) and \\( dy = [[dy]] \\). Using the total differential of \\( \\ln Q = [[m]]\\ln x + [[n]]\\ln y \\), estimate the RELATIVE error \\( \\dfrac{dQ}{Q} \\) (not the absolute error \\( dQ \\)).",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]*([[dx]]/[[x0]]) + [[n]]*([[dy]]/[[y0]])"},
+  "distractors": [
+   "[[m]]*[[dx]] + [[n]]*[[dy]]",
+   "([[dx]]/[[x0]]) + ([[dy]]/[[y0]])",
+   "[[m]]*([[dy]]/[[y0]]) + [[n]]*([[dx]]/[[x0]])",
+   "[[m]]*([[dx]]/[[x0]]) - [[n]]*([[dy]]/[[y0]])",
+   "[[answer]] + Rational(1,10)",
+   "[[answer]] - Rational(1,10)"
+  ],
+  "solution": "Taking logarithms, \\( \\ln Q = [[m]]\\ln x + [[n]]\\ln y \\), so differentiating gives \\( \\dfrac{dQ}{Q} = [[m]]\\dfrac{dx}{x} + [[n]]\\dfrac{dy}{y} \\). Substituting the given values gives \\( \\dfrac{dQ}{Q} = [[m]]\\cdot\\dfrac{[[dx]]}{[[x0]]} + [[n]]\\cdot\\dfrac{[[dy]]}{[[y0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide each error by its base value, using the absolute differential formula instead.",
+   "This drops the exponents \\( [[m]] \\) and \\( [[n]] \\) entirely.",
+   "This swaps which exponent multiplies which relative error.",
+   "This subtracts the second term instead of adding it.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_approximation_distance_function_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "int", "lo": 1, "hi": 5},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Gt([[m]], [[n]])"],
+  "derived": {
+   "x0": "[[m]]**2 - [[n]]**2",
+   "y0": "2*[[m]]*[[n]]",
+   "r0": "[[m]]**2 + [[n]]**2"
+  },
+  "stem": "Let \\( f(x, y) = \\sqrt{x^{2}+y^{2}} \\), the distance from the origin. Using the linear approximation of \\( f \\) based at \\( ([[x0]], [[y0]]) \\) (where \\( f([[x0]],[[y0]]) = [[r0]] \\)), estimate \\( f([[x0]] + ([[dx]]),\\ [[y0]] + ([[dy]])) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[r0]] + ([[x0]]/[[r0]])*[[dx]] + ([[y0]]/[[r0]])*[[dy]]"},
+  "distractors": [
+   "sqrt(([[x0]]+[[dx]])**2 + ([[y0]]+[[dy]])**2)",
+   "[[r0]] + [[dx]] + [[dy]]",
+   "([[x0]]/[[r0]])*[[dx]] + ([[y0]]/[[r0]])*[[dy]]",
+   "[[r0]] + ([[y0]]/[[r0]])*[[dx]] + ([[x0]]/[[r0]])*[[dy]]",
+   "[[answer]] + Rational(1,5)",
+   "[[answer]] - Rational(1,5)"
+  ],
+  "solution": "Here \\( f_{x} = x/\\sqrt{x^{2}+y^{2}} \\) and \\( f_{y} = y/\\sqrt{x^{2}+y^{2}} \\), so at \\( ([[x0]], [[y0]]) \\), \\( f_{x} = [[x0]]/[[r0]] \\) and \\( f_{y} = [[y0]]/[[r0]] \\). The linear approximation gives \\( f([[x0]]+[[dx]], [[y0]]+[[dy]]) \\approx [[r0]] + ([[x0]]/[[r0]])[[dx]] + ([[y0]]/[[r0]])[[dy]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the EXACT distance to the nearby point, not the linear-approximation estimate.",
+   "This treats both partial derivatives as exactly 1, dropping the \\( x_{0}/r_{0} \\) and \\( y_{0}/r_{0} \\) factors.",
+   "This is only the differential \\( df \\); it forgets to add the base value \\( f([[x0]],[[y0]]) = [[r0]] \\).",
+   "This swaps \\( f_{x} \\) and \\( f_{y} \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "total_differential_three_variables_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "z0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dx": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dy": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "dz": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "stem": "Let \\( T(x, y, z) = [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} \\) (three independent variables). Using the total differential \\( dT = T_{x}\\,dx + T_{y}\\,dy + T_{z}\\,dz \\), estimate the change in \\( T \\) as \\( (x,y,z) \\) moves from \\( ([[x0]], [[y0]], [[z0]]) \\) by \\( dx=[[dx]] \\), \\( dy=[[dy]] \\), \\( dz=[[dz]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[a]]*[[x0]]*[[dx]] + 2*[[b]]*[[y0]]*[[dy]] + 2*[[c]]*[[z0]]*[[dz]]"},
+  "distractors": [
+   "[[a]]*[[x0]]*[[dx]] + [[b]]*[[y0]]*[[dy]] + [[c]]*[[z0]]*[[dz]]",
+   "2*[[a]]*[[x0]]*[[dx]] + 2*[[b]]*[[y0]]*[[dy]]",
+   "[[a]]*([[x0]]+[[dx]])**2 + [[b]]*([[y0]]+[[dy]])**2 + [[c]]*([[z0]]+[[dz]])**2 - ([[a]]*[[x0]]**2+[[b]]*[[y0]]**2+[[c]]*[[z0]]**2)",
+   "2*[[a]]*[[dx]] + 2*[[b]]*[[dy]] + 2*[[c]]*[[dz]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The partials are \\( T_{x}=2([[a]])x \\), \\( T_{y}=2([[b]])y \\), \\( T_{z}=2([[c]])z \\), evaluated at \\( ([[x0]],[[y0]],[[z0]]) \\). The total differential is \\( dT = 2([[a]])([[x0]])[[dx]] + 2([[b]])([[y0]])[[dy]] + 2([[c]])([[z0]])[[dz]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of 2 that comes from differentiating each squared term.",
+   "This forgets the \\( z \\)-term of the differential entirely, as if \\( T \\) only depended on \\( x \\) and \\( y \\).",
+   "This is the EXACT change in \\( T \\), not the linear-approximation estimate \\( dT \\).",
+   "This evaluates each partial derivative at the base point but forgets to multiply by the corresponding coordinate value.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "linear_approximation_max_error_bound_v1",
+  "skill_id": "linear_approximation_and_the_total_differential",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "ex": {"type": "choice", "values": [1, 2, 3]},
+   "ey": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + ([[b]])xy + [[c]]y^{2} \\). A measurement of \\( (x, y) \\) at \\( ([[x0]], [[y0]]) \\) has error bounds \\( |dx| \\le [[ex]] \\) and \\( |dy| \\le [[ey]] \\). Using \\( |df| \\le |f_{x}|\\,|dx| + |f_{y}|\\,|dy| \\), what is the maximum possible estimated error in \\( f \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Abs(2*[[a]]*[[x0]] + [[b]]*[[y0]])*[[ex]] + Abs([[b]]*[[x0]] + 2*[[c]]*[[y0]])*[[ey]]"},
+  "distractors": [
+   "(2*[[a]]*[[x0]] + [[b]]*[[y0]])*[[ex]] + ([[b]]*[[x0]] + 2*[[c]]*[[y0]])*[[ey]]",
+   "Abs(2*[[a]]*[[x0]] + [[b]]*[[y0]])*[[ey]] + Abs([[b]]*[[x0]] + 2*[[c]]*[[y0]])*[[ex]]",
+   "Abs(2*[[a]]*[[x0]] + [[b]]*[[y0]]) + Abs([[b]]*[[x0]] + 2*[[c]]*[[y0]])",
+   "Abs(2*[[a]]*[[x0]] + [[b]]*[[y0]])*[[ex]] - Abs([[b]]*[[x0]] + 2*[[c]]*[[y0]])*[[ey]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "The partials are \\( f_{x} = 2([[a]])x+([[b]])y \\) and \\( f_{y} = ([[b]])x+2([[c]])y \\), evaluated at \\( ([[x0]],[[y0]]) \\). The worst-case (maximum) error bound is \\( |f_{x}|\\,[[ex]] + |f_{y}|\\,[[ey]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the absolute value bars, allowing signs to cancel instead of taking the worst case.",
+   "This swaps which error bound multiplies which partial derivative.",
+   "This forgets to multiply each partial derivative's magnitude by its corresponding error bound.",
+   "This subtracts the second term instead of adding it, understating the worst-case error.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

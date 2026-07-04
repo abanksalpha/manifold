@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "cayleyhamilton_reduce_powers_v1",
+ "skill_id": "cayleyhamilton_reduce_powers_or_invert",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "By the Cayley\u2013Hamilton theorem, every \\( 2 \\times 2 \\) matrix satisfies \\( A^{2} = (\\operatorname{tr}A)\\,A - (\\det A)\\,I \\). For \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), what is the \\( (1,1) \\) entry (top-left entry) of \\( A^{2} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**2 + [[b]]*[[c]]"},
+ "distractors": [
+  "[[a]]**2",
+  "[[a]]**2 + [[b]]*[[d]]",
+  "[[a]]**2 - [[b]]*[[c]]",
+  "[[a]]**2 + [[c]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "The \\( (1,1) \\) entry of \\( A^{2} \\) is the first row of \\( A \\) dotted with the first column of \\( A \\): \\( ([[a]])([[a]]) + ([[b]])([[c]]) = [[a]]^{2} + [[b]]\\cdot[[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the \\( bc \\) contribution from the off-diagonal entries.",
+  "This uses \\( bd \\) instead of \\( bc \\) for the cross term.",
+  "This subtracts the cross term instead of adding it.",
+  "This squares the wrong entry, using \\( c^{2} \\) rather than \\( bc \\).",
+  "This is one more than the correct entry.",
+  "This is two less than the correct entry."
+ ]
+},
+{
+ "template_id": "cayleyhamilton_inverse_entry_v1",
+ "skill_id": "cayleyhamilton_reduce_powers_or_invert",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)", "Ne([[b]], 0)"],
+ "derived": {"det": "[[a]]*[[d]] - [[b]]*[[c]]"},
+ "stem": "By the Cayley\u2013Hamilton theorem, \\( A^{2} - (\\operatorname{tr}A)A + (\\det A)I = 0 \\), which rearranges to \\( A^{-1} = \\dfrac{1}{\\det A}\\left((\\operatorname{tr}A)I - A\\right) \\). For \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), use this formula to find the \\( (1,2) \\) entry (top-right entry) of \\( A^{-1} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "-[[b]]/[[det]]"},
+ "distractors": [
+  "[[b]]/[[det]]",
+  "-[[a]]/[[det]]",
+  "[[d]]/[[det]]",
+  "-[[c]]/[[det]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "In \\( (\\operatorname{tr}A)I - A \\), the \\( (1,2) \\) entry is \\( 0 - [[b]] = -[[b]] \\). Dividing by \\( \\det A = [[det]] \\) gives \\( A^{-1}_{12} = \\dfrac{-[[b]]}{[[det]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign; the \\( (1,2) \\) entry of \\( (\\operatorname{tr}A)I - A \\) is \\( -b \\), not \\( b \\).",
+  "This uses the \\( (1,1) \\) entry \\( a \\) of \\( A \\) instead of the \\( (1,2) \\) entry \\( b \\).",
+  "This uses the diagonal entry \\( d \\) instead of the off-diagonal entry \\( b \\).",
+  "This uses the other off-diagonal entry \\( c \\) instead of \\( b \\).",
+  "This is one more than the correct entry.",
+  "This is one less than the correct entry."
+ ]
+},
+{
+ "template_id": "cayleyhamilton_cubic_reduction_v1",
+ "skill_id": "cayleyhamilton_reduce_powers_or_invert",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "Repeatedly applying \\( A^{2} = (\\operatorname{tr}A)A - (\\det A)I \\) lets any power of a \\( 2 \\times 2 \\) matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\) be reduced to the form \\( A^{3} = pA + qI \\) for constants \\( p, q \\). What is \\( p \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]+[[d]])**2 - ([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "([[a]]+[[d]])**2",
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "([[a]]+[[d]])**2 + ([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[a]]+[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 3"
+ ],
+ "solution": "Since \\( A^{3} = (\\operatorname{tr}A)A^{2} - (\\det A)A = (\\operatorname{tr}A)\\big[(\\operatorname{tr}A)A - (\\det A)I\\big] - (\\det A)A = \\big[(\\operatorname{tr}A)^{2} - \\det A\\big]A - (\\operatorname{tr}A)(\\det A)I \\), the coefficient of \\( A \\) is \\( p = (\\operatorname{tr}A)^{2} - \\det A = ([[a]]+[[d]])^{2} - ([[a]][[d]]-[[b]][[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the \\( -\\det A \\) correction, keeping only \\( (\\operatorname{tr}A)^{2} \\).",
+  "This is just \\( \\det A \\), not the full reduction coefficient \\( (\\operatorname{tr}A)^{2}-\\det A \\).",
+  "This adds \\( \\det A \\) instead of subtracting it.",
+  "This uses \\( \\operatorname{tr}A \\) itself instead of \\( (\\operatorname{tr}A)^{2}-\\det A \\).",
+  "This is one more than the correct coefficient.",
+  "This is three less than the correct coefficient."
+ ]
+},
+{
+ "template_id": "cayleyhamilton_given_relation_v1",
+ "skill_id": "cayleyhamilton_reduce_powers_or_invert",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -8, "hi": 8},
+  "q": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[q]], 0)"],
+ "stem": "A \\( 2 \\times 2 \\) matrix \\( A \\) satisfies the Cayley\u2013Hamilton relation \\( A^{2} = [[p]]A + ([[q]])I \\). What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "-[[q]]"},
+ "distractors": [
+  "[[q]]",
+  "[[p]]",
+  "-[[p]]",
+  "[[p]] + [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Matching \\( A^{2} = [[p]]A + ([[q]])I \\) against the Cayley\u2013Hamilton form \\( A^{2} = (\\operatorname{tr}A)A - (\\det A)I \\) gives \\( \\operatorname{tr}A = [[p]] \\) and \\( -\\det A = [[q]] \\), so \\( \\det A = -[[q]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the minus sign linking \\( q \\) to \\( -\\det A \\).",
+  "This confuses the trace coefficient \\( p \\) with the determinant.",
+  "This gets the sign of the trace coefficient wrong instead of negating \\( q \\).",
+  "This adds the two given constants instead of negating just \\( q \\).",
+  "This is one more than the correct determinant.",
+  "This is one less than the correct determinant."
+ ]
+},
+{
+ "template_id": "cayleyhamilton_trace_of_square_v1",
+ "skill_id": "cayleyhamilton_reduce_powers_or_invert",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "For a \\( 2 \\times 2 \\) matrix, Cayley\u2013Hamilton gives the trace identity \\( \\operatorname{tr}(A^{2}) = (\\operatorname{tr}A)^{2} - 2\\det A \\). For \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\), what is \\( \\operatorname{tr}(A^{2}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]+[[d]])**2 - 2*([[a]]*[[d]] - [[b]]*[[c]])"},
+ "distractors": [
+  "([[a]]+[[d]])**2",
+  "([[a]]+[[d]])**2 - ([[a]]*[[d]] - [[b]]*[[c]])",
+  "([[a]]+[[d]])**2 + 2*([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "\\( \\operatorname{tr}(A^{2}) = (\\operatorname{tr}A)^{2} - 2\\det A = ([[a]]+[[d]])^{2} - 2([[a]][[d]] - [[b]][[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the \\( -2\\det A \\) correction entirely.",
+  "This subtracts \\( \\det A \\) once instead of \\( 2\\det A \\).",
+  "This adds \\( 2\\det A \\) instead of subtracting it.",
+  "This is just \\( \\det A \\), not \\( \\operatorname{tr}(A^{2}) \\).",
+  "This is one more than the correct trace.",
+  "This is two less than the correct trace."
+ ]
+}
+]

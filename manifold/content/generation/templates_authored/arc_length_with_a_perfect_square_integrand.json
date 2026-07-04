@@ -1,0 +1,93 @@
+[
+ {
+  "template_id": "arc_length_perfect_square_v1",
+  "skill_id": "arc_length_with_a_perfect_square_integrand",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "t": {"type": "choice", "values": [1, 3]},
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "derived": {"t6": "6*[[t]]", "t2": "2*[[t]]"},
+  "stem": "Find the length of the arc of the curve \\( y = \\dfrac{x^{3}}{[[t6]]} + \\dfrac{[[t]]}{2x} \\) from \\( x = [[a]] \\) to \\( x = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "x**2/(2*[[t]]) + [[t]]/(2*x**2)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "([[b]]**3/(6*[[t]]) + [[t]]/(2*[[b]])) - ([[a]]**3/(6*[[t]]) + [[t]]/(2*[[a]]))",
+   "([[b]]**3 - [[a]]**3)/(6*[[t]])",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Here \\( y' = \\dfrac{x^{2}}{[[t2]]} - \\dfrac{[[t]]}{2x^{2}} \\), so \\( 1+(y')^{2} = \\left(\\dfrac{x^{2}}{[[t2]]} + \\dfrac{[[t]]}{2x^{2}}\\right)^{2} \\) is a perfect square. Thus the arc length is \\( \\int_{[[a]]}^{[[b]]}\\left(\\dfrac{x^{2}}{[[t2]]} + \\dfrac{[[t]]}{2x^{2}}\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( y([[b]])-y([[a]]) \\) (the change in the function), not the arc length.",
+   "This keeps only the \\( \\dfrac{x^{2}}{[[t2]]} \\) term of the integrand, dropping \\( \\dfrac{[[t]]}{2x^{2}} \\).",
+   "This doubles the correct arc length.",
+   "This is off by one from the correct arc length.",
+   "This is off by one from the correct arc length."
+  ]
+ },
+ {
+  "template_id": "arc_length_hyperbolic_cosh_v1",
+  "skill_id": "arc_length_with_a_perfect_square_integrand",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "b": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "Find the length of the arc of the curve \\( y = \\cosh(x) \\) from \\( x = [[a]] \\) to \\( x = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "cosh(x)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "cosh([[b]]) - cosh([[a]])",
+   "sinh([[b]]) + sinh([[a]])",
+   "[[b]] - [[a]]",
+   "-(sinh([[b]]) - sinh([[a]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Here \\( y' = \\sinh(x) \\), so \\( 1+(y')^{2} = 1+\\sinh^{2}(x) = \\cosh^{2}(x) \\) is a perfect square (a hyperbolic identity), and \\( \\sqrt{1+(y')^{2}} = \\cosh(x) \\) since \\( \\cosh(x)\\ge 0 \\). Thus the arc length is \\( \\int_{[[a]]}^{[[b]]}\\cosh(x)\\,dx = \\sinh([[b]]) - \\sinh([[a]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( y([[b]])-y([[a]]) \\) (the change in the function), not the arc length.",
+   "This adds the endpoint values of \\( \\sinh \\) instead of subtracting them.",
+   "This is the length of a straight chord, ignoring the curve's curvature entirely.",
+   "This has the wrong sign, evaluating the endpoints in reverse order.",
+   "This is off by one from the correct arc length."
+  ]
+ },
+ {
+  "template_id": "arc_length_power_three_half_v1",
+  "skill_id": "arc_length_with_a_perfect_square_integrand",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -3, "hi": 3},
+   "a": {"type": "int", "lo": -4, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "Find the length of the arc of the curve \\( y = \\dfrac{1}{6}\\left((x-[[h]])^{2}+4\\right)^{3/2} \\) from \\( x = [[a]] \\) to \\( x = [[b]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "(x - [[h]])**2/2 + 1", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "((([[b]]-[[h]])**2+4)**(3/2))/6 - ((([[a]]-[[h]])**2+4)**(3/2))/6",
+   "([[b]]-[[h]])**2/2 - ([[a]]-[[h]])**2/2",
+   "[[b]] - [[a]]",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Here \\( y' = \\dfrac{x-[[h]]}{2}\\sqrt{(x-[[h]])^{2}+4} \\), so \\( 1+(y')^{2} = \\left(\\dfrac{(x-[[h]])^{2}}{2}+1\\right)^{2} \\) is a perfect square, and \\( \\sqrt{1+(y')^{2}} = \\dfrac{(x-[[h]])^{2}}{2}+1 \\) (always positive). Thus the arc length is \\( \\int_{[[a]]}^{[[b]]}\\left(\\dfrac{(x-[[h]])^{2}}{2}+1\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( y([[b]])-y([[a]]) \\) (the change in the function), not the arc length.",
+   "This drops the \\( +1 \\) term inside the perfect-square integrand.",
+   "This is the length of a straight chord, ignoring the curve's curvature entirely.",
+   "This doubles the correct arc length.",
+   "This is off by one from the correct arc length."
+  ]
+ }
+]

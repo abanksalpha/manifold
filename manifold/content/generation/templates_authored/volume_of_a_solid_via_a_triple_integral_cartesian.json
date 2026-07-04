@@ -1,0 +1,165 @@
+[
+ {
+  "template_id": "volume_of_a_solid_via_a_triple_integral_cartesian_v1",
+  "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3},
+   "a": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the solid bounded below by the plane \\(z=0\\), above by the plane \\( z = [[p]]x + [[q]]y \\), whose base is the triangle \\( 0 \\le y \\le x,\\ 0 \\le x \\le [[a]] \\), by evaluating \\( \\int_{0}^{[[a]]}\\int_{0}^{x}\\int_{0}^{[[p]]x+[[q]]y} 1\\,dz\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["z", "y", "x"], "bounds": [["0", "[[p]]*x+[[q]]*y"], ["0", "x"], ["0", "[[a]]"]]},
+  "distractors": [
+   "[[p]]*[[a]]**3/2 + [[q]]*[[a]]**3/2",
+   "[[p]]*[[a]]**3/3 - [[q]]*[[a]]**3/6",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The innermost integral gives the height \\( \\int_{0}^{[[p]]x+[[q]]y}1\\,dz = [[p]]x+[[q]]y \\). Then \\( \\int_{0}^{[[a]]}\\int_{0}^{x}([[p]]x+[[q]]y)\\,dy\\,dx = \\int_{0}^{[[a]]}\\left([[p]]x^2 + \\tfrac{[[q]]}{2}x^2\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This integrates \\(y\\) over \\([0,[[a]]]\\) (a rectangular base) instead of the triangle \\(0 \\le y \\le x\\).",
+   "This makes a sign error on the \\(y\\)-term after integrating.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_of_a_solid_via_a_triple_integral_cartesian_v2",
+  "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "A": {"type": "int", "lo": 2, "hi": 5},
+   "B": {"type": "int", "lo": 2, "hi": 5},
+   "C": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the tetrahedron bounded by the coordinate planes \\(x=0\\), \\(y=0\\), \\(z=0\\) and the plane \\( \\dfrac{x}{[[A]]} + \\dfrac{y}{[[B]]} + \\dfrac{z}{[[C]]} = 1 \\), by setting up and evaluating the appropriate triple integral in Cartesian coordinates.",
+  "answer_spec": {
+   "op": "dblintegrate",
+   "expr": "1",
+   "vars": ["z", "y", "x"],
+   "bounds": [["0", "[[C]]*(1-x/[[A]]-y/[[B]])"], ["0", "[[B]]*(1-x/[[A]])"], ["0", "[[A]]"]]
+  },
+  "distractors": [
+   "[[A]]*[[B]]*[[C]]",
+   "[[A]]*[[B]]*[[C]]/2",
+   "[[A]]*[[B]]*[[C]]/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "For fixed \\(x\\), \\(y\\) ranges from \\(0\\) to \\([[B]](1-x/[[A]])\\) (where the plane meets \\(z=0\\)), and for fixed \\(x,y\\), \\(z\\) ranges from \\(0\\) to \\([[C]](1-x/[[A]]-y/[[B]])\\). Evaluating \\( \\int_0^{[[A]]}\\int_0^{[[B]](1-x/[[A]])}\\int_0^{[[C]](1-x/[[A]]-y/[[B]])} 1\\,dz\\,dy\\,dx \\) gives the classic tetrahedron-volume formula \\( \\dfrac{[[A]]\\cdot[[B]]\\cdot[[C]]}{6} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the full rectangular box with these side lengths, forgetting the \\(\\tfrac16\\) factor for a tetrahedron.",
+   "This uses \\(\\tfrac12\\), the factor for a triangular PRISM, instead of \\(\\tfrac16\\) for a tetrahedron.",
+   "This uses \\(\\tfrac13\\), the factor for a cone or pyramid with a full rectangular base, instead of \\(\\tfrac16\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_of_a_solid_via_a_triple_integral_cartesian_v3",
+  "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 3},
+   "q": {"type": "int", "lo": 1, "hi": 3},
+   "r": {"type": "int", "lo": 1, "hi": 4},
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the solid bounded below by \\(z=0\\), above by the plane \\( z = [[p]]x + [[q]]y + [[r]] \\), over the RECTANGULAR base \\( 0 \\le x \\le [[a]],\\ 0 \\le y \\le [[b]] \\), by evaluating \\( \\int_{0}^{[[a]]}\\int_{0}^{[[b]]}\\int_{0}^{[[p]]x+[[q]]y+[[r]]} 1\\,dz\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["z", "y", "x"], "bounds": [["0", "[[p]]*x+[[q]]*y+[[r]]"], ["0", "[[b]]"], ["0", "[[a]]"]]},
+  "distractors": [
+   "[[r]]*[[a]]*[[b]]",
+   "[[p]]*[[a]]**2*[[b]]/2 + [[q]]*[[a]]*[[b]]**2/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The innermost integral gives the height \\([[p]]x+[[q]]y+[[r]]\\). Then \\( \\int_0^{[[a]]}\\int_0^{[[b]]} \\left([[p]]x+[[q]]y+[[r]]\\right)dy\\,dx = \\dfrac{[[p]][[a]]^2[[b]]}{2} + \\dfrac{[[q]][[a]][[b]]^2}{2} + [[r]][[a]][[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only the constant term \\([[r]]\\) times the base area, forgetting the tilted \\(px+qy\\) part of the top surface.",
+   "This uses only the tilted part of the top surface, forgetting the constant \\([[r]]\\) contribution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_of_a_solid_via_a_triple_integral_cartesian_v4",
+  "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": 0, "hi": 3},
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the solid bounded below by \\(z=0\\), above by the paraboloid \\( z = x^2+y^2+[[k]] \\), over the RECTANGULAR base \\( 0 \\le x \\le [[a]],\\ 0 \\le y \\le [[b]] \\), by evaluating \\( \\int_{0}^{[[a]]}\\int_{0}^{[[b]]}\\int_{0}^{x^2+y^2+[[k]]} 1\\,dz\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["z", "y", "x"], "bounds": [["0", "x**2+y**2+[[k]]"], ["0", "[[b]]"], ["0", "[[a]]"]]},
+  "distractors": [
+   "[[a]]**3*[[b]]/3 + [[a]]*[[b]]**3/3",
+   "[[k]]*[[a]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The innermost integral gives the height \\(x^2+y^2+[[k]]\\). Then \\( \\int_0^{[[a]]}\\int_0^{[[b]]}\\left(x^2+y^2+[[k]]\\right)dy\\,dx = \\dfrac{[[a]]^3[[b]]}{3} + \\dfrac{[[a]][[b]]^3}{3} + [[k]][[a]][[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the constant \\([[k]]\\) contribution to the height entirely.",
+   "This uses only the constant \\([[k]]\\) contribution, forgetting the curved \\(x^2+y^2\\) part of the top surface.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "volume_of_a_solid_via_a_triple_integral_cartesian_v5",
+  "skill_id": "volume_of_a_solid_via_a_triple_integral_cartesian",
+  "topic_id": "multivariable_int",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "stem": "Find the volume of the solid bounded below by \\(z=0\\), above by the plane \\(z=[[c]]\\), whose base is the PARALLELOGRAM \\( 0 \\le x \\le [[a]],\\ x \\le y \\le x + [[b]] \\), by evaluating \\( \\int_{0}^{[[a]]}\\int_{x}^{x+[[b]]}\\int_{0}^{[[c]]} 1\\,dz\\,dy\\,dx \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "1", "vars": ["z", "y", "x"], "bounds": [["0", "[[c]]"], ["x", "x+[[b]]"], ["0", "[[a]]"]]},
+  "distractors": [
+   "[[a]]*[[b]]*[[c]]/2",
+   "[[a]]**2*[[b]]*[[c]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The innermost \\(z\\)-integral just gives the constant height \\([[c]]\\). Then \\( \\int_0^{[[a]]}\\int_x^{x+[[b]]}[[c]]\\,dy\\,dx = \\int_0^{[[a]]} [[c]][[b]]\\,dx = [[c]][[b]][[a]] = [[answer]] \\), the area of the parallelogram base (\\([[a]]\\times[[b]]\\)) times the height \\([[c]]\\).",
+  "distractor_rationales": [
+   "This halves the base area as if the region were a triangle rather than a parallelogram.",
+   "This uses \\(\\tfrac12[[a]]\\) as the effective base width, mistaking the shape for a triangle scaled by \\([[a]]\\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

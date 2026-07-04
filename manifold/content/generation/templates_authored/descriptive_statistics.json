@@ -1,0 +1,214 @@
+[
+{
+ "template_id": "dataset_mean_v1",
+ "skill_id": "descriptive_statistics",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "x1": {"type": "int", "lo": 1, "hi": 40},
+  "x2": {"type": "int", "lo": 1, "hi": 40},
+  "x3": {"type": "int", "lo": 1, "hi": 40},
+  "x4": {"type": "int", "lo": 1, "hi": 40},
+  "x5": {"type": "int", "lo": 1, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "A data set consists of the five values [[x1]], [[x2]], [[x3]], [[x4]], [[x5]]. What is the mean of this data set?",
+ "answer_spec": {"op": "evaluate", "expr": "([[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]])/5"},
+ "distractors": [
+  "([[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]])/4",
+  "([[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]])/6",
+  "[[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]]",
+  "[[x3]]",
+  "([[x1]]+[[x5]])/2",
+  "[[answer]] + 1"
+ ],
+ "solution": "The mean is the sum of the values divided by how many there are: \\( \\dfrac{[[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]]}{5} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by 4 instead of the correct count of 5 values.",
+  "This divides by 6 instead of the correct count of 5 values.",
+  "This is the sum of the values without dividing by the count at all.",
+  "This is just the third listed value, not the average of all five.",
+  "This averages only the first and last listed values, ignoring the other three.",
+  "This is off by one from the correct mean."
+ ]
+},
+{
+ "template_id": "dataset_median_v1",
+ "skill_id": "descriptive_statistics",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -10, "hi": 30},
+  "d1": {"type": "int", "lo": 1, "hi": 8},
+  "d2": {"type": "int", "lo": 1, "hi": 8},
+  "d3": {"type": "int", "lo": 1, "hi": 8},
+  "d4": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])", "Ne([[d3]], [[d4]])"],
+ "derived": {
+  "x1": "[[m]]-[[d1]]", "x2": "[[m]]-[[d2]]", "x3": "[[m]]",
+  "x4": "[[m]]+[[d3]]", "x5": "[[m]]+[[d4]]"
+ },
+ "stem": "A data set consists of the five values [[x1]], [[x2]], [[x3]], [[x4]], [[x5]]. What is the median of this data set?",
+ "answer_spec": {"op": "evaluate", "expr": "[[x3]]"},
+ "distractors": [
+  "([[x1]]+[[x2]]+[[x3]]+[[x4]]+[[x5]])/5",
+  "[[x1]]",
+  "[[x2]]",
+  "[[x4]]",
+  "[[x5]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "Sorted, the five values are \\( [[x2]] < [[x1]] < [[x3]] < [[x4]] < [[x5]] \\) or a similar ordering with two values below and two above [[x3]]; either way the middle value is \\( [[x3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the MEAN of the data set, not the median.",
+  "This is one of the values below the median, not the middle value.",
+  "This is one of the values below the median, not the middle value.",
+  "This is one of the values above the median, not the middle value.",
+  "This is one of the values above the median, not the middle value.",
+  "This is off by one from the correct median."
+ ]
+},
+{
+ "template_id": "dataset_range_v1",
+ "skill_id": "descriptive_statistics",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "lo": {"type": "int", "lo": -20, "hi": 20},
+  "width": {"type": "int", "lo": 4, "hi": 40},
+  "p": {"type": "int", "lo": 1, "hi": 39},
+  "q": {"type": "int", "lo": 1, "hi": 39},
+  "r": {"type": "int", "lo": 1, "hi": 39}
+ },
+ "constraints": [
+  "Lt([[p]], [[width]])", "Lt([[q]], [[width]])", "Lt([[r]], [[width]])",
+  "Ne([[p]], [[q]])", "Ne([[p]], [[r]])", "Ne([[q]], [[r]])"
+ ],
+ "derived": {
+  "hi": "[[lo]]+[[width]]", "mid1": "[[lo]]+[[p]]", "mid2": "[[lo]]+[[q]]", "mid3": "[[lo]]+[[r]]"
+ },
+ "stem": "A data set consists of the five values [[lo]], [[mid1]], [[mid2]], [[mid3]], [[hi]]. What is the range of this data set (the difference between the maximum and minimum values)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[hi]]-[[lo]]"},
+ "distractors": [
+  "[[hi]]+[[lo]]",
+  "[[mid3]]-[[mid1]]",
+  "[[hi]]-[[mid1]]",
+  "([[hi]]-[[lo]])/2",
+  "[[hi]]-[[mid3]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "The maximum is [[hi]] and the minimum is [[lo]], so the range is \\( [[hi]]-[[lo]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the maximum and minimum instead of subtracting them.",
+  "This uses two interior values instead of the true maximum and minimum.",
+  "This uses an interior value instead of the true minimum.",
+  "This halves the correct range for no valid reason.",
+  "This uses an interior value instead of the true minimum.",
+  "This is off by one from the correct range."
+ ]
+},
+{
+ "template_id": "dataset_population_variance_v1",
+ "skill_id": "descriptive_statistics",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "x1": {"type": "int", "lo": 1, "hi": 20},
+  "x2": {"type": "int", "lo": 1, "hi": 20},
+  "x3": {"type": "int", "lo": 1, "hi": 20},
+  "x4": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": ["Eq(Mod([[x1]]+[[x2]]+[[x3]]+[[x4]], 4), 0)"],
+ "derived": {
+  "mbar": "([[x1]]+[[x2]]+[[x3]]+[[x4]])/4",
+  "ssq": "([[x1]]-[[mbar]])**2+([[x2]]-[[mbar]])**2+([[x3]]-[[mbar]])**2+([[x4]]-[[mbar]])**2"
+ },
+ "stem": "A population data set consists of the four values [[x1]], [[x2]], [[x3]], [[x4]], with mean \\( [[mbar]] \\). What is the population variance of this data set (dividing the summed squared deviations from the mean by \\( n \\), not \\( n-1 \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "[[ssq]]/4"},
+ "distractors": [
+  "[[ssq]]/3",
+  "[[ssq]]",
+  "sqrt([[ssq]]/4)",
+  "[[ssq]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The population variance divides the summed squared deviations from \\( \\bar{x}=[[mbar]] \\) by \\( n=4 \\): \\( \\dfrac{[[ssq]]}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( n-1=3 \\); that is the unbiased SAMPLE variance, not the population variance asked for here.",
+  "This is the total of the squared deviations without dividing at all.",
+  "This takes the square root, giving the standard deviation instead of the variance.",
+  "This divides by 2 instead of the correct count \\( n=4 \\).",
+  "This is off by one from the correct population variance.",
+  "This is off by one from the correct population variance."
+ ]
+},
+{
+ "template_id": "dataset_population_stddev_v1",
+ "skill_id": "descriptive_statistics",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -15, "hi": 15},
+  "k": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": [],
+ "derived": {
+  "x1": "[[m]]-[[k]]", "x2": "[[m]]-[[k]]", "x3": "[[m]]+[[k]]", "x4": "[[m]]+[[k]]"
+ },
+ "stem": "A population data set consists of the four values [[x1]], [[x2]], [[x3]], [[x4]]. The population mean is [[m]]. What is the population standard deviation (the square root of the variance, dividing by \\( n \\))?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt((([[x1]]-[[m]])**2+([[x2]]-[[m]])**2+([[x3]]-[[m]])**2+([[x4]]-[[m]])**2)/4)"
+ },
+ "distractors": [
+  "sqrt((([[x1]]-[[m]])**2+([[x2]]-[[m]])**2+([[x3]]-[[m]])**2+([[x4]]-[[m]])**2)/3)",
+  "(([[x1]]-[[m]])**2+([[x2]]-[[m]])**2+([[x3]]-[[m]])**2+([[x4]]-[[m]])**2)/4",
+  "sqrt((([[x1]]-[[m]])**2+([[x2]]-[[m]])**2+([[x3]]-[[m]])**2+([[x4]]-[[m]])**2)/5)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "sqrt([[x1]]**2+[[x2]]**2+[[x3]]**2+[[x4]]**2)/4"
+ ],
+ "solution": "Take the square root of the population variance: \\( s = \\sqrt{\\dfrac{(-[[k]])^2+(-[[k]])^2+[[k]]^2+[[k]]^2}{4}} = \\sqrt{[[k]]^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( n-1=3 \\) inside the square root; that gives the unbiased sample standard deviation, not the population one.",
+  "This is the population variance itself, without taking the square root.",
+  "This divides by 5 instead of the correct count \\( n=4 \\).",
+  "This is off by one from the correct standard deviation.",
+  "This is off by one from the correct standard deviation.",
+  "This takes the square root of the sum of squared RAW values instead of squared deviations from the mean."
+ ]
+},
+{
+ "template_id": "dataset_mode_v1",
+ "skill_id": "descriptive_statistics",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 30},
+  "c1": {"type": "int", "lo": 1, "hi": 30},
+  "c2": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": ["Ne([[c1]], [[m]])", "Ne([[c2]], [[m]])", "Ne([[c1]], [[c2]])"],
+ "stem": "A data set consists of the five values [[m]], [[c1]], [[m]], [[c2]], [[m]]. What is the mode of this data set (the value that occurs most frequently)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]"},
+ "distractors": [
+  "[[c1]]",
+  "[[c2]]",
+  "(3*[[m]]+[[c1]]+[[c2]])/5",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[c1]]+[[c2]]-[[m]]"
+ ],
+ "solution": "The value [[m]] occurs three times while [[c1]] and [[c2]] each occur once, so the mode is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This value occurs only once, not most frequently.",
+  "This value occurs only once, not most frequently.",
+  "This is the MEAN of the data set, not the mode.",
+  "This is off by one from the correct mode.",
+  "This is off by one from the correct mode.",
+  "This is an arbitrary combination of the other values, not the most frequent one."
+ ]
+}
+]

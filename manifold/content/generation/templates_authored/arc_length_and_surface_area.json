@@ -1,0 +1,127 @@
+[
+{
+ "template_id": "arc_length_surface_perfect_square_family_v1",
+ "skill_id": "arc_length_and_surface_area",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [2, 3, 4]},
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 4, "hi": 8}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "derived": {"n1": "[[n]] + 1", "nm1": "[[n]] - 1", "d1": "2*([[n]] + 1)", "d2": "2*([[n]] - 1)"},
+ "stem": "Find the length of the arc of the curve \\( y = \\dfrac{x^{[[n1]]}}{[[d1]]} + \\dfrac{1}{[[d2]]\\,x^{[[nm1]]}} \\) from \\( x=[[a]] \\) to \\( x=[[b]] \\).",
+ "answer_spec": {"op": "integrate", "expr": "x**[[n]]/2 + x**(-[[n]])/2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "([[b]]**[[n1]]/[[d1]] + 1/([[d2]]*[[b]]**[[nm1]])) - ([[a]]**[[n1]]/[[d1]] + 1/([[d2]]*[[a]]**[[nm1]]))",
+  "[[b]]**[[n]]/2 + [[b]]**(-[[n]])/2 - [[a]]**[[n]]/2 - [[a]]**(-[[n]])/2",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( y' = \\dfrac{x^{[[n]]}}{2} - \\dfrac{x^{-[[n]]}}{2} \\), so \\( 1+(y')^{2} = \\left(\\dfrac{x^{[[n]]}}{2}+\\dfrac{x^{-[[n]]}}{2}\\right)^{2} \\) is a perfect square. Thus the arc length is \\( \\int_{[[a]]}^{[[b]]}\\left(\\dfrac{x^{[[n]]}}{2}+\\dfrac{x^{-[[n]]}}{2}\\right)dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\( y([[b]])-y([[a]]) \\) (the change in the function itself), not the arc length.",
+  "This plugs the endpoints directly into the speed function and subtracts, instead of integrating it.",
+  "This doubles the correct arc length.",
+  "This halves the correct arc length.",
+  "This is off by one from the correct arc length."
+ ]
+},
+{
+ "template_id": "arc_length_line_segment_v1",
+ "skill_id": "arc_length_and_surface_area",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "a": {"type": "int", "lo": -4, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 9}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Ne([[m]], 0)"],
+ "require_rational": false,
+ "stem": "Find the length of the line segment along \\( y = [[m]]x + ([[c]]) \\) from \\( x=[[a]] \\) to \\( x=[[b]] \\), computed as an arc length integral.",
+ "answer_spec": {"op": "integrate", "expr": "sqrt(1 + [[m]]**2)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[b]] - [[a]]",
+  "sqrt(1 + [[m]]**2)*([[b]] - [[a]])/2",
+  "sqrt([[m]]**2)*([[b]] - [[a]])",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( y' = [[m]] \\) is constant, so the speed \\( \\sqrt{1+(y')^{2}} = \\sqrt{1+[[m]]^{2}} \\) is also constant, and the arc length is \\( \\int_{[[a]]}^{[[b]]}\\sqrt{1+[[m]]^{2}}\\,dx = \\sqrt{1+[[m]]^{2}}\\,([[b]]-[[a]]) = [[answer]] \\) — matching the distance formula.",
+ "distractor_rationales": [
+  "This is just the horizontal run \\( [[b]]-[[a]] \\), ignoring the slope's contribution to the true (slanted) length.",
+  "This halves the correct arc length.",
+  "This uses \\( |[[m]]| \\) alone as the speed, forgetting the \\( +1 \\) under the square root.",
+  "This doubles the correct arc length.",
+  "This is off by one from the correct arc length."
+ ]
+},
+{
+ "template_id": "surface_area_revolution_frustum_v1",
+ "skill_id": "arc_length_and_surface_area",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 0, "hi": 4},
+  "a": {"type": "int", "lo": 0, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 7}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "The line \\( y=[[m]]x+[[c]] \\), from \\( x=[[a]] \\) to \\( x=[[b]] \\), is revolved about the \\( x \\)-axis. Find the surface area of the resulting (frustum-shaped) solid.",
+ "answer_spec": {"op": "integrate", "expr": "2*pi*([[m]]*x + [[c]])*sqrt(1 + [[m]]**2)", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[answer]]/(2*pi)",
+  "pi*(([[m]]*[[b]]+[[c]])**2 - ([[m]]*[[a]]+[[c]])**2)",
+  "[[answer]]/sqrt(1+[[m]]**2)",
+  "2*[[answer]]",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "The surface area of revolution about the \\( x \\)-axis is \\( 2\\pi\\int_{[[a]]}^{[[b]]} y\\sqrt{1+(y')^{2}}\\,dx \\). Here \\( y=[[m]]x+[[c]] \\) and \\( y'=[[m]] \\), so this is \\( 2\\pi\\sqrt{1+[[m]]^{2}}\\int_{[[a]]}^{[[b]]}([[m]]x+[[c]])\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( 2\\pi \\).",
+  "This computes a volume-style washer difference instead of a surface area.",
+  "This drops the arc-length factor \\( \\sqrt{1+[[m]]^{2}} \\) entirely.",
+  "This doubles the correct surface area.",
+  "This is off by \\( \\pi \\) from the correct surface area."
+ ]
+},
+{
+ "template_id": "surface_area_revolution_cosh_v1",
+ "skill_id": "arc_length_and_surface_area",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 8}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "The curve \\( y=\\cosh(x) \\), from \\( x=[[a]] \\) to \\( x=[[b]] \\), is revolved about the \\( x \\)-axis. Find the surface area of the resulting solid.",
+ "answer_spec": {"op": "integrate", "expr": "2*pi*cosh(x)**2", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[answer]]/(2*pi)",
+  "2*pi*(sinh([[b]]) - sinh([[a]]))",
+  "pi*(cosh([[b]])**2 - cosh([[a]])**2)",
+  "2*[[answer]]",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "Since \\( y'=\\sinh(x) \\), the identity \\( 1+\\sinh^{2}(x)=\\cosh^{2}(x) \\) makes the speed \\( \\sqrt{1+(y')^{2}}=\\cosh(x) \\). The surface area is \\( 2\\pi\\int_{[[a]]}^{[[b]]}\\cosh(x)\\cdot\\cosh(x)\\,dx = 2\\pi\\int_{[[a]]}^{[[b]]}\\cosh^{2}(x)\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of \\( 2\\pi \\).",
+  "This computes \\( 2\\pi \\) times the plain ARC LENGTH \\( \\int\\cosh(x)\\,dx \\), forgetting to multiply by the radius \\( y=\\cosh(x) \\) again.",
+  "This computes a volume-style washer difference instead of a surface area.",
+  "This doubles the correct surface area.",
+  "This is off by \\( \\pi \\) from the correct surface area."
+ ]
+}
+]

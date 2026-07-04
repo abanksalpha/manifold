@@ -1,0 +1,221 @@
+[
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {
+    "type": "int",
+    "lo": 2,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "A sphere is inscribed in a cube with edge length \\( [[s]] \\), so that the sphere touches all six faces of the cube. What is the volume of the sphere? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "(4/3)*pi*([[s]]/2)**3"
+  },
+  "distractors": [
+   "[[s]]**3",
+   "(4/3)*pi*[[s]]**3",
+   "pi*[[s]]**2",
+   "(4/3)*pi*([[s]]/2)**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "An inscribed sphere touches all six faces, so its diameter equals the cube's edge \\( [[s]] \\) and its radius is \\( \\frac{[[s]]}{2} \\). The volume is \\( \\frac{4}{3}\\pi r^{3} = \\frac{4}{3}\\pi\\left(\\frac{[[s]]}{2}\\right)^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the cube itself, not the inscribed sphere.",
+   "This uses the full edge \\( s \\) as the radius instead of \\( s/2 \\).",
+   "This is a surface-area-type expression \\( \\pi s^{2} \\), with the wrong power and constant.",
+   "This uses \\( r^{2} \\) instead of \\( r^{3} \\) in the volume formula.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This is off from the correct volume by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_circumsphere_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": [],
+  "stem": "A sphere is circumscribed about a cube with edge length \\( [[s]] \\), so that all eight vertices of the cube lie on the sphere. What is the volume of the sphere? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "(4/3)*pi*([[s]]*sqrt(3)/2)**3"},
+  "distractors": [
+   "[[s]]**3",
+   "(4/3)*pi*([[s]]/2)**3",
+   "(4/3)*pi*([[s]]*sqrt(2)/2)**3",
+   "pi*([[s]]*sqrt(3)/2)**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The sphere circumscribed about a cube passes through the vertices, so its diameter equals the cube's space diagonal \\( [[s]]\\sqrt{3} \\), giving radius \\( \\frac{[[s]]\\sqrt{3}}{2} \\). The volume is \\( \\frac{4}{3}\\pi r^{3} = \\frac{4}{3}\\pi\\left(\\frac{[[s]]\\sqrt{3}}{2}\\right)^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the volume of the cube itself, not the circumscribed sphere.",
+   "This mistakenly uses the inscribed-sphere radius \\( s/2 \\) instead of the space-diagonal radius.",
+   "This uses the face diagonal \\( s\\sqrt{2} \\) instead of the space diagonal \\( s\\sqrt{3} \\).",
+   "This uses \\( r^{2} \\) instead of \\( r^{3} \\) in the volume formula.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This is off from the correct volume by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_cube_in_sphere_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 18}
+  },
+  "constraints": [],
+  "stem": "A cube is inscribed in a sphere of radius \\( [[r]] \\), so that all eight vertices of the cube lie on the sphere. What is the volume of the cube?",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[r]]/sqrt(3))**3"},
+  "distractors": [
+   "[[r]]**3",
+   "(2*[[r]])**3",
+   "(4/3)*pi*[[r]]**3",
+   "([[r]]*sqrt(2))**3",
+   "[[answer]] + 1",
+   "[[answer]]/2"
+  ],
+  "solution": "The cube's space diagonal equals the sphere's diameter \\( 2[[r]] \\). Since a cube of edge \\( e \\) has space diagonal \\( e\\sqrt{3} \\), \\( e = \\dfrac{2[[r]]}{\\sqrt{3}} \\), so the volume is \\( e^{3} = \\left(\\dfrac{2[[r]]}{\\sqrt{3}}\\right)^{3} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the radius itself as the cube's edge length.",
+   "This treats the sphere's diameter as the cube's edge length, ignoring the \\( \\sqrt{3} \\) factor.",
+   "This is the sphere's own volume, not the inscribed cube's.",
+   "This uses \\( \\sqrt{2} \\) (a face diagonal factor) instead of \\( \\sqrt{3} \\) (the space diagonal factor).",
+   "This is off from the correct volume by 1.",
+   "This is half of the correct volume."
+  ]
+ },
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_sphere_crosssection_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "R": {"type": "int", "lo": 5, "hi": 20},
+   "d": {"type": "int", "lo": 1, "hi": 19}
+  },
+  "constraints": ["Lt([[d]], [[R]])"],
+  "stem": "A plane intersects a sphere of radius \\( [[R]] \\) at a perpendicular distance \\( [[d]] \\) from the sphere's center, creating a circular cross-section. What is the area of this cross-section? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[R]]**2 - [[d]]**2)"},
+  "distractors": [
+   "pi*[[R]]**2",
+   "pi*[[d]]**2",
+   "pi*([[R]] - [[d]])**2",
+   "2*pi*sqrt([[R]]**2 - [[d]]**2)",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The cross-section's radius \\( \\rho \\) satisfies \\( \\rho^{2} + [[d]]^{2} = [[R]]^{2} \\) (a right triangle formed by the sphere's radius, the plane's distance from center, and the cross-section radius), so \\( \\rho^{2} = [[R]]^{2} - [[d]]^{2} \\). The area is \\( \\pi\\rho^{2} = \\pi\\left([[R]]^{2} - [[d]]^{2}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the area of the sphere's great circle, ignoring the offset \\( d \\) entirely.",
+   "This mistakenly uses \\( d \\) itself as the cross-section radius.",
+   "This subtracts the lengths directly instead of applying the Pythagorean relationship.",
+   "This computes something resembling a circumference rather than an area.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_cube_diagonal_crosssection_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A plane passes through a pair of opposite edges of a cube with edge length \\( [[s]] \\), creating a rectangular cross-section. What is the area of this cross-section?",
+  "answer_spec": {"op": "evaluate", "expr": "[[s]]*[[s]]*sqrt(2)"},
+  "distractors": [
+   "[[s]]**2",
+   "[[s]]**3",
+   "[[s]]**2*sqrt(3)",
+   "[[s]]**2/sqrt(2)",
+   "[[answer]] + [[s]]",
+   "[[answer]] - [[s]]"
+  ],
+  "solution": "The cross-section is a rectangle with one side equal to the cube's edge \\( [[s]] \\) and the other equal to a face diagonal \\( [[s]]\\sqrt{2} \\). Its area is \\( [[s]]\\cdot [[s]]\\sqrt{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just a face's area, ignoring the diagonal side of the cross-section.",
+   "This is the cube's volume, not a 2-D cross-sectional area.",
+   "This uses \\( \\sqrt{3} \\) (a space-diagonal factor) instead of \\( \\sqrt{2} \\) (a face-diagonal factor).",
+   "This divides by \\( \\sqrt{2} \\) instead of multiplying by it.",
+   "This is off from the correct area.",
+   "This is off from the correct area."
+  ]
+ },
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_cylinder_in_cube_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": [],
+  "stem": "A right circular cylinder is inscribed in a cube with edge length \\( [[s]] \\): its circular bases are inscribed in two opposite faces of the cube, so the cylinder's height equals \\( [[s]] \\) and its diameter equals \\( [[s]] \\). What is the volume of the cylinder? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[s]]/2)**2*[[s]]"},
+  "distractors": [
+   "[[s]]**3",
+   "pi*[[s]]**2*[[s]]",
+   "(4/3)*pi*([[s]]/2)**3",
+   "pi*([[s]]/2)**2*[[s]]/3",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The cylinder's radius is half the cube's edge, \\( \\frac{[[s]]}{2} \\), and its height equals the edge, \\( [[s]] \\). The volume is \\( \\pi r^{2}h = \\pi\\left(\\frac{[[s]]}{2}\\right)^{2}[[s]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the cube's own volume, not the inscribed cylinder's.",
+   "This uses the full edge \\( s \\) as the radius instead of \\( s/2 \\).",
+   "This mistakenly applies the sphere volume formula.",
+   "This mistakenly applies the cone volume formula (dividing by 3).",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This is off from the correct volume by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "inscribed_circumscribed_solids_and_cross_sections_cone_in_cylinder_gap_v1",
+  "skill_id": "inscribed_circumscribed_solids_and_cross_sections",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 10},
+   "h": {"type": "int", "lo": 2, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "A right circular cone is inscribed in a right circular cylinder so that they share the same circular base (radius \\( [[r]] \\)) and the same height \\( [[h]] \\), with the cone's apex at the center of the cylinder's top base. What is the volume of the region inside the cylinder but outside the cone? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "(2/3)*pi*[[r]]**2*[[h]]"},
+  "distractors": [
+   "(1/3)*pi*[[r]]**2*[[h]]",
+   "pi*[[r]]**2*[[h]]",
+   "(2/3)*pi*[[r]]**3",
+   "(1/2)*pi*[[r]]**2*[[h]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The cylinder's volume is \\( \\pi r^{2}h \\) and the inscribed cone's volume is \\( \\frac{1}{3}\\pi r^{2}h \\). The leftover region is the difference: \\( \\pi r^{2}h - \\frac{1}{3}\\pi r^{2}h = \\frac{2}{3}\\pi r^{2}h = \\frac{2}{3}\\pi [[r]]^{2}[[h]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is just the cone's own volume, not the leftover region outside it.",
+   "This is the full cylinder's volume, forgetting to remove the cone.",
+   "This uses \\( r \\) instead of \\( h \\) as the second linear factor.",
+   "This uses \\( \\frac{1}{2} \\) instead of \\( \\frac{1}{3} \\) for the cone's fraction of the cylinder.",
+   "This is off from the correct volume by \\( \\pi \\).",
+   "This is off from the correct volume by \\( \\pi \\)."
+  ]
+ }
+]

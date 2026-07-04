@@ -1,0 +1,170 @@
+[
+{
+ "template_id": "compute_high_power_via_diagonalization_v1",
+ "skill_id": "compute_a_high_power_via_diagonalization",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[b]], 0)"],
+ "stem": "The matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ 0 & [[d]] \\end{bmatrix} \\) has distinct eigenvalues, so it is diagonalizable. What is the \\( (1,2) \\) entry (top-right entry) of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[b]]*([[a]]**[[n]] - [[d]]**[[n]])/([[a]] - [[d]])"},
+ "distractors": [
+  "[[a]]**[[n]]",
+  "[[d]]**[[n]]",
+  "([[a]]**[[n]] - [[d]]**[[n]])/([[a]] - [[d]])",
+  "[[b]]*([[a]]**[[n]] - [[d]]**[[n]])",
+  "[[b]]*[[a]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Diagonalizing \\( A = PDP^{-1} \\) with \\( D = \\operatorname{diag}([[a]],[[d]]) \\) gives \\( A^{n} = \\begin{bmatrix} a^{n} & b\\,\\frac{a^{n}-d^{n}}{a-d} \\\\ 0 & d^{n} \\end{bmatrix} \\). The \\( (1,2) \\) entry is \\( [[b]]\\cdot\\frac{([[a]])^{[[n]]}-([[d]])^{[[n]]}}{[[a]]-[[d]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,1) \\) entry \\( a^{n} \\), not the \\( (1,2) \\) entry.",
+  "This is the \\( (2,2) \\) entry \\( d^{n} \\), not the \\( (1,2) \\) entry.",
+  "This forgets the factor of \\( b \\) from the off-diagonal entry.",
+  "This forgets to divide by \\( a-d \\) in the closed form.",
+  "This uses \\( b\\,a^{n} \\), ignoring the \\( d^{n} \\) contribution and the denominator.",
+  "This is one more than the correct entry.",
+  "This is one less than the correct entry."
+ ]
+},
+{
+ "template_id": "compute_high_power_diagonal_trace_v1",
+ "skill_id": "compute_a_high_power_via_diagonalization",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & 0 \\\\ 0 & [[d]] \\end{bmatrix} \\), a diagonal matrix (already its own diagonalization, with eigenvalues \\( [[a]] \\) and \\( [[d]] \\)). What is \\( \\operatorname{tr}(A^{[[n]]}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]] + [[d]]**[[n]]"},
+ "distractors": [
+  "([[a]] + [[d]])**[[n]]",
+  "[[a]]**[[n]]",
+  "[[d]]**[[n]]",
+  "[[a]]**[[n]]*[[d]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "Since \\( A \\) is diagonal, \\( A^{n} = \\operatorname{diag}([[a]]^{[[n]]}, [[d]]^{[[n]]}) \\), so \\( \\operatorname{tr}(A^{n}) = [[a]]^{[[n]]} + [[d]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This raises the sum \\( a+d \\) to the \\( n \\)-th power instead of summing the \\( n \\)-th powers.",
+  "This keeps only the first eigenvalue's contribution.",
+  "This keeps only the second eigenvalue's contribution.",
+  "This multiplies the two powers instead of adding them (that would be \\( \\det(A^{n}) \\), not the trace).",
+  "This is one more than the correct trace.",
+  "This is two less than the correct trace.",
+  "This is three more than the correct trace."
+ ]
+},
+{
+ "template_id": "compute_high_power_det_via_eigenvalues_v1",
+ "skill_id": "compute_a_high_power_via_diagonalization",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[a]], 0)", "Ne([[d]], 0)"],
+ "stem": "The matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ 0 & [[d]] \\end{bmatrix} \\) has eigenvalues \\( [[a]] \\) and \\( [[d]] \\), so it is diagonalizable as \\( A = PDP^{-1} \\) with \\( D = \\operatorname{diag}([[a]],[[d]]) \\). Using \\( \\det(A^{n}) = \\det(D)^{n} \\), what is \\( \\det(A^{[[n]]}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[d]])**[[n]]"},
+ "distractors": [
+  "[[a]]**[[n]] + [[d]]**[[n]]",
+  "[[a]]*[[d]]*[[n]]",
+  "([[a]] + [[d]])**[[n]]",
+  "[[a]]**[[n]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 4"
+ ],
+ "solution": "Since \\( \\det(A) = [[a]]\\cdot[[d]] \\) (the product of the eigenvalues) and determinant is multiplicative, \\( \\det(A^{[[n]]}) = \\det(A)^{[[n]]} = ([[a]][[d]])^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the eigenvalues' powers (that would relate to a trace), instead of raising their product to the \\( n \\)-th power.",
+  "This multiplies \\( \\det(A) \\) by \\( n \\) instead of raising it to the \\( n \\)-th power.",
+  "This raises the sum of the eigenvalues, not their product, to the \\( n \\)-th power.",
+  "This forgets to raise the second eigenvalue to the \\( n \\)-th power.",
+  "This is one more than the correct determinant.",
+  "This is one less than the correct determinant.",
+  "This is four more than the correct determinant."
+ ]
+},
+{
+ "template_id": "compute_high_power_symmetric_entry_v1",
+ "skill_id": "compute_a_high_power_via_diagonalization",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "The symmetric matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[b]] & [[a]] \\end{bmatrix} \\) has eigenvalues \\( \\lambda_{1} = [[a]]+[[b]] \\) (eigenvector \\( (1,1) \\)) and \\( \\lambda_{2} = [[a]]-[[b]] \\) (eigenvector \\( (1,-1) \\)). Using this diagonalization, what is the \\( (1,1) \\) entry of \\( A^{[[n]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]+[[b]])**[[n]] + ([[a]]-[[b]])**[[n]])/2"},
+ "distractors": [
+  "([[a]]+[[b]])**[[n]]",
+  "([[a]]-[[b]])**[[n]]",
+  "([[a]]+[[b]])**[[n]] + ([[a]]-[[b]])**[[n]]",
+  "[[a]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "Writing \\( A = PDP^{-1} \\) with \\( D = \\operatorname{diag}(\\lambda_{1},\\lambda_{2}) \\) and \\( P = \\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix} \\) (so \\( P^{-1} = \\tfrac{1}{2}P \\)), the \\( (1,1) \\) entry of \\( A^{n} = PD^{n}P^{-1} \\) is \\( \\dfrac{\\lambda_{1}^{n}+\\lambda_{2}^{n}}{2} = \\dfrac{([[a]]+[[b]])^{[[n]]}+([[a]]-[[b]])^{[[n]]}}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only \\( \\lambda_{1}^{n} \\), forgetting the contribution from \\( \\lambda_{2} \\) and the averaging by \\( \\tfrac{1}{2} \\).",
+  "This uses only \\( \\lambda_{2}^{n} \\), forgetting the contribution from \\( \\lambda_{1} \\) and the averaging by \\( \\tfrac{1}{2} \\).",
+  "This forgets to divide the sum of the two eigenvalue powers by \\( 2 \\).",
+  "This ignores the off-diagonal entry \\( b \\) entirely, as if \\( A \\) were diagonal.",
+  "This is one more than the correct entry.",
+  "This is two less than the correct entry.",
+  "This is three more than the correct entry."
+ ]
+},
+{
+ "template_id": "compute_high_power_3x3_diagonal_trace_v1",
+ "skill_id": "compute_a_high_power_via_diagonalization",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], [[b]])", "Ne([[a]], [[c]])", "Ne([[b]], [[c]])", "Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & 0 & 0 \\\\ 0 & [[b]] & 0 \\\\ 0 & 0 & [[c]] \\end{bmatrix} \\), with distinct eigenvalues \\( [[a]], [[b]], [[c]] \\). What is \\( \\operatorname{tr}(A^{[[n]]}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]] + [[b]]**[[n]] + [[c]]**[[n]]"},
+ "distractors": [
+  "([[a]] + [[b]] + [[c]])**[[n]]",
+  "[[a]]**[[n]]*[[b]]**[[n]]*[[c]]**[[n]]",
+  "[[a]]**[[n]] + [[b]]**[[n]]",
+  "[[a]] + [[b]] + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 3",
+  "[[answer]] + 5"
+ ],
+ "solution": "Since \\( A \\) is diagonal, \\( A^{n} = \\operatorname{diag}([[a]]^{[[n]]}, [[b]]^{[[n]]}, [[c]]^{[[n]]}) \\), so \\( \\operatorname{tr}(A^{n}) = [[a]]^{[[n]]} + [[b]]^{[[n]]} + [[c]]^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This raises the sum of the eigenvalues to the \\( n \\)-th power instead of summing the \\( n \\)-th powers.",
+  "This multiplies the powers together (that is \\( \\det(A^{n}) \\)), not the trace.",
+  "This forgets the third eigenvalue's contribution.",
+  "This forgets to raise the eigenvalues to the \\( n \\)-th power at all.",
+  "This is one more than the correct trace.",
+  "This is three less than the correct trace.",
+  "This is five more than the correct trace."
+ ]
+}
+]

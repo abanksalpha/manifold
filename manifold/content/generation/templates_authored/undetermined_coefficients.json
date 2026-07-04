@@ -1,0 +1,179 @@
+[
+ {
+  "template_id": "undetermined_polynomial_forcing_v1",
+  "skill_id": "undetermined_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "m": {"type": "int", "lo": -6, "hi": 6},
+   "n": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[m]], 0)"],
+  "stem": "For \\( y'' + ([[b]])y' + ([[c]])y = [[m]]x+[[n]] \\), the method of undetermined coefficients uses the trial particular solution \\( y_p = Ax+B \\). Find the coefficient \\( A \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]/[[c]]"},
+  "distractors": [
+   "[[n]]/[[c]]",
+   "[[m]]/[[b]]",
+   "-[[m]]/[[c]]",
+   "[[m]]*[[c]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Substituting \\( y_p=Ax+B \\) gives \\( y_p''+([[b]])y_p'+([[c]])y_p = ([[b]])A+([[c]])(Ax+B) \\). Matching the coefficient of \\( x \\) gives \\( ([[c]])A=[[m]] \\), so \\( A = [[answer]] \\).",
+  "distractor_rationales": [
+   "This matches the constant term instead of the coefficient of \\( x \\).",
+   "This divides by the wrong coefficient \\( b \\) instead of \\( c \\).",
+   "This has the wrong sign.",
+   "This multiplies instead of dividing by \\( c \\).",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "undetermined_exponential_forcing_v1",
+  "skill_id": "undetermined_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[d]], 0)", "Ne([[k]]**2+[[b]]*[[k]]+[[c]], 0)"],
+  "stem": "The forcing rate does NOT match a characteristic root, so for \\( y'' + ([[b]])y' + ([[c]])y = [[d]]e^{[[k]]x} \\), the trial particular solution is \\( y_p = Ae^{[[k]]x} \\). Find the coefficient \\( A \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[d]]/([[k]]**2+[[b]]*[[k]]+[[c]])"},
+  "distractors": [
+   "[[d]]/([[k]]**2-[[b]]*[[k]]+[[c]])",
+   "[[d]]/[[c]]",
+   "-[[d]]/([[k]]**2+[[b]]*[[k]]+[[c]])",
+   "[[d]]*([[k]]**2+[[b]]*[[k]]+[[c]])",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Substituting \\( y_p=Ae^{[[k]]x} \\) gives \\( ([[k]]^{2}+([[b]])[[k]]+([[c]]))Ae^{[[k]]x} = [[d]]e^{[[k]]x} \\), so \\( A = \\dfrac{[[d]]}{[[k]]^{2}+([[b]])[[k]]+([[c]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the middle term of the denominator.",
+   "This drops the \\( k \\)-dependent part of the denominator entirely.",
+   "This has the wrong overall sign.",
+   "This multiplies by the denominator instead of dividing.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "undetermined_trig_forcing_system_v1",
+  "skill_id": "undetermined_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "k": {"type": "int", "lo": 1, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[d]], 0)", "Ne([[b]]**2*[[k]]**2+([[c]]-[[k]]**2)**2, 0)"],
+  "stem": "For \\( y'' + ([[b]])y' + ([[c]])y = [[d]]\\cos([[k]]x) \\), the trial particular solution is \\( y_p = A\\cos([[k]]x)+B\\sin([[k]]x) \\). Matching coefficients of \\( \\cos([[k]]x) \\) and \\( \\sin([[k]]x) \\) gives a linear system for \\( A \\) and \\( B \\). Find \\( A \\).",
+  "answer_spec": {
+   "op": "system",
+   "equations": [
+    "([[c]]-[[k]]**2)*A + [[b]]*[[k]]*B = [[d]]",
+    "-[[b]]*[[k]]*A + ([[c]]-[[k]]**2)*B = 0"
+   ],
+   "vars": ["A", "B"],
+   "want": "A"
+  },
+  "distractors": [
+   "[[d]]/([[c]]-[[k]]**2)",
+   "[[d]]*[[b]]*[[k]]/([[b]]**2*[[k]]**2+([[c]]-[[k]]**2)**2)",
+   "-[[d]]*([[c]]-[[k]]**2)/([[b]]**2*[[k]]**2+([[c]]-[[k]]**2)**2)",
+   "[[d]]/[[c]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Matching \\( \\cos([[k]]x) \\) and \\( \\sin([[k]]x) \\) coefficients gives \\( ([[c]]-[[k]]^{2})A+([[b]])[[k]]B=[[d]] \\) and \\( -([[b]])[[k]]A+([[c]]-[[k]]^{2})B=0 \\). Solving this system, \\( A = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the coupling from the \\( \\sin \\) equation, using only the naive single-equation quotient.",
+   "This reports the value of \\( B \\), not \\( A \\).",
+   "This has the wrong overall sign for \\( A \\).",
+   "This ignores the \\( k^2 \\) shift in the denominator entirely.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "undetermined_product_forcing_system_v1",
+  "skill_id": "undetermined_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[d]], 0)", "Ne([[k]]**2+[[b]]*[[k]]+[[c]], 0)"],
+  "stem": "The forcing rate does NOT match a characteristic root, so for \\( y'' + ([[b]])y' + ([[c]])y = [[d]]xe^{[[k]]x} \\), the trial particular solution is \\( y_p = (Ax+B)e^{[[k]]x} \\). Matching the coefficients of \\( xe^{[[k]]x} \\) and \\( e^{[[k]]x} \\) gives a linear system for \\( A \\) and \\( B \\). Find \\( A \\).",
+  "answer_spec": {
+   "op": "system",
+   "equations": [
+    "([[k]]**2+[[b]]*[[k]]+[[c]])*A = [[d]]",
+    "(2*[[k]]+[[b]])*A + ([[k]]**2+[[b]]*[[k]]+[[c]])*B = 0"
+   ],
+   "vars": ["A", "B"],
+   "want": "A"
+  },
+  "distractors": [
+   "-[[d]]/([[k]]**2+[[b]]*[[k]]+[[c]])",
+   "[[d]]/(2*[[k]]+[[b]])",
+   "[[d]]*([[k]]**2+[[b]]*[[k]]+[[c]])",
+   "[[d]]/[[c]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "Matching the coefficient of \\( xe^{[[k]]x} \\) gives \\( ([[k]]^{2}+([[b]])[[k]]+([[c]]))A = [[d]] \\), so \\( A = [[answer]] \\) (the second equation only determines \\( B \\)).",
+  "distractor_rationales": [
+   "This has the wrong overall sign.",
+   "This uses the coefficient equation meant for \\( B \\) instead of \\( A \\).",
+   "This multiplies by the denominator instead of dividing.",
+   "This ignores the \\( k \\)-dependence of the denominator entirely.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "undetermined_superposition_v1",
+  "skill_id": "undetermined_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "k1": {"type": "int", "lo": -4, "hi": 4},
+   "d1": {"type": "int", "lo": -6, "hi": 6},
+   "d2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[d1]], 0)", "Ne([[d2]], 0)", "Ne([[c]], 0)", "Ne([[k1]]**2+[[b]]*[[k1]]+[[c]], 0)"],
+  "stem": "The forcing term of \\( y'' + ([[b]])y' + ([[c]])y = [[d1]]e^{[[k1]]x} + [[d2]] \\) is a sum of two pieces, so by superposition the particular solution is \\( y_p = A_1 e^{[[k1]]x} + A_2 \\), where each coefficient is found by matching ONLY its own forcing term. Find \\( A_1 \\), the coefficient of the exponential piece.",
+  "answer_spec": {"op": "evaluate", "expr": "[[d1]]/([[k1]]**2+[[b]]*[[k1]]+[[c]])"},
+  "distractors": [
+   "[[d2]]/[[c]]",
+   "([[d1]]+[[d2]])/([[k1]]**2+[[b]]*[[k1]]+[[c]])",
+   "-[[d1]]/([[k1]]**2+[[b]]*[[k1]]+[[c]])",
+   "[[d1]]/[[c]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "By superposition, solve for each forcing term separately. For \\( [[d1]]e^{[[k1]]x} \\), try \\( A_1 e^{[[k1]]x} \\): substituting gives \\( A_1 = \\dfrac{[[d1]]}{[[k1]]^{2}+([[b]])[[k1]]+([[c]])} = [[answer]] \\) (the constant forcing term [[d2]] only affects \\( A_2 \\), found separately).",
+  "distractor_rationales": [
+   "This solves for the coefficient of the CONSTANT forcing piece instead of the exponential piece.",
+   "This mixes the two forcing terms together instead of treating them separately by superposition.",
+   "This has the wrong overall sign.",
+   "This uses the denominator for the constant-forcing piece instead of the exponential one.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

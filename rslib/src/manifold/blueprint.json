@@ -2,11 +2,31 @@
     "version": 2,
     "exam": "GRE Mathematics Subject Test",
     "scale": { "min": 200, "max": 990 },
-    "distribution": { "mean": 676, "sd": 154, "n": 7452, "source": "ETS 2019-2023" },
+    "distribution": {
+        "mean": 680,
+        "sd": 161,
+        "n": 5180,
+        "source": "ETS GRE Guide to the Use of Scores (\u00a9 2025), Table 2A, Mathematics, test-takers 2021-07-01 to 2024-06-30"
+    },
     "readiness_mapping": {
         "median_raw_fraction": 0.5,
         "performance_sd": 0.18,
-        "coverage_band_lambda": 0.1
+        "coverage_band_lambda": 0.1,
+        "lapse_band_lambda": 0.12,
+        "targets": [
+            { "id": "median", "label": "Median", "scaled_point": 680, "scaled_low": 660, "scaled_high": 700 },
+            { "id": "strong", "label": "Strong", "scaled_point": 800, "scaled_low": 780, "scaled_high": 820 },
+            { "id": "exceptional", "label": "Exceptional", "scaled_point": 860, "scaled_low": 840, "scaled_high": 880 }
+        ],
+        "hours_curve": {
+            "scaled_floor": 560,
+            "points_per_log_hour": 120,
+            "hours_scale": 12
+        },
+        "maturity_residue": {
+            "items": 3,
+            "scaled_points": 35
+        }
     },
     "thresholds": {
         "new_per_day": 10,
@@ -15,23 +35,38 @@
     },
     "tier_targets": { "relearn": 0.9, "teach": 0.8, "recognize": 0.6 },
     "tier_stability": { "relearn": 21, "teach": 21, "recognize": 7 },
-    "ets_anchors": [
-        { "scaled": 900, "percentile_below": 93 },
-        { "scaled": 860, "percentile_below": 86 },
-        { "scaled": 820, "percentile_below": 77 },
-        { "scaled": 800, "percentile_below": 74 },
-        { "scaled": 780, "percentile_below": 70 },
-        { "scaled": 740, "percentile_below": 62 },
-        { "scaled": 700, "percentile_below": 54 },
-        { "scaled": 680, "percentile_below": 50 },
-        { "scaled": 660, "percentile_below": 46 },
-        { "scaled": 620, "percentile_below": 38 },
-        { "scaled": 580, "percentile_below": 30 },
-        { "scaled": 540, "percentile_below": 22 },
-        { "scaled": 500, "percentile_below": 14 },
-        { "scaled": 460, "percentile_below": 7 },
-        { "scaled": 420, "percentile_below": 3 }
-    ],
+    "ets_anchors": {
+        "source": "ETS GRE Guide to the Use of Scores (\u00a9 2025), Table 2A, Mathematics, test-takers 2021-07-01 to 2024-06-30",
+        "anchors": [
+            { "scaled": 900, "percentile_below": 91 },
+            { "scaled": 880, "percentile_below": 88 },
+            { "scaled": 860, "percentile_below": 84 },
+            { "scaled": 840, "percentile_below": 79 },
+            { "scaled": 820, "percentile_below": 75 },
+            { "scaled": 800, "percentile_below": 71 },
+            { "scaled": 780, "percentile_below": 68 },
+            { "scaled": 760, "percentile_below": 64 },
+            { "scaled": 740, "percentile_below": 61 },
+            { "scaled": 720, "percentile_below": 56 },
+            { "scaled": 700, "percentile_below": 53 },
+            { "scaled": 680, "percentile_below": 49 },
+            { "scaled": 660, "percentile_below": 46 },
+            { "scaled": 640, "percentile_below": 41 },
+            { "scaled": 620, "percentile_below": 38 },
+            { "scaled": 600, "percentile_below": 34 },
+            { "scaled": 580, "percentile_below": 30 },
+            { "scaled": 560, "percentile_below": 25 },
+            { "scaled": 540, "percentile_below": 22 },
+            { "scaled": 520, "percentile_below": 18 },
+            { "scaled": 500, "percentile_below": 14 },
+            { "scaled": 480, "percentile_below": 11 },
+            { "scaled": 460, "percentile_below": 8 },
+            { "scaled": 440, "percentile_below": 6 },
+            { "scaled": 420, "percentile_below": 4 },
+            { "scaled": 400, "percentile_below": 3 },
+            { "scaled": 380, "percentile_below": 2 }
+        ]
+    },
     "topics": [
         {
             "id": "elementary_algebra",
@@ -174,7 +209,7 @@
             "id": "number_theory",
             "title": "Number theory",
             "area": "algebra",
-            "tier": "recognize",
+            "tier": "teach",
             "weight": 3,
             "expected_skills": 5,
             "prereqs": ["elementary_algebra"]
@@ -210,7 +245,7 @@
             "id": "group_theory",
             "title": "Group theory",
             "area": "algebra",
-            "tier": "recognize",
+            "tier": "teach",
             "weight": 3,
             "expected_skills": 6,
             "prereqs": ["number_theory"]
@@ -238,7 +273,7 @@
             "id": "combinatorics",
             "title": "Combinatorics",
             "area": "additional",
-            "tier": "recognize",
+            "tier": "teach",
             "weight": 3,
             "expected_skills": 4,
             "prereqs": ["logic_sets"]
@@ -265,7 +300,7 @@
             "id": "probability",
             "title": "Probability",
             "area": "additional",
-            "tier": "recognize",
+            "tier": "teach",
             "weight": 4,
             "expected_skills": 4,
             "prereqs": ["combinatorics", "integral_calc"]
@@ -310,7 +345,7 @@
             "id": "complex_analysis",
             "title": "Complex analysis",
             "area": "additional",
-            "tier": "recognize",
+            "tier": "teach",
             "weight": 2,
             "expected_skills": 5,
             "prereqs": ["multivariable_diff", "real_analysis_sequences"]

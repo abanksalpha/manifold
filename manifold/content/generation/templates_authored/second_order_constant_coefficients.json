@@ -1,0 +1,221 @@
+[
+ {
+  "template_id": "second_order_char_eq_smaller_root_v1",
+  "skill_id": "second_order_constant_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -6, "hi": -1},
+   "r2": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[r1]], [[r2]])"],
+  "derived": {
+   "b": "-([[r1]]+[[r2]])",
+   "c": "[[r1]]*[[r2]]"
+  },
+  "stem": "Find the SMALLER root of the characteristic equation associated with \\( y'' + ([[b]])y' + ([[c]])y = 0 \\).",
+  "answer_spec": {"op": "solve", "equation": "x**2+([[b]])*x+([[c]])=0", "var": "x"},
+  "distractors": [
+   "[[r2]]",
+   "-[[r1]]",
+   "[[b]]",
+   "[[c]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "The characteristic equation \\( x^{2}+([[b]])x+([[c]]) = 0 \\) factors with roots \\( [[r1]] \\) and \\( [[r2]] \\); the smaller one is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the LARGER root, not the smaller one.",
+   "This negates the smaller root instead of reporting it directly.",
+   "This reports the coefficient \\( b \\) instead of a root.",
+   "This reports the coefficient \\( c \\) instead of a root.",
+   "This is one more than the correct root.",
+   "This is one less than the correct root."
+  ]
+ },
+ {
+  "template_id": "second_order_char_eq_vieta_sum_v1",
+  "skill_id": "second_order_constant_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -7, "hi": 7},
+   "r2": {"type": "int", "lo": -7, "hi": 7}
+  },
+  "constraints": ["Ne([[r1]], [[r2]])"],
+  "derived": {
+   "b": "-([[r1]]+[[r2]])",
+   "c": "[[r1]]*[[r2]]"
+  },
+  "stem": "Without solving for the individual roots, use Vieta's formulas to find the SUM of the roots of the characteristic equation of \\( y'' + ([[b]])y' + ([[c]])y = 0 \\).",
+  "answer_spec": {"op": "vieta", "poly": "x**2+([[b]])*x+([[c]])", "var": "x", "which": "sum"},
+  "distractors": [
+   "[[c]]",
+   "-[[c]]",
+   "[[b]]",
+   "[[r1]]*[[r2]]",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "For \\( x^{2}+bx+c=0 \\), Vieta's formulas give sum of roots \\( = -b \\). Here \\( b = [[b]] \\), so the sum is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the product of the roots (which equals \\( c \\)) instead of the sum.",
+   "This negates the product of the roots rather than using \\( -b \\) for the sum.",
+   "This forgets the sign flip, reporting \\( b \\) instead of \\( -b \\).",
+   "This computes the product \\( r_1 r_2 \\) directly instead of the sum.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_distinct_real_roots_ivp_v1",
+  "skill_id": "second_order_constant_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "q": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {
+   "b": "-([[p]]+[[q]])",
+   "c": "[[p]]*[[q]]",
+   "c1": "([[v0]]-[[q]]*[[y0]])/([[p]]-[[q]])",
+   "c2": "([[p]]*[[y0]]-[[v0]])/([[p]]-[[q]])"
+  },
+  "require_rational": false,
+  "stem": "Solve the initial value problem \\( y'' + ([[b]])y' + ([[c]])y = 0 \\), \\( y(0) = [[y0]] \\), \\( y'(0) = [[v0]] \\), and evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[c1]])*exp([[p]]*[[t0]]) + ([[c2]])*exp([[q]]*[[t0]])"},
+  "distractors": [
+   "([[c2]])*exp([[p]]*[[t0]]) + ([[c1]])*exp([[q]]*[[t0]])",
+   "[[y0]]/2*exp([[p]]*[[t0]]) + [[y0]]/2*exp([[q]]*[[t0]])",
+   "[[y0]]*exp([[p]]*[[t0]])",
+   "[[y0]]*exp([[q]]*[[t0]])",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "The characteristic roots are \\( [[p]] \\) and \\( [[q]] \\), so \\( y = C_1 e^{[[p]]x} + C_2 e^{[[q]]x} \\). The conditions give \\( C_1 = [[c1]] \\), \\( C_2 = [[c2]] \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the two constants \\( C_1 \\) and \\( C_2 \\).",
+   "This splits the initial value equally between the modes, ignoring \\( y'(0) \\).",
+   "This keeps only the first exponential mode.",
+   "This keeps only the second exponential mode.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_repeated_root_ivp_v1",
+  "skill_id": "second_order_constant_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "r": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": 1, "hi": 5},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [-1, 1, 2]}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "-2*[[r]]",
+   "c": "[[r]]**2",
+   "c2": "[[v0]]-[[r]]*[[y0]]"
+  },
+  "require_rational": false,
+  "stem": "The characteristic equation of \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has a REPEATED root. Given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\), evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(([[y0]]) + ([[c2]])*[[t0]])*exp([[r]]*[[t0]])"},
+  "distractors": [
+   "(([[y0]]) + ([[v0]])*[[t0]])*exp([[r]]*[[t0]])",
+   "(([[y0]]) + ([[c2]])*[[t0]])*exp(-[[r]]*[[t0]])",
+   "[[y0]]*exp([[r]]*[[t0]])",
+   "(([[y0]])*[[t0]] + ([[c2]]))*exp([[r]]*[[t0]])",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "With a repeated root \\( r=[[r]] \\), \\( y=(C_1+C_2x)e^{[[r]]x} \\). Then \\( C_1=[[y0]] \\) and \\( C_2=[[v0]]-[[r]]\\cdot[[y0]]=[[c2]] \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract \\( ry_0 \\) when solving for \\( C_2 \\), using \\( v_0 \\) directly.",
+   "This uses \\( e^{-rx} \\) instead of the correct \\( e^{rx} \\).",
+   "This drops the polynomial correction term entirely, as if the root were not repeated.",
+   "This multiplies the wrong constant by \\( x \\).",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_undamped_oscillator_ivp_v1",
+  "skill_id": "second_order_constant_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "w": {"type": "choice", "values": [1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7]}
+  },
+  "constraints": ["Ne([[y0]], 0)", "Ne([[v0]], 0)"],
+  "derived": {
+   "c": "[[w]]**2"
+  },
+  "stem": "The characteristic equation of \\( y'' + ([[c]])y = 0 \\) has purely imaginary roots \\( \\pm [[w]]i \\). Given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\), evaluate \\( y\\!\\left(\\dfrac{[[k]]\\pi}{2\\cdot[[w]]}\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*cos([[k]]*pi/2) + ([[v0]]/[[w]])*sin([[k]]*pi/2)"},
+  "distractors": [
+   "[[y0]]*sin([[k]]*pi/2) + ([[v0]]/[[w]])*cos([[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2) + [[v0]]*sin([[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2) - ([[v0]]/[[w]])*sin([[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2)",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "With roots \\( \\pm [[w]]i \\), \\( y = y_0\\cos([[w]]x) + \\dfrac{v_0}{[[w]]}\\sin([[w]]x) \\). At \\( x=\\dfrac{[[k]]\\pi}{2[[w]]} \\), \\( [[w]]x=\\dfrac{[[k]]\\pi}{2} \\), so \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of sine and cosine.",
+   "This forgets to divide the velocity term by \\( [[w]] \\).",
+   "This uses the wrong sign on the sine term.",
+   "This drops the velocity term entirely.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_damped_oscillator_ivp_v1",
+  "skill_id": "second_order_constant_coefficients",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "q": {"type": "choice", "values": [1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "m": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[y0]], 0)"],
+  "derived": {
+   "b": "-2*[[p]]",
+   "c": "[[p]]**2+[[q]]**2"
+  },
+  "require_rational": false,
+  "stem": "The characteristic equation of \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has complex conjugate roots \\( [[p]] \\pm [[q]]i \\). Given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\), evaluate \\( y\\!\\left(\\dfrac{[[m]]\\pi}{2\\cdot[[q]]}\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "exp([[p]]*[[m]]*pi/(2*[[q]]))*([[y0]]*cos([[m]]*pi/2) + (([[v0]]-[[p]]*[[y0]])/[[q]])*sin([[m]]*pi/2))"},
+  "distractors": [
+   "exp(-[[p]]*[[m]]*pi/(2*[[q]]))*([[y0]]*cos([[m]]*pi/2) + (([[v0]]-[[p]]*[[y0]])/[[q]])*sin([[m]]*pi/2))",
+   "exp([[p]]*[[m]]*pi/(2*[[q]]))*([[y0]]*sin([[m]]*pi/2) + (([[v0]]-[[p]]*[[y0]])/[[q]])*cos([[m]]*pi/2))",
+   "exp([[p]]*[[m]]*pi/(2*[[q]]))*([[y0]]*cos([[m]]*pi/2) + ([[v0]]/[[q]])*sin([[m]]*pi/2))",
+   "[[y0]]*cos([[m]]*pi/2) + (([[v0]]-[[p]]*[[y0]])/[[q]])*sin([[m]]*pi/2)",
+   "[[answer]]+1",
+   "[[answer]]-1"
+  ],
+  "solution": "With roots \\( [[p]]\\pm[[q]]i \\), \\( y = e^{[[p]]x}\\left(y_0\\cos([[q]]x) + \\dfrac{v_0-[[p]]y_0}{[[q]]}\\sin([[q]]x)\\right) \\). At \\( x=\\dfrac{[[m]]\\pi}{2[[q]]} \\), \\( [[q]]x=\\dfrac{[[m]]\\pi}{2} \\), giving \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign in the exponential envelope, growing instead of decaying (or vice versa).",
+   "This swaps the roles of sine and cosine inside the oscillatory factor.",
+   "This forgets to subtract \\( py_0 \\) before dividing by \\( q \\) in the sine coefficient.",
+   "This drops the exponential envelope entirely.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

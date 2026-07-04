@@ -1,0 +1,142 @@
+[
+{
+ "template_id": "cauchy_riemann_ux_minus_vy_polynomial_v1",
+ "skill_id": "cauchy_riemann",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -4, "hi": 4},
+  "B": {"type": "int", "lo": -4, "hi": 4},
+  "C": {"type": "int", "lo": -4, "hi": 4},
+  "D": {"type": "int", "lo": -4, "hi": 4},
+  "G": {"type": "int", "lo": -4, "hi": 4},
+  "H": {"type": "int", "lo": -4, "hi": 4},
+  "K": {"type": "int", "lo": -4, "hi": 4},
+  "M": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "y0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Let \\( u(x,y) = ([[A]])x^{2} + ([[B]])y^{2} + ([[C]])xy + ([[D]])x \\) and \\( v(x,y) = ([[G]])x^{2} + ([[H]])y^{2} + ([[K]])xy + ([[M]])y \\). The Cauchy\u2013Riemann equations require \\( u_{x} = v_{y} \\) at every point where a function \\( f=u+iv \\) is (complex-)differentiable. Evaluate \\( u_{x} - v_{y} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[D]])*x), x).subs({x: [[x0]], y: [[y0]]}) - diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[M]])*y), y).subs({x: [[x0]], y: [[y0]]})"},
+ "distractors": [
+  "diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[D]])*x), y).subs({x: [[x0]], y: [[y0]]}) + diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[M]])*y), x).subs({x: [[x0]], y: [[y0]]})",
+  "diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[D]])*x), x).subs({x: [[x0]], y: [[y0]]}) + diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[M]])*y), y).subs({x: [[x0]], y: [[y0]]})",
+  "diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[M]])*y), y).subs({x: [[x0]], y: [[y0]]}) - diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[D]])*x), x).subs({x: [[x0]], y: [[y0]]})",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute \\( u_{x} = 2([[A]])x + ([[C]])y + ([[D]]) \\) and \\( v_{y} = 2([[H]])y + ([[K]])x + ([[M]]) \\), then substitute \\( (x,y)=([[x0]],[[y0]]) \\) into each and subtract: \\( u_{x} - v_{y} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( u_{y} + v_{x} \\) (the OTHER Cauchy\u2013Riemann quantity) instead of \\( u_{x} - v_{y} \\).",
+  "This adds \\( u_x \\) and \\( v_y \\) instead of subtracting them.",
+  "This has the subtraction backwards, computing \\( v_{y} - u_{x} \\) instead of \\( u_{x} - v_{y} \\).",
+  "The value is not always \\( 0 \\); it is only \\( 0 \\) when the Cauchy\u2013Riemann equation \\( u_x=v_y \\) happens to hold at this point.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "cauchy_riemann_uy_plus_vx_polynomial_v1",
+ "skill_id": "cauchy_riemann",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -4, "hi": 4},
+  "B": {"type": "int", "lo": -4, "hi": 4},
+  "C": {"type": "int", "lo": -4, "hi": 4},
+  "E": {"type": "int", "lo": -4, "hi": 4},
+  "G": {"type": "int", "lo": -4, "hi": 4},
+  "H": {"type": "int", "lo": -4, "hi": 4},
+  "K": {"type": "int", "lo": -4, "hi": 4},
+  "L": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "y0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Let \\( u(x,y) = ([[A]])x^{2} + ([[B]])y^{2} + ([[C]])xy + ([[E]])y \\) and \\( v(x,y) = ([[G]])x^{2} + ([[H]])y^{2} + ([[K]])xy + ([[L]])x \\). The Cauchy\u2013Riemann equations require \\( u_{y} = -v_{x} \\) at every point where a function \\( f=u+iv \\) is (complex-)differentiable. Evaluate \\( u_{y} + v_{x} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[E]])*y), y).subs({x: [[x0]], y: [[y0]]}) + diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[L]])*x), x).subs({x: [[x0]], y: [[y0]]})"},
+ "distractors": [
+  "diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[E]])*y), x).subs({x: [[x0]], y: [[y0]]}) - diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[L]])*x), y).subs({x: [[x0]], y: [[y0]]})",
+  "diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[E]])*y), y).subs({x: [[x0]], y: [[y0]]}) - diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[L]])*x), x).subs({x: [[x0]], y: [[y0]]})",
+  "diff((([[G]])*x**2+([[H]])*y**2+([[K]])*x*y+([[L]])*x), x).subs({x: [[x0]], y: [[y0]]}) - diff((([[A]])*x**2+([[B]])*y**2+([[C]])*x*y+([[E]])*y), y).subs({x: [[x0]], y: [[y0]]})",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute \\( u_{y} = ([[C]])x + 2([[B]])y + ([[E]]) \\) and \\( v_{x} = 2([[G]])x + ([[K]])y + ([[L]]) \\), then substitute \\( (x,y)=([[x0]],[[y0]]) \\) into each and add: \\( u_{y} + v_{x} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( u_{x} - v_{y} \\) (the OTHER Cauchy\u2013Riemann quantity) instead of \\( u_{y} + v_{x} \\).",
+  "This subtracts \\( v_x \\) from \\( u_y \\) instead of adding them.",
+  "This has the subtraction backwards, computing \\( v_{x} - u_{y} \\) instead of \\( u_{y} + v_{x} \\).",
+  "The value is not always \\( 0 \\); it is only \\( 0 \\) when the Cauchy\u2013Riemann equation \\( u_y=-v_x \\) happens to hold at this point.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "cauchy_riemann_ux_minus_vy_transcendental_v1",
+ "skill_id": "cauchy_riemann",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "P": {"type": "int", "lo": -5, "hi": 5},
+  "Q": {"type": "int", "lo": -5, "hi": 5},
+  "x0": {"type": "choice", "values": [0, 1]},
+  "k": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[P]], 0)", "Ne([[Q]], 0)"],
+ "stem": "Let \\( u(x,y) = ([[P]])e^{x}\\cos y \\) and \\( v(x,y) = ([[Q]])e^{x}\\sin y \\). Evaluate \\( u_{x} - v_{y} \\) at \\( (x,y) = \\left([[x0]], \\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "diff((([[P]])*exp(x)*cos(y)), x).subs({x: [[x0]], y: [[k]]*pi/6}) - diff((([[Q]])*exp(x)*sin(y)), y).subs({x: [[x0]], y: [[k]]*pi/6})"},
+ "require_rational": false,
+ "distractors": [
+  "diff((([[P]])*exp(x)*cos(y)), y).subs({x: [[x0]], y: [[k]]*pi/6}) + diff((([[Q]])*exp(x)*sin(y)), x).subs({x: [[x0]], y: [[k]]*pi/6})",
+  "diff((([[P]])*exp(x)*cos(y)), x).subs({x: [[x0]], y: [[k]]*pi/6}) + diff((([[Q]])*exp(x)*sin(y)), y).subs({x: [[x0]], y: [[k]]*pi/6})",
+  "0",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute \\( u_{x} = ([[P]])e^{x}\\cos y \\) and \\( v_{y} = ([[Q]])e^{x}\\cos y \\), substitute the point, and subtract: \\( u_{x} - v_{y} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( u_{y} + v_{x} \\) (the OTHER Cauchy\u2013Riemann quantity) instead of \\( u_{x} - v_{y} \\).",
+  "This adds \\( u_x \\) and \\( v_y \\) instead of subtracting them.",
+  "The value is \\( 0 \\) only when \\( P=Q \\) or \\( \\cos y_{0}=0 \\); in general it need not vanish.",
+  "This has the wrong sign from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "cauchy_riemann_analytic_cubic_identically_zero_v1",
+ "skill_id": "cauchy_riemann",
+ "topic_id": "complex_analysis",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -3, "hi": 3},
+  "y0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "For the analytic function \\( f(z) = z^{3} + ([[c]])z \\), write \\( f(x+iy) = u(x,y) + iv(x,y) \\), so that \\( u(x,y) = x^{3} - 3xy^{2} + ([[c]])x \\) and \\( v(x,y) = 3x^{2}y - y^{3} + ([[c]])y \\). Evaluate \\( u_{x} - v_{y} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "diff((x**3-3*x*y**2+([[c]])*x), x).subs({x: [[x0]], y: [[y0]]}) - diff((3*x**2*y-y**3+([[c]])*y), y).subs({x: [[x0]], y: [[y0]]})"},
+ "distractors": [
+  "diff((x**3-3*x*y**2+([[c]])*x), x).subs({x: [[x0]], y: [[y0]]}) + diff((3*x**2*y-y**3+([[c]])*y), y).subs({x: [[x0]], y: [[y0]]})",
+  "6*([[x0]])",
+  "-6*([[y0]])",
+  "([[c]])",
+  "1",
+  "-1"
+ ],
+ "solution": "Since \\( f(z)=z^{3}+([[c]])z \\) is analytic everywhere, the Cauchy\u2013Riemann equations \\( u_x=v_y \\) hold at every point, so \\( u_{x}-v_{y}=[[answer]] \\) regardless of \\( (x_0,y_0) \\). Indeed \\( u_{x} = 3x^{2}-3y^{2}+([[c]]) \\) and \\( v_{y} = 3x^{2}-3y^{2}+([[c]]) \\) are identical expressions.",
+ "distractor_rationales": [
+  "This adds \\( u_x \\) and \\( v_y \\) instead of subtracting them.",
+  "This mistakenly treats only the \\( x^{3} \\) term's derivative, ignoring the rest of \\( u_x \\) and all of \\( v_y \\).",
+  "This mistakenly treats only the \\( -y^{3} \\) term's derivative, ignoring the rest of \\( v_y \\) and all of \\( u_x \\).",
+  "This is the shared linear coefficient alone, not \\( u_x - v_y \\).",
+  "A function being analytic does not make this difference equal to \\( 1 \\); it is always exactly \\( 0 \\).",
+  "A function being analytic does not make this difference equal to \\( -1 \\); it is always exactly \\( 0 \\)."
+ ]
+}
+]

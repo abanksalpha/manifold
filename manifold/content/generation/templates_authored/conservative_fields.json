@@ -1,0 +1,139 @@
+[
+{
+ "template_id": "conservative_field_potential_2d_v1",
+ "skill_id": "conservative_fields",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "x1": {"type": "choice", "values": [-2, -1, 0, 1, 2, 3]},
+  "y1": {"type": "choice", "values": [-2, -1, 0, 1, 2, 3]},
+  "x2": {"type": "choice", "values": [-2, -1, 0, 1, 2, 3]},
+  "y2": {"type": "choice", "values": [-2, -1, 0, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Or(Ne([[x1]], [[x2]]), Ne([[y1]], [[y2]]))"],
+ "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( [[a]]y + [[b]],\\; [[a]]x + [[c]] \\right) \\) is conservative on all of \\( \\mathbb{R}^{2} \\). Evaluate \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is any smooth curve from \\( A = ([[x1]], [[y1]]) \\) to \\( B = ([[x2]], [[y2]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]])*(([[x2]])*([[y2]]) - ([[x1]])*([[y1]])) + ([[b]])*(([[x2]]) - ([[x1]])) + ([[c]])*(([[y2]]) - ([[y1]]))"},
+ "distractors": [
+  "-([[answer]])",
+  "([[a]])*(([[x2]])*([[y2]]) + ([[x1]])*([[y1]])) + ([[b]])*(([[x2]]) + ([[x1]])) + ([[c]])*(([[y2]]) + ([[y1]]))",
+  "([[a]])*(([[x2]])*([[y2]]) - ([[x1]])*([[y1]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "A potential is \\( \\varphi(x,y) = [[a]]xy + [[b]]x + [[c]]y \\), since \\( \\nabla\\varphi = \\mathbf{F} \\). By the fundamental theorem for line integrals, \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} = \\varphi(B) - \\varphi(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( \\varphi(A) - \\varphi(B) \\), reversing the endpoints.",
+  "This adds \\( \\varphi(B) + \\varphi(A) \\) instead of subtracting.",
+  "This keeps only the \\( xy \\)-part of the potential, dropping the linear terms.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "conservative_field_potential_3d_v1",
+ "skill_id": "conservative_fields",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "x1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "y1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "z1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "x2": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "y2": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "z2": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)", "Or(Ne([[x1]], [[x2]]), Ne([[y1]], [[y2]]), Ne([[z1]], [[z2]]))"],
+ "stem": "The vector field \\( \\mathbf{F}(x,y,z) = \\left( [[a]]y + [[b]]z,\\; [[a]]x + [[c]]z,\\; [[b]]x + [[c]]y \\right) \\) is conservative on all of \\( \\mathbb{R}^{3} \\). Evaluate \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is any smooth curve from \\( A = ([[x1]], [[y1]], [[z1]]) \\) to \\( B = ([[x2]], [[y2]], [[z2]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]])*([[x2]])*([[y2]]) + ([[b]])*([[x2]])*([[z2]]) + ([[c]])*([[y2]])*([[z2]])) - (([[a]])*([[x1]])*([[y1]]) + ([[b]])*([[x1]])*([[z1]]) + ([[c]])*([[y1]])*([[z1]]))"},
+ "distractors": [
+  "-([[answer]])",
+  "(([[a]])*([[x2]])*([[y2]]) + ([[b]])*([[x2]])*([[z2]]) + ([[c]])*([[y2]])*([[z2]])) + (([[a]])*([[x1]])*([[y1]]) + ([[b]])*([[x1]])*([[z1]]) + ([[c]])*([[y1]])*([[z1]]))",
+  "(([[a]])*([[x2]])*([[y2]])) - (([[a]])*([[x1]])*([[y1]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "A potential is \\( \\varphi(x,y,z) = [[a]]xy + [[b]]xz + [[c]]yz \\), since \\( \\nabla\\varphi = \\mathbf{F} \\). By the fundamental theorem for line integrals, \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} = \\varphi(B) - \\varphi(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( \\varphi(A) - \\varphi(B) \\), reversing the endpoints.",
+  "This adds \\( \\varphi(B) + \\varphi(A) \\) instead of subtracting.",
+  "This keeps only the \\( xy \\)-term of the potential, dropping the other two cross terms.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "conservative_field_potential_quadratic_v1",
+ "skill_id": "conservative_fields",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "x1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "y1": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "x2": {"type": "choice", "values": [-2, -1, 0, 1, 2]},
+  "y2": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Or(Ne([[x1]], [[x2]]), Ne([[y1]], [[y2]]))"],
+ "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( [[a]]y^{2},\\; 2[[a]]xy + [[b]] \\right) \\) is conservative on all of \\( \\mathbb{R}^{2} \\), with potential \\( \\varphi(x,y) = [[a]]xy^{2} + [[b]]y \\). Evaluate \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is any smooth curve from \\( A = ([[x1]], [[y1]]) \\) to \\( B = ([[x2]], [[y2]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]])*([[x2]])*([[y2]])**2 + ([[b]])*([[y2]])) - (([[a]])*([[x1]])*([[y1]])**2 + ([[b]])*([[y1]]))"},
+ "distractors": [
+  "-([[answer]])",
+  "(([[a]])*([[x2]])*([[y2]])**2 + ([[b]])*([[y2]])) + (([[a]])*([[x1]])*([[y1]])**2 + ([[b]])*([[y1]]))",
+  "([[a]])*([[x2]])*([[y2]])**2 - ([[a]])*([[x1]])*([[y1]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the fundamental theorem for line integrals, since \\( \\mathbf{F}=\\nabla\\varphi \\), \\( \\int_C \\mathbf{F}\\cdot d\\mathbf{r} = \\varphi(B) - \\varphi(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( \\varphi(A) - \\varphi(B) \\), reversing the endpoints.",
+  "This adds \\( \\varphi(B) + \\varphi(A) \\) instead of subtracting.",
+  "This drops the linear \\( [[b]]y \\) term of the potential at both endpoints.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "conservative_field_solve_parameter_v1",
+ "skill_id": "conservative_fields",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+ "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( [[a]]x + [[b]]y,\\; kx + [[c]]y \\right) \\) is conservative for exactly one value of the constant \\( k \\). Find that value of \\( k \\).",
+ "answer_spec": {"op": "solve", "equation": "k = [[b]]", "var": "k"},
+ "distractors": [
+  "[[a]]",
+  "[[c]]",
+  "-([[b]])",
+  "([[a]]) + ([[c]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For \\( \\mathbf{F}=(P,Q) \\) to be conservative on \\( \\mathbb{R}^{2} \\), it is necessary and sufficient (since the domain is simply connected) that \\( \\partial_y P = \\partial_x Q \\), i.e. \\( [[b]] = k \\). So \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the required value with the unrelated coefficient of \\( x \\) in \\( P \\).",
+  "This confuses the required value with the unrelated coefficient of \\( y \\) in \\( Q \\).",
+  "This has the wrong sign; the test requires \\( \\partial_y P = \\partial_x Q \\), i.e. \\( k=b \\), not \\( k=-b \\).",
+  "This adds two unrelated coefficients instead of matching the mixed partial derivatives.",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by one from the correct value of \\( k \\)."
+ ]
+}
+]

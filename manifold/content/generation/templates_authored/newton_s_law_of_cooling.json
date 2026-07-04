@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "newton_cooling_two_step_v1",
+  "skill_id": "newton_s_law_of_cooling",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "Ta": {"type": "choice", "values": [10, 15, 20, 25]},
+   "D0": {"type": "choice", "values": [-36, -24, -12, 12, 24, 36]},
+   "tau": {"type": "choice", "values": [5, 10, 15, 20]}
+  },
+  "constraints": ["Ne([[D0]], 0)"],
+  "derived": {"T0": "[[Ta]] + [[D0]]", "Ttau": "[[Ta]] + [[D0]]/2", "t2": "2*[[tau]]"},
+  "stem": "An object at initial temperature \\( [[T0]]^\\circ \\) is placed in surroundings held at \\( [[Ta]]^\\circ \\). By Newton's law of cooling its temperature after [[tau]] minutes is \\( [[Ttau]]^\\circ \\). What is its temperature after [[t2]] minutes?",
+  "answer_spec": {"op": "evaluate", "expr": "[[Ta]] + ([[Ttau]] - [[Ta]])**2/([[T0]] - [[Ta]])"},
+  "distractors": [
+   "[[Ta]]",
+   "[[Ta]] + [[D0]]/2",
+   "[[Ta]] + [[D0]]/3",
+   "[[Ta]] + [[D0]]/6",
+   "[[Ta]] + [[D0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Newton's law gives \\( T(t) = [[Ta]] + ([[T0]] - [[Ta]])e^{-kt} \\). The excess temperature is \\( [[T0]] - [[Ta]] = [[D0]] \\) initially and \\( [[Ttau]] - [[Ta]] = [[D0]]/2 \\) after [[tau]] minutes, so it halves each [[tau]] minutes. After [[t2]] minutes the excess is \\( [[D0]]/4 \\), giving \\( T = [[Ta]] + \\frac{([[Ttau]] - [[Ta]])^{2}}{[[T0]] - [[Ta]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes the object reaches the surrounding temperature, as a linear drop would suggest.",
+   "This keeps the temperature at its value after the first interval, assuming no further cooling.",
+   "This applies a factor of \\( 1/3 \\) instead of the correct halving twice.",
+   "This uses an incorrect cooling factor.",
+   "This forgets any cooling and reports the initial temperature.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "newton_cooling_explicit_rate_evaluate_v2",
+  "skill_id": "newton_s_law_of_cooling",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "Ta": {"type": "choice", "values": [0, 10, 20, 25, 30]},
+   "D0": {"type": "int", "lo": -20, "hi": 20},
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "t": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[D0]], 0)"],
+  "derived": {"T0": "[[Ta]] + [[D0]]"},
+  "require_rational": false,
+  "stem": "An object obeys Newton's law of cooling \\( \\dfrac{dT}{dt} = -k(T - T_a) \\) with \\( k = [[k]] \\) (per minute), ambient temperature \\( T_a = [[Ta]]^\\circ \\), and initial temperature \\( T(0) = [[T0]]^\\circ \\). What is \\( T([[t]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[Ta]] + ([[D0]])*exp(-[[k]]*[[t]])"},
+  "distractors": [
+   "[[Ta]] + ([[D0]])*exp([[k]]*[[t]])",
+   "[[T0]]*exp(-[[k]]*[[t]])",
+   "[[Ta]]",
+   "[[Ta]] - ([[D0]])*exp(-[[k]]*[[t]])",
+   "[[D0]] + [[Ta]]*exp(-[[k]]*[[t]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The solution is \\( T(t) = T_a + (T(0) - T_a)e^{-kt} = [[Ta]] + ([[D0]])e^{-[[k]]t} \\). At \\( t = [[t]] \\), \\( T = [[Ta]] + ([[D0]])e^{-[[k]]\\cdot[[t]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( e^{+kt} \\) instead of the decaying \\( e^{-kt} \\), giving unbounded growth.",
+   "This decays the full initial temperature to zero instead of decaying only the excess toward \\( T_a \\).",
+   "This ignores cooling entirely and reports the ambient temperature.",
+   "This flips the sign of the excess term.",
+   "This swaps the roles of the excess and the ambient temperature.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "newton_cooling_three_readings_solve_ambient_v3",
+  "skill_id": "newton_s_law_of_cooling",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "Ta": {"type": "int", "lo": -10, "hi": 25},
+   "den": {"type": "choice", "values": [2, 3]},
+   "m": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Ne([[m]], 0)"],
+  "derived": {
+   "T0": "[[Ta]] + [[den]]**2*[[m]]",
+   "T1": "[[Ta]] + [[den]]*[[m]]",
+   "T2": "[[Ta]] + [[m]]"
+  },
+  "stem": "An object cooling in a room of unknown, constant ambient temperature \\( T_a \\) is measured at three equally spaced times, giving readings \\( [[T0]]^\\circ \\), then \\( [[T1]]^\\circ \\), then \\( [[T2]]^\\circ \\). Using Newton's law of cooling, what is the ambient temperature \\( T_a \\)?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "([[T1]] - Ta)**2 - ([[T0]] - Ta)*([[T2]] - Ta) = 0",
+   "var": "Ta"
+  },
+  "distractors": [
+   "([[T0]] + [[T1]] + [[T2]])/3",
+   "[[T2]]",
+   "([[T0]] + [[T2]])/2",
+   "2*[[T1]] - [[T0]]",
+   "[[T1]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Under Newton's law the excess temperature decays geometrically, so consecutive excesses satisfy \\( \\dfrac{T_1 - T_a}{T_0 - T_a} = \\dfrac{T_2 - T_a}{T_1 - T_a} \\), i.e. \\( (T_1 - T_a)^{2} = (T_0 - T_a)(T_2 - T_a) \\). The quadratic terms in \\( T_a \\) cancel, leaving a linear equation whose solution is \\( T_a = [[answer]] \\).",
+  "distractor_rationales": [
+   "This averages the three readings, which is not valid for a geometric (exponential) decay.",
+   "This assumes the object has already reached equilibrium at the last reading.",
+   "This averages only the first and last readings, ignoring the geometric nature of the decay.",
+   "This linearly extrapolates the trend instead of using the geometric-ratio relation.",
+   "This reuses the middle reading, ignoring the ambient temperature entirely.",
+   "This is one more than the correct ambient temperature.",
+   "This is one less than the correct ambient temperature."
+  ]
+ },
+ {
+  "template_id": "newton_cooling_two_objects_same_room_v4",
+  "skill_id": "newton_s_law_of_cooling",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "Ta": {"type": "int", "lo": -10, "hi": 25},
+   "den": {"type": "choice", "values": [2, 3, 4, 5]},
+   "mA": {"type": "int", "lo": 1, "hi": 6},
+   "mB": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[mA]], [[mB]])"],
+  "derived": {
+   "TA0": "[[Ta]] + [[den]]*[[mA]]",
+   "TA1": "[[Ta]] + ([[den]] - 1)*[[mA]]",
+   "TB0": "[[Ta]] + [[den]]*[[mB]]"
+  },
+  "stem": "Two objects sit in the same room, held at a constant ambient temperature \\( [[Ta]]^\\circ \\); each obeys Newton's law of cooling with the same rate constant \\( k \\). Object A cools from \\( [[TA0]]^\\circ \\) to \\( [[TA1]]^\\circ \\) over some time interval. If object B starts at \\( [[TB0]]^\\circ \\), what is its temperature after that same time interval?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[Ta]] + ([[TB0]] - [[Ta]])*([[TA1]] - [[Ta]])/([[TA0]] - [[Ta]])"
+  },
+  "distractors": [
+   "[[TB0]] - ([[TA0]] - [[TA1]])",
+   "[[Ta]] + ([[TA0]] - [[Ta]])*([[TB0]] - [[Ta]])/([[TA1]] - [[Ta]])",
+   "[[TB0]]",
+   "[[TA1]]",
+   "[[Ta]] + ([[TB0]] - [[Ta]])*([[TA0]] - [[Ta]])/([[TA1]] - [[Ta]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both objects share the same decay factor \\( e^{-k\\Delta t} = \\dfrac{T_{A1} - T_a}{T_{A0} - T_a} \\), since they are in the same room. Applying that ratio to object B: \\( T_{B1} = T_a + (T_{B0} - T_a)\\cdot\\dfrac{T_{A1} - T_a}{T_{A0} - T_a} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts object A's absolute temperature drop from B's start instead of using the proportional excess ratio.",
+   "This inverts the ratio, using A's excess ratio upside down.",
+   "This assumes object B does not cool at all.",
+   "This assumes object B ends up at the same temperature object A reached.",
+   "This applies A's ratio backward, dividing by the wrong excess.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

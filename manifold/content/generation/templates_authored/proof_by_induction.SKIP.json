@@ -1,0 +1,4 @@
+{
+ "skill_id": "proof_by_induction",
+ "reason": "The skill tests constructing/evaluating a proof (base case, inductive hypothesis, inductive step), which is a multi-step argument to be judged for validity, not a single code-computable scalar/closed-form answer."
+}

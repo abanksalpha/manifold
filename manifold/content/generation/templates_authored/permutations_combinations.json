@@ -1,0 +1,210 @@
+[
+{
+ "template_id": "permcomb_npr_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 16},
+  "r": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Lt([[r]], [[n]])"],
+ "stem": "A race has \\( [[n]] \\) runners, and 1st, 2nd, ..., and \\( [[r]] \\)-th place medals will each be awarded to a DIFFERENT runner. In how many different ways can these \\( [[r]] \\) medals be awarded?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/factorial([[n]] - [[r]])"},
+ "distractors": [
+  "binomial([[n]], [[r]])",
+  "[[n]]**[[r]]",
+  "factorial([[n]])",
+  "factorial([[r]])",
+  "[[answer]] + [[r]]",
+  "[[answer]] - [[r]]"
+ ],
+ "solution": "Since the medals are distinguishable (order matters), the count is the permutation \\( {}_{[[n]]}P_{[[r]]} = \\dfrac{[[n]]!}{([[n]]-[[r]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the medals as indistinguishable, dividing out the ordering that actually matters here.",
+  "This allows repeats (the same runner winning more than one medal), which isn't possible.",
+  "This forgets to divide out the unassigned runners' orderings.",
+  "This only accounts for arranging the medals themselves, ignoring the choice of runners.",
+  "This adjusts the correct count by an unrelated amount.",
+  "This adjusts the correct count by an unrelated amount."
+ ]
+},
+{
+ "template_id": "permcomb_full_arrangement_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 35}
+ },
+ "constraints": [],
+ "stem": "In how many different ways can \\( [[n]] \\) distinct books be arranged in a row on a shelf?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+ "distractors": [
+  "factorial([[n]] - 1)",
+  "[[n]]**[[n]]",
+  "2*factorial([[n]])",
+  "[[n]]*([[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Arranging \\( n \\) distinct objects in a row gives \\( n! = [[n]]! = [[answer]] \\) orderings.",
+ "distractor_rationales": [
+  "This uses the circular-arrangement formula \\( (n-1)! \\) instead of the linear-arrangement formula \\( n! \\).",
+  "This treats each position as having \\( n \\) independent free choices with repetition, which overcounts.",
+  "This doubles the correct number of arrangements.",
+  "This only accounts for choosing the first two positions.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "permcomb_multinomial_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n1": {"type": "int", "lo": 2, "hi": 6},
+  "n2": {"type": "int", "lo": 2, "hi": 6},
+  "n3": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"total": "[[n1]] + [[n2]] + [[n3]]"},
+ "stem": "A row of \\( [[total]] \\) flags is made from \\( [[n1]] \\) identical red flags, \\( [[n2]] \\) identical blue flags, and \\( [[n3]] \\) identical green flags. How many distinct arrangements of the row are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[total]])/(factorial([[n1]])*factorial([[n2]])*factorial([[n3]]))"},
+ "distractors": [
+  "factorial([[total]])",
+  "factorial([[total]])/(factorial([[n1]])*factorial([[n2]]))",
+  "factorial([[n1]])*factorial([[n2]])*factorial([[n3]])",
+  "binomial([[total]], [[n1]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since the flags of each color are identical, divide out the internal orderings within each color: \\( \\dfrac{[[total]]!}{[[n1]]!\\,[[n2]]!\\,[[n3]]!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats all the flags as distinguishable, forgetting to divide out the repeats.",
+  "This forgets to divide out the repeats among the green flags.",
+  "This computes only the number of internal orderings within each color, not the arrangements of the row.",
+  "This only accounts for placing the red flags among all positions, ignoring the blue/green split.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "permcomb_circular_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 35}
+ },
+ "constraints": [],
+ "stem": "In how many distinct ways can \\( [[n]] \\) people be seated around a circular table, if seatings that are rotations of each other are considered the same?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]])/[[n]]**2",
+  "factorial([[n]] - 2)",
+  "[[n]]*factorial([[n]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Fixing one person's seat to account for rotational symmetry, the rest can be arranged in \\( (n-1)! = ([[n]]-1)! = [[answer]] \\) ways.",
+ "distractor_rationales": [
+  "This uses the LINEAR arrangement formula \\( n! \\), forgetting that rotations are considered identical here.",
+  "This divides by \\( n^2 \\) instead of fixing one seat properly.",
+  "This fixes two seats instead of just one, over-correcting for the symmetry.",
+  "This multiplies back by \\( n \\), undoing the rotational-symmetry correction.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "permcomb_ncr_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 18},
+  "k": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": ["Lt([[k]], [[n]] - 1)"],
+ "stem": "A menu offers \\( [[n]] \\) different toppings. In how many ways can you choose \\( [[k]] \\) of them for a pizza, where the order in which you pick them does not matter?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[k]])"},
+ "distractors": [
+  "factorial([[n]])/factorial([[n]] - [[k]])",
+  "[[n]]**[[k]]",
+  "binomial([[n]] - 1, [[k]])",
+  "binomial([[n]], [[k]] - 1)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "Since order does not matter, the count is the combination \\( \\binom{[[n]]}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the number of ORDERED selections \\( {}_{[[n]]}P_{[[k]]} \\); dividing by \\( k! \\) is needed since order doesn't matter here.",
+  "This allows a topping to be picked more than once, which isn't possible.",
+  "This uses one fewer topping in the pool.",
+  "This chooses one fewer topping than asked.",
+  "This adjusts the correct count by the number chosen for no valid reason.",
+  "This adjusts the correct count by the number chosen for no valid reason."
+ ]
+},
+{
+ "template_id": "permcomb_adjacent_block_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 35}
+ },
+ "constraints": [],
+ "stem": "In how many ways can \\( [[n]] \\) distinct people be arranged in a row if two particular people, Alice and Bob, must sit next to each other?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]] - 1)*2"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]] - 1)",
+  "factorial([[n]] - 2)*2",
+  "factorial([[n]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Glue Alice and Bob together as one block, giving \\( n-1 \\) units to arrange in \\( (n-1)! \\) ways, then account for their 2 internal orders: \\( ([[n]]-1)!\\cdot 2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the adjacency requirement entirely, using the unrestricted arrangement count.",
+  "This forgets to multiply by the 2 internal orderings of Alice and Bob within their block.",
+  "This treats the group as if the block used up two full slots instead of merging into one.",
+  "This is HALF of the total unrestricted arrangements, which is not how this constraint works.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "permcomb_non_adjacent_v1",
+ "skill_id": "permutations_combinations",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 35}
+ },
+ "constraints": [],
+ "stem": "In how many ways can \\( [[n]] \\) distinct people be arranged in a row if two particular people, Alice and Bob, must NOT sit next to each other?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]]) - factorial([[n]] - 1)*2"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]] - 1)*2",
+  "factorial([[n]]) - factorial([[n]] - 1)",
+  "factorial([[n]] - 2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Take all arrangements and remove the ones where they DO sit together: \\( n! - (n-1)!\\cdot 2 = [[n]]! - ([[n]]-1)!\\cdot 2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the restriction entirely, using the unrestricted arrangement count.",
+  "This reports the count of arrangements where they DO sit together, the complement of what was asked.",
+  "This subtracts only one of the two internal orderings of the adjacent block.",
+  "This is an unrelated formula that does not correspond to this restriction.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+}
+]

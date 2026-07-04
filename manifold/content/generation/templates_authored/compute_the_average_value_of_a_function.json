@@ -1,0 +1,164 @@
+[
+{
+ "template_id": "average_value_quadratic_v1",
+ "skill_id": "compute_the_average_value_of_a_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -5, "hi": 5},
+  "a": {"type": "int", "lo": -3, "hi": 1},
+  "b": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Ne([[p]], 0)", "Lt([[a]], [[b]])"],
+ "stem": "What is the average value of \\( f(x) = ([[p]])x^{2} + ([[q]])x + ([[r]]) \\) on the interval \\( [[[a]], [[b]]] \\)?",
+ "answer_spec": {"op": "integrate", "expr": "([[p]]*x**2 + [[q]]*x + [[r]])/([[b]] - [[a]])", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[p]]*([[b]]**3 - [[a]]**3)/3 + [[q]]*([[b]]**2 - [[a]]**2)/2 + [[r]]*([[b]] - [[a]])",
+  "[[p]]*(([[a]] + [[b]])/2)**2 + [[q]]*([[a]] + [[b]])/2 + [[r]]",
+  "([[p]]*[[a]]**2 + [[q]]*[[a]] + [[r]] + [[p]]*[[b]]**2 + [[q]]*[[b]] + [[r]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The average value is \\( \\frac{1}{[[b]] - ([[a]])} \\int_{[[a]]}^{[[b]]} \\left( ([[p]])x^{2} + ([[q]])x + ([[r]]) \\right) dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value of the integral itself, without dividing by the length of the interval.",
+  "This evaluates \\( f \\) at the midpoint of the interval instead of averaging it.",
+  "This averages only the two endpoint values of \\( f \\), which is not the average value of a nonlinear function.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_periodic_trig_v1",
+ "skill_id": "compute_the_average_value_of_a_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 6},
+  "B": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [1, 2, 3]},
+  "c": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[A]], 0)"],
+ "derived": {"period_end": "[[c]] + 2*pi/[[k]]"},
+ "stem": "Let \\( f(x) = ([[A]])\\sin([[k]]x) + ([[B]]) \\). What is the average value of \\( f \\) over the interval \\( \\left[ [[c]],\\ [[c]] + \\dfrac{2\\pi}{[[k]]} \\right] \\), i.e. over exactly one full period of the oscillation?",
+ "answer_spec": {"op": "integrate", "expr": "([[A]]*sin([[k]]*x) + [[B]])/(2*pi/[[k]])", "var": "x", "bounds": ["[[c]]", "[[period_end]]"]},
+ "distractors": [
+  "[[A]] + [[B]]",
+  "[[A]]/2 + [[B]]",
+  "0",
+  "[[B]] + 1",
+  "[[B]] - 1",
+  "[[B]] + 2"
+ ],
+ "solution": "Over exactly one full period, the oscillating part \\( ([[A]])\\sin([[k]]x) \\) contributes zero net area (equal area above and below the shift), so the average value equals just the vertical shift \\( [[B]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the amplitude to the shift as if the sine term contributed its maximum on average.",
+  "This adds half the amplitude, a common but incorrect guess for the 'average' of a sine wave.",
+  "This wrongly assumes the whole average vanishes, ignoring the vertical shift \\( [[B]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_reciprocal_log_v1",
+ "skill_id": "compute_the_average_value_of_a_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 8},
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "q": {"type": "int", "lo": 6, "hi": 12}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "require_rational": false,
+ "stem": "What is the average value of \\( f(x) = \\dfrac{[[A]]}{x} \\) on the interval \\( [[[p]], [[q]]] \\)?",
+ "answer_spec": {"op": "integrate", "expr": "([[A]]/x)/([[q]] - [[p]])", "var": "x", "bounds": ["[[p]]", "[[q]]"]},
+ "distractors": [
+  "[[A]]*log([[q]]) - [[A]]*log([[p]])",
+  "[[A]]*log([[q]]/[[p]])",
+  "[[A]]/([[p]]*[[q]])",
+  "2*[[A]]/([[p]] + [[q]])",
+  "[[answer]]/2",
+  "[[answer]] + 1"
+ ],
+ "solution": "The average value is \\( \\frac{1}{[[q]]-[[p]]} \\int_{[[p]]}^{[[q]]} \\frac{[[A]]}{x}\\, dx = \\frac{[[A]]\\ln\\left(\\frac{[[q]]}{[[p]]}\\right)}{[[q]]-[[p]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the value of the integral itself, forgetting to divide by the width \\( [[q]]-[[p]] \\).",
+  "This is the antiderivative difference written in ratio form but still not divided by the interval width.",
+  "This evaluates \\( f \\) at the geometric-mean-like product of the endpoints instead of averaging.",
+  "This uses the average of \\( 1/x \\) evaluated at the endpoints (harmonic-mean style) rather than the true average value.",
+  "This is half the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_word_problem_v1",
+ "skill_id": "compute_the_average_value_of_a_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -2, "hi": 2},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "r": {"type": "int", "lo": 0, "hi": 8},
+  "t0": {"type": "int", "lo": 0, "hi": 2},
+  "t1": {"type": "int", "lo": 3, "hi": 6}
+ },
+ "constraints": ["Ne([[p]], 0)", "Lt([[t0]], [[t1]])"],
+ "stem": "A particle moves along a line with velocity \\( v(t) = ([[p]])t^{2} + ([[q]])t + ([[r]]) \\) meters per second, for \\( t \\) in seconds. What is the particle's average velocity over the time interval \\( [[[t0]], [[t1]]] \\)?",
+ "answer_spec": {"op": "integrate", "expr": "([[p]]*x**2 + [[q]]*x + [[r]])/([[t1]] - [[t0]])", "var": "x", "bounds": ["[[t0]]", "[[t1]]"]},
+ "distractors": [
+  "[[p]]*([[t1]]**3 - [[t0]]**3)/3 + [[q]]*([[t1]]**2 - [[t0]]**2)/2 + [[r]]*([[t1]] - [[t0]])",
+  "([[p]]*[[t0]]**2 + [[q]]*[[t0]] + [[r]] + [[p]]*[[t1]]**2 + [[q]]*[[t1]] + [[r]])/2",
+  "([[p]]*[[t1]]**2 + [[q]]*[[t1]] + [[r]]) - ([[p]]*[[t0]]**2 + [[q]]*[[t0]] + [[r]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Average velocity is total displacement divided by elapsed time: \\( \\frac{1}{[[t1]]-[[t0]]}\\int_{[[t0]]}^{[[t1]]} v(t)\\,dt = [[answer]] \\) m/s.",
+ "distractor_rationales": [
+  "This is the total displacement (the integral itself), without dividing by the elapsed time.",
+  "This averages the two endpoint velocities, which is not the true average value of a nonlinear velocity function.",
+  "This computes the net change in velocity \\( v([[t1]]) - v([[t0]]) \\) rather than the average velocity.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "average_value_solve_for_parameter_v1",
+ "skill_id": "compute_the_average_value_of_a_function",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -2, "hi": 1},
+  "b": {"type": "int", "lo": 2, "hi": 5},
+  "target": {"type": "int", "lo": -6, "hi": 10}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "For \\( f(x) = x^{2} + c \\) on \\( [[[a]], [[b]]] \\), for what value of the constant \\( c \\) does the average value of \\( f \\) on this interval equal \\( [[target]] \\)?",
+ "answer_spec": {"op": "solve", "equation": "integrate(x**2 + c, (x, [[a]], [[b]]))/([[b]] - [[a]]) = [[target]]", "var": "c"},
+ "distractors": [
+  "[[target]] - ([[a]]**2 + [[b]]**2)/2",
+  "[[target]] + ([[a]]**2 + [[b]]**2)/2",
+  "[[target]] - ([[a]] + [[b]])**2/4",
+  "[[target]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The average value is \\( \\frac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]}(x^{2}+c)\\,dx = \\frac{[[b]]^{2}+[[a]][[b]]+[[a]]^{2}}{3} + c \\). Setting this equal to \\( [[target]] \\) and solving gives \\( c = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the average of the squared endpoints instead of the correct average of \\( x^{2} \\), which is \\( \\frac{a^{2}+ab+b^{2}}{3} \\).",
+  "This adds instead of subtracts the (incorrect) average-of-endpoints term.",
+  "This uses the square of the midpoint of the endpoints instead of the true average of \\( x^{2} \\) on the interval.",
+  "This forgets to account for the contribution of the \\( x^{2} \\) term at all.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

@@ -1,0 +1,168 @@
+[
+  {
+    "template_id": "remainder_large_power_v1",
+    "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 12},
+      "b": {"type": "int", "lo": 20, "hi": 45},
+      "m": {"type": "choice", "values": [7, 9, 11, 13]}
+    },
+    "constraints": ["Ne(Mod([[a]], [[m]]), 0)"],
+    "stem": "What is the remainder when \\( [[a]]^{[[b]]} \\) is divided by \\( [[m]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], [[m]])"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), [[m]])",
+      "Mod([[a]]**([[b]] - 1), [[m]])",
+      "Mod([[a]], [[m]])",
+      "Mod([[answer]] + 1, [[m]])",
+      "Mod([[answer]] + 2, [[m]])",
+      "Mod([[answer]] + 3, [[m]])",
+      "Mod([[a]]**2, [[m]])"
+    ],
+    "solution": "The powers of \\( [[a]] \\) modulo \\( [[m]] \\) are periodic; find the cycle length, reduce the exponent \\( [[b]] \\) modulo that length, and read off the residue. The remainder is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one step too far around the cycle.",
+      "This uses exponent \\( [[b]]-1 \\), one step short in the cycle.",
+      "This is \\( [[a]] \\bmod [[m]] \\), the residue of the base alone.",
+      "This is one more than the correct remainder.",
+      "This is two more than the correct remainder.",
+      "This is three more than the correct remainder.",
+      "This is \\( [[a]]^{2} \\bmod [[m]] \\), a mid-cycle value rather than the value at exponent \\( [[b]] \\)."
+    ]
+  },
+  {
+    "template_id": "cycle_length_of_power_v1",
+    "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "k": {"type": "int", "lo": 1, "hi": 27}
+    },
+    "constraints": [],
+    "derived": {"a": "Mod(2**[[k]], 29)"},
+    "stem": "The powers of \\( [[a]] \\) modulo 29 repeat in a cycle: \\( [[a]]^{1}, [[a]]^{2}, [[a]]^{3}, \\dots \\pmod{29} \\). What is the length of this cycle, i.e. the smallest positive integer \\( t \\) such that \\( [[a]]^{t} \\equiv 1 \\pmod{29} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "28/gcd([[k]], 28)"},
+    "distractors": [
+      "28",
+      "gcd([[k]], 28)",
+      "[[k]]",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "2*[[answer]]"
+    ],
+    "solution": "Since 2 is a primitive root mod 29, it has order 28, and \\( [[a]] = 2^{[[k]]} \\) has order \\( 28/\\gcd([[k]],28) = [[answer]] \\) modulo 29.",
+    "distractor_rationales": [
+      "This is the order of 2 itself (a primitive root), not of \\( [[a]]=2^{[[k]]} \\).",
+      "This is \\( \\gcd([[k]],28) \\), the reciprocal factor, not the order itself.",
+      "This is the exponent \\( k \\) used to build \\( [[a]] \\), not its order.",
+      "This is one more than the correct cycle length.",
+      "This is one less than the correct cycle length.",
+      "This is two more than the correct cycle length.",
+      "This doubles the correct cycle length."
+    ]
+  },
+  {
+    "template_id": "count_powers_congruent_to_one_v1",
+    "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "k": {"type": "int", "lo": 1, "hi": 27},
+      "N": {"type": "int", "lo": 40, "hi": 400}
+    },
+    "constraints": [],
+    "derived": {"a": "Mod(2**[[k]], 29)", "cyc": "28/gcd([[k]], 28)"},
+    "stem": "The powers of \\( [[a]] \\) modulo 29 repeat with cycle length \\( [[cyc]] \\). Among \\( [[a]]^{1}, [[a]]^{2}, \\dots, [[a]]^{[[N]]} \\), how many are congruent to \\( 1 \\pmod{29} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/[[cyc]])"},
+    "distractors": [
+      "[[cyc]]",
+      "floor([[N]]/28)",
+      "ceiling([[N]]/[[cyc]])",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2",
+      "[[N]] - [[answer]]"
+    ],
+    "solution": "\\( [[a]]^{t}\\equiv 1\\pmod{29} \\) exactly when \\( [[cyc]] \\) divides \\( t \\); the number of multiples of \\( [[cyc]] \\) from 1 to \\( [[N]] \\) is \\( \\lfloor [[N]]/[[cyc]] \\rfloor = [[answer]] \\).",
+    "distractor_rationales": [
+      "This is the cycle length itself, not the count of hits within \\( [[N]] \\) terms.",
+      "This divides by 28 (the order of the generator 2) instead of the actual cycle length of \\( [[a]] \\).",
+      "This rounds up instead of down, potentially overcounting when \\( [[cyc]] \\) does not divide \\( [[N]] \\) evenly.",
+      "This is one more than the correct count.",
+      "This is one less than the correct count.",
+      "This is two more than the correct count.",
+      "This is the complementary count of terms NOT congruent to 1."
+    ]
+  },
+  {
+    "template_id": "remainder_of_geometric_sum_of_powers_v1",
+    "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 2, "hi": 12},
+      "N": {"type": "int", "lo": 5, "hi": 30},
+      "m": {"type": "choice", "values": [7, 9, 11, 13, 17, 19, 23]}
+    },
+    "constraints": [],
+    "stem": "Let \\( S = 1 + [[a]] + [[a]]^{2} + \\cdots + [[a]]^{[[N]]-1} \\), a sum of \\( [[N]] \\) terms. What is the remainder when \\( S \\) is divided by \\( [[m]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod(([[a]]**[[N]] - 1)/([[a]] - 1), [[m]])"},
+    "distractors": [
+      "Mod([[a]]**[[N]], [[m]])",
+      "Mod([[N]]*[[a]], [[m]])",
+      "Mod([[N]], [[m]])",
+      "Mod(([[a]]**([[N]] + 1) - 1)/([[a]] - 1), [[m]])",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + 2"
+    ],
+    "solution": "By the geometric series formula, \\( S = \\dfrac{[[a]]^{[[N]]} - 1}{[[a]] - 1} \\), an exact integer. Reducing this modulo \\( [[m]] \\) gives \\( S \\equiv [[answer]] \\pmod{[[m]]} \\).",
+    "distractor_rationales": [
+      "This uses only the last term of the sum, ignoring all the earlier terms.",
+      "This multiplies the term count by the base instead of summing a geometric series.",
+      "This reduces the term count itself modulo \\( [[m]] \\), an unrelated quantity.",
+      "This uses one extra term in the geometric series sum.",
+      "This is one more than the correct remainder.",
+      "This is one less than the correct remainder.",
+      "This is two more than the correct remainder."
+    ]
+  },
+  {
+    "template_id": "remainder_large_power_noncoprime_modulus_v1",
+    "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "q": {"type": "choice", "values": [2, 3, 5]},
+      "r": {"type": "choice", "values": [7, 11, 13, 17]},
+      "t": {"type": "int", "lo": 2, "hi": 9},
+      "b": {"type": "int", "lo": 15, "hi": 40}
+    },
+    "constraints": [],
+    "derived": {"m": "[[q]]*[[r]]", "a": "[[q]]*[[t]]"},
+    "stem": "The modulus \\( [[m]] = [[q]]\\cdot[[r]] \\) shares the factor \\( [[q]] \\) with the base \\( [[a]] = [[q]]\\cdot[[t]] \\), so the powers of \\( [[a]] \\) are NOT coprime to \\( [[m]] \\) and Fermat/Euler-style cycle arguments cannot be applied directly to the whole modulus. What is the remainder when \\( [[a]]^{[[b]]} \\) is divided by \\( [[m]] \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], [[m]])"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), [[m]])",
+      "Mod([[a]]**([[b]] - 1), [[m]])",
+      "Mod([[a]], [[m]])",
+      "Mod([[a]]**2, [[m]])",
+      "[[answer]] + 1",
+      "[[answer]] - 1",
+      "[[answer]] + [[q]]"
+    ],
+    "solution": "Since \\( \\gcd([[a]],[[m]]) = [[q]] \\ne 1 \\), reduce mod \\( [[q]] \\) (where \\( [[a]]^{[[b]]} \\equiv 0 \\), as \\( [[q]] \\) already divides \\( [[a]] \\)) and mod \\( [[r]] \\) (where \\( [[a]] \\) IS coprime to \\( [[r]] \\), so a genuine cycle applies) separately, then recombine via the Chinese Remainder Theorem: \\( [[a]]^{[[b]]} \\equiv [[answer]] \\pmod{[[m]]} \\).",
+    "distractor_rationales": [
+      "This uses exponent \\( [[b]]+1 \\), one power too many.",
+      "This uses exponent \\( [[b]]-1 \\), one power too few.",
+      "This is \\( [[a]] \\bmod [[m]] \\), the residue of the base alone.",
+      "This is \\( [[a]]^{2} \\bmod [[m]] \\), a low power rather than the value at exponent \\( [[b]] \\).",
+      "This is one more than the correct remainder.",
+      "This is one less than the correct remainder.",
+      "This is off from the correct remainder by the shared factor \\( [[q]] \\)."
+    ]
+  }
+]

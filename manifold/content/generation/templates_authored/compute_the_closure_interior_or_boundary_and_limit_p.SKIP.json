@@ -1,0 +1,1 @@
+{"skill_id": "compute_the_closure_interior_or_boundary_and_limit_p", "reason": "The answer is a SET (closure / interior / boundary / set of limit points), not a single scalar that the solver ops can compute."}

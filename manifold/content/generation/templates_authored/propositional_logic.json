@@ -1,0 +1,370 @@
+[
+ {
+  "template_id": "propositional_logic_exactly_k_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 10
+   },
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Lt([[k]], [[n]])"
+  ],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables. Out of the \\( 2^{[[n]]} \\) possible truth assignments to these variables, for how many is it true that EXACTLY [[k]] of the \\( p_i \\) are true?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "binomial([[n]], [[k]])"
+  },
+  "distractors": [
+   "binomial([[n]], [[k]] - 1)",
+   "binomial([[n]], [[k]] + 1)",
+   "2**[[n]]",
+   "factorial([[n]])/factorial([[k]])",
+   "[[answer]] + [[n]]",
+   "[[answer]] - [[k]]"
+  ],
+  "solution": "Choosing which [[k]] of the [[n]] variables are true (the rest are false) is a combination, not a sequence, so the count is \\( \\binom{[[n]]}{[[k]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is off by one variable in the lower index.",
+   "This is off by one variable in the upper index.",
+   "This is the total number of truth assignments, ignoring the requirement on how many are true.",
+   "This resembles a permutation count and does not correctly divide out the identical 'false' assignments.",
+   "This adjusts the correct count by the number of variables for no valid reason.",
+   "This adjusts the correct count by [[k]] for no valid reason."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_at_least_k_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 5,
+    "hi": 10
+   },
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   }
+  },
+  "constraints": [
+   "Lt([[k]], [[n]])"
+  ],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables. Out of the \\( 2^{[[n]]} \\) possible truth assignments to these variables, for how many is it true that AT LEAST [[k]] of the \\( p_i \\) are true?",
+  "answer_spec": {
+   "op": "sum",
+   "expr": "binomial([[n]], i)",
+   "var": "i",
+   "lo": "[[k]]",
+   "hi": "[[n]]"
+  },
+  "distractors": [
+   "binomial([[n]], [[k]])",
+   "2**[[n]] - [[answer]]",
+   "2**[[n]]",
+   "[[answer]] - binomial([[n]], [[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Sum the counts for exactly [[k]], exactly \\( [[k]]+1 \\), ..., exactly [[n]] variables true: \\( \\sum_{i=[[k]]}^{[[n]]} \\binom{[[n]]}{i} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This only counts assignments with EXACTLY [[k]] true, forgetting to include more than [[k]] true.",
+   "This is the complementary count (at most \\( [[k]]-1 \\) true), confusing 'at least' with 'at most'.",
+   "This is the total number of truth assignments, ignoring the requirement entirely.",
+   "This wrongly excludes the exactly-[[k]] case, effectively computing 'more than [[k]]'.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_at_most_k_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 5,
+    "hi": 10
+   },
+   "k": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   }
+  },
+  "constraints": [
+   "Lt([[k]], [[n]])"
+  ],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables. Out of the \\( 2^{[[n]]} \\) possible truth assignments to these variables, for how many is it true that AT MOST [[k]] of the \\( p_i \\) are true?",
+  "answer_spec": {
+   "op": "sum",
+   "expr": "binomial([[n]], i)",
+   "var": "i",
+   "lo": "0",
+   "hi": "[[k]]"
+  },
+  "distractors": [
+   "binomial([[n]], [[k]])",
+   "2**[[n]] - [[answer]]",
+   "2**[[n]]",
+   "[[answer]] - binomial([[n]], [[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Sum the counts for exactly 0, exactly 1, ..., exactly [[k]] variables true: \\( \\sum_{i=0}^{[[k]]} \\binom{[[n]]}{i} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This only counts assignments with EXACTLY [[k]] true, forgetting the smaller counts.",
+   "This is the complementary count (at least \\( [[k]]+1 \\) true), confusing 'at most' with 'at least'.",
+   "This is the total number of truth assignments, ignoring the requirement entirely.",
+   "This wrongly excludes the exactly-[[k]] case, effectively computing 'fewer than [[k]]'.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_between_a_b_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 6,
+    "hi": 10
+   },
+   "a": {
+    "type": "int",
+    "lo": 0,
+    "hi": 8
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   }
+  },
+  "constraints": [
+   "Lt([[a]], [[b]])",
+   "Le([[b]], [[n]])",
+   "Or(Gt([[a]], 0), Lt([[b]], [[n]]))"
+  ],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables. Out of the \\( 2^{[[n]]} \\) possible truth assignments to these variables, for how many is it true that BETWEEN [[a]] AND [[b]] of the \\( p_i \\) (inclusive) are true?",
+  "answer_spec": {
+   "op": "sum",
+   "expr": "binomial([[n]], i)",
+   "var": "i",
+   "lo": "[[a]]",
+   "hi": "[[b]]"
+  },
+  "distractors": [
+   "binomial([[n]], [[a]]) + binomial([[n]], [[b]])",
+   "2**[[n]] - [[answer]]",
+   "2**[[n]]",
+   "[[answer]] - binomial([[n]], [[a]])",
+   "[[answer]] - binomial([[n]], [[b]])",
+   "[[answer]] + 1"
+  ],
+  "solution": "Sum the counts for exactly [[a]], exactly \\( [[a]]+1 \\), ..., exactly [[b]] variables true: \\( \\sum_{i=[[a]]}^{[[b]]} \\binom{[[n]]}{i} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This only adds the two endpoint counts, forgetting every value strictly between [[a]] and [[b]].",
+   "This is the complementary count (fewer than [[a]] or more than [[b]] true).",
+   "This is the total number of truth assignments, ignoring the range restriction entirely.",
+   "This wrongly excludes the count for exactly [[a]] true.",
+   "This wrongly excludes the count for exactly [[b]] true.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_and_chain_false_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "Consider the formula \\( p_1 \\wedge p_2 \\wedge \\cdots \\wedge p_{[[n]]} \\), built from [[n]] propositional variables. Out of the \\( 2^{[[n]]} \\) possible truth assignments, how many make this formula FALSE?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**[[n]] - 1"
+  },
+  "distractors": [
+   "2**[[n]]",
+   "1",
+   "2**([[n]] - 1)",
+   "[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A conjunction of [[n]] literals is false unless every one of them is true, and exactly one assignment (all true) makes them all true. So it is false for all but that one assignment: \\( 2^{[[n]]} - 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to exclude the single all-true assignment.",
+   "This is the number of assignments that make the formula TRUE (there is only one: all variables true), not false.",
+   "This halves the total instead of subtracting the single true assignment.",
+   "This confuses the number of variables with the count of assignments.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_two_var_and_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( p_1 \\wedge p_2 \\) (the truth values of \\( p_3, \\ldots, p_{[[n]]} \\) do not appear in the formula). Out of all \\( 2^{[[n]]} \\) truth assignments to \\( p_1,\\ldots,p_{[[n]]} \\), how many make \\( p_1 \\wedge p_2 \\) TRUE?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**([[n]] - 2)"
+  },
+  "distractors": [
+   "2**[[n]]",
+   "2**([[n]] - 1)",
+   "3*2**([[n]] - 2)",
+   "[[n]] - 2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The formula is true exactly when \\( p_1 \\) and \\( p_2 \\) are both true; the other \\( [[n]]-2 \\) variables are free, giving \\( 2^{[[n]]-2} \\) satisfying assignments in total: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of truth assignments, ignoring the requirement on \\( p_1 \\) and \\( p_2 \\).",
+   "This treats only ONE of \\( p_1, p_2 \\) as constrained rather than both.",
+   "This is the count for \\( p_1 \\vee p_2 \\) (at least one true), not \\( p_1 \\wedge p_2 \\) (both true).",
+   "This confuses the free-variable count with a count of assignments.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_xor_chain_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "Consider the formula \\( p_1 \\oplus p_2 \\oplus \\cdots \\oplus p_{[[n]]} \\) (the exclusive-or of [[n]] propositional variables), which is true exactly when an ODD number of the \\( p_i \\) are true. Out of the \\( 2^{[[n]]} \\) possible truth assignments, how many make this formula TRUE?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**([[n]] - 1)"
+  },
+  "distractors": [
+   "2**[[n]]",
+   "2**([[n]] - 2)",
+   "1",
+   "[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Exactly half of all \\( 2^{[[n]]} \\) assignments have an odd number of true variables (flipping any one variable toggles the parity, pairing each odd-parity assignment with a distinct even-parity one), so the count is \\( 2^{[[n]]}/2 = 2^{[[n]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of truth assignments, ignoring the odd-parity requirement.",
+   "This divides by 4 instead of by 2.",
+   "This treats the formula like a conjunction of all [[n]] variables (true only when all are true).",
+   "This confuses the number of variables with the count of assignments.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_implication_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( p_1 \\rightarrow p_2 \\) (the truth values of \\( p_3, \\ldots, p_{[[n]]} \\) do not appear in the formula). Out of all \\( 2^{[[n]]} \\) truth assignments to \\( p_1,\\ldots,p_{[[n]]} \\), how many make \\( p_1 \\rightarrow p_2 \\) TRUE?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**[[n]] - 2**([[n]] - 2)"
+  },
+  "distractors": [
+   "2**[[n]]",
+   "2**([[n]] - 1)",
+   "2**([[n]] - 2)",
+   "3*([[n]] - 2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( p_1 \\rightarrow p_2 \\) is false only when \\( p_1 \\) is true and \\( p_2 \\) is false, which happens for \\( 2^{[[n]]-2} \\) of the \\( 2^{[[n]]} \\) assignments (the other \\( [[n]]-2 \\) variables are free). So it is true for the rest: \\( 2^{[[n]]} - 2^{[[n]]-2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of truth assignments, ignoring the requirement entirely.",
+   "This is the count for \\( p_1 \\leftrightarrow p_2 \\) (a biconditional), not the one-directional implication.",
+   "This is the count of assignments that make the implication FALSE, not true.",
+   "This confuses the free-variable count with a count of assignments.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ },
+ {
+  "template_id": "propositional_logic_biconditional_v1",
+  "skill_id": "propositional_logic",
+  "topic_id": "logic_sets",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( p_1 \\leftrightarrow p_2 \\) (the truth values of \\( p_3, \\ldots, p_{[[n]]} \\) do not appear in the formula). Out of all \\( 2^{[[n]]} \\) truth assignments to \\( p_1,\\ldots,p_{[[n]]} \\), how many make \\( p_1 \\leftrightarrow p_2 \\) TRUE?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2**([[n]] - 1)"
+  },
+  "distractors": [
+   "2**[[n]]",
+   "2**([[n]] - 2)",
+   "2**[[n]] - 2**([[n]] - 2)",
+   "[[n]] - 2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( p_1 \\leftrightarrow p_2 \\) is true when \\( p_1, p_2 \\) agree (both true or both false): 2 of the 4 combinations for \\( (p_1,p_2) \\), times \\( 2^{[[n]]-2} \\) free choices for the rest, giving \\( 2 \\cdot 2^{[[n]]-2} = 2^{[[n]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the total number of truth assignments, ignoring the requirement entirely.",
+   "This only counts the 'both true' case, forgetting 'both false' also satisfies the biconditional.",
+   "This is the count for the one-directional implication \\( p_1 \\rightarrow p_2 \\), not the biconditional.",
+   "This confuses the free-variable count with a count of assignments.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total."
+  ]
+ }
+]

@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "rank_one_structured_matrices_v1",
+ "skill_id": "rank_one_and_structured_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Gt([[a]]*[[c]] + [[b]]*[[d]], 0)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "Let \\( u = \\begin{bmatrix} [[a]] \\\\ [[b]] \\end{bmatrix} \\) and \\( v = \\begin{bmatrix} [[c]] \\\\ [[d]] \\end{bmatrix} \\), and form the rank-one matrix \\( M = u\\,v^{\\mathsf{T}} = \\begin{bmatrix} [[e11]] & [[e12]] \\\\ [[e21]] & [[e22]] \\end{bmatrix} \\). What is the largest eigenvalue of \\( M \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[e11]]", "[[e12]]"], ["[[e21]]", "[[e22]]"]], "which": "max"},
+ "distractors": [
+  "0",
+  "[[a]]*[[c]]",
+  "[[b]]*[[d]]",
+  "[[a]]*[[d]] + [[b]]*[[c]]",
+  "[[a]]*[[c]] - [[b]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A rank-one matrix \\( M = u\\,v^{\\mathsf{T}} \\) has eigenvalues \\( 0 \\) and \\( v^{\\mathsf{T}}u = [[a]]\\cdot[[c]] + [[b]]\\cdot[[d]] \\) (its trace). Since that value is positive here, the largest eigenvalue is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the other eigenvalue of a rank-one matrix, not the largest one.",
+  "This is only the first product \\( ac \\); the nonzero eigenvalue is \\( ac + bd \\).",
+  "This is only the second product \\( bd \\); the nonzero eigenvalue is \\( ac + bd \\).",
+  "This sums the off-diagonal products \\( ad + bc \\) instead of the trace \\( ac + bd \\).",
+  "This subtracts the two products instead of adding them.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "rank_one_trace_dot_product_v2",
+ "skill_id": "rank_one_and_structured_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[c]] + [[b]]*[[d]], 0)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "Let \\( u = \\begin{bmatrix} [[a]] \\\\ [[b]] \\end{bmatrix} \\) and \\( v = \\begin{bmatrix} [[c]] \\\\ [[d]] \\end{bmatrix} \\), and let \\( M = u\\,v^{\\mathsf{T}} \\). What is \\( \\operatorname{tr}(M) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[e11]]", "[[e12]]"], ["[[e21]]", "[[e22]]"]]},
+ "distractors": [
+  "0",
+  "[[a]]*[[d]] + [[b]]*[[c]]",
+  "[[a]]*[[c]] - [[b]]*[[d]]",
+  "[[a]]*[[c]]*[[b]]*[[d]]",
+  "[[a]] + [[b]] + [[c]] + [[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "For a rank-one matrix \\( M = u\\,v^{\\mathsf{T}} \\), the trace equals the dot product \\( v^{\\mathsf{T}}u = [[a]]\\cdot[[c]] + [[b]]\\cdot[[d]] = [[answer]] \\); this is also its only nonzero eigenvalue.",
+ "distractor_rationales": [
+  "The trace of a rank-one matrix is not automatically zero; it equals \\( u\\cdot v \\), which need not vanish.",
+  "This sums the off-diagonal products \\( ad+bc \\) instead of the diagonal products \\( ac+bd \\).",
+  "This subtracts the two diagonal products instead of adding them.",
+  "This multiplies all four entries together instead of summing the diagonal ones.",
+  "This adds the raw vector entries instead of the pairwise products that form the diagonal.",
+  "This is one more than the correct trace.",
+  "This is two less than the correct trace."
+ ]
+},
+{
+ "template_id": "rank_one_identity_update_v3",
+ "skill_id": "rank_one_and_structured_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[p]] + [[b]]*[[q]], 0)"],
+ "derived": {
+  "e11": "[[k]] + [[a]]*[[p]]",
+  "e12": "[[a]]*[[q]]",
+  "e21": "[[b]]*[[p]]",
+  "e22": "[[k]] + [[b]]*[[q]]"
+ },
+ "stem": "Let \\( I \\) be the \\( 2\\times 2 \\) identity matrix, \\( u = \\begin{bmatrix} [[a]] \\\\ [[b]] \\end{bmatrix} \\), \\( v = \\begin{bmatrix} [[p]] \\\\ [[q]] \\end{bmatrix} \\), and \\( A = [[k]] I + u\\,v^{\\mathsf{T}} = \\begin{bmatrix} [[e11]] & [[e12]] \\\\ [[e21]] & [[e22]] \\end{bmatrix} \\). What is the largest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[e11]]", "[[e12]]"], ["[[e21]]", "[[e22]]"]], "which": "max"},
+ "distractors": [
+  "[[k]]",
+  "[[a]]*[[p]] + [[b]]*[[q]]",
+  "[[k]] - ([[a]]*[[p]] + [[b]]*[[q]])",
+  "[[a]]*[[p]]",
+  "2*[[k]] + [[a]]*[[p]] + [[b]]*[[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A rank-one update of a scalar matrix, \\( A = kI + u\\,v^{\\mathsf{T}} \\), has eigenvalues \\( k \\) (from any vector orthogonal to \\( v \\)) and \\( k + v^{\\mathsf{T}}u = [[k]] + [[a]]\\cdot[[p]] + [[b]]\\cdot[[q]] \\) (from the eigenvector \\( u \\)). The larger of these two is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is only the base scalar \\( k \\), which is not always the larger eigenvalue.",
+  "This is only the update term \\( v^{\\mathsf{T}}u \\), omitting the base scalar \\( k \\).",
+  "This subtracts the update term from \\( k \\) instead of adding it.",
+  "This uses only one entry of the outer product instead of the full dot product \\( u\\cdot v \\).",
+  "This double-counts the scalar shift \\( k \\).",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "rank_one_determinant_singular_v4",
+ "skill_id": "rank_one_and_structured_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)", "Ne([[d]], 0)"],
+ "derived": {
+  "e11": "[[a]]*[[c]]",
+  "e12": "[[a]]*[[d]]",
+  "e21": "[[b]]*[[c]]",
+  "e22": "[[b]]*[[d]]"
+ },
+ "stem": "Let \\( u = \\begin{bmatrix} [[a]] \\\\ [[b]] \\end{bmatrix} \\) and \\( v = \\begin{bmatrix} [[c]] \\\\ [[d]] \\end{bmatrix} \\), and let \\( M = u\\,v^{\\mathsf{T}} = \\begin{bmatrix} [[e11]] & [[e12]] \\\\ [[e21]] & [[e22]] \\end{bmatrix} \\). What is \\( \\det(M) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[e11]]", "[[e12]]"], ["[[e21]]", "[[e22]]"]]},
+ "distractors": [
+  "[[a]]*[[c]]*[[b]]*[[d]]",
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[a]]*[[c]] + [[b]]*[[d]]",
+  "[[a]]*[[b]]*[[c]]*[[d]] - 1",
+  "1",
+  "-1"
+ ],
+ "solution": "Every rank-one matrix \\( M = u\\,v^{\\mathsf{T}} \\) is singular (its columns are all multiples of \\( u \\)), so \\( \\det(M) = [[e11]]\\cdot[[e22]] - [[e12]]\\cdot[[e21]] = [[answer]] \\) regardless of the choice of \\( u, v \\).",
+ "distractor_rationales": [
+  "This multiplies all four matrix entries together instead of computing \\( ad-bc \\) on \\( M \\)'s entries.",
+  "This treats \\( a,b,c,d \\) themselves as the matrix entries and computes their determinant, not \\( \\det(M) \\).",
+  "This adds the diagonal products of \\( M \\) instead of subtracting them, which does not simplify to \\( 0 \\).",
+  "This is one less than a nonzero product, not the determinant of a rank-one matrix.",
+  "A rank-one matrix cannot have determinant \\( 1 \\); it is always singular.",
+  "A rank-one matrix cannot have determinant \\( -1 \\); it is always singular."
+ ]
+}
+]

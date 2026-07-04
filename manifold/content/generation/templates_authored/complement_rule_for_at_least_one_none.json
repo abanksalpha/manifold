@@ -1,0 +1,126 @@
+[
+ {
+  "template_id": "complement_at_least_one_v1",
+  "skill_id": "complement_rule_for_at_least_one_none",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "choice", "values": [5, 6, 7, 8]},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "Each time a certain component is tested it fails independently with probability \\( \\frac{[[a]]}{[[b]]} \\). If the component is tested [[n]] times, what is the probability that it fails on at least one of the tests?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - (1 - Rational([[a]], [[b]])) ** [[n]]"},
+  "distractors": [
+   "(1 - Rational([[a]], [[b]])) ** [[n]]",
+   "Rational([[a]], [[b]]) ** [[n]]",
+   "[[n]] * Rational([[a]], [[b]])",
+   "1 - Rational([[a]], [[b]]) ** [[n]]",
+   "1 - [[n]] * Rational([[a]], [[b]])",
+   "Rational([[a]], [[b]])"
+  ],
+  "solution": "Use the complement: P(at least one failure) \\( = 1 - \\) P(no failures) \\( = 1 - \\left(1 - \\frac{[[a]]}{[[b]]}\\right)^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability of no failures, the complement of the requested event.",
+   "This is the probability that every test fails, not at least one.",
+   "This adds the per-test probabilities, which double counts overlaps and can exceed the true value.",
+   "This subtracts the probability that all tests fail rather than the probability that none do.",
+   "This subtracts the sum of per-test probabilities from 1 instead of the 'none' probability.",
+   "This is just the single-test failure probability, ignoring that there are [[n]] tests."
+  ]
+ },
+ {
+  "template_id": "complement_at_least_one_two_events_v1",
+  "skill_id": "complement_rule_for_at_least_one_none",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "choice", "values": [4, 5, 6, 7]},
+   "c": {"type": "int", "lo": 1, "hi": 3},
+   "d": {"type": "choice", "values": [4, 5, 6, 7]}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Lt([[c]], [[d]])"],
+  "stem": "Two independent alarm systems monitor a building: system 1 triggers with probability \\( \\frac{[[a]]}{[[b]]} \\) and system 2 triggers with probability \\( \\frac{[[c]]}{[[d]]} \\) during a break-in. What is the probability that at least one of the two systems triggers?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - (1 - Rational([[a]], [[b]])) * (1 - Rational([[c]], [[d]]))"},
+  "distractors": [
+   "Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) + Rational([[c]], [[d]])",
+   "(1 - Rational([[a]], [[b]])) * (1 - Rational([[c]], [[d]]))",
+   "1 - Rational([[a]], [[b]]) * Rational([[c]], [[d]])",
+   "1 - Rational([[a]], [[b]]) - Rational([[c]], [[d]])",
+   "Rational([[a]], [[b]]) - Rational([[c]], [[d]])"
+  ],
+  "solution": "Use the complement, with independence giving P(neither triggers) as a product: \\( P(\\text{at least one}) = 1 - (1-P_1)(1-P_2) = 1 - \\left(1-\\frac{[[a]]}{[[b]]}\\right)\\left(1-\\frac{[[c]]}{[[d]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(\\text{both trigger}) \\), the probability of both, not at least one.",
+   "This adds the two probabilities, which can double-count the case where both trigger.",
+   "This is the probability that NEITHER system triggers, the complement of the requested event.",
+   "This subtracts the probability both trigger rather than the probability neither triggers.",
+   "This subtracts each probability separately instead of the joint 'neither' probability.",
+   "This treats the difference of the probabilities as the answer, which is not a valid probability computation here."
+  ]
+ },
+ {
+  "template_id": "complement_at_least_one_hypergeometric_v1",
+  "skill_id": "complement_rule_for_at_least_one_none",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "N": {"type": "int", "lo": 12, "hi": 20},
+   "D": {"type": "int", "lo": 2, "hi": 5},
+   "k": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Lt([[D]], [[N]])", "Lt([[k]], [[N]] - [[D]])"],
+  "stem": "A shipment of [[N]] devices contains [[D]] that are defective. An inspector selects [[k]] devices at random, without replacement, for testing. What is the probability that at least one of the selected devices is defective?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - binomial([[N]] - [[D]], [[k]]) / binomial([[N]], [[k]])"},
+  "distractors": [
+   "binomial([[N]] - [[D]], [[k]]) / binomial([[N]], [[k]])",
+   "binomial([[D]], [[k]]) / binomial([[N]], [[k]])",
+   "1 - binomial([[D]], [[k]]) / binomial([[N]], [[k]])",
+   "Rational([[D]], [[N]]) * [[k]]",
+   "1 - Rational([[N]] - [[D]], [[N]]) ** [[k]]",
+   "Rational([[D]], [[N]])"
+  ],
+  "solution": "By the complement rule, \\( P(\\text{at least one defective}) = 1 - P(\\text{none defective}) = 1 - \\dfrac{\\binom{[[N]] - [[D]]}{[[k]]}}{\\binom{[[N]]}{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability that NONE of the selected devices are defective, the complement of the requested event.",
+   "This is the probability that all [[k]] selected devices are defective, not at least one.",
+   "This is the complement of choosing all defectives, not of choosing none defective.",
+   "This multiplies the single-device defect rate by [[k]] as if probabilities simply add, ignoring the without-replacement structure.",
+   "This incorrectly treats the draws as independent with replacement instead of using the hypergeometric complement.",
+   "This is just the single-device probability of being defective, ignoring that [[k]] devices are drawn."
+  ]
+ },
+ {
+  "template_id": "complement_at_least_one_repeat_v1",
+  "skill_id": "complement_rule_for_at_least_one_none",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "choice", "values": [6, 8, 10, 12]},
+   "k": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": ["Le([[k]], [[m]])", "Lt([[k]], [[m]])"],
+  "stem": "A fair [[m]]-sided die (faces numbered \\( 1 \\) through [[m]]) is rolled [[k]] times. What is the probability that at least two of the [[k]] rolls show the same number?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - factorial([[m]]) / (factorial([[m]] - [[k]]) * [[m]] ** [[k]])"},
+  "distractors": [
+   "factorial([[m]]) / (factorial([[m]] - [[k]]) * [[m]] ** [[k]])",
+   "Rational(1, [[m]]) ** [[k]]",
+   "1 - Rational(1, [[m]]) ** [[k]]",
+   "1 - factorial([[m]]) / factorial([[m]] - [[k]])",
+   "Rational([[k]], [[m]])",
+   "1 - Rational([[m]] - [[k]], [[m]])"
+  ],
+  "solution": "By the complement rule, \\( P(\\text{at least one repeat}) = 1 - P(\\text{all [[k]] rolls distinct}) = 1 - \\dfrac{[[m]]!/([[m]]-[[k]])!}{[[m]]^{[[k]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability that all [[k]] rolls are distinct, the complement of the requested event.",
+   "This is the probability that all [[k]] rolls show the exact same fixed number, not merely a repeat.",
+   "This is the complement of all rolls matching one fixed number, not the complement of all-distinct.",
+   "This omits the \\( [[m]]^{[[k]]} \\) denominator, leaving an unnormalized count of arrangements.",
+   "This treats the probability as if only one pair of rolls could possibly match, ignoring the combinatorics.",
+   "This is the fraction of rolls that could repeat, not a valid probability computation for this event."
+  ]
+ }
+]

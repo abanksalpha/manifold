@@ -1,0 +1,166 @@
+[
+{
+ "template_id": "z_score_individual_value_v1",
+ "skill_id": "normal_distribution_clt",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "mu": {"type": "int", "lo": 40, "hi": 100},
+  "sigma": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 10, 12, 15, 20]},
+  "d": {"type": "int", "lo": -30, "hi": 30}
+ },
+ "constraints": ["Ne([[d]], 0)"],
+ "derived": {"x": "[[mu]]+[[d]]"},
+ "stem": "A population has mean \\( \\mu=[[mu]] \\) and standard deviation \\( \\sigma=[[sigma]] \\). What is the z-score of an individual value \\( x=[[x]] \\), i.e. \\( z=\\dfrac{x-\\mu}{\\sigma} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[x]]-[[mu]])/[[sigma]]"},
+ "distractors": [
+  "([[mu]]-[[x]])/[[sigma]]",
+  "[[sigma]]/([[x]]-[[mu]])",
+  "([[x]]-[[mu]])/[[mu]]",
+  "([[x]]+[[mu]])/[[sigma]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( z = \\dfrac{x-\\mu}{\\sigma} = \\dfrac{[[x]]-[[mu]]}{[[sigma]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign, computing \\( \\mu - x \\) instead of \\( x - \\mu \\).",
+  "This inverts the z-score formula.",
+  "This divides by \\( \\mu \\) instead of \\( \\sigma \\) in the denominator.",
+  "This adds \\( x \\) and \\( \\mu \\) instead of subtracting them.",
+  "This is off by one from the correct z-score.",
+  "This is off by one from the correct z-score."
+ ]
+},
+{
+ "template_id": "z_score_sample_mean_clt_v1",
+ "skill_id": "normal_distribution_clt",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "mu": {"type": "int", "lo": 40, "hi": 100},
+  "sigma": {"type": "choice", "values": [4, 6, 8, 9, 10, 12, 15, 16, 20, 25]},
+  "n": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64, 81, 100]},
+  "d": {"type": "int", "lo": -20, "hi": 20}
+ },
+ "constraints": ["Ne([[d]], 0)"],
+ "derived": {"xbar": "[[mu]]+[[d]]", "sqn": "sqrt([[n]])"},
+ "stem": "A population has mean \\( \\mu=[[mu]] \\) and standard deviation \\( \\sigma=[[sigma]] \\). A random sample of size \\( n=[[n]] \\) is drawn, with sample mean \\( \\bar{x}=[[xbar]] \\). By the Central Limit Theorem, the sampling distribution of \\( \\bar{x} \\) is approximately normal with standard error \\( \\sigma/\\sqrt{n} \\). What is the z-score of \\( \\bar{x} \\), i.e. \\( z = \\dfrac{\\bar{x}-\\mu}{\\sigma/\\sqrt{n}} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[d]]*[[sqn]]/[[sigma]]"},
+ "distractors": [
+  "[[d]]/[[sigma]]",
+  "[[d]]/([[sigma]]*[[sqn]])",
+  "[[d]]*[[n]]/[[sigma]]",
+  "-[[d]]*[[sqn]]/[[sigma]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The standard error is \\( \\sigma/\\sqrt{n} = [[sigma]]/[[sqn]] \\), so \\( z = \\dfrac{\\bar{x}-\\mu}{\\sigma/\\sqrt{n}} = \\dfrac{[[d]]\\cdot[[sqn]]}{[[sigma]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\sigma \\) itself as the standard error, forgetting to divide by \\( \\sqrt{n} \\).",
+  "This multiplies \\( \\sigma \\) by \\( \\sqrt{n} \\) instead of dividing, inverting the standard-error formula.",
+  "This uses \\( n \\) instead of \\( \\sqrt{n} \\) in the standard error.",
+  "This flips the sign of the z-score.",
+  "This is off by one from the correct z-score.",
+  "This is off by one from the correct z-score."
+ ]
+},
+{
+ "template_id": "raw_score_from_z_score_v1",
+ "skill_id": "normal_distribution_clt",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "mu": {"type": "int", "lo": 40, "hi": 100},
+  "sigma": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 10, 12]},
+  "z_n": {"type": "int", "lo": -4, "hi": 4},
+  "z_d": {"type": "choice", "values": [1, 2, 4]}
+ },
+ "constraints": ["Ne([[z_n]], 0)"],
+ "stem": "A population has mean \\( \\mu=[[mu]] \\) and standard deviation \\( \\sigma=[[sigma]] \\). A value \\( x \\) has z-score \\( z=\\dfrac{[[z_n]]}{[[z_d]]} \\). What is the value of \\( x \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[mu]]+Rational([[z_n]],[[z_d]])*[[sigma]]"},
+ "distractors": [
+  "[[mu]]-Rational([[z_n]],[[z_d]])*[[sigma]]",
+  "[[mu]]*Rational([[z_n]],[[z_d]])*[[sigma]]",
+  "Rational([[z_n]],[[z_d]])*[[sigma]]",
+  "[[mu]]+Rational([[z_d]],[[z_n]])*[[sigma]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Rearranging \\( z=\\frac{x-\\mu}{\\sigma} \\) gives \\( x = \\mu + z\\sigma = [[mu]] + \\frac{[[z_n]]}{[[z_d]]}\\cdot[[sigma]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts \\( z\\sigma \\) instead of adding it.",
+  "This multiplies \\( \\mu \\) by \\( z\\sigma \\) instead of adding them.",
+  "This is just \\( z\\sigma \\), forgetting to add \\( \\mu \\).",
+  "This inverts the z-score fraction before scaling by \\( \\sigma \\).",
+  "This is off by one from the correct raw score.",
+  "This is off by one from the correct raw score."
+ ]
+},
+{
+ "template_id": "standard_deviations_apart_v1",
+ "skill_id": "normal_distribution_clt",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "sigma": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 10, 12, 15, 20]},
+  "x1": {"type": "int", "lo": 1, "hi": 100},
+  "x2": {"type": "int", "lo": 1, "hi": 100}
+ },
+ "constraints": ["Ne([[x1]], [[x2]])"],
+ "stem": "In a population with standard deviation \\( \\sigma=[[sigma]] \\), two values are \\( x_1=[[x1]] \\) and \\( x_2=[[x2]] \\). How many standard deviations apart are \\( x_1 \\) and \\( x_2 \\), that is, what is \\( \\dfrac{x_2-x_1}{\\sigma} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[x2]]-[[x1]])/[[sigma]]"},
+ "distractors": [
+  "([[x1]]-[[x2]])/[[sigma]]",
+  "[[sigma]]/([[x2]]-[[x1]])",
+  "([[x2]]-[[x1]])*[[sigma]]",
+  "([[x2]]+[[x1]])/[[sigma]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( \\dfrac{x_2-x_1}{\\sigma} = \\dfrac{[[x2]]-[[x1]]}{[[sigma]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign, computing \\( x_1-x_2 \\) instead of \\( x_2-x_1 \\).",
+  "This inverts the correct ratio.",
+  "This multiplies by \\( \\sigma \\) instead of dividing by it.",
+  "This adds \\( x_1 \\) and \\( x_2 \\) instead of subtracting them.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "solve_sample_size_from_clt_z_v1",
+ "skill_id": "normal_distribution_clt",
+ "topic_id": "statistics",
+ "tier": "relearn",
+ "params": {
+  "n_target": {"type": "choice", "values": [4, 9, 16, 25, 36, 49, 64, 81, 100]},
+  "sigma": {"type": "choice", "values": [2, 3, 4, 5, 6, 8, 9, 10, 12, 15]},
+  "z_n": {"type": "int", "lo": 1, "hi": 6},
+  "z_d": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "derived": {
+  "sqn": "sqrt([[n_target]])",
+  "diff": "Rational([[z_n]],[[z_d]])*[[sigma]]/[[sqn]]"
+ },
+ "stem": "A population has standard deviation \\( \\sigma=[[sigma]] \\). A random sample's mean differs from the population mean by \\( \\bar{x}-\\mu=[[diff]] \\), which corresponds to a z-score of \\( z=\\dfrac{[[z_n]]}{[[z_d]]} \\) under the Central Limit Theorem \\( \\left(z=\\dfrac{\\bar{x}-\\mu}{\\sigma/\\sqrt{n}}\\right) \\). What sample size \\( n \\) was used?",
+ "answer_spec": {"op": "evaluate", "expr": "(Rational([[z_n]],[[z_d]])*[[sigma]]/[[diff]])**2"},
+ "distractors": [
+  "Rational([[z_n]],[[z_d]])*[[sigma]]/[[diff]]",
+  "([[diff]]*[[sigma]]/Rational([[z_n]],[[z_d]]))**2",
+  "(Rational([[z_d]],[[z_n]])*[[sigma]]/[[diff]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "(Rational([[z_n]],[[z_d]])*[[diff]]/[[sigma]])**2"
+ ],
+ "solution": "Rearranging \\( z=\\dfrac{\\bar{x}-\\mu}{\\sigma/\\sqrt{n}} \\) gives \\( \\sqrt{n} = \\dfrac{z\\sigma}{\\bar{x}-\\mu} = \\dfrac{\\frac{[[z_n]]}{[[z_d]]}\\cdot[[sigma]]}{[[diff]]} \\), so \\( n = \\left(\\dfrac{z\\sigma}{\\bar{x}-\\mu}\\right)^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This finds \\( \\sqrt{n} \\) but forgets to square it to get \\( n \\).",
+  "This inverts the ratio before squaring.",
+  "This inverts the z-score fraction before squaring.",
+  "This is off by one from the correct sample size.",
+  "This is off by one from the correct sample size.",
+  "This swaps the roles of \\( \\sigma \\) and the mean difference."
+ ]
+}
+]

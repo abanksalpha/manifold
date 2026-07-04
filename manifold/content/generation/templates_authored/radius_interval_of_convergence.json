@@ -1,0 +1,223 @@
+[
+ {
+  "template_id": "radius_interval_of_convergence_v1",
+  "skill_id": "radius_interval_of_convergence",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   },
+   "s": {
+    "type": "choice",
+    "values": [
+     0,
+     1,
+     2
+    ]
+   }
+  },
+  "constraints": [],
+  "stem": "Find the radius of convergence \\( R \\) of the power series \\( \\displaystyle\\sum_{n=1}^{\\infty} n^{[[s]]}\\left(\\dfrac{[[a]]}{[[b]]}\\right)^{n} x^{n} \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[b]],[[a]])"
+  },
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "[[b]]",
+   "[[a]]",
+   "[[a]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The coefficient is \\( c_n = n^{[[s]]}\\left(\\frac{[[a]]}{[[b]]}\\right)^{n} \\), and \\( \\lim_{n\\to\\infty}\\sqrt[n]{|c_n|} = \\frac{[[a]]}{[[b]]} \\). Hence \\( R = \\dfrac{1}{[[a]]/[[b]]} = \\dfrac{[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the limit \\( L = [[a]]/[[b]] \\) itself; the radius is its reciprocal \\( 1/L \\).",
+   "This ignores the coefficient \\( [[a]] \\) in the ratio.",
+   "This ignores the base \\( [[b]] \\) in the ratio.",
+   "This multiplies \\( a \\) and \\( b \\) instead of dividing.",
+   "This is off by one from the correct radius.",
+   "This is off by one from the correct radius.",
+   "This is off by two from the correct radius."
+  ]
+ },
+ {
+  "template_id": "radius_interval_convergence_v2_ratio_test",
+  "skill_id": "radius_interval_of_convergence",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   }
+  },
+  "constraints": [],
+  "stem": "Find the radius of convergence \\( R \\) of the power series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{1}{n}\\left(\\dfrac{[[a]]}{[[b]]}\\right)^{n} x^{n} \\) by applying the ratio test to the coefficients.",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[b]],[[a]])"
+  },
+  "distractors": [
+   "Rational([[a]],[[b]])",
+   "[[b]]",
+   "[[a]]",
+   "[[a]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With \\( c_n = \\dfrac{1}{n}\\left(\\frac{[[a]]}{[[b]]}\\right)^{n} \\), the ratio test gives \\( \\lim_{n\\to\\infty}\\left|\\dfrac{c_{n+1}}{c_n}\\right| = \\dfrac{[[a]]}{[[b]]} = L \\). The radius of convergence is \\( R = 1/L = \\dfrac{[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the ratio-test limit \\( L \\) itself; the radius is its reciprocal \\( 1/L \\).",
+   "This ignores the coefficient \\( [[a]] \\) in the ratio.",
+   "This ignores the base \\( [[b]] \\) in the ratio.",
+   "This multiplies \\( a \\) and \\( b \\) instead of dividing.",
+   "This is off by one from the correct radius.",
+   "This is off by one from the correct radius."
+  ]
+ },
+ {
+  "template_id": "radius_interval_convergence_v3_binomial_coefficient",
+  "skill_id": "radius_interval_of_convergence",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   }
+  },
+  "constraints": [],
+  "stem": "Find the radius of convergence \\( R \\) of the power series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dbinom{2n}{n}\\left(\\dfrac{[[a]]}{[[b]]}\\right)^{n} x^{n} \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Rational([[b]],4*[[a]])"
+  },
+  "distractors": [
+   "Rational([[b]],[[a]])",
+   "Rational([[a]],[[b]])",
+   "4*Rational([[a]],[[b]])",
+   "Rational([[b]],2*[[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With \\( c_n = \\binom{2n}{n}\\left(\\frac{[[a]]}{[[b]]}\\right)^{n} \\), the ratio test gives \\( \\lim_{n\\to\\infty}\\left|\\dfrac{c_{n+1}}{c_n}\\right| = 4\\cdot\\dfrac{[[a]]}{[[b]]} \\) (the central binomial coefficient contributes a factor of \\( 4 \\)). The radius is \\( R = \\dfrac{1}{4\\cdot[[a]]/[[b]]} = \\dfrac{[[b]]}{4[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of \\( 4 \\) contributed by the central binomial coefficient.",
+   "This forgets the factor of \\( 4 \\) AND inverts \\( a/b \\).",
+   "This uses the ratio-test limit \\( L=4a/b \\) itself instead of its reciprocal.",
+   "This uses a factor of \\( 2 \\) instead of \\( 4 \\) for the binomial growth rate.",
+   "This is off by one from the correct radius.",
+   "This is off by one from the correct radius."
+  ]
+ },
+ {
+  "template_id": "radius_interval_convergence_v4_endpoint",
+  "skill_id": "radius_interval_of_convergence",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   },
+   "b": {
+    "type": "int",
+    "lo": 1,
+    "hi": 9
+   },
+   "c": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "The power series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{1}{n}\\left(\\dfrac{[[a]]}{[[b]]}\\right)^{n} (x-[[c]])^{n} \\) is centered at \\( x=[[c]] \\) with radius of convergence \\( R = [[b]]/[[a]] \\). Ignoring endpoint behavior, what is the right endpoint of its interval of convergence?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[c]] + Rational([[b]],[[a]])"
+  },
+  "distractors": [
+   "[[c]] - Rational([[b]],[[a]])",
+   "Rational([[b]],[[a]])",
+   "[[c]] + Rational([[a]],[[b]])",
+   "[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The interval of convergence is centered at \\( x=[[c]] \\) and extends \\( R=\\dfrac{[[b]]}{[[a]]} \\) in each direction, so the right endpoint is \\( [[c]] + \\dfrac{[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the LEFT endpoint (subtracts \\( R \\)) instead of the right endpoint.",
+   "This gives the radius itself, forgetting to shift by the center \\( c \\).",
+   "This inverts \\( a/b \\) before adding to the center.",
+   "This is just the center, ignoring the radius entirely.",
+   "This is off by one from the correct endpoint.",
+   "This is off by one from the correct endpoint."
+  ]
+ },
+ {
+  "template_id": "radius_interval_convergence_v5_even_powers",
+  "skill_id": "radius_interval_of_convergence",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 8
+   },
+   "b": {
+    "type": "int",
+    "lo": 2,
+    "hi": 9
+   }
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "Find the radius of convergence \\( R \\) of the power series \\( \\displaystyle\\sum_{n=1}^{\\infty} \\left(\\dfrac{[[a]]}{[[b]]}\\right)^{n} x^{2n} \\) (note the exponent is \\( 2n \\), not \\( n \\)).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "sqrt(Rational([[b]],[[a]]))"
+  },
+  "distractors": [
+   "Rational([[b]],[[a]])",
+   "Rational([[a]],[[b]])",
+   "sqrt(Rational([[a]],[[b]]))",
+   "Rational([[b]],[[a]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Let \\( y=x^{2} \\); the series is \\( \\sum \\left(\\frac{[[a]]}{[[b]]}\\right)^{n} y^{n} \\), which converges for \\( |y| < \\dfrac{[[b]]}{[[a]]} \\), i.e. \\( x^{2} < \\dfrac{[[b]]}{[[a]]} \\). Hence \\( R = \\sqrt{\\dfrac{[[b]]}{[[a]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to take the square root after substituting \\( y=x^2 \\).",
+   "This inverts \\( a/b \\) and forgets the square root.",
+   "This inverts the ratio inside the square root.",
+   "This squares the ratio instead of taking its square root.",
+   "This is off by one from the correct radius.",
+   "This is off by one from the correct radius."
+  ]
+ }
+]

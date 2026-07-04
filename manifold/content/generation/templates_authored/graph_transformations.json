@@ -1,0 +1,261 @@
+[
+ {
+  "template_id": "graph_transformations_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "h": {"type": "int", "lo": 1, "hi": 4},
+   "k": {"type": "int", "lo": 1, "hi": 6},
+   "x0": {"type": "int", "lo": -3, "hi": 5}
+  },
+  "constraints": ["Ne([[x0]], [[h]])"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} \\). The graph of \\( f \\) is shifted to the right by [[h]] and up by [[k]] to produce the graph of \\( g \\); equivalently, \\( g(x) = f(x - [[h]]) + [[k]] \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*([[x0]] - [[h]])**2 + [[k]]"},
+  "distractors": [
+   "[[a]]*([[x0]] + [[h]])**2 + [[k]]",
+   "[[a]]*([[x0]] - [[h]])**2 - [[k]]",
+   "[[a]]*([[x0]] - [[h]])**2",
+   "[[a]]*[[x0]]**2 + [[k]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Shifting right by [[h]] replaces \\( x \\) with \\( x - [[h]] \\), and shifting up by [[k]] adds [[k]]: \\( g(x) = [[a]](x - [[h]])^{2} + [[k]] \\). So \\( g([[x0]]) = [[a]]([[x0]] - [[h]])^{2} + [[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This shifts left instead of right, using \\( x + [[h]] \\) rather than \\( x - [[h]] \\).",
+   "This shifts down instead of up, subtracting [[k]] rather than adding it.",
+   "This performs the horizontal shift but forgets the vertical shift of [[k]].",
+   "This adds [[k]] but forgets to shift the input horizontally by [[h]].",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_reflect_x_axis_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). The graph of \\( g \\) is the reflection of the graph of \\( f \\) across the \\( x \\)-axis, so \\( g(x) = -f(x) \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]])"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]",
+   "-[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]",
+   "[[a]]*[[x0]]**2 - [[b]]*[[x0]] - [[c]]",
+   "-[[a]]*[[x0]]**2 - [[b]]*[[x0]] + [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Reflecting across the \\( x \\)-axis negates every output: \\( g(x) = -f(x) \\). First evaluate \\( f([[x0]]) = [[a]]([[x0]])^{2} + ([[b]])([[x0]]) + ([[c]]) \\), then negate it to get \\( g([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to reflect at all, reporting \\( f([[x0]]) \\) itself.",
+   "This negates only the quadratic term instead of the whole expression.",
+   "This negates only the linear and constant terms instead of the whole expression.",
+   "This negates the quadratic and linear terms but not the constant, an inconsistent sign error.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_reflect_y_axis_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]])x + ([[c]]) \\). The graph of \\( g \\) is the reflection of the graph of \\( f \\) across the \\( y \\)-axis, so \\( g(x) = f(-x) \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*(-[[x0]])**3 + [[b]]*(-[[x0]]) + [[c]]"},
+  "distractors": [
+   "[[a]]*[[x0]]**3 + [[b]]*[[x0]] + [[c]]",
+   "-([[a]]*[[x0]]**3 + [[b]]*[[x0]] + [[c]])",
+   "[[a]]*(-[[x0]])**3 + [[b]]*[[x0]] + [[c]]",
+   "[[a]]*[[x0]]**3 - [[b]]*[[x0]] + [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Reflecting across the \\( y \\)-axis replaces \\( x \\) with \\( -x \\): \\( g(x) = f(-x) \\). So \\( g([[x0]]) = [[a]](-[[x0]])^{3} + ([[b]])(-[[x0]]) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to reflect at all, reporting \\( f([[x0]]) \\) itself.",
+   "This reflects across the \\( x \\)-axis instead of the \\( y \\)-axis, negating the whole output rather than the input.",
+   "This negates \\( x \\) inside the cubic term but forgets to also negate it in the linear term.",
+   "This flips the sign of only the linear term instead of substituting \\( -x \\) throughout.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_vertical_stretch_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "m": {"type": "int", "lo": -5, "hi": 5},
+   "n": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "choice", "values": [-3, -2, 2, 3, 4]},
+   "x0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[m]])x + ([[n]]) \\). The graph of \\( g \\) is a vertical stretch of the graph of \\( f \\) by a factor of [[c]], so \\( g(x) = [[c]]\\,f(x) \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[c]]*([[a]]*[[x0]]**2 + [[m]]*[[x0]] + [[n]])"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[m]]*[[x0]] + [[n]]",
+   "[[c]] + [[a]]*[[x0]]**2 + [[m]]*[[x0]] + [[n]]",
+   "[[c]]*[[a]]*[[x0]]**2 + [[m]]*[[x0]] + [[n]]",
+   "([[a]]*[[x0]]**2 + [[m]]*[[x0]] + [[n]])/[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A vertical stretch by [[c]] multiplies every output by [[c]]: \\( g(x) = [[c]]\\,f(x) \\). First \\( f([[x0]]) = [[a]]([[x0]])^{2} + ([[m]])([[x0]]) + ([[n]]) \\), then \\( g([[x0]]) = [[c]]\\cdot f([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the stretch factor entirely, reporting \\( f([[x0]]) \\) itself.",
+   "This adds the stretch factor instead of multiplying by it.",
+   "This applies the stretch factor only to the quadratic term instead of the whole function value.",
+   "This divides by the stretch factor instead of multiplying by it (as if compressing rather than stretching).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_horizontal_stretch_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "m": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "choice", "values": [-3, -2, 2, 3]},
+   "x0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[m]])x \\). The graph of \\( g \\) is a horizontal compression/stretch of the graph of \\( f \\), so \\( g(x) = f([[b]]x) \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*([[b]]*[[x0]])**2 + [[m]]*([[b]]*[[x0]])"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[m]]*[[x0]]",
+   "[[b]]*([[a]]*[[x0]]**2 + [[m]]*[[x0]])",
+   "[[a]]*[[b]]*[[x0]]**2 + [[m]]*[[x0]]",
+   "[[a]]*([[b]]*[[x0]])**2 + [[m]]*[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting [[b]]x for x means every occurrence of \\( x \\) in \\( f \\) is replaced by \\( [[b]]x \\), not just the input to the leading term: \\( g(x) = f([[b]]x) = [[a]]([[b]]x)^{2} + ([[m]])([[b]]x) \\). So \\( g([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the horizontal scaling entirely, reporting \\( f([[x0]]) \\) itself.",
+   "This scales the whole output by [[b]] instead of scaling the input before substitution (confusing this with a vertical stretch).",
+   "This applies the scale factor only to the quadratic term's coefficient rather than to \\( x \\) itself.",
+   "This applies the scaling to the quadratic term but forgets to also scale \\( x \\) in the linear term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_general_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "A": {"type": "choice", "values": [-2, 2, 3]},
+   "H": {"type": "int", "lo": -4, "hi": 4},
+   "K": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[x0]], [[H]])"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\) and \\( g(x) = [[A]]\\,f(x - ([[H]])) + ([[K]]) \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]]*([[a]]*([[x0]]-[[H]])**2 + [[b]]*([[x0]]-[[H]]) + [[c]]) + [[K]]"},
+  "distractors": [
+   "[[a]]*([[x0]]-[[H]])**2 + [[b]]*([[x0]]-[[H]]) + [[c]]",
+   "[[A]]*([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]) + [[K]]",
+   "[[A]]*([[a]]*([[x0]]+[[H]])**2 + [[b]]*([[x0]]+[[H]]) + [[c]]) + [[K]]",
+   "[[A]]*([[a]]*([[x0]]-[[H]])**2 + [[b]]*([[x0]]-[[H]]) + [[c]]) - [[K]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First shift the input by [[H]], then evaluate \\( f \\), then apply the vertical stretch [[A]] and finally add the vertical shift [[K]]: \\( g([[x0]]) = [[A]]\\,f([[x0]] - [[H]]) + ([[K]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to apply the stretch factor [[A]] and vertical shift [[K]] together with the horizontal shift.",
+   "This forgets the horizontal shift by [[H]], evaluating \\( f \\) at \\( [[x0]] \\) directly.",
+   "This shifts left instead of right, using \\( x + [[H]] \\) rather than \\( x - [[H]] \\).",
+   "This subtracts the vertical shift [[K]] instead of adding it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_vertex_shift_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "H": {"type": "int", "lo": -8, "hi": 8},
+   "K": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[H]], 0)", "Ne([[K]], 0)"],
+  "stem": "The graph of \\( f(x) = [[a]]x^{2} \\) has its vertex at \\( (0,0) \\). The graph of \\( f \\) is shifted right by [[H]] and up by [[K]] to produce the graph of \\( g \\). What is the sum of the coordinates of the vertex of \\( g \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[H]] + [[K]]"},
+  "distractors": [
+   "[[H]] - [[K]]",
+   "[[K]] - [[H]]",
+   "-([[H]] + [[K]])",
+   "[[H]]*[[K]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A horizontal shift right by [[H]] and vertical shift up by [[K]] moves the vertex from \\( (0,0) \\) to \\( ([[H]], [[K]]) \\). The sum of its coordinates is \\( [[H]] + [[K]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the vertical coordinate instead of adding it.",
+   "This subtracts the horizontal coordinate instead of adding it (order reversed).",
+   "This negates the correct sum entirely, as if both shifts were in the opposite direction.",
+   "This multiplies the two coordinates instead of adding them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "graph_transformations_point_reflection_v1",
+  "skill_id": "graph_transformations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]])x + ([[c]]) \\). The graph of \\( g \\) is obtained by rotating the graph of \\( f \\) by \\( 180^{\\circ} \\) about the origin, so \\( g(x) = -f(-x) \\). What is \\( g([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[a]]*(-[[x0]])**3 + [[b]]*(-[[x0]]) + [[c]])"},
+  "distractors": [
+   "[[a]]*[[x0]]**3 + [[b]]*[[x0]] + [[c]]",
+   "-([[a]]*[[x0]]**3 + [[b]]*[[x0]] + [[c]])",
+   "[[a]]*(-[[x0]])**3 + [[b]]*(-[[x0]]) + [[c]]",
+   "[[a]]*[[x0]]**3 + [[b]]*[[x0]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A \\( 180^{\\circ} \\) rotation about the origin both reflects the input and negates the output: \\( g(x) = -f(-x) \\). So \\( g([[x0]]) = -\\Big([[a]](-[[x0]])^{3} + ([[b]])(-[[x0]]) + ([[c]])\\Big) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets both reflections entirely, reporting \\( f([[x0]]) \\) itself.",
+   "This reflects across the \\( x \\)-axis only (negates the output) but forgets to also reflect the input.",
+   "This reflects across the \\( y \\)-axis only (negates the input) but forgets to also negate the output.",
+   "This negates the constant term separately instead of negating the whole expression \\( f(-[[x0]]) \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

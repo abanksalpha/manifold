@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "orthogonal_complement_dimension_v1",
+ "skill_id": "orthogonal_complement_orthogonality_of_the_four_subs",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "choice", "values": [4, 5, 6, 7, 8, 9]},
+  "k": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [
+  "Ge([[k]], 1)",
+  "Le([[k]], [[n]] - 1)"
+ ],
+ "stem": "Let \\( W \\) be a \\( [[k]] \\)-dimensional subspace of \\( \\mathbb{R}^{[[n]]} \\). What is the dimension of its orthogonal complement \\( W^{\\perp} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - [[k]]"},
+ "distractors": [
+  "[[k]]",
+  "[[n]]",
+  "[[n]] + [[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[n]] - [[k]] + 2",
+  "[[k]] - 1"
+ ],
+ "solution": "Since \\( \\dim W + \\dim W^{\\perp} = [[n]] \\), we have \\( \\dim W^{\\perp} = [[n]] - [[k]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This repeats \\( \\dim W \\); the complement has the remaining dimensions.",
+  "This is the dimension of the whole space, not the complement.",
+  "This adds instead of subtracting from the ambient dimension.",
+  "This is off by one from the correct dimension.",
+  "This is off by one from the correct dimension.",
+  "This is off by two from the correct dimension.",
+  "This is off by one from \\( \\dim W \\), not the complement."
+ ]
+},
+{
+ "template_id": "orthogonal_complement_of_a_span_v2",
+ "skill_id": "orthogonal_complement_orthogonality_of_the_four_subs",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m2": "[[p]]*[[a]] + [[d2]]",
+  "m3": "[[p]]*[[b]]",
+  "m4": "[[p]]*[[c]]",
+  "rankval": "1 + [[d2]]"
+ },
+ "stem": "Let \\( W = \\operatorname{span}\\{\\mathbf{v}_1, \\mathbf{v}_2\\} \\subseteq \\mathbb{R}^4 \\), where \\( \\mathbf{v}_1 = (1, [[a]], [[b]], [[c]]) \\) and \\( \\mathbf{v}_2 = ([[p]], [[m2]], [[m3]], [[m4]]) \\). What is \\( \\dim(W^{\\perp}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "4 - (1 + [[d2]])"},
+ "distractors": [
+  "1 + [[d2]]",
+  "4",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "3",
+  "[[answer]] + 2"
+ ],
+ "solution": "Row-reducing \\( \\{\\mathbf{v}_1, \\mathbf{v}_2\\} \\) shows \\( \\dim W = [[rankval]] \\), so by \\( \\dim W + \\dim W^{\\perp} = 4 \\), \\( \\dim(W^{\\perp}) = 4 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\dim W \\), not the dimension of its orthogonal complement.",
+  "This is the dimension of the whole ambient space.",
+  "This assumes \\( W \\) is all of \\( \\mathbb{R}^4 \\).",
+  "This overcounts the complement's dimension by one.",
+  "This undercounts the complement's dimension by one.",
+  "This assumes \\( \\mathbf{v}_1,\\mathbf{v}_2 \\) are always independent, ignoring the case \\( \\mathbf{v}_2 \\) is a multiple of \\( \\mathbf{v}_1 \\).",
+  "This overcounts the complement's dimension by two."
+ ]
+},
+{
+ "template_id": "left_null_space_dimension_v3",
+ "skill_id": "orthogonal_complement_orthogonality_of_the_four_subs",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 2},
+  "q": {"type": "int", "lo": 1, "hi": 2},
+  "r": {"type": "int", "lo": 1, "hi": 2},
+  "s": {"type": "int", "lo": 1, "hi": 3},
+  "t": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m14": "1 + [[s]] + [[t]]",
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m24": "[[p]] + ([[p]]*[[s]] + [[d2]]) + ([[p]]*[[t]] + [[d2]]*[[u]])",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "m34": "[[q]] + ([[q]]*[[s]] + [[r]]*[[d2]]) + ([[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]])",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "Let \\( A \\) be the \\( 3\\times 4 \\) matrix \\[ A = \\begin{bmatrix} 1 & [[s]] & [[t]] & [[m14]] \\\\ [[p]] & [[m22]] & [[m23]] & [[m24]] \\\\ [[q]] & [[m32]] & [[m33]] & [[m34]] \\end{bmatrix}. \\] The left null space of \\( A \\), \\( \\{\\mathbf{y} \\in \\mathbb{R}^3 : \\mathbf{y}^T A = \\mathbf{0}\\} \\), is the orthogonal complement (within \\( \\mathbb{R}^3 \\)) of the column space of \\( A \\). What is the dimension of the left null space of \\( A \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3 - (1 + [[d2]] + [[d3]])"},
+ "distractors": [
+  "1 + [[d2]] + [[d3]]",
+  "4",
+  "-1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "4 - (1 + [[d2]] + [[d3]])",
+  "[[answer]] + 2",
+  "5"
+ ],
+ "solution": "The column space of \\( A \\) has dimension \\( \\operatorname{rank}(A) = [[rankval]] \\), and it lives in \\( \\mathbb{R}^3 \\). Its orthogonal complement, the left null space, has dimension \\( 3 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the dimension of the COLUMN space, not its orthogonal complement.",
+  "This exceeds the ambient dimension of the codomain \\( \\mathbb{R}^3 \\).",
+  "This treats the left null space as having negative dimension.",
+  "This overcounts the left null space's dimension by one.",
+  "This undercounts the left null space's dimension by one.",
+  "This uses the number of columns (\\(4\\)) instead of rows (\\(3\\)) as the ambient dimension.",
+  "This overcounts the left null space's dimension by two.",
+  "This exceeds even the number of columns of \\( A \\)."
+ ]
+},
+{
+ "template_id": "orthogonal_complement_membership_v4",
+ "skill_id": "orthogonal_complement_orthogonality_of_the_four_subs",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -4, "hi": 4},
+  "u2": {"type": "int", "lo": -4, "hi": 4},
+  "u3": {"type": "int", "lo": -5, "hi": 5},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[u3]], 0)", "Ne([[u1]]*[[v1]] + [[u2]]*[[v2]], 0)"],
+ "stem": "Let \\( W = \\operatorname{span}\\{\\mathbf{u}\\} \\) be the line through \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\) in \\( \\mathbb{R}^3 \\). For what value of \\( t \\) does the vector \\( \\mathbf{v} = ([[v1]], [[v2]], t) \\) belong to \\( W^{\\perp} \\)?",
+ "answer_spec": {"op": "solve", "equation": "[[u1]]*[[v1]] + [[u2]]*[[v2]] + [[u3]]*t = 0", "var": "t"},
+ "distractors": [
+  "([[u1]]*[[v1]] + [[u2]]*[[v2]])/[[u3]]",
+  "-([[u1]]*[[v1]] + [[u2]]*[[v2]])",
+  "([[u1]]*[[v1]] + [[u2]]*[[v2]])*[[u3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]",
+  "[[u3]]"
+ ],
+ "solution": "\\( \\mathbf{v} \\in W^{\\perp} \\) exactly when \\( \\mathbf{v}\\cdot\\mathbf{u} = 0 \\): \\( ([[u1]])([[v1]]) + ([[u2]])([[v2]]) + ([[u3]])t = 0 \\), so \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign, missing the negative from solving for \\( t \\).",
+  "This forgets to divide by the coefficient of \\( t \\).",
+  "This multiplies by the coefficient of \\( t \\) instead of dividing by it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This has the wrong sign.",
+  "This is just the third coordinate of \\( \\mathbf{u} \\), unrelated to the orthogonality condition."
+ ]
+}
+]

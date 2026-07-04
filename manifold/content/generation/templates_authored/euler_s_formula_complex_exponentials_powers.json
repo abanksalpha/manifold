@@ -1,0 +1,162 @@
+[
+{
+ "template_id": "euler_formula_rectangular_v1",
+ "skill_id": "euler_s_formula_complex_exponentials_powers",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 23
+  }
+ },
+ "constraints": [],
+ "stem": "Use Euler's formula \\( e^{i\\theta} = \\cos\\theta + i\\sin\\theta \\) to evaluate \\( e^{i\\pi [[k]]/6} \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "cos([[k]]*pi/6) + I*sin([[k]]*pi/6)"
+ },
+ "require_rational": false,
+ "distractors": [
+  "sin([[k]]*pi/6) + I*cos([[k]]*pi/6)",
+  "cos([[k]]*pi/6) - I*sin([[k]]*pi/6)",
+  "-(cos([[k]]*pi/6) + I*sin([[k]]*pi/6))",
+  "I*(cos([[k]]*pi/6) + I*sin([[k]]*pi/6))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Euler's formula \\( e^{i\\theta} = \\cos\\theta + i\\sin\\theta \\) with \\( \\theta = \\dfrac{\\pi [[k]]}{6} \\), we get \\( e^{i\\pi [[k]]/6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps the roles of sine and cosine; the real part is \\( \\cos\\theta \\), not \\( \\sin\\theta \\).",
+  "This is \\( e^{-i\\theta} \\) (the conjugate); the sign of the imaginary part was flipped.",
+  "This is \\( -e^{i\\theta} = e^{i(\\theta+\\pi)} \\), a rotation by an extra half turn.",
+  "This is \\( i\\,e^{i\\theta} = e^{i(\\theta+\\pi/2)} \\), a rotation by an extra quarter turn.",
+  "This is off by one in the real part.",
+  "This is off by one in the real part."
+ ]
+},
+{
+ "template_id": "euler_formula_general_complex_exponent_v1",
+ "skill_id": "euler_s_formula_complex_exponentials_powers",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "choice", "values": [-2, -1, 1, 2]},
+  "k": {"type": "int", "lo": 1, "hi": 11}
+ },
+ "constraints": [],
+ "stem": "Use Euler's formula to write \\( e^{[[a]] + i\\pi [[k]]/6} \\) in the rectangular form \\( x + yi \\), where \\( x \\) and \\( y \\) may involve the constant \\( e \\).",
+ "answer_spec": {"op": "evaluate", "expr": "exp([[a]])*cos([[k]]*pi/6) + I*exp([[a]])*sin([[k]]*pi/6)"},
+ "require_rational": false,
+ "distractors": [
+  "cos([[k]]*pi/6) + I*sin([[k]]*pi/6)",
+  "exp([[a]])*sin([[k]]*pi/6) + I*exp([[a]])*cos([[k]]*pi/6)",
+  "exp([[a]])*cos([[k]]*pi/6) - I*exp([[a]])*sin([[k]]*pi/6)",
+  "-(exp([[a]])*cos([[k]]*pi/6) + I*exp([[a]])*sin([[k]]*pi/6))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Split the exponent: \\( e^{[[a]]+i\\pi[[k]]/6} = e^{[[a]]}\\,e^{i\\pi[[k]]/6} = e^{[[a]]}\\left(\\cos\\dfrac{\\pi[[k]]}{6} + i\\sin\\dfrac{\\pi[[k]]}{6}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the scaling factor \\( e^{[[a]]} \\) entirely.",
+  "This swaps sine and cosine; the real part must scale \\( \\cos\\theta \\).",
+  "This is the conjugate; the sign of the imaginary part was flipped.",
+  "This negates the correct value (a sign slip).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "euler_formula_power_of_exponential_v1",
+ "skill_id": "euler_s_formula_complex_exponentials_powers",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 11},
+  "m": {"type": "choice", "values": [-3, -2, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Given \\( e^{i\\pi [[k]]/6} \\), use the law of exponents for complex exponentials to compute \\( \\left(e^{i\\pi [[k]]/6}\\right)^{[[m]]} \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "cos([[k]]*[[m]]*pi/6) + I*sin([[k]]*[[m]]*pi/6)"},
+ "require_rational": false,
+ "distractors": [
+  "cos([[k]]*pi/6) + I*sin([[k]]*pi/6)",
+  "[[m]]*(cos([[k]]*pi/6) + I*sin([[k]]*pi/6))",
+  "cos([[k]]*[[m]]*pi/6) - I*sin([[k]]*[[m]]*pi/6)",
+  "-(cos([[k]]*[[m]]*pi/6) + I*sin([[k]]*[[m]]*pi/6))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the exponent rule \\( (e^{i\\theta})^{m} = e^{im\\theta} \\) with \\( \\theta=\\pi[[k]]/6 \\) and \\( m=[[m]] \\), the power equals \\( \\cos\\left(\\dfrac{\\pi[[k]][[m]]}{6}\\right) + i\\sin\\left(\\dfrac{\\pi[[k]][[m]]}{6}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to scale the angle by \\( m \\), leaving \\( \\theta \\) unchanged.",
+  "This multiplies the whole exponential by \\( m \\) instead of scaling the angle.",
+  "This is the conjugate; the sign of the imaginary part was flipped.",
+  "This negates the correct value (a sign slip).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "euler_formula_cosine_from_exponentials_v1",
+ "skill_id": "euler_s_formula_complex_exponentials_powers",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 23}
+ },
+ "constraints": [],
+ "stem": "Using Euler's formula, \\( \\cos\\theta = \\dfrac{e^{i\\theta} + e^{-i\\theta}}{2} \\). Evaluate \\( \\cos\\!\\left(\\dfrac{\\pi [[k]]}{6}\\right) \\) using this identity.",
+ "answer_spec": {"op": "evaluate", "expr": "((cos([[k]]*pi/6) + I*sin([[k]]*pi/6)) + (cos([[k]]*pi/6) - I*sin([[k]]*pi/6)))/2"},
+ "require_rational": false,
+ "distractors": [
+  "((cos([[k]]*pi/6) + I*sin([[k]]*pi/6)) - (cos([[k]]*pi/6) - I*sin([[k]]*pi/6)))/2",
+  "cos([[k]]*pi/6) + I*sin([[k]]*pi/6)",
+  "sin([[k]]*pi/6)",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Euler's formula, \\( e^{i\\theta} + e^{-i\\theta} = 2\\cos\\theta \\), so \\( \\cos\\theta = \\dfrac{e^{i\\theta}+e^{-i\\theta}}{2} \\). With \\( \\theta = \\pi[[k]]/6 \\), this equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the difference identity \\( \\dfrac{e^{i\\theta}-e^{-i\\theta}}{2} \\), which gives \\( i\\sin\\theta \\), not \\( \\cos\\theta \\).",
+  "This is \\( e^{i\\theta} \\) itself, not the averaged combination that isolates \\( \\cos\\theta \\).",
+  "This computes \\( \\sin\\theta \\) instead of \\( \\cos\\theta \\).",
+  "This negates the correct value (a sign slip).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "euler_formula_product_of_exponentials_v1",
+ "skill_id": "euler_s_formula_complex_exponentials_powers",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "k1": {"type": "int", "lo": 1, "hi": 11},
+  "k2": {"type": "int", "lo": 1, "hi": 11}
+ },
+ "constraints": [],
+ "stem": "Using the exponential law \\( e^{i\\alpha}e^{i\\beta} = e^{i(\\alpha+\\beta)} \\), compute \\( e^{i\\pi [[k1]]/6}\\cdot e^{i\\pi [[k2]]/6} \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "cos(([[k1]]+[[k2]])*pi/6) + I*sin(([[k1]]+[[k2]])*pi/6)"},
+ "require_rational": false,
+ "distractors": [
+  "(cos([[k1]]*pi/6) + I*sin([[k1]]*pi/6)) * (cos([[k2]]*pi/6) + I*sin([[k2]]*pi/6)) + 1",
+  "cos(([[k1]]-[[k2]])*pi/6) + I*sin(([[k1]]-[[k2]])*pi/6)",
+  "cos(([[k1]]+[[k2]])*pi/6) - I*sin(([[k1]]+[[k2]])*pi/6)",
+  "-(cos(([[k1]]+[[k2]])*pi/6) + I*sin(([[k1]]+[[k2]])*pi/6))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the exponential law, the product of the two exponentials adds their angles: \\( e^{i\\pi[[k1]]/6}e^{i\\pi[[k2]]/6} = e^{i\\pi([[k1]]+[[k2]])/6} = \\cos\\!\\left(\\dfrac{\\pi([[k1]]+[[k2]])}{6}\\right) + i\\sin\\!\\left(\\dfrac{\\pi([[k1]]+[[k2]])}{6}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by an extra additive constant from a miscomputed product.",
+  "This subtracts the angles instead of adding them.",
+  "This is the conjugate; the sign of the imaginary part was flipped.",
+  "This negates the correct value (a sign slip).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "dot_product_of_two_vectors_v1",
+ "skill_id": "orthogonality_gram_schmidt",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]**2+[[b]]**2+[[c]]**2, 0)", "Ne([[d]]**2+[[e]]**2+[[f]]**2, 0)"],
+ "stem": "Let \\( \\mathbf{u} = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v} = ([[d]],\\ [[e]],\\ [[f]]) \\). What is \\( \\mathbf{u} \\cdot \\mathbf{v} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[d]] + [[b]]*[[e]] + [[c]]*[[f]]"},
+ "distractors": ["[[a]]+[[d]]+[[b]]+[[e]]+[[c]]+[[f]]", "[[a]]*[[d]]-[[b]]*[[e]]+[[c]]*[[f]]", "[[a]]*[[e]]+[[b]]*[[d]]+[[c]]*[[f]]", "[[a]]**2+[[b]]**2+[[c]]**2", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "The dot product is \\( \\mathbf{u}\\cdot\\mathbf{v} = [[a]]\\cdot[[d]] + [[b]]\\cdot[[e]] + [[c]]\\cdot[[f]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds all six components instead of multiplying corresponding ones and summing.",
+  "This subtracts the middle term instead of adding it.",
+  "This mismatches which coordinates of \\( \\mathbf{u} \\) and \\( \\mathbf{v} \\) are multiplied together.",
+  "This computes \\( \\mathbf{u}\\cdot\\mathbf{u} \\) (the squared norm of \\( \\mathbf{u} \\)) instead of \\( \\mathbf{u}\\cdot\\mathbf{v} \\).",
+  "This is off by one from the correct dot product.",
+  "This is off by one from the correct dot product."
+ ]
+},
+{
+ "template_id": "squared_distance_between_vectors_v2",
+ "skill_id": "orthogonality_gram_schmidt",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne(([[a]]-[[d]])**2+([[b]]-[[e]])**2+([[c]]-[[f]])**2, 0)"],
+ "stem": "Let \\( \\mathbf{u} = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v} = ([[d]],\\ [[e]],\\ [[f]]) \\). What is \\( \\lVert \\mathbf{u} - \\mathbf{v} \\rVert^2 \\), the square of the distance between \\( \\mathbf{u} \\) and \\( \\mathbf{v} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]-[[d]])**2 + ([[b]]-[[e]])**2 + ([[c]]-[[f]])**2"},
+ "distractors": ["([[a]]-[[d]])+([[b]]-[[e]])+([[c]]-[[f]])", "[[a]]**2+[[b]]**2+[[c]]**2+[[d]]**2+[[e]]**2+[[f]]**2", "[[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]]", "([[a]]+[[d]])**2+([[b]]+[[e]])**2+([[c]]+[[f]])**2", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "\\( \\lVert \\mathbf{u}-\\mathbf{v}\\rVert^2 = ([[a]]-[[d]])^2+([[b]]-[[e]])^2+([[c]]-[[f]])^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums the coordinate differences without squaring them.",
+  "This sums the squares of \\( \\mathbf{u} \\) and \\( \\mathbf{v}\\)'s coordinates separately instead of squaring their differences.",
+  "This computes \\( \\mathbf{u}\\cdot\\mathbf{v} \\) instead of \\( \\lVert \\mathbf{u}-\\mathbf{v}\\rVert^2 \\).",
+  "This adds the vectors instead of subtracting them before squaring.",
+  "This is off by one from the correct squared distance.",
+  "This is off by one from the correct squared distance."
+ ]
+},
+{
+ "template_id": "gram_schmidt_projection_coefficient_v3",
+ "skill_id": "orthogonality_gram_schmidt",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]**2+[[b]]**2+[[c]]**2, 0)"],
+ "stem": "Let \\( \\mathbf{u} = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v} = ([[d]],\\ [[e]],\\ [[f]]) \\). In the Gram\u2013Schmidt process, the projection of \\( \\mathbf{v} \\) onto \\( \\mathbf{u} \\) is \\( \\operatorname{proj}_{\\mathbf{u}}(\\mathbf{v}) = c\\,\\mathbf{u} \\) where \\( c = \\dfrac{\\langle \\mathbf{v}, \\mathbf{u}\\rangle}{\\langle \\mathbf{u}, \\mathbf{u}\\rangle} \\). What is \\( c \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[d]] + [[b]]*[[e]] + [[c]]*[[f]]) / ([[a]]**2+[[b]]**2+[[c]]**2)"},
+ "distractors": ["([[a]]**2+[[b]]**2+[[c]]**2)/([[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]])", "[[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]]", "([[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]])/([[d]]**2+[[e]]**2+[[f]]**2)", "[[answer]]+1", "[[answer]]-1", "-[[answer]]"],
+ "solution": "\\( c = \\dfrac{\\mathbf{v}\\cdot\\mathbf{u}}{\\mathbf{u}\\cdot\\mathbf{u}} = \\dfrac{[[a]]\\cdot[[d]]+[[b]]\\cdot[[e]]+[[c]]\\cdot[[f]]}{[[a]]^2+[[b]]^2+[[c]]^2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the fraction, dividing \\( \\langle \\mathbf{u},\\mathbf{u}\\rangle \\) by \\( \\langle \\mathbf{v},\\mathbf{u}\\rangle \\) instead of the reverse.",
+  "This is just the numerator \\( \\langle \\mathbf{v},\\mathbf{u}\\rangle \\), forgetting to divide by \\( \\langle \\mathbf{u},\\mathbf{u}\\rangle \\).",
+  "This divides by \\( \\langle \\mathbf{v},\\mathbf{v}\\rangle \\) instead of \\( \\langle \\mathbf{u},\\mathbf{u}\\rangle \\).",
+  "This is off by one from the correct coefficient.",
+  "This is off by one from the correct coefficient.",
+  "This is the negative of the correct coefficient."
+ ]
+},
+{
+ "template_id": "projection_vector_component_v4",
+ "skill_id": "orthogonality_gram_schmidt",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]**2+[[b]]**2+[[c]]**2, 0)"],
+ "stem": "Let \\( \\mathbf{u} = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v} = ([[d]],\\ [[e]],\\ [[f]]) \\). What is the FIRST coordinate of \\( \\operatorname{proj}_{\\mathbf{u}}(\\mathbf{v}) = \\left(\\dfrac{\\mathbf{v}\\cdot\\mathbf{u}}{\\mathbf{u}\\cdot\\mathbf{u}}\\right)\\mathbf{u} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[a]]*[[d]] + [[b]]*[[e]] + [[c]]*[[f]]) / ([[a]]**2+[[b]]**2+[[c]]**2)) * [[a]]"},
+ "distractors": ["(([[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]])/([[a]]**2+[[b]]**2+[[c]]**2))*[[d]]", "([[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]])/([[a]]**2+[[b]]**2+[[c]]**2)", "[[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]]", "[[d]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "The scalar coefficient is \\( c = \\dfrac{\\mathbf{v}\\cdot\\mathbf{u}}{\\mathbf{u}\\cdot\\mathbf{u}} = \\dfrac{[[a]]\\cdot[[d]]+[[b]]\\cdot[[e]]+[[c]]\\cdot[[f]]}{[[a]]^2+[[b]]^2+[[c]]^2} \\); the first coordinate of \\( \\operatorname{proj}_{\\mathbf{u}}(\\mathbf{v}) = c\\mathbf{u} \\) is \\( c\\cdot[[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the coefficient \\(c\\) by the first coordinate of \\( \\mathbf{v} \\) instead of \\( \\mathbf{u} \\) (the projection lies along \\( \\mathbf{u} \\), not \\( \\mathbf{v} \\)).",
+  "This is just the coefficient \\(c\\) itself, forgetting to multiply by the first coordinate of \\( \\mathbf{u} \\).",
+  "This is the numerator \\( \\mathbf{v}\\cdot\\mathbf{u} \\) alone, forgetting both the division and the multiplication by \\( \\mathbf{u} \\)'s coordinate.",
+  "This is just the first coordinate of \\( \\mathbf{v} \\), as if the projection equaled \\( \\mathbf{v} \\) itself.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "orthogonal_parameter_solve_v5",
+ "skill_id": "orthogonality_gram_schmidt",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Let \\( \\mathbf{u} = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v} = ([[d]],\\ [[e]],\\ k) \\), where \\( k \\) is a real parameter. For what value of \\( k \\) are \\( \\mathbf{u} \\) and \\( \\mathbf{v} \\) orthogonal (i.e., \\( \\mathbf{u}\\cdot\\mathbf{v} = 0 \\))?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*[[d]] + [[b]]*[[e]] + [[c]]*k = 0", "var": "k"},
+ "distractors": ["-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[a]]*[[d]]+[[b]]*[[e]]", "[[d]]+[[e]]"],
+ "solution": "Setting \\( \\mathbf{u}\\cdot\\mathbf{v} = [[a]][[d]] + [[b]][[e]] + [[c]]k = 0 \\) and solving for \\( k \\) gives \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the negative of the correct value, from a sign error isolating \\(k\\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is the partial dot product \\( \\mathbf{u}\\cdot\\mathbf{v} \\) restricted to the first two coordinates, mistaken for \\(k\\) itself.",
+  "This adds the two given coordinates of \\( \\mathbf{v} \\) instead of solving the orthogonality equation."
+ ]
+},
+{
+ "template_id": "gram_schmidt_second_vector_component_v6",
+ "skill_id": "orthogonality_gram_schmidt",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]**2+[[b]]**2+[[c]]**2, 0)"],
+ "stem": "Apply the Gram\u2013Schmidt process to \\( \\mathbf{v}_1 = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v}_2 = ([[d]],\\ [[e]],\\ [[f]]) \\): set \\( \\mathbf{e}_1 = \\mathbf{v}_1 \\), and \\( \\mathbf{e}_2 = \\mathbf{v}_2 - \\left(\\dfrac{\\mathbf{v}_2\\cdot\\mathbf{e}_1}{\\mathbf{e}_1\\cdot\\mathbf{e}_1}\\right)\\mathbf{e}_1 \\), so \\( \\mathbf{e}_2 \\) is orthogonal to \\( \\mathbf{e}_1 \\). What is the FIRST coordinate of \\( \\mathbf{e}_2 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[d]] - (([[a]]*[[d]] + [[b]]*[[e]] + [[c]]*[[f]]) / ([[a]]**2+[[b]]**2+[[c]]**2)) * [[a]]"},
+ "distractors": ["[[d]]", "(([[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]])/([[a]]**2+[[b]]**2+[[c]]**2))*[[a]]", "[[d]] + (([[a]]*[[d]]+[[b]]*[[e]]+[[c]]*[[f]])/([[a]]**2+[[b]]**2+[[c]]**2))*[[a]]", "[[a]]", "[[answer]]+1", "[[answer]]-1"],
+ "solution": "The projection coefficient is \\( c = \\dfrac{\\mathbf{v}_2\\cdot\\mathbf{e}_1}{\\mathbf{e}_1\\cdot\\mathbf{e}_1} = \\dfrac{[[a]]\\cdot[[d]]+[[b]]\\cdot[[e]]+[[c]]\\cdot[[f]]}{[[a]]^2+[[b]]^2+[[c]]^2} \\), and the first coordinate of \\( \\mathbf{e}_2 = \\mathbf{v}_2 - c\\mathbf{e}_1 \\) is \\( [[d]] - c\\cdot[[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the first coordinate of \\( \\mathbf{v}_2 \\), forgetting to subtract the projection onto \\( \\mathbf{e}_1 \\).",
+  "This is only the subtracted projection term, forgetting to subtract it from \\( \\mathbf{v}_2 \\)'s coordinate.",
+  "This adds the projection term instead of subtracting it.",
+  "This is just the first coordinate of \\( \\mathbf{v}_1 \\), unrelated to \\( \\mathbf{e}_2 \\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+}
+]

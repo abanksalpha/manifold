@@ -1,0 +1,245 @@
+[
+ {
+  "template_id": "second_order_ivp_evaluate_v1",
+  "skill_id": "second_order_ivp_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "q": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "int", "lo": 1, "hi": 4},
+   "v0": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {
+   "b": "-([[p]] + [[q]])",
+   "c": "[[p]]*[[q]]",
+   "c1": "([[v0]] - [[q]]*[[y0]])/([[p]] - [[q]])",
+   "c2": "([[p]]*[[y0]] - [[v0]])/([[p]] - [[q]])"
+  },
+  "stem": "Solve the initial value problem \\( y'' + ([[b]])y' + ([[c]])y = 0 \\), \\( y(0) = [[y0]] \\), \\( y'(0) = [[v0]] \\), and evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[c1]])*exp([[p]]*[[t0]]) + ([[c2]])*exp([[q]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "([[c2]])*exp([[p]]*[[t0]]) + ([[c1]])*exp([[q]]*[[t0]])",
+   "[[y0]]/2*exp([[p]]*[[t0]]) + [[y0]]/2*exp([[q]]*[[t0]])",
+   "[[y0]]*exp([[p]]*[[t0]])",
+   "[[y0]]*exp([[q]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The characteristic roots are \\( [[p]] \\) and \\( [[q]] \\), so \\( y = C_1 e^{[[p]]t} + C_2 e^{[[q]]t} \\). The conditions \\( y(0) = [[y0]] \\), \\( y'(0) = [[v0]] \\) give \\( C_1 = [[c1]] \\) and \\( C_2 = [[c2]] \\). Hence \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the two constants \\( C_1 \\) and \\( C_2 \\).",
+   "This splits the initial value equally between the modes, ignoring \\( y'(0) \\).",
+   "This keeps only the first exponential mode.",
+   "This keeps only the second exponential mode.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_ivp_repeated_root_v1",
+  "skill_id": "second_order_ivp_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": 1, "hi": 5},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [-1, 1, 2]}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "-2*[[r]]",
+   "c": "[[r]]**2",
+   "c2": "[[v0]] - [[r]]*[[y0]]"
+  },
+  "stem": "Solve the initial value problem \\( y'' + ([[b]])y' + ([[c]])y = 0 \\), where the characteristic equation has a REPEATED root, given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\). Evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(([[y0]]) + ([[c2]])*[[t0]])*exp([[r]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "(([[y0]]) + ([[v0]])*[[t0]])*exp([[r]]*[[t0]])",
+   "(([[y0]]) + ([[c2]])*[[t0]])*exp(-[[r]]*[[t0]])",
+   "[[y0]]*exp([[r]]*[[t0]])",
+   "(([[y0]])*[[t0]] + ([[c2]]))*exp([[r]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The characteristic equation has a repeated root \\( r = [[r]] \\), so the general solution is \\( y = (C_1 + C_2 x)e^{[[r]]x} \\). Then \\( y(0) = C_1 = [[y0]] \\), and \\( y'(x) = C_2 e^{[[r]]x} + [[r]](C_1+C_2 x)e^{[[r]]x} \\) gives \\( y'(0) = C_2 + [[r]]C_1 = [[v0]] \\), so \\( C_2 = [[c2]] \\). Hence \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract \\( [[r]]y_0 \\) when solving for \\( C_2 \\), using \\( v_0 \\) directly.",
+   "This uses \\( e^{-[[r]]x} \\) instead of the correct \\( e^{[[r]]x} \\).",
+   "This drops the polynomial correction term entirely, as if the root were not repeated.",
+   "This multiplies the wrong constant by \\( x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_ivp_oscillator_v1",
+  "skill_id": "second_order_ivp_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "w": {"type": "choice", "values": [1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7]}
+  },
+  "constraints": ["Ne([[y0]], 0)", "Ne([[v0]], 0)"],
+  "derived": {
+   "c": "[[w]]**2"
+  },
+  "stem": "Solve the initial value problem \\( y'' + ([[c]])y = 0 \\) (the characteristic roots are the purely imaginary pair \\( \\pm [[w]]i \\)), given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\). Evaluate \\( y\\!\\left(\\dfrac{[[k]]\\pi}{2\\cdot[[w]]}\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*cos([[k]]*pi/2) + ([[v0]]/[[w]])*sin([[k]]*pi/2)"},
+  "distractors": [
+   "[[y0]]*sin([[k]]*pi/2) + ([[v0]]/[[w]])*cos([[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2) + [[v0]]*sin([[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2) - ([[v0]]/[[w]])*sin([[k]]*pi/2)",
+   "[[y0]]*cos([[w]]*[[k]]*pi/2) + ([[v0]]/[[w]])*sin([[w]]*[[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With roots \\( \\pm [[w]]i \\), the general solution is \\( y = y_0\\cos([[w]]x) + \\dfrac{v_0}{[[w]]}\\sin([[w]]x) \\). At \\( x = \\dfrac{[[k]]\\pi}{2[[w]]} \\), \\( [[w]]x = \\dfrac{[[k]]\\pi}{2} \\), so \\( y = [[y0]]\\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) + \\dfrac{[[v0]]}{[[w]]}\\sin\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps the roles of sine and cosine.",
+   "This forgets to divide the velocity term by \\( [[w]] \\).",
+   "This uses the wrong sign on the sine term.",
+   "This leaves an extra factor of \\( [[w]] \\) inside the trig arguments instead of letting it cancel.",
+   "This drops the velocity term entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_ivp_nonhomog_constant_v1",
+  "skill_id": "second_order_ivp_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "q": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "int", "lo": 1, "hi": 4},
+   "v0": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [1, 2]},
+   "d": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[d]], 0)"],
+  "derived": {
+   "b": "-([[p]] + [[q]])",
+   "c": "[[p]]*[[q]]",
+   "yp": "[[d]]/[[c]]",
+   "c1": "(([[v0]]) - [[q]]*(([[y0]])-([[yp]])))/([[p]] - [[q]])",
+   "c2": "([[p]]*(([[y0]])-([[yp]])) - ([[v0]]))/([[p]] - [[q]])"
+  },
+  "stem": "The nonhomogeneous equation \\( y'' + ([[b]])y' + ([[c]])y = [[d]] \\) admits a constant particular solution. Solve the initial value problem with \\( y(0) = [[y0]] \\), \\( y'(0) = [[v0]] \\), and evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[c1]])*exp([[p]]*[[t0]]) + ([[c2]])*exp([[q]]*[[t0]]) + [[yp]]"},
+  "require_rational": false,
+  "distractors": [
+   "([[c1]])*exp([[p]]*[[t0]]) + ([[c2]])*exp([[q]]*[[t0]])",
+   "((([[v0]])-[[q]]*[[y0]])/([[p]]-[[q]]))*exp([[p]]*[[t0]]) + ((([[p]])*[[y0]]-[[v0]])/([[p]]-[[q]]))*exp([[q]]*[[t0]]) + [[yp]]",
+   "([[c2]])*exp([[p]]*[[t0]]) + ([[c1]])*exp([[q]]*[[t0]]) + [[yp]]",
+   "[[y0]]*exp([[p]]*[[t0]]) + [[yp]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A constant particular solution \\( y_p = [[yp]] \\) satisfies \\( ([[c]])y_p = [[d]] \\). Writing \\( y = y_p + z \\), \\( z \\) solves the homogeneous equation with \\( z(0) = [[y0]]-[[yp]] \\), \\( z'(0) = [[v0]] \\), giving \\( C_1 = [[c1]] \\), \\( C_2 = [[c2]] \\). Hence \\( y([[t0]]) = C_1e^{[[p]][[t0]]} + C_2e^{[[q]][[t0]]} + [[yp]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to add back the particular solution \\( y_p \\).",
+   "This uses \\( y_0 \\) directly instead of shifting by \\( y_p \\) before solving for the constants.",
+   "This swaps the two homogeneous constants \\( C_1 \\) and \\( C_2 \\).",
+   "This drops the second exponential mode entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_ivp_nonhomog_exponential_v1",
+  "skill_id": "second_order_ivp_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "q": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "r": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "v0": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [1, 2]},
+   "d": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[r]], [[p]])", "Ne([[r]], [[q]])", "Ne([[d]], 0)"],
+  "derived": {
+   "b": "-([[p]] + [[q]])",
+   "c": "[[p]]*[[q]]",
+   "A": "[[d]]/(([[r]]-[[p]])*([[r]]-[[q]]))",
+   "yshift": "([[y0]])-([[A]])",
+   "vshift": "([[v0]])-([[A]])*[[r]]",
+   "c1": "(([[vshift]]) - [[q]]*([[yshift]]))/([[p]] - [[q]])",
+   "c2": "([[p]]*([[yshift]]) - ([[vshift]]))/([[p]] - [[q]])"
+  },
+  "stem": "The forced equation \\( y'' + ([[b]])y' + ([[c]])y = [[d]]e^{[[r]]x} \\) has a particular solution of the form \\( Ae^{[[r]]x} \\) (the forcing rate \\( [[r]] \\) is not a characteristic root). Given \\( y(0) = [[y0]] \\) and \\( y'(0) = [[v0]] \\), evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[c1]])*exp([[p]]*[[t0]]) + ([[c2]])*exp([[q]]*[[t0]]) + ([[A]])*exp([[r]]*[[t0]])"},
+  "require_rational": false,
+  "distractors": [
+   "([[c1]])*exp([[p]]*[[t0]]) + ([[c2]])*exp([[q]]*[[t0]]) + ([[A]])",
+   "((([[v0]])-[[q]]*[[y0]])/([[p]]-[[q]]))*exp([[p]]*[[t0]]) + ((([[p]])*[[y0]]-[[v0]])/([[p]]-[[q]]))*exp([[q]]*[[t0]]) + ([[A]])*exp([[r]]*[[t0]])",
+   "([[c2]])*exp([[p]]*[[t0]]) + ([[c1]])*exp([[q]]*[[t0]]) + ([[A]])*exp([[r]]*[[t0]])",
+   "[[d]]*exp([[r]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Try \\( y_p = Ae^{[[r]]x} \\): substituting gives \\( A = \\dfrac{[[d]]}{([[r]]-([[p]]))([[r]]-([[q]]))} = [[A]] \\). The homogeneous part must absorb the LEFTOVER initial data \\( z(0) = [[y0]] - [[A]] = [[yshift]] \\), \\( z'(0) = [[v0]] - [[A]]\\cdot[[r]] = [[vshift]] \\) (since \\( y_p \\) itself already contributes to both \\( y(0) \\) and \\( y'(0) \\)), giving \\( C_1 = [[c1]] \\), \\( C_2 = [[c2]] \\). Hence \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the exponential factor on the particular-solution term.",
+   "This solves for \\( C_1,C_2 \\) using the raw \\( y_0,v_0 \\), forgetting that the particular solution also contributes to \\( y'(0) \\).",
+   "This swaps the two homogeneous constants \\( C_1 \\) and \\( C_2 \\).",
+   "This uses \\( [[d]] \\) itself as the particular amplitude, ignoring the denominator.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "second_order_ivp_spring_velocity_v1",
+  "skill_id": "second_order_ivp_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "w": {"type": "choice", "values": [1, 2, 3]},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "v0": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7]}
+  },
+  "constraints": ["Ne([[y0]], 0)", "Ne([[v0]], 0)"],
+  "derived": {
+   "wsq": "[[w]]**2"
+  },
+  "stem": "A block of mass \\(1\\) kg on a frictionless spring with spring constant \\([[wsq]]\\) N/m has displacement \\(x(t)\\) satisfying \\(x'' + [[wsq]]x = 0\\). It starts at \\(x(0) = [[y0]]\\) m with velocity \\(x'(0) = [[v0]]\\) m/s. Find its velocity \\(x'\\!\\left(\\dfrac{[[k]]\\pi}{2\\cdot[[w]]}\\right)\\) (in m/s).",
+  "answer_spec": {"op": "evaluate", "expr": "-[[y0]]*[[w]]*sin([[k]]*pi/2) + [[v0]]*cos([[k]]*pi/2)"},
+  "distractors": [
+   "[[y0]]*[[w]]*sin([[k]]*pi/2) + [[v0]]*cos([[k]]*pi/2)",
+   "[[y0]]*cos([[k]]*pi/2) + ([[v0]]/[[w]])*sin([[k]]*pi/2)",
+   "-[[y0]]*sin([[k]]*pi/2) + [[v0]]*[[w]]*cos([[k]]*pi/2)",
+   "-[[y0]]*[[w]]*cos([[k]]*pi/2) + [[v0]]*sin([[k]]*pi/2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The position is \\( x(t) = [[y0]]\\cos([[w]]t) + \\dfrac{[[v0]]}{[[w]]}\\sin([[w]]t) \\), so the velocity is \\( x'(t) = -[[y0]][[w]]\\sin([[w]]t) + [[v0]]\\cos([[w]]t) \\). At \\( t = \\dfrac{[[k]]\\pi}{2[[w]]} \\), \\( [[w]]t = \\dfrac{[[k]]\\pi}{2} \\), so \\( x' = -[[y0]][[w]]\\sin\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) + [[v0]]\\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign on the sine term.",
+   "This computes the POSITION \\( x(t) \\) rather than the requested velocity \\( x'(t) \\).",
+   "This forgets to multiply the sine term by \\( [[w]] \\) and instead multiplies the cosine term.",
+   "This differentiates the wrong way, keeping cosine with \\([[y0]][[w]]\\) instead of sine.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

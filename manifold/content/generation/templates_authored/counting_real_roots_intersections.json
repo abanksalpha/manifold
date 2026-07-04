@@ -1,0 +1,201 @@
+[
+ {
+  "template_id": "counting_real_roots_intersections_v1",
+  "skill_id": "counting_real_roots_intersections",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]]**2 - 4*[[a]]*[[c]], 0)"],
+  "stem": "How many distinct real roots does the equation \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = 0 \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "1 + ([[b]]**2 - 4*[[a]]*[[c]])/Abs([[b]]**2 - 4*[[a]]*[[c]])"},
+  "distractors": [
+   "1",
+   "3",
+   "4",
+   "2 - [[answer]]",
+   "[[answer]] + 3",
+   "5"
+  ],
+  "solution": "The number of distinct real roots of a quadratic is governed by the discriminant \\( \\Delta = ([[b]])^{2} - 4([[a]])([[c]]) \\): two if \\( \\Delta > 0 \\) and none if \\( \\Delta < 0 \\). Here the count is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "A quadratic has a single (repeated) real root only when the discriminant is exactly zero, which is not the case here.",
+   "A quadratic cannot have three real roots; its degree is 2.",
+   "A quadratic cannot have four real roots; its degree is 2.",
+   "This swaps the two possible answers (0 and 2), i.e. it reads the sign of the discriminant backward.",
+   "This overcounts the possible number of real roots for a degree-2 equation.",
+   "This exceeds the number of roots a quadratic can possibly have."
+  ]
+ },
+ {
+  "template_id": "counting_real_roots_intersections_cubic_v1",
+  "skill_id": "counting_real_roots_intersections",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[b]]**2 - 4*[[c]], 0)", "Ne([[r]]**2 + [[b]]*[[r]] + [[c]], 0)"],
+  "stem": "The cubic \\( p(x) = (x - ([[r]]))(x^{2} + ([[b]])x + ([[c]])) \\) is set equal to zero. How many distinct real roots does \\( p(x) = 0 \\) have in total?",
+  "answer_spec": {"op": "evaluate", "expr": "2 + ([[b]]**2 - 4*[[c]])/Abs([[b]]**2 - 4*[[c]])"},
+  "distractors": [
+   "1",
+   "2",
+   "4",
+   "4 - [[answer]]",
+   "[[answer]] + 2",
+   "0"
+  ],
+  "solution": "The linear factor contributes the real root \\( x = [[r]] \\). The quadratic factor contributes two more real roots if its discriminant \\( \\Delta = ([[b]])^{2} - 4([[c]]) \\) is positive, or none if \\( \\Delta \\) is negative. Since none of the quadratic factor's roots coincide with \\( [[r]] \\), the total is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts only the linear factor's root and assumes the quadratic factor contributes none, regardless of its discriminant.",
+   "This assumes the quadratic factor always contributes exactly one root, as if it were always a repeated root.",
+   "This assumes a cubic always has the maximum of 3 real roots plus miscounts by one.",
+   "This swaps the two possible totals (1 and 3) by reading the discriminant's sign backward.",
+   "This overcounts by assuming the quadratic factor always contributes 2 roots on top of an extra one.",
+   "A cubic with a real linear factor always has at least one real root, so the count cannot be zero."
+  ]
+ },
+ {
+  "template_id": "counting_real_roots_intersections_biquadratic_v1",
+  "skill_id": "counting_real_roots_intersections",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "u1": {"type": "int", "lo": -6, "hi": 6},
+   "u2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[u1]], 0)", "Ne([[u2]], 0)", "Ne([[u1]], [[u2]])"],
+  "derived": {"B": "-([[u1]] + [[u2]])", "C": "[[u1]]*[[u2]]"},
+  "stem": "How many distinct real solutions does \\( x^{4} + ([[B]])x^{2} + ([[C]]) = 0 \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 + [[u1]]/Abs([[u1]])) + (1 + [[u2]]/Abs([[u2]]))"},
+  "distractors": [
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "4 - [[answer]]",
+   "0"
+  ],
+  "solution": "Substitute \\( u = x^{2} \\ge 0 \\): the equation becomes \\( u^{2} + ([[B]])u + ([[C]]) = 0 \\), whose roots are \\( u = [[u1]] \\) and \\( u = [[u2]] \\) (by construction). Each positive \\( u \\)-root gives two real \\( x \\)-values (\\( x = \\pm\\sqrt{u} \\)); each negative \\( u \\)-root gives none. Totaling both roots gives \\( [[answer]] \\) real solutions for \\( x \\).",
+  "distractor_rationales": [
+   "This overcounts by two, as if an extra positive \\( u \\)-root contributed two more real \\( x \\)-solutions.",
+   "This undercounts by two, as if one fewer positive \\( u \\)-root existed.",
+   "This overcounts by four, treating both signs as flipped positive.",
+   "This undercounts by four, treating both signs as flipped negative.",
+   "This swaps the count with its complement out of the maximum of 4 possible real solutions.",
+   "This assumes neither \\( u \\)-root is positive, giving zero real \\( x \\)-solutions regardless of their actual signs."
+  ]
+ },
+ {
+  "template_id": "counting_real_roots_intersections_line_parabola_v1",
+  "skill_id": "counting_real_roots_intersections",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "m": {"type": "int", "lo": -5, "hi": 5},
+   "k": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne(([[b]]-[[m]])**2 - 4*[[a]]*([[c]]-[[k]]), 0)"],
+  "stem": "How many points of intersection do the graphs of \\( y = [[a]]x^{2} + ([[b]])x + ([[c]]) \\) and \\( y = [[m]]x + ([[k]]) \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "1 + (([[b]]-[[m]])**2 - 4*[[a]]*([[c]]-[[k]]))/Abs(([[b]]-[[m]])**2 - 4*[[a]]*([[c]]-[[k]]))"},
+  "distractors": [
+   "1",
+   "3",
+   "4",
+   "2 - [[answer]]",
+   "[[answer]] + 2",
+   "0"
+  ],
+  "solution": "Intersections satisfy \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = [[m]]x + ([[k]]) \\), i.e. \\( [[a]]x^{2} + ([[b]]-[[m]])x + ([[c]]-[[k]]) = 0 \\). This quadratic's discriminant determines the count: two intersections if positive, none if negative. Here that gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "A line and a parabola cannot meet at exactly one point unless the line is tangent (a knife-edge case that does not occur here).",
+   "A line and a (non-degenerate) parabola meet in at most two points, so three is impossible.",
+   "A line and a parabola meet in at most two points, so four is impossible.",
+   "This swaps the two possible answers (0 and 2) by reading the discriminant's sign backward.",
+   "This overcounts the maximum possible number of intersections between a line and a parabola.",
+   "This assumes the line and parabola never meet, regardless of the discriminant's actual sign."
+  ]
+ },
+ {
+  "template_id": "counting_real_roots_intersections_two_parabolas_v1",
+  "skill_id": "counting_real_roots_intersections",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a1": {"type": "int", "lo": -4, "hi": 4},
+   "a2": {"type": "int", "lo": -4, "hi": 4},
+   "b1": {"type": "int", "lo": -5, "hi": 5},
+   "b2": {"type": "int", "lo": -5, "hi": 5},
+   "c1": {"type": "int", "lo": -5, "hi": 5},
+   "c2": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [
+   "Ne([[a1]], 0)", "Ne([[a2]], 0)", "Ne([[a1]], [[a2]])",
+   "Ne(([[b1]]-[[b2]])**2 - 4*([[a1]]-[[a2]])*([[c1]]-[[c2]]), 0)"
+  ],
+  "stem": "How many points of intersection do the parabolas \\( y = [[a1]]x^{2} + ([[b1]])x + ([[c1]]) \\) and \\( y = [[a2]]x^{2} + ([[b2]])x + ([[c2]]) \\) have?",
+  "answer_spec": {"op": "evaluate", "expr": "1 + (([[b1]]-[[b2]])**2 - 4*([[a1]]-[[a2]])*([[c1]]-[[c2]]))/Abs(([[b1]]-[[b2]])**2 - 4*([[a1]]-[[a2]])*([[c1]]-[[c2]]))"},
+  "distractors": [
+   "0",
+   "3",
+   "4",
+   "2 - [[answer]]",
+   "[[answer]] + 2",
+   "1"
+  ],
+  "solution": "Subtracting one equation from the other, intersections satisfy \\( ([[a1]]-[[a2]])x^{2} + ([[b1]]-[[b2]])x + ([[c1]]-[[c2]]) = 0 \\); since \\( [[a1]] \\ne [[a2]] \\), this is a genuine quadratic whose discriminant gives two intersections if positive or none if negative. Here that gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "Since the leading terms do not cancel (\\( [[a1]] \\ne [[a2]] \\)), the two parabolas cannot be parallel copies of each other with zero forced intersections here.",
+   "Two parabolas can meet in at most two points once the quadratic terms don't cancel, so three is impossible.",
+   "Once the difference is a genuine quadratic (not higher degree), four intersections is impossible.",
+   "This swaps the two possible answers (0 and 2) by reading the discriminant's sign backward.",
+   "This overcounts the maximum number of intersections once the difference reduces to a quadratic.",
+   "This is the count when the difference reduces to a linear equation, which does not apply since \\( [[a1]] \\ne [[a2]] \\) but the quadratic term does not vanish."
+  ]
+ },
+ {
+  "template_id": "counting_real_roots_intersections_interval_v1",
+  "skill_id": "counting_real_roots_intersections",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -8, "hi": 8},
+   "r2": {"type": "int", "lo": -8, "hi": 8},
+   "m": {"type": "int", "lo": -10, "hi": 9},
+   "n": {"type": "int", "lo": -9, "hi": 10}
+  },
+  "constraints": [
+   "Ne([[r1]], [[r2]])", "Lt([[m]], [[n]])",
+   "Ne([[r1]], [[m]])", "Ne([[r1]], [[n]])", "Ne([[r2]], [[m]])", "Ne([[r2]], [[n]])"
+  ],
+  "derived": {"B": "-([[r1]] + [[r2]])", "C": "[[r1]]*[[r2]]"},
+  "stem": "How many roots of \\( x^{2} + ([[B]])x + ([[C]]) = 0 \\) lie in the open interval \\( ([[m]], [[n]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 + sign(([[r1]]-[[m]])*([[n]]-[[r1]])))/2 + (1 + sign(([[r2]]-[[m]])*([[n]]-[[r2]])))/2"},
+  "distractors": [
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "2 - [[answer]]",
+   "[[answer]] + 3"
+  ],
+  "solution": "The roots are \\( x = [[r1]] \\) and \\( x = [[r2]] \\) (by construction). Checking each against the interval \\( ([[m]], [[n]]) \\) and counting how many actually fall strictly inside it gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This overcounts by one root.",
+   "This undercounts by one root.",
+   "This overcounts by two, as if both roots landed inside plus an extra.",
+   "This undercounts by two, as if neither root landed inside despite one or both doing so.",
+   "This swaps the count with its complement out of the two roots.",
+   "This overcounts by three, exceeding the number of roots available."
+  ]
+ }
+]

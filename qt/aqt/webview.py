@@ -116,6 +116,9 @@ _bridge_script = _create_bridge_script()
 
 _profile_with_api_access: QWebEngineProfile | None = None
 _profile_without_api_access: QWebEngineProfile | None = None
+# Manifold uses a NAMED (persistent) profile so its Firebase auth session survives
+# app restarts; every other webview uses Anki's default off-the-record profiles above.
+_profile_manifold: QWebEngineProfile | None = None
 
 
 class AnkiWebPage(QWebEnginePage):
@@ -146,7 +149,20 @@ class AnkiWebPage(QWebEnginePage):
             AnkiWebViewKind.IMPORT_LOG,
         )
 
-        global _profile_with_api_access, _profile_without_api_access
+        global _profile_with_api_access, _profile_without_api_access, _profile_manifold
+
+        # Manifold signs in with Firebase, which keeps its session in IndexedDB /
+        # localStorage. A default (unnamed) QWebEngineProfile is OFF-THE-RECORD, so
+        # that storage lives only in memory and is wiped on close — signing the user
+        # out on every launch. Give Manifold a NAMED profile whose storage persists
+        # to disk, so a signed-in session survives closing and reopening the app.
+        if kind == AnkiWebViewKind.MANIFOLD:
+            if _profile_manifold is None:
+                _profile_manifold = QWebEngineProfile("manifold")
+                _profile_manifold.setUrlRequestInterceptor(
+                    AuthInterceptor(_profile_manifold, api_enabled=True)
+                )
+            return _profile_manifold
 
         # Use cached profile if available
         if have_api_access and _profile_with_api_access is not None:

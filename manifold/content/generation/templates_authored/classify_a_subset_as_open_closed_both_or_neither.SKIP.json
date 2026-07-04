@@ -1,0 +1,1 @@
+{"skill_id": "classify_a_subset_as_open_closed_both_or_neither", "reason": "Categorical classification (open / closed / both / neither), not a code-computable scalar."}

@@ -1,0 +1,194 @@
+[
+{
+ "template_id": "matrix_multiplication_and_non_commutativity_v1",
+ "skill_id": "matrix_multiplication_and_non_commutativity",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -5, "hi": 5},
+  "a12": {"type": "int", "lo": -5, "hi": 5},
+  "a21": {"type": "int", "lo": -5, "hi": 5},
+  "a22": {"type": "int", "lo": -5, "hi": 5},
+  "b11": {"type": "int", "lo": -5, "hi": 5},
+  "b12": {"type": "int", "lo": -5, "hi": 5},
+  "b21": {"type": "int", "lo": -5, "hi": 5},
+  "b22": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a12]], 0)", "Ne([[b21]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\end{bmatrix} \\). What is the entry in the first row and first column of the product \\( AB \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a11]]*[[b11]] + [[a12]]*[[b21]]"},
+ "distractors": [
+  "[[a11]]*[[b11]] + [[a21]]*[[b12]]",
+  "[[a11]]*[[b11]] + [[a12]]*[[b12]]",
+  "[[a11]]*[[b11]] + [[a21]]*[[b21]]",
+  "[[a11]]*[[b11]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The \\( (1,1) \\) entry of \\( AB \\) is the first row of \\( A \\) dotted with the first column of \\( B \\): \\( ([[a11]])([[b11]]) + ([[a12]])([[b21]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes the \\( (1,1) \\) entry of \\( BA \\) instead of \\( AB \\); the two products differ because matrix multiplication is not commutative.",
+  "This dots the first row of \\( A \\) with the first row of \\( B \\) rather than its first column.",
+  "This dots the first column of \\( A \\) with the first column of \\( B \\).",
+  "This keeps only the first product term and drops \\( ([[a12]])([[b21]]) \\).",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "matrix_multiplication_and_non_commutativity_v2",
+ "skill_id": "matrix_multiplication_and_non_commutativity",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -5, "hi": 5},
+  "a12": {"type": "int", "lo": -5, "hi": 5},
+  "a21": {"type": "int", "lo": -5, "hi": 5},
+  "a22": {"type": "int", "lo": -5, "hi": 5},
+  "b11": {"type": "int", "lo": -5, "hi": 5},
+  "b12": {"type": "int", "lo": -5, "hi": 5},
+  "b21": {"type": "int", "lo": -5, "hi": 5},
+  "b22": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a21]], 0)", "Ne([[b12]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\end{bmatrix} \\). Since matrix multiplication is not commutative, \\( BA \\) need not equal \\( AB \\). What is the entry in the first row and first column of the product \\( BA \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[b11]]*[[a11]] + [[b12]]*[[a21]]"},
+ "distractors": [
+  "[[a11]]*[[b11]] + [[a12]]*[[b21]]",
+  "[[b11]]*[[a11]] + [[b21]]*[[a12]]",
+  "[[b11]]*[[a11]] + [[b12]]*[[a12]]",
+  "[[b11]]*[[a11]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The \\( (1,1) \\) entry of \\( BA \\) is the first row of \\( B \\) dotted with the first column of \\( A \\): \\( ([[b11]])([[a11]]) + ([[b12]])([[a21]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes the \\( (1,1) \\) entry of \\( AB \\) instead of \\( BA \\); order matters since matrix multiplication is not commutative.",
+  "This dots the first row of \\( B \\) with the first row of \\( A \\) rather than its first column.",
+  "This dots the first column of \\( B \\) with the first column of \\( A \\).",
+  "This keeps only the first product term and drops \\( ([[b12]])([[a21]]) \\).",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "matrix_multiplication_and_non_commutativity_v3",
+ "skill_id": "matrix_multiplication_and_non_commutativity",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -5, "hi": 5},
+  "a12": {"type": "int", "lo": -5, "hi": 5},
+  "a21": {"type": "int", "lo": -5, "hi": 5},
+  "a22": {"type": "int", "lo": -5, "hi": 5},
+  "b11": {"type": "int", "lo": -5, "hi": 5},
+  "b12": {"type": "int", "lo": -5, "hi": 5},
+  "b21": {"type": "int", "lo": -5, "hi": 5},
+  "b22": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a12]]*[[b21]] - [[a21]]*[[b12]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\) and \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\end{bmatrix} \\). The commutator of \\( A \\) and \\( B \\) is \\( [A,B] = AB - BA \\), which is nonzero exactly when \\( A \\) and \\( B \\) do not commute. What is the entry in the first row and first column of \\( AB - BA \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a11]]*[[b11]] + [[a12]]*[[b21]]) - ([[b11]]*[[a11]] + [[b12]]*[[a21]])"},
+ "distractors": [
+  "[[a11]]*[[b11]] + [[a12]]*[[b21]]",
+  "[[b11]]*[[a11]] + [[b12]]*[[a21]]",
+  "([[a11]]*[[b11]] + [[a12]]*[[b21]]) + ([[b11]]*[[a11]] + [[b12]]*[[a21]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The \\( (1,1) \\) entry of \\( AB \\) is \\( [[a11]][[b11]]+[[a12]][[b21]] \\) and of \\( BA \\) is \\( [[b11]][[a11]]+[[b12]][[a21]] \\); the diagonal \\( [[a11]][[b11]] \\) terms cancel, leaving \\( [[a12]][[b21]] - [[b12]][[a21]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is just the \\( (1,1) \\) entry of \\( AB \\) alone, forgetting to subtract \\( BA \\).",
+  "This is just the \\( (1,1) \\) entry of \\( BA \\) alone, forgetting the subtraction is from \\( AB \\).",
+  "This adds \\( AB \\) and \\( BA \\)'s entries instead of subtracting them.",
+  "The commutator entry is not automatically 0 here; \\( A \\) and \\( B \\) were chosen not to commute.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "matrix_multiplication_and_non_commutativity_v4",
+ "skill_id": "matrix_multiplication_and_non_commutativity",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -4, "hi": 4},
+  "a12": {"type": "int", "lo": -4, "hi": 4},
+  "a13": {"type": "int", "lo": -4, "hi": 4},
+  "a21": {"type": "int", "lo": -4, "hi": 4},
+  "a22": {"type": "int", "lo": -4, "hi": 4},
+  "a23": {"type": "int", "lo": -4, "hi": 4},
+  "b11": {"type": "int", "lo": -4, "hi": 4},
+  "b12": {"type": "int", "lo": -4, "hi": 4},
+  "b21": {"type": "int", "lo": -4, "hi": 4},
+  "b22": {"type": "int", "lo": -4, "hi": 4},
+  "b31": {"type": "int", "lo": -4, "hi": 4},
+  "b32": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a12]], 0)", "Ne([[a13]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] & [[a13]] \\\\ [[a21]] & [[a22]] & [[a23]] \\end{bmatrix} \\) (a \\( 2\\times3 \\) matrix) and \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\\\ [[b31]] & [[b32]] \\end{bmatrix} \\) (a \\( 3\\times2 \\) matrix), so that \\( AB \\) is defined and is \\( 2\\times2 \\) (while \\( BA \\), if defined, would be \\( 3\\times3 \\) — a different size entirely). What is the entry in the first row and first column of \\( AB \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a11]]*[[b11]] + [[a12]]*[[b21]] + [[a13]]*[[b31]]"},
+ "distractors": [
+  "[[a11]]*[[b11]] + [[a12]]*[[b12]] + [[a13]]*[[b21]]",
+  "[[a11]]*[[b11]] + [[a12]]*[[b21]]",
+  "[[a11]]*[[b11]] + [[a21]]*[[b12]] + [[a13]]*[[b31]]",
+  "[[a11]]*[[b11]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The \\( (1,1) \\) entry of \\( AB \\) is the first row of \\( A \\) dotted with the first column of \\( B \\): \\( ([[a11]])([[b11]]) + ([[a12]])([[b21]]) + ([[a13]])([[b31]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mismatches entries from the wrong row/column of \\( B \\).",
+  "This drops the third term of the dot product, treating \\( A \\) as if it only had 2 columns.",
+  "This uses the second row of \\( A \\) for the first term instead of the first row.",
+  "This keeps only the first product term and drops the rest of the dot product.",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+},
+{
+ "template_id": "matrix_multiplication_and_non_commutativity_v5",
+ "skill_id": "matrix_multiplication_and_non_commutativity",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a11": {"type": "int", "lo": -3, "hi": 3},
+  "a12": {"type": "int", "lo": -3, "hi": 3},
+  "a21": {"type": "int", "lo": -3, "hi": 3},
+  "a22": {"type": "int", "lo": -3, "hi": 3},
+  "b11": {"type": "int", "lo": -3, "hi": 3},
+  "b12": {"type": "int", "lo": -3, "hi": 3},
+  "b21": {"type": "int", "lo": -3, "hi": 3},
+  "b22": {"type": "int", "lo": -3, "hi": 3},
+  "c11": {"type": "int", "lo": -3, "hi": 3},
+  "c12": {"type": "int", "lo": -3, "hi": 3},
+  "c21": {"type": "int", "lo": -3, "hi": 3},
+  "c22": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a12]], 0)", "Ne([[b21]], 0)", "Ne([[c21]], 0)"],
+ "derived": {
+  "bc11": "[[b11]]*[[c11]] + [[b12]]*[[c21]]",
+  "bc21": "[[b21]]*[[c11]] + [[b22]]*[[c21]]"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{bmatrix} \\), \\( B = \\begin{bmatrix} [[b11]] & [[b12]] \\\\ [[b21]] & [[b22]] \\end{bmatrix} \\), and \\( C = \\begin{bmatrix} [[c11]] & [[c12]] \\\\ [[c21]] & [[c22]] \\end{bmatrix} \\). Matrix multiplication is associative, so \\( A(BC) = (AB)C \\). What is the entry in the first row and first column of \\( A(BC) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a11]]*([[b11]]*[[c11]] + [[b12]]*[[c21]]) + [[a12]]*([[b21]]*[[c11]] + [[b22]]*[[c21]])"},
+ "distractors": [
+  "[[a11]]*[[bc11]]",
+  "[[a11]]*[[bc11]] - [[a12]]*[[bc21]]",
+  "[[a11]]*[[b11]]*[[c11]]",
+  "[[a11]]*[[bc21]] + [[a12]]*[[bc11]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "First compute \\( BC \\): its \\( (1,1) \\) entry is \\( [[bc11]] \\) and its \\( (2,1) \\) entry is \\( [[bc21]] \\). Then \\( A(BC) \\) has \\( (1,1) \\) entry \\( ([[a11]])([[bc11]]) + ([[a12]])([[bc21]]) = [[answer]] \\), which (by associativity) also equals the \\( (1,1) \\) entry of \\( (AB)C \\).",
+ "distractor_rationales": [
+  "This keeps only the first term of the dot product with \\( BC \\), dropping the \\( a_{12}\\cdot(BC)_{21} \\) contribution.",
+  "This subtracts instead of adds the second term of the dot product.",
+  "This multiplies only the \\( (1,1) \\) entries of all three matrices, ignoring the rest of the matrix product.",
+  "This swaps which entry of \\( BC \\) is paired with which entry of the first row of \\( A \\).",
+  "This is off by one from the correct entry.",
+  "This is off by one from the correct entry."
+ ]
+}
+]

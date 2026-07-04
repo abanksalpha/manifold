@@ -450,6 +450,43 @@
   the single mapping point. A future full rename could align them (needs a tag
   migration / re-seed).
 
+### D45 — Firebase Google login + real-time progress mirror (extends D9)
+
+- **Status:** resolved
+- **Chose:** add **Firebase Authentication (Google)** for identity and a **Firestore
+  real-time _progress mirror_** on top of the existing engine. After each graded
+  answer (and on dashboard load) the client derives the three scores from
+  `getTopicGraph` and writes a compact snapshot to `users/{uid}`; every signed-in
+  device subscribes with `onSnapshot`, so progress updates live across a second
+  desktop, the phone, and the web. The Anki collection (cards/revlog) stays the
+  scheduling source of truth, still synced by Anki's own protocol (D9 unchanged).
+  One shared TS layer (`ts/lib/manifold/firebase*.ts`, `progress.ts`, `sync.ts`,
+  `SyncPanel.svelte`) serves desktop, Android, and web because they render the same
+  Svelte pages. Project: `manifold-gre`.
+- **Considered:** (a) making Firebase the scheduling backbone by mirroring review
+  _events_ and replaying them into each device's collection — rejected for now: it
+  re-implements Anki sync, fights FSRS's need for a consistent local SQLite, and
+  risks double-counting against D9 (kept as a future option). (b) A read-only web
+  dashboard as the only "mobile" surface — superseded once the AnkiDroid app was
+  found already built, so the same shared code carries the mirror to the phone.
+- **Sign-in per shell (Google blocks OAuth in embedded webviews):** real browser
+  (web) → `signInWithPopup`; **desktop Qt webview** → a system-browser **loopback**
+  (`mediasrv` `manifoldGoogleSignIn` opens the OS browser, harvests the Google ID
+  token, returns it; the webview does `signInWithCredential`) — no secret/extra
+  OAuth client, uses `localhost` (added to authorized domains) + the public web
+  config; **Android** → native **Credential Manager** (`ManifoldPage` JS bridge,
+  web client as `serverClientId`) hands the ID token to the webview.
+- **Security:** owner-only Firestore rules (`request.auth.uid == userId`), strict
+  schema + size caps, immutable `uid`, recent `updatedAt`. Verified against the
+  emulator (real rules): real-time cross-client propagation + cross-user read/write
+  denial + schema-pollution rejection all pass (5/5). Web apiKey is public by
+  design (committed); no secret is required for any surface.
+- **Gaps / risks:** desktop/Android Google sign-in need one interactive Google
+  consent each (by design). The Android APK must be rebuilt to ship the bridge +
+  bundle firebase (`bash redeploy.sh`; backend `anki/package.json` now lists
+  firebase); on-device Google login is the remaining manual verification. The
+  event-replay scheduling sync (option a) is deliberately not built.
+
 ---
 
 <sub>Created with the `plan-prd` skill · maintained with `log`.</sub>

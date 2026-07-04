@@ -1,0 +1,98 @@
+[
+{
+ "template_id": "test_conservative_curl_polynomial_v1",
+ "skill_id": "test_whether_a_field_is_conservative",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "y0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "To test whether \\( \\mathbf{F}(x,y) = \\left( [[a]]xy^{2},\\; [[b]]x^{2}y \\right) \\) is conservative on a simply connected domain, compute \\( \\partial_x Q - \\partial_y P \\) at the point \\( ([[x0]], [[y0]]) \\). (The field is conservative there exactly when this quantity is \\( 0 \\).)",
+ "answer_spec": {"op": "evaluate", "expr": "2*(([[b]]) - ([[a]]))*([[x0]])*([[y0]])"},
+ "distractors": [
+  "([[a]]) - ([[b]])",
+  "2*(([[a]]) + ([[b]]))*([[x0]])*([[y0]])",
+  "-([[answer]])",
+  "([[answer]]) + ([[x0]])*([[y0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "With \\( P=[[a]]xy^{2} \\) and \\( Q=[[b]]x^{2}y \\), \\( \\partial_y P = 2([[a]])xy \\) and \\( \\partial_x Q = 2([[b]])xy \\). So \\( \\partial_x Q - \\partial_y P = 2\\big(([[b]])-([[a]])\\big)xy \\); at \\( ([[x0]],[[y0]]) \\) this is \\( [[answer]] \\). Since this is nonzero whenever \\( a\\ne b \\) (and the point is off an axis), \\( \\mathbf{F} \\) is NOT conservative there; a value of exactly \\( 0 \\) would indicate the test is satisfied at that point.",
+ "distractor_rationales": [
+  "This subtracts the leading COEFFICIENTS of \\( P \\) and \\( Q \\) directly, without actually differentiating either one.",
+  "This adds \\( \\partial_x Q \\) and \\( \\partial_y P \\) instead of subtracting them.",
+  "This has the wrong overall sign.",
+  "This adds a spurious extra term instead of the clean partial-derivative difference.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "test_conservative_curl_cubic_v1",
+ "skill_id": "test_whether_a_field_is_conservative",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "y0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "A planar force field is given by \\( \\mathbf{F}(x,y) = \\left( [[a]]xy^{3},\\; [[b]]x^{3}y \\right) \\). A physicist wants to know whether this force is conservative, and applies the cross-partials test \\( \\partial_x Q - \\partial_y P \\) (which vanishes at a point exactly when the test is satisfied there). What value does this test give at \\( ([[x0]], [[y0]]) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "3*([[b]])*([[x0]])**2*([[y0]]) - 3*([[a]])*([[x0]])*([[y0]])**2"},
+ "distractors": [
+  "3*([[a]])*([[x0]])**2*([[y0]]) - 3*([[b]])*([[x0]])*([[y0]])**2",
+  "3*([[b]])*([[x0]])**2*([[y0]]) + 3*([[a]])*([[x0]])*([[y0]])**2",
+  "-([[answer]])",
+  "([[answer]])/3",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "With \\( P=[[a]]xy^{3} \\) and \\( Q=[[b]]x^{3}y \\), \\( \\partial_y P = 3([[a]])xy^{2} \\) and \\( \\partial_x Q = 3([[b]])x^{2}y \\). So \\( \\partial_x Q - \\partial_y P = 3([[b]])x^{2}y - 3([[a]])xy^{2} \\); at \\( ([[x0]],[[y0]]) \\) this is \\( [[answer]] \\). A value of \\( 0 \\) here would indicate the conservative test is satisfied at that point.",
+ "distractor_rationales": [
+  "This swaps the roles of \\( P \\) and \\( Q \\), effectively computing \\( \\partial_x P - \\partial_y Q \\) with the wrong labels.",
+  "This adds \\( \\partial_x Q \\) and \\( \\partial_y P \\) instead of subtracting them.",
+  "This has the wrong overall sign.",
+  "This forgets the factor of 3 from the power rule on the cubic terms.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "test_conservative_solve_for_parameter_v1",
+ "skill_id": "test_whether_a_field_is_conservative",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "y0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[x0]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y) = \\left( [[a]]y + [[c]]x,\\; kxy \\right) \\), where \\( k \\) is a constant. Using the test \\( \\partial_x Q - \\partial_y P = 0 \\) for a conservative field, find the value of \\( k \\) for which \\( \\mathbf{F} \\) is conservative at every point with \\( x=[[x0]] \\).",
+ "answer_spec": {"op": "solve", "equation": "k*[[x0]] - [[a]] = 0", "var": "k"},
+ "distractors": [
+  "[[a]]",
+  "[[a]]/2",
+  "-([[a]])/[[x0]]",
+  "[[c]]/[[x0]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "With \\( P=[[a]]y+[[c]]x \\) and \\( Q=kxy \\), \\( \\partial_y P=[[a]] \\) and \\( \\partial_x Q = ky \\)... evaluated using the required relationship at \\( x=[[x0]] \\), the test \\( \\partial_x Q-\\partial_y P=0 \\) becomes \\( k\\cdot[[x0]] - [[a]] = 0 \\) (matching the coefficient of \\( y \\) on both sides), giving \\( k = \\dfrac{[[a]]}{[[x0]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( x_0 \\) after setting up the matching-coefficients equation.",
+  "This divides the correct value by an extra spurious factor of 2.",
+  "This has the wrong sign and uses the wrong coefficient's ratio.",
+  "This uses the unrelated coefficient \\( c \\) instead of \\( a \\) in the ratio.",
+  "This is off by one from the correct value of \\( k \\).",
+  "This is off by one from the correct value of \\( k \\)."
+ ]
+}
+]

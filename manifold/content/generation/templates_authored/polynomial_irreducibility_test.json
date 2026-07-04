@@ -1,0 +1,116 @@
+[
+{
+ "template_id": "polynomial_irreducibility_test_eisenstein_single_v1",
+ "skill_id": "polynomial_irreducibility_test",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "mode": {"type": "choice", "values": [0, 1]},
+  "a1": {"type": "int", "lo": -8, "hi": 8},
+  "b1": {"type": "int", "lo": -8, "hi": 8},
+  "c1": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[c1]], 0)"],
+ "derived": {
+  "A": "[[p]]*[[a1]]",
+  "B": "[[p]]*[[b1]]",
+  "C": "Piecewise(([[p]]*[[c1]], Eq([[mode]], 0)), ([[p]]*[[c1]] + 1, True))"
+ },
+ "stem": "Consider \\( f(x) = x^{3} + [[A]]x^{2} + [[B]]x + [[C]] \\) and the prime \\( p = [[p]] \\). Eisenstein's criterion says \\( f \\) is irreducible over \\( \\mathbb{Q} \\) if \\( p \\) divides every coefficient EXCEPT the leading one, and \\( p^{2} \\) does NOT divide the constant term. Does Eisenstein's criterion at \\( p = [[p]] \\) confirm that \\( f(x) \\) is irreducible over \\( \\mathbb{Q} \\)? Enter \\( 1 \\) for yes, \\( 0 \\) for no.",
+ "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, And(Eq(Mod([[A]], [[p]]), 0), Eq(Mod([[B]], [[p]]), 0), Eq(Mod([[C]], [[p]]), 0), Ne(Mod([[C]], [[p]]**2), 0))), (0, True))"},
+ "distractors": [
+  "1 - Piecewise((1, And(Eq(Mod([[A]], [[p]]), 0), Eq(Mod([[B]], [[p]]), 0), Eq(Mod([[C]], [[p]]), 0), Ne(Mod([[C]], [[p]]**2), 0))), (0, True))",
+  "2",
+  "3",
+  "-1",
+  "-2"
+ ],
+ "solution": "Check each condition at \\( p=[[p]] \\): \\( p \\mid [[A]] \\)? \\( p \\mid [[B]] \\)? \\( p \\mid [[C]] \\)? and \\( p^{2} \\nmid [[C]] \\)? All four must hold for Eisenstein to apply. Evaluating these conditions directly gives the verdict \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the flipped verdict, swapping whether Eisenstein applies or not.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1."
+ ]
+},
+{
+ "template_id": "polynomial_irreducibility_test_rational_root_count_v1",
+ "skill_id": "polynomial_irreducibility_test",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "mode": {"type": "choice", "values": [0, 1]},
+  "r": {"type": "int", "lo": -7, "hi": 7},
+  "s": {"type": "int", "lo": -8, "hi": 8},
+  "t": {"type": "int", "lo": -8, "hi": 8},
+  "A2": {"type": "int", "lo": -12, "hi": 12},
+  "B2": {"type": "int", "lo": -12, "hi": 12},
+  "C2": {"type": "int", "lo": -30, "hi": 30}
+ },
+ "constraints": ["Ne([[r]], 0)", "Ne([[t]], 0)", "Ne([[C2]], 0)"],
+ "derived": {
+  "A": "Piecewise(([[s]] - [[r]], Eq([[mode]], 0)), ([[A2]], True))",
+  "B": "Piecewise(([[t]] - [[r]]*[[s]], Eq([[mode]], 0)), ([[B2]], True))",
+  "C": "Piecewise((-[[r]]*[[t]], Eq([[mode]], 0)), ([[C2]], True))"
+ },
+ "stem": "Let \\( f(x) = x^{3} + [[A]]x^{2} + [[B]]x + [[C]] \\), a monic polynomial with integer coefficients. By the Rational Root Theorem, any integer root of \\( f \\) must divide the constant term \\( [[C]] \\), so it must lie between \\( -|[[C]]| \\) and \\( |[[C]]| \\). How many integers \\( k \\) with \\( -|[[C]]| \\le k \\le |[[C]]| \\) satisfy \\( f(k) = 0 \\)? (If this count is \\( 0 \\), \\( f \\) has no linear factor over \\( \\mathbb{Q} \\).)",
+ "answer_spec": {"op": "sum", "expr": "Piecewise((1, Eq(k**3 + [[A]]*k**2 + [[B]]*k + [[C]], 0)), (0, True))", "var": "k", "lo": "-Abs([[C]])", "hi": "Abs([[C]])"},
+ "distractors": [
+  "0",
+  "2",
+  "3",
+  "4",
+  "5",
+  "Abs([[C]])",
+  "[[answer]] + 3"
+ ],
+ "solution": "Testing every candidate \\( k \\) from \\( -|[[C]]| \\) to \\( |[[C]]| \\) against \\( f(k) = k^{3} + [[A]]k^{2} + [[B]]k + [[C]] \\) gives exactly \\( [[answer]] \\) integer roots. A cubic is reducible over \\( \\mathbb{Q} \\) precisely when it has a rational (here, integer, since it is monic) root, so a count of \\( 0 \\) certifies irreducibility over \\( \\mathbb{Q} \\).",
+ "distractor_rationales": [
+  "This assumes \\( f \\) has no roots at all without testing every candidate divisor of the constant term.",
+  "This assumes exactly two roots without testing every candidate.",
+  "This assumes exactly three roots without testing every candidate.",
+  "This exceeds the maximum of 3 roots a cubic can have, and is not obtained by testing candidates.",
+  "This exceeds the maximum of 3 roots a cubic can have, and is not obtained by testing candidates.",
+  "This is the search bound itself, not the number of candidates that actually satisfy \\( f(k)=0 \\).",
+  "This overcounts the true root count by three."
+ ]
+},
+{
+ "template_id": "polynomial_irreducibility_test_eisenstein_multi_prime_v1",
+ "skill_id": "polynomial_irreducibility_test",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": -60, "hi": 60},
+  "B": {"type": "int", "lo": -60, "hi": 60},
+  "C": {"type": "int", "lo": -60, "hi": 60},
+  "p1": {"type": "choice", "values": [2, 3]},
+  "p2": {"type": "choice", "values": [5, 7]},
+  "p3": {"type": "choice", "values": [11, 13]},
+  "p4": {"type": "choice", "values": [17, 19]},
+  "p5": {"type": "choice", "values": [23, 29]}
+ },
+ "constraints": ["Ne([[C]], 0)"],
+ "stem": "Consider \\( f(x) = x^{3} + [[A]]x^{2} + [[B]]x + [[C]] \\) and the five candidate primes \\( [[p1]], [[p2]], [[p3]], [[p4]], [[p5]] \\). For how many of these five primes \\( p \\) does Eisenstein's criterion apply to \\( f \\) (that is, \\( p \\) divides \\( [[A]] \\), \\( [[B]] \\), and \\( [[C]] \\), but \\( p^{2} \\) does not divide \\( [[C]] \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, And(Eq(Mod([[A]], [[p1]]), 0), Eq(Mod([[B]], [[p1]]), 0), Eq(Mod([[C]], [[p1]]), 0), Ne(Mod([[C]], [[p1]]**2), 0))), (0, True)) + Piecewise((1, And(Eq(Mod([[A]], [[p2]]), 0), Eq(Mod([[B]], [[p2]]), 0), Eq(Mod([[C]], [[p2]]), 0), Ne(Mod([[C]], [[p2]]**2), 0))), (0, True)) + Piecewise((1, And(Eq(Mod([[A]], [[p3]]), 0), Eq(Mod([[B]], [[p3]]), 0), Eq(Mod([[C]], [[p3]]), 0), Ne(Mod([[C]], [[p3]]**2), 0))), (0, True)) + Piecewise((1, And(Eq(Mod([[A]], [[p4]]), 0), Eq(Mod([[B]], [[p4]]), 0), Eq(Mod([[C]], [[p4]]), 0), Ne(Mod([[C]], [[p4]]**2), 0))), (0, True)) + Piecewise((1, And(Eq(Mod([[A]], [[p5]]), 0), Eq(Mod([[B]], [[p5]]), 0), Eq(Mod([[C]], [[p5]]), 0), Ne(Mod([[C]], [[p5]]**2), 0))), (0, True))"},
+ "distractors": [
+  "5",
+  "[[answer]] + 1",
+  "[[answer]] + 2",
+  "1",
+  "2",
+  "4"
+ ],
+ "solution": "Checking each of the five primes against the four Eisenstein conditions (divides \\( [[A]] \\), divides \\( [[B]] \\), divides \\( [[C]] \\), and \\( p^{2} \\) does not divide \\( [[C]] \\)) shows exactly \\( [[answer]] \\) of them make the criterion apply.",
+ "distractor_rationales": [
+  "This assumes every one of the five candidate primes works, without checking the divisibility conditions.",
+  "This overcounts the true number of qualifying primes by one.",
+  "This overcounts the true number of qualifying primes by two.",
+  "This assumes exactly one candidate prime works without checking every one.",
+  "This assumes exactly two candidate primes work without checking every one.",
+  "This assumes all but one candidate prime works without checking every one."
+ ]
+}
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "template_id": "order_of_a_permutation_from_cycle_type_v1",
+  "skill_id": "order_of_a_permutation_from_cycle_type",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "A permutation \\( \\sigma \\) has a disjoint cycle decomposition consisting of one cycle of length [[a]] and one cycle of length [[b]] (acting on disjoint sets of points). What is the order of \\( \\sigma \\) in the symmetric group?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]/gcd([[a]], [[b]])"},
+  "distractors": [
+   "[[a]]*[[b]]",
+   "[[a]] + [[b]]",
+   "gcd([[a]], [[b]])",
+   "[[a]]",
+   "[[b]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "The order of a permutation is the least common multiple of its disjoint cycle lengths: \\( \\operatorname{lcm}([[a]], [[b]]) = \\frac{[[a]] \\cdot [[b]]}{\\gcd([[a]],[[b]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the cycle lengths; the order is their lcm, not their product (unless they are coprime).",
+   "This adds the cycle lengths instead of taking the lcm.",
+   "This gives the gcd of the lengths rather than the lcm.",
+   "This uses only the first cycle's length.",
+   "This uses only the second cycle's length.",
+   "This is off by one from the correct order."
+  ]
+ },
+ {
+  "template_id": "order_of_a_single_cycle_with_fixed_points_v1",
+  "skill_id": "order_of_a_permutation_from_cycle_type",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 20},
+   "k": {"type": "int", "lo": 2, "hi": 19}
+  },
+  "constraints": ["Lt([[k]], [[n]])"],
+  "stem": "A permutation \\( \\sigma \\in S_{[[n]]} \\) consists of a single cycle of length [[k]] together with [[n]] - [[k]] fixed points (\\( \\sigma \\) leaves every other point unchanged). What is the order of \\( \\sigma \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]]"},
+  "distractors": [
+   "[[n]]",
+   "[[n]] - [[k]]",
+   "[[n]]*[[k]]",
+   "[[k]] + 1",
+   "[[k]] - 1",
+   "[[n]] + [[k]]"
+  ],
+  "solution": "Fixed points are 1-cycles, which contribute a factor of 1 to the lcm and never affect the order. So the order of \\( \\sigma \\) is just the length of its one nontrivial cycle: \\( [[k]] \\).",
+  "distractor_rationales": [
+   "This mistakes the total number of points \\( n \\) for the order of \\( \\sigma \\).",
+   "This uses the number of fixed points instead of the cycle length.",
+   "This multiplies unrelated quantities together.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order.",
+   "This adds unrelated quantities together."
+  ]
+ },
+ {
+  "template_id": "order_pairwise_coprime_cycle_lengths_v1",
+  "skill_id": "order_of_a_permutation_from_cycle_type",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [2, 4, 8]},
+   "b": {"type": "choice", "values": [3, 9, 27]},
+   "c": {"type": "choice", "values": [5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35, 37, 41, 43, 49]}
+  },
+  "constraints": [],
+  "stem": "A permutation \\( \\sigma \\) has a disjoint cycle decomposition consisting of three cycles, of lengths [[a]], [[b]], and [[c]] (pairwise coprime). What is the order of \\( \\sigma \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]*[[c]]"},
+  "distractors": [
+   "[[a]] + [[b]] + [[c]]",
+   "[[a]]*[[b]]",
+   "[[b]]*[[c]]",
+   "[[a]]*[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since the three cycle lengths are pairwise coprime, their lcm is simply their product: \\( \\operatorname{lcm}([[a]],[[b]],[[c]]) = [[a]]\\cdot[[b]]\\cdot[[c]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the cycle lengths instead of taking their (product-equal-to-lcm) value.",
+   "This omits the third cycle length entirely.",
+   "This omits the first cycle length entirely.",
+   "This omits the second cycle length entirely.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order."
+  ]
+ },
+ {
+  "template_id": "order_two_equal_length_cycles_v1",
+  "skill_id": "order_of_a_permutation_from_cycle_type",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": [],
+  "stem": "A permutation \\( \\sigma \\) has a disjoint cycle decomposition consisting of TWO cycles, each of the SAME length [[a]] (acting on disjoint sets of points). What is the order of \\( \\sigma \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]"},
+  "distractors": [
+   "[[a]]**2",
+   "2*[[a]]",
+   "[[a]] + 2",
+   "[[a]]/2",
+   "[[a]] + 1",
+   "[[a]] - 1"
+  ],
+  "solution": "The order is \\( \\operatorname{lcm}([[a]],[[a]]) = [[a]] \\); repeating a cycle length does not increase the lcm beyond that single length.",
+  "distractor_rationales": [
+   "This wrongly treats the two cycles as if their lengths were coprime and multiplies them together.",
+   "This wrongly adds the cycle appearances as if lcm scaled with the count of cycles.",
+   "This adds an unrelated constant instead of taking the lcm.",
+   "This wrongly halves the cycle length.",
+   "This is off by one from the correct order.",
+   "This is off by one from the correct order."
+  ]
+ }
+]

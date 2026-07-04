@@ -30,18 +30,55 @@ pub(crate) struct Blueprint {
     pub thresholds: Thresholds,
     pub tier_targets: TierValues,
     pub tier_stability: TierValues,
-    pub ets_anchors: Vec<EtsAnchor>,
+    pub ets_anchors: EtsAnchors,
     pub topics: Vec<Topic>,
 }
 
-/// Readiness raw→scaled mapping constants (D19). Chosen, not derived: the
-/// median test-taker's assumed blueprint-weighted raw fraction, the performance
-/// SD that turns a fraction into a percentile, and the coverage band widener.
+/// Readiness raw→scaled mapping constants (D19/D26/D29). Chosen, not derived:
+/// the median test-taker's assumed blueprint-weighted raw fraction, the
+/// performance SD that turns a fraction into a percentile, the coverage and
+/// lapse band wideners, the honest target ladder, the logarithmic
+/// hours-to-target curve, and the maturity-residue ceiling.
 #[derive(Debug, Deserialize)]
 pub(crate) struct ReadinessMapping {
     pub median_raw_fraction: f64,
     pub performance_sd: f64,
     pub coverage_band_lambda: f64,
+    pub lapse_band_lambda: f64,
+    pub targets: Vec<ReadinessTarget>,
+    pub hours_curve: HoursCurve,
+    pub maturity_residue: MaturityResidue,
+}
+
+/// One rung of the readiness target ladder: a named goal (median / strong /
+/// exceptional) with the scaled band that defines it (D29/D30).
+#[derive(Debug, Deserialize)]
+pub(crate) struct ReadinessTarget {
+    pub id: String,
+    pub label: String,
+    pub scaled_point: i32,
+    pub scaled_low: i32,
+    pub scaled_high: i32,
+}
+
+/// Logarithmic effort→score curve constants (Messick-style diminishing
+/// returns, D29). Chosen and tunable, not a cited hour count: the scaled floor
+/// at zero targeted prep, the points gained per e-fold of effort, and the
+/// hours scale (the curve's knee).
+#[derive(Debug, Deserialize)]
+pub(crate) struct HoursCurve {
+    pub scaled_floor: i32,
+    pub points_per_log_hour: f64,
+    pub hours_scale: f64,
+}
+
+/// The maturity-residue ceiling the app does not promise (D29/D30): the
+/// live-proof items no drill can manufacture and the scaled points at the top
+/// it therefore withholds.
+#[derive(Debug, Deserialize)]
+pub(crate) struct MaturityResidue {
+    pub items: f64,
+    pub scaled_points: i32,
 }
 
 #[allow(dead_code)]
@@ -70,9 +107,9 @@ pub(crate) struct Thresholds {
     /// graduation.
     pub independent_successes: u32,
     /// Fraction of a prerequisite topic's skills that must be *answered
-    /// correctly* (the mastery-learning criterion) before its dependents unlock.
-    /// Competence-now, not durable mastery — reachable in a session, unlike the
-    /// weeks-long stability bar (D28).
+    /// correctly* (the mastery-learning criterion) before its dependents
+    /// unlock. Competence-now, not durable mastery — reachable in a
+    /// session, unlike the weeks-long stability bar (D28).
     pub unlock_competent_fraction: f32,
 }
 
@@ -97,6 +134,16 @@ impl TierValues {
             _ => None,
         }
     }
+}
+
+/// The ETS percentile anchor table plus its citation. Structured as a block
+/// (like `distribution`) so the source travels with the numbers: the anchors
+/// are only trustworthy because they carry the named table they came from.
+#[allow(dead_code)]
+#[derive(Debug, Deserialize)]
+pub(crate) struct EtsAnchors {
+    pub source: String,
+    pub anchors: Vec<EtsAnchor>,
 }
 
 #[allow(dead_code)]
@@ -168,6 +215,7 @@ impl BlueprintGraph {
             distribution_sd: b.distribution.sd,
             ets_anchors: b
                 .ets_anchors
+                .anchors
                 .iter()
                 .map(|a| anki_proto::manifold::EtsAnchor {
                     scaled: a.scaled,
@@ -177,6 +225,28 @@ impl BlueprintGraph {
             median_raw_fraction: b.readiness_mapping.median_raw_fraction,
             performance_sd: b.readiness_mapping.performance_sd,
             coverage_band_lambda: b.readiness_mapping.coverage_band_lambda,
+            lapse_band_lambda: b.readiness_mapping.lapse_band_lambda,
+            targets: b
+                .readiness_mapping
+                .targets
+                .iter()
+                .map(|t| anki_proto::manifold::ReadinessTarget {
+                    id: t.id.clone(),
+                    label: t.label.clone(),
+                    scaled_point: t.scaled_point,
+                    scaled_low: t.scaled_low,
+                    scaled_high: t.scaled_high,
+                })
+                .collect(),
+            hours_curve: Some(anki_proto::manifold::ReadinessHoursCurve {
+                scaled_floor: b.readiness_mapping.hours_curve.scaled_floor,
+                points_per_log_hour: b.readiness_mapping.hours_curve.points_per_log_hour,
+                hours_scale: b.readiness_mapping.hours_curve.hours_scale,
+            }),
+            maturity_residue: Some(anki_proto::manifold::MaturityResidue {
+                items: b.readiness_mapping.maturity_residue.items,
+                scaled_points: b.readiness_mapping.maturity_residue.scaled_points,
+            }),
         }
     }
 }
@@ -233,5 +303,50 @@ mod test {
                 );
             }
         }
+    }
+
+    #[test]
+    fn scoring_config_exposes_readiness_mapping() {
+        let config = graph().scoring_config();
+        // The ETS anchor curve must be present, strictly monotone (higher scaled
+        // ⇒ higher percentile), and carry percentiles in [0, 100]. Authored
+        // order is irrelevant — the scoring layer sorts before interpolating —
+        // so sort a copy by scaled score and check the invariant there.
+        assert!(!config.ets_anchors.is_empty());
+        for anchor in &config.ets_anchors {
+            assert!((0.0..=100.0).contains(&anchor.percentile_below));
+        }
+        let mut sorted = config.ets_anchors.clone();
+        sorted.sort_by_key(|a| a.scaled);
+        for pair in sorted.windows(2) {
+            assert!(
+                pair[0].scaled < pair[1].scaled,
+                "ets_anchors must have distinct scaled scores"
+            );
+            assert!(
+                pair[0].percentile_below <= pair[1].percentile_below,
+                "ets_anchors percentile must be monotone in scaled score"
+            );
+        }
+
+        // The target ladder, hours curve and residue ceiling all reach the
+        // scoring layer as data (single source of truth), never hard-coded in TS.
+        assert_eq!(config.targets.len(), 3);
+        let ids: Vec<&str> = config.targets.iter().map(|t| t.id.as_str()).collect();
+        assert_eq!(ids, vec!["median", "strong", "exceptional"]);
+        for target in &config.targets {
+            assert!(target.scaled_low <= target.scaled_point);
+            assert!(target.scaled_point <= target.scaled_high);
+        }
+
+        let curve = config.hours_curve.expect("hours curve present");
+        assert!(curve.points_per_log_hour > 0.0);
+        assert!(curve.hours_scale > 0.0);
+
+        let residue = config.maturity_residue.expect("maturity residue present");
+        assert!(residue.items > 0.0);
+        assert!(residue.scaled_points > 0);
+        // The promised ceiling (scale max − residue) must stay below the raw max.
+        assert!(residue.scaled_points < config.scale_max);
     }
 }

@@ -1,0 +1,155 @@
+[
+{
+ "template_id": "parameter_forcing_dependence_v1",
+ "skill_id": "parameter_value_forcing_linear_dependence",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": 1, "hi": 3},
+  "q": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "For which value of \\( t \\) are the vectors \\( \\mathbf{v}_1 = (1,\\ 0,\\ [[a]]) \\), \\( \\mathbf{v}_2 = (0,\\ 1,\\ [[b]]) \\), and \\( \\mathbf{v}_3 = ([[p]],\\ [[q]],\\ t) \\) linearly dependent?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "1*(x - ([[b]])*([[q]])) + ([[a]])*(0*([[q]]) - 1*([[p]])) = 0",
+  "var": "x"
+ },
+ "distractors": [
+  "([[a]])*([[p]]) - ([[b]])*([[q]])",
+  "([[a]])*([[q]]) + ([[b]])*([[p]])",
+  "[[a]] + [[b]]",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "([[a]])*([[p]])",
+  "([[b]])*([[q]])"
+ ],
+ "solution": "The three vectors are dependent exactly when \\( \\det[\\mathbf{v}_1\\ \\mathbf{v}_2\\ \\mathbf{v}_3] = 0 \\). Expanding gives \\( t - ([[a]])([[p]]) - ([[b]])([[q]]) = 0 \\), so \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the two products instead of adding them.",
+  "This pairs the coefficients with the wrong components.",
+  "This adds only \\( [[a]] \\) and \\( [[b]] \\), ignoring \\( [[p]] \\) and \\( [[q]] \\).",
+  "This has the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This uses only the first product term.",
+  "This uses only the second product term."
+ ]
+},
+{
+ "template_id": "parameter_forcing_dependence_2d_parallel_v2",
+ "skill_id": "parameter_value_forcing_linear_dependence",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {},
+ "stem": "For what value of \\( t \\) are the vectors \\( \\mathbf{v}_1 = ([[a]],\\ [[b]]) \\) and \\( \\mathbf{v}_2 = ([[c]],\\ t) \\) in \\( \\mathbb{R}^2 \\) linearly dependent (i.e., parallel)?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*x - [[b]]*[[c]] = 0", "var": "x"},
+ "distractors": [
+  "[[b]]*[[c]] + [[a]]",
+  "-[[answer]]",
+  "[[a]]*[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]",
+  "[[c]]"
+ ],
+ "solution": "Two vectors in \\( \\mathbb{R}^2 \\) are dependent exactly when their \\( 2\\times2 \\) determinant vanishes: \\( [[a]]\\cdot t - [[b]]\\cdot[[c]] = 0 \\), so \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds instead of solving the determinant equation for \\( t \\).",
+  "This has the wrong sign.",
+  "This multiplies the two known coordinates instead of solving the determinant equation.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value.",
+  "This just copies \\( \\mathbf{v}_2 \\)'s known coordinate."
+ ]
+},
+{
+ "template_id": "parameter_forcing_dependence_span_membership_v3",
+ "skill_id": "parameter_value_forcing_linear_dependence",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a1": {"type": "int", "lo": -3, "hi": 3},
+  "a2": {"type": "int", "lo": -3, "hi": 3},
+  "a3": {"type": "int", "lo": -3, "hi": 3},
+  "b1": {"type": "int", "lo": -3, "hi": 3},
+  "b2": {"type": "int", "lo": -3, "hi": 3},
+  "b3": {"type": "int", "lo": -3, "hi": 3},
+  "c1": {"type": "int", "lo": -3, "hi": 3},
+  "c2": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)"],
+ "derived": {},
+ "stem": "The vectors \\( \\mathbf{v}_1 = ([[a1]], [[a2]], [[a3]]) \\) and \\( \\mathbf{v}_2 = ([[b1]], [[b2]], [[b3]]) \\) are linearly independent. For what value of \\( t \\) does \\( \\mathbf{w} = ([[c1]], [[c2]], t) \\) lie in the span of \\( \\mathbf{v}_1 \\) and \\( \\mathbf{v}_2 \\) (equivalently, for what \\( t \\) is \\( \\{\\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{w}\\} \\) linearly dependent)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[a1]]*x+[[b1]]*y=[[c1]]", "[[a2]]*x+[[b2]]*y=[[c2]]"],
+  "vars": ["x", "y"],
+  "want": "[[a3]]*x+[[b3]]*y"
+ },
+ "distractors": [
+  "[[c1]] + [[c2]]",
+  "[[a3]]+[[b3]]",
+  "[[a3]]*[[c1]] - [[b3]]*[[c2]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "Solve \\( x\\mathbf{v}_1 + y\\mathbf{v}_2 \\) matching the first two coordinates of \\( \\mathbf{w} \\): \\( [[a1]]x+[[b1]]y=[[c1]] \\), \\( [[a2]]x+[[b2]]y=[[c2]] \\). The third coordinate must then equal \\( [[a3]]x+[[b3]]y = [[answer]] \\), the required value of \\( t \\).",
+ "distractor_rationales": [
+  "This just adds the two known coordinates of \\( \\mathbf{w} \\), ignoring \\( \\mathbf{v}_1,\\mathbf{v}_2 \\) entirely.",
+  "This adds the third coordinates of \\( \\mathbf{v}_1 \\) and \\( \\mathbf{v}_2 \\) directly, without solving for the combination weights \\( x,y \\).",
+  "This combines the wrong quantities instead of first solving the \\( 2\\times2 \\) system for \\( x,y \\).",
+  "This has the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "parameter_forcing_dependence_quadratic_v4",
+ "skill_id": "parameter_value_forcing_linear_dependence",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "derived": {},
+ "stem": "Which of the following is a value of \\( t \\) for which the vectors \\( \\mathbf{v}_1 = ([[a]],\\ t,\\ 0) \\), \\( \\mathbf{v}_2 = (t,\\ [[a]],\\ 0) \\), and \\( \\mathbf{v}_3 = (0,\\ 0,\\ [[b]]) \\) are linearly dependent?",
+ "answer_spec": {"op": "solve", "equation": "[[b]]*(([[a]])**2 - x**2) = 0", "var": "x"},
+ "distractors": [
+  "[[a]]+1",
+  "[[a]]-1",
+  "2*[[a]]",
+  "0",
+  "[[b]]",
+  "[[a]]+[[b]]",
+  "-[[a]]-1",
+  "[[a]]*[[b]]"
+ ],
+ "solution": "The determinant is \\( \\det[\\mathbf{v}_1\\ \\mathbf{v}_2\\ \\mathbf{v}_3] = [[b]]\\big(([[a]])^2 - t^2\\big) \\), which vanishes exactly when \\( t = [[a]] \\) or \\( t = -([[a]]) \\); one such value is \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one from one of the two correct values.",
+  "This is off by one from one of the two correct values.",
+  "This doubles the parameter instead of solving \\( t^2=[[a]]^2 \\).",
+  "This assumes the vectors are dependent for \\( t=0 \\), which is false since \\( [[a]]\\ne0 \\).",
+  "This confuses the unrelated coefficient \\( [[b]] \\) with a solution for \\( t \\).",
+  "This adds the two given constants instead of solving the equation.",
+  "This is off by one from the negative correct value.",
+  "This multiplies the two given constants instead of solving the equation."
+ ]
+}
+]

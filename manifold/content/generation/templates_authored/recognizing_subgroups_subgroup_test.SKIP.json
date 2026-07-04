@@ -1,0 +1,4 @@
+{
+ "skill_id": "recognizing_subgroups_subgroup_test",
+ "reason": "This is a recognition/verification task (does a given subset pass the subgroup test?) whose answer is a yes/no judgment per candidate, not a single scalar the solver can compute."
+}

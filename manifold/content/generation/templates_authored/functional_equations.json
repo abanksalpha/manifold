@@ -1,0 +1,226 @@
+[
+ {
+  "template_id": "functional_equations_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "p": {"type": "choice", "values": [2, 3, 4]},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[q]], 0)", "Ne([[q]], [[p]])"],
+  "derived": {"fp": "[[a]]*[[p]]"},
+  "stem": "A function \\( f \\) satisfies \\( f(x + y) = f(x) + f(y) \\) for all real numbers \\( x \\) and \\( y \\). If \\( f([[p]]) = [[fp]] \\), what is \\( f([[q]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[q]]"},
+  "distractors": [
+   "[[a]]*[[p]] + ([[q]] - [[p]])",
+   "[[a]]*[[p]] + [[q]]",
+   "[[a]]*([[p]] + [[q]])",
+   "[[a]]*[[p]]*[[q]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Additivity forces \\( f \\) to be linear through the origin, so \\( f(x) = \\dfrac{f([[p]])}{[[p]]}\\,x = [[a]]x \\). Hence \\( f([[q]]) = ([[a]])([[q]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the growth rate beyond \\( [[p]] \\) as 1 instead of \\( [[a]] \\).",
+   "This adds \\( [[q]] \\) to \\( f([[p]]) \\) rather than scaling correctly.",
+   "This computes \\( f([[p]] + [[q]]) \\) instead of \\( f([[q]]) \\).",
+   "This multiplies \\( f([[p]]) \\) by \\( [[q]] \\), misapplying the scaling rule.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "functional_equations_multiplicative_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "n": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[a]], 1)", "Ne([[a]], -1)"],
+  "stem": "A function \\( f \\) satisfies \\( f(x + y) = f(x)f(y) \\) for all real numbers \\( x \\) and \\( y \\), and \\( f(1) = [[a]] \\). What is \\( f([[n]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]**[[n]]"},
+  "distractors": [
+   "[[a]]*[[n]]",
+   "[[a]]**([[n]]-1)",
+   "[[a]]**([[n]]+1)",
+   "[[n]]*[[a]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Writing \\( [[n]] = 1+1+\\cdots+1 \\) ([[n]] times) and applying the equation repeatedly gives \\( f([[n]]) = f(1)^{[[n]]} = ([[a]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies \\( f(1) \\) by [[n]] instead of raising it to the [[n]]-th power, confusing the additive and multiplicative rules.",
+   "This uses one less than the correct exponent.",
+   "This uses one more than the correct exponent.",
+   "This mixes a linear factor of [[n]] with an incorrect fixed power of 2.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "functional_equations_log_type_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 2, "hi": 9},
+   "q": {"type": "int", "lo": 2, "hi": 9},
+   "A": {"type": "int", "lo": -8, "hi": 8},
+   "B": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "derived": {"pq": "[[p]]*[[q]]"},
+  "stem": "A function \\( f \\) satisfies \\( f(xy) = f(x) + f(y) \\) for all positive real numbers \\( x \\) and \\( y \\). If \\( f([[p]]) = [[A]] \\) and \\( f([[q]]) = [[B]] \\), what is \\( f([[pq]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]] + [[B]]"},
+  "distractors": [
+   "[[A]]*[[B]]",
+   "[[A]] - [[B]]",
+   "[[B]] - [[A]]",
+   "[[A]]/[[B]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( x = [[p]] \\) and \\( y = [[q]] \\) directly in the functional equation gives \\( f([[pq]]) = f([[p]]) + f([[q]]) = ([[A]]) + ([[B]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the two given values instead of adding them, confusing this rule with a multiplicative functional equation.",
+   "This subtracts \\( f([[q]]) \\) instead of adding it.",
+   "This subtracts \\( f([[p]]) \\) instead of adding it (subtraction in the wrong order).",
+   "This divides the two given values, which has no basis in the functional equation.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "functional_equations_power_type_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 2, "hi": 6},
+   "A": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[A]], 1)", "Ne([[A]], -1)"],
+  "derived": {"pn": "[[p]]**[[n]]"},
+  "stem": "A function \\( f \\) satisfies \\( f(xy) = f(x)f(y) \\) for all positive real numbers \\( x \\) and \\( y \\). If \\( f([[p]]) = [[A]] \\), what is \\( f([[pn]]) \\)? (Note \\( [[pn]] = [[p]]^{[[n]]} \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]]**[[n]]"},
+  "distractors": [
+   "[[A]]*[[n]]",
+   "[[A]]**([[n]]-1)",
+   "[[A]]**([[n]]+1)",
+   "[[n]]*[[A]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( [[pn]] = [[p]]^{[[n]]} = [[p]]\\cdot[[p]]\\cdots[[p]] \\) ([[n]] factors), repeated use of the equation gives \\( f([[pn]]) = f([[p]])^{[[n]]} = ([[A]])^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies \\( f([[p]]) \\) by [[n]] instead of raising it to the [[n]]-th power.",
+   "This uses one less than the correct exponent.",
+   "This uses one more than the correct exponent.",
+   "This scales linearly by [[n]] instead of applying the multiplicative rule repeatedly.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "functional_equations_drift_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -5, "hi": 5},
+   "v0": {"type": "int", "lo": -8, "hi": 8},
+   "n": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[d]], 0)"],
+  "derived": {"target": "[[x0]] + [[n]]*[[c]]"},
+  "stem": "A function \\( f \\) satisfies \\( f(x + [[c]]) = f(x) + ([[d]]) \\) for all real \\( x \\). If \\( f([[x0]]) = [[v0]] \\), what is \\( f([[target]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[v0]] + [[n]]*[[d]]"},
+  "distractors": [
+   "[[v0]] + [[d]]",
+   "[[v0]]*[[n]]*[[d]]",
+   "[[v0]] + [[n]]*[[c]]",
+   "[[v0]] - [[n]]*[[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each step of size [[c]] in \\( x \\) adds ([[d]]) to the output. Going from [[x0]] to [[target]] takes [[n]] such steps, so \\( f([[target]]) = f([[x0]]) + [[n]]\\cdot([[d]]) = ([[v0]]) + [[n]]\\cdot([[d]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the drift ([[d]]) only once instead of [[n]] times.",
+   "This multiplies by the drift instead of adding it [[n]] times.",
+   "This adds [[n]] copies of the step size [[c]] instead of the drift ([[d]]).",
+   "This subtracts the accumulated drift instead of adding it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "functional_equations_symmetric_pair_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Eq(Mod([[a]], 2), 0)"],
+  "derived": {"half": "[[a]]/2"},
+  "stem": "A function \\( f \\) satisfies \\( f(x) + f([[a]] - x) = [[c]] \\) for all real \\( x \\). What is \\( f([[half]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[c]], 2)"},
+  "distractors": [
+   "[[c]]",
+   "2*[[c]]",
+   "[[c]]/[[a]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( x = [[half]] \\) makes the two arguments equal: \\( f([[half]]) + f([[a]] - [[half]]) = 2f([[half]]) = [[c]] \\), so \\( f([[half]]) = \\dfrac{[[c]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 2 after setting the two arguments equal.",
+   "This doubles the constant instead of halving it.",
+   "This divides by \\( [[a]] \\) instead of by 2.",
+   "This negates the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "functional_equations_recurrence_v1",
+  "skill_id": "functional_equations",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[a]], [[b]])"],
+  "stem": "A function \\( f \\) defined on the positive integers satisfies \\( f(n) = f(n-1) + f(n-2) \\) for every integer \\( n \\ge 3 \\), with \\( f(1) = [[a]] \\) and \\( f(2) = [[b]] \\). What is \\( f(6) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "3*[[a]] + 5*[[b]]"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "2*[[a]] + 3*[[b]]",
+   "5*[[a]] + 3*[[b]]",
+   "8*([[a]]+[[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Iterating the recurrence: \\( f(3) = [[a]]+[[b]] \\), \\( f(4) = [[a]]+2[[b]] \\), \\( f(5) = 2[[a]]+3[[b]] \\), \\( f(6) = 3[[a]]+5[[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This stops at \\( f(3) \\) instead of continuing the recurrence to \\( f(6) \\).",
+   "This stops at \\( f(5) \\) instead of continuing one more step to \\( f(6) \\).",
+   "This swaps the coefficients of \\( f(1) \\) and \\( f(2) \\) in the correct combination.",
+   "This treats \\( f(6) \\) as a fixed multiple of \\( f(1)+f(2) \\) rather than following the actual Fibonacci-style coefficients.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

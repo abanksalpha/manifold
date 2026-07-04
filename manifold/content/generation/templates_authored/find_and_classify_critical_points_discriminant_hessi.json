@@ -1,0 +1,297 @@
+[
+ {
+  "template_id": "hessian_discriminant_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "stem": "For \\( f(x, y) = [[a]]x^{3} + [[b]]y^{3} + ([[c]])x^{2}y \\), the second-derivative test uses the discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} \\). What is the value of \\( D \\) at the point \\( ([[x0]], [[y0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(6*[[a]]*[[x0]] + 2*[[c]]*[[y0]])*(6*[[b]]*[[y0]]) - (2*[[c]]*[[x0]])**2"},
+  "distractors": [
+   "(6*[[a]]*[[x0]] + 2*[[c]]*[[y0]])*(6*[[b]]*[[y0]]) + (2*[[c]]*[[x0]])**2",
+   "(6*[[a]]*[[x0]] + 2*[[c]]*[[y0]])*(6*[[b]]*[[y0]]) - (2*[[c]]*[[x0]])",
+   "(6*[[a]]*[[x0]] + 2*[[c]]*[[y0]]) + (6*[[b]]*[[y0]]) - (2*[[c]]*[[x0]])**2",
+   "(2*[[c]]*[[x0]])**2 - (6*[[a]]*[[x0]] + 2*[[c]]*[[y0]])*(6*[[b]]*[[y0]])",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "The second partials are \\( f_{xx} = 6([[a]])x + 2([[c]])y \\), \\( f_{yy} = 6([[b]])y \\), and \\( f_{xy} = 2([[c]])x \\). At \\( ([[x0]], [[y0]]) \\), \\( D = f_{xx}f_{yy} - (f_{xy})^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( (f_{xy})^{2} \\) instead of subtracting it in the discriminant.",
+   "This subtracts \\( f_{xy} \\) rather than its square.",
+   "This adds \\( f_{xx} \\) and \\( f_{yy} \\) instead of multiplying them.",
+   "This is the negative of the discriminant (the two products were swapped).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "critical_point_min_value_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "e": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {
+   "c": "-2*[[a]]*[[x0]]",
+   "d": "-2*[[b]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])x + ([[d]])y + ([[e]]) \\). Since \\( f_{xx} = 2([[a]]) > 0 \\), \\( f_{yy} = 2([[b]]) > 0 \\), and \\( f_{xy} = 0 \\), the discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} > 0 \\) everywhere, so \\( f \\)'s unique critical point is a local (and global) minimum. Find the minimum value of \\( f \\).",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*[[a]]*x + [[c]] = 0", "2*[[b]]*y + [[d]] = 0"],
+   "vars": ["x", "y"],
+   "want": "[[a]]*x**2 + [[b]]*y**2 + [[c]]*x + [[d]]*y + [[e]]"
+  },
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[e]]",
+   "[[e]]",
+   "-[[a]]*[[x0]]**2 - [[b]]*[[y0]]**2",
+   "-2*[[a]]*[[x0]]**2 - 2*[[b]]*[[y0]]**2 + [[e]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Setting \\( f_{x} = 2([[a]])x + ([[c]]) = 0 \\) and \\( f_{y} = 2([[b]])y + ([[d]]) = 0 \\) gives the critical point \\( x = [[x0]] \\), \\( y = [[y0]] \\). Since the discriminant test confirms this is a minimum, the minimum value is \\( f([[x0]], [[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the completed-square terms, as if the vertex correction were added instead of subtracted.",
+   "This evaluates \\( f \\) at the origin instead of at the critical point.",
+   "This forgets to add the constant term \\( ([[e]]) \\).",
+   "This double-counts the completed-square correction.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "critical_point_coupled_min_value_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": -5, "hi": 5},
+   "r": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Gt(4*[[a]]*[[b]] - [[c]]**2, 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy + ([[p]])x + ([[q]])y + ([[r]]) \\). Here \\( f_{xx} = 2([[a]]) > 0 \\) and the discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} = 4([[a]])([[b]]) - ([[c]])^{2} > 0 \\), so the second-derivative test confirms \\( f \\)'s unique critical point is a local minimum. Find the minimum value of \\( f \\).",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*[[a]]*x + [[c]]*y + [[p]] = 0", "2*[[b]]*y + [[c]]*x + [[q]] = 0"],
+   "vars": ["x", "y"],
+   "want": "[[a]]*x**2 + [[b]]*y**2 + [[c]]*x*y + [[p]]*x + [[q]]*y + [[r]]"
+  },
+  "distractors": [
+   "[[r]]",
+   "[[p]] + [[q]] + [[r]]",
+   "-[[p]]**2/(4*[[a]]) - [[q]]**2/(4*[[b]]) + [[r]]",
+   "[[p]]**2/(4*[[a]]) + [[q]]**2/(4*[[b]]) + [[r]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Solving \\( f_{x} = 2([[a]])x + ([[c]])y + ([[p]]) = 0 \\) and \\( f_{y} = 2([[b]])y + ([[c]])x + ([[q]]) = 0 \\) simultaneously (the cross term \\( ([[c]])xy \\) couples the two equations) gives the critical point, and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( f \\) at the origin instead of at the critical point.",
+   "This evaluates \\( f \\) at \\( (1,1) \\) instead of at the actual critical point.",
+   "This uses the decoupled vertex formula \\( -p^{2}/4a - q^{2}/4b \\), ignoring the cross term \\( cxy \\) that couples \\( x \\) and \\( y \\).",
+   "This uses the decoupled vertex formula with the wrong sign, ignoring the cross term entirely.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "critical_point_coupled_max_value_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": -5, "hi": 5},
+   "r": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Gt(4*[[a]]*[[b]] - [[c]]**2, 0)"],
+  "stem": "Let \\( f(x, y) = -[[a]]x^{2} - [[b]]y^{2} + ([[c]])xy + ([[p]])x + ([[q]])y + ([[r]]) \\). Here \\( f_{xx} = -2([[a]]) < 0 \\) and the discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} = 4([[a]])([[b]]) - ([[c]])^{2} > 0 \\), so the second-derivative test confirms \\( f \\)'s unique critical point is a local maximum. Find the maximum value of \\( f \\).",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["-2*[[a]]*x + [[c]]*y + [[p]] = 0", "-2*[[b]]*y + [[c]]*x + [[q]] = 0"],
+   "vars": ["x", "y"],
+   "want": "-[[a]]*x**2 - [[b]]*y**2 + [[c]]*x*y + [[p]]*x + [[q]]*y + [[r]]"
+  },
+  "distractors": [
+   "[[r]]",
+   "[[p]] + [[q]] + [[r]]",
+   "[[p]]**2/(4*[[a]]) + [[q]]**2/(4*[[b]]) + [[r]]",
+   "-[[p]]**2/(4*[[a]]) - [[q]]**2/(4*[[b]]) + [[r]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Solving \\( f_{x} = -2([[a]])x + ([[c]])y + ([[p]]) = 0 \\) and \\( f_{y} = -2([[b]])y + ([[c]])x + ([[q]]) = 0 \\) simultaneously gives the critical point, and substituting back into \\( f \\) gives the maximum value \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( f \\) at the origin instead of at the critical point.",
+   "This evaluates \\( f \\) at \\( (1,1) \\) instead of at the actual critical point.",
+   "This uses the decoupled vertex formula \\( p^{2}/4a + q^{2}/4b \\), which is the MINIMUM-style completion and also ignores the cross term.",
+   "This uses the correctly-signed decoupled vertex formula but still ignores the cross term \\( cxy \\) that couples \\( x \\) and \\( y \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "saddle_point_value_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": -5, "hi": 5},
+   "r": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} - [[b]]y^{2} + ([[c]])xy + ([[p]])x + ([[q]])y + ([[r]]) \\). Here \\( f_{xx} = 2([[a]]) \\), \\( f_{yy} = -2([[b]]) \\), and \\( f_{xy} = [[c]] \\), so the discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} = -4([[a]])([[b]]) - ([[c]])^{2} \\) is always negative. The second-derivative test therefore confirms \\( f \\)'s unique critical point is a SADDLE point (neither a max nor a min). What is the value of \\( f \\) at this saddle point?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*[[a]]*x + [[c]]*y + [[p]] = 0", "-2*[[b]]*y + [[c]]*x + [[q]] = 0"],
+   "vars": ["x", "y"],
+   "want": "[[a]]*x**2 - [[b]]*y**2 + [[c]]*x*y + [[p]]*x + [[q]]*y + [[r]]"
+  },
+  "distractors": [
+   "[[r]]",
+   "-[[p]]**2/(4*[[a]]) + [[q]]**2/(4*[[b]]) + [[r]]",
+   "[[p]]**2/(4*[[a]]) - [[q]]**2/(4*[[b]]) + [[r]]",
+   "[[p]] + [[q]] + [[r]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Solving \\( f_{x} = 2([[a]])x + ([[c]])y + ([[p]]) = 0 \\) and \\( f_{y} = -2([[b]])y + ([[c]])x + ([[q]]) = 0 \\) simultaneously (the cross term couples the two equations) gives the saddle point's coordinates, and substituting back into \\( f \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( f \\) at the origin instead of at the actual saddle point.",
+   "This uses the decoupled vertex completion for the \\( x \\)-part with the wrong sign.",
+   "This uses the decoupled vertex completion for the \\( y \\)-part with the wrong sign.",
+   "This wrongly adds the linear coefficients directly instead of solving the coupled system.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "critical_point_cost_minimization_word_problem_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -2, "hi": 2},
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Gt(4*[[a]]*[[b]] - [[c]]**2, 0)", "Ne([[c]]*[[q]] - 2*[[b]]*[[p]], 0)"],
+  "stem": "A company produces \\( x \\) units of product A and \\( y \\) units of product B each week. Its total weekly production cost, in dollars, is \\( C(x, y) = [[a]]x^{2} + [[b]]y^{2} + ([[c]])xy + ([[p]])x + ([[q]])y \\). Since \\( C_{xx} = 2([[a]]) > 0 \\) and the discriminant \\( D = C_{xx}C_{yy} - (C_{xy})^{2} = 4([[a]])([[b]]) - ([[c]])^{2} > 0 \\), the second-derivative test confirms \\( C \\) has a unique local minimum at its critical point. How many units \\( x \\) of product A should be produced to minimize the cost?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["2*[[a]]*x + [[c]]*y + [[p]] = 0", "2*[[b]]*y + [[c]]*x + [[q]] = 0"],
+   "vars": ["x", "y"],
+   "want": "x"
+  },
+  "distractors": [
+   "([[c]]*[[p]] - 2*[[a]]*[[q]])/(4*[[a]]*[[b]] - [[c]]**2)",
+   "-([[c]]*[[q]] - 2*[[b]]*[[p]])/(4*[[a]]*[[b]] - [[c]]**2)",
+   "-[[p]]/(2*[[a]])",
+   "-[[q]]/(2*[[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( C_{x} = 2([[a]])x + ([[c]])y + ([[p]]) = 0 \\) and \\( C_{y} = 2([[b]])y + ([[c]])x + ([[q]]) = 0 \\) and solving this coupled linear system by elimination (Cramer's rule) gives \\( x = \\dfrac{([[c]])([[q]]) - 2([[b]])([[p]])}{4([[a]])([[b]]) - ([[c]])^{2}} = [[answer]] \\) units.",
+  "distractor_rationales": [
+   "This is the OTHER unknown \\( y \\) from the same system, not \\( x \\).",
+   "This has a sign error in the numerator of the correct Cramer's-rule ratio for \\( x \\).",
+   "This ignores the cross term entirely and uses the decoupled formula \\( x=-p/(2a) \\).",
+   "This solves the wrong (\\( y \\)) decoupled equation and mislabels it as \\( x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "hessian_discriminant_from_given_partials_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": -8, "hi": 8},
+   "r": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)"],
+  "stem": "At a critical point of a function \\( f(x, y) \\), the second-order partial derivatives are found (by some other means) to be \\( f_{xx} = [[p]] \\), \\( f_{yy} = [[q]] \\), and \\( f_{xy} = [[r]] \\). What is the value of the discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} \\) used in the second-derivative test?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]*[[q]] - [[r]]**2"},
+  "distractors": [
+   "[[p]]*[[q]] + [[r]]**2",
+   "[[r]]**2 - [[p]]*[[q]]",
+   "[[p]] + [[q]] - [[r]]**2",
+   "[[p]]*[[q]] - [[r]]",
+   "[[answer]] + 4",
+   "[[answer]] - 3"
+  ],
+  "solution": "By definition, \\( D = f_{xx}f_{yy} - (f_{xy})^{2} = ([[p]])([[q]]) - ([[r]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( (f_{xy})^{2} \\) instead of subtracting it.",
+   "This is the negative of the correct discriminant (the subtraction was reversed).",
+   "This adds \\( f_{xx} \\) and \\( f_{yy} \\) instead of multiplying them.",
+   "This subtracts \\( f_{xy} \\) itself rather than its square.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "critical_point_discriminant_solve_for_coefficient_v1",
+  "skill_id": "find_and_classify_critical_points_discriminant_hessi",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 5},
+   "k0": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "derived": {
+   "target": "4*[[a]]*[[b]] - [[k0]]**2"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]x^{2} + [[b]]y^{2} + kxy \\), where \\( k \\) is an unknown real coefficient. The only critical point is the origin, and the discriminant used in the second-derivative test there is \\( D = 4([[a]])([[b]]) - k^{2} \\). Which of the following is a value of \\( k \\) for which \\( D = [[target]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "4*[[a]]*[[b]] - k**2 - [[target]] = 0", "var": "k"},
+  "distractors": [
+   "[[target]]",
+   "-[[target]]",
+   "[[a]]*[[b]] - [[target]]",
+   "4*[[a]]*[[b]] - [[target]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solving \\( 4([[a]])([[b]]) - k^{2} = [[target]] \\) for \\( k \\) gives \\( k^{2} = 4([[a]])([[b]]) - [[target]] \\), so \\( k = [[answer]] \\) is one of the two real values satisfying this.",
+  "distractor_rationales": [
+   "This confuses the target discriminant value itself with a value of \\( k \\).",
+   "This confuses the negative of the target discriminant value with a value of \\( k \\).",
+   "This subtracts the target from \\( ab \\) instead of solving \\( k^{2}=4ab-D \\).",
+   "This subtracts the target from \\( 4ab \\) without taking a square root.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

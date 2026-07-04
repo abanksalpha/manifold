@@ -1,0 +1,148 @@
+[
+{
+ "template_id": "factorable_cos_quadratic_v1",
+ "skill_id": "factorable_trig_equation_on_an_interval",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [-2, -1, 1]},
+  "q": {"type": "choice", "values": [-2, -1, 1]},
+  "m": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "derived": {
+  "A": "4*[[m]]",
+  "B": "-2*[[m]]*([[p]] + [[q]])",
+  "C": "[[m]]*[[p]]*[[q]]"
+ },
+ "stem": "On the interval \\( [0, 2\\pi) \\), which of the following is a solution of \\( [[A]]\\cos^2 x + ([[B]])\\cos x + ([[C]]) = 0 \\)?",
+ "answer_spec": {"op": "solve", "equation": "[[A]]*cos(x)**2 + [[B]]*cos(x) + [[C]]", "var": "x"},
+ "distractors": [
+  "pi/6",
+  "pi/4",
+  "[[answer]] + pi/2",
+  "[[answer]] + 3*pi/4",
+  "[[answer]] + 5*pi/6",
+  "3*pi/4"
+ ],
+ "solution": "Let \\( u = \\cos x \\). The equation \\( [[A]]u^2 + ([[B]])u + ([[C]]) = 0 \\) factors into rational roots \\( u \\); solving \\( \\cos x = u \\) on \\( [0, 2\\pi) \\) yields the solution \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "The cosine of \\( \\tfrac{\\pi}{6} \\) is irrational, so it cannot be a root of the rational-coefficient quadratic; it is not a solution.",
+  "The cosine of \\( \\tfrac{\\pi}{4} \\) is irrational, so this angle does not satisfy the equation.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{2} \\), landing on an angle whose cosine is not a root.",
+  "This shifts a true solution by \\( \\tfrac{3\\pi}{4} \\), so its cosine no longer equals a root.",
+  "This shifts a true solution by \\( \\tfrac{5\\pi}{6} \\), giving a non-solution.",
+  "The cosine of \\( \\tfrac{3\\pi}{4} \\) is irrational, so this angle is not a solution."
+ ]
+},
+{
+ "template_id": "factorable_sin_quadratic_v1",
+ "skill_id": "factorable_trig_equation_on_an_interval",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [-2, -1, 1]},
+  "q": {"type": "choice", "values": [-2, -1, 1]},
+  "m": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "require_rational": false,
+ "derived": {
+  "A": "4*[[m]]",
+  "B": "-2*[[m]]*([[p]] + [[q]])",
+  "C": "[[m]]*[[p]]*[[q]]"
+ },
+ "stem": "On the interval \\( [0, 2\\pi) \\), which of the following is a solution of \\( [[A]]\\sin^2 x + ([[B]])\\sin x + ([[C]]) = 0 \\)?",
+ "answer_spec": {"op": "solve", "equation": "[[A]]*sin(x)**2 + [[B]]*sin(x) + [[C]]", "var": "x"},
+ "distractors": [
+  "pi/3",
+  "2*pi/3",
+  "[[answer]] + pi/2",
+  "[[answer]] + pi/4",
+  "[[answer]] + pi/3",
+  "pi/4"
+ ],
+ "solution": "Let \\( u = \\sin x \\). The equation \\( [[A]]u^2 + ([[B]])u + ([[C]]) = 0 \\) factors into rational roots \\( u \\); solving \\( \\sin x = u \\) on \\( [0, 2\\pi) \\) yields the solution \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "The sine of \\( \\tfrac{\\pi}{3} \\) is irrational, so it cannot be a root of the rational-coefficient quadratic.",
+  "The sine of \\( \\tfrac{2\\pi}{3} \\) is irrational, so this angle does not satisfy the equation.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{2} \\), landing on an angle whose sine is not a root.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{4} \\), so its sine no longer equals a root.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{3} \\), giving a non-solution.",
+  "The sine of \\( \\tfrac{\\pi}{4} \\) is irrational, so this angle is not a solution."
+ ]
+},
+{
+ "template_id": "factorable_tan_quadratic_v1",
+ "skill_id": "factorable_trig_equation_on_an_interval",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -7, "hi": 7},
+  "q": {"type": "int", "lo": -7, "hi": 7},
+  "m": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[p]], [[q]])"],
+ "require_rational": false,
+ "derived": {
+  "A": "[[m]]",
+  "B": "-[[m]]*([[p]] + [[q]])",
+  "C": "[[m]]*[[p]]*[[q]]"
+ },
+ "stem": "On the interval \\( \\left(-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right) \\), which of the following is a solution of \\( [[A]]\\tan^2 x + ([[B]])\\tan x + ([[C]]) = 0 \\)? (Factor the quadratic in \\( \\tan x \\).)",
+ "answer_spec": {"op": "solve", "equation": "[[A]]*tan(x)**2 + [[B]]*tan(x) + [[C]]", "var": "x"},
+ "distractors": [
+  "atan([[p]]) + atan([[q]])",
+  "-[[answer]]",
+  "[[answer]] + pi/4",
+  "[[answer]] - pi/4",
+  "atan([[p]]*[[q]])",
+  "atan([[p]] + [[q]])"
+ ],
+ "solution": "Let \\( u = \\tan x \\). The equation \\( [[A]]u^2 + ([[B]])u + ([[C]]) = 0 \\) factors with roots \\( u=[[p]] \\) and \\( u=[[q]] \\). Since \\( \\tan x \\) is one-to-one on \\( \\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right) \\), solving \\( \\tan x = [[p]] \\) or \\( \\tan x=[[q]] \\) there gives \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two arctangents instead of reporting a root by itself.",
+  "This has the wrong sign.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{4} \\).",
+  "This shifts a true solution by \\( -\\tfrac{\\pi}{4} \\).",
+  "This takes the arctangent of the product of the two roots instead of a root itself.",
+  "This takes the arctangent of the sum of the two roots instead of a root itself."
+ ]
+},
+{
+ "template_id": "factorable_gcf_sin_cos_v1",
+ "skill_id": "factorable_trig_equation_on_an_interval",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 16},
+  "p": {"type": "choice", "values": [-1, 1]}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "derived": {
+  "P": "2*[[m]]",
+  "Q": "-[[m]]*[[p]]"
+ },
+ "stem": "On the interval \\( [0, 2\\pi) \\), which of the following is a solution of \\( [[P]]\\sin x\\cos x + ([[Q]])\\sin x = 0 \\)? (Factor out the common term.)",
+ "answer_spec": {"op": "solve", "equation": "sin(x)*([[P]]*cos(x) + [[Q]])", "var": "x"},
+ "distractors": [
+  "pi/6",
+  "pi/4",
+  "[[answer]] + pi/6",
+  "[[answer]] + pi/4",
+  "3*pi/2",
+  "pi/2"
+ ],
+ "solution": "Factor out \\( \\sin x \\): \\( \\sin x\\,([[P]]\\cos x + [[Q]]) = 0 \\). One branch gives \\( \\sin x = 0 \\) and the other gives \\( \\cos x = -\\dfrac{[[Q]]}{[[P]]} \\), a nice value; solving on \\( [0,2\\pi) \\) gives (among others) \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "The cosine of \\( \\tfrac{\\pi}{6} \\) is irrational and does not satisfy either factor.",
+  "The cosine of \\( \\tfrac{\\pi}{4} \\) is irrational and does not satisfy either factor.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{6} \\), landing off both branches.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{4} \\), landing off both branches.",
+  "This is \\( \\tfrac{3\\pi}{2} \\), which satisfies neither factor for these coefficients.",
+  "This is \\( \\tfrac{\\pi}{2} \\), which satisfies neither factor for these coefficients."
+ ]
+}
+]

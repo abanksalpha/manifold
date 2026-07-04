@@ -1,0 +1,196 @@
+[
+ {
+  "template_id": "areas_and_perimeters_of_plane_figures_composite_shad_v1",
+  "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {
+    "type": "int",
+    "lo": 2,
+    "hi": 22
+   }
+  },
+  "constraints": [],
+  "stem": "A circle of radius \\( [[r]] \\) is inscribed in a square, so that the circle touches all four sides. What is the area of the region that lies inside the square but outside the circle? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "(2*[[r]])**2 - pi*[[r]]**2"
+  },
+  "distractors": [
+   "4*[[r]]**2",
+   "pi*[[r]]**2",
+   "4*[[r]]**2 - 2*pi*[[r]]",
+   "((2*[[r]])**2 - pi*[[r]]**2)/2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Since the circle is inscribed in the square, the square's side equals the circle's diameter \\( 2[[r]] \\). The square's area is \\( (2[[r]])^{2} = [[r2]] \\) and the circle's area is \\( \\pi[[r]]^{2} \\). The shaded region is the difference: \\( (2[[r]])^{2} - \\pi[[r]]^{2} = [[answer]] \\).",
+  "derived": {
+   "r2": "(2*[[r]])**2"
+  },
+  "distractor_rationales": [
+   "This is the area of the square alone; the circle has not been subtracted.",
+   "This is the area of the circle alone, not the leftover region.",
+   "This subtracts the circle's circumference instead of its area.",
+   "This is only half of the correct shaded area.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "areas_and_perimeters_of_plane_figures_composite_shad_v2_circle_minus_square",
+  "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 2, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A square with side length \\( [[s]] \\) is inscribed in a circle, so that all four vertices of the square lie on the circle. What is the area of the region that lies inside the circle but outside the square? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*([[s]]*sqrt(2)/2)**2 - [[s]]**2"},
+  "distractors": [
+   "pi*[[s]]**2 - [[s]]**2",
+   "[[s]]**2",
+   "pi*([[s]]/2)**2 - [[s]]**2",
+   "pi*([[s]]*sqrt(2)/2)**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The square's diagonal, \\( [[s]]\\sqrt{2} \\), is the circle's diameter, so the circle's radius is \\( \\frac{[[s]]\\sqrt{2}}{2} \\) and its area is \\( \\pi\\left(\\frac{[[s]]\\sqrt{2}}{2}\\right)^{2} \\). Subtracting the square's area \\( [[s]]^{2} \\) gives the shaded region: \\( \\pi\\left(\\frac{[[s]]\\sqrt{2}}{2}\\right)^{2} - [[s]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly uses the side length itself as the circle's radius instead of half the diagonal.",
+   "This is the square's area alone, with nothing subtracted.",
+   "This mistakenly uses half the side length as the radius instead of half the diagonal.",
+   "This is the circle's area alone; the square has not been subtracted.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "areas_and_perimeters_of_plane_figures_composite_shad_v3_annulus",
+  "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r1": {"type": "int", "lo": 2, "hi": 12},
+   "r2": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": ["Gt([[r2]], [[r1]])"],
+  "stem": "Two concentric circles have radii \\( [[r1]] \\) and \\( [[r2]] \\), with \\( [[r2]] > [[r1]] \\). What is the area of the annular (ring-shaped) region between the two circles? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "pi*[[r2]]**2 - pi*[[r1]]**2"},
+  "distractors": [
+   "pi*([[r2]] - [[r1]])**2",
+   "pi*([[r2]]**2 + [[r1]]**2)",
+   "2*pi*([[r2]] - [[r1]])",
+   "pi*[[r2]]**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The ring's area is the larger circle's area minus the smaller circle's area: \\( \\pi[[r2]]^{2} - \\pi[[r1]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This squares the difference of the radii instead of subtracting the squared areas.",
+   "This adds the two areas instead of subtracting them.",
+   "This computes a difference of circumferences instead of areas.",
+   "This is just the outer circle's area; the inner circle has not been subtracted.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "areas_and_perimeters_of_plane_figures_composite_shad_v4_norman_window",
+  "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "w": {"type": "int", "lo": 2, "hi": 14},
+   "h": {"type": "int", "lo": 2, "hi": 16}
+  },
+  "constraints": [],
+  "stem": "A window is shaped like a rectangle of width \\( [[w]] \\) and height \\( [[h]] \\), topped with a semicircle whose diameter equals the rectangle's width \\( [[w]] \\). What is the total area of the window? (Express the answer in terms of \\( \\pi \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[w]]*[[h]] + (1/2)*pi*([[w]]/2)**2"},
+  "distractors": [
+   "[[w]]*[[h]] + pi*([[w]]/2)**2",
+   "[[w]]*[[h]]",
+   "[[w]]*[[h]] + (1/2)*pi*[[w]]**2",
+   "(1/2)*pi*([[w]]/2)**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The window is a rectangle plus a semicircle of radius \\( \\frac{[[w]]}{2} \\) sitting on top. The rectangle contributes \\( [[w]]\\cdot[[h]] \\) and the semicircle contributes \\( \\frac{1}{2}\\pi\\left(\\frac{[[w]]}{2}\\right)^{2} \\). Adding these gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the area of a full circle for the cap instead of a semicircle.",
+   "This is only the rectangle's area; the semicircular cap is missing.",
+   "This uses the full width \\( [[w]] \\) as the semicircle's radius instead of half of it.",
+   "This is only the semicircular cap's area; the rectangle is missing.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ },
+ {
+  "template_id": "areas_and_perimeters_of_plane_figures_composite_shad_v5_L_perimeter",
+  "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "L": {"type": "int", "lo": 8, "hi": 30},
+   "W": {"type": "int", "lo": 6, "hi": 26},
+   "a": {"type": "int", "lo": 2, "hi": 6},
+   "b": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Lt([[a]], [[L]])", "Lt([[b]], [[W]])"],
+  "stem": "A large rectangle has length \\( [[L]] \\) and width \\( [[W]] \\). A smaller rectangle measuring \\( [[a]] \\) by \\( [[b]] \\) is cut out of one corner, leaving an L-shaped figure. What is the perimeter of the resulting L-shaped figure?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[L]] + 2*[[W]]"},
+  "distractors": [
+   "2*[[L]] + 2*[[W]] - 2*[[a]] - 2*[[b]]",
+   "2*[[L]] + 2*[[W]] + 2*[[a]] + 2*[[b]]",
+   "[[L]]*[[W]] - [[a]]*[[b]]",
+   "2*[[L]] + 2*[[W]] - [[a]] - [[b]]",
+   "[[answer]] + 4",
+   "[[answer]] - 4"
+  ],
+  "solution": "Cutting a rectangular notch from a corner does not change the total perimeter: the two removed edge segments are exactly replaced by the two new edges of the notch, which have the same total length. So the L-shape's perimeter equals the original rectangle's perimeter, \\( 2[[L]] + 2[[W]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This incorrectly subtracts the notch's dimensions, as if cutting a corner shortens the perimeter.",
+   "This incorrectly adds the notch's dimensions on top of the full rectangle's perimeter.",
+   "This computes the leftover AREA, not the perimeter.",
+   "This subtracts only half of the notch's contribution to each dimension.",
+   "This is off from the correct perimeter by four.",
+   "This is off from the correct perimeter by four."
+  ]
+ },
+ {
+  "template_id": "areas_and_perimeters_of_plane_figures_composite_shad_v6_triangle_minus_incircle",
+  "skill_id": "areas_and_perimeters_of_plane_figures_composite_shad",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "s": {"type": "int", "lo": 4, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "An equilateral triangle has side length \\( [[s]] \\), and its inscribed circle (tangent to all three sides) is removed. What is the area of the remaining (shaded) region inside the triangle but outside the circle? (Express the answer in terms of \\( \\pi \\) and/or radicals.)",
+  "answer_spec": {"op": "evaluate", "expr": "(sqrt(3)/4)*[[s]]**2 - pi*([[s]]/(2*sqrt(3)))**2"},
+  "distractors": [
+   "(sqrt(3)/4)*[[s]]**2",
+   "pi*([[s]]/(2*sqrt(3)))**2",
+   "(sqrt(3)/4)*[[s]]**2 - pi*([[s]]/sqrt(3))**2",
+   "[[s]]**2 - pi*([[s]]/(2*sqrt(3)))**2",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "The equilateral triangle's area is \\( \\frac{\\sqrt{3}}{4}[[s]]^{2} \\), and its inradius is \\( \\frac{[[s]]}{2\\sqrt{3}} \\), giving an inscribed-circle area of \\( \\pi\\left(\\frac{[[s]]}{2\\sqrt{3}}\\right)^{2} \\). The shaded region is the difference: \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the triangle's area alone; the inscribed circle has not been subtracted.",
+   "This is the inscribed circle's area alone, not the leftover region.",
+   "This uses the full \\( \\frac{s}{\\sqrt{3}} \\) as the inradius instead of \\( \\frac{s}{2\\sqrt{3}} \\).",
+   "This uses \\( s^{2} \\) directly as the triangle's area, dropping the \\( \\frac{\\sqrt{3}}{4} \\) factor.",
+   "This is off from the correct area by \\( \\pi \\).",
+   "This is off from the correct area by \\( \\pi \\)."
+  ]
+ }
+]

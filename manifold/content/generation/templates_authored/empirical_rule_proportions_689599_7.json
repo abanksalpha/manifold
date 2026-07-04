@@ -1,0 +1,165 @@
+[
+ {
+  "template_id": "empirical_rule_count_v1",
+  "skill_id": "empirical_rule_proportions_689599_7",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "p": {"type": "choice", "values": [680, 950, 997]},
+   "N": {"type": "choice", "values": [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000]}
+  },
+  "constraints": [
+   "Or(And(Eq([[k]], 1), Eq([[p]], 680)), And(Eq([[k]], 2), Eq([[p]], 950)), And(Eq([[k]], 3), Eq([[p]], 997)))"
+  ],
+  "stem": "A large data set is approximately normally distributed and contains \\( [[N]] \\) values. By the empirical rule (the 68-95-99.7 rule), about how many of the values lie within \\( [[k]] \\) standard deviation(s) of the mean?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[p]], 1000)*[[N]]"},
+  "distractors": [
+   "[[N]] - [[answer]]",
+   "Rational(680, 1000)*[[N]]",
+   "Rational(950, 1000)*[[N]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Within \\( [[k]] \\) standard deviation(s) the empirical rule keeps about \\( [[p]]/1000 \\) of the data, so the count is \\( \\frac{[[p]]}{1000}\\cdot[[N]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts the values OUTSIDE \\( [[k]] \\) standard deviation(s) instead of inside.",
+   "This uses the 1-standard-deviation proportion (about 68%) regardless of the stated number of standard deviations.",
+   "This uses the 2-standard-deviation proportion (about 95%) regardless of the stated number of standard deviations.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "empirical_rule_outside_count_v1",
+  "skill_id": "empirical_rule_proportions_689599_7",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "p": {"type": "choice", "values": [680, 950, 997]},
+   "N": {"type": "choice", "values": [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000]}
+  },
+  "constraints": [
+   "Or(And(Eq([[k]], 1), Eq([[p]], 680)), And(Eq([[k]], 2), Eq([[p]], 950)), And(Eq([[k]], 3), Eq([[p]], 997)))"
+  ],
+  "stem": "A large data set is approximately normally distributed and contains \\( [[N]] \\) values. By the empirical rule (the 68-95-99.7 rule), about how many of the values lie MORE than \\( [[k]] \\) standard deviation(s) away from the mean (i.e., outside that range on either side)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational(1000 - [[p]], 1000)*[[N]]"},
+  "distractors": [
+   "Rational([[p]], 1000)*[[N]]",
+   "Rational(1000 - 680, 1000)*[[N]]",
+   "Rational(1000 - 950, 1000)*[[N]]",
+   "[[N]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The empirical rule keeps about \\( [[p]]/1000 \\) of the data within \\( [[k]] \\) standard deviation(s), so the remaining fraction outside that range is \\( \\frac{1000-[[p]]}{1000}\\cdot[[N]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the count of values INSIDE \\( [[k]] \\) standard deviation(s), not outside.",
+   "This always uses the 1-standard-deviation tail fraction, regardless of the stated number of standard deviations.",
+   "This always uses the 2-standard-deviation tail fraction, regardless of the stated number of standard deviations.",
+   "This claims every value in the data set lies outside the range.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "empirical_rule_one_tail_v1",
+  "skill_id": "empirical_rule_proportions_689599_7",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "p": {"type": "choice", "values": [680, 950, 997]},
+   "N": {"type": "choice", "values": [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000]}
+  },
+  "constraints": [
+   "Or(And(Eq([[k]], 1), Eq([[p]], 680)), And(Eq([[k]], 2), Eq([[p]], 950)), And(Eq([[k]], 3), Eq([[p]], 997)))"
+  ],
+  "stem": "A large data set is approximately normally distributed and contains \\( [[N]] \\) values. By the empirical rule (the 68-95-99.7 rule), about how many of the values lie MORE than \\( [[k]] \\) standard deviation(s) ABOVE the mean (the upper tail alone)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational(1000 - [[p]], 2000)*[[N]]"},
+  "distractors": [
+   "Rational(1000 - [[p]], 1000)*[[N]]",
+   "Rational([[p]], 2000)*[[N]]",
+   "Rational([[p]], 1000)*[[N]]",
+   "[[N]] - [[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The two tails together hold \\( \\frac{1000-[[p]]}{1000} \\) of the data; by symmetry the upper tail alone holds half of that: \\( \\frac{1000-[[p]]}{2000}\\cdot[[N]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is BOTH tails combined; it forgets to split the outside proportion in half by symmetry.",
+   "This mistakenly halves the proportion INSIDE the range instead of the proportion outside it.",
+   "This uses the proportion inside the range instead of the outer-tail proportion.",
+   "This counts everything except the upper tail, rather than the upper tail itself.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "empirical_rule_band_v1",
+  "skill_id": "empirical_rule_proportions_689599_7",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "k1": {"type": "choice", "values": [1, 2]},
+   "k2": {"type": "choice", "values": [2, 3]},
+   "p1": {"type": "choice", "values": [680, 950]},
+   "p2": {"type": "choice", "values": [950, 997]},
+   "N": {"type": "choice", "values": [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000]}
+  },
+  "constraints": [
+   "Lt([[k1]], [[k2]])",
+   "Or(And(Eq([[k1]], 1), Eq([[p1]], 680)), And(Eq([[k1]], 2), Eq([[p1]], 950)))",
+   "Or(And(Eq([[k2]], 2), Eq([[p2]], 950)), And(Eq([[k2]], 3), Eq([[p2]], 997)))"
+  ],
+  "stem": "A large data set is approximately normally distributed and contains \\( [[N]] \\) values. By the empirical rule (the 68-95-99.7 rule), about how many of the values lie between \\( [[k1]] \\) and \\( [[k2]] \\) standard deviations ABOVE the mean?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[p2]] - [[p1]], 2000)*[[N]]"},
+  "distractors": [
+   "Rational([[p2]] - [[p1]], 1000)*[[N]]",
+   "Rational([[p2]], 2000)*[[N]]",
+   "Rational([[p1]], 2000)*[[N]]",
+   "Rational([[p2]] + [[p1]], 2000)*[[N]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The proportion within \\( [[k2]] \\) SDs minus the proportion within \\( [[k1]] \\) SDs gives both bands beyond \\( [[k1]] \\); by symmetry the upper band alone is half of that: \\( \\frac{[[p2]]-[[p1]]}{2000}\\cdot[[N]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to split the band into an upper and lower half by symmetry.",
+   "This uses only the outer boundary's proportion, ignoring the inner cutoff entirely.",
+   "This uses only the inner boundary's proportion, ignoring the outer cutoff entirely.",
+   "This adds the two boundary proportions instead of subtracting them.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "empirical_rule_cumulative_below_v1",
+  "skill_id": "empirical_rule_proportions_689599_7",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "p": {"type": "choice", "values": [680, 950, 997]},
+   "N": {"type": "choice", "values": [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000]}
+  },
+  "constraints": [
+   "Or(And(Eq([[k]], 1), Eq([[p]], 680)), And(Eq([[k]], 2), Eq([[p]], 950)), And(Eq([[k]], 3), Eq([[p]], 997)))"
+  ],
+  "stem": "A large data set is approximately normally distributed and contains \\( [[N]] \\) values. By the empirical rule (the 68-95-99.7 rule), about how many of the values lie BELOW the point that is \\( [[k]] \\) standard deviation(s) ABOVE the mean?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational(1000 + [[p]], 2000)*[[N]]"},
+  "distractors": [
+   "Rational(1000 - [[p]], 2000)*[[N]]",
+   "Rational([[p]], 1000)*[[N]]",
+   "Rational(500 + [[p]], 1000)*[[N]]",
+   "[[N]] - Rational(1000 + [[p]], 2000)*[[N]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Half the data lies below the mean, plus half of the \\( [[p]]/1000 \\) that lies within \\( [[k]] \\) SDs (the half above the mean): \\( \\frac{1000+[[p]]}{2000}\\cdot[[N]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes the proportion below a point \\( [[k]] \\) SDs BELOW the mean instead of above it.",
+   "This uses only the 'within \\( [[k]] \\) SDs' proportion and forgets the entire lower half of the data.",
+   "This makes an arithmetic slip combining the 50% lower half with the tail proportion instead of the within-range proportion.",
+   "This computes the proportion ABOVE the cutoff instead of below it.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

@@ -1,0 +1,151 @@
+[
+{
+ "template_id": "onto_surjections_v1",
+ "skill_id": "counting_onto_surjective_functions",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "k": {
+   "type": "choice",
+   "values": [
+    3,
+    4
+   ]
+  },
+  "m": {
+   "type": "int",
+   "lo": 4,
+   "hi": 17
+  }
+ },
+ "constraints": [
+  "Gt([[m]], [[k]])"
+ ],
+ "stem": "How many functions from a set of [[m]] distinct elements onto a set of [[k]] distinct elements are there? (That is, how many surjections map the [[m]]-element domain onto every one of the [[k]] elements in the codomain?)",
+ "answer_spec": {
+  "op": "sum",
+  "expr": "(-1)**i * binomial([[k]], i) * ([[k]] - i)**[[m]]",
+  "var": "i",
+  "lo": "0",
+  "hi": "[[k]]"
+ },
+ "distractors": [
+  "[[k]]**[[m]]",
+  "[[k]]**[[m]] - [[k]]",
+  "factorial([[k]])*binomial([[m]], [[k]])",
+  "factorial([[m]])/factorial([[m]] - [[k]])",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "By inclusion-exclusion the number of surjections is \\( \\sum_{i=0}^{[[k]]} (-1)^i \\binom{[[k]]}{i} ([[k]]-i)^{[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts ALL functions \\( [[k]]^{[[m]]} \\), including those that miss some elements.",
+  "This subtracts only one class of non-surjective functions, not all of them.",
+  "This chooses which [[k]] domain elements hit the codomain and permutes, over/undercounting.",
+  "This counts injections \\( {}_{[[m]]}P_{[[k]]} \\) rather than surjections.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+},
+{
+ "template_id": "onto_surjections_codomain_two_v1",
+ "skill_id": "counting_onto_surjective_functions",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "How many functions from a set of [[m]] distinct elements onto a 2-element set \\( \\{A, B\\} \\) are there? (Every function must use both A and B somewhere in its range.)",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[m]] - 2"},
+ "distractors": [
+  "2**[[m]]",
+  "2**[[m]] - 1",
+  "2**([[m]] - 1)",
+  "factorial([[m]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "There are \\( 2^{[[m]]} \\) functions in total; exactly 2 of them are constant (all-A or all-B) and so fail to be onto. Removing those gives \\( 2^{[[m]]} - 2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This counts ALL functions to \\( \\{A,B\\} \\), including the two constant ones.",
+  "This removes only one of the two constant functions.",
+  "This halves the total instead of removing the two constant functions.",
+  "This confuses the function count with a permutation count.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "onto_surjections_complement_v1",
+ "skill_id": "counting_onto_surjective_functions",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "choice", "values": [3, 4]},
+  "m": {"type": "int", "lo": 4, "hi": 17}
+ },
+ "constraints": ["Gt([[m]], [[k]])"],
+ "stem": "How many functions from a set of [[m]] distinct elements to a set of [[k]] distinct elements FAIL to be onto (that is, miss at least one of the [[k]] elements in the codomain)?",
+ "answer_spec": {
+  "op": "sum",
+  "expr": "(-1)**(i + 1)*binomial([[k]], i)*([[k]] - i)**[[m]]",
+  "var": "i",
+  "lo": "1",
+  "hi": "[[k]]"
+ },
+ "distractors": [
+  "[[k]]**[[m]]",
+  "factorial([[k]])*binomial([[m]], [[k]])",
+  "[[k]]**[[m]] - factorial([[k]])",
+  "binomial([[k]], 1)*([[k]] - 1)**[[m]]",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "The number of onto functions is \\( \\sum_{i=0}^{[[k]]} (-1)^i \\binom{[[k]]}{i} ([[k]]-i)^{[[m]]} \\); subtracting this from the \\( [[k]]^{[[m]]} \\) total functions leaves \\( [[answer]] \\) functions that are NOT onto.",
+ "distractor_rationales": [
+  "This is the total number of functions, forgetting to remove the onto ones.",
+  "This is an unrelated count of injections times a binomial factor.",
+  "This subtracts only \\( [[k]]! \\), not the full onto count, from the total.",
+  "This uses only the first inclusion-exclusion term instead of the full alternating sum.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+},
+{
+ "template_id": "onto_surjections_distribution_wordproblem_v1",
+ "skill_id": "counting_onto_surjective_functions",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "choice", "values": [3, 4, 5]},
+  "m": {"type": "int", "lo": 5, "hi": 17}
+ },
+ "constraints": ["Gt([[m]], [[k]])"],
+ "stem": "[[m]] distinct gifts are to be distributed among [[k]] distinct children so that every child receives at least one gift. In how many ways can the gifts be distributed?",
+ "answer_spec": {
+  "op": "sum",
+  "expr": "(-1)**i * binomial([[k]], i) * ([[k]] - i)**[[m]]",
+  "var": "i",
+  "lo": "0",
+  "hi": "[[k]]"
+ },
+ "distractors": [
+  "[[k]]**[[m]]",
+  "factorial([[m]])/factorial([[m]] - [[k]])",
+  "binomial([[m]], [[k]])*factorial([[k]])",
+  "[[k]]**[[m]] - [[k]]",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "This is the number of onto functions from the [[m]] gifts to the [[k]] children, given by inclusion-exclusion: \\( \\sum_{i=0}^{[[k]]} (-1)^i \\binom{[[k]]}{i} ([[k]]-i)^{[[m]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This allows some children to receive nothing, counting ALL distributions.",
+  "This counts ordered selections of [[k]] gifts rather than distributing all [[m]] gifts.",
+  "This chooses which gifts form each child's share without correctly avoiding empty-handed children.",
+  "This subtracts only one class of invalid distributions, not all of them.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[k]]."
+ ]
+}
+]

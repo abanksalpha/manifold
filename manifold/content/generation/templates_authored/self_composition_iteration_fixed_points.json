@@ -1,0 +1,186 @@
+[
+ {
+  "template_id": "self_composition_iteration_fixed_points_v1",
+  "skill_id": "self_composition_iteration_fixed_points",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3]},
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "int", "lo": 1, "hi": 4},
+   "n": {"type": "choice", "values": [2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). Define \\( x_{0} = [[x0]] \\) and \\( x_{k+1} = f(x_{k}) \\) for \\( k \\ge 0 \\). What is \\( x_{[[n]]} \\)?",
+  "answer_spec": {"op": "iterate", "f": "[[a]]*x + [[b]]", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "[[a]]**[[n]] * [[x0]]",
+   "[[a]]**[[n]] * [[x0]] + [[n]]*[[b]]",
+   "[[a]]*[[x0]] + [[n]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Apply \\( f \\) repeatedly starting from \\( x_{0} = [[x0]] \\). After [[n]] applications of \\( f(x) = [[a]]x + ([[b]]) \\), the value is \\( x_{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies the multiplier \\( [[a]]^{[[n]]} \\) but forgets the added constants accumulated at each step.",
+   "This scales \\( x_0 \\) correctly but adds \\( [[b]] \\) only [[n]] times instead of compounding it.",
+   "This applies \\( f \\) once and then just adds \\( [[b]] \\) repeatedly, ignoring the compounding of the multiplier.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "self_composition_iteration_fixed_points_linear_fixed_point_v1",
+  "skill_id": "self_composition_iteration_fixed_points",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 1)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). What value of \\( x \\) satisfies \\( f(x) = x \\) (a fixed point of \\( f \\))?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = x", "var": "x"},
+  "distractors": [
+   "[[b]]/[[a]]",
+   "-[[b]]/([[a]]+1)",
+   "[[b]]/([[a]]-1)",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A fixed point satisfies \\( f(x) = x \\): \\( [[a]]x + ([[b]]) = x \\), so \\( ([[a]]-1)x = -([[b]]) \\) and \\( x = \\dfrac{-([[b]])}{[[a]]-1} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This sets the fixed-point equation up as \\( ax = b \\), forgetting to subtract \\( x \\) from both sides first.",
+   "This flips the sign in the denominator, using \\( a+1 \\) instead of \\( a - 1 \\).",
+   "This forgets to negate the numerator when isolating \\( x \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "self_composition_iteration_fixed_points_quadratic_iterate_v1",
+  "skill_id": "self_composition_iteration_fixed_points",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "x0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "stem": "Let \\( f(x) = x^{2} + ([[c]]) \\). Define \\( x_{0} = [[x0]] \\) and \\( x_{k+1} = f(x_{k}) \\) for \\( k \\ge 0 \\). What is \\( x_{2} \\)?",
+  "answer_spec": {"op": "iterate", "f": "x**2 + [[c]]", "x0": "[[x0]]", "n": "2", "var": "x"},
+  "distractors": [
+   "[[x0]]**2 + [[c]]",
+   "([[x0]]**2 + [[c]])**2",
+   "[[x0]]**4 + [[c]]",
+   "[[x0]]**2 + 2*[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First apply \\( f \\): \\( x_1 = ([[x0]])^{2} + ([[c]]) \\). Then apply \\( f \\) again to \\( x_1 \\): \\( x_{2} = (x_1)^{2} + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This stops after one application of \\( f \\) instead of two.",
+   "This squares the entire first result INCLUDING re-adding \\( c \\) incorrectly inside the square, rather than applying \\( f \\) properly a second time.",
+   "This combines both squarings into a single quadruple power, skipping the intermediate addition of \\( c \\) after the first step.",
+   "This applies the squaring only once but adds \\( c \\) twice.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "self_composition_iteration_fixed_points_quadratic_fixed_point_v1",
+  "skill_id": "self_composition_iteration_fixed_points",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 3, "hi": 29}
+  },
+  "constraints": ["Eq(Mod([[k]], 2), 1)"],
+  "derived": {"c": "(1 - [[k]]**2)/4"},
+  "stem": "Let \\( f(x) = x^{2} + ([[c]]) \\). Which of the following is a fixed point of \\( f \\) (a solution of \\( f(x) = x \\))?",
+  "answer_spec": {"op": "solve", "equation": "x**2 + [[c]] = x", "var": "x"},
+  "distractors": [
+   "[[c]]",
+   "-[[c]]",
+   "1 - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "A fixed point satisfies \\( x^{2} + ([[c]]) = x \\), i.e. \\( x^{2} - x + ([[c]]) = 0 \\). By the quadratic formula, \\( x = \\dfrac{1 \\pm \\sqrt{1 - 4([[c]])}}{2} \\); one such fixed point is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the constant \\( c \\) itself rather than solving the fixed-point equation.",
+   "This reports the negative of \\( c \\) rather than solving the fixed-point equation.",
+   "This uses the sum of the two fixed points (which equals 1) minus \\( c \\), not one of the fixed points itself.",
+   "This is off by one from a correct fixed point.",
+   "This is off by one from a correct fixed point.",
+   "This is off by two from a correct fixed point."
+  ]
+ },
+ {
+  "template_id": "self_composition_iteration_fixed_points_quadratic_fixed_point_sum_v1",
+  "skill_id": "self_composition_iteration_fixed_points",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -8, "hi": 0}
+  },
+  "constraints": ["Ne([[a]], 1)", "Gt(([[b]]-1)**2 - 4*[[a]]*[[c]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). This function has two real fixed points (solutions of \\( f(x) = x \\)). What is their sum?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 - [[b]])/[[a]]"},
+  "distractors": [
+   "([[b]]-1)/[[a]]",
+   "(1-[[b]])/[[a]] + 1",
+   "-[[b]]/[[a]]",
+   "[[c]]/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Fixed points satisfy \\( [[a]]x^{2} + ([[b]])x + ([[c]]) = x \\), i.e. \\( [[a]]x^{2} + ([[b]]-1)x + ([[c]]) = 0 \\). By Vieta's formulas, the sum of the roots of this quadratic is \\( -\\dfrac{[[b]]-1}{[[a]]} = \\dfrac{1-[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to negate the shifted linear coefficient \\( (b-1) \\) before dividing by \\( a \\).",
+   "This computes the correct sum but adds an extra 1.",
+   "This forgets to shift the linear coefficient by \\( -1 \\) before applying Vieta's formula.",
+   "This uses the coefficients as if finding the roots of \\( f(x) = 0 \\) rather than the fixed-point equation \\( f(x) = x \\).",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "self_composition_iteration_fixed_points_involution_v1",
+  "skill_id": "self_composition_iteration_fixed_points",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "int", "lo": -9, "hi": 9},
+   "x0": {"type": "int", "lo": -6, "hi": 6},
+   "n": {"type": "choice", "values": [25, 40, 51, 66, 77, 100]}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[x0]], 0)"],
+  "stem": "Let \\( f(x) = \\dfrac{[[c]]}{x} \\). Define \\( x_{0} = [[x0]] \\) and \\( x_{k+1} = f(x_{k}) \\) for \\( k \\ge 0 \\). What is \\( x_{[[n]]} \\)?",
+  "answer_spec": {"op": "iterate", "f": "[[c]]/x", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "[[x0]]",
+   "[[c]]/[[x0]]",
+   "-[[x0]]",
+   "-[[c]]/[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f(f(x)) = \\dfrac{[[c]]}{[[c]]/x} = x \\), applying \\( f \\) twice returns the original value: \\( f \\) has period 2. So \\( x_{[[n]]} \\) equals \\( x_0 \\) if [[n]] is even, and \\( f(x_0) = \\dfrac{[[c]]}{[[x0]]} \\) if [[n]] is odd. Here \\( x_{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes [[n]] is even when it is actually odd (or vice versa), giving \\( x_0 \\) unchanged instead of applying \\( f \\) once more.",
+   "This assumes [[n]] is odd when it is actually even (or vice versa), applying \\( f \\) once when zero (net) applications are needed.",
+   "This negates \\( x_0 \\), which has no basis in the period-2 behavior of \\( f \\).",
+   "This negates \\( f(x_0) \\), which has no basis in the period-2 behavior of \\( f \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

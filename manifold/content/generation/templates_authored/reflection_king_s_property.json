@@ -1,0 +1,132 @@
+[
+{
+ "template_id": "kings_property_reflection_integral_v1",
+ "skill_id": "reflection_king_s_property",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 2, "hi": 15},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\displaystyle \\int_{0}^{[[c]]} \\frac{x^{[[n]]}}{x^{[[n]]} + ([[c]] - x)^{[[n]]}}\\, dx \\). (Hint: apply the reflection substitution \\( x \\mapsto [[c]] - x \\).)",
+ "answer_spec": {"op": "integrate", "expr": "x**[[n]]/(x**[[n]] + ([[c]] - x)**[[n]])", "var": "x", "bounds": ["0", "[[c]]"]},
+ "distractors": [
+  "[[c]]",
+  "[[n]]*[[c]]/2",
+  "[[c]]/4",
+  "2*[[c]]",
+  "[[c]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Let \\( I \\) be the integral. The reflection (king's) property \\( \\int_{0}^{[[c]]} g(x)\\,dx = \\int_{0}^{[[c]]} g([[c]] - x)\\,dx \\) replaces the integrand by \\( \\frac{([[c]] - x)^{[[n]]}}{([[c]] - x)^{[[n]]} + x^{[[n]]}} \\). Adding the two forms, the integrands sum to 1, so \\( 2I = \\int_{0}^{[[c]]} 1\\, dx = [[c]] \\) and \\( I = \\frac{[[c]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( 2I \\), the total interval length, not \\( I = [[c]]/2 \\) after dividing by 2.",
+  "This wrongly assumes the exponent \\( [[n]] \\) scales the answer; king's property makes the result independent of \\( [[n]] \\).",
+  "This halves the answer a second time.",
+  "This doubles the interval length instead of halving it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "kings_property_trig_ratio_v2",
+ "skill_id": "reflection_king_s_property",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\int_{0}^{\\pi/2} \\frac{([[a]])\\sin^{[[n]]}(x)}{\\sin^{[[n]]}(x) + \\cos^{[[n]]}(x)}\\, dx \\). (Hint: apply the reflection substitution \\( x \\mapsto \\pi/2 - x \\), which swaps \\( \\sin \\) and \\( \\cos \\).)",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*sin(x)**[[n]]/(sin(x)**[[n]] + cos(x)**[[n]])", "var": "x", "bounds": ["0", "pi/2"]},
+ "distractors": [
+  "[[a]]*pi/2",
+  "[[a]]*pi/8",
+  "[[n]]*pi/4",
+  "[[a]]*pi",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Let \\( I \\) be the integral without the factor \\( [[a]] \\). Reflecting \\( x \\mapsto \\pi/2 - x \\) swaps \\( \\sin \\) and \\( \\cos \\), turning the integrand into \\( \\frac{\\cos^{[[n]]}(x)}{\\cos^{[[n]]}(x)+\\sin^{[[n]]}(x)} \\). Adding the two forms, the integrands sum to 1, so \\( 2I=\\int_0^{\\pi/2}1\\,dx=\\pi/2 \\) and \\( I=\\pi/4 \\), independent of \\( [[n]] \\). Scaled by \\( [[a]] \\), the answer is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to halve \\( \\pi/2 \\) down to \\( \\pi/4 \\) before scaling by \\( [[a]] \\).",
+  "This halves the correct value \\( \\pi/4 \\) a second time.",
+  "This wrongly assumes the exponent \\( [[n]] \\) scales the answer; king's property makes the result independent of \\( [[n]] \\).",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "kings_property_x_times_f_sinx_v3",
+ "skill_id": "reflection_king_s_property",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": -12, "hi": 12}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\int_{0}^{\\pi} ([[a]])\\,x\\sin(x)\\, dx \\). (Hint: apply the reflection substitution \\( x \\mapsto \\pi - x \\) to the integral \\( \\int_0^\\pi x\\sin(x)\\,dx \\), using that \\( \\sin(\\pi - x) = \\sin(x) \\).)",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*x*sin(x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "[[a]]*pi/2",
+  "[[a]]*pi**2/2",
+  "2*[[a]]*pi",
+  "[[a]]*pi/4",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Let \\( J = \\int_0^\\pi x\\sin(x)\\,dx \\). Reflecting \\( x \\mapsto \\pi - x \\) gives \\( J = \\int_0^\\pi (\\pi - x)\\sin(x)\\,dx = \\pi\\int_0^\\pi \\sin(x)\\,dx - J \\), so \\( 2J = \\pi \\cdot 2 \\) and \\( J = \\pi \\). Scaled by \\( [[a]] \\), the integral equals \\( [[a]]\\pi = [[answer]] \\).",
+ "distractor_rationales": [
+  "This halves the correct value.",
+  "This forgets that \\( \\int_0^\\pi \\sin(x)\\,dx = 2 \\), using \\( \\pi \\) in its place before halving.",
+  "This doubles the correct value.",
+  "This uses a quarter of \\( \\pi \\) instead of the correct \\( \\pi \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "kings_property_given_value_invariance_v4",
+ "skill_id": "reflection_king_s_property",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 3},
+  "b": {"type": "int", "lo": 4, "hi": 10},
+  "K": {"type": "int", "lo": -20, "hi": 20}
+ },
+ "constraints": ["Ne([[K]], 0)"],
+ "stem": "Suppose \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx = [[K]] \\). Using the reflection property \\( \\int_{[[a]]}^{[[b]]} f(x)\\,dx = \\int_{[[a]]}^{[[b]]} f([[a]]+[[b]]-x)\\,dx \\), evaluate \\( \\int_{[[a]]}^{[[b]]} f([[a]]+[[b]]-x)\\, dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[K]]"},
+ "distractors": [
+  "-[[K]]",
+  "2*[[K]]",
+  "[[K]]/2",
+  "0",
+  "[[K]] + 1",
+  "[[K]] - 1",
+  "[[K]] + [[b]] - [[a]]"
+ ],
+ "solution": "The reflection (king's) property states that substituting \\( x \\mapsto [[a]]+[[b]]-x \\) leaves a definite integral over \\( [[[a]],[[b]]] \\) unchanged. So \\( \\int_{[[a]]}^{[[b]]} f([[a]]+[[b]]-x)\\, dx = \\int_{[[a]]}^{[[b]]} f(x)\\, dx = [[K]] \\), with no computation needed beyond recognizing the invariance.",
+ "distractor_rationales": [
+  "This wrongly assumes the reflection substitution flips the sign of the integral.",
+  "This wrongly assumes the reflection substitution doubles the integral.",
+  "This wrongly assumes the reflection substitution halves the integral.",
+  "This wrongly assumes reflecting the integrand about the interval's midpoint sends the integral to 0.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This wrongly adds the interval width to the invariant value."
+ ]
+}
+]

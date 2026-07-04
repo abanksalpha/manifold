@@ -1,0 +1,130 @@
+[
+{
+ "template_id": "equivalent_expression_double_angle_v1",
+ "skill_id": "equivalent_expression_identity_recognition",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 23},
+  "d": {"type": "choice", "values": [4, 6]}
+ },
+ "constraints": [
+  "Or(And(Eq([[d]], 4), Ne(Mod([[k]], 2), 0)), And(Eq([[d]], 6), Ne(Mod([[k]], 3), 0)))"
+ ],
+ "require_rational": false,
+ "stem": "Simplify \\( \\dfrac{\\sin(2\\theta)}{2\\sin\\theta} \\) using an identity, then evaluate it at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sin(2*[[k]]*pi/[[d]])/(2*sin([[k]]*pi/[[d]]))"},
+ "distractors": [
+  "sin([[k]]*pi/[[d]])",
+  "tan([[k]]*pi/[[d]])",
+  "2*cos([[k]]*pi/[[d]])",
+  "-cos([[k]]*pi/[[d]])",
+  "cos(2*[[k]]*pi/[[d]])",
+  "sin(2*[[k]]*pi/[[d]])"
+ ],
+ "solution": "By the double-angle identity \\( \\sin 2\\theta = 2\\sin\\theta\\cos\\theta \\), so \\( \\dfrac{\\sin 2\\theta}{2\\sin\\theta} = \\cos\\theta \\). Evaluating at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This cancels incorrectly to \\( \\sin\\theta \\) rather than \\( \\cos\\theta \\).",
+  "This confuses the simplified form with \\( \\tan\\theta \\).",
+  "This forgets to cancel the factor of \\( 2 \\), leaving \\( 2\\cos\\theta \\).",
+  "This has the wrong sign.",
+  "This leaves the numerator as \\( \\cos 2\\theta \\) instead of simplifying the whole ratio.",
+  "This fails to divide by \\( 2\\sin\\theta \\), reporting \\( \\sin 2\\theta \\)."
+ ]
+},
+{
+ "template_id": "equivalent_expression_pythagorean_v1",
+ "skill_id": "equivalent_expression_identity_recognition",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 23},
+  "d": {"type": "choice", "values": [4, 6]}
+ },
+ "constraints": ["Ne(cos([[k]]*pi/[[d]]), 1)"],
+ "require_rational": false,
+ "stem": "Simplify \\( \\dfrac{\\sin^2\\theta}{1-\\cos\\theta} \\) using the Pythagorean identity, then evaluate it at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sin([[k]]*pi/[[d]])**2/(1-cos([[k]]*pi/[[d]]))"},
+ "distractors": [
+  "1 - cos([[k]]*pi/[[d]])",
+  "cos([[k]]*pi/[[d]])",
+  "sin([[k]]*pi/[[d]])",
+  "-1 - cos([[k]]*pi/[[d]])",
+  "1 + sin([[k]]*pi/[[d]])",
+  "cos([[k]]*pi/[[d]]) - 1"
+ ],
+ "solution": "Factor \\( \\sin^2\\theta = 1-\\cos^2\\theta = (1-\\cos\\theta)(1+\\cos\\theta) \\), so \\( \\dfrac{\\sin^2\\theta}{1-\\cos\\theta} = 1+\\cos\\theta \\). Evaluating at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps the original denominator instead of the simplified \\( 1+\\cos\\theta \\).",
+  "This drops the leading \\( 1 \\) and reports only \\( \\cos\\theta \\).",
+  "This confuses the simplified expression with \\( \\sin\\theta \\).",
+  "This has the wrong sign on the constant term.",
+  "This adds \\( \\sin\\theta \\) instead of \\( \\cos\\theta \\).",
+  "This has the wrong sign overall."
+ ]
+},
+{
+ "template_id": "equivalent_expression_cos_double_ratio_v1",
+ "skill_id": "equivalent_expression_identity_recognition",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 47},
+  "d": {"type": "choice", "values": [4, 6]}
+ },
+ "constraints": ["Ne(1 + cos(2*[[k]]*pi/[[d]]), 0)"],
+ "require_rational": false,
+ "stem": "Simplify \\( \\dfrac{1-\\cos(2\\theta)}{1+\\cos(2\\theta)} \\) using a double-angle identity, then evaluate it at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(1-cos(2*[[k]]*pi/[[d]]))/(1+cos(2*[[k]]*pi/[[d]]))"},
+ "distractors": [
+  "tan([[k]]*pi/[[d]])",
+  "-tan([[k]]*pi/[[d]])**2",
+  "1/tan([[k]]*pi/[[d]])**2",
+  "cos(2*[[k]]*pi/[[d]])",
+  "tan([[k]]*pi/[[d]])**2 + 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2",
+  "2*[[answer]]"
+ ],
+ "solution": "Since \\( 1-\\cos 2\\theta = 2\\sin^2\\theta \\) and \\( 1+\\cos 2\\theta = 2\\cos^2\\theta \\), the ratio simplifies to \\( \\tan^2\\theta \\). Evaluating at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to square \\( \\tan\\theta \\).",
+  "This has the wrong sign on the squared tangent.",
+  "This inverts the simplified expression, giving \\( \\cot^2\\theta \\) with the wrong sign.",
+  "This flips the numerator and denominator, giving \\( \\cot^2\\theta \\) instead of \\( \\tan^2\\theta \\).",
+  "This leaves the answer in terms of \\( \\cos 2\\theta \\) instead of simplifying fully.",
+  "This adds \\( 1 \\) to the correct simplified value."
+ ]
+},
+{
+ "template_id": "equivalent_expression_half_angle_v1",
+ "skill_id": "equivalent_expression_identity_recognition",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 23},
+  "d": {"type": "choice", "values": [4, 6]}
+ },
+ "constraints": ["Ne(sin([[k]]*pi/[[d]]), 0)"],
+ "require_rational": false,
+ "stem": "Simplify \\( \\dfrac{1-\\cos\\theta}{\\sin\\theta} \\) using a half-angle identity, then evaluate it at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "(1-cos([[k]]*pi/[[d]]))/sin([[k]]*pi/[[d]])"},
+ "distractors": [
+  "sin([[k]]*pi/[[d]])/(1-cos([[k]]*pi/[[d]]))",
+  "1 + cos([[k]]*pi/[[d]])",
+  "cos([[k]]*pi/[[d]])/sin([[k]]*pi/[[d]])",
+  "sin([[k]]*pi/[[d]])",
+  "-[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "This ratio is the half-angle identity for tangent: \\( \\dfrac{1-\\cos\\theta}{\\sin\\theta} = \\tan\\dfrac{\\theta}{2} \\). Evaluating at \\( \\theta = \\dfrac{[[k]]\\pi}{[[d]]} \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the reciprocal of the correct ratio.",
+  "This confuses the half-angle tangent identity with a Pythagorean-style sum.",
+  "This computes \\( \\cot\\theta \\) instead of \\( \\tan\\tfrac{\\theta}{2} \\).",
+  "This reports \\( \\sin\\theta \\) alone, ignoring the identity.",
+  "This has the wrong sign.",
+  "This is off by one from the correct value."
+ ]
+}
+]

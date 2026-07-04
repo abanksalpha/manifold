@@ -1,0 +1,121 @@
+[
+{
+ "template_id": "power_reduction_v1",
+ "skill_id": "power_reduction_of_sin_2_cos_2",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 35
+  }
+ },
+ "constraints": [
+  "Ne(Mod([[k]], 6), 0)"
+ ],
+ "stem": "Evaluate \\( \\sin^{2}\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sin([[k]]*pi/6)**2"
+ },
+ "distractors": [
+  "cos([[k]]*pi/6)**2",
+  "2*sin([[k]]*pi/6)**2",
+  "sin([[k]]*pi/6)**2/2",
+  "1 + sin([[k]]*pi/6)**2",
+  "sin([[k]]*pi/6)**2 + Rational(1,4)",
+  "sin([[k]]*pi/6)**2 - Rational(1,4)"
+ ],
+ "solution": "Using \\( \\sin^{2}\\phi=\\tfrac{1-\\cos 2\\phi}{2} \\): \\( \\sin^{2}\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "power_reduction_cos2_v1",
+ "skill_id": "power_reduction_of_sin_2_cos_2",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 35}
+ },
+ "constraints": ["Ne(Mod([[k]], 6), 0)"],
+ "stem": "Evaluate \\( \\cos^{2}\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "cos([[k]]*pi/6)**2"},
+ "distractors": [
+  "sin([[k]]*pi/6)**2",
+  "2*cos([[k]]*pi/6)**2",
+  "cos([[k]]*pi/6)**2/2",
+  "1 - cos([[k]]*pi/6)**2",
+  "cos([[k]]*pi/6)**2 + Rational(1,4)",
+  "cos([[k]]*pi/6)**2 - Rational(1,4)"
+ ],
+ "solution": "Using \\( \\cos^{2}\\phi=\\tfrac{1+\\cos 2\\phi}{2} \\): \\( \\cos^{2}\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the power-reduction formula with the one for \\( \\sin^2\\phi \\).",
+  "This forgets to divide by \\( 2 \\) after applying the identity.",
+  "This divides by an extra factor of \\( 2 \\).",
+  "This uses the Pythagorean identity to swap to \\( \\sin^2 \\) instead of reducing the power.",
+  "This adds a stray \\( \\tfrac14 \\) to the correct value.",
+  "This subtracts a stray \\( \\tfrac14 \\) from the correct value."
+ ]
+},
+{
+ "template_id": "power_reduction_product_v1",
+ "skill_id": "power_reduction_of_sin_2_cos_2",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 35}
+ },
+ "constraints": ["Ne(Mod([[k]], 6), 0)"],
+ "require_rational": false,
+ "stem": "Evaluate \\( \\sin\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right)\\cos\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\) using the product-to-power identity \\( \\sin\\phi\\cos\\phi=\\tfrac12\\sin 2\\phi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sin([[k]]*pi/6)*cos([[k]]*pi/6)"},
+ "distractors": [
+  "sin([[k]]*pi/3)",
+  "2*sin([[k]]*pi/6)*cos([[k]]*pi/6)",
+  "sin([[k]]*pi/6)**2",
+  "cos([[k]]*pi/6)**2",
+  "-[[answer]]",
+  "[[answer]] + Rational(1,2)"
+ ],
+ "solution": "Since \\( \\sin\\phi\\cos\\phi=\\tfrac12\\sin 2\\phi \\), \\( \\sin\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)\\cos\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)=\\tfrac12\\sin\\!\\left(\\tfrac{[[k]]\\pi}{3}\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( \\tfrac12 \\), reporting \\( \\sin 2\\phi \\) directly.",
+  "This doubles the correct value instead of applying the \\( \\tfrac12 \\) factor.",
+  "This confuses the product with \\( \\sin^2\\phi \\).",
+  "This confuses the product with \\( \\cos^2\\phi \\).",
+  "This has the wrong sign.",
+  "This adds a stray \\( \\tfrac12 \\) to the correct value."
+ ]
+},
+{
+ "template_id": "power_reduction_sin4_v1",
+ "skill_id": "power_reduction_of_sin_2_cos_2",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 35}
+ },
+ "constraints": ["Ne(Mod([[k]], 6), 0)"],
+ "stem": "Evaluate \\( \\sin^{4}\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\) by applying the power-reduction identity twice.",
+ "answer_spec": {"op": "evaluate", "expr": "sin([[k]]*pi/6)**4"},
+ "distractors": [
+  "sin([[k]]*pi/6)**2",
+  "(1-cos([[k]]*pi/3))/2",
+  "cos([[k]]*pi/6)**4",
+  "1 - 2*sin([[k]]*pi/6)**2*cos([[k]]*pi/6)**2",
+  "sin([[k]]*pi/6)**4 + Rational(1,4)",
+  "sin([[k]]*pi/6)**4 - Rational(1,4)"
+ ],
+ "solution": "Write \\( \\sin^{4}\\phi=(\\sin^2\\phi)^2=\\left(\\tfrac{1-\\cos 2\\phi}{2}\\right)^2=\\tfrac{3-4\\cos2\\phi+\\cos4\\phi}{8} \\). Evaluating at \\( \\phi=\\tfrac{[[k]]\\pi}{6} \\) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This stops after only one application of the power-reduction identity, reporting \\( \\sin^2\\phi \\) instead of \\( \\sin^4\\phi \\).",
+  "This is the (single-step) power-reduction of \\( \\sin^2\\phi \\), not \\( \\sin^4\\phi \\).",
+  "This confuses the expression with \\( \\cos^4\\phi \\).",
+  "This is a Pythagorean-identity rearrangement of \\( 1-\\sin^2(2\\phi) \\), not \\( \\sin^4\\phi \\).",
+  "This adds a stray \\( \\tfrac14 \\) to the correct value.",
+  "This subtracts a stray \\( \\tfrac14 \\) from the correct value."
+ ]
+}
+]

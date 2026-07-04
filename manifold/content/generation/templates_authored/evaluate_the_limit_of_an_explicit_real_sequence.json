@@ -1,0 +1,282 @@
+[
+ {
+  "template_id": "sequence_limit_rational_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": 1, "hi": 6},
+   "s": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[s]], 0)"],
+  "stem": "Consider the sequence defined by \\( a_n = \\dfrac{[[p]]n + ([[q]])}{[[r]]n + ([[s]])} \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "([[p]]*n + [[q]])/([[r]]*n + [[s]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[q]], [[s]])",
+   "Rational([[r]], [[p]])",
+   "Rational([[p]] + [[q]], [[r]] + [[s]])",
+   "Rational([[q]], [[r]])",
+   "Rational([[p]], [[r]]) + 1",
+   "Rational([[p]], [[r]]) - 1"
+  ],
+  "solution": "For a ratio of two linear expressions in \\( n \\), divide numerator and denominator by \\( n \\): \\( a_n = \\dfrac{[[p]] + ([[q]])/n}{[[r]] + ([[s]])/n} \\to \\dfrac{[[p]]}{[[r]]} = [[answer]] \\) as \\( n \\to \\infty \\).",
+  "distractor_rationales": [
+   "This is \\( a_0 \\), the ratio of the constant terms, not the limiting ratio of the leading coefficients.",
+   "This inverts the ratio, taking denominator-leading over numerator-leading.",
+   "This adds the coefficients within each term instead of keeping only the leading (highest-degree) coefficients.",
+   "This pairs the numerator constant with the denominator leading coefficient, mixing the terms.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_sqrt_difference_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "a": {"type": "int", "lo": -10, "hi": 10},
+   "b": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Consider the sequence \\( a_n = \\sqrt{n^{2} + [[a]]n + [[b]]} - n \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "sqrt(n**2 + [[a]]*n + [[b]]) - n", "var": "n", "point": "oo"},
+  "distractors": [
+   "[[a]]",
+   "-Rational([[a]], 2)",
+   "Rational([[b]], 2)",
+   "[[a]] + [[b]]",
+   "Rational([[a]], 2) + 1",
+   "Rational([[a]], 2) - 1"
+  ],
+  "solution": "Multiply and divide by the conjugate: \\( a_n = \\dfrac{([[a]])n + [[b]]}{\\sqrt{n^{2}+[[a]]n+[[b]]}+n} \\). Dividing numerator and denominator by \\( n \\), the denominator \\( \\to 2 \\), so \\( a_n \\to \\dfrac{[[a]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 2 after rationalizing.",
+   "This has the correct magnitude but the wrong sign.",
+   "This uses the constant term \\( [[b]] \\) instead of the linear coefficient \\( [[a]] \\).",
+   "This adds both coefficients instead of taking half of just the linear one.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_exponential_ratio_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "r": {"type": "choice", "values": [2, 3, 5]},
+   "A": {"type": "int", "lo": 1, "hi": 8},
+   "B": {"type": "int", "lo": -8, "hi": 8},
+   "C": {"type": "int", "lo": 1, "hi": 8},
+   "D": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": [],
+  "stem": "Consider the sequence \\( a_n = \\dfrac{[[A]]\\cdot [[r]]^{n} + ([[B]])}{[[C]]\\cdot [[r]]^{n} + ([[D]])} \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "([[A]]*[[r]]**n + [[B]])/([[C]]*[[r]]**n + [[D]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[C]], [[A]])",
+   "Rational([[A]], [[C]]) + 1",
+   "Rational([[A]], [[C]]) - 1",
+   "2*Rational([[A]], [[C]])",
+   "Rational([[A]], [[C]])/2",
+   "-Rational([[A]], [[C]])"
+  ],
+  "solution": "Factor \\( [[r]]^n \\) out of numerator and denominator: \\( a_n = \\dfrac{[[A]] + ([[B]])/[[r]]^{n}}{[[C]] + ([[D]])/[[r]]^{n}} \\). Since \\( [[r]] > 1 \\), the terms \\( [[r]]^{-n} \\to 0 \\), so \\( a_n \\to \\dfrac{[[A]]}{[[C]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio of leading coefficients.",
+   "This is one more than the correct limit.",
+   "This is one less than the correct limit.",
+   "This doubles the correct limit.",
+   "This halves the correct limit.",
+   "This has the correct magnitude but the wrong sign."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_exp_dominates_poly_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "c": {"type": "int", "lo": -10, "hi": 10},
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -8, "hi": 8},
+   "r": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "stem": "Consider the sequence \\( a_n = [[c]] + \\dfrac{[[A]]n + ([[B]])}{[[r]]^{n}} \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "[[c]] + ([[A]]*n + [[B]])/([[r]]**n)", "var": "n", "point": "oo"},
+  "distractors": [
+   "[[c]] + 1",
+   "[[c]] - 1",
+   "[[c]] + [[A]]",
+   "[[A]]",
+   "[[c]] + 2",
+   "[[c]] - 2"
+  ],
+  "solution": "An exponential with base \\( [[r]] > 1 \\) grows faster than any polynomial, so \\( \\dfrac{[[A]]n+[[B]]}{[[r]]^n} \\to 0 \\) as \\( n \\to \\infty \\). Thus \\( a_n \\to [[c]] + 0 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly assumes the fraction tends to a nonzero constant rather than 0.",
+   "This wrongly assumes the fraction tends to \\( -1 \\) rather than 0.",
+   "This mistakes the numerator's growth for surviving in the limit.",
+   "This drops the additive constant \\( [[c]] \\) entirely.",
+   "This is off by 2 from the correct limit.",
+   "This is off by 2 from the correct limit."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_nth_root_poly_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "c": {"type": "int", "lo": -10, "hi": 10},
+   "A": {"type": "int", "lo": 1, "hi": 9},
+   "B": {"type": "int", "lo": -9, "hi": 9},
+   "k": {"type": "choice", "values": [2, 3]}
+  },
+  "constraints": [],
+  "stem": "Consider the sequence \\( a_n = [[c]] + \\left([[A]]n^{[[k]]} + [[B]]\\right)^{1/n} \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "[[c]] + ([[A]]*n**[[k]] + [[B]])**(1/n)", "var": "n", "point": "oo"},
+  "distractors": [
+   "[[c]]",
+   "[[c]] + [[A]]",
+   "[[c]] + [[k]]",
+   "[[c]] - 1",
+   "[[c]] + 2",
+   "[[A]]"
+  ],
+  "solution": "For any polynomial growing only polynomially in \\( n \\), the \\( n \\)-th root tends to \\( 1 \\): \\( \\left([[A]]n^{[[k]]}+[[B]]\\right)^{1/n} \\to 1 \\) as \\( n\\to\\infty \\) (take logs: \\( \\tfrac{1}{n}\\ln([[A]]n^{[[k]]}+[[B]]) \\to 0 \\)). So \\( a_n \\to [[c]] + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the \\( n \\)-th root tends to 1, not 0, leaving out that contribution.",
+   "This mistakes the leading coefficient \\( [[A]] \\) for the limit of the root.",
+   "This mistakes the root's index \\( [[k]] \\) for the limit of the root.",
+   "This is one less than the correct limit.",
+   "This is one more than the correct limit.",
+   "This ignores the additive constant \\( [[c]] \\) entirely."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_e_definition_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "a": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "require_rational": false,
+  "stem": "Consider the sequence \\( a_n = [[c]] + \\left(1 + \\dfrac{[[a]]}{n}\\right)^{n} \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "[[c]] + (1 + Rational(1,1)*[[a]]/n)**n", "var": "n", "point": "oo"},
+  "distractors": [
+   "[[c]] + [[a]]",
+   "[[c]] + 1",
+   "[[c]]",
+   "[[c]] - [[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "This is the classic definition of the exponential: \\( \\left(1+\\dfrac{a}{n}\\right)^n \\to e^{a} \\) as \\( n\\to\\infty \\). With \\( a = [[a]] \\), \\( a_n \\to [[c]] + e^{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakes the base-limit form for a linear approximation \\( 1 + a \\) instead of \\( e^a \\).",
+   "This uses \\( e^{0}=1 \\), forgetting the exponent \\( [[a]] \\) entirely.",
+   "This drops the exponential term completely.",
+   "This flips the sign of \\( [[a]] \\) in the exponent.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_sin_substitution_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": -8, "hi": 8},
+   "B": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "stem": "Consider the sequence \\( a_n = [[A]]\\,n \\sin\\!\\left(\\dfrac{[[B]]}{n}\\right) \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "[[A]]*n*sin([[B]]/n)", "var": "n", "point": "oo"},
+  "distractors": [
+   "0",
+   "[[A]]",
+   "[[B]]",
+   "[[A]] + [[B]]",
+   "[[A]]*[[B]] + 1",
+   "[[A]]*[[B]] - 1"
+  ],
+  "solution": "Let \\( x = [[B]]/n \\to 0 \\). Then \\( a_n = [[A]]\\cdot\\dfrac{\\sin x}{x}\\cdot [[B]] \\), and \\( \\dfrac{\\sin x}{x}\\to 1 \\) as \\( x\\to 0 \\), so \\( a_n \\to [[A]]\\cdot [[B]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly treats \\( \\sin([[B]]/n) \\) as vanishing fast enough to send the whole product to 0, ignoring the \\( n \\) factor.",
+   "This drops the factor of \\( [[B]] \\) coming from the small-angle substitution.",
+   "This drops the factor of \\( [[A]] \\) coming from the leading coefficient.",
+   "This adds the coefficients instead of multiplying them.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_cos_substitution_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "B": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "stem": "Consider the sequence \\( a_n = [[A]]\\,n^{2} \\left(1 - \\cos\\!\\left(\\dfrac{[[B]]}{n}\\right)\\right) \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "[[A]]*n**2*(1 - cos([[B]]/n))", "var": "n", "point": "oo"},
+  "distractors": [
+   "0",
+   "[[A]]*[[B]]**2",
+   "Rational([[A]], 2)",
+   "[[A]]*[[B]]",
+   "Rational([[A]]*[[B]]**2, 2) + 1",
+   "Rational([[A]]*[[B]]**2, 2) - 1"
+  ],
+  "solution": "Let \\( x = [[B]]/n \\to 0 \\). Using \\( \\dfrac{1-\\cos x}{x^{2}} \\to \\dfrac12 \\), write \\( a_n = [[A]]\\cdot\\dfrac{1-\\cos x}{x^{2}}\\cdot [[B]]^{2} \\to [[A]]\\cdot\\dfrac12\\cdot [[B]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly assumes the whole expression vanishes, forgetting the \\( n^2 \\) factor balances the \\( 1-\\cos \\) decay.",
+   "This forgets the factor of \\( \\tfrac12 \\) from the standard \\( (1-\\cos x)/x^2 \\to 1/2 \\) limit.",
+   "This uses only the leading coefficient, dropping \\( [[B]]^2 \\) entirely.",
+   "This uses \\( [[B]] \\) instead of \\( [[B]]^2 \\), as if the limit were degree 1 in \\( B \\).",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "sequence_limit_gauss_sum_v1",
+  "skill_id": "evaluate_the_limit_of_an_explicit_real_sequence",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "A": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "stem": "Consider the sequence \\( a_n = \\dfrac{[[A]] \\displaystyle\\sum_{k=1}^{n} k}{n^{2}} + [[c]] \\) for \\( n = 1, 2, 3, \\ldots \\). Evaluate \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\).",
+  "answer_spec": {"op": "limit", "expr": "[[A]]*(n*(n+1)/2)/n**2 + [[c]]", "var": "n", "point": "oo"},
+  "distractors": [
+   "[[c]]",
+   "[[A]] + [[c]]",
+   "Rational([[A]], 2) + [[c]] + 1",
+   "Rational([[A]], 2) + [[c]] - 1",
+   "2*[[A]] + [[c]]",
+   "[[c]] - Rational([[A]], 2)"
+  ],
+  "solution": "By the Gauss sum formula, \\( \\displaystyle\\sum_{k=1}^{n}k = \\dfrac{n(n+1)}{2} \\), so \\( a_n = \\dfrac{[[A]](n+1)}{2n} + [[c]] \\to \\dfrac{[[A]]}{2} + [[c]] = [[answer]] \\) as \\( n\\to\\infty \\).",
+  "distractor_rationales": [
+   "This drops the sum term entirely, as if it vanished relative to \\( n^2 \\).",
+   "This treats the sum as growing like \\( n \\) rather than \\( n^2/2 \\), overcounting by a factor of 2.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This doubles the coefficient's contribution instead of halving it.",
+   "This flips the sign of the sum's contribution."
+  ]
+ }
+]

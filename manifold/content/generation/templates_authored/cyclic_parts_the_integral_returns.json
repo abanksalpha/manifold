@@ -1,0 +1,125 @@
+[
+ {
+  "template_id": "cyclic_parts_the_integral_returns_v1",
+  "skill_id": "cyclic_parts_the_integral_returns",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 14},
+   "k": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[k]]\\pi} [[c]]\\,e^{x}\\sin x\\,dx \\), where integrating by parts twice makes the original integral reappear.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*exp(x)*sin(x)", "var": "x", "bounds": ["0", "[[k]]*pi"]},
+  "distractors": [
+   "2*[[answer]]",
+   "-[[answer]]",
+   "[[answer]]/2",
+   "3*[[answer]]/2",
+   "3*[[answer]]",
+   "2*[[answer]]/3"
+  ],
+  "solution": "Integrating by parts twice gives \\( I = \\int [[c]]e^{x}\\sin x\\,dx = \\tfrac{[[c]]e^{x}(\\sin x - \\cos x)}{2} \\). Evaluating from \\( 0 \\) to \\( [[k]]\\pi \\) yields \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the final division by 2 when solving \\( 2I = \\dots \\) for \\( I \\).",
+   "This flips the sign of the \\( (\\sin x - \\cos x) \\) bracket.",
+   "This divides by 2 one extra time.",
+   "This mis-scales the boundary evaluation by a factor of 3/2.",
+   "This triples the correct value through an arithmetic slip.",
+   "This scales the correct value by 2/3."
+  ]
+ },
+ {
+  "template_id": "cyclic_parts_the_integral_returns_v2",
+  "skill_id": "cyclic_parts_the_integral_returns",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 14},
+   "k": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{[[k]]\\pi} [[c]]\\,e^{x}\\cos x\\,dx \\), where integrating by parts twice makes the original integral reappear, this time with a \\( (\\sin x + \\cos x) \\) bracket.",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*exp(x)*cos(x)", "var": "x", "bounds": ["0", "[[k]]*pi"]},
+  "distractors": [
+   "2*[[answer]]",
+   "-[[answer]]",
+   "[[answer]]/2",
+   "3*[[answer]]/2",
+   "3*[[answer]]",
+   "2*[[answer]]/3"
+  ],
+  "solution": "Integrating by parts twice gives \\( I = \\int [[c]]e^{x}\\cos x\\,dx = \\tfrac{[[c]]e^{x}(\\sin x + \\cos x)}{2} \\). Evaluating from \\( 0 \\) to \\( [[k]]\\pi \\) yields \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the final division by 2 when solving \\( 2I = \\dots \\) for \\( I \\).",
+   "This flips the sign of the \\( (\\sin x + \\cos x) \\) bracket.",
+   "This divides by 2 one extra time.",
+   "This mis-scales the boundary evaluation by a factor of 3/2.",
+   "This triples the correct value through an arithmetic slip.",
+   "This scales the correct value by 2/3."
+  ]
+ },
+ {
+  "template_id": "cyclic_parts_the_integral_returns_v3",
+  "skill_id": "cyclic_parts_the_integral_returns",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{0}^{\\pi/4} [[c]]\\sec^{3} x\\,dx \\). (Integrating by parts with \\( u = \\sec x,\\ dv = \\sec^{2}x\\,dx \\) and the identity \\( \\sec^{2}x = 1+\\tan^{2}x \\) makes the original integral reappear.)",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*sec(x)**3", "var": "x", "bounds": ["0", "pi/4"]},
+  "distractors": [
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[c]]*sqrt(2)/2",
+   "[[c]]*log(1 + sqrt(2))/2",
+   "[[answer]] + [[c]]",
+   "3*[[answer]]/2"
+  ],
+  "solution": "The reduction gives \\( \\int \\sec^{3}x\\,dx = \\tfrac{1}{2}\\left(\\sec x\\tan x + \\ln|\\sec x + \\tan x|\\right) \\). Evaluating from \\( 0 \\) to \\( \\pi/4 \\) gives \\( \\tfrac{[[c]]}{2}\\left(\\sqrt{2} + \\ln(1+\\sqrt{2})\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the correct value.",
+   "This halves the correct value.",
+   "This keeps only the \\( \\sec x\\tan x \\) piece and drops the logarithm term.",
+   "This keeps only the logarithm piece and drops the \\( \\sec x \\tan x \\) term.",
+   "This adds an extra \\( [[c]] \\) from mishandling the constant multiple.",
+   "This scales the correct value by 3/2."
+  ]
+ },
+ {
+  "template_id": "cyclic_parts_the_integral_returns_v4",
+  "skill_id": "cyclic_parts_the_integral_returns",
+  "topic_id": "integration_techniques",
+  "tier": "relearn",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 1, "hi": 12},
+   "k": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\int_{1}^{e^{[[k]]\\pi}} [[c]]\\sin(\\ln x)\\,dx \\). (Substituting \\( t=\\ln x \\) turns this into a cyclic \\( e^{t}\\sin t \\) integral that reappears after integrating by parts twice.)",
+  "answer_spec": {"op": "integrate", "expr": "[[c]]*sin(log(x))", "var": "x", "bounds": ["1", "exp([[k]]*pi)"]},
+  "distractors": [
+   "2*[[answer]]",
+   "-[[answer]]",
+   "[[answer]]/2",
+   "3*[[answer]]/2",
+   "3*[[answer]]",
+   "2*[[answer]]/3"
+  ],
+  "solution": "With \\( t = \\ln x \\), \\( \\int [[c]]\\sin(\\ln x)\\,dx = \\tfrac{[[c]]x}{2}\\left(\\sin(\\ln x) - \\cos(\\ln x)\\right) \\). Evaluating from \\( x=1 \\) to \\( x=e^{[[k]]\\pi} \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the final division by 2 when solving \\( 2I = \\dots \\) for \\( I \\).",
+   "This flips the sign of the \\( (\\sin(\\ln x) - \\cos(\\ln x)) \\) bracket.",
+   "This divides by 2 one extra time.",
+   "This mis-scales the boundary evaluation by a factor of 3/2.",
+   "This triples the correct value through an arithmetic slip.",
+   "This scales the correct value by 2/3."
+  ]
+ }
+]

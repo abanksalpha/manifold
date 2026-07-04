@@ -1,0 +1,132 @@
+[
+ {
+  "template_id": "integrating_factor_value_v1",
+  "skill_id": "identify_the_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "t0": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Consider the linear equation \\( x\\,y' + [[a]]y = g(x) \\) on \\( x > 0 \\). Written in standard form \\( y' + P(x)y = Q(x) \\), its integrating factor is \\( \\mu(x) = e^{\\int P(x)\\,dx} \\). What is \\( \\mu([[t0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[t0]]**[[a]]"},
+  "distractors": [
+   "exp([[a]]*[[t0]])",
+   "[[t0]]**(-[[a]])",
+   "[[a]]**[[t0]]",
+   "[[a]]*[[t0]]",
+   "[[t0]]**([[a]] + 1)",
+   "[[t0]]**([[a]] - 1)",
+   "[[answer]] + 1"
+  ],
+  "solution": "In standard form \\( P(x) = \\frac{[[a]]}{x} \\), so \\( \\int P\\,dx = [[a]]\\ln x \\) and \\( \\mu(x) = e^{[[a]]\\ln x} = x^{[[a]]} \\). Therefore \\( \\mu([[t0]]) = [[t0]]^{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\mu = e^{[[a]]x} \\), forgetting that \\( P(x) = [[a]]/x \\), not \\( [[a]] \\).",
+   "This uses the wrong sign, giving \\( \\mu = x^{-[[a]]} \\).",
+   "This exponentiates the wrong base, computing \\( [[a]]^{[[t0]]} \\).",
+   "This multiplies instead of exponentiating.",
+   "This uses an exponent that is one too large.",
+   "This uses an exponent that is one too small.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "integrating_factor_constant_coefficient_v2",
+  "skill_id": "identify_the_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "require_rational": false,
+  "stem": "Consider the constant-coefficient linear equation \\( y' + [[a]]y = g(x) \\), already in standard form \\( y' + P(x)y = Q(x) \\). Its integrating factor is \\( \\mu(x) = e^{\\int P(x)\\,dx} \\). What is \\( \\mu([[t0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "exp([[a]]*[[t0]])"},
+  "distractors": [
+   "exp(-[[a]]*[[t0]])",
+   "[[t0]]**[[a]]",
+   "exp([[a]])*[[t0]]",
+   "[[a]]*[[t0]]",
+   "exp([[a]]*([[t0]] - 1))",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Here \\( P(x) = [[a]] \\) is constant, so \\( \\int P\\,dx = [[a]]x \\) and \\( \\mu(x) = e^{[[a]]x} \\). Therefore \\( \\mu([[t0]]) = e^{[[a]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the exponent.",
+   "This confuses the constant-coefficient case with the power-law case \\( \\mu = x^{a} \\).",
+   "This multiplies by \\( t_0 \\) after exponentiating instead of putting it in the exponent.",
+   "This forgets to exponentiate entirely.",
+   "This uses one fewer unit in the exponent.",
+   "This is one more than the correct value.",
+   "This is twice the correct value."
+  ]
+ },
+ {
+  "template_id": "integrating_factor_linear_coefficient_v3",
+  "skill_id": "identify_the_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "require_rational": false,
+  "stem": "Consider the linear equation \\( y' + [[a]]x\\,y = g(x) \\), already in standard form \\( y' + P(x)y = Q(x) \\) with \\( P(x) = [[a]]x \\). Its integrating factor is \\( \\mu(x) = e^{\\int P(x)\\,dx} \\). What is \\( \\mu([[t0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "exp([[a]]*[[t0]]**2/2)"},
+  "distractors": [
+   "exp([[a]]*[[t0]]**2)",
+   "exp([[a]]*[[t0]])",
+   "exp(-[[a]]*[[t0]]**2/2)",
+   "[[t0]]**([[a]]/2)",
+   "exp([[a]]*[[t0]]/2)",
+   "[[answer]] + 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Here \\( P(x) = [[a]]x \\), so \\( \\int P\\,dx = \\frac{[[a]]}{2}x^{2} \\) and \\( \\mu(x) = e^{[[a]]x^{2}/2} \\). Therefore \\( \\mu([[t0]]) = e^{[[a]]\\cdot[[t0]]^{2}/2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 2 when integrating \\( [[a]]x \\).",
+   "This treats \\( P(x) \\) as constant, dropping the factor of \\( x \\) from the integration.",
+   "This flips the sign of the exponent.",
+   "This confuses this case with the power-law integrating factor \\( x^{a}\\).",
+   "This forgets to square \\( t_0 \\) in the exponent.",
+   "This is one more than the correct value.",
+   "This is twice the correct value."
+  ]
+ },
+ {
+  "template_id": "integrating_factor_recover_p_v4",
+  "skill_id": "identify_the_integrating_factor",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": -5, "hi": 5},
+   "t0": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[n]], 0)"],
+  "stem": "For a first-order linear equation \\( y' + P(x)y = Q(x) \\), the integrating factor is found to be \\( \\mu(x) = x^{[[n]]} \\) (for \\( x > 0 \\)). What is \\( P([[t0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]/[[t0]]"},
+  "distractors": [
+   "[[t0]]/[[n]]",
+   "-[[n]]/[[t0]]",
+   "[[n]]*[[t0]]",
+   "([[n]] + 1)/[[t0]]",
+   "[[n]]/([[t0]] + 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( \\mu(x) = e^{\\int P\\,dx} = x^{[[n]]} = e^{[[n]]\\ln x} \\), we have \\( \\int P\\,dx = [[n]]\\ln x \\), so \\( P(x) = \\dfrac{[[n]]}{x} \\). Therefore \\( P([[t0]]) = \\dfrac{[[n]]}{[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio, dividing \\( t_0 \\) by \\( n \\) instead of \\( n \\) by \\( t_0 \\).",
+   "This has the wrong sign on \\( P(x) \\).",
+   "This multiplies instead of dividing.",
+   "This uses one more than the correct exponent.",
+   "This uses one more than the correct evaluation point in the denominator.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ }
+]

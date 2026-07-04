@@ -1,0 +1,162 @@
+[
+{
+ "template_id": "fundamental_theorem_of_calculus_evaluate_definite_v1",
+ "skill_id": "fundamental_theorem_of_calculus",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "lo": {"type": "int", "lo": 0, "hi": 2},
+  "hi": {"type": "int", "lo": 3, "hi": 5}
+ },
+ "constraints": ["Lt([[lo]], [[hi]])"],
+ "stem": "By the Fundamental Theorem of Calculus, if \\( F \\) is an antiderivative of \\( f(x) = [[a]]x^{2} + [[b]]x + [[c]] \\), then \\( \\displaystyle\\int_{[[lo]]}^{[[hi]]} f(x)\\,dx = F([[hi]]) - F([[lo]]) \\). Compute this definite integral.",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*x**2 + [[b]]*x + [[c]]", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
+ "distractors": [
+  "[[a]]*[[hi]]**2 + [[b]]*[[hi]] + [[c]]",
+  "([[a]]*[[hi]]**2 + [[b]]*[[hi]] + [[c]]) - ([[a]]*[[lo]]**2 + [[b]]*[[lo]] + [[c]])",
+  "[[a]]*([[hi]]-[[lo]])**3/3",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "An antiderivative is \\( F(x) = \\dfrac{[[a]]}{3}x^{3} + \\dfrac{[[b]]}{2}x^{2} + [[c]]x \\). By FTC, \\( \\displaystyle\\int_{[[lo]]}^{[[hi]]} f(x)\\,dx = F([[hi]]) - F([[lo]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This evaluates \\( f \\) itself at the upper limit instead of the antiderivative \\( F \\).",
+  "This subtracts values of \\( f \\) (the integrand) at the two limits instead of values of its antiderivative \\( F \\).",
+  "This wrongly applies a cubic power-rule shortcut to the whole integrand as if it were a single power of \\( x \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "fundamental_theorem_of_calculus_part1_direct_v2",
+ "skill_id": "fundamental_theorem_of_calculus",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "lo": {"type": "int", "lo": -3, "hi": 3},
+  "x0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( g(x) = \\displaystyle\\int_{[[lo]]}^{x} \\left([[a]]t^{2}+[[b]]t+[[c]]\\right)dt \\). By Part 1 of the Fundamental Theorem of Calculus, find \\( g'([[x0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]"},
+ "distractors": [
+  "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]] - ([[a]]*[[lo]]**2 + [[b]]*[[lo]] + [[c]])",
+  "2*[[a]]*[[x0]] + [[b]]",
+  "[[a]]*[[lo]]**2 + [[b]]*[[lo]] + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "By FTC Part 1, \\( g'(x) = [[a]]x^{2}+[[b]]x+[[c]] \\) (the integrand itself, evaluated at \\( x \\), with the lower limit \\( [[lo]] \\) playing no role in the derivative). So \\( g'([[x0]]) = [[a]]([[x0]])^{2}+[[b]]([[x0]])+[[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly subtracts a contribution from the fixed lower limit, which does not affect the derivative of an accumulation function.",
+  "This differentiates the integrand ITSELF again, one derivative too many.",
+  "This evaluates the integrand at the fixed lower limit \\( [[lo]] \\) instead of at \\( [[x0]] \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "fundamental_theorem_of_calculus_variable_upper_limit_v3",
+ "skill_id": "fundamental_theorem_of_calculus",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Let \\( g(x) = \\displaystyle\\int_{[[a]]}^{x^{2}} \\left([[c]]t+[[d]]\\right)dt \\). Using the Fundamental Theorem of Calculus together with the chain rule, find \\( g'([[x0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[c]]*x**4/2 + [[d]]*x**2", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[c]]*[[x0]]**2 + [[d]]",
+  "2*[[x0]]*([[c]]*[[x0]]**2 + [[d]])",
+  "[[c]]*[[x0]]**2*2*[[x0]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "Let \\( F \\) be an antiderivative of \\( [[c]]t+[[d]] \\), so \\( g(x)=F(x^{2})-F([[a]]) \\). By FTC and the chain rule, \\( g'(x) = f(x^{2})\\cdot 2x = \\left([[c]]x^{2}+[[d]]\\right)\\cdot 2x \\). Evaluating this derivative at \\( x=[[x0]] \\) (equivalently, differentiating \\( F(x^{2})=\\tfrac{[[c]]}{2}x^{4}+[[d]]x^{2} \\) directly) gives \\( g'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies FTC Part 1 as if the upper limit were \\( x \\) itself, forgetting the chain-rule factor from the \\( x^{2} \\) limit.",
+  "This uses the correct chain-rule structure but with \\( f \\) evaluated at \\( x \\) instead of at \\( x^{2} \\).",
+  "This multiplies the integrand's linear term by \\( 2x \\) but drops the constant term \\( [[d]] \\) before doing so.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "fundamental_theorem_of_calculus_both_limits_variable_v4",
+ "skill_id": "fundamental_theorem_of_calculus",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Let \\( g(x) = \\displaystyle\\int_{x}^{x^{2}} [[c]]t\\,dt \\). Using the Fundamental Theorem of Calculus together with the chain rule on BOTH (variable) limits, find \\( g'([[x0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "[[c]]*x**4/2 - [[c]]*x**2/2", "var": "x", "at": "[[x0]]", "order": 1},
+ "distractors": [
+  "[[c]]*[[x0]]**2*2*[[x0]] - [[c]]*[[x0]]",
+  "[[c]]*[[x0]]**2 - [[c]]*[[x0]]",
+  "[[c]]*[[x0]]**2*2*[[x0]] + [[c]]*[[x0]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "-[[answer]]"
+ ],
+ "solution": "Let \\( F \\) be an antiderivative of \\( [[c]]t \\), so \\( g(x) = F(x^{2}) - F(x) \\). By FTC and the chain rule on each limit, \\( g'(x) = [[c]]x^{2}\\cdot 2x - [[c]]x\\cdot 1 \\) (upper-limit term minus lower-limit term, each with its own chain-rule factor). Equivalently, differentiating \\( F(x^{2})-F(x) = \\tfrac{[[c]]}{2}x^{4} - \\tfrac{[[c]]}{2}x^{2} \\) directly gives \\( g'([[x0]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gets the upper-limit chain-rule term right but forgets the chain-rule factor of \\( 1 \\) is still a subtraction, not addition, for the lower limit.",
+  "This applies FTC to each limit but forgets the chain-rule multiplier \\( 2x \\) on the upper-limit term entirely.",
+  "This adds the two limit contributions instead of subtracting the lower-limit term.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "fundamental_theorem_of_calculus_net_change_word_problem_v5",
+ "skill_id": "fundamental_theorem_of_calculus",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "t1": {"type": "int", "lo": 0, "hi": 2},
+  "t2": {"type": "int", "lo": 3, "hi": 6}
+ },
+ "constraints": ["Lt([[t1]], [[t2]])"],
+ "stem": "A particle moves along a line with velocity \\( v(t) = [[a]]t^{2} + [[b]] \\) (in meters per second). By the Fundamental Theorem of Calculus, the particle's net displacement from \\( t=[[t1]] \\) to \\( t=[[t2]] \\) seconds is \\( \\displaystyle\\int_{[[t1]]}^{[[t2]]} v(t)\\,dt \\). Find this net displacement (in meters).",
+ "answer_spec": {"op": "integrate", "expr": "[[a]]*t**2 + [[b]]", "var": "t", "bounds": ["[[t1]]", "[[t2]]"]},
+ "distractors": [
+  "[[a]]*[[t2]]**2 + [[b]]",
+  "([[a]]*[[t2]]**2+[[b]]) - ([[a]]*[[t1]]**2+[[b]])",
+  "[[a]]*([[t2]]-[[t1]])**2 + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "An antiderivative of \\( v(t) \\) is \\( s(t)=\\tfrac{[[a]]}{3}t^{3}+[[b]]t \\). By FTC, the net displacement is \\( s([[t2]])-s([[t1]]) = [[answer]] \\) meters.",
+ "distractor_rationales": [
+  "This reports the instantaneous velocity at \\( t=[[t2]] \\), not the accumulated displacement over the interval.",
+  "This subtracts velocities at the two endpoints instead of integrating the velocity function over the interval.",
+  "This wrongly plugs the time interval's length directly into \\( v(t) \\) rather than integrating.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+}
+]

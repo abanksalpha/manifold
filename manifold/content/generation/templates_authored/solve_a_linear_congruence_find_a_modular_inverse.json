@@ -1,0 +1,209 @@
+[
+  {
+    "template_id": "modular_inverse_prime_v1",
+    "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "m": {"type": "choice", "values": [7, 11, 13, 17, 19, 23]},
+      "a": {"type": "int", "lo": 2, "hi": 22}
+    },
+    "constraints": ["Lt([[a]], [[m]])", "Gt([[a]], 1)"],
+    "stem": "Find the multiplicative inverse of \\( [[a]] \\) modulo \\( [[m]] \\); that is, the integer \\( x \\) with \\( 1 \\le x < [[m]] \\) such that \\( [[a]]x \\equiv 1 \\pmod{[[m]]} \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**([[m]] - 2), [[m]])"},
+    "distractors": [
+      "Mod([[a]], [[m]])",
+      "Mod([[m]] - [[a]], [[m]])",
+      "Mod([[a]]**2, [[m]])",
+      "Mod([[answer]] + 1, [[m]])",
+      "Mod([[answer]] + 2, [[m]])",
+      "Mod([[m]] - [[answer]], [[m]])",
+      "Mod([[answer]] + 3, [[m]])"
+    ],
+    "solution": "Since \\( [[m]] \\) is prime and \\( [[a]] \\) is not a multiple of it, Fermat's Little Theorem gives \\( [[a]]^{-1} \\equiv [[a]]^{[[m]]-2} \\pmod{[[m]]} \\). Computing this residue yields \\( x = [[answer]] \\), and indeed \\( [[a]]\\cdot[[answer]] \\equiv 1 \\pmod{[[m]]} \\).",
+    "distractor_rationales": [
+      "This is \\( [[a]] \\) itself; a number is rarely its own inverse.",
+      "This is \\( -[[a]] \\bmod [[m]] \\), the additive inverse, not the multiplicative one.",
+      "This is \\( [[a]]^{2} \\bmod [[m]] \\), not \\( [[a]]^{-1} \\).",
+      "This is one more than the correct inverse.",
+      "This is two more than the correct inverse.",
+      "This is \\( -[[a]]^{-1} \\bmod [[m]] \\), the inverse with the wrong sign.",
+      "This is three more than the correct inverse."
+    ]
+  },
+  {
+    "template_id": "linear_congruence_general_v1",
+    "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "m": {"type": "choice", "values": [7, 11, 13, 17, 19, 23]},
+      "a": {"type": "int", "lo": 2, "hi": 22},
+      "b": {"type": "int", "lo": 2, "hi": 22}
+    },
+    "constraints": ["Lt([[a]], [[m]])", "Ne(Mod([[b]], [[m]]), 0)"],
+    "stem": "Solve the linear congruence \\( [[a]]x \\equiv [[b]] \\pmod{[[m]]} \\) for the unique integer \\( x \\) with \\( 0 \\le x < [[m]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[b]] * [[a]]**([[m]] - 2), [[m]])"},
+    "distractors": [
+      "Mod([[b]], [[m]])",
+      "Mod([[a]]**([[m]] - 2), [[m]])",
+      "Mod([[b]] * [[a]], [[m]])",
+      "Mod([[answer]] + 1, [[m]])",
+      "Mod([[answer]] + 2, [[m]])",
+      "Mod([[m]] - [[answer]], [[m]])",
+      "Mod([[answer]] + 3, [[m]])"
+    ],
+    "solution": "Multiply both sides by \\( [[a]]^{-1} \\equiv [[a]]^{[[m]]-2} \\pmod{[[m]]} \\) (Fermat's Little Theorem, since \\( [[m]] \\) is prime): \\( x \\equiv [[b]]\\cdot[[a]]^{[[m]]-2} \\equiv [[answer]] \\pmod{[[m]]} \\).",
+    "distractor_rationales": [
+      "This forgets to multiply by the inverse of \\( [[a]] \\); it just returns \\( b \\).",
+      "This is the inverse of \\( [[a]] \\) alone, forgetting to multiply by \\( [[b]] \\).",
+      "This multiplies by \\( [[a]] \\) instead of by its inverse.",
+      "This is one more than the correct solution.",
+      "This is two more than the correct solution.",
+      "This has the wrong sign relative to the modulus.",
+      "This is three more than the correct solution."
+    ]
+  },
+  {
+    "template_id": "modular_inverse_composite_v1",
+    "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [3, 5, 7]},
+      "q": {"type": "choice", "values": [5, 7, 11, 13]},
+      "a": {"type": "int", "lo": 2, "hi": 40}
+    },
+    "constraints": ["Ne([[p]], [[q]])", "Ne(Mod([[a]], [[p]]), 0)", "Ne(Mod([[a]], [[q]]), 0)"],
+    "derived": {"n": "[[p]]*[[q]]"},
+    "stem": "The modulus \\( [[n]] = [[p]] \\cdot [[q]] \\) is a product of two distinct primes. Find the multiplicative inverse of \\( [[a]] \\) modulo \\( [[n]] \\); that is, the integer \\( x \\) with \\( 1 \\le x < [[n]] \\) such that \\( [[a]]x \\equiv 1 \\pmod{[[n]]} \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(([[p]]-1)*([[q]]-1) - 1), [[p]]*[[q]])"},
+    "distractors": [
+      "Mod([[a]], [[n]])",
+      "Mod([[a]]**([[p]] - 2), [[n]])",
+      "Mod([[a]]**([[q]] - 2), [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[n]] - [[answer]], [[n]])",
+      "Mod([[answer]] + 3, [[n]])"
+    ],
+    "solution": "Since \\( [[a]] \\) is coprime to \\( [[n]]=[[p]][[q]] \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) with \\( \\varphi([[n]])=([[p]]-1)([[q]]-1) \\). So \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\equiv [[answer]]\\pmod{[[n]]} \\).",
+    "distractor_rationales": [
+      "This is \\( [[a]] \\) itself, not its inverse.",
+      "This uses \\( p-2 \\) as if the modulus were the plain prime \\( [[p]] \\), not the product \\( [[n]] \\).",
+      "This uses \\( q-2 \\) as if the modulus were the plain prime \\( [[q]] \\), not the product \\( [[n]] \\).",
+      "This is one more than the correct inverse.",
+      "This is two more than the correct inverse.",
+      "This has the wrong sign relative to the modulus.",
+      "This is three more than the correct inverse."
+    ]
+  },
+  {
+    "template_id": "linear_congruence_shared_factor_v1",
+    "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "q": {"type": "choice", "values": [7, 11, 13, 17, 19]},
+      "d": {"type": "choice", "values": [2, 3, 4, 5]},
+      "aprime": {"type": "int", "lo": 2, "hi": 16},
+      "bprime": {"type": "int", "lo": 1, "hi": 16}
+    },
+    "constraints": ["Lt([[aprime]], [[q]])", "Ne(Mod([[aprime]], [[q]]), 0)", "Ne(Mod([[bprime]], [[q]]), 0)"],
+    "derived": {
+      "a": "[[d]]*[[aprime]]",
+      "m": "[[d]]*[[q]]",
+      "b": "[[d]]*[[bprime]]"
+    },
+    "stem": "Solve the linear congruence \\( [[a]]x \\equiv [[b]] \\pmod{[[m]]} \\) for the smallest positive integer \\( x \\). (Note \\( \\gcd([[a]],[[m]]) = [[d]] \\), which divides \\( [[b]] \\), so a solution exists.)",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[bprime]] * [[aprime]]**([[q]] - 2), [[q]])"},
+    "distractors": [
+      "Mod([[b]] * [[a]]**([[q]] - 2), [[m]])",
+      "Mod([[bprime]], [[q]])",
+      "Mod([[aprime]]**([[q]] - 2), [[q]])",
+      "[[answer]] + [[q]]",
+      "Mod([[answer]] + 1, [[q]])",
+      "Mod([[answer]] + 2, [[q]])",
+      "Mod([[q]] - [[answer]], [[q]])"
+    ],
+    "solution": "Since \\( \\gcd([[a]],[[m]])=[[d]] \\) divides \\( [[b]] \\), divide the whole congruence by \\( [[d]] \\) to get the reduced congruence \\( [[aprime]]x \\equiv [[bprime]] \\pmod{[[q]]} \\). Since \\( [[q]] \\) is prime, \\( x \\equiv [[bprime]]\\cdot[[aprime]]^{[[q]]-2} \\equiv [[answer]] \\pmod{[[q]]} \\), the smallest positive solution.",
+    "distractor_rationales": [
+      "This forgets to divide the congruence by \\( [[d]] \\) first, mixing the original modulus with the reduced computation.",
+      "This forgets to multiply by the inverse of \\( [[aprime]] \\); it just returns \\( b' \\).",
+      "This is the inverse of \\( [[aprime]] \\) alone, forgetting to multiply by \\( [[bprime]] \\).",
+      "This adds a full reduced modulus, giving a solution to the reduced congruence but not the smallest positive one.",
+      "This is one more than the correct solution.",
+      "This is two more than the correct solution.",
+      "This has the wrong sign relative to the reduced modulus."
+    ]
+  },
+  {
+    "template_id": "linear_congruence_composite_modulus_v1",
+    "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [3, 5, 7]},
+      "q": {"type": "choice", "values": [5, 7, 11, 13]},
+      "a": {"type": "int", "lo": 2, "hi": 40},
+      "b": {"type": "int", "lo": 2, "hi": 40}
+    },
+    "constraints": ["Ne([[p]], [[q]])", "Ne(Mod([[a]], [[p]]), 0)", "Ne(Mod([[a]], [[q]]), 0)"],
+    "derived": {"n": "[[p]]*[[q]]"},
+    "stem": "The modulus \\( [[n]] = [[p]] \\cdot [[q]] \\) is a product of two distinct primes. Solve the linear congruence \\( [[a]]x \\equiv [[b]] \\pmod{[[n]]} \\) for the unique integer \\( x \\) with \\( 0 \\le x < [[n]] \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[b]] * [[a]]**((([[p]]-1)*([[q]]-1)) - 1), [[p]]*[[q]])"},
+    "distractors": [
+      "Mod([[b]], [[n]])",
+      "Mod([[a]]**((([[p]]-1)*([[q]]-1)) - 1), [[n]])",
+      "Mod([[b]] * [[a]], [[n]])",
+      "Mod([[a]]**([[p]] - 2), [[n]])",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[n]] - [[answer]], [[n]])"
+    ],
+    "solution": "Since \\( [[a]] \\) is coprime to \\( [[n]]=[[p]][[q]] \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) with \\( \\varphi([[n]])=([[p]]-1)([[q]]-1) \\), so \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\pmod{[[n]]} \\). Multiplying both sides of the congruence by this inverse gives \\( x \\equiv [[b]]\\cdot[[a]]^{\\varphi([[n]])-1} \\equiv [[answer]] \\pmod{[[n]]} \\).",
+    "distractor_rationales": [
+      "This forgets to multiply by the inverse of \\( [[a]] \\); it just returns \\( b \\) reduced mod \\( n \\).",
+      "This is the inverse of \\( [[a]] \\) alone, forgetting to multiply by \\( [[b]] \\).",
+      "This multiplies by \\( [[a]] \\) itself instead of by its inverse.",
+      "This uses \\( p-2 \\) as if the modulus were the plain prime \\( [[p]] \\), not the composite \\( [[n]] \\).",
+      "This is one more than the correct solution.",
+      "This is two more than the correct solution.",
+      "This has the wrong sign relative to the modulus."
+    ]
+  },
+  {
+    "template_id": "modular_inverse_prime_power_v1",
+    "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "p": {"type": "choice", "values": [3, 5, 7]},
+      "e": {"type": "choice", "values": [2, 3]},
+      "a": {"type": "int", "lo": 2, "hi": 60}
+    },
+    "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+    "derived": {"n": "[[p]]**[[e]]"},
+    "stem": "The modulus \\( [[n]] = [[p]]^{[[e]]} \\) is a prime power. Find the multiplicative inverse of \\( [[a]] \\) modulo \\( [[n]] \\); that is, the integer \\( x \\) with \\( 1 \\le x < [[n]] \\) such that \\( [[a]]x \\equiv 1 \\pmod{[[n]]} \\).",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(([[p]]**([[e]]-1))*([[p]]-1) - 1), [[p]]**[[e]])"},
+    "distractors": [
+      "Mod([[a]], [[n]])",
+      "Mod([[a]]**([[p]] - 2), [[n]])",
+      "Mod([[a]]**2, [[n]])",
+      "[[n]] - [[a]]",
+      "Mod([[answer]] + 1, [[n]])",
+      "Mod([[answer]] + 2, [[n]])",
+      "Mod([[n]] - [[answer]], [[n]])"
+    ],
+    "solution": "For the prime power modulus \\( [[n]]=[[p]]^{[[e]]} \\), Euler's totient is \\( \\varphi([[n]]) = [[p]]^{[[e]]-1}([[p]]-1) \\). Since \\( \\gcd([[a]],[[p]])=1 \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\), so \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\equiv [[answer]]\\pmod{[[n]]} \\).",
+    "distractor_rationales": [
+      "This is \\( [[a]] \\) itself, unreduced, not its inverse.",
+      "This uses \\( p-2 \\) as if the modulus were the plain prime \\( [[p]] \\), not the prime power \\( [[n]] \\).",
+      "This is \\( [[a]]^{2} \\bmod [[n]] \\), not \\( [[a]]^{-1} \\).",
+      "This is the naive additive complement \\( n-a \\), not the multiplicative inverse.",
+      "This is one more than the correct inverse.",
+      "This is two more than the correct inverse.",
+      "This has the wrong sign relative to the modulus."
+    ]
+  }
+]

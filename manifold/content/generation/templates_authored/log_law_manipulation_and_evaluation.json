@@ -1,0 +1,272 @@
+[
+ {
+  "template_id": "log_product_rule_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "M": "[[b]]**[[p]]",
+   "N": "[[b]]**[[q]]"
+  },
+  "stem": "Evaluate \\( \\log_{[[b]]}([[M]]) + \\log_{[[b]]}([[N]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[M]], [[b]]) + log([[N]], [[b]])"},
+  "distractors": [
+   "[[p]] * [[q]]",
+   "[[p]] - [[q]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the product rule, \\( \\log_b M + \\log_b N = \\log_b(MN) \\). Since \\( [[M]] = [[b]]^{[[p]]} \\) and \\( [[N]] = [[b]]^{[[q]]} \\), each log is an exponent and the sum is \\( [[p]] + [[q]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the two logarithms; the product rule adds them.",
+   "This subtracts the exponents, which corresponds to a quotient, not a product.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_quotient_rule_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 2, "hi": 7},
+   "q": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Gt([[p]], [[q]])"],
+  "derived": {
+   "M": "[[b]]**[[p]]",
+   "N": "[[b]]**[[q]]"
+  },
+  "stem": "Evaluate \\( \\log_{[[b]]}([[M]]) - \\log_{[[b]]}([[N]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[M]], [[b]]) - log([[N]], [[b]])"},
+  "distractors": [
+   "[[p]] * [[q]]",
+   "[[p]] + [[q]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the quotient rule, \\( \\log_b M - \\log_b N = \\log_b(M/N) \\). Since \\( [[M]] = [[b]]^{[[p]]} \\) and \\( [[N]] = [[b]]^{[[q]]} \\), the difference of the exponents is \\( [[p]] - [[q]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies the two exponents; the quotient rule subtracts them.",
+   "This adds the exponents, which corresponds to a product, not a quotient.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_power_rule_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 1, "hi": 6},
+   "k": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {
+   "M": "[[b]]**[[p]]"
+  },
+  "stem": "Evaluate \\( \\log_{[[b]]}\\!\\left([[M]]^{[[k]]}\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log(([[M]])**[[k]], [[b]])"},
+  "distractors": [
+   "[[p]] + [[k]]",
+   "[[k]]",
+   "[[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the power rule, \\( \\log_b(M^{k}) = k \\log_b M \\). Since \\( [[M]] = [[b]]^{[[p]]} \\), \\( \\log_{[[b]]}[[M]] = [[p]] \\), so the answer is \\( [[k]] \\cdot [[p]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the exponent \\( k \\) instead of multiplying it with \\( \\log_b M \\).",
+   "This reports only the outer exponent \\( k \\), ignoring \\( \\log_b M = [[p]] \\).",
+   "This reports only \\( \\log_b M \\), forgetting to multiply by the outer exponent \\( k \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_root_rule_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 1, "hi": 6},
+   "n": {"type": "choice", "values": [2, 3, 4, 5]}
+  },
+  "constraints": [],
+  "derived": {
+   "M": "[[b]]**([[p]]*[[n]])"
+  },
+  "stem": "Evaluate \\( \\log_{[[b]]}\\!\\left(\\sqrt[[[n]]]{[[M]]}\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log(root([[M]], [[n]]), [[b]])"},
+  "distractors": [
+   "[[p]] * [[n]]",
+   "[[n]]",
+   "[[p]] + [[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The \\( n \\)-th root rule gives \\( \\log_b\\left(\\sqrt[n]{M}\\right) = \\dfrac{1}{n}\\log_b M \\). Since \\( [[M]] = [[b]]^{[[p]] \\cdot [[n]]} \\), \\( \\log_{[[b]]}[[M]] = [[p]][[n]] \\), so dividing by \\( [[n]] \\) gives \\( [[p]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies by \\( n \\) instead of dividing by it, undoing the root incorrectly.",
+   "This reports the root index itself rather than the simplified logarithm.",
+   "This adds the root index instead of dividing by it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_change_of_base_ratio_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "c": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 1, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {
+   "a": "[[c]]**[[p]]",
+   "M": "[[c]]**[[q]]"
+  },
+  "stem": "Evaluate \\( \\log_{[[a]]}([[M]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[M]], [[a]])"},
+  "distractors": [
+   "[[p]] / [[q]]",
+   "[[q]] - [[p]]",
+   "[[q]] * [[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By the change-of-base formula with common base \\( [[c]] \\), \\( \\log_{[[a]]}([[M]]) = \\dfrac{\\log_{[[c]]}([[M]])}{\\log_{[[c]]}([[a]])} = \\dfrac{[[q]]}{[[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio, dividing the base's exponent by the argument's instead of the reverse.",
+   "This subtracts the exponents, as if using the quotient rule instead of changing base.",
+   "This multiplies the exponents instead of dividing them.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_combined_laws_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5]},
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 1, "hi": 4},
+   "r": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": [],
+  "derived": {
+   "M": "[[b]]**[[p]]",
+   "N": "[[b]]**[[q]]",
+   "P": "[[b]]**[[r]]"
+  },
+  "stem": "Evaluate \\( 2\\log_{[[b]]}([[M]]) + \\log_{[[b]]}([[N]]) - \\log_{[[b]]}([[P]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "2*log([[M]], [[b]]) + log([[N]], [[b]]) - log([[P]], [[b]])"},
+  "distractors": [
+   "[[p]] + [[q]] - [[r]]",
+   "2*[[p]] + [[q]] + [[r]]",
+   "2*([[p]] + [[q]] - [[r]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Using the power, product, and quotient rules together: \\( 2\\log_{[[b]]}[[M]] = 2([[p]]) \\), \\( \\log_{[[b]]}[[N]] = [[q]] \\), \\( \\log_{[[b]]}[[P]] = [[r]] \\), so the expression equals \\( 2([[p]]) + [[q]] - [[r]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to double the first term's exponent before combining.",
+   "This adds every term instead of subtracting the last one.",
+   "This factors out the 2 across all three terms instead of only the first.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "natural_log_inverse_property_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "stem": "Evaluate \\( \\ln\\!\\left(e^{[[k]]}\\right) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log(E**[[k]])"},
+  "distractors": [
+   "[[k]] + 1",
+   "-[[k]]",
+   "E**[[k]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "The natural logarithm and \\( e^{x} \\) are inverse functions, so \\( \\ln(e^{[[k]]}) = [[k]] = [[answer]] \\) directly.",
+  "distractor_rationales": [
+   "This is off by one from the correct value.",
+   "This has the correct magnitude but the wrong sign.",
+   "This leaves the expression unevaluated instead of applying the inverse property.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value.",
+   "This is off by three from the correct value."
+  ]
+ },
+ {
+  "template_id": "log_reciprocal_base_evaluate_v1",
+  "skill_id": "log_law_manipulation_and_evaluation",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 5, 7]},
+   "p": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "derived": {
+   "M": "[[b]]**[[p]]"
+  },
+  "stem": "Evaluate \\( \\log_{1/[[b]]}([[M]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "log([[M]], Rational(1,[[b]]))"},
+  "distractors": [
+   "[[p]]",
+   "[[p]] + 1",
+   "1/[[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Switching to a reciprocal base flips the sign of the logarithm: \\( \\log_{1/b}(M) = -\\log_b(M) \\). Since \\( \\log_{[[b]]}([[M]]) = [[p]] \\), the answer is \\( -[[p]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that a reciprocal base flips the sign of the logarithm.",
+   "This is off by one in addition to missing the sign flip.",
+   "This inverts the exponent instead of negating it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ }
+]

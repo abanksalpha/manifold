@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-07-03T00:15:06-0500",
+  "study_feature": "interleaving (confusable topics mixed within a session)",
+  "hypothesis": "Interleaving raises accuracy on new mixed-topic questions at equal study time (Rohrer 2020 RCT d=0.83; Brunmair & Richter 2019 math g=0.34).",
+  "deck": {
+    "skills_seeded": 519,
+    "cards_made_due": 519
+  },
+  "builds": {
+    "1_full_interleave_on": {
+      "n": 519,
+      "distinct_topics": 33,
+      "topic_switch_rate": 1.0,
+      "mean_same_topic_run": 1.0,
+      "max_same_topic_run": 1
+    },
+    "2_ablated_interleave_off": {
+      "n": 519,
+      "distinct_topics": 33,
+      "topic_switch_rate": 0.062,
+      "mean_same_topic_run": 15.73,
+      "max_same_topic_run": 20
+    },
+    "3_plain_anki_native_order": {
+      "n": 519,
+      "distinct_topics": 33,
+      "topic_switch_rate": 0.782,
+      "mean_same_topic_run": 1.28,
+      "max_same_topic_run": 4
+    }
+  },
+  "mechanism_finding": "interleave ON switches topics far more often than OFF/plain \u2014 the engine produces the mixing the hypothesis relies on",
+  "learning_outcome": {
+    "status": "PENDING_REAL_LEARNERS",
+    "why": "The delayed-test accuracy comparison at equal study time needs real learners studying under each build; not fabricated here (ASSIGN section 9).",
+    "declared_primary_metric": "delayed-test accuracy on new mixed-topic items",
+    "declared_comparisons": [
+      "build 1 vs build 2 -> the interleaving effect (isolates the feature)",
+      "build 1 vs build 3 -> the whole-app effect vs plain Anki"
+    ],
+    "equal_budget_rule": "same learners, same item pool, same total study minutes across builds"
+  }
+}

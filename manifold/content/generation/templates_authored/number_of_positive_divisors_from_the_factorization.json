@@ -1,0 +1,206 @@
+[
+{
+ "template_id": "divisor_count_v1",
+ "skill_id": "number_of_positive_divisors_from_the_factorization",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7]},
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+ "stem": "How many positive divisors does \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]] + 1)*([[b]] + 1)"},
+ "distractors": [
+  "[[a]]*[[b]]",
+  "([[a]] + 1)*([[b]] + 1) - 1",
+  "([[a]] + 1) + ([[b]] + 1)",
+  "[[a]]*[[b]] + 2",
+  "([[a]] + 1)*([[b]] + 1) + 2",
+  "[[a]] + [[b]] + 1"
+ ],
+ "solution": "If \\( n = p^{a} q^{b} \\) then the number of positive divisors is \\( (a+1)(b+1) = ([[a]]+1)([[b]]+1) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the exponents; each exponent must be increased by one first.",
+  "This forgets to count 1 (or \\( n \\) itself) as a divisor.",
+  "This adds the factor counts instead of multiplying them.",
+  "This multiplies the exponents and adjusts by a constant.",
+  "This overcounts the divisors by two.",
+  "This adds the exponents rather than using \\( (a+1)(b+1) \\)."
+ ]
+},
+{
+ "template_id": "divisor_count_from_raw_number_v1",
+ "skill_id": "number_of_positive_divisors_from_the_factorization",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+ "stem": "How many positive divisors does the number \\( [[nval]] \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]] + 1)*([[b]] + 1)"},
+ "distractors": [
+  "[[nval]]",
+  "[[a]] + [[b]]",
+  "([[a]] + 1)*([[b]] + 1) - 1",
+  "([[a]] + 1) + ([[b]] + 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "First factor \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\); the number of positive divisors is then \\( ([[a]]+1)([[b]]+1) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( n \\) itself, not its divisor count.",
+  "This adds the exponents directly, without factoring or the +1 shift.",
+  "This forgets to count \\( n \\) itself among its divisors.",
+  "This adds the factor counts instead of multiplying them.",
+  "This is one more than the correct divisor count.",
+  "This is one less than the correct divisor count."
+ ]
+},
+{
+ "template_id": "divisor_count_of_square_v1",
+ "skill_id": "number_of_positive_divisors_from_the_factorization",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7]},
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]", "n2val": "[[p]]**(2*[[a]]) * [[q]]**(2*[[b]])"},
+ "stem": "Let \\( n = [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). How many positive divisors does \\( n^{2} = [[n2val]] \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "(2*[[a]] + 1)*(2*[[b]] + 1)"},
+ "distractors": [
+  "([[a]] + 1)*([[b]] + 1)",
+  "2*([[a]] + 1)*([[b]] + 1)",
+  "(2*[[a]] + 1) + (2*[[b]] + 1)",
+  "4*([[a]] + 1)*([[b]] + 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Squaring \\( n \\) doubles every exponent: \\( n^{2} = [[p]]^{2[[a]]} \\cdot [[q]]^{2[[b]]} \\), so its divisor count is \\( (2[[a]]+1)(2[[b]]+1) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the divisor count of \\( n \\) itself, forgetting that squaring doubles the exponents.",
+  "This doubles the divisor count of \\( n \\) instead of doubling the exponents first.",
+  "This adds the doubled-exponent terms instead of multiplying them.",
+  "This quadruples the divisor count of \\( n \\), overcorrecting for the square.",
+  "This is one more than the correct divisor count.",
+  "This is one less than the correct divisor count."
+ ]
+},
+{
+ "template_id": "divisor_count_multiples_of_a_prime_v1",
+ "skill_id": "number_of_positive_divisors_from_the_factorization",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7]},
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+ "stem": "Let \\( n = [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). How many positive divisors of \\( n \\) are divisible by \\( [[q]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]] + 1)*[[b]]"},
+ "distractors": [
+  "([[a]] + 1)*([[b]] + 1)",
+  "[[b]]",
+  "([[a]] + 1)*([[b]] - 1)",
+  "[[a]]*[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A divisor of \\( n \\) divisible by \\( [[q]] \\) has the form \\( [[p]]^{i}[[q]]^{j} \\) with \\( 0\\le i\\le[[a]] \\) and \\( 1\\le j\\le[[b]] \\), giving \\( ([[a]]+1)\\cdot[[b]] = [[answer]] \\) such divisors.",
+  "distractor_rationales": [
+  "This is the divisor count of all of \\( n \\), not just the ones divisible by \\( [[q]] \\).",
+  "This only counts the allowed exponents of \\( [[q]] \\), forgetting to multiply by the choices for \\( [[p]] \\)'s exponent.",
+  "This drops one too many exponent choices for \\( [[q]] \\).",
+  "This multiplies the raw exponents instead of the number of allowed exponent choices.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count."
+ ]
+},
+{
+ "template_id": "divisor_count_three_prime_factors_v1",
+ "skill_id": "number_of_positive_divisors_from_the_factorization",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5]},
+  "q": {"type": "choice", "values": [3, 5, 7]},
+  "r": {"type": "choice", "values": [7, 11, 13]},
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 1, "hi": 3},
+  "c": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Lt([[p]], [[q]])", "Lt([[q]], [[r]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]] * [[r]]**[[c]]"},
+ "stem": "How many positive divisors does \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\cdot [[r]]^{[[c]]} \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]] + 1)*([[b]] + 1)*([[c]] + 1)"},
+ "distractors": [
+  "[[a]]*[[b]]*[[c]]",
+  "([[a]] + 1)*([[b]] + 1)*([[c]] + 1) - 1",
+  "([[a]] + 1) + ([[b]] + 1) + ([[c]] + 1)",
+  "([[a]] + 1)*([[b]] + 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "For \\( n = p^{a}q^{b}r^{c} \\) with three distinct primes, the number of positive divisors multiplies across all three prime factors: \\( (a+1)(b+1)(c+1) = ([[a]]+1)([[b]]+1)([[c]]+1) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the raw exponents instead of increasing each by one first.",
+  "This forgets to count 1 (or \\( n \\) itself) as a divisor.",
+  "This adds the three shifted exponent counts instead of multiplying them.",
+  "This drops the third prime factor \\( [[r]] \\) entirely, using only two of the three factors.",
+  "This is one more than the correct divisor count.",
+  "This is one less than the correct divisor count.",
+  "This is two more than the correct divisor count."
+ ]
+},
+{
+ "template_id": "divisor_count_perfect_square_divisors_v1",
+ "skill_id": "number_of_positive_divisors_from_the_factorization",
+ "topic_id": "number_theory",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7]},
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+ "stem": "Let \\( n = [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\). How many positive divisors of \\( n \\) are PERFECT SQUARES?",
+ "answer_spec": {"op": "evaluate", "expr": "(floor([[a]]/2) + 1)*(floor([[b]]/2) + 1)"},
+ "distractors": [
+  "([[a]] + 1)*([[b]] + 1)",
+  "floor([[a]]/2)*floor([[b]]/2)",
+  "(floor([[a]]/2) + 1) + (floor([[b]]/2) + 1)",
+  "floor(([[a]]+1)/2)*floor(([[b]]+1)/2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "A divisor \\( p^{i}q^{j} \\) of \\( n \\) is a perfect square exactly when both \\( i \\) and \\( j \\) are even, with \\( 0 \\le i \\le [[a]] \\) and \\( 0 \\le j \\le [[b]] \\). The even choices for \\( i \\) number \\( \\lfloor [[a]]/2 \\rfloor + 1 \\), and likewise \\( \\lfloor [[b]]/2 \\rfloor + 1 \\) for \\( j \\), giving \\( (\\lfloor [[a]]/2\\rfloor+1)(\\lfloor [[b]]/2\\rfloor+1) = [[answer]] \\) square divisors.",
+ "distractor_rationales": [
+  "This is the total divisor count of \\( n \\), not just the perfect-square divisors.",
+  "This forgets to count the exponent 0 (i.e. dividing by 1) as an even choice.",
+  "This adds the two even-exponent counts instead of multiplying them.",
+  "This rounds the exponents up instead of down before halving, overcounting the even choices.",
+  "This is one more than the correct count.",
+  "This is one less than the correct count.",
+  "This is two more than the correct count."
+ ]
+}
+]

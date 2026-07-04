@@ -1,0 +1,202 @@
+[
+{
+ "template_id": "limit_of_accumulation_over_power_v1",
+ "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\displaystyle \\lim_{x\\to 0} \\frac{[[k]]}{x^{2}} \\int_{0}^{x} \\sin([[a]]\\,t)\\, dt \\).",
+ "answer_spec": {"op": "limit", "expr": "[[k]]*integrate(sin([[a]]*t), (t, 0, x))/x**2", "var": "x", "point": 0},
+ "distractors": [
+  "[[k]]*[[a]]",
+  "[[k]]*[[a]]**2/2",
+  "[[a]]/2",
+  "[[k]]",
+  "[[k]]*[[a]]/4",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Both numerator and denominator tend to 0. Since \\( \\int_{0}^{x} \\sin([[a]]t)\\,dt = \\frac{1 - \\cos([[a]]x)}{[[a]]} \\) and \\( 1 - \\cos([[a]]x) \\approx \\frac{[[a]]^{2}x^{2}}{2} \\), the limit is \\( [[k]]\\cdot \\frac{[[a]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies L'Hopital or the Taylor expansion only once, dropping the factor of \\( \\tfrac{1}{2} \\).",
+  "This keeps an extra factor of \\( [[a]] \\), as if the leading term were \\( [[a]]^{2}x^{2} \\) over \\( 2 \\) without dividing by \\( [[a]] \\) once.",
+  "This forgets the constant factor \\( [[k]] \\) out front.",
+  "This treats the limit as if the integral contributed only the factor \\( [[k]] \\).",
+  "This uses \\( \\tfrac{1}{4} \\) instead of \\( \\tfrac{1}{2} \\) for the quadratic Taylor coefficient.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "limit_single_lhopital_at_zero_v2",
+ "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\lim_{x\\to 0} \\frac{1}{x} \\int_{0}^{x} \\left( ([[a]])t^{2} + ([[b]])t + ([[c]]) \\right) dt \\).",
+ "answer_spec": {"op": "limit", "expr": "integrate([[a]]*t**2 + [[b]]*t + [[c]], (t, 0, x))/x", "var": "x", "point": 0},
+ "distractors": [
+  "0",
+  "[[b]]",
+  "[[a]] + [[b]] + [[c]]",
+  "[[c]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "This is a single \\( 0/0 \\) form. By L'Hopital (equivalently, by the Fundamental Theorem of Calculus, the numerator's derivative is \\( f(x) \\) itself), \\( \\displaystyle \\lim_{x\\to 0} \\frac{1}{x}\\int_{0}^{x} f(t)\\,dt = f(0) = [[c]] \\).",
+ "distractor_rationales": [
+  "This assumes the limit is automatically 0 without evaluating the indeterminate form.",
+  "This reports the linear coefficient of the integrand instead of its value at \\( t=0 \\).",
+  "This evaluates the integrand at \\( t=1 \\) instead of at \\( t=0 \\).",
+  "This halves the constant term for no valid reason.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "limit_at_general_point_v3",
+ "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]*[[p]]**2 + [[b]]*[[p]] + [[c]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\lim_{x\\to [[p]]} \\frac{1}{x - ([[p]])} \\int_{[[p]]}^{x} \\left( ([[a]])t^{2} + ([[b]])t + ([[c]]) \\right) dt \\).",
+ "answer_spec": {"op": "limit", "expr": "integrate([[a]]*t**2 + [[b]]*t + [[c]], (t, [[p]], x))/(x-[[p]])", "var": "x", "point": "[[p]]"},
+ "distractors": [
+  "0",
+  "[[a]]*[[p]]**2 + [[b]]*[[p]]",
+  "[[c]]",
+  "2*[[a]]*[[p]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "This is again a \\( 0/0 \\) form at \\( x=[[p]] \\). By L'Hopital, differentiating the numerator (via FTC-1) gives the integrand itself evaluated at \\( x=[[p]] \\): the limit equals \\( f([[p]]) = ([[a]])([[p]])^{2} + ([[b]])([[p]]) + ([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the limit is automatically 0 without evaluating the indeterminate form.",
+  "This drops the constant term \\( ([[c]]) \\) from \\( f([[p]]) \\).",
+  "This reports only the constant term, dropping the quadratic and linear contributions at \\( t=[[p]] \\).",
+  "This computes \\( f'([[p]]) \\) instead of \\( f([[p]]) \\), differentiating one derivative too many.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "limit_of_accumulation_at_infinity_v4",
+ "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 9},
+  "n": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[p]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\lim_{x\\to\\infty} \\frac{\\int_{1}^{x} \\left( ([[m]])t + ([[n]]) \\right) dt}{([[p]])x^{2} + ([[q]])x} \\).",
+ "answer_spec": {"op": "limit", "expr": "integrate([[m]]*t + [[n]], (t, 1, x))/(([[p]])*x**2 + ([[q]])*x)", "var": "x", "point": "oo"},
+ "distractors": [
+  "[[m]]/[[p]]",
+  "[[n]]/[[q]]",
+  "[[m]]/(2*[[q]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[m]]/[[p]]"
+ ],
+ "solution": "As \\( x\\to\\infty \\) both numerator and denominator grow without bound, so L'Hopital applies: differentiating top and bottom, the limit becomes \\( \\displaystyle \\lim_{x\\to\\infty} \\frac{([[m]])x + ([[n]])}{2([[p]])x + ([[q]])} \\), which is again an \\( \\infty/\\infty \\) form. Differentiating once more (or comparing leading coefficients) gives \\( \\frac{[[m]]}{2([[p]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This compares the leading linear coefficients directly, forgetting the antiderivative introduces a factor of \\( x^2 \\) in the numerator (needs the leading coefficient over TWICE the denominator's).",
+  "This compares the constant terms of the original integrand and denominator instead of the leading (highest-degree) terms.",
+  "This uses the wrong denominator coefficient \\( [[q]] \\), which does not affect the limit at infinity.",
+  "This wrongly assumes a degree-2 over degree-2 ratio must vanish at infinity.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct ratio of leading coefficients."
+ ]
+},
+{
+ "template_id": "limit_ratio_of_two_accumulation_functions_v5",
+ "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\lim_{x\\to 0} \\frac{\\int_{0}^{x} \\left( ([[a]])t + ([[p]]) \\right) dt}{\\int_{0}^{x} \\left( ([[b]])t + ([[q]]) \\right) dt} \\).",
+ "answer_spec": {"op": "limit", "expr": "integrate([[a]]*t+[[p]], (t,0,x))/integrate([[b]]*t+[[q]], (t,0,x))", "var": "x", "point": 0},
+ "distractors": [
+  "[[a]]/[[b]]",
+  "[[q]]/[[p]]",
+  "[[p]]*[[q]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "Both accumulation functions vanish at \\( x=0 \\), giving a \\( 0/0 \\) form. By L'Hopital, differentiating each (via FTC-1) reduces the ratio to the two integrands evaluated at \\( t=0 \\): \\( \\displaystyle \\lim_{x\\to 0} \\frac{([[a]])x + ([[p]])}{([[b]])x + ([[q]])} = \\frac{[[p]]}{[[q]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the LINEAR coefficients \\( a,b \\) of the integrands instead of their values at \\( t=0 \\).",
+  "This inverts the ratio of the two constant terms.",
+  "This multiplies the two constant terms instead of dividing them.",
+  "This wrongly assumes a ratio of two vanishing quantities must be 0.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct ratio."
+ ]
+},
+{
+ "template_id": "limit_reciprocal_of_accumulation_function_v6",
+ "skill_id": "limit_of_an_integral_ftc_1_l_hopital_taylor",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -8, "hi": 8},
+  "m": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[p]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle \\lim_{x\\to 0} \\frac{[[m]]\\,x}{\\int_{0}^{x} \\left( ([[a]])t + ([[p]]) \\right) dt} \\).",
+ "answer_spec": {"op": "limit", "expr": "[[m]]*x/integrate([[a]]*t+[[p]], (t,0,x))", "var": "x", "point": 0},
+ "distractors": [
+  "[[m]]*[[p]]",
+  "[[a]]/[[m]]",
+  "[[m]]/[[a]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "The denominator (an accumulation function) vanishes at \\( x=0 \\) along with the numerator, a \\( 0/0 \\) form. By L'Hopital, differentiating top and bottom (using FTC-1 on the denominator) gives \\( \\displaystyle \\lim_{x\\to 0} \\frac{[[m]]}{([[a]])x + ([[p]])} = \\frac{[[m]]}{[[p]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( m \\) and \\( p \\) instead of dividing, as if the accumulation function were in the numerator.",
+  "This uses the linear coefficient \\( a \\) of the integrand instead of its constant value \\( p \\) at \\( t=0 \\).",
+  "This inverts the correct ratio.",
+  "This wrongly assumes a ratio of two vanishing quantities must be 0.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct ratio."
+ ]
+}
+]

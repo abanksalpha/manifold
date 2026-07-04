@@ -77,7 +77,10 @@ def get_briefcase_sources_path(out_dir: Path) -> Path:
             / "anki"
             / "macos"
             / "app"
-            / "Anki.app"
+            # Briefcase names the .app bundle after the app's formal_name, which
+            # the Manifold rebrand (qt/installer/app/pyproject.toml) sets to
+            # "Manifold". The build dir segment above stays "anki" (the app key).
+            / "Manifold.app"
             / "Contents"
             / "Resources"
         )

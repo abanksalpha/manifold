@@ -1,0 +1,173 @@
+[
+{
+ "template_id": "effect_of_row_column_operations_and_special_rows_v1",
+ "skill_id": "effect_of_row_column_operations_and_special_rows",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). The matrix \\( B \\) is obtained from \\( A \\) by adding \\( [[k]] \\) times the first row to the second row. What is \\( \\det(B) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]"], ["[[c]]+[[k]]*[[a]]", "[[d]]+[[k]]*[[b]]"]]},
+ "distractors": [
+  "[[k]] * ([[a]]*[[d]] - [[b]]*[[c]])",
+  "([[a]]*[[d]] - [[b]]*[[c]]) + [[k]]",
+  "[[b]]*[[c]] - [[a]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Adding a multiple of one row to another row leaves the determinant unchanged, so \\( \\det(B) = \\det(A) = ([[a]])([[d]]) - ([[b]])([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the determinant by \\( [[k]] \\), which is the effect of scaling a row, not adding a multiple of one row to another.",
+  "This adds \\( [[k]] \\) to the determinant; a row-addition operation adds nothing.",
+  "This is \\( -\\det(A) \\), the effect of a row swap.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "effect_of_row_column_operations_and_special_rows_v2",
+ "skill_id": "effect_of_row_column_operations_and_special_rows",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). The matrix \\( B \\) is obtained from \\( A \\) by adding \\( [[k]] \\) times the first column to the second column. What is \\( \\det(B) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]+[[k]]*[[a]]"], ["[[c]]", "[[d]]+[[k]]*[[c]]"]]},
+ "distractors": [
+  "[[k]] * ([[a]]*[[d]] - [[b]]*[[c]])",
+  "([[a]]*[[d]] - [[b]]*[[c]]) + [[k]]",
+  "[[b]]*[[c]] - [[a]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Adding a multiple of one column to another column leaves the determinant unchanged (the same rule that holds for rows also holds for columns), so \\( \\det(B) = \\det(A) = ([[a]])([[d]]) - ([[b]])([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the determinant by \\( [[k]] \\), which is the effect of scaling a column, not adding a multiple of one column to another.",
+  "This adds \\( [[k]] \\) to the determinant; a column-addition operation adds nothing.",
+  "This is \\( -\\det(A) \\), the effect of a column swap.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "effect_of_row_column_operations_and_special_rows_v3",
+ "skill_id": "effect_of_row_column_operations_and_special_rows",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[a]]+[[b]]*[[b]]+[[c]]*[[c]], 0)", "Ne([[d]]*[[d]]+[[e]]*[[e]]+[[f]]*[[f]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & 0 & 0 \\\\ [[d]] & [[e]] & [[f]] \\end{bmatrix} \\). What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "0", "0"], ["[[d]]", "[[e]]", "[[f]]"]]},
+ "distractors": [
+  "[[a]]*[[e]]*[[f]]",
+  "[[a]]+[[b]]+[[c]]",
+  "[[a]]*[[d]]-[[b]]*[[e]]",
+  "1",
+  "-1",
+  "[[a]]*[[e]] - [[b]]*[[d]]"
+ ],
+ "solution": "A matrix with an entire row of zeros always has determinant 0, since every term in the cofactor expansion along that row is 0: \\( \\det(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the zero row as if it contributed a nonzero cofactor term.",
+  "This sums entries from the nonzero first row, ignoring that a zero row forces the determinant to vanish.",
+  "This computes a leftover minor from the two nonzero rows instead of recognizing the zero row forces \\( \\det(A)=0 \\).",
+  "A matrix with a zero row cannot have a nonzero determinant.",
+  "A matrix with a zero row cannot have a nonzero determinant.",
+  "This computes a minor of the nonzero rows rather than the determinant of the full matrix."
+ ]
+},
+{
+ "template_id": "effect_of_row_column_operations_and_special_rows_v4",
+ "skill_id": "effect_of_row_column_operations_and_special_rows",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "m": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[a]]+[[b]]*[[b]]+[[c]]*[[c]], 0)"],
+ "derived": {"r21": "[[m]]*[[a]]", "r22": "[[m]]*[[b]]", "r23": "[[m]]*[[c]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[r21]] & [[r22]] & [[r23]] \\\\ [[d]] & [[e]] & [[f]] \\end{bmatrix} \\), whose second row is \\( [[m]] \\) times its first row. What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[r21]]", "[[r22]]", "[[r23]]"], ["[[d]]", "[[e]]", "[[f]]"]]},
+ "distractors": [
+  "[[m]]",
+  "[[a]]*[[e]]*[[f]]",
+  "[[m]]*([[a]]*[[e]]-[[b]]*[[d]])",
+  "1",
+  "-1",
+  "[[m]]*[[d]]*[[e]]*[[f]]"
+ ],
+ "solution": "Two proportional rows make the rows linearly dependent, so the determinant is always 0 regardless of the third row: \\( \\det(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakes the proportionality factor \\( [[m]] \\) itself for the determinant.",
+  "This computes a leftover minor as if the proportional rows did not force the determinant to vanish.",
+  "This computes a nonzero-looking combination instead of recognizing that proportional rows force \\( \\det(A)=0 \\).",
+  "Two proportional rows always force the determinant to 0, never to \\( \\pm1 \\).",
+  "Two proportional rows always force the determinant to 0, never to \\( \\pm1 \\).",
+  "This treats the third row as if it could rescue a nonzero determinant despite the dependent first two rows."
+ ]
+},
+{
+ "template_id": "effect_of_row_column_operations_and_special_rows_v5",
+ "skill_id": "effect_of_row_column_operations_and_special_rows",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]]*[[a]]+[[b]]*[[b]]+[[c]]*[[c]], 0)", "Ne([[d]]*[[d]]+[[e]]*[[e]]+[[f]]*[[f]], 0)"],
+ "derived": {"r31": "[[a]]+[[d]]", "r32": "[[b]]+[[e]]", "r33": "[[c]]+[[f]]"},
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{bmatrix} \\), whose third row equals the sum of the first two rows. What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "[[a]]*[[e]]*[[f]]",
+  "[[a]]+[[e]]+[[f]]",
+  "[[a]]*[[e]]-[[b]]*[[d]]",
+  "1",
+  "-1",
+  "[[r31]]*[[r32]]*[[r33]]"
+ ],
+ "solution": "Since row 3 is a linear combination of rows 1 and 2, the rows are linearly dependent, so \\( \\det(A) = [[answer]] \\) regardless of the specific entries.",
+ "distractor_rationales": [
+  "This computes a leftover product as if the linear dependence among the rows did not force the determinant to vanish.",
+  "This sums entries instead of recognizing a row that is a combination of the others forces the determinant to 0.",
+  "This is the \\( 2\\times2 \\) minor of the first two rows, not the determinant of the full dependent matrix.",
+  "A matrix with a row equal to a combination of the others always has determinant 0, never \\( \\pm1 \\).",
+  "A matrix with a row equal to a combination of the others always has determinant 0, never \\( \\pm1 \\).",
+  "This multiplies the (dependent) third row's entries together rather than recognizing the determinant vanishes."
+ ]
+}
+]

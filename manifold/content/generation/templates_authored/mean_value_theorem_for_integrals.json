@@ -1,0 +1,168 @@
+[
+{
+ "template_id": "mvt_for_integrals_linear_v1",
+ "skill_id": "mean_value_theorem_for_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": -6, "hi": 3},
+  "b": {"type": "int", "lo": -2, "hi": 7}
+ },
+ "constraints": ["Ne([[p]], 0)", "Lt([[a]], [[b]])"],
+ "stem": "Let \\( f(x) = ([[p]])x + ([[q]]) \\). Find the value \\( c \\) in \\( ([[a]], [[b]]) \\) guaranteed by the Mean Value Theorem for Integrals, i.e. the number \\( c \\) for which \\( f(c) \\) equals the average value of \\( f \\) on \\( [[[a]], [[b]]] \\).",
+ "answer_spec": {"op": "solve", "equation": "([[p]])*x + ([[q]]) = integrate(([[p]])*t + ([[q]]), (t, [[a]], [[b]]))/([[b]] - [[a]])", "var": "x"},
+ "distractors": [
+  "integrate(([[p]])*t + ([[q]]), (t, [[a]], [[b]]))/([[b]] - [[a]])",
+  "[[a]]",
+  "[[b]]",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The average value of \\( f \\) on \\( [[[a]], [[b]]] \\) is \\( \\bar f = \\frac{1}{[[b]] - ([[a]])}\\int_{[[a]]}^{[[b]]} f = ([[p]])\\frac{[[a]] + [[b]]}{2} + ([[q]]) \\). Solving \\( ([[p]])c + ([[q]]) = \\bar f \\) gives \\( c = \\frac{[[a]] + [[b]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the average value \\( \\bar f \\) itself, not the point \\( c \\) where \\( f(c) = \\bar f \\).",
+  "This gives the left endpoint of the interval rather than the guaranteed interior point.",
+  "This gives the right endpoint of the interval rather than the guaranteed interior point.",
+  "This forgets to halve the sum of the endpoints when locating the midpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_for_integrals_quadratic_v2",
+ "skill_id": "mean_value_theorem_for_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 6, "hi": 12}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "Let \\( f(x) = x^{2} \\) on \\( [[[a]], [[b]]] \\), where \\( 0 < [[a]] < [[b]] \\). The Mean Value Theorem for Integrals guarantees a \\( c \\) in \\( ([[a]], [[b]]) \\) with \\( f(c) \\) equal to the average value of \\( f \\) on \\( [[[a]], [[b]]] \\). Find this \\( c \\) (take the positive root, since \\( c \\) must lie in \\( ([[a]], [[b]]) \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt(integrate(t**2, (t, [[a]], [[b]]))/([[b]] - [[a]]))"},
+ "distractors": [
+  "([[a]] + [[b]])/2",
+  "integrate(t**2, (t, [[a]], [[b]]))/([[b]] - [[a]])",
+  "([[a]]**2 + [[b]]**2)/2",
+  "sqrt(([[a]]**2 + [[b]]**2)/2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The average value of \\( f(x)=x^{2} \\) on \\( [[[a]], [[b]]] \\) is \\( \\bar f = \\frac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]} t^{2}\\, dt = \\frac{[[a]]^{2}+[[a]][[b]]+[[b]]^{2}}{3} \\). Since \\( f \\) is increasing on this positive interval, the unique \\( c \\) with \\( c^{2}=\\bar f \\) and \\( c \\in ([[a]],[[b]]) \\) is \\( c = \\sqrt{\\bar f} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the midpoint of the interval, which is only the MVT point for a LINEAR function, not for \\( x^{2} \\).",
+  "This reports the average value \\( \\bar f \\) itself instead of solving \\( c^{2}=\\bar f \\) for \\( c \\).",
+  "This averages the SQUARES of the endpoints directly instead of averaging \\( x^{2} \\) over the whole interval.",
+  "This takes the square root of the average of the endpoints' squares rather than the true average value \\( \\frac{a^2+ab+b^2}{3} \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_for_integrals_word_problem_v3",
+ "skill_id": "mean_value_theorem_for_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -6, "hi": 6},
+  "T0": {"type": "int", "lo": 20, "hi": 90},
+  "t1": {"type": "int", "lo": 0, "hi": 4},
+  "t2": {"type": "int", "lo": 5, "hi": 12}
+ },
+ "constraints": ["Ne([[m]], 0)"],
+ "stem": "A thermometer records the temperature at time \\( t \\) hours as \\( T(t) = ([[m]])t + ([[T0]]) \\) degrees. By the Mean Value Theorem for Integrals, there is a time \\( c \\) between hour [[t1]] and hour [[t2]] at which the instantaneous temperature \\( T(c) \\) equals the AVERAGE temperature over that span. Find \\( c \\).",
+ "answer_spec": {"op": "solve", "equation": "([[m]])*x + ([[T0]]) = integrate(([[m]])*t + ([[T0]]), (t, [[t1]], [[t2]]))/([[t2]] - [[t1]])", "var": "x"},
+ "distractors": [
+  "integrate(([[m]])*t + ([[T0]]), (t, [[t1]], [[t2]]))/([[t2]] - [[t1]])",
+  "[[t1]]",
+  "[[t2]]",
+  "[[t1]] + [[t2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The average temperature over \\( [[[t1]],[[t2]]] \\) is \\( \\bar T = \\frac{1}{[[t2]]-[[t1]]}\\int_{[[t1]]}^{[[t2]]} T = ([[m]])\\frac{[[t1]]+[[t2]]}{2}+([[T0]]) \\). Since \\( T \\) is linear, the guaranteed time is the midpoint \\( c=\\frac{[[t1]]+[[t2]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the average temperature itself, not the TIME at which it occurs.",
+  "This gives the start of the time span rather than the guaranteed interior time.",
+  "This gives the end of the time span rather than the guaranteed interior time.",
+  "This forgets to halve the sum of the two times when locating the midpoint.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_for_integrals_solve_for_endpoint_v4",
+ "skill_id": "mean_value_theorem_for_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": -5, "hi": 3},
+  "c": {"type": "int", "lo": 4, "hi": 9}
+ },
+ "constraints": ["Ne([[p]], 0)"],
+ "stem": "Let \\( f(x) = ([[p]])x + ([[q]]) \\). On the interval \\( ([[a]], b) \\), the Mean Value Theorem for Integrals is satisfied by \\( c = [[c]] \\), i.e. \\( f([[c]]) \\) equals the average value of \\( f \\) on \\( [[[a]], b] \\). Find \\( b \\) (given \\( b > [[a]] \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[c]] - [[a]]"},
+ "distractors": [
+  "[[c]] - [[a]]",
+  "[[c]] + [[a]]",
+  "2*[[c]] + [[a]]",
+  "[[c]]/2 - [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( f \\) is linear, the guaranteed point is always the midpoint of the interval: \\( [[c]] = \\frac{[[a]]+b}{2} \\). Solving for \\( b \\) gives \\( b = 2([[c]]) - ([[a]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes the interval's width instead of solving the midpoint equation for \\( b \\).",
+  "This adds instead of solving \\( c=(a+b)/2 \\) for \\( b \\).",
+  "This drops the minus sign when isolating \\( b \\) from the midpoint equation.",
+  "This halves \\( c \\) before doubling, rather than doubling \\( c \\) first.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_for_integrals_absolute_value_v5",
+ "skill_id": "mean_value_theorem_for_integrals",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "w": {"type": "int", "lo": 2, "hi": 40}
+ },
+ "constraints": ["Eq(Mod([[w]], 2), 0)"],
+ "stem": "Let \\( f(x) = |x| \\) on \\( [-[[w]], [[w]]] \\). This \\( f \\) is continuous but not differentiable at \\( x=0 \\); the Mean Value Theorem for Integrals still applies since it only requires continuity. Which of the following is A value of \\( c \\) in \\( (-[[w]], [[w]]) \\) at which \\( f(c) \\) equals the average value of \\( f \\) on \\( [-[[w]], [[w]]] \\)?",
+ "answer_spec": {"op": "solve", "equation": "Abs(x) = [[w]]/2", "var": "x"},
+ "distractors": [
+  "[[w]]",
+  "-[[w]]",
+  "[[w]]/4",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[w]]*2"
+ ],
+ "solution": "The average value of \\( |x| \\) on \\( [-[[w]],[[w]]] \\) is \\( \\bar f = \\frac{1}{2[[w]]}\\int_{-[[w]]}^{[[w]]} |x|\\,dx = \\frac{[[w]]}{2} \\). Solving \\( |c| = [[w]]/2 \\) gives TWO guaranteed points, \\( c = \\pm [[w]]/2 \\); \\( [[answer]] \\) is one of them.",
+ "distractor_rationales": [
+  "This is an endpoint of the interval, not an interior point where \\( f \\) meets its average.",
+  "This is the other endpoint of the interval, not an interior point where \\( f \\) meets its average.",
+  "This uses a quarter of \\( [[w]] \\) instead of the correct average value \\( [[w]]/2 \\).",
+  "This uses the corner point \\( x=0 \\), where \\( f(0)=0 \\ne \\bar f \\) (unless \\( [[w]]=0 \\)).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the interval half-width instead of halving it."
+ ]
+}
+]

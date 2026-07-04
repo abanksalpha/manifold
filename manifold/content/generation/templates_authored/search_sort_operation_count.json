@@ -1,0 +1,165 @@
+[
+ {
+  "template_id": "pairwise_comparison_count_v1",
+  "skill_id": "search_sort_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 5,
+    "hi": 25
+   }
+  },
+  "constraints": [],
+  "stem": "A sorting procedure on a list of [[n]] distinct numbers compares the first element with each element after it, then the second element with each element after it, and so on, so that every pair of elements is compared exactly once. What is the total number of comparisons?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "binomial([[n]], 2)"
+  },
+  "distractors": [
+   "[[n]]**2",
+   "[[n]]*([[n]] - 1)",
+   "[[n]]*([[n]] + 1)/2",
+   "([[n]] - 1)**2",
+   "binomial([[n]], 2) + [[n]]",
+   "[[answer]] - 1",
+   "[[answer]] + 1"
+  ],
+  "solution": "Each unordered pair of the [[n]] elements is compared once, so the count is \\( \\binom{[[n]]}{2} = \\frac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts all ordered pairs including each element with itself, \\( n^{2} \\).",
+   "This counts ordered pairs of distinct elements, forgetting to divide by 2.",
+   "This uses \\( \\frac{n(n+1)}{2} \\), which mistakenly includes comparing each element with itself.",
+   "This squares one less than the number of elements.",
+   "This adds an extra [[n]] comparisons to the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ },
+ {
+  "template_id": "binary_search_comparison_count_v1",
+  "skill_id": "search_sort_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 5, "hi": 500}
+  },
+  "constraints": [],
+  "stem": "A binary search is performed on a sorted list of [[n]] distinct elements: at each step, the target is compared with the middle element, and the search continues in the half where it could still be. What is the maximum possible number of comparisons before the search ends (either finding the target or determining it is absent)?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(log([[n]], 2)) + 1"},
+  "distractors": [
+   "[[n]]",
+   "ceiling([[n]]/2)",
+   "floor(log([[n]], 2))",
+   "ceiling(log([[n]], 2)) + 1",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Each comparison discards half the remaining candidates, so at most \\( \\lfloor \\log_2 [[n]] \\rfloor + 1 \\) comparisons are needed to narrow [[n]] elements down to one; hence the answer is [[answer]].",
+  "distractor_rationales": [
+   "This assumes a linear scan through all [[n]] elements instead of halving the search space each step.",
+   "This mistakes binary search for a single halving of the list size.",
+   "This forgets to add the final comparison after all the halvings.",
+   "This rounds the number of halvings up rather than down, which overcounts unless [[n]] is an exact power of 2.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ },
+ {
+  "template_id": "merge_sort_comparison_count_v1",
+  "skill_id": "search_sort_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "e": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": [],
+  "derived": {"n": "2**[[e]]"},
+  "stem": "A merge sort on a list of [[n]] elements (a power of 2) works in \\( \\log_2([[n]]) \\) levels of merging, and at each level the merge step across the whole list makes exactly [[n]] comparisons. Under this count, what is the total number of comparisons the algorithm makes?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]*log([[n]], 2)"},
+  "distractors": [
+   "[[n]]**log([[n]], 2)",
+   "[[n]] + log([[n]], 2)",
+   "[[n]]*log([[n]], 2) - [[n]]",
+   "[[n]]*([[n]] - 1)/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "There are \\( \\log_2([[n]]) \\) levels of merging, and each level costs [[n]] comparisons, so the total is \\( [[n]]\\log_2([[n]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This raises [[n]] to the power of the number of levels instead of multiplying by it.",
+   "This adds the number of levels to [[n]] rather than multiplying.",
+   "This subtracts an extra [[n]] from the correct total.",
+   "This uses the quadratic all-pairs comparison count instead of the log-linear merge-sort count.",
+   "This is off by one from the correct total.",
+   "This is off by one from the correct total.",
+   "This is off by two from the correct total."
+  ]
+ },
+ {
+  "template_id": "merge_sort_merge_operation_count_v1",
+  "skill_id": "search_sort_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "A merge sort fully sorts a list of [[n]] elements by repeatedly splitting each sublist of size 2 or more into two halves, recursively sorting each half, and merging the two sorted halves back together. How many merge operations (calls that merge two sublists into one) does the algorithm perform in total?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1"},
+  "distractors": [
+   "[[n]]",
+   "[[n]]*log([[n]], 2)",
+   "floor(log([[n]], 2))",
+   "[[n]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The recursive splits form a binary tree with [[n]] leaves (the single elements); a merge happens at every internal node of that tree, and a binary tree with [[n]] leaves has exactly \\( [[n]]-1 \\) internal nodes, so the answer is [[answer]].",
+  "distractor_rationales": [
+   "This mistakes the number of elements for the number of merges.",
+   "This confuses the merge count with the (much larger) comparison count of the whole sort.",
+   "This confuses the merge count with the number of levels of recursion.",
+   "This assumes each merge halves the element count rather than counting merge operations themselves.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count.",
+   "This is off by two from the correct count."
+  ]
+ },
+ {
+  "template_id": "linear_search_worst_case_count_v1",
+  "skill_id": "search_sort_operation_count",
+  "topic_id": "algorithms",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 60}
+  },
+  "constraints": [],
+  "stem": "A linear (sequential) search checks the elements of an unsorted list of [[n]] distinct elements one at a time, in order, stopping as soon as the target is found or the list is exhausted. In the worst case (the target is last in the list, or not present at all), how many comparisons does the search make?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+  "distractors": [
+   "[[n]] - 1",
+   "[[n]] + 1",
+   "floor(log([[n]], 2)) + 1",
+   "[[n]]*([[n]] - 1)/2",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "ceiling([[n]]/2)"
+  ],
+  "solution": "In the worst case every one of the [[n]] elements must be compared with the target before the search can stop, so the count is [[answer]].",
+  "distractor_rationales": [
+   "This forgets to count the comparison at the very last element.",
+   "This adds one extra comparison beyond the list's length.",
+   "This confuses linear search with the halving behavior of binary search.",
+   "This uses the quadratic all-pairs comparison count instead of a single linear pass.",
+   "This is off by two from the correct count.",
+   "This is off by two from the correct count.",
+   "This assumes, on average, only about half the list needs to be scanned, which describes the average case, not the worst case."
+  ]
+ }
+]

@@ -1,0 +1,171 @@
+[
+ {
+  "template_id": "chain_rule_linear_paths_v1",
+  "skill_id": "multivariable_chain_rule",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "stem": "Let \\( z = f(x,y) = [[A]]x^{2}y \\), with \\( x(t) = [[a]]t + [[b]] \\) and \\( y(t) = [[c]]t + [[d]] \\). What is \\( \\dfrac{dz}{dt} \\) at \\( t=[[t0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*([[a]]*t+[[b]])**2*([[c]]*t+[[d]])", "var": "t", "at": "[[t0]]", "order": 1},
+  "distractors": [
+   "[[A]]*([[a]]*[[t0]]+[[b]])**2*[[c]]",
+   "2*[[A]]*([[a]]*[[t0]]+[[b]])*[[a]]*([[c]]*[[t0]]+[[d]])",
+   "[[A]]*([[a]]*[[t0]]+[[b]])**2*([[c]]*[[t0]]+[[d]])",
+   "2*[[A]]*[[a]]*[[c]]",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = \\dfrac{\\partial f}{\\partial x}\\dfrac{dx}{dt} + \\dfrac{\\partial f}{\\partial y}\\dfrac{dy}{dt} = 2[[A]]xy\\cdot[[a]] + [[A]]x^{2}\\cdot[[c]] \\). Substituting \\( x([[t0]])=[[a]]\\cdot[[t0]]+[[b]] \\) and \\( y([[t0]])=[[c]]\\cdot[[t0]]+[[d]] \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This keeps only the \\( \\partial f/\\partial y \\) branch of the chain rule, dropping the \\( \\partial f/\\partial x \\) contribution.",
+   "This keeps only the \\( \\partial f/\\partial x \\) branch of the chain rule, dropping the \\( \\partial f/\\partial y \\) contribution.",
+   "This is \\( z([[t0]]) \\), the value of \\( z \\) itself, not its rate of change.",
+   "This differentiates as if \\( x \\) and \\( y \\) were replaced by their slopes everywhere, dropping the actual point values.",
+   "This is off by three from the correct value.",
+   "This is off by three from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_circular_path_v1",
+  "skill_id": "multivariable_chain_rule",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "R": {"type": "int", "lo": -5, "hi": 5},
+   "R2": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)", "Ne([[R]], 0)"],
+  "stem": "Let \\( z = f(x,y) = [[A]]x^{2} + [[B]]y \\), with \\( x(t) = [[R]]\\cos(t) \\) and \\( y(t) = [[R]]\\sin(t) \\). What is \\( \\dfrac{dz}{dt} \\) at \\( t=0 \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*([[R]]*cos(t))**2 + [[B]]*([[R]]*sin(t))", "var": "t", "at": "0", "order": 1},
+  "distractors": [
+   "[[B]]*[[R]]*[[A]]",
+   "-[[B]]*[[R]]",
+   "2*[[A]]*[[R]]**2",
+   "[[A]]*[[R]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = 2[[A]]x\\cdot(-[[R]]\\sin t) + [[B]]\\cdot([[R]]\\cos t) \\). At \\( t=0 \\), \\( x(0)=[[R]] \\), \\( \\sin(0)=0 \\), and \\( \\cos(0)=1 \\), so the first term vanishes and \\( \\dfrac{dz}{dt}\\Big|_{t=0} = [[B]]\\cdot[[R]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This multiplies all three coefficients together instead of correctly cancelling the vanishing \\( \\sin(0) \\) term.",
+   "This has the wrong sign on the surviving term.",
+   "This mistakenly evaluates \\( 2A\\cdot x'(0)\\cdot x(0) \\) as if the vanishing \\( \\sin \\) factor were a \\( \\cos \\) factor instead.",
+   "This reports \\( z(0) \\) itself (with the wrong coefficient), not the rate of change.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_power_law_paths_v1",
+  "skill_id": "multivariable_chain_rule",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -5, "hi": 5},
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[p]], 0)", "Ne([[q]], 0)"],
+  "stem": "Let \\( z = f(x,y) = [[A]]xy + [[B]]x \\), with \\( x(t) = [[p]]t^{2} \\) and \\( y(t) = [[q]]t^{3} \\). What is \\( \\dfrac{dz}{dt} \\) at \\( t=[[t0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*([[p]]*t**2)*([[q]]*t**3) + [[B]]*([[p]]*t**2)", "var": "t", "at": "[[t0]]", "order": 1},
+  "distractors": [
+   "[[A]]*(2*[[p]]*[[t0]])*([[q]]*[[t0]]**3) + [[A]]*([[p]]*[[t0]]**2)*(3*[[q]]*[[t0]]**2)",
+   "[[A]]*[[p]]*[[q]]*[[t0]]**5 + [[B]]*[[p]]*[[t0]]**2",
+   "5*[[A]]*[[p]]*[[q]]*[[t0]]**4",
+   "2*[[A]]*[[p]]*[[q]]*[[t0]]**4 + 2*[[B]]*[[p]]*[[t0]]",
+   "[[answer]] + 4",
+   "[[answer]] - 4"
+  ],
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = ([[A]]y+[[B]])\\dfrac{dx}{dt} + [[A]]x\\dfrac{dy}{dt} = ([[A]]y+[[B]])(2[[p]]t) + [[A]]x(3[[q]]t^{2}) \\). Substituting \\( x([[t0]])=[[p]]\\cdot[[t0]]^{2} \\), \\( y([[t0]])=[[q]]\\cdot[[t0]]^{3} \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies the product rule to \\( x(t)y(t) \\) directly by name but drops the \\( [[B]]x \\) term's own derivative.",
+   "This is \\( z([[t0]]) \\), the value of \\( z \\) itself, not its rate of change.",
+   "This differentiates \\( xy \\) as if it were the single power \\( t^{5} \\) without the product-rule split into two terms.",
+   "This doubles both derivative contributions instead of using the correct exponents 2 and 3.",
+   "This is off by four from the correct value.",
+   "This is off by four from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_two_intermediate_vars_v1",
+  "skill_id": "multivariable_chain_rule",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -3, "hi": 3},
+   "B": {"type": "int", "lo": -3, "hi": 3},
+   "C": {"type": "int", "lo": -3, "hi": 3},
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "q": {"type": "int", "lo": -3, "hi": 3},
+   "r": {"type": "int", "lo": -3, "hi": 3},
+   "w": {"type": "int", "lo": -3, "hi": 3},
+   "s0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[C]], 0)", "Ne([[p]], 0)", "Ne([[r]], 0)"],
+  "stem": "Let \\( z = f(x,y) = [[A]]x^{2} + [[B]]xy + [[C]]y^{2} \\), where \\( x(s,t) = [[p]]s + [[q]]t \\) and \\( y(s,t) = [[r]]s + [[w]]t \\). What is \\( \\dfrac{\\partial z}{\\partial s} \\) at \\( (s,t) = ([[s0]],[[t0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*([[p]]*s+[[q]]*[[t0]])**2 + [[B]]*([[p]]*s+[[q]]*[[t0]])*([[r]]*s+[[w]]*[[t0]]) + [[C]]*([[r]]*s+[[w]]*[[t0]])**2", "var": "s", "at": "[[s0]]", "order": 1},
+  "distractors": [
+   "(2*[[A]]*([[p]]*[[s0]]+[[q]]*[[t0]])+[[B]]*([[r]]*[[s0]]+[[w]]*[[t0]]))*[[q]] + ([[B]]*([[p]]*[[s0]]+[[q]]*[[t0]])+2*[[C]]*([[r]]*[[s0]]+[[w]]*[[t0]]))*[[w]]",
+   "[[A]]*([[p]]*[[s0]]+[[q]]*[[t0]])**2 + [[B]]*([[p]]*[[s0]]+[[q]]*[[t0]])*([[r]]*[[s0]]+[[w]]*[[t0]]) + [[C]]*([[r]]*[[s0]]+[[w]]*[[t0]])**2",
+   "(2*[[A]]*([[p]]*[[s0]]+[[q]]*[[t0]])+[[B]]*([[r]]*[[s0]]+[[w]]*[[t0]]))*[[p]]",
+   "([[B]]*([[p]]*[[s0]]+[[q]]*[[t0]])+2*[[C]]*([[r]]*[[s0]]+[[w]]*[[t0]]))*[[r]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the (multivariable) chain rule, \\( \\dfrac{\\partial z}{\\partial s} = \\dfrac{\\partial f}{\\partial x}\\dfrac{\\partial x}{\\partial s} + \\dfrac{\\partial f}{\\partial y}\\dfrac{\\partial y}{\\partial s} = (2[[A]]x+[[B]]y)\\cdot[[p]] + ([[B]]x+2[[C]]y)\\cdot[[r]] \\), where \\( x=[[p]]s+[[q]]t \\), \\( y=[[r]]s+[[w]]t \\). Substituting \\( (s,t)=([[s0]],[[t0]]) \\) gives \\( \\dfrac{\\partial z}{\\partial s} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\partial x/\\partial t=[[q]] \\) and \\( \\partial y/\\partial t=[[w]] \\) instead of \\( \\partial x/\\partial s \\) and \\( \\partial y/\\partial s \\), computing \\( \\partial z/\\partial t \\) by mistake.",
+   "This is \\( z([[s0]],[[t0]]) \\), the value of \\( z \\) itself, not a partial derivative.",
+   "This keeps only the \\( f_x \\) branch of the chain rule, dropping the \\( f_y \\) contribution.",
+   "This keeps only the \\( f_y \\) branch of the chain rule, dropping the \\( f_x \\) contribution.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "chain_rule_quotient_paths_v1",
+  "skill_id": "multivariable_chain_rule",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)", "Ne([[c]]*[[t0]]+[[d]], 0)"],
+  "stem": "Let \\( z = f(x,y) = \\dfrac{x}{y} \\), with \\( x(t) = [[a]]t + [[b]] \\) and \\( y(t) = [[c]]t + [[d]] \\). What is \\( \\dfrac{dz}{dt} \\) at \\( t=[[t0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*t+[[b]])/([[c]]*t+[[d]])", "var": "t", "at": "[[t0]]", "order": 1},
+  "distractors": [
+   "Rational([[a]],[[c]])",
+   "([[a]]*([[c]]*[[t0]]+[[d]]) + [[c]]*([[a]]*[[t0]]+[[b]]))/([[c]]*[[t0]]+[[d]])**2",
+   "([[a]]*[[t0]]+[[b]])/([[c]]*[[t0]]+[[d]])",
+   "([[a]]*[[c]])/([[c]]*[[t0]]+[[d]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule (equivalently the quotient rule), \\( \\dfrac{dz}{dt} = \\dfrac{1}{y}\\dfrac{dx}{dt} - \\dfrac{x}{y^{2}}\\dfrac{dy}{dt} = \\dfrac{[[a]]([[c]]t+[[d]]) - [[c]]([[a]]t+[[b]])}{([[c]]t+[[d]])^{2}} \\). Evaluating at \\( t=[[t0]] \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just divides the leading coefficients, ignoring the quotient rule entirely.",
+   "This adds instead of subtracts in the quotient-rule numerator.",
+   "This is \\( z([[t0]]) \\), the value of \\( z \\) itself, not its rate of change.",
+   "This uses \\( ac \\) in the numerator instead of the correct cross-difference \\( a([[c]]t+[[d]])-c([[a]]t+[[b]]) \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

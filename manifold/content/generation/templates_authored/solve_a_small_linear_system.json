@@ -1,0 +1,201 @@
+[
+{
+ "template_id": "solve_a_small_linear_system_v1",
+ "skill_id": "solve_a_small_linear_system",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "a1": {"type": "int", "lo": 1, "hi": 5},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "a2": {"type": "int", "lo": -5, "hi": 5},
+  "b2": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[b1]], 0)", "Ne([[a2]], 0)", "Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)"],
+ "derived": {
+  "c1": "[[a1]]*[[p]] + [[b1]]*[[q]]",
+  "c2": "[[a2]]*[[p]] + [[b2]]*[[q]]"
+ },
+ "stem": "Consider the system of linear equations \\( [[a1]]x + ([[b1]])y = [[c1]] \\) and \\( ([[a2]])x + [[b2]]y = [[c2]] \\). What is the value of \\( x \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y = [[c1]]", "[[a2]]*x + [[b2]]*y = [[c2]]"], "vars": ["x", "y"], "want": "x"},
+ "distractors": [
+  "[[q]]",
+  "-[[answer]]",
+  "[[p]] + [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Eliminating \\( y \\) (or applying Cramer's rule) yields \\( x = [[answer]] \\); the accompanying value is \\( y = [[q]] \\).",
+ "distractor_rationales": [
+  "This is the value of \\( y \\), not the requested \\( x \\).",
+  "This has the right magnitude but the wrong sign, a common Cramer's-rule denominator error.",
+  "This adds the two unknowns instead of isolating \\( x \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_a_small_linear_system_v2_threevar",
+ "skill_id": "solve_a_small_linear_system",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "t": {"type": "int", "lo": -4, "hi": 4},
+  "a1": {"type": "int", "lo": 1, "hi": 4},
+  "b1": {"type": "int", "lo": -3, "hi": 3},
+  "c1": {"type": "int", "lo": -3, "hi": 3},
+  "a2": {"type": "int", "lo": -3, "hi": 3},
+  "b2": {"type": "int", "lo": 1, "hi": 4},
+  "c2": {"type": "int", "lo": -3, "hi": 3},
+  "a3": {"type": "int", "lo": -3, "hi": 3},
+  "b3": {"type": "int", "lo": -3, "hi": 3},
+  "c3": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[a1]]*([[b2]]*[[c3]]-[[b3]]*[[c2]]) - [[b1]]*([[a2]]*[[c3]]-[[a3]]*[[c2]]) + [[c1]]*([[a2]]*[[b3]]-[[a3]]*[[b2]]), 0)"
+ ],
+ "derived": {
+  "d1": "[[a1]]*[[p]] + [[b1]]*[[q]] + [[c1]]*[[t]]",
+  "d2": "[[a2]]*[[p]] + [[b2]]*[[q]] + [[c2]]*[[t]]",
+  "d3": "[[a3]]*[[p]] + [[b3]]*[[q]] + [[c3]]*[[t]]"
+ },
+ "stem": "Consider the system \\( [[a1]]x + ([[b1]])y + ([[c1]])z = [[d1]] \\), \\( ([[a2]])x + [[b2]]y + ([[c2]])z = [[d2]] \\), and \\( ([[a3]])x + ([[b3]])y + [[c3]]z = [[d3]] \\). What is the value of \\( x \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y + [[c1]]*z = [[d1]]", "[[a2]]*x + [[b2]]*y + [[c2]]*z = [[d2]]", "[[a3]]*x + [[b3]]*y + [[c3]]*z = [[d3]]"], "vars": ["x", "y", "z"], "want": "x"},
+ "distractors": [
+  "[[q]]",
+  "[[t]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Solving the three equations simultaneously (e.g. by Gaussian elimination) gives \\( x = [[answer]] \\) (with \\( y=[[q]] \\), \\( z=[[t]] \\)).",
+ "distractor_rationales": [
+  "This is the value of \\( y \\), not \\( x \\).",
+  "This is the value of \\( z \\), not \\( x \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_a_small_linear_system_v3_wordproblem",
+ "skill_id": "solve_a_small_linear_system",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "numA": {"type": "int", "lo": 2, "hi": 20},
+  "numC": {"type": "int", "lo": 2, "hi": 20},
+  "priceA": {"type": "int", "lo": 3, "hi": 15},
+  "priceC": {"type": "int", "lo": 1, "hi": 14}
+ },
+ "constraints": ["Ne([[priceA]], [[priceC]])"],
+ "derived": {
+  "totalTickets": "[[numA]] + [[numC]]",
+  "totalRevenue": "[[priceA]]*[[numA]] + [[priceC]]*[[numC]]"
+ },
+ "stem": "A theater sold [[totalTickets]] tickets for a total of \\$[[totalRevenue]]. Adult tickets cost \\$[[priceA]] each and child tickets cost \\$[[priceC]] each. How many adult tickets were sold?",
+ "answer_spec": {"op": "system", "equations": ["x + y = [[totalTickets]]", "[[priceA]]*x + [[priceC]]*y = [[totalRevenue]]"], "vars": ["x", "y"], "want": "x"},
+ "distractors": [
+  "[[numC]]",
+  "[[totalTickets]] - [[answer]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Let \\( x \\) be the number of adult tickets and \\( y \\) the number of child tickets: \\( x+y=[[totalTickets]] \\) and \\( [[priceA]]x + [[priceC]]y = [[totalRevenue]] \\). Solving gives \\( x = [[answer]] \\) adult tickets (and \\( y = [[numC]] \\) child tickets).",
+ "distractor_rationales": [
+  "This is the number of CHILD tickets, not adult tickets.",
+  "This is off by one from a value derived from the wrong total.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_a_small_linear_system_v4_intersection",
+ "skill_id": "solve_a_small_linear_system",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[m]]*[[b]] + [[a]], 0)"],
+ "stem": "Line \\( \\ell_1 \\) has equation \\( y = [[m]]x + [[k]] \\), and line \\( \\ell_2 \\) has equation \\( [[a]]x + ([[b]])y = [[c]] \\). What is the \\( x \\)-coordinate of the point where \\( \\ell_1 \\) and \\( \\ell_2 \\) intersect?",
+ "answer_spec": {"op": "system", "equations": ["y = [[m]]*x + [[k]]", "[[a]]*x + [[b]]*y = [[c]]"], "vars": ["x", "y"], "want": "x"},
+ "distractors": [
+  "[[m]]",
+  "[[k]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Substituting \\( y=[[m]]x+[[k]] \\) into \\( [[a]]x+([[b]])y=[[c]] \\) and solving for \\( x \\) gives the intersection's \\( x \\)-coordinate, \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the slope of \\( \\ell_1 \\), not the intersection's \\( x \\)-coordinate.",
+  "This is the \\( y \\)-intercept of \\( \\ell_1 \\), not the intersection's \\( x \\)-coordinate.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_a_small_linear_system_v5_combination",
+ "skill_id": "solve_a_small_linear_system",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -5, "hi": 5},
+  "q": {"type": "int", "lo": -5, "hi": 5},
+  "a1": {"type": "int", "lo": 1, "hi": 5},
+  "b1": {"type": "int", "lo": -5, "hi": 5},
+  "a2": {"type": "int", "lo": -5, "hi": 5},
+  "b2": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[b1]], 0)", "Ne([[a2]], 0)", "Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)"],
+ "derived": {
+  "c1": "[[a1]]*[[p]] + [[b1]]*[[q]]",
+  "c2": "[[a2]]*[[p]] + [[b2]]*[[q]]"
+ },
+ "stem": "Given that \\( [[a1]]x + ([[b1]])y = [[c1]] \\) and \\( ([[a2]])x + [[b2]]y = [[c2]] \\), what is the value of \\( x + y \\)?",
+ "answer_spec": {"op": "system", "equations": ["[[a1]]*x + [[b1]]*y = [[c1]]", "[[a2]]*x + [[b2]]*y = [[c2]]"], "vars": ["x", "y"], "want": "x + y"},
+ "distractors": [
+  "[[p]]",
+  "[[q]]",
+  "[[p]] - [[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Solving the system gives \\( x=[[p]] \\) and \\( y=[[q]] \\), so \\( x+y = [[answer]] \\). (Sometimes adding a multiple of the two equations gives \\( x+y \\) directly, without solving for \\( x \\) and \\( y \\) separately.)",
+ "distractor_rationales": [
+  "This is \\( x \\) alone, not the sum \\( x+y \\).",
+  "This is \\( y \\) alone, not the sum \\( x+y \\).",
+  "This is the DIFFERENCE \\( x-y \\), not the sum \\( x+y \\).",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by two from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+}
+]

@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "diagonalization_v1_symmetric_D11_max",
+ "skill_id": "diagonalization",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The symmetric matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[b]] & [[a]] \\end{pmatrix} \\) is diagonalized as \\( A = PDP^{-1} \\), with the eigenvalues of \\( D \\) listed in DECREASING order down the diagonal. What is \\( D_{11} \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["[[b]]", "[[a]]"]], "which": "max"},
+ "distractors": [
+  "[[a]] - [[b]]",
+  "[[a]]",
+  "2*[[a]]",
+  "[[b]]",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The eigenvalues of \\( A \\) are \\( a+b \\) and \\( a-b \\); here these are \\( [[a]]+[[b]] \\) and \\( [[a]]-[[b]] \\). Since \\( [[b]]>0 \\), the larger one goes in \\( D_{11} \\): \\( D_{11} = [[a]]+[[b]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the smaller eigenvalue \\( a-b \\), which belongs in \\( D_{22} \\), not \\( D_{11} \\).",
+  "This is the shared diagonal entry of \\( A \\) itself, the average of the two eigenvalues, not an eigenvalue.",
+  "This doubles the diagonal entry rather than adding the correct offset \\( b \\).",
+  "This is the off-diagonal entry of \\( A \\), not an eigenvalue.",
+  "This is one less than the correct value of \\( D_{11} \\).",
+  "This is two more than the correct value of \\( D_{11} \\)."
+ ]
+},
+{
+ "template_id": "diagonalization_v2_trace_invariant",
+ "skill_id": "diagonalization",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a11": {"type": "int", "lo": -6, "hi": 6},
+  "a12": {"type": "int", "lo": -6, "hi": 6},
+  "a21": {"type": "int", "lo": -6, "hi": 6},
+  "a22": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a12]], 0)", "Ne([[a21]], 0)"],
+ "stem": "\\( A = \\begin{pmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{pmatrix} \\) is diagonalizable as \\( A = PDP^{-1} \\). Since \\( \\operatorname{tr}(D) = \\operatorname{tr}(A) \\), what is the sum of the diagonal entries of \\( D \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a11]]", "[[a12]]"], ["[[a21]]", "[[a22]]"]]},
+ "distractors": [
+  "[[a11]]*[[a22]] - [[a12]]*[[a21]]",
+  "[[a11]]*[[a22]]",
+  "[[a12]]+[[a21]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Similar matrices share the same trace, so \\( \\operatorname{tr}(D) = \\operatorname{tr}(A) = [[a11]]+[[a22]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\det(A) \\), which equals \\( \\det(D) \\), not \\( \\operatorname{tr}(D) \\).",
+  "This multiplies the diagonal entries instead of adding them.",
+  "This sums the off-diagonal entries instead of the diagonal entries.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "diagonalization_v3_det_invariant",
+ "skill_id": "diagonalization",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a11": {"type": "int", "lo": -6, "hi": 6},
+  "a12": {"type": "int", "lo": -6, "hi": 6},
+  "a21": {"type": "int", "lo": -6, "hi": 6},
+  "a22": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a11]]*[[a22]] - [[a12]]*[[a21]], 0)"],
+ "stem": "\\( A = \\begin{pmatrix} [[a11]] & [[a12]] \\\\ [[a21]] & [[a22]] \\end{pmatrix} \\) is diagonalizable as \\( A = PDP^{-1} \\). Since \\( \\det(D) = \\det(A) \\), what is the product of the diagonal entries of \\( D \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a11]]", "[[a12]]"], ["[[a21]]", "[[a22]]"]]},
+ "distractors": [
+  "[[a11]]+[[a22]]",
+  "[[a11]]*[[a22]]",
+  "[[a12]]*[[a21]] - [[a11]]*[[a22]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Similar matrices share the same determinant, so the product of \\( D \\)'s diagonal entries is \\( \\det(D) = \\det(A) = ([[a11]])([[a22]]) - ([[a12]])([[a21]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\operatorname{tr}(A) \\), which equals \\( \\operatorname{tr}(D) \\), not \\( \\det(D) \\).",
+  "This omits the off-diagonal product \\( a_{12}a_{21} \\) entirely.",
+  "This is the negative of the determinant (the two products were swapped).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "diagonalization_v4_triangular_D_smallest",
+ "skill_id": "diagonalization",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[d]], [[f]])", "Ne([[a]], [[f]])"],
+ "stem": "The triangular matrix \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\) is diagonalizable as \\( A = PDP^{-1} \\), with the eigenvalues of \\( D \\) listed in INCREASING order down the diagonal. What is \\( D_{11} \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]], "which": "min"},
+ "distractors": [
+  "[[a]]",
+  "[[d]]",
+  "[[f]]",
+  "[[a]]+[[d]]+[[f]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The eigenvalues of the triangular matrix \\( A \\) are exactly its diagonal entries \\( [[a]], [[d]], [[f]] \\); the smallest of these goes into \\( D_{11} \\) since \\( D \\) is arranged in increasing order: \\( D_{11} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the three eigenvalues, but not necessarily the smallest.",
+  "This is another of the three eigenvalues, but not necessarily the smallest.",
+  "This is another of the three eigenvalues, but not necessarily the smallest.",
+  "This is the trace (sum of all eigenvalues), not the smallest one.",
+  "This is one more than the correct smallest eigenvalue.",
+  "This is one less than the correct smallest eigenvalue."
+ ]
+},
+{
+ "template_id": "diagonalization_v5_trace_of_power",
+ "skill_id": "diagonalization",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "d1": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[d1]], 0)", "Ne([[d2]], 0)", "Ne([[d1]], [[d2]])"],
+ "stem": "A diagonalizable matrix \\( A = PDP^{-1} \\) has \\( D = \\begin{pmatrix} [[d1]] & 0 \\\\ 0 & [[d2]] \\end{pmatrix} \\). Using \\( A^{[[k]]} = PD^{[[k]]}P^{-1} \\), what is \\( \\operatorname{tr}(A^{[[k]]}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[d1]]**[[k]] + [[d2]]**[[k]]"},
+ "distractors": [
+  "([[d1]]+[[d2]])**[[k]]",
+  "[[d1]]**[[k]] * [[d2]]**[[k]]",
+  "([[d1]]**[[k]] + [[d2]]**[[k]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( A^{[[k]]} \\) is similar to \\( D^{[[k]]} = \\operatorname{diag}([[d1]]^{[[k]]}, [[d2]]^{[[k]]}) \\), they share the same trace: \\( \\operatorname{tr}(A^{[[k]]}) = [[d1]]^{[[k]]} + [[d2]]^{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This raises the trace of \\( A \\) to the \\( [[k]] \\)-th power first, which is not the same as \\( \\operatorname{tr}(A^{[[k]]}) \\) in general.",
+  "This is \\( \\det(A^{[[k]]}) \\) (the product of the powered eigenvalues), not the trace.",
+  "This averages the two powered eigenvalues instead of adding them.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

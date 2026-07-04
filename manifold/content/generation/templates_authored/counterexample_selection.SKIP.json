@@ -1,0 +1,1 @@
+{"skill_id": "counterexample_selection", "reason": "Asks the student to select a valid counterexample to a false claim; the answer is a chosen example/statement, not a code-computable scalar."}

@@ -1,0 +1,192 @@
+[
+ {
+  "template_id": "asymptotes_of_a_rational_function_v1",
+  "skill_id": "asymptotes_of_a_rational_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "stem": "The graph of \\( f(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\) has a horizontal asymptote \\( y = L \\). What is \\( L \\)?",
+  "answer_spec": {"op": "limit", "expr": "([[a]]*x + [[b]])/([[c]]*x + [[d]])", "var": "x", "point": "oo"},
+  "distractors": [
+   "[[c]]/[[a]]",
+   "-[[d]]/[[c]]",
+   "-[[a]]/[[c]]",
+   "[[a]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "As \\( x \\to \\infty \\), the numerator and denominator are both dominated by their linear terms, so \\( L = \\lim_{x\\to\\infty} \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} = \\dfrac{[[a]]}{[[c]]} = [[answer]] \\) (the ratio of leading coefficients).",
+  "distractor_rationales": [
+   "This inverts the ratio of leading coefficients.",
+   "This gives the vertical asymptote (where the denominator is zero), not the horizontal one.",
+   "This flips the sign of the ratio of leading coefficients.",
+   "This subtracts the leading coefficients instead of taking their ratio.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "asymptotes_of_a_rational_function_vertical_v1",
+  "skill_id": "asymptotes_of_a_rational_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+  "stem": "The graph of \\( f(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\) has a vertical asymptote at \\( x = k \\). What is \\( k \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[c]]*x + [[d]] = 0", "var": "x"},
+  "distractors": [
+   "[[d]]/[[c]]",
+   "-[[a]]/[[c]]",
+   "-[[b]]/[[a]]",
+   "[[c]]/[[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A vertical asymptote occurs where the denominator vanishes (and the numerator does not). Solving \\( [[c]]x + ([[d]]) = 0 \\) gives \\( x = [[answer]] \\); the constraint \\( ad \\ne bc \\) guarantees the numerator is not also zero there, so this is a genuine asymptote, not a hole.",
+  "distractor_rationales": [
+   "This forgets the negative sign when solving \\( [[c]]x + ([[d]]) = 0 \\) for \\( x \\).",
+   "This gives the horizontal asymptote (the ratio of leading coefficients), not the vertical one.",
+   "This solves the numerator equal to zero instead of the denominator.",
+   "This inverts the fraction \\( d/c \\) instead of solving for \\( x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "asymptotes_of_a_rational_function_slant_v1",
+  "skill_id": "asymptotes_of_a_rational_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "e": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[d]], 0)"],
+  "stem": "The graph of \\( f(x) = \\dfrac{[[a]]x^{2} + ([[b]])x + ([[c]])}{[[d]]x + ([[e]])} \\) has a slant asymptote \\( y = mx + k \\). What is \\( m + k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]/[[d]] + ([[b]]*[[d]] - [[e]]*[[a]])/[[d]]**2"},
+  "distractors": [
+   "[[a]]/[[d]]",
+   "([[b]]*[[d]] - [[e]]*[[a]])/[[d]]**2",
+   "[[a]]/[[d]] - ([[b]]*[[d]] - [[e]]*[[a]])/[[d]]**2",
+   "[[b]]/[[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Perform polynomial long division of the numerator by the denominator: the quotient's linear part is \\( mx+k \\) with \\( m = \\dfrac{[[a]]}{[[d]]} \\) and \\( k = \\dfrac{([[b]])([[d]]) - ([[e]])([[a]])}{[[d]]^{2}} \\). So \\( m + k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports only the slope \\( m \\) of the slant asymptote, forgetting to add the intercept \\( k \\).",
+   "This reports only the intercept \\( k \\), forgetting to add the slope \\( m \\).",
+   "This subtracts \\( k \\) from \\( m \\) instead of adding them.",
+   "This uses the numerator's linear coefficient directly as if it were the slope.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "asymptotes_of_a_rational_function_vertical_sum_v1",
+  "skill_id": "asymptotes_of_a_rational_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "B": {"type": "int", "lo": -9, "hi": 9},
+   "C": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Gt([[B]]**2 - 4*[[C]], 0)"],
+  "stem": "The graph of \\( f(x) = \\dfrac{1}{x^{2} + ([[B]])x + ([[C]])} \\) has two vertical asymptotes. What is the sum of their \\( x \\)-coordinates?",
+  "answer_spec": {"op": "vieta", "poly": "x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "sum"},
+  "distractors": [
+   "[[B]]",
+   "[[C]]",
+   "-[[C]]",
+   "[[B]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The vertical asymptotes occur where \\( x^{2} + ([[B]])x + ([[C]]) = 0 \\). By Vieta's formulas, the sum of the roots of a monic quadratic \\( x^{2}+Bx+C \\) is \\( -B \\), so the sum of the asymptotes' \\( x \\)-coordinates is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This reads the coefficient \\( B \\) directly and forgets that the sum of roots is its negative.",
+   "This reports the constant term \\( C \\) instead of the sum of the roots.",
+   "This gives the product of the roots, \\( -C \\), instead of their sum.",
+   "This halves the coefficient as if using the vertex formula for a single root, not a sum.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "asymptotes_of_a_rational_function_crossing_v1",
+  "skill_id": "asymptotes_of_a_rational_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "e": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = \\dfrac{[[a]]x^{2} + ([[b]])x + ([[c]])}{x^{2} + [[e]]} \\). The graph of \\( f \\) crosses its own horizontal asymptote at exactly one point. What is the \\( x \\)-coordinate of that point?",
+  "answer_spec": {"op": "solve", "equation": "([[a]]*x**2 + [[b]]*x + [[c]])/(x**2 + [[e]]) = [[a]]", "var": "x"},
+  "distractors": [
+   "[[c]]/[[b]]",
+   "-[[c]]/[[b]]",
+   "([[a]]*[[e]] + [[c]])/[[b]]",
+   "[[b]]/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The horizontal asymptote is \\( y = [[a]] \\) (the ratio of leading coefficients, since numerator and denominator have equal degree). Setting \\( f(x) = [[a]] \\) and clearing denominators gives \\( [[b]]x + ([[c]]) = [[a]]\\cdot[[e]] \\), a linear equation (the \\( x^{2} \\) terms cancel), so \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the constant term when isolating \\( x \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This omits dividing by the coefficient \\( [[b]] \\) of \\( x \\).",
+   "This confuses the numerator's linear coefficient with the asymptote's crossing point.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "asymptotes_of_a_rational_function_hole_vs_asymptote_v1",
+  "skill_id": "asymptotes_of_a_rational_function",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": -8, "hi": 8},
+   "r": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[p]], [[r]])", "Ne([[q]], [[r]])"],
+  "stem": "Let \\( f(x) = \\dfrac{(x - ([[p]]))(x - ([[q]]))}{(x - ([[p]]))(x - ([[r]]))} \\). The factor \\( x - ([[p]]) \\) cancels, leaving a hole rather than an asymptote at \\( x = [[p]] \\). At what \\( x \\)-value does \\( f \\) actually have a vertical asymptote?",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]]"},
+  "distractors": [
+   "[[p]]",
+   "[[q]]",
+   "[[p]] + [[r]]",
+   "[[q]] - [[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "After canceling the common factor \\( x - ([[p]]) \\), \\( f(x) = \\dfrac{x - ([[q]])}{x - ([[r]])} \\) for \\( x \\ne [[p]] \\). The remaining denominator vanishes at \\( x = [[r]] \\), which is not also a numerator root, so that is the true vertical asymptote.",
+  "distractor_rationales": [
+   "This is the location of the removable hole, not a vertical asymptote.",
+   "This is a root of the numerator (a zero of \\( f \\)), not a vertical asymptote.",
+   "This adds the hole's location to the asymptote's location, which has no meaning here.",
+   "This subtracts two unrelated roots instead of identifying the surviving denominator root.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

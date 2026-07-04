@@ -1,0 +1,125 @@
+[
+ {
+  "template_id": "newton_sqrt_v1",
+  "skill_id": "newton_s_method_iteration",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "N": {"type": "int", "lo": 5, "hi": 60},
+   "x0": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": [],
+  "stem": "Newton's method for \\( g(x)=x^{2}-[[N]] \\) uses \\( x_{k+1}=x_k-\\frac{g(x_k)}{g'(x_k)} \\). Starting at \\( x_0=[[x0]] \\), find \\( x_{[[n]]} \\).",
+  "answer_spec": {"op": "iterate", "f": "x - (x**2 - [[N]])/(2*x)", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "Rational([[x0]] + Rational([[N]], [[x0]]), 1)",
+   "[[x0]] - ([[x0]]**2 - [[N]])",
+   "Rational([[N]], [[x0]])",
+   "[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Applying the Newton iteration \\( [[n]] \\) time(s) from \\( [[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "newton_cube_root_v1",
+  "skill_id": "newton_s_method_iteration",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "N": {"type": "int", "lo": 5, "hi": 80},
+   "x0": {"type": "int", "lo": 2, "hi": 9},
+   "n": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": [],
+  "stem": "To approximate the cube root of \\( [[N]] \\) via Newton's method, apply \\( x_{k+1}=x_k-\\dfrac{x_k^{3}-[[N]]}{3x_k^{2}} \\) starting from \\( x_0=[[x0]] \\). Compute \\( x_{[[n]]} \\).",
+  "answer_spec": {"op": "iterate", "f": "x - (x**3 - [[N]])/(3*x**2)", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "Rational(2*[[x0]], 1) + Rational([[N]], [[x0]]**2)",
+   "[[x0]] - ([[x0]]**3 - [[N]])",
+   "Rational([[N]], [[x0]]**2)",
+   "[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Here \\( g'(x)=3x^{2} \\); applying the Newton iteration \\( [[n]] \\) time(s) from \\( [[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This misweights the average of \\( x_0 \\) and \\( N/x_0^2 \\) (uses the square-root update's weighting).",
+   "This forgets to divide the correction term by \\( g'(x_0)=3x_0^{2} \\).",
+   "This reports \\( N/x_0^{2} \\) alone rather than the Newton update.",
+   "This leaves \\( x \\) unchanged from \\( x_0 \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "newton_generic_cubic_v1",
+  "skill_id": "newton_s_method_iteration",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4},
+   "n": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne(3*[[x0]]**2 + 2*[[b]]*[[x0]] + [[c]], 0)"],
+  "stem": "Newton's method estimates a root of \\( f(x)=x^{3}+([[b]])x^{2}+([[c]])x+([[d]]) \\) using \\( x_{k+1}=x_k-\\frac{f(x_k)}{f'(x_k)} \\). Starting at \\( x_0=[[x0]] \\), find \\( x_{[[n]]} \\).",
+  "answer_spec": {
+   "op": "iterate",
+   "f": "x - (x**3 + [[b]]*x**2 + [[c]]*x + [[d]])/(3*x**2 + 2*[[b]]*x + [[c]])",
+   "x0": "[[x0]]", "n": "[[n]]", "var": "x"
+  },
+  "distractors": [
+   "[[x0]] - ([[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]] + [[d]])",
+   "[[x0]] + ([[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]] + [[d]])/(3*[[x0]]**2 + 2*[[b]]*[[x0]] + [[c]])",
+   "[[x0]]",
+   "-[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With \\( f'(x)=3x^{2}+2([[b]])x+([[c]]) \\), applying the Newton iteration \\( [[n]] \\) time(s) from \\( x_0=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide the correction \\( f(x_0) \\) by \\( f'(x_0) \\).",
+   "This has the wrong sign on the correction term.",
+   "This leaves \\( x \\) unchanged from \\( x_0 \\).",
+   "This flips the sign of the starting point instead of applying Newton's update.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "newton_reciprocal_division_free_v1",
+  "skill_id": "newton_s_method_iteration",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "N": {"type": "int", "lo": 2, "hi": 30},
+   "x0": {"type": "int", "lo": -6, "hi": 6},
+   "n": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[x0]], 0)"],
+  "stem": "Newton's method for finding \\( \\dfrac{1}{[[N]]} \\) uses \\( g(x)=\\dfrac{1}{x}-[[N]] \\), which (avoiding division in the update itself) simplifies to the iteration \\( x_{k+1}=x_k(2-[[N]]x_k) \\). Starting at \\( x_0=[[x0]] \\), find \\( x_{[[n]]} \\).",
+  "answer_spec": {"op": "iterate", "f": "x*(2 - [[N]]*x)", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+  "distractors": [
+   "[[x0]]*(2 + [[N]]*[[x0]])",
+   "2 - [[N]]*[[x0]]",
+   "[[x0]]*(1 - [[N]]*[[x0]])",
+   "Rational(1, [[N]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Applying \\( x_{k+1}=x_k(2-[[N]]x_k) \\) \\( [[n]] \\) time(s) from \\( x_0=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the wrong sign inside the parentheses.",
+   "This forgets to multiply by \\( x_0 \\).",
+   "This uses 1 instead of 2 as the constant.",
+   "This jumps straight to the true reciprocal, ignoring the finite number of iterations.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

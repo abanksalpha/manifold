@@ -1,0 +1,315 @@
+[
+ {
+  "template_id": "symbolic_product_deriv_v1",
+  "skill_id": "symbolic_product_quotient_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "b": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x)=([[a]]x+[[b]])\\cdot x^{2} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "([[a]]*x + [[b]])*x**2",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "[[a]]*2*[[x0]]",
+   "([[a]]*[[x0]]+[[b]])*[[x0]]**2",
+   "2*[[a]]*[[x0]]",
+   "3*[[a]]*[[x0]]**2 + [[b]]*[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( f(x)=[[a]]x^{3}+[[b]]x^{2} \\), so \\( f'(x)=3[[a]]x^{2}+2[[b]]x \\) and \\( f'([[x0]])=[[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "symbolic_quotient_linear_linear_v2",
+  "skill_id": "symbolic_product_quotient_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "b": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "c": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "d": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[c]]*[[x0]]+[[d]], 0)"
+  ],
+  "stem": "Let \\( f(x)=\\dfrac{[[a]]x+[[b]]}{[[c]]x+[[d]]} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "([[a]]*x+[[b]])/([[c]]*x+[[d]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "([[a]]*([[c]]*[[x0]]+[[d]]) + [[c]]*([[a]]*[[x0]]+[[b]]))/([[c]]*[[x0]]+[[d]])**2",
+   "([[a]]*([[c]]*[[x0]]+[[d]]) - [[c]]*([[a]]*[[x0]]+[[b]]))/([[c]]*[[x0]]+[[d]])",
+   "[[a]]/[[c]]",
+   "([[a]]*[[x0]]+[[b]])/([[c]]*[[x0]]+[[d]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Quotient rule: \\( f'(x)=\\dfrac{[[a]]([[c]]x+[[d]]) - [[c]]([[a]]x+[[b]])}{([[c]]x+[[d]])^{2}} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\).",
+   "This forgets to square the denominator.",
+   "This reports the ratio of the leading coefficients instead of the derivative.",
+   "This reports \\( f([[x0]]) \\) itself instead of the derivative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_product_poly_reciprocal_v3",
+  "skill_id": "symbolic_product_quotient_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "c": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[x0]]+[[c]], 0)"
+  ],
+  "stem": "Let \\( f(x)= x^{2}\\cdot\\dfrac{1}{x+[[c]]} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "x**2/(x+[[c]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "2*[[x0]]/([[x0]]+[[c]])",
+   "[[x0]]**2/([[x0]]+[[c]])**2",
+   "(2*[[x0]]*([[x0]]+[[c]]) + [[x0]]**2)/([[x0]]+[[c]])**2",
+   "[[x0]]**2/([[x0]]+[[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the quotient rule, \\( f'(x)=\\dfrac{2x(x+[[c]]) - x^{2}}{(x+[[c]])^{2}} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This differentiates only the numerator \\( x^{2} \\), ignoring the reciprocal factor entirely.",
+   "This squares the numerator's value instead of applying the quotient rule.",
+   "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\).",
+   "This reports \\( f([[x0]]) \\) itself instead of the derivative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_quotient_quadratic_linear_v4",
+  "skill_id": "symbolic_product_quotient_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "b": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "c": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "d": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "e": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne([[d]]*[[x0]]+[[e]], 0)"
+  ],
+  "stem": "Let \\( f(x)=\\dfrac{[[a]]x^{2}+[[b]]x+[[c]]}{[[d]]x+[[e]]} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "([[a]]*x**2+[[b]]*x+[[c]])/([[d]]*x+[[e]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "((2*[[a]]*[[x0]]+[[b]])*([[d]]*[[x0]]+[[e]]) + [[d]]*([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]]))/([[d]]*[[x0]]+[[e]])**2",
+   "((2*[[a]]*[[x0]]+[[b]])*([[d]]*[[x0]]+[[e]]) - [[d]]*([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]]))/([[d]]*[[x0]]+[[e]])",
+   "(2*[[a]]*[[x0]]+[[b]])/[[d]]",
+   "([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]])/([[d]]*[[x0]]+[[e]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Quotient rule: \\( f'(x)=\\dfrac{(2[[a]]x+[[b]])([[d]]x+[[e]]) - [[d]]([[a]]x^{2}+[[b]]x+[[c]])}{([[d]]x+[[e]])^{2}} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\).",
+   "This forgets to square the denominator.",
+   "This divides only the leading terms' derivatives, ignoring the full numerator and denominator.",
+   "This reports \\( f([[x0]]) \\) itself instead of the derivative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_triple_product_explicit_v5",
+  "skill_id": "symbolic_product_quotient_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "q": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x)=(x+[[p]])(x+[[q]])(x+[[r]]) \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "(x+[[p]])*(x+[[q]])*(x+[[r]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "([[x0]]+[[p]])*([[x0]]+[[q]])",
+   "3*[[x0]]**2",
+   "([[x0]]+[[p]])*([[x0]]+[[q]])*([[x0]]+[[r]])",
+   "([[x0]]+[[q]])*([[x0]]+[[r]]) + ([[x0]]+[[p]])*([[x0]]+[[r]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the extended product rule, \\( f'(x)=(x+[[q]])(x+[[r]])+(x+[[p]])(x+[[r]])+(x+[[p]])(x+[[q]]) \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the third factor entirely, multiplying only two of the three shifted terms.",
+   "This treats \\( f(x) \\) like \\( x^{3} \\), ignoring the shifts \\( p,q,r \\) entirely.",
+   "This reports \\( f([[x0]]) \\) itself instead of the derivative.",
+   "This drops the third term of the extended product rule.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "symbolic_quotient_linear_over_quadratic_v6",
+  "skill_id": "symbolic_product_quotient_derivative",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "int",
+    "lo": 1,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x)=\\dfrac{x}{x^{2}+[[a]]} \\). Find \\( f'([[x0]]) \\).",
+  "answer_spec": {
+   "op": "diff",
+   "expr": "x/(x**2+[[a]])",
+   "var": "x",
+   "at": "[[x0]]",
+   "order": 1
+  },
+  "distractors": [
+   "1/(2*[[x0]])",
+   "(([[x0]]**2+[[a]]) + [[x0]]*2*[[x0]])/([[x0]]**2+[[a]])**2",
+   "1/([[x0]]**2+[[a]])",
+   "[[x0]]/([[x0]]**2+[[a]])**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the quotient rule, \\( f'(x)=\\dfrac{(x^{2}+[[a]]) - x(2x)}{(x^{2}+[[a]])^{2}} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This differentiates as if \\( f(x)=\\sqrt{x} \\), an unrelated function.",
+   "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\).",
+   "This drops the numerator's derivative term \\( -x(2x) \\) entirely.",
+   "This omits the \\( (x^{2}+a) \\) contribution from the numerator's derivative term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

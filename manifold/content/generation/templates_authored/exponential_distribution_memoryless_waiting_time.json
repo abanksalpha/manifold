@@ -1,0 +1,172 @@
+[
+ {
+  "template_id": "exponential_cdf_wait_v1",
+  "skill_id": "exponential_distribution_memoryless_waiting_time",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lam": {
+    "type": "choice",
+    "values": [
+     2,
+     3,
+     4
+    ]
+   },
+   "t": {
+    "type": "int",
+    "lo": 1,
+    "hi": 14
+   }
+  },
+  "constraints": [],
+  "stem": "The waiting time (in minutes) until the next customer arrives is exponentially distributed with rate \\( \\lambda = [[lam]] \\) per minute. What is the probability that the next customer arrives within [[t]] minutes (that is, the waiting time is at most [[t]])?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "1 - exp(-[[lam]] * [[t]])"
+  },
+  "distractors": [
+   "exp(-[[lam]] * [[t]])",
+   "1 - exp(-[[t]] / [[lam]])",
+   "1 - exp(-[[lam]])",
+   "1 - exp(-[[t]])",
+   "exp(-[[t]] / [[lam]])",
+   "1 - [[lam]] * [[t]]"
+  ],
+  "solution": "For an exponential variable the CDF is \\( P(T \\le t) = 1 - e^{-\\lambda t} = 1 - e^{-[[lam]] \\cdot [[t]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(T > [[t]]) = e^{-\\lambda t} \\), the survival probability (complement).",
+   "This uses the mean \\( 1/\\lambda \\) in place of the rate \\( \\lambda \\) in the exponent.",
+   "This omits the time [[t]] from the exponent.",
+   "This omits the rate \\( \\lambda \\) from the exponent.",
+   "This is the survival probability with the rate and mean confused.",
+   "This uses a linear approximation \\( 1 - \\lambda t \\) instead of \\( 1 - e^{-\\lambda t} \\)."
+  ]
+ },
+ {
+  "template_id": "exponential_survival_v1",
+  "skill_id": "exponential_distribution_memoryless_waiting_time",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lam": {"type": "choice", "values": [2, 3, 4, 5]},
+   "t": {"type": "int", "lo": 1, "hi": 14}
+  },
+  "constraints": [],
+  "stem": "The lifetime (in years) of a certain electronic component is exponentially distributed with rate \\( \\lambda = [[lam]] \\) per year. What is the probability that the component lasts MORE than [[t]] years?",
+  "answer_spec": {"op": "evaluate", "expr": "exp(-[[lam]] * [[t]])"},
+  "distractors": [
+   "1 - exp(-[[lam]] * [[t]])",
+   "exp(-[[t]] / [[lam]])",
+   "1 - exp(-[[t]] / [[lam]])",
+   "exp(-[[lam]])",
+   "exp(-[[t]])",
+   "[[lam]] * [[t]]"
+  ],
+  "solution": "The survival function of an exponential variable is \\( P(T > t) = e^{-\\lambda t} = e^{-[[lam]] \\cdot [[t]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( P(T \\le [[t]]) \\), the CDF, the complement of the requested survival probability.",
+   "This uses the mean \\( 1/\\lambda \\) in place of the rate \\( \\lambda \\) in the exponent.",
+   "This is the CDF with the rate and mean confused.",
+   "This omits the time [[t]] from the exponent.",
+   "This omits the rate \\( \\lambda \\) from the exponent.",
+   "This uses a linear expression instead of the exponential survival function."
+  ]
+ },
+ {
+  "template_id": "exponential_memoryless_property_v1",
+  "skill_id": "exponential_distribution_memoryless_waiting_time",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lam": {"type": "choice", "values": [2, 3, 4, 5]},
+   "s": {"type": "int", "lo": 1, "hi": 10},
+   "t": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "The time (in minutes) until a machine breaks down is exponentially distributed with rate \\( \\lambda = [[lam]] \\) per minute. Given that the machine has already run for [[s]] minutes without breaking down, what is the probability that it runs for at least an additional [[t]] minutes (that is, a total of at least \\( [[s]] + [[t]] \\) minutes) before breaking down?",
+  "answer_spec": {"op": "evaluate", "expr": "exp(-[[lam]] * [[t]])"},
+  "distractors": [
+   "exp(-[[lam]] * ([[s]] + [[t]]))",
+   "exp(-[[lam]] * [[s]])",
+   "1 - exp(-[[lam]] * [[t]])",
+   "exp(-[[lam]] * [[t]]) * exp(-[[lam]] * [[s]])",
+   "exp([[lam]] * [[t]]) * exp(-[[lam]] * ([[s]] + [[t]]))",
+   "Rational([[t]], [[s]] + [[t]])"
+  ],
+  "solution": "By the memoryless property of the exponential distribution, \\( P(T > s+t \\mid T > s) = P(T > t) = e^{-\\lambda t} = e^{-[[lam]] \\cdot [[t]]} = [[answer]] \\); the elapsed time [[s]] does not matter.",
+  "distractor_rationales": [
+   "This incorrectly treats the total elapsed time \\( s+t \\) as the relevant exponent, ignoring memorylessness.",
+   "This reports the probability of surviving only the ALREADY-elapsed time \\( s \\), not the additional wait.",
+   "This is the complement (probability of breaking down within the additional [[t]] minutes).",
+   "This double-counts by multiplying survival probabilities for [[s]] and [[t]] separately instead of using memorylessness.",
+   "This algebraically simplifies to \\( e^{-\\lambda s} \\), which reintroduces the elapsed time that memorylessness should cancel.",
+   "This treats the waiting time as if it were uniform rather than exponential."
+  ]
+ },
+ {
+  "template_id": "exponential_interval_probability_v1",
+  "skill_id": "exponential_distribution_memoryless_waiting_time",
+  "topic_id": "probability",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "lam": {"type": "choice", "values": [2, 3, 4, 5]},
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Lt([[a]], [[b]])"],
+  "stem": "The time (in minutes) between consecutive earthquakes at a fault line is exponentially distributed with rate \\( \\lambda = [[lam]] \\) per minute. What is the probability that the time until the next earthquake is between [[a]] and [[b]] minutes?",
+  "answer_spec": {"op": "evaluate", "expr": "exp(-[[lam]] * [[a]]) - exp(-[[lam]] * [[b]])"},
+  "distractors": [
+   "exp(-[[lam]] * [[b]]) - exp(-[[lam]] * [[a]])",
+   "exp(-[[lam]] * [[a]])",
+   "exp(-[[lam]] * [[b]])",
+   "1 - exp(-[[lam]] * ([[b]] - [[a]]))",
+   "exp(-[[lam]] * ([[b]] - [[a]]))",
+   "1 - exp(-[[lam]] * [[a]]) - exp(-[[lam]] * [[b]])"
+  ],
+  "solution": "Use the survival function at each endpoint: \\( P([[a]] \\le T \\le [[b]]) = P(T > [[a]]) - P(T > [[b]]) = e^{-\\lambda [[a]]} - e^{-\\lambda [[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This has the two survival values subtracted in the wrong order, giving a negative quantity.",
+   "This is \\( P(T > [[a]]) \\) alone, ignoring the upper endpoint [[b]].",
+   "This is \\( P(T > [[b]]) \\) alone, ignoring the lower endpoint [[a]].",
+   "This treats the exponent as the length of the interval rather than using the CDF at each endpoint.",
+   "This is the survival probability over the interval LENGTH, not over the actual endpoints [[a]] and [[b]].",
+   "This double-subtracts instead of taking the difference of the two survival values."
+  ]
+ },
+ {
+  "template_id": "exponential_solve_for_time_v1",
+  "skill_id": "exponential_distribution_memoryless_waiting_time",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "lam": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "k": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": [],
+  "stem": "The waiting time (in minutes) for a bus is exponentially distributed with rate \\( \\lambda = [[lam]] \\) per minute. If the probability that you wait more than \\( t \\) minutes is \\( e^{-[[k]]} \\), what is \\( t \\)?",
+  "answer_spec": {"op": "solve", "equation": "exp(-[[lam]] * t) = exp(-[[k]])", "var": "t"},
+  "distractors": [
+   "Rational([[lam]], [[k]])",
+   "[[lam]] * [[k]]",
+   "Rational(1, [[lam]] * [[k]])",
+   "[[k]] - [[lam]]",
+   "Rational([[k]], [[lam]]) + 1",
+   "Rational([[k]], [[lam]]) - 1"
+  ],
+  "solution": "Since \\( P(T > t) = e^{-\\lambda t} \\), setting \\( e^{-\\lambda t} = e^{-[[k]]} \\) gives \\( \\lambda t = [[k]] \\), so \\( t = \\dfrac{[[k]]}{\\lambda} = [[answer]] \\) minutes.",
+  "distractor_rationales": [
+   "This inverts the ratio, dividing the rate by the exponent instead of the exponent by the rate.",
+   "This multiplies \\( \\lambda \\) and [[k]] instead of dividing.",
+   "This takes the reciprocal of the product instead of the quotient \\( [[k]]/\\lambda \\).",
+   "This subtracts the rate from the exponent instead of dividing.",
+   "This is off by one from the correct value of \\( t \\).",
+   "This is off by one from the correct value of \\( t \\)."
+  ]
+ }
+]

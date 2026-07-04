@@ -1,0 +1,90 @@
+[
+ {
+  "template_id": "tree_edge_count_v1",
+  "skill_id": "tree_edge_count_characterization",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 20}
+  },
+  "constraints": [],
+  "stem": "A tree has \\( [[n]] \\) vertices. How many edges does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1"},
+  "distractors": [
+   "[[n]]",
+   "[[n]] + 1",
+   "[[n]] - 2",
+   "2*[[n]] - 1",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "A tree on \\( [[n]] \\) vertices is connected and acyclic, so it has exactly \\( [[n]] - 1 = [[answer]] \\) edges.",
+  "distractor_rationales": [
+   "This uses the number of vertices; a tree has one fewer edge than vertices.",
+   "This adds an edge, which would create a cycle.",
+   "This removes one too many edges, disconnecting the tree.",
+   "This roughly doubles the count, as if each vertex contributed an edge.",
+   "This is off by three from the correct count.",
+   "This is off by three from the correct count."
+  ]
+ },
+ {
+  "template_id": "tree_vertex_count_from_edges_v2",
+  "skill_id": "tree_edge_count_characterization",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "e": {"type": "int", "lo": 2, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "A tree has \\( [[e]] \\) edges. How many vertices does it have?",
+  "answer_spec": {"op": "evaluate", "expr": "[[e]] + 1"},
+  "distractors": [
+   "[[e]]",
+   "[[e]] - 1",
+   "[[e]] + 2",
+   "2*[[e]]",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "A tree on \\( n \\) vertices always has \\( n - 1 \\) edges, so a tree with \\( [[e]] \\) edges has \\( n = [[e]] + 1 = [[answer]] \\) vertices.",
+  "distractor_rationales": [
+   "This uses the number of edges directly; a tree has one MORE vertex than edges.",
+   "This removes a vertex, as if edges and vertices were equal in a tree.",
+   "This adds one too many vertices.",
+   "This roughly doubles the count, as if each edge contributed two new vertices.",
+   "This is off by three from the correct count.",
+   "This is off by three from the correct count."
+  ]
+ },
+ {
+  "template_id": "cyclomatic_number_v3",
+  "skill_id": "tree_edge_count_characterization",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 16},
+   "e": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": ["Ge([[e]], [[n]] - 1)"],
+  "stem": "A connected graph has \\( [[n]] \\) vertices and \\( [[e]] \\) edges. What is the minimum number of edges that would need to be removed to turn it into a tree (equivalently, how many independent cycles does it contain)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[e]] - [[n]] + 1"},
+  "distractors": [
+   "[[e]] - [[n]]",
+   "[[e]] - [[n]] + 2",
+   "[[n]] - [[e]] + 1",
+   "[[e]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A spanning tree of the graph has exactly \\( [[n]] - 1 \\) edges, and every edge beyond that creates one more independent cycle. So the number of extra (removable) edges is \\( [[e]] - ([[n]] - 1) = [[e]] - [[n]] + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the \\( +1 \\) correction; a tree on \\( n \\) vertices has \\( n-1 \\), not \\( n \\), edges.",
+   "This overcorrects by using \\( +2 \\) instead of \\( +1 \\).",
+   "This swaps the roles of \\( e \\) and \\( n \\).",
+   "This uses the full edge count, as if the graph had no spanning tree at all.",
+   "This is off by one from the correct count.",
+   "This is off by one from the correct count."
+  ]
+ }
+]

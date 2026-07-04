@@ -1,0 +1,142 @@
+[
+ {
+  "template_id": "residue_simple_pole_v1",
+  "skill_id": "residue_at_a_simple_pole",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "p": {"type": "choice", "values": [-3, -2, -1, 0, 1, 2, 3]},
+   "q": {"type": "choice", "values": [-3, -2, -1, 0, 1, 2, 3]},
+   "r": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "derived": {"b": "([[r]])*(([[p]]) - ([[q]])) - ([[a]])*([[p]])"},
+  "stem": "The function \\( f(z) = \\dfrac{([[a]])z + ([[b]])}{\\left(z - ([[p]])\\right)\\left(z - ([[q]])\\right)} \\) has a simple pole at \\( z = [[p]] \\). Compute \\( \\operatorname{Res}_{z=[[p]]} f(z) = \\lim_{z \\to [[p]]} \\left(z - ([[p]])\\right) f(z) \\).",
+  "answer_spec": {"op": "limit", "expr": "(z - ([[p]]))*((([[a]])*z + ([[b]]))/((z - ([[p]]))*(z - ([[q]]))))", "var": "z", "point": "[[p]]"},
+  "require_rational": false,
+  "distractors": [
+   "(([[a]])*([[q]]) + ([[b]]))/(([[q]]) - ([[p]]))",
+   "(([[a]])*([[p]]) + ([[b]]))/(([[q]]) - ([[p]]))",
+   "([[a]])*([[p]]) + ([[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "2*[[answer]]"
+  ],
+  "solution": "For a simple pole at \\( z = [[p]] \\), \\( \\operatorname{Res}_{z=[[p]]} f = \\lim_{z\\to [[p]]} (z-[[p]])f(z) = \\dfrac{([[a]])([[p]]) + ([[b]])}{([[p]]) - ([[q]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the residue at the other pole \\( z = [[q]] \\), not at \\( z = [[p]] \\).",
+   "This flips the sign of the denominator \\( (z-p) \\), giving the negative of the residue.",
+   "This forgets to divide by \\( (p - q) \\) after cancelling the pole factor.",
+   "This is off by one from the correct residue.",
+   "This is off by one from the correct residue.",
+   "This is off by two from the correct residue.",
+   "This doubles the correct residue."
+  ]
+ },
+ {
+  "template_id": "residue_bare_pole_polynomial_numerator_v1",
+  "skill_id": "residue_at_a_simple_pole",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]]**2 + [[b]]*[[p]] + [[c]], 0)"],
+  "stem": "The function \\( g(z) = \\dfrac{z^{2} + ([[b]])z + ([[c]])}{z - ([[p]])} \\) has a simple pole at \\( z = [[p]] \\), where the denominator vanishes to first order. Compute \\( \\operatorname{Res}_{z=[[p]]} g(z) \\).",
+  "answer_spec": {"op": "limit", "expr": "(z - ([[p]]))*((z**2 + ([[b]])*z + ([[c]]))/(z - ([[p]])))", "var": "z", "point": "[[p]]"},
+  "distractors": [
+   "0",
+   "-(([[p]])**2 + ([[b]])*([[p]]) + ([[c]]))",
+   "2*([[p]]) + ([[b]])",
+   "([[p]])**2 + ([[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Since the pole factor \\( (z-[[p]]) \\) already appears alone in the denominator, \\( \\operatorname{Res}_{z=[[p]]} g = \\lim_{z\\to [[p]]}(z-[[p]])g(z) \\) reduces to plugging \\( z=[[p]] \\) directly into the numerator: \\( ([[p]])^2 + ([[b]])([[p]]) + ([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "The residue is not automatically \\( 0 \\); it equals the numerator evaluated at the pole, which need not vanish.",
+   "This has the wrong sign; the residue is the numerator's value at \\( z=[[p]] \\), not its negative.",
+   "This is the derivative of the numerator at \\( z=[[p]] \\), not the numerator's value there.",
+   "This drops the linear term \\( [[b]]z \\) of the numerator when evaluating at \\( z=[[p]] \\).",
+   "This is off by one from the correct residue.",
+   "This is off by one from the correct residue.",
+   "This doubles the correct residue."
+  ]
+ },
+ {
+  "template_id": "residue_triple_pole_denominator_v1",
+  "skill_id": "residue_at_a_simple_pole",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "c": {"type": "choice", "values": [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]},
+   "p": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "q": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "r": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[p]], [[r]])", "Ne([[q]], [[r]])"],
+  "stem": "The function \\( h(z) = \\dfrac{[[c]]}{(z - ([[p]]))(z - ([[q]]))(z - ([[r]]))} \\) has simple poles at \\( z = [[p]], [[q]], [[r]] \\). Compute \\( \\operatorname{Res}_{z=[[p]]} h(z) \\), the residue at \\( z = [[p]] \\) only.",
+  "answer_spec": {"op": "limit", "expr": "(z - ([[p]]))*(([[c]])/((z - ([[p]]))*(z - ([[q]]))*(z - ([[r]]))))", "var": "z", "point": "[[p]]"},
+  "require_rational": false,
+  "distractors": [
+   "([[c]])/((([[q]]) - ([[p]]))*(([[q]]) - ([[r]])))",
+   "([[c]])/((([[r]]) - ([[p]]))*(([[r]]) - ([[q]])))",
+   "([[c]])/(([[p]]) - ([[q]]))",
+   "([[c]])/(([[p]]) - ([[r]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Cancelling the \\( (z-[[p]]) \\) factor and setting \\( z=[[p]] \\) in what remains, \\( \\operatorname{Res}_{z=[[p]]} h = \\dfrac{[[c]]}{(([[p]])-([[q]]))(([[p]])-([[r]]))} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the residue at \\( z=[[q]] \\), not at \\( z=[[p]] \\).",
+   "This is the residue at \\( z=[[r]] \\), not at \\( z=[[p]] \\).",
+   "This only cancels one of the two remaining pole factors, forgetting \\( (z-[[r]]) \\) in the denominator.",
+   "This only cancels one of the two remaining pole factors, forgetting \\( (z-[[q]]) \\) in the denominator.",
+   "This is off by one from the correct residue.",
+   "This is off by one from the correct residue.",
+   "This doubles the correct residue."
+  ]
+ },
+ {
+  "template_id": "residue_pole_with_irreducible_quadratic_factor_v1",
+  "skill_id": "residue_at_a_simple_pole",
+  "topic_id": "complex_analysis",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "choice", "values": [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]},
+   "d": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": ["Lt([[b]]**2 - 4*[[c]], 0)"],
+  "stem": "The function \\( f(z) = \\dfrac{([[a]])z + ([[d]])}{\\left(z - ([[p]])\\right)\\left(z^{2} + ([[b]])z + ([[c]])\\right)} \\) has a real simple pole at \\( z = [[p]] \\); the quadratic factor \\( z^{2}+([[b]])z+([[c]]) \\) has no real roots (its two complex zeros are not our concern here). Compute \\( \\operatorname{Res}_{z=[[p]]} f(z) \\).",
+  "answer_spec": {"op": "limit", "expr": "(z - ([[p]]))*((([[a]])*z + ([[d]]))/((z - ([[p]]))*(z**2 + ([[b]])*z + ([[c]]))))", "var": "z", "point": "[[p]]"},
+  "require_rational": false,
+  "distractors": [
+   "(([[a]])*([[p]]) + ([[d]]))",
+   "(([[a]])*([[p]]) + ([[d]]))/(([[p]]) + ([[b]]))",
+   "(([[a]])*([[p]]) + ([[d]]))/([[c]])",
+   "-((([[a]])*([[p]]) + ([[d]]))/(([[p]])**2 + ([[b]])*([[p]]) + ([[c]])))",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "2*[[answer]]"
+  ],
+  "solution": "Cancelling \\( (z-[[p]]) \\) and evaluating the rest at \\( z=[[p]] \\), \\( \\operatorname{Res}_{z=[[p]]} f = \\dfrac{([[a]])([[p]]) + ([[d]])}{([[p]])^{2} + ([[b]])([[p]]) + ([[c]])} = [[answer]] \\); the irreducible quadratic factor is simply evaluated at the pole, not solved.",
+  "distractor_rationales": [
+   "This forgets to divide by the quadratic factor evaluated at \\( z=[[p]] \\).",
+   "This uses only the linear term \\( [[b]] \\) of the quadratic instead of evaluating the full quadratic at \\( z=[[p]] \\).",
+   "This uses only the constant term \\( [[c]] \\) of the quadratic instead of evaluating the full quadratic at \\( z=[[p]] \\).",
+   "This has the wrong sign on the denominator.",
+   "This is off by one from the correct residue.",
+   "This is off by one from the correct residue.",
+   "This doubles the correct residue."
+  ]
+ }
+]

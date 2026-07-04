@@ -1,0 +1,200 @@
+[
+  {
+    "template_id": "units_digit_power_v1",
+    "skill_id": "units_digit_of_a_large_power",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [2, 3, 7, 8, 12, 13, 17, 18, 22, 23]},
+      "b": {"type": "int", "lo": 15, "hi": 45}
+    },
+    "constraints": [],
+    "stem": "What is the units digit of \\( [[a]]^{[[b]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], 10)"},
+    "distractors": [
+      "Mod([[a]]**([[b]] + 1), 10)",
+      "Mod([[a]]**([[b]] + 2), 10)",
+      "Mod([[a]]**([[b]] + 3), 10)",
+      "Mod([[answer]] + 3, 10)",
+      "Mod([[answer]] + 5, 10)",
+      "Mod([[answer]] + 7, 10)",
+      "Mod([[a]], 10)"
+    ],
+    "solution": "The units digit of the powers of \\( [[a]] \\) repeats with period 4. Reducing the exponent \\( [[b]] \\) modulo 4 selects the position in that cycle, giving units digit \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This takes the units digit one position further along the cycle (exponent \\( [[b]]+1 \\)).",
+      "This takes the units digit two positions further along the cycle.",
+      "This takes the units digit three positions further along the cycle.",
+      "This is an unrelated digit offset from the correct one.",
+      "This is an unrelated digit offset from the correct one.",
+      "This is an unrelated digit offset from the correct one.",
+      "This is the units digit of the base \\( [[a]] \\), i.e. of \\( [[a]]^{1} \\), not of \\( [[a]]^{[[b]]} \\)."
+    ]
+  },
+  {
+    "template_id": "units_digit_of_sum_of_powers_v1",
+    "skill_id": "units_digit_of_a_large_power",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [2, 3, 7, 8, 9, 12, 13, 17, 18, 19]},
+      "b": {"type": "int", "lo": 15, "hi": 40},
+      "c": {"type": "choice", "values": [2, 3, 7, 8, 9, 12, 13, 17, 18, 19]},
+      "d": {"type": "int", "lo": 15, "hi": 40}
+    },
+    "constraints": ["Ne([[a]], [[c]])"],
+    "stem": "What is the units digit of \\( [[a]]^{[[b]]} + [[c]]^{[[d]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] + [[c]]**[[d]], 10)"},
+    "distractors": [
+      "Mod([[a]]**[[b]], 10)",
+      "Mod([[c]]**[[d]], 10)",
+      "Mod([[a]]**[[b]] * [[c]]**[[d]], 10)",
+      "Mod([[answer]] + 1, 10)",
+      "Mod([[answer]] + 3, 10)",
+      "Mod([[answer]] + 5, 10)",
+      "Mod([[a]]**[[b]] + [[c]]**([[d]] + 1), 10)"
+    ],
+    "solution": "Find the units digit of each term separately (each cycles with period dividing 4 in the exponent), then add them and reduce mod 10: \\( [[a]]^{[[b]]} + [[c]]^{[[d]]} \\) has units digit \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This only uses the first term's units digit, dropping the second entirely.",
+      "This only uses the second term's units digit, dropping the first entirely.",
+      "This multiplies the two units digits instead of adding them.",
+      "This is one more than the correct units digit (mod 10).",
+      "This is three more than the correct units digit (mod 10).",
+      "This is five more than the correct units digit (mod 10).",
+      "This uses one extra power on the second term."
+    ]
+  },
+  {
+    "template_id": "units_digit_of_product_of_powers_v1",
+    "skill_id": "units_digit_of_a_large_power",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [2, 3, 7, 8, 9, 12, 13, 17, 18, 19]},
+      "b": {"type": "int", "lo": 15, "hi": 40},
+      "c": {"type": "choice", "values": [2, 3, 7, 8, 9, 12, 13, 17, 18, 19]},
+      "d": {"type": "int", "lo": 15, "hi": 40}
+    },
+    "constraints": ["Ne([[a]], [[c]])"],
+    "stem": "What is the units digit of \\( [[a]]^{[[b]]} \\cdot [[c]]^{[[d]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]] * [[c]]**[[d]], 10)"},
+    "distractors": [
+      "Mod([[a]]**[[b]], 10)",
+      "Mod([[c]]**[[d]], 10)",
+      "Mod([[a]]**[[b]] + [[c]]**[[d]], 10)",
+      "Mod([[answer]] + 1, 10)",
+      "Mod([[answer]] + 3, 10)",
+      "Mod([[answer]] + 5, 10)",
+      "Mod([[a]]**[[b]] * [[c]]**([[d]] + 1), 10)"
+    ],
+    "solution": "Find the units digit of each factor separately, then multiply those units digits and reduce mod 10: \\( [[a]]^{[[b]]}\\cdot[[c]]^{[[d]]} \\) has units digit \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This only uses the first factor's units digit, dropping the second entirely.",
+      "This only uses the second factor's units digit, dropping the first entirely.",
+      "This adds the two units digits instead of multiplying them.",
+      "This is one more than the correct units digit (mod 10).",
+      "This is three more than the correct units digit (mod 10).",
+      "This is five more than the correct units digit (mod 10).",
+      "This uses one extra power on the second factor."
+    ]
+  },
+  {
+    "template_id": "units_digit_of_factorial_exponent_v1",
+    "skill_id": "units_digit_of_a_large_power",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [2, 3, 7, 8, 12, 13, 17, 18, 22, 23]},
+      "k": {"type": "int", "lo": 3, "hi": 7}
+    },
+    "constraints": [],
+    "stem": "What is the units digit of \\( [[a]]^{[[k]]!} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**(factorial([[k]])), 10)"},
+    "distractors": [
+      "Mod([[a]]**[[k]], 10)",
+      "Mod(factorial([[k]]), 10)",
+      "Mod([[a]], 10)",
+      "Mod([[answer]] + 1, 10)",
+      "Mod([[answer]] + 3, 10)",
+      "Mod([[answer]] + 5, 10)",
+      "Mod([[a]]**2, 10)"
+    ],
+    "solution": "First evaluate the exponent \\( [[k]]! \\), then find the units digit of \\( [[a]]^{[[k]]!} \\) using the period-4 cycle of units digits: the result is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses the un-evaluated exponent \\( [[k]] \\) instead of \\( [[k]]! \\).",
+      "This finds the units digit of the exponent \\( [[k]]! \\) itself, not of \\( [[a]] \\) raised to that exponent.",
+      "This is the units digit of the base alone, as if the exponent were 1.",
+      "This is one more than the correct units digit (mod 10).",
+      "This is three more than the correct units digit (mod 10).",
+      "This is five more than the correct units digit (mod 10).",
+      "This is the units digit of \\( [[a]]^{2} \\), as if the exponent reduced to 2."
+    ]
+  },
+  {
+    "template_id": "units_digit_invariant_last_digit_v1",
+    "skill_id": "units_digit_of_a_large_power",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "int", "lo": 10, "hi": 999},
+      "b": {"type": "int", "lo": 2, "hi": 60}
+    },
+    "constraints": ["Or(Eq(Mod([[a]], 10), 0), Eq(Mod([[a]], 10), 1), Eq(Mod([[a]], 10), 5), Eq(Mod([[a]], 10), 6))"],
+    "stem": "The positive integer \\( [[a]] \\) ends in one of the digits 0, 1, 5, or 6, so raising it to any positive integer power leaves its units digit unchanged. What is the units digit of \\( [[a]]^{[[b]]} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[b]], 10)"},
+    "distractors": [
+      "Mod([[a]] + [[b]], 10)",
+      "Mod([[a]]*[[b]], 10)",
+      "Mod([[b]], 10)",
+      "Mod(floor([[a]]/10), 10)",
+      "Mod([[answer]] + 1, 10)",
+      "Mod([[answer]] + 2, 10)",
+      "Mod([[answer]] + 3, 10)"
+    ],
+    "solution": "Since \\( [[a]] \\) ends in 0, 1, 5, or 6, every positive power of \\( [[a]] \\) ends in that same digit. Hence the units digit of \\( [[a]]^{[[b]]} \\) is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This adds the base and exponent instead of reasoning about the units digit.",
+      "This multiplies the base and exponent instead of finding a units digit.",
+      "This uses the units digit of the exponent instead of the base.",
+      "This confuses the tens digit of the base with its units digit.",
+      "This is one more than the correct (invariant) units digit.",
+      "This is two more than the correct units digit.",
+      "This is three more than the correct units digit."
+    ]
+  },
+  {
+    "template_id": "units_digit_of_a_power_tower_v1",
+    "skill_id": "units_digit_of_a_large_power",
+    "topic_id": "number_theory",
+    "tier": "teach",
+    "params": {
+      "a": {"type": "choice", "values": [2, 3, 7, 8, 12, 13, 17, 18, 22, 23]},
+      "m": {"type": "choice", "values": [2, 3, 4]},
+      "k": {"type": "int", "lo": 2, "hi": 5}
+    },
+    "constraints": [],
+    "derived": {"b": "[[m]]**[[k]]"},
+    "stem": "What is the units digit of \\( [[a]]^{([[m]]^{[[k]]})} \\)?",
+    "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**([[m]]**[[k]]), 10)"},
+    "distractors": [
+      "Mod([[a]]**[[m]], 10)",
+      "Mod([[a]]**[[k]], 10)",
+      "Mod([[m]]**[[k]], 10)",
+      "Mod([[a]]**([[m]]*[[k]]), 10)",
+      "Mod([[answer]] + 1, 10)",
+      "Mod([[answer]] + 3, 10)",
+      "Mod([[answer]] + 5, 10)"
+    ],
+    "solution": "First evaluate the exponent tower \\( [[m]]^{[[k]]} = [[b]] \\). Then find the units digit of \\( [[a]]^{[[b]]} \\) using the period-4 cycle of units digits: the result is \\( [[answer]] \\).",
+    "distractor_rationales": [
+      "This uses only the inner base \\( [[m]] \\) as the exponent, ignoring the tower's own exponent \\( [[k]] \\).",
+      "This uses only \\( [[k]] \\) as the exponent, ignoring the inner base \\( [[m]] \\).",
+      "This finds the units digit of the exponent tower itself, not of \\( [[a]] \\) raised to it.",
+      "This multiplies \\( [[m]] \\) and \\( [[k]] \\) instead of computing \\( [[m]]^{[[k]]} \\) as the exponent.",
+      "This is one more than the correct units digit.",
+      "This is three more than the correct units digit.",
+      "This is five more than the correct units digit."
+    ]
+  }
+]

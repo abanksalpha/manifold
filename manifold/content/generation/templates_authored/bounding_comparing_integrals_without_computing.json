@@ -1,0 +1,133 @@
+[
+{
+ "template_id": "integral_upper_bound_from_max_v1",
+ "skill_id": "bounding_comparing_integrals_without_computing",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": -5, "hi": 3},
+  "M": {"type": "int", "lo": -2, "hi": 6},
+  "a": {"type": "int", "lo": -4, "hi": 2},
+  "b": {"type": "int", "lo": -1, "hi": 6}
+ },
+ "constraints": ["Lt([[m]], [[M]])", "Lt([[a]], [[b]])"],
+ "stem": "Let \\( f \\) be continuous on \\( [[[a]], [[b]]] \\) with \\( [[m]] \\le f(x) \\le [[M]] \\) for every \\( x \\) in \\( [[[a]], [[b]]] \\). Without computing any particular integral, what is the greatest possible value of \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx \\) consistent with these bounds?",
+ "answer_spec": {"op": "evaluate", "expr": "[[M]]*([[b]] - [[a]])"},
+ "distractors": [
+  "[[m]]*([[b]] - [[a]])",
+  "([[M]] + [[m]])*([[b]] - [[a]])/2",
+  "([[M]] - [[m]])*([[b]] - [[a]])",
+  "[[M]]*([[b]] + [[a]])",
+  "[[M]]*[[b]] - [[m]]*[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( f(x) \\le [[M]] \\) on an interval of length \\( [[b]] - ([[a]]) \\), the comparison property gives \\( \\int_{[[a]]}^{[[b]]} f(x)\\,dx \\le [[M]]\\,([[b]] - ([[a]])) = [[answer]] \\), with equality when \\( f \\equiv [[M]] \\).",
+ "distractor_rationales": [
+  "This is the least possible value, using the lower bound \\( [[m]] \\) instead of the upper bound.",
+  "This uses the midpoint of the bounds rather than the maximum, giving an average-based estimate.",
+  "This multiplies the range of \\( f \\) by the width, which measures spread, not the maximum integral.",
+  "This multiplies the maximum by the sum of the endpoints instead of the length of the interval.",
+  "This mismatches which endpoint pairs with which bound.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "comparison_property_difference_v1",
+ "skill_id": "bounding_comparing_integrals_without_computing",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 1},
+  "b": {"type": "int", "lo": 2, "hi": 7},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": 0, "hi": 6}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "On \\( [[[a]], [[b]]] \\), functions \\( f \\) and \\( g \\) satisfy \\( g(x) - f(x) = (x - [[r]])^{2} + [[k]] \\) for every \\( x \\), which is never negative. By the comparison property for integrals, by exactly how much must \\( \\int_{[[a]]}^{[[b]]} g(x)\\, dx \\) exceed \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx \\)?",
+ "answer_spec": {"op": "integrate", "expr": "(x - [[r]])**2 + [[k]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+ "distractors": [
+  "[[k]]*([[b]] - [[a]])",
+  "(([[b]] - [[r]])**2 - ([[a]] - [[r]])**2)/2 + [[k]]*([[b]] - [[a]])",
+  "([[b]] - [[r]])**3/3 - ([[a]] - [[r]])**3/3",
+  "([[b]] - [[a]])**3/3",
+  "[[answer]] + [[b]] - [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( g(x) - f(x) = (x-[[r]])^{2} + [[k]] \\ge 0 \\) on \\( [[[a]], [[b]]] \\), the comparison property gives \\( \\int_{[[a]]}^{[[b]]} g\\,dx - \\int_{[[a]]}^{[[b]]} f\\,dx = \\int_{[[a]]}^{[[b]]} \\left[(x-[[r]])^{2} + [[k]]\\right] dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the squared term entirely and only integrates the constant \\( [[k]] \\).",
+  "This misapplies the power rule to \\( (x-[[r]])^{2} \\) as if its antiderivative had exponent 2 (dividing by 2) instead of 3.",
+  "This drops the constant term \\( [[k]] \\) from the antiderivative.",
+  "This replaces the squared term by the cube of the interval width, ignoring \\( [[r]] \\) entirely.",
+  "This is off by the width of the interval.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "triangle_inequality_gap_v1",
+ "skill_id": "bounding_comparing_integrals_without_computing",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 0},
+  "c": {"type": "int", "lo": -2, "hi": 2},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Lt([[a]], [[c]])", "Lt([[c]], [[b]])"],
+ "stem": "Let \\( f(x) = x - [[c]] \\) on \\( [[[a]], [[b]]] \\); since \\( [[c]] \\) lies strictly between \\( [[a]] \\) and \\( [[b]] \\), \\( f \\) changes sign there. By how much does \\( \\int_{[[a]]}^{[[b]]} |f(x)|\\, dx \\) exceed \\( \\left| \\int_{[[a]]}^{[[b]]} f(x)\\, dx \\right| \\)? (This shows the triangle inequality \\( \\left|\\int f\\right| \\le \\int |f| \\) is generally strict when \\( f \\) changes sign, unlike the bound obtained without comparing signs at all.)",
+ "answer_spec": {"op": "evaluate", "expr": "integrate(Abs(x - [[c]]), (x, [[a]], [[b]])) - Abs(integrate(x - [[c]], (x, [[a]], [[b]])))"},
+ "distractors": [
+  "integrate(Abs(x - [[c]]), (x, [[a]], [[b]]))",
+  "Abs(integrate(x - [[c]], (x, [[a]], [[b]])))",
+  "0",
+  "integrate(x - [[c]], (x, [[a]], [[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute both sides directly: \\( \\int_{[[a]]}^{[[b]]} |x-[[c]]|\\,dx \\) sums the two triangular pieces on either side of the corner at \\( x=[[c]] \\), while \\( \\left|\\int_{[[a]]}^{[[b]]} (x-[[c]])\\,dx\\right| \\) is the absolute value of the signed net area. The gap between them is \\( [[answer]] \\), confirming the inequality is strict here since \\( f \\) changes sign.",
+ "distractor_rationales": [
+  "This is \\( \\int |f| \\) alone, forgetting to subtract \\( \\left|\\int f\\right| \\).",
+  "This is \\( \\left|\\int f\\right| \\) alone, forgetting to subtract it from \\( \\int |f| \\).",
+  "This assumes the triangle inequality is always an equality, which fails whenever \\( f \\) changes sign.",
+  "This drops the absolute value on the integrand altogether.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "monotone_rectangle_gap_v1",
+ "skill_id": "bounding_comparing_integrals_without_computing",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": -6, "hi": 6},
+  "a": {"type": "int", "lo": -3, "hi": 1},
+  "b": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "The function \\( f(x) = x^{3} + [[m]]x + [[k]] \\) is increasing on \\( [[[a]], [[b]]] \\), since \\( f'(x) = 3x^{2} + [[m]] > 0 \\) everywhere. Because \\( f \\) is increasing, the left-endpoint rectangle estimate \\( f([[a]])\\cdot([[b]]-[[a]]) \\) underestimates \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx \\). By exactly how much does the true integral exceed this estimate, without needing the estimate to compute the true value?",
+ "answer_spec": {"op": "evaluate", "expr": "integrate(x**3 + [[m]]*x + [[k]], (x, [[a]], [[b]])) - ([[a]]**3 + [[m]]*[[a]] + [[k]])*([[b]] - [[a]])"},
+ "distractors": [
+  "integrate(x**3 + [[m]]*x + [[k]], (x, [[a]], [[b]]))",
+  "([[b]]**3 + [[m]]*[[b]] + [[k]])*([[b]] - [[a]]) - integrate(x**3 + [[m]]*x + [[k]], (x, [[a]], [[b]]))",
+  "([[b]]**3 + [[m]]*[[b]] + [[k]])*([[b]] - [[a]])",
+  "([[a]]**3 + [[m]]*[[a]] + [[k]])*([[b]] - [[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The true value is \\( \\int_{[[a]]}^{[[b]]} f(x)\\,dx \\); the left-endpoint rectangle estimate is \\( f([[a]])([[b]]-[[a]]) \\). Subtracting the estimate from the true value gives the guaranteed positive gap \\( [[answer]] \\), since an increasing function's graph lies above its left rectangle.",
+ "distractor_rationales": [
+  "This is the true integral alone, forgetting to subtract the rectangle estimate.",
+  "This uses the right-endpoint (overestimate) rectangle and reverses the subtraction.",
+  "This is the right-endpoint rectangle estimate itself, not the gap to the true value.",
+  "This is the left-endpoint rectangle estimate itself, not the gap to the true value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

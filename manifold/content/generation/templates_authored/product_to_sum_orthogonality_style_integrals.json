@@ -1,0 +1,125 @@
+[
+{
+ "template_id": "product_to_sum_orthogonality_style_integrals_v1",
+ "skill_id": "product_to_sum_orthogonality_style_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 15},
+  "n": {"type": "int", "lo": 1, "hi": 15}
+ },
+ "constraints": ["Eq(Mod([[m]] + [[n]], 2), 1)"],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi} \\sin([[m]]x)\\cos([[n]]x)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "sin([[m]]*x)*cos([[n]]*x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "2*[[n]]/([[n]]**2 - [[m]]**2)",
+  "2*[[m]]/([[m]]**2 + [[n]]**2)",
+  "[[m]]/([[m]]**2 - [[n]]**2)",
+  "-2*[[m]]/([[m]]**2 - [[n]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Use \\( \\sin(A)\\cos(B) = \\tfrac{1}{2}[\\sin(A+B) + \\sin(A-B)] \\): \\( \\int_{0}^{\\pi}\\sin([[m]]x)\\cos([[n]]x)\\,dx = \\tfrac{1}{2}\\int_{0}^{\\pi}[\\sin(([[m]]+[[n]])x) + \\sin(([[m]]-[[n]])x)]\\,dx \\). Since \\( [[m]]+[[n]] \\) is odd, this equals \\( \\tfrac{2[[m]]}{[[m]]^{2}-[[n]]^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps the roles of \\( [[m]] \\) and \\( [[n]] \\) in the final formula.",
+  "This uses \\( [[m]]^{2}+[[n]]^{2} \\) in the denominator instead of \\( [[m]]^{2}-[[n]]^{2} \\).",
+  "This drops the factor of 2 in the numerator.",
+  "This has the overall sign reversed.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "product_to_sum_sine_sine_orthogonality_v2",
+ "skill_id": "product_to_sum_orthogonality_style_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 12},
+  "n": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "Evaluate \\( \\int_{0}^{2\\pi} \\sin([[m]]x)\\sin([[n]]x)\\,dx \\), where \\( [[m]] \\) and \\( [[n]] \\) are distinct positive integers.",
+ "answer_spec": {"op": "integrate", "expr": "sin([[m]]*x)*sin([[n]]*x)", "var": "x", "bounds": ["0", "2*pi"]},
+ "distractors": [
+  "pi",
+  "2*pi",
+  "[[m]] - [[n]]",
+  "1/([[m]] - [[n]])",
+  "-pi",
+  "pi/2"
+ ],
+ "solution": "Use \\( \\sin(A)\\sin(B) = \\tfrac{1}{2}[\\cos(A-B) - \\cos(A+B)] \\). Since \\( [[m]] \\ne [[n]] \\), both \\( [[m]]-[[n]] \\) and \\( [[m]]+[[n]] \\) are nonzero integers, so \\( \\cos \\) of each integrates to \\( 0 \\) over a full period \\( [0,2\\pi] \\); the two sine modes are orthogonal and the integral vanishes: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the self-overlap (normalization) value \\( \\pi \\), which only applies when \\( m=n \\).",
+  "This doubles the normalization value, mistaking this for a different identity.",
+  "This treats the difference of frequencies as if it were the integral's value.",
+  "This treats the reciprocal frequency difference as if it were the integral's value.",
+  "This has the wrong sign on the normalization value \\( \\pi \\).",
+  "This uses half the normalization value \\( \\pi \\)."
+ ]
+},
+{
+ "template_id": "product_to_sum_cosine_cosine_orthogonality_v3",
+ "skill_id": "product_to_sum_orthogonality_style_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 12},
+  "n": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Ne([[m]], [[n]])"],
+ "stem": "Evaluate \\( \\int_{0}^{2\\pi} \\cos([[m]]x)\\cos([[n]]x)\\,dx \\), where \\( [[m]] \\) and \\( [[n]] \\) are distinct positive integers.",
+ "answer_spec": {"op": "integrate", "expr": "cos([[m]]*x)*cos([[n]]*x)", "var": "x", "bounds": ["0", "2*pi"]},
+ "distractors": [
+  "pi",
+  "2*pi",
+  "[[m]] + [[n]]",
+  "1/([[m]] + [[n]])",
+  "-pi",
+  "pi/2"
+ ],
+ "solution": "Use \\( \\cos(A)\\cos(B) = \\tfrac{1}{2}[\\cos(A-B) + \\cos(A+B)] \\). Since \\( [[m]] \\ne [[n]] \\), both \\( [[m]]-[[n]] \\) and \\( [[m]]+[[n]] \\) are nonzero integers, so each \\( \\cos \\) term integrates to \\( 0 \\) over the full period \\( [0,2\\pi] \\); the two cosine modes are orthogonal and the integral vanishes: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the self-overlap (normalization) value \\( \\pi \\), which only applies when \\( m=n \\).",
+  "This doubles the normalization value, mistaking this for a different identity.",
+  "This treats the sum of frequencies as if it were the integral's value.",
+  "This treats the reciprocal frequency sum as if it were the integral's value.",
+  "This has the wrong sign on the normalization value \\( \\pi \\).",
+  "This uses half the normalization value \\( \\pi \\)."
+ ]
+},
+{
+ "template_id": "product_to_sum_self_overlap_normalization_v4",
+ "skill_id": "product_to_sum_orthogonality_style_integrals",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 8},
+  "n": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{2\\pi} [[k]]\\sin^{2}([[n]]x)\\,dx \\) (the self-overlap, or normalization, case of the orthogonality relations).",
+ "answer_spec": {"op": "integrate", "expr": "[[k]]*sin([[n]]*x)**2", "var": "x", "bounds": ["0", "2*pi"]},
+ "distractors": [
+  "2*[[k]]*pi",
+  "[[k]]*pi/2",
+  "[[k]]*pi*[[n]]",
+  "[[k]]*pi/[[n]]",
+  "-[[answer]]",
+  "[[answer]]/2"
+ ],
+ "solution": "Use \\( \\sin^{2}(nx) = \\tfrac{1-\\cos(2nx)}{2} \\); the cosine term integrates to \\( 0 \\) over the full period, leaving \\( [[k]]\\cdot\\tfrac{1}{2}\\cdot 2\\pi = [[k]]\\pi = [[answer]] \\).",
+ "distractor_rationales": [
+  "This doubles the correct value, as if forgetting the \\( \\tfrac{1}{2} \\) factor from the half-angle identity.",
+  "This halves the correct value.",
+  "This mistakenly scales the result by the frequency \\( [[n]] \\), which cancels out of this integral.",
+  "This mistakenly divides by the frequency \\( [[n]] \\), which cancels out of this integral.",
+  "This has the wrong sign.",
+  "This halves the correct value."
+ ]
+}
+]

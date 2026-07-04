@@ -1,0 +1,161 @@
+[
+ {
+  "template_id": "recover_coefficient_from_solution_v1",
+  "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -5, "hi": 5},
+   "q": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[p]], [[q]])"],
+  "stem": "The general solution of a second-order constant-coefficient homogeneous equation is \\( y(t) = C_1 e^{[[p]]t} + C_2 e^{[[q]]t} \\). Writing the equation as \\( y'' + b\\,y' + c\\,y = 0 \\), what is the value of the constant coefficient \\( c \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]*[[q]]"},
+  "distractors": [
+   "-([[p]] + [[q]])",
+   "[[p]] + [[q]]",
+   "-[[p]]*[[q]]",
+   "[[p]] - [[q]]",
+   "[[p]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The exponents \\( [[p]] \\) and \\( [[q]] \\) are the characteristic roots, so the characteristic equation is \\( (r - [[p]])(r - [[q]]) = r^{2} - ([[p]]+[[q]])r + [[p]][[q]] = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( c = [[p]][[q]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives \\( b = -([[p]]+[[q]]) \\), the coefficient of \\( y' \\), not \\( c \\).",
+   "This is the sum of the roots rather than their product.",
+   "This has the wrong sign; the product of the roots is \\( +[[p]][[q]] \\).",
+   "This subtracts the roots instead of multiplying them.",
+   "This squares one root instead of multiplying the two roots.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "recover_b_from_distinct_root_solution_v2",
+  "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[p]], 0)", "Ne([[q]], 0)", "Ne([[p]], [[q]])"],
+  "stem": "The general solution of a second-order constant-coefficient homogeneous equation is \\( y(t) = C_1 e^{[[p]]t} + C_2 e^{[[q]]t} \\). Writing the equation as \\( y'' + b\\,y' + c\\,y = 0 \\), what is the value of the coefficient \\( b \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-([[p]] + [[q]])"},
+  "distractors": [
+   "[[p]] + [[q]]",
+   "[[p]]*[[q]]",
+   "-[[p]]*[[q]]",
+   "[[p]] - [[q]]",
+   "-[[p]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The exponents \\( [[p]] \\) and \\( [[q]] \\) are the characteristic roots, so the characteristic equation is \\( (r-[[p]])(r-[[q]]) = r^{2} - ([[p]]+[[q]])r + [[p]][[q]] = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( b = -([[p]]+[[q]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign required by matching \\( -(p+q) \\) to \\( b \\).",
+   "This is the product of the roots, which is \\( c \\), not \\( b \\).",
+   "This has the wrong sign on the product of the roots.",
+   "This subtracts the roots instead of adding them.",
+   "This uses only one root instead of the sum of both.",
+   "This is one more than the correct coefficient.",
+   "This is one less than the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "recover_b_from_repeated_root_solution_v3",
+  "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": -7, "hi": 7}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "stem": "The general solution of a second-order constant-coefficient homogeneous equation is \\( y(t) = (C_1 + C_2 t)e^{[[r]]t} \\), indicating a repeated characteristic root. Writing the equation as \\( y'' + b\\,y' + c\\,y = 0 \\), what is the value of the coefficient \\( b \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-2*[[r]]"},
+  "distractors": [
+   "2*[[r]]",
+   "[[r]]",
+   "-[[r]]",
+   "[[r]]**2",
+   "-[[r]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A repeated root \\( r = [[r]] \\) means the characteristic equation is \\( (s - [[r]])^{2} = s^{2} - 2([[r]])s + [[r]]^{2} = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( b = -2([[r]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign required to match the repeated-root coefficient.",
+   "This uses the root itself instead of twice the root.",
+   "This uses the negative of the root instead of twice the negative root.",
+   "This confuses \\( b \\) with the constant term \\( c = r^{2} \\).",
+   "This has the wrong sign on \\( c \\) as well as reporting the wrong coefficient.",
+   "This is one more than the correct coefficient.",
+   "This is one less than the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "recover_c_from_complex_root_solution_v4",
+  "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "alpha": {"type": "int", "lo": -4, "hi": 4},
+   "omega": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[omega]], 0)"],
+  "stem": "The general solution of a second-order constant-coefficient homogeneous equation is \\( y(t) = e^{[[alpha]]t}\\left(C_1\\cos([[omega]]t) + C_2\\sin([[omega]]t)\\right) \\), indicating complex conjugate characteristic roots \\( [[alpha]] \\pm [[omega]]i \\). Writing the equation as \\( y'' + b\\,y' + c\\,y = 0 \\), what is the value of the coefficient \\( c \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[alpha]]**2 + [[omega]]**2"},
+  "distractors": [
+   "[[alpha]]**2 - [[omega]]**2",
+   "-2*[[alpha]]",
+   "2*[[alpha]]",
+   "[[alpha]] + [[omega]]",
+   "[[omega]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Complex conjugate roots \\( [[alpha]] \\pm [[omega]]i \\) come from the factorization \\( (r - ([[alpha]]+[[omega]]i))(r-([[alpha]]-[[omega]]i)) = r^{2} - 2([[alpha]])r + ([[alpha]]^{2}+[[omega]]^{2}) = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( c = [[alpha]]^{2} + [[omega]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts \\( \\omega^{2} \\) instead of adding it, as if the roots were real.",
+   "This gives \\( b = -2\\alpha \\), the coefficient of \\( y' \\), not \\( c \\).",
+   "This has the wrong sign on \\( b \\) as well as reporting the wrong coefficient.",
+   "This adds \\( \\alpha \\) and \\( \\omega \\) directly instead of summing their squares.",
+   "This omits the contribution of \\( \\alpha^{2} \\) entirely.",
+   "This is one more than the correct coefficient.",
+   "This is one less than the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "recover_first_order_coefficient_v5",
+  "skill_id": "recover_the_equation_or_a_root_from_a_given_solution",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -6, "hi": 6},
+   "s": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne([[s]], 0)"],
+  "stem": "The general solution of a first-order linear equation is \\( y(x) = Ce^{[[k]]x} + [[s]] \\), where \\( C \\) is an arbitrary constant. Writing the equation as \\( y' + a\\,y = g(x) \\), what is the value of the coefficient \\( a \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "-[[k]]"},
+  "distractors": [
+   "[[k]]",
+   "1/[[k]]",
+   "-1/[[k]]",
+   "[[s]]",
+   "-[[s]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The homogeneous part \\( Ce^{[[k]]x} \\) solves \\( y' + a y = 0 \\), i.e. \\( y' = -ay \\), so \\( -a = [[k]] \\) and \\( a = -[[k]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the negative sign relating the exponent to \\( a \\).",
+   "This inverts the coefficient instead of negating it.",
+   "This inverts and negates the coefficient.",
+   "This confuses \\( a \\) with the steady-state value \\( s \\).",
+   "This confuses \\( a \\) with the negative of the steady-state value.",
+   "This is one more than the correct coefficient.",
+   "This is one less than the correct coefficient."
+  ]
+ }
+]

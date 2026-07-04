@@ -1,0 +1,109 @@
+[
+{
+ "template_id": "crt_two_moduli_smallest_v1",
+ "skill_id": "chinese_remainder_theorem",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "m1": {"type": "choice", "values": [3, 4, 5, 7, 8, 9, 11, 13]},
+  "m2": {"type": "choice", "values": [3, 4, 5, 7, 8, 9, 11, 13]},
+  "r1": {"type": "int", "lo": 0, "hi": 12},
+  "r2": {"type": "int", "lo": 0, "hi": 12}
+ },
+ "constraints": ["Eq(gcd([[m1]], [[m2]]), 1)", "Lt([[r1]], [[m1]])", "Lt([[r2]], [[m2]])"],
+ "stem": "What is the smallest non-negative integer \\( x \\) such that \\( x \\equiv [[r1]] \\pmod{[[m1]]} \\) and \\( x \\equiv [[r2]] \\pmod{[[m2]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[r1]] + [[m1]]*Mod(([[r2]] - [[r1]])*mod_inverse([[m1]], [[m2]]), [[m2]])"},
+ "distractors": [
+  "[[r1]] + [[r2]]",
+  "[[m1]]*[[m2]] - ([[r1]] + [[r2]])",
+  "[[r1]] + [[m2]]*Mod(([[r2]] - [[r1]])*mod_inverse([[m2]], [[m1]]), [[m1]])",
+  "[[r2]] + [[m1]]*Mod(([[r1]] - [[r2]])*mod_inverse([[m1]], [[m2]]), [[m2]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Write \\( x = [[r1]] + [[m1]]t \\) and solve \\( [[m1]]t \\equiv [[r2]]-[[r1]] \\pmod{[[m2]]} \\) for the smallest \\( t\\ge0 \\) using the inverse of \\( [[m1]] \\) mod \\( [[m2]] \\); this gives \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just adds the two remainders, ignoring the moduli entirely.",
+  "This subtracts the remainders from the product of the moduli for no valid reason.",
+  "This swaps which modulus's inverse is used, mixing up the roles of the two congruences.",
+  "This swaps the two remainders, solving the system with \\( r_1 \\) and \\( r_2 \\) exchanged.",
+  "This is one more than the correct smallest solution.",
+  "This is one less than the correct smallest solution."
+ ]
+},
+{
+ "template_id": "crt_three_moduli_smallest_v1",
+ "skill_id": "chinese_remainder_theorem",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "m1": {"type": "choice", "values": [3, 4, 5]},
+  "m2": {"type": "choice", "values": [7, 8, 9]},
+  "m3": {"type": "choice", "values": [11, 13]},
+  "r1": {"type": "int", "lo": 0, "hi": 4},
+  "r2": {"type": "int", "lo": 0, "hi": 8},
+  "r3": {"type": "int", "lo": 0, "hi": 12}
+ },
+ "constraints": [
+  "Eq(gcd([[m1]], [[m2]]), 1)", "Eq(gcd([[m1]], [[m3]]), 1)", "Eq(gcd([[m2]], [[m3]]), 1)",
+  "Lt([[r1]], [[m1]])", "Lt([[r2]], [[m2]])", "Lt([[r3]], [[m3]])"
+ ],
+ "derived": {
+  "x12": "[[r1]] + [[m1]]*Mod(([[r2]] - [[r1]])*mod_inverse([[m1]], [[m2]]), [[m2]])",
+  "m12": "[[m1]]*[[m2]]",
+  "x123": "[[x12]] + [[m12]]*Mod(([[r3]] - [[x12]])*mod_inverse([[m12]], [[m3]]), [[m3]])"
+ },
+ "stem": "What is the smallest non-negative integer \\( x \\) such that \\( x \\equiv [[r1]] \\pmod{[[m1]]} \\), \\( x \\equiv [[r2]] \\pmod{[[m2]]} \\), and \\( x \\equiv [[r3]] \\pmod{[[m3]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[x123]]"},
+ "distractors": [
+  "[[x12]]",
+  "[[r1]] + [[r2]] + [[r3]]",
+  "[[m1]]*[[m2]]*[[m3]] - [[x123]]",
+  "[[x123]] - [[m12]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "First combine the first two congruences into a single one modulo \\( [[m1]]\\cdot[[m2]]=[[m12]] \\), giving \\( x\\equiv[[x12]]\\pmod{[[m12]]} \\); then combine that with the third congruence to get \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This only combines the first two congruences and stops before folding in the third.",
+  "This just adds the three remainders, ignoring the moduli entirely.",
+  "This subtracts the correct answer from the product of all three moduli for no valid reason.",
+  "This subtracts the two-modulus combined modulus from the final answer, landing on the wrong residue.",
+  "This is one more than the correct smallest solution.",
+  "This is one less than the correct smallest solution."
+ ]
+},
+{
+ "template_id": "crt_second_smallest_solution_v1",
+ "skill_id": "chinese_remainder_theorem",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "m1": {"type": "choice", "values": [3, 4, 5, 7, 8, 9, 11, 13]},
+  "m2": {"type": "choice", "values": [3, 4, 5, 7, 8, 9, 11, 13]},
+  "r1": {"type": "int", "lo": 0, "hi": 12},
+  "r2": {"type": "int", "lo": 0, "hi": 12}
+ },
+ "constraints": ["Eq(gcd([[m1]], [[m2]]), 1)", "Lt([[r1]], [[m1]])", "Lt([[r2]], [[m2]])"],
+ "derived": {"x0": "[[r1]] + [[m1]]*Mod(([[r2]] - [[r1]])*mod_inverse([[m1]], [[m2]]), [[m2]])"},
+ "stem": "The smallest non-negative integer \\( x \\) satisfying \\( x \\equiv [[r1]] \\pmod{[[m1]]} \\) and \\( x \\equiv [[r2]] \\pmod{[[m2]]} \\) is \\( [[x0]] \\). What is the SECOND smallest positive integer satisfying both congruences?",
+ "answer_spec": {"op": "evaluate", "expr": "[[x0]] + [[m1]]*[[m2]]"},
+ "distractors": [
+  "[[x0]] + [[m1]] + [[m2]]",
+  "[[x0]]*2",
+  "[[x0]] + [[m1]]",
+  "[[x0]] + [[m2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( [[m1]] \\) and \\( [[m2]] \\) are coprime, all solutions repeat with period \\( \\mathrm{lcm}([[m1]],[[m2]]) = [[m1]]\\cdot[[m2]] \\); the next solution after \\( [[x0]] \\) is \\( [[x0]] + [[m1]]\\cdot[[m2]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two moduli instead of their product (the true period, since they're coprime).",
+  "This doubles the first solution instead of adding the period.",
+  "This advances by only one modulus, which does not preserve the OTHER congruence.",
+  "This advances by only the other modulus, which does not preserve the FIRST congruence.",
+  "This is one more than the correct second-smallest solution.",
+  "This is one less than the correct second-smallest solution."
+ ]
+}
+]

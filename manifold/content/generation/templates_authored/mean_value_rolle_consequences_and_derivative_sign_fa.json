@@ -1,0 +1,95 @@
+[
+{
+ "template_id": "mvt_quadratic_arithmetic_mean_v1",
+ "skill_id": "mean_value_rolle_consequences_and_derivative_sign_fa",
+ "topic_id": "real_analysis_topology",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 4},
+  "q": {"type": "int", "lo": -3, "hi": 7},
+  "b": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "stem": "Let \\( f(x) = x^{2} + [[b]]x \\). By the Mean Value Theorem, there is a point \\( c \\) in \\( ([[p]],[[q]]) \\) with \\( f'(c) = \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} \\). Find this value of \\( c \\).",
+ "answer_spec": {"op": "solve", "equation": "2*c + [[b]] - ((([[q]]**2 + [[b]]*[[q]]) - ([[p]]**2 + [[b]]*[[p]]))/([[q]] - [[p]])) = 0", "var": "c"},
+ "distractors": [
+  "[[p]]",
+  "[[q]]",
+  "[[p]] + [[q]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( f'(x)=2x+[[b]] \\) and the average rate of change is \\( \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} = [[p]]+[[q]]+[[b]] \\). Setting \\( 2c+[[b]] = [[p]]+[[q]]+[[b]] \\) gives \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), the midpoint of the interval (as always for a quadratic).",
+ "distractor_rationales": [
+  "This is the left endpoint of the interval, not the guaranteed interior point.",
+  "This is the right endpoint of the interval, not the guaranteed interior point.",
+  "This forgets to divide the sum of the endpoints by 2.",
+  "This has the correct magnitude but the wrong sign.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_reciprocal_geometric_mean_v1",
+ "skill_id": "mean_value_rolle_consequences_and_derivative_sign_fa",
+ "topic_id": "real_analysis_topology",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": -50, "hi": -3},
+  "q": {"type": "int", "lo": -49, "hi": -2}
+ },
+ "constraints": [
+  "Lt([[p]], [[q]])",
+  "Eq([[p]]*[[q]], floor(sqrt([[p]]*[[q]]))**2)"
+ ],
+ "stem": "Let \\( f(x) = \\dfrac{1}{x} \\). By the Mean Value Theorem applied on \\( ([[p]],[[q]]) \\), there is a point \\( c \\) with \\( f'(c) = \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} \\). Which of the following is this value of \\( c \\)?",
+ "answer_spec": {"op": "solve", "equation": "-1/c**2 - ((1/[[q]] - 1/[[p]])/([[q]] - [[p]])) = 0", "var": "c"},
+ "distractors": [
+  "[[p]]",
+  "[[q]]",
+  "sqrt([[p]]*[[q]])",
+  "([[p]] + [[q]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( f'(x)=-\\dfrac{1}{x^{2}} \\), and the average rate of change simplifies to \\( -\\dfrac{1}{[[p]][[q]]} \\). Setting \\( -\\dfrac{1}{c^{2}} = -\\dfrac{1}{[[p]][[q]]} \\) gives \\( c^{2}=[[p]][[q]] \\); since \\( c \\) must lie in \\( ([[p]],[[q]]) \\) (both negative here), \\( c = -\\sqrt{[[p]][[q]]} = [[answer]] \\), the negative geometric mean of the endpoints.",
+ "distractor_rationales": [
+  "This is the left endpoint of the interval, not the guaranteed interior point.",
+  "This is the right endpoint of the interval, not the guaranteed interior point.",
+  "This is the geometric mean with the wrong sign; it lies OUTSIDE the interval \\( ([[p]],[[q]]) \\) since both endpoints are negative.",
+  "This uses the arithmetic mean of the endpoints instead of the geometric mean that this function's Mean Value Theorem calculation actually requires.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "rolle_sine_zero_derivative_v1",
+ "skill_id": "mean_value_rolle_consequences_and_derivative_sign_fa",
+ "topic_id": "real_analysis_topology",
+ "tier": "recognize",
+ "params": {
+  "k": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]},
+  "amp": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"twok": "2*[[k]]"},
+ "require_rational": false,
+ "stem": "Let \\( f(x) = [[amp]]\\sin([[k]]x) \\), so \\( f(0) = f\\!\\left(\\dfrac{\\pi}{[[k]]}\\right) = 0 \\). By Rolle's theorem, which of the following is a value \\( c \\) in \\( \\left(0, \\dfrac{\\pi}{[[k]]}\\right) \\) satisfying \\( f'(c)=0 \\)?",
+ "answer_spec": {"op": "solve", "equation": "[[amp]]*[[k]]*cos([[k]]*c) = 0", "var": "c"},
+ "distractors": [
+  "pi/[[k]]",
+  "pi/(4*[[k]])",
+  "3*pi/(2*[[k]])",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( f'(x)=[[amp]][[k]]\\cos([[k]]x) \\), which vanishes when \\( [[k]]x = \\dfrac{\\pi}{2} + n\\pi \\). The only such point inside \\( \\left(0,\\dfrac{\\pi}{[[k]]}\\right) \\) is \\( c = \\dfrac{\\pi}{[[twok]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the right ENDPOINT of the interval, where \\( f \\) is zero, not where \\( f' \\) is zero.",
+  "This is too small: \\( \\cos([[k]]x) \\) has not yet reached zero at this point.",
+  "This is the NEXT zero of \\( \\cos([[k]]x) \\) after the given one, which lies outside the interval \\( \\left(0,\\pi/[[k]]\\right) \\).",
+  "This doubles the correct value, placing it outside the interval.",
+  "This is off by one from the correct value."
+ ]
+}
+]

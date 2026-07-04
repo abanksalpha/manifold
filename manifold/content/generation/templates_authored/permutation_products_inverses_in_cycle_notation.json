@@ -1,0 +1,127 @@
+[
+{
+ "template_id": "perm_product_disjoint_order_v1",
+ "skill_id": "permutation_products_inverses_in_cycle_notation",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 3, "hi": 10},
+  "q": {"type": "int", "lo": 3, "hi": 10},
+  "extra": {"type": "int", "lo": 0, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"p1": "[[p]]+1", "pq": "[[p]]+[[q]]", "n": "[[p]]+[[q]]+[[extra]]"},
+ "stem": "Let \\( \\sigma = \\left(1\\ \\ 2\\ \\ \\cdots\\ \\ [[p]]\\right) \\) and \\( \\tau = \\left([[p1]]\\ \\ \\cdots\\ \\ [[pq]]\\right) \\) be permutations of \\( \\{1,\\dots,[[n]]\\} \\) written in cycle notation. Since \\(\\sigma\\) and \\(\\tau\\) move disjoint sets of elements, they commute. Find the order of the product \\( \\sigma\\tau \\).",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[p]],[[q]])"},
+ "distractors": [
+  "[[p]]*[[q]]",
+  "[[p]]+[[q]]",
+  "[[p]]",
+  "[[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\(\\sigma\\) and \\(\\tau\\) have disjoint support, the order of \\(\\sigma\\tau\\) is \\( \\operatorname{lcm}([[p]],[[q]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the cycle lengths instead of taking the lcm.",
+  "This adds the cycle lengths instead of taking the lcm.",
+  "This is only the length of \\(\\sigma\\), ignoring \\(\\tau\\).",
+  "This is only the length of \\(\\tau\\), ignoring \\(\\sigma\\).",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order."
+ ]
+},
+{
+ "template_id": "perm_product_disjoint_image_v2",
+ "skill_id": "permutation_products_inverses_in_cycle_notation",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 4, "hi": 12},
+  "q": {"type": "int", "lo": 3, "hi": 10},
+  "k": {"type": "int", "lo": 1, "hi": 12}
+ },
+ "constraints": ["Le([[k]], [[p]])"],
+ "derived": {"p1": "[[p]]+1", "pq": "[[p]]+[[q]]", "n": "[[p]]+[[q]]"},
+ "stem": "Let \\( \\sigma = \\left(1\\ \\ 2\\ \\ \\cdots\\ \\ [[p]]\\right) \\) and \\( \\tau = \\left([[p1]]\\ \\ \\cdots\\ \\ [[pq]]\\right) \\) be permutations of \\( \\{1,\\dots,[[n]]\\} \\) in cycle notation, with disjoint support. Find \\( (\\sigma\\tau)([[k]]) \\), the image of \\([[k]]\\) under the product \\(\\sigma\\tau\\) (apply \\(\\tau\\) first, then \\(\\sigma\\)).",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[k]],[[p]])+1"},
+ "distractors": [
+  "[[k]]",
+  "[[k]] - 1",
+  "[[p]] - [[k]] + 1",
+  "[[p1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\(\\tau\\) fixes \\([[k]]\\) (it only moves \\([[p1]],\\dots,[[pq]]\\)), so \\((\\sigma\\tau)([[k]]) = \\sigma([[k]])\\). Since \\(\\sigma\\) is the cycle \\(1\\to2\\to\\cdots\\to[[p]]\\to1\\), this is \\([[k]]+1\\) unless \\([[k]]=[[p]]\\), in which case it wraps to \\(1\\); either way \\((\\sigma\\tau)([[k]]) = [[answer]]\\).",
+ "distractor_rationales": [
+  "This forgets to apply \\(\\sigma\\) at all, leaving \\([[k]]\\) fixed.",
+  "This moves \\([[k]]\\) backward along the cycle instead of forward.",
+  "This reflects \\([[k]]\\) within the cycle instead of advancing it.",
+  "This confuses \\([[k]]\\)'s image with the first element of \\(\\tau\\)'s cycle.",
+  "This is off by one above the correct image.",
+  "This is off by one below the correct image."
+ ]
+},
+{
+ "template_id": "perm_inverse_image_v3",
+ "skill_id": "permutation_products_inverses_in_cycle_notation",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 4, "hi": 18},
+  "k": {"type": "int", "lo": 1, "hi": 18}
+ },
+ "constraints": ["Le([[k]], [[p]])"],
+ "stem": "Let \\( \\sigma = \\left(1\\ \\ 2\\ \\ \\cdots\\ \\ [[p]]\\right) \\) be a permutation of \\( \\{1,\\dots,[[p]]\\} \\) written in cycle notation. Find \\( \\sigma^{-1}([[k]]) \\), the image of \\([[k]]\\) under the inverse permutation \\( \\sigma^{-1} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[k]]-2,[[p]])+1"},
+ "distractors": [
+  "Mod([[k]],[[p]])+1",
+  "[[k]]",
+  "[[p]] - [[k]]",
+  "[[p]] - [[k]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\(\\sigma^{-1}\\) reverses the cycle, sending each element to its predecessor: \\([[k]] \\to [[k]]-1\\), wrapping to \\([[p]]\\) if \\([[k]]=1\\). This gives \\( \\sigma^{-1}([[k]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies \\(\\sigma\\) forward instead of its inverse.",
+  "This forgets to apply the inverse at all, leaving \\([[k]]\\) fixed.",
+  "This reflects \\([[k]]\\) about the midpoint of the cycle instead of taking its predecessor.",
+  "This is a common off-by-one variant of the reflection error above.",
+  "This is off by one above the correct image.",
+  "This is off by one below the correct image."
+ ]
+},
+{
+ "template_id": "perm_product_powers_same_cycle_order_v4",
+ "skill_id": "permutation_products_inverses_in_cycle_notation",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 30},
+  "a": {"type": "int", "lo": 1, "hi": 29},
+  "b": {"type": "int", "lo": 1, "hi": 29}
+ },
+ "constraints": ["Lt([[a]], [[n]])", "Lt([[b]], [[n]])", "Ne(Mod([[a]]+[[b]],[[n]]), 0)"],
+ "stem": "Let \\( \\sigma = \\left(1\\ \\ 2\\ \\ \\cdots\\ \\ [[n]]\\right) \\) be an \\([[n]]\\)-cycle, and let \\( \\rho = \\sigma^{[[a]]} \\) and \\( \\tau = \\sigma^{[[b]]} \\) (also permutations of \\( \\{1,\\dots,[[n]]\\} \\)). Find the order of the product \\( \\rho\\tau \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]/gcd([[n]],Mod([[a]]+[[b]],[[n]]))"},
+ "distractors": [
+  "[[n]]/gcd([[n]],[[a]]+[[b]])",
+  "[[n]]",
+  "gcd([[n]],Mod([[a]]+[[b]],[[n]]))",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\(\\sigma^{[[a]]}\\sigma^{[[b]]} = \\sigma^{[[a]]+[[b]]}\\), and \\(\\sigma^{m}\\) is a shift by \\(m \\bmod [[n]]\\) on \\([[n]]\\) points, the order of \\(\\rho\\tau\\) is \\( [[n]]/\\gcd([[n]], ([[a]]+[[b]]) \\bmod [[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to reduce the exponent sum mod \\([[n]]\\) before taking the gcd.",
+  "This is \\(|S_{[[n]]}\\text{'s cycle}|\\) itself, as if \\(\\rho\\tau\\) were always the full \\([[n]]\\)-cycle.",
+  "This gives the size of the subgroup generated by the shift, not the order of the shift permutation.",
+  "This mistakes the sum of exponents for the order.",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order."
+ ]
+}
+]

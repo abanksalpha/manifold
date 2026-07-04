@@ -1,0 +1,175 @@
+[
+{
+ "template_id": "recover_function_from_derivative_ic_v1",
+ "skill_id": "recover_a_function_from_its_derivative_initial_condi",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "y0": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -3, "hi": 2},
+  "x1": {"type": "int", "lo": -2, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[x0]], [[x1]])"],
+ "stem": "A differentiable function \\( f \\) satisfies \\( f'(x) = ([[a]])x^{2} + ([[b]]) \\) and \\( f([[x0]]) = [[y0]] \\). Find \\( f([[x1]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[y0]]) + integrate([[a]]*t**2 + [[b]], (t, [[x0]], [[x1]]))"},
+ "distractors": [
+  "integrate([[a]]*t**2 + [[b]], (t, [[x0]], [[x1]]))",
+  "([[y0]]) + ([[a]])*[[x1]]**2 + [[b]]",
+  "([[y0]]) + integrate([[a]]*t**2 + [[b]], (t, 0, [[x1]]))",
+  "([[y0]]) - integrate([[a]]*t**2 + [[b]], (t, [[x0]], [[x1]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus, \\( f([[x1]]) = f([[x0]]) + \\int_{[[x0]]}^{[[x1]]} f'(t)\\, dt = ([[y0]]) + \\int_{[[x0]]}^{[[x1]]} \\left( ([[a]])t^{2} + ([[b]]) \\right) dt = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives the net change \\( \\int_{[[x0]]}^{[[x1]]} f' \\) but forgets to add the initial value \\( f([[x0]]) = [[y0]] \\).",
+  "This adds \\( f'([[x1]]) \\) to the initial value instead of integrating the derivative.",
+  "This integrates from 0 rather than from the given point \\( x = [[x0]] \\).",
+  "This subtracts the accumulated change instead of adding it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "recover_function_exponential_derivative_v2",
+ "skill_id": "recover_a_function_from_its_derivative_initial_condi",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 4},
+  "p": {"type": "int", "lo": 2, "hi": 9},
+  "q": {"type": "int", "lo": 2, "hi": 9},
+  "y0": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "A differentiable function \\( f \\) satisfies \\( f'(x) = e^{[[n]] x} \\) and \\( f(\\ln [[p]]) = [[y0]] \\). Find \\( f(\\ln [[q]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[y0]]) + integrate(exp([[n]]*t), (t, log([[p]]), log([[q]])))"},
+ "distractors": [
+  "integrate(exp([[n]]*t), (t, log([[p]]), log([[q]])))",
+  "([[y0]]) + [[q]]**[[n]] - [[p]]**[[n]]",
+  "([[y0]]) + integrate(exp([[n]]*t), (t, 0, log([[q]])))",
+  "([[y0]]) - integrate(exp([[n]]*t), (t, log([[p]]), log([[q]])))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By the Fundamental Theorem of Calculus, \\( f(\\ln [[q]]) = f(\\ln [[p]]) + \\int_{\\ln [[p]]}^{\\ln [[q]]} e^{[[n]]t}\\, dt \\). Since \\( \\int e^{[[n]]t}\\,dt = \\tfrac{1}{[[n]]}e^{[[n]]t} \\) and \\( e^{[[n]]\\ln[[q]]}=[[q]]^{[[n]]} \\), this is \\( ([[y0]]) + \\frac{[[q]]^{[[n]]} - [[p]]^{[[n]]}}{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives the net change alone but forgets to add the initial value \\( f(\\ln [[p]]) = [[y0]] \\).",
+  "This forgets to divide by \\( [[n]] \\) from the antiderivative \\( \\tfrac{1}{[[n]]}e^{[[n]]t} \\).",
+  "This integrates from \\( t=0 \\) instead of from the given point \\( t=\\ln[[p]] \\).",
+  "This subtracts the accumulated change instead of adding it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "recover_function_from_second_derivative_v3",
+ "skill_id": "recover_a_function_from_its_derivative_initial_condi",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "v0": {"type": "int", "lo": -6, "hi": 6},
+  "y0": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -3, "hi": 1},
+  "x1": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A twice-differentiable function \\( f \\) satisfies \\( f''(x) = [[a]] \\) (constant), \\( f'([[x0]]) = [[v0]] \\), and \\( f([[x0]]) = [[y0]] \\). Find \\( f([[x1]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "([[y0]]) + integrate(([[v0]]) + integrate([[a]], (s, [[x0]], u)), (u, [[x0]], [[x1]]))"},
+ "distractors": [
+  "([[y0]]) + ([[v0]])*([[x1]]-[[x0]])",
+  "([[y0]]) + [[a]]*([[x1]]-[[x0]])**2/2",
+  "([[v0]])*([[x1]]-[[x0]]) + [[a]]*([[x1]]-[[x0]])**2/2",
+  "([[y0]]) + ([[v0]])*([[x1]]-[[x0]]) + [[a]]*([[x1]]-[[x0]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Integrating \\( f''(x)=([[a]]) \\) once with \\( f'([[x0]])=([[v0]]) \\) gives \\( f'(x) = ([[v0]]) + ([[a]])(x-([[x0]])) \\). Integrating again with \\( f([[x0]])=([[y0]]) \\) gives \\( f(x) = ([[y0]]) + ([[v0]])(x-([[x0]])) + \\frac{[[a]]}{2}(x-([[x0]]))^{2} \\). At \\( x=[[x1]] \\), this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only the first integration (a linear model), dropping the quadratic contribution of \\( f'' \\) entirely.",
+  "This uses only the SECOND integration's quadratic term, dropping the contribution of the initial velocity \\( f'([[x0]]) \\).",
+  "This forgets to add the initial value \\( f([[x0]]) = [[y0]] \\) after integrating twice.",
+  "This forgets to divide by 2 when integrating the constant second derivative a second time.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "recover_position_from_velocity_word_problem_v4",
+ "skill_id": "recover_a_function_from_its_derivative_initial_condi",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "s0": {"type": "int", "lo": -10, "hi": 10},
+  "t0": {"type": "int", "lo": 0, "hi": 2},
+  "t1": {"type": "int", "lo": 3, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "A particle moves along a line with velocity \\( v(t) = ([[a]])t + ([[b]]) \\) meters per second. At time \\( t=[[t0]] \\) seconds, its position is \\( s([[t0]]) = [[s0]] \\) meters. Find its position \\( s([[t1]]) \\) at time \\( t=[[t1]] \\) seconds.",
+ "answer_spec": {"op": "evaluate", "expr": "([[s0]]) + integrate([[a]]*t + [[b]], (t, [[t0]], [[t1]]))"},
+ "distractors": [
+  "integrate([[a]]*t + [[b]], (t, [[t0]], [[t1]]))",
+  "([[s0]]) + ([[a]])*[[t1]] + [[b]]",
+  "([[s0]]) + integrate([[a]]*t + [[b]], (t, 0, [[t1]]))",
+  "([[s0]]) - integrate([[a]]*t + [[b]], (t, [[t0]], [[t1]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Position is the antiderivative of velocity. By the Fundamental Theorem of Calculus, \\( s([[t1]]) = s([[t0]]) + \\int_{[[t0]]}^{[[t1]]} v(t)\\, dt = ([[s0]]) + \\int_{[[t0]]}^{[[t1]]} \\left(([[a]])t+([[b]])\\right) dt = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives the net displacement alone but forgets to add the initial position \\( s([[t0]]) = [[s0]] \\).",
+  "This adds \\( v([[t1]]) \\) to the initial position instead of integrating the velocity over the elapsed time.",
+  "This integrates from \\( t=0 \\) instead of from the given time \\( t=[[t0]] \\).",
+  "This subtracts the net displacement instead of adding it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "solve_for_input_given_output_value_v5",
+ "skill_id": "recover_a_function_from_its_derivative_initial_condi",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": -1},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "yp": {"type": "int", "lo": -10, "hi": 10},
+  "y0": {"type": "int", "lo": -10, "hi": 10}
+ },
+ "constraints": ["Ne([[y0]], [[yp]])"],
+ "stem": "A differentiable function \\( f \\) satisfies \\( f'(x) = [[a]] \\) (constant) and \\( f([[p]]) = [[yp]] \\). Find the value of \\( x \\) for which \\( f(x) = [[y0]] \\).",
+ "answer_spec": {"op": "solve", "equation": "([[yp]]) + ([[a]])*(x - ([[p]])) = [[y0]]", "var": "x"},
+ "distractors": [
+  "[[p]] + ([[y0]]-[[yp]])/[[a]] + 1",
+  "[[p]] - ([[y0]]-[[yp]])/[[a]]",
+  "([[y0]]-[[yp]])/[[a]]",
+  "[[p]]*([[y0]]-[[yp]])/[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Since \\( f'(x)=([[a]]) \\) is constant, \\( f(x) = ([[yp]]) + ([[a]])(x-([[p]])) \\). Setting this equal to \\( [[y0]] \\) and solving for \\( x \\) gives \\( x = [[p]] + \\dfrac{[[y0]]-([[yp]])}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This otherwise solves correctly but is shifted by an extra 1.",
+  "This flips the sign of the shift term when isolating \\( x \\).",
+  "This drops the reference point \\( p \\) from the answer entirely.",
+  "This multiplies by \\( p \\) instead of adding it as the reference point.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

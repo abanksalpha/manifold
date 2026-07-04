@@ -1,0 +1,4 @@
+{
+    "note": "Deterministic test double for the independent cross-solve gate (independent_solve.py, D32 gate 5). Wired into the isolated e2e runner via MANIFOLD_SOLVE_FIXTURES. It replaces ONLY the blind-solver model call; the agreement logic still runs. 'trust_label' is a perfect solver that returns the item's own correct_index, so it agrees with any genuinely-verified fixture item and keeps the happy-path e2e green offline and free. To exercise the 'verified but solver disagrees -> abstain' path, swap oracle to 'always_wrong'.",
+    "oracle": "trust_label"
+}

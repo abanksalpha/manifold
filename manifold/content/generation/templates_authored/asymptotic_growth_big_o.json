@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "asymptotic_poly_diff_degree_v1",
+ "skill_id": "asymptotic_growth_big_o",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 1, "hi": 9},
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 4, "hi": 7}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "Let \\( f(n) = [[p]]n^{[[a]]} \\) and \\( g(n) = [[q]]n^{[[b]]} \\). To determine whether \\( f(n) = O(g(n)) \\) is a strict bound, evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{f(n)}{g(n)} \\).",
+ "answer_spec": {"op": "limit", "expr": "[[p]]*n**[[a]]/([[q]]*n**[[b]])", "var": "n", "point": "oo"},
+ "distractors": ["[[p]]/[[q]]", "[[q]]/[[p]]", "1", "[[b]] - [[a]]", "[[a]]/[[b]]", "[[b]]/[[a]]"],
+ "solution": "Since \\( g \\) has the strictly larger exponent (\\( [[b]] > [[a]] \\)), \\( \\frac{f(n)}{g(n)} = \\frac{[[p]]}{[[q]]}n^{[[a]]-[[b]]}\\to 0 \\) as \\( n\\to\\infty \\). The limit is \\( [[answer]] \\), confirming \\( f(n)=o(g(n)) \\).",
+ "distractor_rationales": [
+  "This is just the ratio of the leading coefficients, ignoring that the exponents differ.",
+  "This is the reciprocal of the coefficient ratio, ignoring the exponents entirely.",
+  "This assumes the two functions grow at the same rate.",
+  "This is the difference of the exponents rather than the value of the limit.",
+  "This confuses the exponent ratio with the limit of the function ratio.",
+  "This is the reciprocal of the exponent ratio, still not the limit."
+ ]
+},
+{
+ "template_id": "asymptotic_poly_same_degree_v1",
+ "skill_id": "asymptotic_growth_big_o",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 12},
+  "q": {"type": "int", "lo": 1, "hi": 12},
+  "k": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "Let \\( f(n) = [[p]]n^{[[k]]} + n \\) and \\( g(n) = [[q]]n^{[[k]]} \\). Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{f(n)}{g(n)} \\) to determine whether \\( f \\) and \\( g \\) belong to the same growth order \\( \\Theta(n^{[[k]]}) \\).",
+ "answer_spec": {"op": "limit", "expr": "([[p]]*n**[[k]] + n)/([[q]]*n**[[k]])", "var": "n", "point": "oo"},
+ "distractors": ["[[q]]/[[p]]", "1", "[[p]]*[[q]]", "[[p]] - [[q]]", "[[p]] + [[q]]", "1/[[q]]"],
+ "solution": "The lower-order term \\( n \\) vanishes relative to \\( n^{[[k]]} \\), so \\( \\frac{f(n)}{g(n)} \\to \\frac{[[p]]}{[[q]]} = [[answer]] \\), a finite nonzero limit — the two functions are of the same growth order.",
+ "distractor_rationales": [
+  "This is the reciprocal of the correct coefficient ratio.",
+  "This assumes the two functions must grow at exactly the same rate with no scaling.",
+  "This multiplies the coefficients instead of dividing them.",
+  "This subtracts the coefficients instead of dividing them.",
+  "This adds the coefficients instead of dividing them.",
+  "This uses only the denominator's coefficient rather than the true ratio."
+ ]
+},
+{
+ "template_id": "asymptotic_exp_vs_poly_v1",
+ "skill_id": "asymptotic_growth_big_o",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 9},
+  "c": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(n) = n^{[[k]]} \\) and \\( g(n) = [[c]]^{n} \\). Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{f(n)}{g(n)} \\) to compare the growth of the polynomial \\( f \\) against the exponential \\( g \\).",
+ "answer_spec": {"op": "limit", "expr": "n**[[k]]/[[c]]**n", "var": "n", "point": "oo"},
+ "distractors": ["[[k]]/[[c]]", "[[c]]/[[k]]", "1", "[[c]]**[[k]]", "[[k]] - [[c]]", "[[c]] - [[k]]"],
+ "solution": "Exponential growth always dominates polynomial growth, so \\( \\frac{n^{[[k]]}}{[[c]]^n}\\to [[answer]] \\) as \\( n\\to\\infty \\): the exponential \\( g \\) grows strictly faster.",
+ "distractor_rationales": [
+  "This treats the exponent [[k]] and the base [[c]] as if they combined into a simple ratio.",
+  "This is the reciprocal of the previous incorrect ratio.",
+  "This assumes the polynomial and exponential grow at comparable rates.",
+  "This evaluates an unrelated power instead of the limit of the ratio.",
+  "This subtracts the base from the exponent instead of taking the limit.",
+  "This subtracts the exponent from the base instead of taking the limit."
+ ]
+},
+{
+ "template_id": "asymptotic_exp_vs_exp_v1",
+ "skill_id": "asymptotic_growth_big_o",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 1, "hi": 9},
+  "a": {"type": "int", "lo": 2, "hi": 3},
+  "b": {"type": "int", "lo": 4, "hi": 6}
+ },
+ "constraints": ["Lt([[a]], [[b]])"],
+ "stem": "Let \\( f(n) = [[p]]\\cdot [[a]]^{n} \\) and \\( g(n) = [[q]]\\cdot [[b]]^{n} \\). Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{f(n)}{g(n)} \\) to compare the two exponential growth rates.",
+ "answer_spec": {"op": "limit", "expr": "[[p]]*[[a]]**n/([[q]]*[[b]]**n)", "var": "n", "point": "oo"},
+ "distractors": ["[[p]]/[[q]]", "[[a]]/[[b]]", "1", "[[b]]/[[a]]", "[[q]]/[[p]]", "[[b]] - [[a]]"],
+ "solution": "Since \\( [[b]] > [[a]] \\), the ratio \\( \\left(\\frac{[[a]]}{[[b]]}\\right)^n \\to 0 \\), so \\( \\frac{f(n)}{g(n)} = \\frac{[[p]]}{[[q]]}\\left(\\frac{[[a]]}{[[b]]}\\right)^n \\to [[answer]] \\): the larger base [[b]] dominates.",
+ "distractor_rationales": [
+  "This is just the ratio of the leading coefficients, ignoring that the bases differ.",
+  "This is the ratio of the bases, mistaken for the limit itself.",
+  "This assumes the two exponentials grow at the same rate.",
+  "This is the reciprocal of the base ratio, still not the limit.",
+  "This is the reciprocal of the coefficient ratio, ignoring the bases.",
+  "This is the difference of the bases rather than the value of the limit."
+ ]
+},
+{
+ "template_id": "asymptotic_log_vs_poly_v1",
+ "skill_id": "asymptotic_growth_big_o",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 9},
+  "q": {"type": "int", "lo": 1, "hi": 9},
+  "k": {"type": "int", "lo": 1, "hi": 3},
+  "m": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(n) = [[p]]\\left(\\log n\\right)^{[[k]]} \\) and \\( g(n) = [[q]]n^{[[m]]} \\). Evaluate \\( \\displaystyle\\lim_{n\\to\\infty} \\frac{f(n)}{g(n)} \\) to compare the growth of the logarithmic function \\( f \\) against the polynomial \\( g \\).",
+ "answer_spec": {"op": "limit", "expr": "[[p]]*log(n)**[[k]]/([[q]]*n**[[m]])", "var": "n", "point": "oo"},
+ "distractors": ["[[p]]/[[q]]", "[[k]]/[[m]]", "1", "[[m]]/[[k]]", "[[q]]/[[p]]", "[[k]] - [[m]]"],
+ "solution": "Every positive power of \\( n \\) eventually outgrows every power of \\( \\log n \\), so \\( \\frac{[[p]](\\log n)^{[[k]]}}{[[q]]n^{[[m]]}}\\to [[answer]] \\) as \\( n\\to\\infty \\): the polynomial \\( g \\) grows strictly faster.",
+ "distractor_rationales": [
+  "This is just the ratio of the leading coefficients, ignoring the log vs. polynomial comparison.",
+  "This treats the exponents [[k]] and [[m]] as if they directly gave the limit.",
+  "This assumes the logarithmic and polynomial functions grow at comparable rates.",
+  "This is the reciprocal of the exponent ratio, still not the limit.",
+  "This is the reciprocal of the coefficient ratio, ignoring the exponents.",
+  "This is the difference of the exponents rather than the value of the limit."
+ ]
+}
+]

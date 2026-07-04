@@ -1,0 +1,220 @@
+[
+ {
+  "template_id": "similar_triangles_and_proportional_segments_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 6},
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "d": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Ne([[d]], [[a]])"],
+  "derived": {"b": "[[a]]*[[m]]"},
+  "stem": "Triangle \\( DEF \\) is similar to triangle \\( ABC \\), with vertices corresponding in the order \\( A\\leftrightarrow D \\), \\( B\\leftrightarrow E \\), \\( C\\leftrightarrow F \\). In triangle \\( ABC \\), \\( AB = [[a]] \\) and \\( BC = [[b]] \\). If \\( DE = [[d]] \\), what is the length of \\( EF \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]*[[d]]/[[a]]"},
+  "distractors": [
+   "[[b]]*[[a]]/[[d]]",
+   "[[b]]*[[d]]",
+   "[[b]] + [[d]] - [[a]]",
+   "[[a]]*[[d]]",
+   "[[answer]] + [[m]]",
+   "[[answer]] - [[m]]"
+  ],
+  "solution": "Corresponding sides of similar triangles are proportional, so \\( \\frac{EF}{BC} = \\frac{DE}{AB} \\). Thus \\( EF = BC\\cdot\\frac{DE}{AB} = [[b]]\\cdot\\frac{[[d]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio, using \\( \\frac{AB}{DE} \\) instead of \\( \\frac{DE}{AB} \\).",
+   "This multiplies by \\( DE \\) but forgets to divide by \\( AB \\).",
+   "This treats the sides as differing by a constant (additive) rather than a ratio.",
+   "This scales \\( AB \\) by \\( DE \\) instead of scaling \\( BC \\).",
+   "This is off from the correct length by a small amount.",
+   "This is off from the correct length by a small amount."
+  ]
+ },
+ {
+  "template_id": "similar_triangles_and_proportional_segments_side_splitter_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "p": {"type": "int", "lo": 2, "hi": 15},
+   "q": {"type": "int", "lo": 2, "hi": 15},
+   "r": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": [],
+  "stem": "In triangle \\( ABC \\), point \\( D \\) lies on \\( AB \\) and point \\( E \\) lies on \\( AC \\), with segment \\( DE \\) parallel to \\( BC \\). If \\( AD = [[p]] \\), \\( DB = [[q]] \\), and \\( AE = [[r]] \\), what is the length of \\( EC \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[r]]*[[q]]/[[p]]"},
+  "distractors": [
+   "[[r]]*[[p]]/[[q]]",
+   "[[p]]*[[q]]/[[r]]",
+   "[[r]] + [[q]] - [[p]]",
+   "[[q]]*[[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( DE \\parallel BC \\), the Triangle Proportionality (Side-Splitter) Theorem gives \\( \\frac{AD}{DB} = \\frac{AE}{EC} \\). Solving for \\( EC \\): \\( EC = AE\\cdot\\frac{DB}{AD} = [[r]]\\cdot\\frac{[[q]]}{[[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio \\( \\frac{DB}{AD} \\) to \\( \\frac{AD}{DB} \\).",
+   "This mixes up which segment plays the role of \\( AE \\) versus \\( EC \\) in the proportion.",
+   "This treats the segments as differing by a constant rather than in proportion.",
+   "This multiplies the two given segments on the wrong side of the triangle.",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ },
+ {
+  "template_id": "similar_triangles_and_proportional_segments_perimeter_ratio_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 2, "hi": 9},
+   "P": {"type": "int", "lo": 10, "hi": 200}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "Triangle \\( ABC \\) is similar to triangle \\( DEF \\), with corresponding sides \\( AB \\) and \\( DE \\) in the ratio \\( AB : DE = [[a]] : [[b]] \\). If the perimeter of triangle \\( ABC \\) is \\( [[P]] \\), what is the perimeter of triangle \\( DEF \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[P]]*[[b]]/[[a]]"},
+  "distractors": [
+   "[[P]]*[[a]]/[[b]]",
+   "[[P]]*([[b]]/[[a]])**2",
+   "[[P]] + [[b]] - [[a]]",
+   "[[P]]*[[a]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Perimeters of similar figures scale in the same ratio as their corresponding sides, so \\( \\frac{\\text{perimeter}_{DEF}}{\\text{perimeter}_{ABC}} = \\frac{DE}{AB} = \\frac{[[b]]}{[[a]]} \\). Thus perimeter of \\( DEF \\) is \\( [[P]]\\cdot\\frac{[[b]]}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the side ratio.",
+   "This mistakenly squares the ratio, applying the area-scaling law to a perimeter (a length).",
+   "This treats the perimeters as differing additively rather than proportionally.",
+   "This multiplies by both ratio terms instead of just their ratio.",
+   "This is off from the correct perimeter by one.",
+   "This is off from the correct perimeter by one."
+  ]
+ },
+ {
+  "template_id": "similar_triangles_and_proportional_segments_area_ratio_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 2, "hi": 9},
+   "A": {"type": "int", "lo": 10, "hi": 200}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "Triangle \\( ABC \\) is similar to triangle \\( DEF \\), with corresponding sides \\( AB \\) and \\( DE \\) in the ratio \\( AB : DE = [[a]] : [[b]] \\). If the area of triangle \\( ABC \\) is \\( [[A]] \\), what is the area of triangle \\( DEF \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[A]]*([[b]]/[[a]])**2"},
+  "distractors": [
+   "[[A]]*[[b]]/[[a]]",
+   "[[A]]*([[a]]/[[b]])**2",
+   "[[A]] + [[b]] - [[a]]",
+   "[[A]]*([[b]]/[[a]])**3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Areas of similar figures scale as the square of the ratio of corresponding sides, so \\( \\frac{\\text{area}_{DEF}}{\\text{area}_{ABC}} = \\left(\\frac{DE}{AB}\\right)^{2} = \\left(\\frac{[[b]]}{[[a]]}\\right)^{2} \\). Thus area of \\( DEF \\) is \\( [[A]]\\cdot\\left(\\frac{[[b]]}{[[a]]}\\right)^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This applies the perimeter (linear) scaling law instead of squaring the ratio.",
+   "This inverts the side ratio before squaring.",
+   "This treats the areas as differing additively rather than by a squared ratio.",
+   "This mistakenly cubes the ratio, applying the volume-scaling law to a plane figure.",
+   "This is off from the correct area by one.",
+   "This is off from the correct area by one."
+  ]
+ },
+ {
+  "template_id": "similar_triangles_and_proportional_segments_altitude_geometric_mean_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "p": {"type": "int", "lo": 2, "hi": 30},
+   "q": {"type": "int", "lo": 2, "hi": 30}
+  },
+  "constraints": ["Ne([[p]], [[q]])"],
+  "stem": "In right triangle \\( ABC \\), the altitude from the right angle to the hypotenuse divides the hypotenuse into two segments of length \\( [[p]] \\) and \\( [[q]] \\). What is the length of the altitude?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[p]]*[[q]])"},
+  "distractors": [
+   "([[p]]+[[q]])/2",
+   "[[p]]*[[q]]",
+   "sqrt([[p]]+[[q]])",
+   "sqrt([[p]]**2+[[q]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The altitude to the hypotenuse creates two smaller triangles, each similar to the original; this gives the geometric-mean relation \\( h = \\sqrt{pq} = \\sqrt{[[p]]\\cdot [[q]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the arithmetic mean of the two segments instead of the geometric mean.",
+   "This multiplies the segments but forgets to take the square root.",
+   "This adds the segments before taking the square root instead of multiplying them.",
+   "This applies the Pythagorean theorem to the two segments, which is not the correct relationship here.",
+   "This is off from the correct altitude by one.",
+   "This is off from the correct altitude by one."
+  ]
+ },
+ {
+  "template_id": "similar_triangles_and_proportional_segments_leg_geometric_mean_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "c": {"type": "int", "lo": 5, "hi": 40},
+   "p": {"type": "int", "lo": 2, "hi": 39}
+  },
+  "constraints": ["Lt([[p]], [[c]])"],
+  "stem": "In right triangle \\( ABC \\), the altitude from the right angle to the hypotenuse of length \\( [[c]] \\) meets the hypotenuse so that the segment adjacent to leg \\( AB \\) has length \\( [[p]] \\). What is the length of leg \\( AB \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[c]]*[[p]])"},
+  "distractors": [
+   "sqrt([[c]] - [[p]])",
+   "sqrt([[c]] + [[p]])",
+   "[[c]]*[[p]]",
+   "sqrt([[c]]**2 - [[p]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The altitude to the hypotenuse makes each leg the geometric mean of the hypotenuse and its adjacent segment: \\( AB^{2} = c\\cdot p \\), so \\( AB = \\sqrt{[[c]]\\cdot [[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the segment from the hypotenuse instead of multiplying, then takes a square root.",
+   "This adds the segment to the hypotenuse instead of multiplying, then takes a square root.",
+   "This multiplies the hypotenuse and segment but forgets to take the square root.",
+   "This applies the Pythagorean theorem to the hypotenuse and segment, which is not the correct relationship here.",
+   "This is off from the correct leg length by one.",
+   "This is off from the correct leg length by one."
+  ]
+ },
+ {
+  "template_id": "similar_triangles_and_proportional_segments_shadow_word_problem_v1",
+  "skill_id": "similar_triangles_and_proportional_segments",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "h1": {"type": "int", "lo": 2, "hi": 30},
+   "s1": {"type": "int", "lo": 2, "hi": 20},
+   "s2": {"type": "int", "lo": 2, "hi": 60}
+  },
+  "constraints": [],
+  "stem": "A vertical pole \\( [[h1]] \\) feet tall casts a shadow \\( [[s1]] \\) feet long. At the same moment, a nearby tree casts a shadow \\( [[s2]] \\) feet long. Assuming the pole, the tree, and their shadows form similar right triangles, what is the height of the tree, in feet?",
+  "answer_spec": {"op": "evaluate", "expr": "[[h1]]*[[s2]]/[[s1]]"},
+  "distractors": [
+   "[[h1]]*[[s1]]/[[s2]]",
+   "[[s1]]*[[s2]]/[[h1]]",
+   "[[h1]] + [[s2]] - [[s1]]",
+   "[[h1]]*[[s2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The pole's height-to-shadow ratio equals the tree's height-to-shadow ratio (similar triangles): \\( \\frac{h_1}{s_1} = \\frac{h_2}{s_2} \\). So the tree's height is \\( h_2 = h_1\\cdot\\frac{s_2}{s_1} = [[h1]]\\cdot\\frac{[[s2]]}{[[s1]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the two shadow lengths in the ratio.",
+   "This divides by the pole's height instead of using it as a multiplier.",
+   "This treats the height and shadow lengths as differing additively rather than proportionally.",
+   "This multiplies by the tree's shadow but forgets to divide by the pole's shadow.",
+   "This is off from the correct height by one.",
+   "This is off from the correct height by one."
+  ]
+ }
+]

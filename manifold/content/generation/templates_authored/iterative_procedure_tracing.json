@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "iterative_procedure_affine_v1",
+ "skill_id": "iterative_procedure_tracing",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 4},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": ["Ne([[b]], 0)"],
+ "stem": "Trace the following procedure:\n\\[ x = [[x0]] \\]\n\\[ \\textbf{repeat } [[n]] \\textbf{ times}: \\]\n\\[ \\quad x = [[a]]\\cdot x + ([[b]]) \\]\nWhat value does \\( x \\) hold after the procedure finishes?",
+ "answer_spec": {"op": "iterate", "f": "[[a]]*x + [[b]]", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+ "distractors": ["[[answer]] + 1", "[[answer]] - 1", "[[answer]] + [[a]]", "[[answer]] - [[b]]", "[[a]]*[[x0]] + [[b]]", "[[answer]] + [[n]]"],
+ "solution": "Apply the update \\( x \\mapsto [[a]]x+([[b]]) \\) starting from \\( x=[[x0]] \\), a total of [[n]] times, to get \\( x=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one from the true final value.",
+  "This is off by one from the true final value in the other direction.",
+  "This adds one extra multiplication by [[a]] without the matching additions.",
+  "This subtracts the update constant once instead of applying the full update chain.",
+  "This stops after only ONE application of the update instead of [[n]].",
+  "This adds an unrelated adjustment of [[n]] to the correct final value."
+ ]
+},
+{
+ "template_id": "iterative_procedure_arith_accumulator_v1",
+ "skill_id": "iterative_procedure_tracing",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "int", "lo": 4, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "Trace the following procedure:\n\\[ s = 0 \\]\n\\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\]\n\\[ \\quad s = s + ([[c]]\\cdot i + ([[d]])) \\]\nWhat value does \\( s \\) hold after the loop finishes?",
+ "answer_spec": {"op": "sum", "expr": "[[c]]*i + [[d]]", "var": "i", "lo": "1", "hi": "[[n]]"},
+ "distractors": ["[[answer]] + [[n]]", "[[answer]] - [[n]]", "[[c]]*[[n]]*([[n]]+1)/2", "[[d]]*[[n]]", "[[answer]] + [[c]]", "[[answer]] - [[d]]"],
+ "solution": "The accumulator sums \\( [[c]]i+([[d]]) \\) for \\( i=1,\\dots,[[n]] \\): \\( s=\\sum_{i=1}^{[[n]]} ([[c]]i+([[d]])) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds one extra term's worth of drift to the correct sum.",
+  "This subtracts one extra term's worth of drift from the correct sum.",
+  "This drops the constant offset [[d]] added on every iteration.",
+  "This drops the [[c]]\\cdot i term and only accumulates the constant offset.",
+  "This adds an unrelated adjustment of [[c]] to the correct total.",
+  "This subtracts an unrelated adjustment of [[d]] from the correct total."
+ ]
+},
+{
+ "template_id": "iterative_procedure_geometric_accumulator_v1",
+ "skill_id": "iterative_procedure_tracing",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "p0": {"type": "int", "lo": 1, "hi": 5},
+  "r": {"type": "int", "lo": 2, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Trace the following procedure:\n\\[ p = [[p0]] \\]\n\\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\]\n\\[ \\quad p = p \\cdot [[r]] \\]\nWhat value does \\( p \\) hold after the loop finishes?",
+ "answer_spec": {"op": "evaluate", "expr": "[[p0]]*[[r]]**[[n]]"},
+ "distractors": ["[[p0]]*[[r]]**([[n]]-1)", "[[p0]]*[[r]]**([[n]]+1)", "[[p0]]*[[n]]*[[r]]", "[[r]]**[[n]]", "[[answer]] + [[r]]", "[[answer]] - 1"],
+ "solution": "Each pass multiplies \\( p \\) by [[r]], so after [[n]] passes \\( p=[[p0]]\\cdot[[r]]^{[[n]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This stops one multiplication short of the correct count.",
+  "This applies one extra multiplication beyond the correct count.",
+  "This confuses repeated multiplication with repeated addition.",
+  "This forgets to include the initial value [[p0]] as a factor.",
+  "This adds an unrelated adjustment of [[r]] to the correct final value.",
+  "This is off by one from the true final value."
+ ]
+},
+{
+ "template_id": "iterative_procedure_modular_v1",
+ "skill_id": "iterative_procedure_tracing",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "m": {"type": "int", "lo": 5, "hi": 13},
+  "x0": {"type": "int", "lo": 0, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Lt([[x0]], [[m]])"],
+ "stem": "Trace the following procedure:\n\\[ x = [[x0]] \\]\n\\[ \\textbf{repeat } [[n]] \\textbf{ times}: \\]\n\\[ \\quad x = ([[a]]\\cdot x + [[b]]) \\bmod [[m]] \\]\nWhat value does \\( x \\) hold after the procedure finishes? (Give the result as an integer in \\( \\{0,1,\\dots,[[m]]-1\\} \\).)",
+ "answer_spec": {"op": "iterate", "f": "Mod([[a]]*x + [[b]], [[m]])", "x0": "[[x0]]", "n": "[[n]]", "var": "x"},
+ "distractors": ["Mod([[answer]] + 1, [[m]])", "Mod([[answer]] - 1, [[m]])", "Mod([[a]]*[[x0]] + [[b]], [[m]])", "Mod([[answer]] + [[m]] - 2, [[m]])", "[[a]]*[[x0]] + [[b]]", "Mod([[answer]] + [[a]], [[m]])"],
+ "solution": "Apply \\( x \\mapsto ([[a]]x+[[b]]) \\bmod [[m]] \\) starting from \\( x=[[x0]] \\), [[n]] times, to get \\( x=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is off by one (mod [[m]]) from the true final value.",
+  "This is off by one (mod [[m]]) from the true final value in the other direction.",
+  "This stops after only ONE application of the update instead of [[n]].",
+  "This is off by two (mod [[m]]) from the true final value.",
+  "This forgets to reduce mod [[m]] after a single update.",
+  "This adds an unrelated adjustment of [[a]] (mod [[m]]) to the correct final value."
+ ]
+},
+{
+ "template_id": "iterative_procedure_factorial_v1",
+ "skill_id": "iterative_procedure_tracing",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 8},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Trace the following procedure:\n\\[ p = 1 \\]\n\\[ \\textbf{for } i = 1 \\textbf{ to } [[n]]: \\]\n\\[ \\quad p = p \\cdot i \\]\n\\[ \\textbf{return } p + ([[c]]) \\]\nWhat value does the procedure return?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]]) + [[c]]"},
+ "distractors": ["factorial([[n]])", "factorial([[n]] - 1) + [[c]]", "factorial([[n]] + 1) + [[c]]", "[[n]]*[[c]]", "[[answer]] + 1", "[[answer]] - [[c]]"],
+ "solution": "The loop computes \\( p=[[n]]! \\), so the procedure returns \\( [[n]]! + ([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to add the constant offset [[c]] at the end.",
+  "This stops the factorial product one multiplication short.",
+  "This applies one extra multiplication beyond \\( [[n]]! \\).",
+  "This confuses the returned sum with an unrelated product of [[n]] and [[c]].",
+  "This is off by one from the true return value.",
+  "This subtracts [[c]] twice instead of adding it once."
+ ]
+}
+]

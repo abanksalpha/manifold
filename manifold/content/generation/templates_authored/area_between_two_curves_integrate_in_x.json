@@ -1,0 +1,152 @@
+[
+ {
+  "template_id": "area_between_curves_x_v1",
+  "skill_id": "area_between_two_curves_integrate_in_x",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -4, "hi": 3},
+   "r2": {"type": "int", "lo": -3, "hi": 5}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Ne([[r1]], 0)", "Ne([[r2]], 0)", "Ne([[r1]] + [[r2]], 0)"],
+  "derived": {"m": "[[r1]] + [[r2]]", "c": "-[[r1]]*[[r2]]"},
+  "stem": "Find the area of the region enclosed between the parabola \\( y = x^{2} \\) and the line \\( y = [[m]]x + ([[c]]) \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]*x + [[c]] - x**2", "var": "x", "bounds": ["[[r1]]", "[[r2]]"]},
+  "distractors": [
+   "2*[[answer]]",
+   "3*[[answer]]",
+   "([[r2]] - [[r1]])**2",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The curves meet where \\( x^{2} = [[m]]x + ([[c]]) \\), namely at \\( x = [[r1]] \\) and \\( x = [[r2]] \\). Between these the line lies above the parabola, so the area is \\( \\int_{[[r1]]}^{[[r2]]}\\left([[m]]x + ([[c]]) - x^{2}\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the correct area, as if the antiderivative factor of \\( \\tfrac16 \\) were \\( \\tfrac13 \\).",
+   "This triples the correct area (using \\( \\tfrac12 \\) instead of \\( \\tfrac16 \\)).",
+   "This is the square of the horizontal width, not the enclosed area.",
+   "This integrates \\( \\text{bottom} - \\text{top} \\), giving the negative of the area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "area_cubic_vs_x_axis_v1",
+  "skill_id": "area_between_two_curves_integrate_in_x",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 4},
+   "q": {"type": "int", "lo": 5, "hi": 9}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "The curve \\( y = x(x-[[p]])(x-[[q]]) \\) crosses the \\( x \\)-axis at \\( x = 0, [[p]], [[q]] \\), lying above the axis on part of \\( [0,[[q]]] \\) and below it on the rest. Find the TOTAL area of the region(s) enclosed between the curve and the \\( x \\)-axis on \\( 0 \\le x \\le [[q]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "Abs(x*(x - [[p]])*(x - [[q]]))", "var": "x", "bounds": ["0", "[[q]]"]},
+  "distractors": [
+   "[[q]]**4/4 - ([[p]]+[[q]])*[[q]]**3/3 + [[p]]*[[q]]**3/2",
+   "[[answer]]/2",
+   "2*[[answer]]",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[p]]",
+   "[[q]]**2*([[q]]-[[p]])/2"
+  ],
+  "solution": "The curve is positive on \\( (0,[[p]]) \\) and negative on \\( ([[p]],[[q]]) \\), so the total (unsigned) area requires \\( \\int_{0}^{[[q]]}\\left|x(x-[[p]])(x-[[q]])\\right|dx = [[answer]] \\), not the plain (signed) integral.",
+  "distractor_rationales": [
+   "This is the plain signed integral \\( \\int_{0}^{[[q]]} x(x-[[p]])(x-[[q]])\\,dx \\), which cancels the two regions instead of adding their areas.",
+   "This only counts one of the two enclosed regions.",
+   "This double-counts the enclosed area.",
+   "This is off by \\( [[p]] \\) from the correct total area.",
+   "This is off by \\( [[p]] \\) from the correct total area.",
+   "This treats the region as a triangle-like shape with no calculus basis."
+  ]
+ },
+ {
+  "template_id": "area_two_parabolas_v1",
+  "skill_id": "area_between_two_curves_integrate_in_x",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -3, "hi": 3},
+   "s": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {"q": "[[p]] + 2*[[s]]**2"},
+  "stem": "Find the area of the region enclosed between the upward-opening parabola \\( y = x^{2} + ([[p]]) \\) and the downward-opening parabola \\( y = -x^{2} + [[q]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "(-x**2 + [[q]]) - (x**2 + [[p]])", "var": "x", "bounds": ["-[[s]]", "[[s]]"]},
+  "distractors": [
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "(2*[[s]])**2",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The parabolas meet where \\( x^{2}+([[p]]) = -x^{2}+[[q]] \\), i.e. at \\( x = \\pm[[s]] \\). The downward parabola lies above the upward one between these points, so the area is \\( \\int_{-[[s]]}^{[[s]]}\\left((-x^{2}+[[q]]) - (x^{2}+([[p]]))\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the correct area.",
+   "This halves the correct area.",
+   "This is the square of the horizontal width, not the enclosed area.",
+   "This integrates \\( \\text{bottom} - \\text{top} \\), giving the negative of the area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "area_abs_value_triangle_v1",
+  "skill_id": "area_between_two_curves_integrate_in_x",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Find the area of the triangular region enclosed between the V-shaped curve \\( y = |x - [[h]]| \\) and the horizontal line \\( y = [[k]] \\).",
+  "answer_spec": {"op": "integrate", "expr": "[[k]] - Abs(x - [[h]])", "var": "x", "bounds": ["[[h]] - [[k]]", "[[h]] + [[k]]"]},
+  "distractors": [
+   "2*[[k]]*[[k]]",
+   "[[k]]*[[k]]/2",
+   "2*[[answer]]",
+   "-[[answer]]",
+   "[[answer]] + [[h]]",
+   "[[answer]] - [[h]]"
+  ],
+  "solution": "The curves meet where \\( |x-[[h]]| = [[k]] \\), i.e. \\( x = [[h]]-[[k]] \\) and \\( x = [[h]]+[[k]] \\). The line lies above the V-shape between these points, giving a triangle of base \\( 2[[k]] \\) and height \\( [[k]] \\): \\( \\int_{[[h]]-[[k]]}^{[[h]]+[[k]]}\\left([[k]] - |x-[[h]]|\\right)dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the full base times height, \\( 2k \\cdot k \\), instead of half that for a triangle.",
+   "This computes half the triangle's area as if the base were only \\( k \\).",
+   "This doubles the correct area.",
+   "This integrates \\( \\text{bottom} - \\text{top} \\), giving the negative of the area.",
+   "This is off by \\( [[h]] \\) from the correct area."
+  ]
+ },
+ {
+  "template_id": "area_given_interval_no_intersection_v1",
+  "skill_id": "area_between_two_curves_integrate_in_x",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 5, "hi": 10},
+   "q": {"type": "int", "lo": -4, "hi": 4},
+   "a": {"type": "int", "lo": -3, "hi": 2},
+   "b": {"type": "int", "lo": 3, "hi": 7}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Gt(4*[[p]], [[q]]**2)"],
+  "stem": "On the interval \\( [[a]] \\le x \\le [[b]] \\), the curve \\( y = x^{2} + [[p]] \\) lies entirely above the line \\( y = [[q]]x \\). Find the area of the region between them on this interval.",
+  "answer_spec": {"op": "integrate", "expr": "(x**2 + [[p]]) - [[q]]*x", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "([[b]]**2+[[p]]-[[q]]*[[b]]) - ([[a]]**2+[[p]]-[[q]]*[[a]])",
+   "([[b]]**2+[[p]]-[[q]]*[[b]])*([[b]]-[[a]])",
+   "-[[answer]]",
+   "2*[[answer]]",
+   "[[answer]] + [[p]]",
+   "[[answer]] - [[p]]"
+  ],
+  "solution": "Since \\( x^{2}+[[p]]-[[q]]x \\) has no real roots (its discriminant \\( [[q]]^{2}-4[[p]] \\) is negative), the top curve stays above the line on the whole given interval, and the area is directly \\( \\int_{[[a]]}^{[[b]]}\\left((x^{2}+[[p]]) - [[q]]x\\right)dx = [[answer]] \\), with no need to solve for intersection points first.",
+  "distractor_rationales": [
+   "This evaluates the vertical gap only at \\( x=[[b]] \\) minus at \\( x=[[a]] \\), instead of integrating it.",
+   "This uses the gap at \\( x=[[b]] \\) times the width, a right-rectangle approximation.",
+   "This integrates \\( \\text{bottom} - \\text{top} \\), giving the negative of the area.",
+   "This doubles the correct area.",
+   "This is off by \\( [[p]] \\) from the correct area."
+  ]
+ }
+]

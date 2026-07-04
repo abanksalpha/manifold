@@ -1,0 +1,404 @@
+[
+ {
+  "template_id": "tangent_line_yintercept_v1",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "q": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [],
+  "stem": "The tangent line to \\( y=[[p]]x^{2}+([[q]])x+([[r]]) \\) at \\( x=[[x0]] \\) crosses the \\( y \\)-axis at what value of \\( y \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[p]]*[[x0]]**2 + [[q]]*[[x0]] + [[r]]) - [[x0]]*(2*[[p]]*[[x0]] + [[q]])"
+  },
+  "distractors": [
+   "[[p]]*[[x0]]**2 + [[q]]*[[x0]] + [[r]]",
+   "2*[[p]]*[[x0]] + [[q]]",
+   "[[r]]",
+   "[[p]]*[[x0]]**2 + [[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Tangent: \\( y=f([[x0]])+f'([[x0]])(x-[[x0]]) \\); its \\( y \\)-intercept is \\( f([[x0]])-[[x0]]f'([[x0]]) = [[answer]] \\).",
+  "distractor_rationales": []
+ },
+ {
+  "template_id": "tangent_line_xintercept_v2",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "q": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne(2*[[p]]*[[x0]]+[[q]], 0)"
+  ],
+  "stem": "The tangent line to \\( y=[[p]]x^{2}+([[q]])x+([[r]]) \\) at \\( x=[[x0]] \\) crosses the \\( x \\)-axis at what value of \\( x \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[x0]] - ([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]])/(2*[[p]]*[[x0]]+[[q]])"
+  },
+  "distractors": [
+   "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]])/(2*[[p]]*[[x0]]+[[q]])",
+   "[[x0]] + ([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]])/(2*[[p]]*[[x0]]+[[q]])",
+   "[[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]",
+   "2*[[p]]*[[x0]]+[[q]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Tangent: \\( y=f([[x0]])+f'([[x0]])(x-[[x0]]) \\); setting \\( y=0 \\) gives \\( x=[[x0]] - \\dfrac{f([[x0]])}{f'([[x0]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports only the correction term \\( f(x_0)/f'(x_0) \\), forgetting to subtract it from \\( x_0 \\).",
+   "This adds the correction term instead of subtracting it.",
+   "This reports \\( f([[x0]]) \\), the function value, instead of the tangent's \\( x \\)-intercept.",
+   "This reports the slope \\( f'([[x0]]) \\) instead of the \\( x \\)-intercept.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_line_value_at_other_point_v3",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "q": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "x1": {
+    "type": "int",
+    "lo": -4,
+    "hi": 5
+   }
+  },
+  "constraints": [
+   "Ne([[x1]], [[x0]])"
+  ],
+  "stem": "Let \\( L(x) \\) be the tangent line to \\( y=[[p]]x^{2}+([[q]])x+([[r]]) \\) at \\( x=[[x0]] \\). Find \\( L([[x1]]) \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]) + (2*[[p]]*[[x0]]+[[q]])*([[x1]]-[[x0]])"
+  },
+  "distractors": [
+   "[[p]]*[[x1]]**2+[[q]]*[[x1]]+[[r]]",
+   "[[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]",
+   "(2*[[p]]*[[x0]]+[[q]])*([[x1]]-[[x0]])",
+   "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]) - (2*[[p]]*[[x0]]+[[q]])*([[x1]]-[[x0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "\\( L(x)=f([[x0]])+f'([[x0]])(x-[[x0]]) \\), so \\( L([[x1]]) = ([[p]]([[x0]])^{2}+[[q]]([[x0]])+[[r]]) + (2[[p]]([[x0]])+[[q]])([[x1]]-[[x0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates the CURVE \\( y=f(x) \\) at \\( x_1 \\) instead of the tangent LINE.",
+   "This reports \\( f([[x0]]) \\) alone, forgetting the linear correction term.",
+   "This reports only the correction term, forgetting the base value \\( f(x_0) \\).",
+   "This subtracts the correction term instead of adding it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_line_hyperbola_yintercept_v4",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "k": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "x0": {
+    "type": "choice",
+    "values": [
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4
+    ]
+   }
+  },
+  "constraints": [],
+  "stem": "The tangent line to \\( y=\\dfrac{[[k]]}{x} \\) at \\( x=[[x0]] \\) crosses the \\( y \\)-axis at what value of \\( y \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "2*[[k]]/[[x0]]"
+  },
+  "distractors": [
+   "[[k]]/[[x0]]",
+   "-2*[[k]]/[[x0]]",
+   "[[k]]/(2*[[x0]])",
+   "-[[k]]/[[x0]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f'(x)=-\\dfrac{[[k]]}{x^{2}} \\), the tangent at \\( x=[[x0]] \\) is \\( y=\\dfrac{[[k]]}{[[x0]]} - \\dfrac{[[k]]}{[[x0]]^{2}}(x-[[x0]]) \\); its \\( y \\)-intercept is \\( \\dfrac{2[[k]]}{[[x0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f([[x0]]) \\), the function value, instead of the tangent's \\( y \\)-intercept.",
+   "This has the right magnitude but the wrong sign.",
+   "This drops the factor of 2 that comes from the intercept algebra.",
+   "This reports the slope \\( f'([[x0]]) \\) instead of the \\( y \\)-intercept.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_line_sqrt_yintercept_v5",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "a": {
+    "type": "choice",
+    "values": [
+     -8,
+     -7,
+     -6,
+     -5,
+     -4,
+     -3,
+     -2,
+     -1,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   },
+   "s": {
+    "type": "choice",
+    "values": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "x0": "[[s]]**2"
+  },
+  "stem": "The tangent line to \\( y=[[a]]\\sqrt{x} \\) at \\( x=[[x0]] \\) crosses the \\( y \\)-axis at what value of \\( y \\)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "[[a]]*[[s]]/2"
+  },
+  "distractors": [
+   "[[a]]*[[s]]",
+   "-[[a]]*[[s]]/2",
+   "[[a]]/(2*[[s]])",
+   "[[a]]*[[s]]*2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f(x)=[[a]]\\sqrt{x} \\), \\( f'(x)=\\dfrac{[[a]]}{2\\sqrt{x}} \\); at \\( x_0=[[x0]] \\), \\( f(x_0)=[[a]]\\cdot [[s]] \\) and \\( f'(x_0)=\\dfrac{[[a]]}{2\\cdot[[s]]} \\), so the \\( y \\)-intercept is \\( f(x_0)-x_0f'(x_0) = [[a]][[s]] - [[s]]^{2}\\cdot\\dfrac{[[a]]}{2[[s]]} = \\dfrac{[[a]][[s]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f(x_0) \\), the function value, instead of the tangent's \\( y \\)-intercept.",
+   "This has the right magnitude but the wrong sign.",
+   "This inverts the correct ratio.",
+   "This multiplies by 2 instead of dividing by it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_line_parallel_to_given_line_v6",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 5
+   },
+   "q": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "r": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   },
+   "m": {
+    "type": "int",
+    "lo": -8,
+    "hi": 8
+   },
+   "c": {
+    "type": "int",
+    "lo": -6,
+    "hi": 6
+   }
+  },
+  "constraints": [],
+  "stem": "For what value of \\( x \\) is the tangent line to \\( y=[[p]]x^{2}+([[q]])x+([[r]]) \\) parallel to the line \\( y=[[m]]x+[[c]] \\)?",
+  "answer_spec": {
+   "op": "solve",
+   "equation": "2*[[p]]*x+[[q]]-[[m]]=0",
+   "var": "x"
+  },
+  "distractors": [
+   "([[m]]-[[q]])/[[p]]",
+   "([[m]]+[[q]])/(2*[[p]])",
+   "[[m]]-[[q]]",
+   "[[p]]/(2*([[m]]-[[q]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The tangent's slope is \\( f'(x)=2[[p]]x+[[q]] \\). Setting this equal to \\( [[m]] \\) and solving gives \\( x=\\dfrac{[[m]]-[[q]]}{2[[p]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 from the power rule on \\( px^{2} \\).",
+   "This adds \\( q \\) instead of subtracting it.",
+   "This forgets to divide by \\( 2p \\) entirely.",
+   "This inverts the correct ratio.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "tangent_line_triangle_area_v7",
+  "skill_id": "tangent_line_to_an_explicit_curve",
+  "topic_id": "differential_calc",
+  "tier": "relearn",
+  "params": {
+   "p": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   },
+   "q": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "r": {
+    "type": "int",
+    "lo": -5,
+    "hi": 5
+   },
+   "x0": {
+    "type": "int",
+    "lo": 1,
+    "hi": 4
+   }
+  },
+  "constraints": [
+   "Ne(2*[[p]]*[[x0]]+[[q]], 0)"
+  ],
+  "derived": {
+   "YI": "([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]]) - [[x0]]*(2*[[p]]*[[x0]]+[[q]])",
+   "XI": "[[x0]] - ([[p]]*[[x0]]**2+[[q]]*[[x0]]+[[r]])/(2*[[p]]*[[x0]]+[[q]])"
+  },
+  "stem": "The tangent line to \\( y=[[p]]x^{2}+([[q]])x+([[r]]) \\) at \\( x=[[x0]] \\) intersects the \\( x \\)-axis and the \\( y \\)-axis, forming a right triangle with the origin. Find the area of that triangle.",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "Abs([[XI]]*[[YI]])/2"
+  },
+  "distractors": [
+   "Abs([[XI]]*[[YI]])",
+   "(Abs([[XI]])+Abs([[YI]]))/2",
+   "Abs([[XI]])+Abs([[YI]])",
+   "[[XI]]*[[YI]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The tangent meets the \\( x \\)-axis at \\( x=[[XI]] \\) and the \\( y \\)-axis at \\( y=[[YI]] \\); the right triangle with the origin has area \\( \\tfrac{1}{2}|[[XI]]\\cdot[[YI]]| = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to halve the product of the two intercepts.",
+   "This averages the two intercepts instead of multiplying them.",
+   "This adds the absolute values of the intercepts instead of computing a triangle's area.",
+   "This drops the absolute value, which can flip the sign when the intercepts have opposite signs.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

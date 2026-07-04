@@ -1,0 +1,174 @@
+[
+{
+ "template_id": "triangular_or_diagonal_matrix_v1",
+ "skill_id": "triangular_or_diagonal_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -7, "hi": 7},
+  "d2": {"type": "int", "lo": -7, "hi": 7},
+  "d3": {"type": "int", "lo": -7, "hi": 7},
+  "l21": {"type": "int", "lo": -5, "hi": 5},
+  "l31": {"type": "int", "lo": -5, "hi": 5},
+  "l32": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])", "Ne([[d1]], [[d3]])", "Ne([[d2]], [[d3]])"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & 0 & 0 \\\\ [[l21]] & [[d2]] & 0 \\\\ [[l31]] & [[l32]] & [[d3]] \\end{bmatrix} \\). What is the smallest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "0", "0"], ["[[l21]]", "[[d2]]", "0"], ["[[l31]]", "[[l32]]", "[[d3]]"]], "which": "min"},
+ "distractors": [
+  "[[d1]]",
+  "[[d2]]",
+  "[[d3]]",
+  "[[d1]] + [[d2]] + [[d3]]",
+  "[[answer]] + 1",
+  "[[answer]] + 4",
+  "[[answer]] - 3"
+ ],
+ "solution": "The matrix is lower triangular, so its eigenvalues are exactly the diagonal entries \\( [[d1]], [[d2]], [[d3]] \\). The smallest of these is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the diagonal entries, but not the smallest eigenvalue.",
+  "This is one of the diagonal entries, but not the smallest eigenvalue.",
+  "This is one of the diagonal entries, but not the smallest eigenvalue.",
+  "This is the trace (sum of the diagonal), not the smallest eigenvalue.",
+  "This is one more than the correct smallest eigenvalue.",
+  "This is four more than the correct smallest eigenvalue.",
+  "This is three less than the correct smallest eigenvalue."
+ ]
+},
+{
+ "template_id": "triangular_product_of_eigenvalues_v2",
+ "skill_id": "triangular_or_diagonal_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -5, "hi": 5},
+  "d2": {"type": "int", "lo": -5, "hi": 5},
+  "d3": {"type": "int", "lo": -5, "hi": 5},
+  "u12": {"type": "int", "lo": -4, "hi": 4},
+  "u13": {"type": "int", "lo": -4, "hi": 4},
+  "u23": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d1]], 0)", "Ne([[d2]], 0)", "Ne([[d3]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & [[u12]] & [[u13]] \\\\ 0 & [[d2]] & [[u23]] \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\), an upper triangular matrix. What is the product of all three of its eigenvalues?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "[[u12]]", "[[u13]]"], ["0", "[[d2]]", "[[u23]]"], ["0", "0", "[[d3]]"]], "which": "prod"},
+ "distractors": [
+  "[[d1]] + [[d2]] + [[d3]]",
+  "[[d1]]*[[d2]] + [[d2]]*[[d3]] + [[d1]]*[[d3]]",
+  "[[d1]]*[[u23]]",
+  "[[d1]]*[[d2]]*[[d3]]*[[u12]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For a triangular matrix, the eigenvalues are exactly the diagonal entries \\( [[d1]], [[d2]], [[d3]] \\), so the product of all the eigenvalues is \\( [[d1]]\\cdot[[d2]]\\cdot[[d3]] = [[answer]] \\) (this also equals \\( \\det(A) \\), since the off-diagonal entries never affect it).",
+ "distractor_rationales": [
+  "This sums the diagonal entries (the trace) instead of multiplying them.",
+  "This sums the pairwise products of the diagonal entries instead of the full triple product.",
+  "This incorrectly drags in an off-diagonal entry, which never affects the eigenvalues of a triangular matrix.",
+  "This incorrectly drags in an off-diagonal entry, which never affects the eigenvalues of a triangular matrix.",
+  "This is one more than the correct product.",
+  "This is one less than the correct product."
+ ]
+},
+{
+ "template_id": "diagonal_matrix_sum_of_eigenvalues_v3",
+ "skill_id": "triangular_or_diagonal_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -8, "hi": 8},
+  "d2": {"type": "int", "lo": -8, "hi": 8},
+  "d3": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])", "Ne([[d2]], [[d3]])", "Ne([[d1]], [[d3]])"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & 0 & 0 \\\\ 0 & [[d2]] & 0 \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\), a diagonal matrix. What is the sum of all three of its eigenvalues?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "0", "0"], ["0", "[[d2]]", "0"], ["0", "0", "[[d3]]"]], "which": "sum"},
+ "distractors": [
+  "[[d1]]*[[d2]]*[[d3]]",
+  "[[d1]]",
+  "[[d1]] + [[d2]]",
+  "[[d1]]*[[d2]] + [[d3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "For a diagonal matrix, the eigenvalues are precisely the diagonal entries themselves, \\( [[d1]], [[d2]], [[d3]] \\), so their sum is \\( [[d1]] + [[d2]] + [[d3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the diagonal entries (their product) instead of adding them.",
+  "This only uses one of the three diagonal entries.",
+  "This omits the third diagonal entry from the sum.",
+  "This mixes a product of two entries with the third instead of summing all three.",
+  "This is one more than the correct sum.",
+  "This is two less than the correct sum."
+ ]
+},
+{
+ "template_id": "triangular_parameter_for_zero_eigenvalue_v4",
+ "skill_id": "triangular_or_diagonal_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -12, "hi": 12},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "u12": {"type": "int", "lo": -4, "hi": 4},
+  "u13": {"type": "int", "lo": -4, "hi": 4},
+  "u23": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)", "Ne([[e]], 0)"],
+ "stem": "Let \\( A(t) = \\begin{bmatrix} [[a]]t + ([[b]]) & [[u12]] & [[u13]] \\\\ 0 & [[c]] & [[u23]] \\\\ 0 & 0 & [[e]] \\end{bmatrix} \\). For what value of \\( t \\) does \\( A(t) \\) have \\( 0 \\) as an eigenvalue?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*t + [[b]] = 0", "var": "t"},
+ "distractors": [
+  "-[[b]]/[[a]]",
+  "[[b]]/[[a]]",
+  "[[a]]/[[b]]",
+  "-[[a]]/[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( A(t) \\) is upper triangular, so its eigenvalues are exactly its diagonal entries \\( [[a]]t+([[b]]), [[c]], [[e]] \\). Since \\( [[c]] \\) and \\( [[e]] \\) are never \\( 0 \\), \\( 0 \\) is an eigenvalue exactly when \\( [[a]]t + ([[b]]) = 0 \\), i.e. \\( t = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign inside the fraction from the correct solution of \\( at+b=0 \\).",
+  "This has the correct magnitude but the wrong sign.",
+  "This inverts the ratio \\( b/a \\) instead of solving \\( at+b=0 \\) for \\( t \\).",
+  "This inverts the ratio and flips the sign.",
+  "This is one more than the correct value of \\( t \\).",
+  "This is one less than the correct value of \\( t \\)."
+ ]
+},
+{
+ "template_id": "block_upper_triangular_4x4_v5",
+ "skill_id": "triangular_or_diagonal_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -6, "hi": 6},
+  "d2": {"type": "int", "lo": -6, "hi": 6},
+  "x13": {"type": "int", "lo": -3, "hi": 3},
+  "x14": {"type": "int", "lo": -3, "hi": 3},
+  "x23": {"type": "int", "lo": -3, "hi": 3},
+  "x24": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -6, "hi": 6},
+  "w": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])", "Ne([[w]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & 0 & [[x13]] & [[x14]] \\\\ 0 & [[d2]] & [[x23]] & [[x24]] \\\\ 0 & 0 & [[s]] & [[w]] \\\\ 0 & 0 & [[w]] & [[s]] \\end{bmatrix} \\), a block upper triangular matrix with diagonal blocks \\( \\begin{bmatrix} [[d1]] & 0 \\\\ 0 & [[d2]] \\end{bmatrix} \\) and \\( \\begin{bmatrix} [[s]] & [[w]] \\\\ [[w]] & [[s]] \\end{bmatrix} \\). What is the largest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "0", "[[x13]]", "[[x14]]"], ["0", "[[d2]]", "[[x23]]", "[[x24]]"], ["0", "0", "[[s]]", "[[w]]"], ["0", "0", "[[w]]", "[[s]]"]], "which": "max"},
+ "distractors": [
+  "[[d1]]",
+  "[[d2]]",
+  "[[s]] + [[w]]",
+  "[[s]] - [[w]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For a block upper triangular matrix, the full set of eigenvalues is the union of the eigenvalues of its diagonal blocks. The top-left block contributes \\( [[d1]] \\) and \\( [[d2]] \\); the bottom-right symmetric block contributes \\( [[s]]+[[w]] \\) and \\( [[s]]-[[w]] \\). The largest of all four is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one eigenvalue from the top-left block, but not necessarily the overall largest.",
+  "This is one eigenvalue from the top-left block, but not necessarily the overall largest.",
+  "This is one eigenvalue from the bottom-right block, but not necessarily the overall largest.",
+  "This is the other eigenvalue from the bottom-right block, but not necessarily the overall largest.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue."
+ ]
+}
+]

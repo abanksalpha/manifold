@@ -1,0 +1,95 @@
+[
+{
+ "template_id": "fermat_prime_modulus_power_v1",
+ "skill_id": "fermat_euler",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [7, 11, 13, 17, 19, 23, 29, 31]},
+  "a": {"type": "int", "lo": 2, "hi": 80},
+  "k": {"type": "int", "lo": 20, "hi": 400}
+ },
+ "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+ "stem": "Let \\( p = [[p]] \\), a prime, and let \\( a = [[a]] \\) (with \\( p \\nmid a \\)). Using Fermat's Little Theorem, find the remainder when \\( [[a]]^{[[k]]} \\) is divided by \\( [[p]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[k]], [[p]])"},
+ "distractors": [
+  "Mod([[a]]**(Mod([[k]], [[p]])), [[p]])",
+  "Mod([[a]]**([[k]] - 1), [[p]])",
+  "Mod([[a]], [[p]] - 1)",
+  "Mod([[k]]**[[a]], [[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Fermat's Little Theorem, \\( a^{p-1}\\equiv 1\\pmod p \\), so reduce the exponent modulo \\( p-1=[[p]]-1 \\) before computing the power: \\( [[a]]^{[[k]]} \\equiv [[answer]] \\pmod{[[p]]} \\).",
+ "distractor_rationales": [
+  "This mistakenly reduces the exponent modulo \\( p \\) instead of modulo \\( p-1 \\).",
+  "This shifts the exponent down by one instead of correctly reducing it modulo \\( p-1 \\).",
+  "This reduces \\( a \\) itself modulo \\( p-1 \\), instead of reducing the EXPONENT modulo \\( p-1 \\).",
+  "This swaps the roles of the base and the exponent.",
+  "This is one more than the correct remainder.",
+  "This is one less than the correct remainder."
+ ]
+},
+{
+ "template_id": "euler_composite_modulus_power_v1",
+ "skill_id": "fermat_euler",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "choice", "values": [15, 21, 33, 35, 39, 51, 55, 65, 77, 85, 91]},
+  "a": {"type": "int", "lo": 2, "hi": 90},
+  "k": {"type": "int", "lo": 20, "hi": 400}
+ },
+ "constraints": ["Eq(gcd([[a]], [[n]]), 1)"],
+ "derived": {"phi": "totient([[n]])"},
+ "stem": "Let \\( n = [[n]] \\) and \\( a = [[a]] \\), with \\( \\gcd(a,n)=1 \\). Using Euler's Theorem, find the remainder when \\( [[a]]^{[[k]]} \\) is divided by \\( [[n]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**[[k]], [[n]])"},
+ "distractors": [
+  "Mod([[a]]**(Mod([[k]], [[n]])), [[n]])",
+  "Mod([[a]]**([[k]] - 1), [[n]])",
+  "Mod([[a]], totient([[n]]))",
+  "Mod([[k]]**[[a]], [[n]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Euler's Theorem, \\( a^{\\varphi(n)}\\equiv 1\\pmod n \\) since \\( \\gcd(a,n)=1 \\); here \\( \\varphi([[n]]) = [[phi]] \\), so reduce the exponent modulo \\( [[phi]] \\) before computing the power: \\( [[a]]^{[[k]]} \\equiv [[answer]] \\pmod{[[n]]} \\).",
+ "distractor_rationales": [
+  "This mistakenly reduces the exponent modulo \\( n \\) instead of modulo \\( \\varphi(n) \\).",
+  "This shifts the exponent down by one instead of correctly reducing it modulo \\( \\varphi(n) \\).",
+  "This reduces \\( a \\) itself modulo \\( \\varphi(n) \\), instead of reducing the EXPONENT modulo \\( \\varphi(n) \\).",
+  "This swaps the roles of the base and the exponent.",
+  "This is one more than the correct remainder.",
+  "This is one less than the correct remainder."
+ ]
+},
+{
+ "template_id": "fermat_modular_inverse_v1",
+ "skill_id": "fermat_euler",
+ "topic_id": "number_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [7, 11, 13, 17, 19, 23, 29, 31, 37]},
+  "a": {"type": "int", "lo": 2, "hi": 100}
+ },
+ "constraints": ["Ne(Mod([[a]], [[p]]), 0)"],
+ "stem": "Let \\( p = [[p]] \\), a prime. Using Fermat's Little Theorem, find the modular inverse of \\( [[a]] \\) modulo \\( [[p]] \\) — that is, the integer \\( x \\) with \\( 0 \\le x < [[p]] \\) such that \\( [[a]]\\,x \\equiv 1 \\pmod{[[p]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Mod([[a]]**([[p]] - 2), [[p]])"},
+ "distractors": [
+  "Mod([[a]]**([[p]] - 1), [[p]])",
+  "Mod([[a]], [[p]])",
+  "Mod([[a]]**([[p]] - 3), [[p]])",
+  "[[p]] - Mod([[a]]**([[p]] - 2), [[p]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By Fermat's Little Theorem, \\( a^{p-1}\\equiv 1\\pmod p \\), so \\( a^{p-2} \\) is the modular inverse of \\( a \\): \\( [[a]]^{[[p]]-2} \\equiv [[answer]] \\pmod{[[p]]} \\).",
+ "distractor_rationales": [
+  "This uses the exponent \\( p-1 \\), which always gives 1, not the inverse.",
+  "This just reports \\( a \\) itself reduced mod \\( p \\), not its inverse.",
+  "This uses one power too few, \\( p-3 \\) instead of \\( p-2 \\).",
+  "This subtracts the correct inverse from \\( p \\), flipping to the wrong residue.",
+  "This is one more than the correct inverse.",
+  "This is one less than the correct inverse."
+ ]
+}
+]

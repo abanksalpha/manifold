@@ -1,0 +1,219 @@
+[
+{
+ "template_id": "linearity_interval_additivity_v1",
+ "skill_id": "linearity_interval_additivity_with_given_values",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -2, "hi": 5},
+  "c": {"type": "int", "lo": 0, "hi": 8},
+  "P": {"type": "int", "lo": -6, "hi": 6},
+  "Q": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Lt([[a]], [[b]])", "Lt([[b]], [[c]])", "Ne([[m]], 0)"],
+ "stem": "Suppose \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx = [[P]] \\) and \\( \\int_{[[b]]}^{[[c]]} f(x)\\, dx = [[Q]] \\). Evaluate \\( \\int_{[[a]]}^{[[c]]} \\left( ([[m]])\\,f(x) + ([[k]]) \\right) dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*([[P]] + [[Q]]) + [[k]]*([[c]] - [[a]])"},
+ "distractors": [
+  "[[m]]*[[P]] + [[k]]*([[c]] - [[a]])",
+  "[[m]]*([[P]] + [[Q]])",
+  "[[m]]*([[P]] + [[Q]]) + [[k]]*([[c]] - [[b]])",
+  "[[m]]*([[P]] - [[Q]]) + [[k]]*([[c]] - [[a]])",
+  "([[P]] + [[Q]]) + [[k]]*([[c]] - [[a]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By interval additivity \\( \\int_{[[a]]}^{[[c]]} f = \\int_{[[a]]}^{[[b]]} f + \\int_{[[b]]}^{[[c]]} f = [[P]] + ([[Q]]) \\). Then by linearity \\( \\int_{[[a]]}^{[[c]]} \\left( ([[m]])f + ([[k]]) \\right) = ([[m]])([[P]] + ([[Q]])) + ([[k]])([[c]] - ([[a]])) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only \\( \\int_{[[a]]}^{[[b]]} f \\) and omits the adjacent piece \\( \\int_{[[b]]}^{[[c]]} f \\).",
+  "This scales the combined integral of \\( f \\) but forgets the constant term \\( ([[k]]) \\) integrated over the interval.",
+  "This integrates the constant over \\( [[[b]], [[c]]] \\) instead of the full interval \\( [[[a]], [[c]]] \\).",
+  "This subtracts the two given integrals instead of adding them.",
+  "This forgets to multiply the integral of \\( f \\) by the factor \\( ([[m]]) \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "additivity_solve_for_middle_piece_v2",
+ "skill_id": "linearity_interval_additivity_with_given_values",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 0},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 5, "hi": 10},
+  "R": {"type": "int", "lo": -8, "hi": 8},
+  "Pfull": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "Suppose \\( \\int_{[[a]]}^{[[b]]} g(x)\\, dx = [[R]] \\) and \\( \\int_{[[a]]}^{[[c]]} g(x)\\, dx = [[Pfull]] \\). Use interval additivity to find \\( \\int_{[[b]]}^{[[c]]} g(x)\\, dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[Pfull]] - [[R]]"},
+ "distractors": [
+  "[[Pfull]] + [[R]]",
+  "[[R]] - [[Pfull]]",
+  "[[Pfull]]",
+  "[[R]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By interval additivity \\( \\int_{[[a]]}^{[[c]]} g = \\int_{[[a]]}^{[[b]]} g + \\int_{[[b]]}^{[[c]]} g \\), so \\( \\int_{[[b]]}^{[[c]]} g = \\int_{[[a]]}^{[[c]]} g - \\int_{[[a]]}^{[[b]]} g = ([[Pfull]]) - ([[R]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two given integrals instead of subtracting the first piece from the whole.",
+  "This subtracts in the wrong order, negating the correct answer.",
+  "This reports the integral over the WHOLE interval \\( [[[a]],[[c]]] \\), not just the missing piece \\( [[[b]],[[c]]] \\).",
+  "This reports only the FIRST piece \\( \\int_{[[a]]}^{[[b]]} g \\), not the missing piece.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "linearity_two_functions_same_interval_v3",
+ "skill_id": "linearity_interval_additivity_with_given_values",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 9},
+  "P": {"type": "int", "lo": -7, "hi": 7},
+  "Q": {"type": "int", "lo": -7, "hi": 7},
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "n": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[m]], 0)", "Ne([[n]], 0)"],
+ "stem": "Suppose \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx = [[P]] \\) and \\( \\int_{[[a]]}^{[[b]]} g(x)\\, dx = [[Q]] \\). Use linearity to evaluate \\( \\int_{[[a]]}^{[[b]]} \\left( ([[m]])f(x) + ([[n]])g(x) \\right) dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*[[P]] + [[n]]*[[Q]]"},
+ "distractors": [
+  "[[m]]*[[Q]] + [[n]]*[[P]]",
+  "([[m]]+[[n]])*([[P]]+[[Q]])",
+  "[[m]]*[[P]] - [[n]]*[[Q]]",
+  "[[P]] + [[Q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "By linearity, \\( \\int_{[[a]]}^{[[b]]} \\left( ([[m]])f + ([[n]])g \\right) dx = ([[m]])\\int_{[[a]]}^{[[b]]} f + ([[n]])\\int_{[[a]]}^{[[b]]} g = ([[m]])([[P]]) + ([[n]])([[Q]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps which coefficient multiplies which function's integral.",
+  "This multiplies the sum of the coefficients by the sum of the integrals instead of distributing them individually.",
+  "This subtracts the second scaled integral instead of adding it.",
+  "This forgets to scale by the coefficients \\( ([[m]]) \\) and \\( ([[n]]) \\) entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "orientation_reversed_limits_v4",
+ "skill_id": "linearity_interval_additivity_with_given_values",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 2},
+  "b": {"type": "int", "lo": 3, "hi": 9},
+  "P": {"type": "int", "lo": -8, "hi": 8},
+  "m": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[P]], 0)", "Ne([[m]], 0)"],
+ "stem": "Suppose \\( \\int_{[[a]]}^{[[b]]} h(x)\\, dx = [[P]] \\). Use the orientation rule \\( \\int_{p}^{q} h = -\\int_{q}^{p} h \\) together with linearity to evaluate \\( \\int_{[[b]]}^{[[a]]} \\left( ([[m]])h(x) + ([[k]]) \\right) dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "-[[m]]*[[P]] + [[k]]*([[a]]-[[b]])"},
+ "distractors": [
+  "[[m]]*[[P]] + [[k]]*([[a]]-[[b]])",
+  "[[m]]*[[P]] + [[k]]*([[b]]-[[a]])",
+  "-[[m]]*[[P]] + [[k]]*([[b]]-[[a]])",
+  "-[[m]]*[[P]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Reversing the limits flips the sign: \\( \\int_{[[b]]}^{[[a]]} h = -\\int_{[[a]]}^{[[b]]} h = -([[P]]) \\). The constant term integrates over the (also reversed) interval, contributing \\( ([[k]])\\left([[a]] - [[b]]\\right) \\). By linearity the total is \\( ([[m]])\\left(-([[P]])\\right) + ([[k]])([[a]]-[[b]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to flip the sign of \\( \\int_{[[a]]}^{[[b]]} h \\) when the limits are reversed.",
+  "This forgets to flip the sign of the \\( f \\)-term AND uses the wrong (unreversed) width for the constant term.",
+  "This correctly flips the sign of the \\( f \\)-term but uses the unreversed width for the constant term.",
+  "This drops the constant term's contribution entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "three_interval_chain_additivity_v5",
+ "skill_id": "linearity_interval_additivity_with_given_values",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": -3},
+  "b": {"type": "int", "lo": -2, "hi": 1},
+  "c": {"type": "int", "lo": 2, "hi": 5},
+  "d": {"type": "int", "lo": 6, "hi": 10},
+  "P": {"type": "int", "lo": -6, "hi": 6},
+  "Q": {"type": "int", "lo": -6, "hi": 6},
+  "R": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[m]], 0)"],
+ "stem": "Suppose \\( \\int_{[[a]]}^{[[b]]} f(x)\\, dx = [[P]] \\), \\( \\int_{[[b]]}^{[[c]]} f(x)\\, dx = [[Q]] \\), and \\( \\int_{[[c]]}^{[[d]]} f(x)\\, dx = [[R]] \\). Evaluate \\( \\int_{[[a]]}^{[[d]]} ([[m]])f(x)\\, dx \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]*([[P]] + [[Q]] + [[R]])"},
+ "distractors": [
+  "[[m]]*([[P]] + [[Q]])",
+  "[[m]]*([[Q]] + [[R]])",
+  "[[P]] + [[Q]] + [[R]]",
+  "[[m]]*([[P]] - [[Q]] + [[R]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Chaining interval additivity across all three adjacent pieces, \\( \\int_{[[a]]}^{[[d]]} f = \\int_{[[a]]}^{[[b]]} f + \\int_{[[b]]}^{[[c]]} f + \\int_{[[c]]}^{[[d]]} f = [[P]] + [[Q]] + [[R]] \\). By linearity, \\( \\int_{[[a]]}^{[[d]]} ([[m]])f = ([[m]])([[P]]+[[Q]]+[[R]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the last piece \\( \\int_{[[c]]}^{[[d]]} f \\) from the chain.",
+  "This drops the first piece \\( \\int_{[[a]]}^{[[b]]} f \\) from the chain.",
+  "This forgets to scale the total by the coefficient \\( ([[m]]) \\).",
+  "This subtracts the middle piece instead of adding all three.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "word_problem_two_period_net_change_v6",
+ "skill_id": "linearity_interval_additivity_with_given_values",
+ "topic_id": "integral_calc",
+ "tier": "relearn",
+ "params": {
+  "t1": {"type": "int", "lo": 0, "hi": 3},
+  "t2": {"type": "int", "lo": 4, "hi": 7},
+  "t3": {"type": "int", "lo": 8, "hi": 12},
+  "M1": {"type": "int", "lo": -500, "hi": 500},
+  "M2": {"type": "int", "lo": -500, "hi": 500},
+  "s": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Ne([[M1]], 0)", "Ne([[M2]], 0)"],
+ "stem": "A factory's production rate is \\( r(t) \\) units per day. Records show \\( \\int_{[[t1]]}^{[[t2]]} r(t)\\, dt = [[M1]] \\) (total units made from day [[t1]] to day [[t2]]) and \\( \\int_{[[t2]]}^{[[t3]]} r(t)\\, dt = [[M2]] \\) (from day [[t2]] to day [[t3]]). If a scaled process runs at rate \\( [[s]]\\cdot r(t) \\) instead, how many units would it produce from day [[t1]] to day [[t3]]?",
+ "answer_spec": {"op": "evaluate", "expr": "[[s]]*([[M1]] + [[M2]])"},
+ "distractors": [
+  "[[s]]*[[M1]]",
+  "[[M1]] + [[M2]]",
+  "[[s]]*([[M1]] - [[M2]])",
+  "[[s]]*[[M2]]",
+  "[[answer]] + [[s]]",
+  "[[answer]] - [[s]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "By interval additivity the total units at the original rate from day [[t1]] to day [[t3]] is \\( \\int_{[[t1]]}^{[[t2]]} r + \\int_{[[t2]]}^{[[t3]]} r = [[M1]] + [[M2]] \\). Running at \\( [[s]]\\cdot r(t) \\) scales this total by linearity: \\( [[s]]\\cdot\\left([[M1]]+[[M2]]\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This only accounts for the first period and ignores the second.",
+  "This forgets to scale the total by the new rate multiplier \\( [[s]] \\).",
+  "This subtracts the second period's production instead of adding it.",
+  "This only accounts for the second period and ignores the first.",
+  "This is off by \\( [[s]] \\) from the correct value.",
+  "This is off by \\( [[s]] \\) from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

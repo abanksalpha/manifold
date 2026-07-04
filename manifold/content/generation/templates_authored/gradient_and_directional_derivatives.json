@@ -1,0 +1,182 @@
+[
+ {
+  "template_id": "directional_deriv_normalize_vector_v1",
+  "skill_id": "gradient_and_directional_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[C]], 0)", "Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "derived": {"norm": "sqrt([[a]]**2+[[b]]**2)"},
+  "require_rational": false,
+  "stem": "Let \\( f(x,y) = [[A]]x^{2} + [[B]]xy + [[C]]y^{2} \\). What is the directional derivative of \\( f \\) at \\( ([[x0]],[[y0]]) \\) in the direction of the vector \\( \\langle [[a]], [[b]] \\rangle \\) (i.e. along the unit vector \\( \\hat{u} = \\langle [[a]],[[b]] \\rangle / |\\langle [[a]],[[b]] \\rangle| \\))?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*([[x0]]+t*[[a]]/[[norm]])**2 + [[B]]*([[x0]]+t*[[a]]/[[norm]])*([[y0]]+t*[[b]]/[[norm]]) + [[C]]*([[y0]]+t*[[b]]/[[norm]])**2", "var": "t", "at": "0", "order": 1},
+  "distractors": [
+   "(2*[[A]]*[[x0]]+[[B]]*[[y0]])*[[a]] + ([[B]]*[[x0]]+2*[[C]]*[[y0]])*[[b]]",
+   "(2*[[A]]*[[x0]]+[[B]]*[[y0]])*[[a]]/[[norm]]",
+   "([[B]]*[[x0]]+2*[[C]]*[[y0]])*[[b]]/[[norm]]",
+   "((2*[[A]]*[[x0]]+[[B]]*[[y0]])*[[b]] + ([[B]]*[[x0]]+2*[[C]]*[[y0]])*[[a]])/[[norm]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f = (2[[A]]x+[[B]]y,\\; [[B]]x+2[[C]]y) \\), so \\( \\nabla f([[x0]],[[y0]]) = (2[[A]]\\cdot[[x0]]+[[B]]\\cdot[[y0]],\\; [[B]]\\cdot[[x0]]+2[[C]]\\cdot[[y0]]) \\). The unit vector is \\( \\hat u = \\langle [[a]],[[b]]\\rangle/[[norm]] \\), and \\( D_{\\hat u}f = \\nabla f\\cdot\\hat u = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( |\\langle [[a]],[[b]]\\rangle| \\), using the raw (non-unit) vector instead.",
+   "This keeps only the \\( f_x \\) contribution to the dot product, dropping the \\( f_y \\) term entirely.",
+   "This keeps only the \\( f_y \\) contribution to the dot product, dropping the \\( f_x \\) term entirely.",
+   "This swaps the roles of \\( a \\) and \\( b \\) in the dot product.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_deriv_axis_direction_v1",
+  "skill_id": "gradient_and_directional_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "C": {"type": "int", "lo": -6, "hi": 6},
+   "D": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "axis_sign": {"type": "choice", "values": [1, -1]},
+   "axis": {"type": "choice", "values": [0, 1]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "derived": {"ux": "[[axis_sign]]*(1-[[axis]])", "uy": "[[axis_sign]]*[[axis]]"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{2}y + [[B]]xy^{2} + [[C]]x + [[D]]y \\). What is the directional derivative of \\( f \\) at \\( ([[x0]],[[y0]]) \\) in the direction of the (already unit) vector \\( \\langle [[ux]], [[uy]] \\rangle \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[A]]*([[x0]]+t*[[ux]])**2*([[y0]]+t*[[uy]]) + [[B]]*([[x0]]+t*[[ux]])*([[y0]]+t*[[uy]])**2 + [[C]]*([[x0]]+t*[[ux]]) + [[D]]*([[y0]]+t*[[uy]])", "var": "t", "at": "0", "order": 1},
+  "distractors": [
+   "(2*[[A]]*[[x0]]*[[y0]]+[[B]]*[[y0]]**2+[[C]])*[[uy]] + ([[A]]*[[x0]]**2+2*[[B]]*[[x0]]*[[y0]]+[[D]])*[[ux]]",
+   "[[A]]*[[x0]]**2*[[y0]] + [[B]]*[[x0]]*[[y0]]**2 + [[C]]*[[x0]] + [[D]]*[[y0]]",
+   "(2*[[A]]*[[x0]]*[[y0]]+[[B]]*[[y0]]**2+[[C]])",
+   "([[A]]*[[x0]]**2+2*[[B]]*[[x0]]*[[y0]]+[[D]])",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Since \\( \\langle [[ux]],[[uy]] \\rangle \\) is already a unit vector along a coordinate axis, the directional derivative reduces to a single partial derivative: \\( f_x([[x0]],[[y0]]) = 2[[A]]\\cdot[[x0]]\\cdot[[y0]]+[[B]]\\cdot[[y0]]^{2}+[[C]] \\) and \\( f_y([[x0]],[[y0]]) = [[A]]\\cdot[[x0]]^{2}+2[[B]]\\cdot[[x0]]\\cdot[[y0]]+[[D]] \\). Along \\( \\langle [[ux]],[[uy]]\\rangle \\), \\( D_{\\hat u}f = f_x\\cdot([[ux]]) + f_y\\cdot([[uy]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This swaps which partial derivative pairs with which axis component.",
+   "This is \\( f([[x0]],[[y0]]) \\), the function value, not a directional derivative.",
+   "This reports \\( f_x \\) even when the direction is along the \\( y \\)-axis (or vice versa).",
+   "This reports \\( f_y \\) even when the direction is along the \\( x \\)-axis (or vice versa).",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "gradient_magnitude_max_rate_v1",
+  "skill_id": "gradient_and_directional_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 7},
+   "n": {"type": "int", "lo": 1, "hi": 6},
+   "x0": {"type": "choice", "values": [-1, 1]},
+   "y0": {"type": "choice", "values": [-1, 1]}
+  },
+  "constraints": ["Lt([[n]], [[m]])", "Eq(Mod([[m]]-[[n]], 2), 0)"],
+  "derived": {
+   "p": "[[m]]**2-[[n]]**2", "q": "2*[[m]]*[[n]]", "r": "[[m]]**2+[[n]]**2",
+   "c": "[[p]]/2", "d": "[[q]]/2"
+  },
+  "stem": "Let \\( f(x,y) = [[c]]x^{2} + [[d]]y^{2} \\). What is the maximum possible rate of change of \\( f \\) (that is, \\( |\\nabla f| \\)) at the point \\( ([[x0]],[[y0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt((2*[[c]]*[[x0]])**2 + (2*[[d]]*[[y0]])**2)"},
+  "distractors": [
+   "2*[[c]]*[[x0]] + 2*[[d]]*[[y0]]",
+   "Abs(2*[[c]]*[[x0]]) + Abs(2*[[d]]*[[y0]])",
+   "2*[[c]]*[[x0]]",
+   "2*[[d]]*[[y0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f([[x0]],[[y0]]) = (2[[c]]\\cdot[[x0]],\\; 2[[d]]\\cdot[[y0]]) \\). The maximum rate of change at this point is \\( |\\nabla f([[x0]],[[y0]])| = \\sqrt{(2[[c]]\\cdot[[x0]])^{2}+(2[[d]]\\cdot[[y0]])^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the two partial derivatives instead of taking the Euclidean norm of the gradient.",
+   "This uses the sum of absolute values (a Manhattan-style norm) instead of the Euclidean norm.",
+   "This reports only the \\( f_x \\) component of the gradient.",
+   "This reports only the \\( f_y \\) component of the gradient.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_deriv_trig_pythagorean_v1",
+  "skill_id": "gradient_and_directional_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "m": {"type": "int", "lo": 2, "hi": 6},
+   "n": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Lt([[n]], [[m]])"],
+  "derived": {"p": "[[m]]**2-[[n]]**2", "q": "2*[[m]]*[[n]]", "r": "[[m]]**2+[[n]]**2"},
+  "stem": "Let \\( f(x,y) = [[a]]\\sin(x) + [[b]]y^{2} \\). What is the directional derivative of \\( f \\) at \\( (0,[[y0]]) \\) in the direction of the unit vector \\( \\hat u = \\left\\langle \\dfrac{[[p]]}{[[r]]}, \\dfrac{[[q]]}{[[r]]} \\right\\rangle \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*sin(0+t*[[p]]/[[r]]) + [[b]]*([[y0]]+t*[[q]]/[[r]])**2", "var": "t", "at": "0", "order": 1},
+  "distractors": [
+   "([[a]] + 2*[[b]]*[[y0]])/[[r]]",
+   "[[a]]*[[p]]/[[r]]",
+   "2*[[b]]*[[y0]]*[[q]]/[[r]]",
+   "([[a]]*[[p]] + [[b]]*[[y0]]*[[q]])/[[r]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The gradient is \\( \\nabla f(x,y) = (\\cos(x)\\cdot[[a]],\\; 2[[b]]y) \\), so \\( \\nabla f(0,[[y0]]) = ([[a]],\\; 2[[b]]\\cdot[[y0]]) \\) since \\( \\cos(0)=1 \\). Dotting with \\( \\hat u \\) gives \\( D_{\\hat u}f = [[a]]\\cdot\\dfrac{[[p]]}{[[r]]} + 2[[b]]\\cdot[[y0]]\\cdot\\dfrac{[[q]]}{[[r]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( p \\) and \\( q \\) weights entirely, as if \\( \\hat u = \\langle 1,1\\rangle/r \\).",
+   "This keeps only the \\( f_x \\) contribution, dropping the \\( f_y \\) term.",
+   "This keeps only the \\( f_y \\) contribution, dropping the \\( f_x \\) term.",
+   "This forgets the factor of 2 from differentiating \\( y^{2} \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "directional_deriv_steepest_descent_v1",
+  "skill_id": "gradient_and_directional_derivatives",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 7},
+   "n": {"type": "int", "lo": 1, "hi": 6},
+   "x0": {"type": "choice", "values": [-1, 1]},
+   "y0": {"type": "choice", "values": [-1, 1]}
+  },
+  "constraints": ["Lt([[n]], [[m]])", "Eq(Mod([[m]]-[[n]], 2), 0)"],
+  "derived": {
+   "p": "[[m]]**2-[[n]]**2", "q": "2*[[m]]*[[n]]", "r": "[[m]]**2+[[n]]**2",
+   "c": "[[p]]/2", "d": "[[q]]/2"
+  },
+  "stem": "Let \\( f(x,y) = [[c]]x^{2} + [[d]]y^{2} \\). What is the directional derivative of \\( f \\) at \\( ([[x0]],[[y0]]) \\) in the direction of steepest descent (the direction in which \\( f \\) decreases fastest)?",
+  "answer_spec": {"op": "evaluate", "expr": "-sqrt((2*[[c]]*[[x0]])**2 + (2*[[d]]*[[y0]])**2)"},
+  "distractors": [
+   "sqrt((2*[[c]]*[[x0]])**2 + (2*[[d]]*[[y0]])**2)",
+   "-(2*[[c]]*[[x0]] + 2*[[d]]*[[y0]])",
+   "-2*[[c]]*[[x0]]",
+   "-2*[[d]]*[[y0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The direction of steepest descent is \\( -\\nabla f/|\\nabla f| \\), and the directional derivative in that direction is \\( -|\\nabla f([[x0]],[[y0]])| \\). Since \\( \\nabla f([[x0]],[[y0]]) = (2[[c]]\\cdot[[x0]],\\, 2[[d]]\\cdot[[y0]]) \\), the answer is \\( -\\sqrt{(2[[c]]\\cdot[[x0]])^{2}+(2[[d]]\\cdot[[y0]])^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the negative sign; steepest DESCENT gives the negative of the gradient's magnitude.",
+   "This negates the sum of the partials instead of the Euclidean norm.",
+   "This reports only (the negative of) the \\( f_x \\) component.",
+   "This reports only (the negative of) the \\( f_y \\) component.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

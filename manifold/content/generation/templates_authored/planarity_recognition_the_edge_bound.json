@@ -1,0 +1,127 @@
+[
+ {
+  "template_id": "planar_edge_bound_v1",
+  "skill_id": "planarity_recognition_the_edge_bound",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {
+    "type": "int",
+    "lo": 3,
+    "hi": 25
+   }
+  },
+  "constraints": [],
+  "stem": "What is the maximum possible number of edges in a simple planar graph with \\( [[V]] \\) vertices (where \\( [[V]] \\geq 3 \\))?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "3*[[V]] - 6"
+  },
+  "distractors": [
+   "3*[[V]]",
+   "2*[[V]] - 4",
+   "3*[[V]] - 3",
+   "3*[[V]] + 6",
+   "binomial([[V]], 2)",
+   "3*[[V]] - 12"
+  ],
+  "solution": "For a simple planar graph with \\( V \\geq 3 \\), the edge count satisfies \\( E \\leq 3V - 6 \\), and this bound is achieved by a triangulation. So the maximum is \\( 3([[V]]) - 6 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to subtract 6 from \\( 3V \\).",
+   "This uses \\( 2V - 4 \\), the tighter bound that holds only for triangle-free (e.g. bipartite) planar graphs.",
+   "This subtracts only 3 instead of 6.",
+   "This adds 6 instead of subtracting it.",
+   "This counts the edges of the complete graph \\( \\binom{V}{2} \\), which exceeds the planar bound for large \\( V \\).",
+   "This subtracts 12, doubling the correction term."
+  ]
+ },
+ {
+  "template_id": "bipartite_planar_edge_bound_v2",
+  "skill_id": "planarity_recognition_the_edge_bound",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 3, "hi": 25}
+  },
+  "constraints": [],
+  "stem": "What is the maximum possible number of edges in a simple planar graph with \\( [[V]] \\) vertices that contains NO triangles (in particular, this covers every bipartite planar graph)?",
+  "answer_spec": {"op": "evaluate", "expr": "2*[[V]] - 4"},
+  "distractors": [
+   "3*[[V]] - 6",
+   "2*[[V]]",
+   "2*[[V]] - 2",
+   "[[V]] - 2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A triangle-free simple planar graph satisfies the tighter bound \\( E \\leq 2V - 4 \\) (every face is bounded by at least 4 edges, not just 3, when there are no triangles). So the maximum is \\( 2([[V]]) - 4 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the general planar bound \\( 3V-6 \\), which allows triangular faces and so is too loose here.",
+   "This forgets to subtract 4 from \\( 2V \\).",
+   "This subtracts only 2 instead of 4.",
+   "This drops the factor of 2 on \\( V \\) entirely.",
+   "This is off by one from the correct maximum.",
+   "This is off by one from the correct maximum."
+  ]
+ },
+ {
+  "template_id": "planar_edge_bound_min_vertices_v3",
+  "skill_id": "planarity_recognition_the_edge_bound",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "E": {"type": "int", "lo": 3, "hi": 60}
+  },
+  "constraints": [],
+  "stem": "A simple planar graph has \\( [[E]] \\) edges. Using the bound \\( E \\leq 3V - 6 \\), what is the minimum possible number of vertices \\( V \\) it could have?",
+  "answer_spec": {"op": "evaluate", "expr": "ceiling(([[E]] + 6)/3)"},
+  "distractors": [
+   "([[E]] + 6)/3",
+   "([[E]] - 6)/3",
+   "floor([[E]]/3)",
+   "[[E]]/3",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The bound \\( E \\leq 3V - 6 \\) rearranges to \\( V \\geq \\dfrac{E+6}{3} \\); since \\( V \\) must be a whole number, the minimum is the ceiling of this quantity: \\( \\left\\lceil \\dfrac{[[E]]+6}{3} \\right\\rceil = [[answer]] \\).",
+  "distractor_rationales": [
+   "This leaves the bound unrounded; \\( V \\) must be a whole number, so a non-integer value must be rounded UP.",
+   "This subtracts 6 instead of adding it before dividing.",
+   "This drops the \\( +6 \\) term and rounds down instead of up.",
+   "This ignores the \\( +6 \\) correction term entirely.",
+   "This is off by one from the correct minimum.",
+   "This is off by one from the correct minimum."
+  ]
+ },
+ {
+  "template_id": "planar_edge_bound_excess_v4",
+  "skill_id": "planarity_recognition_the_edge_bound",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "V": {"type": "int", "lo": 3, "hi": 15},
+   "X": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": [],
+  "derived": {"E": "3*[[V]] - 6 + [[X]]"},
+  "stem": "A simple graph has \\( [[V]] \\) vertices and \\( [[E]] \\) edges, which is MORE than the maximum \\( 3V - 6 \\) allowed for a simple planar graph on \\( [[V]] \\) vertices (so this graph cannot be planar). By how many edges does \\( E \\) exceed the planar bound \\( 3V - 6 \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[E]] - (3*[[V]] - 6)"},
+  "distractors": [
+   "[[E]] - 3*[[V]]",
+   "[[E]] - 3*[[V]] + 6",
+   "3*[[V]] - 6 - [[E]]",
+   "[[E]]/[[V]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The planar bound for \\( [[V]] \\) vertices is \\( 3([[V]]) - 6 \\). The excess is the given edge count minus this bound: \\( [[E]] - (3 \\cdot [[V]] - 6) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to add back the \\( -6 \\) correction of the bound before subtracting.",
+   "This flips the sign on the 6, adding it instead of accounting for the bound's actual subtraction.",
+   "This computes the excess with the sign reversed, giving a negative value.",
+   "This divides instead of finding the difference from the bound.",
+   "This is off by one from the correct excess.",
+   "This is off by one from the correct excess."
+  ]
+ }
+]

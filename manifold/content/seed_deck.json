@@ -1481,91 +1481,91 @@
         {
             "topic_id": "number_theory",
             "skill_id": "fixed_integer_that_always_divides_an_expression",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Fixed integer that always divides an expression"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "gcd_via_the_euclidean_algorithm_and_bezout_combinati",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "GCD via the Euclidean algorithm (and Bézout combination)"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "solvability_of_a_linear_diophantine_equation",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Solvability of a linear Diophantine equation"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "units_digit_of_a_large_power",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Units digit of a large power"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "remainder_of_a_large_power_find_the_cycle_length",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Remainder of a large power (find the cycle length)"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "last_two_digits_of_a_large_power_mod_100",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Last two digits of a large power (mod 100)"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "solve_a_linear_congruence_find_a_modular_inverse",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Solve a linear congruence / find a modular inverse"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "use_residues_to_rule_out_or_classify_squares_mod_n_p",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Use residues to rule out or classify (squares mod n, parity)"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "reduce_a_prime_modulus_power_with_fermat_s_little_th",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Reduce a prime-modulus power with Fermat's little theorem"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "reduce_a_composite_modulus_power_with_euler_s_theore",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Reduce a composite-modulus power with Euler's theorem"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "smallest_integer_satisfying_simultaneous_remainder_c",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Smallest integer satisfying simultaneous remainder conditions"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "the_gcd_lcm_product_relation",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "The gcd · lcm = product relation"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "highest_power_of_a_prime_dividing_a_factorial_legend",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Highest power of a prime dividing a factorial (Legendre) / trailing zeros"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "number_of_positive_divisors_from_the_factorization",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Number of positive divisors from the factorization"
         },
         {
             "topic_id": "number_theory",
             "skill_id": "sum_of_the_divisors_from_the_factorization",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Sum of the divisors from the factorization"
         },
         {
@@ -1895,115 +1895,115 @@
         {
             "topic_id": "group_theory",
             "skill_id": "order_of_a_group_element",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Order of a group element"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "counting_elements_of_a_given_order",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Counting elements of a given order"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "recognizing_subgroups_subgroup_test",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Recognizing subgroups (subgroup test)"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "counting_generators_of_a_cyclic_group",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Counting generators of a cyclic group"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "deciding_whether_a_group_is_cyclic",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Deciding whether a group is cyclic"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "lagrange_divisibility_constraints",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Lagrange divisibility constraints"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "cosets_index",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Cosets & index"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "recognizing_normal_subgroups",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Recognizing normal subgroups"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "identifying_a_quotient_group_s_structure",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Identifying a quotient group's structure"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "counting_homomorphisms_between_groups",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Counting homomorphisms between groups"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "kernel_image_the_first_isomorphism_theorem",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Kernel, image & the first isomorphism theorem"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "isomorphic_or_not_distinguishing_invariants",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Isomorphic or not? (distinguishing invariants)"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "order_of_a_permutation_from_cycle_type",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Order of a permutation from cycle type"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "permutation_products_inverses_in_cycle_notation",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Permutation products & inverses in cycle notation"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "parity_transpositions_the_alternating_group",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Parity, transpositions & the alternating group"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "classifying_groups_of_small_order",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Classifying groups of small order"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "direct_products_finite_abelian_group_classification",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Direct products & finite abelian group classification"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "recognizing_non_group_structures_which_axiom_fails",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Recognizing (non)group structures / which axiom fails"
         },
         {
             "topic_id": "group_theory",
             "skill_id": "general_group_property_assertions_which_must_be_true",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "General group-property assertions (\"which must be true\")"
         },
         {
@@ -2207,103 +2207,103 @@
         {
             "topic_id": "combinatorics",
             "skill_id": "multiplication_principle_staged_choices",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Multiplication principle (staged choices)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "permutations_of_distinct_objects_arrangements_np_r",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Permutations of distinct objects (arrangements, \\(nP_r\\))"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "combinations_selections_binom_n_k",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Combinations / selections (\\(\\binom{n}{k}\\))"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "permutations_with_identical_objects_multiset_arrange",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Permutations with identical objects (multiset arrangements)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "circular_arrangements",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Circular arrangements"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "arrangements_with_adjacency_separation_restrictions",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Arrangements with adjacency / separation restrictions"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "nonnegative_integer_solutions_stars_and_bars",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Nonnegative integer solutions (stars and bars)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "distributing_with_lower_upper_bounds_constrained_sta",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Distributing with lower/upper bounds (constrained stars and bars)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "union_at_least_one_counting_including_divisibility",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Union / \"at least one\" counting (including divisibility)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "derangements_nothing_in_its_own_place",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Derangements (nothing in its own place)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "counting_onto_surjective_functions",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Counting onto (surjective) functions"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "pigeonhole_guarantee_minimum_to_force_a_property",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Pigeonhole guarantee (minimum to force a property)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "counting_via_a_recurrence",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Counting via a recurrence"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "binomial_coefficient_identities_and_sums",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Binomial-coefficient identities and sums"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "multinomial_coefficient_labeled_groups_trinomial_ter",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Multinomial coefficient (labeled groups / trinomial term)"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "lattice_path_grid_route_counting",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Lattice-path / grid-route counting"
         },
         {
             "topic_id": "combinatorics",
             "skill_id": "counting_by_bijection_combinatorial_correspondence",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Counting by bijection / combinatorial correspondence"
         },
         {
@@ -2441,109 +2441,109 @@
         {
             "topic_id": "probability",
             "skill_id": "classical_probability_by_counting_favorable_total",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Classical probability by counting (favorable ÷ total)"
         },
         {
             "topic_id": "probability",
             "skill_id": "selection_without_replacement_committee_urn_hypergeo",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Selection without replacement (committee / urn, hypergeometric flavor)"
         },
         {
             "topic_id": "probability",
             "skill_id": "arrangement_permutation_probability",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Arrangement (permutation) probability"
         },
         {
             "topic_id": "probability",
             "skill_id": "complement_rule_for_at_least_one_none",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Complement rule for \"at least one\" / \"none\""
         },
         {
             "topic_id": "probability",
             "skill_id": "conditional_probability_p_a_mid_b",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Conditional probability \\(P(A\\mid B)\\)"
         },
         {
             "topic_id": "probability",
             "skill_id": "independence_and_mutual_exclusivity_use_and_distingu",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Independence and mutual exclusivity (use and distinguish)"
         },
         {
             "topic_id": "probability",
             "skill_id": "bayes_theorem_law_of_total_probability_source_identi",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Bayes' theorem / law of total probability (source identification)"
         },
         {
             "topic_id": "probability",
             "skill_id": "binomial_probability",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Binomial probability"
         },
         {
             "topic_id": "probability",
             "skill_id": "geometric_distribution_waiting_for_the_first_success",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Geometric distribution (waiting for the first success)"
         },
         {
             "topic_id": "probability",
             "skill_id": "poisson_probability",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Poisson probability"
         },
         {
             "topic_id": "probability",
             "skill_id": "mean_and_variance_of_a_named_distribution_recall",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Mean and variance of a named distribution (recall)"
         },
         {
             "topic_id": "probability",
             "skill_id": "normalizing_constant_valid_density",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Normalizing constant / valid density"
         },
         {
             "topic_id": "probability",
             "skill_id": "probability_from_a_density_definite_integral_and_the",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Probability from a density (definite integral) and the CDF"
         },
         {
             "topic_id": "probability",
             "skill_id": "expected_value_and_variance_from_a_density",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Expected value and variance from a density"
         },
         {
             "topic_id": "probability",
             "skill_id": "geometric_probability_uniform_point_on_an_interval_o",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Geometric probability (uniform point on an interval or region)"
         },
         {
             "topic_id": "probability",
             "skill_id": "exponential_distribution_memoryless_waiting_time",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Exponential distribution (memoryless waiting time)"
         },
         {
             "topic_id": "probability",
             "skill_id": "expected_payoff_fair_game_determination",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Expected payoff / fair-game determination"
         },
         {
             "topic_id": "probability",
             "skill_id": "linearity_of_expectation_expected_number_of",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Linearity of expectation (\"expected number of …\")"
         },
         {
@@ -2891,97 +2891,97 @@
         {
             "topic_id": "complex_analysis",
             "skill_id": "conjugate_division_rectangular_simplification",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Conjugate division / rectangular simplification"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "powers_of_i_cyclic_reduction",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Powers of \\(i\\) (cyclic reduction)"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "modulus_argument_polar_form",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Modulus, argument & polar form"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "euler_s_formula_complex_exponentials_powers",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Euler's formula: complex exponentials & powers"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "de_moivre_power_computation",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "De Moivre power computation"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "n_th_roots_roots_of_unity",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "\\(n\\)th roots & roots of unity"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "cauchyriemann_test_for_analyticity",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Cauchy–Riemann test for analyticity"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "harmonic_functions_harmonic_conjugates",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Harmonic functions & harmonic conjugates"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "cauchygoursat_theorem_closed_integral_of_an_analytic",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Cauchy–Goursat theorem (closed integral of an analytic function)"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "cauchy_s_integral_formula_value_derivative_forms",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Cauchy's integral formula (value & derivative forms)"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "residue_at_a_simple_pole",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Residue at a simple pole"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "residue_theorem_for_contour_integrals",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Residue theorem for contour integrals"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "modulus_loci_regions_in_the_plane",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Modulus loci & regions in the plane"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "elementary_mappings_1_z_z_2_linear",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Elementary mappings (\\(1/z\\), \\(z^{2}\\), linear)"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "entire_functions_liouville_recognition",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Entire functions & Liouville (recognition)"
         },
         {
             "topic_id": "complex_analysis",
             "skill_id": "classifying_isolated_singularities",
-            "tier": "recognize",
+            "tier": "teach",
             "name": "Classifying isolated singularities"
         },
         {

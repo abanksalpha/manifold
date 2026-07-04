@@ -1,0 +1,131 @@
+[
+{
+ "template_id": "cost_optimization_v1",
+ "skill_id": "geometric_cost_optimization_with_a_constraint",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 40
+  }
+ },
+ "constraints": [],
+ "stem": "Minimize \\( C(x)=x+\\dfrac{[[k]]}{x} \\) for \\( x>0 \\). What is the minimum value?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "2*sqrt([[k]])"
+ },
+ "distractors": [
+  "sqrt([[k]])",
+  "[[k]]",
+  "sqrt(2*[[k]])",
+  "2*[[k]]",
+  "2*sqrt([[k]]) + 1",
+  "2*sqrt([[k]]) - 1"
+ ],
+ "solution": "\\( C'(x)=1-\\frac{[[k]]}{x^{2}}=0 \\Rightarrow x=\\sqrt{[[k]]} \\); the minimum is \\( 2\\sqrt{[[k]]}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "max_area_fixed_perimeter_v1",
+ "skill_id": "geometric_cost_optimization_with_a_constraint",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "derived": {"P": "4*[[n]]"},
+ "stem": "A rectangle has perimeter \\( [[P]] \\). Using calculus to maximize the area subject to this fixed perimeter, what is the maximum possible area?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[P]]**2/16"
+ },
+ "distractors": [
+  "[[P]]**2/8",
+  "Rational([[P]], 4)",
+  "[[P]]**2/4",
+  "[[P]]**2/32",
+  "[[P]]**2/16 + 1",
+  "[[P]]**2/16 - 1"
+ ],
+ "solution": "With sides \\( x \\) and \\( \\frac{[[P]]}{2}-x \\), area \\( A(x)=x\\!\\left(\\frac{[[P]]}{2}-x\\right) \\); \\( A'(x)=0 \\) at \\( x=\\frac{[[P]]}{4} \\), giving a square and maximum area \\( \\left(\\frac{[[P]]}{4}\\right)^{2}=\\frac{[[P]]^{2}}{16}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops a factor of 2 in the denominator.",
+  "This is a single side length, not an area.",
+  "This uses the wrong denominator (forgetting to square correctly).",
+  "This overcorrects the denominator.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "min_surface_area_fixed_volume_box_v1",
+ "skill_id": "geometric_cost_optimization_with_a_constraint",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 25}
+ },
+ "constraints": [],
+ "derived": {"V": "[[m]]**3/2"},
+ "stem": "An open-top box with a square base of side \\( x \\) and height \\( h \\) is built to hold a fixed volume \\( V=[[V]] \\), so \\( h=\\dfrac{V}{x^{2}} \\). Its surface area is \\( S(x)=x^{2}+\\dfrac{4V}{x} \\) for \\( x>0 \\). What is the minimum possible surface area?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "3*(2*[[V]])**(Rational(2,3))"
+ },
+ "distractors": [
+  "(2*[[V]])**(Rational(2,3))",
+  "2*(2*[[V]])**(Rational(2,3))",
+  "3*(2*[[V]])**(Rational(1,3))",
+  "3*[[V]]**(Rational(2,3))",
+  "3*(2*[[V]])**(Rational(2,3)) + 1",
+  "3*(2*[[V]])**(Rational(2,3)) - 1"
+ ],
+ "solution": "\\( S'(x)=2x-\\dfrac{4V}{x^{2}}=0 \\Rightarrow x^{3}=2V \\Rightarrow x=(2V)^{1/3} \\); substituting back, the minimum surface area is \\( 3(2V)^{2/3}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the leading factor of 3.",
+  "This uses 2 instead of 3 as the leading factor.",
+  "This uses the wrong exponent (the optimal \\( x \\), not \\( S \\) at that \\( x \\)).",
+  "This drops the factor of 2 inside the cube root.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "min_sum_of_squares_fixed_sum_v1",
+ "skill_id": "geometric_cost_optimization_with_a_constraint",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 1, "hi": 15}
+ },
+ "constraints": [],
+ "derived": {"s": "2*[[n]]"},
+ "stem": "If \\( x+y=[[s]] \\) with \\( x,y \\) real, what is the minimum possible value of \\( x^{2}+y^{2} \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[s]]**2/2"
+ },
+ "distractors": [
+  "[[s]]**2/4",
+  "[[s]]**2",
+  "Rational([[s]], 2)",
+  "2*[[s]]**2",
+  "[[s]]**2/2 + 1",
+  "[[s]]**2/2 - 1"
+ ],
+ "solution": "Substituting \\( y=[[s]]-x \\), \\( f(x)=x^{2}+([[s]]-x)^{2} \\) has \\( f'(x)=0 \\) at \\( x=\\dfrac{[[s]]}{2} \\), giving \\( x=y=\\dfrac{[[s]]}{2} \\) and minimum value \\( \\dfrac{[[s]]^{2}}{2}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is the classic maximum-product value \\( xy \\), not the minimum sum of squares.",
+  "This forgets to divide by 2 at all.",
+  "This is just \\( x=y \\) itself, not \\( x^{2}+y^{2} \\).",
+  "This doubles the correct minimum.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

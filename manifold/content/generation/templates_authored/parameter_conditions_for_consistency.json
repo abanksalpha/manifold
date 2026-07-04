@@ -1,0 +1,118 @@
+[
+ {
+  "template_id": "parameter_singular_k_v1",
+  "skill_id": "parameter_conditions_for_consistency",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "choice", "values": [2, 3, 4, 5]},
+   "t": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "c1": {"type": "int", "lo": -6, "hi": 6},
+   "c2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[t]], 0)", "Ne([[d]], 0)"],
+  "derived": {
+   "a": "[[b]]*[[t]]"
+  },
+  "stem": "The system \\( ([[a]])x + ([[b]])y = [[c1]] \\) and \\( kx + ([[d]])y = [[c2]] \\) fails to have a unique solution for exactly one value of \\( k \\). What is that value of \\( k \\)?",
+  "answer_spec": {"op": "solve", "equation": "([[a]])*([[d]]) - ([[b]])*k = 0", "var": "k"},
+  "distractors": [
+   "[[a]]*[[d]]",
+   "-[[answer]]",
+   "[[a]] + [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "A 2x2 system has a unique solution exactly when its coefficient determinant is nonzero. Here the determinant is \\( ([[a]])([[d]]) - ([[b]])k \\), which is zero when \\( k = \\dfrac{([[a]])([[d]])}{[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( ad \\); you must still divide by \\( b \\), the coefficient of \\( k \\), to solve the determinant equation.",
+   "This has the correct magnitude but the wrong sign.",
+   "This adds two coefficients instead of solving \\( ad - bk = 0 \\).",
+   "This is off by one from the value that makes the determinant zero.",
+   "This is off by one from the value that makes the determinant zero.",
+   "This is off by two from the value that makes the determinant zero."
+  ]
+ },
+ {
+  "template_id": "parameter_dependent_rhs_consistency_v1",
+  "skill_id": "parameter_conditions_for_consistency",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a1": {"type": "int", "lo": -5, "hi": 5},
+   "b1": {"type": "int", "lo": -5, "hi": 5},
+   "c1": {"type": "int", "lo": -6, "hi": 6},
+   "t": {"type": "choice", "values": [-3, -2, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[a1]], 0)", "Ne([[b1]], 0)", "Ne([[c1]], 0)"],
+  "derived": {
+   "a2": "[[t]]*[[a1]]",
+   "b2": "[[t]]*[[b1]]"
+  },
+  "stem": "The lines \\( ([[a1]])x + ([[b1]])y = [[c1]] \\) and \\( ([[a2]])x + ([[b2]])y = k \\) have PROPORTIONAL left-hand sides (one is a multiple of the other), so for most values of \\( k \\) they are parallel with no common point. For what value of \\( k \\) do the two equations instead describe the SAME line (infinitely many common solutions)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[t]]*[[c1]]"},
+  "distractors": [
+   "[[c1]]",
+   "[[t]] + [[c1]]",
+   "[[c1]]/[[t]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since the left-hand side of the second equation is \\( [[t]] \\) times the first, the two equations describe the same line exactly when the right-hand sides scale the same way: \\( k = [[t]]([[c1]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to scale the constant term by the same factor [[t]] as the coefficients.",
+   "This adds the scale factor instead of multiplying by it.",
+   "This divides by the scale factor instead of multiplying by it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "parameter_three_lines_concurrency_v1",
+  "skill_id": "parameter_conditions_for_consistency",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a1": {"type": "int", "lo": -4, "hi": 4},
+   "b1": {"type": "int", "lo": -4, "hi": 4},
+   "c1": {"type": "int", "lo": -6, "hi": 6},
+   "a2": {"type": "int", "lo": -4, "hi": 4},
+   "b2": {"type": "int", "lo": -4, "hi": 4},
+   "c2": {"type": "int", "lo": -6, "hi": 6},
+   "a3": {"type": "int", "lo": -4, "hi": 4},
+   "b3": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": [
+   "Ne([[a1]]*[[b2]] - [[a2]]*[[b1]], 0)",
+   "Ne([[a3]], 0)",
+   "Ne([[b3]], 0)"
+  ],
+  "stem": "The lines \\( ([[a1]])x + ([[b1]])y = [[c1]] \\) and \\( ([[a2]])x + ([[b2]])y = [[c2]] \\) intersect at a single point. For what value of \\( k \\) does the third line \\( ([[a3]])x + ([[b3]])y = k \\) also pass through that same point (i.e. all three lines are concurrent)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[a3]])*((([[c1]])*([[b2]]) - ([[c2]])*([[b1]]))/(([[a1]])*([[b2]]) - ([[a2]])*([[b1]]))) + ([[b3]])*((([[a1]])*([[c2]]) - ([[a2]])*([[c1]]))/(([[a1]])*([[b2]]) - ([[a2]])*([[b1]])))"
+  },
+  "distractors": [
+   "[[c1]] + [[c2]]",
+   "([[a3]])*([[c1]]) + ([[b3]])*([[c2]])",
+   "([[a1]])*([[a3]]) + ([[b1]])*([[b3]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "First find the common point of the first two lines by Cramer's rule: \\( x_0 = \\dfrac{c_1 b_2 - c_2 b_1}{a_1 b_2 - a_2 b_1} \\), \\( y_0 = \\dfrac{a_1 c_2 - a_2 c_1}{a_1 b_2 - a_2 b_1} \\). The third line passes through \\( (x_0,y_0) \\) exactly when \\( k = ([[a3]])x_0 + ([[b3]])y_0 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just adds the two given constants instead of substituting the actual intersection point.",
+   "This plugs \\( c_1, c_2 \\) directly in for \\( x_0, y_0 \\) instead of solving for the true intersection.",
+   "This mixes up coefficients from the wrong equations instead of using the solved intersection point.",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by two from the correct value of \\( k \\)."
+  ]
+ }
+]

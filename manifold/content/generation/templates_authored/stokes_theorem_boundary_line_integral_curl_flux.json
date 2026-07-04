@@ -1,0 +1,136 @@
+[
+ {
+  "template_id": "stokes_flat_rect_v1",
+  "skill_id": "stokes_theorem_boundary_line_integral_curl_flux",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "W": {"type": "int", "lo": 1, "hi": 4},
+   "H": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[b]] - [[a]], 0)"],
+  "stem": "Let \\( \\mathbf{F}(x,y,z) = ( ([[a]])y,\\; ([[b]])x,\\; ([[c]])z ) \\). Using Stokes' theorem, evaluate \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is the boundary of the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\) in the plane \\( z = 0 \\), oriented counterclockwise when viewed from above.",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[b]]) - ([[a]])", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+  "distractors": [
+   "(([[a]]) - ([[b]]))*([[W]])*([[H]])",
+   "(([[a]]) + ([[b]]))*([[W]])*([[H]])",
+   "([[b]]) - ([[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Stokes' theorem gives \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = \\iint_S (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k}\\,dA \\). Here \\( (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k} = \\partial_x([[b]]x) - \\partial_y([[a]]y) = ([[b]]) - ([[a]]) \\), so over the rectangle the value is \\( (([[b]])-([[a]]))\\cdot[[W]]\\cdot[[H]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reverses the curl subtraction, using \\( \\partial_y P - \\partial_x Q \\).",
+   "This adds the two partials instead of subtracting them.",
+   "This gives only the (constant) curl component, forgetting to multiply by the area \\( [[W]]\\cdot[[H]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "stokes_flat_disk_v1",
+  "skill_id": "stokes_theorem_boundary_line_integral_curl_flux",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "R": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[b]] - [[a]], 0)"],
+  "require_rational": false,
+  "stem": "Let \\( \\mathbf{F}(x,y,z) = ( ([[a]])y,\\; ([[b]])x,\\; ([[c]])z ) \\), and let \\( C \\) be the circle \\( x^{2}+y^{2}=[[R]]^{2} \\) in the plane \\( z=0 \\), oriented counterclockwise when viewed from above. Use Stokes' theorem to evaluate \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[b]]) - ([[a]])", "vars": ["y", "x"], "bounds": [["-sqrt([[R]]**2 - x**2)", "sqrt([[R]]**2 - x**2)"], ["-[[R]]", "[[R]]"]]},
+  "distractors": [
+   "(([[a]]) - ([[b]]))*pi*([[R]])**2",
+   "(([[a]]) + ([[b]]))*pi*([[R]])**2",
+   "(([[b]]) - ([[a]]))*2*pi*([[R]])",
+   "(([[b]]) - ([[a]]))*pi*[[R]]",
+   "[[answer]] + pi",
+   "[[answer]] - pi"
+  ],
+  "solution": "Stokes' theorem gives \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = \\iint_S (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k}\\,dA \\), where \\( S \\) is the disk \\( x^2+y^2\\le [[R]]^2 \\). Here \\( (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k} = ([[b]]) - ([[a]]) \\) is constant, so the integral is this constant times the disk's area \\( \\pi([[R]])^2 \\), giving \\( (([[b]])-([[a]]))\\cdot\\pi([[R]])^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reverses the curl subtraction, using \\( \\partial_y P - \\partial_x Q \\).",
+   "This adds the two partials instead of subtracting them.",
+   "This uses the circle's circumference \\( 2\\pi R \\) instead of the disk's area \\( \\pi R^2 \\).",
+   "This uses \\( \\pi R \\) instead of \\( \\pi R^2 \\) for the disk's area.",
+   "This adds an extra factor of \\( \\pi \\) to the correct answer.",
+   "This subtracts an extra factor of \\( \\pi \\) from the correct answer."
+  ]
+ },
+ {
+  "template_id": "stokes_flat_triangle_v1",
+  "skill_id": "stokes_theorem_boundary_line_integral_curl_flux",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "W": {"type": "int", "lo": 1, "hi": 5},
+   "H": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ne([[b]] - [[a]], 0)"],
+  "stem": "Let \\( \\mathbf{F}(x,y,z) = ( ([[a]])y,\\; ([[b]])x,\\; ([[c]])z ) \\), and let \\( C \\) be the boundary of the triangle with vertices \\( (0,0,0) \\), \\( ([[W]],0,0) \\), and \\( (0,[[H]],0) \\), oriented counterclockwise when viewed from above. Use Stokes' theorem to evaluate \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "([[b]]) - ([[a]])", "vars": ["y", "x"], "bounds": [["0", "([[H]])*([[W]] - x)/([[W]])"], ["0", "[[W]]"]]},
+  "distractors": [
+   "(([[a]]) - ([[b]]))*(Rational(1,2))*([[W]])*([[H]])",
+   "(([[a]]) + ([[b]]))*(Rational(1,2))*([[W]])*([[H]])",
+   "(([[b]]) - ([[a]]))*([[W]])*([[H]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Stokes' theorem gives \\( \\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = \\iint_S (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k}\\,dA \\), where \\( S \\) is the triangular region with legs \\( [[W]] \\) and \\( [[H]] \\) on the axes. Here \\( (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k} = ([[b]]) - ([[a]]) \\) is constant, so the integral equals this constant times the triangle's area \\( \\tfrac12\\cdot[[W]]\\cdot[[H]] \\), giving \\( (([[b]])-([[a]]))\\cdot\\tfrac12\\cdot[[W]]\\cdot[[H]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reverses the curl subtraction, using \\( \\partial_y P - \\partial_x Q \\).",
+   "This adds the two partials instead of subtracting them.",
+   "This uses the full rectangle's area \\( W\\cdot H \\) instead of the triangle's area \\( \\tfrac12 W H \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "stokes_tilted_plane_full_normal_v1",
+  "skill_id": "stokes_theorem_boundary_line_integral_curl_flux",
+  "topic_id": "vector_calc",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "alpha": {"type": "int", "lo": -3, "hi": 3},
+   "beta": {"type": "int", "lo": -3, "hi": 3},
+   "W": {"type": "int", "lo": 1, "hi": 4},
+   "H": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)", "Ne([[b]]*[[alpha]] + [[c]]*[[beta]] - [[a]], 0)"],
+  "stem": "Let \\( \\mathbf{F}(x,y,z) = ( ([[a]])y,\\; ([[b]])z,\\; ([[c]])x ) \\). Let \\( S \\) be the portion of the (tilted) plane \\( z = ([[alpha]])x + ([[beta]])y \\) lying above the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\), oriented with upward-pointing normal, and let \\( C \\) be its boundary, oriented consistently with \\( S \\)'s orientation. Use Stokes' theorem to evaluate \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} \\).",
+  "answer_spec": {"op": "dblintegrate", "expr": "(([[b]])*([[alpha]]) + ([[c]])*([[beta]]) - ([[a]]))", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+  "distractors": [
+   "(([[c]]) - ([[a]]))*([[W]])*([[H]])",
+   "(([[b]]) - ([[a]]))*([[W]])*([[H]])",
+   "(-([[a]]))*([[W]])*([[H]])",
+   "(([[b]])*([[alpha]]) + ([[c]])*([[beta]]) - ([[a]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Here \\( \\nabla\\times\\mathbf{F} = (-([[b]]), -([[c]]), -([[a]])) \\) (a constant vector). For the graph \\( z=g(x,y)=([[alpha]])x+([[beta]])y \\) with upward orientation, \\( \\mathbf{n}\\,dS = (-g_x,-g_y,1)\\,dA = (-([[alpha]]), -([[beta]]), 1)\\,dA \\). So \\( (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{n}\\,dS = \\big[(-([[b]]))(-([[alpha]])) + (-([[c]]))(-([[beta]])) + (-([[a]]))(1)\\big]\\,dA = \\big[([[b]])([[alpha]]) + ([[c]])([[beta]]) - ([[a]])\\big]\\,dA \\), a constant. Multiplying by the rectangle's area \\( [[W]]\\cdot[[H]] \\) gives \\( \\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only two of the three curl components (\\( \\partial_x F_3 \\)-style shortcut), as if \\( \\mathbf{n}=\\mathbf{k} \\) on this tilted surface.",
+   "This mistakenly treats the curl components as \\( (\\nabla\\times\\mathbf{F})\\cdot\\mathbf{k} = b-a \\), the horizontal-plane formula, ignoring the plane's tilt.",
+   "This uses only the \\( z \\)-component of the curl, \\( -a \\), forgetting the \\( x \\)- and \\( y \\)-components entirely contribute through the tilted normal.",
+   "This omits the multiplication by the base rectangle's area \\( [[W]]\\cdot[[H]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

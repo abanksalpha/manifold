@@ -1,0 +1,125 @@
+[
+{
+ "template_id": "reference_angle_reduce_v1",
+ "skill_id": "reference_angle_periodicity_reduction",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 13,
+   "hi": 40
+  }
+ },
+ "constraints": [],
+ "stem": "Using periodicity and reference angles, evaluate \\( \\cos\\!\\left(\\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "cos([[k]]*pi/6)"
+ },
+ "distractors": [
+  "sin([[k]]*pi/6)",
+  "-cos([[k]]*pi/6)",
+  "cos([[k]]*pi/6) + 1",
+  "cos([[k]]*pi/6) - 1",
+  "1 - cos([[k]]*pi/6)",
+  "-sin([[k]]*pi/6)"
+ ],
+ "solution": "Subtract full periods and use the reference angle: \\( \\cos\\!\\left(\\tfrac{[[k]]\\pi}{6}\\right)=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "reference_angle_tan_period_pi_v1",
+ "skill_id": "reference_angle_periodicity_reduction",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 9, "hi": 55}
+ },
+ "constraints": ["Ne(Mod([[k]], 4), 2)"],
+ "stem": "Using the periodicity of tangent (period \\( \\pi \\), not \\( 2\\pi \\)) and a reference angle, evaluate \\( \\tan\\!\\left(\\dfrac{[[k]]\\pi}{4}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "tan([[k]]*pi/4)"},
+ "distractors": [
+  "-tan([[k]]*pi/4)",
+  "1/tan([[k]]*pi/4)",
+  "tan([[k]]*pi/4) + 1",
+  "tan([[k]]*pi/4) - 1",
+  "sin([[k]]*pi/4)",
+  "cos([[k]]*pi/4)"
+ ],
+ "solution": "Since \\( \\tan \\) has period \\( \\pi \\) (half that of \\( \\sin \\) and \\( \\cos \\)), reduce \\( \\tfrac{[[k]]\\pi}{4} \\) modulo \\( \\pi \\) to a reference angle: \\( \\tan\\!\\left(\\tfrac{[[k]]\\pi}{4}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign.",
+  "This confuses the value with its reciprocal, \\( \\cot \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This confuses the tangent value with \\( \\sin \\) of the same angle.",
+  "This confuses the tangent value with \\( \\cos \\) of the same angle."
+ ]
+},
+{
+ "template_id": "reference_angle_degrees_v1",
+ "skill_id": "reference_angle_periodicity_reduction",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 9, "hi": 40}
+ },
+ "constraints": [],
+ "derived": {
+  "deg": "45*[[k]]"
+ },
+ "stem": "Using periodicity and a reference angle, evaluate \\( \\sin([[deg]]^\\circ) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sin([[k]]*pi/4)"},
+ "distractors": [
+  "cos([[k]]*pi/4)",
+  "-sin([[k]]*pi/4)",
+  "sin([[k]]*pi/4) + 1",
+  "sin([[k]]*pi/4) - 1",
+  "1 - sin([[k]]*pi/4)",
+  "-cos([[k]]*pi/4)"
+ ],
+ "solution": "Subtract full \\( 360^\\circ \\) rotations from \\( [[deg]]^\\circ \\) and use the reference angle: \\( \\sin([[deg]]^\\circ)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the sine value with the cosine of the same reduced angle.",
+  "This has the wrong sign.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This subtracts the correct value from \\( 1 \\) instead of reporting it directly.",
+  "This confuses the sine value with the negative cosine of the same reduced angle."
+ ]
+},
+{
+ "template_id": "reference_angle_negative_symmetry_v1",
+ "skill_id": "reference_angle_periodicity_reduction",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 13, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "Using periodicity, a reference angle, and the fact that sine is an odd function, evaluate \\( \\sin\\!\\left(-\\dfrac{[[k]]\\pi}{6}\\right) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sin(-[[k]]*pi/6)"},
+ "distractors": [
+  "sin([[k]]*pi/6)",
+  "cos([[k]]*pi/6)",
+  "-cos([[k]]*pi/6)",
+  "sin([[k]]*pi/6) - 1",
+  "-sin([[k]]*pi/6) + 1",
+  "cos(-[[k]]*pi/6)"
+ ],
+ "solution": "Since \\( \\sin \\) is odd, \\( \\sin(-\\theta) = -\\sin(\\theta) \\). Reduce \\( \\tfrac{[[k]]\\pi}{6} \\) with periodicity and a reference angle first, then negate: \\( \\sin\\!\\left(-\\tfrac{[[k]]\\pi}{6}\\right)=[[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets that sine is odd and drops the negative sign entirely.",
+  "This confuses the value with the cosine of the same positive angle.",
+  "This confuses the value with the negative cosine of the same positive angle (cosine is even, not odd).",
+  "This is off by one from the correct value.",
+  "This has the wrong sign and is off by one.",
+  "This incorrectly treats cosine as odd; \\( \\cos(-\\theta)=\\cos(\\theta) \\), not \\( -\\cos(\\theta) \\)."
+ ]
+}
+]

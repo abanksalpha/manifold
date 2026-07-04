@@ -1,0 +1,179 @@
+[
+{
+ "template_id": "rank_echelon_form_of_a_matrix_v1",
+ "skill_id": "rank_echelon_form_of_a_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)"],
+ "derived": {
+  "r31": "[[a]] + [[d]]",
+  "r32": "[[b]] + [[e]]",
+  "r33": "[[c]] + [[f]] + [[g]]"
+ },
+ "stem": "What is the rank of the matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{bmatrix} \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "3",
+  "1",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Row-reducing shows the third row is the sum of the first two, so it yields no new pivot, while rows 1 and 2 are independent (their \\( 2\\times2 \\) minor \\( ([[a]])([[e]])-([[b]])([[d]]) \\ne 0 \\)). The rank is therefore [[answer]].",
+ "distractor_rationales": [
+  "This counts all three rows as independent, missing that row 3 is a combination of rows 1 and 2.",
+  "This under-counts the independent rows.",
+  "A nonzero matrix cannot have rank 0.",
+  "This is off by one from the correct rank.",
+  "This is off by one from the correct rank.",
+  "This over-counts the number of pivots."
+ ]
+},
+{
+ "template_id": "rank_echelon_form_of_a_matrix_v2_rank1",
+ "skill_id": "rank_echelon_form_of_a_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "k1": {"type": "choice", "values": [-3, -2, -1, 2, 3]},
+  "k2": {"type": "choice", "values": [-3, -2, -1, 2, 3]}
+ },
+ "constraints": ["Or(Ne([[a]],0), Ne([[b]],0), Ne([[c]],0))", "Ne([[k1]], [[k2]])"],
+ "derived": {
+  "r21": "[[k1]]*[[a]]",
+  "r22": "[[k1]]*[[b]]",
+  "r23": "[[k1]]*[[c]]",
+  "r31": "[[k2]]*[[a]]",
+  "r32": "[[k2]]*[[b]]",
+  "r33": "[[k2]]*[[c]]"
+ },
+ "stem": "Every row of \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[r21]] & [[r22]] & [[r23]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{bmatrix} \\) is a scalar multiple of \\( ([[a]], [[b]], [[c]]) \\). What is the rank of \\( A \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[r21]]", "[[r22]]", "[[r23]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "3",
+  "2",
+  "0",
+  "[[k1]]",
+  "[[k2]]"
+ ],
+ "solution": "Rows 2 and 3 are \\( [[k1]] \\) and \\( [[k2]] \\) times row 1 respectively, so every row lies along the single direction \\( ([[a]], [[b]], [[c]]) \\ne (0,0,0) \\). Only one row survives row reduction, so the rank is [[answer]].",
+ "distractor_rationales": [
+  "This treats all three rows as independent, ignoring that they are all scalar multiples of each other.",
+  "This assumes only one row is dependent, missing that ALL rows are proportional.",
+  "A matrix with a nonzero row cannot have rank 0.",
+  "This is one of the scaling factors used to build the matrix, not its rank.",
+  "This is one of the scaling factors used to build the matrix, not its rank."
+ ]
+},
+{
+ "template_id": "rank_echelon_form_of_a_matrix_v3_fullrank",
+ "skill_id": "rank_echelon_form_of_a_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "i": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]]), 0)"],
+ "stem": "None of the rows of \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{bmatrix} \\) is an obvious combination of the others. Verify that \\( \\det(A) \\ne 0 \\) and give the rank of \\( A \\).",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[g]]", "[[h]]", "[[i]]"]]},
+ "distractors": [
+  "2",
+  "1",
+  "0",
+  "4",
+  "5"
+ ],
+ "solution": "Since \\( \\det(A) = ([[a]])(([[e]])([[i]])-([[f]])([[h]])) - ([[b]])(([[d]])([[i]])-([[f]])([[g]])) + ([[c]])(([[d]])([[h]])-([[e]])([[g]])) \\ne 0 \\), the rows are linearly independent and \\( A \\) has full rank [[answer]].",
+ "distractor_rationales": [
+  "This under-counts the pivots; a nonzero determinant means ALL three rows are independent.",
+  "This under-counts the pivots by two.",
+  "A matrix with a nonzero determinant cannot have rank 0.",
+  "This is off by one from the correct (full) rank.",
+  "This is off by two from the correct (full) rank."
+ ]
+},
+{
+ "template_id": "rank_echelon_form_of_a_matrix_v4_nonsquare",
+ "skill_id": "rank_echelon_form_of_a_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*[[e]] - [[b]]*[[d]], 0)"],
+ "stem": "What is the rank of the (non-square) matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\end{bmatrix} \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"]]},
+ "distractors": [
+  "3",
+  "0",
+  "6",
+  "[[answer]] - 1",
+  "[[answer]] + 1"
+ ],
+ "solution": "A \\( 2\\times3 \\) matrix has rank at most \\( 2 \\). Since the first two columns form the invertible \\( 2\\times2 \\) block \\( \\begin{bmatrix} [[a]] & [[b]] \\\\ [[d]] & [[e]] \\end{bmatrix} \\) (determinant \\( ([[a]])([[e]])-([[b]])([[d]]) \\ne 0 \\)), the two rows are independent, so \\( A \\) achieves the maximum possible rank, [[answer]].",
+ "distractor_rationales": [
+  "The rank of an \\(m\\times n\\) matrix can never exceed \\( \\min(m,n) \\); here that bound is \\(2\\), not \\(3\\).",
+  "A matrix with a nonzero entry cannot have rank 0.",
+  "This is the total number of entries in the matrix, not its rank.",
+  "This under-counts the independent rows.",
+  "The rank of a \\(2\\times3\\) matrix cannot exceed the number of rows, \\(2\\)."
+ ]
+},
+{
+ "template_id": "rank_echelon_form_of_a_matrix_v5_echelon_given",
+ "skill_id": "rank_echelon_form_of_a_matrix",
+ "topic_id": "linear_algebra_core",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": 1, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "The matrix \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & 0 \\end{bmatrix} \\) is already in row-echelon form. What is its rank?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "0"]]},
+ "distractors": [
+  "3",
+  "1",
+  "0",
+  "[[a]]",
+  "[[d]]"
+ ],
+ "solution": "The rank of a matrix already in row-echelon form equals its number of nonzero rows. Here rows 1 and 2 have leading pivots \\( [[a]] \\) and \\( [[d]] \\), while row 3 is entirely zero, so the rank is [[answer]].",
+ "distractor_rationales": [
+  "This counts the zero row as contributing a pivot, which it cannot.",
+  "This misses that TWO rows (not just one) are nonzero.",
+  "A matrix with nonzero pivot rows cannot have rank 0.",
+  "This is the leading pivot value of row 1, not the count of nonzero rows.",
+  "This is the leading pivot value of row 2, not the count of nonzero rows."
+ ]
+}
+]

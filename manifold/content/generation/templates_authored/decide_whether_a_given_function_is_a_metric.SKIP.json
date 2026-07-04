@@ -1,0 +1,1 @@
+{"skill_id": "decide_whether_a_given_function_is_a_metric", "reason": "Verifying the metric axioms (non-negativity, symmetry, triangle inequality) is a qualitative yes/no, not a single computed number."}

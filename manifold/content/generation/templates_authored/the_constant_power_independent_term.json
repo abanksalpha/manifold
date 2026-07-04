@@ -1,0 +1,110 @@
+[
+ {
+  "template_id": "constant_term_expansion_v1",
+  "skill_id": "the_constant_power_independent_term",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "n": {
+    "type": "choice",
+    "values": [2, 4, 6, 8, 10, 12]
+   },
+   "c": {
+    "type": "choice",
+    "values": [-4, -3, -2, 2, 3, 4]
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "h": "[[n]]/2"
+  },
+  "stem": "In the expansion of \\( \\left( x + \\dfrac{[[c]]}{x} \\right)^{[[n]]} \\), what is the term that does not depend on \\( x \\) (the constant term)?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "binomial([[n]], [[h]]) * ([[c]])**([[h]])"
+  },
+  "distractors": [
+   "binomial([[n]], [[h]])",
+   "([[c]])**([[h]])",
+   "binomial([[n]], [[h]]) * ([[c]])**([[n]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The general term is \\( \\binom{[[n]]}{j}\\, x^{[[n]]-j} \\left(\\dfrac{[[c]]}{x}\\right)^{j} = \\binom{[[n]]}{j} ([[c]])^{j}\\, x^{[[n]]-2j} \\). It is independent of \\( x \\) when \\( [[n]] - 2j = 0 \\), i.e. \\( j = [[h]] \\), giving \\( \\binom{[[n]]}{[[h]]} ([[c]])^{[[h]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is only the binomial coefficient \\( \\binom{n}{n/2} \\); it omits the factor \\( c^{n/2} \\).",
+   "This omits the binomial coefficient.",
+   "This raises \\( c \\) to the power \\( n \\) instead of \\( n/2 \\).",
+   "This is off by one from the correct constant term.",
+   "This is off by one from the correct constant term.",
+   "This is off by two from the correct constant term."
+  ]
+ },
+ {
+  "template_id": "general_mixed_exponent_constant_term_v1",
+  "skill_id": "the_constant_power_independent_term",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "choice", "values": [1, 2, 3]},
+   "q": {"type": "choice", "values": [1, 2, 3]},
+   "u": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Or(Ne([[p]], 1), Ne([[q]], 1))"],
+  "derived": {
+   "n": "[[u]]*([[p]] + [[q]])",
+   "j": "[[u]]*[[p]]"
+  },
+  "stem": "In the expansion of \\( \\left( x^{[[p]]} + \\dfrac{[[c]]}{x^{[[q]]}} \\right)^{[[n]]} \\), what is the term that does not depend on \\( x \\) (the constant term)?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], [[j]]) * ([[c]])**([[j]])"},
+  "distractors": [
+   "binomial([[n]], [[j]])",
+   "([[c]])**([[j]])",
+   "binomial([[n]], [[n]] - [[j]]) * ([[c]])**([[n]] - [[j]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The general term is \\( \\binom{[[n]]}{k} (x^{[[p]]})^{[[n]]-k} \\left(\\dfrac{[[c]]}{x^{[[q]]}}\\right)^{k} = \\binom{[[n]]}{k} ([[c]])^{k}\\, x^{[[p]]\\cdot[[n]] - ([[p]]+[[q]])k} \\). It is independent of \\( x \\) when \\( [[p]]\\cdot [[n]] = ([[p]]+[[q]])k \\), i.e. \\( k = [[j]] \\), giving \\( \\binom{[[n]]}{[[j]]} ([[c]])^{[[j]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the factor \\( c^{k} \\) from the term.",
+   "This omits the binomial coefficient.",
+   "This uses the wrong term index, \\( n-j \\) instead of \\( j \\), swapping which factor gets the exponent \\( k \\).",
+   "This is off by one from the correct constant term.",
+   "This is off by one from the correct constant term.",
+   "This is off by two from the correct constant term."
+  ]
+ },
+ {
+  "template_id": "constant_term_existence_count_v1",
+  "skill_id": "the_constant_power_independent_term",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "N": {"type": "int", "lo": 6, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "For how many positive integers \\( n \\) with \\( 2 \\le n \\le [[N]] \\) does the expansion of \\( \\left( x + \\dfrac{1}{x} \\right)^{n} \\) have a term that does not depend on \\( x \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "floor([[N]]/2)"},
+  "distractors": [
+   "[[N]]",
+   "floor([[N]]/2) + 1",
+   "floor([[N]]/2) - 1",
+   "ceiling([[N]]/2)",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "A constant term exists exactly when \\( n \\) is even (so that \\( j = n/2 \\) is a whole number). The even integers from 2 to \\( [[N]] \\) number \\( \\lfloor [[N]]/2 \\rfloor = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts every integer from 2 to \\( N \\), not just the even ones.",
+   "This over-counts the even integers in the range by one.",
+   "This under-counts the even integers in the range by one.",
+   "This rounds up instead of down, which over-counts when \\( N \\) is odd.",
+   "This is larger than the correct count.",
+   "This is smaller than the correct count."
+  ]
+ }
+]

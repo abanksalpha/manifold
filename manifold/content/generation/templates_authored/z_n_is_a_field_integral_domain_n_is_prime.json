@@ -1,0 +1,119 @@
+[
+{
+ "template_id": "zn_is_field_isprime_test_v1",
+ "skill_id": "z_n_is_a_field_integral_domain_n_is_prime",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 300}
+ },
+ "constraints": [],
+ "stem": "The ring \\( \\mathbb{Z}_{[[n]]} \\) (integers modulo \\( [[n]] \\)) is a field exactly when \\( [[n]] \\) is prime (equivalently, exactly when every nonzero element has a multiplicative inverse). Is \\( \\mathbb{Z}_{[[n]]} \\) a field? Enter \\( 1 \\) for yes, \\( 0 \\) for no.",
+ "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, isprime([[n]])), (0, True))"},
+ "distractors": [
+  "1 - Piecewise((1, isprime([[n]])), (0, True))",
+  "2",
+  "3",
+  "-1",
+  "-2"
+ ],
+ "solution": "\\( \\mathbb{Z}_{n} \\) is a field if and only if \\( n \\) is prime (for composite \\( n=ab \\) with \\( 1<a,b<n \\), \\( a \\) and \\( b \\) are nonzero zero divisors, so no field). Checking \\( [[n]] \\) for primality directly gives the verdict \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the flipped verdict, swapping field and non-field.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1."
+ ]
+},
+{
+ "template_id": "zn_is_field_unit_count_v1",
+ "skill_id": "z_n_is_a_field_integral_domain_n_is_prime",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 300}
+ },
+ "constraints": [],
+ "stem": "\\( \\mathbb{Z}_{[[n]]} \\) is a field exactly when EVERY nonzero element is a unit, i.e. exactly when the number of units equals \\( [[n]]-1 \\). How many units (invertible elements) does \\( \\mathbb{Z}_{[[n]]} \\) actually have?",
+ "answer_spec": {"op": "evaluate", "expr": "totient([[n]])"},
+ "distractors": [
+  "[[n]] - 1",
+  "[[n]]",
+  "[[n]]/2",
+  "[[n]] - 2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The units of \\( \\mathbb{Z}_{n} \\) are the residues coprime to \\( n \\); there are \\( \\varphi(n) \\) of them. Here \\( \\varphi([[n]]) = [[answer]] \\). (This equals \\( [[n]]-1 \\) exactly when \\( [[n]] \\) is prime, i.e. exactly when \\( \\mathbb{Z}_{[[n]]} \\) is a field.)",
+ "distractor_rationales": [
+  "This assumes every nonzero residue is automatically a unit, i.e. assumes \\( \\mathbb{Z}_{[[n]]} \\) is always a field regardless of whether \\( [[n]] \\) is actually prime.",
+  "This counts every residue including \\( 0 \\), which is never a unit.",
+  "This guesses that exactly half the residues are units, which is only a coincidence for some moduli.",
+  "This subtracts two instead of computing the actual totient via the prime factorization of \\( [[n]] \\).",
+  "This is one more than the correct unit count.",
+  "This is one fewer than the correct unit count.",
+  "This is two more than the correct unit count."
+ ]
+},
+{
+ "template_id": "zn_is_field_nonunit_count_v1",
+ "skill_id": "z_n_is_a_field_integral_domain_n_is_prime",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 300}
+ },
+ "constraints": [],
+ "stem": "\\( \\mathbb{Z}_{[[n]]} \\) fails to be a field/integral domain exactly when it has a nonzero element with no multiplicative inverse (a zero divisor). How many of the \\( [[n]]-1 \\) nonzero elements of \\( \\mathbb{Z}_{[[n]]} \\) are NOT units? (A value of \\( 0 \\) here means \\( \\mathbb{Z}_{[[n]]} \\) IS a field.)",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1 - totient([[n]])"},
+ "distractors": [
+  "totient([[n]])",
+  "[[n]] - totient([[n]])",
+  "[[n]] - 1",
+  "totient([[n]]) - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Of the \\( [[n]] \\) residues mod \\( [[n]] \\), exactly \\( \\varphi([[n]]) \\) are units and one is \\( 0 \\); every other nonzero residue is a non-unit (zero divisor). So the non-unit count is \\( ([[n]]-1) - \\varphi([[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the number of UNITS \\( \\varphi([[n]]) \\), the complement of what was asked.",
+  "This still includes \\( 0 \\) in the non-unit count; the question asks only about the \\( n-1 \\) NONZERO elements.",
+  "This claims every nonzero element fails to be a unit, as if \\( \\mathbb{Z}_{[[n]]} \\) had no units at all.",
+  "This is one less than the unit count \\( \\varphi([[n]]) \\), not the non-unit count.",
+  "This is one more than the correct non-unit count.",
+  "This is one fewer than the correct non-unit count.",
+  "This is two more than the correct non-unit count."
+ ]
+},
+{
+ "template_id": "zn_is_field_two_candidates_v1",
+ "skill_id": "z_n_is_a_field_integral_domain_n_is_prime",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "n1": {"type": "int", "lo": 2, "hi": 150},
+  "n2": {"type": "int", "lo": 2, "hi": 150}
+ },
+ "constraints": ["Ne([[n1]], [[n2]])"],
+ "stem": "Of the two moduli \\( n = [[n1]] \\) and \\( n = [[n2]] \\), for how many of them is \\( \\mathbb{Z}_{n} \\) a field (equivalently, an integral domain, since \\( \\mathbb{Z}_n \\) is finite)?",
+ "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, isprime([[n1]])), (0, True)) + Piecewise((1, isprime([[n2]])), (0, True))"},
+ "distractors": [
+  "2",
+  "3",
+  "-1",
+  "0",
+  "1"
+ ],
+ "solution": "\\( \\mathbb{Z}_{n} \\) is a field exactly when \\( n \\) is prime. Testing \\( [[n1]] \\) and \\( [[n2]] \\) for primality individually and adding the results gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes both moduli give a field without testing either for primality.",
+  "This is not a valid count out of two candidates — the answer must be 0, 1, or 2.",
+  "This is not a valid count at all — the answer must be 0, 1, or 2.",
+  "This assumes neither modulus gives a field without testing either for primality.",
+  "This assumes exactly one modulus gives a field without testing either for primality."
+ ]
+}
+]

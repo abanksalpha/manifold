@@ -1,0 +1,159 @@
+[
+{
+ "template_id": "related_rates_ladder_v1",
+ "skill_id": "related_rates",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "choice", "values": [3, 4, 6, 8, 5, 12, 9, 15, 20]},
+  "dxdt": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"x0": "3*[[m]]", "y0": "4*[[m]]", "L2": "9*[[m]]**2 + 16*[[m]]**2"},
+ "stem": "A [[m]]-scaled 3-4-5 ladder of length \\( L \\) (with \\( L^{2}=[[L2]] \\)) leans against a wall, with its base \\( x=[[x0]] \\) ft from the wall and its top \\( y=[[y0]] \\) ft up the wall (so \\( x^{2}+y^{2}=L^{2} \\)). The base slides away from the wall at \\( \\dfrac{dx}{dt}=[[dxdt]] \\) ft/s. At this instant, what is \\( \\dfrac{dy}{dt} \\) (in ft/s)?",
+ "answer_spec": {"op": "evaluate", "expr": "-([[x0]]*[[dxdt]])/[[y0]]"},
+ "distractors": [
+  "([[x0]]*[[dxdt]])/[[y0]]",
+  "-([[y0]]*[[dxdt]])/[[x0]]",
+  "-[[dxdt]]",
+  "-([[x0]]/[[y0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( x^{2}+y^{2}=L^{2} \\) gives \\( 2x\\dfrac{dx}{dt}+2y\\dfrac{dy}{dt}=0 \\), so \\( \\dfrac{dy}{dt}=-\\dfrac{x}{y}\\dfrac{dx}{dt} \\). At this instant, \\( \\dfrac{dy}{dt} = -\\dfrac{[[x0]]}{[[y0]]}\\cdot [[dxdt]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the negative sign that shows the top is sliding DOWN as the base slides away.",
+  "This inverts the ratio \\( x/y \\), using \\( y/x \\) instead.",
+  "This forgets to scale by the ratio \\( x/y \\) and just reports \\( -dx/dt \\).",
+  "This reports the ratio \\( x/y \\) itself, forgetting to multiply by \\( dx/dt \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "related_rates_circle_area_v2",
+ "skill_id": "related_rates",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r0": {"type": "int", "lo": 2, "hi": 30},
+  "drdt": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "A circular oil slick has radius \\( r \\), area \\( A=\\pi r^{2} \\), and its radius is growing at \\( \\dfrac{dr}{dt}=[[drdt]] \\) m/s. At the instant \\( r=[[r0]] \\) m, what is \\( \\dfrac{dA}{dt} \\) (in \\( \\text{m}^{2}/\\text{s} \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "2*pi*[[r0]]*[[drdt]]"},
+ "distractors": [
+  "pi*[[r0]]*[[drdt]]",
+  "2*pi*[[r0]]",
+  "pi*[[r0]]**2*[[drdt]]",
+  "2*[[r0]]*[[drdt]]",
+  "2*pi*[[r0]]*[[drdt]] + pi",
+  "2*pi*[[r0]]*[[drdt]] - pi"
+ ],
+ "solution": "Differentiating \\( A=\\pi r^{2} \\) gives \\( \\dfrac{dA}{dt}=2\\pi r\\dfrac{dr}{dt} \\). At \\( r=[[r0]] \\), \\( \\dfrac{dA}{dt} = 2\\pi([[r0]])([[drdt]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 that comes from differentiating \\( r^{2} \\).",
+  "This forgets to multiply by \\( dr/dt \\) entirely.",
+  "This uses \\( r^{2} \\) instead of \\( r \\) after differentiating, undoing the power rule.",
+  "This forgets the factor of \\( \\pi \\) entirely.",
+  "This is off by \\( \\pi \\) from the correct value.",
+  "This is off by \\( \\pi \\) from the correct value."
+ ]
+},
+{
+ "template_id": "related_rates_cone_v3",
+ "skill_id": "related_rates",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 4},
+  "h0": {"type": "int", "lo": 2, "hi": 20},
+  "dVdt": {"type": "int", "lo": 1, "hi": 10}
+ },
+ "constraints": [],
+ "stem": "Water drains into a conical tank (vertex down) whose radius is always \\( \\dfrac{1}{[[k]]} \\) of its water height \\( h \\), so the volume is \\( V=\\dfrac{1}{3}\\pi\\left(\\dfrac{h}{[[k]]}\\right)^{2}h=\\dfrac{\\pi h^{3}}{3[[k]]^{2}} \\). If \\( \\dfrac{dV}{dt}=[[dVdt]] \\) \\( \\text{m}^{3}/\\text{min} \\), what is \\( \\dfrac{dh}{dt} \\) at the instant \\( h=[[h0]] \\) m?",
+ "answer_spec": {"op": "evaluate", "expr": "[[dVdt]]*[[k]]**2/(pi*[[h0]]**2)"},
+ "distractors": [
+  "[[dVdt]]/(pi*[[h0]]**2)",
+  "[[dVdt]]*[[k]]/(pi*[[h0]])",
+  "[[dVdt]]*[[k]]**2/(pi*[[h0]])",
+  "[[dVdt]]*[[k]]**2*pi/[[h0]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( V=\\dfrac{\\pi h^{3}}{3[[k]]^{2}} \\) gives \\( \\dfrac{dV}{dt}=\\dfrac{\\pi h^{2}}{[[k]]^{2}}\\dfrac{dh}{dt} \\). Solving for \\( \\dfrac{dh}{dt} \\) at \\( h=[[h0]] \\) gives \\( \\dfrac{dh}{dt}=\\dfrac{[[dVdt]]\\,[[k]]^{2}}{\\pi([[h0]])^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to square \\( k \\) in the numerator.",
+  "This uses \\( k \\) instead of \\( k^{2} \\) and \\( h_{0} \\) instead of \\( h_{0}^{2} \\).",
+  "This uses \\( h_{0} \\) instead of \\( h_{0}^{2} \\) in the denominator.",
+  "This multiplies by \\( \\pi \\) instead of dividing by it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "related_rates_distance_between_points_v4",
+ "skill_id": "related_rates",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 8, 10]},
+  "dxdt": {"type": "int", "lo": 1, "hi": 6},
+  "dydt": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"x0": "3*[[m]]", "y0": "4*[[m]]", "z0": "5*[[m]]"},
+ "stem": "Two cars leave an intersection, one heading east and one heading north. At a certain instant the eastbound car is \\( x=[[x0]] \\) mi from the intersection moving at \\( \\dfrac{dx}{dt}=[[dxdt]] \\) mi/h, and the northbound car is \\( y=[[y0]] \\) mi from the intersection moving at \\( \\dfrac{dy}{dt}=[[dydt]] \\) mi/h. If \\( z \\) is the distance between the cars (so \\( z^{2}=x^{2}+y^{2}\\), \\( z=[[z0]] \\) at this instant), what is \\( \\dfrac{dz}{dt} \\) (in mi/h)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[x0]]*[[dxdt]] + [[y0]]*[[dydt]])/[[z0]]"},
+ "distractors": [
+  "([[x0]]*[[dxdt]] - [[y0]]*[[dydt]])/[[z0]]",
+  "[[dxdt]] + [[dydt]]",
+  "([[x0]]*[[dxdt]] + [[y0]]*[[dydt]])/[[z0]]**2",
+  "([[x0]] + [[y0]])/[[z0]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( z^{2}=x^{2}+y^{2} \\) gives \\( 2z\\dfrac{dz}{dt} = 2x\\dfrac{dx}{dt}+2y\\dfrac{dy}{dt} \\), so \\( \\dfrac{dz}{dt}=\\dfrac{x\\,dx/dt+y\\,dy/dt}{z} \\). At this instant, \\( \\dfrac{dz}{dt} = \\dfrac{[[x0]]\\cdot[[dxdt]]+[[y0]]\\cdot[[dydt]]}{[[z0]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts instead of adds the two contributions in the numerator.",
+  "This simply adds the two given rates, ignoring the \\( x,y,z \\) weighting entirely.",
+  "This forgets to divide by \\( z \\), dividing by \\( z^{2} \\) instead.",
+  "This uses \\( x \\) and \\( y \\) directly instead of their rates \\( dx/dt \\), \\( dy/dt \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "related_rates_angle_of_elevation_v5",
+ "skill_id": "related_rates",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "choice", "values": [1, 2, 3, 4, 5, 6, 8, 10, 12]},
+  "dydt": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": [],
+ "derived": {"x0": "4*[[m]]", "y0": "3*[[m]]", "z0": "5*[[m]]"},
+ "stem": "An observer stands \\( [[x0]] \\) m from the base of a launch pad, watching a rocket rise straight up. When the rocket is \\( y=[[y0]] \\) m high (so the line of sight has length \\( z=[[z0]] \\) m), the rocket's height is increasing at \\( \\dfrac{dy}{dt}=[[dydt]] \\) m/s. Since \\( \\tan(\\theta) = \\dfrac{y}{[[x0]]} \\) where \\( \\theta \\) is the angle of elevation, what is \\( \\dfrac{d\\theta}{dt} \\) at this instant (in rad/s)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[dydt]]/[[x0]])*([[x0]]/[[z0]])**2"},
+ "distractors": [
+  "[[dydt]]/[[x0]]",
+  "([[dydt]]/[[x0]])*([[z0]]/[[x0]])**2",
+  "([[dydt]]/[[y0]])*([[x0]]/[[z0]])**2",
+  "[[dydt]]*([[x0]]/[[z0]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Differentiating \\( \\tan(\\theta)=\\dfrac{y}{[[x0]]} \\) gives \\( \\sec^{2}(\\theta)\\dfrac{d\\theta}{dt} = \\dfrac{1}{[[x0]]}\\dfrac{dy}{dt} \\), so \\( \\dfrac{d\\theta}{dt} = \\dfrac{1}{[[x0]]}\\dfrac{dy}{dt}\\cos^{2}(\\theta) \\). Since \\( \\cos(\\theta)=[[x0]]/[[z0]] \\), this is \\( \\dfrac{[[dydt]]}{[[x0]]}\\left(\\dfrac{[[x0]]}{[[z0]]}\\right)^{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to multiply by \\( \\cos^{2}(\\theta) \\) entirely, leaving the un-corrected value \\( 1/\\sec^{2}(\\theta) \\) applied.",
+  "This inverts \\( \\cos^{2}(\\theta) \\), using \\( \\sec^{2}(\\theta) \\) instead.",
+  "This divides by \\( y \\) instead of the fixed distance \\( x \\).",
+  "This forgets the leading factor of \\( 1/x \\) from differentiating \\( \\tan(\\theta)=y/x \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

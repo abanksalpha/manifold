@@ -1,0 +1,1 @@
+{"skill_id": "decide_whether_a_metric_space_is_complete", "reason": "Completeness is a yes/no verdict about whether every Cauchy sequence converges within the space; exhibiting a non-convergent Cauchy sequence (or a completeness proof) is not a single code-computable scalar."}

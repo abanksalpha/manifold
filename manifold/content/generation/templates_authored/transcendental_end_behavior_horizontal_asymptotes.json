@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "transcendental_horizontal_asymptote_v1",
+ "skill_id": "transcendental_end_behavior_horizontal_asymptotes",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "d": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], [[c]])"],
+ "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{[[a]]e^{x} + ([[b]])}{[[c]]e^{x} + ([[d]])} \\); this value is the horizontal asymptote of the function as \\( x \\to \\infty \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*exp(x) + [[b]])/([[c]]*exp(x) + [[d]])", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[c]], [[a]])",
+  "[[a]]",
+  "1",
+  "0",
+  "[[a]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( x \\to \\infty \\), \\( e^{x} \\to \\infty \\) dominates the constant terms, so \\( \\frac{[[a]]e^{x} + [[b]]}{[[c]]e^{x} + [[d]]} \\to \\frac{[[a]]e^{x}}{[[c]]e^{x}} = \\frac{[[a]]}{[[c]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of the coefficients of \\( e^{x} \\).",
+  "This keeps only the numerator's coefficient.",
+  "This assumes the ratio approaches 1.",
+  "This is the limit of the constant terms, not the dominant exponential terms.",
+  "This multiplies the coefficients instead of dividing them.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "transcendental_horizontal_asymptote_negative_infinity_v1",
+ "skill_id": "transcendental_end_behavior_horizontal_asymptotes",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[b]], [[d]])"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to -\\infty} \\frac{[[a]]e^{x} + ([[b]])}{[[c]]e^{x} + ([[d]])} \\); this value is the horizontal asymptote of the function as \\( x \\to -\\infty \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*exp(x) + [[b]])/([[c]]*exp(x) + [[d]])", "var": "x", "point": "-oo"},
+ "distractors": [
+  "Rational([[a]], [[c]])",
+  "[[b]]",
+  "1",
+  "0",
+  "[[b]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( x \\to -\\infty \\), \\( e^{x} \\to 0 \\), so the exponential terms vanish and only the constant terms survive: \\( \\frac{[[a]]e^{x} + [[b]]}{[[c]]e^{x} + [[d]]} \\to \\frac{[[b]]}{[[d]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the ratio of the exponential coefficients, which is correct only as \\( x\\to\\infty \\), not \\( x\\to-\\infty \\).",
+  "This reports only the numerator's constant term, not the ratio.",
+  "This assumes the ratio approaches 1.",
+  "This wrongly assumes the whole expression vanishes.",
+  "This multiplies the constant terms instead of dividing them.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "transcendental_logistic_ceiling_v1",
+ "skill_id": "transcendental_end_behavior_horizontal_asymptotes",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "L": {"type": "int", "lo": -12, "hi": 12},
+  "A": {"type": "int", "lo": -8, "hi": 8},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[L]], 0)", "Ne([[A]], 0)", "Ne([[A]], -1)"],
+ "stem": "A logistic growth model is given by \\( f(x) = \\dfrac{[[L]]}{1 + [[A]]e^{-[[k]]x}} \\). Evaluate its carrying capacity \\( \\lim_{x \\to \\infty} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[L]]/(1 + [[A]]*exp(-[[k]]*x))", "var": "x", "point": "oo"},
+ "distractors": [
+  "0",
+  "Rational([[L]], [[A]])",
+  "Rational([[L]], 1 + [[A]])",
+  "[[L]]*[[A]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( x \\to \\infty \\), \\( e^{-[[k]]x} \\to 0 \\) (since \\( [[k]] > 0 \\)), so the denominator \\( \\to 1 \\). Hence \\( f(x) \\to \\dfrac{[[L]]}{1} = [[answer]] \\), the model's carrying capacity.",
+ "distractor_rationales": [
+  "This wrongly assumes the whole expression decays to 0.",
+  "This divides by \\( A \\) as if the exponential term dominated instead of vanishing.",
+  "This uses the initial value at \\( x=0 \\) instead of the long-run limit.",
+  "This multiplies \\( L \\) and \\( A \\) instead of recognizing the denominator tends to 1.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "transcendental_arctan_asymptote_v1",
+ "skill_id": "transcendental_end_behavior_horizontal_asymptotes",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "require_rational": false,
+ "stem": "Let \\( f(x) = [[a]]\\arctan([[b]]x) + ([[c]]) \\). Evaluate the horizontal asymptote value \\( \\lim_{x \\to \\infty} f(x) \\).",
+ "answer_spec": {"op": "limit", "expr": "[[a]]*atan([[b]]*x) + [[c]]", "var": "x", "point": "oo"},
+ "distractors": [
+  "[[a]]*pi + [[c]]",
+  "Rational([[a]],2)*pi",
+  "[[a]] + [[c]]",
+  "[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "As \\( x \\to \\infty \\), \\( \\arctan([[b]]x) \\to \\dfrac{\\pi}{2} \\), so \\( f(x) \\to [[a]]\\cdot\\dfrac{\\pi}{2} + ([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\pi \\) instead of \\( \\pi/2 \\) as the limit of \\( \\arctan \\).",
+  "This forgets to add the constant shift \\( c \\).",
+  "This drops the \\( \\pi/2 \\) factor entirely, treating \\( \\arctan \\) as if it approached 1.",
+  "This reports only the vertical shift, ignoring the arctan term.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "transcendental_polynomial_over_exponential_v1",
+ "skill_id": "transcendental_end_behavior_horizontal_asymptotes",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "d": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Evaluate \\( \\displaystyle\\lim_{x \\to \\infty} \\left( [[d]] + \\frac{[[a]]x + ([[b]])}{[[c]]e^{x}} \\right) \\); the result is the horizontal asymptote of this function.",
+ "answer_spec": {"op": "limit", "expr": "[[d]] + ([[a]]*x + [[b]])/([[c]]*exp(x))", "var": "x", "point": "oo"},
+ "distractors": [
+  "[[d]] + Rational([[a]], [[c]])",
+  "Rational([[a]], [[c]])",
+  "[[d]] + [[a]]",
+  "[[a]] + [[b]] + [[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "An exponential in the denominator grows faster than any polynomial in the numerator, so \\( \\dfrac{[[a]]x+[[b]]}{[[c]]e^{x}} \\to 0 \\) as \\( x \\to \\infty \\). Hence the whole expression \\( \\to [[d]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the fraction approaches the ratio of leading coefficients, as if numerator and denominator had the same growth rate.",
+  "This drops the constant shift \\( d \\) entirely.",
+  "This treats the fraction as if it approached the polynomial's own leading coefficient.",
+  "This adds all the constants together instead of recognizing the fraction vanishes.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

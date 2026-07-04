@@ -1,0 +1,139 @@
+[
+{
+ "template_id": "conjugate_rationalizing_limit_v1",
+ "skill_id": "conjugate_rationalizing_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 19
+  }
+ },
+ "constraints": [
+  "Gt([[a]], 0)"
+ ],
+ "derived": {
+  "a2": "[[a]]**2"
+ },
+ "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{\\sqrt{[[a2]] + x} - [[a]]}{x} \\).",
+ "answer_spec": {
+  "op": "limit",
+  "expr": "(sqrt(([[a2]]) + x) - ([[a]]))/x",
+  "var": "x",
+  "point": 0
+ },
+ "distractors": [
+  "Rational(1, [[a]])",
+  "-Rational(1, 2*[[a]])",
+  "2*[[a]]",
+  "Rational([[a]], 2)",
+  "Rational(1, [[a]]) + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Multiply by the conjugate: \\( \\frac{\\sqrt{[[a2]]+x}-[[a]]}{x}\\cdot\\frac{\\sqrt{[[a2]]+x}+[[a]]}{\\sqrt{[[a2]]+x}+[[a]]} = \\frac{1}{\\sqrt{[[a2]]+x}+[[a]]} \\). As \\( x \\to 0 \\) this approaches \\( \\frac{1}{2\\cdot[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of 2 in the denominator \\( 2\\sqrt{a^{2}} \\).",
+  "This has the wrong sign.",
+  "This inverts the correct value.",
+  "This mistakes the limit for \\( a/2 \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "conjugate_rationalizing_limit_denom_v2",
+ "skill_id": "conjugate_rationalizing_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 15}
+ },
+ "constraints": ["Gt([[a]], 0)"],
+ "derived": {"a2": "[[a]]**2"},
+ "stem": "The denominator, not the numerator, has the radical here. Evaluate \\( \\lim_{x \\to [[a2]]} \\frac{x - [[a2]]}{\\sqrt{x} - [[a]]} \\).",
+ "answer_spec": {"op": "limit", "expr": "(x - ([[a2]]))/(sqrt(x) - ([[a]]))", "var": "x", "point": "[[a2]]"},
+ "distractors": [
+  "Rational(1, 2*[[a]])",
+  "[[a]]",
+  "4*[[a]]",
+  "Rational([[a]], 2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Rationalize the denominator by multiplying by \\( \\dfrac{\\sqrt{x}+[[a]]}{\\sqrt{x}+[[a]]} \\): \\( \\dfrac{(x-[[a2]])(\\sqrt{x}+[[a]])}{x - [[a2]]} = \\sqrt{x} + [[a]] \\). As \\( x \\to [[a2]] \\) this approaches \\( [[a]] + [[a]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double \\( \\sqrt{x} \\to a \\) when the two terms combine.",
+  "This keeps only one copy of \\( a \\), dropping the \\( \\sqrt{x} \\) contribution.",
+  "This doubles the correct value.",
+  "This mistakes the limit for \\( a/2 \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "conjugate_rationalizing_limit_cuberoot_v3",
+ "skill_id": "conjugate_rationalizing_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "derived": {"a": "[[k]]**3"},
+ "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{\\sqrt[3]{[[a]] + x} - [[k]]}{x} \\) using the cube-root conjugate identity \\( u - v = \\dfrac{u^{3}-v^{3}}{u^{2}+uv+v^{2}} \\).",
+ "answer_spec": {"op": "limit", "expr": "(root(([[a]]) + x, 3) - ([[k]]))/x", "var": "x", "point": 0},
+ "distractors": [
+  "Rational(1, [[k]])",
+  "Rational(1, 3*[[k]])",
+  "Rational(1, [[k]]**2)",
+  "3*[[k]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "Let \\( u = \\sqrt[3]{[[a]]+x} \\) and \\( v = [[k]] \\), so \\( u^{3}-v^{3}=x \\). Multiplying by \\( \\dfrac{u^{2}+uv+v^{2}}{u^{2}+uv+v^{2}} \\) gives \\( \\dfrac{u-v}{x} = \\dfrac{1}{u^{2}+uv+v^{2}} \\to \\dfrac{1}{3[[k]]^{2}} = [[answer]] \\) as \\( x \\to 0 \\).",
+ "distractor_rationales": [
+  "This drops the exponent 2 on \\( k \\) entirely.",
+  "This forgets to square \\( k \\) in the denominator.",
+  "This forgets the factor of 3 from the three equal terms \\( k^{2}+k^{2}+k^{2} \\).",
+  "This inverts the correct value.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "conjugate_rationalizing_limit_reciprocal_v4",
+ "skill_id": "conjugate_rationalizing_limit",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 25}
+ },
+ "constraints": [],
+ "derived": {"a": "[[k]]**2"},
+ "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{1}{x}\\left( \\frac{1}{\\sqrt{[[a]] + x}} - \\frac{1}{[[k]]} \\right) \\).",
+ "answer_spec": {"op": "limit", "expr": "(1/sqrt(([[a]]) + x) - Rational(1, [[k]]))/x", "var": "x", "point": 0},
+ "distractors": [
+  "Rational(1, 2*[[k]]**3)",
+  "Rational(1, [[k]]**3)",
+  "-Rational(1, [[k]]**3)",
+  "Rational(1, 2*[[k]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "Combine the fractions over a common denominator and rationalize: \\( \\dfrac{1}{x}\\left(\\dfrac{[[k]]-\\sqrt{[[a]]+x}}{[[k]]\\sqrt{[[a]]+x}}\\right) \\); multiplying numerator and denominator by the conjugate \\( [[k]]+\\sqrt{[[a]]+x} \\) and simplifying gives the limit \\( -\\dfrac{1}{2[[k]]^{3}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of 2 that comes from the two equal factors of \\( k \\) after cancelling.",
+  "This has the wrong sign, forgetting the order of subtraction.",
+  "This has the correct magnitude but drops the minus sign from the other direction.",
+  "This uses only one power of \\( k \\) instead of \\( k^{3} \\).",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

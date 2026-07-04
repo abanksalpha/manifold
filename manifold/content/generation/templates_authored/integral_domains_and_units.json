@@ -1,0 +1,163 @@
+[
+{
+ "template_id": "integral_domains_and_units_composite_units_count_v1",
+ "skill_id": "integral_domains_and_units",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [2, 3, 5, 7, 11]},
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": ["Lt([[p]], [[q]])"],
+ "derived": {"nval": "[[p]]**[[a]] * [[q]]**[[b]]"},
+ "stem": "In the ring \\( \\mathbb{Z}_{[[nval]]} \\), with \\( [[nval]] = [[p]]^{[[a]]} \\cdot [[q]]^{[[b]]} \\), an element is a UNIT exactly when it is coprime to \\( [[nval]] \\). How many units does \\( \\mathbb{Z}_{[[nval]]} \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "totient([[nval]])"},
+ "distractors": [
+  "[[nval]] - 1",
+  "[[nval]]",
+  "([[p]] - 1)*([[q]] - 1)",
+  "[[nval]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The units of \\( \\mathbb{Z}_{n} \\) are exactly the residues coprime to \\( n \\), and there are \\( \\varphi(n) \\) of them (Euler's totient). Here \\( \\varphi([[nval]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats every nonzero residue as a unit, i.e. treats \\( \\mathbb{Z}_{[[nval]]} \\) as a field; but \\( [[nval]] \\) is composite, so some nonzero residues are zero divisors, not units.",
+  "This counts every residue including \\( 0 \\), which is never a unit.",
+  "This uses the totient formula for the SQUAREFREE number \\( pq \\), dropping the prime-power exponents \\( [[a]] \\) and \\( [[b]] \\).",
+  "This guesses that exactly half the residues are units, which is only a coincidence for some moduli, not a general rule.",
+  "This is one more than the correct unit count.",
+  "This is one fewer than the correct unit count.",
+  "This is two more than the correct unit count."
+ ]
+},
+{
+ "template_id": "integral_domains_and_units_prime_power_units_count_v1",
+ "skill_id": "integral_domains_and_units",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7, 11, 13]},
+  "a": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"nval": "[[p]]**[[a]]"},
+ "stem": "Let \\( n = [[nval]] = [[p]]^{[[a]]} \\), a power of the single prime \\( [[p]] \\). The ring \\( \\mathbb{Z}_{n} \\) is NOT an integral domain (for \\( [[a]] > 1 \\), any multiple of \\( [[p]] \\) is a zero divisor). How many units does \\( \\mathbb{Z}_{n} \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "totient([[nval]])"},
+ "distractors": [
+  "[[nval]] - 1",
+  "[[nval]]",
+  "[[p]] - 1",
+  "[[nval]]/[[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + [[p]]"
+ ],
+ "solution": "A residue mod \\( p^{a} \\) is a unit exactly when it is not a multiple of \\( p \\). There are \\( n = [[nval]] \\) residues total and \\( n/p = [[nval]]/[[p]] \\) multiples of \\( p \\) among them, leaving \\( \\varphi(p^{a}) = p^{a-1}(p-1) = [[answer]] \\) units.",
+ "distractor_rationales": [
+  "This treats every nonzero residue as a unit, ignoring that every multiple of \\( [[p]] \\) below \\( [[nval]] \\) is a zero divisor, not a unit.",
+  "This counts every residue including \\( 0 \\), which is never a unit.",
+  "This uses the totient of the prime \\( [[p]] \\) itself, forgetting the extra factor \\( p^{a-1} \\) that appears for a prime POWER modulus.",
+  "This is the count of multiples of \\( [[p]] \\) (the zero divisors and 0), the complement of the units, not the units themselves.",
+  "This is one more than the correct unit count.",
+  "This is one fewer than the correct unit count.",
+  "This overshoots the correct unit count by \\( [[p]] \\)."
+ ]
+},
+{
+ "template_id": "integral_domains_and_units_zero_divisor_complement_v1",
+ "skill_id": "integral_domains_and_units",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 400}
+ },
+ "constraints": [],
+ "stem": "In \\( \\mathbb{Z}_{[[n]]} \\), every nonzero element is either a UNIT or a ZERO DIVISOR (this dichotomy is exactly why \\( \\mathbb{Z}_{[[n]]} \\) fails to be an integral domain unless \\( [[n]] \\) is prime). How many of the \\( [[n]]-1 \\) nonzero elements of \\( \\mathbb{Z}_{[[n]]} \\) are zero divisors (i.e. NOT units)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] - 1 - totient([[n]])"},
+ "distractors": [
+  "totient([[n]])",
+  "[[n]] - totient([[n]])",
+  "[[n]] - 1",
+  "totient([[n]]) - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Of the \\( [[n]] \\) residues mod \\( [[n]] \\), exactly \\( \\varphi([[n]]) \\) are units and one is \\( 0 \\); every other nonzero residue is a zero divisor. So the zero-divisor count is \\( ([[n]]-1) - \\varphi([[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the number of UNITS \\( \\varphi([[n]]) \\), the complement of what was asked.",
+  "This still includes \\( 0 \\) in the non-unit count; \\( 0 \\) is excluded since the question asks for NONZERO zero divisors.",
+  "This claims every nonzero element is a zero divisor, as if \\( \\mathbb{Z}_{[[n]]} \\) had no units at all.",
+  "This is one less than the unit count \\( \\varphi([[n]]) \\), not the zero-divisor count.",
+  "This is one more than the correct zero-divisor count.",
+  "This is one fewer than the correct zero-divisor count.",
+  "This is two more than the correct zero-divisor count."
+ ]
+},
+{
+ "template_id": "integral_domains_and_units_recognize_a_unit_v1",
+ "skill_id": "integral_domains_and_units",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 6, "hi": 500},
+  "x": {"type": "int", "lo": 2, "hi": 499}
+ },
+ "constraints": ["Lt([[x]], [[n]])"],
+ "stem": "In \\( \\mathbb{Z}_{[[n]]} \\), the element \\( x = [[x]] \\) is a unit if and only if \\( \\gcd(x, n) = 1 \\). Compute \\( 1 \\) if \\( [[x]] \\) is a unit in \\( \\mathbb{Z}_{[[n]]} \\), or \\( 0 \\) if it is a zero divisor.",
+ "answer_spec": {"op": "evaluate", "expr": "Piecewise((1, Eq(gcd([[x]], [[n]]), 1)), (0, True))"},
+ "distractors": [
+  "1 - Piecewise((1, Eq(gcd([[x]], [[n]]), 1)), (0, True))",
+  "2",
+  "3",
+  "-1",
+  "-2",
+  "gcd([[x]], [[n]])"
+ ],
+ "solution": "Since \\( \\gcd([[x]], [[n]]) \\) determines invertibility mod \\( [[n]] \\), \\( [[x]] \\) is a unit exactly when this gcd equals \\( 1 \\); computing it directly gives the verdict \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the flipped verdict, swapping unit and zero-divisor.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This is not a valid 0/1 verdict at all — the answer must be exactly 0 or 1.",
+  "This reports the gcd value itself rather than the 0/1 unit verdict."
+ ]
+},
+{
+ "template_id": "integral_domains_and_units_product_ring_v1",
+ "skill_id": "integral_domains_and_units",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 4, "hi": 60},
+  "n": {"type": "int", "lo": 4, "hi": 60}
+ },
+ "constraints": ["Lt([[m]], [[n]])"],
+ "stem": "The product ring \\( R = \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\) is NEVER an integral domain, even when both factors are fields, because \\( (1,0)\\cdot(0,1) = (0,0) \\) exhibits zero divisors. An element \\( (x,y) \\) of \\( R \\) is a unit exactly when \\( x \\) is a unit of \\( \\mathbb{Z}_{[[m]]} \\) AND \\( y \\) is a unit of \\( \\mathbb{Z}_{[[n]]} \\). How many units does \\( R \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "totient([[m]])*totient([[n]])"},
+ "distractors": [
+  "totient([[m]]*[[n]])",
+  "totient([[m]]) + totient([[n]])",
+  "[[m]]*[[n]]",
+  "[[m]]*[[n]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Units of a direct product are pairs of units, one from each factor: there are \\( \\varphi([[m]]) \\) unit choices for \\( x \\) and \\( \\varphi([[n]]) \\) for \\( y \\), so \\( |R^{\\times}| = \\varphi([[m]])\\varphi([[n]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This applies Euler's totient to the PRODUCT \\( mn \\) directly, which is only valid when \\( \\gcd(m,n)=1 \\); in general \\( \\varphi(mn) \\ne \\varphi(m)\\varphi(n) \\).",
+  "This adds the two per-factor unit counts instead of multiplying them; units of a product multiply, they don't add.",
+  "This is the full size \\( |R| = mn \\), not the count of units.",
+  "This is one less than the full size \\( |R| \\), as if only the single pair \\( (0,0) \\) failed to be a unit.",
+  "This is one more than the correct unit count.",
+  "This is one fewer than the correct unit count.",
+  "This is two more than the correct unit count."
+ ]
+}
+]

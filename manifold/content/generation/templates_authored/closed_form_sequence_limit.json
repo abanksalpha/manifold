@@ -1,0 +1,136 @@
+[
+ {
+  "template_id": "closed_form_sequence_limit_v1",
+  "skill_id": "closed_form_sequence_limit",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "b": {"type": "int", "lo": -9, "hi": 9},
+   "c": {"type": "int", "lo": -9, "hi": 9},
+   "d": {"type": "int", "lo": 1, "hi": 6},
+   "e": {"type": "int", "lo": -9, "hi": 9},
+   "f": {"type": "int", "lo": 1, "hi": 9}
+  },
+  "constraints": [],
+  "stem": "Let \\( a_n = \\dfrac{[[a]]n^{2} + ([[b]])n + ([[c]])}{[[d]]n^{2} + ([[e]])n + ([[f]])} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+  "answer_spec": {"op": "limit", "expr": "([[a]]*n**2 + [[b]]*n + [[c]])/([[d]]*n**2 + [[e]]*n + [[f]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[d]],[[a]])",
+   "Rational([[c]],[[f]])",
+   "0",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "For a ratio of polynomials of equal degree, the limit is the ratio of the leading coefficients: \\( \\lim_{n\\to\\infty} a_n = \\dfrac{[[a]]}{[[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio of leading coefficients; the limit is (numerator leading)/(denominator leading).",
+   "This takes the ratio of the constant terms, which are negligible as \\( n \\to \\infty \\).",
+   "The degrees are equal, so the limit is not \\( 0 \\); it would be \\( 0 \\) only if the numerator had smaller degree.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ },
+ {
+  "template_id": "closed_form_sequence_limit_lower_degree_v2",
+  "skill_id": "closed_form_sequence_limit",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -9, "hi": 9},
+   "c": {"type": "int", "lo": 1, "hi": 6},
+   "d": {"type": "int", "lo": -9, "hi": 9},
+   "e": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( a_n = \\dfrac{[[a]]n + ([[b]])}{[[c]]n^{2} + ([[d]])n + ([[e]])} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+  "answer_spec": {"op": "limit", "expr": "([[a]]*n + [[b]])/([[c]]*n**2 + [[d]]*n + [[e]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[a]],[[c]])",
+   "Rational([[b]],[[e]])",
+   "1",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The numerator has degree \\( 1 \\) but the denominator has degree \\( 2 \\), so the denominator grows faster and \\( \\lim_{n\\to\\infty} a_n = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the degrees as equal and takes the leading-coefficient ratio; here the denominator's degree is strictly larger.",
+   "This takes the ratio of the constant terms, which is not how the limit behaves at infinity.",
+   "The sequence tends to \\( 0 \\), not \\( 1 \\), since the denominator dominates.",
+   "This reports the numerator's leading coefficient instead of the actual limit \\( 0 \\).",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "closed_form_sequence_limit_conjugate_sqrt_v3",
+  "skill_id": "closed_form_sequence_limit",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "choice", "values": [1, 4, 9]},
+   "B": {"type": "int", "lo": -9, "hi": 9},
+   "C": {"type": "int", "lo": -9, "hi": 9},
+   "E": {"type": "int", "lo": -9, "hi": 9},
+   "F": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[B]], [[E]])"],
+  "stem": "Let \\( a_n = \\sqrt{[[A]]n^{2} + [[B]]n + [[C]]} - \\sqrt{[[A]]n^{2} + [[E]]n + [[F]]} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+  "answer_spec": {"op": "limit", "expr": "sqrt([[A]]*n**2 + [[B]]*n + [[C]]) - sqrt([[A]]*n**2 + [[E]]*n + [[F]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[B]]-[[E]], [[A]])",
+   "0",
+   "Rational([[B]]+[[E]], 2*sqrt([[A]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Multiplying by the conjugate, \\( a_n = \\dfrac{([[B]]-([[E]]))n + ([[C]]-([[F]]))}{\\sqrt{[[A]]n^{2}+[[B]]n+[[C]]}+\\sqrt{[[A]]n^{2}+[[E]]n+[[F]]}} \\to \\dfrac{[[B]]-([[E]])}{2\\sqrt{[[A]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( A \\) directly instead of by \\( 2\\sqrt{A} \\), forgetting the conjugate multiplies both square-root terms.",
+   "This wrongly assumes the two square roots cancel exactly to give \\( 0 \\); they only agree in their leading behavior.",
+   "This adds \\( B \\) and \\( E \\) instead of subtracting them.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ },
+ {
+  "template_id": "closed_form_sequence_limit_linear_over_sqrt_v4",
+  "skill_id": "closed_form_sequence_limit",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -9, "hi": 9},
+   "c": {"type": "choice", "values": [1, 4, 9, 16]},
+   "d": {"type": "int", "lo": -9, "hi": 9},
+   "e": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( a_n = \\dfrac{[[a]]n + ([[b]])}{\\sqrt{[[c]]n^{2} + ([[d]])n + ([[e]])}} \\). What is \\( \\displaystyle\\lim_{n \\to \\infty} a_n \\)?",
+  "answer_spec": {"op": "limit", "expr": "([[a]]*n + [[b]])/sqrt([[c]]*n**2 + [[d]]*n + [[e]])", "var": "n", "point": "oo"},
+  "distractors": [
+   "Rational([[a]],[[c]])",
+   "[[a]]*sqrt([[c]])",
+   "Rational([[b]],[[e]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Divide numerator and denominator by \\( n \\): the denominator \\( \\sqrt{[[c]]n^{2}+[[d]]n+[[e]]}/n \\to \\sqrt{[[c]]} \\), so \\( a_n \\to \\dfrac{[[a]]}{\\sqrt{[[c]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( c \\) directly rather than by \\( \\sqrt{c} \\), forgetting the square root in the denominator.",
+   "This multiplies by \\( \\sqrt{c} \\) instead of dividing by it.",
+   "This takes the ratio of the constant terms, which does not determine the limit.",
+   "This is off by one from the correct limit.",
+   "This is off by one from the correct limit.",
+   "This is off by two from the correct limit."
+  ]
+ }
+]

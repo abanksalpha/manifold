@@ -1,0 +1,173 @@
+[
+{
+ "template_id": "determinant_product_of_eigenvalues_v1",
+ "skill_id": "determinant_as_the_product_of_eigenvalues_and_singul",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d2": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "d3": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "u12": {"type": "int", "lo": -4, "hi": 4},
+  "u13": {"type": "int", "lo": -4, "hi": 4},
+  "u23": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & [[u12]] & [[u13]] \\\\ 0 & [[d2]] & [[u23]] \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\). The determinant of a matrix equals the product of its eigenvalues. What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "[[u12]]", "[[u13]]"], ["0", "[[d2]]", "[[u23]]"], ["0", "0", "[[d3]]"]], "which": "prod"},
+ "distractors": [
+  "[[d1]] + [[d2]] + [[d3]]",
+  "[[d1]]*[[d2]]",
+  "[[d2]]*[[d3]]",
+  "[[d1]]*[[d3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "The matrix is upper triangular, so its eigenvalues are the diagonal entries \\( [[d1]], [[d2]], [[d3]] \\). The determinant is their product \\( ([[d1]])([[d2]])([[d3]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the eigenvalues (the trace) instead of multiplying them.",
+  "This multiplies only two of the three eigenvalues.",
+  "This multiplies only two of the three eigenvalues.",
+  "This multiplies only two of the three eigenvalues.",
+  "This is one more than the correct determinant.",
+  "This is one less than the correct determinant.",
+  "This is two more than the correct determinant.",
+  "This is two less than the correct determinant."
+ ]
+},
+{
+ "template_id": "determinant_abstract_eigenvalues_v1",
+ "skill_id": "determinant_as_the_product_of_eigenvalues_and_singul",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6},
+  "l3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])", "Ne([[l1]], [[l3]])", "Ne([[l2]], [[l3]])", "Ne([[l1]], 0)", "Ne([[l2]], 0)", "Ne([[l3]], 0)"],
+ "stem": "A \\( 3 \\times 3 \\) matrix \\( A \\) has eigenvalues \\( [[l1]] \\), \\( [[l2]] \\), and \\( [[l3]] \\). What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[l1]]*[[l2]]*[[l3]]"},
+ "distractors": [
+  "[[l1]] + [[l2]] + [[l3]]",
+  "[[l1]]*[[l2]]",
+  "[[l2]]*[[l3]]",
+  "[[l1]]+[[l2]]*[[l3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 3"
+ ],
+ "solution": "The determinant of a matrix always equals the product of its eigenvalues: \\( \\det(A) = [[l1]]\\cdot[[l2]]\\cdot[[l3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the eigenvalues (giving the trace) instead of multiplying them.",
+  "This multiplies only two of the three eigenvalues.",
+  "This multiplies only two of the three eigenvalues.",
+  "This mixes addition and multiplication instead of multiplying all three.",
+  "This is one more than the correct determinant.",
+  "This is one less than the correct determinant.",
+  "This is three more than the correct determinant."
+ ]
+},
+{
+ "template_id": "determinant_repeated_eigenvalue_multiplicity_v1",
+ "skill_id": "determinant_as_the_product_of_eigenvalues_and_singul",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "d3": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "u12": {"type": "int", "lo": -3, "hi": 3},
+  "u13": {"type": "int", "lo": -3, "hi": 3},
+  "u23": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[d]], [[d3]])"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d]] & [[u12]] & [[u13]] \\\\ 0 & [[d]] & [[u23]] \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\), which has a repeated eigenvalue. Recall that \\( \\det(A) \\) equals the product of ALL eigenvalues, counted with multiplicity. What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d]]", "[[u12]]", "[[u13]]"], ["0", "[[d]]", "[[u23]]"], ["0", "0", "[[d3]]"]], "which": "prod"},
+ "distractors": [
+  "[[d]]*[[d3]]",
+  "2*[[d]] + [[d3]]",
+  "[[d]]**3",
+  "[[d]] + [[d3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The matrix is upper triangular with diagonal entries \\( [[d]], [[d]], [[d3]] \\), so its eigenvalue \\( [[d]] \\) has multiplicity \\( 2 \\). Counting multiplicity, \\( \\det(A) = ([[d]])([[d]])([[d3]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the repeated eigenvalue only once instead of twice (its multiplicity).",
+  "This adds the eigenvalues (with the repeat counted) instead of multiplying them.",
+  "This ignores the third, distinct eigenvalue entirely.",
+  "This adds instead of multiplies, and drops the repeated factor.",
+  "This is one more than the correct determinant.",
+  "This is one less than the correct determinant.",
+  "This is two more than the correct determinant."
+ ]
+},
+{
+ "template_id": "determinant_singularity_solve_for_entry_v1",
+ "skill_id": "determinant_as_the_product_of_eigenvalues_and_singul",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & k \\end{bmatrix} \\). Since \\( \\det(A) \\) is the product of \\( A \\)'s eigenvalues, \\( A \\) is singular exactly when \\( \\det(A) = 0 \\). For what value of \\( k \\) is \\( A \\) singular?",
+ "answer_spec": {"op": "solve", "equation": "[[a]]*k - [[b]]*[[c]] = 0", "var": "k"},
+ "distractors": [
+  "[[b]]*[[c]]/[[a]]*(-1)",
+  "[[a]]*[[b]]/[[c]]",
+  "[[b]]*[[c]]",
+  "-[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( \\det(A) = [[a]]k - [[b]]\\cdot[[c]] \\). Setting this to \\( 0 \\) gives \\( k = \\dfrac{[[b]]\\cdot[[c]]}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign on the solution for \\( k \\).",
+  "This solves for the wrong entry, swapping the roles of \\( b \\) and \\( c/a \\).",
+  "This forgets to divide by \\( a \\) when isolating \\( k \\).",
+  "This ignores \\( b \\) and \\( c \\) entirely and just negates \\( a \\).",
+  "This is one more than the correct value of \\( k \\).",
+  "This is one less than the correct value of \\( k \\)."
+ ]
+},
+{
+ "template_id": "determinant_of_inverse_via_eigenvalues_v1",
+ "skill_id": "determinant_as_the_product_of_eigenvalues_and_singul",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "choice", "values": [-4, -2, -1, 1, 2, 4]},
+  "d2": {"type": "choice", "values": [-4, -2, -1, 1, 2, 4]},
+  "d3": {"type": "choice", "values": [-4, -2, -1, 1, 2, 4]},
+  "u12": {"type": "int", "lo": -3, "hi": 3},
+  "u13": {"type": "int", "lo": -3, "hi": 3},
+  "u23": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & [[u12]] & [[u13]] \\\\ 0 & [[d2]] & [[u23]] \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\), which is invertible since all its eigenvalues are nonzero. Since \\( \\det(A^{-1}) \\) equals the product of the reciprocals of the eigenvalues of \\( A \\), what is \\( \\det(A^{-1}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "1/([[d1]]*[[d2]]*[[d3]])"},
+ "distractors": [
+  "[[d1]]*[[d2]]*[[d3]]",
+  "-1/([[d1]]*[[d2]]*[[d3]])",
+  "1/[[d1]] + 1/[[d2]] + 1/[[d3]]",
+  "[[d1]]+[[d2]]+[[d3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The eigenvalues of \\( A \\) are \\( [[d1]], [[d2]], [[d3]] \\), so \\( \\det(A) = [[d1]][[d2]][[d3]] \\) and \\( \\det(A^{-1}) = \\dfrac{1}{\\det(A)} = \\dfrac{1}{[[d1]]\\cdot[[d2]]\\cdot[[d3]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives \\( \\det(A) \\) itself instead of \\( \\det(A^{-1}) \\), forgetting to take the reciprocal.",
+  "This has the correct reciprocal but the wrong sign.",
+  "This adds the reciprocals of the eigenvalues instead of multiplying them.",
+  "This is the trace of \\( A \\), not \\( \\det(A^{-1}) \\).",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+}
+]

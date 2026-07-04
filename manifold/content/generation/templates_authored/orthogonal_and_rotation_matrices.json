@@ -1,0 +1,230 @@
+[
+{
+ "template_id": "orthogonal_and_rotation_matrices_v1",
+ "skill_id": "orthogonal_and_rotation_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m": {
+   "type": "choice",
+   "values": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ]
+  },
+  "n": {
+   "type": "choice",
+   "values": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  "s": {
+   "type": "choice",
+   "values": [
+    -1,
+    1
+   ]
+  }
+ },
+ "constraints": [
+  "Lt([[n]], [[m]])"
+ ],
+ "derived": {
+  "p": "[[m]]**2 - [[n]]**2",
+  "q": "2*[[m]]*[[n]]",
+  "h": "[[m]]**2 + [[n]]**2",
+  "nsq": "-[[s]]*2*[[m]]*[[n]]",
+  "sp": "[[s]]*([[m]]**2 - [[n]]**2)"
+ },
+ "stem": "The matrix \\( M = \\dfrac{1}{[[h]]}\\begin{bmatrix} [[p]] & [[nsq]] \\\\ [[q]] & [[sp]] \\end{bmatrix} \\) is orthogonal (its columns are orthonormal). What is \\( \\det(M) \\)?",
+ "answer_spec": {
+  "op": "det",
+  "matrix": [
+   [
+    "[[p]]/[[h]]",
+    "[[nsq]]/[[h]]"
+   ],
+   [
+    "[[q]]/[[h]]",
+    "[[sp]]/[[h]]"
+   ]
+  ]
+ },
+ "distractors": [
+  "-[[s]]",
+  "0",
+  "2*[[s]]",
+  "[[sp]]*[[p]]/[[h]]**2",
+  "[[nsq]]*[[q]]/[[h]]**2",
+  "([[p]]**2 - [[q]]**2)/[[h]]**2"
+ ],
+ "solution": "Every orthogonal matrix has determinant \\( \\pm 1 \\): \\( +1 \\) for a rotation, \\( -1 \\) for a reflection. Computing directly, \\( \\det(M) = \\dfrac{([[p]])([[sp]]) - ([[nsq]])([[q]])}{[[h]]^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the determinant of the opposite type of orthogonal matrix (rotation vs. reflection).",
+  "An orthogonal matrix is invertible, so its determinant cannot be \\( 0 \\).",
+  "The determinant of an orthogonal matrix has absolute value \\( 1 \\), never \\( 2 \\).",
+  "This multiplies only the diagonal entries, forgetting to subtract the off-diagonal product.",
+  "This takes only the off-diagonal product, forgetting the diagonal product.",
+  "This mixes up the entries and fails to give \\( \\pm 1 \\)."
+ ]
+},
+{
+ "template_id": "orthogonal_and_rotation_matrices_v2",
+ "skill_id": "orthogonal_and_rotation_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [2, 3, 4, 5, 6, 7]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Lt([[n]], [[m]])"],
+ "derived": {
+  "p": "[[m]]**2 - [[n]]**2",
+  "q": "2*[[m]]*[[n]]",
+  "h": "[[m]]**2 + [[n]]**2"
+ },
+ "stem": "The rotation matrix \\( R = \\dfrac{1}{[[h]]}\\begin{bmatrix} [[p]] & -[[q]] \\\\ [[q]] & [[p]] \\end{bmatrix} \\) rotates the plane by an angle \\( \\theta \\) with \\( \\cos\\theta = \\dfrac{[[p]]}{[[h]]} \\) and \\( \\sin\\theta = \\dfrac{[[q]]}{[[h]]} \\). What is \\( \\mathrm{trace}(R) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[p]]/[[h]]", "-[[q]]/[[h]]"], ["[[q]]/[[h]]", "[[p]]/[[h]]"]]},
+ "distractors": [
+  "2*[[q]]/[[h]]",
+  "[[p]]/[[h]]",
+  "0",
+  "-2*[[p]]/[[h]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For a rotation matrix, \\( \\mathrm{trace}(R) = 2\\cos\\theta \\). Here \\( \\cos\\theta = [[p]]/[[h]] \\), so \\( \\mathrm{trace}(R) = 2([[p]])/[[h]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( 2\\sin\\theta \\) instead of \\( 2\\cos\\theta \\).",
+  "This is only \\( \\cos\\theta \\) itself, without doubling it.",
+  "The trace of a rotation matrix is not always \\( 0 \\) (that would require \\( \\theta = 90^\\circ \\)).",
+  "This has the correct magnitude but the wrong sign.",
+  "This is one more than the correct trace.",
+  "This is one less than the correct trace."
+ ]
+},
+{
+ "template_id": "orthogonal_and_rotation_matrices_v3",
+ "skill_id": "orthogonal_and_rotation_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "s": {"type": "choice", "values": [-1, 1]}
+ },
+ "constraints": ["Lt([[n]], [[m]])"],
+ "derived": {
+  "p": "[[m]]**2 - [[n]]**2",
+  "q": "2*[[m]]*[[n]]",
+  "h": "[[m]]**2 + [[n]]**2",
+  "nsq": "-[[s]]*2*[[m]]*[[n]]",
+  "sp": "[[s]]*([[m]]**2 - [[n]]**2)"
+ },
+ "stem": "The matrix \\( M = \\dfrac{1}{[[h]]}\\begin{bmatrix} [[p]] & [[nsq]] \\\\ [[q]] & [[sp]] \\end{bmatrix} \\) is orthogonal (its columns are orthonormal), hence invertible. What is the rank of \\( M \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[p]]/[[h]]", "[[nsq]]/[[h]]"], ["[[q]]/[[h]]", "[[sp]]/[[h]]"]]},
+ "distractors": [
+  "0",
+  "1",
+  "3",
+  "[[h]]",
+  "[[m]] - [[n]]",
+  "[[m]] + [[n]]"
+ ],
+ "solution": "Every orthogonal matrix is invertible (its columns are orthonormal, hence linearly independent), so a \\( 2\\times 2 \\) orthogonal matrix always has full rank \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "An invertible matrix cannot have rank \\( 0 \\).",
+  "Rank \\( 1 \\) would mean the columns are dependent, contradicting orthogonality.",
+  "The matrix is only \\( 2\\times 2 \\), so its rank cannot exceed \\( 2 \\).",
+  "This is the normalizing denominator \\( h \\), not the rank.",
+  "This mixes up the Pythagorean-triple generators with the rank.",
+  "This mixes up the Pythagorean-triple generators with the rank."
+ ]
+},
+{
+ "template_id": "orthogonal_and_rotation_matrices_v4",
+ "skill_id": "orthogonal_and_rotation_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m1": {"type": "choice", "values": [2, 3, 4, 5]},
+  "n1": {"type": "choice", "values": [1, 2, 3, 4]},
+  "m2": {"type": "choice", "values": [2, 3, 4, 5]},
+  "n2": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Lt([[n1]], [[m1]])", "Lt([[n2]], [[m2]])"],
+ "derived": {
+  "p1": "[[m1]]**2 - [[n1]]**2",
+  "q1": "2*[[m1]]*[[n1]]",
+  "h1": "[[m1]]**2 + [[n1]]**2",
+  "p2": "[[m2]]**2 - [[n2]]**2",
+  "q2": "2*[[m2]]*[[n2]]",
+  "h2": "[[m2]]**2 + [[n2]]**2",
+  "cn": "[[p1]]*[[p2]] - [[q1]]*[[q2]]",
+  "sn": "[[q1]]*[[p2]] + [[p1]]*[[q2]]",
+  "hh": "[[h1]]*[[h2]]"
+ },
+ "stem": "Rotation matrix \\( R_1 = \\dfrac{1}{[[h1]]}\\begin{bmatrix} [[p1]] & -[[q1]] \\\\ [[q1]] & [[p1]] \\end{bmatrix} \\) rotates by angle \\( \\theta_1 \\), and \\( R_2 = \\dfrac{1}{[[h2]]}\\begin{bmatrix} [[p2]] & -[[q2]] \\\\ [[q2]] & [[p2]] \\end{bmatrix} \\) rotates by angle \\( \\theta_2 \\). The product \\( M = R_1 R_2 \\) rotates by \\( \\theta_1 + \\theta_2 \\). What is \\( \\mathrm{trace}(M) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[cn]]/[[hh]]", "-[[sn]]/[[hh]]"], ["[[sn]]/[[hh]]", "[[cn]]/[[hh]]"]]},
+ "distractors": [
+  "2*([[p1]]*[[p2]] + [[q1]]*[[q2]])/[[hh]]",
+  "([[cn]])/[[hh]]",
+  "2*([[sn]])/[[hh]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the angle-addition formula, \\( \\cos(\\theta_1+\\theta_2) = \\cos\\theta_1\\cos\\theta_2 - \\sin\\theta_1\\sin\\theta_2 = \\dfrac{[[cn]]}{[[hh]]} \\), and \\( \\mathrm{trace}(M) = 2\\cos(\\theta_1+\\theta_2) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the cosine DIFFERENCE formula \\( \\cos\\theta_1\\cos\\theta_2+\\sin\\theta_1\\sin\\theta_2 \\) (doubled) instead of the sum formula.",
+  "This is \\( \\cos(\\theta_1+\\theta_2) \\) itself, without doubling it for the trace.",
+  "This uses \\( 2\\sin(\\theta_1+\\theta_2) \\) instead of \\( 2\\cos(\\theta_1+\\theta_2) \\).",
+  "The trace of a product of two rotations is not always \\( 0 \\).",
+  "This is one more than the correct trace.",
+  "This is one less than the correct trace."
+ ]
+},
+{
+ "template_id": "orthogonal_and_rotation_matrices_v5",
+ "skill_id": "orthogonal_and_rotation_matrices",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "e": {"type": "choice", "values": [1, -1]}
+ },
+ "constraints": ["Lt([[n]], [[m]])"],
+ "derived": {
+  "p": "[[m]]**2 - [[n]]**2",
+  "q": "2*[[m]]*[[n]]",
+  "h": "[[m]]**2 + [[n]]**2"
+ },
+ "stem": "The \\( 3 \\times 3 \\) block-diagonal matrix \\( A = \\begin{bmatrix} [[p]]/[[h]] & -[[q]]/[[h]] & 0 \\\\ [[q]]/[[h]] & [[p]]/[[h]] & 0 \\\\ 0 & 0 & [[e]] \\end{bmatrix} \\) is orthogonal (a \\( 2\\times 2 \\) rotation block together with \\( [[e]] \\) on the third axis). What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[p]]/[[h]]", "-[[q]]/[[h]]", "0"], ["[[q]]/[[h]]", "[[p]]/[[h]]", "0"], ["0", "0", "[[e]]"]]},
+ "distractors": [
+  "-[[e]]",
+  "0",
+  "2*[[e]]",
+  "[[p]]/[[h]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "The \\( 2\\times 2 \\) rotation block has determinant \\( \\left(\\dfrac{[[p]]}{[[h]]}\\right)^2+\\left(\\dfrac{[[q]]}{[[h]]}\\right)^2 = 1 \\) (since \\( [[p]]^2+[[q]]^2=[[h]]^2 \\)), so \\( \\det(A) = 1 \\cdot [[e]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the third-axis entry.",
+  "An orthogonal matrix is invertible, so its determinant cannot be \\( 0 \\).",
+  "The determinant of an orthogonal matrix has absolute value \\( 1 \\), never \\( 2 \\).",
+  "This reports a single matrix entry instead of the full determinant.",
+  "This is one more than the correct determinant.",
+  "This is two less than the correct determinant."
+ ]
+}
+]

@@ -1,0 +1,204 @@
+[
+{
+ "template_id": "characteristic_polynomial_invariants_v1",
+ "skill_id": "characteristic_polynomial_and_its_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "j": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "The characteristic polynomial of \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[f]] & [[e]] & [[g]] \\\\ [[h]] & [[k]] & [[j]] \\end{bmatrix} \\) is \\( p(\\lambda) = \\lambda^{3} - c_{2}\\lambda^{2} + c_{1}\\lambda - c_{0} \\). What is the value of \\( c_{2} \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[f]]", "[[e]]", "[[g]]"], ["[[h]]", "[[k]]", "[[j]]"]]},
+ "distractors": [
+  "[[a]]*[[e]]*[[j]]",
+  "[[a]] + [[e]]",
+  "[[a]] + [[j]]",
+  "[[e]] + [[j]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 3"
+ ],
+ "solution": "The coefficient \\( c_{2} \\) of the characteristic polynomial equals the sum of the eigenvalues, which is the trace of \\( A \\): \\( [[a]] + [[e]] + [[j]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the diagonal entries; \\( c_{2} \\) is their sum (the trace), not their product.",
+  "This adds only two of the three diagonal entries.",
+  "This adds only two of the three diagonal entries.",
+  "This adds only two of the three diagonal entries.",
+  "This is one more than the correct trace.",
+  "This is one less than the correct trace.",
+  "This is three more than the correct trace."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_constant_term_v1",
+ "skill_id": "characteristic_polynomial_and_its_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "j": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "f": {"type": "int", "lo": -3, "hi": 3},
+  "g": {"type": "int", "lo": -3, "hi": 3},
+  "h": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "stem": "The characteristic polynomial of \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[f]] & [[e]] & [[g]] \\\\ [[h]] & [[k]] & [[j]] \\end{bmatrix} \\) is \\( p(\\lambda) = \\lambda^{3} - c_{2}\\lambda^{2} + c_{1}\\lambda - c_{0} \\), where \\( c_{0} = \\det(A) \\). What is the value of \\( c_{0} \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[f]]", "[[e]]", "[[g]]"], ["[[h]]", "[[k]]", "[[j]]"]]},
+ "distractors": [
+  "[[a]] + [[e]] + [[j]]",
+  "[[a]]*[[e]]*[[j]]",
+  "-[[a]]*[[e]]*[[j]]",
+  "[[a]]*[[e]] - [[b]]*[[f]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "The constant term \\( c_{0} \\) of the characteristic polynomial equals \\( \\det(A) \\). Expanding the determinant gives \\( c_{0} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( c_{2} \\) (the trace), not \\( c_{0} \\) (the determinant).",
+  "This multiplies only the diagonal entries, ignoring the off-diagonal contributions to the determinant.",
+  "This has the right idea (product of diagonal entries) but the wrong sign and still ignores off-diagonal terms.",
+  "This computes only one 2x2 cofactor, not the full 3x3 determinant.",
+  "This is one more than the correct determinant.",
+  "This is two less than the correct determinant.",
+  "This is four more than the correct determinant."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_linear_coefficient_v1",
+ "skill_id": "characteristic_polynomial_and_its_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "j": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "f": {"type": "int", "lo": -3, "hi": 3},
+  "g": {"type": "int", "lo": -3, "hi": 3},
+  "h": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {
+  "m1": "[[e]]*[[j]] - [[g]]*[[k]]",
+  "m2": "[[a]]*[[j]] - [[c]]*[[h]]",
+  "m3": "[[a]]*[[e]] - [[b]]*[[f]]"
+ },
+ "stem": "The characteristic polynomial of \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[f]] & [[e]] & [[g]] \\\\ [[h]] & [[k]] & [[j]] \\end{bmatrix} \\) is \\( p(\\lambda) = \\lambda^{3} - c_{2}\\lambda^{2} + c_{1}\\lambda - c_{0} \\), where \\( c_{1} \\) is the sum of the three \\( 2 \\times 2 \\) principal minors of \\( A \\) (the minors obtained by deleting one row and the matching column). What is \\( c_{1} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m1]] + [[m2]] + [[m3]]"},
+ "distractors": [
+  "[[m1]]",
+  "[[m1]]*[[m2]]*[[m3]]",
+  "[[m1]] - [[m2]] + [[m3]]",
+  "[[a]] + [[e]] + [[j]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "The three principal \\( 2\\times2 \\) minors are \\( [[m1]] \\) (deleting row/col 1), \\( [[m2]] \\) (deleting row/col 2), and \\( [[m3]] \\) (deleting row/col 3). Their sum is \\( c_{1} = [[m1]] + [[m2]] + [[m3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses only one of the three principal minors instead of summing all three.",
+  "This multiplies the minors instead of adding them.",
+  "This subtracts the middle minor instead of adding all three.",
+  "This is \\( c_{2} \\) (the trace), not \\( c_{1} \\).",
+  "This is one more than the correct sum of minors.",
+  "This is two less than the correct sum of minors.",
+  "This is three more than the correct sum of minors."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_evaluate_at_point_v1",
+ "skill_id": "characteristic_polynomial_and_its_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "e": {"type": "int", "lo": -3, "hi": 3},
+  "j": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -2, "hi": 2},
+  "c": {"type": "int", "lo": -2, "hi": 2},
+  "f": {"type": "int", "lo": -2, "hi": 2},
+  "g": {"type": "int", "lo": -2, "hi": 2},
+  "h": {"type": "int", "lo": -2, "hi": 2},
+  "k": {"type": "int", "lo": -2, "hi": 2},
+  "t": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Ne([[t]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[f]] & [[e]] & [[g]] \\\\ [[h]] & [[k]] & [[j]] \\end{bmatrix} \\) and let \\( p(\\lambda) = \\det(\\lambda I - A) \\) be its characteristic polynomial. What is \\( p([[t]]) \\)?",
+ "answer_spec": {
+  "op": "det",
+  "matrix": [
+   ["[[t]]-([[a]])", "-([[b]])", "-([[c]])"],
+   ["-([[f]])", "[[t]]-([[e]])", "-([[g]])"],
+   ["-([[h]])", "-([[k]])", "[[t]]-([[j]])"]
+  ]
+ },
+ "distractors": [
+  "0",
+  "[[t]]**3",
+  "[[a]]+[[e]]+[[j]]-[[t]]",
+  "[[t]]**3 - ([[a]]+[[e]]+[[j]])*[[t]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 5"
+ ],
+ "solution": "\\( p([[t]]) = \\det\\!\\big([[t]]I - A\\big) \\), the determinant of \\( [[t]]I - A \\), which evaluates to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "\\( p(t) \\) is only \\( 0 \\) when \\( t \\) happens to be an eigenvalue; that is not guaranteed here.",
+  "This keeps only the leading term \\( t^{3} \\) and drops the lower-order contributions from \\( A \\).",
+  "This treats \\( p(t) \\) as linear in \\( t \\) instead of evaluating the full cubic determinant.",
+  "This drops the \\( c_{1}t - c_{0} \\) terms of the characteristic polynomial.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value.",
+  "This is five more than the correct value."
+ ]
+},
+{
+ "template_id": "characteristic_polynomial_vieta_v1",
+ "skill_id": "characteristic_polynomial_and_its_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "r1": {"type": "int", "lo": -6, "hi": 6},
+  "r2": {"type": "int", "lo": -6, "hi": 6},
+  "r3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[r1]], [[r2]])", "Ne([[r1]], [[r3]])", "Ne([[r2]], [[r3]])"],
+ "stem": "A \\( 3 \\times 3 \\) matrix \\( A \\) has eigenvalues \\( [[r1]] \\), \\( [[r2]] \\), and \\( [[r3]] \\), so its characteristic polynomial is \\( p(\\lambda) = (\\lambda - [[r1]])(\\lambda - [[r2]])(\\lambda - [[r3]]) = \\lambda^{3} - c_{2}\\lambda^{2} + c_{1}\\lambda - c_{0} \\). What is \\( c_{1} \\)?",
+ "answer_spec": {"op": "vieta", "poly": "(x-([[r1]]))*(x-([[r2]]))*(x-([[r3]]))", "var": "x", "which": "sum_pairs"},
+ "distractors": [
+  "[[r1]] + [[r2]] + [[r3]]",
+  "[[r1]]*[[r2]]*[[r3]]",
+  "[[r1]]*[[r2]]",
+  "[[r1]]*[[r2]] + [[r3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "[[answer]] + 4"
+ ],
+ "solution": "By Vieta's formulas, \\( c_{1} \\) is the sum of the pairwise products of the eigenvalues: \\( [[r1]][[r2]] + [[r1]][[r3]] + [[r2]][[r3]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( c_{2} \\), the sum of the eigenvalues, not the sum of their pairwise products.",
+  "This is \\( c_{0} \\), the product of all three eigenvalues, not the sum of pairwise products.",
+  "This uses only one pairwise product instead of summing all three.",
+  "This adds a leftover eigenvalue to a single pairwise product instead of summing all three products.",
+  "This is one more than the correct value.",
+  "This is two less than the correct value.",
+  "This is four more than the correct value."
+ ]
+}
+]

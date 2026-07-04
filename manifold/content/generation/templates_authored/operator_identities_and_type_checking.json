@@ -1,0 +1,107 @@
+[
+{
+ "template_id": "operator_identity_div_curl_zero_v1",
+ "skill_id": "operator_identities_and_type_checking",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "y0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "z0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( [[a]]y^{2}z,\\; [[b]]z^{2}x,\\; [[c]]x^{2}y \\right) \\). For ANY vector field with continuous second partial derivatives, \\( \\nabla\\cdot(\\nabla\\times\\mathbf{F}) \\) is identically \\( 0 \\) (divergence and curl are the well-typed compositions scalar-from-vector and vector-from-vector, and the composite identity holds everywhere). Evaluate \\( \\nabla\\cdot(\\nabla\\times\\mathbf{F}) \\) at the point \\( ([[x0]],[[y0]],[[z0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2*([[a]])*([[y0]]) - 2*([[c]])*([[x0]])",
+  "2*([[a]])*([[y0]]) + 2*([[b]])*([[z0]]) + 2*([[c]])*([[x0]])",
+  "2*([[b]])*([[z0]]) - 2*([[a]])*([[y0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Writing \\( \\nabla\\times\\mathbf{F} = (\\partial_yF_3-\\partial_zF_2,\\ \\partial_zF_1-\\partial_xF_3,\\ \\partial_xF_2-\\partial_yF_1) \\), the divergence of this is \\( \\partial_x\\partial_yF_3-\\partial_x\\partial_zF_2 + \\partial_y\\partial_zF_1-\\partial_y\\partial_xF_3 + \\partial_z\\partial_xF_2-\\partial_z\\partial_yF_1 \\). Since mixed partials commute (\\( \\partial_x\\partial_yF_3=\\partial_y\\partial_xF_3 \\), etc.), every pair of terms cancels, so \\( \\nabla\\cdot(\\nabla\\times\\mathbf{F}) = 0 \\) at every point, including \\( ([[x0]],[[y0]],[[z0]]) \\): \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes only one component of the curl's contribution and stops, instead of recognizing the full sum of mixed-partial pairs cancels to \\( 0 \\).",
+  "This adds all three curl-derivative terms as if they reinforced each other, instead of recognizing they cancel in pairs by equality of mixed partials.",
+  "This keeps only two of the three cancelling pairs and drops a sign, instead of recognizing the total is \\( 0 \\).",
+  "This is a small nonzero value; the divergence of a curl is identically \\( 0 \\) at every point.",
+  "This is a small nonzero value; the divergence of a curl is identically \\( 0 \\) at every point.",
+  "This is a small nonzero value; the divergence of a curl is identically \\( 0 \\) at every point.",
+  "This is a small nonzero value; the divergence of a curl is identically \\( 0 \\) at every point."
+ ]
+},
+{
+ "template_id": "operator_identity_curl_grad_zero_v1",
+ "skill_id": "operator_identities_and_type_checking",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "y0": {"type": "choice", "values": [-2, -1, 1, 2, 3]},
+  "z0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Let \\( f(x,y,z) = [[a]]xyz^{2} + [[b]]xy^{2}z \\). For ANY scalar field with continuous second partial derivatives, \\( \\nabla\\times(\\nabla f) \\) is identically the zero vector (gradient produces a vector from a scalar, and curl of that vector is again well-typed, with the composite always vanishing). Evaluate the \\( x \\)-component of \\( \\nabla\\times(\\nabla f) \\), namely \\( \\partial_y\\!\\left(\\dfrac{\\partial f}{\\partial z}\\right) - \\partial_z\\!\\left(\\dfrac{\\partial f}{\\partial y}\\right) \\), at the point \\( ([[x0]],[[y0]],[[z0]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2*(2*([[a]])*([[x0]])*([[z0]]) + 2*([[b]])*([[x0]])*([[y0]]))",
+  "2*([[a]])*([[x0]])*([[z0]]) - 2*([[b]])*([[x0]])*([[y0]])",
+  "4*([[a]])*([[x0]])*([[z0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2",
+  "[[answer]] - 2"
+ ],
+ "solution": "Here \\( \\partial f/\\partial z = 2([[a]])xyz + ([[b]])xy^{2} \\), so \\( \\partial_y(\\partial f/\\partial z) = 2([[a]])xz + 2([[b]])xy \\). Also \\( \\partial f/\\partial y = ([[a]])xz^{2} + 2([[b]])xyz \\), so \\( \\partial_z(\\partial f/\\partial y) = 2([[a]])xz + 2([[b]])xy \\). These are the SAME mixed partial \\( \\partial^{2}f/\\partial y\\,\\partial z \\) computed in the two orders, so their difference is \\( 0 \\) at every point, including \\( ([[x0]],[[y0]],[[z0]]) \\): \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the mixed partial to itself instead of subtracting it from itself, doubling a value that should cancel to \\( 0 \\).",
+  "This computes each partial with a coefficient dropped, giving a spurious nonzero difference instead of recognizing they are identical.",
+  "This keeps only the first mixed-partial term and drops the second entirely, instead of recognizing they cancel.",
+  "This is a small nonzero value; the curl of a gradient is identically \\( 0 \\) at every point.",
+  "This is a small nonzero value; the curl of a gradient is identically \\( 0 \\) at every point.",
+  "This is a small nonzero value; the curl of a gradient is identically \\( 0 \\) at every point.",
+  "This is a small nonzero value; the curl of a gradient is identically \\( 0 \\) at every point."
+ ]
+},
+{
+ "template_id": "operator_identity_grad_div_component_v1",
+ "skill_id": "operator_identities_and_type_checking",
+ "topic_id": "vector_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "z0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "Let \\( \\mathbf{F}(x,y,z) = \\left( [[a]]x^{2}y,\\; [[b]]y^{2}z,\\; [[c]]z^{2}x \\right) \\). Since \\( \\nabla\\cdot\\mathbf{F} \\) is a well-typed SCALAR field, it may itself be differentiated by \\( \\nabla \\) (unlike, say, \\( \\nabla(\\nabla\\times\\mathbf{F}) \\), which is not well-typed since \\( \\nabla \\) needs a scalar input). Compute the \\( x \\)-component of \\( \\nabla(\\nabla\\cdot\\mathbf{F}) \\) at the point \\( ([[x0]], [[y0]], [[z0]]) \\).",
+ "answer_spec": {"op": "diff", "expr": "2*([[a]])*x*([[y0]]) + ([[b]])*([[y0]])**2*([[z0]]) + ([[c]])*([[z0]])**2*x", "var": "x", "order": 1, "at": "[[x0]]"},
+ "distractors": [
+  "([[a]])*([[y0]]) + ([[c]])*([[z0]])**2",
+  "([[a]])*([[y0]])**2 + ([[c]])*([[z0]])**2",
+  "-([[answer]])",
+  "([[answer]])/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "First \\( \\nabla\\cdot\\mathbf{F} = \\partial_x([[a]]x^{2}y) + \\partial_y([[b]]y^{2}z) + \\partial_z([[c]]z^{2}x) = 2([[a]])xy + 2([[b]])yz + 2([[c]])zx \\), a genuine scalar field. Its \\( x \\)-partial is \\( \\partial_x(\\nabla\\cdot\\mathbf{F}) = 2([[a]])y + 2([[c]])z \\); at \\( (1,[[y0]],[[z0]]) \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 from differentiating the quadratic terms of the divergence.",
+  "This differentiates the ORIGINAL field components directly (using their squared-variable exponents) instead of first forming \\( \\nabla\\cdot\\mathbf{F} \\) and then differentiating that.",
+  "This has the wrong overall sign.",
+  "This is half the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

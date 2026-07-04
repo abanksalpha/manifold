@@ -1,0 +1,1 @@
+{"skill_id": "verify_or_count_topologies_on_a_set", "reason": "No solver op enumerates topologies; the count on an n-element set (1, 4, 29, 355, ...) has no closed form, a genuinely tiny FIXED set yields one identical stem (failing the >=5-distinct-stems gate), and any hardcoded count would violate the code-computed-answer contract."}

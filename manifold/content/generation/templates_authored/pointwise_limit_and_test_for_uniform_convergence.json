@@ -1,0 +1,88 @@
+[
+{
+ "template_id": "pointwise_limit_power_family_v1",
+ "skill_id": "pointwise_limit_and_test_for_uniform_convergence",
+ "topic_id": "real_analysis_sequences",
+ "tier": "recognize",
+ "params": {
+  "num": {"type": "int", "lo": 1, "hi": 9},
+  "den": {"type": "int", "lo": 2, "hi": 10}
+ },
+ "constraints": ["Lt([[num]], [[den]])"],
+ "stem": "For each \\( n \\ge 1 \\), define \\( f_n(x) = x^{n} \\) on \\( [0,1] \\). This sequence of functions converges POINTWISE on \\( [0,1] \\) (fix \\( x \\), then let \\( n \\to \\infty \\)) but, because the pointwise limit jumps at \\( x=1 \\), not uniformly. What is the pointwise limit \\( \\displaystyle\\lim_{n \\to \\infty} f_n(x) \\) at \\( x = \\dfrac{[[num]]}{[[den]]} \\)?",
+ "answer_spec": {"op": "limit", "expr": "(Rational([[num]],[[den]]))**n", "var": "n", "point": "oo"},
+ "distractors": [
+  "1",
+  "Rational([[num]], [[den]])",
+  "Rational([[den]], [[num]])",
+  "Rational(1, 2)",
+  "[[num]] + [[den]]",
+  "Rational(1, [[den]])"
+ ],
+ "solution": "Fix \\( x = [[num]]/[[den]] \\), which lies in \\( [0,1) \\) since \\( [[num]] < [[den]] \\). Letting \\( n \\to \\infty \\) in \\( f_n(x) = x^{n} \\), the geometric-style decay sends \\( x^{n} \\to 0 \\) whenever \\( 0 \\le x < 1 \\) (unlike at \\( x=1 \\), where every \\( f_n(1)=1 \\)). So the pointwise limit here is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the pointwise limit only AT \\( x=1 \\); here \\( x<1 \\), so \\( x^n \\) decays to \\( 0 \\) instead.",
+  "This mistakes the point \\( x \\) itself for the limit of \\( x^n \\).",
+  "This inverts the fraction defining \\( x \\).",
+  "This is an arbitrary constant unrelated to \\( x^{n} \\)'s actual limiting behavior.",
+  "This adds the numerator and denominator of \\( x \\) instead of evaluating the limit.",
+  "This uses the reciprocal of the denominator alone, unrelated to \\( x^n \\)'s limiting behavior."
+ ]
+},
+{
+ "template_id": "pointwise_limit_n_x_exp_decay_v2",
+ "skill_id": "pointwise_limit_and_test_for_uniform_convergence",
+ "topic_id": "real_analysis_sequences",
+ "tier": "recognize",
+ "params": {
+  "num": {"type": "int", "lo": 1, "hi": 7},
+  "den": {"type": "int", "lo": 8, "hi": 15}
+ },
+ "constraints": ["Lt([[num]], [[den]])"],
+ "stem": "For each \\( n \\ge 1 \\), define \\( f_n(x) = n x (1-x)^{n} \\) on \\( [0,1] \\). This sequence converges POINTWISE on \\( [0,1] \\) (fix \\( x \\), then let \\( n \\to \\infty \\)) but not uniformly \u2014 the peak of \\( f_n \\) does not shrink to \\( 0 \\) even though every fixed point does. What is the pointwise limit \\( \\displaystyle\\lim_{n \\to \\infty} f_n(x) \\) at \\( x = \\dfrac{[[num]]}{[[den]]} \\)?",
+ "answer_spec": {"op": "limit", "expr": "n*(Rational([[num]],[[den]]))*(1-Rational([[num]],[[den]]))**n", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[num]], [[den]])",
+  "1",
+  "Rational([[den]]-[[num]], [[den]])",
+  "[[num]]",
+  "1/[[den]]"
+ ],
+ "solution": "Fix \\( x = [[num]]/[[den]] \\in (0,1) \\), so \\( 0 < 1-x < 1 \\). As \\( n \\to \\infty \\), the geometric factor \\( (1-x)^{n} \\) decays exponentially, which beats the linear growth of \\( nx \\); the product \\( \\to 0 \\). The pointwise limit here is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the point \\( x \\) itself, ignoring that the exponential factor \\( (1-x)^n \\) forces the whole product to \\( 0 \\).",
+  "This wrongly assumes the product approaches \\( 1 \\).",
+  "This uses \\( 1-x \\) itself instead of recognizing \\( (1-x)^n \\to 0 \\) dominates the linear factor \\( nx \\).",
+  "This reports the numerator of \\( x \\) alone, unrelated to the actual limiting behavior.",
+  "This reports the reciprocal of the denominator of \\( x \\), unrelated to the actual limiting behavior."
+ ]
+},
+{
+ "template_id": "pointwise_limit_ratio_in_n_v3",
+ "skill_id": "pointwise_limit_and_test_for_uniform_convergence",
+ "topic_id": "real_analysis_sequences",
+ "tier": "recognize",
+ "params": {
+  "num": {"type": "int", "lo": -6, "hi": 6},
+  "den": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[num]], 0)"],
+ "stem": "For each \\( n \\ge 1 \\), define \\( f_n(x) = \\dfrac{nx + 1}{n + x} \\) for \\( x \\in \\mathbb{R} \\). This sequence converges POINTWISE on \\( \\mathbb{R} \\) (fix \\( x \\), then let \\( n \\to \\infty \\)). What is the pointwise limit \\( \\displaystyle\\lim_{n \\to \\infty} f_n(x) \\) at \\( x = \\dfrac{[[num]]}{[[den]]} \\)?",
+ "answer_spec": {"op": "limit", "expr": "(n*(Rational([[num]],[[den]])) + 1)/(n + Rational([[num]],[[den]]))", "var": "n", "point": "oo"},
+ "distractors": [
+  "1",
+  "Rational([[den]], [[num]])",
+  "0",
+  "Rational([[num]] + [[den]], [[den]])",
+  "[[answer]] + 1"
+ ],
+ "solution": "Fix \\( x = [[num]]/[[den]] \\) and divide numerator and denominator of \\( \\dfrac{nx+1}{n+x} \\) by \\( n \\): \\( \\dfrac{x + 1/n}{1 + x/n} \\to \\dfrac{x + 0}{1 + 0} = x = [[answer]] \\). (The pointwise limit function is simply \\( f(x) = x \\).)",
+ "distractor_rationales": [
+  "This wrongly assumes the ratio of leading coefficients (both equal to \\( n \\)) is \\( 1 \\) regardless of \\( x \\), ignoring that \\( x \\) itself IS the pointwise limit here.",
+  "This inverts \\( x=[[num]]/[[den]] \\).",
+  "This wrongly assumes the whole expression vanishes.",
+  "This adds the numerator and denominator of \\( x \\) instead of just returning \\( x \\).",
+  "This is off by one from the correct value."
+ ]
+}
+]

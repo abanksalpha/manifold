@@ -1,0 +1,168 @@
+[
+ {
+  "template_id": "recursive_sqrt_fixed_point_v1",
+  "skill_id": "limit_of_a_recursively_defined_monotone_bounded_sequ",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "m": {
+    "type": "int",
+    "lo": 2,
+    "hi": 20
+   }
+  },
+  "constraints": [],
+  "derived": {
+   "a": "[[m]]*([[m]] - 1)"
+  },
+  "stem": "Define a sequence by \\( x_1 = 1 \\) and \\( x_{n+1} = \\sqrt{[[a]] + x_n} \\) for \\( n \\ge 1 \\). This sequence is increasing and bounded above, so it converges. Find \\( \\displaystyle\\lim_{n \\to \\infty} x_n \\).",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "(1 + sqrt(1 + 4*[[a]]))/2"
+  },
+  "distractors": [
+   "1 - [[m]]",
+   "[[m]] - 1",
+   "[[m]] + 1",
+   "[[a]]",
+   "2*[[m]]",
+   "[[m]] + 2"
+  ],
+  "solution": "The limit \\( L \\) is the positive fixed point of \\( L = \\sqrt{[[a]] + L} \\), so \\( L^2 - L - [[a]] = 0 \\). The positive root is \\( L = \\dfrac{1 + \\sqrt{1 + 4\\cdot[[a]]}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the negative root of \\( L^2 - L - [[a]] = 0 \\), which the (positive) sequence cannot converge to.",
+   "This is one less than the correct fixed point.",
+   "This is one more than the correct fixed point.",
+   "This mistakes the constant \\( [[a]] \\) inside the radical for the limit itself.",
+   "This doubles the correct fixed point.",
+   "This is two more than the correct fixed point."
+  ]
+ },
+ {
+  "template_id": "recursive_newton_sqrt_v1",
+  "skill_id": "limit_of_a_recursively_defined_monotone_bounded_sequ",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 35}
+  },
+  "constraints": [],
+  "derived": {
+   "msq": "[[m]]**2"
+  },
+  "stem": "Define a sequence by \\( x_1 = [[msq]] \\) and \\( x_{n+1} = \\dfrac{1}{2}\\left(x_n + \\dfrac{[[msq]]}{x_n}\\right) \\) for \\( n \\ge 1 \\). This sequence is decreasing and bounded below, so it converges. Find \\( \\displaystyle\\lim_{n \\to \\infty} x_n \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]"},
+  "distractors": [
+   "[[msq]]",
+   "[[m]] + 1",
+   "[[m]] - 1",
+   "2*[[m]]",
+   "Rational([[msq]], 2)",
+   "[[m]] + 2"
+  ],
+  "solution": "This is Newton's (Babylonian) averaging iteration for \\( \\sqrt{[[msq]]} \\): any fixed point \\( L \\) satisfies \\( L = \\tfrac12\\left(L + \\tfrac{[[msq]]}{L}\\right) \\), i.e. \\( L^2 = [[msq]] \\), so \\( L = [[answer]] \\) (the positive root).",
+  "distractor_rationales": [
+   "This confuses the starting value \\( x_1 \\) with the limit; the sequence decreases strictly below it.",
+   "This is one more than the correct limit.",
+   "This is one less than the correct limit.",
+   "This doubles the correct limit.",
+   "This halves the starting value instead of taking a square root.",
+   "This is two more than the correct limit."
+  ]
+ },
+ {
+  "template_id": "recursive_geometric_mean_sqrt_v1",
+  "skill_id": "limit_of_a_recursively_defined_monotone_bounded_sequ",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 35}
+  },
+  "constraints": [],
+  "stem": "Define a sequence by \\( x_1 = 1 \\) and \\( x_{n+1} = [[c]]\\sqrt{x_n} \\) for \\( n \\ge 1 \\). This sequence is increasing and bounded above, so it converges. Find \\( \\displaystyle\\lim_{n \\to \\infty} x_n \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[c]]**2"},
+  "distractors": [
+   "[[c]]",
+   "2*[[c]]",
+   "[[c]]**2 + 1",
+   "[[c]]**2 - 1",
+   "Rational([[c]]**2, 2)",
+   "[[c]] + 1"
+  ],
+  "solution": "A fixed point \\( L \\) satisfies \\( L = [[c]]\\sqrt{L} \\), so \\( \\sqrt{L} = [[c]] \\) (discarding \\( L=0 \\), which the sequence never reaches), giving \\( L = [[c]]^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This confuses the multiplier \\( [[c]] \\) in the recursion with the limit itself.",
+   "This doubles the multiplier instead of squaring it.",
+   "This is one more than the correct limit.",
+   "This is one less than the correct limit.",
+   "This halves the correct limit.",
+   "This is one more than the multiplier, not the limit."
+  ]
+ },
+ {
+  "template_id": "recursive_linear_contraction_v1",
+  "skill_id": "limit_of_a_recursively_defined_monotone_bounded_sequ",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 7},
+   "q": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 1, "hi": 12}
+  },
+  "constraints": ["Lt([[p]], [[q]])"],
+  "stem": "Define a sequence by \\( x_1 = 0 \\) and \\( x_{n+1} = \\dfrac{[[p]]}{[[q]]}x_n + [[b]] \\) for \\( n \\ge 1 \\). This sequence is increasing and bounded above, so it converges. Find \\( \\displaystyle\\lim_{n \\to \\infty} x_n \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[b]]*[[q]]/([[q]] - [[p]])"},
+  "distractors": [
+   "[[b]]",
+   "[[b]]*[[q]]/[[p]]",
+   "[[b]]*[[p]]/([[q]] - [[p]])",
+   "[[b]]*[[q]]/([[q]] + [[p]])",
+   "[[b]]*[[q]]/([[q]] - [[p]]) + 1",
+   "[[b]]*[[q]]/([[q]] - [[p]]) - 1"
+  ],
+  "solution": "A fixed point \\( L \\) satisfies \\( L = \\dfrac{[[p]]}{[[q]]}L + [[b]] \\), so \\( L\\left(1 - \\dfrac{[[p]]}{[[q]]}\\right) = [[b]] \\), giving \\( L = \\dfrac{[[b]]\\,[[q]]}{[[q]]-[[p]]} = [[answer]] \\). Since \\( 0 < [[p]]/[[q]] < 1 \\), the map is a contraction and the sequence converges monotonically to \\( L \\).",
+  "distractor_rationales": [
+   "This is just the additive constant \\( [[b]] \\), ignoring the contraction factor entirely.",
+   "This inverts the fraction \\( [[p]]/[[q]] \\) when solving for \\( L \\).",
+   "This swaps \\( p \\) and \\( q \\) in the numerator of the fixed-point formula.",
+   "This adds the contraction factor to 1 instead of subtracting it.",
+   "This is one more than the correct limit.",
+   "This is one less than the correct limit."
+  ]
+ },
+ {
+  "template_id": "recursive_reciprocal_vieta_v1",
+  "skill_id": "limit_of_a_recursively_defined_monotone_bounded_sequ",
+  "topic_id": "real_analysis_sequences",
+  "tier": "recognize",
+  "params": {
+   "L": {"type": "int", "lo": 4, "hi": 25},
+   "M": {"type": "int", "lo": 1, "hi": 20},
+   "x1": {"type": "int", "lo": 1, "hi": 24}
+  },
+  "constraints": ["Lt([[M]], [[L]])", "Gt([[L]], [[M]] + 1)", "Gt([[x1]], [[M]])", "Lt([[x1]], [[L]])"],
+  "derived": {
+   "a": "[[L]] + [[M]]",
+   "b": "[[L]]*[[M]]"
+  },
+  "stem": "Define a sequence by \\( x_1 = [[x1]] \\) and \\( x_{n+1} = [[a]] - \\dfrac{[[b]]}{x_n} \\) for \\( n \\ge 1 \\). This sequence is increasing and bounded above, so it converges. Find \\( \\displaystyle\\lim_{n \\to \\infty} x_n \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]] + sqrt([[a]]**2 - 4*[[b]]))/2"},
+  "distractors": [
+   "([[a]] - sqrt([[a]]**2 - 4*[[b]]))/2",
+   "[[a]]",
+   "[[a]]/2",
+   "[[x1]]",
+   "([[a]] + sqrt([[a]]**2 - 4*[[b]]))/2 + 1",
+   "([[a]] + sqrt([[a]]**2 - 4*[[b]]))/2 - 1"
+  ],
+  "solution": "A fixed point \\( L \\) satisfies \\( L = [[a]] - \\dfrac{[[b]]}{L}\\), i.e. \\( L^2 - [[a]]L + [[b]] = 0 \\), with roots \\( \\dfrac{[[a]] \\pm \\sqrt{[[a]]^2 - 4\\cdot[[b]]}}{2} \\). Since \\( x_1 = [[x1]] \\) lies between the two roots and the map is increasing, the sequence converges up to the LARGER root, \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the smaller root of the fixed-point equation, which the sequence increases past, not toward.",
+   "This uses only the linear coefficient \\( [[a]] \\), skipping the quadratic formula entirely.",
+   "This halves \\( [[a]] \\) without accounting for the discriminant term.",
+   "This confuses the starting value \\( x_1 \\) with the limit.",
+   "This is one more than the correct limit.",
+   "This is one less than the correct limit."
+  ]
+ }
+]

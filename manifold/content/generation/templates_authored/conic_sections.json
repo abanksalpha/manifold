@@ -1,0 +1,188 @@
+[
+{
+ "template_id": "conic_ellipse_eccentricity_v1",
+ "skill_id": "conic_sections",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 15},
+  "b": {"type": "int", "lo": 2, "hi": 14}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "The ellipse \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\) has \\( [[a]]>[[b]] \\). Find its eccentricity \\( e \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 - [[b]]**2)/[[a]]"},
+ "distractors": [
+  "sqrt([[a]]**2 - [[b]]**2)/[[b]]",
+  "sqrt([[a]]**2 + [[b]]**2)/[[a]]",
+  "Rational([[b]],[[a]])",
+  "([[a]]**2 - [[b]]**2)/[[a]]**2",
+  "sqrt([[a]]**2 - [[b]]**2)/[[a]] + Rational(1,10)",
+  "sqrt([[a]]**2 - [[b]]**2)/[[a]] - Rational(1,10)"
+ ],
+ "solution": "For this ellipse, \\( c=\\sqrt{a^{2}-b^{2}} \\) and the eccentricity is \\( e=\\dfrac{c}{a}=\\dfrac{\\sqrt{[[a]]^{2}-[[b]]^{2}}}{[[a]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This divides by \\( b\\) instead of \\( a\\) in the eccentricity formula.",
+  "This uses the hyperbola relation \\( c=\\sqrt{a^{2}+b^{2}}\\) instead of the ellipse relation.",
+  "This reports \\( b/a\\) directly instead of \\( c/a\\).",
+  "This forgets to take the square root, reporting \\( e^{2}\\) instead of \\( e\\).",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+},
+{
+ "template_id": "conic_ellipse_focal_distance_v1",
+ "skill_id": "conic_sections",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 16},
+  "b": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "The ellipse \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\) has foci at \\( (\\pm c,0) \\). Find \\( c \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 - [[b]]**2)"},
+ "distractors": [
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt([[b]]**2 - [[a]]**2)",
+  "[[a]] - [[b]]",
+  "([[a]]**2 - [[b]]**2)",
+  "sqrt([[a]]**2 - [[b]]**2) + 1",
+  "sqrt([[a]]**2 - [[b]]**2) - 1"
+ ],
+ "solution": "For an ellipse with \\( a>b \\), the focal distance is \\( c=\\sqrt{a^{2}-b^{2}}=\\sqrt{[[a]]^{2}-[[b]]^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the hyperbola relation \\( c=\\sqrt{a^{2}+b^{2}}\\) instead of the ellipse relation.",
+  "This swaps the order of subtraction under the square root, which would be negative here.",
+  "This subtracts the semi-axes directly instead of using the Pythagorean-style relation.",
+  "This forgets to take the square root, reporting \\( c^{2}\\) instead of \\( c\\).",
+  "This is off by one from the correct focal distance.",
+  "This is off by one (other direction) from the correct focal distance."
+ ]
+},
+{
+ "template_id": "conic_hyperbola_eccentricity_v1",
+ "skill_id": "conic_sections",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 14},
+  "b": {"type": "int", "lo": 2, "hi": 14}
+ },
+ "constraints": [],
+ "stem": "The hyperbola \\( \\dfrac{x^{2}}{[[a]]^{2}}-\\dfrac{y^{2}}{[[b]]^{2}}=1 \\) has vertices at \\( (\\pm [[a]],0) \\). Find its eccentricity \\( e \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2)/[[a]]"},
+ "distractors": [
+  "sqrt([[a]]**2 - [[b]]**2)/[[a]]",
+  "sqrt([[a]]**2 + [[b]]**2)/[[b]]",
+  "Rational([[b]],[[a]])",
+  "([[a]]**2 + [[b]]**2)/[[a]]**2",
+  "sqrt([[a]]**2 + [[b]]**2)/[[a]] + Rational(1,10)",
+  "sqrt([[a]]**2 + [[b]]**2)/[[a]] - Rational(1,10)"
+ ],
+ "solution": "For this hyperbola, \\( c=\\sqrt{a^{2}+b^{2}} \\) and the eccentricity is \\( e=\\dfrac{c}{a}=\\dfrac{\\sqrt{[[a]]^{2}+[[b]]^{2}}}{[[a]]}=[[answer]] \\) (always \\( >1 \\) for a hyperbola).",
+ "distractor_rationales": [
+  "This uses the ellipse relation \\( c=\\sqrt{a^{2}-b^{2}}\\) instead of the hyperbola relation.",
+  "This divides by \\( b\\) instead of \\( a\\) in the eccentricity formula.",
+  "This reports \\( b/a\\) directly instead of \\( c/a\\).",
+  "This forgets to take the square root, reporting \\( e^{2}\\) instead of \\( e\\).",
+  "This is off by a small additive amount from the correct eccentricity.",
+  "This is off by a small additive amount (other direction) from the correct eccentricity."
+ ]
+},
+{
+ "template_id": "conic_hyperbola_focal_distance_v1",
+ "skill_id": "conic_sections",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 16},
+  "b": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "The hyperbola \\( \\dfrac{x^{2}}{[[a]]^{2}}-\\dfrac{y^{2}}{[[b]]^{2}}=1 \\) has foci at \\( (\\pm c,0) \\). Find \\( c \\).",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2)"},
+ "distractors": [
+  "sqrt([[a]]**2 - [[b]]**2)",
+  "sqrt(Abs([[a]]**2 - [[b]]**2))",
+  "[[a]] + [[b]]",
+  "([[a]]**2 + [[b]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2) + 1",
+  "sqrt([[a]]**2 + [[b]]**2) - 1"
+ ],
+ "solution": "For a hyperbola, the focal distance is \\( c=\\sqrt{a^{2}+b^{2}}=\\sqrt{[[a]]^{2}+[[b]]^{2}}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the ellipse relation \\( c=\\sqrt{a^{2}-b^{2}}\\) instead of the hyperbola relation.",
+  "This takes the absolute difference under the root instead of the sum.",
+  "This adds the semi-axes directly instead of using the Pythagorean-style relation.",
+  "This forgets to take the square root, reporting \\( c^{2}\\) instead of \\( c\\).",
+  "This is off by one from the correct focal distance.",
+  "This is off by one (other direction) from the correct focal distance."
+ ]
+},
+{
+ "template_id": "conic_ellipse_sum_of_focal_distances_v1",
+ "skill_id": "conic_sections",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 20},
+  "b": {"type": "int", "lo": 2, "hi": 19}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "For the ellipse \\( \\dfrac{x^{2}}{[[a]]^{2}}+\\dfrac{y^{2}}{[[b]]^{2}}=1 \\) with foci \\( F_1,F_2 \\), a point \\( P \\) lies on the ellipse. By the defining property of an ellipse, what is \\( PF_1+PF_2 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[a]]"},
+ "distractors": [
+  "[[a]]",
+  "2*[[b]]",
+  "[[a]] + [[b]]",
+  "4*[[a]]",
+  "2*[[a]] + 1",
+  "2*[[a]] - 1"
+ ],
+ "solution": "By definition, the sum of the distances from any point on an ellipse to its two foci is constant and equal to \\( 2a \\), the length of the major axis: \\( PF_1+PF_2=2([[a]])=[[answer]] \\).",
+ "distractor_rationales": [
+  "This reports the semi-major axis \\( a\\) instead of the full major axis \\( 2a\\).",
+  "This uses the semi-minor axis \\( b\\) instead of the semi-major axis \\( a\\).",
+  "This adds the two semi-axes instead of doubling the semi-major axis.",
+  "This uses a factor of \\( 4\\) instead of \\( 2\\).",
+  "This is off by one from the correct constant sum.",
+  "This is off by one (other direction) from the correct constant sum."
+ ]
+},
+{
+ "template_id": "conic_translated_ellipse_vertex_v1",
+ "skill_id": "conic_sections",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "h": {"type": "int", "lo": -9, "hi": 9},
+  "k": {"type": "int", "lo": -9, "hi": 9},
+  "a": {"type": "int", "lo": 3, "hi": 12},
+  "b": {"type": "int", "lo": 2, "hi": 11}
+ },
+ "constraints": ["Gt([[a]], [[b]])"],
+ "stem": "The ellipse \\( \\dfrac{(x-[[h]])^{2}}{[[a]]^{2}}+\\dfrac{(y-[[k]])^{2}}{[[b]]^{2}}=1 \\) is centered at \\( ([[h]],[[k]]) \\), with major axis along the \\( x \\)-direction. Find the \\( x \\)-coordinate of its right vertex.",
+ "answer_spec": {"op": "evaluate", "expr": "[[h]] + [[a]]"},
+ "distractors": [
+  "[[h]] - [[a]]",
+  "[[h]] + [[b]]",
+  "[[a]]",
+  "[[h]]*[[a]]",
+  "[[h]] + [[a]] + 1",
+  "[[h]] + [[a]] - 1"
+ ],
+ "solution": "The right vertex sits \\( a \\) units to the right of the center along the major axis, so its \\( x \\)-coordinate is \\( h+a=[[h]]+[[a]]=[[answer]] \\).",
+ "distractor_rationales": [
+  "This moves left instead of right from the center.",
+  "This uses the semi-minor axis \\( b\\) instead of the semi-major axis \\( a\\).",
+  "This omits the center's shift \\( h\\) entirely.",
+  "This multiplies \\( h\\) and \\( a\\) instead of adding them.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one (other direction) from the correct coordinate."
+ ]
+}
+]

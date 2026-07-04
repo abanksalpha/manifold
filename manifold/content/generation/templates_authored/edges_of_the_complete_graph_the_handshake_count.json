@@ -1,0 +1,97 @@
+[
+ {
+  "template_id": "complete_graph_edges_v1",
+  "skill_id": "edges_of_the_complete_graph_the_handshake_count",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 4,
+    "hi": 24
+   }
+  },
+  "constraints": [],
+  "stem": "How many edges does the complete graph \\( K_{[[n]]} \\) on \\( [[n]] \\) vertices have?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "binomial([[n]], 2)"
+  },
+  "distractors": [
+   "[[n]]*([[n]] - 1)",
+   "[[n]]**2",
+   "binomial([[n]], 3)",
+   "[[n]]",
+   "[[answer]] + [[n]]",
+   "[[answer]] - 1"
+  ],
+  "solution": "Every pair of distinct vertices is joined by exactly one edge, so the number of edges is \\( \\binom{[[n]]}{2} = \\frac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts each edge twice (it is the number of ordered pairs of distinct vertices); divide by 2.",
+   "This counts all ordered pairs including a vertex with itself, not distinct unordered pairs.",
+   "This counts triangles \\( \\binom{[[n]]}{3} \\), not edges.",
+   "This mistakes the number of vertices for the number of edges.",
+   "This overcounts the edges by the number of vertices.",
+   "This is off by one from the correct edge count."
+  ]
+ },
+ {
+  "template_id": "handshake_word_problem_v2",
+  "skill_id": "edges_of_the_complete_graph_the_handshake_count",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 24}
+  },
+  "constraints": [],
+  "stem": "At a party attended by \\( [[n]] \\) people, every person shakes hands with every other person exactly once. How many handshakes take place in total?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2)"},
+  "distractors": [
+   "[[n]]*([[n]] - 1)",
+   "[[n]]**2",
+   "[[n]]",
+   "binomial([[n]], 3)",
+   "[[answer]] + 1",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "Each handshake pairs two distinct people, so the number of handshakes equals the number of unordered pairs of the \\( [[n]] \\) guests: \\( \\binom{[[n]]}{2} = \\frac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This counts each handshake twice, once for each participant's point of view; divide by 2.",
+   "This includes a person shaking their own hand, which is not a real handshake.",
+   "This mistakes the number of guests for the number of handshakes.",
+   "This counts unordered triples of guests \\( \\binom{[[n]]}{3} \\), not pairs.",
+   "This is off by one from the correct total.",
+   "This subtracts the guest count for no valid reason."
+  ]
+ },
+ {
+  "template_id": "handshake_count_inverse_v3",
+  "skill_id": "edges_of_the_complete_graph_the_handshake_count",
+  "topic_id": "graph_theory",
+  "tier": "recognize",
+  "params": {
+   "n": {"type": "int", "lo": 4, "hi": 30}
+  },
+  "constraints": [],
+  "derived": {"H": "binomial([[n]], 2)"},
+  "stem": "At a gathering, every pair of people shook hands exactly once, and \\( [[H]] \\) handshakes took place in total. How many people were at the gathering?",
+  "answer_spec": {"op": "evaluate", "expr": "(1 + sqrt(1 + 8*[[H]]))/2"},
+  "distractors": [
+   "[[H]]",
+   "sqrt(2*[[H]])",
+   "[[H]]/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "If there are \\( n \\) people, the handshake count satisfies \\( \\binom{n}{2} = \\frac{n(n-1)}{2} = [[H]] \\). Solving \\( n^2 - n - 2([[H]]) = 0 \\) with the quadratic formula and taking the positive root gives \\( n = \\frac{1+\\sqrt{1+8([[H]])}}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakes the handshake count itself for the number of people.",
+   "This uses \\( \\sqrt{2H} \\), a rough guess that ignores the exact quadratic relationship.",
+   "This halves the handshake count directly, rather than inverting \\( \\binom{n}{2} \\).",
+   "This is off by one from the correct number of people.",
+   "This is off by one from the correct number of people.",
+   "This is off by two from the correct number of people."
+  ]
+ }
+]

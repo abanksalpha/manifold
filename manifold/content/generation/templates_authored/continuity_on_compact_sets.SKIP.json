@@ -1,0 +1,1 @@
+{"skill_id": "continuity_on_compact_sets", "reason": "Tests recognition that a continuous function on a compact set is bounded, attains its extrema, and is uniformly continuous (corollaries of compactness); the answer is a theorem-applicability verdict, not a code-computable scalar."}

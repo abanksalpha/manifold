@@ -1,0 +1,200 @@
+[
+{
+ "template_id": "coordinates_in_a_basis_v1",
+ "skill_id": "coordinates_relative_to_a_basis_change_of_basis",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "k1": {"type": "int", "lo": -4, "hi": 4},
+  "k2": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"
+ ],
+ "derived": {
+  "w1": "[[k1]]*[[a]] + [[k2]]*[[c]]",
+  "w2": "[[k1]]*[[b]] + [[k2]]*[[d]]"
+ },
+ "stem": "The vectors \\( \\mathbf{b}_1 = ([[a]], [[b]]) \\) and \\( \\mathbf{b}_2 = ([[c]], [[d]]) \\) form a basis of \\( \\mathbb{R}^2 \\). Write \\( \\mathbf{w} = ([[w1]], [[w2]]) \\) in this basis as \\( \\mathbf{w} = x\\,\\mathbf{b}_1 + y\\,\\mathbf{b}_2 \\). What is the coordinate \\( x \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[a]]*x + [[c]]*y = [[w1]]", "[[b]]*x + [[d]]*y = [[w2]]"],
+  "vars": ["x", "y"],
+  "want": "x"
+ },
+ "distractors": [
+  "[[k2]]",
+  "[[w1]]",
+  "[[w2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]",
+  "[[k2]] + 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Solving \\( x\\,\\mathbf{b}_1 + y\\,\\mathbf{b}_2 = \\mathbf{w} \\) gives the coordinate \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the other coordinate \\( y \\), not \\( x \\).",
+  "This is the first standard component of \\( \\mathbf{w} \\), not its coordinate in the basis.",
+  "This is the second standard component of \\( \\mathbf{w} \\), not its coordinate in the basis.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This has the wrong sign.",
+  "This is off by one from the other coordinate.",
+  "This is off by two from the correct coordinate."
+ ]
+},
+{
+ "template_id": "basis_to_standard_coordinate_v2",
+ "skill_id": "coordinates_relative_to_a_basis_change_of_basis",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "k1": {"type": "int", "lo": -6, "hi": 6},
+  "k2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": [
+  "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"
+ ],
+ "derived": {},
+ "stem": "The vectors \\( \\mathbf{b}_1 = ([[a]], [[b]]) \\) and \\( \\mathbf{b}_2 = ([[c]], [[d]]) \\) form a basis of \\( \\mathbb{R}^2 \\). A vector \\( \\mathbf{w} \\) has coordinates \\( ([[k1]], [[k2]]) \\) relative to this basis, meaning \\( \\mathbf{w} = [[k1]]\\,\\mathbf{b}_1 + [[k2]]\\,\\mathbf{b}_2 \\). What is the first standard coordinate of \\( \\mathbf{w} \\)?",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[k1]]*[[a]] + [[k2]]*[[c]]"
+ },
+ "distractors": [
+  "[[k1]]*[[b]] + [[k2]]*[[d]]",
+  "[[k1]] + [[k2]]",
+  "[[k1]]*[[a]] - [[k2]]*[[c]]",
+  "[[k2]]*[[a]] + [[k1]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[a]] + [[c]]"
+ ],
+ "solution": "Substitute the basis vectors into \\( \\mathbf{w} = [[k1]]\\,\\mathbf{b}_1 + [[k2]]\\,\\mathbf{b}_2 \\): the first standard coordinate is \\( [[k1]]([[a]]) + [[k2]]([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the SECOND standard coordinate of \\( \\mathbf{w} \\), not the first.",
+  "This adds the basis coordinates directly instead of forming the linear combination.",
+  "This subtracts instead of adds the second term.",
+  "This swaps which coordinate multiplies which basis vector.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This adds the first components of the two basis vectors, ignoring the coordinates entirely."
+ ]
+},
+{
+ "template_id": "coordinate_sum_triangular_basis_r3_v3",
+ "skill_id": "coordinates_relative_to_a_basis_change_of_basis",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "k1": {"type": "int", "lo": -4, "hi": 4},
+  "k2": {"type": "int", "lo": -4, "hi": 4},
+  "k3": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[s]], 0)",
+  "Ne([[u]], 0)"
+ ],
+ "derived": {
+  "w1": "[[k1]]",
+  "w2": "[[k1]]*[[p]] + [[k2]]*[[s]]",
+  "w3": "[[k1]]*[[q]] + [[k2]]*[[t]] + [[k3]]*[[u]]"
+ },
+ "stem": "The vectors \\( \\mathbf{b}_1 = (1, [[p]], [[q]]) \\), \\( \\mathbf{b}_2 = (0, [[s]], [[t]]) \\), and \\( \\mathbf{b}_3 = (0, 0, [[u]]) \\) form a basis of \\( \\mathbb{R}^3 \\). The vector \\( \\mathbf{w} = ([[w1]], [[w2]], [[w3]]) \\) is written as \\( \\mathbf{w} = x\\,\\mathbf{b}_1 + y\\,\\mathbf{b}_2 + z\\,\\mathbf{b}_3 \\). What is \\( x + y + z \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": [
+   "1*x + 0*y + 0*z = [[w1]]",
+   "[[p]]*x + [[s]]*y + 0*z = [[w2]]",
+   "[[q]]*x + [[t]]*y + [[u]]*z = [[w3]]"
+  ],
+  "vars": ["x", "y", "z"],
+  "want": "x + y + z"
+ },
+ "distractors": [
+  "[[k1]] + [[k2]]",
+  "[[k1]] + [[k3]]",
+  "[[k2]] + [[k3]]",
+  "[[w1]] + [[w2]] + [[w3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Solving the system \\( x\\mathbf{b}_1+y\\mathbf{b}_2+z\\mathbf{b}_3=\\mathbf{w} \\) gives the coordinates \\( x,y,z \\), and \\( x+y+z = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the coordinate \\( z \\) from the sum.",
+  "This omits the coordinate \\( y \\) from the sum.",
+  "This omits the coordinate \\( x \\) from the sum.",
+  "This sums the STANDARD coordinates of \\( \\mathbf{w} \\) instead of its coordinates in the basis.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+},
+{
+ "template_id": "change_of_basis_between_two_bases_v4",
+ "skill_id": "coordinates_relative_to_a_basis_change_of_basis",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "p": {"type": "int", "lo": -4, "hi": 4},
+  "q": {"type": "int", "lo": -4, "hi": 4},
+  "r": {"type": "int", "lo": -4, "hi": 4},
+  "s": {"type": "int", "lo": -4, "hi": 4},
+  "k1": {"type": "int", "lo": -4, "hi": 4},
+  "k2": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)",
+  "Ne([[p]]*[[s]] - [[q]]*[[r]], 0)"
+ ],
+ "derived": {
+  "w1": "[[k1]]*[[a]] + [[k2]]*[[c]]",
+  "w2": "[[k1]]*[[b]] + [[k2]]*[[d]]"
+ },
+ "stem": "Let \\( B = \\{\\mathbf{b}_1, \\mathbf{b}_2\\} \\) with \\( \\mathbf{b}_1 = ([[a]], [[b]]) \\), \\( \\mathbf{b}_2 = ([[c]], [[d]]) \\), and \\( C = \\{\\mathbf{e}_1, \\mathbf{e}_2\\} \\) with \\( \\mathbf{e}_1 = ([[p]], [[q]]) \\), \\( \\mathbf{e}_2 = ([[r]], [[s]]) \\) be two bases of \\( \\mathbb{R}^2 \\). A vector \\( \\mathbf{w} \\) has coordinates \\( ([[k1]], [[k2]]) \\) relative to \\( B \\) (so \\( \\mathbf{w} = [[k1]]\\mathbf{b}_1 + [[k2]]\\mathbf{b}_2 \\)). What is the first coordinate of \\( \\mathbf{w} \\) relative to the basis \\( C \\)?",
+ "answer_spec": {
+  "op": "system",
+  "equations": ["[[p]]*x + [[r]]*y = [[w1]]", "[[q]]*x + [[s]]*y = [[w2]]"],
+  "vars": ["x", "y"],
+  "want": "x"
+ },
+ "distractors": [
+  "[[k1]]",
+  "[[k2]]",
+  "[[w1]]",
+  "[[w2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "-[[answer]]"
+ ],
+ "solution": "First convert to standard coordinates: \\( \\mathbf{w} = ([[w1]], [[w2]]) \\). Then solve \\( x\\,\\mathbf{e}_1 + y\\,\\mathbf{e}_2 = \\mathbf{w} \\) for the coordinate relative to \\( C \\), giving \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\mathbf{w} \\)'s coordinate in the ORIGINAL basis \\( B \\), not the new basis \\( C \\).",
+  "This is the other \\( B \\)-coordinate, not the requested \\( C \\)-coordinate.",
+  "This is the first STANDARD coordinate of \\( \\mathbf{w} \\), not its coordinate in \\( C \\).",
+  "This is the second standard coordinate of \\( \\mathbf{w} \\), not its coordinate in \\( C \\).",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate.",
+  "This has the wrong sign."
+ ]
+}
+]

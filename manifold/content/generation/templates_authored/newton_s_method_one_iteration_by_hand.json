@@ -1,0 +1,158 @@
+[
+{
+ "template_id": "newton_one_iteration_v1",
+ "skill_id": "newton_s_method_one_iteration_by_hand",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+ },
+ "constraints": [
+  "Ne(2*[[a]]*[[x0]] + [[b]], 0)",
+  "Ne([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]], 0)"
+ ],
+ "stem": "Let \\( g(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). Starting from \\( x_0 = [[x0]] \\), perform one step of Newton's method, \\( x_1 = x_0 - \\dfrac{g(x_0)}{g'(x_0)} \\). What is \\( x_1 \\)?",
+ "answer_spec": {"op": "iterate", "f": "x - ([[a]]*x**2 + [[b]]*x + [[c]])/(2*[[a]]*x + [[b]])", "x0": "[[x0]]", "n": "1", "var": "x"},
+ "distractors": [
+  "[[x0]] - ([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]])",
+  "[[x0]] + ([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]])/(2*[[a]]*[[x0]] + [[b]])",
+  "([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]])/(2*[[a]]*[[x0]] + [[b]])",
+  "[[x0]] - ([[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]])/([[a]]*[[x0]] + [[b]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Newton's method uses \\( x_1 = x_0 - \\dfrac{g(x_0)}{g'(x_0)} \\), where \\( g'(x) = 2([[a]])x + ([[b]]) \\). Substituting \\( x_0 = [[x0]] \\) gives \\( x_1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts \\( g(x_0) \\) itself instead of dividing by \\( g'(x_0) \\) first.",
+  "This adds the correction term instead of subtracting it (a sign error in Newton's formula).",
+  "This drops the leading \\( x_0 \\) term and reports only \\( g(x_0)/g'(x_0) \\).",
+  "This uses the wrong derivative \\( a x + b \\), forgetting the factor of 2 on the \\( x^{2} \\) term.",
+  "This is off by one from the correct next iterate.",
+  "This is off by one from the correct next iterate."
+ ]
+},
+{
+ "template_id": "newton_from_fx_fpx_values_v1",
+ "skill_id": "newton_s_method_one_iteration_by_hand",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "x0": {"type": "int", "lo": -5, "hi": 5},
+  "fx0": {"type": "int", "lo": -8, "hi": 8},
+  "fpx0": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[fx0]], 0)", "Ne([[fpx0]], 0)"],
+ "stem": "A differentiable function \\( f \\) satisfies \\( f([[x0]]) = [[fx0]] \\) and \\( f'([[x0]]) = [[fpx0]] \\). Using one step of Newton's method, \\( x_1 = x_0 - \\dfrac{f(x_0)}{f'(x_0)} \\), what is \\( x_1 \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[x0]] - [[fx0]]/[[fpx0]]"},
+ "distractors": [
+  "[[x0]] + [[fx0]]/[[fpx0]]",
+  "[[fx0]]/[[fpx0]]",
+  "[[x0]] - [[fpx0]]/[[fx0]]",
+  "[[x0]]*[[fpx0]]/[[fx0]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Newton's update is \\( x_1 = x_0 - \\dfrac{f(x_0)}{f'(x_0)} = [[x0]] - \\dfrac{[[fx0]]}{[[fpx0]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the correction term instead of subtracting it (a sign error).",
+  "This drops the leading \\( x_0 \\) term.",
+  "This inverts the fraction \\( f(x_0)/f'(x_0) \\).",
+  "This multiplies by \\( f'(x_0)/f(x_0) \\) instead of subtracting \\( f(x_0)/f'(x_0) \\).",
+  "This is off by one from the correct next iterate.",
+  "This is off by one from the correct next iterate."
+ ]
+},
+{
+ "template_id": "newton_sqrt_estimate_v1",
+ "skill_id": "newton_s_method_one_iteration_by_hand",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "N": {"type": "int", "lo": 2, "hi": 30},
+  "x0": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[N]], [[x0]]**2)"],
+ "stem": "To approximate \\( \\sqrt{[[N]]} \\), Newton's method is applied to \\( f(x) = x^{2} - [[N]] \\) starting from \\( x_0 = [[x0]] \\). What is the next iterate \\( x_1 = x_0 - \\dfrac{f(x_0)}{f'(x_0)} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[x0]]**2 + [[N]])/(2*[[x0]])"},
+ "distractors": [
+  "([[x0]]**2 - [[N]])/(2*[[x0]])",
+  "([[x0]] + [[N]])/2",
+  "[[x0]] - ([[x0]]**2 - [[N]])",
+  "[[N]]/(2*[[x0]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( f'(x) = 2x \\), so \\( x_1 = x_0 - \\dfrac{x_0^{2}-[[N]]}{2x_0} = \\dfrac{x_0^{2}+[[N]]}{2x_0} = \\dfrac{[[x0]]^{2}+[[N]]}{2([[x0]])} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has a sign error inside the numerator, using \\( x_0^{2}-N \\) instead of \\( x_0^{2}+N \\).",
+  "This uses the arithmetic mean of \\( x_0 \\) and \\( N \\) instead of Newton's formula.",
+  "This forgets to divide by \\( f'(x_0)=2x_0 \\).",
+  "This drops the \\( x_0^{2} \\) term from the numerator.",
+  "This is off by one from the correct next iterate.",
+  "This is off by one from the correct next iterate."
+ ]
+},
+{
+ "template_id": "newton_cube_root_estimate_v1",
+ "skill_id": "newton_s_method_one_iteration_by_hand",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "N": {"type": "int", "lo": 2, "hi": 40},
+  "x0": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[N]], [[x0]]**3)"],
+ "stem": "To approximate \\( \\sqrt[3]{[[N]]} \\), Newton's method is applied to \\( f(x) = x^{3} - [[N]] \\) starting from \\( x_0 = [[x0]] \\). What is the next iterate \\( x_1 = x_0 - \\dfrac{f(x_0)}{f'(x_0)} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(2*[[x0]]**3 + [[N]])/(3*[[x0]]**2)"},
+ "distractors": [
+  "([[x0]]**3 - [[N]])/(3*[[x0]]**2)",
+  "(2*[[x0]]**3 - [[N]])/(3*[[x0]]**2)",
+  "[[x0]] - ([[x0]]**3 - [[N]])",
+  "[[N]]/(3*[[x0]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( f'(x) = 3x^{2} \\), so \\( x_1 = x_0 - \\dfrac{x_0^{3}-[[N]]}{3x_0^{2}} = \\dfrac{2x_0^{3}+[[N]]}{3x_0^{2}} = \\dfrac{2([[x0]])^{3}+[[N]]}{3([[x0]])^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits Newton's correction entirely and just reports \\( f(x_0) \\) subtracted from \\( x_0 \\) without dividing by \\( f'(x_0) \\).",
+  "This has a sign error, using \\( 2x_0^{3}-N \\) instead of \\( 2x_0^{3}+N \\).",
+  "This forgets to divide by \\( f'(x_0) = 3x_0^{2} \\).",
+  "This drops the \\( 2x_0^{3} \\) term from the numerator.",
+  "This is off by one from the correct next iterate.",
+  "This is off by one from the correct next iterate."
+ ]
+},
+{
+ "template_id": "newton_reciprocal_iteration_v1",
+ "skill_id": "newton_s_method_one_iteration_by_hand",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "N": {"type": "int", "lo": 2, "hi": 12},
+  "x0": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Newton's method can compute \\( \\dfrac{1}{[[N]]} \\) without performing division, by finding a root of \\( f(x) = \\dfrac{1}{x} - [[N]] \\). Starting from \\( x_0 = [[x0]] \\), what is the next iterate \\( x_1 = x_0 - \\dfrac{f(x_0)}{f'(x_0)} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[x0]] - [[N]]*[[x0]]**2"},
+ "distractors": [
+  "[[N]]*[[x0]]**2 - 2*[[x0]]",
+  "[[x0]]*(2 - [[N]])",
+  "2 - [[N]]*[[x0]]**2",
+  "[[x0]]/[[N]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( f'(x) = -1/x^{2} \\), so \\( x_1 = x_0 - \\dfrac{1/x_0-[[N]]}{-1/x_0^{2}} = 2x_0 - [[N]]x_0^{2} = x_0(2-[[N]]x_0) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the sign of the whole expression flipped.",
+  "This drops the \\( x_0 \\) factor multiplying \\( (2-Nx_0) \\).",
+  "This drops the leading factor of \\( x_0 \\) outside the parentheses.",
+  "This guesses the answer is close to \\( 1/N \\) scaled by \\( x_0 \\) rather than applying Newton's formula.",
+  "This is off by one from the correct next iterate.",
+  "This is off by one from the correct next iterate."
+ ]
+}
+]

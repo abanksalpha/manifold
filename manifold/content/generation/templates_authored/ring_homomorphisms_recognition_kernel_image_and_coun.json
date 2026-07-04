@@ -1,0 +1,140 @@
+[
+{
+ "template_id": "ring_homs_reduction_map_kernel_v1",
+ "skill_id": "ring_homomorphisms_recognition_kernel_image_and_coun",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 20},
+  "c": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": [],
+ "derived": {"nval": "[[m]]*[[c]]"},
+ "stem": "Let \\( n = [[nval]] = [[m]] \\cdot [[c]] \\), and let \\( \\varphi: \\mathbb{Z}_{n} \\to \\mathbb{Z}_{[[m]]} \\) be the natural reduction ring homomorphism \\( \\varphi(x) = x \\bmod [[m]] \\) (well defined since \\( [[m]] \\mid n \\)). How many elements are in \\( \\ker(\\varphi) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[nval]]/[[m]]"},
+ "distractors": [
+  "[[m]]",
+  "[[nval]]",
+  "[[nval]] - [[m]]",
+  "[[nval]]/[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + [[m]]"
+ ],
+ "solution": "\\( \\ker(\\varphi) \\) consists of every \\( x \\in \\mathbb{Z}_{n} \\) with \\( x \\equiv 0 \\pmod{[[m]]} \\), i.e. the multiples of \\( [[m]] \\) inside \\( \\mathbb{Z}_{n} \\). There are \\( n/[[m]] = [[answer]] \\) such multiples.",
+ "distractor_rationales": [
+  "This is the size of the codomain \\( \\mathbb{Z}_{[[m]]} \\) (which equals the size of the IMAGE, since \\( \\varphi \\) is surjective), not the kernel.",
+  "This is the size of the whole domain \\( \\mathbb{Z}_{n} \\), not just the kernel.",
+  "This subtracts \\( [[m]] \\) from \\( n \\) for no reason connected to counting multiples of \\( [[m]] \\).",
+  "This divides by the WRONG cofactor \\( c \\) instead of by \\( [[m]] \\) itself.",
+  "This is one more than the correct kernel size.",
+  "This is one fewer than the correct kernel size.",
+  "This adds an unrelated offset \\( m \\) to the correct kernel size."
+ ]
+},
+{
+ "template_id": "ring_homs_idempotent_endomorphism_kernel_v1",
+ "skill_id": "ring_homomorphisms_recognition_kernel_image_and_coun",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5, 7]},
+  "q": {"type": "choice", "values": [11, 13, 17, 19, 23]}
+ },
+ "constraints": [],
+ "derived": {
+  "nval": "[[p]]*[[q]]",
+  "eval_": "Mod([[q]]*mod_inverse([[q]], [[p]]), [[p]]*[[q]])"
+ },
+ "stem": "Let \\( n = [[nval]] = [[p]] \\cdot [[q]] \\), and let \\( e = [[eval_]] \\in \\mathbb{Z}_{n} \\), which satisfies \\( e^{2} \\equiv e \\pmod{n} \\) (an idempotent). Then \\( \\varphi: \\mathbb{Z}_{n} \\to \\mathbb{Z}_{n} \\) defined by \\( \\varphi(x) = ex \\bmod n \\) is a ring endomorphism of \\( \\mathbb{Z}_{n} \\). How many elements are in \\( \\ker(\\varphi) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "gcd([[nval]], [[eval_]])"},
+ "distractors": [
+  "[[nval]]/gcd([[nval]], [[eval_]])",
+  "[[eval_]]",
+  "[[nval]]",
+  "[[nval]] - gcd([[nval]], [[eval_]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + [[p]]"
+ ],
+ "solution": "For the multiplication-by-\\( e \\) map on \\( \\mathbb{Z}_{n} \\), \\( \\ker(\\varphi) = \\{x : ex \\equiv 0 \\pmod n\\} \\) is the subgroup of order \\( \\gcd(e,n) \\) (a standard fact about multiplication maps on \\( \\mathbb{Z}_n \\)). Here \\( \\gcd([[eval_]], [[nval]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( n/\\gcd(e,n) \\), the size of the IMAGE of \\( \\varphi \\), not the kernel.",
+  "This just repeats the idempotent \\( e \\) itself, not the size of its kernel.",
+  "This is the size of the whole domain \\( \\mathbb{Z}_{n} \\), not just the kernel.",
+  "This subtracts the kernel size from \\( n \\), which actually gives the image size minus adjustment, not the kernel itself.",
+  "This is one more than the correct kernel size.",
+  "This is one fewer than the correct kernel size.",
+  "This adds an unrelated offset \\( p \\) to the correct kernel size."
+ ]
+},
+{
+ "template_id": "ring_homs_product_ring_projection_kernel_v1",
+ "skill_id": "ring_homomorphisms_recognition_kernel_image_and_coun",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 50},
+  "n": {"type": "int", "lo": 2, "hi": 50}
+ },
+ "constraints": [],
+ "stem": "Let \\( R = \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\), and let \\( \\pi: R \\to \\mathbb{Z}_{[[m]]} \\) be the projection ring homomorphism \\( \\pi(x,y) = x \\). How many elements are in \\( \\ker(\\pi) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]"},
+ "distractors": [
+  "[[m]]",
+  "[[m]]*[[n]]",
+  "[[m]]*[[n]] - 1",
+  "[[m]] + [[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + [[m]]"
+ ],
+ "solution": "\\( \\ker(\\pi) = \\{(0,y) : y \\in \\mathbb{Z}_{[[n]]}\\} \\), which is in bijection with \\( \\mathbb{Z}_{[[n]]} \\) itself, so \\( |\\ker(\\pi)| = [[n]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the size of the CODOMAIN \\( \\mathbb{Z}_{[[m]]} \\) (equal to the image size, since \\( \\pi \\) is surjective), not the kernel.",
+  "This is the size of the whole domain \\( R \\), not just the kernel.",
+  "This is one less than the size of \\( R \\), as if only a single pair failed to be in the kernel.",
+  "This adds the two moduli instead of using just \\( n \\) for the kernel size.",
+  "This is one more than the correct kernel size.",
+  "This is one fewer than the correct kernel size.",
+  "This adds an unrelated offset \\( m \\) to the correct kernel size."
+ ]
+},
+{
+ "template_id": "ring_homs_endomorphism_count_via_idempotents_v1",
+ "skill_id": "ring_homomorphisms_recognition_kernel_image_and_coun",
+ "topic_id": "rings_fields",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [2, 3, 5]},
+  "q": {"type": "choice", "values": [7, 11, 13]},
+  "r": {"type": "choice", "values": [17, 19, 23]},
+  "use_r": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "nval": "Piecewise(([[p]]*[[q]], Eq([[use_r]], 0)), ([[p]]*[[q]]*[[r]], True))"
+ },
+ "stem": "Every (not necessarily unital) ring homomorphism \\( \\varphi: \\mathbb{Z}_{n} \\to \\mathbb{Z}_{n} \\) has the form \\( \\varphi(x) = ex \\bmod n \\) for a unique idempotent \\( e \\) (\\( e^{2}\\equiv e \\pmod n \\)), and by the Chinese Remainder Theorem the number of idempotents mod \\( n \\) is \\( 2^{k} \\), where \\( k \\) is the number of DISTINCT prime factors of \\( n \\). Let \\( n = [[nval]] \\). How many ring homomorphisms are there from \\( \\mathbb{Z}_{n} \\) to itself?",
+ "answer_spec": {"op": "evaluate", "expr": "2**len(primefactors([[nval]]))"},
+ "distractors": [
+  "len(primefactors([[nval]]))",
+  "[[nval]]",
+  "totient([[nval]])",
+  "2*len(primefactors([[nval]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]]/2"
+ ],
+ "solution": "Writing \\( n = [[nval]] \\) as a product of distinct prime powers, the number of DISTINCT prime factors is \\( k \\), and CRT identifies \\( \\mathbb{Z}_{n} \\) with a product of \\( k \\) local rings, each contributing exactly 2 idempotents (\\( 0 \\) and \\( 1 \\)). So the total idempotent (= endomorphism) count is \\( 2^{k} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This reports \\( k \\), the number of distinct prime factors, instead of \\( 2^{k} \\).",
+  "This reports \\( n \\) itself, unrelated to the count of idempotents.",
+  "This reports \\( \\varphi(n) \\), the unit count, which counts something entirely different from idempotents.",
+  "This doubles \\( k \\) instead of using it as an exponent of 2.",
+  "This is one more than the correct endomorphism count.",
+  "This is one fewer than the correct endomorphism count.",
+  "This halves the correct endomorphism count."
+ ]
+}
+]

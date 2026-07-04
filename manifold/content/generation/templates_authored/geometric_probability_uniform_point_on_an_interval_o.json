@@ -1,0 +1,124 @@
+[
+ {
+  "template_id": "geometric_probability_interval_v1",
+  "skill_id": "geometric_probability_uniform_point_on_an_interval_o",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "L": {"type": "choice", "values": [10, 12, 15, 16, 20]},
+   "a": {"type": "int", "lo": 0, "hi": 10},
+   "b": {"type": "int", "lo": 1, "hi": 20}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Le([[b]], [[L]])", "Ge([[a]], 0)", "Or(Gt([[a]], 0), Lt([[b]], [[L]]))"],
+  "stem": "A point is chosen uniformly at random on the segment from \\( 0 \\) to \\( [[L]] \\) on the number line. What is the probability that the chosen point lies between \\( [[a]] \\) and \\( [[b]] \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[b]] - [[a]], [[L]])"},
+  "distractors": [
+   "Rational([[b]], [[L]])",
+   "Rational([[a]], [[L]])",
+   "Rational([[b]] - [[a]], [[b]])",
+   "Rational([[b]] + [[a]], [[L]])",
+   "Rational([[L]] - ([[b]] - [[a]]), [[L]])",
+   "Rational([[b]] - [[a]], [[L]] + 1)"
+  ],
+  "solution": "For a uniform point, the probability is the favorable length over the total length: \\( \\frac{[[b]] - [[a]]}{[[L]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the endpoint \\( [[b]] \\) as the favorable length instead of the sub-interval length \\( [[b]] - [[a]] \\).",
+   "This uses the endpoint \\( [[a]] \\) instead of the sub-interval length.",
+   "This divides by \\( [[b]] \\) instead of the full length \\( [[L]] \\).",
+   "This adds the endpoints instead of subtracting to get the sub-interval length.",
+   "This is the probability the point lies OUTSIDE the sub-interval, the complement.",
+   "This divides by \\( [[L]] + 1 \\) instead of \\( [[L]] \\)."
+  ]
+ },
+ {
+  "template_id": "geometric_probability_rectangle_area_v1",
+  "skill_id": "geometric_probability_uniform_point_on_an_interval_o",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "W": {"type": "int", "lo": 6, "hi": 20},
+   "H": {"type": "int", "lo": 6, "hi": 20},
+   "w": {"type": "int", "lo": 1, "hi": 19},
+   "h": {"type": "int", "lo": 1, "hi": 19}
+  },
+  "constraints": ["Lt([[w]], [[W]])", "Lt([[h]], [[H]])"],
+  "stem": "A dart is thrown at random and lands uniformly on a rectangular board that is \\( [[W]] \\) inches by \\( [[H]] \\) inches. A rectangular target region \\( [[w]] \\) inches by \\( [[h]] \\) inches is marked inside the board (fully contained within it). What is the probability that the dart lands inside the target region?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[w]] * [[h]], [[W]] * [[H]])"},
+  "distractors": [
+   "Rational([[w]], [[W]])",
+   "Rational([[h]], [[H]])",
+   "Rational([[w]] + [[h]], [[W]] + [[H]])",
+   "Rational([[w]] * [[h]], [[W]] + [[H]])",
+   "Rational([[W]] * [[H]] - [[w]] * [[h]], [[W]] * [[H]])",
+   "Rational([[w]] * [[H]], [[W]] * [[h]])"
+  ],
+  "solution": "For a uniform point in a region, probability equals favorable area over total area: \\( \\dfrac{[[w]]\\cdot[[h]]}{[[W]]\\cdot[[H]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only the width ratio, ignoring the height dimension of the target.",
+   "This uses only the height ratio, ignoring the width dimension of the target.",
+   "This adds the side lengths (perimeter-like) instead of multiplying them into areas.",
+   "This divides the target area by the sum of the board's side lengths instead of its area.",
+   "This is the probability the dart lands OUTSIDE the target region, the complement.",
+   "This cross-multiplies the dimensions incorrectly instead of computing (target area)/(board area)."
+  ]
+ },
+ {
+  "template_id": "geometric_probability_meeting_problem_v1",
+  "skill_id": "geometric_probability_uniform_point_on_an_interval_o",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "L": {"type": "choice", "values": [20, 24, 30, 40, 60]},
+   "m": {"type": "int", "lo": 2, "hi": 18}
+  },
+  "constraints": ["Lt([[m]], [[L]])"],
+  "stem": "Two friends independently arrive at a cafe at uniformly random times somewhere within a [[L]]-minute window. Each is willing to wait [[m]] minutes for the other before leaving. What is the probability that they actually meet (that is, their arrival times differ by at most [[m]] minutes)?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - Rational([[L]] - [[m]], [[L]]) ** 2"},
+  "distractors": [
+   "Rational([[L]] - [[m]], [[L]]) ** 2",
+   "Rational([[m]], [[L]])",
+   "1 - Rational([[m]], [[L]])",
+   "Rational(2 * [[m]], [[L]])",
+   "1 - Rational([[L]] - [[m]], [[L]])",
+   "Rational([[m]], [[L]]) ** 2"
+  ],
+  "solution": "Model each arrival time as a coordinate in an \\( [[L]] \\times [[L]] \\) square. They meet exactly when \\( |x-y| \\le [[m]] \\), the complement of two corner triangles each with legs \\( [[L]]-[[m]] \\): \\( P(\\text{meet}) = 1 - \\left(\\dfrac{[[L]]-[[m]]}{[[L]]}\\right)^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability they do NOT meet (the two corner triangles), the complement of the requested event.",
+   "This treats the problem as a simple 1-D length ratio, ignoring the 2-D square of possible arrival-time pairs.",
+   "This is the complement of the naive 1-D ratio, still ignoring the actual square geometry.",
+   "This doubles the 1-D ratio instead of correctly using the squared-area complement.",
+   "This takes only the linear (not squared) complement of the ratio \\( ([[L]]-[[m]])/[[L]] \\).",
+   "This squares the 1-D ratio itself rather than its complement."
+  ]
+ },
+ {
+  "template_id": "geometric_probability_circular_sector_v1",
+  "skill_id": "geometric_probability_uniform_point_on_an_interval_o",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "d": {"type": "int", "lo": 10, "hi": 350}
+  },
+  "constraints": ["Ne(Mod([[d]], 360), 0)"],
+  "stem": "A spinner needle comes to rest at a uniformly random point around a circular dial marked in degrees from \\( 0 \\) to \\( 360 \\). A particular sector of the dial spans [[d]] degrees. What is the probability that the needle stops within that sector?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[d]], 360)"},
+  "distractors": [
+   "Rational(360, [[d]])",
+   "Rational(360 - [[d]], 360)",
+   "Rational([[d]], 180)",
+   "Rational([[d]], 720)",
+   "Rational(2 * [[d]], 360)",
+   "Rational([[d]] + 1, 360)"
+  ],
+  "solution": "For a uniformly random angle, probability equals favorable arc measure over the full \\( 360^\\circ \\): \\( \\dfrac{[[d]]}{360} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio of the sector angle to the full circle.",
+   "This is the probability the needle lands OUTSIDE the sector, the complement.",
+   "This uses \\( 180^\\circ \\) (a half circle) as the denominator instead of the full \\( 360^\\circ \\).",
+   "This uses \\( 720^\\circ \\) (two full circles) as the denominator instead of \\( 360^\\circ \\).",
+   "This doubles the sector angle before dividing, overcounting the favorable region.",
+   "This is off by one degree from the correct sector measure."
+  ]
+ }
+]

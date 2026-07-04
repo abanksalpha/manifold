@@ -1,0 +1,160 @@
+[
+{
+ "template_id": "compute_rank_of_a_matrix_v1",
+ "skill_id": "compute_rank_and_nullity_of_a_matrix_or_map",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 2},
+  "q": {"type": "int", "lo": 1, "hi": 2},
+  "r": {"type": "int", "lo": 1, "hi": 2},
+  "s": {"type": "int", "lo": 1, "hi": 3},
+  "t": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "m14": "1 + [[s]] + [[t]]",
+  "m24": "[[p]] + ([[p]]*[[s]] + [[d2]]) + ([[p]]*[[t]] + [[d2]]*[[u]])",
+  "m34": "[[q]] + ([[q]]*[[s]] + [[r]]*[[d2]]) + ([[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]])"
+ },
+ "stem": "Let \\( A \\) be the matrix \\[ A = \\begin{bmatrix} 1 & [[s]] & [[t]] & [[m14]] \\\\ [[p]] & [[m22]] & [[m23]] & [[m24]] \\\\ [[q]] & [[m32]] & [[m33]] & [[m34]] \\end{bmatrix}. \\] What is the rank of \\( A \\) (the dimension of its row space)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [
+   ["1", "[[s]]", "[[t]]", "[[m14]]"],
+   ["[[p]]", "[[m22]]", "[[m23]]", "[[m24]]"],
+   ["[[q]]", "[[m32]]", "[[m33]]", "[[m34]]"]
+  ]
+ },
+ "distractors": [
+  "4 - [[answer]]",
+  "4",
+  "[[answer]] - 1",
+  "[[answer]] + 1",
+  "0",
+  "3",
+  "[[answer]] + 2",
+  "2"
+ ],
+ "solution": "Row-reduce \\( A \\). The number of nonzero (pivot) rows is the rank, which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the nullity \\( 4 - \\text{rank} \\) (the number of free columns), not the rank itself.",
+  "This is the number of columns; the rank cannot exceed the number of rows here.",
+  "This undercounts the pivots by one.",
+  "This overcounts the pivots by one.",
+  "This would require every row to be a multiple of a single row.",
+  "This assumes the rows are all independent without checking for dependence.",
+  "This overcounts the pivots.",
+  "This miscounts the number of independent rows."
+ ]
+},
+{
+ "template_id": "compute_nullity_of_a_matrix_v2",
+ "skill_id": "compute_rank_and_nullity_of_a_matrix_or_map",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 2},
+  "q": {"type": "int", "lo": 1, "hi": 2},
+  "r": {"type": "int", "lo": 1, "hi": 2},
+  "s": {"type": "int", "lo": 1, "hi": 3},
+  "t": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 1, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "m14": "1 + [[s]] + [[t]]",
+  "m24": "[[p]] + ([[p]]*[[s]] + [[d2]]) + ([[p]]*[[t]] + [[d2]]*[[u]])",
+  "m34": "[[q]] + ([[q]]*[[s]] + [[r]]*[[d2]]) + ([[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]])",
+  "rankval": "1 + [[d2]] + [[d3]]"
+ },
+ "stem": "For the matrix \\[ B = \\begin{bmatrix} 1 & [[s]] & [[t]] & [[m14]] \\\\ [[p]] & [[m22]] & [[m23]] & [[m24]] \\\\ [[q]] & [[m32]] & [[m33]] & [[m34]] \\end{bmatrix}, \\] compute the nullity of \\( B \\) (the dimension of the set of solutions to \\( B\\mathbf{x} = \\mathbf{0} \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "4 - (1 + [[d2]] + [[d3]])"},
+ "distractors": [
+  "[[rankval]]",
+  "4",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "3",
+  "1",
+  "[[answer]] + 2"
+ ],
+ "solution": "\\( B \\) has \\( 4 \\) columns and rank \\( [[rankval]] \\). By the rank–nullity theorem, \\( \\text{nullity}(B) = 4 - \\operatorname{rank}(B) = 4 - [[rankval]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the rank of \\( B \\), not the nullity; rank and nullity are swapped here.",
+  "This is the number of columns, as if the rank were zero.",
+  "This assumes every column is a pivot column.",
+  "This overcounts the free columns by one.",
+  "This undercounts the free columns by one.",
+  "This miscounts the number of pivot columns.",
+  "This miscounts the number of free columns.",
+  "This overcounts the free columns."
+ ]
+},
+{
+ "template_id": "compute_rank_of_a_map_function_notation_v3",
+ "skill_id": "compute_rank_and_nullity_of_a_matrix_or_map",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "d": {"type": "int", "lo": -3, "hi": 3},
+  "e": {"type": "int", "lo": -3, "hi": 3},
+  "f": {"type": "int", "lo": -3, "hi": 3},
+  "g": {"type": "int", "lo": -3, "hi": 3},
+  "h": {"type": "int", "lo": -3, "hi": 3},
+  "k": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[a]]**2 + [[b]]**2 + [[c]]**2, 0)",
+  "Ne([[d]]**2 + [[e]]**2 + [[f]]**2, 0)",
+  "Ne([[g]]**2 + [[h]]**2 + [[k]]**2, 0)"
+ ],
+ "stem": "The linear map \\( T : \\mathbb{R}^3 \\to \\mathbb{R}^3 \\) is given by \\[ T(x, y, z) = \\big([[a]]x + [[b]]y + [[c]]z,\\ [[d]]x + [[e]]y + [[f]]z,\\ [[g]]x + [[h]]y + [[k]]z\\big). \\] What is the rank of \\( T \\) (the dimension of its image)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [
+   ["[[a]]", "[[b]]", "[[c]]"],
+   ["[[d]]", "[[e]]", "[[f]]"],
+   ["[[g]]", "[[h]]", "[[k]]"]
+  ]
+ },
+ "distractors": [
+  "3 - [[answer]]",
+  "3",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "1",
+  "2",
+  "[[answer]] + 2"
+ ],
+ "solution": "The rank of \\( T \\) equals the rank of its coefficient matrix, formed from the coefficients in each output coordinate. Row-reducing gives rank \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the nullity, not the rank; they are swapped.",
+  "This assumes \\( T \\) is always invertible without checking.",
+  "This assumes every row is a multiple of another.",
+  "This overcounts the independent rows by one.",
+  "This undercounts the independent rows by one.",
+  "This undercounts the rank.",
+  "This is a plausible but incorrect intermediate rank.",
+  "This overcounts the rank."
+ ]
+}
+]

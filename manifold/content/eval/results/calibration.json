@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-07-03T05:16:02.229088+00:00",
+  "memory_model": "Anki FSRS retrievability R (rslib/src/manifold/mastery.rs; scheduler untouched, D3)",
+  "external_calibration": "FSRS is calibrated on public multi-million-review benchmarks (open-spaced-repetition/srs-benchmark); cited, not re-derived here.",
+  "source": "SIMULATION (no real longitudinal reviews in a one-week build; see docstring)",
+  "disclaimer": "These numbers are a harness plausibility check on an FSRS-style forgetting simulation, NOT a measurement on real students. Real calibration requires the app's logged reviews (predicted R vs actual pass/fail): rerun with --revlog.",
+  "result_noisy_predictor": {
+    "label": "fsrs_style_sigma=0.35",
+    "n": 20000,
+    "brier": 0.1979,
+    "log_loss": 0.5851,
+    "bins": [
+      {
+        "bin": "[0.0,0.1)",
+        "count": 1343,
+        "mean_pred": 0.065,
+        "obs_freq": 0.18,
+        "gap": 0.115
+      },
+      {
+        "bin": "[0.1,0.2)",
+        "count": 2978,
+        "mean_pred": 0.152,
+        "obs_freq": 0.218,
+        "gap": 0.066
+      },
+      {
+        "bin": "[0.2,0.3)",
+        "count": 3280,
+        "mean_pred": 0.25,
+        "obs_freq": 0.265,
+        "gap": 0.015
+      },
+      {
+        "bin": "[0.3,0.4)",
+        "count": 2824,
+        "mean_pred": 0.349,
+        "obs_freq": 0.33,
+        "gap": 0.019
+      },
+      {
+        "bin": "[0.4,0.5)",
+        "count": 2286,
+        "mean_pred": 0.448,
+        "obs_freq": 0.415,
+        "gap": 0.033
+      },
+      {
+        "bin": "[0.5,0.6)",
+        "count": 1958,
+        "mean_pred": 0.548,
+        "obs_freq": 0.506,
+        "gap": 0.042
+      },
+      {
+        "bin": "[0.6,0.7)",
+        "count": 1666,
+        "mean_pred": 0.649,
+        "obs_freq": 0.62,
+        "gap": 0.029
+      },
+      {
+        "bin": "[0.7,0.8)",
+        "count": 1412,
+        "mean_pred": 0.748,
+        "obs_freq": 0.729,
+        "gap": 0.019
+      },
+      {
+        "bin": "[0.8,0.9)",
+        "count": 1186,
+        "mean_pred": 0.85,
+        "obs_freq": 0.817,
+        "gap": 0.033
+      },
+      {
+        "bin": "[0.9,1.0)",
+        "count": 1067,
+        "mean_pred": 0.948,
+        "obs_freq": 0.938,
+        "gap": 0.01
+      }
+    ],
+    "ECE": 0.0367,
+    "MCE": 0.1149
+  },
+  "result_perfect_control": {
+    "label": "perfectly_calibrated_control",
+    "n": 20000,
+    "brier": 0.1677,
+    "log_loss": 0.5034,
+    "bins": [
+      {
+        "bin": "[0.0,0.1)",
+        "count": 1907,
+        "mean_pred": 0.05,
+        "obs_freq": 0.051,
+        "gap": 0.001
+      },
+      {
+        "bin": "[0.1,0.2)",
+        "count": 2002,
+        "mean_pred": 0.15,
+        "obs_freq": 0.143,
+        "gap": 0.007
+      },
+      {
+        "bin": "[0.2,0.3)",
+        "count": 1954,
+        "mean_pred": 0.249,
+        "obs_freq": 0.249,
+        "gap": 0.0
+      },
+      {
+        "bin": "[0.3,0.4)",
+        "count": 2112,
+        "mean_pred": 0.35,
+        "obs_freq": 0.358,
+        "gap": 0.009
+      },
+      {
+        "bin": "[0.4,0.5)",
+        "count": 2076,
+        "mean_pred": 0.45,
+        "obs_freq": 0.457,
+        "gap": 0.007
+      },
+      {
+        "bin": "[0.5,0.6)",
+        "count": 1968,
+        "mean_pred": 0.549,
+        "obs_freq": 0.535,
+        "gap": 0.014
+      },
+      {
+        "bin": "[0.6,0.7)",
+        "count": 2053,
+        "mean_pred": 0.65,
+        "obs_freq": 0.663,
+        "gap": 0.014
+      },
+      {
+        "bin": "[0.7,0.8)",
+        "count": 1904,
+        "mean_pred": 0.75,
+        "obs_freq": 0.754,
+        "gap": 0.004
+      },
+      {
+        "bin": "[0.8,0.9)",
+        "count": 2031,
+        "mean_pred": 0.851,
+        "obs_freq": 0.849,
+        "gap": 0.002
+      },
+      {
+        "bin": "[0.9,1.0)",
+        "count": 1993,
+        "mean_pred": 0.95,
+        "obs_freq": 0.945,
+        "gap": 0.004
+      }
+    ],
+    "ECE": 0.0063,
+    "MCE": 0.014
+  }
+}

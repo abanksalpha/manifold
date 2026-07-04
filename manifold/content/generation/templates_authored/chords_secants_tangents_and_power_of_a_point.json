@@ -1,0 +1,159 @@
+[
+ {
+  "template_id": "chords_secants_tangents_and_power_of_a_point_v1",
+  "skill_id": "chords_secants_tangents_and_power_of_a_point",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "c": {"type": "int", "lo": 2, "hi": 8},
+   "x": {"type": "int", "lo": 2, "hi": 9},
+   "a": {"type": "int", "lo": 2, "hi": 12}
+  },
+  "constraints": ["Eq(Mod([[c]]*[[x]], [[a]]), 0)", "Ne([[c]]*[[x]]/[[a]], [[a]])"],
+  "derived": {"b": "[[c]]*[[x]]/[[a]]"},
+  "stem": "Two chords of a circle intersect at a point \\( P \\) inside the circle. One chord is divided by \\( P \\) into segments of lengths \\( [[a]] \\) and \\( [[b]] \\). The other chord is divided by \\( P \\) into a segment of length \\( [[c]] \\) and a segment of unknown length \\( y \\). What is \\( y \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]/[[c]]"},
+  "distractors": [
+   "[[a]]*[[b]]",
+   "[[a]] + [[b]] - [[c]]",
+   "[[a]]*[[c]]/[[b]]",
+   "[[b]]*[[c]]/[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the power of a point (intersecting chords), the products of the two segments of each chord are equal: \\( [[a]]\\cdot[[b]] = [[c]]\\cdot y \\). Solving, \\( y = \\frac{[[a]]\\cdot[[b]]}{[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( [[c]] \\); the product \\( [[a]]\\cdot[[b]] \\) must be split by the known segment of the other chord.",
+   "This treats the segments additively instead of using equal products.",
+   "This pairs the segments incorrectly, dividing by \\( [[b]] \\) instead of \\( [[c]] \\).",
+   "This pairs the segments incorrectly, dividing by \\( [[a]] \\).",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ },
+ {
+  "template_id": "chords_secants_tangents_and_power_of_a_point_v2_two_secants",
+  "skill_id": "chords_secants_tangents_and_power_of_a_point",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "e1": {"type": "int", "lo": 2, "hi": 8},
+   "e2": {"type": "int", "lo": 2, "hi": 8},
+   "k": {"type": "int", "lo": 2, "hi": 6}
+  },
+  "constraints": ["Ne([[e1]], [[e2]])", "Eq(Mod([[e1]]*[[k]]*[[e2]], [[e2]]), 0)"],
+  "derived": {"w1": "[[e1]]*[[k]]", "w2_target": "[[e1]]*[[k]]*[[e2]]"},
+  "stem": "From a point \\( P \\) outside a circle, two secant segments are drawn. The first secant has external segment \\( [[e1]] \\) and total (external-to-far-intersection) length \\( [[w1]] \\). The second secant has external segment \\( [[e2]] \\) and unknown total length \\( L \\). What is \\( L \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[e1]]*[[w1]]/[[e2]]"},
+  "distractors": [
+   "[[e1]]*[[w1]]",
+   "[[e2]]*[[w1]]/[[e1]]",
+   "[[w1]]/[[e2]]",
+   "[[e1]] + [[w1]] - [[e2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the power of a point (two secants from an external point), the product of each secant's external segment and its total length is the same: \\( [[e1]]\\cdot[[w1]] = [[e2]]\\cdot L \\). Solving, \\( L = \\dfrac{[[e1]]\\cdot[[w1]]}{[[e2]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by the second secant's external segment.",
+   "This swaps which external segment divides which product.",
+   "This forgets to multiply by the first secant's external segment at all.",
+   "This treats the segments additively instead of using equal products.",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ },
+ {
+  "template_id": "chords_secants_tangents_and_power_of_a_point_v3_tangent_secant",
+  "skill_id": "chords_secants_tangents_and_power_of_a_point",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "t": {"type": "int", "lo": 2, "hi": 12},
+   "ext": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Eq(Mod([[t]]**2, [[ext]]), 0)", "Ne([[t]]**2/[[ext]], [[ext]])"],
+  "derived": {"whole": "[[t]]**2/[[ext]]"},
+  "stem": "From a point \\( P \\) outside a circle, a tangent segment of length \\( [[t]] \\) and a secant are drawn. The secant's external segment (from \\( P \\) to the near intersection) has length \\( [[ext]] \\). What is the secant's total length, from \\( P \\) to the far intersection?",
+  "answer_spec": {"op": "evaluate", "expr": "[[t]]**2/[[ext]]"},
+  "distractors": [
+   "[[t]]**2",
+   "[[t]]*[[ext]]",
+   "[[t]]/[[ext]]",
+   "[[ext]]**2/[[t]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the power of a point (tangent-secant), the tangent squared equals the product of the secant's external segment and its total length: \\( [[t]]^{2} = [[ext]]\\cdot L \\). Solving, \\( L = \\dfrac{[[t]]^{2}}{[[ext]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by the external segment.",
+   "This treats the relationship as a simple product of tangent and external segment rather than tangent squared.",
+   "This inverts the relationship, dividing the tangent by the external segment instead.",
+   "This swaps the roles of the tangent and the external segment.",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ },
+ {
+  "template_id": "chords_secants_tangents_and_power_of_a_point_v4_tangent_radius_right_triangle",
+  "skill_id": "chords_secants_tangents_and_power_of_a_point",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 15},
+   "t": {"type": "int", "lo": 2, "hi": 15}
+  },
+  "constraints": ["Ne([[r]], [[t]])"],
+  "stem": "A tangent segment from an external point \\( P \\) to a circle of radius \\( [[r]] \\) has length \\( [[t]] \\). What is the distance from \\( P \\) to the center of the circle?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[r]]**2 + [[t]]**2)"},
+  "distractors": [
+   "[[r]] + [[t]]",
+   "sqrt([[t]]**2 - [[r]]**2)",
+   "[[r]]**2 + [[t]]**2",
+   "sqrt([[r]]**2 - [[t]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "A radius drawn to the point of tangency is perpendicular to the tangent line, so the radius, the tangent segment, and the segment from \\( P \\) to the center form a right triangle with the center-to-\\(P\\) distance as the hypotenuse. By the Pythagorean theorem, that distance is \\( \\sqrt{[[r]]^{2} + [[t]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This just adds the radius and tangent length instead of combining them under a square root.",
+   "This puts the radius and tangent under the root with the wrong sign, as if the tangent were the hypotenuse.",
+   "This forgets the square root, giving the sum of the squares.",
+   "This has the radius and tangent swapped under a subtraction, again treating one of them as a hypotenuse.",
+   "This is off from the correct distance by one.",
+   "This is off from the correct distance by one."
+  ]
+ },
+ {
+  "template_id": "chords_secants_tangents_and_power_of_a_point_v5_chord_perp_distance",
+  "skill_id": "chords_secants_tangents_and_power_of_a_point",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "require_rational": false,
+  "params": {
+   "r": {"type": "int", "lo": 3, "hi": 20},
+   "d": {"type": "int", "lo": 1, "hi": 19}
+  },
+  "constraints": ["Lt([[d]], [[r]])"],
+  "stem": "A chord of a circle with radius \\( [[r]] \\) lies at a perpendicular distance of \\( [[d]] \\) from the center. What is the length of the chord?",
+  "answer_spec": {"op": "evaluate", "expr": "2*sqrt([[r]]**2 - [[d]]**2)"},
+  "distractors": [
+   "sqrt([[r]]**2 - [[d]]**2)",
+   "2*sqrt([[r]]**2 + [[d]]**2)",
+   "[[r]]**2 - [[d]]**2",
+   "2*([[r]] - [[d]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The perpendicular from the center to a chord bisects the chord, forming a right triangle with the radius as the hypotenuse, the perpendicular distance as one leg, and half the chord as the other leg. So half the chord is \\( \\sqrt{[[r]]^{2} - [[d]]^{2}} \\), and the full chord is \\( 2\\sqrt{[[r]]^{2} - [[d]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives only half the chord, forgetting to double it.",
+   "This adds the squares instead of subtracting, as if the perpendicular were outside the circle.",
+   "This forgets the square root, giving the difference of squares directly.",
+   "This treats the radius and distance as sides of a simple linear difference rather than a right triangle.",
+   "This is off from the correct length by one.",
+   "This is off from the correct length by one."
+  ]
+ }
+]

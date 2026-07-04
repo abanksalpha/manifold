@@ -24,3 +24,35 @@ ts/.svelte-kit
 docs/_build/
 docs/autoapi/
 .complexipy_cache
+
+# Manifold
+.env
+*.env
+# Firebase emulator runtime artifacts (never committed).
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+manifold/firebase/*-debug.log
+.firebase/
+# Copyrighted, held-out ETS practice tests: eval-only, NEVER served, NEVER committed.
+manifold/content/eval/heldout/
+practice_pdf/
+# Local safety backups from bank/lecture rebuilds.
+manifold/content/generation/*.bak
+# Generated content-pipeline artifacts (reproducible from seed_fixtures.json /
+# generation; never hand-edited, so not committed). item_bank.json is now a
+# dev/eval artifact too, NOT a runtime source: the runtime generates every problem
+# on the fly and verifies it live (D44), so nothing imports the bank. It is
+# gitignored; build_bank.py/verify.py remain a dev/eval tool that can regenerate it.
+# (live_fixtures.e2e.json is a committed e2e test double and is intentionally kept
+# tracked below the ignore list.)
+manifold/content/generation/item_bank.json
+manifold/content/generation/rejects.jsonl
+manifold/content/generation/candidates.jsonl
+manifold/content/generation/candidates.raw.jsonl
+manifold/content/generation/candidates.validate.tmp.jsonl
+manifold/content/generation/needs_curation.jsonl
+manifold/content/generation/crosscheck.jsonl
+manifold/content/generation/quality.jsonl
+manifold/content/generation/coverage_report.json
+*.pyc

@@ -1,0 +1,100 @@
+[
+{
+ "template_id": "law_of_cosines_side_v1",
+ "skill_id": "law_of_cosines_for_a_missing_side_or_angle",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "b": {"type": "int", "lo": 2, "hi": 12},
+  "deg": {"type": "choice", "values": [60, 90, 120]}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "In a triangle, two sides have lengths \\( [[a]] \\) and \\( [[b]] \\), and the angle between them measures \\( [[deg]]^\\circ \\). Find the length of the third side.",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos([[deg]]*pi/180))"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "Abs([[a]] - [[b]])",
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2 + [[a]]*[[b]])",
+  "sqrt([[a]]**2 + [[b]]**2 - [[a]]*[[b]])",
+  "sqrt([[a]]**2 + [[b]]**2 + 2*[[a]]*[[b]]*cos([[deg]]*pi/180))",
+  "[[answer]] + 1"
+ ],
+ "solution": "By the Law of Cosines, \\( c^2 = [[a]]^2 + [[b]]^2 - 2\\cdot[[a]]\\cdot[[b]]\\cos([[deg]]^\\circ) \\). Taking the positive root gives \\( c = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just adds the two given sides.",
+  "This takes the difference of the two sides.",
+  "This uses \\( \\sqrt{a^2+b^2} \\), as if the included angle were \\( 90^\\circ \\).",
+  "This uses \\( +ab \\) inside the root (a wrong cross-term).",
+  "This uses \\( -ab \\) inside the root (a wrong cross-term).",
+  "This adds the cross term \\( 2ab\\cos C \\) instead of subtracting it.",
+  "This is off by one from the correct length."
+ ]
+},
+{
+ "template_id": "law_of_cosines_angle_sss_v1",
+ "skill_id": "law_of_cosines_for_a_missing_side_or_angle",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 15},
+  "b": {"type": "int", "lo": 3, "hi": 15},
+  "c": {"type": "int", "lo": 3, "hi": 15}
+ },
+ "constraints": ["Lt([[a]], [[b]]+[[c]])", "Lt([[b]], [[a]]+[[c]])", "Lt([[c]], [[a]]+[[b]])"],
+ "require_rational": false,
+ "stem": "A triangle has sides of length \\( [[a]] \\), \\( [[b]] \\), and \\( [[c]] \\). Find the measure (in radians) of the angle opposite the side of length \\( [[c]] \\).",
+ "answer_spec": {"op": "evaluate", "expr": "acos(Rational([[a]]**2 + [[b]]**2 - [[c]]**2, 2*[[a]]*[[b]]))"},
+ "distractors": [
+  "acos(Rational([[a]]**2 + [[c]]**2 - [[b]]**2, 2*[[a]]*[[c]]))",
+  "acos(Rational([[b]]**2 + [[c]]**2 - [[a]]**2, 2*[[b]]*[[c]]))",
+  "acos(Rational([[a]]**2 + [[b]]**2 + [[c]]**2, 2*[[a]]*[[b]]))",
+  "asin(Rational([[a]]**2 + [[b]]**2 - [[c]]**2, 2*[[a]]*[[b]]))",
+  "pi - [[answer]]",
+  "[[answer]]/2"
+ ],
+ "solution": "By the Law of Cosines, \\( c^2 = a^2+b^2-2ab\\cos C \\), so \\( \\cos C = \\dfrac{a^2+b^2-c^2}{2ab} \\) and \\( C = \\arccos\\dfrac{([[a]])^2+([[b]])^2-([[c]])^2}{2\\cdot[[a]]\\cdot[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This finds the angle opposite side \\( b \\) instead of side \\( c \\).",
+  "This finds the angle opposite side \\( a \\) instead of side \\( c \\).",
+  "This adds \\( c^2 \\) instead of subtracting it in the numerator.",
+  "This uses \\( \\arcsin \\) in place of \\( \\arccos \\).",
+  "This uses the supplementary angle instead of the correct one.",
+  "This halves the correct angle."
+ ]
+},
+{
+ "template_id": "law_of_cosines_word_problem_v1",
+ "skill_id": "law_of_cosines_for_a_missing_side_or_angle",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 4, "hi": 20},
+  "b": {"type": "int", "lo": 4, "hi": 20},
+  "deg": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150]}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "require_rational": false,
+ "stem": "Two hikers start at the same point. One walks \\( [[a]] \\) miles due along one trail, and the other walks \\( [[b]] \\) miles along a second trail that diverges from the first at an angle of \\( [[deg]]^\\circ \\). How far apart are the hikers?",
+ "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]**2 + [[b]]**2 - 2*[[a]]*[[b]]*cos([[deg]]*pi/180))"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "Abs([[a]] - [[b]])",
+  "sqrt([[a]]**2 + [[b]]**2)",
+  "sqrt([[a]]**2 + [[b]]**2 + [[a]]*[[b]])",
+  "sqrt([[a]]**2 + [[b]]**2 - [[a]]*[[b]])",
+  "sqrt([[a]]**2 + [[b]]**2 + 2*[[a]]*[[b]]*cos([[deg]]*pi/180))"
+ ],
+ "solution": "The hikers' paths and the segment between them form a triangle with two known sides and the included angle. By the Law of Cosines, the distance is \\( d=\\sqrt{[[a]]^2+[[b]]^2-2\\cdot[[a]]\\cdot[[b]]\\cdot\\cos([[deg]]^\\circ)} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This just adds the two distances walked.",
+  "This takes the difference of the two distances.",
+  "This uses \\( \\sqrt{a^2+b^2} \\), as if the trails diverged at \\( 90^\\circ \\).",
+  "This uses \\( +ab \\) inside the root (a wrong cross-term).",
+  "This uses \\( -ab \\) inside the root (a wrong cross-term).",
+  "This adds the cross term \\( 2ab\\cos C \\) instead of subtracting it."
+ ]
+}
+]

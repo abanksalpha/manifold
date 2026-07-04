@@ -1,0 +1,124 @@
+[
+ {
+  "template_id": "rationalize_conjugate_denominator_v1",
+  "skill_id": "rationalizing_radical_conjugates_and_nested_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15]},
+   "b": {"type": "choice", "values": [2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15]}
+  },
+  "constraints": ["Gt([[a]], [[b]])", "Ge([[a]] - [[b]], 3)"],
+  "stem": "To rationalize the denominator of \\( \\dfrac{1}{\\sqrt{[[a]]} - \\sqrt{[[b]]}} \\), you multiply numerator and denominator by the conjugate \\( \\sqrt{[[a]]} + \\sqrt{[[b]]} \\). What rational number is the resulting denominator?",
+  "answer_spec": {"op": "evaluate", "expr": "(sqrt([[a]]) - sqrt([[b]])) * (sqrt([[a]]) + sqrt([[b]]))"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "[[b]] - [[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the difference of squares, \\( (\\sqrt{[[a]]} - \\sqrt{[[b]]})(\\sqrt{[[a]]} + \\sqrt{[[b]]}) = [[a]] - [[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the radicands; the difference of squares gives \\( a - b \\), not \\( a + b \\).",
+   "This reverses the subtraction, giving the negative of the correct denominator.",
+   "This is off by one from the correct denominator.",
+   "This is off by one from the correct denominator.",
+   "This is off by two from the correct denominator."
+  ]
+ },
+ {
+  "template_id": "rationalize_radical_plus_integer_conjugate_v1",
+  "skill_id": "rationalizing_radical_conjugates_and_nested_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 5, 6, 7, 10, 11, 13, 15, 17, 19, 21, 23]},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "To rationalize the denominator of \\( \\dfrac{1}{\\sqrt{[[a]]} + [[b]]} \\), you multiply numerator and denominator by the conjugate \\( \\sqrt{[[a]]} - [[b]] \\). What rational number is the resulting denominator?",
+  "answer_spec": {"op": "evaluate", "expr": "(sqrt([[a]]) + [[b]]) * (sqrt([[a]]) - [[b]])"},
+  "distractors": [
+   "[[a]] + [[b]]**2",
+   "[[a]] - [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the difference of squares, \\( (\\sqrt{[[a]]} + [[b]])(\\sqrt{[[a]]} - [[b]]) = [[a]] - [[b]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( b^{2} \\) instead of subtracting it; the difference of squares gives \\( a - b^{2} \\).",
+   "This forgets to square \\( b \\) before subtracting.",
+   "This is off by one from the correct denominator.",
+   "This is off by one from the correct denominator.",
+   "This is off by two from the correct denominator."
+  ]
+ },
+ {
+  "template_id": "rationalize_cube_root_denominator_v1",
+  "skill_id": "rationalizing_radical_conjugates_and_nested_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 15, 17, 20, 25]}
+  },
+  "constraints": [],
+  "stem": "To rationalize the denominator of \\( \\dfrac{1}{\\sqrt[3]{[[a]]}} \\), you multiply numerator and denominator by \\( \\sqrt[3]{[[a]]^{2}} \\). What integer is the resulting denominator?",
+  "answer_spec": {"op": "evaluate", "expr": "root([[a]], 3) * root([[a]]**2, 3)"},
+  "distractors": [
+   "[[a]]**2",
+   "[[a]]**3",
+   "3*[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Multiplying gives \\( \\sqrt[3]{[[a]]} \\cdot \\sqrt[3]{[[a]]^{2}} = \\sqrt[3]{[[a]]^{3}} = [[a]] = [[answer]] \\), a rational (in fact integer) denominator.",
+  "distractor_rationales": [
+   "This reports \\( a^{2} \\), the exponent inside the multiplier, not the simplified product.",
+   "This reports \\( a^{3} \\) instead of taking the cube root of it.",
+   "This confuses the process with multiplying by 3 instead of by \\( \\sqrt[3]{a^{2}} \\).",
+   "This is off by one from the correct denominator.",
+   "This is off by one from the correct denominator.",
+   "This is off by two from the correct denominator."
+  ]
+ },
+ {
+  "template_id": "denest_nested_radical_v1",
+  "skill_id": "rationalizing_radical_conjugates_and_nested_radicals",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": 1, "hi": 8},
+   "q": {"type": "int", "lo": 1, "hi": 8},
+   "sign": {"type": "choice", "values": [1, -1]}
+  },
+  "constraints": ["Gt([[p]], [[q]])"],
+  "derived": {
+   "a": "[[p]]**2 + [[q]]**2",
+   "c": "([[p]]*[[q]])**2"
+  },
+  "stem": "Simplify \\( \\sqrt{[[a]] + [[sign]]\\cdot 2\\sqrt{[[c]]}} \\) by writing the radicand as a perfect square of a binomial in two square roots.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]] + [[sign]]*2*sqrt([[c]]))"},
+  "distractors": [
+   "[[p]] + [[q]]",
+   "Abs([[p]] - [[q]])",
+   "sqrt([[a]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( [[a]] = [[p]]^{2} + [[q]]^{2} \\) and \\( [[c]] = ([[p]] \\cdot [[q]])^{2} \\), the radicand is \\( \\left([[p]] \\; [[sign]] \\; [[q]]\\right)^{2} \\) in absolute value, so \\( \\sqrt{[[a]] + [[sign]]\\cdot 2\\sqrt{[[c]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This gives the sum \\( p+q \\) regardless of the sign inside the radical, ignoring when the sign is negative.",
+   "This gives \\( |p-q| \\) regardless of the sign inside the radical, ignoring when the sign is positive.",
+   "This drops the \\( 2\\sqrt{c} \\) term entirely before simplifying.",
+   "This is off by one from the correct simplified value.",
+   "This is off by one from the correct simplified value.",
+   "This is off by two from the correct simplified value."
+  ]
+ }
+]

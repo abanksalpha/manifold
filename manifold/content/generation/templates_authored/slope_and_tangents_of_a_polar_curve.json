@@ -1,0 +1,115 @@
+[
+{
+ "template_id": "polar_slope_limacon_v1",
+ "skill_id": "slope_and_tangents_of_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": -11, "hi": 11},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [
+  "Ne([[k]], 0)",
+  "Ne(((-[[b]]*sin([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])), 0)"
+ ],
+ "stem": "For the polar curve \\( r=[[a]]+[[b]]\\cos\\theta \\), find \\( \\dfrac{dy}{dx} \\) at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "((-[[b]]*sin([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[b]]*sin([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]))"
+ },
+ "distractors": [
+  "-tan([[k]]*pi/[[n]])",
+  "cot([[k]]*pi/[[n]])",
+  "Rational([[a]],[[b]])*tan([[k]]*pi/[[n]])",
+  "-([[a]]+[[b]]*cos([[k]]*pi/[[n]]))/([[b]]*sin([[k]]*pi/[[n]]))",
+  "((-[[b]]*sin([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[b]]*sin([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])) + Rational(1,10)",
+  "((-[[b]]*sin([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[b]]*sin([[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]+[[b]]*cos([[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])) - Rational(1,10)"
+ ],
+ "solution": "Using \\( x=r\\cos\\theta \\), \\( y=r\\sin\\theta \\), with \\( r'(\\theta)=-[[b]]\\sin\\theta \\), the slope is \\( \\dfrac{dy}{dx}=\\dfrac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta} \\), which at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) evaluates to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the curve as if it were the unit circle, ignoring \\( r(\\theta)\\) entirely.",
+  "This uses the reciprocal trig ratio instead of the full quotient-rule formula.",
+  "This uses the raw ratio \\( a/b\\) in place of correctly combining \\( r\\) and \\( r'\\) in the formula.",
+  "This drops the \\( r'\\sin\\theta\\) and \\( r'\\cos\\theta\\) terms from the numerator and denominator entirely.",
+  "This is off by a small additive amount from the correct slope.",
+  "This is off by a small additive amount (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "polar_slope_rose_v1",
+ "skill_id": "slope_and_tangents_of_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "p": {"type": "choice", "values": [2, 3, 4, 5]},
+  "k": {"type": "int", "lo": -9, "hi": 9},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [
+  "Ne([[k]], 0)",
+  "Ne(((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])), 0)"
+ ],
+ "stem": "For the rose curve \\( r=[[a]]\\cos([[p]]\\theta) \\), find \\( \\dfrac{dy}{dx} \\) at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]))"
+ },
+ "distractors": [
+  "-tan([[k]]*pi/[[n]])",
+  "-[[p]]*tan([[p]]*[[k]]*pi/[[n]])",
+  "cot([[k]]*pi/[[n]])/[[p]]",
+  "[[p]]*tan([[k]]*pi/[[n]])",
+  "((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])) + Rational(1,10)",
+  "((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])) - Rational(1,10)"
+ ],
+ "solution": "With \\( r'(\\theta)=-[[a]][[p]]\\sin([[p]]\\theta) \\) from the chain rule, the slope is \\( \\dfrac{dy}{dx}=\\dfrac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta} \\), which at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) evaluates to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the curve as if it were the unit circle, ignoring \\( r(\\theta)\\) entirely.",
+  "This forgets that \\( x=r\\cos\\theta,\\,y=r\\sin\\theta\\) mix \\( r\\theta \\) and \\( p\\theta\\) and instead differentiates as if \\( r=a\\cos\\theta\\).",
+  "This divides by the petal count \\( p\\) instead of correctly applying the chain rule inside \\( r'\\).",
+  "This forgets the chain-rule factor of \\( p\\) inside \\( r'(\\theta)\\) but keeps it outside as a multiplier of the whole ratio.",
+  "This is off by a small additive amount from the correct slope.",
+  "This is off by a small additive amount (other direction) from the correct slope."
+ ]
+},
+{
+ "template_id": "polar_slope_spiral_v1",
+ "skill_id": "slope_and_tangents_of_a_polar_curve",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 9},
+  "n": {"type": "choice", "values": [3, 4, 6]}
+ },
+ "constraints": [],
+ "stem": "For the Archimedean spiral \\( r=[[a]]\\theta \\), find \\( \\dfrac{dy}{dx} \\) at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "([[a]]*sin([[k]]*pi/[[n]]) + [[a]]*([[k]]*pi/[[n]])*cos([[k]]*pi/[[n]])) / ([[a]]*cos([[k]]*pi/[[n]]) - [[a]]*([[k]]*pi/[[n]])*sin([[k]]*pi/[[n]]))"
+ },
+ "distractors": [
+  "-tan([[k]]*pi/[[n]])",
+  "([[k]]*pi/[[n]])",
+  "(cos([[k]]*pi/[[n]]) - ([[k]]*pi/[[n]])*sin([[k]]*pi/[[n]])) / (sin([[k]]*pi/[[n]]) + ([[k]]*pi/[[n]])*cos([[k]]*pi/[[n]]))",
+  "[[a]]*(sin([[k]]*pi/[[n]]) + ([[k]]*pi/[[n]])*cos([[k]]*pi/[[n]]))",
+  "([[a]]*sin([[k]]*pi/[[n]]) + [[a]]*([[k]]*pi/[[n]])*cos([[k]]*pi/[[n]])) / ([[a]]*cos([[k]]*pi/[[n]]) - [[a]]*([[k]]*pi/[[n]])*sin([[k]]*pi/[[n]])) + Rational(1,10)",
+  "([[a]]*sin([[k]]*pi/[[n]]) + [[a]]*([[k]]*pi/[[n]])*cos([[k]]*pi/[[n]])) / ([[a]]*cos([[k]]*pi/[[n]]) - [[a]]*([[k]]*pi/[[n]])*sin([[k]]*pi/[[n]])) - Rational(1,10)"
+ ],
+ "solution": "With \\( r'(\\theta)=[[a]] \\), the slope is \\( \\dfrac{dy}{dx}=\\dfrac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta}=\\dfrac{\\sin\\theta+\\theta\\cos\\theta}{\\cos\\theta-\\theta\\sin\\theta} \\), which at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) evaluates to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the curve as if it were a circle of constant radius, ignoring the growing radius entirely.",
+  "This reports \\( \\theta\\) itself rather than the slope of the tangent line.",
+  "This inverts the correct ratio, swapping numerator and denominator.",
+  "This forgets to divide by the denominator, reporting only the numerator's structure scaled by \\( a\\).",
+  "This is off by a small additive amount from the correct slope.",
+  "This is off by a small additive amount (other direction) from the correct slope."
+ ]
+}
+]

@@ -1,0 +1,97 @@
+[
+{
+ "template_id": "green_closed_line_v1",
+ "skill_id": "green_s_theorem_to_evaluate_a_closed_line_integral",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "W": {"type": "choice", "values": [1, 2, 3]},
+  "H": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[q]]*[[W]] - [[p]]*[[H]], 0)"],
+ "stem": "Use Green's theorem to evaluate \\( \\displaystyle\\oint_C \\left( ([[p]])y^{2}\\,dx + ([[q]])x^{2}\\,dy \\right) \\), where \\( C \\) is the boundary of the rectangle \\( 0 \\le x \\le [[W]],\\; 0 \\le y \\le [[H]] \\), oriented counterclockwise.",
+ "answer_spec": {"op": "dblintegrate", "expr": "2*([[q]])*x - 2*([[p]])*y", "vars": ["y", "x"], "bounds": [["0", "[[H]]"], ["0", "[[W]]"]]},
+ "distractors": [
+  "-([[answer]])",
+  "([[H]])*([[W]])*(([[q]])*([[W]]) + ([[p]])*([[H]]))",
+  "([[H]])*([[W]])*(([[p]])*([[W]]) - ([[q]])*([[H]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( P=([[p]])y^{2} \\) and \\( Q=([[q]])x^{2} \\), Green's theorem gives \\( \\oint_C P\\,dx+Q\\,dy = \\iint_D (\\partial_x Q - \\partial_y P)\\,dA = \\iint_D (2([[q]])x - 2([[p]])y)\\,dA \\) over \\( [0,[[W]]]\\times[0,[[H]]] \\), which equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reverses the orientation, giving the negative of the correct circulation.",
+  "This adds \\( \\partial_x Q + \\partial_y P \\) instead of subtracting, using the wrong Green's-theorem integrand.",
+  "This swaps the roles of \\( P \\) and \\( Q \\) in the integrand.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "green_closed_line_triangle_v1",
+ "skill_id": "green_s_theorem_to_evaluate_a_closed_line_integral",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "W": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[q]], 0)", "Ne([[p]], 0)"],
+ "stem": "Use Green's theorem to evaluate \\( \\displaystyle\\oint_C \\left( ([[p]])y\\,dx + ([[q]])xy\\,dy \\right) \\), where \\( C \\) is the boundary of the triangle with vertices \\( (0,0) \\), \\( ([[W]],0) \\), and \\( (0,[[W]]) \\), oriented counterclockwise. The hypotenuse lies on \\( y = [[W]] - x \\).",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[q]])*y - ([[p]])", "vars": ["y", "x"], "bounds": [["0", "([[W]])-x"], ["0", "[[W]]"]]},
+ "distractors": [
+  "-([[answer]])",
+  "(([[q]]) + ([[p]]))*([[W]])**2/2",
+  "([[q]])*([[W]])**3/6 - ([[p]])*([[W]])**2/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "With \\( P=([[p]])y \\) and \\( Q=([[q]])xy \\), Green's theorem gives \\( \\oint_C P\\,dx+Q\\,dy = \\iint_D (\\partial_x Q - \\partial_y P)\\,dA = \\iint_D \\big(([[q]])y - ([[p]])\\big)\\,dA \\) over the triangle \\( 0\\le x\\le [[W]],\\ 0\\le y\\le [[W]]-x \\), which equals \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reverses the orientation, giving the negative of the correct circulation.",
+  "This misapplies a rectangle-style shortcut area formula to a triangular region.",
+  "This forgets to combine the two terms under ONE double integral (computes each with a mismatched bound) rather than integrating \\( qy - p \\) directly over the triangle.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "green_closed_line_disk_v1",
+ "skill_id": "green_s_theorem_to_evaluate_a_closed_line_integral",
+ "topic_id": "vector_calc",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "R": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": ["Ne([[q]] - [[p]], 0)"],
+ "stem": "Use Green's theorem to evaluate \\( \\displaystyle\\oint_C \\left( ([[p]])y\\,dx + ([[q]])x\\,dy \\right) \\), where \\( C \\) is the circle \\( x^{2}+y^{2}=([[R]])^{2} \\), oriented counterclockwise.",
+ "answer_spec": {"op": "dblintegrate", "expr": "([[q]]) - ([[p]])", "vars": ["y", "x"], "bounds": [["-sqrt((([[R]]))**2 - x**2)", "sqrt((([[R]]))**2 - x**2)"], ["-[[R]]", "[[R]]"]]},
+ "require_rational": false,
+ "distractors": [
+  "-([[answer]])",
+  "(([[q]]) + ([[p]]))*pi*([[R]])**2",
+  "2*([[answer]])",
+  "([[answer]])/2",
+  "([[answer]]) + pi",
+  "([[answer]]) - pi"
+ ],
+ "solution": "With \\( P=([[p]])y \\) and \\( Q=([[q]])x \\), Green's theorem gives \\( \\oint_C P\\,dx+Q\\,dy = \\iint_D (\\partial_x Q - \\partial_y P)\\,dA = \\iint_D \\big(([[q]])-([[p]])\\big)\\,dA \\). Since the integrand is the CONSTANT \\( ([[q]])-([[p]]) \\), this is that constant times the disk's area \\( \\pi([[R]])^{2} \\), giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This reverses the orientation, giving the negative of the correct circulation.",
+  "This adds \\( \\partial_x Q + \\partial_y P \\) instead of subtracting, using the wrong Green's-theorem integrand.",
+  "This double counts, as if traversing the circle twice.",
+  "This halves the correct circulation.",
+  "This adds a spurious \\( \\pi \\) to the correct value.",
+  "This subtracts a spurious \\( \\pi \\) from the correct value."
+ ]
+}
+]

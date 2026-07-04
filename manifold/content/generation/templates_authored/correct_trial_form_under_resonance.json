@@ -1,0 +1,107 @@
+[
+ {
+  "template_id": "resonance_distinct_real_roots_v1",
+  "skill_id": "correct_trial_form_under_resonance",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -5, "hi": 5},
+   "r2": {"type": "int", "lo": -5, "hi": 5},
+   "r": {"type": "int", "lo": -5, "hi": 5},
+   "A": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[r1]], [[r2]])"],
+  "derived": {
+   "b": "-([[r1]]+[[r2]])",
+   "c": "[[r1]]*[[r2]]"
+  },
+  "stem": "The homogeneous equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has characteristic roots \\( [[r1]] \\) and \\( [[r2]] \\). For the nonhomogeneous equation with forcing term \\( [[A]]e^{[[r]]x} \\), undetermined coefficients requires the trial particular solution \\( y_p = x^{s}\\left([[A]]e^{[[r]]x}\\right) \\), where \\( s \\) is the smallest nonnegative integer such that no term of \\( y_p \\) already solves the homogeneous equation (i.e. \\( s \\) is the multiplicity of \\( [[r]] \\) as a root of the characteristic equation). Find \\( s \\).",
+  "answer_spec": {"op": "evaluate", "expr": "floor(1/(1+Abs([[r]]-[[r1]]))) + floor(1/(1+Abs([[r]]-[[r2]])))"},
+  "distractors": [
+   "1",
+   "2",
+   "3",
+   "[[r]]",
+   "[[r1]]",
+   "[[r2]]"
+  ],
+  "solution": "\\( s \\) equals the number of times \\( [[r]] \\) matches a characteristic root. The roots are \\( [[r1]] \\) and \\( [[r2]] \\), so \\( s = [[answer]] \\).",
+  "distractor_rationales": [
+   "This assumes there is always exactly one match, regardless of whether the forcing rate actually equals a root.",
+   "This assumes a double match, which can only happen with a REPEATED characteristic root.",
+   "For a 2nd-order equation, \\( s \\) can never exceed 2 (there are only two characteristic roots).",
+   "This reports the forcing rate itself instead of counting how many roots it matches.",
+   "This reports a characteristic root itself instead of counting matches.",
+   "This reports the other characteristic root itself instead of counting matches."
+  ]
+ },
+ {
+  "template_id": "resonance_repeated_root_v1",
+  "skill_id": "correct_trial_form_under_resonance",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "r0": {"type": "int", "lo": -5, "hi": 5},
+   "r": {"type": "int", "lo": -5, "hi": 5},
+   "A": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "b": "-2*[[r0]]",
+   "c": "[[r0]]**2"
+  },
+  "stem": "The homogeneous equation \\( y'' + ([[b]])y' + ([[c]])y = 0 \\) has a REPEATED characteristic root \\( r=[[r0]] \\). For the nonhomogeneous equation with forcing term \\( [[A]]e^{[[r]]x} \\), undetermined coefficients requires the trial particular solution \\( y_p = x^{s}\\left([[A]]e^{[[r]]x}\\right) \\), where \\( s \\) is the multiplicity of \\( [[r]] \\) as a root of the characteristic equation. Find \\( s \\).",
+  "answer_spec": {"op": "evaluate", "expr": "2*floor(1/(1+Abs([[r]]-[[r0]])))"},
+  "distractors": [
+   "1",
+   "3",
+   "4",
+   "5",
+   "6",
+   "[[r]]+[[r0]]+10"
+  ],
+  "solution": "Since the root \\( [[r0]] \\) has multiplicity 2, \\( s \\) is either 0 (no match) or 2 (a match), never 1. Here \\( s = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the multiplicity used for a SIMPLE (non-repeated) matching root, not a repeated one.",
+   "For a 2nd-order equation, \\( s \\) can never exceed 2.",
+   "For a 2nd-order equation, \\( s \\) can never exceed 2.",
+   "For a 2nd-order equation, \\( s \\) can never exceed 2.",
+   "For a 2nd-order equation, \\( s \\) can never exceed 2.",
+   "This adds the forcing rate and the repeated root together instead of comparing them."
+  ]
+ },
+ {
+  "template_id": "resonance_trig_forcing_v1",
+  "skill_id": "correct_trial_form_under_resonance",
+  "topic_id": "differential_equations",
+  "tier": "relearn",
+  "params": {
+   "w": {"type": "int", "lo": 1, "hi": 9},
+   "k": {"type": "int", "lo": 1, "hi": 9},
+   "A": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "derived": {
+   "c": "[[w]]**2"
+  },
+  "stem": "The homogeneous equation \\( y'' + ([[c]])y = 0 \\) has purely imaginary characteristic roots \\( \\pm [[w]]i \\). For the nonhomogeneous equation with forcing term \\( [[A]]\\cos([[k]]x) \\), undetermined coefficients requires the trial particular solution \\( y_p = x^{s}\\left(A\\cos([[k]]x)+B\\sin([[k]]x)\\right) \\), where \\( s \\) is the smallest nonnegative integer such that no term of \\( y_p \\) already solves the homogeneous equation (this happens exactly when the forcing frequency \\( [[k]] \\) equals \\( [[w]] \\)). Find \\( s \\).",
+  "answer_spec": {"op": "evaluate", "expr": "floor(1/(1+Abs([[k]]-[[w]])))"},
+  "distractors": [
+   "2",
+   "3",
+   "4",
+   "5",
+   "[[k]]+[[w]]",
+   "6"
+  ],
+  "solution": "Since the roots \\( \\pm[[w]]i \\) are simple (not repeated), \\( s \\) can only be 0 or 1. It is 1 exactly when the forcing frequency \\( [[k]] \\) matches \\( [[w]] \\); here \\( s = [[answer]] \\).",
+  "distractor_rationales": [
+   "Since the roots \\( \\pm[[w]]i \\) are simple, \\( s \\) can never reach 2 (that requires a REPEATED matching root), let alone this larger value.",
+   "This value is far too large; \\( s \\) is always 0 or 1 for a simple pair of roots.",
+   "This value is far too large; \\( s \\) is always 0 or 1 for a simple pair of roots.",
+   "This value is far too large; \\( s \\) is always 0 or 1 for a simple pair of roots.",
+   "This adds the forcing frequency and natural frequency together instead of comparing them.",
+   "This value is far too large; \\( s \\) is always 0 or 1 for a simple pair of roots."
+  ]
+ }
+]

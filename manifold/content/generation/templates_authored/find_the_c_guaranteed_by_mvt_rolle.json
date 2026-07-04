@@ -1,0 +1,138 @@
+[
+{
+ "template_id": "mvt_c_value_v1",
+ "skill_id": "find_the_c_guaranteed_by_mvt_rolle",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": -6,
+   "hi": 3
+  },
+  "b": {
+   "type": "int",
+   "lo": 4,
+   "hi": 12
+  }
+ },
+ "constraints": [
+  "Gt([[b]], [[a]])"
+ ],
+ "stem": "For \\( f(x)=x^{2} \\) on \\( [[[a]],[[b]]] \\), find the \\( c \\) guaranteed by the Mean Value Theorem.",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational([[a]] + [[b]], 2)"
+ },
+ "distractors": [
+  "[[a]] + [[b]]",
+  "Rational([[b]] - [[a]], 2)",
+  "[[a]]",
+  "[[b]]",
+  "Rational([[a]] + [[b]], 2) + 1",
+  "Rational([[a]] + [[b]], 2) - 1"
+ ],
+ "solution": "\\( f'(c)=\\frac{f(b)-f(a)}{b-a}=a+b \\Rightarrow 2c=a+b \\Rightarrow c=\\frac{a+b}{2}=[[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "rolle_c_vertex_v1",
+ "skill_id": "find_the_c_guaranteed_by_mvt_rolle",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -8, "hi": 8},
+  "d": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x)=x^{2}-2([[p]])x \\). Since \\( f([[p]]-[[d]])=f([[p]]+[[d]]) \\), Rolle's theorem guarantees some \\( c \\) in \\( ([[p]]-[[d]],\\,[[p]]+[[d]]) \\) with \\( f'(c)=0 \\). Find \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "[[p]]"
+ },
+ "distractors": [
+  "[[p]] + [[d]]",
+  "[[p]] - [[d]]",
+  "2*[[p]]",
+  "Rational([[p]], 2)",
+  "[[p]] + 1",
+  "[[p]] - 1"
+ ],
+ "solution": "\\( f'(x)=2x-2([[p]])=0 \\) exactly when \\( x=[[p]] \\), which lies in \\( ([[p]]-[[d]],[[p]]+[[d]]) \\); so \\( c=[[answer]] \\).",
+ "distractor_rationales": [
+  "This is the right endpoint of the interval, not the critical point.",
+  "This is the left endpoint of the interval, not the critical point.",
+  "This doubles \\( p \\) instead of solving \\( f'(c)=0 \\).",
+  "This halves \\( p \\) instead of solving \\( f'(c)=0 \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_c_cubic_v1",
+ "skill_id": "find_the_c_guaranteed_by_mvt_rolle",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "b": {"type": "int", "lo": 2, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "For \\( f(x)=x^{3} \\) on \\( [0,[[b]]] \\), the Mean Value Theorem guarantees some \\( c \\) in \\( (0,[[b]]) \\) with \\( f'(c)=\\dfrac{f([[b]])-f(0)}{[[b]]-0} \\). Find \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[b]]**2/3)"
+ },
+ "distractors": [
+  "Rational([[b]], 2)",
+  "sqrt([[b]])",
+  "[[b]]/3",
+  "sqrt(3*[[b]]**2)",
+  "sqrt([[b]]**2/3) + 1",
+  "sqrt([[b]]**2/3) - 1"
+ ],
+ "solution": "\\( f'(c)=3c^{2}=\\dfrac{[[b]]^{3}}{[[b]]}=[[b]]^{2}\\Rightarrow c^{2}=\\dfrac{[[b]]^{2}}{3}\\Rightarrow c=\\sqrt{\\dfrac{[[b]]^{2}}{3}}=[[answer]] \\) (taking the positive root, since \\( c\\in(0,[[b]]) \\)).",
+ "distractor_rationales": [
+  "This is the midpoint formula for a quadratic MVT, not a cubic.",
+  "This drops the factor of 3 inside the root.",
+  "This linearizes \\( c^2=b^2/3 \\) incorrectly.",
+  "This has the 3 in the wrong place (multiplying instead of dividing).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "mvt_c_reciprocal_geometric_mean_v1",
+ "skill_id": "find_the_c_guaranteed_by_mvt_rolle",
+ "topic_id": "applications_derivatives",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "m": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"b": "[[a]]*[[m]]**2"},
+ "stem": "For \\( f(x)=\\dfrac{1}{x} \\) on \\( [[[a]],[[b]]] \\) (with \\( [[a]],[[b]]>0 \\)), the Mean Value Theorem guarantees some \\( c \\) in \\( ([[a]],[[b]]) \\) with \\( f'(c)=\\dfrac{f([[b]])-f([[a]])}{[[b]]-[[a]]} \\). Find \\( c \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "sqrt([[a]]*[[b]])"
+ },
+ "distractors": [
+  "Rational([[a]] + [[b]], 2)",
+  "[[a]]*[[b]]",
+  "[[a]] + [[m]]",
+  "Rational([[b]], [[m]])",
+  "sqrt([[a]]*[[b]]) + 1",
+  "sqrt([[a]]*[[b]]) - 1"
+ ],
+ "solution": "\\( f'(c)=-\\dfrac{1}{c^{2}} \\) must equal the secant slope \\( -\\dfrac{1}{[[a]][[b]]} \\), so \\( c^{2}=[[a]][[b]] \\) and (taking the positive root in \\( ([[a]],[[b]]) \\)) \\( c=\\sqrt{[[a]][[b]]}=[[answer]] \\), the geometric mean of \\( a \\) and \\( b \\).",
+ "distractor_rationales": [
+  "This is the arithmetic mean, the value from the quadratic MVT case, not this rational function.",
+  "This is the product \\( ab \\), not its square root.",
+  "This adds \\( a \\) and \\( m \\) rather than computing the geometric mean.",
+  "This divides \\( b \\) by \\( m \\), recovering \\( a \\), not \\( c \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

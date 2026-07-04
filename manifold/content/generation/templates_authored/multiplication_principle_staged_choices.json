@@ -1,0 +1,123 @@
+[
+{
+ "template_id": "multiplication_principle_v1",
+ "skill_id": "multiplication_principle_staged_choices",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 6},
+  "b": {"type": "int", "lo": 2, "hi": 6},
+  "c": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "To build a schedule, a student must choose exactly one course from each of three independent categories: there are [[a]] humanities courses, [[b]] science courses, and [[c]] arts courses available. How many different schedules consisting of one course from each category are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[b]]*[[c]]"},
+ "distractors": [
+  "[[a]] + [[b]] + [[c]]",
+  "[[a]]*[[b]] + [[c]]",
+  "[[a]]*[[b]]",
+  "[[a]]*[[c]]",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[b]]"
+ ],
+ "solution": "The choices are made in independent stages, so by the multiplication principle the total is \\( [[a]] \\cdot [[b]] \\cdot [[c]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the counts from each stage instead of multiplying them.",
+  "This multiplies only the first two stages and adds the third.",
+  "This ignores the third category entirely.",
+  "This ignores the second category entirely.",
+  "This adjusts the correct product by the size of one category for no reason.",
+  "This adjusts the correct product by the size of one category for no reason."
+ ]
+},
+{
+ "template_id": "multiplication_principle_repeated_stage_v1",
+ "skill_id": "multiplication_principle_staged_choices",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 9},
+  "L": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Le([[L]], [[n]])"],
+ "stem": "A security code consists of [[L]] characters, each chosen independently from an alphabet of [[n]] symbols. Repetition IS allowed, so the same symbol may appear in more than one position. How many different codes are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]**[[L]]"},
+ "distractors": [
+  "factorial([[n]])/factorial([[n]] - [[L]])",
+  "[[n]]*[[L]]",
+  "binomial([[n]], [[L]])",
+  "[[L]]**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Each of the [[L]] positions independently has [[n]] choices (repetition allowed), so by the multiplication principle the count is \\( [[n]]^{[[L]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forbids repeated symbols, computing the permutation count instead of allowing repetition.",
+  "This multiplies the alphabet size by the code length instead of raising it to that power.",
+  "This treats the code as an unordered selection without repetition.",
+  "This swaps the base and the exponent.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+},
+{
+ "template_id": "multiplication_principle_sequential_depletion_v1",
+ "skill_id": "multiplication_principle_staged_choices",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 12},
+  "k": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": ["Lt([[k]], [[n]])"],
+ "stem": "A coach must fill [[k]] different relay positions (1st leg, 2nd leg, ..., [[k]]th leg), choosing one runner at a time from a squad of [[n]] runners. Once a runner is assigned to a leg, that runner is no longer available for any other leg. Filling the legs is a sequence of [[k]] staged choices, each with fewer runners available than the one before. How many different ways can the coach fill all [[k]] legs?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/factorial([[n]] - [[k]])"},
+ "distractors": [
+  "[[n]]**[[k]]",
+  "binomial([[n]], [[k]])",
+  "factorial([[n]])",
+  "factorial([[k]])",
+  "[[answer]] + [[n]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "The 1st leg has [[n]] choices, the 2nd leg has [[n]]-1 (one runner already used), and so on down to the [[k]]th leg with \\( [[n]]-[[k]]+1 \\) choices; by the multiplication principle the total is \\( [[n]]([[n]]-1)\\cdots([[n]]-[[k]]+1) = \\dfrac{[[n]]!}{([[n]]-[[k]])!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats each leg as independently having [[n]] choices, as if a runner could run more than one leg.",
+  "This treats the legs as an unordered selection rather than a staged, ordered assignment.",
+  "This fills all [[n]] squad members into legs instead of just the [[k]] legs that exist.",
+  "This only orders the [[k]] legs among themselves without accounting for the shrinking runner pool.",
+  "This is off from the correct count by [[n]].",
+  "This is off from the correct count by [[k]]."
+ ]
+},
+{
+ "template_id": "multiplication_principle_adjacent_dependent_v1",
+ "skill_id": "multiplication_principle_staged_choices",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 2, "hi": 8},
+  "k": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": [],
+ "stem": "A row of [[k]] beads is to be strung using [[n]] available colors. The first bead may be any of the [[n]] colors, but each subsequent bead must be a DIFFERENT color from the bead immediately before it. How many distinct colorings of the row of [[k]] beads are possible?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]*([[n]] - 1)**([[k]] - 1)"},
+ "distractors": [
+  "[[n]]**[[k]]",
+  "[[n]]*([[n]] - 1)*[[k]]",
+  "([[n]] - 1)**[[k]]",
+  "factorial([[n]])/factorial([[n]] - [[k]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The first bead has [[n]] choices; each of the remaining \\( [[k]]-1 \\) beads has only \\( [[n]]-1 \\) choices (any color except the one immediately before it). By the multiplication principle the total is \\( [[n]]\\cdot([[n]]-1)^{[[k]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the adjacency restriction and lets every bead be any of the [[n]] colors.",
+  "This multiplies the repeated factor instead of raising it to the needed power.",
+  "This applies the restricted count of \\( [[n]]-1 \\) to the first bead too, instead of allowing it [[n]] choices.",
+  "This treats the whole row as if no color could ever repeat anywhere, not just between adjacent beads.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

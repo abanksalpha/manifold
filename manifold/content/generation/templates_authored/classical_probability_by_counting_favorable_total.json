@@ -1,0 +1,121 @@
+[
+ {
+  "template_id": "classical_probability_counting_v1",
+  "skill_id": "classical_probability_by_counting_favorable_total",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Ne([[r]], [[b]])"],
+  "stem": "A box contains [[r]] red chips and [[b]] blue chips, all identical apart from color. One chip is drawn at random, each chip equally likely. What is the probability that the chip drawn is red?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[r]], [[r]] + [[b]])"},
+  "distractors": [
+   "Rational([[b]], [[r]] + [[b]])",
+   "Rational([[r]], [[b]])",
+   "Rational([[b]], [[r]])",
+   "[[answer]] + Rational(1, [[r]] + [[b]])",
+   "[[answer]] - Rational(1, [[r]] + [[b]])",
+   "Rational([[r]] + [[b]], [[r]])"
+  ],
+  "solution": "There are \\( [[r]] + [[b]] \\) equally likely chips and [[r]] of them are red, so the probability is \\( \\frac{\\text{favorable}}{\\text{total}} = \\frac{[[r]]}{[[r]] + [[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the probability of drawing a blue chip, the complementary event.",
+   "This divides favorable outcomes by unfavorable outcomes instead of by the total.",
+   "This inverts the ratio, dividing blue by red.",
+   "This overcounts the favorable red chips by one.",
+   "This undercounts the favorable red chips by one.",
+   "This divides the total by the favorable count, inverting the probability."
+  ]
+ },
+ {
+  "template_id": "classical_probability_two_dice_sum_v1",
+  "skill_id": "classical_probability_by_counting_favorable_total",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "d": {"type": "int", "lo": 4, "hi": 12},
+   "s": {"type": "int", "lo": 3, "hi": 13}
+  },
+  "constraints": ["Le([[s]], [[d]] + 1)", "Ge([[s]], 3)"],
+  "stem": "Two fair [[d]]-sided dice, each numbered 1 through [[d]], are rolled once. All \\( [[d]]^2 \\) outcomes (ordered pairs of results) are equally likely. What is the probability that the two dice show a sum of exactly [[s]]?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[s]] - 1, [[d]] ** 2)"},
+  "distractors": [
+   "Rational([[s]], [[d]] ** 2)",
+   "Rational([[s]] - 1, [[d]])",
+   "Rational(1, [[d]] ** 2)",
+   "Rational([[d]] - [[s]] + 1, [[d]] ** 2)",
+   "Rational([[s]] - 2, [[d]] ** 2)",
+   "Rational([[s]] + 1, [[d]] ** 2)"
+  ],
+  "solution": "The ordered pairs \\( (i, j) \\) with \\( i + j = [[s]] \\) and \\( 1 \\le i, j \\le [[d]] \\) are \\( (1, [[s]]-1), (2, [[s]]-2), \\dots, ([[s]]-1, 1) \\), giving \\( [[s]] - 1 \\) favorable outcomes out of \\( [[d]]^2 \\) total: \\( \\frac{[[s]] - 1}{[[d]]^2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This off-by-one counts [[s]] favorable pairs instead of \\( [[s]] - 1 \\).",
+   "This divides by [[d]] instead of \\( [[d]]^2 \\), forgetting the second die.",
+   "This treats only one specific pair as favorable, ignoring all the other ways to reach the sum.",
+   "This uses the favorable-pair count for the complementary high-sum case instead of sum [[s]].",
+   "This undercounts the favorable pairs by one, using \\( [[s]] - 2 \\).",
+   "This overcounts the favorable pairs by one, using \\( [[s]] + 1 \\)."
+  ]
+ },
+ {
+  "template_id": "classical_probability_pair_selection_v1",
+  "skill_id": "classical_probability_by_counting_favorable_total",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "r": {"type": "int", "lo": 3, "hi": 10},
+   "b": {"type": "int", "lo": 2, "hi": 10}
+  },
+  "constraints": ["Ge([[r]], 2)"],
+  "stem": "A bag contains [[r]] red marbles and [[b]] blue marbles. Two marbles are drawn at once at random, with every pair of marbles equally likely to be chosen. What is the probability that BOTH marbles drawn are red?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[r]], 2) / binomial([[r]] + [[b]], 2)"},
+  "distractors": [
+   "Rational([[r]], [[r]] + [[b]]) ** 2",
+   "binomial([[r]], 2) / binomial([[b]], 2)",
+   "Rational([[r]] * ([[r]] - 1), [[r]] + [[b]])",
+   "binomial([[r]], 2) / ([[r]] + [[b]]) ** 2",
+   "Rational([[r]], [[r]] + [[b]])",
+   "binomial([[r]] + [[b]], 2) / binomial([[r]], 2)"
+  ],
+  "solution": "There are \\( \\binom{[[r]] + [[b]]}{2} \\) equally likely pairs of marbles in total, and \\( \\binom{[[r]]}{2} \\) of them consist of two red marbles: \\( \\dfrac{\\binom{[[r]]}{2}}{\\binom{[[r]] + [[b]]}{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the two draws as independent WITH replacement, squaring the single-draw probability instead of counting pairs without replacement.",
+   "This divides by the number of all-blue pairs instead of by the total number of pairs.",
+   "This forgets to divide by 2 for the unordered pair, effectively double-counting order.",
+   "This divides by the square of the total count instead of the number of unordered pairs \\( \\binom{[[r]]+[[b]]}{2} \\).",
+   "This is just the probability a single marble drawn is red, ignoring that two must both be red.",
+   "This inverts the ratio of favorable to total pairs."
+  ]
+ },
+ {
+  "template_id": "classical_probability_order_relation_v1",
+  "skill_id": "classical_probability_by_counting_favorable_total",
+  "topic_id": "probability",
+  "tier": "teach",
+  "params": {
+   "d": {"type": "int", "lo": 4, "hi": 35}
+  },
+  "constraints": [],
+  "stem": "Two fair [[d]]-sided dice, each numbered 1 through [[d]], are rolled once, one designated the 'first' die and the other the 'second'. All \\( [[d]]^2 \\) outcomes are equally likely. What is the probability that the first die shows a STRICTLY GREATER number than the second die?",
+  "answer_spec": {"op": "evaluate", "expr": "binomial([[d]], 2) / [[d]] ** 2"},
+  "distractors": [
+   "Rational(1, 2)",
+   "binomial([[d]], 2) / [[d]]",
+   "Rational([[d]] - 1, [[d]])",
+   "(binomial([[d]], 2) + [[d]]) / [[d]] ** 2",
+   "Rational(1, [[d]])",
+   "([[d]] ** 2 - binomial([[d]], 2)) / [[d]] ** 2"
+  ],
+  "solution": "There are \\( \\binom{[[d]]}{2} \\) unordered pairs of distinct values, and for each, exactly one of the two orderings has the first die strictly greater; ties (equal values) are excluded. So the favorable count is \\( \\binom{[[d]]}{2} \\) out of \\( [[d]]^2 \\) total outcomes: \\( \\dfrac{\\binom{[[d]]}{2}}{[[d]]^2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This naively assumes greater-than and less-than are each exactly half, ignoring that ties are also possible (this is only exactly true in the limit, not for finite [[d]]).",
+   "This forgets to square [[d]] in the denominator, leaving the count of outcomes for only one die.",
+   "This wrongly includes ties as part of the 'strictly greater' favorable outcomes.",
+   "This mistakenly adds a tie count (a spurious extra [[d]]) to the numerator.",
+   "This is the probability the two dice show the same number (a tie), not that the first exceeds the second.",
+   "This is the complementary probability (first die less than or equal to the second)."
+  ]
+ }
+]

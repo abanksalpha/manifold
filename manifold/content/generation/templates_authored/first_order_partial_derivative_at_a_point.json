@@ -1,0 +1,309 @@
+[
+ {
+  "template_id": "first_order_partial_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{3}y + ([[b]])xy^{2} + ([[c]])x \\). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\) (the partial derivative with respect to \\( x \\), evaluated at the point \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**3*[[y0]] + [[b]]*x*[[y0]]**2 + [[c]]*x", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[x0]]**3*[[y0]] + [[b]]*[[x0]]*[[y0]]**2 + [[c]]*[[x0]]",
+   "[[a]]*[[x0]]**3 + 2*[[b]]*[[x0]]*[[y0]]",
+   "[[a]]*[[x0]]**2*[[y0]] + [[b]]*[[y0]]**2 + [[c]]",
+   "3*[[a]]*[[x0]]**2*[[y0]] + [[b]]*[[y0]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Treating \\( y \\) as a constant, \\( f_{x}(x, y) = 3([[a]])x^{2}y + ([[b]])y^{2} + ([[c]]) \\). Evaluating at \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the function value \\( f([[x0]], [[y0]]) \\), not its partial derivative.",
+   "This is \\( f_{y}([[x0]], [[y0]]) \\), the partial derivative with respect to the other variable.",
+   "This drops the factor of 3 from differentiating \\( x^{3} \\).",
+   "This omits the constant term \\( ([[c]]) \\) whose \\( x \\)-derivative is \\( ([[c]]) \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_product_rule_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x, y) = ([[a]]x + [[b]])(xy + [[c]]) \\), a product of two factors that both depend on \\( x \\). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\), found using the product rule (with \\( y \\) held constant)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*x + [[b]])*(x*[[y0]] + [[c]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*([[x0]]*[[y0]] + [[c]])",
+   "([[a]]*[[x0]] + [[b]])*[[y0]]",
+   "([[a]]*[[x0]] + [[b]])*([[x0]]*[[y0]] + [[c]])",
+   "[[a]]*[[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "By the product rule (treating \\( y \\) as a constant), \\( f_{x}(x,y) = [[a]](xy + [[c]]) + ([[a]]x + [[b]])y \\). Evaluating at \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This keeps only the first product-rule term, dropping \\( ([[a]]x+[[b]])y \\) entirely.",
+   "This keeps only the second product-rule term, dropping \\( [[a]](xy+[[c]]) \\) entirely.",
+   "This is the function value \\( f([[x0]],[[y0]]) \\), not its partial derivative.",
+   "This multiplies the coefficients of the two factors instead of applying the product rule.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_quotient_rule_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[x0]] + [[c]], 0)"],
+  "stem": "Let \\( f(x, y) = \\dfrac{[[a]]x^{2} + [[b]]y}{x + [[c]]} \\). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\), found using the quotient rule (with \\( y \\) held constant)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*x**2 + [[b]]*[[y0]])/(x + [[c]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "(2*[[a]]*[[x0]]*([[x0]] + [[c]]) - ([[a]]*[[x0]]**2 + [[b]]*[[y0]]))/([[x0]] + [[c]])",
+   "(([[a]]*[[x0]]**2 + [[b]]*[[y0]]) - 2*[[a]]*[[x0]]*([[x0]] + [[c]]))/([[x0]] + [[c]])**2",
+   "(2*[[a]]*[[x0]])/([[x0]] + [[c]])",
+   "([[a]]*[[x0]]**2 + [[b]]*[[y0]])/([[x0]] + [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the quotient rule (treating \\( y \\) as a constant), \\( f_{x}(x,y) = \\dfrac{2([[a]])x \\cdot (x+[[c]]) - ([[a]]x^{2}+[[b]]y)}{(x+[[c]])^{2}} \\). Evaluating at \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square the denominator from the quotient rule.",
+   "This swaps the order of subtraction in the quotient-rule numerator (sign error) while still squaring the denominator.",
+   "This differentiates only the numerator and ignores the quotient rule's second term and squared denominator.",
+   "This is the function value \\( f([[x0]],[[y0]]) \\), not its partial derivative.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_chain_rule_power_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "d": {"type": "int", "lo": -4, "hi": 4},
+   "n": {"type": "choice", "values": [2, 3]},
+   "x0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x, y) = [[a]]([[b]]x + [[c]]y + [[d]])^{[[n]]} \\). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\), found using the chain rule (with \\( y \\) held constant)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*([[b]]*x + [[c]]*[[y0]] + [[d]])**[[n]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[n]]*([[b]]*[[x0]] + [[c]]*[[y0]] + [[d]])**([[n]]-1)",
+   "[[n]]*[[b]]*([[b]]*[[x0]] + [[c]]*[[y0]] + [[d]])**([[n]]-1)",
+   "[[a]]*[[n]]*[[b]]*([[b]]*[[x0]] + [[c]]*[[y0]] + [[d]])**[[n]]",
+   "[[a]]*([[b]]*[[x0]] + [[c]]*[[y0]] + [[d]])**[[n]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule (treating \\( y \\) as a constant), \\( f_{x}(x,y) = [[a]]\\cdot [[n]]([[b]]x + [[c]]y + [[d]])^{[[n]]-1}\\cdot [[b]] \\). Evaluating at \\( ([[x0]], [[y0]]) \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of \\( [[b]] \\) from differentiating the inner linear expression.",
+   "This drops the outer coefficient \\( [[a]] \\).",
+   "This forgets to reduce the exponent by 1, using \\( ([[n]]) \\) instead of \\( ([[n]]-1) \\).",
+   "This is the function value \\( f([[x0]],[[y0]]) \\), not its partial derivative.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_exponential_chain_rule_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "derived": {
+   "d": "-([[b]]*[[x0]] + [[c]]*[[y0]])"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]e^{[[b]]x + [[c]]y + ([[d]])} \\) (note the exponent is engineered to equal \\( 0 \\) at \\( ([[x0]], [[y0]]) \\), so \\( f([[x0]],[[y0]])=[[a]] \\)). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\), found using the chain rule (with \\( y \\) held constant)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*exp([[b]]*x + [[c]]*[[y0]] + [[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]",
+   "[[b]]",
+   "[[a]]*[[c]]",
+   "[[a]] + [[b]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule (treating \\( y \\) as constant), \\( f_{x}(x,y) = [[a]]([[b]])e^{[[b]]x+[[c]]y+([[d]])} \\). At \\( ([[x0]],[[y0]]) \\) the exponent is \\( 0 \\), so \\( e^{0}=1 \\) and \\( f_{x} = [[a]]([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to multiply by the inner derivative \\( [[b]] \\), using the function value \\( f=a \\) instead.",
+   "This keeps only the inner-derivative factor \\( [[b]] \\) and drops the outer coefficient \\( [[a]] \\).",
+   "This multiplies \\( [[a]] \\) by the coefficient of \\( y \\) instead of the coefficient of \\( x \\).",
+   "This adds the two coefficients instead of multiplying them.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_logarithm_chain_rule_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": 1, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "derived": {
+   "d": "1 - [[b]]*[[x0]] - [[c]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]\\ln([[b]]x + [[c]]y + ([[d]])) \\) (the argument of \\( \\ln \\) is engineered to equal \\( 1 \\) at \\( ([[x0]], [[y0]]) \\)). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\), found using the chain rule (with \\( y \\) held constant)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*log([[b]]*x + [[c]]*[[y0]] + [[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]/[[b]]",
+   "[[a]]/[[c]]",
+   "[[b]]",
+   "-[[a]]*[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule (treating \\( y \\) as constant), \\( f_{x}(x,y) = \\dfrac{[[a]]([[b]])}{[[b]]x+[[c]]y+([[d]])} \\). At \\( ([[x0]],[[y0]]) \\) the argument of \\( \\ln \\) is \\( 1 \\), so \\( f_{x} = [[a]]([[b]])/1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the multiplication, dividing \\( a \\) by \\( b \\) instead of multiplying them.",
+   "This uses the coefficient of \\( y \\) in the denominator instead of the coefficient of \\( x \\) in the numerator.",
+   "This drops the outer coefficient \\( [[a]] \\) entirely.",
+   "This flips the sign of the correct derivative.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_trig_product_rule_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]y^{2}\\sin(x) + ([[b]])xy \\). What is the first-order partial derivative \\( f_{x}(0, [[y0]]) \\) (the partial derivative with respect to \\( x \\), evaluated at the point where \\( x=0 \\), \\( y=[[y0]] \\)), found using the product/chain rule with \\( \\sin \\) and \\( \\cos \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*[[y0]]**2*sin(x) + [[b]]*x*[[y0]]", "var": "x", "at": "0", "order": 1},
+  "distractors": [
+   "[[b]]*[[y0]]",
+   "[[a]]*[[y0]]**2",
+   "[[a]]*[[y0]] + [[b]]*[[y0]]",
+   "-[[a]]*[[y0]]**2 + [[b]]*[[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the product/chain rule (treating \\( y \\) as constant), \\( f_{x}(x,y) = [[a]]y^{2}\\cos(x) + ([[b]])y \\). At \\( x=0 \\), \\( \\cos(0)=1 \\), so \\( f_{x}(0,[[y0]]) = [[a]]([[y0]])^{2} + ([[b]])([[y0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( \\cos(0)=1 \\) term entirely, keeping only the linear part of the product rule.",
+   "This drops the linear term \\( by \\) from the product rule, keeping only the trig part.",
+   "This uses \\( y_{0} \\) instead of \\( y_{0}^{2} \\) in the trig-derived term, as if the exponent on \\( y \\) were forgotten.",
+   "This flips the sign of the trig-derived term.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_sqrt_chain_rule_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": 1, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "derived": {
+   "d": "[[k]]**2 - [[b]]*[[x0]] - [[c]]*[[y0]]"
+  },
+  "stem": "Let \\( f(x, y) = [[a]]\\sqrt{[[b]]x + [[c]]y + ([[d]])} \\) (the radicand is engineered to equal \\( [[k]]^{2} \\) at \\( ([[x0]], [[y0]]) \\)). What is the first-order partial derivative \\( f_{x}([[x0]], [[y0]]) \\), found using the chain rule?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*sqrt([[b]]*x + [[c]]*[[y0]] + [[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[b]]/[[k]]",
+   "[[a]]*[[b]]/(2*[[k]]**2)",
+   "[[a]]*[[b]]*[[k]]",
+   "[[a]]/(2*[[k]])",
+   "[[answer]] + Rational(1,2)",
+   "[[answer]] - Rational(1,2)"
+  ],
+  "solution": "By the chain rule, \\( f_{x}(x,y) = \\dfrac{[[a]]([[b]])}{2\\sqrt{[[b]]x+[[c]]y+([[d]])}} \\). At \\( ([[x0]],[[y0]]) \\) the radicand is \\( [[k]]^{2} \\), so \\( \\sqrt{\\cdot}=[[k]] \\) and \\( f_{x} = \\dfrac{[[a]]([[b]])}{2([[k]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor of 2 that comes from differentiating a square root.",
+   "This squares the radical value in the denominator instead of leaving it as \\( 2k \\).",
+   "This multiplies by the radical value instead of dividing by twice it.",
+   "This drops the coefficient \\( [[b]] \\) of the inner linear expression.",
+   "This is off by a half from the correct value.",
+   "This is off by a half from the correct value."
+  ]
+ },
+ {
+  "template_id": "first_order_partial_marginal_product_word_problem_v1",
+  "skill_id": "first_order_partial_derivative_at_a_point",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "L0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "K0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "A firm's output is modeled by \\( Q(L, K) = [[a]]L^{2}K + ([[b]])LK^{2} + ([[c]])L \\), where \\( L \\) is labor and \\( K \\) is capital. The marginal product of labor is the partial derivative \\( Q_{L} \\). What is the marginal product of labor at \\( (L, K) = ([[L0]], [[K0]]) \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*L**2*[[K0]] + [[b]]*L*[[K0]]**2 + [[c]]*L", "var": "L", "at": "[[L0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[L0]]**2*[[K0]] + [[b]]*[[L0]]*[[K0]]**2 + [[c]]*[[L0]]",
+   "[[a]]*[[L0]]**2 + 2*[[b]]*[[L0]]*[[K0]]",
+   "[[a]]*[[L0]]*[[K0]] + [[b]]*[[K0]]**2 + [[c]]",
+   "2*[[a]]*[[L0]]*[[K0]] + [[b]]*[[K0]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Treating \\( K \\) as a constant, \\( Q_{L}(L, K) = 2([[a]])LK + ([[b]])K^{2} + ([[c]]) \\). Evaluating at \\( ([[L0]], [[K0]]) \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the output level \\( Q([[L0]], [[K0]]) \\), not its marginal (partial derivative) with respect to labor.",
+   "This is the marginal product of capital \\( Q_{K} \\), differentiating with respect to the wrong variable.",
+   "This drops the factor of 2 from differentiating \\( L^{2} \\).",
+   "This omits the constant term \\( [[c]] \\) whose \\( L \\)-derivative is \\( [[c]] \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

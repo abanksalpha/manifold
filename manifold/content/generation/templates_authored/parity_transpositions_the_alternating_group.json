@@ -1,0 +1,152 @@
+[
+ {
+  "template_id": "parity_transpositions_the_alternating_group_v1",
+  "skill_id": "parity_transpositions_the_alternating_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 7},
+   "b": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "A permutation \\( \\sigma \\) is a product of two disjoint cycles, one of length [[a]] and one of length [[b]]. What is the minimum number of transpositions (2-cycles) whose product equals \\( \\sigma \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]] - 1) + ([[b]] - 1)"},
+  "distractors": [
+   "[[a]] + [[b]]",
+   "([[a]] - 1)*([[b]] - 1)",
+   "[[answer]] - 1",
+   "[[answer]] + 1",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "A cycle of length \\( \\ell \\) is a product of \\( \\ell - 1 \\) transpositions, and disjoint cycles add, so \\( \\sigma \\) needs \\( ([[a]] - 1) + ([[b]] - 1) = [[answer]] \\) transpositions.",
+  "distractor_rationales": [
+   "This adds the cycle lengths without subtracting one per cycle.",
+   "This multiplies \\( (a-1)(b-1) \\) instead of adding the transposition counts.",
+   "This is off by one from the minimum count.",
+   "This is off by one from the minimum count.",
+   "This is off by two from the minimum count.",
+   "This is off by three from the minimum count."
+  ]
+ },
+ {
+  "template_id": "parity_single_cycle_transposition_count_v1",
+  "skill_id": "parity_transpositions_the_alternating_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": 2, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "A single cycle \\( \\sigma = (c_1\\; c_2\\; \\cdots\\; c_{[[k]]}) \\) has length [[k]]. What is the minimum number of transpositions needed to write \\( \\sigma \\) as their product?",
+  "answer_spec": {"op": "evaluate", "expr": "[[k]] - 1"},
+  "distractors": [
+   "[[k]]",
+   "[[k]] + 1",
+   "[[k]] - 2",
+   "Rational([[k]], 2)",
+   "2*([[k]] - 1)",
+   "1"
+  ],
+  "solution": "A \\( k \\)-cycle decomposes as \\( (c_1\\;c_2\\;\\cdots\\;c_k) = (c_1\\;c_k)(c_1\\;c_{k-1})\\cdots(c_1\\;c_2) \\), a product of exactly \\( k - 1 \\) transpositions, and no shorter decomposition exists.",
+  "distractor_rationales": [
+   "This mistakes the cycle length itself for the transposition count.",
+   "This overshoots by one beyond the correct minimum.",
+   "This undershoots by one below the correct minimum.",
+   "This mistakenly halves the cycle length.",
+   "This doubles the correct minimum count.",
+   "This assumes every cycle can be written as a single transposition, which is false for \\( k > 2 \\)."
+  ]
+ },
+ {
+  "template_id": "parity_sign_from_cycle_type_v1",
+  "skill_id": "parity_transpositions_the_alternating_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 9},
+   "b": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "A permutation \\( \\sigma \\) is a product of two disjoint cycles, of lengths [[a]] and [[b]]. Recall the sign of a permutation is \\( \\operatorname{sgn}(\\sigma) = (-1)^{t} \\), where \\( t \\) is the number of transpositions in any decomposition of \\( \\sigma \\). What is \\( \\operatorname{sgn}(\\sigma) \\) (that is, is \\( \\sigma \\) an even or an odd permutation, reported as \\( +1 \\) or \\( -1 \\))?",
+  "answer_spec": {"op": "evaluate", "expr": "(-1)**(([[a]] - 1) + ([[b]] - 1))"},
+  "distractors": [
+   "-((-1)**(([[a]] - 1) + ([[b]] - 1)))",
+   "0",
+   "[[a]] - [[b]]",
+   "[[a]] + [[b]]",
+   "[[a]]*[[b]]",
+   "[[a]]"
+  ],
+  "solution": "A cycle of length \\( \\ell \\) contributes \\( \\ell - 1 \\) transpositions, so \\( t = ([[a]]-1)+([[b]]-1) \\) here, and \\( \\operatorname{sgn}(\\sigma) = (-1)^{t} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the correct sign.",
+   "The sign of a permutation is always \\( \\pm 1 \\), never 0.",
+   "This confuses the sign (\\( \\pm 1 \\)) with an unrelated difference of the cycle lengths.",
+   "This confuses the sign (\\( \\pm 1 \\)) with the sum of the cycle lengths.",
+   "This confuses the sign (\\( \\pm 1 \\)) with the product of the cycle lengths.",
+   "This reports one cycle length itself instead of the sign."
+  ]
+ },
+ {
+  "template_id": "parity_sign_from_transposition_count_v1",
+  "skill_id": "parity_transpositions_the_alternating_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "int", "lo": 2, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "A permutation \\( \\sigma \\) is written (not necessarily disjointly) as a product of exactly [[m]] transpositions. Since the parity of the number of transpositions in ANY decomposition of \\( \\sigma \\) is always the same, what is \\( \\operatorname{sgn}(\\sigma) = (-1)^{[[m]]} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(-1)**[[m]]"},
+  "distractors": [
+   "-((-1)**[[m]])",
+   "[[m]]",
+   "0",
+   "(-1)**([[m]] + 1)",
+   "(-1)**([[m]] - 1)",
+   "2"
+  ],
+  "solution": "The sign of a permutation written as a product of [[m]] transpositions is \\( (-1)^{[[m]]} = [[answer]] \\), regardless of how the transpositions were chosen, since parity of the count is a well-defined invariant of \\( \\sigma \\).",
+  "distractor_rationales": [
+   "This flips the correct sign.",
+   "This reports the transposition count itself instead of the sign.",
+   "The sign of a permutation is always \\( \\pm 1 \\), never 0.",
+   "This is off by one in the exponent's parity, flipping the sign.",
+   "This is off by one in the exponent's parity, flipping the sign.",
+   "The sign of a permutation is always \\( \\pm 1 \\), never 2."
+  ]
+ },
+ {
+  "template_id": "parity_product_of_two_permutations_v1",
+  "skill_id": "parity_transpositions_the_alternating_group",
+  "topic_id": "group_theory",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 2, "hi": 8},
+   "b": {"type": "int", "lo": 2, "hi": 8},
+   "c": {"type": "int", "lo": 2, "hi": 8},
+   "d": {"type": "int", "lo": 2, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], [[b]])", "Ne([[c]], [[d]])"],
+  "stem": "Permutation \\( \\sigma \\) is a product of two disjoint cycles of lengths [[a]] and [[b]]; permutation \\( \\tau \\) (on a disjoint set of points) is a product of two disjoint cycles of lengths [[c]] and [[d]]. Using the fact that \\( \\operatorname{sgn} \\) is a homomorphism (\\( \\operatorname{sgn}(\\sigma\\tau) = \\operatorname{sgn}(\\sigma)\\operatorname{sgn}(\\tau) \\)), what is \\( \\operatorname{sgn}(\\sigma\\tau) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "(-1)**(([[a]]-1)+([[b]]-1)) * (-1)**(([[c]]-1)+([[d]]-1))"},
+  "distractors": [
+   "-((-1)**(([[a]]-1)+([[b]]-1)) * (-1)**(([[c]]-1)+([[d]]-1)))",
+   "0",
+   "[[a]]+[[b]]+[[c]]+[[d]]",
+   "[[a]]*[[b]]*[[c]]*[[d]]",
+   "[[a]]+[[b]]-[[c]]-[[d]]",
+   "[[a]] - [[c]]"
+  ],
+  "solution": "\\( \\operatorname{sgn}(\\sigma) = (-1)^{([[a]]-1)+([[b]]-1)} \\) and \\( \\operatorname{sgn}(\\tau) = (-1)^{([[c]]-1)+([[d]]-1)} \\); since \\( \\operatorname{sgn} \\) is multiplicative, \\( \\operatorname{sgn}(\\sigma\\tau) \\) is their product, \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the correct sign.",
+   "The sign of a permutation is always \\( \\pm 1 \\), never 0.",
+   "This adds the raw cycle lengths instead of multiplying the two signs.",
+   "This multiplies the raw cycle lengths instead of multiplying the two signs.",
+   "This mixes the cycle lengths with the wrong signs instead of computing \\( \\operatorname{sgn}(\\sigma)\\operatorname{sgn}(\\tau) \\).",
+   "This subtracts unrelated cycle lengths instead of multiplying the two signs."
+  ]
+ }
+]

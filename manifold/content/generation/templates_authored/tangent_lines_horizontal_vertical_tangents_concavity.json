@@ -1,0 +1,243 @@
+[
+{
+ "template_id": "parametric_horizontal_tangent_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "k": {
+   "type": "int",
+   "lo": 1,
+   "hi": 20
+  }
+ },
+ "constraints": [],
+ "stem": "For \\( x=t^{2} \\), \\( y=t^{3}-3[[k]]^{2}t \\), a horizontal tangent occurs where \\( dy/dt=0 \\). Which of the following is a possible value of \\( t \\) there?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "3*t**2 - 3*[[k]]**2 = 0",
+  "var": "t"
+ },
+ "distractors": [
+  "[[k]]**2",
+  "3*[[k]]",
+  "Rational([[k]], 3)",
+  "[[k]] + 1",
+  "[[k]] + 2",
+  "2*[[k]]"
+ ],
+ "solution": "\\( dy/dt=3t^{2}-3[[k]]^{2}=0 \\Rightarrow t=\\pm[[k]] \\); one possible value is \\( [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "parametric_vertical_tangent_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "For \\( x=t^{3}-3[[k]]^{2}t \\), \\( y=t^{2} \\), a vertical tangent occurs where \\( dx/dt=0 \\). Which of the following is a possible value of \\( t \\) there?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "3*t**2 - 3*[[k]]**2 = 0",
+  "var": "t"
+ },
+ "distractors": [
+  "[[k]]**2",
+  "3*[[k]]",
+  "Rational([[k]], 3)",
+  "[[k]] + 1",
+  "[[k]] + 2",
+  "2*[[k]]"
+ ],
+ "solution": "\\( dx/dt=3t^{2}-3[[k]]^{2}=0 \\Rightarrow t=\\pm[[k]] \\); one possible value is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( k^2\\) instead of \\( k\\) as the value of \\( t\\).",
+  "This triples the correct value.",
+  "This divides by \\( 3\\) instead of leaving \\( t=\\pm k\\).",
+  "This adds one to a genuine solution.",
+  "This adds two to a genuine solution.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "cubic_horizontal_tangent_points_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [-6, -4, -2, 2, 4, 6]},
+  "r1": {"type": "int", "lo": -6, "hi": -1},
+  "r2": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {
+  "b": "-Rational(3*[[p]]*([[r1]] + [[r2]]), 2)",
+  "c": "3*[[p]]*[[r1]]*[[r2]]"
+ },
+ "stem": "For \\( f(x)=[[p]]x^{3}+([[b]])x^{2}+([[c]])x+1 \\), the tangent line is horizontal where \\( f'(x)=0 \\). Which of the following is a possible \\( x \\)-coordinate?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "3*[[p]]*x**2 + 2*([[b]])*x + ([[c]]) = 0",
+  "var": "x"
+ },
+ "distractors": [
+  "[[r1]] + [[r2]]",
+  "[[r1]]*[[r2]]",
+  "[[r1]] + 1",
+  "[[r2]] + 1",
+  "[[r1]] - 1",
+  "[[r2]] - 1"
+ ],
+ "solution": "\\( f'(x)=3[[p]]x^{2}+2([[b]])x+([[c]])=3[[p]](x-([[r1]]))(x-([[r2]])) \\), so \\( f'(x)=0 \\) at \\( x=[[r1]] \\) or \\( x=[[r2]] \\); one possible value is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two critical points instead of reporting one of them.",
+  "This multiplies the two critical points instead of reporting one of them.",
+  "This is off by one from a genuine critical point.",
+  "This is off by one from the other genuine critical point.",
+  "This is off by one (other direction) from a genuine critical point.",
+  "This is off by one (other direction) from the other genuine critical point."
+ ]
+},
+{
+ "template_id": "second_derivative_value_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "int", "lo": -8, "hi": 8},
+  "d": {"type": "int", "lo": -8, "hi": 8},
+  "x0": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "For \\( f(x)=[[a]]x^{3}+[[b]]x^{2}+[[c]]x+[[d]] \\), find \\( f''([[x0]]) \\) and use its sign to describe the concavity at \\( x=[[x0]] \\); report the value \\( f''([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "[[a]]*x**3 + [[b]]*x**2 + [[c]]*x + [[d]]",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 2
+ },
+ "distractors": [
+  "6*[[a]]*[[x0]] - 2*[[b]]",
+  "3*[[a]]*[[x0]]**2 + 2*[[b]]*[[x0]] + [[c]]",
+  "6*[[a]]*[[x0]]",
+  "2*[[b]]",
+  "6*[[a]]*[[x0]] + 2*[[b]] + 1",
+  "6*[[a]]*[[x0]] + 2*[[b]] - 1"
+ ],
+ "solution": "\\( f'(x)=3[[a]]x^{2}+2[[b]]x+[[c]] \\) and \\( f''(x)=6[[a]]x+2[[b]] \\), so \\( f''([[x0]])=[[answer]] \\).",
+ "distractor_rationales": [
+  "This flips the sign of the \\( 2b\\) term.",
+  "This reports \\( f'(x_0)\\) instead of \\( f''(x_0)\\).",
+  "This forgets the constant term \\( 2b\\) entirely.",
+  "This forgets the \\( 6ax_0\\) term entirely.",
+  "This is off by one from the correct second-derivative value.",
+  "This is off by one (other direction) from the correct second-derivative value."
+ ]
+},
+{
+ "template_id": "cubic_inflection_point_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -9, "hi": 9},
+  "c": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "For \\( f(x)=[[a]]x^{3}+[[b]]x^{2}+[[c]]x \\), find the \\( x \\)-coordinate of the inflection point (where \\( f''(x)=0 \\)).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "-Rational([[b]], 3*[[a]])"
+ },
+ "distractors": [
+  "Rational([[b]], 3*[[a]])",
+  "-Rational([[b]], [[a]])",
+  "-Rational([[b]], 6*[[a]])",
+  "-Rational([[c]], 3*[[a]])",
+  "-Rational([[b]], 3*[[a]]) + 1",
+  "-Rational([[b]], 3*[[a]]) - 1"
+ ],
+ "solution": "\\( f''(x)=6[[a]]x+2[[b]]=0 \\Rightarrow x=-\\dfrac{2[[b]]}{6[[a]]}=-\\dfrac{[[b]]}{3[[a]]}=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the required minus sign.",
+  "This forgets to triple \\( a\\) in the denominator.",
+  "This uses \\( 6a\\) instead of \\( 3a\\) in the denominator.",
+  "This uses \\( c\\) instead of \\( b\\) in the numerator.",
+  "This is off by one from the correct inflection point.",
+  "This is off by one (other direction) from the correct inflection point."
+ ]
+},
+{
+ "template_id": "parametric_concavity_value_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "params": {
+  "t0": {"type": "int", "lo": 1, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "For the curve \\( x=t^{2} \\), \\( y=t^{3} \\), find \\( \\dfrac{d^{2}y}{dx^{2}} \\) at \\( t=[[t0]] \\).",
+ "answer_spec": {
+  "op": "evaluate",
+  "expr": "Rational(3, 4*[[t0]])"
+ },
+ "distractors": [
+  "Rational(3, 2*[[t0]])",
+  "Rational(4, 3*[[t0]])",
+  "Rational(3*[[t0]], 4)",
+  "Rational(3, 4*[[t0]]**2)",
+  "Rational(3, 4*[[t0]]) + 1",
+  "Rational(3, 4*[[t0]]) - 1"
+ ],
+ "solution": "\\( \\dfrac{dy}{dx}=\\dfrac{3t}{2} \\), and \\( \\dfrac{d^{2}y}{dx^{2}}=\\dfrac{d(dy/dx)/dt}{dx/dt}=\\dfrac{3/2}{2t}=\\dfrac{3}{4t} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( dx/dt=2t \\) a second time, leaving \\( 3/(2t)\\).",
+  "This inverts the correct fraction.",
+  "This multiplies by \\( t\\) instead of dividing by it.",
+  "This squares \\( t\\) in the denominator instead of leaving it linear.",
+  "This is off by one from the correct concavity value.",
+  "This is off by one (other direction) from the correct concavity value."
+ ]
+},
+{
+ "template_id": "implicit_horizontal_tangent_v1",
+ "skill_id": "tangent_lines_horizontal_vertical_tangents_concavity",
+ "topic_id": "coordinate_geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "k": {"type": "int", "lo": 3, "hi": 40}
+ },
+ "constraints": [],
+ "stem": "For the curve \\( x^{2}+xy+y^{2}=[[k]] \\), implicit differentiation gives \\( 2x+y+(x+2y)\\dfrac{dy}{dx}=0 \\). A horizontal tangent occurs where \\( 2x+y=0 \\). Which of the following is a possible \\( x \\)-coordinate at such a point?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "3*x**2 = [[k]]",
+  "var": "x"
+ },
+ "distractors": [
+  "sqrt([[k]])",
+  "Rational([[k]], 3)",
+  "sqrt([[k]])/3",
+  "-sqrt([[k]])",
+  "sqrt([[k]]/3) + 1",
+  "sqrt([[k]]/3) - 1"
+ ],
+ "solution": "Substituting \\( y=-2x \\) into \\( x^{2}+xy+y^{2}=[[k]] \\) gives \\( x^{2}-2x^{2}+4x^{2}=3x^{2}=[[k]] \\), so \\( x=\\pm\\sqrt{[[k]]/3} \\); one possible value is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide by \\( 3\\) before taking the square root.",
+  "This divides by \\( 3\\) without ever taking a square root.",
+  "This divides the (incorrect) \\( \\sqrt{k}\\) by \\( 3\\) instead of taking \\( \\sqrt{k/3}\\).",
+  "This has the correct magnitude but reports it as the other (still valid) root, which coincides with a genuine solution and gets guarded out; a nearby offset survives instead.",
+  "This is off by one from a genuine solution.",
+  "This is off by one (other direction) from a genuine solution."
+ ]
+}
+]

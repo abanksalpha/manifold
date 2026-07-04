@@ -1,0 +1,100 @@
+[
+{
+ "template_id": "triangle_area_included_angle_v1",
+ "skill_id": "law_of_sines_triangle_area_with_an_included_angle",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 12},
+  "b": {"type": "int", "lo": 2, "hi": 12},
+  "deg": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150]}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "A triangle has two sides of length \\( [[a]] \\) and \\( [[b]] \\) with an included angle of \\( [[deg]]^\\circ \\). What is the area of the triangle?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(1,2)*[[a]]*[[b]]*sin([[deg]]*pi/180)"},
+ "distractors": [
+  "[[a]]*[[b]]*sin([[deg]]*pi/180)",
+  "Rational(1,2)*[[a]]*[[b]]",
+  "Rational(1,2)*[[a]]*[[b]]*cos([[deg]]*pi/180)",
+  "[[a]]*[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The area of a triangle from two sides and the included angle is \\( \\tfrac12 ab\\sin C = \\tfrac12\\cdot[[a]]\\cdot[[b]]\\cdot\\sin([[deg]]^\\circ) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the factor of \\( \\tfrac12 \\) in the area formula.",
+  "This uses \\( \\tfrac12 ab \\) as if \\( \\sin C = 1 \\) (a right angle).",
+  "This uses \\( \\cos C \\) in place of \\( \\sin C \\).",
+  "This is just the product of the two sides.",
+  "This is off by one from the correct area.",
+  "This is off by one from the correct area.",
+  "This is off by two from the correct area."
+ ]
+},
+{
+ "template_id": "law_of_sines_missing_side_v1",
+ "skill_id": "law_of_sines_triangle_area_with_an_included_angle",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 3, "hi": 20},
+  "degA": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150]},
+  "degB": {"type": "choice", "values": [30, 45, 60, 90, 120, 135, 150]}
+ },
+ "constraints": ["Lt([[degA]] + [[degB]], 180)"],
+ "require_rational": false,
+ "stem": "In a triangle, side \\( a=[[a]] \\) is opposite an angle of \\( [[degA]]^\\circ \\), and a second angle measures \\( [[degB]]^\\circ \\). Find the length of the side opposite the \\( [[degB]]^\\circ \\) angle.",
+ "answer_spec": {"op": "evaluate", "expr": "[[a]]*sin([[degB]]*pi/180)/sin([[degA]]*pi/180)"},
+ "distractors": [
+  "[[a]]*sin([[degA]]*pi/180)/sin([[degB]]*pi/180)",
+  "[[a]]*sin([[degB]]*pi/180)",
+  "[[a]]*cos([[degB]]*pi/180)/cos([[degA]]*pi/180)",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "By the Law of Sines, \\( \\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} \\), so \\( b = \\dfrac{a\\sin B}{\\sin A} = \\dfrac{[[a]]\\cdot\\sin([[degB]]^\\circ)}{\\sin([[degA]]^\\circ)} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio, using \\( \\sin A/\\sin B \\) instead of \\( \\sin B/\\sin A \\).",
+  "This forgets to divide by \\( \\sin A \\).",
+  "This uses cosines instead of sines in the Law of Sines ratio.",
+  "This just returns the given side length unchanged.",
+  "This is off by one from the correct value.",
+  "This is half the correct value."
+ ]
+},
+{
+ "template_id": "law_of_sines_missing_angle_v1",
+ "skill_id": "law_of_sines_triangle_area_with_an_included_angle",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 6, "hi": 20},
+  "b": {"type": "int", "lo": 2, "hi": 5},
+  "degA": {"type": "choice", "values": [30, 45, 60, 90, 120]}
+ },
+ "constraints": ["Le([[b]], [[a]])"],
+ "require_rational": false,
+ "stem": "In a triangle, side \\( a=[[a]] \\) is opposite an angle \\( A=[[degA]]^\\circ \\), and a second side has length \\( b=[[b]] \\). Find the measure (in radians) of the angle \\( B \\) opposite side \\( b \\), assuming \\( B \\) is acute.",
+ "answer_spec": {"op": "evaluate", "expr": "asin([[b]]*sin([[degA]]*pi/180)/[[a]])"},
+ "distractors": [
+  "asin([[a]]*sin([[degA]]*pi/180)/[[b]])",
+  "acos([[b]]*sin([[degA]]*pi/180)/[[a]])",
+  "[[degA]]*pi/180",
+  "pi - [[answer]]",
+  "[[answer]]/2",
+  "2*[[answer]]"
+ ],
+ "solution": "By the Law of Sines, \\( \\dfrac{\\sin B}{b} = \\dfrac{\\sin A}{a} \\), so \\( \\sin B = \\dfrac{b\\sin A}{a} \\) and (taking the acute solution) \\( B = \\arcsin\\dfrac{[[b]]\\cdot\\sin([[degA]]^\\circ)}{[[a]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of the two sides.",
+  "This uses \\( \\arccos \\) in place of \\( \\arcsin \\).",
+  "This just returns angle \\( A \\) unchanged, ignoring the different side.",
+  "This uses the obtuse supplement instead of the acute angle.",
+  "This halves the correct angle.",
+  "This doubles the correct angle."
+ ]
+}
+]

@@ -178,7 +178,10 @@ fn studied_topic_is_in_progress_before_mastery() {
     let ea = find(&nodes, "elementary_algebra");
 
     assert_eq!(ea.mastered, 0, "5d stability is below the 21d relearn bar");
-    assert!(ea.avg_stability > 0.0, "the studied card gives the topic stability");
+    assert!(
+        ea.avg_stability > 0.0,
+        "the studied card gives the topic stability"
+    );
     assert_eq!(
         ea.lock_state, "in_progress",
         "a studied-but-unmastered topic is in progress, not bare unlocked"
@@ -234,11 +237,12 @@ fn non_root_unlocks_when_prereqs_competent() {
 #[test]
 fn recognize_tier_masters_at_lower_stability() {
     let mut col = Collection::new();
-    // number_theory is recognize-tier: it masters at a lower stability bar (7d)
-    // than the calculus core (relearn/teach, 21d). Give each skill ~10d stability.
-    let recognize: Vec<Card> = ["n0", "n1", "n2", "n3", "n4"]
+    // metric_topology is recognize-tier: it masters at a lower stability bar
+    // (7d) than the relearn/teach core (21d). Give each skill ~10d stability.
+    // (number_theory used to sit here, but D27 promoted it to teach.)
+    let recognize: Vec<Card> = ["m0", "m1", "m2", "m3", "m4"]
         .into_iter()
-        .map(|s| add_skill_card(&mut col, "number_theory", s, "recognize"))
+        .map(|s| add_skill_card(&mut col, "metric_topology", s, "recognize"))
         .collect();
     for card in &recognize {
         mark_due_review(&mut col, card, 10.0, 5);
@@ -249,15 +253,15 @@ fn recognize_tier_masters_at_lower_stability() {
 
     let nodes = compute_topic_graph(&mut col).unwrap();
 
-    let nt = find(&nodes, "number_theory");
+    let mt = find(&nodes, "metric_topology");
     assert!(
-        (nt.avg_stability - 10.0).abs() < 0.01,
+        (mt.avg_stability - 10.0).abs() < 0.01,
         "avg_stability = {}",
-        nt.avg_stability
+        mt.avg_stability
     );
     // 10d ≥ the 7d recognize bar → all 5 skills mastered → clears the 0.6 target.
-    assert_eq!(nt.mastered, 5);
-    assert_eq!(nt.lock_state, "mastered");
+    assert_eq!(mt.mastered, 5);
+    assert_eq!(mt.lock_state, "mastered");
 
     // 10d < the 21d relearn bar → nothing mastered.
     let ea = find(&nodes, "elementary_algebra");
@@ -277,7 +281,7 @@ fn session_serves_only_unlocked_roots_when_fresh() {
     add_skill_card(&mut col, "precalc_functions", "pt_a", "relearn");
     add_skill_card(&mut col, "linear_algebra_core", "la_a", "teach");
 
-    let items = build_session_queue(&mut col).unwrap();
+    let items = build_session_queue(&mut col, true).unwrap();
 
     assert_eq!(
         items.len(),
@@ -309,7 +313,7 @@ fn session_unlocks_dependents_after_prereq_competent() {
     for card in &ea[..3] {
         add_revlog(&mut col, card, RevlogReviewKind::Review, 3);
     }
-    let before = build_session_queue(&mut col).unwrap();
+    let before = build_session_queue(&mut col, true).unwrap();
     assert!(
         !topic_sequence(&before).contains(&"precalc_functions"),
         "a locked dependent must not contribute: {:?}",
@@ -318,7 +322,7 @@ fn session_unlocks_dependents_after_prereq_competent() {
 
     // 4 / 5 answered correctly (0.8): precalc_functions unlocks and contributes.
     add_revlog(&mut col, &ea[3], RevlogReviewKind::Review, 3);
-    let after = build_session_queue(&mut col).unwrap();
+    let after = build_session_queue(&mut col, true).unwrap();
     assert!(
         topic_sequence(&after).contains(&"precalc_functions"),
         "an unlocked dependent should contribute: {:?}",
@@ -339,7 +343,7 @@ fn due_cards_order_by_points_at_stake() {
     let weak_high = add_skill_card(&mut col, "precalc_functions", "pt", "relearn");
     mark_due_review(&mut col, &weak_high, 1.0, 100);
 
-    let items = build_session_queue(&mut col).unwrap();
+    let items = build_session_queue(&mut col, true).unwrap();
 
     // Every due card is served regardless of lock, ordered by weight × (1 − R).
     assert_eq!(
@@ -356,7 +360,7 @@ fn new_card_budget_is_respected() {
         add_skill_card(&mut col, "elementary_algebra", &format!("ea{i}"), "relearn");
     }
 
-    let items = build_session_queue(&mut col).unwrap();
+    let items = build_session_queue(&mut col, true).unwrap();
 
     assert_eq!(items.len(), budget, "the daily new budget caps the queue");
     assert!(items.iter().all(|i| i.topic_id == "elementary_algebra"));
@@ -426,7 +430,7 @@ fn session_items_carry_teaching_level() {
     add_revlog(&mut col, &review, RevlogReviewKind::Review, 3);
     add_skill_card(&mut col, "elementary_algebra", "new1", "relearn"); // New -> 0
 
-    let items = build_session_queue(&mut col).unwrap();
+    let items = build_session_queue(&mut col, true).unwrap();
 
     let due = items.iter().find(|i| i.skill_id == "due1").unwrap();
     assert_eq!(
@@ -447,14 +451,18 @@ fn session_orders_by_tier_circles_then_squares_then_diamonds() {
     mark_due_review(&mut col, &relearn, 1000.0, 0); // R ~ 1 -> near-zero points
     let teach = add_skill_card(&mut col, "linear_algebra_core", "la", "teach");
     mark_due_review(&mut col, &teach, 1.0, 100); // weak -> high points
-    let recognize = add_skill_card(&mut col, "number_theory", "nt", "recognize");
+    let recognize = add_skill_card(&mut col, "metric_topology", "mt", "recognize");
     mark_due_review(&mut col, &recognize, 1.0, 100); // weak -> high points
 
-    let items = build_session_queue(&mut col).unwrap();
+    let items = build_session_queue(&mut col, true).unwrap();
 
     assert_eq!(
         topic_sequence(&items),
-        ["elementary_algebra", "linear_algebra_core", "number_theory"],
+        [
+            "elementary_algebra",
+            "linear_algebra_core",
+            "metric_topology"
+        ],
         "tier order (relearn -> teach -> recognize) outranks points-at-stake"
     );
 }
@@ -462,10 +470,11 @@ fn session_orders_by_tier_circles_then_squares_then_diamonds() {
 #[test]
 fn interleaving_spreads_consecutive_topics() {
     let mut col = Collection::new();
-    // Two overdue cards in one topic (high points) and one freshly-reviewed card
-    // in another (near-zero points). A pure points order would place the two
-    // same-topic cards back to back; interleaving must separate them. Both topics
-    // are relearn, so tier ordering does not reorder across them.
+    // Interleaving ON (the WS5 default). Two overdue cards in one topic (high
+    // points) and one freshly-reviewed card in another (near-zero points). A
+    // pure points order would place the two same-topic cards back to back;
+    // interleaving must separate them. Both topics are relearn, so tier ordering
+    // does not reorder across them. The blocked (OFF) arm is the next test.
     let a_hi = add_skill_card(&mut col, "elementary_algebra", "a_hi", "relearn");
     mark_due_review(&mut col, &a_hi, 10.0, 40);
     let a_lo = add_skill_card(&mut col, "elementary_algebra", "a_lo", "relearn");
@@ -473,16 +482,130 @@ fn interleaving_spreads_consecutive_topics() {
     let other = add_skill_card(&mut col, "precalc_functions", "pf", "relearn");
     mark_due_review(&mut col, &other, 1000.0, 0);
 
-    let items = build_session_queue(&mut col).unwrap();
+    let items = build_session_queue(&mut col, true).unwrap();
 
     let topics = topic_sequence(&items);
     assert_eq!(topics.len(), 3);
     assert_eq!(
         topics,
-        ["elementary_algebra", "precalc_functions", "elementary_algebra"],
+        [
+            "elementary_algebra",
+            "precalc_functions",
+            "elementary_algebra"
+        ],
         "consecutive items should come from different topics where possible"
     );
     // Sanity: the set of distinct topics is exactly the two authored.
     let distinct: HashSet<&str> = topics.iter().copied().collect();
     assert_eq!(distinct.len(), 2);
+}
+
+#[test]
+fn interleave_off_serves_blocked_by_topic() {
+    let mut col = Collection::new();
+    // Same fixture as the interleaving test, but with the toggle OFF. Blocked
+    // practice must serve one topic's cards back-to-back (a topic drained before
+    // the next), the exact opposite of the spread above — while still ordering
+    // topics and within-topic items by points-at-stake.
+    let a_hi = add_skill_card(&mut col, "elementary_algebra", "a_hi", "relearn");
+    mark_due_review(&mut col, &a_hi, 10.0, 40);
+    let a_lo = add_skill_card(&mut col, "elementary_algebra", "a_lo", "relearn");
+    mark_due_review(&mut col, &a_lo, 10.0, 20);
+    let other = add_skill_card(&mut col, "precalc_functions", "pf", "relearn");
+    mark_due_review(&mut col, &other, 1000.0, 0);
+
+    let items = build_session_queue(&mut col, false).unwrap();
+
+    let topics = topic_sequence(&items);
+    assert_eq!(topics.len(), 3);
+    assert_eq!(
+        topics,
+        [
+            "elementary_algebra",
+            "elementary_algebra",
+            "precalc_functions"
+        ],
+        "with interleaving off, a topic is exhausted before the next (blocked)"
+    );
+    // The higher-points elementary_algebra topic (weakest cards) still leads,
+    // and its two cards are contiguous rather than split by the other topic.
+    let distinct: HashSet<&str> = topics.iter().copied().collect();
+    assert_eq!(distinct.len(), 2);
+}
+
+#[test]
+fn read_only_rpcs_add_no_undo_entry() {
+    let mut col = Collection::new();
+    // A studied collection, so both RPCs have real work: a due review card
+    // (performance evidence) plus an unlocked new skill under a root topic.
+    let review = add_skill_card(&mut col, "elementary_algebra", "s_review", "relearn");
+    mark_due_review(&mut col, &review, 5.0, 3);
+    add_revlog(&mut col, &review, RevlogReviewKind::Review, 3);
+    add_skill_card(&mut col, "elementary_algebra", "s_new", "relearn");
+
+    // Baseline after set-up. Adding the notes above is itself undoable, so the
+    // stack is non-empty by design; the point of this test is that the *RPCs*
+    // add nothing to it and mutate no row.
+    let can_undo_before = col.can_undo().cloned();
+    let last_step_before = col.undo_status().last_step;
+    let cards_before = col.storage.get_all_cards();
+
+    // The two Manifold RPCs, exactly as service.rs invokes them, in both queue
+    // modes. Each returns real data, proving it genuinely read the collection.
+    let nodes = compute_topic_graph(&mut col).unwrap();
+    assert!(
+        nodes.iter().any(|n| n.total > 0),
+        "the topic graph should reflect the studied skills"
+    );
+    let interleaved = build_session_queue(&mut col, true).unwrap();
+    let blocked = build_session_queue(&mut col, false).unwrap();
+    assert!(!interleaved.is_empty() && !blocked.is_empty());
+
+    // Read-only: no undo entry was pushed, the counter did not advance, and
+    // every card row is unchanged.
+    assert_eq!(
+        col.can_undo().cloned(),
+        can_undo_before,
+        "a read-only RPC must not push an undoable op"
+    );
+    assert_eq!(
+        col.undo_status().last_step,
+        last_step_before,
+        "the undo counter must not advance on a pure read"
+    );
+    assert_eq!(
+        col.storage.get_all_cards(),
+        cards_before,
+        "no card may change when only reading the topic graph or queue"
+    );
+}
+
+#[test]
+fn graded_review_still_undoes_correctly() {
+    let mut col = Collection::new();
+    let card = add_skill_card(&mut col, "elementary_algebra", "graded", "relearn");
+    let before = col.storage.get_card(card.id).unwrap().unwrap();
+    // Adding the note is the only op on the stack so far.
+    assert_eq!(col.can_undo(), Some(&Op::AddNote));
+
+    // A normal graded review — the exact path the session player takes
+    // (`gradeNow` -> `grade_now`), rating the card Good (2).
+    col.grade_now(&[card.id], 2).unwrap();
+
+    // Grading is a real, undoable mutation: it records a GradeNow op on top of
+    // the stack and moves the card off its New state.
+    assert_eq!(col.can_undo(), Some(&Op::GradeNow));
+    let after = col.storage.get_card(card.id).unwrap().unwrap();
+    assert_ne!(after, before, "grading must change the card");
+
+    // Undo pops exactly that op, restores the card byte-for-byte, and leaves the
+    // earlier history intact — Manifold's grading rides Anki's normal undo.
+    col.undo().unwrap();
+    let restored = col.storage.get_card(card.id).unwrap().unwrap();
+    assert_eq!(restored, before, "undo must restore the pre-review card");
+    assert_eq!(
+        col.can_undo(),
+        Some(&Op::AddNote),
+        "undo must consume only the GradeNow op, keeping prior history"
+    );
 }

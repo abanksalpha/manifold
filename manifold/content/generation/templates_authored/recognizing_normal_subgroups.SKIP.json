@@ -1,0 +1,4 @@
+{
+ "skill_id": "recognizing_normal_subgroups",
+ "reason": "Deciding whether a subgroup is normal is a yes/no recognition task with no single code-computable scalar answer."
+}

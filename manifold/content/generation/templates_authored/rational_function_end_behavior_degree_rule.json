@@ -1,0 +1,141 @@
+[
+{
+ "template_id": "rational_end_behavior_v1",
+ "skill_id": "rational_function_end_behavior_degree_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "h": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{[[a]]x^{2} + ([[c]])x + ([[d]])}{[[b]]x^{2} + ([[e]])x + ([[h]])} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x**2 + [[c]]*x + [[d]])/([[b]]*x**2 + [[e]]*x + [[h]])", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "0",
+  "1",
+  "[[a]]*[[b]]",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Numerator and denominator have equal degree (2), so the end behavior is the ratio of the leading coefficients: \\( \\lim_{x \\to \\infty} = \\frac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of leading coefficients.",
+  "This is the value when the numerator's degree is smaller, which is not the case here.",
+  "This assumes the ratio approaches 1.",
+  "This multiplies the leading coefficients instead of dividing them.",
+  "This adds the leading coefficients.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "rational_end_behavior_lower_degree_v1",
+ "skill_id": "rational_function_end_behavior_degree_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8},
+  "c": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]},
+  "d": {"type": "int", "lo": -8, "hi": 8},
+  "e": {"type": "int", "lo": -8, "hi": 8},
+  "n": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+ "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\dfrac{[[a]]x + ([[b]])}{[[c]]x^{[[n]]} + ([[d]])x + ([[e]])} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x + [[b]])/([[c]]*x**[[n]] + [[d]]*x + [[e]])", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[a]], [[c]])",
+  "1",
+  "[[a]]",
+  "Rational([[b]], [[e]])",
+  "[[a]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The denominator's degree (\\( [[n]] \\)) exceeds the numerator's degree (1), so the denominator grows faster and the ratio is driven to \\( 0 \\): \\( \\lim_{x \\to \\infty} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes the degrees are equal and takes the ratio of leading coefficients.",
+  "This assumes the ratio approaches 1.",
+  "This reports only the numerator's leading coefficient.",
+  "This uses the ratio of the constant terms instead of recognizing the limit is 0.",
+  "This multiplies the leading coefficients instead of recognizing the limit is 0.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "rational_end_behavior_factored_form_v1",
+ "skill_id": "rational_function_end_behavior_degree_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "r1": {"type": "int", "lo": -7, "hi": 7},
+  "r2": {"type": "int", "lo": -7, "hi": 7},
+  "r3": {"type": "int", "lo": -7, "hi": 7},
+  "r4": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[a]], [[b]])"],
+ "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\dfrac{[[a]](x - ([[r1]]))(x - ([[r2]]))}{[[b]](x - ([[r3]]))(x - ([[r4]]))} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*(x-([[r1]]))*(x-([[r2]])))/([[b]]*(x-([[r3]]))*(x-([[r4]])))", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "0",
+  "1",
+  "[[a]]*[[b]]",
+  "Rational([[r1]]*[[r2]], [[r3]]*[[r4]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Each factored binomial contributes one degree, so both the numerator and denominator are degree \\( 2 \\); expanding, the leading term of the numerator is \\( [[a]]x^{2} \\) and of the denominator is \\( [[b]]x^{2} \\). The specific roots \\( r_1,\\dots,r_4 \\) don't affect the end behavior: \\( \\lim_{x\\to\\infty} = \\frac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of the leading coefficients.",
+  "This mistakenly assumes the denominator has higher degree.",
+  "This assumes the ratio approaches 1.",
+  "This multiplies the leading coefficients instead of dividing them.",
+  "This uses the ratio of the roots' products instead of the leading coefficients.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "rational_end_behavior_slant_slope_v1",
+ "skill_id": "rational_function_end_behavior_degree_rule",
+ "topic_id": "limits_continuity",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "b": {"type": "choice", "values": [-5, -4, -3, -2, 2, 3, 4, 5]},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Let \\( f(x) = \\dfrac{[[a]]x^{3} + ([[c]])x + ([[d]])}{[[b]]x^{2} + ([[e]])x - 2} \\). Since the numerator's degree exceeds the denominator's by exactly \\( 1 \\), \\( f \\) has no horizontal asymptote, but \\( \\dfrac{f(x)}{x} \\) does approach a finite limit (the slope of \\( f \\)'s slant asymptote). Evaluate \\( \\lim_{x \\to \\infty} \\dfrac{f(x)}{x} \\).",
+ "answer_spec": {"op": "limit", "expr": "([[a]]*x**3 + [[c]]*x + [[d]])/(([[b]]*x**2 + [[e]]*x - 2)*x)", "var": "x", "point": "oo"},
+ "distractors": [
+  "Rational([[b]], [[a]])",
+  "0",
+  "[[a]]",
+  "[[a]]*[[b]]",
+  "[[a]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Dividing out the extra degree, \\( \\dfrac{f(x)}{x} = \\dfrac{[[a]]x^{3}+\\cdots}{[[b]]x^{3}+\\cdots} \\) is now a ratio of equal-degree (3) polynomials, so it tends to the ratio of leading coefficients: \\( \\lim_{x\\to\\infty}\\dfrac{f(x)}{x} = \\dfrac{[[a]]}{[[b]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This inverts the ratio of leading coefficients.",
+  "This forgets to divide by the extra factor of \\( x \\), giving the (nonexistent) limit of \\( f(x) \\) itself as if it converged to 0.",
+  "This reports only the numerator's leading coefficient.",
+  "This multiplies the leading coefficients instead of dividing them.",
+  "This adds the leading coefficients.",
+  "This is off by one from the correct limit."
+ ]
+}
+]

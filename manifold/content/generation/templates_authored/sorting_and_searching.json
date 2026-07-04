@@ -1,0 +1,92 @@
+[
+{
+ "template_id": "sorting_quadratic_total_comparisons_v1",
+ "skill_id": "sorting_and_searching",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "A simple comparison-based sort (e.g. selection sort or bubble sort without early exit) is run on a list of [[n]] elements. In the worst case, its \\( i \\)-th pass compares the current element against each of the remaining \\( [[n]]-i \\) elements, for \\( i=1,\\dots,[[n]]-1 \\). What is the total number of comparisons performed?",
+ "answer_spec": {"op": "sum", "expr": "[[n]] - i", "var": "i", "lo": "1", "hi": "[[n]] - 1"},
+ "distractors": ["[[n]]*([[n]] - 1)", "[[n]]*([[n]] + 1)/2", "[[n]]**2", "[[n]] - 1", "[[answer]] + [[n]]", "[[answer]] - 1"],
+ "solution": "The total is the triangular sum \\( \\sum_{i=1}^{[[n]]-1} ([[n]]-i) = \\frac{[[n]]([[n]]-1)}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is exactly double the correct triangular count.",
+  "This uses the inclusive triangular formula instead of counting only \\([[n]]-1\\) passes.",
+  "This treats every pass as comparing against all [[n]] elements instead of the shrinking remainder.",
+  "This is only the number of passes, not the total comparisons across all passes.",
+  "This overshoots the correct total by [[n]].",
+  "This undershoots the correct total by 1."
+ ]
+},
+{
+ "template_id": "sorting_binary_search_remaining_size_v1",
+ "skill_id": "sorting_and_searching",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 50, "hi": 500},
+  "k": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Lt(2**[[k]], [[n]])"],
+ "stem": "A binary search begins on a sorted array of [[n]] elements. Each step compares the target to the middle element and discards half of the remaining elements (rounding down when the remaining count is odd). If the target is not found in the first [[k]] steps, how many elements remain in the search range after those [[k]] steps?",
+ "answer_spec": {"op": "evaluate", "expr": "floor([[n]]/2**[[k]])"},
+ "distractors": ["floor([[n]]/2**([[k]]-1))", "floor([[n]]/2**([[k]]+1))", "[[n]] - [[k]]", "floor([[n]]/[[k]])", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Each step halves (and rounds down) the remaining range, so after [[k]] steps \\( \\left\\lfloor \\frac{[[n]]}{2^{[[k]]}} \\right\\rfloor = [[answer]] \\) elements remain.",
+ "distractor_rationales": [
+  "This stops one halving short of the correct step count.",
+  "This applies one extra halving beyond the correct step count.",
+  "This subtracts the step count from the array size instead of halving repeatedly.",
+  "This divides by the step count instead of by \\(2^{[[k]]}\\).",
+  "This overshoots the correct remaining count by 1.",
+  "This undershoots the correct remaining count by 1."
+ ]
+},
+{
+ "template_id": "sorting_binary_search_worst_case_steps_v1",
+ "skill_id": "sorting_and_searching",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 2000}
+ },
+ "constraints": [],
+ "stem": "A binary search is used to locate a target in a sorted array of [[n]] elements. What is the maximum number of comparisons the algorithm can make before it either finds the target or concludes it is absent?",
+ "answer_spec": {"op": "evaluate", "expr": "ceiling(log([[n]], 2))"},
+ "distractors": ["floor(log([[n]], 2))", "ceiling(log([[n]], 2)) + 1", "ceiling(log([[n]], 2)) - 1", "[[n]]", "ceiling([[n]]/2)", "ceiling(log([[n]], 2)) + 2"],
+ "solution": "Each comparison discards at least half the remaining candidates, so the worst case takes \\( \\lceil \\log_2 [[n]] \\rceil = [[answer]] \\) comparisons.",
+ "distractor_rationales": [
+  "This rounds the logarithm down instead of up, undercounting the needed comparisons.",
+  "This overshoots the correct worst-case step count by 1.",
+  "This undershoots the correct worst-case step count by 1.",
+  "This confuses the worst-case comparison count with a full linear scan of all [[n]] elements.",
+  "This confuses halving the array size once with the number of comparisons needed overall.",
+  "This overshoots the correct worst-case step count by 2."
+ ]
+},
+{
+ "template_id": "sorting_merge_step_comparisons_v1",
+ "skill_id": "sorting_and_searching",
+ "topic_id": "algorithms",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "int", "lo": 2, "hi": 25},
+  "q": {"type": "int", "lo": 2, "hi": 25}
+ },
+ "constraints": [],
+ "stem": "In the merge step of merge sort, two already-sorted subarrays of lengths [[p]] and [[q]] are merged into a single sorted array of length \\( [[p]]+[[q]] \\) by repeatedly comparing the fronts of the two subarrays. What is the maximum possible number of comparisons this merge step can require?",
+ "answer_spec": {"op": "evaluate", "expr": "[[p]] + [[q]] - 1"},
+ "distractors": ["[[p]] + [[q]]", "[[p]]*[[q]]", "[[p]] + [[q]] - 2", "[[p]]*[[q]] - 1", "[[answer]] + 1", "[[answer]] - 1"],
+ "solution": "Once one subarray is exhausted, the rest of the other is appended with no further comparisons, so the worst case is one comparison for every element except the very last one placed: \\( [[p]]+[[q]]-1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes a comparison is needed for every single element placed, including the last one.",
+  "This confuses the number of comparisons with the number of pairs formed by choosing one element from each subarray.",
+  "This is one comparison too few, stopping short of the correct worst-case bound.",
+  "This subtracts one comparison per merged element pair instead of just one overall.",
+  "This overshoots the correct worst-case count by 1.",
+  "This undershoots the correct worst-case count by 1."
+ ]
+}
+]

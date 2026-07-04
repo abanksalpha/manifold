@@ -1,0 +1,229 @@
+[
+{
+ "template_id": "projection_scalar_v1",
+ "skill_id": "orthogonal_projection_onto_a_line_or_subspace_neares",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -3, "hi": 3},
+  "u2": {"type": "int", "lo": -3, "hi": 3},
+  "u3": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -3, "hi": 3},
+  "v2": {"type": "int", "lo": -3, "hi": 3},
+  "v3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2, 0)",
+  "Ne([[v1]]**2 + [[v2]]**2 + [[v3]]**2, 0)",
+  "Ne([[v1]]*[[u1]] + [[v2]]*[[u2]] + [[v3]]*[[u3]], 0)"
+ ],
+ "derived": {
+  "dotvu": "[[v1]]*[[u1]] + [[v2]]*[[u2]] + [[v3]]*[[u3]]",
+  "uu": "[[u1]]**2 + [[u2]]**2 + [[u3]]**2",
+  "vv": "[[v1]]**2 + [[v2]]**2 + [[v3]]**2"
+ },
+ "stem": "Let \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\) and \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\) in \\( \\mathbb{R}^3 \\). The orthogonal projection of \\( \\mathbf{v} \\) onto the line spanned by \\( \\mathbf{u} \\) equals \\( c\\,\\mathbf{u} \\) for a scalar \\( c \\). What is \\( c \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[dotvu]])/([[uu]])"},
+ "distractors": [
+  "([[dotvu]])",
+  "([[dotvu]])/([[vv]])",
+  "-([[dotvu]])/([[uu]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]",
+  "[[answer]] + 2"
+ ],
+ "solution": "The projection scalar is \\( c = \\dfrac{\\mathbf{v}\\cdot\\mathbf{u}}{\\mathbf{u}\\cdot\\mathbf{u}} = \\dfrac{[[dotvu]]}{[[uu]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the dot product \\( \\mathbf{v}\\cdot\\mathbf{u} \\) alone, without dividing by \\( \\mathbf{u}\\cdot\\mathbf{u} \\).",
+  "This divides by \\( \\mathbf{v}\\cdot\\mathbf{v} \\) instead of \\( \\mathbf{u}\\cdot\\mathbf{u} \\).",
+  "This has the wrong sign.",
+  "This is off by one from the correct scalar.",
+  "This is off by one from the correct scalar.",
+  "This doubles the projection scalar.",
+  "This is off by two from the correct scalar."
+ ]
+},
+{
+ "template_id": "projection_squared_distance_line_v2",
+ "skill_id": "orthogonal_projection_onto_a_line_or_subspace_neares",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "u1": {"type": "int", "lo": -3, "hi": 3},
+  "u2": {"type": "int", "lo": -3, "hi": 3},
+  "u3": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -3, "hi": 3},
+  "v2": {"type": "int", "lo": -3, "hi": 3},
+  "v3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[u1]]**2 + [[u2]]**2 + [[u3]]**2, 0)",
+  "Ne(([[u1]]**2+[[u2]]**2+[[u3]]**2)*([[v1]]**2+[[v2]]**2+[[v3]]**2) - ([[v1]]*[[u1]]+[[v2]]*[[u2]]+[[v3]]*[[u3]])**2, 0)"
+ ],
+ "derived": {
+  "dotvu": "[[v1]]*[[u1]] + [[v2]]*[[u2]] + [[v3]]*[[u3]]",
+  "uu": "[[u1]]**2 + [[u2]]**2 + [[u3]]**2",
+  "vv": "[[v1]]**2 + [[v2]]**2 + [[v3]]**2"
+ },
+ "stem": "Let \\( \\mathbf{u} = ([[u1]], [[u2]], [[u3]]) \\) and \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\) in \\( \\mathbb{R}^3 \\), and let \\( L \\) be the line through the origin spanned by \\( \\mathbf{u} \\). What is the SQUARE of the distance from \\( \\mathbf{v} \\) to its nearest point on \\( L \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[uu]])*([[vv]]) - ([[dotvu]])**2)/([[uu]])"},
+ "distractors": [
+  "[[vv]]",
+  "([[dotvu]])/([[uu]])",
+  "(([[dotvu]]))**2/([[uu]])",
+  "[[vv]] - ([[dotvu]])/([[uu]])",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The nearest point on \\( L \\) is the projection \\( \\operatorname{proj}_{\\mathbf{u}}(\\mathbf{v}) \\), and by the Pythagorean theorem the squared distance is \\( \\|\\mathbf{v}\\|^2 - \\dfrac{(\\mathbf{v}\\cdot\\mathbf{u})^2}{\\mathbf{u}\\cdot\\mathbf{u}} = \\dfrac{([[uu]])([[vv]]) - ([[dotvu]])^2}{[[uu]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( \\|\\mathbf{v}\\|^2 \\) with no projection subtracted at all.",
+  "This is the projection SCALAR \\( c \\), not a squared distance.",
+  "This is \\( |\\operatorname{proj}_{\\mathbf{u}}(\\mathbf{v})|^2 \\) itself, the wrong quantity (it should be subtracted from \\( \\|\\mathbf{v}\\|^2 \\), not reported alone).",
+  "This subtracts the projection scalar \\( c \\) instead of \\( c^2\\|\\mathbf{u}\\|^2 \\).",
+  "This has the wrong sign.",
+  "This is off by one from the correct squared distance.",
+  "This is off by one from the correct squared distance.",
+  "This doubles the squared distance."
+ ]
+},
+{
+ "template_id": "projection_onto_plane_orthogonal_basis_coordinate_v3",
+ "skill_id": "orthogonal_projection_onto_a_line_or_subspace_neares",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -3, "hi": 3},
+  "v2": {"type": "int", "lo": -3, "hi": 3},
+  "v3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[a]]**2 + [[b]]**2 + [[c]]**2, 0)",
+  "Ne([[a]]**2 + [[b]]**2, 0)"
+ ],
+ "derived": {
+  "negA": "-[[a]]",
+  "w1w1": "[[a]]**2 + [[b]]**2 + [[c]]**2",
+  "w2w2": "[[b]]**2 + [[a]]**2",
+  "dot1": "[[v1]]*[[a]] + [[v2]]*[[b]] + [[v3]]*[[c]]",
+  "dot2": "[[v1]]*[[b]] - [[v2]]*[[a]]"
+ },
+ "stem": "Let \\( W \\) be the subspace of \\( \\mathbb{R}^3 \\) spanned by the two ORTHOGONAL vectors \\( \\mathbf{w}_1 = ([[a]], [[b]], [[c]]) \\) and \\( \\mathbf{w}_2 = ([[b]], [[negA]], 0) \\), and let \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\). The orthogonal projection of \\( \\mathbf{v} \\) onto \\( W \\) is \\( \\operatorname{proj}_W(\\mathbf{v}) = c_1\\mathbf{w}_1 + c_2\\mathbf{w}_2 \\) where \\( c_1 = \\dfrac{\\mathbf{v}\\cdot\\mathbf{w}_1}{\\mathbf{w}_1\\cdot\\mathbf{w}_1} \\) and \\( c_2 = \\dfrac{\\mathbf{v}\\cdot\\mathbf{w}_2}{\\mathbf{w}_2\\cdot\\mathbf{w}_2} \\). What is the first coordinate of \\( \\operatorname{proj}_W(\\mathbf{v}) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[dot1]])*[[a]])/([[w1w1]]) + (([[dot2]])*[[b]])/([[w2w2]])"},
+ "distractors": [
+  "([[dot1]])/([[w1w1]]) + ([[dot2]])/([[w2w2]])",
+  "(([[dot1]])*[[a]])/([[w1w1]])",
+  "(([[dot2]])*[[b]])/([[w2w2]])",
+  "[[v1]]",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Compute \\( c_1 = \\dfrac{[[dot1]]}{[[w1w1]]} \\) and \\( c_2 = \\dfrac{[[dot2]]}{[[w2w2]]} \\); the first coordinate of \\( c_1\\mathbf{w}_1 + c_2\\mathbf{w}_2 \\) is \\( c_1\\cdot[[a]] + c_2\\cdot[[b]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the scalars \\( c_1 \\) and \\( c_2 \\) directly, forgetting to multiply each by the matching basis coordinate.",
+  "This keeps only the \\( \\mathbf{w}_1 \\) component of the projection, dropping the \\( \\mathbf{w}_2 \\) term entirely.",
+  "This keeps only the \\( \\mathbf{w}_2 \\) component of the projection, dropping the \\( \\mathbf{w}_1 \\) term entirely.",
+  "This returns \\( \\mathbf{v} \\)'s own first coordinate, as if no projection were applied.",
+  "This has the wrong sign.",
+  "This is off by one from the correct coordinate.",
+  "This is off by one from the correct coordinate."
+ ]
+},
+{
+ "template_id": "projection_onto_plane_squared_distance_v4",
+ "skill_id": "orthogonal_projection_onto_a_line_or_subspace_neares",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -3, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "c": {"type": "int", "lo": -3, "hi": 3},
+  "v1": {"type": "int", "lo": -3, "hi": 3},
+  "v2": {"type": "int", "lo": -3, "hi": 3},
+  "v3": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": [
+  "Ne([[a]]**2 + [[b]]**2 + [[c]]**2, 0)",
+  "Ne([[a]]**2 + [[b]]**2, 0)"
+ ],
+ "derived": {
+  "negA": "-[[a]]",
+  "w1w1": "[[a]]**2 + [[b]]**2 + [[c]]**2",
+  "w2w2": "[[b]]**2 + [[a]]**2",
+  "dot1": "[[v1]]*[[a]] + [[v2]]*[[b]] + [[v3]]*[[c]]",
+  "dot2": "[[v1]]*[[b]] - [[v2]]*[[a]]",
+  "vv": "[[v1]]**2 + [[v2]]**2 + [[v3]]**2"
+ },
+ "stem": "Let \\( W \\) be the subspace of \\( \\mathbb{R}^3 \\) spanned by the two orthogonal vectors \\( \\mathbf{w}_1 = ([[a]], [[b]], [[c]]) \\) and \\( \\mathbf{w}_2 = ([[b]], [[negA]], 0) \\), and let \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\). What is the SQUARE of the distance from \\( \\mathbf{v} \\) to its nearest point in \\( W \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[vv]]) - (([[dot1]])**2)/([[w1w1]]) - (([[dot2]])**2)/([[w2w2]])"},
+ "distractors": [
+  "[[vv]]",
+  "(([[dot1]])**2)/([[w1w1]]) + (([[dot2]])**2)/([[w2w2]])",
+  "([[vv]]) - (([[dot1]])**2)/([[w1w1]])",
+  "([[vv]]) - (([[dot2]])**2)/([[w2w2]])",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the Pythagorean theorem, \\( \\operatorname{dist}(\\mathbf{v},W)^2 = \\|\\mathbf{v}\\|^2 - c_1^2\\|\\mathbf{w}_1\\|^2 - c_2^2\\|\\mathbf{w}_2\\|^2 = [[vv]] - \\dfrac{([[dot1]])^2}{[[w1w1]]} - \\dfrac{([[dot2]])^2}{[[w2w2]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the projection's squared length, giving \\( \\|\\mathbf{v}\\|^2 \\) itself.",
+  "This is \\( \\|\\operatorname{proj}_W(\\mathbf{v})\\|^2 \\), the wrong quantity (it must be subtracted from \\( \\|\\mathbf{v}\\|^2 \\)).",
+  "This subtracts only the \\( \\mathbf{w}_1 \\) component's contribution, forgetting \\( \\mathbf{w}_2 \\).",
+  "This subtracts only the \\( \\mathbf{w}_2 \\) component's contribution, forgetting \\( \\mathbf{w}_1 \\).",
+  "This has the wrong sign.",
+  "This is off by one from the correct squared distance.",
+  "This is off by one from the correct squared distance."
+ ]
+},
+{
+ "template_id": "projection_distance_to_plane_via_normal_v5",
+ "skill_id": "orthogonal_projection_onto_a_line_or_subspace_neares",
+ "topic_id": "vector_spaces",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "v1": {"type": "int", "lo": -4, "hi": 4},
+  "v2": {"type": "int", "lo": -4, "hi": 4},
+  "v3": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": [
+  "Ne([[a]]**2 + [[b]]**2 + [[c]]**2, 0)",
+  "Ne([[a]]*[[v1]] + [[b]]*[[v2]] + [[c]]*[[v3]], 0)"
+ ],
+ "derived": {
+  "nn": "[[a]]**2 + [[b]]**2 + [[c]]**2",
+  "dotnv": "[[a]]*[[v1]] + [[b]]*[[v2]] + [[c]]*[[v3]]"
+ },
+ "stem": "The plane \\( P \\) through the origin in \\( \\mathbb{R}^3 \\) has equation \\( [[a]]x + [[b]]y + [[c]]z = 0 \\), so \\( \\mathbf{n} = ([[a]], [[b]], [[c]]) \\) is normal to \\( P \\). Let \\( \\mathbf{v} = ([[v1]], [[v2]], [[v3]]) \\). What is the SQUARE of the distance from \\( \\mathbf{v} \\) to its nearest point in \\( P \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(([[dotnv]]))**2/([[nn]])"},
+ "distractors": [
+  "([[dotnv]])",
+  "(([[dotnv]]))**2",
+  "([[v1]])**2+([[v2]])**2+([[v3]])**2",
+  "([[dotnv]])/([[nn]])",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The distance from \\( \\mathbf{v} \\) to the plane \\( \\mathbf{n}\\cdot\\mathbf{x}=0 \\) is \\( \\dfrac{|\\mathbf{v}\\cdot\\mathbf{n}|}{\\|\\mathbf{n}\\|} \\), so the squared distance is \\( \\dfrac{(\\mathbf{v}\\cdot\\mathbf{n})^2}{\\|\\mathbf{n}\\|^2} = \\dfrac{([[dotnv]])^2}{[[nn]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the raw dot product \\( \\mathbf{v}\\cdot\\mathbf{n} \\), neither squared nor divided by \\( \\|\\mathbf{n}\\|^2 \\).",
+  "This squares the dot product but forgets to divide by \\( \\|\\mathbf{n}\\|^2 \\).",
+  "This is \\( \\|\\mathbf{v}\\|^2 \\), unrelated to the distance to the plane.",
+  "This forgets to square the dot product before dividing.",
+  "This has the wrong sign.",
+  "This is off by one from the correct squared distance.",
+  "This is off by one from the correct squared distance."
+ ]
+}
+]

@@ -1,0 +1,4 @@
+{
+ "skill_id": "subspace_test_which_subsets_are_subspaces",
+ "reason": "This is a recognition/classification task ('which of these subsets is a subspace?') whose answer is a chosen set or yes/no, not a single code-computable scalar or expression."
+}

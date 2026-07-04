@@ -1,0 +1,132 @@
+[
+{
+ "template_id": "multinomial_labeled_groups_v1",
+ "skill_id": "multinomial_coefficient_labeled_groups_trinomial_ter",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 4},
+  "b": {"type": "int", "lo": 1, "hi": 4},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"n": "[[a]] + [[b]] + [[c]]"},
+ "stem": "A group of [[n]] distinct people is to be divided into three labeled teams: Team A with [[a]] members, Team B with [[b]] members, and Team C with [[c]] members (with [[a]] + [[b]] + [[c]] = [[n]]). In how many ways can this assignment be made?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[a]] + [[b]] + [[c]])/(factorial([[a]])*factorial([[b]])*factorial([[c]]))"},
+ "distractors": [
+  "factorial([[a]] + [[b]] + [[c]])",
+  "factorial([[a]] + [[b]] + [[c]])/(factorial([[a]])*factorial([[b]]))",
+  "factorial([[a]] + [[b]] + [[c]])/(factorial([[a]]) + factorial([[b]]) + factorial([[c]]))",
+  "binomial([[a]] + [[b]] + [[c]], [[a]])",
+  "[[answer]] + [[a]]",
+  "[[answer]] - [[c]]"
+ ],
+ "solution": "The multinomial coefficient gives \\( \\frac{[[n]]!}{[[a]]!\\,[[b]]!\\,[[c]]!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( [[n]]! \\); it forgets that members within a team are not ordered.",
+  "This divides by only two of the three team factorials.",
+  "This adds the factorials in the denominator instead of multiplying them.",
+  "This counts only the choice of Team A, ignoring how the rest split into B and C.",
+  "This is off from the correct count by the size of Team A.",
+  "This is off from the correct count by the size of Team C."
+ ]
+},
+{
+ "template_id": "multinomial_trinomial_term_v1",
+ "skill_id": "multinomial_coefficient_labeled_groups_trinomial_ter",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 4},
+  "q": {"type": "int", "lo": 1, "hi": 4},
+  "r": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {"n": "[[p]] + [[q]] + [[r]]"},
+ "stem": "In the expansion of \\( (x+y+z)^{[[n]]} \\), what is the coefficient of the term \\( x^{[[p]]}y^{[[q]]}z^{[[r]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[p]] + [[q]] + [[r]])/(factorial([[p]])*factorial([[q]])*factorial([[r]]))"},
+ "distractors": [
+  "factorial([[p]] + [[q]] + [[r]])",
+  "factorial([[p]] + [[q]] + [[r]])/(factorial([[p]])*factorial([[q]]))",
+  "binomial([[p]] + [[q]] + [[r]], [[p]])",
+  "factorial([[p]])*factorial([[q]])*factorial([[r]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the multinomial theorem, the coefficient of \\( x^{[[p]]}y^{[[q]]}z^{[[r]]} \\) in \\( (x+y+z)^{[[n]]} \\) is \\( \\dfrac{[[n]]!}{[[p]]!\\,[[q]]!\\,[[r]]!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( [[n]]! \\), forgetting to divide out the repeated orderings within each variable's exponent.",
+  "This divides by only two of the three factorials.",
+  "This counts only the choice of positions for \\( x \\), ignoring how the rest split between \\( y \\) and \\( z \\).",
+  "This inverts the multinomial coefficient formula.",
+  "This is off from the correct value by one.",
+  "This is off from the correct value by one."
+ ]
+},
+{
+ "template_id": "multinomial_weighted_trinomial_term_v1",
+ "skill_id": "multinomial_coefficient_labeled_groups_trinomial_ter",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 3},
+  "q": {"type": "int", "lo": 1, "hi": 3},
+  "r": {"type": "int", "lo": 1, "hi": 3},
+  "u": {"type": "int", "lo": 2, "hi": 3},
+  "v": {"type": "int", "lo": 2, "hi": 3},
+  "w": {"type": "int", "lo": 2, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {"n": "[[p]] + [[q]] + [[r]]"},
+ "stem": "In the expansion of \\( ([[u]]x + [[v]]y + [[w]]z)^{[[n]]} \\), what is the coefficient of the term \\( x^{[[p]]}y^{[[q]]}z^{[[r]]} \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "(factorial([[p]] + [[q]] + [[r]])/(factorial([[p]])*factorial([[q]])*factorial([[r]]))) * [[u]]**[[p]] * [[v]]**[[q]] * [[w]]**[[r]]"},
+ "distractors": [
+  "factorial([[p]] + [[q]] + [[r]])/(factorial([[p]])*factorial([[q]])*factorial([[r]]))",
+  "[[u]]**[[p]] * [[v]]**[[q]] * [[w]]**[[r]]",
+  "(factorial([[p]] + [[q]] + [[r]])/(factorial([[p]])*factorial([[q]])*factorial([[r]]))) * [[u]]**[[p]] * [[v]]**[[q]]",
+  "(factorial([[p]] + [[q]] + [[r]])/(factorial([[p]])*factorial([[q]])*factorial([[r]]))) * ([[u]] + [[v]] + [[w]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the multinomial theorem, the coefficient of \\( x^{[[p]]}y^{[[q]]}z^{[[r]]} \\) in \\( ([[u]]x+[[v]]y+[[w]]z)^{[[n]]} \\) is \\( \\dfrac{[[n]]!}{[[p]]!\\,[[q]]!\\,[[r]]!}\\,[[u]]^{[[p]]}[[v]]^{[[q]]}[[w]]^{[[r]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the coefficient weights entirely and reports only the plain multinomial coefficient.",
+  "This forgets the multinomial coefficient factor entirely and reports only the product of the weight powers.",
+  "This forgets the weight power for \\( z \\).",
+  "This adds the weights raised to no power instead of multiplying by the correct powers of each.",
+  "This is off from the correct value by one.",
+  "This is off from the correct value by one."
+ ]
+},
+{
+ "template_id": "multinomial_unlabeled_equal_groups_v1",
+ "skill_id": "multinomial_coefficient_labeled_groups_trinomial_ter",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": ["Ne([[a]], [[c]])"],
+ "derived": {"n": "2*[[a]] + [[c]]"},
+ "stem": "A group of [[n]] distinct people is split into three UNLABELED groups: two groups of size [[a]] each, and one group of size [[c]]. The two size-[[a]] groups are indistinguishable from each other (there is no 'first' or 'second' size-[[a]] group), while the size-[[c]] group is distinguishable by its different size. In how many ways can this partition be formed?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/(factorial([[a]])**2 * factorial([[c]]) * factorial(2))"},
+ "distractors": [
+  "factorial([[n]])/(factorial([[a]])**2 * factorial([[c]]))",
+  "factorial([[n]])/(factorial([[a]]) * factorial([[c]]))",
+  "factorial([[n]])",
+  "factorial([[n]])/(factorial([[a]])**2 * factorial([[c]]) * factorial(3))",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Treating the two size-[[a]] groups as temporarily labeled gives \\( \\dfrac{[[n]]!}{[[a]]!\\,[[a]]!\\,[[c]]!} \\) assignments, but swapping the two size-[[a]] groups gives the same partition, so divide by \\( 2! \\): \\( \\dfrac{[[n]]!}{[[a]]!\\,[[a]]!\\,[[c]]!\\,2!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the two size-[[a]] groups as labeled (distinguishable), forgetting to divide by \\( 2! \\) for the indistinguishable pair.",
+  "This divides by only one factor of \\( [[a]]! \\) instead of \\( ([[a]]!)^2 \\).",
+  "This treats all [[n]] people and all groups as fully distinguishable, applying no divisions at all.",
+  "This divides by \\( 3! \\), as if all three groups (including the differently-sized one) were mutually interchangeable.",
+  "This is off from the correct count by one.",
+  "This is off from the correct count by one."
+ ]
+}
+]

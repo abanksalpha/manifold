@@ -1,0 +1,120 @@
+[
+{
+ "template_id": "graph_basics_regular_graph_edges_v1",
+ "skill_id": "graph_theory_basics",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 4, "hi": 30},
+  "d": {"type": "int", "lo": 2, "hi": 9}
+ },
+ "constraints": ["Eq(Mod([[n]]*[[d]], 2), 0)", "Lt([[d]], [[n]])"],
+ "stem": "A graph has [[n]] vertices, and every vertex has degree exactly [[d]] (the graph is [[d]]-regular). How many edges does the graph have?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]]*[[d]]/2"},
+ "distractors": ["[[n]]*[[d]]", "[[n]]*[[d]]/4", "[[n]] + [[d]]", "[[n]]*([[d]] - 1)/2", "[[answer]] + [[d]]", "[[answer]] - 1"],
+ "solution": "By the handshake lemma, the sum of all degrees is \\( [[n]]\\cdot[[d]] \\), and this equals twice the number of edges, so \\( E = \\frac{[[n]]\\cdot[[d]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide the degree sum by 2.",
+  "This divides by 4 instead of 2, as if double-counting twice.",
+  "This adds the vertex and degree counts instead of applying the handshake lemma.",
+  "This subtracts one degree per vertex before dividing, which does not match a [[d]]-regular graph.",
+  "This adds an unrelated adjustment of [[d]] to the correct edge count.",
+  "This is off by one from the true edge count."
+ ]
+},
+{
+ "template_id": "graph_basics_degree_list_edges_v1",
+ "skill_id": "graph_theory_basics",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "d1": {"type": "int", "lo": 1, "hi": 8},
+  "d2": {"type": "int", "lo": 1, "hi": 8},
+  "d3": {"type": "int", "lo": 1, "hi": 8},
+  "d4": {"type": "int", "lo": 1, "hi": 8},
+  "d5": {"type": "int", "lo": 1, "hi": 8}
+ },
+ "constraints": ["Eq(Mod([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]], 2), 0)"],
+ "stem": "A graph has five vertices with degrees [[d1]], [[d2]], [[d3]], [[d4]], and [[d5]] respectively. How many edges does the graph have?",
+ "answer_spec": {"op": "evaluate", "expr": "([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]])/2"},
+ "distractors": ["[[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]]", "([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]])/4", "([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]])/2 + 1", "([[d1]] + [[d2]] + [[d3]] + [[d4]] + [[d5]])/2 - 1", "[[d1]]*[[d2]]", "[[answer]] + 2"],
+ "solution": "By the handshake lemma, the sum of the degrees equals twice the number of edges: \\( E = \\frac{[[d1]]+[[d2]]+[[d3]]+[[d4]]+[[d5]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide the degree sum by 2.",
+  "This divides by 4 instead of 2, as if double-counting twice.",
+  "This overshoots the correct edge count by 1.",
+  "This undershoots the correct edge count by 1.",
+  "This multiplies two of the degrees instead of summing all five and halving.",
+  "This adds an unrelated adjustment of 2 to the correct edge count."
+ ]
+},
+{
+ "template_id": "graph_basics_missing_degree_v1",
+ "skill_id": "graph_theory_basics",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 5, "hi": 12},
+  "d": {"type": "int", "lo": 1, "hi": 6},
+  "x": {"type": "int", "lo": 0, "hi": 8}
+ },
+ "constraints": ["Lt([[d]], [[n]] - 1)", "Lt([[x]], [[n]])", "Eq(Mod(([[n]]-1)*[[d]] + [[x]], 2), 0)"],
+ "derived": {"E": "(([[n]]-1)*[[d]] + [[x]])/2"},
+ "stem": "A graph has [[n]] vertices and [[E]] edges. Exactly \\( [[n]]-1 \\) of the vertices have degree [[d]], and the one remaining vertex has some other degree. What is the degree of that remaining vertex?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[E]] - ([[n]] - 1)*[[d]]"},
+ "distractors": ["[[E]] - ([[n]] - 1)*[[d]]", "2*[[E]] - [[n]]*[[d]]", "2*[[E]] - ([[n]] - 1)*[[d]] + 1", "2*[[E]] - ([[n]] - 1)*[[d]] - 1", "[[d]]", "[[answer]] + [[d]]"],
+ "solution": "By the handshake lemma the total degree sum is \\( 2E = 2\\cdot[[E]] \\). The known vertices contribute \\( ([[n]]-1)[[d]] \\), so the remaining vertex has degree \\( 2\\cdot[[E]] - ([[n]]-1)[[d]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to double the edge count before subtracting the known degree contribution.",
+  "This uses all [[n]] vertices at degree [[d]] instead of only the \\([[n]]-1\\) that actually have that degree.",
+  "This overshoots the correct remaining degree by 1.",
+  "This undershoots the correct remaining degree by 1.",
+  "This just repeats the known common degree instead of solving for the remaining one.",
+  "This adds an unrelated adjustment of [[d]] to the correct remaining degree."
+ ]
+},
+{
+ "template_id": "graph_basics_degree_sum_from_edges_v1",
+ "skill_id": "graph_theory_basics",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "e": {"type": "int", "lo": 3, "hi": 60}
+ },
+ "constraints": [],
+ "stem": "A graph has [[e]] edges. What is the sum of the degrees of all of its vertices?",
+ "answer_spec": {"op": "evaluate", "expr": "2*[[e]]"},
+ "distractors": ["[[e]]", "[[e]]/2", "[[e]]**2", "[[e]] + 2", "[[answer]] + 1", "[[answer]] - 2"],
+ "solution": "Every edge contributes exactly 2 to the total degree sum (one for each endpoint), so the sum of degrees is \\( 2\\cdot[[e]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets that every edge is counted at both of its endpoints.",
+  "This mistakenly halves the edge count instead of doubling it.",
+  "This confuses the linear handshake relationship with a quadratic one.",
+  "This adds 2 to the edge count instead of multiplying it by 2.",
+  "This overshoots the correct degree sum by 1.",
+  "This undershoots the correct degree sum by 2."
+ ]
+},
+{
+ "template_id": "graph_basics_complete_graph_edges_v1",
+ "skill_id": "graph_theory_basics",
+ "topic_id": "graph_theory",
+ "tier": "recognize",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 25}
+ },
+ "constraints": [],
+ "stem": "The complete graph \\( K_{[[n]]} \\) has [[n]] vertices, with an edge between every pair of distinct vertices. How many edges does \\( K_{[[n]]} \\) have?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]], 2)"},
+ "distractors": ["[[n]]*([[n]] - 1)", "[[n]]**2", "[[n]]*([[n]] + 1)/2", "factorial([[n]])/2", "[[answer]] + [[n]]", "[[answer]] - 1"],
+ "solution": "Every vertex has degree \\( [[n]]-1 \\), so by the handshake lemma \\( E = \\frac{[[n]]([[n]]-1)}{2} = \\binom{[[n]]}{2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is exactly double the correct edge count (counting each edge from both endpoints).",
+  "This is an unrelated formula that does not match the handshake computation.",
+  "This resembles the correct formula but adds instead of subtracts inside the product.",
+  "This counts every ordered arrangement of all [[n]] vertices, not just unordered pairs.",
+  "This overshoots the correct edge count by [[n]].",
+  "This is off by one from the true edge count."
+ ]
+}
+]

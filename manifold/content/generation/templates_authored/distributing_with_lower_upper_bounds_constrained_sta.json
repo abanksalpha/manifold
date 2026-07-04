@@ -1,0 +1,99 @@
+[
+{
+ "template_id": "constrained_stars_bars_lower_v1",
+ "skill_id": "distributing_with_lower_upper_bounds_constrained_sta",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "m": {"type": "int", "lo": 3, "hi": 10},
+  "k": {"type": "int", "lo": 2, "hi": 4},
+  "L": {"type": "int", "lo": 1, "hi": 3}
+ },
+ "constraints": [],
+ "derived": {"n": "[[m]] + [[k]]*[[L]]"},
+ "stem": "In how many ways can [[n]] identical candies be distributed among [[k]] distinct children so that each child receives at least [[L]] candies?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[m]] + [[k]] - 1, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]] + [[k]] - 1, [[k]] - 1)",
+  "binomial([[m]] + [[k]] - 1, [[k]])",
+  "binomial([[m]] - 1, [[k]] - 1)",
+  "binomial([[m]] + [[k]], [[k]] - 1)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[L]]"
+ ],
+ "solution": "Give each child the required [[L]] candies first; the remaining \\( [[n]] - [[k]]\\cdot[[L]] = [[m]] \\) candies are distributed freely, giving \\( \\binom{[[m]] + [[k]] - 1}{[[k]] - 1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores the minimum of [[L]] per child and applies stars and bars to all [[n]] candies.",
+  "This uses the wrong lower index \\( k \\) instead of \\( k-1 \\) for the bars.",
+  "This subtracts one too many from the reduced total.",
+  "This shifts the top of the binomial up by one.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[L]]."
+ ]
+},
+{
+ "template_id": "constrained_stars_bars_upper_v1",
+ "skill_id": "distributing_with_lower_upper_bounds_constrained_sta",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 14},
+  "k": {"type": "int", "lo": 2, "hi": 4},
+  "U": {"type": "int", "lo": 2, "hi": 6}
+ },
+ "constraints": ["Ge([[n]], [[U]] + 1)", "Le([[n]], 2*[[U]] + 1)"],
+ "derived": {},
+ "stem": "In how many ways can [[n]] identical candies be distributed among [[k]] distinct children so that each child receives AT MOST [[U]] candies?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n]] + [[k]] - 1, [[k]] - 1) - [[k]]*binomial([[n]] - [[U]] + [[k]] - 2, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]] + [[k]] - 1, [[k]] - 1)",
+  "binomial([[n]] - [[U]] + [[k]] - 2, [[k]] - 1)",
+  "[[k]]*binomial([[n]] - [[U]] + [[k]] - 2, [[k]] - 1)",
+  "binomial([[n]] + [[k]] - 1, [[k]] - 1) - binomial([[n]] - [[U]] + [[k]] - 2, [[k]] - 1)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[U]]"
+ ],
+ "solution": "By inclusion-exclusion, start from the unrestricted count \\( \\binom{[[n]]+[[k]]-1}{[[k]]-1} \\) and subtract the [[k]] ways one child could exceed the cap (receive at least \\( [[U]]+1 \\), reducing the problem to \\( \\binom{[[n]]-[[U]]-1+[[k]]-1}{[[k]]-1} \\) free candies for that case): \\( \\binom{[[n]]+[[k]]-1}{[[k]]-1} - [[k]]\\binom{[[n]]-[[U]]+[[k]]-2}{[[k]]-1} = [[answer]] \\). No two children can simultaneously exceed the cap here, so no further correction is needed.",
+ "distractor_rationales": [
+  "This ignores the upper bound entirely and applies plain stars and bars.",
+  "This reports only the raw over-count correction term without the k multiplier or the subtraction from the total.",
+  "This reports the full correction term but forgets to subtract it from the unrestricted total.",
+  "This forgets to multiply the correction term by the [[k]] ways to choose which child exceeds the cap.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[U]]."
+ ]
+},
+{
+ "template_id": "constrained_stars_bars_both_v1",
+ "skill_id": "distributing_with_lower_upper_bounds_constrained_sta",
+ "topic_id": "combinatorics",
+ "tier": "teach",
+ "params": {
+  "L": {"type": "int", "lo": 0, "hi": 3},
+  "W": {"type": "int", "lo": 1, "hi": 5},
+  "k": {"type": "int", "lo": 2, "hi": 4},
+  "n2": {"type": "int", "lo": 3, "hi": 14}
+ },
+ "constraints": ["Ge([[n2]], [[W]] + 1)", "Le([[n2]], 2*[[W]] + 1)"],
+ "derived": {"U": "[[L]] + [[W]]", "n": "[[n2]] + [[k]]*[[L]]"},
+ "stem": "In how many ways can [[n]] identical candies be distributed among [[k]] distinct children so that each child receives at least [[L]] candies and at most [[U]] candies?",
+ "answer_spec": {"op": "evaluate", "expr": "binomial([[n2]] + [[k]] - 1, [[k]] - 1) - [[k]]*binomial([[n2]] - [[W]] + [[k]] - 2, [[k]] - 1)"},
+ "distractors": [
+  "binomial([[n]] + [[k]] - 1, [[k]] - 1)",
+  "binomial([[n2]] + [[k]] - 1, [[k]] - 1)",
+  "[[k]]*binomial([[n2]] - [[W]] + [[k]] - 2, [[k]] - 1)",
+  "binomial([[n2]] + [[k]] - 1, [[k]] - 1) - binomial([[n2]] - [[W]] + [[k]] - 2, [[k]] - 1)",
+  "[[answer]] + [[k]]",
+  "[[answer]] - [[L]]"
+ ],
+ "solution": "Subtract the minimum [[L]] from each child first, leaving \\( [[n]] - [[k]]\\cdot[[L]] = [[n2]] \\) candies to distribute so each child gets between 0 and \\( [[U]]-[[L]] = [[W]] \\) more. By inclusion-exclusion this is \\( \\binom{[[n2]]+[[k]]-1}{[[k]]-1} - [[k]]\\binom{[[n2]]-[[W]]+[[k]]-2}{[[k]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This ignores both bounds and applies plain stars and bars to the full total [[n]].",
+  "This accounts for the lower bound shift but forgets the upper-bound cap correction entirely.",
+  "This reports only the raw over-count correction term, without subtracting it from the shifted total.",
+  "This forgets to multiply the correction term by the [[k]] ways to choose which child exceeds the cap.",
+  "This is off from the correct count by [[k]].",
+  "This is off from the correct count by [[L]]."
+ ]
+}
+]

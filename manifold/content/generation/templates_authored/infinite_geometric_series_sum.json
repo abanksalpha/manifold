@@ -1,0 +1,159 @@
+[
+ {
+  "template_id": "infinite_geometric_series_sum_v1",
+  "skill_id": "infinite_geometric_series_sum",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -9, "hi": 9},
+   "p": {"type": "int", "lo": -8, "hi": 8},
+   "q": {"type": "int", "lo": 2, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[p]], 0)", "Lt(Abs([[p]]), [[q]])"],
+  "stem": "Evaluate the infinite geometric series \\( \\displaystyle\\sum_{k=0}^{\\infty} ([[a]])\\left(\\dfrac{[[p]]}{[[q]]}\\right)^{k} \\), which has first term \\( ([[a]]) \\) and common ratio \\( \\dfrac{[[p]]}{[[q]]} \\).",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]])/(1 - Rational([[p]],[[q]]))"},
+  "distractors": [
+   "([[a]])/(1 + Rational([[p]],[[q]]))",
+   "([[a]])*(1 - Rational([[p]],[[q]]))",
+   "1/(1 - Rational([[p]],[[q]]))",
+   "([[a]])*Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For \\( |r| < 1 \\), \\( \\sum_{k=0}^{\\infty} a r^{k} = \\dfrac{a}{1-r} \\). Here \\( a = [[a]] \\) and \\( r = \\dfrac{[[p]]}{[[q]]} \\), so the sum is \\( \\dfrac{[[a]]}{1 - \\frac{[[p]]}{[[q]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses \\( \\dfrac{a}{1+r} \\); the geometric-sum formula has \\( 1-r \\) in the denominator.",
+   "This multiplies by \\( (1-r) \\) instead of dividing by it.",
+   "This drops the first term \\( a \\), using \\( \\dfrac{1}{1-r} \\).",
+   "This is the sum starting at \\( k=1 \\) (first term \\( ar \\)), i.e. \\( \\dfrac{ar}{1-r} \\).",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "infinite_geometric_series_sum_repeating_decimal_v2",
+  "skill_id": "infinite_geometric_series_sum",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 9},
+   "b": {"type": "int", "lo": 0, "hi": 9}
+  },
+  "constraints": [],
+  "derived": {"block": "10*[[a]]+[[b]]"},
+  "stem": "The repeating decimal \\( 0.\\overline{[[block]]} \\) (the two-digit block \\( [[block]] \\) repeats forever) can be written as an infinite geometric series with first term \\( \\dfrac{[[block]]}{100} \\) and common ratio \\( \\dfrac{1}{100} \\). What is \\( 0.\\overline{[[block]]} \\) as a fraction in lowest terms?",
+  "answer_spec": {"op": "evaluate", "expr": "Rational([[block]],99)"},
+  "distractors": [
+   "Rational([[block]],90)",
+   "Rational([[block]],9)",
+   "Rational([[block]],999)",
+   "Rational([[block]],100)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "With first term \\( \\dfrac{[[block]]}{100} \\) and ratio \\( \\dfrac{1}{100} \\), the sum is \\( \\dfrac{[[block]]/100}{1-1/100} = \\dfrac{[[block]]}{99} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses denominator \\( 90 \\), a common slip when mixing a repeating and non-repeating part.",
+   "This treats the block as if only a single digit repeats, using denominator \\( 9 \\).",
+   "This uses denominator \\( 999 \\), as if the block had three digits.",
+   "This drops the \\( -1 \\) and just uses the first term's own denominator \\( 100 \\).",
+   "This is off by one from the correct fraction.",
+   "This is off by one from the correct fraction."
+  ]
+ },
+ {
+  "template_id": "infinite_geometric_series_sum_bouncing_ball_v3",
+  "skill_id": "infinite_geometric_series_sum",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "h": {"type": "int", "lo": 2, "hi": 20},
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+  "stem": "A ball is dropped from a height of \\( [[h]] \\) meters. Each time it hits the ground, it rebounds to \\( \\dfrac{[[p]]}{[[q]]} \\) of the height it just fell from, bouncing forever. What is the total distance the ball travels (down and up, summed over all bounces)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[h]] + 2*[[h]]*Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))"},
+  "distractors": [
+   "[[h]]/(1 - Rational([[p]],[[q]]))",
+   "[[h]]*Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "[[h]] + [[h]]*Rational([[p]],[[q]])/(1 - Rational([[p]],[[q]]))",
+   "2*[[h]]/(1 - Rational([[p]],[[q]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "After the initial drop of \\( [[h]] \\), the ball travels up and down \\( 2[[h]]r \\), then \\( 2[[h]]r^{2} \\), and so on, with \\( r=\\frac{[[p]]}{[[q]]} \\). The total is \\( [[h]] + \\dfrac{2[[h]]r}{1-r} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the initial drop is not doubled, treating the whole motion as a single geometric series without the leading \\( [[h]] \\).",
+   "This omits both the initial drop term and the factor of \\( 2 \\) for up-and-down travel.",
+   "This forgets the factor of \\( 2 \\): each bounce after the first involves both a rise and a fall.",
+   "This doubles the initial drop itself instead of only the bounce distances.",
+   "This is off by one from the correct total distance.",
+   "This is off by one from the correct total distance."
+  ]
+ },
+ {
+  "template_id": "infinite_geometric_series_sum_solve_ratio_v4",
+  "skill_id": "infinite_geometric_series_sum",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [1, 2, 3, 4]},
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+  "derived": {"a": "[[m]]*([[q]]-[[p]])", "S": "[[m]]*[[q]]"},
+  "stem": "An infinite geometric series with \\( |r| < 1 \\) has first term \\( [[a]] \\) and sum \\( [[S]] \\). What is the common ratio \\( r \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "1 - Rational([[a]],[[S]])"},
+  "distractors": [
+   "Rational([[a]],[[S]])",
+   "Rational([[S]],[[a]])",
+   "[[S]] - [[a]]",
+   "1 + Rational([[a]],[[S]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "From \\( S = \\dfrac{a}{1-r} \\), solve for \\( r \\): \\( r = 1 - \\dfrac{a}{S} = 1 - \\dfrac{[[a]]}{[[S]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( a/S \\) itself, not \\( 1 - a/S \\).",
+   "This inverts the ratio \\( a/S \\).",
+   "This subtracts \\( a \\) from \\( S \\) directly instead of dividing first.",
+   "This adds instead of subtracts \\( a/S \\) from \\( 1 \\).",
+   "This is off by one from the correct ratio.",
+   "This is off by one from the correct ratio."
+  ]
+ },
+ {
+  "template_id": "infinite_geometric_series_sum_solve_first_term_v5",
+  "skill_id": "infinite_geometric_series_sum",
+  "topic_id": "sequences_series",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "choice", "values": [1, 2, 3, 4]},
+   "p": {"type": "int", "lo": 1, "hi": 5},
+   "q": {"type": "int", "lo": 2, "hi": 7}
+  },
+  "constraints": ["Lt([[p]], [[q]])", "Eq(gcd([[p]], [[q]]), 1)"],
+  "derived": {"S": "[[m]]*[[q]]"},
+  "stem": "An infinite geometric series with common ratio \\( r = \\dfrac{[[p]]}{[[q]]} \\) has sum \\( [[S]] \\). What is its first term?",
+  "answer_spec": {"op": "evaluate", "expr": "[[S]]*(1 - Rational([[p]],[[q]]))"},
+  "distractors": [
+   "[[S]]/(1 - Rational([[p]],[[q]]))",
+   "[[S]]*Rational([[p]],[[q]])",
+   "[[S]] - Rational([[p]],[[q]])",
+   "[[S]]*(1 + Rational([[p]],[[q]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "From \\( S = \\dfrac{a}{1-r} \\), the first term is \\( a = S(1-r) = [[S]]\\left(1 - \\dfrac{[[p]]}{[[q]]}\\right) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by \\( (1-r) \\) instead of multiplying by it.",
+   "This multiplies \\( S \\) by \\( r \\) instead of by \\( 1-r \\).",
+   "This subtracts the ratio from \\( S \\) directly instead of forming \\( S(1-r) \\).",
+   "This uses \\( 1+r \\) instead of \\( 1-r \\).",
+   "This is off by one from the correct first term.",
+   "This is off by one from the correct first term."
+  ]
+ }
+]

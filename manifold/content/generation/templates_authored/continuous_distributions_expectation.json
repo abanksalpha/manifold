@@ -1,0 +1,159 @@
+[
+{
+ "template_id": "power_density_mean_v1",
+ "skill_id": "continuous_distributions_expectation",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [1, 2, 3, 4]},
+  "b": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": [],
+ "derived": {"p1": "[[p]]+1", "p2": "[[p]]+2"},
+ "stem": "A continuous random variable \\( X \\) has probability density function \\( f(x) = \\dfrac{[[p1]]\\,x^{[[p]]}}{[[b]]^{[[p1]]}} \\) for \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) otherwise). What is \\( E[X] \\)?",
+ "answer_spec": {
+  "op": "integrate", "expr": "[[p1]]*x**[[p1]]/[[b]]**[[p1]]", "var": "x", "bounds": ["0", "[[b]]"]
+ },
+ "distractors": [
+  "[[b]]**[[p2]]/[[p2]]",
+  "[[p]]*[[b]]/[[p2]]",
+  "[[b]]",
+  "[[p2]]*[[b]]/[[p1]]",
+  "[[b]]/2",
+  "[[p1]]*[[b]]/[[p2]]**2"
+ ],
+ "solution": "\\( E[X] = \\displaystyle\\int_0^{[[b]]} x\\,f(x)\\,dx = \\int_0^{[[b]]} \\frac{[[p1]]\\,x^{[[p1]]}}{[[b]]^{[[p1]]}}\\,dx = \\frac{[[p1]]\\,[[b]]}{[[p2]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the un-normalized integral \\( \\int_0^b x\\cdot x^{p}\\,dx \\); it forgets the density's normalizing constant entirely.",
+  "This uses the exponent \\( p \\) instead of \\( p+1 \\) in the numerator's coefficient.",
+  "This treats \\( X \\) as though it were the constant \\( b \\), ignoring the density shape.",
+  "This inverts the fraction \\( \\frac{p+1}{p+2} \\).",
+  "This is the mean of a UNIFORM density on \\( [0,b] \\), ignoring that this density is not flat.",
+  "This squares the denominator \\( p+2 \\) by mistake."
+ ]
+},
+{
+ "template_id": "linear_decreasing_density_mean_v1",
+ "skill_id": "continuous_distributions_expectation",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {"b": {"type": "int", "lo": 3, "hi": 20}},
+ "constraints": [],
+ "stem": "A continuous random variable \\( X \\) has probability density function \\( f(x) = \\dfrac{2([[b]]-x)}{[[b]]^{2}} \\) for \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) otherwise), so outcomes near \\( 0 \\) are more likely than outcomes near \\( [[b]] \\). What is \\( E[X] \\)?",
+ "answer_spec": {
+  "op": "integrate", "expr": "2*x*([[b]]-x)/[[b]]**2", "var": "x", "bounds": ["0", "[[b]]"]
+ },
+ "distractors": ["[[b]]/2", "2*[[b]]/3", "[[b]]/6", "[[b]]/4", "[[b]]"],
+ "solution": "\\( E[X] = \\displaystyle\\int_0^{[[b]]} x\\cdot\\frac{2([[b]]-x)}{[[b]]^2}\\,dx = \\frac{[[b]]}{3} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the mean of a UNIFORM density on \\( [0,b] \\), ignoring that low values are weighted more heavily here.",
+  "This is the mean of the mirror-image INCREASING linear density, which weights high values more heavily instead.",
+  "This is off by a factor of 2 from the correct mean.",
+  "This divides by 4 instead of correctly carrying out the integral.",
+  "This treats \\( X \\) as though it always equals its maximum value \\( b \\)."
+ ]
+},
+{
+ "template_id": "uniform_second_moment_v1",
+ "skill_id": "continuous_distributions_expectation",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "w": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": [],
+ "derived": {"c": "[[a]]+[[w]]"},
+ "stem": "A continuous random variable \\( X \\) is distributed uniformly on the interval \\( [[[a]], [[c]]] \\). What is \\( E[X^2] \\), the second moment of \\( X \\)?",
+ "answer_spec": {
+  "op": "integrate", "expr": "x**2/([[c]]-[[a]])", "var": "x", "bounds": ["[[a]]", "[[c]]"]
+ },
+ "distractors": [
+  "Rational([[a]]+[[c]],2)**2",
+  "Rational(([[c]]-[[a]])**2,12)",
+  "Rational([[a]]**2+[[c]]**2,2)",
+  "Rational([[a]]+[[c]],2)",
+  "Rational([[a]]**2+[[c]]**2,3)"
+ ],
+ "solution": "\\( E[X^2] = \\displaystyle\\int_{[[a]]}^{[[c]]} \\frac{x^2}{[[c]]-[[a]]}\\,dx = \\frac{[[a]]^2+[[a]][[c]]+[[c]]^2}{3} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This computes \\( (E[X])^2 \\) instead of \\( E[X^2] \\); these differ by the variance.",
+  "This is the VARIANCE formula \\( \\frac{(b-a)^2}{12} \\), not the second moment.",
+  "This drops the cross term \\( ac \\) and uses the wrong denominator.",
+  "This is just \\( E[X] \\), the first moment, forgetting to square.",
+  "This drops the cross term \\( ac \\) from the correct second-moment formula."
+ ]
+},
+{
+ "template_id": "symmetric_quadratic_density_variance_v1",
+ "skill_id": "continuous_distributions_expectation",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "width": {"type": "int", "lo": 2, "hi": 12}
+ },
+ "constraints": [],
+ "derived": {"b": "[[a]]+[[width]]", "mu": "([[a]]+[[b]])/2"},
+ "stem": "A continuous random variable \\( X \\) has probability density function \\( f(x) = \\dfrac{6(x-[[a]])([[b]]-x)}{([[b]]-[[a]])^{3}} \\) for \\( [[a]] \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) otherwise); this density is symmetric about the midpoint \\( \\mu = [[mu]] \\) of the interval. What is \\( \\operatorname{Var}(X) \\)?",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "6*(x-[[a]])*([[b]]-x)*(x-[[mu]])**2/([[b]]-[[a]])**3",
+  "var": "x", "bounds": ["[[a]]", "[[b]]"]
+ },
+ "distractors": [
+  "Rational(([[b]]-[[a]])**2,12)",
+  "Rational(([[b]]-[[a]])**2,24)",
+  "Rational(([[b]]-[[a]])**2,16)",
+  "Rational([[b]]-[[a]],2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( \\operatorname{Var}(X) = \\displaystyle\\int_{[[a]]}^{[[b]]} (x-\\mu)^2 f(x)\\,dx = \\frac{([[b]]-[[a]])^2}{20} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the UNIFORM density's variance formula \\( \\frac{(b-a)^2}{12} \\), misapplied to this non-uniform density.",
+  "This divides by 24 instead of the correct denominator for this density's variance.",
+  "This divides by 16 instead of the correct denominator for this density's variance.",
+  "This is just half the width of the interval, not a variance at all.",
+  "This is off by one from the correct variance.",
+  "This is off by one from the correct variance."
+ ]
+},
+{
+ "template_id": "power_density_linear_transform_expectation_v1",
+ "skill_id": "continuous_distributions_expectation",
+ "topic_id": "probability",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [1, 2, 3, 4]},
+  "b": {"type": "int", "lo": 2, "hi": 10},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[c]], 0)"],
+ "derived": {"p1": "[[p]]+1", "p2": "[[p]]+2"},
+ "stem": "A continuous random variable \\( X \\) has probability density function \\( f(x) = \\dfrac{[[p1]]\\,x^{[[p]]}}{[[b]]^{[[p1]]}} \\) for \\( 0 \\le x \\le [[b]] \\) (and \\( f(x) = 0 \\) otherwise). Let \\( Y = [[c]]X + ([[d]]) \\). What is \\( E[Y] \\)?",
+ "answer_spec": {
+  "op": "integrate",
+  "expr": "([[c]]*x+[[d]])*[[p1]]*x**[[p]]/[[b]]**[[p1]]",
+  "var": "x", "bounds": ["0", "[[b]]"]
+ },
+ "distractors": [
+  "[[c]]*[[b]]/2+[[d]]",
+  "[[c]]*[[p1]]*[[b]]/[[p2]]",
+  "[[d]]",
+  "[[c]]*[[p2]]*[[b]]/[[p1]]+[[d]]",
+  "[[c]]*[[p1]]*[[b]]/[[p2]]+[[c]]*[[d]]",
+  "[[c]]*[[b]]+[[d]]"
+ ],
+ "solution": "By linearity, \\( E[Y] = [[c]]\\,E[X] + [[d]] = [[c]]\\cdot\\frac{[[p1]]\\,[[b]]}{[[p2]]} + ([[d]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the UNIFORM mean \\( b/2 \\) instead of this density's actual mean.",
+  "This computes \\( c\\,E[X] \\) but forgets to add the shift \\( d \\).",
+  "This ignores the \\( cX \\) term entirely, keeping only the constant shift.",
+  "This inverts the fraction \\( \\frac{p+1}{p+2} \\) inside \\( E[X] \\).",
+  "This incorrectly multiplies the shift \\( d \\) by \\( c \\) as well.",
+  "This drops the density's normalizing fraction entirely, treating \\( E[X] \\) as just \\( b \\)."
+ ]
+}
+]

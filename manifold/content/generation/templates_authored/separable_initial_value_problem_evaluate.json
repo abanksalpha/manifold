@@ -1,0 +1,172 @@
+[
+ {
+  "template_id": "separable_ivp_evaluate_v1",
+  "skill_id": "separable_initial_value_problem_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "y0": {"type": "int", "lo": 2, "hi": 5},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[y0]], 1)"],
+  "stem": "Solve the initial value problem \\( \\frac{dy}{dx} = [[a]]x^{2}y \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*exp([[a]]*[[t0]]**3/3)"},
+  "require_rational": false,
+  "distractors": [
+   "[[y0]]*exp([[a]]*[[t0]]**3)",
+   "[[y0]]*exp([[a]]*[[t0]])",
+   "exp([[a]]*[[t0]]**3/3)",
+   "[[y0]]*exp(-[[a]]*[[t0]]**3/3)",
+   "[[y0]]*exp([[a]]*[[t0]]**2/3)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separate variables: \\( \\frac{dy}{y} = [[a]]x^{2}\\,dx \\), so \\( \\ln|y| = \\frac{[[a]]x^{3}}{3} + C \\) and \\( y = C_1 e^{[[a]]x^{3}/3} \\). The condition \\( y(0) = [[y0]] \\) gives \\( C_1 = [[y0]] \\), hence \\( y(x) = [[y0]]\\,e^{[[a]]x^{3}/3} \\). At \\( x = [[t0]] \\) this equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 3 when integrating \\( [[a]]x^{2} \\).",
+   "This treats the equation as \\( y' = [[a]]y \\), ignoring the \\( x^{2} \\).",
+   "This drops the initial value \\( [[y0]] \\), leaving \\( C_1 = 1 \\).",
+   "This uses the wrong sign in the exponent.",
+   "This integrates \\( x^{2} \\) as if it were \\( x \\), giving \\( x^{2}/2 \\)-type growth.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_ivp_nonlinear_blowup_v1",
+  "skill_id": "separable_initial_value_problem_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -5, "hi": 5},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[y0]], 0)", "Ne(1-[[a]]*[[y0]]*[[t0]], 0)"],
+  "derived": {
+   "denom": "1-[[a]]*[[y0]]*[[t0]]"
+  },
+  "stem": "Solve the nonlinear separable equation \\( \\dfrac{dy}{dx} = [[a]]y^{2} \\), \\( y(0) = [[y0]] \\), and evaluate the solution at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]/([[denom]])"},
+  "distractors": [
+   "[[y0]]*exp([[a]]*[[t0]])",
+   "1/([[denom]])",
+   "[[y0]]/(1+[[a]]*[[y0]]*[[t0]])",
+   "[[y0]] + [[a]]*[[y0]]**2*[[t0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separate variables: \\( \\dfrac{dy}{y^{2}} = [[a]]\\,dx \\), so \\( -\\dfrac{1}{y} = [[a]]x + C \\). The condition \\( y(0)=[[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1-[[a]][[y0]]x} \\). At \\( x=[[t0]] \\), \\( y = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakes the equation for the LINEAR \\( y'=[[a]]y \\), giving exponential growth instead of the correct rational blow-up form.",
+   "This drops the \\( y_0 \\) factor from the numerator.",
+   "This uses the wrong sign in the denominator.",
+   "This uses a single Euler step (a linear approximation) instead of the exact solution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_ivp_implicit_algebraic_v1",
+  "skill_id": "separable_initial_value_problem_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "y0": {"type": "int", "lo": 1, "hi": 5},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": [],
+  "require_rational": false,
+  "stem": "The curve \\( y=y(x) \\) (with \\( y>0 \\)) satisfies the separable equation \\( y\\,\\dfrac{dy}{dx} = [[a]]x \\), with \\( y(0) = [[y0]] \\). Evaluate \\( y([[t0]]) \\), taking the positive branch.",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[a]]*[[t0]]**2 + [[y0]]**2)"},
+  "distractors": [
+   "sqrt([[a]]*[[t0]] + [[y0]]**2)",
+   "[[a]]*[[t0]]**2+[[y0]]**2",
+   "-sqrt([[a]]*[[t0]]**2 + [[y0]]**2)",
+   "sqrt([[a]])*[[t0]] + [[y0]]",
+   "[[y0]] + [[a]]*[[t0]]**2/(2*[[y0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separating gives \\( y\\,dy = [[a]]x\\,dx \\), so \\( \\dfrac{y^{2}}{2} = \\dfrac{[[a]]x^{2}}{2} + C \\). The condition \\( y(0)=[[y0]] \\) gives \\( C = \\dfrac{[[y0]]^{2}}{2} \\), so \\( y(x)^{2} = [[a]]x^{2} + [[y0]]^{2} \\). Taking the positive branch, \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square \\( x \\) before scaling by \\( [[a]] \\).",
+   "This forgets the square root, leaving \\( y^{2} \\) instead of \\( y \\).",
+   "This takes the negative branch instead of the positive one.",
+   "This treats the relation as linear in \\( x \\) rather than quadratic under the root.",
+   "This uses a linear (tangent-line) approximation instead of the exact implicit solution.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_ivp_logistic_v1",
+  "skill_id": "separable_initial_value_problem_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "num": {"type": "int", "lo": 1, "hi": 5},
+   "den": {"type": "int", "lo": 6, "hi": 9},
+   "a": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Lt([[num]], [[den]])", "Eq(gcd([[num]], [[den]]), 1)"],
+  "derived": {
+   "A": "([[num]]/[[den]])/(1-([[num]]/[[den]]))"
+  },
+  "require_rational": false,
+  "stem": "A quantity \\( y(t) \\) with \\( 0<y<1 \\) grows logistically according to \\( \\dfrac{dy}{dt} = [[a]]y(1-y) \\), \\( y(0) = \\dfrac{[[num]]}{[[den]]} \\). Evaluate \\( y([[t0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "(([[A]])*exp([[a]]*[[t0]]))/(1+([[A]])*exp([[a]]*[[t0]]))"},
+  "distractors": [
+   "([[num]]/[[den]])*exp([[a]]*[[t0]])",
+   "1/(1+([[A]])*exp(-[[a]]*[[t0]]))",
+   "([[A]])*exp([[a]]*[[t0]])",
+   "([[A]])/(1+([[A]])*exp([[a]]*[[t0]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By partial fractions, \\( \\int\\left(\\dfrac1y+\\dfrac1{1-y}\\right)dy = \\ln\\left|\\dfrac{y}{1-y}\\right| = [[a]]t + C \\), so \\( \\dfrac{y}{1-y} = Ae^{[[a]]t} \\) with \\( A = \\dfrac{y_0}{1-y_0} = [[A]] \\). Solving for \\( y \\), \\( y(t) = \\dfrac{Ae^{[[a]]t}}{1+Ae^{[[a]]t}} \\), so \\( y([[t0]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the saturation term \\( (1-y) \\), treating the growth as plain exponential.",
+   "This uses the wrong sign in the exponent, growing toward the wrong limit.",
+   "This forgets to normalize by the denominator \\( 1+Ae^{at} \\).",
+   "This places \\( A \\) in the numerator instead of \\( Ae^{at} \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_ivp_growth_word_problem_v1",
+  "skill_id": "separable_initial_value_problem_evaluate",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": 1, "hi": 9},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "require_rational": false,
+  "stem": "A colony of bacteria grows at a rate proportional to its current size, so its size \\( P(t) \\) (in thousands) satisfies \\( \\dfrac{dP}{dt} = [[k]]P \\). If \\( P(0) = [[y0]] \\) thousand, find \\( P([[t0]]) \\) (in thousand bacteria).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*exp([[k]]*[[t0]])"},
+  "distractors": [
+   "[[y0]]*[[k]]*[[t0]]",
+   "[[y0]]+[[k]]*[[t0]]",
+   "[[y0]]*exp(-[[k]]*[[t0]])",
+   "[[y0]]*[[t0]]*exp([[k]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separating variables, \\( \\dfrac{dP}{P} = [[k]]\\,dt \\), so \\( \\ln P = [[k]]t + C \\) and \\( P(t) = C_1e^{[[k]]t} \\). The condition \\( P(0)=[[y0]] \\) gives \\( C_1=[[y0]] \\), so \\( P([[t0]]) = [[y0]]e^{[[k]]\\cdot[[t0]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the growth as linear rather than exponential.",
+   "This adds the rate term instead of exponentiating it.",
+   "This uses the wrong sign in the exponent, giving decay instead of the correct trend (or vice versa).",
+   "This multiplies \\( t \\) outside the exponential instead of inside it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

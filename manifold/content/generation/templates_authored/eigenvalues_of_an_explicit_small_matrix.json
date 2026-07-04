@@ -1,0 +1,213 @@
+[
+{
+ "template_id": "eigenvalues_explicit_small_matrix_v1",
+ "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -6, "hi": 6},
+  "d2": {"type": "int", "lo": -6, "hi": 6},
+  "d3": {"type": "int", "lo": -6, "hi": 6},
+  "u12": {"type": "int", "lo": -5, "hi": 5},
+  "u13": {"type": "int", "lo": -5, "hi": 5},
+  "u23": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])", "Ne([[d1]], [[d3]])", "Ne([[d2]], [[d3]])"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & [[u12]] & [[u13]] \\\\ 0 & [[d2]] & [[u23]] \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\). What is the largest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "[[u12]]", "[[u13]]"], ["0", "[[d2]]", "[[u23]]"], ["0", "0", "[[d3]]"]], "which": "max"},
+ "distractors": [
+  "[[d1]]",
+  "[[d2]]",
+  "[[d3]]",
+  "[[d1]] + [[d2]] + [[d3]]",
+  "[[answer]] - 1",
+  "[[answer]] - 4",
+  "[[answer]] + 3"
+ ],
+ "solution": "The matrix is upper triangular, so its eigenvalues are exactly the diagonal entries \\( [[d1]], [[d2]], [[d3]] \\). The largest of these is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the diagonal entries, but not the largest eigenvalue.",
+  "This is one of the diagonal entries, but not the largest eigenvalue.",
+  "This is one of the diagonal entries, but not the largest eigenvalue.",
+  "This is the trace (sum of the diagonal), not the largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue.",
+  "This is four less than the correct largest eigenvalue.",
+  "This is three more than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_explicit_small_matrix_v2",
+ "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "t": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[m]], 0)", "Ne([[t]], [[m]])", "Ne([[t]], -[[m]])"],
+ "derived": {
+  "a": "[[p]] + [[m]]",
+  "d": "[[p]] - [[m]]",
+  "s": "[[t]]**2 - [[m]]**2"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & 1 \\\\ [[s]] & [[d]] \\end{bmatrix} \\). \\( A \\) is not triangular, so its eigenvalues must be found from the characteristic equation. What is the smallest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "1"], ["[[s]]", "[[d]]"]], "which": "min"},
+ "distractors": [
+  "[[p]] + [[t]]",
+  "[[a]]",
+  "[[d]]",
+  "[[p]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "The trace is \\( [[a]]+[[d]] = 2([[p]]) \\) and the determinant is \\( ([[a]])([[d]]) - (1)([[s]]) = [[p]]^{2} - [[t]]^{2} \\). By the quadratic formula, the eigenvalues are \\( [[p]] \\pm [[t]] \\); the smaller one is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the larger eigenvalue \\( [[p]]+[[t]] \\), not the smaller one.",
+  "This is the \\( (1,1) \\) entry of \\( A \\), but \\( A \\) is not triangular so this is not an eigenvalue.",
+  "This is the \\( (2,2) \\) entry of \\( A \\), but \\( A \\) is not triangular so this is not an eigenvalue.",
+  "This is half the trace, the average of the two eigenvalues, not the smaller one itself.",
+  "This is one more than the correct smallest eigenvalue.",
+  "This is two less than the correct smallest eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_explicit_small_matrix_v3",
+ "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)"],
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). Without solving the characteristic equation for the individual eigenvalues, what is the sum of the eigenvalues of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["[[c]]", "[[d]]"]], "which": "sum"},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[a]]",
+  "[[d]]",
+  "[[a]] - [[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 3"
+ ],
+ "solution": "For any square matrix, the sum of the eigenvalues equals the trace (this follows from Vieta's formulas applied to the characteristic polynomial), so no need to solve for the eigenvalues individually: \\( \\lambda_1+\\lambda_2 = [[a]]+[[d]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the determinant (product of the eigenvalues), not their sum.",
+  "This is only one diagonal entry, not the sum of both.",
+  "This is only one diagonal entry, not the sum of both.",
+  "This subtracts the diagonal entries instead of adding them.",
+  "This is one more than the correct sum.",
+  "This is three less than the correct sum."
+ ]
+},
+{
+ "template_id": "eigenvalues_explicit_small_matrix_v4",
+ "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[m]], 0)"],
+ "derived": {
+  "a": "[[p]] + [[m]]",
+  "d": "[[p]] - [[m]]",
+  "s": "-([[m]]**2)"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[a]] & 1 \\\\ [[s]] & [[d]] \\end{bmatrix} \\). The characteristic equation of \\( A \\) has a repeated root. What is that (repeated) eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "1"], ["[[s]]", "[[d]]"]], "which": "max"},
+ "distractors": [
+  "[[a]]",
+  "[[d]]",
+  "2*[[p]]",
+  "0",
+  "[[answer]] + 2",
+  "[[answer]] - 3"
+ ],
+ "solution": "The trace is \\( [[a]]+[[d]] = 2([[p]]) \\) and the determinant is \\( ([[a]])([[d]]) - (1)([[s]]) = [[p]]^{2} \\), so the discriminant \\( \\mathrm{trace}^2 - 4\\det = 4[[p]]^{2} - 4[[p]]^{2} = 0 \\). The characteristic equation has a repeated root at half the trace: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the \\( (1,1) \\) entry of \\( A \\), not the repeated eigenvalue.",
+  "This is the \\( (2,2) \\) entry of \\( A \\), not the repeated eigenvalue.",
+  "This is the trace itself; the repeated eigenvalue is half the trace.",
+  "The repeated eigenvalue need not be \\( 0 \\) here.",
+  "This is two more than the correct repeated eigenvalue.",
+  "This is three less than the correct repeated eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_explicit_small_matrix_v5",
+ "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])"],
+ "derived": {
+  "tt": "[[l1]] + [[l2]]",
+  "dd": "[[l1]] * [[l2]]",
+  "ndd": "-([[l1]] * [[l2]])"
+ },
+ "stem": "The matrix \\( A = \\begin{bmatrix} 0 & 1 \\\\ [[ndd]] & [[tt]] \\end{bmatrix} \\) is the companion matrix of the polynomial \\( \\lambda^{2} - ([[tt]])\\lambda + ([[dd]]) \\). What is the larger eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["0", "1"], ["[[ndd]]", "[[tt]]"]], "which": "max"},
+ "distractors": [
+  "[[l1]]",
+  "[[l2]]",
+  "[[tt]]",
+  "[[dd]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A companion matrix's eigenvalues are exactly the roots of the polynomial it is built from: \\( \\lambda^{2} - ([[tt]])\\lambda + ([[dd]]) = (\\lambda - [[l1]])(\\lambda - [[l2]]) \\), with roots \\( [[l1]] \\) and \\( [[l2]] \\). The larger is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the two roots, but not necessarily the larger one.",
+  "This is one of the two roots, but not necessarily the larger one.",
+  "This is the sum of the roots (the trace), not the larger root itself.",
+  "This is the product of the roots (the determinant), not the larger root itself.",
+  "This is one more than the correct larger eigenvalue.",
+  "This is one less than the correct larger eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_explicit_small_matrix_v6",
+ "skill_id": "eigenvalues_of_an_explicit_small_matrix",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "m": {"type": "int", "lo": -5, "hi": 5},
+  "t": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": ["Ne([[d1]], 0)", "Ne([[m]], 0)", "Ne([[t]], [[m]])", "Ne([[t]], -[[m]])"],
+ "derived": {
+  "a": "[[p]] + [[m]]",
+  "d": "[[p]] - [[m]]",
+  "s": "[[t]]**2 - [[m]]**2"
+ },
+ "stem": "Let \\( A = \\begin{bmatrix} [[d1]] & 0 & 0 \\\\ 0 & [[a]] & 1 \\\\ 0 & [[s]] & [[d]] \\end{bmatrix} \\). \\( A \\) is block-triangular, with a \\( 1\\times 1 \\) block \\( [[d1]] \\) and a \\( 2\\times 2 \\) block below it. What is the product of all three eigenvalues of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "0", "0"], ["0", "[[a]]", "1"], ["0", "[[s]]", "[[d]]"]], "which": "prod"},
+ "distractors": [
+  "[[d1]]*([[a]])*([[d]])",
+  "[[d1]] + [[p]]**2 - [[t]]**2",
+  "[[p]]**2 - [[t]]**2",
+  "[[d1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "The eigenvalues of a block-triangular matrix are the eigenvalues of its diagonal blocks together: \\( [[d1]] \\) from the \\( 1\\times1 \\) block, and the eigenvalues of \\( \\begin{bmatrix}[[a]] & 1 \\\\ [[s]] & [[d]]\\end{bmatrix} \\), whose product equals that block's determinant \\( ([[a]])([[d]]) - (1)([[s]]) = [[p]]^{2}-[[t]]^{2} \\). So the product of all three eigenvalues is \\( [[d1]]\\cdot([[p]]^{2}-[[t]]^{2}) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the diagonal entries of the \\( 2\\times 2 \\) block directly instead of using its determinant \\( ad - s \\).",
+  "This adds the block's determinant to \\( d_1 \\) instead of multiplying by it.",
+  "This omits the factor \\( d_1 \\) from the \\( 1\\times 1 \\) block entirely.",
+  "This uses only the isolated eigenvalue \\( d_1 \\), ignoring the \\( 2\\times 2 \\) block's contribution.",
+  "This is one more than the correct product.",
+  "This is two less than the correct product."
+ ]
+}
+]

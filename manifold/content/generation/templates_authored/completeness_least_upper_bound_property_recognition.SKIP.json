@@ -1,0 +1,1 @@
+{"skill_id": "completeness_least_upper_bound_property_recognition", "reason": "Tests recognition of the completeness / least-upper-bound axiom (which ordered fields have it and what it asserts); the answer is a chosen true statement, not a single code-computable scalar."}

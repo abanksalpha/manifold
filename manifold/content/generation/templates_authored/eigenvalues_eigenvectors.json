@@ -1,0 +1,196 @@
+[
+{
+ "template_id": "eigenvalues_eigenvectors_v1_triangular_2x2_max",
+ "skill_id": "eigenvalues_eigenvectors",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[a]], [[d]])", "Ne([[b]], 0)"],
+ "stem": "What is the largest eigenvalue of \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ 0 & [[d]] \\end{pmatrix} \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["0", "[[d]]"]], "which": "max"},
+ "distractors": [
+  "[[a]]",
+  "[[d]]",
+  "[[a]]+[[d]]",
+  "[[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For a triangular matrix, the eigenvalues are exactly its diagonal entries \\( [[a]] \\) and \\( [[d]] \\); the larger of the two is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the two eigenvalues, but not necessarily the larger one.",
+  "This is the other eigenvalue, but not necessarily the larger one.",
+  "This is the trace (sum of both eigenvalues), not a single eigenvalue.",
+  "This is the off-diagonal entry, which is not an eigenvalue of a triangular matrix.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_eigenvectors_v2_triangular_3x3_sum",
+ "skill_id": "eigenvalues_eigenvectors",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[b]], 0)", "Ne([[c]], 0)", "Ne([[e]], 0)"],
+ "stem": "What is the sum of the eigenvalues of \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]], "which": "sum"},
+ "distractors": [
+  "[[a]]*[[d]]*[[f]]",
+  "[[b]]+[[c]]+[[e]]",
+  "[[a]]+[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The eigenvalues of this triangular matrix are its diagonal entries \\( [[a]], [[d]], [[f]] \\), so their sum is \\( [[a]]+[[d]]+[[f]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the PRODUCT of the eigenvalues, not their sum.",
+  "This sums the off-diagonal entries instead of the diagonal (eigenvalue) entries.",
+  "This omits the third eigenvalue \\( [[f]] \\) from the sum.",
+  "This is off by one from the correct sum.",
+  "This is off by one from the correct sum.",
+  "This is off by two from the correct sum."
+ ]
+},
+{
+ "template_id": "eigenvalues_eigenvectors_v3_triangular_3x3_product",
+ "skill_id": "eigenvalues_eigenvectors",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[f]], 0)"],
+ "stem": "What is the product of the eigenvalues of \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]], "which": "prod"},
+ "distractors": [
+  "[[a]]+[[d]]+[[f]]",
+  "-[[a]]*[[d]]*[[f]]",
+  "[[a]]*[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The eigenvalues are the diagonal entries \\( [[a]], [[d]], [[f]] \\), so their product is \\( ([[a]])([[d]])([[f]]) = [[answer]] \\) (this equals \\( \\det(A) \\)).",
+ "distractor_rationales": [
+  "This is the SUM of the eigenvalues (the trace), not their product.",
+  "This has the right magnitude but the wrong sign.",
+  "This multiplies entries from the first row instead of the diagonal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+},
+{
+ "template_id": "eigenvalues_eigenvectors_v4_companion_2x2_max",
+ "skill_id": "eigenvalues_eigenvectors",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -6, "hi": 6},
+  "q": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "derived": {
+  "s": "[[p]] + [[q]]",
+  "prod": "[[p]]*[[q]]"
+ },
+ "stem": "Let \\( A = \\begin{pmatrix} [[s]] & [[prod]] \\\\ -1 & 0 \\end{pmatrix} \\) (none of its entries is obviously an eigenvalue). What is the largest eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[s]]", "[[prod]]"], ["-1", "0"]], "which": "max"},
+ "distractors": [
+  "[[s]]",
+  "[[prod]]",
+  "[[s]]/2",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The characteristic polynomial is \\( \\lambda^2 - ([[s]])\\lambda + ([[prod]]) = 0 \\), which factors as \\( (\\lambda-([[p]]))(\\lambda-([[q]])) = 0 \\), giving eigenvalues \\( [[p]] \\) and \\( [[q]] \\). The larger one is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the trace of \\( A \\) (the sum of both eigenvalues), not a single eigenvalue.",
+  "This is the determinant of \\( A \\) (the product of both eigenvalues), not a single eigenvalue.",
+  "This halves the trace, which only gives an eigenvalue when the two eigenvalues are equal.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is one less than the correct largest eigenvalue.",
+  "This is two more than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_eigenvectors_v5_symmetric_2x2_min",
+ "skill_id": "eigenvalues_eigenvectors",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[b]] & [[a]] \\end{pmatrix} \\), a real symmetric matrix. What is its smallest eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]"], ["[[b]]", "[[a]]"]], "which": "min"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]]",
+  "2*[[a]]",
+  "-[[b]]",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "For \\( A = \\begin{pmatrix} a & b \\\\ b & a \\end{pmatrix} \\) the eigenvectors are \\( (1,1) \\) and \\( (1,-1) \\), giving eigenvalues \\( a+b \\) and \\( a-b \\). Here these are \\( [[a]]+[[b]] \\) and \\( [[a]]-[[b]] \\); since \\( [[b]]>0 \\), the smaller is \\( [[a]]-[[b]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the eigenvalue \\( a+b \\), which is the LARGER one here since \\( b>0 \\).",
+  "This is the shared diagonal entry, the average of the two eigenvalues, not the smallest eigenvalue.",
+  "This doubles the diagonal entry rather than subtracting the correct offset \\( b \\).",
+  "This is the negative of the off-diagonal entry, not an eigenvalue of the matrix.",
+  "This is one less than the correct smallest eigenvalue.",
+  "This is two more than the correct smallest eigenvalue."
+ ]
+},
+{
+ "template_id": "eigenvalues_eigenvectors_v6_block_diagonal_3x3_min",
+ "skill_id": "eigenvalues_eigenvectors",
+ "topic_id": "eigen",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "e": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] & 0 \\\\ [[b]] & [[a]] & 0 \\\\ 0 & 0 & [[e]] \\end{pmatrix} \\), a symmetric block-diagonal matrix. What is its smallest eigenvalue?",
+ "answer_spec": {"op": "eig", "matrix": [["[[a]]", "[[b]]", "0"], ["[[b]]", "[[a]]", "0"], ["0", "0", "[[e]]"]], "which": "min"},
+ "distractors": [
+  "[[a]] + [[b]]",
+  "[[a]] - [[b]]",
+  "[[e]]",
+  "[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The matrix is block-diagonal: the top-left \\( 2\\times2 \\) symmetric block has eigenvalues \\( [[a]]+[[b]] \\) and \\( [[a]]-[[b]] \\), and the bottom-right \\( 1\\times1 \\) block contributes the eigenvalue \\( [[e]] \\). The full eigenvalue set of \\( A \\) is the union of these three; the smallest is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one eigenvalue of the top block, but not necessarily the overall smallest once the scalar block's eigenvalue \\( e \\) is included.",
+  "This is the other eigenvalue of the top block, but not necessarily the overall smallest.",
+  "This is the scalar block's eigenvalue, but not necessarily the overall smallest.",
+  "This is just the shared diagonal entry of the top block, not one of its actual eigenvalues in general.",
+  "This is one more than the correct smallest eigenvalue.",
+  "This is one less than the correct smallest eigenvalue."
+ ]
+}
+]

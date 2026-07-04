@@ -1,0 +1,183 @@
+[
+{
+ "template_id": "determinants_v1_2x2",
+ "skill_id": "determinants",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -7, "hi": 7},
+  "c": {"type": "int", "lo": -7, "hi": 7},
+  "d": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "What is \\( \\det\\begin{pmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{pmatrix} \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]"], ["[[c]]", "[[d]]"]]},
+ "distractors": [
+  "[[a]]*[[d]] + [[b]]*[[c]]",
+  "[[b]]*[[c]] - [[a]]*[[d]]",
+  "[[a]]*[[c]] - [[b]]*[[d]]",
+  "[[a]]+[[b]]+[[c]]+[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For a \\( 2\\times2 \\) matrix, \\( \\det = ad-bc = ([[a]])([[d]]) - ([[b]])([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the diagonal products instead of subtracting them.",
+  "This is the negative of the determinant (the two products were swapped).",
+  "This multiplies the wrong pairs of entries together.",
+  "This sums all four entries instead of computing \\( ad-bc \\).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "determinants_v2_3x3_general",
+ "skill_id": "determinants",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4},
+  "h": {"type": "int", "lo": -4, "hi": 4},
+  "i": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]]), 0)"],
+ "stem": "Expand along the first row to compute \\( \\det\\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{pmatrix} \\).",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[g]]", "[[h]]", "[[i]]"]]},
+ "distractors": [
+  "[[a]]*([[e]]*[[i]]-[[f]]*[[h]]) + [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) + [[c]]*([[d]]*[[h]]-[[e]]*[[g]])",
+  "[[a]]*([[e]]*[[i]]-[[f]]*[[h]]) - [[b]]*([[d]]*[[i]]-[[f]]*[[g]]) - [[c]]*([[d]]*[[h]]-[[e]]*[[g]])",
+  "[[a]]*[[e]]*[[i]] + [[b]]*[[f]]*[[g]] + [[c]]*[[d]]*[[h]]",
+  "[[a]]*[[e]]*[[i]] - [[c]]*[[e]]*[[g]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Cofactor-expanding along row 1: \\( \\det = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses all plus signs instead of the alternating \\( +,-,+ \\) cofactor pattern.",
+  "This uses all minus signs after the first term instead of the alternating pattern.",
+  "This is the 'rule of Sarrus' diagonal-product sum, but with the second triple of diagonals omitted.",
+  "This drops the middle cofactor term entirely.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "determinants_v3_triangular",
+ "skill_id": "determinants",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "e": {"type": "int", "lo": -6, "hi": 6},
+  "f": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[d]], 0)", "Ne([[f]], 0)"],
+ "stem": "What is \\( \\det\\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ 0 & [[d]] & [[e]] \\\\ 0 & 0 & [[f]] \\end{pmatrix} \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["0", "[[d]]", "[[e]]"], ["0", "0", "[[f]]"]]},
+ "distractors": [
+  "[[a]]+[[d]]+[[f]]",
+  "[[a]]*[[d]]*[[f]] + [[b]]*[[e]]",
+  "-[[a]]*[[d]]*[[f]]",
+  "[[a]]*[[b]]*[[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "For an (upper) triangular matrix the determinant is just the product of the diagonal entries: \\( ([[a]])([[d]])([[f]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This sums the diagonal entries (that gives the trace), not their product.",
+  "This incorrectly adds a contribution from the off-diagonal entries, which never affect a triangular determinant.",
+  "This has the right magnitude but the wrong sign.",
+  "This multiplies entries from the first row instead of the main diagonal.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "determinants_v4_dependent_row_zero",
+ "skill_id": "determinants",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -5, "hi": 5},
+  "b": {"type": "int", "lo": -5, "hi": 5},
+  "c": {"type": "int", "lo": -5, "hi": 5},
+  "d": {"type": "int", "lo": -5, "hi": 5},
+  "e": {"type": "int", "lo": -5, "hi": 5},
+  "f": {"type": "int", "lo": -5, "hi": 5},
+  "k1": {"type": "choice", "values": [-3, -2, 2, 3]},
+  "k2": {"type": "choice", "values": [-3, -2, 2, 3]}
+ },
+ "constraints": ["Or(Ne([[a]],0), Ne([[b]],0), Ne([[c]],0))"],
+ "derived": {
+  "r31": "[[k1]]*[[a]] + [[k2]]*[[d]]",
+  "r32": "[[k1]]*[[b]] + [[k2]]*[[e]]",
+  "r33": "[[k1]]*[[c]] + [[k2]]*[[f]]"
+ },
+ "stem": "In \\( A = \\begin{pmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[r31]] & [[r32]] & [[r33]] \\end{pmatrix} \\), row 3 equals \\( [[k1]] \\) times row 1 plus \\( [[k2]] \\) times row 2. What is \\( \\det(A) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[r31]]", "[[r32]]", "[[r33]]"]]},
+ "distractors": [
+  "[[k1]]",
+  "[[k2]]",
+  "[[k1]]+[[k2]]",
+  "[[k1]]*[[k2]]",
+  "1",
+  "-1"
+ ],
+ "solution": "Since row 3 is a linear combination of rows 1 and 2, the rows are linearly dependent, so \\( \\det(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This confuses the combination coefficient \\( [[k1]] \\) with the determinant.",
+  "This confuses the combination coefficient \\( [[k2]] \\) with the determinant.",
+  "This adds the two combination coefficients instead of recognizing the determinant vanishes.",
+  "This multiplies the two combination coefficients instead of recognizing the determinant vanishes.",
+  "A dependent set of rows never gives determinant 1 in general; the determinant is forced to 0.",
+  "A dependent set of rows never gives determinant -1 in general; the determinant is forced to 0."
+ ]
+},
+{
+ "template_id": "determinants_v5_scalar_row_multiple",
+ "skill_id": "determinants",
+ "topic_id": "linear_algebra_core",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [-3, -2, 2, 3, 4]}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "derived": {
+  "ka": "[[k]]*[[a]]",
+  "kb": "[[k]]*[[b]]"
+ },
+ "stem": "Let \\( A = \\begin{pmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{pmatrix} \\) and let \\( B \\) be \\( A \\) with its first row multiplied by \\( [[k]] \\), i.e. \\( B = \\begin{pmatrix} [[ka]] & [[kb]] \\\\ [[c]] & [[d]] \\end{pmatrix} \\). What is \\( \\det(B) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[ka]]", "[[kb]]"], ["[[c]]", "[[d]]"]]},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[k]]*[[k]]*([[a]]*[[d]] - [[b]]*[[c]])",
+  "([[a]]*[[d]] - [[b]]*[[c]]) + [[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Scaling a single row of a matrix by \\( [[k]] \\) scales the determinant by that same factor: \\( \\det(B) = [[k]]\\cdot\\det(A) = [[k]]\\cdot(([[a]])([[d]])-([[b]])([[c]])) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to scale at all and just gives \\( \\det(A) \\).",
+  "This scales by \\( k^2 \\), which is what happens if BOTH rows were scaled by \\( k \\), not just one.",
+  "This adds \\( k \\) to the determinant instead of multiplying by it.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value."
+ ]
+}
+]

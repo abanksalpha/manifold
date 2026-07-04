@@ -1,0 +1,186 @@
+[
+{
+ "template_id": "single_integration_by_parts_liate_choice_v1",
+ "skill_id": "single_integration_by_parts_liate_choice",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [1, 3, 5, 7]}
+ },
+ "constraints": [],
+ "stem": "Evaluate \\( \\int_{0}^{\\pi} [[c]]x\\cos\\left([[n]]x\\right)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x*cos([[n]]*x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "2*[[c]]/[[n]]**2",
+  "-[[c]]/[[n]]**2",
+  "-2*[[c]]/[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "By LIATE choose \\( u = [[c]]x \\) (algebraic) and \\( dv = \\cos([[n]]x)\\,dx \\). Then \\( \\int_{0}^{\\pi} [[c]]x\\cos([[n]]x)\\,dx = \\left.\\left(\\tfrac{[[c]]x\\sin([[n]]x)}{[[n]]} + \\tfrac{[[c]]\\cos([[n]]x)}{[[n]]^{2}}\\right)\\right|_{0}^{\\pi} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the sign that comes from \\( \\cos([[n]]\\pi) = -1 \\) for odd \\( [[n]] \\).",
+  "This keeps the sign but omits the factor of 2 from the difference of endpoint cosines.",
+  "This uses the wrong power of \\( [[n]] \\) in the denominator (\\( [[n]] \\) instead of \\( [[n]]^{2} \\)).",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This doubles the correct value."
+ ]
+},
+{
+ "template_id": "single_integration_by_parts_boundary_term_dominant_v1",
+ "skill_id": "single_integration_by_parts_liate_choice",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 5},
+  "n": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "stem": "Unlike the cosine version of this integral, here the BOUNDARY term survives and the remaining integral vanishes. Evaluate \\( \\int_{0}^{\\pi} [[c]]x\\sin\\left([[n]]x\\right)\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x*sin([[n]]*x)", "var": "x", "bounds": ["0", "pi"]},
+ "distractors": [
+  "0",
+  "-[[answer]]",
+  "[[c]]*pi/[[n]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "By LIATE choose \\( u=[[c]]x \\), \\( dv=\\sin([[n]]x)\\,dx \\), so \\( v=-\\tfrac{\\cos([[n]]x)}{[[n]]} \\). The boundary term \\( \\left.-\\tfrac{[[c]]x\\cos([[n]]x)}{[[n]]}\\right|_{0}^{\\pi} = -\\tfrac{[[c]]\\pi\\cos([[n]]\\pi)}{[[n]]} \\) is nonzero, while the remaining integral \\( \\int_0^\\pi \\tfrac{[[c]]\\cos([[n]]x)}{[[n]]}\\,dx \\) integrates to \\( \\tfrac{[[c]]\\sin([[n]]x)}{[[n]]^2} \\), which vanishes at both \\( 0 \\) and \\( \\pi \\). So the answer is entirely the boundary term: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the boundary term vanishes here the way it does for \\( x\\cos(nx) \\).",
+  "This flips the sign of the correct value.",
+  "This drops the factor of \\( \\pi \\) picked up from evaluating at the upper limit.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "single_integration_by_parts_improper_exponential_v1",
+ "skill_id": "single_integration_by_parts_liate_choice",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "By LIATE the algebraic factor is \\( u \\) and the exponential is \\( dv \\); the boundary term vanishes as \\( x\\to\\infty \\) because the exponential decays faster than \\( x \\) grows. Evaluate the improper integral \\( \\int_{0}^{\\infty} [[c]]x\\,e^{-[[k]]x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x*exp(-[[k]]*x)", "var": "x", "bounds": ["0", "oo"]},
+ "distractors": [
+  "[[c]]/[[k]]",
+  "[[c]]*[[k]]",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=[[c]]x \\), \\( dv=e^{-[[k]]x}dx \\), \\( v=-\\tfrac{1}{[[k]]}e^{-[[k]]x} \\), integration by parts gives \\( \\left.-\\tfrac{[[c]]x}{[[k]]}e^{-[[k]]x}\\right|_0^{\\infty} + \\dfrac{[[c]]}{[[k]]}\\displaystyle\\int_0^\\infty e^{-[[k]]x}dx \\). The boundary term is \\( 0 \\) at both ends, and the remaining integral is \\( \\dfrac{[[c]]}{[[k]]}\\cdot\\dfrac{1}{[[k]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This stops after the first application of parts, reporting only the \\( c/k \\) coefficient without the second factor of \\( 1/k \\).",
+  "This inverts the exponent's role, multiplying by \\( k \\) instead of dividing.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "single_integration_by_parts_power_times_log_v1",
+ "skill_id": "single_integration_by_parts_liate_choice",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "n": {"type": "choice", "values": [1, 2, 3, 4]},
+  "m": {"type": "int", "lo": 2, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "By LIATE the logarithm outranks the power of \\( x \\), so take \\( u=\\ln x \\) and \\( dv = x^{[[n]]}\\,dx \\). Evaluate \\( \\int_{1}^{[[m]]} x^{[[n]]}\\ln x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "x**[[n]]*log(x)", "var": "x", "bounds": ["1", "[[m]]"]},
+ "distractors": [
+  "[[m]]**([[n]]+1)*log([[m]])/([[n]]+1)",
+  "log([[m]])/([[n]]+1)",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\ln x \\), \\( dv=x^{[[n]]}dx \\), \\( v=\\tfrac{x^{[[n]]+1}}{[[n]]+1} \\): \\( \\int x^{[[n]]}\\ln x\\,dx = \\tfrac{x^{[[n]]+1}}{[[n]]+1}\\ln x - \\tfrac{x^{[[n]]+1}}{([[n]]+1)^{2}} \\). Evaluating from \\( 1 \\) to \\( [[m]] \\) (where \\( \\ln 1 = 0 \\)) gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the \\( \\tfrac{x^{n+1}}{n+1}\\ln x \\) piece and forgets to subtract the \\( \\tfrac{x^{n+1}}{(n+1)^2} \\) correction term.",
+  "This keeps only the correction-term structure but drops the leading power of \\( [[m]] \\).",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "single_integration_by_parts_ln_alone_v1",
+ "skill_id": "single_integration_by_parts_liate_choice",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "m": {"type": "int", "lo": 2, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Even a single function like \\( \\ln x \\) needs integration by parts: write \\( \\ln x = 1\\cdot\\ln x \\) and take \\( u=\\ln x \\), \\( dv=dx \\). Evaluate \\( \\int_{1}^{[[m]]} [[c]]\\ln x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*log(x)", "var": "x", "bounds": ["1", "[[m]]"]},
+ "distractors": [
+  "[[c]]*[[m]]*log([[m]])",
+  "[[c]]*log([[m]])",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\ln x \\), \\( dv=dx \\), \\( v=x \\): \\( \\int \\ln x\\,dx = x\\ln x - x \\). Evaluated from \\( 1 \\) to \\( [[m]] \\) (where \\( 1\\cdot\\ln 1 - 1 = -1 \\)) and scaled by \\( [[c]] \\), this gives \\( [[c]]\\left(([[m]]\\ln [[m]] - [[m]]) - (-1)\\right) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to subtract the \\( -x \\) term entirely, keeping only \\( x\\ln x \\).",
+  "This forgets the lower-limit contribution of \\( -1 \\) from \\( x\\ln x - x \\) at \\( x=1 \\).",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+},
+{
+ "template_id": "single_integration_by_parts_arctan_alone_v1",
+ "skill_id": "single_integration_by_parts_liate_choice",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "b": {"type": "choice", "values": [1, 2, 3]}
+ },
+ "constraints": [],
+ "stem": "By LIATE the inverse-trig function outranks the (implicit) algebraic factor, so take \\( u=\\arctan x \\), \\( dv=dx \\). Evaluate \\( \\int_{0}^{[[b]]} [[c]]\\arctan x\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*atan(x)", "var": "x", "bounds": ["0", "[[b]]"]},
+ "distractors": [
+  "[[c]]*[[b]]*atan([[b]])",
+  "[[c]]*atan([[b]])",
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "[[answer]] + 1",
+  "-[[answer]]"
+ ],
+ "solution": "With \\( u=\\arctan x \\), \\( dv=dx \\), \\( v=x \\): \\( \\int \\arctan x\\,dx = x\\arctan x - \\int \\dfrac{x}{1+x^{2}}dx = x\\arctan x - \\tfrac12\\ln(1+x^{2}) \\). Evaluated from \\( 0 \\) to \\( [[b]] \\) and scaled by \\( [[c]] \\), this gives \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the logarithmic correction term from \\( \\int x/(1+x^2)\\,dx \\), keeping only \\( x\\arctan x \\).",
+  "This keeps only the boundary value \\( \\arctan(b) \\) itself, forgetting to multiply by \\( b \\) or subtract the log term.",
+  "This doubles the correct value.",
+  "This halves the correct value.",
+  "This is off by one from the correct value.",
+  "This flips the sign of the correct value."
+ ]
+}
+]

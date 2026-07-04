@@ -1,0 +1,176 @@
+[
+{
+ "template_id": "tautology_excluded_middle_v1",
+ "skill_id": "tautology_contradiction_recognition",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( p_1 \\vee \\neg p_1 \\) (only \\( p_1 \\) appears in it). Out of the \\( 2^{[[n]]} \\) possible truth assignments to \\( p_1, \\ldots, p_{[[n]]} \\), how many make this formula TRUE?",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+ "distractors": [
+  "2**([[n]] - 1)",
+  "0",
+  "1",
+  "[[n]]",
+  "2**[[n]] - 1",
+  "2**[[n]] + 1"
+ ],
+ "solution": "\\( p_1 \\vee \\neg p_1 \\) is a tautology (the Law of the Excluded Middle) \u2014 exactly one of \\( p_1, \\neg p_1 \\) is always true regardless of \\( p_1 \\)'s value, and the other [[n]]\\( -1 \\) variables are unrestricted, so ALL \\( 2^{[[n]]} \\) assignments make it true: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly restricts only half the assignments, as if the formula depended on an extra free variable.",
+  "This treats the formula as a contradiction (always false) rather than a tautology.",
+  "This treats the formula as true for only a single assignment, rather than for all of them.",
+  "This confuses the number of variables with the count of satisfying assignments.",
+  "This misses exactly one assignment out of the total, as if one case failed.",
+  "This overcounts by one beyond the total number of possible assignments."
+ ]
+},
+{
+ "template_id": "tautology_non_contradiction_v1",
+ "skill_id": "tautology_contradiction_recognition",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( p_1 \\wedge \\neg p_1 \\) (only \\( p_1 \\) appears in it). Out of the \\( 2^{[[n]]} \\) possible truth assignments to \\( p_1, \\ldots, p_{[[n]]} \\), how many make this formula TRUE?",
+ "answer_spec": {"op": "evaluate", "expr": "0"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]] - 1)",
+  "1",
+  "[[n]]",
+  "2**[[n]] - 1",
+  "-1"
+ ],
+ "solution": "\\( p_1 \\wedge \\neg p_1 \\) is a contradiction: \\( p_1 \\) and \\( \\neg p_1 \\) can never both be true, so NO assignment (regardless of the other [[n]]\\( -1 \\) variables) makes it true: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the formula as a tautology (always true) rather than a contradiction.",
+  "This mistakenly allows half the assignments to satisfy it.",
+  "This mistakenly allows exactly one assignment to satisfy it.",
+  "This confuses the number of variables with the count of satisfying assignments.",
+  "This allows all but one assignment to satisfy it, the opposite of a contradiction.",
+  "A count of satisfying assignments can never be negative."
+ ]
+},
+{
+ "template_id": "tautology_modus_ponens_v1",
+ "skill_id": "tautology_contradiction_recognition",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( \\bigl(p_1 \\wedge (p_1 \\rightarrow p_2)\\bigr) \\rightarrow p_2 \\) (only \\( p_1, p_2 \\) appear in it). Out of the \\( 2^{[[n]]} \\) possible truth assignments to \\( p_1, \\ldots, p_{[[n]]} \\), how many make this formula TRUE?",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+ "distractors": [
+  "2**([[n]] - 1)",
+  "2**([[n]] - 2)",
+  "0",
+  "3*2**([[n]] - 2)",
+  "2**[[n]] - 1",
+  "2**[[n]] + 1"
+ ],
+ "solution": "This formula encodes modus ponens: whenever \\( p_1 \\) is true and \\( p_1 \\to p_2 \\) is true, \\( p_2 \\) must also be true, so the implication never fails. It is a tautology, true for the entire truth table \u2014 all \\( 2^{[[n]]} \\) assignments (the other [[n]]\\( -2 \\) variables are free): \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly restricts satisfaction to only half the assignments.",
+  "This confuses the formula with one that constrains both \\( p_1 \\) and \\( p_2 \\) to specific values.",
+  "This treats the formula as a contradiction rather than a tautology.",
+  "This is the true-count for the one-directional implication \\( p_1 \\to p_2 \\) alone, not this whole tautology.",
+  "This misses exactly one assignment, as if the formula failed once.",
+  "This overcounts by one beyond the total number of possible assignments."
+ ]
+},
+{
+ "template_id": "tautology_biconditional_disjunction_v1",
+ "skill_id": "tautology_contradiction_recognition",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( (p_1 \\leftrightarrow p_2) \\vee (p_1 \\leftrightarrow \\neg p_2) \\) (only \\( p_1, p_2 \\) appear in it). Out of the \\( 2^{[[n]]} \\) possible truth assignments to \\( p_1, \\ldots, p_{[[n]]} \\), how many make this formula TRUE?",
+ "answer_spec": {"op": "evaluate", "expr": "2**[[n]]"},
+ "distractors": [
+  "2**([[n]] - 1)",
+  "2**([[n]] - 2)",
+  "0",
+  "[[n]]",
+  "2**[[n]] - 1",
+  "2**[[n]] + 1"
+ ],
+ "solution": "For any \\( p_1, p_2 \\), either \\( p_2 \\) agrees with \\( p_1 \\) (making \\( p_1 \\leftrightarrow p_2 \\) true) or it disagrees (making \\( p_1 \\leftrightarrow \\neg p_2 \\) true) \u2014 exactly one of the two disjuncts always holds. This is a tautology, true for all \\( 2^{[[n]]} \\) assignments: \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly restricts satisfaction to only half the assignments, as though only one disjunct could ever be checked.",
+  "This confuses the formula with one requiring \\( p_1 \\) and \\( p_2 \\) to take specific values.",
+  "This treats the formula as a contradiction rather than a tautology.",
+  "This confuses the number of variables with the count of satisfying assignments.",
+  "This misses exactly one assignment, as if the formula failed once.",
+  "This overcounts by one beyond the total number of possible assignments."
+ ]
+},
+{
+ "template_id": "tautology_contingent_implication_v1",
+ "skill_id": "tautology_contradiction_recognition",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( (p_1 \\wedge p_2) \\vee \\neg p_1 \\) (only \\( p_1, p_2 \\) appear in it). Out of the \\( 2^{[[n]]} \\) possible truth assignments to \\( p_1, \\ldots, p_{[[n]]} \\), how many make this formula TRUE?",
+ "answer_spec": {"op": "evaluate", "expr": "3*2**([[n]] - 2)"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]] - 1)",
+  "2**([[n]] - 2)",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( (p_1\\wedge p_2)\\vee \\neg p_1 \\) is logically equivalent to \\( p_1 \\to p_2 \\), which is false only when \\( p_1 \\) is true and \\( p_2 \\) is false. It is neither a tautology nor a contradiction (it is contingent): it fails on \\( 2^{[[n]]-2} \\) of the \\( 2^{[[n]]} \\) assignments and holds on the remaining \\( 2^{[[n]]} - 2^{[[n]]-2} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This mistakenly treats the formula as a tautology, true on every assignment.",
+  "This mistakenly treats the formula as satisfied on exactly half the assignments.",
+  "This is the count of assignments where the formula is FALSE, not where it is true.",
+  "This mistakenly treats the formula as a contradiction, true on no assignment.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+},
+{
+ "template_id": "tautology_contingent_xor_v1",
+ "skill_id": "tautology_contradiction_recognition",
+ "topic_id": "logic_sets",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 22}
+ },
+ "constraints": [],
+ "stem": "Let \\( p_1, p_2, \\ldots, p_{[[n]]} \\) be [[n]] propositional variables, and consider the formula \\( p_1 \\oplus p_2 \\) (the exclusive-or of \\( p_1 \\) and \\( p_2 \\); only \\( p_1, p_2 \\) appear in it). Out of the \\( 2^{[[n]]} \\) possible truth assignments to \\( p_1, \\ldots, p_{[[n]]} \\), how many make this formula TRUE?",
+ "answer_spec": {"op": "evaluate", "expr": "2**([[n]] - 1)"},
+ "distractors": [
+  "2**[[n]]",
+  "2**([[n]] - 2)",
+  "0",
+  "[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "\\( p_1 \\oplus p_2 \\) is true exactly when \\( p_1, p_2 \\) disagree (2 of the 4 combinations), so it is neither a tautology nor a contradiction. With the other [[n]]\\( -2 \\) variables free, it is true for \\( 2 \\cdot 2^{[[n]]-2} = 2^{[[n]]-1} = [[answer]] \\) of the \\( 2^{[[n]]} \\) assignments.",
+ "distractor_rationales": [
+  "This mistakenly treats the formula as a tautology, true on every assignment.",
+  "This mistakenly restricts satisfaction to only a quarter of the assignments.",
+  "This mistakenly treats the formula as a contradiction, true on no assignment.",
+  "This confuses the number of variables with the count of satisfying assignments.",
+  "This is off by one from the correct total.",
+  "This is off by one from the correct total."
+ ]
+}
+]

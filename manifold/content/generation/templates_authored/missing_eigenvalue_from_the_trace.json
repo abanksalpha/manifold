@@ -1,0 +1,142 @@
+[
+{
+ "template_id": "missing_eigenvalue_from_trace_v1",
+ "skill_id": "missing_eigenvalue_from_the_trace",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6},
+  "l3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])", "Ne([[l1]], [[l3]])", "Ne([[l2]], [[l3]])"],
+ "derived": {"tr": "[[l1]] + [[l2]] + [[l3]]"},
+ "stem": "A \\( 3 \\times 3 \\) matrix \\( A \\) has trace \\( [[tr]] \\). Two of its three eigenvalues are \\( [[l1]] \\) and \\( [[l2]] \\). What is the third eigenvalue?",
+ "answer_spec": {"op": "evaluate", "expr": "[[tr]] - [[l1]] - [[l2]]"},
+ "distractors": [
+  "[[tr]]",
+  "[[tr]] - [[l1]]",
+  "[[l1]] + [[l2]]",
+  "[[tr]] + [[l1]] + [[l2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 3"
+ ],
+ "solution": "The trace equals the sum of the eigenvalues, so the third eigenvalue is \\( [[tr]] - ([[l1]]) - ([[l2]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the trace itself; you must subtract the two known eigenvalues from it.",
+  "This subtracts only one of the two known eigenvalues from the trace.",
+  "This adds the two known eigenvalues instead of subtracting them from the trace.",
+  "This adds the known eigenvalues to the trace instead of subtracting them.",
+  "This is one more than the correct third eigenvalue.",
+  "This is one less than the correct third eigenvalue.",
+  "This is three more than the correct third eigenvalue."
+ ]
+},
+{
+ "template_id": "missing_eigenvalue_from_trace_v2",
+ "skill_id": "missing_eigenvalue_from_the_trace",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6},
+  "l3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])", "Ne([[l1]], [[l3]])", "Ne([[l2]], [[l3]])"],
+ "derived": {
+  "tr": "[[l1]] + [[l2]] + [[l3]]",
+  "ssum": "[[l1]] + [[l2]]",
+  "sdiff": "Abs([[l1]] - [[l2]])"
+ },
+ "stem": "A \\( 3 \\times 3 \\) matrix \\( A \\) has trace \\( [[tr]] \\). Two of its three eigenvalues sum to \\( [[ssum]] \\) and differ by \\( [[sdiff]] \\). What is the third eigenvalue?",
+ "answer_spec": {"op": "evaluate", "expr": "[[tr]] - [[ssum]]"},
+ "distractors": [
+  "[[tr]] - [[sdiff]]",
+  "[[tr]] + [[ssum]]",
+  "[[ssum]]",
+  "[[tr]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "The two unknown eigenvalues' individual values are not needed, only their sum: the trace equals the sum of all three eigenvalues, so the third eigenvalue is \\( [[tr]] - [[ssum]] = [[answer]] \\) (the given difference \\( [[sdiff]] \\) is not needed).",
+ "distractor_rationales": [
+  "This mistakenly subtracts the difference of the two known eigenvalues instead of their sum.",
+  "This adds the sum of the two known eigenvalues to the trace instead of subtracting it.",
+  "This is just the sum of the two known eigenvalues, not the trace minus that sum.",
+  "This is the trace itself; you must still subtract the known eigenvalues' sum.",
+  "This is one more than the correct third eigenvalue.",
+  "This is one less than the correct third eigenvalue.",
+  "This is two more than the correct third eigenvalue."
+ ]
+},
+{
+ "template_id": "missing_eigenvalue_from_trace_v3",
+ "skill_id": "missing_eigenvalue_from_the_trace",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6},
+  "l3": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])", "Ne([[l1]], [[l3]])", "Ne([[l2]], [[l3]])"],
+ "derived": {"tr": "[[l1]] + [[l2]] + [[l3]]"},
+ "stem": "The characteristic polynomial of a \\( 3 \\times 3 \\) matrix \\( A \\) is \\( \\lambda^{3} - ([[tr]])\\lambda^{2} + c_1\\lambda - c_0 \\) for some constants \\( c_1, c_0 \\). Two of \\( A \\)'s eigenvalues are \\( [[l1]] \\) and \\( [[l2]] \\). What is the third eigenvalue?",
+ "answer_spec": {"op": "evaluate", "expr": "[[tr]] - [[l1]] - [[l2]]"},
+ "distractors": [
+  "-[[tr]]",
+  "[[tr]] - [[l1]]",
+  "[[l1]] + [[l2]]",
+  "[[tr]] + [[l1]] + [[l2]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 4"
+ ],
+ "solution": "The coefficient of \\( \\lambda^{2} \\) in the characteristic polynomial (with a minus sign) is the trace, i.e. the sum of the eigenvalues, so the trace here is \\( [[tr]] \\). The third eigenvalue is therefore \\( [[tr]] - ([[l1]]) - ([[l2]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the negative of the trace (forgetting the polynomial's built-in minus sign) instead of the trace itself.",
+  "This subtracts only one of the two known eigenvalues from the trace.",
+  "This adds the two known eigenvalues instead of subtracting them from the trace.",
+  "This adds the known eigenvalues to the trace instead of subtracting them.",
+  "This is one more than the correct third eigenvalue.",
+  "This is one less than the correct third eigenvalue.",
+  "This is four more than the correct third eigenvalue."
+ ]
+},
+{
+ "template_id": "missing_eigenvalue_from_trace_v4",
+ "skill_id": "missing_eigenvalue_from_the_trace",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "l1": {"type": "int", "lo": -6, "hi": 6},
+  "l2": {"type": "int", "lo": -6, "hi": 6},
+  "k": {"type": "choice", "values": [2, 3, 4]}
+ },
+ "constraints": ["Ne([[l1]], [[l2]])"],
+ "derived": {"m": "[[k]]*([[l1]] + [[l2]])"},
+ "stem": "A \\( 2 \\times 2 \\) matrix \\( A \\) has one eigenvalue equal to \\( [[l1]] \\). The trace of \\( [[k]]A \\) (that is, \\( A \\) scaled by \\( [[k]] \\)) is \\( [[m]] \\). What is the other eigenvalue of \\( A \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[m]]/[[k]] - [[l1]]"},
+ "distractors": [
+  "[[m]] - [[l1]]",
+  "[[m]]/[[k]]",
+  "[[l1]]",
+  "[[k]]*[[l1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2",
+  "[[answer]] + 3"
+ ],
+ "solution": "Since \\( \\mathrm{trace}([[k]]A) = [[k]]\\cdot\\mathrm{trace}(A) \\), we get \\( \\mathrm{trace}(A) = [[m]]/[[k]] \\). The other eigenvalue is \\( \\mathrm{trace}(A) - [[l1]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to divide the given trace of \\( [[k]]A \\) by \\( [[k]] \\) before subtracting.",
+  "This stops after dividing by \\( [[k]] \\) without subtracting the known eigenvalue.",
+  "This just repeats the known eigenvalue instead of finding the other one.",
+  "This multiplies the known eigenvalue by \\( [[k]] \\) instead of using the trace relationship.",
+  "This is one more than the correct other eigenvalue.",
+  "This is two less than the correct other eigenvalue.",
+  "This is three more than the correct other eigenvalue."
+ ]
+}
+]

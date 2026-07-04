@@ -1,0 +1,132 @@
+[
+ {
+  "template_id": "hessian_quadratic_form_v1",
+  "skill_id": "extrema_hessian_test",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -6, "hi": 6},
+   "C": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[C]], 0)"],
+  "derived": {"P": "-(2*[[A]]*[[x0]]+[[B]]*[[y0]])", "Q": "-([[B]]*[[x0]]+2*[[C]]*[[y0]])"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{2} + [[B]]xy + [[C]]y^{2} + [[P]]x + [[Q]]y \\). The point \\( ([[x0]],[[y0]]) \\) is a critical point of \\( f \\). What is the second-derivative test discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} \\) at this critical point?",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[A]])*(2*[[C]]) - ([[B]])**2"},
+  "distractors": [
+   "(2*[[A]])*(2*[[C]]) + ([[B]])**2",
+   "[[A]]*[[C]] - [[B]]**2",
+   "2*[[A]] + 2*[[C]] - [[B]]**2",
+   "4*[[A]]*[[C]] - [[B]]",
+   "[[answer]] + 4",
+   "[[answer]] - 4"
+  ],
+  "solution": "For this quadratic, \\( f_{xx}=2[[A]] \\), \\( f_{yy}=2[[C]] \\), and \\( f_{xy}=[[B]] \\) everywhere (the Hessian of a quadratic form is constant), so \\( D = (2[[A]])(2[[C]]) - [[B]]^{2} = [[answer]] \\) at \\( ([[x0]],[[y0]]) \\) (or any point).",
+  "distractor_rationales": [
+   "This adds \\( (f_{xy})^{2} \\) instead of subtracting it.",
+   "This forgets the factor of 2 in both \\( f_{xx} \\) and \\( f_{yy}\\).",
+   "This sums \\( f_{xx} \\) and \\( f_{yy} \\) instead of multiplying them.",
+   "This forgets to square \\( f_{xy} \\).",
+   "This is off by four from the correct value.",
+   "This is off by four from the correct value."
+  ]
+ },
+ {
+  "template_id": "hessian_separable_cubic_v1",
+  "skill_id": "extrema_hessian_test",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)", "Ne([[B]], 0)"],
+  "derived": {"c1": "-3*[[A]]*[[x0]]**2", "c2": "-3*[[B]]*[[y0]]**2"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{3} + [[c1]]x + [[B]]y^{3} + [[c2]]y \\). The point \\( ([[x0]],[[y0]]) \\) is a critical point of \\( f \\). What is the second-derivative test discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} \\) at this critical point?",
+  "answer_spec": {"op": "evaluate", "expr": "(6*[[A]]*[[x0]])*(6*[[B]]*[[y0]]) - (0)**2"},
+  "distractors": [
+   "(6*[[A]]*[[x0]]) + (6*[[B]]*[[y0]])",
+   "(6*[[A]]*[[x0]])*(6*[[B]]*[[y0]]) - ([[A]]*[[B]]*[[x0]]*[[y0]])**2",
+   "([[A]]*[[x0]])*([[B]]*[[y0]])",
+   "-(6*[[A]]*[[x0]])*(6*[[B]]*[[y0]])",
+   "[[answer]] + 6",
+   "[[answer]] - 6"
+  ],
+  "solution": "Since \\( f(x,y) \\) separates as a sum of a function of \\( x \\) alone and a function of \\( y \\) alone, the mixed partial \\( f_{xy}=0 \\) everywhere. Here \\( f_{xx}=6[[A]]x \\) and \\( f_{yy}=6[[B]]y \\), so at \\( ([[x0]],[[y0]]) \\): \\( D = (6[[A]]\\cdot[[x0]])(6[[B]]\\cdot[[y0]]) - 0^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This sums \\( f_{xx} \\) and \\( f_{yy}\\) instead of multiplying them.",
+   "This mistakenly assumes a nonzero mixed partial \\( f_{xy} \\), even though \\( f \\) is additively separable.",
+   "This forgets the factor of 6 in both \\( f_{xx}\\) and \\( f_{yy}\\).",
+   "This has the wrong overall sign.",
+   "This is off by six from the correct value.",
+   "This is off by six from the correct value."
+  ]
+ },
+ {
+  "template_id": "hessian_product_quartic_v1",
+  "skill_id": "extrema_hessian_test",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"P": "-2*[[A]]*[[x0]]*[[y0]]**2", "Q": "-2*[[A]]*[[x0]]**2*[[y0]]"},
+  "stem": "Let \\( f(x,y) = [[A]]x^{2}y^{2} + [[P]]x + [[Q]]y \\). The point \\( ([[x0]],[[y0]]) \\) is a critical point of \\( f \\). What is the second-derivative test discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} \\) at this critical point?",
+  "answer_spec": {"op": "evaluate", "expr": "(2*[[A]]*[[y0]]**2)*(2*[[A]]*[[x0]]**2) - (4*[[A]]*[[x0]]*[[y0]])**2"},
+  "distractors": [
+   "(2*[[A]]*[[y0]]**2)*(2*[[A]]*[[x0]]**2)",
+   "(2*[[A]]*[[y0]]**2)+(2*[[A]]*[[x0]]**2) - (4*[[A]]*[[x0]]*[[y0]])**2",
+   "(2*[[A]]*[[y0]]**2)*(2*[[A]]*[[x0]]**2) - (2*[[A]]*[[x0]]*[[y0]])**2",
+   "(4*[[A]]*[[x0]]*[[y0]])**2 - (2*[[A]]*[[y0]]**2)*(2*[[A]]*[[x0]]**2)",
+   "[[answer]] + 4",
+   "[[answer]] - 4"
+  ],
+  "solution": "For \\( f(x,y)=[[A]]x^{2}y^{2}+[[P]]x+[[Q]]y \\), \\( f_{xx}=2[[A]]y^{2} \\), \\( f_{yy}=2[[A]]x^{2} \\), and \\( f_{xy}=4[[A]]xy \\). At \\( ([[x0]],[[y0]]) \\): \\( D = (2[[A]]\\cdot[[y0]]^{2})(2[[A]]\\cdot[[x0]]^{2}) - (4[[A]]\\cdot[[x0]]\\cdot[[y0]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the \\( (f_{xy})^{2} \\) term entirely, forgetting the mixed partial is nonzero here.",
+   "This sums \\( f_{xx}\\) and \\( f_{yy}\\) instead of multiplying them.",
+   "This uses \\( f_{xy}=2[[A]]xy \\) instead of the correct \\( f_{xy}=4[[A]]xy \\), missing a factor of 2.",
+   "This swaps the sign, computing \\( (f_{xy})^{2} - f_{xx}f_{yy} \\) instead of \\( f_{xx}f_{yy}-(f_{xy})^{2} \\).",
+   "This is off by four from the correct value.",
+   "This is off by four from the correct value."
+  ]
+ },
+ {
+  "template_id": "hessian_trig_mixed_partial_v1",
+  "skill_id": "extrema_hessian_test",
+  "topic_id": "multivariable_diff",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"P": "-[[A]]*[[y0]]**2"},
+  "stem": "Let \\( f(x,y) = [[A]]\\sin(x)y^{2} + [[P]]x \\). The point \\( (0,[[y0]]) \\) is a critical point of \\( f \\). What is the second-derivative test discriminant \\( D = f_{xx}f_{yy} - (f_{xy})^{2} \\) at this critical point?",
+  "answer_spec": {"op": "evaluate", "expr": "((-[[A]]*sin(0)*[[y0]]**2)*(2*[[A]]*sin(0))) - (2*[[A]]*cos(0)*[[y0]])**2"},
+  "distractors": [
+   "((-[[A]]*sin(0)*[[y0]]**2)*(2*[[A]]*sin(0))) - (2*[[A]]*sin(0)*[[y0]])**2",
+   "(2*[[A]]*cos(0)*[[y0]])**2",
+   "-(2*[[A]]*cos(0)*[[y0]])",
+   "-4*[[A]]*[[y0]]",
+   "[[answer]] + 4",
+   "[[answer]] - 4"
+  ],
+  "solution": "Here \\( f_{xx}=-[[A]]\\sin(x)y^{2} \\), \\( f_{yy}=2[[A]]\\sin(x) \\), and \\( f_{xy}=2[[A]]\\cos(x)y \\). At \\( (0,[[y0]]) \\), \\( \\sin(0)=0 \\) and \\( \\cos(0)=1 \\), so \\( f_{xx}=f_{yy}=0 \\) and \\( f_{xy}=2[[A]]\\cdot[[y0]] \\). Thus \\( D = 0 - (2[[A]]\\cdot[[y0]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This mistakenly uses \\( \\sin(0) \\) instead of \\( \\cos(0) \\) in the mixed partial \\( f_{xy} \\), making it vanish incorrectly.",
+   "This drops the negative sign, reporting \\( (f_{xy})^{2} \\) instead of \\( -\\,(f_{xy})^{2} \\).",
+   "This forgets to square the mixed partial.",
+   "This reports \\( 2f_{xy} \\) instead of \\( -(f_{xy})^{2} \\).",
+   "This is off by four from the correct value.",
+   "This is off by four from the correct value."
+  ]
+ }
+]

@@ -79,7 +79,8 @@ impl LintContext {
         let ignored_folders: HashSet<_> = IGNORED_FOLDERS.iter().map(Utf8Path::new).collect();
         let walker = WalkDir::new(root).into_iter();
         for entry in walker.filter_entry(|e| {
-            !ignored_folders.contains(&Utf8Path::from_path(e.path()).expect("utf8"))
+            let path = Utf8Path::from_path(e.path()).expect("utf8");
+            !ignored_folders.contains(&path) && !is_ignored_nested_dir(path)
         }) {
             let entry = entry.unwrap();
             let path = Utf8Path::from_path(entry.path()).context("utf8")?;
@@ -234,6 +235,13 @@ fn normalize_email(email: &str) -> &str {
 /// Annoyingly, sveltekit writes temp files into ts/ folder when it's running.
 fn sveltekit_temp_file(path: &str) -> bool {
     path.contains("vite.config.ts.timestamp")
+}
+
+/// Build/venv artifact directories can appear nested anywhere in the tree (eg a
+/// content-generation `.venv` or a `__pycache__`), not just at the repo root,
+/// so they're matched by name rather than by an exact path in IGNORED_FOLDERS.
+fn is_ignored_nested_dir(path: &Utf8Path) -> bool {
+    matches!(path.file_name(), Some(".venv") | Some("__pycache__"))
 }
 
 fn check_cargo_deny() -> Result<()> {

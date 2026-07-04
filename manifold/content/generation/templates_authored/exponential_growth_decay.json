@@ -1,0 +1,138 @@
+[
+ {
+  "template_id": "exponential_growth_doubling_v1",
+  "skill_id": "exponential_growth_decay",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "P0": {"type": "choice", "values": [10, 20, 50, 100]},
+   "f": {"type": "choice", "values": [2, 3]},
+   "T": {"type": "choice", "values": [2, 3, 4, 5]},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {"t": "[[n]]*[[T]]"},
+  "stem": "A quantity \\( P(t) \\) obeys \\( \\frac{dP}{dt} = kP \\) and multiplies by a factor of [[f]] every [[T]] hours. If \\( P(0) = [[P0]] \\), what is \\( P([[t]]) \\) (with \\( t \\) in hours)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[P0]]*[[f]]**[[n]]"},
+  "distractors": [
+   "[[P0]]*[[f]]*[[n]]",
+   "[[P0]]*[[f]]**([[n]] - 1)",
+   "[[P0]]*[[f]]**([[n]] + 1)",
+   "[[P0]]*[[n]]**[[f]]",
+   "[[P0]] + [[f]]**[[n]]",
+   "[[answer]] + [[P0]]",
+   "2*[[answer]]"
+  ],
+  "solution": "Because \\( P \\) multiplies by [[f]] every [[T]] hours, in [[t]] hours there are \\( [[t]]/[[T]] = [[n]] \\) such intervals. Thus \\( P([[t]]) = [[P0]]\\cdot[[f]]^{[[n]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This grows linearly, multiplying by [[f]] times the number of intervals instead of raising [[f]] to that power.",
+   "This uses one too few doubling intervals.",
+   "This uses one too many doubling intervals.",
+   "This swaps the base and the exponent.",
+   "This adds the growth factor instead of multiplying by it.",
+   "This adds one extra copy of the initial amount.",
+   "This doubles the correct result."
+  ]
+ },
+ {
+  "template_id": "exponential_growth_continuous_rate_evaluate_v2",
+  "skill_id": "exponential_growth_decay",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "P0": {"type": "choice", "values": [5, 10, 20, 25, 50]},
+   "k": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "t": {"type": "choice", "values": [1, 2, 3]}
+  },
+  "constraints": ["Ne([[k]], 0)"],
+  "require_rational": false,
+  "stem": "A quantity satisfies \\( \\dfrac{dP}{dt} = [[k]]P \\) with \\( P(0) = [[P0]] \\). What is \\( P([[t]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[P0]]*exp([[k]]*[[t]])"},
+  "distractors": [
+   "[[P0]]*exp(-[[k]]*[[t]])",
+   "[[P0]]*[[k]]*[[t]]",
+   "[[P0]] + exp([[k]]*[[t]])",
+   "[[P0]]*exp([[k]])*[[t]]",
+   "[[P0]]*exp([[k]]*([[t]] - 1))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The general solution of \\( P' = [[k]]P \\) is \\( P(t) = P(0)e^{[[k]]t} \\). With \\( P(0) = [[P0]] \\), \\( P([[t]]) = [[P0]]\\,e^{[[k]]\\cdot[[t]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of the exponent, giving decay instead of growth (or vice versa).",
+   "This grows linearly in \\( kt \\) instead of exponentially.",
+   "This adds the exponential term instead of multiplying by it.",
+   "This multiplies by \\( t \\) after exponentiating instead of putting \\( t \\) in the exponent.",
+   "This uses one fewer unit of time in the exponent.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "exponential_growth_solve_elapsed_periods_v3",
+  "skill_id": "exponential_growth_decay",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "P0": {"type": "choice", "values": [4, 8, 10, 16, 20, 25]},
+   "f": {"type": "choice", "values": [2, 3, 5]},
+   "T": {"type": "choice", "values": [2, 3, 5, 6]},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": [],
+  "derived": {"Pt": "[[P0]]*[[f]]**[[n]]"},
+  "stem": "A quantity \\( P(t) \\) obeys \\( \\frac{dP}{dt} = kP \\) and multiplies by a factor of [[f]] every [[T]] hours. If \\( P(0) = [[P0]] \\), after how many [[T]]-hour periods does the quantity first reach \\( [[Pt]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[P0]]*[[f]]**n = [[Pt]]", "var": "n"},
+  "distractors": [
+   "[[n]] + 1",
+   "[[n]] - 1",
+   "[[n]] + 2",
+   "[[Pt]]/[[P0]]",
+   "[[f]]*[[n]]",
+   "[[n]]**2",
+   "[[T]]*[[n]]"
+  ],
+  "solution": "Since \\( P \\) multiplies by [[f]] each period, \\( [[P0]] \\cdot [[f]]^{n} = [[Pt]] \\); comparing exponents (or taking logs) gives \\( n = [[answer]] \\) periods.",
+  "distractor_rationales": [
+   "This uses one period too many.",
+   "This uses one period too few.",
+   "This uses two periods too many.",
+   "This reports the raw ratio \\( P_t/P_0 \\) instead of solving \\( f^n \\) equal to that ratio.",
+   "This multiplies the growth factor by \\( n \\) instead of exponentiating.",
+   "This squares the correct number of periods.",
+   "This confuses the number of periods with the elapsed time in hours."
+  ]
+ },
+ {
+  "template_id": "exponential_growth_solve_rate_constant_v4",
+  "skill_id": "exponential_growth_decay",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "j": {"type": "int", "lo": -6, "hi": 6},
+   "t1": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ne([[j]], 0)"],
+  "stem": "A quantity satisfies \\( \\dfrac{dP}{dt} = kP \\) for a constant rate \\( k \\). If \\( P([[t1]]) = e^{[[j]]}\\,P(0) \\), what is \\( k \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "log(exp([[j]]))/[[t1]]"},
+  "distractors": [
+   "[[t1]]/[[j]]",
+   "[[j]]*[[t1]]",
+   "-[[j]]/[[t1]]",
+   "([[j]] + 1)/[[t1]]",
+   "[[j]]/([[t1]] + 1)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( P(t) = P(0)e^{kt} \\), the condition \\( P([[t1]]) = e^{[[j]]}P(0) \\) means \\( e^{k\\cdot[[t1]]} = e^{[[j]]} \\), so \\( k\\cdot[[t1]] = [[j]] \\) and \\( k = \\dfrac{[[j]]}{[[t1]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio, dividing time by the exponent instead of the exponent by time.",
+   "This multiplies the exponent by the time instead of dividing.",
+   "This has the wrong sign on \\( k \\).",
+   "This uses one more than the correct exponent.",
+   "This uses one more than the correct elapsed time in the denominator.",
+   "This is one more than the correct rate.",
+   "This is one less than the correct rate."
+  ]
+ }
+]

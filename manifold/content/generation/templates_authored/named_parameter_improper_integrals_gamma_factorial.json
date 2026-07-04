@@ -1,0 +1,124 @@
+[
+{
+ "template_id": "named_parameter_improper_integrals_gamma_factorial_v1",
+ "skill_id": "named_parameter_improper_integrals_gamma_factorial",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 13},
+  "n": {"type": "choice", "values": [2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "stem": "Evaluate the improper integral \\( \\int_{0}^{\\infty} x^{[[n]]} e^{-[[a]]x}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "x**[[n]]*exp(-[[a]]*x)", "var": "x", "bounds": ["0", "oo"]},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]])/[[a]]**[[n]]",
+  "factorial([[n]] + 1)/[[a]]**([[n]] + 1)",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "This is a Gamma-function integral: \\( \\int_{0}^{\\infty} x^{[[n]]} e^{-[[a]]x}\\,dx = \\tfrac{\\Gamma([[n]]+1)}{[[a]]^{[[n]]+1}} = \\tfrac{[[n]]!}{[[a]]^{[[n]]+1}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This gives \\( [[n]]! \\) but forgets to divide by \\( [[a]]^{[[n]]+1} \\).",
+  "This uses \\( [[a]]^{[[n]]} \\) instead of \\( [[a]]^{[[n]]+1} \\).",
+  "This uses \\( ([[n]]+1)! \\), i.e. \\( \\Gamma([[n]]+2) \\), the wrong Gamma value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This halves the correct value."
+ ]
+},
+{
+ "template_id": "named_parameter_gaussian_moment_v2",
+ "skill_id": "named_parameter_improper_integrals_gamma_factorial",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "choice", "values": [1, 3, 5, 7]}
+ },
+ "constraints": [],
+ "stem": "Evaluate the Gaussian-type improper integral \\( \\int_{0}^{\\infty} [[c]]x^{[[n]]} e^{-[[a]]x^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**[[n]]*exp(-[[a]]*x**2)", "var": "x", "bounds": ["0", "oo"]},
+ "distractors": [
+  "[[c]]*factorial([[n]])/(2*[[a]]**[[n]])",
+  "[[c]]/(2*[[a]])",
+  "[[c]]*factorial([[n]])/[[a]]",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "Substitute \\( u = x^{2} \\) (so \\( du = 2x\\,dx \\)) to reduce this to a Gamma-function integral: with \\( [[n]] = 2k+1 \\), \\( \\int_{0}^{\\infty} [[c]]x^{[[n]]}e^{-[[a]]x^{2}}\\,dx = \\tfrac{[[c]]}{2}\\int_{0}^{\\infty} u^{k}e^{-[[a]]u}\\,du = \\tfrac{[[c]]\\,k!}{2\\,[[a]]^{k+1}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( [[a]]^{[[n]]} \\) instead of the correctly reduced power of \\( [[a]] \\) after the \\( u=x^{2} \\) substitution.",
+  "This handles only the \\( n=1 \\) case's structure regardless of the actual exponent \\( [[n]] \\).",
+  "This forgets the factor of \\( \\tfrac{1}{2} \\) that comes from \\( du = 2x\\,dx \\).",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This halves the correct value."
+ ]
+},
+{
+ "template_id": "named_parameter_gamma_factorial_identity_v3",
+ "skill_id": "named_parameter_improper_integrals_gamma_factorial",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 6},
+  "n": {"type": "int", "lo": 2, "hi": 8}
+ },
+ "constraints": [],
+ "stem": "The Gamma function satisfies \\( \\Gamma(n) = (n-1)! \\) for positive integers \\( n \\). Using this relation (with no integration needed), evaluate \\( [[k]]\\,\\Gamma([[n]]) \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]]*factorial([[n]] - 1)"},
+ "distractors": [
+  "[[k]]*factorial([[n]])",
+  "[[k]]*factorial([[n]] + 1)",
+  "factorial([[n]] - 1)",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "\\( \\Gamma([[n]]) = ([[n]]-1)! \\), so \\( [[k]]\\,\\Gamma([[n]]) = [[k]]\\cdot([[n]]-1)! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\Gamma(n) = n! \\), off by one in the factorial relation.",
+  "This uses \\( \\Gamma(n) = (n+1)! \\), off by two in the factorial relation.",
+  "This drops the leading coefficient \\( [[k]] \\) entirely.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This halves the correct value."
+ ]
+},
+{
+ "template_id": "named_parameter_beta_integral_v4",
+ "skill_id": "named_parameter_improper_integrals_gamma_factorial",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 6},
+  "m": {"type": "choice", "values": [1, 2, 3, 4]},
+  "n": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Using the Beta-function relation \\( \\int_{0}^{1} x^{m}(1-x)^{n}\\,dx = \\dfrac{m!\\,n!}{(m+n+1)!} \\), evaluate \\( \\int_{0}^{1} [[c]]x^{[[m]]}(1-x)^{[[n]]}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**[[m]]*(1-x)**[[n]]", "var": "x", "bounds": ["0", "1"]},
+ "distractors": [
+  "[[c]]*factorial([[m]])*factorial([[n]])/factorial([[m]] + [[n]])",
+  "[[c]]/(([[m]] + 1)*([[n]] + 1))",
+  "[[c]]*factorial([[m]] + [[n]] + 1)/(factorial([[m]])*factorial([[n]]))",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]]/2"
+ ],
+ "solution": "By the Beta-function identity, \\( \\int_{0}^{1} x^{[[m]]}(1-x)^{[[n]]}\\,dx = \\dfrac{[[m]]!\\,[[n]]!}{([[m]]+[[n]]+1)!} \\), so the integral equals \\( [[c]]\\cdot\\dfrac{[[m]]!\\,[[n]]!}{([[m]]+[[n]]+1)!} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( (m+n)! \\) in the denominator instead of \\( (m+n+1)! \\), off by one in the factorial.",
+  "This replaces the Beta identity with a rough guess based on the exponents plus one.",
+  "This inverts the correct Beta-function ratio.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value.",
+  "This halves the correct value."
+ ]
+}
+]

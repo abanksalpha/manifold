@@ -1,0 +1,207 @@
+[
+ {
+  "template_id": "exact_equation_constant_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "choice", "values": [2, 4]},
+   "x0": {"type": "int", "lo": 1, "hi": 4},
+   "y0": {"type": "int", "lo": 1, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[x0]], [[y0]])"],
+  "stem": "The equation \\( (2xy + [[a]])\\,dx + (x^{2} + [[b]]y)\\,dy = 0 \\) is exact, so its solutions satisfy \\( F(x,y) = C \\) for a potential function \\( F \\). Find the constant \\( C \\) for the solution passing through \\( (x,y) = ([[x0]], [[y0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]]**2*[[y0]] + [[a]]*[[x0]] + [[b]]*[[y0]]**2/2"},
+  "distractors": [
+   "[[x0]]**2*[[y0]] + [[a]]*[[x0]] + [[b]]*[[y0]]**2",
+   "[[x0]]**2*[[y0]] + [[b]]*[[y0]]**2/2",
+   "[[x0]]**2*[[y0]] - [[a]]*[[x0]] + [[b]]*[[y0]]**2/2",
+   "[[x0]]*[[y0]]**2 + [[a]]*[[x0]] + [[b]]*[[y0]]**2/2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "Since \\( M_y = 2x = N_x \\), the equation is exact. Integrating \\( M = 2xy + [[a]] \\) in \\( x \\) gives \\( F = x^{2}y + [[a]]x + h(y) \\); matching \\( F_y = x^{2} + [[b]]y \\) forces \\( h(y) = \\frac{[[b]]}{2}y^{2} \\). Thus \\( F(x,y) = x^{2}y + [[a]]x + \\frac{[[b]]}{2}y^{2} \\). At \\( ([[x0]], [[y0]]) \\), \\( C = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the factor \\( \\tfrac12 \\) when integrating \\( [[b]]y \\).",
+   "This omits the \\( [[a]]x \\) term of the potential.",
+   "This uses the wrong sign on the \\( [[a]]x \\) term.",
+   "This swaps the powers, using \\( xy^{2} \\) instead of \\( x^{2}y \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_equation_find_coefficient_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "m": {"type": "choice", "values": [3, 6, 9, 12, 15]},
+   "d": {"type": "int", "lo": -5, "hi": 5},
+   "c": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[d]], 0)"],
+  "stem": "For what value of \\( k \\) does the equation \\( \\left(3x^{2}y + k y^{3} + ([[d]])x\\right)\\,dx + \\left(x^{3} + [[m]]xy^{2} + ([[c]])\\right)\\,dy = 0 \\) become exact?",
+  "answer_spec": {"op": "evaluate", "expr": "[[m]]/3"},
+  "distractors": ["[[m]]", "[[m]]/2", "2*[[m]]/3", "[[m]]-3", "[[m]]/6", "[[answer]]+1", "[[answer]]-1"],
+  "solution": "Matching \\( M_y = 3x^{2}+3k y^{2} \\) with \\( N_x = 3x^{2}+[[m]]y^{2} \\) forces \\( 3k=[[m]] \\), so \\( k=[[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the coefficient \\( [[m]] \\) directly, forgetting to divide by 3.",
+   "This divides by 2 instead of 3.",
+   "This doubles the correct ratio.",
+   "This subtracts 3 from \\( [[m]] \\) instead of dividing by 3.",
+   "This divides by 6, double the correct divisor.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_equation_linear_solve_for_y_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": 1, "hi": 5},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "x1": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[x0]], [[x1]])"],
+  "derived": {"C": "[[x0]]**2*[[y0]] + [[a]]*[[x0]]"},
+  "stem": "The equation \\( \\left(2xy + ([[a]])\\right)\\,dx + x^{2}\\,dy = 0 \\) is exact, with solution curves \\( x^{2}y + ([[a]])x = C \\). The curve through \\( (x,y)=([[x0]],[[y0]]) \\) is followed to \\( x=[[x1]] \\). What is \\( y \\) there?",
+  "answer_spec": {"op": "solve", "equation": "[[x1]]**2*y + [[a]]*[[x1]] = [[C]]", "var": "y"},
+  "distractors": [
+   "([[C]] - [[a]]*[[x1]])/[[x1]]",
+   "([[C]] + [[a]]*[[x1]])/[[x1]]**2",
+   "[[C]]/[[x1]]**2",
+   "([[C]] - [[a]]*[[x0]])/[[x1]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The equation is exact (\\( M_y=2x=N_x \\)) with potential \\( F=x^{2}y+[[a]]x \\). Through \\( ([[x0]],[[y0]]) \\), \\( C=[[C]] \\). At \\( x=[[x1]] \\): \\( [[x1]]^{2}y+[[a]]\\cdot[[x1]]=[[C]] \\Rightarrow y=[[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square \\( x_1 \\) in the denominator.",
+   "This uses the wrong sign on the \\( [[a]]x_1 \\) term.",
+   "This drops the \\( [[a]]x_1 \\) term entirely.",
+   "This uses the original point's \\( x_0 \\) instead of \\( x_1 \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_equation_quadratic_solve_for_y_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "choice", "values": [2, 4]},
+   "x1": {"type": "int", "lo": 1, "hi": 4},
+   "y1": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[y1]], 0)"],
+  "derived": {"C": "[[x1]]**2*[[y1]] + [[a]]*[[x1]] + [[b]]*[[y1]]**2/2"},
+  "stem": "The exact equation \\( \\left(2xy+([[a]])\\right)dx + \\left(x^{2}+[[b]]y\\right)dy=0 \\) has solutions satisfying \\( x^{2}y+([[a]])x+\\dfrac{[[b]]}{2}y^{2}=C \\). For the member of this family with \\( C=[[C]] \\), which of the following is a value of \\( y \\) when \\( x=[[x1]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[b]]/2*y**2 + [[x1]]**2*y + ([[a]]*[[x1]] - [[C]]) = 0", "var": "y"},
+  "distractors": [
+   "([[C]] - [[a]]*[[x1]])/[[x1]]**2",
+   "-([[C]] - [[a]]*[[x1]])/[[x1]]**2",
+   "[[C]]/[[x1]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The equation is exact with potential \\( F=x^{2}y+[[a]]x+\\tfrac{[[b]]}{2}y^{2} \\). Setting \\( F([[x1]],y)=[[C]] \\) gives \\( \\tfrac{[[b]]}{2}y^{2}+[[x1]]^{2}y+([[a]]\\cdot[[x1]]-[[C]])=0 \\); one root is \\( y=[[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the quadratic \\( y^2 \\) term, treating the relation as linear in \\( y \\).",
+   "This has the sign flipped from the linear-only guess.",
+   "This drops the \\( [[a]]x_1 \\) term.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "non_exact_integrating_factor_mu_x_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "p": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "derived": {"cp": "[[c]]*[[p]]"},
+  "stem": "The equation \\( [[cp]]y\\,dx + ([[c]])x\\,dy = 0 \\) is not exact. Multiplying by an integrating factor \\( \\mu(x)=x^{n} \\) makes the resulting equation exact. What is the value of \\( n \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]]-1"},
+  "distractors": ["[[p]]", "[[p]]+1", "1-[[p]]", "-[[p]]", "[[answer]]+2", "[[answer]]-2"],
+  "solution": "Here \\( M_y=[[cp]] \\), \\( N_x=[[c]] \\), so \\( \\frac{M_y-N_x}{N}=\\frac{[[c]]([[p]]-1)}{[[c]]x}=\\frac{[[p]]-1}{x} \\), a function of \\( x \\) alone. Thus \\( \\mu(x)=x^{[[p]]-1} \\), i.e. \\( n=[[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( p \\) itself instead of \\( p-1 \\).",
+   "This adds 1 instead of subtracting.",
+   "This has the wrong sign.",
+   "This drops the constant term entirely.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "non_exact_integrating_factor_mu_y_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "q": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": ["Ne([[c]], 0)"],
+  "derived": {"cq": "[[c]]*[[q]]"},
+  "stem": "The equation \\( ([[c]])y\\,dx + [[cq]]x\\,dy = 0 \\) is not exact. Multiplying by an integrating factor \\( \\mu(y)=y^{m} \\) makes the resulting equation exact. What is the value of \\( m \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[q]]-1"},
+  "distractors": ["[[q]]", "[[q]]+1", "1-[[q]]", "-[[q]]", "[[answer]]+2", "[[answer]]-2"],
+  "solution": "Here \\( M_y=[[c]] \\), \\( N_x=[[cq]] \\), so \\( \\frac{N_x-M_y}{M}=\\frac{[[c]]([[q]]-1)}{[[c]]y}=\\frac{[[q]]-1}{y} \\), a function of \\( y \\) alone. Thus \\( \\mu(y)=y^{[[q]]-1} \\), i.e. \\( m=[[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( q \\) itself instead of \\( q-1 \\).",
+   "This adds 1 instead of subtracting.",
+   "This has the wrong sign.",
+   "This drops the constant term entirely.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "exact_equation_transcendental_v1",
+  "skill_id": "test_for_exactness_and_solve",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "a": {"type": "choice", "values": [2, 4]},
+   "x0": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": ["Ne([[x0]], 0)", "Ne([[y0]], 0)"],
+  "require_rational": false,
+  "stem": "The equation \\( \\left([[k]]y\\,e^{[[k]]xy} + [[a]]x\\right)dx + \\left([[k]]x\\,e^{[[k]]xy} - [[a]]y\\right)dy = 0 \\) is exact. Find the constant \\( C \\) in \\( F(x,y)=C \\) for the solution through \\( (x,y)=([[x0]],[[y0]]) \\).",
+  "answer_spec": {"op": "evaluate", "expr": "exp([[k]]*[[x0]]*[[y0]]) + [[a]]/2*[[x0]]**2 - [[a]]/2*[[y0]]**2"},
+  "distractors": [
+   "exp([[k]]*[[x0]]*[[y0]]) + [[a]]/2*[[x0]]**2 + [[a]]/2*[[y0]]**2",
+   "exp([[k]]*[[x0]]*[[y0]]) - [[a]]/2*[[x0]]**2 + [[a]]/2*[[y0]]**2",
+   "exp([[k]]*[[x0]]*[[y0]]) - [[a]]/2*[[x0]]**2 - [[a]]/2*[[y0]]**2",
+   "[[a]]/2*[[x0]]**2 - [[a]]/2*[[y0]]**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Integrating \\( M=[[k]]y e^{[[k]]xy}+[[a]]x \\) in \\( x \\) gives \\( F=e^{[[k]]xy}+\\tfrac{[[a]]}{2}x^{2}+h(y) \\); matching \\( F_y=[[k]]x e^{[[k]]xy}+h'(y) \\) with \\( N \\) forces \\( h(y)=-\\tfrac{[[a]]}{2}y^{2} \\). At \\( ([[x0]],[[y0]]) \\), \\( C=[[answer]] \\).",
+  "distractor_rationales": [
+   "This uses the wrong sign on the \\( y^{2} \\) term.",
+   "This uses the wrong sign on the \\( x^{2} \\) term.",
+   "This flips the sign of both quadratic terms.",
+   "This omits the exponential term entirely.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

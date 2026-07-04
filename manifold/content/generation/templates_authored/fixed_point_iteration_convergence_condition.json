@@ -1,0 +1,164 @@
+[
+{
+ "template_id": "fixed_point_convergence_v1",
+ "skill_id": "fixed_point_iteration_convergence_condition",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 3},
+  "b": {"type": "int", "lo": -3, "hi": 3},
+  "p": {"type": "choice", "values": [-2, -1, 1, 2]}
+ },
+ "constraints": [
+  "Ne([[b]], 0)",
+  "Ne(2*[[a]]*[[p]] + [[b]], 0)"
+ ],
+ "derived": {"c": "[[p]] - [[a]]*[[p]]**2 - [[b]]*[[p]]"},
+ "stem": "Consider the fixed-point iteration \\( x_{n+1} = g(x_n) \\) with \\( g(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). The point \\( x^{*} = [[p]] \\) is a fixed point (so \\( g(x^{*}) = x^{*} \\)). Local convergence is governed by the value \\( |g'(x^{*})| \\). Compute \\( |g'(x^{*})| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs(2*[[a]]*[[p]] + [[b]])"},
+ "distractors": [
+  "2*[[a]]*[[p]] + [[b]]",
+  "Abs([[a]]*[[p]] + [[b]])",
+  "Abs([[p]])",
+  "Abs(2*[[a]]*[[p]])",
+  "Abs(2*[[a]]*[[p]] - [[b]])",
+  "[[answer]] + 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "Here \\( g'(x) = 2([[a]])x + ([[b]]) \\), so \\( g'(x^{*}) = 2([[a]])([[p]]) + ([[b]]) \\) and \\( |g'(x^{*})| = [[answer]] \\). Local convergence requires this value to be less than \\( 1 \\).",
+ "distractor_rationales": [
+  "This omits the absolute value and reports the signed derivative \\( g'(x^{*}) \\).",
+  "This uses the wrong derivative \\( a x + b \\), dropping the factor of 2 on the \\( x^{2} \\) term.",
+  "This evaluates \\( g(x^{*}) = x^{*} \\) (the fixed point itself) rather than \\( g'(x^{*}) \\).",
+  "This drops the constant term \\( b \\) of \\( g'(x^{*}) \\).",
+  "This uses the wrong sign on \\( b \\) inside \\( g'(x^{*}) \\).",
+  "This is off by one from \\( |g'(x^{*})| \\)."
+ ]
+},
+{
+ "template_id": "fixed_point_convergence_rational_v1",
+ "skill_id": "fixed_point_iteration_convergence_condition",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "p": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+  "b": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[p]] + [[b]], 0)"],
+ "derived": {"a": "[[p]]*([[p]] + [[b]])"},
+ "stem": "Consider the fixed-point iteration \\( x_{n+1} = g(x_n) \\) with \\( g(x) = \\dfrac{[[a]]}{x + [[b]]} \\). The point \\( x^{*} = [[p]] \\) is a fixed point of \\( g \\) (so \\( g(x^{*}) = x^{*} \\)). Local convergence is governed by \\( |g'(x^{*})| \\). Compute \\( |g'(x^{*})| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs([[a]])/([[p]] + [[b]])**2"},
+ "distractors": [
+  "[[a]]/([[p]] + [[b]])**2",
+  "Abs([[a]])/([[p]] + [[b]])",
+  "Abs([[a]])/[[b]]**2",
+  "Abs([[a]])*([[p]] + [[b]])**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( g'(x) = -\\dfrac{[[a]]}{(x+[[b]])^{2}} \\), so \\( g'(x^{*}) = -\\dfrac{[[a]]}{([[p]]+[[b]])^{2}} \\) and \\( |g'(x^{*})| = \\dfrac{|[[a]]|}{([[p]]+[[b]])^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the absolute value and reports the signed derivative \\( g'(x^{*}) \\).",
+  "This forgets to square the denominator from the quotient rule.",
+  "This uses \\( b \\) alone instead of \\( x^{*}+b \\) in the denominator.",
+  "This multiplies by the squared denominator instead of dividing by it.",
+  "This is one more than \\( |g'(x^{*})| \\).",
+  "This is one less than \\( |g'(x^{*})| \\)."
+ ]
+},
+{
+ "template_id": "fixed_point_convergence_sqrt_v1",
+ "skill_id": "fixed_point_iteration_convergence_condition",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "p": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "derived": {"b": "[[p]]**2 - [[a]]*[[p]]"},
+ "stem": "Consider the fixed-point iteration \\( x_{n+1} = g(x_n) \\) with \\( g(x) = \\sqrt{[[a]]x + [[b]]} \\). The point \\( x^{*} = [[p]] \\) is a positive fixed point of \\( g \\) (so \\( g(x^{*}) = x^{*} \\)). Local convergence is governed by \\( |g'(x^{*})| \\). Compute \\( |g'(x^{*})| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs([[a]])/(2*[[p]])"},
+ "distractors": [
+  "[[a]]/(2*[[p]])",
+  "Abs([[a]])/[[p]]",
+  "Abs([[a]])*2*[[p]]",
+  "Abs([[a]])/(2*[[p]]**2)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Here \\( g'(x) = \\dfrac{[[a]]}{2\\sqrt{[[a]]x+[[b]]}} \\), and since \\( \\sqrt{[[a]]([[p]])+[[b]]} = x^{*} = [[p]] \\), we get \\( g'(x^{*}) = \\dfrac{[[a]]}{2[[p]]} \\), so \\( |g'(x^{*})| = [[answer]] \\).",
+ "distractor_rationales": [
+  "This omits the absolute value and reports the signed derivative \\( g'(x^{*}) \\).",
+  "This forgets the factor of 2 from differentiating the square root (chain rule).",
+  "This multiplies by \\( 2x^{*} \\) instead of dividing by it.",
+  "This squares the fixed point in the denominator instead of using it linearly.",
+  "This is one more than \\( |g'(x^{*})| \\).",
+  "This is one less than \\( |g'(x^{*})| \\)."
+ ]
+},
+{
+ "template_id": "fixed_point_contraction_constant_interval_v1",
+ "skill_id": "fixed_point_iteration_convergence_condition",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 3},
+  "B": {"type": "int", "lo": -4, "hi": 4},
+  "m": {"type": "int", "lo": -3, "hi": 0},
+  "M": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": ["Lt([[m]], [[M]])"],
+ "stem": "Consider the fixed-point iteration \\( x_{n+1} = g(x_n) \\) with \\( g(x) = [[A]]x^{2} + ([[B]])x \\) on the interval \\( [[[m]], [[M]]] \\). What is the contraction constant \\( K = \\max_{x \\in [[[m]], [[M]]]} |g'(x)| \\) on this interval, which bounds the convergence rate of the iteration there?",
+ "answer_spec": {"op": "evaluate", "expr": "Max(Abs(2*[[A]]*[[m]] + [[B]]), Abs(2*[[A]]*[[M]] + [[B]]))"},
+ "distractors": [
+  "Abs(2*[[A]]*[[m]] + [[B]])",
+  "Abs(2*[[A]]*[[M]] + [[B]])",
+  "Min(Abs(2*[[A]]*[[m]] + [[B]]), Abs(2*[[A]]*[[M]] + [[B]]))",
+  "Abs([[A]]*([[M]] + [[m]]) + [[B]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( g'(x) = 2([[A]])x + ([[B]]) \\) is linear (hence monotonic), its maximum absolute value on \\( [[[m]], [[M]]] \\) occurs at an endpoint: \\( K = \\max(|g'([[m]])|, |g'([[M]])|) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This only checks the left endpoint, ignoring that the maximum could be at the right endpoint.",
+  "This only checks the right endpoint, ignoring that the maximum could be at the left endpoint.",
+  "This takes the minimum of the endpoint values instead of the maximum.",
+  "This evaluates \\( g' \\) at the midpoint of the interval instead of checking both endpoints.",
+  "This is one more than the correct contraction constant.",
+  "This is one less than the correct contraction constant."
+ ]
+},
+{
+ "template_id": "fixed_point_iterations_for_tolerance_v1",
+ "skill_id": "fixed_point_iteration_convergence_condition",
+ "topic_id": "numerical_analysis",
+ "tier": "recognize",
+ "params": {
+  "r": {"type": "choice", "values": [2, 3, 4]},
+  "tol": {"type": "choice", "values": [1, 2, 3]},
+  "ntrue": {"type": "choice", "values": [1, 2, 3, 4, 5]}
+ },
+ "constraints": [],
+ "derived": {"e0": "[[tol]]*[[r]]**[[ntrue]]"},
+ "stem": "A fixed-point iteration has contraction constant \\( K = \\dfrac{1}{[[r]]} \\), so its error satisfies \\( |x_n - x^{*}| \\le K^{n}|x_0 - x^{*}| \\). If the initial error is \\( |x_0 - x^{*}| = [[e0]] \\), what is the least number of iterations \\( n \\) that guarantees the error is at most \\( [[tol]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "ceiling(log([[e0]]/[[tol]], [[r]]))"},
+ "distractors": [
+  "floor(log([[e0]]/[[tol]], [[r]]))",
+  "ceiling(log([[tol]]/[[e0]], [[r]]))",
+  "ceiling(log([[e0]]/[[tol]], 10))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "[[answer]] + 2"
+ ],
+ "solution": "We need \\( K^{n}|x_0-x^{*}| \\le [[tol]] \\), i.e. \\( \\left(\\dfrac{1}{[[r]]}\\right)^{n}[[e0]] \\le [[tol]] \\), i.e. \\( [[r]]^{n} \\ge \\dfrac{[[e0]]}{[[tol]]} \\). So \\( n = \\left\\lceil \\log_{[[r]]}\\!\\left(\\dfrac{[[e0]]}{[[tol]]}\\right) \\right\\rceil = [[answer]] \\).",
+ "distractor_rationales": [
+  "This rounds down instead of up.",
+  "This inverts the ratio inside the logarithm.",
+  "This uses base-10 logarithms instead of base \\( r \\).",
+  "This overshoots by one iteration.",
+  "This is one iteration short of the guarantee.",
+  "This overshoots the required number of iterations by two."
+ ]
+}
+]

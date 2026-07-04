@@ -1,0 +1,4 @@
+{
+ "skill_id": "contrapositive_converse_inverse",
+ "reason": "The answer is a logical-form statement (which sentence is the contrapositive/converse/inverse), not a single code-computable scalar."
+}

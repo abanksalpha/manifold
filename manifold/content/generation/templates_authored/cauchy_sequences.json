@@ -1,0 +1,95 @@
+[
+{
+ "template_id": "cauchy_seq_rational_limit_v1",
+ "skill_id": "cauchy_sequences",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -9, "hi": 9},
+  "q": {"type": "int", "lo": -9, "hi": 9},
+  "r": {"type": "int", "lo": 1, "hi": 9},
+  "s": {"type": "int", "lo": 0, "hi": 9}
+ },
+ "constraints": ["Ne([[p]], 0)"],
+ "stem": "The sequence \\( a_n = \\dfrac{[[p]]n + [[q]]}{[[r]]n + [[s]]} \\) can be shown to be Cauchy. Since \\( \\mathbb{R} \\) is complete, every Cauchy sequence of real numbers converges. Find \\( \\displaystyle\\lim_{n\\to\\infty} a_n \\).",
+ "answer_spec": {"op": "limit", "expr": "([[p]]*n + [[q]])/([[r]]*n + [[s]])", "var": "n", "point": "oo"},
+ "distractors": [
+  "Rational([[q]], [[s]])",
+  "Rational([[p]], [[s]])",
+  "Rational([[r]], [[p]])",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Divide numerator and denominator by \\( n \\): \\( a_n = \\dfrac{[[p]] + [[q]]/n}{[[r]] + [[s]]/n} \\to \\dfrac{[[p]]}{[[r]]} = [[answer]] \\) as \\( n\\to\\infty \\), which is the limit guaranteed to exist by completeness.",
+ "distractor_rationales": [
+  "This uses the constant terms \\( q/s \\) instead of the leading-coefficient ratio.",
+  "This mixes the leading numerator coefficient with the constant denominator term.",
+  "This inverts the correct ratio of leading coefficients.",
+  "This assumes the limit is 0, which is only true when the numerator's degree is lower than the denominator's, not here.",
+  "This is off by one from the correct limit.",
+  "This is off by one from the correct limit."
+ ]
+},
+{
+ "template_id": "cauchy_seq_contraction_fixed_point_v1",
+ "skill_id": "cauchy_sequences",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": -9, "hi": 9},
+  "m": {"type": "int", "lo": 2, "hi": 9},
+  "x0": {"type": "int", "lo": -5, "hi": 5}
+ },
+ "constraints": ["Ne([[k]], 0)"],
+ "stem": "Define a sequence by \\( x_1 = [[x0]] \\) and \\( x_{n+1} = \\dfrac{x_n + [[k]]}{[[m]]} \\) for \\( n \\ge 1 \\). Because consecutive terms satisfy \\( |x_{n+1}-x_n| \\le \\dfrac{1}{[[m]]}|x_n - x_{n-1}| \\) with \\( \\dfrac{1}{[[m]]} < 1 \\), the sequence is Cauchy, so by completeness of \\( \\mathbb{R} \\) it converges to the fixed point \\( L \\) of \\( f(x) = \\dfrac{x+[[k]]}{[[m]]} \\). Find \\( L \\).",
+ "answer_spec": {"op": "solve", "equation": "x = (x + [[k]])/[[m]]", "var": "x"},
+ "distractors": [
+  "[[k]]/[[m]]",
+  "[[k]]*[[m]]",
+  "[[k]]/([[m]] + 1)",
+  "-[[k]]/([[m]] - 1)",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "A fixed point satisfies \\( L = \\dfrac{L+[[k]]}{[[m]]} \\), so \\( [[m]]L = L + [[k]] \\), giving \\( L([[m]]-1) = [[k]] \\) and \\( L = \\dfrac{[[k]]}{[[m]]-1} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This divides \\( k \\) by \\( m \\) directly instead of by \\( m-1 \\).",
+  "This multiplies instead of dividing.",
+  "This uses \\( m+1 \\) in the denominator instead of \\( m-1 \\).",
+  "This has the wrong sign on the correct denominator.",
+  "This is off by one from the correct fixed point.",
+  "This is off by one from the correct fixed point."
+ ]
+},
+{
+ "template_id": "cauchy_seq_epsilon_N_threshold_v1",
+ "skill_id": "cauchy_sequences",
+ "topic_id": "real_analysis_sequences",
+ "tier": "relearn",
+ "params": {
+  "c": {"type": "int", "lo": 1, "hi": 9},
+  "k": {"type": "int", "lo": 1, "hi": 9}
+ },
+ "constraints": [],
+ "stem": "The sequence \\( a_n = \\dfrac{[[c]]}{n} \\) is Cauchy in \\( \\mathbb{R} \\). Using the standard estimate \\( |a_n - a_m| \\le \\dfrac{[[c]]}{N} \\) for all \\( n, m \\ge N \\), find the smallest positive integer \\( N \\) for which this estimate guarantees \\( |a_n - a_m| < \\dfrac{1}{[[k]]} \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[c]]*[[k]] + 1"},
+ "distractors": [
+  "[[c]]*[[k]]",
+  "[[c]] + [[k]]",
+  "[[c]]*[[k]] - 1",
+  "[[k]]",
+  "[[answer]] + [[c]]",
+  "[[answer]] - [[k]]"
+ ],
+ "solution": "We need \\( \\dfrac{[[c]]}{N} < \\dfrac{1}{[[k]]} \\), i.e. \\( N > [[c]]\\cdot[[k]] \\). The smallest integer satisfying this is \\( N = [[c]]\\cdot[[k]] + 1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses \\( N = ck \\), which only gives \\( c/N = 1/k \\), not strictly less.",
+  "This adds the two quantities instead of multiplying and adding one.",
+  "This is one less than the correct threshold.",
+  "This ignores \\( c \\) entirely.",
+  "This overshoots the correct threshold by \\( c \\).",
+  "This undershoots the correct threshold by \\( k \\)."
+ ]
+}
+]

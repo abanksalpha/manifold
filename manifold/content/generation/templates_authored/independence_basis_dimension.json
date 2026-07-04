@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "span_dimension_three_vectors_in_r3_v1",
+ "skill_id": "independence_basis_dimension",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]"
+ },
+ "stem": "Let \\( \\mathbf{v}_1 = (1,\\ [[s]],\\ [[t]]) \\), \\( \\mathbf{v}_2 = ([[p]],\\ [[m22]],\\ [[m23]]) \\), and \\( \\mathbf{v}_3 = ([[q]],\\ [[m32]],\\ [[m33]]) \\). What is the dimension of \\( \\operatorname{span}\\{\\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3\\} \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s]]", "[[t]]"], ["[[p]]", "[[m22]]", "[[m23]]"], ["[[q]]", "[[m32]]", "[[m33]]"]]
+ },
+ "distractors": ["3-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "0", "3"],
+ "solution": "The dimension of the span equals the rank of the matrix whose rows are \\( \\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3 \\). Row-reducing gives rank \\( [[answer]] \\), so \\( \\dim(\\operatorname{span}\\{\\mathbf{v}_1,\\mathbf{v}_2,\\mathbf{v}_3\\}) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the dimension from the ambient dimension \\(3\\) instead of reporting it directly.",
+  "This overcounts the number of independent vectors by one.",
+  "This undercounts the number of independent vectors by one.",
+  "This overcounts the number of independent vectors by two, which cannot exceed the number of vectors given.",
+  "This assumes all three vectors are the zero vector.",
+  "This assumes the three vectors are automatically independent without checking."
+ ]
+},
+{
+ "template_id": "span_dimension_four_vectors_in_r3_v2",
+ "skill_id": "independence_basis_dimension",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": -3, "hi": 3},
+  "q": {"type": "int", "lo": -3, "hi": 3},
+  "r": {"type": "int", "lo": -3, "hi": 3},
+  "s": {"type": "int", "lo": -3, "hi": 3},
+  "t": {"type": "int", "lo": -3, "hi": 3},
+  "u": {"type": "int", "lo": -3, "hi": 3},
+  "a4": {"type": "int", "lo": -2, "hi": 2},
+  "b4": {"type": "int", "lo": -2, "hi": 2},
+  "c4": {"type": "int", "lo": -2, "hi": 2},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "m22": "[[p]]*[[s]] + [[d2]]",
+  "m23": "[[p]]*[[t]] + [[d2]]*[[u]]",
+  "m32": "[[q]]*[[s]] + [[r]]*[[d2]]",
+  "m33": "[[q]]*[[t]] + [[r]]*[[d2]]*[[u]] + [[d3]]",
+  "v4a": "[[a4]] + [[b4]]*[[p]] + [[c4]]*[[q]]",
+  "v4b": "[[a4]]*[[s]] + [[b4]]*[[m22]] + [[c4]]*[[m32]]",
+  "v4c": "[[a4]]*[[t]] + [[b4]]*[[m23]] + [[c4]]*[[m33]]"
+ },
+ "stem": "Let \\( \\mathbf{v}_1 = (1,\\ [[s]],\\ [[t]]) \\), \\( \\mathbf{v}_2 = ([[p]],\\ [[m22]],\\ [[m23]]) \\), \\( \\mathbf{v}_3 = ([[q]],\\ [[m32]],\\ [[m33]]) \\), and \\( \\mathbf{v}_4 = ([[v4a]],\\ [[v4b]],\\ [[v4c]]) \\), four vectors in \\( \\mathbb{R}^3 \\). What is the dimension of \\( \\operatorname{span}\\{\\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3, \\mathbf{v}_4\\} \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s]]", "[[t]]"], ["[[p]]", "[[m22]]", "[[m23]]"], ["[[q]]", "[[m32]]", "[[m33]]"], ["[[v4a]]", "[[v4b]]", "[[v4c]]"]]
+ },
+ "distractors": ["4-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "0", "3"],
+ "solution": "Four vectors in \\( \\mathbb{R}^3 \\) can span at most a \\(3\\)-dimensional space. The dimension of the span equals the rank of the \\(4\\times3\\) matrix formed by the vectors, which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This subtracts the dimension from the number of vectors \\(4\\) instead of reporting the dimension directly.",
+  "This overcounts the dimension of the span by one.",
+  "This undercounts the dimension of the span by one.",
+  "This overcounts the dimension of the span by two.",
+  "This assumes all four vectors are the zero vector.",
+  "This assumes the span is automatically all of \\( \\mathbb{R}^3 \\) without checking for dependence."
+ ]
+},
+{
+ "template_id": "span_dimension_three_vectors_in_r4_v3",
+ "skill_id": "independence_basis_dimension",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "s1": {"type": "int", "lo": -3, "hi": 3},
+  "s2": {"type": "int", "lo": -3, "hi": 3},
+  "s3": {"type": "int", "lo": -3, "hi": 3},
+  "p2": {"type": "int", "lo": -3, "hi": 3},
+  "x2": {"type": "int", "lo": -3, "hi": 3},
+  "y2": {"type": "int", "lo": -3, "hi": 3},
+  "p3": {"type": "int", "lo": -3, "hi": 3},
+  "q3": {"type": "int", "lo": -3, "hi": 3},
+  "z3": {"type": "int", "lo": -3, "hi": 3},
+  "d2": {"type": "choice", "values": [0, 1]},
+  "d3": {"type": "choice", "values": [0, 1]}
+ },
+ "constraints": [],
+ "derived": {
+  "r2_1": "[[p2]]",
+  "r2_2": "[[p2]]*[[s1]] + [[d2]]",
+  "r2_3": "[[p2]]*[[s2]] + [[d2]]*[[x2]]",
+  "r2_4": "[[p2]]*[[s3]] + [[d2]]*[[y2]]",
+  "r3_1": "[[p3]]",
+  "r3_2": "[[p3]]*[[s1]] + [[q3]]*[[d2]]",
+  "r3_3": "[[p3]]*[[s2]] + [[q3]]*[[d2]]*[[x2]] + [[d3]]",
+  "r3_4": "[[p3]]*[[s3]] + [[q3]]*[[d2]]*[[y2]] + [[d3]]*[[z3]]"
+ },
+ "stem": "Let \\( \\mathbf{v}_1 = (1,\\ [[s1]],\\ [[s2]],\\ [[s3]]) \\), \\( \\mathbf{v}_2 = ([[r2_1]],\\ [[r2_2]],\\ [[r2_3]],\\ [[r2_4]]) \\), and \\( \\mathbf{v}_3 = ([[r3_1]],\\ [[r3_2]],\\ [[r3_3]],\\ [[r3_4]]) \\), three vectors in \\( \\mathbb{R}^4 \\). What is the dimension of the subspace \\( \\operatorname{span}\\{\\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3\\} \\)?",
+ "answer_spec": {
+  "op": "rank",
+  "matrix": [["1", "[[s1]]", "[[s2]]", "[[s3]]"], ["[[r2_1]]", "[[r2_2]]", "[[r2_3]]", "[[r2_4]]"], ["[[r3_1]]", "[[r3_2]]", "[[r3_3]]", "[[r3_4]]"]]
+ },
+ "distractors": ["4-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "0", "3"],
+ "solution": "Three vectors can never span more than a \\(3\\)-dimensional subspace, even inside \\( \\mathbb{R}^4 \\). The dimension of the span equals the rank of the \\(3\\times4\\) matrix formed by the vectors, which is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly assumes the vectors could span all of the \\(4\\)-dimensional ambient space.",
+  "This overcounts the dimension of the span by one.",
+  "This undercounts the dimension of the span by one.",
+  "This overcounts the dimension of the span, which cannot exceed the number of vectors given.",
+  "This assumes all three vectors are the zero vector.",
+  "This assumes the vectors are automatically independent without checking."
+ ]
+},
+{
+ "template_id": "dependency_parameter_solve_v4",
+ "skill_id": "independence_basis_dimension",
+ "topic_id": "vector_spaces",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "g": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d]] - [[a]]*[[c]], 0)"],
+ "stem": "Let \\( \\mathbf{v}_1 = (1,\\ [[a]],\\ [[b]]) \\), \\( \\mathbf{v}_2 = ([[c]],\\ [[d]],\\ [[e]]) \\), and \\( \\mathbf{v}_3 = ([[f]],\\ [[g]],\\ k) \\), where \\( k \\) is a real parameter. For what value of \\( k \\) is \\( \\dim(\\operatorname{span}\\{\\mathbf{v}_1,\\mathbf{v}_2,\\mathbf{v}_3\\}) \\) less than \\( 3 \\) (i.e., the three vectors fail to be a basis of \\( \\mathbb{R}^3 \\))?",
+ "answer_spec": {
+  "op": "solve",
+  "equation": "1*([[d]]*k - [[e]]*[[g]]) - [[a]]*([[c]]*k - [[e]]*[[f]]) + [[b]]*([[c]]*[[g]] - [[d]]*[[f]]) = 0",
+  "var": "k"
+ },
+ "distractors": ["-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[g]]", "[[f]]"],
+ "solution": "The dimension of the span drops below \\(3\\) exactly when \\( \\det\\begin{bmatrix} 1 & [[a]] & [[b]] \\\\ [[c]] & [[d]] & [[e]] \\\\ [[f]] & [[g]] & k \\end{bmatrix} = 0 \\). Expanding along the first row gives a linear equation in \\( k \\), whose solution is \\( k = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the negative of the correct value, from a sign error in the cofactor expansion.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value.",
+  "This is off by two from the correct value.",
+  "This mistakes the given entry \\( g \\) for the critical value of \\( k \\).",
+  "This mistakes the given entry \\( f \\) for the critical value of \\( k \\)."
+ ]
+}
+]

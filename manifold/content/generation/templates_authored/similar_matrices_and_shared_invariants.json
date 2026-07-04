@@ -1,0 +1,175 @@
+[
+{
+ "template_id": "similar_matrices_shared_invariants_v1",
+ "skill_id": "similar_matrices_and_shared_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -6, "hi": 6},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "c": {"type": "int", "lo": -6, "hi": 6},
+  "d": {"type": "int", "lo": -6, "hi": 6}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "The matrix \\( B \\) is similar to \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\); that is, \\( B = P^{-1} A P \\) for some invertible \\( P \\). Similar matrices have the same determinant. What is \\( \\det(B) \\)?",
+ "answer_spec": {"op": "det", "matrix": [["[[a]]", "[[b]]"], ["[[c]]", "[[d]]"]]},
+ "distractors": [
+  "[[a]]*[[d]] + [[b]]*[[c]]",
+  "[[b]]*[[c]] - [[a]]*[[d]]",
+  "[[a]] + [[d]]",
+  "[[a]]*[[c]] - [[b]]*[[d]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "Similar matrices share the same determinant, so \\( \\det(B) = \\det(A) = ([[a]])([[d]]) - ([[b]])([[c]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the products instead of subtracting; the determinant is \\( ad - bc \\).",
+  "This is the negative of the determinant.",
+  "This is the trace \\( a+d \\), another invariant, but not the determinant.",
+  "This multiplies the wrong pairs of entries.",
+  "This is one more than the correct determinant.",
+  "This is two less than the correct determinant."
+ ]
+},
+{
+ "template_id": "similar_matrices_trace_invariant_v2",
+ "skill_id": "similar_matrices_and_shared_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -7, "hi": 7},
+  "b": {"type": "int", "lo": -7, "hi": 7},
+  "c": {"type": "int", "lo": -7, "hi": 7},
+  "d": {"type": "int", "lo": -7, "hi": 7}
+ },
+ "constraints": ["Ne([[a]], [[d]])"],
+ "stem": "Suppose \\( B = P^{-1} A P \\) for some invertible \\( P \\), where \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). Similar matrices have the same trace. What is \\( \\operatorname{tr}(B) \\)?",
+ "answer_spec": {"op": "trace", "matrix": [["[[a]]", "[[b]]"], ["[[c]]", "[[d]]"]]},
+ "distractors": [
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "[[a]] - [[d]]",
+  "[[a]]*[[d]]",
+  "[[b]] + [[c]]",
+  "[[answer]] + 1",
+  "[[answer]] - 3"
+ ],
+ "solution": "Similar matrices share the same trace, so \\( \\operatorname{tr}(B) = \\operatorname{tr}(A) = [[a]] + [[d]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the determinant, another shared invariant, but not the trace.",
+  "This subtracts the diagonal entries instead of adding them.",
+  "This multiplies the diagonal entries instead of adding them.",
+  "This sums the off-diagonal entries, which is not the trace.",
+  "This is one more than the correct trace.",
+  "This is three less than the correct trace."
+ ]
+},
+{
+ "template_id": "similar_matrices_eigenvalue_invariant_v3",
+ "skill_id": "similar_matrices_and_shared_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "d1": {"type": "int", "lo": -7, "hi": 7},
+  "d2": {"type": "int", "lo": -7, "hi": 7},
+  "d3": {"type": "int", "lo": -7, "hi": 7},
+  "u12": {"type": "int", "lo": -4, "hi": 4},
+  "u13": {"type": "int", "lo": -4, "hi": 4},
+  "u23": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[d1]], [[d2]])", "Ne([[d1]], [[d3]])", "Ne([[d2]], [[d3]])"],
+ "stem": "Suppose \\( B \\) is similar to \\( A = \\begin{bmatrix} [[d1]] & [[u12]] & [[u13]] \\\\ 0 & [[d2]] & [[u23]] \\\\ 0 & 0 & [[d3]] \\end{bmatrix} \\). Similar matrices have exactly the same eigenvalues (with the same multiplicities). What is the largest eigenvalue of \\( B \\)?",
+ "answer_spec": {"op": "eig", "matrix": [["[[d1]]", "[[u12]]", "[[u13]]"], ["0", "[[d2]]", "[[u23]]"], ["0", "0", "[[d3]]"]], "which": "max"},
+ "distractors": [
+  "[[d1]]",
+  "[[d2]]",
+  "[[d3]]",
+  "[[d1]] + [[d2]] + [[d3]]",
+  "[[answer]] + 1",
+  "[[answer]] - 2"
+ ],
+ "solution": "\\( A \\) is upper triangular, so its eigenvalues are exactly its diagonal entries \\( [[d1]], [[d2]], [[d3]] \\). Since \\( B \\) is similar to \\( A \\), it has the very same eigenvalues; the largest is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is one of the diagonal entries of \\( A \\), but not necessarily the largest.",
+  "This is one of the diagonal entries of \\( A \\), but not necessarily the largest.",
+  "This is one of the diagonal entries of \\( A \\), but not necessarily the largest.",
+  "This is the trace (sum of all eigenvalues), not the largest eigenvalue alone.",
+  "This is one more than the correct largest eigenvalue.",
+  "This is two less than the correct largest eigenvalue."
+ ]
+},
+{
+ "template_id": "similar_matrices_rank_invariant_v4",
+ "skill_id": "similar_matrices_and_shared_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "e": {"type": "int", "lo": -4, "hi": 4},
+  "f": {"type": "int", "lo": -4, "hi": 4},
+  "k": {"type": "int", "lo": -3, "hi": 3}
+ },
+ "constraints": ["Or(Ne([[a]], 0), Ne([[b]], 0), Ne([[c]], 0))", "Or(Ne([[d]], 0), Ne([[e]], 0), Ne([[f]], 0))"],
+ "derived": {
+  "g": "[[a]] + [[k]]*[[d]]",
+  "h": "[[b]] + [[k]]*[[e]]",
+  "i": "[[c]] + [[k]]*[[f]]"
+ },
+ "stem": "Suppose \\( B \\) is similar to \\( A = \\begin{bmatrix} [[a]] & [[b]] & [[c]] \\\\ [[d]] & [[e]] & [[f]] \\\\ [[g]] & [[h]] & [[i]] \\end{bmatrix} \\) (note the third row is a combination of the first two). Similar matrices have the same rank. What is \\( \\operatorname{rank}(B) \\)?",
+ "answer_spec": {"op": "rank", "matrix": [["[[a]]", "[[b]]", "[[c]]"], ["[[d]]", "[[e]]", "[[f]]"], ["[[g]]", "[[h]]", "[[i]]"]]},
+ "distractors": [
+  "3",
+  "0",
+  "[[answer]] + 1",
+  "[[a]] + [[b]] + [[c]] + [[d]] + [[e]] + [[f]]",
+  "[[a]]*[[e]] - [[b]]*[[d]]",
+  "[[a]] - [[d]] + [[k]]",
+  "[[answer]] - 1"
+ ],
+ "solution": "Similar matrices share the same rank, so \\( \\operatorname{rank}(B) = \\operatorname{rank}(A) \\). Since the third row of \\( A \\) is a linear combination of the first two, \\( A \\) cannot have full rank; computing directly gives \\( \\operatorname{rank}(A) = [[answer]] \\).",
+ "distractor_rationales": [
+  "The third row is a combination of the first two, so \\( A \\) cannot have full rank \\( 3 \\).",
+  "\\( A \\) is built from rows that are generically nonzero, so it is not the zero matrix and cannot have rank \\( 0 \\) in general.",
+  "This overshoots the true rank by one.",
+  "This adds up unrelated matrix entries instead of computing a rank.",
+  "This computes a single 2x2 minor rather than the rank of the full matrix.",
+  "This mixes a row difference with the combination coefficient \\( k \\), not a rank computation.",
+  "This undershoots the true rank by one."
+ ]
+},
+{
+ "template_id": "similar_matrices_power_determinant_v5",
+ "skill_id": "similar_matrices_and_shared_invariants",
+ "topic_id": "eigen",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -4, "hi": 4},
+  "b": {"type": "int", "lo": -4, "hi": 4},
+  "c": {"type": "int", "lo": -4, "hi": 4},
+  "d": {"type": "int", "lo": -4, "hi": 4},
+  "n": {"type": "choice", "values": [2, 3]}
+ },
+ "constraints": ["Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+ "stem": "Suppose \\( B = P^{-1} A P \\) for some invertible \\( P \\), where \\( A = \\begin{bmatrix} [[a]] & [[b]] \\\\ [[c]] & [[d]] \\end{bmatrix} \\). Note that \\( B^{[[n]]} = P^{-1} A^{[[n]]} P \\) is then similar to \\( A^{[[n]]} \\). What is \\( \\det\\!\\left(B^{[[n]]}\\right) \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[d]] - [[b]]*[[c]])**[[n]]"},
+ "distractors": [
+  "[[n]]*([[a]]*[[d]] - [[b]]*[[c]])",
+  "[[a]]*[[d]] - [[b]]*[[c]]",
+  "([[a]] + [[d]])**[[n]]",
+  "([[b]]*[[c]] - [[a]]*[[d]])**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( B^{[[n]]} \\) is similar to \\( A^{[[n]]} \\), \\( \\det\\!\\left(B^{[[n]]}\\right) = \\det\\!\\left(A^{[[n]]}\\right) = \\det(A)^{[[n]]} = \\left([[a]]\\cdot[[d]] - [[b]]\\cdot[[c]]\\right)^{[[n]]} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies \\( \\det(A) \\) by \\( n \\) instead of raising it to the \\( n \\)-th power.",
+  "This forgets to raise \\( \\det(A) \\) to the power \\( n \\) at all.",
+  "This raises the trace, not the determinant, to the \\( n \\)-th power.",
+  "This uses the negative of \\( \\det(A) \\) before raising to the power \\( n \\).",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+}
+]

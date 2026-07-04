@@ -1,0 +1,157 @@
+[
+{
+ "template_id": "trigonometric_substitution_sine_area_v1",
+ "skill_id": "trigonometric_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( x = [[a]]\\sin\\theta \\) (so \\( \\sqrt{[[a]]^{2}-x^{2}} = [[a]]\\cos\\theta \\)), evaluate \\( \\displaystyle\\int_{0}^{[[a]]} [[c]]\\sqrt{[[a]]^{2}-x^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sqrt([[a]]**2-x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*[[a]]**2/2",
+  "[[c]]*[[a]]**2",
+  "[[c]]*pi*[[a]]**2/2",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( x=[[a]]\\sin\\theta \\), \\( dx=[[a]]\\cos\\theta\\,d\\theta \\), the limits become \\( \\theta=0,\\pi/2 \\), and \\( \\sqrt{[[a]]^{2}-x^{2}}=[[a]]\\cos\\theta \\). The integral becomes \\( [[c]][[a]]^{2}\\displaystyle\\int_{0}^{\\pi/2}\\cos^{2}\\theta\\,d\\theta = [[c]][[a]]^{2}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\); geometrically this is a quarter-circle of radius \\( [[a]] \\).",
+ "distractor_rationales": [
+  "This uses \\( \\pi/4 \\)'s numerator-only form (half the circle's quarter area) instead of the full quarter-circle result.",
+  "This treats the region as a full square of side \\( [[a]] \\) rather than the quarter-disk the integral represents.",
+  "This uses a half-circle's area formula instead of a quarter-circle.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "trigonometric_substitution_tangent_arctan_v2",
+ "skill_id": "trigonometric_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "c": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( x = [[a]]\\tan\\theta \\) (so \\( x^{2}+[[a]]^{2} = [[a]]^{2}\\sec^{2}\\theta \\)), evaluate \\( \\displaystyle\\int_{0}^{[[a]]} \\frac{[[c]]}{x^{2}+[[a]]^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]/(x**2+[[a]]**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*pi/(2*[[a]])",
+  "[[c]]*pi/[[a]]",
+  "[[c]]/[[a]]",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( x=[[a]]\\tan\\theta \\), \\( dx=[[a]]\\sec^{2}\\theta\\,d\\theta \\), and \\( x^{2}+[[a]]^{2}=[[a]]^{2}\\sec^{2}\\theta \\), so the \\( \\sec^{2}\\theta \\) factors cancel: the integral becomes \\( \\dfrac{[[c]]}{[[a]]}\\displaystyle\\int_{0}^{\\pi/4} d\\theta = \\dfrac{[[c]]}{[[a]]}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the limit \\( \\theta=\\pi/2 \\) (as if \\( x\\to\\infty \\)) instead of the correct upper limit \\( \\theta=\\pi/4 \\) at \\( x=[[a]] \\).",
+  "This uses \\( \\theta=\\pi \\) as the upper limit, four times too large.",
+  "This drops the factor of \\( \\pi/4 \\) entirely, as if the antiderivative were just \\( \\theta \\) evaluated in \\( x \\)-units.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "trigonometric_substitution_secant_v3",
+ "skill_id": "trigonometric_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( x = [[a]]\\sec\\theta \\) (so \\( \\sqrt{x^{2}-[[a]]^{2}} = [[a]]\\tan\\theta \\)), evaluate \\( \\displaystyle\\int_{[[a]]}^{2[[a]]} [[c]]\\sqrt{x^{2}-[[a]]^{2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*sqrt(x**2-[[a]]**2)", "var": "x", "bounds": ["[[a]]", "2*[[a]]"]},
+ "distractors": [
+  "[[c]]*[[a]]**2*sqrt(3)/2",
+  "[[c]]*[[a]]**2*pi/3",
+  "[[c]]*[[a]]**2",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( x=[[a]]\\sec\\theta \\), \\( dx=[[a]]\\sec\\theta\\tan\\theta\\,d\\theta \\), and \\( \\sqrt{x^{2}-[[a]]^{2}}=[[a]]\\tan\\theta \\), the limits become \\( \\theta=0 \\) (at \\( x=[[a]] \\)) to \\( \\theta=\\pi/3 \\) (at \\( x=2[[a]] \\)). The integral becomes \\( [[c]][[a]]^{2}\\displaystyle\\int_{0}^{\\pi/3}\\sec\\theta\\tan^{2}\\theta\\,d\\theta \\), which evaluates to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This keeps only the leading term \\( \\tfrac12 a^2\\sqrt3 \\) from evaluating \\( \\sec\\theta\\tan\\theta \\) at \\( \\theta=\\pi/3 \\) alone, dropping the logarithmic term from the reduction formula.",
+  "This mistakes the integrand for a constant-\\( \\sec\\theta \\) area and uses a \\( \\pi/3 \\) sector formula instead of the actual antiderivative.",
+  "This treats \\( \\sqrt{x^2-a^2} \\) as if it were bounded by \\( a \\) itself over the whole interval, giving a rectangle estimate.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "trigonometric_substitution_sine_x_squared_v4",
+ "skill_id": "trigonometric_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( x = [[a]]\\sin\\theta \\), evaluate \\( \\displaystyle\\int_{0}^{[[a]]} \\frac{[[c]]x^{2}}{\\sqrt{[[a]]^{2}-x^{2}}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**2/sqrt([[a]]**2-x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*[[a]]**2*pi/2",
+  "[[c]]*[[a]]**2/4",
+  "[[c]]*[[a]]**2*pi/8",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( x=[[a]]\\sin\\theta \\), \\( dx=[[a]]\\cos\\theta\\,d\\theta \\), and \\( \\sqrt{[[a]]^{2}-x^{2}}=[[a]]\\cos\\theta \\), the \\( \\cos\\theta \\) factors cancel and the integral becomes \\( [[c]][[a]]^{2}\\displaystyle\\int_{0}^{\\pi/2}\\sin^{2}\\theta\\,d\\theta = [[c]][[a]]^{2}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This doubles the correct \\( \\pi/4 \\) constant to \\( \\pi/2 \\).",
+  "This drops the \\( \\pi \\) factor entirely, as if the average value of \\( \\sin^{2}\\theta \\) were rational.",
+  "This halves the correct \\( \\pi/4 \\) constant.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "trigonometric_substitution_tangent_power_v5",
+ "skill_id": "trigonometric_substitution",
+ "topic_id": "integration_techniques",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "c": {"type": "int", "lo": 1, "hi": 4}
+ },
+ "constraints": [],
+ "stem": "Using the substitution \\( x = [[a]]\\tan\\theta \\), evaluate \\( \\displaystyle\\int_{0}^{[[a]]} \\frac{[[c]]x^{2}}{\\left(x^{2}+[[a]]^{2}\\right)^{3/2}}\\,dx \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[c]]*x**2/(x**2+[[a]]**2)**Rational(3,2)", "var": "x", "bounds": ["0", "[[a]]"]},
+ "distractors": [
+  "[[c]]*log(1+sqrt(2))",
+  "[[c]]*(sqrt(2)-1)",
+  "[[c]]*sqrt(2)/2",
+  "[[answer]]/2",
+  "2*[[answer]]",
+  "[[answer]] + 1"
+ ],
+ "solution": "With \\( x=[[a]]\\tan\\theta \\), \\( dx=[[a]]\\sec^{2}\\theta\\,d\\theta \\), and \\( (x^{2}+[[a]]^{2})^{3/2}=[[a]]^{3}\\sec^{3}\\theta \\), the integral becomes \\( [[c]]\\displaystyle\\int_{0}^{\\pi/4}\\sin^{2}\\theta\\,d\\theta = [[c]]\\left(\\dfrac{\\pi}{8}-\\dfrac14\\right) \\)... after simplifying \\( \\tan^{2}\\theta/\\sec\\theta = \\sin^{2}\\theta/\\cos\\theta \\), the closed form works out to \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This uses the antiderivative \\( \\ln(\\sec\\theta+\\tan\\theta) \\) alone (appropriate for \\( \\sec\\theta \\), not \\( \\sin^{2}\\theta/\\cos\\theta \\)) evaluated at the limits.",
+  "This uses \\( 1-\\cos(\\pi/4) \\) as if the integrand reduced to \\( \\sin\\theta \\) rather than \\( \\sin^{2}\\theta/\\cos\\theta \\).",
+  "This reports only \\( \\sin(\\pi/4) \\) itself, mistaking the substituted variable's value for the integral's value.",
+  "This halves the correct value.",
+  "This doubles the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

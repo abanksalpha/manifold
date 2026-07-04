@@ -1,0 +1,322 @@
+[
+ {
+  "template_id": "slope_at_point_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": [],
+  "stem": "Let \\( f(x) = [[a]]x^{3} + ([[b]])x^{2} + ([[c]])x + ([[d]]) \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**3 + [[b]]*x**2 + [[c]]*x + [[d]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]] + [[d]]",
+   "6*[[a]]*[[x0]] + 2*[[b]]",
+   "3*[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]",
+   "3*[[a]]*[[x0]]**2 + 2*[[b]]*[[x0]] + [[c]] + 1",
+   "[[answer]] + 3",
+   "[[answer]] - 3"
+  ],
+  "solution": "The slope of the tangent line is \\( f'([[x0]]) \\). Since \\( f'(x) = 3([[a]])x^{2} + 2([[b]])x + ([[c]]) \\), evaluating at \\( x = [[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This evaluates \\( f([[x0]]) \\), the function value, not its slope.",
+   "This is \\( f''([[x0]]) \\), the second derivative.",
+   "This drops the factor of 2 on the \\( 2([[b]])x \\) term of \\( f' \\).",
+   "This is off by one from the correct slope.",
+   "This is off by three from the correct slope.",
+   "This is off by three from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_product_rule_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "stem": "Let \\( f(x) = ([[a]]x + ([[b]]))([[c]]x + ([[d]])) \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])*([[c]]*x+[[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*([[c]]*[[x0]]+[[d]])",
+   "[[c]]*([[a]]*[[x0]]+[[b]])",
+   "[[a]]*[[c]]",
+   "([[a]]*[[x0]]+[[b]])*([[c]]*[[x0]]+[[d]])",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the product rule, \\( f'(x) = [[a]]([[c]]x+([[d]])) + [[c]]([[a]]x+([[b]])) \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This keeps only the first term of the product rule, dropping the second factor's contribution.",
+   "This keeps only the second term of the product rule, dropping the first factor's contribution.",
+   "This multiplies only the leading coefficients instead of applying the product rule.",
+   "This evaluates \\( f([[x0]]) \\), the function value, not its slope.",
+   "This is off by two from the correct slope.",
+   "This is off by two from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_chain_power_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "choice", "values": [2, 3, 4]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[a]]*[[x0]] + [[b]], 0)"],
+  "stem": "Let \\( f(x) = ([[a]]x + ([[b]]))^{[[n]]} \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])**[[n]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[n]]*([[a]]*[[x0]]+[[b]])**([[n]]-1)",
+   "[[n]]*[[a]]*([[a]]*[[x0]]+[[b]])**[[n]]",
+   "[[a]]",
+   "([[a]]*[[x0]]+[[b]])**[[n]]",
+   "[[answer]] + [[n]]",
+   "[[answer]] - [[n]]"
+  ],
+  "solution": "By the chain rule, \\( f'(x) = [[n]]([[a]]x+([[b]]))^{[[n]]-1}\\cdot [[a]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the chain-rule factor of \\( [[a]] \\) from the outer derivative.",
+   "This forgets to lower the exponent by one.",
+   "This treats \\( f \\) as if it were linear, reporting only the inner coefficient.",
+   "This evaluates \\( f([[x0]]) \\), the function value, not its slope.",
+   "This is off by \\( [[n]] \\) from the correct slope.",
+   "This is off by \\( [[n]] \\) from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_quotient_rule_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[c]]*[[x0]] + [[d]], 0)", "Ne([[a]]*[[d]] - [[b]]*[[c]], 0)"],
+  "stem": "Let \\( f(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "([[a]]*x+[[b]])/([[c]]*x+[[d]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "Rational([[a]],[[c]])",
+   "([[a]]*([[c]]*[[x0]]+[[d]]) + [[c]]*([[a]]*[[x0]]+[[b]]))/([[c]]*[[x0]]+[[d]])**2",
+   "([[a]]*[[d]]-[[b]]*[[c]])/([[c]]*[[x0]]+[[d]])",
+   "([[a]]*[[x0]]+[[b]])/([[c]]*[[x0]]+[[d]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the quotient rule, \\( f'(x) = \\dfrac{[[a]]([[c]]x+([[d]])) - [[c]]([[a]]x+([[b]]))}{([[c]]x+([[d]]))^{2}} = \\dfrac{[[a]]\\cdot[[d]]-[[b]]\\cdot[[c]]}{([[c]]x+([[d]]))^{2}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This just divides the leading coefficients, ignoring the quotient rule entirely.",
+   "This adds instead of subtracts in the quotient-rule numerator.",
+   "This forgets to square the denominator.",
+   "This evaluates \\( f([[x0]]) \\), the function value, not its slope.",
+   "This is off by one from the correct slope.",
+   "This is off by one from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_radical_chain_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": 1, "hi": 5}
+  },
+  "constraints": [],
+  "derived": {"b": "[[k]]**2 - [[a]]*[[x0]]"},
+  "stem": "Let \\( f(x) = \\sqrt{[[a]]x + ([[b]])} \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "sqrt([[a]]*x+[[b]])", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]/sqrt([[a]]*[[x0]]+[[b]])",
+   "sqrt([[a]])",
+   "sqrt([[a]]*[[x0]]+[[b]])",
+   "[[a]]**2/(2*sqrt([[a]]*[[x0]]+[[b]]))",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule, \\( f'(x) = \\dfrac{[[a]]}{2\\sqrt{[[a]]x+([[b]])}} \\). Since \\( [[a]]\\cdot[[x0]]+([[b]]) = [[k]]^{2} \\), evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of 2 in the denominator from the chain rule.",
+   "This ignores the inner expression entirely.",
+   "This evaluates \\( f([[x0]]) \\), the function value, not its slope.",
+   "This squares the numerator instead of applying the chain rule correctly.",
+   "This is off by one from the correct slope.",
+   "This is off by one from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_exponential_at_zero_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]e^{[[b]]x} + ([[c]]) \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = 0 \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*exp([[b]]*x)+[[c]]", "var": "x", "at": "0", "order": 1},
+  "distractors": [
+   "[[a]]",
+   "[[a]] + [[c]]",
+   "-[[a]]*[[b]]",
+   "[[a]]*[[b]] - [[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the chain rule, \\( f'(x) = [[a]]\\cdot[[b]]\\cdot e^{[[b]]x} \\). Since \\( e^{0}=1 \\), evaluating at \\( x=0 \\) gives \\( f'(0) = [[a]]\\cdot[[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the chain-rule factor of \\( [[b]] \\).",
+   "This evaluates \\( f(0) \\), the function value, not its slope.",
+   "This has the wrong sign.",
+   "This mistakenly subtracts the constant term, which does not affect the derivative.",
+   "This is off by two from the correct slope.",
+   "This is off by two from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_logarithm_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -8, "hi": 8},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[x0]], 0)", "Gt([[b]]*[[x0]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]\\ln([[b]]x) \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = [[x0]] \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*log([[b]]*x)", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]*[[b]]/[[x0]]",
+   "Rational([[a]],[[b]])",
+   "[[a]]*log([[b]]*[[x0]])",
+   "-[[a]]/[[x0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By the chain rule, \\( f'(x) = [[a]]\\cdot\\dfrac{[[b]]}{[[b]]x} = \\dfrac{[[a]]}{x} \\) (the factor of \\( [[b]] \\) cancels). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets that the factor of \\( [[b]] \\) cancels in \\( \\frac{[[b]]}{[[b]]x} \\).",
+   "This mistakenly treats the derivative of \\( \\ln([[b]]x) \\) as \\( \\frac{1}{[[b]]} \\).",
+   "This evaluates \\( f([[x0]]) \\), the function value, not its slope.",
+   "This has the wrong sign.",
+   "This is off by one from the correct slope.",
+   "This is off by one from the correct slope."
+  ]
+ },
+ {
+  "template_id": "slope_trig_at_zero_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]\\sin([[b]]x) + ([[c]]) \\). What is the slope of the tangent line to the curve \\( y = f(x) \\) at the point where \\( x = 0 \\)?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*sin([[b]]*x)+[[c]]", "var": "x", "at": "0", "order": 1},
+  "distractors": [
+   "[[a]]",
+   "[[c]]",
+   "-[[a]]*[[b]]",
+   "[[a]]*[[b]]**2",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the chain rule, \\( f'(x) = [[a]]\\cdot[[b]]\\cdot\\cos([[b]]x) \\). Since \\( \\cos(0)=1 \\), evaluating at \\( x=0 \\) gives \\( f'(0) = [[a]]\\cdot[[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the chain-rule factor of \\( [[b]] \\).",
+   "This evaluates \\( f(0) \\), the function value, not its slope.",
+   "This has the wrong sign.",
+   "This squares the chain-rule factor instead of using it once.",
+   "This is off by two from the correct slope.",
+   "This is off by two from the correct slope."
+  ]
+ },
+ {
+  "template_id": "tangent_line_y_intercept_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). The tangent line to the curve \\( y=f(x) \\) at the point where \\( x=[[x0]] \\) has equation \\( y = mx + k \\). What is \\( k \\), the \\( y \\)-intercept of this tangent line?",
+  "answer_spec": {"op": "evaluate", "expr": "[[c]] - [[a]]*[[x0]]**2"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]",
+   "[[c]] + [[a]]*[[x0]]**2",
+   "[[c]]",
+   "2*[[a]]*[[x0]] + [[b]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The tangent line is \\( y = f([[x0]]) + f'([[x0]])(x-[[x0]]) \\). Its \\( y \\)-intercept is \\( f([[x0]]) - f'([[x0]])\\cdot[[x0]] \\), which simplifies to \\( [[c]] - [[a]]\\cdot[[x0]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports \\( f([[x0]]) \\) itself, not the tangent line's \\( y \\)-intercept.",
+   "This has the wrong sign on the \\( a x_0^2 \\) correction term.",
+   "This drops the correction term entirely, leaving just the constant of \\( f \\).",
+   "This is the slope \\( f'([[x0]]) \\), not the \\( y \\)-intercept.",
+   "This is off by two from the correct \\( y \\)-intercept.",
+   "This is off by two from the correct \\( y \\)-intercept."
+  ]
+ },
+ {
+  "template_id": "tangent_line_x_intercept_v1",
+  "skill_id": "tangent_line_equation_or_slope_at_a_point",
+  "topic_id": "applications_derivatives",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne(2*[[a]]*[[x0]] + [[b]], 0)"],
+  "stem": "Let \\( f(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\). The tangent line to the curve \\( y=f(x) \\) at the point where \\( x=[[x0]] \\) crosses the \\( x \\)-axis at \\( x = t \\). What is \\( t \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]] - ([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]])/(2*[[a]]*[[x0]]+[[b]])"},
+  "distractors": [
+   "[[x0]]",
+   "[[x0]] + ([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]])/(2*[[a]]*[[x0]]+[[b]])",
+   "[[x0]] - (2*[[a]]*[[x0]]+[[b]])/([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]])",
+   "[[x0]] - ([[a]]*[[x0]]**2+[[b]]*[[x0]]+[[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The tangent line is \\( y = f([[x0]]) + f'([[x0]])(x-[[x0]]) \\). Setting \\( y=0 \\) and solving for \\( x \\) gives \\( t = [[x0]] - \\dfrac{f([[x0]])}{f'([[x0]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets the correction term and just reports \\( x_0 \\) itself.",
+   "This adds instead of subtracts the correction term.",
+   "This inverts the numerator and denominator of the correction term.",
+   "This forgets to divide by the slope \\( f'([[x0]]) \\).",
+   "This is off by one from the correct \\( x \\)-intercept.",
+   "This is off by one from the correct \\( x \\)-intercept."
+  ]
+ }
+]

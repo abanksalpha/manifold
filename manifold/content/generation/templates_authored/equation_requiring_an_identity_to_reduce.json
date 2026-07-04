@@ -1,0 +1,147 @@
+[
+{
+ "template_id": "identity_reduce_double_angle_v1",
+ "skill_id": "equation_requiring_an_identity_to_reduce",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [-2, -1, 1]},
+  "q": {"type": "choice", "values": [-2, -1, 1]},
+  "m": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "derived": {
+  "Ad": "2*[[m]]",
+  "Bd": "-2*[[m]]*([[p]] + [[q]])",
+  "Cd": "[[m]]*([[p]]*[[q]] + 2)",
+  "Ar": "4*[[m]]",
+  "Br": "-2*[[m]]*([[p]] + [[q]])",
+  "Cr": "[[m]]*[[p]]*[[q]]"
+ },
+ "stem": "On the interval \\( [0, 2\\pi) \\), which of the following is a solution of \\( [[Ad]]\\cos(2x) + ([[Bd]])\\cos x + ([[Cd]]) = 0 \\)? (Reduce it with a double-angle identity first.)",
+ "answer_spec": {"op": "solve", "equation": "[[Ar]]*cos(x)**2 + [[Br]]*cos(x) + [[Cr]]", "var": "x"},
+ "distractors": [
+  "pi/6",
+  "pi/4",
+  "[[answer]] + pi/2",
+  "[[answer]] + 3*pi/4",
+  "[[answer]] + 5*pi/6",
+  "3*pi/4"
+ ],
+ "solution": "Apply the double-angle identity \\( \\cos(2x) = 2\\cos^2 x - 1 \\); the equation becomes \\( [[Ar]]\\cos^2 x + ([[Br]])\\cos x + ([[Cr]]) = 0 \\), a quadratic in \\( \\cos x \\) with rational roots. Solving \\( \\cos x = \\) (a root) on \\( [0, 2\\pi) \\) gives \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "The cosine of \\( \\tfrac{\\pi}{6} \\) is irrational, so it is not a root of the reduced quadratic.",
+  "The cosine of \\( \\tfrac{\\pi}{4} \\) is irrational, so this angle does not satisfy the equation.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{2} \\), landing on a non-solution.",
+  "This shifts a true solution by \\( \\tfrac{3\\pi}{4} \\), so its cosine is no longer a root.",
+  "This shifts a true solution by \\( \\tfrac{5\\pi}{6} \\), giving a non-solution.",
+  "The cosine of \\( \\tfrac{3\\pi}{4} \\) is irrational, so this angle is not a solution."
+ ]
+},
+{
+ "template_id": "identity_reduce_pythagorean_v1",
+ "skill_id": "equation_requiring_an_identity_to_reduce",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "choice", "values": [-2, -1, 1]},
+  "q": {"type": "choice", "values": [-2, -1, 1]},
+  "m": {"type": "choice", "values": [1, 2, 3, 4, 5, 6]}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "require_rational": false,
+ "derived": {
+  "Ap": "4*[[m]]",
+  "Bp": "2*[[m]]*([[p]] + [[q]])",
+  "Cp": "-[[m]]*(4 + [[p]]*[[q]])",
+  "Ar": "4*[[m]]",
+  "Br": "-2*[[m]]*([[p]] + [[q]])",
+  "Cr": "[[m]]*[[p]]*[[q]]"
+ },
+ "stem": "On the interval \\( [0, 2\\pi) \\), which of the following is a solution of \\( [[Ap]]\\sin^2 x + ([[Bp]])\\cos x + ([[Cp]]) = 0 \\)? (Reduce it with the Pythagorean identity first.)",
+ "answer_spec": {"op": "solve", "equation": "[[Ar]]*cos(x)**2 + [[Br]]*cos(x) + [[Cr]]", "var": "x"},
+ "distractors": [
+  "pi/6",
+  "pi/4",
+  "[[answer]] + pi/2",
+  "[[answer]] + 3*pi/4",
+  "[[answer]] + 5*pi/6",
+  "3*pi/4"
+ ],
+ "solution": "Apply the Pythagorean identity \\( \\sin^2 x = 1 - \\cos^2 x \\); the equation becomes \\( [[Ar]]\\cos^2 x + ([[Br]])\\cos x + ([[Cr]]) = 0 \\), a quadratic in \\( \\cos x \\) with rational roots. Solving \\( \\cos x = \\) (a root) on \\( [0, 2\\pi) \\) gives \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "The cosine of \\( \\tfrac{\\pi}{6} \\) is irrational, so it is not a root of the reduced quadratic.",
+  "The cosine of \\( \\tfrac{\\pi}{4} \\) is irrational, so this angle does not satisfy the equation.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{2} \\), landing on a non-solution.",
+  "This shifts a true solution by \\( \\tfrac{3\\pi}{4} \\), so its cosine is no longer a root.",
+  "This shifts a true solution by \\( \\tfrac{5\\pi}{6} \\), giving a non-solution.",
+  "The cosine of \\( \\tfrac{3\\pi}{4} \\) is irrational, so this angle is not a solution."
+ ]
+},
+{
+ "template_id": "identity_reduce_quotient_v1",
+ "skill_id": "equation_requiring_an_identity_to_reduce",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "A": {"type": "int", "lo": 1, "hi": 9},
+  "B": {"type": "int", "lo": -9, "hi": 9}
+ },
+ "constraints": ["Ne([[B]], 0)", "Eq(gcd(Abs([[A]]), Abs([[B]])), 1)"],
+ "require_rational": false,
+ "stem": "Find the value of \\( x \\) in \\( \\left(-\\dfrac{\\pi}{2}, \\dfrac{\\pi}{2}\\right) \\) satisfying \\( [[A]]\\sin x - ([[B]])\\cos x = 0 \\). (Divide by \\( \\cos x \\) to reduce it to a single tangent identity first.)",
+ "answer_spec": {"op": "solve", "equation": "[[A]]*sin(x) - [[B]]*cos(x)", "var": "x"},
+ "distractors": [
+  "atan([[A]]/[[B]])",
+  "-[[answer]]",
+  "atan(Abs([[B]])/Abs([[A]]))",
+  "[[answer]] + pi/2",
+  "[[answer]] - pi/4",
+  "Rational([[B]],[[A]])"
+ ],
+ "solution": "Dividing both sides by \\( \\cos x \\) (valid since \\( \\cos x=0 \\) is not a solution here) gives \\( [[A]]\\tan x = [[B]] \\), so \\( \\tan x = \\dfrac{[[B]]}{[[A]]} \\) and \\( x = \\arctan\\dfrac{[[B]]}{[[A]]} = [[answer]] \\), which lies in \\( \\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right) \\).",
+ "distractor_rationales": [
+  "This inverts the ratio inside the arctangent.",
+  "This has the wrong sign.",
+  "This drops the sign of \\( B/A \\) by taking absolute values.",
+  "This shifts the true solution by \\( \\tfrac{\\pi}{2} \\), leaving the principal branch.",
+  "This shifts the true solution by \\( \\tfrac{\\pi}{4} \\).",
+  "This reports the tangent ratio itself instead of the angle."
+ ]
+},
+{
+ "template_id": "identity_reduce_sine_double_angle_factor_v1",
+ "skill_id": "equation_requiring_an_identity_to_reduce",
+ "topic_id": "trigonometry",
+ "tier": "relearn",
+ "params": {
+  "m": {"type": "int", "lo": 1, "hi": 9},
+  "p": {"type": "choice", "values": [-1, 1]}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "derived": {
+  "B": "[[m]]*[[p]]"
+ },
+ "stem": "On the interval \\( [0, 2\\pi) \\), which of the following is a solution of \\( [[m]]\\sin(2x) - ([[B]])\\sin x = 0 \\)? (Use the double-angle identity for sine, then factor.)",
+ "answer_spec": {"op": "solve", "equation": "sin(x)*(2*[[m]]*cos(x) - [[B]])", "var": "x"},
+ "distractors": [
+  "pi/6",
+  "pi/4",
+  "[[answer]] + pi/6",
+  "[[answer]] + pi/4",
+  "3*pi/2",
+  "pi/2"
+ ],
+ "solution": "By the double-angle identity, \\( \\sin(2x) = 2\\sin x\\cos x \\), so the equation factors as \\( \\sin x\\,(2\\cdot[[m]]\\cos x - [[B]]) = 0 \\). One branch gives \\( \\sin x = 0 \\) and the other gives \\( \\cos x = \\dfrac{[[B]]}{2\\cdot[[m]]} \\), a nice value; solving on \\( [0,2\\pi) \\) gives (among others) \\( x = [[answer]] \\).",
+ "distractor_rationales": [
+  "The cosine of \\( \\tfrac{\\pi}{6} \\) is irrational and does not satisfy either factor.",
+  "The cosine of \\( \\tfrac{\\pi}{4} \\) is irrational and does not satisfy either factor.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{6} \\), landing off both branches.",
+  "This shifts a true solution by \\( \\tfrac{\\pi}{4} \\), landing off both branches.",
+  "This is \\( \\tfrac{3\\pi}{2} \\), which satisfies neither \\( \\sin x=0 \\) nor the cosine branch here.",
+  "This is \\( \\tfrac{\\pi}{2} \\), which satisfies neither factor for these coefficients."
+ ]
+}
+]

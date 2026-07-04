@@ -1,0 +1,231 @@
+[
+{
+ "template_id": "clean_deriv_collapse_v1",
+ "skill_id": "clean_simplifying_derivative_identity_collapse",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {
+   "type": "int",
+   "lo": 1,
+   "hi": 5
+  },
+  "b": {
+   "type": "int",
+   "lo": 1,
+   "hi": 6
+  },
+  "x0": {
+   "type": "int",
+   "lo": 1,
+   "hi": 4
+  }
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x)=\\dfrac{[[a]]x^{2}+[[b]]x}{x} \\) for \\( x\\ne 0 \\). Find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "([[a]]*x**2 + [[b]]*x)/x",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "[[a]]*[[x0]] + [[b]]",
+  "2*[[a]]*[[x0]] + [[b]]",
+  "[[a]]",
+  "2*[[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Simplify first: \\( f(x)=[[a]]x+[[b]] \\), so \\( f'(x)=[[a]] \\) for all \\( x \\), giving \\( [[answer]] \\).",
+ "distractor_rationales": []
+},
+{
+ "template_id": "clean_deriv_collapse_pythagorean_v2",
+ "skill_id": "clean_simplifying_derivative_identity_collapse",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 8},
+  "b": {"type": "int", "lo": -6, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( f(x)=\\sin^{2}(x)+\\cos^{2}(x)+[[a]]x+[[b]] \\). Find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "sin(x)**2 + cos(x)**2 + [[a]]*x + [[b]]",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "[[a]] + [[b]]",
+  "2*[[a]]*[[x0]] + [[b]]",
+  "[[a]]*[[x0]]",
+  "0",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the Pythagorean identity, \\( \\sin^{2}x+\\cos^{2}x=1 \\) for all \\( x \\), so \\( f(x)=[[a]]x+[[b]]+1 \\) and \\( f'(x)=[[a]] \\) identically, giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the constant \\( 1+b \\) as if it survived differentiation with a leftover \\( a+b \\) term.",
+  "This differentiates \\( \\sin^2x+\\cos^2x \\) term-by-term as if it were \\( x^2 \\)-like instead of recognizing the identity collapses it to 1.",
+  "This drops the constant slope \\( a \\) contribution entirely.",
+  "This assumes the whole function is constant, missing the \\( ax \\) term.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "clean_deriv_collapse_log_v3",
+ "skill_id": "clean_simplifying_derivative_identity_collapse",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 2, "hi": 9},
+  "b": {"type": "int", "lo": 1, "hi": 8},
+  "x0": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "stem": "Let \\( f(x)=\\ln([[a]]x) - \\ln(x) + [[b]]x \\) for \\( x>0 \\). Find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "log([[a]]*x) - log(x) + [[b]]*x",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "[[b]] + 1/[[x0]]",
+  "1/([[a]]*[[x0]]) + [[b]]",
+  "[[a]]/[[x0]] + [[b]]",
+  "[[b]] - 1/[[x0]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By log properties, \\( \\ln([[a]]x)-\\ln(x)=\\ln[[a]] \\), a constant, so \\( f(x)=\\ln[[a]]+[[b]]x \\) and \\( f'(x)=[[b]] \\) identically, giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This treats the constant \\( \\ln a \\) term as if it still contributed \\( 1/x_0 \\) to the derivative.",
+  "This differentiates \\( \\ln(ax) \\) alone without cancelling against \\( -\\ln(x) \\).",
+  "This confuses \\( \\ln(ax) \\)'s derivative with \\( a/x \\) instead of \\( 1/x \\).",
+  "This flips the sign of the leftover logarithmic term, which should cancel to zero.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "clean_deriv_collapse_explog_v4",
+ "skill_id": "clean_simplifying_derivative_identity_collapse",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 5},
+  "b": {"type": "int", "lo": 1, "hi": 6},
+  "x0": {"type": "int", "lo": 1, "hi": 5}
+ },
+ "constraints": [],
+ "require_rational": false,
+ "stem": "Let \\( f(x)=e^{\\ln(x)+[[a]]}+[[b]]x \\) for \\( x>0 \\). Find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "exp(log(x) + [[a]]) + [[b]]*x",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "exp([[a]]) + [[b]]",
+  "[[b]]",
+  "[[a]]*[[x0]] + [[b]]",
+  "exp([[a]])*[[x0]] + [[b]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( e^{\\ln x + a} = x\\,e^{a} \\), we get \\( f(x)=e^{[[a]]}x+[[b]]x=(e^{[[a]]}+[[b]])x \\), so \\( f'(x)=e^{[[a]]}+[[b]] \\) identically, giving \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This is missing the extra factor of \\( x \\) that survives from \\( e^{\\ln x+a}=xe^a \\), so it drops the \\( e^a \\) slope term.",
+  "This ignores the \\( e^{\\ln x + a} \\) term entirely, differentiating only \\( bx \\).",
+  "This treats \\( e^{\\ln x+a} \\) as if it collapsed to the linear term \\( ax \\) instead of \\( e^a x \\).",
+  "This evaluates the collapsed slope at \\( x_0 \\) as if it were not constant, multiplying by \\( x_0 \\) again.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "clean_deriv_collapse_diffsquares_v5",
+ "skill_id": "clean_simplifying_derivative_identity_collapse",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "x0": {"type": "int", "lo": -4, "hi": 4}
+ },
+ "constraints": ["Ne([[a]], 0)"],
+ "stem": "Let \\( f(x)=\\dfrac{(x+[[a]])^{3}-(x-[[a]])^{3}}{[[a]]} \\) for \\( [[a]]\\ne 0 \\). Find \\( f'([[x0]]) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "((x+[[a]])**3 - (x-[[a]])**3)/[[a]]",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "6*[[x0]]",
+  "12*[[a]]",
+  "[[x0]]",
+  "2*[[a]]**2",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Expanding the cubes, \\( (x+[[a]])^{3}-(x-[[a]])^{3}=6[[a]]x^{2}+2[[a]]^{3} \\), so \\( f(x)=6x^{2}+2[[a]]^{2} \\) after dividing by \\( [[a]] \\). Then \\( f'(x)=12x \\), so \\( f'([[x0]])=[[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the factor of 2 from the correct coefficient, using \\( 6x_0 \\) instead of \\( 12x_0 \\).",
+  "This differentiates with respect to \\( a \\) instead of \\( x \\).",
+  "This forgets to apply the power rule's coefficient, treating \\( f(x)=6x^2 \\) as if it were linear.",
+  "This is the constant term \\( 2a^{2} \\) left over after dividing, mistaken for the derivative.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+},
+{
+ "template_id": "clean_deriv_collapse_doubleangle_v6",
+ "skill_id": "clean_simplifying_derivative_identity_collapse",
+ "topic_id": "differential_calc",
+ "tier": "relearn",
+ "params": {
+  "a": {"type": "int", "lo": 1, "hi": 6},
+  "k": {"type": "choice", "values": [0, 2, 3, 4, 6, 8, 9, 10]}
+ },
+ "constraints": [],
+ "derived": {
+  "x0": "pi*[[k]]/12"
+ },
+ "stem": "Let \\( f(x)=2\\sin(x)\\cos(x)+[[a]]x \\). Find \\( f'\\!\\left([[x0]]\\right) \\).",
+ "answer_spec": {
+  "op": "diff",
+  "expr": "2*sin(x)*cos(x) + [[a]]*x",
+  "var": "x",
+  "at": "[[x0]]",
+  "order": 1
+ },
+ "distractors": [
+  "[[a]]",
+  "2 + [[a]]",
+  "cos(2*[[x0]]) + [[a]]",
+  "-2*sin(2*[[x0]]) + [[a]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the double-angle identity, \\( 2\\sin x\\cos x=\\sin(2x) \\), so \\( f(x)=\\sin(2x)+[[a]]x \\) and \\( f'(x)=2\\cos(2x)+[[a]] \\). At \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This drops the \\( 2\\cos(2x) \\) contribution entirely, keeping only the linear slope \\( a \\).",
+  "This uses \\( \\frac{d}{dx}\\sin(2x)=2 \\) (a constant) instead of \\( 2\\cos(2x) \\).",
+  "This forgets the factor of 2 from the chain rule on \\( \\sin(2x) \\).",
+  "This uses the derivative of \\( \\cos(2x) \\) instead of \\( \\sin(2x) \\), picking up the wrong sign and function.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

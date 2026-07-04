@@ -1,0 +1,93 @@
+[
+{
+ "template_id": "choose_setup_integrate_in_y_v1",
+ "skill_id": "choose_the_correct_integral_set_up_for_a_region",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "r1": {"type": "int", "lo": -5, "hi": 4},
+  "r2": {"type": "int", "lo": -4, "hi": 5}
+ },
+ "constraints": ["Lt([[r1]], [[r2]])", "Ne([[r1]], 0)", "Ne([[r2]], 0)"],
+ "derived": {"m": "[[r1]] + [[r2]]", "c": "-[[r1]]*[[r2]]"},
+ "stem": "The region \\( R \\) is bounded by the sideways parabola \\( x=y^{2} \\) and the line \\( x=[[m]]y+([[c]]) \\). Since both boundaries are most naturally written as functions of \\( y \\), the correct setup integrates with respect to \\( y \\) (not \\( x \\)). Find the area of \\( R \\).",
+ "answer_spec": {"op": "integrate", "expr": "[[m]]*y + [[c]] - y**2", "var": "y", "bounds": ["[[r1]]", "[[r2]]"]},
+ "distractors": [
+  "2*[[answer]]",
+  "[[answer]]/2",
+  "([[r2]] - [[r1]])**2",
+  "-[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The curves meet where \\( y^{2}=[[m]]y+([[c]]) \\), i.e. at \\( y=[[r1]] \\) and \\( y=[[r2]] \\). Setting up the correct integral with respect to \\( y \\), the area is \\( \\int_{[[r1]]}^{[[r2]]}\\left(([[m]]y+([[c]])) - y^{2}\\right)dy = [[answer]] \\). (Setting this up in \\( x \\) instead would require splitting into two pieces and solving for \\( y \\) as a multivalued function of \\( x \\) — far more work.)",
+ "distractor_rationales": [
+  "This doubles the correct area.",
+  "This halves the correct area.",
+  "This is the square of the vertical extent between the intersection points, not the enclosed area.",
+  "This integrates bottom minus top instead of top minus bottom, giving the negative of the area.",
+  "This is off by one from the correct area."
+ ]
+},
+{
+ "template_id": "choose_setup_washer_in_y_v1",
+ "skill_id": "choose_the_correct_integral_set_up_for_a_region",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 7},
+  "m": {"type": "choice", "values": [1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "derived": {"ksq": "[[k]]**2", "ytop": "[[m]]*[[k]]**2"},
+ "require_rational": false,
+ "stem": "The region under the curve \\( y=[[m]]x^{2} \\), for \\( 0 \\le x \\le [[k]] \\), is revolved about the \\( y \\)-axis. The correct washer setup integrates with respect to \\( y \\), using outer radius \\( x=[[k]] \\) and inner radius \\( x=\\sqrt{y/[[m]]} \\) for \\( 0\\le y\\le [[ytop]] \\). Find the volume of the solid generated.",
+ "answer_spec": {"op": "integrate", "expr": "pi*([[k]]**2 - y/[[m]])", "var": "y", "bounds": ["0", "[[ytop]]"]},
+ "distractors": [
+  "[[answer]]/pi",
+  "pi*[[k]]**2*[[ytop]]",
+  "pi*[[ytop]]**2",
+  "2*[[answer]]",
+  "[[answer]] + pi",
+  "[[answer]] - pi"
+ ],
+ "solution": "With \\( x=\\sqrt{y/[[m]]} \\) as the inner boundary and \\( x=[[k]] \\) as the outer boundary, the volume is \\( \\pi\\int_{0}^{[[ytop]]}\\left([[k]]^{2}-\\dfrac{y}{[[m]]}\\right)dy = [[answer]] \\). (Using the shell method with respect to \\( x \\) instead, \\( 2\\pi\\int_{0}^{[[k]]}x\\cdot [[m]]x^{2}\\,dx \\), gives the same volume — either correct setup must agree.)",
+ "distractor_rationales": [
+  "This drops the factor of \\( \\pi \\).",
+  "This treats the solid as a plain cylinder of radius \\( [[k]] \\) and height \\( [[ksq]] \\), forgetting to remove the inner region.",
+  "This uses the outer radius to the 4th power in place of integrating the varying inner boundary.",
+  "This doubles the correct volume.",
+  "This is off by \\( \\pi \\) from the correct volume."
+ ]
+},
+{
+ "template_id": "choose_setup_piecewise_split_v1",
+ "skill_id": "choose_the_correct_integral_set_up_for_a_region",
+ "topic_id": "applications_integrals",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 1, "hi": 5},
+  "gap": {"type": "int", "lo": 1, "hi": 6}
+ },
+ "constraints": [],
+ "derived": {"q": "[[p]] + [[gap]]", "p2": "[[p]]**2"},
+ "stem": "A region's upper boundary is the curve \\( y=x^{2} \\) for \\( 0 \\le x \\le [[p]] \\), and then the constant \\( y=[[p2]] \\) for \\( [[p]] \\le x \\le [[q]] \\); its lower boundary is \\( y=0 \\) throughout. Because the upper boundary is defined piecewise, the correct setup is a SUM of two integrals (one per piece), not a single integral of \\( x^{2} \\) over the whole interval. Find the total area of this region.",
+ "answer_spec": {"op": "integrate", "expr": "Piecewise((x**2, x < [[p]]), ([[p2]], True))", "var": "x", "bounds": ["0", "[[q]]"]},
+ "distractors": [
+  "[[q]]**3/3",
+  "[[p]]**3/3",
+  "[[p2]]*([[q]] - [[p]])",
+  "2*[[answer]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Splitting at \\( x=[[p]] \\), the area is \\( \\int_{0}^{[[p]]}x^{2}\\,dx + \\int_{[[p]]}^{[[q]]}[[p2]]\\,dx = [[answer]] \\).",
+ "distractor_rationales": [
+  "This wrongly integrates \\( x^{2} \\) over the ENTIRE interval \\( [0,[[q]]] \\), ignoring that the boundary becomes constant after \\( x=[[p]] \\).",
+  "This only accounts for the first piece \\( [0,[[p]]] \\), dropping the rectangular piece entirely.",
+  "This only accounts for the second (rectangular) piece, dropping the curved piece entirely.",
+  "This doubles the correct total area.",
+  "This is off by one from the correct total area."
+ ]
+}
+]

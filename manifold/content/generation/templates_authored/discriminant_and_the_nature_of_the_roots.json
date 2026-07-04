@@ -1,0 +1,127 @@
+[
+ {
+  "template_id": "discriminant_value_v1",
+  "skill_id": "discriminant_and_the_nature_of_the_roots",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+  "stem": "For the quadratic equation \\( ([[a]])x^{2} + ([[b]])x + ([[c]]) = 0 \\), what is the value of the discriminant \\( b^{2} - 4ac \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[b]])**2 - 4*([[a]])*([[c]])"},
+  "distractors": [
+   "([[b]])**2 + 4*([[a]])*([[c]])",
+   "4*([[a]])*([[c]]) - ([[b]])**2",
+   "([[b]])**2 - 2*([[a]])*([[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "The discriminant of \\( ax^{2} + bx + c \\) is \\( b^{2} - 4ac = ([[b]])^{2} - 4([[a]])([[c]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds \\( 4ac \\) instead of subtracting it; the discriminant is \\( b^{2} - 4ac \\).",
+   "This computes \\( 4ac - b^{2} \\), the negative of the discriminant.",
+   "This uses a coefficient of 2 instead of 4 in the \\( 4ac \\) term.",
+   "This is off by one from the correct discriminant.",
+   "This is off by one from the correct discriminant.",
+   "This is off by two from the correct discriminant."
+  ]
+ },
+ {
+  "template_id": "discriminant_double_root_parameter_v1",
+  "skill_id": "discriminant_and_the_nature_of_the_roots",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "For what value of \\( k \\) does the equation \\( x^{2} + ([[b]])x + k = 0 \\) have exactly one repeated real root?",
+  "answer_spec": {"op": "solve", "equation": "([[b]])**2 - 4*k = 0", "var": "k"},
+  "distractors": [
+   "[[b]]**2",
+   "[[b]]**2/2",
+   "-[[b]]**2/4",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 4"
+  ],
+  "solution": "A repeated root occurs exactly when the discriminant is zero: \\( ([[b]])^{2} - 4k = 0 \\), so \\( k = \\dfrac{([[b]])^{2}}{4} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by 4 after setting the discriminant to zero.",
+   "This divides by 2 instead of 4.",
+   "This has the correct magnitude but the wrong sign.",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by one from the correct value of \\( k \\).",
+   "This is off by four from the correct value of \\( k \\)."
+  ]
+ },
+ {
+  "template_id": "discriminant_no_real_roots_threshold_v1",
+  "skill_id": "discriminant_and_the_nature_of_the_roots",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "b": {"type": "int", "lo": -12, "hi": 12}
+  },
+  "constraints": ["Ne([[b]], 0)"],
+  "stem": "What is the smallest integer value of \\( k \\) for which \\( x^{2} + ([[b]])x + k = 0 \\) has NO real roots?",
+  "answer_spec": {"op": "evaluate", "expr": "floor(([[b]])**2/4) + 1"},
+  "distractors": [
+   "floor(([[b]])**2/4)",
+   "ceiling(([[b]])**2/4)",
+   "floor(([[b]])**2/4) - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2",
+   "[[answer]] + 3"
+  ],
+  "solution": "There are no real roots exactly when the discriminant is negative: \\( ([[b]])^{2} - 4k < 0 \\), i.e. \\( k > \\dfrac{([[b]])^{2}}{4} \\). The smallest integer satisfying this is \\( \\left\\lfloor \\dfrac{([[b]])^{2}}{4} \\right\\rfloor + 1 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the largest integer for which real roots STILL exist, not the smallest with no real roots.",
+   "This rounds up instead of adding one past the floor, which fails when \\( b^2/4 \\) is already an integer.",
+   "This is one less than the smallest valid integer.",
+   "This is larger than the correct threshold.",
+   "This is smaller than the correct threshold.",
+   "This is larger than the correct threshold."
+  ]
+ },
+ {
+  "template_id": "discriminant_root_difference_v1",
+  "skill_id": "discriminant_and_the_nature_of_the_roots",
+  "topic_id": "elementary_algebra",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [1, 2, 3]},
+   "r1": {"type": "int", "lo": -6, "hi": 5},
+   "r2": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])"],
+  "derived": {
+   "b": "-[[a]]*([[r1]] + [[r2]])",
+   "c": "[[a]]*[[r1]]*[[r2]]"
+  },
+  "stem": "The quadratic \\( ([[a]])x^{2} + ([[b]])x + ([[c]]) = 0 \\) has two distinct real roots. Using the discriminant, what is the positive difference between the two roots?",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt(([[b]])**2 - 4*([[a]])*([[c]]))/Abs([[a]])"},
+  "distractors": [
+   "sqrt(([[b]])**2 - 4*([[a]])*([[c]]))",
+   "sqrt(([[b]])**2 - 4*([[a]])*([[c]]))/(2*[[a]])",
+   "([[b]])**2 - 4*([[a]])*([[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "The roots of \\( ax^2+bx+c \\) are \\( \\dfrac{-b \\pm \\sqrt{D}}{2a} \\) where \\( D = b^2-4ac \\), so their positive difference is \\( \\dfrac{\\sqrt{D}}{|a|} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to divide by \\( |a| \\) after taking the square root of the discriminant.",
+   "This divides by \\( 2a \\) instead of \\( a \\); the two \\( 2a \\) denominators cancel one factor of 2 when subtracting the roots.",
+   "This reports the discriminant itself rather than its square root divided by \\( |a| \\).",
+   "This is off by one from the correct difference.",
+   "This is off by one from the correct difference.",
+   "This is off by two from the correct difference."
+  ]
+ }
+]

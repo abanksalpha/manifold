@@ -1,0 +1,125 @@
+[
+ {
+  "template_id": "margin_of_error_v1",
+  "skill_id": "confidence_interval_margin_of_error_reasoning",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "z": {"type": "choice", "values": [2, 3]},
+   "s0": {"type": "int", "lo": 1, "hi": 10},
+   "rootn": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "derived": {"nval": "[[rootn]]**2", "sigmaval": "[[rootn]]*[[s0]]"},
+  "stem": "A confidence interval for a population mean uses critical value \\( z = [[z]] \\), known population standard deviation \\( \\sigma = [[sigmaval]] \\), and sample size \\( n = [[nval]] \\). What is the margin of error \\( z\\cdot\\dfrac{\\sigma}{\\sqrt{n}} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[z]]*[[sigmaval]]/sqrt([[nval]])"},
+  "distractors": [
+   "[[sigmaval]]/sqrt([[nval]])",
+   "[[z]]*[[sigmaval]]/[[nval]]",
+   "[[z]]*[[sigmaval]]",
+   "[[z]]*[[sigmaval]]*sqrt([[nval]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The margin of error is \\( z\\cdot\\frac{\\sigma}{\\sqrt{n}} = [[z]]\\cdot\\frac{[[sigmaval]]}{\\sqrt{[[nval]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the critical value \\( z \\) and reports only the standard error.",
+   "This divides by \\( n \\) instead of by \\( \\sqrt{n} \\).",
+   "This uses \\( \\sigma \\) directly without dividing by \\( \\sqrt{n} \\) at all.",
+   "This multiplies by \\( \\sqrt{n} \\) instead of dividing by it."
+  ]
+ },
+ {
+  "template_id": "required_sample_size_v1",
+  "skill_id": "confidence_interval_margin_of_error_reasoning",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "z": {"type": "choice", "values": [2, 3]},
+   "rootn": {"type": "choice", "values": [2, 3, 4, 5, 6]},
+   "t": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "derived": {"sigma": "[[rootn]]*[[t]]", "E": "[[z]]*[[t]]"},
+  "stem": "A researcher wants the margin of error for a population mean to be at most \\( E = [[E]] \\), using critical value \\( z = [[z]] \\) and population standard deviation \\( \\sigma = [[sigma]] \\). Using \\( n = \\left(\\dfrac{z\\sigma}{E}\\right)^{2} \\), what sample size \\( n \\) is required?",
+  "answer_spec": {"op": "evaluate", "expr": "([[z]]*[[sigma]]/[[E]])**2"},
+  "distractors": [
+   "[[z]]*[[sigma]]/[[E]]",
+   "([[sigma]]/[[E]])**2",
+   "([[z]]*[[sigma]])**2/[[E]]",
+   "([[E]]/([[z]]*[[sigma]]))**2",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solving \\( E = \\dfrac{z\\sigma}{\\sqrt{n}} \\) for \\( n \\) gives \\( n = \\left(\\dfrac{z\\sigma}{E}\\right)^2 = \\left(\\dfrac{[[z]]\\cdot[[sigma]]}{[[E]]}\\right)^2 = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square the ratio \\( z\\sigma/E \\).",
+   "This drops the critical value \\( z \\) from the ratio before squaring.",
+   "This squares only the numerator \\( z\\sigma \\) and forgets to also square the denominator \\( E \\).",
+   "This inverts the ratio, dividing \\( E \\) by \\( z\\sigma \\) instead of the other way around.",
+   "This is off by one from the correct sample size."
+  ]
+ },
+ {
+  "template_id": "confidence_interval_upper_limit_v1",
+  "skill_id": "confidence_interval_margin_of_error_reasoning",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "xbar": {"type": "int", "lo": -20, "hi": 20},
+   "z": {"type": "choice", "values": [2, 3]},
+   "s0": {"type": "int", "lo": 1, "hi": 10},
+   "rootn": {"type": "choice", "values": [2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "derived": {"nval": "[[rootn]]**2", "sigmaval": "[[rootn]]*[[s0]]"},
+  "stem": "A sample of size \\( n = [[nval]] \\) has sample mean \\( \\bar{x} = [[xbar]] \\). The population standard deviation is \\( \\sigma = [[sigmaval]] \\), and the critical value is \\( z = [[z]] \\). What is the upper limit of the confidence interval, \\( \\bar{x} + z\\cdot\\dfrac{\\sigma}{\\sqrt{n}} \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[xbar]] + [[z]]*[[sigmaval]]/sqrt([[nval]])"},
+  "distractors": [
+   "[[xbar]] - [[z]]*[[sigmaval]]/sqrt([[nval]])",
+   "[[xbar]] + [[sigmaval]]/sqrt([[nval]])",
+   "[[xbar]] + [[z]]*[[sigmaval]]",
+   "[[z]]*[[sigmaval]]/sqrt([[nval]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The upper limit adds the margin of error to the sample mean: \\( [[xbar]] + [[z]]\\cdot\\dfrac{[[sigmaval]]}{\\sqrt{[[nval]]}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts the margin of error, giving the LOWER limit instead of the upper limit.",
+   "This drops the critical value \\( z \\) from the margin of error.",
+   "This forgets to divide by \\( \\sqrt{n} \\) when computing the margin of error.",
+   "This reports only the margin of error and forgets to add the sample mean.",
+   "This is off by one from the correct upper limit."
+  ]
+ },
+ {
+  "template_id": "margin_of_error_from_ci_endpoints_v1",
+  "skill_id": "confidence_interval_margin_of_error_reasoning",
+  "topic_id": "statistics",
+  "tier": "recognize",
+  "params": {
+   "xbar": {"type": "int", "lo": -20, "hi": 20},
+   "E": {"type": "int", "lo": 1, "hi": 15}
+  },
+  "constraints": [],
+  "derived": {"lower": "[[xbar]] - [[E]]", "upper": "[[xbar]] + [[E]]"},
+  "stem": "A confidence interval for a population mean is reported as \\( ([[lower]],\\, [[upper]]) \\). What is the margin of error for this interval?",
+  "answer_spec": {"op": "evaluate", "expr": "([[upper]] - [[lower]])/2"},
+  "distractors": [
+   "[[upper]] - [[lower]]",
+   "([[upper]] + [[lower]])/2",
+   "[[upper]]",
+   "[[lower]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The margin of error is half the width of the interval: \\( \\dfrac{[[upper]] - [[lower]]}{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the full width of the interval instead of half of it.",
+   "This computes the midpoint (sample mean) of the interval, not the margin of error.",
+   "This is just the upper endpoint of the interval.",
+   "This is just the lower endpoint of the interval.",
+   "This is off by one from the correct margin of error."
+  ]
+ }
+]

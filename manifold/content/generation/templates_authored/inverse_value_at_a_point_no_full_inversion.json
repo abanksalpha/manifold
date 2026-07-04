@@ -1,0 +1,171 @@
+[
+ {
+  "template_id": "inverse_value_at_a_point_no_full_inversion_v1",
+  "skill_id": "inverse_value_at_a_point_no_full_inversion",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "s": {"type": "int", "lo": -5, "hi": 5}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[s]], 0)"],
+  "derived": {"c": "[[a]]*[[s]] + [[b]]"},
+  "stem": "Let \\( f(x) = [[a]]x + ([[b]]) \\). For what value of \\( x \\) is \\( f(x) = [[c]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x + [[b]] = [[c]]", "var": "x"},
+  "distractors": [
+   "[[c]] - [[b]]",
+   "-[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "Solve \\( [[a]]x + ([[b]]) = [[c]] \\) for \\( x \\): \\( x = \\dfrac{[[c]] - ([[b]])}{[[a]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts \\( [[b]] \\) but forgets to divide by the coefficient \\( [[a]] \\).",
+   "This negates the correct value (a sign slip when isolating \\( x \\)).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value.",
+   "This is off by two from the correct value.",
+   "This is off by two from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_value_at_a_point_no_full_inversion_table_v1",
+  "skill_id": "inverse_value_at_a_point_no_full_inversion",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "x1": {"type": "int", "lo": -9, "hi": 9},
+   "x2": {"type": "int", "lo": -9, "hi": 9},
+   "x3": {"type": "int", "lo": -9, "hi": 9},
+   "x4": {"type": "int", "lo": -9, "hi": 9},
+   "y1": {"type": "int", "lo": -9, "hi": 9},
+   "y2": {"type": "int", "lo": -9, "hi": 9},
+   "y3": {"type": "int", "lo": -9, "hi": 9},
+   "y4": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": [
+   "Ne([[x1]], [[x2]])", "Ne([[x1]], [[x3]])", "Ne([[x1]], [[x4]])",
+   "Ne([[x2]], [[x3]])", "Ne([[x2]], [[x4]])", "Ne([[x3]], [[x4]])",
+   "Ne([[y1]], [[y2]])", "Ne([[y1]], [[y3]])", "Ne([[y1]], [[y4]])",
+   "Ne([[y2]], [[y3]])", "Ne([[y2]], [[y4]])", "Ne([[y3]], [[y4]])"
+  ],
+  "stem": "A one-to-one function \\( f \\) satisfies \\( f([[x1]]) = [[y1]] \\), \\( f([[x2]]) = [[y2]] \\), \\( f([[x3]]) = [[y3]] \\), and \\( f([[x4]]) = [[y4]] \\). What is \\( f^{-1}([[y3]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x3]]"},
+  "distractors": [
+   "[[x1]]",
+   "[[x2]]",
+   "[[x4]]",
+   "[[y3]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By definition, \\( f^{-1}(y) = x \\) exactly when \\( f(x) = y \\). Since \\( f([[x3]]) = [[y3]] \\), it follows directly that \\( f^{-1}([[y3]]) = [[x3]] \\) — no formula for \\( f \\) is needed, just matching the given pair.",
+  "distractor_rationales": [
+   "This picks the input from a different (mismatched) pair in the table.",
+   "This picks the input from a different (mismatched) pair in the table.",
+   "This picks the input from a different (mismatched) pair in the table.",
+   "This reports the output value itself instead of the input that produces it.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_value_at_a_point_no_full_inversion_roundtrip_v1",
+  "skill_id": "inverse_value_at_a_point_no_full_inversion",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -9, "hi": 9},
+   "b": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "stem": "Let \\( f \\) be a one-to-one function with \\( f([[a]]) = [[b]] \\), and let \\( f^{-1} \\) be its inverse. What is \\( f^{-1}([[b]]) + f\\big(f^{-1}([[b]])\\big) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]] + [[b]]"},
+  "distractors": [
+   "2*[[a]]",
+   "2*[[b]]",
+   "[[a]] - [[b]]",
+   "[[b]] - [[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By definition of the inverse, \\( f^{-1}([[b]]) = [[a]] \\) since \\( f([[a]]) = [[b]] \\). Then \\( f\\big(f^{-1}([[b]])\\big) = f([[a]]) = [[b]] \\). Adding these: \\( [[a]] + [[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles \\( f^{-1}([[b]]) \\) instead of adding it to \\( f(f^{-1}([[b]])) \\).",
+   "This doubles \\( f(f^{-1}([[b]])) \\) instead of adding the two (equal-looking but conceptually different) quantities.",
+   "This subtracts the two quantities instead of adding them.",
+   "This subtracts in the opposite order.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_value_at_a_point_no_full_inversion_interpolate_v1",
+  "skill_id": "inverse_value_at_a_point_no_full_inversion",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6},
+   "A": {"type": "int", "lo": -8, "hi": 8},
+   "B": {"type": "int", "lo": -8, "hi": 8},
+   "t": {"type": "choice", "values": [-3, -2, 2, 3, 4]}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[A]], [[B]])"],
+  "derived": {"s": "[[p]] + [[t]]*([[q]]-[[p]])", "V": "[[A]] + [[t]]*([[B]]-[[A]])"},
+  "stem": "A linear function \\( f \\) satisfies \\( f([[p]]) = [[A]] \\) and \\( f([[q]]) = [[B]] \\). For what value of \\( x \\) is \\( f(x) = [[V]] \\)? (You do not need to find a formula for \\( f \\).)",
+  "answer_spec": {"op": "evaluate", "expr": "[[p]] + [[t]]*([[q]]-[[p]])"},
+  "distractors": [
+   "[[q]] + [[t]]*([[q]]-[[p]])",
+   "[[p]] - [[t]]*([[q]]-[[p]])",
+   "[[p]] + ([[q]]-[[p]])/[[t]]",
+   "[[t]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( f \\) is linear, equal steps in \\( x \\) between \\( [[p]] \\) and \\( [[q]] \\) correspond to proportional steps in output between \\( [[A]] \\) and \\( [[B]] \\). Here \\( [[V]] \\) is reached at \\( [[t]] \\) times the step from \\( [[p]] \\) to \\( [[q]] \\), so \\( x = [[p]] + [[t]]([[q]]-[[p]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This measures the same proportional step from \\( [[q]] \\) instead of from \\( [[p]] \\).",
+   "This steps in the wrong direction, subtracting the scaled step instead of adding it.",
+   "This divides by the scale factor \\( [[t]] \\) instead of multiplying by it.",
+   "This reports the scale factor itself instead of the resulting \\( x \\)-value.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "inverse_value_at_a_point_no_full_inversion_given_inverse_v1",
+  "skill_id": "inverse_value_at_a_point_no_full_inversion",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "v1": {"type": "int", "lo": -9, "hi": 9},
+   "w1": {"type": "int", "lo": -9, "hi": 9},
+   "v2": {"type": "int", "lo": -9, "hi": 9},
+   "w2": {"type": "int", "lo": -9, "hi": 9}
+  },
+  "constraints": ["Ne([[v1]], [[v2]])", "Ne([[w1]], [[w2]])"],
+  "stem": "Let \\( g \\) be the inverse of a one-to-one function \\( f \\), with \\( g([[v1]]) = [[w1]] \\) and \\( g([[v2]]) = [[w2]] \\). What is \\( f([[w1]]) + f([[w2]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[v1]] + [[v2]]"},
+  "distractors": [
+   "[[w1]] + [[w2]]",
+   "[[v1]] - [[v2]]",
+   "[[v2]] - [[v1]]",
+   "[[w1]] - [[w2]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( g = f^{-1} \\), \\( g([[v1]]) = [[w1]] \\) means \\( f([[w1]]) = [[v1]] \\), and likewise \\( f([[w2]]) = [[v2]] \\). So \\( f([[w1]]) + f([[w2]]) = [[v1]] + [[v2]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the inverse's outputs \\( g([[v1]]) \\) and \\( g([[v2]]) \\) instead of \\( f \\) applied to them.",
+   "This subtracts the two values instead of adding them.",
+   "This subtracts in the opposite order.",
+   "This subtracts the inverse's outputs instead of adding the corresponding \\( f \\)-values.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

@@ -1,0 +1,247 @@
+[
+{
+ "template_id": "areas_volumes_box_volume_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "l": {"type": "int", "lo": 2, "hi": 18},
+  "w": {"type": "int", "lo": 2, "hi": 18},
+  "h": {"type": "int", "lo": 2, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "A rectangular box (a right rectangular prism) has length \\( [[l]] \\), width \\( [[w]] \\), and height \\( [[h]] \\). What is its volume?",
+ "answer_spec": {"op": "evaluate", "expr": "[[l]]*[[w]]*[[h]]"},
+ "distractors": [
+  "2*([[l]]*[[w]] + [[l]]*[[h]] + [[w]]*[[h]])",
+  "[[l]] + [[w]] + [[h]]",
+  "2*([[l]] + [[w]] + [[h]])",
+  "[[l]]*[[w]]",
+  "[[answer]] + [[l]]",
+  "[[answer]] - [[h]]"
+ ],
+ "solution": "The volume of a rectangular box is length times width times height: \\( [[l]]\\cdot[[w]]\\cdot[[h]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the box's total surface area formula, not its volume.",
+  "This adds the three dimensions instead of multiplying them.",
+  "This is the perimeter of one cross-section, not a volume.",
+  "This only multiplies two of the three dimensions, ignoring the height.",
+  "This adjusts the correct volume by an unrelated amount.",
+  "This adjusts the correct volume by an unrelated amount."
+ ]
+},
+{
+ "template_id": "areas_volumes_box_surface_area_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "l": {"type": "int", "lo": 2, "hi": 18},
+  "w": {"type": "int", "lo": 2, "hi": 18},
+  "h": {"type": "int", "lo": 2, "hi": 18}
+ },
+ "constraints": [],
+ "stem": "A closed rectangular box has length \\( [[l]] \\), width \\( [[w]] \\), and height \\( [[h]] \\). What is its total surface area?",
+ "answer_spec": {"op": "evaluate", "expr": "2*([[l]]*[[w]] + [[l]]*[[h]] + [[w]]*[[h]])"},
+ "distractors": [
+  "[[l]]*[[w]]*[[h]]",
+  "[[l]]*[[w]] + [[l]]*[[h]] + [[w]]*[[h]]",
+  "4*([[l]] + [[w]] + [[h]])",
+  "2*[[l]]*[[w]]",
+  "[[answer]] + [[h]]",
+  "[[answer]] - [[l]]"
+ ],
+ "solution": "The box has three pairs of congruent faces, so its surface area is \\( 2(lw+lh+wh) = 2([[l]]\\cdot[[w]]+[[l]]\\cdot[[h]]+[[w]]\\cdot[[h]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the box's volume, not its surface area.",
+  "This forgets to double the sum of the three face areas (only counts one of each pair).",
+  "This confuses the box with a formula resembling perimeter scaling, not surface area.",
+  "This only counts one pair of opposite faces.",
+  "This adjusts the correct surface area by an unrelated amount.",
+  "This adjusts the correct surface area by an unrelated amount."
+ ]
+},
+{
+ "template_id": "areas_volumes_trapezoid_area_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "b1": {"type": "int", "lo": 3, "hi": 20},
+  "b2": {"type": "int", "lo": 3, "hi": 20},
+  "h": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": ["Ne([[b1]], [[b2]])"],
+ "stem": "A trapezoid has parallel sides (bases) of length \\( [[b1]] \\) and \\( [[b2]] \\), and the perpendicular distance between them is \\( [[h]] \\). What is the area of the trapezoid?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(1,2)*([[b1]] + [[b2]])*[[h]]"},
+ "distractors": [
+  "([[b1]] + [[b2]])*[[h]]",
+  "[[b1]]*[[b2]]*[[h]]",
+  "Rational(1,2)*[[b1]]*[[b2]]",
+  "Rational(1,2)*([[b1]] - [[b2]])*[[h]]",
+  "[[answer]] + [[h]]",
+  "[[answer]] - [[b1]]"
+ ],
+ "solution": "The trapezoid area formula is \\( \\frac{1}{2}(b_1+b_2)h = \\frac{1}{2}([[b1]]+[[b2]])\\cdot[[h]] = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the factor of \\( \\frac{1}{2} \\) in the trapezoid area formula.",
+  "This multiplies the two bases and the height instead of averaging the bases.",
+  "This uses the triangle-area-style formula for the two bases alone, ignoring the height.",
+  "This subtracts the bases instead of adding them.",
+  "This adjusts the correct area by an unrelated amount.",
+  "This adjusts the correct area by an unrelated amount."
+ ]
+},
+{
+ "template_id": "areas_volumes_square_pyramid_volume_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "params": {
+  "s": {"type": "int", "lo": 2, "hi": 14},
+  "h": {"type": "int", "lo": 2, "hi": 14}
+ },
+ "constraints": [],
+ "stem": "A pyramid has a square base with side length \\( [[s]] \\) and a height of \\( [[h]] \\) (measured perpendicular to the base). What is the volume of the pyramid?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(1,3)*[[s]]**2*[[h]]"},
+ "distractors": [
+  "[[s]]**2*[[h]]",
+  "Rational(1,2)*[[s]]**2*[[h]]",
+  "Rational(1,3)*[[s]]*[[h]]",
+  "[[s]]**2 + [[h]]",
+  "[[answer]] + [[s]]",
+  "[[answer]] - [[h]]"
+ ],
+ "solution": "A pyramid's volume is one third of the base area times height: \\( \\frac{1}{3}s^2h = \\frac{1}{3}([[s]])^2([[h]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the \\( \\frac{1}{3} \\) factor, computing the volume as if it were a prism.",
+  "This uses the factor for a different solid (like a cone-derived shortcut) instead of \\( \\frac{1}{3} \\).",
+  "This uses only the side length instead of the base area \\( s^2 \\).",
+  "This adds the base area and height instead of multiplying and scaling them.",
+  "This adjusts the correct volume by an unrelated amount.",
+  "This adjusts the correct volume by an unrelated amount."
+ ]
+},
+{
+ "template_id": "areas_volumes_cylinder_volume_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 12},
+  "h": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "A right circular cylinder has radius \\( [[r]] \\) and height \\( [[h]] \\). What is its volume, in terms of \\( \\pi \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "pi*[[r]]**2*[[h]]"},
+ "distractors": [
+  "2*pi*[[r]]*[[h]]",
+  "pi*[[r]]*[[h]]**2",
+  "Rational(1,3)*pi*[[r]]**2*[[h]]",
+  "2*pi*[[r]]**2 + 2*pi*[[r]]*[[h]]",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "A cylinder's volume is \\( \\pi r^2 h = \\pi([[r]])^2([[h]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the cylinder's lateral surface area formula, not its volume.",
+  "This swaps the roles of radius and height in the formula.",
+  "This uses the cone volume factor \\( \\frac{1}{3} \\), which does not apply to a cylinder.",
+  "This is the cylinder's total surface area, not its volume.",
+  "This adjusts the correct volume by an unrelated amount.",
+  "This doubles the correct volume."
+ ]
+},
+{
+ "template_id": "areas_volumes_sphere_volume_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": [],
+ "stem": "A sphere has radius \\( [[r]] \\). What is its volume, in terms of \\( \\pi \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(4,3)*pi*[[r]]**3"},
+ "distractors": [
+  "4*pi*[[r]]**2",
+  "Rational(4,3)*pi*[[r]]**2",
+  "Rational(1,3)*pi*[[r]]**3",
+  "2*pi*[[r]]**3",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "A sphere's volume is \\( \\frac{4}{3}\\pi r^3 = \\frac{4}{3}\\pi([[r]])^3 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the sphere's surface area formula, not its volume.",
+  "This uses the surface area's exponent on \\( r \\) but keeps the volume's coefficient.",
+  "This uses the cone/pyramid factor \\( \\frac{1}{3} \\) instead of \\( \\frac{4}{3} \\).",
+  "This doubles \\( \\pi r^3 \\) instead of scaling it by \\( \\frac{4}{3} \\).",
+  "This adjusts the correct volume by an unrelated amount.",
+  "This doubles the correct volume."
+ ]
+},
+{
+ "template_id": "areas_volumes_cone_volume_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 12},
+  "h": {"type": "int", "lo": 2, "hi": 16}
+ },
+ "constraints": [],
+ "stem": "A right circular cone has radius \\( [[r]] \\) and height \\( [[h]] \\). What is its volume, in terms of \\( \\pi \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "Rational(1,3)*pi*[[r]]**2*[[h]]"},
+ "distractors": [
+  "pi*[[r]]**2*[[h]]",
+  "Rational(1,3)*pi*[[r]]*[[h]]**2",
+  "pi*[[r]]*[[h]]",
+  "Rational(2,3)*pi*[[r]]**2*[[h]]",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "A cone's volume is one third that of the cylinder with the same base and height: \\( \\frac{1}{3}\\pi r^2 h = \\frac{1}{3}\\pi([[r]])^2([[h]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the \\( \\frac{1}{3} \\) factor, using the cylinder volume instead.",
+  "This swaps the roles of radius and height in the formula.",
+  "This drops the exponent on the radius entirely.",
+  "This uses \\( \\frac{2}{3} \\) instead of \\( \\frac{1}{3} \\) as the scaling factor.",
+  "This adjusts the correct volume by an unrelated amount.",
+  "This doubles the correct volume."
+ ]
+},
+{
+ "template_id": "areas_volumes_sphere_surface_area_v1",
+ "skill_id": "areas_and_volumes",
+ "topic_id": "geometry",
+ "tier": "relearn",
+ "require_rational": false,
+ "params": {
+  "r": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": [],
+ "stem": "A sphere has radius \\( [[r]] \\). What is its total surface area, in terms of \\( \\pi \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "4*pi*[[r]]**2"},
+ "distractors": [
+  "Rational(4,3)*pi*[[r]]**3",
+  "2*pi*[[r]]**2",
+  "4*pi*[[r]]",
+  "pi*[[r]]**2",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "A sphere's surface area is \\( 4\\pi r^2 = 4\\pi([[r]])^2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the sphere's volume formula, not its surface area.",
+  "This halves the correct coefficient.",
+  "This drops the exponent on the radius entirely.",
+  "This is the area of a single great circle, not the whole sphere's surface.",
+  "This adjusts the correct surface area by an unrelated amount.",
+  "This doubles the correct surface area."
+ ]
+}
+]

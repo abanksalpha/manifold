@@ -1,0 +1,135 @@
+[
+ {
+  "template_id": "separable_general_then_ivp_v1",
+  "skill_id": "general_solution_of_a_separable_equation",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 3},
+   "y0": {"type": "int", "lo": 2, "hi": 5},
+   "t0": {"type": "choice", "values": [1, 2]}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne([[y0]], 1)"],
+  "stem": "Consider the separable equation \\( \\frac{dy}{dx} = [[k]]xy \\). Find its general solution, then use the condition \\( y(0) = [[y0]] \\) to determine the value of \\( y \\) at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]*exp([[k]]*[[t0]]**2/2)"},
+  "require_rational": false,
+  "distractors": [
+   "[[y0]]*exp([[k]]*[[t0]]**2)",
+   "[[y0]]*exp([[k]]*[[t0]])",
+   "exp([[k]]*[[t0]]**2/2)",
+   "[[y0]]*exp(-[[k]]*[[t0]]**2/2)",
+   "[[y0]]*[[k]]*[[t0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separating variables, \\( \\frac{dy}{y} = [[k]]x\\,dx \\), so \\( \\ln|y| = \\frac{[[k]]x^{2}}{2} + C \\) and the general solution is \\( y = C_1 e^{[[k]]x^{2}/2} \\). Applying \\( y(0) = [[y0]] \\) gives \\( C_1 = [[y0]] \\), so \\( y(x) = [[y0]]\\,e^{[[k]]x^{2}/2} \\). Evaluating at \\( x = [[t0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the factor of \\( \\tfrac12 \\) obtained when integrating \\( [[k]]x \\).",
+   "This treats the equation as \\( y' = [[k]]y \\), ignoring the factor of \\( x \\).",
+   "This forgets that the constant \\( C_1 \\) equals the initial value \\( [[y0]] \\).",
+   "This flips the sign of the exponent.",
+   "This multiplies the data together instead of exponentiating.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_general_power_law_v2",
+  "skill_id": "general_solution_of_a_separable_equation",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -3, "hi": 3},
+   "y0": {"type": "int", "lo": -4, "hi": 4},
+   "t0": {"type": "choice", "values": [-2, -1, 1, 2]}
+  },
+  "constraints": ["Ne([[k]], 0)", "Ne([[y0]], 0)", "Ne(1 - [[k]]*[[y0]]*[[t0]], 0)"],
+  "stem": "Consider the separable equation \\( \\frac{dy}{dx} = [[k]]y^{2} \\). Find its general solution, then use the condition \\( y(0) = [[y0]] \\) to determine the value of \\( y \\) at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "[[y0]]/(1 - [[k]]*[[y0]]*[[t0]])"},
+  "distractors": [
+   "[[y0]]/(1 + [[k]]*[[y0]]*[[t0]])",
+   "[[y0]]*(1 - [[k]]*[[y0]]*[[t0]])",
+   "1/([[k]]*[[t0]])",
+   "[[y0]] - [[k]]*[[y0]]**2*[[t0]]",
+   "[[y0]]/(1 - [[k]]*[[t0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separating variables, \\( \\frac{dy}{y^{2}} = [[k]]\\,dx \\), so \\( -\\frac{1}{y} = [[k]]x + C \\). Applying \\( y(0) = [[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1 - [[k]][[y0]]x} \\). At \\( x = [[t0]] \\) this equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign inside the denominator.",
+   "This inverts the rational solution, multiplying instead of dividing.",
+   "This drops the initial value entirely, keeping only the growth term.",
+   "This linearizes the solution instead of using the correct rational form.",
+   "This forgets to multiply \\( k \\) by \\( y_0 \\) inside the denominator.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_general_ydy_form_v3",
+  "skill_id": "general_solution_of_a_separable_equation",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "k": {"type": "int", "lo": -4, "hi": 4},
+   "y0": {"type": "int", "lo": 1, "hi": 6},
+   "t0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[k]], 0)", "Gt([[y0]]**2 + [[k]]*[[t0]]**2, 0)"],
+  "require_rational": false,
+  "stem": "Consider the separable equation \\( y\\,\\frac{dy}{dx} = [[k]]x \\). Find its general solution, then use the condition \\( y(0) = [[y0]] \\) (with \\( y > 0 \\)) to determine the value of \\( y \\) at \\( x = [[t0]] \\).",
+  "answer_spec": {"op": "evaluate", "expr": "sqrt([[y0]]**2 + [[k]]*[[t0]]**2)"},
+  "distractors": [
+   "sqrt([[y0]]**2 - [[k]]*[[t0]]**2)",
+   "[[y0]] + [[k]]*[[t0]]**2/2",
+   "sqrt([[y0]] + [[k]]*[[t0]]**2)",
+   "[[y0]]**2 + [[k]]*[[t0]]**2",
+   "sqrt(Abs([[k]])*[[t0]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separating variables, \\( y\\,dy = [[k]]x\\,dx \\), so \\( \\frac{y^{2}}{2} = \\frac{[[k]]x^{2}}{2} + C \\), i.e. \\( y^{2} = [[k]]x^{2} + C_1 \\). Applying \\( y(0) = [[y0]] \\) gives \\( C_1 = [[y0]]^{2} \\), so \\( y(x) = \\sqrt{[[y0]]^{2} + [[k]]x^{2}} \\) (taking the positive root). At \\( x = [[t0]] \\) this equals \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This flips the sign of \\( k \\) inside the radical.",
+   "This forgets to square \\( x \\) inside the constant term, giving a linear approximation.",
+   "This forgets to square \\( y_0 \\) before adding under the radical.",
+   "This forgets to take the square root of the implicit relation.",
+   "This drops the initial condition entirely, keeping only the \\( x \\)-dependent term.",
+   "This is one more than the correct value.",
+   "This is one less than the correct value."
+  ]
+ },
+ {
+  "template_id": "separable_general_implicit_constant_v4",
+  "skill_id": "general_solution_of_a_separable_equation",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "x0": {"type": "int", "lo": -6, "hi": 6},
+   "y0": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[x0]]**2 + [[y0]]**2, 0)"],
+  "stem": "The separable equation \\( \\dfrac{dy}{dx} = -\\dfrac{x}{y} \\) has general (implicit) solution \\( x^{2} + y^{2} = C \\). What is \\( C \\) for the solution curve passing through \\( (x, y) = ([[x0]], [[y0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[x0]]**2 + [[y0]]**2"},
+  "distractors": [
+   "[[x0]]**2 - [[y0]]**2",
+   "([[x0]] + [[y0]])**2",
+   "2*([[x0]]**2 + [[y0]]**2)",
+   "[[x0]]*[[y0]]",
+   "Abs([[x0]]) + Abs([[y0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Separating variables, \\( y\\,dy = -x\\,dx \\), so \\( \\frac{y^{2}}{2} = -\\frac{x^{2}}{2} + C_1 \\), i.e. \\( x^{2} + y^{2} = C \\). Substituting \\( (x,y) = ([[x0]], [[y0]]) \\) gives \\( C = [[x0]]^{2} + [[y0]]^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This subtracts \\( y^{2} \\) instead of adding it.",
+   "This expands \\( (x+y)^{2} \\) rather than \\( x^{2}+y^{2} \\).",
+   "This doubles the correct constant.",
+   "This multiplies the coordinates instead of squaring and summing them.",
+   "This uses absolute values instead of squares.",
+   "This is one more than the correct constant.",
+   "This is one less than the correct constant."
+  ]
+ }
+]

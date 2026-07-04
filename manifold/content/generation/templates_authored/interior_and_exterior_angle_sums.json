@@ -1,0 +1,248 @@
+[
+ {
+  "template_id": "interior_and_exterior_angle_sums_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {
+    "type": "int",
+    "lo": 3,
+    "hi": 25
+   }
+  },
+  "constraints": [],
+  "stem": "What is the sum, in degrees, of the interior angles of a convex polygon with \\( [[n]] \\) sides?",
+  "answer_spec": {
+   "op": "evaluate",
+   "expr": "([[n]] - 2)*180"
+  },
+  "distractors": [
+   "[[n]]*180",
+   "([[n]] - 1)*180",
+   "([[n]] - 2)*90",
+   "360",
+   "([[n]] - 2)*360",
+   "[[n]]*180 - 90"
+  ],
+  "solution": "A convex polygon with \\( n \\) sides can be split into \\( n-2 \\) triangles, each contributing \\( 180^{\\circ} \\). So the interior-angle sum is \\( (n-2)\\cdot 180 = ([[n]]-2)\\cdot 180 = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This forgets to subtract 2; it uses \\( n \\) triangles instead of \\( n-2 \\).",
+   "This subtracts only 1 instead of 2 from the number of sides.",
+   "This uses \\( 90^{\\circ} \\) per triangle instead of \\( 180^{\\circ} \\).",
+   "This is the sum of the exterior angles (always \\( 360^{\\circ} \\)), not the interior angles.",
+   "This uses \\( 360^{\\circ} \\) per triangle instead of \\( 180^{\\circ} \\).",
+   "This is off from the correct value by ninety degrees."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_exterior_sum_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 30}
+  },
+  "constraints": [],
+  "stem": "A convex polygon with \\( [[n]] \\) sides has one exterior angle marked at each vertex (formed by extending each side). What is the sum, in degrees, of all \\( [[n]] \\) exterior angles?",
+  "answer_spec": {"op": "evaluate", "expr": "360"},
+  "distractors": [
+   "([[n]] - 2)*180",
+   "[[n]]*180",
+   "180",
+   "([[n]]-2)*180/[[n]]",
+   "[[n]]*360",
+   "720"
+  ],
+  "solution": "For any convex polygon, walking once fully around the outside turns through a full \\( 360^{\\circ} \\) rotation regardless of the number of sides. So the exterior angles always sum to \\( [[answer]]^{\\circ} \\), independent of \\( n=[[n]] \\).",
+  "distractor_rationales": [
+   "This is the interior-angle sum formula, confused with the exterior-angle sum.",
+   "This assumes each exterior angle is a full straight angle.",
+   "This is half of the correct total.",
+   "This is one interior angle of a regular \\( n \\)-gon, not the exterior sum.",
+   "This multiplies the correct total by \\( n \\) unnecessarily.",
+   "This doubles the correct total."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_one_interior_regular_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "What is the measure, in degrees, of one interior angle of a regular polygon with \\( [[n]] \\) sides?",
+  "answer_spec": {"op": "evaluate", "expr": "([[n]]-2)*180/[[n]]"},
+  "distractors": [
+   "([[n]]-2)*180",
+   "360/[[n]]",
+   "([[n]]-1)*180/[[n]]",
+   "180/[[n]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The full interior-angle sum \\( (n-2)\\cdot 180 \\) is split evenly among the \\( n \\) equal angles of a regular polygon, so one angle measures \\( \\dfrac{(n-2)\\cdot 180}{n} = \\dfrac{([[n]]-2)\\cdot 180}{[[n]]} = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This is the total interior-angle sum, not a single angle.",
+   "This is the measure of one exterior angle, not one interior angle.",
+   "This forgets to subtract 2 from \\( n \\) before dividing.",
+   "This uses \\( 180/n \\) instead of the correct interior-angle formula.",
+   "This is off from the correct value by one degree.",
+   "This is off from the correct value by one degree."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_one_exterior_regular_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 40}
+  },
+  "constraints": [],
+  "stem": "What is the measure, in degrees, of one exterior angle of a regular polygon with \\( [[n]] \\) sides?",
+  "answer_spec": {"op": "evaluate", "expr": "360/[[n]]"},
+  "distractors": [
+   "([[n]]-2)*180/[[n]]",
+   "360*[[n]]",
+   "180/[[n]]",
+   "([[n]]-2)*180",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The exterior angles of a regular \\( n \\)-gon are equal and sum to \\( 360^{\\circ} \\), so one exterior angle measures \\( \\dfrac{360}{n} = \\dfrac{360}{[[n]]} = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This is one interior angle, not one exterior angle.",
+   "This multiplies instead of dividing by \\( n \\).",
+   "This uses half the exterior-angle sum by mistake.",
+   "This is the total interior-angle sum, not a single exterior angle.",
+   "This is off from the correct value by one degree.",
+   "This is off from the correct value by one degree."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_solve_n_from_sum_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 60}
+  },
+  "constraints": [],
+  "derived": {"S": "([[n]]-2)*180"},
+  "stem": "The sum of the interior angles of a convex polygon is \\( [[S]]^{\\circ} \\). How many sides does the polygon have?",
+  "answer_spec": {"op": "solve", "equation": "(x-2)*180 = [[S]]", "var": "x"},
+  "distractors": [
+   "[[S]]/180",
+   "[[S]]/180 + 1",
+   "[[S]]/180 - 1",
+   "[[S]]/360",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Solving \\( (x-2)\\cdot 180 = [[S]] \\) for \\( x \\) gives \\( x = \\dfrac{[[S]]}{180} + 2 = [[answer]] \\) sides.",
+  "distractor_rationales": [
+   "This divides the sum by 180 but forgets to add back the 2.",
+   "This adds 1 instead of 2 after dividing by 180.",
+   "This subtracts 1 instead of adding 2 after dividing by 180.",
+   "This divides by 360 (the exterior-angle sum) instead of 180.",
+   "This is off from the correct number of sides by one.",
+   "This is off from the correct number of sides by one."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_solve_n_from_interior_angle_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60]}
+  },
+  "constraints": [],
+  "derived": {"angle": "180 - 360/[[n]]"},
+  "stem": "Each interior angle of a regular polygon measures \\( [[angle]]^{\\circ} \\). How many sides does the polygon have?",
+  "answer_spec": {"op": "solve", "equation": "180 - 360/x = [[angle]]", "var": "x"},
+  "distractors": [
+   "[[angle]]/180",
+   "180/(180-[[angle]])",
+   "360/[[angle]]",
+   "(180-[[angle]])/360",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each interior angle of a regular \\( x \\)-gon is \\( 180 - \\dfrac{360}{x} \\). Setting this equal to \\( [[angle]] \\) and solving gives \\( x = \\dfrac{360}{180-[[angle]]} = [[answer]] \\) sides.",
+  "distractor_rationales": [
+   "This treats the angle as a simple fraction of 180 rather than solving the interior-angle equation.",
+   "This uses 180 instead of 360 in the numerator of the correct formula.",
+   "This treats the given interior angle as if it were the exterior angle.",
+   "This inverts the correct formula.",
+   "This is off from the correct number of sides by one.",
+   "This is off from the correct number of sides by one."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_solve_n_from_exterior_angle_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120]}
+  },
+  "constraints": [],
+  "derived": {"ext": "360/[[n]]"},
+  "stem": "Each exterior angle of a regular polygon measures \\( [[ext]]^{\\circ} \\). How many sides does the polygon have?",
+  "answer_spec": {"op": "solve", "equation": "360/x = [[ext]]", "var": "x"},
+  "distractors": [
+   "180/[[ext]]",
+   "[[ext]]/360",
+   "360*[[ext]]",
+   "(180-[[ext]])/[[ext]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Each exterior angle of a regular \\( x \\)-gon is \\( \\dfrac{360}{x} \\). Setting this equal to \\( [[ext]] \\) and solving gives \\( x = \\dfrac{360}{[[ext]]} = [[answer]] \\) sides.",
+  "distractor_rationales": [
+   "This uses 180 instead of 360 in the numerator.",
+   "This inverts the correct formula.",
+   "This multiplies instead of dividing.",
+   "This confuses the exterior-angle formula with an interior-angle-style expression.",
+   "This is off from the correct number of sides by one.",
+   "This is off from the correct number of sides by one."
+  ]
+ },
+ {
+  "template_id": "interior_and_exterior_angle_sums_arithmetic_sequence_v1",
+  "skill_id": "interior_and_exterior_angle_sums",
+  "topic_id": "geometry",
+  "tier": "teach",
+  "params": {
+   "n": {"type": "int", "lo": 3, "hi": 12},
+   "d": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [
+   "Gt((([[n]]-2)*180)/[[n]] - (([[n]]-1)*[[d]])/2, 0)",
+   "Lt((([[n]]-2)*180)/[[n]] + (([[n]]-1)*[[d]])/2, 180)"
+  ],
+  "stem": "The measures of the interior angles of a convex polygon with \\( [[n]] \\) sides form an arithmetic sequence: each angle, taken in order, is \\( [[d]] \\) degrees larger than the previous one. What is the measure, in degrees, of the largest interior angle?",
+  "answer_spec": {"op": "evaluate", "expr": "((([[n]]-2)*180)/[[n]]) + (([[n]]-1)*[[d]])/2"},
+  "distractors": [
+   "((([[n]]-2)*180)/[[n]])",
+   "((([[n]]-2)*180)/[[n]]) - (([[n]]-1)*[[d]])/2",
+   "([[n]]-2)*180 + [[n]]*[[d]]",
+   "((([[n]]-2)*180)/[[n]]) + [[n]]*[[d]]",
+   "[[answer]] + [[d]]",
+   "[[answer]] - [[d]]"
+  ],
+  "solution": "The average interior angle is \\( \\dfrac{([[n]]-2)\\cdot 180}{[[n]]} \\), and for an \\( n \\)-term arithmetic sequence this average equals the average of the first and last terms. So the largest angle exceeds the average by \\( \\dfrac{(n-1)d}{2} \\), giving \\( \\dfrac{([[n]]-2)\\cdot 180}{[[n]]} + \\dfrac{([[n]]-1)\\cdot [[d]]}{2} = [[answer]] \\) degrees.",
+  "distractor_rationales": [
+   "This is just the average interior angle, without adjusting for the sequence's spread.",
+   "This subtracts the spread instead of adding it, giving the smallest angle instead of the largest.",
+   "This adds \\( n\\cdot d \\) directly to the full angle sum instead of adjusting the average correctly.",
+   "This uses \\( n \\) instead of \\( \\frac{n-1}{2} \\) as the multiplier on \\( d \\).",
+   "This is off from the correct value by the common difference.",
+   "This is off from the correct value by the common difference."
+  ]
+ }
+]

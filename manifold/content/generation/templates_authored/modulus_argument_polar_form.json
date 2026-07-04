@@ -1,0 +1,133 @@
+[
+{
+ "template_id": "modulus_polar_form_v1",
+ "skill_id": "modulus_argument_polar_form",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a": {"type": "int", "lo": -8, "hi": 8},
+  "b": {"type": "int", "lo": -8, "hi": 8}
+ },
+ "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+ "stem": "Compute the modulus \\( \\left| ([[a]]) + ([[b]])i \\right| \\) of the complex number \\( z = ([[a]]) + ([[b]])i \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs(([[a]]) + ([[b]])*I)"},
+ "require_rational": false,
+ "distractors": [
+  "Abs([[a]]) + Abs([[b]])",
+  "[[a]]**2 + [[b]]**2",
+  "sqrt(Abs([[a]]) + Abs([[b]]))",
+  "[[answer]] + 1",
+  "[[answer]] - 1",
+  "2*[[answer]]"
+ ],
+ "solution": "The modulus is \\( |z| = \\sqrt{a^{2} + b^{2}} = \\sqrt{([[a]])^{2} + ([[b]])^{2}} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the absolute values of the parts; the modulus uses the Pythagorean combination \\( \\sqrt{a^{2}+b^{2}} \\).",
+  "This is \\( a^{2}+b^{2} \\), the square of the modulus; the square root is still needed.",
+  "This takes the square root of the sum of the parts instead of the sum of their squares.",
+  "This is off by one from the correct modulus.",
+  "This is off by one from the correct modulus.",
+  "This doubles the modulus."
+ ]
+},
+{
+ "template_id": "argument_principal_value_v1",
+ "skill_id": "modulus_argument_polar_form",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "k": {"type": "int", "lo": 1, "hi": 9},
+  "s1": {"type": "choice", "values": [-1, 0, 1]},
+  "s2": {"type": "choice", "values": [-1, 0, 1]}
+ },
+ "constraints": ["Or(Ne([[s1]], 0), Ne([[s2]], 0))"],
+ "derived": {
+  "a": "[[k]]*[[s1]]",
+  "b": "[[k]]*[[s2]]"
+ },
+ "stem": "Find the principal argument \\( \\arg(z) \\) (in radians, in the range \\( (-\\pi, \\pi] \\)) of \\( z = ([[a]]) + ([[b]])i \\).",
+ "answer_spec": {"op": "evaluate", "expr": "arg(([[a]]) + ([[b]])*I)"},
+ "require_rational": false,
+ "distractors": [
+  "-([[answer]])",
+  "pi - [[answer]]",
+  "[[answer]] + pi/2",
+  "[[answer]] - pi/2",
+  "[[answer]] + pi",
+  "2*[[answer]]"
+ ],
+ "solution": "Since \\( z = ([[a]]) + ([[b]])i \\) lies along a standard direction, \\( \\arg(z) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This has the wrong sign; the argument was reflected across the real axis.",
+  "This reflects the angle across the imaginary axis instead of reading it directly.",
+  "This adds an extra quarter turn to the correct angle.",
+  "This subtracts an extra quarter turn from the correct angle.",
+  "This adds an extra half turn to the correct angle.",
+  "This doubles the correct angle."
+ ]
+},
+{
+ "template_id": "polar_to_rectangular_conversion_v1",
+ "skill_id": "modulus_argument_polar_form",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "r": {"type": "choice", "values": [1, 2, 3, 4, 5]},
+  "k": {"type": "int", "lo": 1, "hi": 11}
+ },
+ "constraints": [],
+ "stem": "A complex number is given in polar form as \\( z = [[r]]\\left(\\cos\\dfrac{\\pi [[k]]}{6} + i\\sin\\dfrac{\\pi [[k]]}{6}\\right) \\). Write \\( z \\) in rectangular form \\( x + yi \\).",
+ "answer_spec": {"op": "evaluate", "expr": "[[r]]*cos([[k]]*pi/6) + I*[[r]]*sin([[k]]*pi/6)"},
+ "require_rational": false,
+ "distractors": [
+  "[[r]]*sin([[k]]*pi/6) + I*[[r]]*cos([[k]]*pi/6)",
+  "[[r]]*cos([[k]]*pi/6) - I*[[r]]*sin([[k]]*pi/6)",
+  "cos([[k]]*pi/6) + I*sin([[k]]*pi/6)",
+  "-([[r]]*cos([[k]]*pi/6) + I*[[r]]*sin([[k]]*pi/6))",
+  "[[answer]] + 1",
+  "[[answer]] + I"
+ ],
+ "solution": "Distribute \\( r \\): \\( z = [[r]]\\cos\\dfrac{\\pi[[k]]}{6} + i\\,[[r]]\\sin\\dfrac{\\pi[[k]]}{6} = [[answer]] \\).",
+ "distractor_rationales": [
+  "This swaps sine and cosine; the real part must be \\( r\\cos\\theta \\).",
+  "This is the conjugate; the sign of the imaginary part was flipped.",
+  "This forgets to scale by the modulus \\( r \\).",
+  "This negates the correct value (a sign slip).",
+  "This is off by one in the real part.",
+  "This is off by one in the imaginary part."
+ ]
+},
+{
+ "template_id": "modulus_of_a_product_v1",
+ "skill_id": "modulus_argument_polar_form",
+ "topic_id": "complex_analysis",
+ "tier": "teach",
+ "params": {
+  "a1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "b1": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "a2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]},
+  "b2": {"type": "choice", "values": [-4, -3, -2, -1, 1, 2, 3, 4]}
+ },
+ "constraints": [],
+ "stem": "Let \\( z_{1} = ([[a1]]) + ([[b1]])i \\) and \\( z_{2} = ([[a2]]) + ([[b2]])i \\). Compute \\( \\left| z_{1} z_{2} \\right| \\).",
+ "answer_spec": {"op": "evaluate", "expr": "Abs((([[a1]]) + ([[b1]])*I) * (([[a2]]) + ([[b2]])*I))"},
+ "require_rational": false,
+ "distractors": [
+  "Abs(([[a1]]) + ([[b1]])*I) + Abs(([[a2]]) + ([[b2]])*I)",
+  "(([[a1]])**2 + ([[b1]])**2) * (([[a2]])**2 + ([[b2]])**2)",
+  "Abs((([[a1]]) + ([[b1]])*I) + (([[a2]]) + ([[b2]])*I))",
+  "-([[answer]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Since \\( |z_{1}z_{2}| = |z_{1}|\\,|z_{2}| \\), compute \\( |z_1| = \\sqrt{([[a1]])^2+([[b1]])^2} \\) and \\( |z_2| = \\sqrt{([[a2]])^2+([[b2]])^2} \\), and multiply: the product is \\( [[answer]] \\).",
+ "distractor_rationales": [
+  "This adds the two moduli instead of multiplying them.",
+  "This multiplies \\( |z_1|^{2} \\) and \\( |z_2|^{2} \\) (forgetting the square roots), giving the square of the correct answer for generic inputs.",
+  "This is the modulus of the sum \\( z_1+z_2 \\), not the product \\( z_1 z_2 \\).",
+  "This negates the correct value (a sign slip); a modulus cannot be negative.",
+  "This is off by one from the correct value.",
+  "This is off by one from the correct value."
+ ]
+}
+]

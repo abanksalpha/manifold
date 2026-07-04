@@ -1,0 +1,158 @@
+[
+ {
+  "template_id": "l_hopital_0_over_0_v1",
+  "skill_id": "direct_l_hopital_on_0_0_or",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-4, -3, -2, 2, 3, 4]},
+   "b": {"type": "int", "lo": 2, "hi": 5}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{e^{[[a]]x} - 1}{[[b]]x} \\), an indeterminate form of type \\( \\tfrac{0}{0} \\).",
+  "answer_spec": {"op": "limit", "expr": "(exp([[a]]*x) - 1)/([[b]]*x)", "var": "x", "point": 0},
+  "distractors": [
+   "Rational([[b]], [[a]])",
+   "[[a]]*[[b]]",
+   "1",
+   "-Rational([[a]], [[b]])",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both numerator and denominator vanish at \\( x = 0 \\). By L'Hopital's rule, \\( \\lim_{x \\to 0} \\frac{[[a]]e^{[[a]]x}}{[[b]]} = \\frac{[[a]]}{[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio of the coefficients.",
+   "This multiplies the coefficients instead of dividing.",
+   "This cancels the coefficients entirely, leaving 1.",
+   "This has the wrong sign.",
+   "This keeps only the numerator's coefficient.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "l_hopital_two_exponentials_v1",
+  "skill_id": "direct_l_hopital_on_0_0_or",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]},
+   "b": {"type": "choice", "values": [2, 3, 4, 5, 6, 7, 8, 9]}
+  },
+  "constraints": ["Ne([[a]], [[b]])"],
+  "require_rational": false,
+  "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{[[a]]^{x} - [[b]]^{x}}{x} \\), an indeterminate form of type \\( \\tfrac{0}{0} \\).",
+  "answer_spec": {"op": "limit", "expr": "([[a]]**x - [[b]]**x)/x", "var": "x", "point": 0},
+  "distractors": [
+   "log([[a]]) + log([[b]])",
+   "log([[b]]) - log([[a]])",
+   "[[a]] - [[b]]",
+   "Rational([[a]], [[b]])",
+   "log([[a]]*[[b]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both numerator and denominator vanish at \\( x = 0 \\), since \\( [[a]]^{0} - [[b]]^{0} = 0 \\). Differentiating top and bottom, \\( \\frac{d}{dx}\\left([[a]]^{x} - [[b]]^{x}\\right) = [[a]]^{x}\\ln [[a]] - [[b]]^{x}\\ln [[b]] \\) and the denominator's derivative is \\( 1 \\). Evaluating at \\( x = 0 \\) gives \\( \\ln [[a]] - \\ln [[b]] = [[answer]] \\).",
+  "distractor_rationales": [
+   "This adds the logarithms instead of subtracting them.",
+   "This has the subtraction in the wrong order.",
+   "This drops the logarithm entirely, using the bases directly.",
+   "This is the ratio of the bases, not the difference of their logarithms.",
+   "This takes the log of the product instead of the difference of the logs.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "l_hopital_double_application_cosine_v1",
+  "skill_id": "direct_l_hopital_on_0_0_or",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]},
+   "b": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{1 - \\cos([[a]]x)}{([[b]]x)^{2}} \\), an indeterminate form of type \\( \\tfrac{0}{0} \\) that requires applying L'Hopital's rule twice.",
+  "answer_spec": {"op": "limit", "expr": "(1 - cos([[a]]*x))/(([[b]]*x)**2)", "var": "x", "point": 0},
+  "distractors": [
+   "Rational([[a]], [[b]])",
+   "[[a]]*[[b]]",
+   "Rational([[a]]**2, [[b]]**2)",
+   "Rational([[a]], 2*[[b]])",
+   "-Rational([[a]]**2, 2*[[b]]**2)",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both numerator and denominator vanish at \\( x = 0 \\). Applying L'Hopital's rule once gives \\( \\frac{[[a]]\\sin([[a]]x)}{2[[b]]^{2}x} \\), still of type \\( \\tfrac{0}{0} \\); applying it again gives \\( \\frac{[[a]]^{2}\\cos([[a]]x)}{2[[b]]^{2}} \\), which at \\( x = 0 \\) equals \\( \\frac{[[a]]^{2}}{2[[b]]^{2}} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This forgets to square the coefficients (stopping after only one differentiation).",
+   "This multiplies the coefficients instead of using the squared-over-twice-squared form.",
+   "This forgets the factor of 2 in the denominator.",
+   "This forgets to square the numerator's coefficient.",
+   "This has the wrong sign; \\( \\cos(0) = 1 > 0 \\).",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "l_hopital_log_ratio_v1",
+  "skill_id": "direct_l_hopital_on_0_0_or",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]},
+   "b": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to 0} \\frac{\\ln(1 + [[a]]x)}{[[b]]x} \\), an indeterminate form of type \\( \\tfrac{0}{0} \\).",
+  "answer_spec": {"op": "limit", "expr": "log(1 + [[a]]*x)/([[b]]*x)", "var": "x", "point": 0},
+  "distractors": [
+   "Rational([[b]], [[a]])",
+   "[[a]]*[[b]]",
+   "1",
+   "-Rational([[a]], [[b]])",
+   "[[a]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both numerator and denominator vanish at \\( x = 0 \\), since \\( \\ln(1) = 0 \\). By L'Hopital's rule, differentiate to get \\( \\frac{[[a]]/(1+[[a]]x)}{[[b]]} \\), which at \\( x = 0 \\) equals \\( \\frac{[[a]]}{[[b]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the ratio of the coefficients.",
+   "This multiplies the coefficients instead of dividing.",
+   "This cancels the coefficients entirely, leaving 1.",
+   "This has the wrong sign.",
+   "This keeps only the numerator's coefficient.",
+   "This is off by one from the correct limit."
+  ]
+ },
+ {
+  "template_id": "l_hopital_infinity_over_infinity_log_v1",
+  "skill_id": "direct_l_hopital_on_0_0_or",
+  "topic_id": "limits_continuity",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]},
+   "b": {"type": "choice", "values": [-6, -5, -4, -3, -2, 2, 3, 4, 5, 6]}
+  },
+  "constraints": [],
+  "stem": "Evaluate \\( \\lim_{x \\to \\infty} \\frac{[[a]]x + \\ln x}{[[b]]x} \\), an indeterminate form of type \\( \\tfrac{\\infty}{\\infty} \\).",
+  "answer_spec": {"op": "limit", "expr": "([[a]]*x + log(x))/([[b]]*x)", "var": "x", "point": "oo"},
+  "distractors": [
+   "Rational([[b]], [[a]])",
+   "[[a]]*[[b]]",
+   "0",
+   "1",
+   "[[a]] + [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Both numerator and denominator grow without bound. By L'Hopital's rule, differentiate top and bottom: \\( \\frac{[[a]] + 1/x}{[[b]]} \\to \\frac{[[a]]}{[[b]]} = [[answer]] \\) as \\( x \\to \\infty \\) (the \\( \\ln x \\) term grows too slowly to affect the leading behavior).",
+  "distractor_rationales": [
+   "This inverts the ratio of the coefficients.",
+   "This multiplies the coefficients instead of dividing.",
+   "This wrongly assumes the logarithm dominates, forcing the ratio to 0.",
+   "This assumes numerator and denominator grow at the same rate exactly.",
+   "This adds the coefficients instead of dividing them.",
+   "This is off by one from the correct limit."
+  ]
+ }
+]

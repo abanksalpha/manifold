@@ -1,0 +1,295 @@
+[
+ {
+  "template_id": "polynomial_rational_functions_evaluate_polynomial_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -8, "hi": 8},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)"],
+  "stem": "Let \\( p(x) = [[a]]x^{3} + ([[b]])x^{2} + ([[c]])x + ([[d]]) \\). What is \\( p([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]] + [[d]]"},
+  "distractors": [
+   "[[a]]*[[x0]]**2 + [[b]]*[[x0]] + [[c]]",
+   "[[a]]*[[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]]",
+   "-([[a]]*[[x0]]**3 + [[b]]*[[x0]]**2 + [[c]]*[[x0]] + [[d]])",
+   "[[a]]*[[x0]]**3 - [[b]]*[[x0]]**2 + [[c]]*[[x0]] - [[d]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substitute \\( x = [[x0]] \\) directly: \\( p([[x0]]) = [[a]]([[x0]])^{3} + ([[b]])([[x0]])^{2} + ([[c]])([[x0]]) + ([[d]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the cubic term entirely, evaluating a lower-degree polynomial.",
+   "This drops the constant term \\( [[d]] \\).",
+   "This negates the whole correct value.",
+   "This flips the sign of every other term instead of keeping all signs as given.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_evaluate_rational_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "d": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)", "Ne([[c]]*[[x0]] + [[d]], 0)"],
+  "stem": "Let \\( r(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\). What is \\( r([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[a]]*[[x0]] + [[b]])/([[c]]*[[x0]] + [[d]])"},
+  "distractors": [
+   "([[c]]*[[x0]] + [[d]])/([[a]]*[[x0]] + [[b]])",
+   "[[a]]*[[x0]] + [[b]]",
+   "([[a]]*[[x0]] - [[b]])/([[c]]*[[x0]] - [[d]])",
+   "[[a]]/[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substitute \\( x = [[x0]] \\) into both the numerator and denominator: \\( r([[x0]]) = \\dfrac{[[a]]([[x0]]) + [[b]]}{[[c]]([[x0]]) + [[d]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This inverts the fraction, swapping the numerator and denominator.",
+   "This reports only the numerator, forgetting to divide by the denominator.",
+   "This flips the sign of the constant term in both numerator and denominator.",
+   "This reports the horizontal asymptote's ratio instead of the value at \\( [[x0]] \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_solve_root_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r": {"type": "int", "lo": -5, "hi": 5},
+   "p": {"type": "int", "lo": -4, "hi": 4},
+   "q": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[r]], 0)"],
+  "derived": {"A": "-([[r]] + [[p]] + [[q]])", "B": "[[r]]*[[p]] + [[r]]*[[q]] + [[p]]*[[q]]", "C": "-([[r]]*[[p]]*[[q]])"},
+  "stem": "Let \\( f(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\). Which of the following is a real root of \\( f \\)?",
+  "answer_spec": {"op": "solve", "equation": "x**3 + ([[A]])*x**2 + ([[B]])*x + ([[C]]) = 0", "var": "x"},
+  "distractors": [
+   "[[A]]",
+   "-[[A]]",
+   "[[C]]",
+   "-[[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1",
+   "[[answer]] + 2"
+  ],
+  "solution": "By construction, \\( f(x) = (x-([[r]]))(x-([[p]]))(x-([[q]])) \\), so its real roots are \\( [[r]], [[p]], [[q]] \\); one valid root is \\( x = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reads the \\( x^{2} \\)-coefficient directly rather than solving the cubic for an actual root.",
+   "This negates the \\( x^{2} \\)-coefficient, which is the SUM of the roots, not a root itself.",
+   "This reads the constant term directly rather than solving the cubic for an actual root.",
+   "This negates the constant term, which is the PRODUCT of the roots, not a root itself.",
+   "This is off by one from a genuine root.",
+   "This is off by one from a genuine root.",
+   "This is off by two from a genuine root."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_vieta_sum_quadratic_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -8, "hi": 8},
+   "r2": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])"],
+  "derived": {"B": "-([[r1]] + [[r2]])", "C": "[[r1]]*[[r2]]"},
+  "stem": "Let \\( p(x) = x^{2} + ([[B]])x + ([[C]]) \\). What is the sum of the roots of \\( p \\)?",
+  "answer_spec": {"op": "vieta", "poly": "x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "sum"},
+  "distractors": [
+   "[[B]]",
+   "[[C]]",
+   "-[[C]]",
+   "[[B]] + [[C]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, for \\( p(x) = x^{2} + ([[B]])x + ([[C]]) \\), the sum of the roots is \\( -([[B]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reads the linear coefficient directly and forgets that the sum of roots is its negative.",
+   "This reports the constant term instead of the (negated) linear coefficient.",
+   "This negates the constant term, which is the product of the roots, not their sum.",
+   "This adds the two coefficients together, which has no basis in Vieta's formulas.",
+   "This is off by one from the correct sum.",
+   "This is off by one from the correct sum."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_vieta_product_cubic_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "r1": {"type": "int", "lo": -4, "hi": 4},
+   "r2": {"type": "int", "lo": -4, "hi": 4},
+   "r3": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Lt([[r1]], [[r2]])", "Lt([[r2]], [[r3]])"],
+  "derived": {"A": "-([[r1]] + [[r2]] + [[r3]])", "B": "[[r1]]*[[r2]] + [[r1]]*[[r3]] + [[r2]]*[[r3]]", "C": "-([[r1]]*[[r2]]*[[r3]])"},
+  "stem": "Let \\( p(x) = x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\), which has three real roots. What is the product of the roots of \\( p \\)?",
+  "answer_spec": {"op": "vieta", "poly": "x**3 + ([[A]])*x**2 + ([[B]])*x + ([[C]])", "var": "x", "which": "prod"},
+  "distractors": [
+   "[[C]]",
+   "-[[A]]",
+   "[[B]]",
+   "-[[B]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "By Vieta's formulas, for a monic cubic \\( x^{3} + ([[A]])x^{2} + ([[B]])x + ([[C]]) \\), the product of the roots equals \\( -([[C]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reads the constant term directly and forgets that the product of roots is its negative.",
+   "This gives the (negated) sum of the roots instead of their product.",
+   "This gives the sum of pairwise products of the roots, not the product of all three.",
+   "This negates the sum of pairwise products, which is unrelated to the product of all three roots.",
+   "This is off by one from the correct product.",
+   "This is off by one from the correct product."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_intersection_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -4, "hi": 4},
+   "b": {"type": "int", "lo": -6, "hi": 6},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "m": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[b]], [[m]])"],
+  "stem": "Let \\( p(x) = [[a]]x^{2} + ([[b]])x + ([[c]]) \\) and \\( q(x) = [[a]]x^{2} + ([[m]])x + ([[k]]) \\). At what \\( x \\)-value do the graphs of \\( p \\) and \\( q \\) intersect?",
+  "answer_spec": {"op": "solve", "equation": "[[a]]*x**2 + ([[b]])*x + ([[c]]) = [[a]]*x**2 + ([[m]])*x + ([[k]])", "var": "x"},
+  "distractors": [
+   "[[c]] - [[k]]",
+   "[[k]] - [[c]]",
+   "([[c]] - [[k]])/([[b]] - [[m]])",
+   "[[b]] - [[m]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( p(x) = q(x) \\), the \\( x^{2} \\) terms cancel (both have leading coefficient [[a]]), leaving the linear equation \\( ([[b]])x + ([[c]]) = ([[m]])x + ([[k]]) \\), so \\( x = \\dfrac{[[k]]-([[c]])}{[[b]]-([[m]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the difference of the constant terms alone, forgetting to divide by the difference of the linear coefficients.",
+   "This has the numerator's sign flipped relative to the correct ratio.",
+   "This has the ratio inverted (numerator and denominator swapped in sign convention).",
+   "This reports only the difference of the linear coefficients, not the full ratio.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_composition_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -3, "hi": 3},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "m": {"type": "int", "lo": -3, "hi": 3},
+   "n": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": -4, "hi": 4}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[m]], 0)"],
+  "stem": "Let \\( p(x) = [[a]]x^{2} + ([[b]]) \\) and \\( q(x) = [[m]]x + ([[n]]) \\). What is \\( p(q([[x0]])) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[a]]*([[m]]*[[x0]] + [[n]])**2 + [[b]]"},
+  "distractors": [
+   "[[m]]*([[a]]*[[x0]]**2 + [[b]]) + [[n]]",
+   "[[a]]*[[x0]]**2 + [[b]]",
+   "[[m]]*[[x0]] + [[n]]",
+   "[[a]]*([[m]]*[[x0]])**2 + [[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First evaluate the inner function: \\( q([[x0]]) = [[m]]([[x0]]) + ([[n]]) \\). Then apply \\( p \\) to that result: \\( p(q([[x0]])) = [[a]]\\big(q([[x0]])\\big)^{2} + ([[b]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This computes \\( q(p([[x0]])) \\) instead, applying the functions in the wrong order.",
+   "This forgets to evaluate the inner function \\( q \\) at all, applying \\( p \\) directly to \\( [[x0]] \\).",
+   "This reports \\( q([[x0]]) \\) itself, forgetting to also apply the outer function \\( p \\).",
+   "This forgets to add the shift \\( [[n]] \\) inside the inner function before squaring.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_hole_evaluate_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "q": {"type": "int", "lo": -6, "hi": 6},
+   "r": {"type": "int", "lo": -6, "hi": 6},
+   "x0": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[p]], [[q]])", "Ne([[p]], [[r]])", "Ne([[q]], [[r]])", "Ne([[x0]], [[p]])", "Ne([[x0]], [[r]])"],
+  "stem": "Let \\( f(x) = \\dfrac{(x - ([[p]]))(x - ([[q]]))}{(x - ([[p]]))(x - ([[r]]))} \\), which has a removable hole at \\( x = [[p]] \\). What is \\( f([[x0]]) \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[x0]] - [[q]])/([[x0]] - [[r]])"},
+  "distractors": [
+   "(([[x0]] - [[p]])*([[x0]] - [[q]]))/(([[x0]] - [[p]])*([[x0]] - [[r]]))",
+   "([[x0]] - [[p]])/([[x0]] - [[r]])",
+   "([[x0]] - [[q]])/([[x0]] - [[p]])",
+   "([[x0]] - [[r]])/([[x0]] - [[q]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "For \\( x \\ne [[p]] \\), the common factor \\( x-([[p]]) \\) cancels, so \\( f(x) = \\dfrac{x-([[q]])}{x-([[r]])} \\). Substituting \\( x=[[x0]] \\) (which is not the hole) gives \\( f([[x0]]) = \\dfrac{[[x0]]-([[q]])}{[[x0]]-([[r]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the ORIGINAL uncancelled form; it reduces to the same value algebraically but the computation should use the simplified function.",
+   "This uses the cancelled factor's root \\( [[p]] \\) in the numerator instead of the surviving root \\( [[q]] \\).",
+   "This inverts which root belongs to the numerator versus the denominator after cancellation.",
+   "This inverts the entire simplified fraction.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "polynomial_rational_functions_horizontal_asymptote_limit_v1",
+  "skill_id": "polynomial_rational_functions",
+  "topic_id": "precalc_functions",
+  "tier": "relearn",
+  "params": {
+   "a": {"type": "int", "lo": -6, "hi": 6},
+   "b": {"type": "int", "lo": -8, "hi": 8},
+   "c": {"type": "int", "lo": -6, "hi": 6},
+   "d": {"type": "int", "lo": -8, "hi": 8}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[c]], 0)"],
+  "stem": "Let \\( r(x) = \\dfrac{[[a]]x + ([[b]])}{[[c]]x + ([[d]])} \\). What value does \\( r(x) \\) approach as \\( x \\to \\infty \\)?",
+  "answer_spec": {"op": "limit", "expr": "([[a]]*x + [[b]])/([[c]]*x + [[d]])", "var": "x", "point": "oo"},
+  "distractors": [
+   "[[c]]/[[a]]",
+   "-[[d]]/[[c]]",
+   "-[[a]]/[[c]]",
+   "[[a]] - [[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "As \\( x\\to\\infty \\), the numerator and denominator are dominated by their linear terms, so \\( r(x) \\to \\dfrac{[[a]]}{[[c]]} = [[answer]] \\), the ratio of the leading coefficients.",
+  "distractor_rationales": [
+   "This inverts the ratio of leading coefficients.",
+   "This gives the vertical asymptote (where the denominator is zero), not the long-run value.",
+   "This flips the sign of the ratio of leading coefficients.",
+   "This subtracts the leading coefficients instead of taking their ratio.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ }
+]

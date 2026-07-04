@@ -1,0 +1,104 @@
+[
+ {
+  "template_id": "riemann_sum_right_endpoint_v1",
+  "skill_id": "riemann_integrability",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "w": {"type": "int", "lo": 1, "hi": 3},
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 7, 8]}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"q": "[[p]]+[[n]]*[[w]]"},
+  "stem": "Let \\( f(x) = [[A]]x + ([[B]]) \\), which is continuous (hence Riemann integrable) on \\( [[[p]], [[q]]] \\). Partition \\( [[[p]], [[q]]] \\) into \\( [[n]] \\) equal subintervals, each of width \\( [[w]] \\), and let \\( x_k = [[p]] + k[[w]] \\) for \\( k = 1, \\dots, [[n]] \\) be the right endpoints. What is the right-endpoint Riemann sum \\( \\displaystyle\\sum_{k=1}^{[[n]]} f(x_k)\\cdot [[w]] \\)?",
+  "answer_spec": {"op": "sum", "expr": "([[A]]*([[p]]+k*[[w]])+[[B]])*[[w]]", "var": "k", "lo": "1", "hi": "[[n]]"},
+  "distractors": [
+   "[[w]]*[[n]]*([[A]]*[[p]]+[[B]]) + [[A]]*[[w]]**2*[[n]]*([[n]]-1)/2",
+   "([[A]]*([[p]]+[[q]])/2+[[B]])*([[q]]-[[p]])",
+   "([[A]]*[[p]]+[[B]])*([[q]]-[[p]])",
+   "([[A]]*[[q]]+[[B]])*([[q]]-[[p]])",
+   "[[answer]] + [[w]]",
+   "[[answer]] - [[w]]"
+  ],
+  "solution": "The right-endpoint Riemann sum is \\( \\displaystyle\\sum_{k=1}^{[[n]]} f([[p]]+k[[w]])\\cdot[[w]] = \\sum_{k=1}^{[[n]]} \\big([[A]]([[p]]+k[[w]])+([[B]])\\big)[[w]] = [[answer]] \\), computed directly from the sum.",
+  "distractor_rationales": [
+   "This uses the LEFT endpoints \\( x_{k-1} \\) instead of the right endpoints \\( x_k \\).",
+   "This uses the midpoint rule (evaluating \\( f \\) at the interval's center) instead of a right-endpoint sum.",
+   "This evaluates \\( f \\) only at the left endpoint \\( p \\) and multiplies by the full interval width, skipping the partition.",
+   "This evaluates \\( f \\) only at the right endpoint \\( q \\) and multiplies by the full interval width, skipping the partition.",
+   "This is off by \\( w \\) from the correct Riemann sum.",
+   "This is off by \\( w \\) from the correct Riemann sum."
+  ]
+ },
+ {
+  "template_id": "riemann_sum_left_endpoint_v1",
+  "skill_id": "riemann_integrability",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -5, "hi": 5},
+   "B": {"type": "int", "lo": -8, "hi": 8},
+   "p": {"type": "int", "lo": -6, "hi": 6},
+   "w": {"type": "int", "lo": 1, "hi": 3},
+   "n": {"type": "choice", "values": [3, 4, 5, 6, 7, 8]}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"q": "[[p]]+[[n]]*[[w]]"},
+  "stem": "Let \\( f(x) = [[A]]x + ([[B]]) \\), which is continuous (hence Riemann integrable) on \\( [[[p]], [[q]]] \\). Partition \\( [[[p]], [[q]]] \\) into \\( [[n]] \\) equal subintervals, each of width \\( [[w]] \\), and let \\( x_{k-1} = [[p]] + (k-1)[[w]] \\) for \\( k = 1, \\dots, [[n]] \\) be the left endpoints. What is the left-endpoint Riemann sum \\( \\displaystyle\\sum_{k=1}^{[[n]]} f(x_{k-1})\\cdot [[w]] \\)?",
+  "answer_spec": {"op": "sum", "expr": "([[A]]*([[p]]+(k-1)*[[w]])+[[B]])*[[w]]", "var": "k", "lo": "1", "hi": "[[n]]"},
+  "distractors": [
+   "[[w]]*[[n]]*([[A]]*[[p]]+[[B]]) + [[A]]*[[w]]**2*[[n]]*([[n]]+1)/2",
+   "([[A]]*([[p]]+[[q]])/2+[[B]])*([[q]]-[[p]])",
+   "([[A]]*[[p]]+[[B]])*([[q]]-[[p]])",
+   "([[A]]*[[q]]+[[B]])*([[q]]-[[p]])",
+   "[[answer]] + [[w]]",
+   "[[answer]] - [[w]]"
+  ],
+  "solution": "The left-endpoint Riemann sum is \\( \\displaystyle\\sum_{k=1}^{[[n]]} f([[p]]+(k-1)[[w]])\\cdot[[w]] = \\sum_{k=1}^{[[n]]} \\big([[A]]([[p]]+(k-1)[[w]])+([[B]])\\big)[[w]] = [[answer]] \\), computed directly from the sum.",
+  "distractor_rationales": [
+   "This uses the RIGHT endpoints \\( x_k \\) instead of the left endpoints \\( x_{k-1} \\).",
+   "This uses the midpoint rule (evaluating \\( f \\) at the interval's center) instead of a left-endpoint sum.",
+   "This evaluates \\( f \\) only at the left endpoint \\( p \\) and multiplies by the full interval width, skipping the partition.",
+   "This evaluates \\( f \\) only at the right endpoint \\( q \\) and multiplies by the full interval width, skipping the partition.",
+   "This is off by \\( w \\) from the correct Riemann sum.",
+   "This is off by \\( w \\) from the correct Riemann sum."
+  ]
+ },
+ {
+  "template_id": "riemann_sum_limit_to_integral_v1",
+  "skill_id": "riemann_integrability",
+  "topic_id": "real_analysis_topology",
+  "tier": "relearn",
+  "params": {
+   "A": {"type": "int", "lo": -4, "hi": 4},
+   "B": {"type": "int", "lo": -5, "hi": 5},
+   "C": {"type": "int", "lo": -6, "hi": 6},
+   "p": {"type": "int", "lo": -5, "hi": 2},
+   "gap": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": ["Ne([[A]], 0)"],
+  "derived": {"q": "[[p]]+[[gap]]"},
+  "stem": "Let \\( f(x) = [[A]]x^{2} + ([[B]])x + ([[C]]) \\), which is continuous on \\( [[[p]], [[q]]] \\) and hence Riemann integrable: its Riemann sums over ever-finer partitions of \\( [[[p]], [[q]]] \\) converge to a single value \\( \\displaystyle\\int_{[[p]]}^{[[q]]} f(x)\\,dx \\) regardless of the partition or sample points chosen. What is this common limiting value?",
+  "answer_spec": {"op": "integrate", "expr": "[[A]]*x**2+[[B]]*x+[[C]]", "var": "x", "bounds": ["[[p]]", "[[q]]"]},
+  "distractors": [
+   "[[A]]*([[q]]-[[p]])**2 + [[B]]*([[q]]-[[p]]) + [[C]]",
+   "([[A]]*[[p]]**2+[[B]]*[[p]]+[[C]])*([[q]]-[[p]])",
+   "([[A]]*[[q]]**2+[[B]]*[[q]]+[[C]])*([[q]]-[[p]])",
+   "2*[[A]]*[[p]] + [[B]]",
+   "[[answer]] + 2",
+   "[[answer]] - 2"
+  ],
+  "solution": "By the Fundamental Theorem of Calculus, the common limit of the Riemann sums is \\( \\displaystyle\\int_{[[p]]}^{[[q]]} \\big([[A]]x^{2}+([[B]])x+([[C]])\\big)\\,dx = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats \\( f \\) as if it depended only on \\( q-p \\), plugging the interval width directly into \\( f \\).",
+   "This approximates with a single left-endpoint rectangle over the whole interval instead of integrating.",
+   "This approximates with a single right-endpoint rectangle over the whole interval instead of integrating.",
+   "This reports \\( f'([[p]]) \\), the derivative at the left endpoint, not the integral.",
+   "This is off by two from the correct integral.",
+   "This is off by two from the correct integral."
+  ]
+ }
+]

@@ -1,0 +1,230 @@
+[
+ {
+  "template_id": "higher_order_partial_fxx_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Ne([[c]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{3}y + ([[b]])x^{2}y^{2} + ([[c]])x^{2} \\). What is the second-order partial derivative \\( f_{xx}([[x0]], [[y0]]) \\) (differentiate twice with respect to \\( x \\), then evaluate at \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**3*[[y0]] + [[b]]*x**2*[[y0]]**2 + [[c]]*x**2", "var": "x", "at": "[[x0]]", "order": 2},
+  "distractors": [
+   "3*[[a]]*[[x0]]**2*[[y0]] + 2*[[b]]*[[x0]]*[[y0]]**2 + 2*[[c]]*[[x0]]",
+   "2*[[b]]*[[x0]]**2",
+   "3*[[a]]*[[x0]]**2 + 4*[[b]]*[[x0]]*[[y0]]",
+   "6*[[a]]*[[x0]]*[[y0]] + [[b]]*[[y0]]**2 + [[c]]",
+   "[[answer]] + 2",
+   "[[answer]] - 4"
+  ],
+  "solution": "Differentiating twice with respect to \\( x \\) (treating \\( y \\) as constant): \\( f_{x} = 3([[a]])x^{2}y + 2([[b]])xy^{2} + 2([[c]])x \\), then \\( f_{xx} = 6([[a]])xy + 2([[b]])y^{2} + 2([[c]]) \\). At \\( ([[x0]], [[y0]]) \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f_{x}([[x0]], [[y0]]) \\), the first partial, not the second.",
+   "This is \\( f_{yy}([[x0]], [[y0]]) \\), differentiating twice with respect to the wrong variable.",
+   "This is the mixed partial \\( f_{xy}([[x0]], [[y0]]) \\).",
+   "This halves each term, forgetting the factors that come from differentiating twice.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "mixed_partial_fxy_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{3}y^{2} + ([[b]])x^{2}y + ([[c]])y^{3} \\). By Clairaut's theorem the mixed partials \\( f_{xy} \\) and \\( f_{yx} \\) agree; what is the mixed second-order partial derivative \\( f_{xy}([[x0]], [[y0]]) \\) (differentiate once with respect to \\( y \\), then once with respect to \\( x \\), then evaluate at \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "2*[[a]]*x**3*[[y0]] + [[b]]*x**2 + 3*[[c]]*[[y0]]**2", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "6*[[a]]*[[x0]]**2*[[y0]] + 2*[[b]]*[[x0]] + 3*[[c]]*[[y0]]**2",
+   "3*[[a]]*[[x0]]**2*[[y0]]**2 + 2*[[b]]*[[x0]]*[[y0]]",
+   "2*[[a]]*[[x0]]**3 + 6*[[c]]*[[y0]]",
+   "6*[[a]]*[[x0]]*[[y0]]**2 + 2*[[b]]*[[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "First take \\( f_{y}(x,y) = 2([[a]])x^{3}y + ([[b]])x^{2} + 3([[c]])y^{2} \\). Substituting \\( y = [[y0]] \\) and differentiating with respect to \\( x \\) gives \\( f_{xy} = 6([[a]])x([[y0]]) + 2([[b]])x \\); the pure-\\( y \\) term \\( 3([[c]])y^{2} \\) vanishes since it does not depend on \\( x \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This wrongly keeps the pure-\\( y \\) term \\( 3([[c]])y_0^{2} \\) around after differentiating with respect to \\( x \\), when it should vanish.",
+   "This is \\( f_{x}([[x0]], [[y0]]) \\); it stops after only one differentiation instead of two.",
+   "This is \\( f_{yy}([[x0]], [[y0]]) \\), differentiating twice with respect to \\( y \\) instead of once each way.",
+   "This is \\( f_{xx}([[x0]], [[y0]]) \\), differentiating twice with respect to \\( x \\) instead of once each way.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "higher_order_mixed_fxxy_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{4}y + ([[b]])x^{3}y^{2} + ([[c]])xy^{3} \\). What is the third-order mixed partial derivative \\( f_{xxy}([[x0]], [[y0]]) \\) (differentiate once with respect to \\( y \\), then twice with respect to \\( x \\), then evaluate at \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**4 + 2*[[b]]*x**3*[[y0]] + 3*[[c]]*x*[[y0]]**2", "var": "x", "at": "[[x0]]", "order": 2},
+  "distractors": [
+   "4*[[a]]*[[x0]]**3 + 6*[[b]]*[[x0]]**2*[[y0]] + 3*[[c]]*[[y0]]**2",
+   "12*[[a]]*[[x0]]**2*[[y0]] + 6*[[b]]*[[x0]]*[[y0]]**2",
+   "[[a]]*[[x0]]**4*[[y0]] + [[b]]*[[x0]]**3*[[y0]]**2 + [[c]]*[[x0]]*[[y0]]**3",
+   "6*[[a]]*[[x0]]**2 + 6*[[b]]*[[y0]]*[[x0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "First take \\( f_{y}(x,y) = [[a]]x^{4} + 2([[b]])x^{3}y + 3([[c]])xy^{2} \\). Substituting \\( y = [[y0]] \\) gives a function of \\( x \\) alone; differentiating it twice with respect to \\( x \\) gives \\( f_{xxy} = 12([[a]])x^{2} + 12([[b]])([[y0]])x \\) (the linear-in-\\( x \\) term \\( 3([[c]])y_0^{2}x \\) vanishes on the second \\( x \\)-derivative). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f_{xy}([[x0]], [[y0]]) \\); it stops after only one \\( x \\)-differentiation instead of two.",
+   "This is \\( f_{xx}([[x0]], [[y0]]) \\), skipping the initial \\( y \\)-differentiation entirely.",
+   "This is the function value \\( f([[x0]], [[y0]]) \\), not a third-order partial derivative.",
+   "This halves each coefficient, forgetting factors that come from differentiating twice with respect to \\( x \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "higher_order_pure_fxxx_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{4}y + ([[b]])x^{3}y^{2} + ([[c]])x^{2}y \\). What is the third-order pure partial derivative \\( f_{xxx}([[x0]], [[y0]]) \\) (differentiate three times with respect to \\( x \\), holding \\( y \\) constant, then evaluate at \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*x**4*[[y0]] + [[b]]*x**3*[[y0]]**2 + [[c]]*x**2*[[y0]]", "var": "x", "at": "[[x0]]", "order": 3},
+  "distractors": [
+   "24*[[a]]*[[x0]]*[[y0]] + 6*[[b]]*[[y0]]**2",
+   "4*[[a]]*[[x0]]**3*[[y0]] + 3*[[b]]*[[x0]]**2*[[y0]]**2 + 2*[[c]]*[[x0]]*[[y0]]",
+   "12*[[a]]*[[x0]]**2*[[y0]] + 6*[[b]]*[[x0]]*[[y0]]**2 + 2*[[c]]*[[y0]]",
+   "[[a]]*[[x0]]**4*[[y0]] + [[b]]*[[x0]]**3*[[y0]]**2 + [[c]]*[[x0]]**2*[[y0]]",
+   "[[answer]] + 2",
+   "[[answer]] - 3"
+  ],
+  "solution": "Differentiating three times with respect to \\( x \\) (treating \\( y \\) as constant): \\( f_{x} = 4([[a]])x^{3}y + 3([[b]])x^{2}y^{2} + 2([[c]])xy \\), \\( f_{xx} = 12([[a]])x^{2}y + 6([[b]])xy^{2} + 2([[c]])y \\), then \\( f_{xxx} = 24([[a]])xy + 6([[b]])y^{2} \\). At \\( ([[x0]], [[y0]]) \\) this is \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f_{xx}([[x0]], [[y0]]) \\), stopping after only two \\( x \\)-differentiations instead of three.",
+   "This is \\( f_{x}([[x0]], [[y0]]) \\), the first partial, not the third.",
+   "This drops the term coming from the constant \\( ([[c]])x^{2}y \\) part's second derivative, an off-by-a-term error.",
+   "This is the function value \\( f([[x0]], [[y0]]) \\), not a partial derivative.",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ },
+ {
+  "template_id": "mixed_partial_with_logarithm_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": -5, "hi": 5},
+   "b": {"type": "int", "lo": -5, "hi": 5},
+   "x0": {"type": "int", "lo": 1, "hi": 6},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]y\\ln(x) + ([[b]])xy^{2} \\), defined for \\( x > 0 \\). What is the mixed second-order partial derivative \\( f_{xy}([[x0]], [[y0]]) \\) (differentiate once with respect to \\( y \\), then once with respect to \\( x \\), then evaluate at \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "[[a]]*log(x) + 2*[[b]]*x*[[y0]]", "var": "x", "at": "[[x0]]", "order": 1},
+  "distractors": [
+   "[[a]]/[[x0]]",
+   "2*[[b]]*[[y0]]",
+   "[[a]]*[[y0]]/[[x0]] + [[b]]*[[x0]]*[[y0]]**2",
+   "-[[a]]/[[x0]]**2 + 2*[[b]]*[[y0]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "First take \\( f_{y}(x,y) = [[a]]\\ln(x) + 2([[b]])xy \\). Substituting \\( y=[[y0]] \\) and differentiating with respect to \\( x \\) (using \\( \\frac{d}{dx}\\ln x = 1/x \\)) gives \\( f_{xy} = \\dfrac{[[a]]}{x} + 2([[b]])([[y0]]) \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This drops the term \\( 2([[b]])([[y0]]) \\) coming from the polynomial part.",
+   "This keeps only the polynomial part's contribution and drops the logarithmic term \\( a/x \\) entirely.",
+   "This is the function value \\( f([[x0]], [[y0]]) \\), not a partial derivative.",
+   "This differentiates \\( \\ln(x) \\) a second time (as if computing \\( f_{xxy} \\)), giving \\( -a/x^{2} \\) instead of \\( a/x \\).",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "mixed_partial_solve_for_coefficient_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 4},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-2, -1, 1, 2]},
+   "target": {"type": "int", "lo": -10, "hi": 10}
+  },
+  "constraints": ["Ne([[y0]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{3}y + kxy^{2} \\), where \\( k \\) is an unknown coefficient. The mixed partial derivative is \\( f_{xy}(x,y) = 3([[a]])x^{2} + 2ky \\). For what value of \\( k \\) does \\( f_{xy}([[x0]], [[y0]]) = [[target]] \\)?",
+  "answer_spec": {"op": "solve", "equation": "3*[[a]]*[[x0]]**2 + 2*k*[[y0]] - [[target]] = 0", "var": "k"},
+  "distractors": [
+   "[[target]]",
+   "([[target]] + 3*[[a]]*[[x0]]**2)/(2*[[y0]])",
+   "([[target]] - 3*[[a]]*[[x0]]**2)/[[y0]]",
+   "(3*[[a]]*[[x0]]**2 - [[target]])/(2*[[y0]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Setting \\( f_{xy}([[x0]],[[y0]]) = 3([[a]])([[x0]])^{2} + 2k([[y0]]) = [[target]] \\) and solving for \\( k \\) gives \\( k = [[answer]] \\).",
+  "distractor_rationales": [
+   "This confuses the target value itself with the coefficient \\( k \\).",
+   "This has a sign error, adding instead of subtracting the \\( x \\)-term before dividing.",
+   "This forgets the factor of 2 multiplying \\( ky \\) in the denominator.",
+   "This has the numerator's subtraction reversed.",
+   "This is off by one from the correct value.",
+   "This is off by one from the correct value."
+  ]
+ },
+ {
+  "template_id": "higher_order_mixed_fxxyy_v1",
+  "skill_id": "higher_order_and_mixed_partials_clairaut",
+  "topic_id": "multivariable_diff",
+  "tier": "teach",
+  "params": {
+   "a": {"type": "int", "lo": 1, "hi": 3},
+   "b": {"type": "int", "lo": 1, "hi": 3},
+   "x0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]},
+   "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
+  },
+  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
+  "stem": "Let \\( f(x, y) = [[a]]x^{4}y^{2} + ([[b]])x^{2}y^{4} \\). What is the fourth-order mixed partial derivative \\( f_{xxyy}([[x0]], [[y0]]) \\) (differentiate twice with respect to \\( y \\), then twice with respect to \\( x \\), then evaluate at \\( ([[x0]], [[y0]]) \\))?",
+  "answer_spec": {"op": "diff", "expr": "2*[[a]]*x**4 + 12*[[b]]*x**2*[[y0]]**2", "var": "x", "at": "[[x0]]", "order": 2},
+  "distractors": [
+   "8*[[a]]*[[x0]]**3 + 24*[[b]]*[[x0]]*[[y0]]**2",
+   "24*[[a]]*[[x0]]**2*[[y0]] + 24*[[b]]*[[x0]]*[[y0]]**3",
+   "2*[[a]]*[[x0]]**4 + 12*[[b]]*[[x0]]**2*[[y0]]**2",
+   "12*[[a]]*[[x0]]**2 + 12*[[b]]*[[y0]]**2",
+   "[[answer]] + 4",
+   "[[answer]] - 6"
+  ],
+  "solution": "First take \\( f_{yy}(x,y) = 2([[a]])x^{4} + 12([[b]])x^{2}y^{2} \\) (differentiating twice with respect to \\( y \\)). Substituting \\( y=[[y0]] \\) gives a function of \\( x \\) alone; differentiating it twice with respect to \\( x \\) gives \\( f_{xxyy} = 24([[a]])x^{2} + 24([[b]])([[y0]])^{2} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+  "distractor_rationales": [
+   "This is \\( f_{xxxy} \\)-style: it differentiates \\( f_{yy} \\) only once with respect to \\( x \\) instead of twice.",
+   "This is \\( f_{xyyy} \\)-style, differentiating with respect to \\( y \\) three times and \\( x \\) only once.",
+   "This is \\( f_{yy}([[x0]],[[y0]]) \\), stopping before the two \\( x \\)-differentiations.",
+   "This drops the factor of 2 that comes from differentiating \\( 12([[b]])x^{2}y^{2} \\) twice with respect to \\( x \\).",
+   "This is off by a small constant from the correct value.",
+   "This is off by a small constant from the correct value."
+  ]
+ }
+]

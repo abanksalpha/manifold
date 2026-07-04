@@ -15,15 +15,18 @@
 //! Ordering (tier-major — cover circles/relearn before squares/teach before
 //! diamonds/recognize, D29):
 //! - **Due** cards (already introduced) are served first, regardless of lock;
-//!   within a tier they order by *points-at-stake* =
-//!   `blueprint_weight(topic) × weakness`, where `weakness = 1 − R`.
+//!   within a tier they order by *points-at-stake* = `blueprint_weight(topic) ×
+//!   weakness`, where `weakness = 1 − R`.
 //! - **New** cards follow, drawn only from topics the DAG has `unlocked` or put
 //!   `in_progress` (locked and mastered topics contribute none), capped at
-//!   `thresholds.new_per_day`; the budget fills lower tiers first, then within a
-//!   tier the highest blueprint weight.
-//! - Within each tier both phases are interleaved across topics, so consecutive
-//!   items come from different topics where possible while honouring
-//!   points-at-stake; a later tier never precedes an earlier one.
+//!   `thresholds.new_per_day`; the budget fills lower tiers first, then within
+//!   a tier the highest blueprint weight.
+//! - Within each tier the ordering depends on the `interleave` toggle (WS5
+//!   ablation). When on (the default), both phases are *interleaved* across
+//!   topics, so consecutive items come from different topics where possible;
+//!   when off, they are served *blocked* by topic, one topic drained before the
+//!   next. Either way points-at-stake still orders within a topic and a later
+//!   tier never precedes an earlier one.
 
 use std::collections::HashMap;
 use std::collections::VecDeque;
@@ -64,7 +67,15 @@ struct SkillRef {
 }
 
 /// Builds the ordered session queue. Read-only: see the module docs.
-pub(crate) fn build_session_queue(col: &mut Collection) -> Result<Vec<SessionItem>> {
+///
+/// `interleave` is the WS5 study-feature toggle: when true (the default) the
+/// queue spreads consecutive items across topics; when false it serves blocked
+/// by topic. It only reorders the already-selected items — the due/new sets,
+/// gating, budget and points-at-stake are identical either way.
+pub(crate) fn build_session_queue(
+    col: &mut Collection,
+    interleave: bool,
+) -> Result<Vec<SessionItem>> {
     let lock_states = topic_lock_states(col)?;
     let timing = current_timing(col)?;
     let fsrs = FSRS::new(None)?;
@@ -112,8 +123,8 @@ pub(crate) fn build_session_queue(col: &mut Collection) -> Result<Vec<SessionIte
     });
     new.truncate(thresholds.new_per_day as usize);
 
-    let mut items = ordered_by_tier(due);
-    items.extend(ordered_by_tier(new));
+    let mut items = ordered_by_tier(due, interleave);
+    items.extend(ordered_by_tier(new, interleave));
     Ok(items.into_iter().map(|c| c.item).collect())
 }
 
@@ -217,25 +228,33 @@ fn tier_rank(tier: &str) -> u8 {
     }
 }
 
-/// Orders a phase tier-major (D29): group by tier, interleave across topics
-/// within each tier, then concatenate relearn → teach → recognize so a later
-/// tier never precedes an earlier one. Interleaving still spreads consecutive
-/// items across topics *within* a tier.
-fn ordered_by_tier(candidates: Vec<Candidate>) -> Vec<Candidate> {
+/// Orders a phase tier-major (D29): group by tier, order across topics within
+/// each tier per the `interleave` toggle, then concatenate relearn → teach →
+/// recognize so a later tier never precedes an earlier one. Points-at-stake
+/// still orders within a topic in both modes.
+fn ordered_by_tier(candidates: Vec<Candidate>, interleave: bool) -> Vec<Candidate> {
     let mut by_tier: [Vec<Candidate>; 4] = [Vec::new(), Vec::new(), Vec::new(), Vec::new()];
     for candidate in candidates {
         by_tier[tier_rank(&candidate.item.tier) as usize].push(candidate);
     }
-    by_tier.into_iter().flat_map(interleave).collect()
+    by_tier
+        .into_iter()
+        .flat_map(|tier| {
+            if interleave {
+                interleave_topics(tier)
+            } else {
+                blocked_by_topic(tier)
+            }
+        })
+        .collect()
 }
 
-/// Spreads consecutive items across topics while honouring points-at-stake.
-///
-/// Each topic's items are queued in points order; the server then repeatedly
-/// takes the highest-points item whose topic differs from the one just served,
-/// only repeating a topic when nothing else remains. When every item is from a
-/// distinct topic this reduces to a pure points-descending order.
-fn interleave(candidates: Vec<Candidate>) -> Vec<Candidate> {
+/// Groups candidates by topic, each group in points-descending order, and the
+/// groups themselves ordered by their strongest (highest-points) item — i.e.
+/// the order the topics first appear once the whole phase is sorted by points.
+/// Shared by both the interleaved and blocked orderings so they draw from an
+/// identical, points-ordered partition and differ only in emission order.
+fn group_by_topic(candidates: Vec<Candidate>) -> Vec<VecDeque<Candidate>> {
     let mut ordered = candidates;
     ordered.sort_by(order_by_points);
 
@@ -249,6 +268,16 @@ fn interleave(candidates: Vec<Candidate>) -> Vec<Candidate> {
         });
         groups[slot].push_back(candidate);
     }
+    groups
+}
+
+/// Interleaving ON: spreads consecutive items across topics while honouring
+/// points-at-stake. The server repeatedly takes the highest-points item whose
+/// topic differs from the one just served, only repeating a topic when nothing
+/// else remains. When every item is from a distinct topic this reduces to a
+/// pure points-descending order.
+fn interleave_topics(candidates: Vec<Candidate>) -> Vec<Candidate> {
+    let mut groups = group_by_topic(candidates);
 
     let mut result = Vec::new();
     let mut last_topic: Option<String> = None;
@@ -264,6 +293,14 @@ fn interleave(candidates: Vec<Candidate>) -> Vec<Candidate> {
         result.push(candidate);
     }
     result
+}
+
+/// Interleaving OFF (WS5 ablation): serves each topic's items contiguously
+/// (blocked practice). Topics are ordered by points-at-stake — the topic
+/// holding the strongest item first — and each is fully drained before the
+/// next, so consecutive items stay within a topic instead of spreading.
+fn blocked_by_topic(candidates: Vec<Candidate>) -> Vec<Candidate> {
+    group_by_topic(candidates).into_iter().flatten().collect()
 }
 
 /// Index of the group whose head has the highest points (ties broken by card

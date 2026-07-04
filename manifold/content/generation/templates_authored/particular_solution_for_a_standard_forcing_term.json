@@ -1,0 +1,156 @@
+[
+ {
+  "template_id": "undetermined_coeff_exp_v1",
+  "skill_id": "particular_solution_for_a_standard_forcing_term",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "c": {"type": "int", "lo": -3, "hi": 3},
+   "k": {"type": "int", "lo": 1, "hi": 3},
+   "s": {"type": "int", "lo": -3, "hi": 3}
+  },
+  "constraints": [
+   "Ne([[s]], 0)",
+   "Ne([[k]]**2 + [[b]]*[[k]] + [[c]], 0)",
+   "Ne([[c]], 0)",
+   "Ne([[k]]**2 + [[c]], 0)"
+  ],
+  "derived": {"M": "[[s]]*([[k]]**2 + [[b]]*[[k]] + [[c]])"},
+  "stem": "Find the particular solution \\( y_p = A e^{[[k]]x} \\) of \\( y'' + ([[b]])y' + ([[c]])y = [[M]]\\,e^{[[k]]x} \\). What is the coefficient \\( A \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "([[M]])/([[k]]**2 + [[b]]*[[k]] + [[c]])"},
+  "distractors": [
+   "([[M]])/([[k]]**2 + [[c]])",
+   "([[M]])/([[c]])",
+   "-[[s]]",
+   "[[s]] + 1",
+   "[[s]] - 1",
+   "[[s]] + 2",
+   "[[s]] - 2"
+  ],
+  "solution": "Substituting \\( y_p = A e^{[[k]]x} \\) gives \\( A([[k]]^{2} + ([[b]])[[k]] + ([[c]]))e^{[[k]]x} = [[M]]\\,e^{[[k]]x} \\). Since \\( [[k]] \\) is not a root of the characteristic equation, \\( A = \\frac{[[M]]}{[[k]]^{2} + ([[b]])[[k]] + ([[c]])} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This omits the \\( ([[b]])[[k]] \\) term from the denominator.",
+   "This uses only the constant coefficient \\( [[c]] \\) in the denominator, dropping the derivative terms.",
+   "This has the wrong sign.",
+   "This is off by one from the correct coefficient.",
+   "This is off by one from the correct coefficient.",
+   "This is off by two from the correct coefficient.",
+   "This is off by two from the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "undetermined_coeff_constant_forcing_v2",
+  "skill_id": "particular_solution_for_a_standard_forcing_term",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "A_target": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[A_target]], 0)"],
+  "derived": {"M": "[[c]]*[[A_target]]"},
+  "stem": "Find the particular solution \\( y_p = A \\) (a constant) of \\( y'' + ([[b]])y' + ([[c]])y = [[M]] \\). What is \\( A \\)?",
+  "answer_spec": {"op": "evaluate", "expr": "[[M]]/[[c]]"},
+  "distractors": [
+   "[[M]]/[[b]]",
+   "-[[M]]/[[c]]",
+   "[[M]]*[[c]]",
+   "[[M]]",
+   "[[M]]/([[b]] + [[c]])",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Since \\( y_p = A \\) is constant, \\( y_p' = y_p'' = 0 \\), so the equation reduces to \\( ([[c]])A = [[M]] \\), giving \\( A = \\dfrac{[[M]]}{[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This divides by the coefficient of \\( y' \\) instead of the coefficient of \\( y \\), which cannot appear since a constant has zero derivatives.",
+   "This has the wrong sign.",
+   "This multiplies instead of dividing.",
+   "This forgets to divide by \\( c \\) at all.",
+   "This divides by \\( b+c \\) instead of \\( c \\) alone.",
+   "This is one more than the correct coefficient.",
+   "This is one less than the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "undetermined_coeff_sinusoidal_v3",
+  "skill_id": "particular_solution_for_a_standard_forcing_term",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": -3, "hi": 3},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "k": {"type": "choice", "values": [1, 2, 3]},
+   "M": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[M]], 0)", "Ne([[c]], [[k]]**2)"],
+  "stem": "Find the particular solution \\( y_p = A\\cos([[k]]x) + B\\sin([[k]]x) \\) of \\( y'' + ([[b]])y' + ([[c]])y = [[M]]\\cos([[k]]x) \\). What is the coefficient \\( A \\)?",
+  "answer_spec": {
+   "op": "system",
+   "equations": [
+    "([[c]] - [[k]]**2)*A + [[b]]*[[k]]*B = [[M]]",
+    "-[[b]]*[[k]]*A + ([[c]] - [[k]]**2)*B = 0"
+   ],
+   "vars": ["A", "B"],
+   "want": "A"
+  },
+  "distractors": [
+   "[[M]]/([[c]] - [[k]]**2)",
+   "[[M]]/([[b]]*[[k]])",
+   "-[[M]]/([[c]] - [[k]]**2)",
+   "[[M]]*([[c]] - [[k]]**2)",
+   "[[M]]/[[c]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( y_p \\) and matching the coefficients of \\( \\cos([[k]]x) \\) and \\( \\sin([[k]]x) \\) gives the system \\( ([[c]]-[[k]]^{2})A + ([[b]])[[k]]B = [[M]] \\) and \\( -([[b]])[[k]]A + ([[c]]-[[k]]^{2})B = 0 \\). Solving this linear system for \\( A \\) gives \\( A = [[answer]] \\).",
+  "distractor_rationales": [
+   "This ignores the coupling from the \\( y' \\) term and solves as if \\( B \\) were zero.",
+   "This divides by the \\( y' \\)-coupling term alone, ignoring the \\( (c-k^2) \\) term.",
+   "This has the wrong sign, missing the coupling from \\( B \\).",
+   "This multiplies instead of dividing by \\( (c-k^2) \\).",
+   "This divides by \\( c \\) alone instead of \\( c - k^2 \\).",
+   "This is one more than the correct coefficient.",
+   "This is one less than the correct coefficient."
+  ]
+ },
+ {
+  "template_id": "undetermined_coeff_linear_forcing_v4",
+  "skill_id": "particular_solution_for_a_standard_forcing_term",
+  "topic_id": "differential_equations",
+  "tier": "teach",
+  "params": {
+   "b": {"type": "int", "lo": -4, "hi": 4},
+   "c": {"type": "int", "lo": -4, "hi": 4},
+   "M": {"type": "int", "lo": -6, "hi": 6}
+  },
+  "constraints": ["Ne([[c]], 0)", "Ne([[M]], 0)", "Ne([[b]], 0)"],
+  "stem": "Find the particular solution \\( y_p = Ax + B \\) of \\( y'' + ([[b]])y' + ([[c]])y = [[M]]x \\). What is the constant term \\( B \\)?",
+  "answer_spec": {
+   "op": "system",
+   "equations": ["[[c]]*A - [[M]] = 0", "[[b]]*A + [[c]]*B = 0"],
+   "vars": ["A", "B"],
+   "want": "B"
+  },
+  "distractors": [
+   "[[M]]/[[c]]",
+   "-[[M]]/[[c]]",
+   "[[b]]*[[M]]/[[c]]",
+   "[[b]]*[[M]]/[[c]]**2",
+   "-[[M]]/[[b]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "Substituting \\( y_p = Ax + B \\) gives \\( y_p'' = 0 \\) and \\( y_p' = A \\), so matching coefficients of \\( x \\) gives \\( ([[c]])A = [[M]] \\), hence \\( A = [[M]]/([[c]]) \\); matching constants gives \\( ([[b]])A + ([[c]])B = 0 \\), so \\( B = -\\dfrac{([[b]])A}{[[c]]} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This reports the leading coefficient \\( A \\) instead of the constant term \\( B \\).",
+   "This flips the sign of \\( A \\) instead of solving for \\( B \\).",
+   "This forgets to divide by \\( c \\) a second time when solving for \\( B \\).",
+   "This has the wrong sign in front of the correct expression for \\( B \\).",
+   "This uses \\( b \\) in the denominator instead of \\( c \\).",
+   "This is one more than the correct constant term.",
+   "This is one less than the correct constant term."
+  ]
+ }
+]

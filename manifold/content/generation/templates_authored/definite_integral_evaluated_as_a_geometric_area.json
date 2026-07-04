@@ -1,0 +1,147 @@
+[
+ {
+  "template_id": "definite_integral_as_area_v1",
+  "skill_id": "definite_integral_evaluated_as_a_geometric_area",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {"r": {"type": "int", "lo": 2, "hi": 17}},
+  "constraints": [],
+  "derived": {"rsq": "[[r]]**2"},
+  "stem": "By interpreting the integral as the area of a familiar region, evaluate \\[ \\int_{-[[r]]}^{[[r]]} \\sqrt{[[rsq]] - x^{2}}\\,dx. \\]",
+  "answer_spec": {"op": "integrate", "expr": "sqrt([[rsq]] - x**2)", "var": "x", "bounds": ["-[[r]]", "[[r]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*[[rsq]]",
+   "pi*[[rsq]]/4",
+   "pi*[[rsq]]/3",
+   "2*[[rsq]]",
+   "[[rsq]]",
+   "3*[[rsq]]"
+  ],
+  "solution": "The graph of \\( y = \\sqrt{[[rsq]] - x^{2}} \\) is the upper half of the circle \\( x^{2}+y^{2}=[[rsq]] \\) of radius \\( [[r]] \\). The integral is the area of that semicircle, \\( \\tfrac{1}{2}\\pi([[r]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the area of the whole circle, not the semicircle.",
+   "This is a quarter of the circle's area.",
+   "This uses \\( \\tfrac13 \\) of the circle's area with no geometric basis.",
+   "This treats the region as a square of side \\( [[r]] \\) doubled.",
+   "This is just \\( r^{2} \\), forgetting the factor \\( \\tfrac{\\pi}{2} \\)."
+  ]
+ },
+ {
+  "template_id": "definite_integral_as_right_triangle_v1",
+  "skill_id": "definite_integral_evaluated_as_a_geometric_area",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 8},
+   "r": {"type": "int", "lo": 1, "hi": 10}
+  },
+  "constraints": [],
+  "stem": "By interpreting the integral as the area of a familiar region, evaluate \\[ \\int_{0}^{[[r]]} [[k]]x\\,dx. \\]",
+  "answer_spec": {"op": "integrate", "expr": "[[k]]*x", "var": "x", "bounds": ["0", "[[r]]"]},
+  "distractors": [
+   "[[k]]*[[r]]**2",
+   "[[k]]*[[r]]",
+   "[[r]]**2/2",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The graph of \\( y=[[k]]x \\) from \\( x=0 \\) to \\( x=[[r]] \\) bounds a right triangle with legs \\( [[r]] \\) and \\( [[k]][[r]] \\). The integral is its area, \\( \\tfrac{1}{2}[[r]]([[k]][[r]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This treats the region as a full rectangle instead of a triangle, forgetting the factor \\( \\tfrac12 \\).",
+   "This is just the height \\( [[k]][[r]] \\) at \\( x=[[r]] \\), not the triangle's area.",
+   "This drops the coefficient \\( [[k]] \\) from the height.",
+   "This doubles the correct area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "definite_integral_as_trapezoid_v1",
+  "skill_id": "definite_integral_evaluated_as_a_geometric_area",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "m": {"type": "int", "lo": -3, "hi": 3},
+   "c": {"type": "int", "lo": 2, "hi": 12},
+   "a": {"type": "int", "lo": 0, "hi": 4},
+   "b": {"type": "int", "lo": 5, "hi": 9}
+  },
+  "constraints": ["Lt([[a]], [[b]])", "Ne([[m]], 0)", "Gt([[m]]*[[a]] + [[c]], 0)", "Gt([[m]]*[[b]] + [[c]], 0)"],
+  "stem": "By interpreting the integral as the area of a familiar region, evaluate \\[ \\int_{[[a]]}^{[[b]]} \\left([[m]]x + [[c]]\\right)dx. \\]",
+  "answer_spec": {"op": "integrate", "expr": "[[m]]*x + [[c]]", "var": "x", "bounds": ["[[a]]", "[[b]]"]},
+  "distractors": [
+   "([[m]]*[[a]] + [[c]])*([[b]] - [[a]])",
+   "([[m]]*[[b]] + [[c]])*([[b]] - [[a]])",
+   "(([[m]]*[[a]] + [[c]]) + ([[m]]*[[b]] + [[c]]))*([[b]] - [[a]])",
+   "2*[[answer]]",
+   "[[answer]] + 1",
+   "[[answer]] - 1"
+  ],
+  "solution": "The graph of \\( y=[[m]]x+[[c]] \\) is a line staying positive on \\( [[[a]],[[b]]] \\), so the region under it is a trapezoid with parallel sides \\( [[m]][[a]]+[[c]] \\) and \\( [[m]][[b]]+[[c]] \\) and width \\( [[b]]-[[a]] \\). The integral is its area, \\( \\tfrac{1}{2}\\bigl(([[m]][[a]]+[[c]])+([[m]][[b]]+[[c]])\\bigr)([[b]]-[[a]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This uses only the left height, treating the region as a rectangle.",
+   "This uses only the right height, treating the region as a rectangle.",
+   "This forgets the factor \\( \\tfrac12 \\) in the trapezoid area formula.",
+   "This doubles the correct area.",
+   "This is off by one from the correct area."
+  ]
+ },
+ {
+  "template_id": "definite_integral_as_isosceles_triangle_v1",
+  "skill_id": "definite_integral_evaluated_as_a_geometric_area",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {
+   "k": {"type": "int", "lo": 1, "hi": 5},
+   "W": {"type": "int", "lo": 1, "hi": 6}
+  },
+  "constraints": [],
+  "stem": "By interpreting the integral as the area of a familiar region, evaluate \\[ \\int_{-[[W]]}^{[[W]]} [[k]]\\left([[W]] - |x|\\right) dx. \\]",
+  "answer_spec": {"op": "integrate", "expr": "[[k]]*([[W]] - Abs(x))", "var": "x", "bounds": ["-[[W]]", "[[W]]"]},
+  "distractors": [
+   "2*[[answer]]",
+   "[[answer]]/2",
+   "[[k]]*2*[[W]]",
+   "[[k]]*[[W]]",
+   "[[answer]] + [[k]]",
+   "[[answer]] - [[k]]"
+  ],
+  "solution": "The graph of \\( y=[[k]]([[W]]-|x|) \\) is an isosceles triangle with base \\( 2[[W]] \\) and height \\( [[k]][[W]] \\) (its apex at \\( x=0 \\)). The integral is its area, \\( \\tfrac{1}{2}(2[[W]])([[k]][[W]]) = [[answer]] \\).",
+  "distractor_rationales": [
+   "This doubles the correct area.",
+   "This halves the correct area.",
+   "This uses only the base of the triangle, dropping the height and the \\( \\tfrac12 \\) factor.",
+   "This drops a factor of \\( [[W]] \\) from the height.",
+   "This is off by \\( [[k]] \\) from the correct area."
+  ]
+ },
+ {
+  "template_id": "definite_integral_as_quarter_circle_v1",
+  "skill_id": "definite_integral_evaluated_as_a_geometric_area",
+  "topic_id": "applications_integrals",
+  "tier": "relearn",
+  "params": {"r": {"type": "int", "lo": 2, "hi": 16}},
+  "constraints": [],
+  "derived": {"rsq": "[[r]]**2"},
+  "stem": "By interpreting the integral as the area of a familiar region, evaluate \\[ \\int_{0}^{[[r]]} \\sqrt{[[rsq]] - x^{2}}\\,dx. \\]",
+  "answer_spec": {"op": "integrate", "expr": "sqrt([[rsq]] - x**2)", "var": "x", "bounds": ["0", "[[r]]"]},
+  "require_rational": false,
+  "distractors": [
+   "pi*[[rsq]]/2",
+   "pi*[[rsq]]",
+   "pi*[[rsq]]/8",
+   "[[rsq]]",
+   "2*[[rsq]]",
+   "[[answer]] + 1"
+  ],
+  "solution": "The graph of \\( y = \\sqrt{[[rsq]] - x^{2}} \\) is the upper half of the circle \\( x^{2}+y^{2}=[[rsq]] \\) of radius \\( [[r]] \\), and \\( 0 \\le x \\le [[r]] \\) picks out exactly one quarter of that circle. The integral is the area of that quarter circle, \\( \\tfrac{1}{4}\\pi([[r]])^{2} = [[answer]] \\).",
+  "distractor_rationales": [
+   "This is the area of the full semicircle (from \\( -r \\) to \\( r \\)), not this quarter.",
+   "This is the area of the whole circle.",
+   "This is one eighth of the circle's area.",
+   "This is just \\( r^{2} \\), with no factor of \\( \\pi \\).",
+   "This double-counts \\( r^{2} \\) with no geometric basis."
+  ]
+ }
+]

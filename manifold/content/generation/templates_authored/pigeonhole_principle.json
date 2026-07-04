@@ -1,0 +1,123 @@
+[
+{
+ "template_id": "pigeonhole_guarantee_m_same_v1",
+ "skill_id": "pigeonhole_principle",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "k": {"type": "int", "lo": 2, "hi": 12},
+  "m": {"type": "int", "lo": 2, "hi": 7}
+ },
+ "constraints": [],
+ "stem": "A drawer contains socks of \\( [[k]] \\) different colors, with plenty of each color. What is the minimum number of socks you must pick (without looking) to be GUARANTEED at least \\( [[m]] \\) socks of the same color?",
+ "answer_spec": {"op": "evaluate", "expr": "[[k]]*([[m]] - 1) + 1"},
+ "distractors": [
+  "[[k]]*[[m]]",
+  "[[k]] + [[m]]",
+  "[[k]]*([[m]] - 1)",
+  "[[k]]*[[m]] + 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "In the worst case you pick \\( [[m]]-1 \\) socks of EACH of the \\( [[k]] \\) colors before a repeat is forced; one more sock then guarantees \\( [[m]] \\) of some color: \\( [[k]]([[m]]-1)+1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This assumes you need a full set of \\( m \\) in every color, not just one color.",
+  "This just adds the two quantities instead of applying the pigeonhole worst-case count.",
+  "This forgets the final \\( +1 \\) sock that actually forces the guarantee.",
+  "This adds one to the wrong (over-multiplied) quantity.",
+  "This is one more than the correct minimum.",
+  "This is one less than the correct minimum."
+ ]
+},
+{
+ "template_id": "pigeonhole_max_in_a_box_v1",
+ "skill_id": "pigeonhole_principle",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 20, "hi": 300},
+  "k": {"type": "int", "lo": 2, "hi": 20}
+ },
+ "constraints": ["Gt([[n]], [[k]])"],
+ "stem": "\\( [[n]] \\) balls are distributed among \\( [[k]] \\) boxes (in any way). What is the largest number \\( N \\) such that, no matter how the balls are distributed, SOME box is guaranteed to contain at least \\( N \\) balls?",
+ "answer_spec": {"op": "evaluate", "expr": "ceiling([[n]]/[[k]])"},
+ "distractors": [
+  "floor([[n]]/[[k]])",
+  "[[n]]/[[k]]",
+  "ceiling([[n]]/[[k]]) + 1",
+  "[[k]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "By the pigeonhole principle, some box must contain at least \\( \\lceil n/k \\rceil = \\lceil [[n]]/[[k]] \\rceil = [[answer]] \\) balls (an even split rounded up).",
+ "distractor_rationales": [
+  "This rounds DOWN instead of up, which is not guaranteed to hold in every distribution.",
+  "This uses the un-rounded average, which need not be an integer.",
+  "This overshoots the guaranteed minimum by one.",
+  "This just reports the number of boxes, unrelated to the guaranteed count.",
+  "This is one more than the correct value.",
+  "This is one less than the correct value."
+ ]
+},
+{
+ "template_id": "pigeonhole_worst_case_target_color_v1",
+ "skill_id": "pigeonhole_principle",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "c1": {"type": "int", "lo": 3, "hi": 30},
+  "c2": {"type": "int", "lo": 3, "hi": 30},
+  "c3": {"type": "int", "lo": 3, "hi": 30}
+ },
+ "constraints": [],
+ "stem": "A drawer contains \\( [[c1]] \\) red socks, \\( [[c2]] \\) blue socks, and \\( [[c3]] \\) green socks. What is the minimum number of socks you must draw (without looking) to be GUARANTEED that at least one of them is RED?",
+ "answer_spec": {"op": "evaluate", "expr": "[[c2]] + [[c3]] + 1"},
+ "distractors": [
+  "[[c2]] + [[c3]]",
+  "[[c1]] + 1",
+  "[[c1]] + [[c2]] + [[c3]] - [[c1]] + 1",
+  "[[c1]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "In the worst case you draw every non-red sock first (\\( [[c2]]+[[c3]] \\) of them); the very next sock must be red: \\( [[c2]]+[[c3]]+1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets the extra draw that actually forces a red sock.",
+  "This uses the count of red socks instead of the count of non-red socks.",
+  "This is an unnecessarily convoluted way of writing the wrong count, still missing the actual worst case.",
+  "This just reports the number of red socks available, not a guarantee count.",
+  "This is one more than the correct minimum.",
+  "This is one less than the correct minimum."
+ ]
+},
+{
+ "template_id": "pigeonhole_pair_sum_v1",
+ "skill_id": "pigeonhole_principle",
+ "topic_id": "combinatorics",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 60}
+ },
+ "constraints": [],
+ "derived": {"twon": "2*[[n]]", "target": "2*[[n]] + 1"},
+ "stem": "Consider the integers from 1 to \\( [[twon]] \\), inclusive. What is the minimum number of these integers you must select to GUARANTEE that at least two of the selected integers sum to \\( [[target]] \\)?",
+ "answer_spec": {"op": "evaluate", "expr": "[[n]] + 1"},
+ "distractors": [
+  "[[n]]",
+  "2*[[n]]",
+  "[[n]] + 2",
+  "[[n]] - 1",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Pair up the integers as \\( \\{1,[[twon]]\\}, \\{2,[[twon]]-1\\}, \\ldots \\) — there are \\( [[n]] \\) such pairs, each summing to \\( [[target]] \\). Picking one integer from every pair avoids a match, so you can pick \\( [[n]] \\) integers safely; one more forces two from the same pair: \\( [[n]]+1 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is the number of pairs itself, without the extra pick that forces a match.",
+  "This is the total number of integers available, far more than actually needed.",
+  "This overshoots the guaranteed minimum by one.",
+  "This is exactly one short of forcing a matching pair.",
+  "This is one more than the correct minimum.",
+  "This is one less than the correct minimum."
+ ]
+}
+]

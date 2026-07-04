@@ -1,0 +1,161 @@
+[
+{
+ "template_id": "permutation_groups_sn_count_v1",
+ "skill_id": "permutation_groups",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "How many distinct permutations are there of a set of \\([[n]]\\) distinct objects (i.e., what is \\( |S_{[[n]]}| \\))?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])"},
+ "distractors": [
+  "factorial([[n]]-1)",
+  "[[n]]**[[n]]",
+  "[[n]]*([[n]]-1)",
+  "2**[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "There are \\([[n]]\\) choices for where the first object goes, \\([[n]]-1\\) for the second, and so on, giving \\( |S_{[[n]]}| = [[n]]! = [[answer]] \\).",
+ "distractor_rationales": [
+  "This forgets to include a factor of \\([[n]]\\), leaving only \\(([[n]]-1)!\\).",
+  "This allows repeats (functions, not permutations), an unrelated count.",
+  "This only accounts for placing the first two objects.",
+  "This counts subsets, not full orderings.",
+  "This is off by one above the correct count.",
+  "This is off by one below the correct count."
+ ]
+},
+{
+ "template_id": "permutation_groups_two_cycle_order_v2",
+ "skill_id": "permutation_groups",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 3, "hi": 10},
+  "q": {"type": "int", "lo": 3, "hi": 10},
+  "extra": {"type": "int", "lo": 0, "hi": 5}
+ },
+ "constraints": [],
+ "derived": {"p1": "[[p]]+1", "pq": "[[p]]+[[q]]", "n": "[[p]]+[[q]]+[[extra]]"},
+ "stem": "A permutation \\(\\sigma\\) of a \\([[n]]\\)-element set decomposes into disjoint cycles \\( \\left(1\\ \\ 2\\ \\ \\cdots\\ \\ [[p]]\\right) \\) and \\( \\left([[p1]]\\ \\ \\cdots\\ \\ [[pq]]\\right) \\), with every other element fixed. Find the order of \\(\\sigma\\) (the smallest positive integer \\(k\\) with \\( \\sigma^k = e \\)).",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[p]],[[q]])"},
+ "distractors": [
+  "[[p]]*[[q]]",
+  "[[p]]+[[q]]",
+  "[[p]]",
+  "[[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Disjoint cycles commute, and the order of a product of disjoint cycles is the lcm of their lengths: \\( \\operatorname{lcm}([[p]],[[q]]) = [[answer]] \\). Fixed points contribute a cycle length of 1 and do not affect the order.",
+ "distractor_rationales": [
+  "This multiplies the cycle lengths instead of taking the lcm.",
+  "This adds the cycle lengths instead of taking the lcm.",
+  "This is only the length of the first cycle, ignoring the second.",
+  "This is only the length of the second cycle, ignoring the first.",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order."
+ ]
+},
+{
+ "template_id": "permutation_groups_three_cycle_order_v3",
+ "skill_id": "permutation_groups",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 3, "hi": 7},
+  "q": {"type": "int", "lo": 3, "hi": 7},
+  "r": {"type": "int", "lo": 3, "hi": 7},
+  "extra": {"type": "int", "lo": 0, "hi": 4}
+ },
+ "constraints": [],
+ "derived": {
+  "p1": "[[p]]+1",
+  "pq": "[[p]]+[[q]]",
+  "pq1": "[[p]]+[[q]]+1",
+  "pqr": "[[p]]+[[q]]+[[r]]",
+  "n": "[[p]]+[[q]]+[[r]]+[[extra]]"
+ },
+ "stem": "A permutation \\(\\sigma\\) of a \\([[n]]\\)-element set decomposes into three disjoint cycles: \\( \\left(1\\ \\ 2\\ \\ \\cdots\\ \\ [[p]]\\right) \\), \\( \\left([[p1]]\\ \\ \\cdots\\ \\ [[pq]]\\right) \\), and \\( \\left([[pq1]]\\ \\ \\cdots\\ \\ [[pqr]]\\right) \\), with every other element fixed. Find the order of \\(\\sigma\\).",
+ "answer_spec": {"op": "evaluate", "expr": "lcm(lcm([[p]],[[q]]),[[r]])"},
+ "distractors": [
+  "[[p]]*[[q]]*[[r]]",
+  "[[p]]+[[q]]+[[r]]",
+  "lcm([[p]],[[q]])",
+  "lcm([[q]],[[r]])",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "The order of a product of disjoint cycles is the lcm of their lengths: \\( \\operatorname{lcm}([[p]],[[q]],[[r]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the three cycle lengths instead of taking the lcm.",
+  "This adds the three cycle lengths instead of taking the lcm.",
+  "This omits the third cycle from the lcm.",
+  "This omits the first cycle from the lcm.",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order."
+ ]
+},
+{
+ "template_id": "permutation_groups_shuffle_word_problem_v4",
+ "skill_id": "permutation_groups",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "p": {"type": "int", "lo": 2, "hi": 15},
+  "q": {"type": "int", "lo": 2, "hi": 15}
+ },
+ "constraints": ["Ne([[p]], [[q]])"],
+ "stem": "Two meshed gears are marked with a reference tooth. The small gear returns its marked tooth to the top after every \\([[p]]\\) rotations of the shuffle mechanism, while the large gear returns its marked tooth to the top after every \\([[q]]\\) rotations, and each rotation permutes the mechanism's state. What is the smallest number of rotations after which BOTH marked teeth are simultaneously back at the top?",
+ "answer_spec": {"op": "evaluate", "expr": "lcm([[p]],[[q]])"},
+ "distractors": [
+  "[[p]]*[[q]]",
+  "[[p]]+[[q]]",
+  "[[p]]",
+  "[[q]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "This is exactly the order of the permutation formed by two independent cycles of lengths \\([[p]]\\) and \\([[q]]\\): \\( \\operatorname{lcm}([[p]],[[q]]) = [[answer]] \\).",
+ "distractor_rationales": [
+  "This multiplies the two periods instead of taking the lcm.",
+  "This adds the two periods instead of taking the lcm.",
+  "This is only the small gear's period, ignoring the large gear.",
+  "This is only the large gear's period, ignoring the small gear.",
+  "This is off by one above the correct number of rotations.",
+  "This is off by one below the correct number of rotations."
+ ]
+},
+{
+ "template_id": "permutation_groups_alternating_order_v5",
+ "skill_id": "permutation_groups",
+ "topic_id": "group_theory",
+ "tier": "relearn",
+ "params": {
+  "n": {"type": "int", "lo": 3, "hi": 20}
+ },
+ "constraints": [],
+ "stem": "How many EVEN permutations are there of a set of \\([[n]]\\) distinct objects (i.e., what is \\( |A_{[[n]]}| \\), the order of the alternating group)?",
+ "answer_spec": {"op": "evaluate", "expr": "factorial([[n]])/2"},
+ "distractors": [
+  "factorial([[n]])",
+  "factorial([[n]]-1)",
+  "factorial([[n]])/4",
+  "[[n]]",
+  "[[answer]] + 1",
+  "[[answer]] - 1"
+ ],
+ "solution": "Exactly half of the \\([[n]]!\\) permutations of \\(S_{[[n]]}\\) are even, so \\( |A_{[[n]]}| = [[n]]!/2 = [[answer]] \\).",
+ "distractor_rationales": [
+  "This is \\( |S_{[[n]]}| \\) itself, forgetting that only half are even.",
+  "This uses \\((n-1)!\\), an unrelated factorial.",
+  "This divides by 4 instead of 2, halving the count twice.",
+  "This mistakes \\(n\\) itself for the alternating group's order.",
+  "This is off by one above the correct order.",
+  "This is off by one below the correct order."
+ ]
+}
+]
