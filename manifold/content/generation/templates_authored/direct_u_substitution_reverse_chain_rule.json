@@ -104,7 +104,7 @@
    "d": {"type": "int", "lo": 1, "hi": 6}
   },
   "constraints": [],
-  "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{2[[c]]\\,x}{x^{2} + [[d]]}\\,dx \\), recognizing the numerator as the derivative of the denominator.",
+  "stem": "Evaluate \\( \\int_{0}^{[[a]]} \\frac{2\\cdot[[c]]\\,x}{x^{2} + [[d]]}\\,dx \\), recognizing the numerator as the derivative of the denominator.",
   "answer_spec": {"op": "integrate", "expr": "2*[[c]]*x/(x**2 + [[d]])", "var": "x", "bounds": ["0", "[[a]]"]},
   "distractors": [
    "[[c]]*log([[a]]**2 + [[d]])",
@@ -114,7 +114,7 @@
    "[[answer]]/2",
    "-[[answer]]"
   ],
-  "solution": "Let \\( u = x^{2} + [[d]] \\), so \\( du = 2x\\,dx \\). Then \\( \\int_{0}^{[[a]]} \\frac{2[[c]]x}{x^{2}+[[d]]}\\,dx = [[c]]\\int_{[[d]]}^{[[a]]^{2}+[[d]]} \\frac{du}{u} = [[c]]\\left(\\ln([[a]]^{2}+[[d]]) - \\ln([[d]])\\right) = [[answer]] \\).",
+  "solution": "Let \\( u = x^{2} + [[d]] \\), so \\( du = 2x\\,dx \\). Then \\( \\int_{0}^{[[a]]} \\frac{2\\cdot[[c]]x}{x^{2}+[[d]]}\\,dx = [[c]]\\int_{[[d]]}^{[[a]]^{2}+[[d]]} \\frac{du}{u} = [[c]]\\left(\\ln([[a]]^{2}+[[d]]) - \\ln([[d]])\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the leading constant \\( [[c]] \\) and the subtraction of \\( \\ln([[d]]) \\).",
    "This uses \\( \\ln([[a]]^{2}) \\), dropping the \\( [[d]] \\) shift entirely.",

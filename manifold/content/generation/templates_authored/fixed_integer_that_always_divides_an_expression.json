@@ -61,7 +61,7 @@
   "2**([[m]] + 1) * factorial([[m]])",
   "2**[[m]] * factorial([[m]] + 1)"
  ],
- "solution": "Write the \\( [[m]] \\) consecutive even integers as \\( 2k, 2(k+1), \\dots, 2(k+[[m]]-1) \\). Factoring out a 2 from each term leaves \\( 2^{[[m]]} \\cdot k(k+1)\\cdots(k+[[m]]-1) \\), and the block of \\( [[m]] \\) consecutive integers \\( k, k+1, \\dots, k+[[m]]-1 \\) is always divisible by \\( [[m]]! \\). So the product is always divisible by \\( 2^{[[m]]} \\cdot [[m]]! \\), and taking \\( k=1 \\) (i.e. \\( 2,4,\\dots,2[[m]] \\)) shows this bound is tight: \\( 2^{[[m]]} \\cdot [[m]]! = [[answer]] \\).",
+ "solution": "Write the \\( [[m]] \\) consecutive even integers as \\( 2k, 2(k+1), \\dots, 2(k+[[m]]-1) \\). Factoring out a 2 from each term leaves \\( 2^{[[m]]} \\cdot k(k+1)\\cdots(k+[[m]]-1) \\), and the block of \\( [[m]] \\) consecutive integers \\( k, k+1, \\dots, k+[[m]]-1 \\) is always divisible by \\( [[m]]! \\). So the product is always divisible by \\( 2^{[[m]]} \\cdot [[m]]! \\), and taking \\( k=1 \\) (i.e. \\( 2,4,\\dots,2\\cdot[[m]] \\)) shows this bound is tight: \\( 2^{[[m]]} \\cdot [[m]]! = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets the factor of \\( 2^{[[m]]} \\) pulled out of each of the \\( [[m]] \\) even terms.",
   "This forgets the factor of \\( [[m]]! \\) coming from the consecutive-integer block.",
@@ -102,7 +102,7 @@
   "This drops the factor of 6 entirely, leaving just the coefficient.",
   "This uses only 2 of the 3 consecutive-integer factors.",
   "This uses only 2 of the 3 consecutive-integer factors (the other pairing).",
-  "This doubles the correct bound \\( 6[[a]] \\).",
+  "This doubles the correct bound \\( 6\\cdot[[a]] \\).",
   "This overshoots the correct bound by \\( [[a]] \\).",
   "This undershoots the correct bound by \\( [[a]] \\)."
  ]

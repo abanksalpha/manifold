@@ -30,7 +30,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Differentiability forces \\( m=f'([[p]])=2[[a]][[p]]=[[answer]] \\).",
+ "solution": "Differentiability forces \\( m=f'([[p]])=2\\cdot[[a]]\\cdot[[p]]=[[answer]] \\).",
  "distractor_rationales": []
 },
 {
@@ -92,7 +92,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Matching slopes at \\( x=[[p]] \\): \\( 2[[a]][[p]]+[[b]] = 2[[c]][[p]]+k \\), so \\( k = 2[[a]][[p]]+[[b]]-2[[c]][[p]] = [[answer]] \\).",
+ "solution": "Matching slopes at \\( x=[[p]] \\): \\( 2\\cdot[[a]]\\cdot[[p]]+[[b]] = 2\\cdot[[c]]\\cdot[[p]]+k \\), so \\( k = 2\\cdot[[a]]\\cdot[[p]]+[[b]]-2\\cdot[[c]]\\cdot[[p]] = [[answer]] \\).",
  "distractor_rationales": [
   "This uses only the left piece's slope, forgetting to subtract the right piece's quadratic contribution.",
   "This drops the linear term \\( b \\) from the left piece's slope.",
@@ -128,7 +128,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Differentiability gives \\( m=2[[a]][[p]] \\); substituting into the continuity equation \\( m[[p]]+b=[[a]][[p]]^{2}+[[e]] \\) and solving gives \\( b = [[a]][[p]]^{2}+[[e]]-2[[a]][[p]]\\cdot[[p]] = -[[a]][[p]]^{2}+[[e]] \\), which simplifies to \\( [[answer]] \\).",
+ "solution": "Differentiability gives \\( m=2\\cdot[[a]]\\cdot[[p]] \\); substituting into the continuity equation \\( m[[p]]+b=[[a]]\\cdot[[p]]^{2}+[[e]] \\) and solving gives \\( b = [[a]]\\cdot[[p]]^{2}+[[e]]-2\\cdot[[a]]\\cdot[[p]]\\cdot[[p]] = -[[a]]\\cdot[[p]]^{2}+[[e]] \\), which simplifies to \\( [[answer]] \\).",
  "distractor_rationales": [
   "This reports the slope \\( m \\) instead of the intercept \\( b \\).",
   "This forgets to subtract the extra \\( mp \\) term when solving for \\( b \\).",

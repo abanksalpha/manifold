@@ -25,4 +25,50 @@ impl crate::services::ManifoldService for Collection {
         let items = crate::manifold::session::build_session_queue(self, interleave)?;
         Ok(anki_proto::manifold::SessionQueueResponse { items })
     }
+
+    fn get_problems_solved(
+        &mut self,
+    ) -> error::Result<anki_proto::manifold::ProblemsSolvedResponse> {
+        // Cumulative count of graded reviews across all sessions (the all-time
+        // analog of Anki's studied-today count).
+        Ok(anki_proto::manifold::ProblemsSolvedResponse {
+            total: self.storage.total_studied()?,
+        })
+    }
+
+    fn get_placement_state(
+        &mut self,
+    ) -> error::Result<anki_proto::manifold::PlacementStateResponse> {
+        let completed = crate::manifold::placement::placement_completed(self)?;
+        Ok(anki_proto::manifold::PlacementStateResponse { completed })
+    }
+
+    fn build_placement_exam(
+        &mut self,
+        input: anki_proto::manifold::PlacementExamRequest,
+    ) -> error::Result<anki_proto::manifold::SessionQueueResponse> {
+        let items = crate::manifold::placement::build_placement_exam(
+            self,
+            &input.topic_ids,
+            input.per_topic,
+        )?;
+        Ok(anki_proto::manifold::SessionQueueResponse { items })
+    }
+
+    fn apply_placement(
+        &mut self,
+        input: anki_proto::manifold::ApplyPlacementRequest,
+    ) -> error::Result<anki_proto::manifold::ApplyPlacementResponse> {
+        let seeded_cards =
+            crate::manifold::placement::apply_placement(self, &input.known_topic_ids)?;
+        Ok(anki_proto::manifold::ApplyPlacementResponse { seeded_cards })
+    }
+
+    fn claim_account(
+        &mut self,
+        input: anki_proto::manifold::ClaimAccountRequest,
+    ) -> error::Result<anki_proto::manifold::ClaimAccountResponse> {
+        let reset = crate::manifold::placement::claim_account(self, &input.uid)?;
+        Ok(anki_proto::manifold::ClaimAccountResponse { reset })
+    }
 }

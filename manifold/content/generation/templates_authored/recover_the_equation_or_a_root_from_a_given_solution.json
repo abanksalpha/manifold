@@ -20,11 +20,11 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The exponents \\( [[p]] \\) and \\( [[q]] \\) are the characteristic roots, so the characteristic equation is \\( (r - [[p]])(r - [[q]]) = r^{2} - ([[p]]+[[q]])r + [[p]][[q]] = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( c = [[p]][[q]] = [[answer]] \\).",
+  "solution": "The exponents \\( [[p]] \\) and \\( [[q]] \\) are the characteristic roots, so the characteristic equation is \\( (r - [[p]])(r - [[q]]) = r^{2} - ([[p]]+[[q]])r + [[p]]\\cdot[[q]] = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( c = [[p]]\\cdot[[q]] = [[answer]] \\).",
   "distractor_rationales": [
    "This gives \\( b = -([[p]]+[[q]]) \\), the coefficient of \\( y' \\), not \\( c \\).",
    "This is the sum of the roots rather than their product.",
-   "This has the wrong sign; the product of the roots is \\( +[[p]][[q]] \\).",
+   "This has the wrong sign; the product of the roots is \\( +[[p]]\\cdot[[q]] \\).",
    "This subtracts the roots instead of multiplying them.",
    "This squares one root instead of multiplying the two roots.",
    "This is off by one from the correct value.",
@@ -52,7 +52,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The exponents \\( [[p]] \\) and \\( [[q]] \\) are the characteristic roots, so the characteristic equation is \\( (r-[[p]])(r-[[q]]) = r^{2} - ([[p]]+[[q]])r + [[p]][[q]] = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( b = -([[p]]+[[q]]) = [[answer]] \\).",
+  "solution": "The exponents \\( [[p]] \\) and \\( [[q]] \\) are the characteristic roots, so the characteristic equation is \\( (r-[[p]])(r-[[q]]) = r^{2} - ([[p]]+[[q]])r + [[p]]\\cdot[[q]] = 0 \\). Matching \\( y'' + b\\,y' + c\\,y = 0 \\) gives \\( b = -([[p]]+[[q]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This drops the negative sign required by matching \\( -(p+q) \\) to \\( b \\).",
    "This is the product of the roots, which is \\( c \\), not \\( b \\).",

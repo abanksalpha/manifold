@@ -34,6 +34,7 @@ import {
     initializeAuth,
     inMemoryPersistence,
     onAuthStateChanged,
+    signInAnonymously,
     signInWithCredential,
     signInWithPopup,
     signOut,
@@ -43,6 +44,7 @@ import {
     connectFirestoreEmulator,
     doc,
     type Firestore,
+    getDoc,
     getFirestore,
     onSnapshot,
     serverTimestamp,
@@ -156,6 +158,13 @@ function maybeConnectEmulators(auth: Auth, db: Firestore): void {
     emulatorsConnected = true;
     connectAuthEmulator(auth, "http://127.0.0.1:9399", { disableWarnings: true });
     connectFirestoreEmulator(db, "127.0.0.1", 8399);
+    // The e2e harness has no interactive Google sign-in, so authenticate against
+    // the Auth emulator anonymously — enough for the login gate and the owner-only
+    // Firestore rules (which key on request.auth.uid). A failure surfaces in the
+    // console and leaves the login screen up, never silently letting the app in.
+    void signInAnonymously(auth).catch((err) => {
+        console.error("Manifold e2e emulator sign-in failed:", err);
+    });
 }
 
 function toManifoldUser(user: User): ManifoldUser {
@@ -278,6 +287,40 @@ async function safeText(res: Response): Promise<string> {
 export async function signOutManifold(): Promise<void> {
     const { auth } = ensure();
     await signOut(auth);
+}
+
+// --- per-account onboarding state (Firestore-backed) -------------------------
+
+/**
+ * Whether the signed-in Google account has finished onboarding/placement. This
+ * lives in Firestore, not the local collection, so it follows the account: a new
+ * Google account has no doc and is sent to placement on any device. Throws if no
+ * user is signed in (the app gates on sign-in before this runs).
+ */
+export async function getOnboardingComplete(): Promise<boolean> {
+    const { auth, db } = ensure();
+    const user = auth.currentUser;
+    if (!user) {
+        throw new Error("getOnboardingComplete called with no signed-in user");
+    }
+    const snap = await getDoc(doc(db, "users", user.uid, "state", "onboarding"));
+    return snap.exists() && snap.data().complete === true;
+}
+
+/**
+ * Mark onboarding/placement complete for the signed-in Google account, so every
+ * device signed into it skips placement. Throws if no user is signed in.
+ */
+export async function setOnboardingComplete(): Promise<void> {
+    const { auth, db } = ensure();
+    const user = auth.currentUser;
+    if (!user) {
+        throw new Error("setOnboardingComplete called with no signed-in user");
+    }
+    await setDoc(doc(db, "users", user.uid, "state", "onboarding"), {
+        complete: true,
+        updatedAt: serverTimestamp(),
+    });
 }
 
 // --- progress mirror (write + real-time read) --------------------------------

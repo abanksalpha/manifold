@@ -173,7 +173,7 @@
   "Rational([[priorA]]+[[likeA]],[[priorA]]+[[likeA]]+[[priorB]]+[[likeB]])",
   "[[priorA]]*[[likeA]]/([[priorB]]*[[likeB]])"
  ],
- "solution": "The posterior odds are the prior odds times the likelihood ratio: \\( \\dfrac{P(H_1\\mid E)}{P(H_2\\mid E)} = \\dfrac{[[priorA]]}{[[priorB]]}\\cdot\\dfrac{[[likeA]]}{[[likeB]]} \\). Converting odds \\( [[priorA]][[likeA]]:[[priorB]][[likeB]] \\) to a probability gives \\( P(H_1\\mid E) = \\dfrac{[[priorA]]\\cdot[[likeA]]}{[[priorA]]\\cdot[[likeA]]+[[priorB]]\\cdot[[likeB]]} = [[answer]] \\).",
+ "solution": "The posterior odds are the prior odds times the likelihood ratio: \\( \\dfrac{P(H_1\\mid E)}{P(H_2\\mid E)} = \\dfrac{[[priorA]]}{[[priorB]]}\\cdot\\dfrac{[[likeA]]}{[[likeB]]} \\). Converting odds \\( [[priorA]]\\cdot[[likeA]]:[[priorB]]\\cdot[[likeB]] \\) to a probability gives \\( P(H_1\\mid E) = \\dfrac{[[priorA]]\\cdot[[likeA]]}{[[priorA]]\\cdot[[likeA]]+[[priorB]]\\cdot[[likeB]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This uses only the prior odds, ignoring the new evidence's likelihood ratio.",
   "This uses only the likelihood ratio, ignoring the prior probabilities.",

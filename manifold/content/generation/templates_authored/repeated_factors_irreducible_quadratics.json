@@ -23,7 +23,7 @@
  "solution": "For the repeated linear factor, \\( \\int \\frac{[[c]]}{(x+[[a]])^{2}}\\,dx = -\\frac{[[c]]}{x+[[a]]} \\). Evaluating from \\( 0 \\) to \\( [[b]] \\) gives \\( \\frac{[[c]]}{[[a]]} - \\frac{[[c]]}{[[a]]+[[b]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets the factor of \\( [[b]] \\) in the numerator of the combined fraction.",
-  "This treats the antiderivative as \\( \\tfrac{[[c]][[b]]}{[[a]]^{2}} \\), a plug-in error.",
+  "This treats the antiderivative as \\( \\tfrac{[[c]]\\cdot[[b]]}{[[a]]^{2}} \\), a plug-in error.",
   "This doubles the correct value.",
   "This halves the correct value.",
   "This is off by one from the correct value.",
@@ -53,7 +53,7 @@
   "[[answer]] + 1",
   "-[[answer]]"
  ],
- "solution": "Write \\( [[d]]x+[[e]] = [[d]](x+[[a]]) + ([[e]]-[[d]]\\cdot[[a]]) \\), so the integrand splits as \\( \\dfrac{[[d]]}{x+[[a]]} + \\dfrac{[[e]]-[[d]][[a]]}{(x+[[a]])^{2}} \\). Integrating gives \\( [[d]]\\ln(x+[[a]]) - \\dfrac{[[e]]-[[d]][[a]]}{x+[[a]]} \\), evaluated from \\( 0 \\) to \\( [[b]] \\), equal to \\( [[answer]] \\).",
+ "solution": "Write \\( [[d]]x+[[e]] = [[d]](x+[[a]]) + ([[e]]-[[d]]\\cdot[[a]]) \\), so the integrand splits as \\( \\dfrac{[[d]]}{x+[[a]]} + \\dfrac{[[e]]-[[d]]\\cdot[[a]]}{(x+[[a]])^{2}} \\). Integrating gives \\( [[d]]\\ln(x+[[a]]) - \\dfrac{[[e]]-[[d]]\\cdot[[a]]}{x+[[a]]} \\), evaluated from \\( 0 \\) to \\( [[b]] \\), equal to \\( [[answer]] \\).",
  "distractor_rationales": [
   "This keeps only the logarithmic term from the \\( A/(x+a) \\) piece and drops the algebraic \\( B/(x+a)^2 \\) contribution entirely.",
   "This keeps only the algebraic \\( B/(x+a)^2 \\) piece (using the wrong constant \\( e \\) instead of \\( e-da \\)) and drops the logarithm entirely.",

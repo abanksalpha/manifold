@@ -87,7 +87,7 @@
       "Mod([[n]] - [[answer]], [[n]])",
       "Mod([[answer]] + 3, [[n]])"
     ],
-    "solution": "Since \\( [[a]] \\) is coprime to \\( [[n]]=[[p]][[q]] \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) with \\( \\varphi([[n]])=([[p]]-1)([[q]]-1) \\). So \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\equiv [[answer]]\\pmod{[[n]]} \\).",
+    "solution": "Since \\( [[a]] \\) is coprime to \\( [[n]]=[[p]]\\cdot[[q]] \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) with \\( \\varphi([[n]])=([[p]]-1)([[q]]-1) \\). So \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\equiv [[answer]]\\pmod{[[n]]} \\).",
     "distractor_rationales": [
       "This is \\( [[a]] \\) itself, not its inverse.",
       "This uses \\( p-2 \\) as if the modulus were the plain prime \\( [[p]] \\), not the product \\( [[n]] \\).",
@@ -161,7 +161,7 @@
       "Mod([[answer]] + 2, [[n]])",
       "Mod([[n]] - [[answer]], [[n]])"
     ],
-    "solution": "Since \\( [[a]] \\) is coprime to \\( [[n]]=[[p]][[q]] \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) with \\( \\varphi([[n]])=([[p]]-1)([[q]]-1) \\), so \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\pmod{[[n]]} \\). Multiplying both sides of the congruence by this inverse gives \\( x \\equiv [[b]]\\cdot[[a]]^{\\varphi([[n]])-1} \\equiv [[answer]] \\pmod{[[n]]} \\).",
+    "solution": "Since \\( [[a]] \\) is coprime to \\( [[n]]=[[p]]\\cdot[[q]] \\), Euler's theorem gives \\( [[a]]^{\\varphi([[n]])}\\equiv 1\\pmod{[[n]]} \\) with \\( \\varphi([[n]])=([[p]]-1)([[q]]-1) \\), so \\( [[a]]^{-1}\\equiv [[a]]^{\\varphi([[n]])-1}\\pmod{[[n]]} \\). Multiplying both sides of the congruence by this inverse gives \\( x \\equiv [[b]]\\cdot[[a]]^{\\varphi([[n]])-1} \\equiv [[answer]] \\pmod{[[n]]} \\).",
     "distractor_rationales": [
       "This forgets to multiply by the inverse of \\( [[a]] \\); it just returns \\( b \\) reduced mod \\( n \\).",
       "This is the inverse of \\( [[a]] \\) alone, forgetting to multiply by \\( [[b]] \\).",

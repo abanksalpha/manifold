@@ -125,7 +125,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The combined total is \\( [[M]]\\cdot([[w1]]+[[w2]]) \\), and the first group already contributes \\( [[w1]]\\cdot[[m1]] \\), so the second group's total is \\( [[M]]([[w1]]+[[w2]]) - [[w1]][[m1]] \\); dividing by \\( [[w2]] \\) gives \\( [[answer]] \\).",
+  "solution": "The combined total is \\( [[M]]\\cdot([[w1]]+[[w2]]) \\), and the first group already contributes \\( [[w1]]\\cdot[[m1]] \\), so the second group's total is \\( [[M]]([[w1]]+[[w2]]) - [[w1]]\\cdot[[m1]] \\); dividing by \\( [[w2]] \\) gives \\( [[answer]] \\).",
   "distractor_rationales": [
    "This assumes the second group has the same mean as the combined group.",
    "This uses only \\( [[w2]] \\) (not the full combined count) when computing the combined total.",
@@ -155,7 +155,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The new total is \\( ([[n]]+1)\\cdot[[mnew]] \\) and the old total was \\( [[n]]\\cdot[[m]] \\), so the added value is the difference: \\( ([[n]]+1)[[mnew]] - [[n]][[m]] = [[answer]] \\).",
+  "solution": "The new total is \\( ([[n]]+1)\\cdot[[mnew]] \\) and the old total was \\( [[n]]\\cdot[[m]] \\), so the added value is the difference: \\( ([[n]]+1)[[mnew]] - [[n]]\\cdot[[m]] = [[answer]] \\).",
   "distractor_rationales": [
    "This assumes the added value simply equals the new mean.",
    "This swaps which mean gets multiplied by \\( [[n]]+1\\) versus \\( [[n]] \\).",

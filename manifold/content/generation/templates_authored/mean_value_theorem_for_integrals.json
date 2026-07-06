@@ -55,7 +55,7 @@
   "[[answer]] - 1",
   "[[answer]] + 2"
  ],
- "solution": "The average value of \\( f(x)=x^{2} \\) on \\( [[[a]], [[b]]] \\) is \\( \\bar f = \\frac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]} t^{2}\\, dt = \\frac{[[a]]^{2}+[[a]][[b]]+[[b]]^{2}}{3} \\). Since \\( f \\) is increasing on this positive interval, the unique \\( c \\) with \\( c^{2}=\\bar f \\) and \\( c \\in ([[a]],[[b]]) \\) is \\( c = \\sqrt{\\bar f} = [[answer]] \\).",
+ "solution": "The average value of \\( f(x)=x^{2} \\) on \\( [[[a]], [[b]]] \\) is \\( \\bar f = \\frac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]} t^{2}\\, dt = \\frac{[[a]]^{2}+[[a]]\\cdot[[b]]+[[b]]^{2}}{3} \\). Since \\( f \\) is increasing on this positive interval, the unique \\( c \\) with \\( c^{2}=\\bar f \\) and \\( c \\in ([[a]],[[b]]) \\) is \\( c = \\sqrt{\\bar f} = [[answer]] \\).",
  "distractor_rationales": [
   "This uses the midpoint of the interval, which is only the MVT point for a LINEAR function, not for \\( x^{2} \\).",
   "This reports the average value \\( \\bar f \\) itself instead of solving \\( c^{2}=\\bar f \\) for \\( c \\).",
@@ -154,7 +154,7 @@
   "[[answer]] - 1",
   "[[w]]*2"
  ],
- "solution": "The average value of \\( |x| \\) on \\( [-[[w]],[[w]]] \\) is \\( \\bar f = \\frac{1}{2[[w]]}\\int_{-[[w]]}^{[[w]]} |x|\\,dx = \\frac{[[w]]}{2} \\). Solving \\( |c| = [[w]]/2 \\) gives TWO guaranteed points, \\( c = \\pm [[w]]/2 \\); \\( [[answer]] \\) is one of them.",
+ "solution": "The average value of \\( |x| \\) on \\( [-[[w]],[[w]]] \\) is \\( \\bar f = \\frac{1}{2\\cdot[[w]]}\\int_{-[[w]]}^{[[w]]} |x|\\,dx = \\frac{[[w]]}{2} \\). Solving \\( |c| = [[w]]/2 \\) gives TWO guaranteed points, \\( c = \\pm [[w]]/2 \\); \\( [[answer]] \\) is one of them.",
  "distractor_rationales": [
   "This is an endpoint of the interval, not an interior point where \\( f \\) meets its average.",
   "This is the other endpoint of the interval, not an interior point where \\( f \\) meets its average.",

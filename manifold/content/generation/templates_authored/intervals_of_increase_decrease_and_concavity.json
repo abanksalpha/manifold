@@ -63,7 +63,7 @@
   "-Rational([[B]], 3) + 1",
   "-Rational([[B]], 3) - 1"
  ],
- "solution": "\\( f'(x)=3x^{2}+2([[B]])x=x(3x+2[[B]]) \\) is zero at \\( x=0 \\) and \\( x=-\\frac{2[[B]]}{3} \\), so \\( f \\) is decreasing on \\( \\left(0,-\\frac{2[[B]]}{3}\\right) \\). \\( f''(x)=6x+2[[B]] \\) is zero at \\( x=-\\frac{[[B]]}{3} \\), so \\( f \\) is concave down for \\( x<-\\frac{[[B]]}{3} \\). Intersecting, \\( f \\) is decreasing and concave down on \\( \\left(0,-\\frac{[[B]]}{3}\\right) \\), whose right endpoint is \\( [[answer]] \\).",
+ "solution": "\\( f'(x)=3x^{2}+2([[B]])x=x(3x+2\\cdot[[B]]) \\) is zero at \\( x=0 \\) and \\( x=-\\frac{2\\cdot[[B]]}{3} \\), so \\( f \\) is decreasing on \\( \\left(0,-\\frac{2\\cdot[[B]]}{3}\\right) \\). \\( f''(x)=6x+2\\cdot[[B]] \\) is zero at \\( x=-\\frac{[[B]]}{3} \\), so \\( f \\) is concave down for \\( x<-\\frac{[[B]]}{3} \\). Intersecting, \\( f \\) is decreasing and concave down on \\( \\left(0,-\\frac{[[B]]}{3}\\right) \\), whose right endpoint is \\( [[answer]] \\).",
  "distractor_rationales": [
   "This is the right endpoint of the full decreasing interval, ignoring the concavity condition.",
   "This drops the factor of 3 in the inflection-point formula.",

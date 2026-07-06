@@ -251,7 +251,7 @@
    }
   },
   "constraints": [],
-  "stem": "The circle \\( x^2+y^2 = [[a]]\\cdot 2x \\) has polar equation \\( r = 2[[a]]\\cos\\theta \\). Using this, find the area enclosed by the circle by evaluating \\( \\iint_D 1\\,dA \\) in polar coordinates.",
+  "stem": "The circle \\( x^2+y^2 = [[a]]\\cdot 2x \\) has polar equation \\( r = 2\\cdot[[a]]\\cos\\theta \\). Using this, find the area enclosed by the circle by evaluating \\( \\iint_D 1\\,dA \\) in polar coordinates.",
   "answer_spec": {
    "op": "dblintegrate",
    "expr": "r",
@@ -279,11 +279,11 @@
    "[[answer]] + 2*pi",
    "[[answer]] - 2*pi"
   ],
-  "solution": "The area is \\( \\int_{-\\pi/2}^{\\pi/2}\\int_{0}^{2[[a]]\\cos\\theta} r\\,dr\\,d\\theta = \\int_{-\\pi/2}^{\\pi/2} 2[[a]]^2\\cos^2\\theta\\,d\\theta = 2[[a]]^2\\cdot\\frac{\\pi}{2} = [[answer]] \\), matching the known area \\(\\pi[[a]]^2\\) of a circle of radius \\([[a]]\\).",
+  "solution": "The area is \\( \\int_{-\\pi/2}^{\\pi/2}\\int_{0}^{2\\cdot[[a]]\\cos\\theta} r\\,dr\\,d\\theta = \\int_{-\\pi/2}^{\\pi/2} 2\\cdot[[a]]^2\\cos^2\\theta\\,d\\theta = 2\\cdot[[a]]^2\\cdot\\frac{\\pi}{2} = [[answer]] \\), matching the known area \\(\\pi[[a]]^2\\) of a circle of radius \\([[a]]\\).",
   "distractor_rationales": [
    "This doubles the correct area, as if the angular range were \\(-\\pi\\) to \\(\\pi\\) with no adjustment.",
    "This halves the correct area, mishandling the \\(\\cos^2\\theta\\) integral.",
-   "This uses radius \\(2[[a]]\\) instead of the true radius \\([[a]]\\) of the circle.",
+   "This uses radius \\(2\\cdot[[a]]\\) instead of the true radius \\([[a]]\\) of the circle.",
    "This adds a stray multiple of \\(\\pi\\) to the correct value.",
    "This subtracts a stray multiple of \\(\\pi\\) from the correct value."
   ]

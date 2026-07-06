@@ -86,7 +86,7 @@
    "[[answer]] + 1",
    "[[answer]]/2"
   ],
-  "solution": "The cube's space diagonal equals the sphere's diameter \\( 2[[r]] \\). Since a cube of edge \\( e \\) has space diagonal \\( e\\sqrt{3} \\), \\( e = \\dfrac{2[[r]]}{\\sqrt{3}} \\), so the volume is \\( e^{3} = \\left(\\dfrac{2[[r]]}{\\sqrt{3}}\\right)^{3} = [[answer]] \\).",
+  "solution": "The cube's space diagonal equals the sphere's diameter \\( 2\\cdot[[r]] \\). Since a cube of edge \\( e \\) has space diagonal \\( e\\sqrt{3} \\), \\( e = \\dfrac{2\\cdot[[r]]}{\\sqrt{3}} \\), so the volume is \\( e^{3} = \\left(\\dfrac{2\\cdot[[r]]}{\\sqrt{3}}\\right)^{3} = [[answer]] \\).",
   "distractor_rationales": [
    "This treats the radius itself as the cube's edge length.",
    "This treats the sphere's diameter as the cube's edge length, ignoring the \\( \\sqrt{3} \\) factor.",

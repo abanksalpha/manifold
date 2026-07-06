@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T05:16:35.760542+00:00",
+  "generated_at": "2026-07-06T04:40:07.333708+00:00",
   "what_this_measures": "paraphrase quality (surface variety + correctness fidelity) of the multiple verified items per skill in the teach bank; the generation side of 7d.",
   "skills_with_paraphrases": 36,
   "total_paraphrase_pairs": 96,

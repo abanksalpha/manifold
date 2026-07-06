@@ -61,7 +61,7 @@
   "[[b]]**3 - 3*[[p]]**2*[[b]] + 1",
   "[[b]]**3 - 3*[[p]]**2*[[b]] - 1"
  ],
- "solution": "\\( f'(x)=3x^{2}-3([[p]])^{2}=0 \\) at \\( x=[[p]] \\), a local minimum since \\( f \\) decreases then increases. The candidates are \\( f(0)=0 \\), \\( f([[p]])=-2([[p]])^{3} \\), and \\( f([[b]])=[[b]]^{3}-3([[p]])^{2}[[b]] \\); since \\( [[b]]>2[[p]] \\) the last value is largest, so the absolute maximum is \\( [[answer]] \\).",
+ "solution": "\\( f'(x)=3x^{2}-3([[p]])^{2}=0 \\) at \\( x=[[p]] \\), a local minimum since \\( f \\) decreases then increases. The candidates are \\( f(0)=0 \\), \\( f([[p]])=-2([[p]])^{3} \\), and \\( f([[b]])=[[b]]^{3}-3([[p]])^{2}[[b]] \\); since \\( [[b]]>2\\cdot[[p]] \\) the last value is largest, so the absolute maximum is \\( [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( f(0) \\), an endpoint but not the largest value.",
   "This is the local minimum value \\( f([[p]]) \\), not the maximum.",
@@ -95,7 +95,7 @@
   "[[p0]]**2/(4*[[m]]) + 1",
   "[[p0]]**2/(4*[[m]]) - 1"
  ],
- "solution": "\\( R(x) \\) is a downward parabola with vertex at \\( x=\\frac{[[p0]]}{2([[m]])} \\); the maximum revenue is \\( R\\!\\left(\\frac{[[p0]]}{2[[m]]}\\right)=\\frac{[[p0]]^{2}}{4[[m]]}=[[answer]] \\).",
+ "solution": "\\( R(x) \\) is a downward parabola with vertex at \\( x=\\frac{[[p0]]}{2([[m]])} \\); the maximum revenue is \\( R\\!\\left(\\frac{[[p0]]}{2\\cdot[[m]]}\\right)=\\frac{[[p0]]^{2}}{4\\cdot[[m]]}=[[answer]] \\).",
  "distractor_rationales": [
   "This drops a factor of 2 in the denominator.",
   "This is the optimal quantity \\( x^{*} \\), not the maximum revenue.",

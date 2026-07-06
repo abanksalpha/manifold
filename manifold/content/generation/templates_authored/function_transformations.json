@@ -119,7 +119,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "First scale the input by [[d]], evaluate \\( f \\), then apply the outer vertical stretch [[c]]: \\( g(x) = [[c]]\\,f([[d]]x) \\). So \\( g([[x0]]) = [[c]]\\Big([[a]]([[d]][[x0]])^{2} + ([[m]])([[d]][[x0]])\\Big) = [[answer]] \\).",
+  "solution": "First scale the input by [[d]], evaluate \\( f \\), then apply the outer vertical stretch [[c]]: \\( g(x) = [[c]]\\,f([[d]]x) \\). So \\( g([[x0]]) = [[c]]\\Big([[a]]([[d]]\\cdot[[x0]])^{2} + ([[m]])([[d]]\\cdot[[x0]])\\Big) = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets both scale factors entirely, reporting \\( f([[x0]]) \\) itself.",
    "This applies only the horizontal scale [[d]] and forgets the outer vertical stretch [[c]].",
@@ -155,7 +155,7 @@
   "solution": "Reflecting across the vertical line \\( x=[[h]] \\) sends a point at distance \\( d \\) from \\( [[h]] \\) to the point at the same distance on the other side: \\( g(x) = f(2([[h]]) - x) \\). So \\( g([[x0]]) = f(2([[h]]) - [[x0]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to reflect at all, reporting \\( f([[x0]]) \\) itself.",
-   "This uses \\( [[h]] - x \\) instead of the correct \\( 2[[h]] - x \\) (missing the factor of 2 on the line's location).",
+   "This uses \\( [[h]] - x \\) instead of the correct \\( 2\\cdot[[h]] - x \\) (missing the factor of 2 on the line's location).",
    "This reflects about the \\( y \\)-axis ( \\( x=0 \\) ) instead of about the line \\( x=[[h]] \\).",
    "This adds instead of subtracts \\( x \\) when reflecting about \\( x=[[h]] \\).",
    "This is off by one from the correct value.",

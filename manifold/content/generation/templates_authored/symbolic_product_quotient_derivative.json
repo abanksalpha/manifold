@@ -38,7 +38,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "\\( f(x)=[[a]]x^{3}+[[b]]x^{2} \\), so \\( f'(x)=3[[a]]x^{2}+2[[b]]x \\) and \\( f'([[x0]])=[[answer]] \\).",
+  "solution": "\\( f(x)=[[a]]x^{3}+[[b]]x^{2} \\), so \\( f'(x)=3\\cdot[[a]]x^{2}+2\\cdot[[b]]x \\) and \\( f'([[x0]])=[[answer]] \\).",
   "distractor_rationales": []
  },
  {
@@ -204,7 +204,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Quotient rule: \\( f'(x)=\\dfrac{(2[[a]]x+[[b]])([[d]]x+[[e]]) - [[d]]([[a]]x^{2}+[[b]]x+[[c]])}{([[d]]x+[[e]])^{2}} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
+  "solution": "Quotient rule: \\( f'(x)=\\dfrac{(2\\cdot[[a]]x+[[b]])([[d]]x+[[e]]) - [[d]]([[a]]x^{2}+[[b]]x+[[c]])}{([[d]]x+[[e]])^{2}} \\); at \\( x=[[x0]] \\) this is \\( [[answer]] \\).",
   "distractor_rationales": [
    "This uses the product rule's \\( + \\) instead of the quotient rule's \\( - \\).",
    "This forgets to square the denominator.",

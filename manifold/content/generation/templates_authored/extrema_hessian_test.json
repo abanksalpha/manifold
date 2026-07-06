@@ -23,7 +23,7 @@
    "[[answer]] + 4",
    "[[answer]] - 4"
   ],
-  "solution": "For this quadratic, \\( f_{xx}=2[[A]] \\), \\( f_{yy}=2[[C]] \\), and \\( f_{xy}=[[B]] \\) everywhere (the Hessian of a quadratic form is constant), so \\( D = (2[[A]])(2[[C]]) - [[B]]^{2} = [[answer]] \\) at \\( ([[x0]],[[y0]]) \\) (or any point).",
+  "solution": "For this quadratic, \\( f_{xx}=2\\cdot[[A]] \\), \\( f_{yy}=2\\cdot[[C]] \\), and \\( f_{xy}=[[B]] \\) everywhere (the Hessian of a quadratic form is constant), so \\( D = (2\\cdot[[A]])(2\\cdot[[C]]) - [[B]]^{2} = [[answer]] \\) at \\( ([[x0]],[[y0]]) \\) (or any point).",
   "distractor_rationales": [
    "This adds \\( (f_{xy})^{2} \\) instead of subtracting it.",
    "This forgets the factor of 2 in both \\( f_{xx} \\) and \\( f_{yy}\\).",
@@ -56,7 +56,7 @@
    "[[answer]] + 6",
    "[[answer]] - 6"
   ],
-  "solution": "Since \\( f(x,y) \\) separates as a sum of a function of \\( x \\) alone and a function of \\( y \\) alone, the mixed partial \\( f_{xy}=0 \\) everywhere. Here \\( f_{xx}=6[[A]]x \\) and \\( f_{yy}=6[[B]]y \\), so at \\( ([[x0]],[[y0]]) \\): \\( D = (6[[A]]\\cdot[[x0]])(6[[B]]\\cdot[[y0]]) - 0^{2} = [[answer]] \\).",
+  "solution": "Since \\( f(x,y) \\) separates as a sum of a function of \\( x \\) alone and a function of \\( y \\) alone, the mixed partial \\( f_{xy}=0 \\) everywhere. Here \\( f_{xx}=6\\cdot[[A]]x \\) and \\( f_{yy}=6\\cdot[[B]]y \\), so at \\( ([[x0]],[[y0]]) \\): \\( D = (6\\cdot[[A]]\\cdot[[x0]])(6\\cdot[[B]]\\cdot[[y0]]) - 0^{2} = [[answer]] \\).",
   "distractor_rationales": [
    "This sums \\( f_{xx} \\) and \\( f_{yy}\\) instead of multiplying them.",
    "This mistakenly assumes a nonzero mixed partial \\( f_{xy} \\), even though \\( f \\) is additively separable.",
@@ -88,11 +88,11 @@
    "[[answer]] + 4",
    "[[answer]] - 4"
   ],
-  "solution": "For \\( f(x,y)=[[A]]x^{2}y^{2}+[[P]]x+[[Q]]y \\), \\( f_{xx}=2[[A]]y^{2} \\), \\( f_{yy}=2[[A]]x^{2} \\), and \\( f_{xy}=4[[A]]xy \\). At \\( ([[x0]],[[y0]]) \\): \\( D = (2[[A]]\\cdot[[y0]]^{2})(2[[A]]\\cdot[[x0]]^{2}) - (4[[A]]\\cdot[[x0]]\\cdot[[y0]])^{2} = [[answer]] \\).",
+  "solution": "For \\( f(x,y)=[[A]]x^{2}y^{2}+[[P]]x+[[Q]]y \\), \\( f_{xx}=2\\cdot[[A]]y^{2} \\), \\( f_{yy}=2\\cdot[[A]]x^{2} \\), and \\( f_{xy}=4\\cdot[[A]]xy \\). At \\( ([[x0]],[[y0]]) \\): \\( D = (2\\cdot[[A]]\\cdot[[y0]]^{2})(2\\cdot[[A]]\\cdot[[x0]]^{2}) - (4\\cdot[[A]]\\cdot[[x0]]\\cdot[[y0]])^{2} = [[answer]] \\).",
   "distractor_rationales": [
    "This drops the \\( (f_{xy})^{2} \\) term entirely, forgetting the mixed partial is nonzero here.",
    "This sums \\( f_{xx}\\) and \\( f_{yy}\\) instead of multiplying them.",
-   "This uses \\( f_{xy}=2[[A]]xy \\) instead of the correct \\( f_{xy}=4[[A]]xy \\), missing a factor of 2.",
+   "This uses \\( f_{xy}=2\\cdot[[A]]xy \\) instead of the correct \\( f_{xy}=4\\cdot[[A]]xy \\), missing a factor of 2.",
    "This swaps the sign, computing \\( (f_{xy})^{2} - f_{xx}f_{yy} \\) instead of \\( f_{xx}f_{yy}-(f_{xy})^{2} \\).",
    "This is off by four from the correct value.",
    "This is off by four from the correct value."
@@ -119,7 +119,7 @@
    "[[answer]] + 4",
    "[[answer]] - 4"
   ],
-  "solution": "Here \\( f_{xx}=-[[A]]\\sin(x)y^{2} \\), \\( f_{yy}=2[[A]]\\sin(x) \\), and \\( f_{xy}=2[[A]]\\cos(x)y \\). At \\( (0,[[y0]]) \\), \\( \\sin(0)=0 \\) and \\( \\cos(0)=1 \\), so \\( f_{xx}=f_{yy}=0 \\) and \\( f_{xy}=2[[A]]\\cdot[[y0]] \\). Thus \\( D = 0 - (2[[A]]\\cdot[[y0]])^{2} = [[answer]] \\).",
+  "solution": "Here \\( f_{xx}=-[[A]]\\sin(x)y^{2} \\), \\( f_{yy}=2\\cdot[[A]]\\sin(x) \\), and \\( f_{xy}=2\\cdot[[A]]\\cos(x)y \\). At \\( (0,[[y0]]) \\), \\( \\sin(0)=0 \\) and \\( \\cos(0)=1 \\), so \\( f_{xx}=f_{yy}=0 \\) and \\( f_{xy}=2\\cdot[[A]]\\cdot[[y0]] \\). Thus \\( D = 0 - (2\\cdot[[A]]\\cdot[[y0]])^{2} = [[answer]] \\).",
   "distractor_rationales": [
    "This mistakenly uses \\( \\sin(0) \\) instead of \\( \\cos(0) \\) in the mixed partial \\( f_{xy} \\), making it vanish incorrectly.",
    "This drops the negative sign, reporting \\( (f_{xy})^{2} \\) instead of \\( -\\,(f_{xy})^{2} \\).",

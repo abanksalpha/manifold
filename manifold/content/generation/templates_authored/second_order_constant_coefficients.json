@@ -170,7 +170,7 @@
    "[[answer]]+1",
    "[[answer]]-1"
   ],
-  "solution": "With roots \\( \\pm [[w]]i \\), \\( y = y_0\\cos([[w]]x) + \\dfrac{v_0}{[[w]]}\\sin([[w]]x) \\). At \\( x=\\dfrac{[[k]]\\pi}{2[[w]]} \\), \\( [[w]]x=\\dfrac{[[k]]\\pi}{2} \\), so \\( y = [[answer]] \\).",
+  "solution": "With roots \\( \\pm [[w]]i \\), \\( y = y_0\\cos([[w]]x) + \\dfrac{v_0}{[[w]]}\\sin([[w]]x) \\). At \\( x=\\dfrac{[[k]]\\pi}{2\\cdot[[w]]} \\), \\( [[w]]x=\\dfrac{[[k]]\\pi}{2} \\), so \\( y = [[answer]] \\).",
   "distractor_rationales": [
    "This swaps the roles of sine and cosine.",
    "This forgets to divide the velocity term by \\( [[w]] \\).",
@@ -208,7 +208,7 @@
    "[[answer]]+1",
    "[[answer]]-1"
   ],
-  "solution": "With roots \\( [[p]]\\pm[[q]]i \\), \\( y = e^{[[p]]x}\\left(y_0\\cos([[q]]x) + \\dfrac{v_0-[[p]]y_0}{[[q]]}\\sin([[q]]x)\\right) \\). At \\( x=\\dfrac{[[m]]\\pi}{2[[q]]} \\), \\( [[q]]x=\\dfrac{[[m]]\\pi}{2} \\), giving \\( y = [[answer]] \\).",
+  "solution": "With roots \\( [[p]]\\pm[[q]]i \\), \\( y = e^{[[p]]x}\\left(y_0\\cos([[q]]x) + \\dfrac{v_0-[[p]]y_0}{[[q]]}\\sin([[q]]x)\\right) \\). At \\( x=\\dfrac{[[m]]\\pi}{2\\cdot[[q]]} \\), \\( [[q]]x=\\dfrac{[[m]]\\pi}{2} \\), giving \\( y = [[answer]] \\).",
   "distractor_rationales": [
    "This uses the wrong sign in the exponential envelope, growing instead of decaying (or vice versa).",
    "This swaps the roles of sine and cosine inside the oscillatory factor.",

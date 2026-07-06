@@ -85,7 +85,7 @@
   "y2": {"type": "choice", "values": [-2, -1, 0, 1, 2]}
  },
  "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)", "Or(Ne([[x1]], [[x2]]), Ne([[y1]], [[y2]]))"],
- "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( [[a]]y^{2},\\; 2[[a]]xy + [[b]] \\right) \\) is conservative on all of \\( \\mathbb{R}^{2} \\), with potential \\( \\varphi(x,y) = [[a]]xy^{2} + [[b]]y \\). Evaluate \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is any smooth curve from \\( A = ([[x1]], [[y1]]) \\) to \\( B = ([[x2]], [[y2]]) \\).",
+ "stem": "The vector field \\( \\mathbf{F}(x,y) = \\left( [[a]]y^{2},\\; 2\\cdot[[a]]xy + [[b]] \\right) \\) is conservative on all of \\( \\mathbb{R}^{2} \\), with potential \\( \\varphi(x,y) = [[a]]xy^{2} + [[b]]y \\). Evaluate \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} \\), where \\( C \\) is any smooth curve from \\( A = ([[x1]], [[y1]]) \\) to \\( B = ([[x2]], [[y2]]) \\).",
  "answer_spec": {"op": "evaluate", "expr": "(([[a]])*([[x2]])*([[y2]])**2 + ([[b]])*([[y2]])) - (([[a]])*([[x1]])*([[y1]])**2 + ([[b]])*([[y1]]))"},
  "distractors": [
   "-([[answer]])",

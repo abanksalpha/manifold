@@ -157,10 +157,10 @@
  "stem": "Let \\( f \\) be differentiable on the open interval \\( 0 < x < 2\\pi \\), with \\( f'(x) = [[a]]\\sin([[n]]x) \\). How many relative extrema does \\( f \\) have on this interval?",
  "answer_spec": {"op": "evaluate", "expr": "2*[[n]] - 1"},
  "distractors": ["2*[[n]]", "[[n]]", "2*[[n]] + 1", "[[n]] - 1"],
- "solution": "On \\( (0,2\\pi) \\), \\( \\sin([[n]]x)=0 \\) exactly at \\( x=\\frac{m\\pi}{[[n]]} \\) for \\( m=1,2,\\dots,2[[n]]-1 \\), giving \\( 2([[n]])-1=[[answer]] \\) simple (sign-changing) zeros, each a relative extremum of \\( f \\).",
+ "solution": "On \\( (0,2\\pi) \\), \\( \\sin([[n]]x)=0 \\) exactly at \\( x=\\frac{m\\pi}{[[n]]} \\) for \\( m=1,2,\\dots,2\\cdot[[n]]-1 \\), giving \\( 2([[n]])-1=[[answer]] \\) simple (sign-changing) zeros, each a relative extremum of \\( f \\).",
  "distractor_rationales": [
   "This overcounts by including an endpoint of the open interval, where \\( f' \\) is not actually zero.",
-  "This severely undercounts, counting only \\( [[n]] \\) of the \\( 2[[n]]-1 \\) sign changes.",
+  "This severely undercounts, counting only \\( [[n]] \\) of the \\( 2\\cdot[[n]]-1 \\) sign changes.",
   "This overcounts by including both endpoints as if the interval were closed.",
   "This is off by two from the correct count."
  ]

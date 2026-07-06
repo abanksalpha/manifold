@@ -171,8 +171,12 @@ impl crate::services::SchedulerService for Collection {
         &mut self,
         input: scheduler::GradeNowRequest,
     ) -> Result<anki_proto::collection::OpChanges> {
-        self.grade_now(&input.card_ids.into_newtype(CardId), input.rating)
-            .map(Into::into)
+        self.grade_now(
+            &input.card_ids.into_newtype(CardId),
+            input.rating,
+            input.milliseconds_taken,
+        )
+        .map(Into::into)
     }
 
     fn sort_cards(
@@ -1165,6 +1169,7 @@ mod tests {
             anki_proto::scheduler::GradeNowRequest {
                 card_ids: vec![cid.0],
                 rating: Rating::Easy as i32,
+                milliseconds_taken: 0,
             },
         )
         .unwrap();

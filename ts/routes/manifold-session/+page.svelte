@@ -13,6 +13,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     import AnswerFeedback from "$lib/manifold/AnswerFeedback.svelte";
     import Button from "$lib/manifold/Button.svelte";
     import Confetti from "$lib/manifold/Confetti.svelte";
+    import FadedExample from "$lib/manifold/FadedExample.svelte";
     import HintPanel from "$lib/manifold/HintPanel.svelte";
     import Lecture from "$lib/manifold/Lecture.svelte";
     import {
@@ -21,6 +22,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         renderMath,
     } from "$lib/manifold/mathmarkup";
     import MathText from "$lib/manifold/MathText.svelte";
+    import PredictReveal from "$lib/manifold/PredictReveal.svelte";
+    import { fadedScaffoldFor } from "$lib/manifold/scaffold";
+    import SelfExplain from "$lib/manifold/SelfExplain.svelte";
+    import WorkedExample from "$lib/manifold/WorkedExample.svelte";
     import type {
         Answer,
         ChoiceId,
@@ -38,14 +43,17 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         choiceFor,
         CHOICE_IDS,
         fetchLecture,
+        fetchProblem,
         grade,
         hintsAllowed,
         isCorrect,
         levelLabel,
+        PREDICT_ENABLED,
+        SELF_EXPLAIN_ENABLED,
         SessionRunner,
         takePrewarmedSession,
     } from "$lib/manifold/session";
-    import { pushProgressSnapshot } from "$lib/manifold/sync";
+    import { pushProgressSnapshot, triggerCollectionSync } from "$lib/manifold/sync";
 
     import type { PageData } from "./$types";
 
@@ -74,12 +82,29 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     let loadError: { item: QueueItem | null; message: string } | null = null;
     let generatingItem: QueueItem | null = null;
 
-    let phase: "asking" | "revealed" = "asking";
+    // The teaching ladder for a served item (D36). A New (level 0) skill is not
+    // dropped cold: it opens with a pretrieval prediction, then a worked example,
+    // then a fresh instance to attempt. Guided (1) and Revisit (3) attempt with a
+    // faded-example scaffold above the choices. Independent (2) is cold.
+    //   predict -> study(worked example) -> asking -> revealed   (level 0)
+    //   asking(with faded scaffold) -> revealed                  (level 1 / 3)
+    //   asking -> revealed                                       (level 2)
+    type Phase = "predict" | "study" | "asking" | "revealed";
+    let phase: Phase = "asking";
     let chosenIndex: number | null = null;
     let correct = false;
     let busy = false;
     let answered = 0;
     let error: string | null = null;
+
+    // When the current problem became answerable (ms clock), so the graded review
+    // records the real time spent on the answer into the revlog (Anki's own stats
+    // use it; Manifold no longer displays time). Reset each time a fresh problem
+    // is shown; 0 means "not yet timed".
+    let answerableShownAt = 0;
+    // Cap one answer at Anki's default cap_answer_time_to_secs (60s) so an idle
+    // or walk-away cannot inflate the recorded answer time.
+    const ANSWER_CAP_MS = 60_000;
     // Non-fatal: a failed progress-mirror push (Firebase) surfaces here without
     // interrupting study, since the review itself is already saved to the engine.
     let syncError: string | null = null;
@@ -98,14 +123,20 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     // problem and the answer already given) is snapshotted to sessionStorage — scoped
     // to this app run, not persisted to disk, and cleared when the run completes, so
     // it is session continuity, never a fabricated or stale problem bank.
-    const SESSION_KEY = "manifold.session.v1";
+    // Bumped to v2 for the teaching-ladder phases (predict / study) and the
+    // fresh-attempt instance the worked example swaps in; an older v1 snapshot is
+    // ignored (treated as none) so a resumed run never lands in an unknown phase.
+    const SESSION_KEY = "manifold.session.v2";
 
     interface PersistedSession {
-        v: 1;
+        v: 2;
         queue: QueueItem[];
         progress: RunnerProgress;
+        // `served.problem` is the instance currently on screen: the worked
+        // instance during predict/study, or the fresh attempt once "Try one" has
+        // swapped it in, so a dashboard round-trip restores the exact instance.
         served: ServedProblem | null;
-        phase: "asking" | "revealed";
+        phase: Phase;
         chosenIndex: number | null;
         correct: boolean;
         answered: number;
@@ -124,7 +155,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             return;
         }
         const snapshot: PersistedSession = {
-            v: 1,
+            v: 2,
             queue,
             progress: runner.snapshotProgress(),
             served,
@@ -178,7 +209,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             return null;
         }
         if (
-            parsed?.v !== 1 ||
+            parsed?.v !== 2 ||
             !Array.isArray(parsed.queue) ||
             parsed.queue.length === 0
         ) {
@@ -203,6 +234,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 chosenIndex = snapshot.chosenIndex;
                 correct = snapshot.correct;
                 loading = false;
+                // Resuming on an unanswered problem: restart the answer clock so
+                // time away on the dashboard is not counted as answer time.
+                if (phase === "asking") {
+                    answerableShownAt = performance.now();
+                }
                 // Warm the next problem now so the first Continue after returning is
                 // not a cold start (the rebuilt runner's buffer is otherwise empty).
                 runner.prime();
@@ -241,6 +277,15 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         // the learner was on) rather than the discarded runner's post-abort result.
         runner.dispose();
         saveSnapshot();
+        // If any reviews landed this session, sync the collection to the learner's
+        // other devices now (AnkiWeb / configured server) instead of waiting for app
+        // close, so cross-device sync is near-real-time. Fire-and-forget: the engine
+        // review is already saved, and Anki surfaces any real sync error itself.
+        if (answered > 0) {
+            void triggerCollectionSync().catch((e) => {
+                console.error("Manifold collection sync failed:", e);
+            });
+        }
     });
 
     // Persist on every change to the resumable state, once mount has armed it.
@@ -270,6 +315,31 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
               ].sort((a, b) => b[1] - a[1])[0][0]
             : null;
 
+    // The faded-example scaffold for a Guided (level 1) or Revisit (level 3)
+    // attempt: the leading steps of the item's OWN verified solution, with the
+    // trailing step(s) hidden for the learner to finish by choosing. Derived from
+    // the real solution (scaffold.ts); other levels and phases show none.
+    // A faded scaffold only when the solution can be faded without leaking the
+    // answer (fadedScaffoldFor returns null for a one-step solution, so a Guided
+    // or Revisit item with an unfadeable solution is solved cold instead of
+    // reading the full answer above the live choices).
+    $: fadedScaffold =
+        served &&
+        phase === "asking" &&
+        (served.item.level === 1 || served.item.level === 3)
+            ? fadedScaffoldFor(served.problem.solution, served.item.level)
+            : null;
+
+    // The phase a freshly served item opens in: a New (level 0) skill starts with
+    // the pretrieval prediction (if enabled) then the worked example; every other
+    // level goes straight to the attempt.
+    function initialPhase(current: ServedProblem | null): Phase {
+        if (!current || current.item.level !== 0) {
+            return "asking";
+        }
+        return PREDICT_ENABLED ? "predict" : "study";
+    }
+
     async function settle(pull: Promise<PullResult>, token: number): Promise<void> {
         try {
             const result = await pull;
@@ -277,6 +347,12 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 return;
             }
             served = result.served;
+            phase = initialPhase(served);
+            // A level that opens straight on the problem is answerable now, so
+            // start the answer clock; teaching levels start it later (tryOne).
+            if (served && phase === "asking") {
+                answerableShownAt = performance.now();
+            }
             deferred = result.deferred;
             done = result.served === null;
             loading = false;
@@ -325,6 +401,71 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         }
     }
 
+    // New-skill teaching ladder (D36). The prediction step reveals the worked
+    // example; the worked example then hands off to a fresh attempt.
+    function revealWorked(): void {
+        if (phase === "predict") {
+            phase = "study";
+        }
+    }
+
+    // Leave the worked example and attempt a FRESH instance of the same skill, so
+    // the learner studies one instance and solves a different one (D36). The
+    // generation reuses the live endpoint; while it runs the honest generating
+    // state shows. If no fresh instance can be generated (an honest abstain, or a
+    // malformed one that throws), the learner stays on the worked example with an
+    // honest note and can try again; the just-studied instance is never re-served
+    // to be graded, since its answer was already shown. The graded card is
+    // unchanged: the same item/cardId is answered.
+    async function tryOne(): Promise<void> {
+        if (!served || phase !== "study" || loading) {
+            return;
+        }
+        const worked = served;
+        const item = worked.item;
+        const token = ++loadToken;
+        error = null;
+        generatingItem = item;
+        loading = true;
+        let fresh: ServedProblem | null;
+        try {
+            fresh = await fetchProblem(item);
+        } catch (e) {
+            // A malformed "ok" fresh instance breaks verify-before-serve: surface
+            // it loudly and keep the learner on the worked example to try again,
+            // rather than swapping in an unverified problem.
+            if (token !== loadToken) {
+                return;
+            }
+            error = e instanceof Error ? e.message : String(e);
+            loading = false;
+            phase = "study";
+            return;
+        }
+        if (token !== loadToken) {
+            return;
+        }
+        if (!fresh) {
+            // No fresh instance could be generated (an honest abstain). Do NOT
+            // re-serve the worked instance: its answer was just shown, so grading
+            // it would feed FSRS a trivially-correct attempt. Stay on the worked
+            // example with an honest note; the learner can try again.
+            error = "no fresh problem was available to try";
+            loading = false;
+            phase = "study";
+            return;
+        }
+        served = {
+            item,
+            problem: fresh.problem,
+            queuePosition: worked.queuePosition,
+        };
+        phase = "asking";
+        // The fresh attempt is now on screen: start timing the answer.
+        answerableShownAt = performance.now();
+        loading = false;
+    }
+
     function retry(): void {
         const token = ++loadToken;
         loadError = null;
@@ -355,6 +496,16 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         }
         const problem = served.problem;
         const item = served.item;
+        // Measure the real time on this answer (capped) before anything else,
+        // then clear the clock so it can never be counted twice.
+        const takenMs =
+            answerableShownAt > 0
+                ? Math.min(
+                      ANSWER_CAP_MS,
+                      Math.max(0, Math.round(performance.now() - answerableShownAt)),
+                  )
+                : 0;
+        answerableShownAt = 0;
         const pressed = choiceFor(problem, choice);
         // Reveal immediately so feedback and animation land promptly; the grade
         // write happens in the background and never blocks the screen.
@@ -367,7 +518,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         busy = true;
         error = null;
         try {
-            await grade(item, correct);
+            await grade(item, correct, takenMs);
             // Count the review only once the grade write lands, so a failed save
             // surfaces its error instead of inflating the worked tally.
             answered += 1;
@@ -413,6 +564,23 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             return;
         }
         if (!served) {
+            return;
+        }
+        // Teaching-ladder steps advance on Enter / Space (there are no choices to
+        // answer yet): predict reveals the worked example, the worked example
+        // hands off to a fresh attempt.
+        if (phase === "predict") {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                revealWorked();
+            }
+            return;
+        }
+        if (phase === "study") {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                void tryOne();
+            }
             return;
         }
         if (phase === "revealed") {
@@ -576,10 +744,17 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     <Button variant="secondary" on:click={skip}>Skip skill</Button>
                 </div>
             </section>
-        {:else if served}
+        {:else if served && phase === "predict"}
+            <PredictReveal problem={served.problem} on:reveal={revealWorked} />
+        {:else if served && phase === "study"}
             {#if served.item.level === 0 && lecture}
                 <Lecture {lecture} />
             {/if}
+            <WorkedExample problem={served.problem} on:try={tryOne} />
+            {#if error}
+                <p class="mf-error">Could not start a fresh attempt: {error}</p>
+            {/if}
+        {:else if served}
             <section
                 class="mf-card"
                 data-topic={served.item.topicId}
@@ -595,6 +770,13 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                         {levelLabel(served.item.level)}
                     </span>
                 </div>
+
+                {#if phase === "asking" && fadedScaffold}
+                    <FadedExample
+                        shown={fadedScaffold.shown}
+                        hiddenCount={fadedScaffold.hiddenCount}
+                    />
+                {/if}
 
                 <div class="mf-choices" class:revealed={phase === "revealed"}>
                     {#each served.problem.choices as choice (choice.id)}
@@ -647,6 +829,9 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                         {correct}
                         level={served.item.level}
                     />
+                    {#if SELF_EXPLAIN_ENABLED && (served.item.level === 0 || served.item.level === 1)}
+                        <SelfExplain />
+                    {/if}
                     {#if error}
                         <p class="mf-error">Could not save your answer: {error}</p>
                     {/if}

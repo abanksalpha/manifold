@@ -61,7 +61,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "Take the square root of the population variance: \\( \\sigma = \\sqrt{\\dfrac{(-3[[k]])^2+(-[[k]])^2+0^2+[[k]]^2+(3[[k]])^2}{5}} = \\sqrt{4[[k]]^2} = [[answer]] \\).",
+  "solution": "Take the square root of the population variance: \\( \\sigma = \\sqrt{\\dfrac{(-3\\cdot[[k]])^2+(-[[k]])^2+0^2+[[k]]^2+(3\\cdot[[k]])^2}{5}} = \\sqrt{4\\cdot[[k]]^2} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses \\( n-1=4 \\) inside the square root; that is the sample standard deviation, not the population one.",
    "This is the variance itself, without taking the square root.",
@@ -99,7 +99,7 @@
   ],
   "solution": "The mean is \\( [[v]] \\) by symmetry. Weighting each squared deviation by its frequency and dividing by the total count \\( [[ntot]] \\): \\( \\frac{[[k]]([[vlo]]-[[v]])^2 + [[k]]([[vhi]]-[[v]])^2}{[[ntot]]} = [[answer]] \\).",
   "distractor_rationales": [
-   "This divides only by the count of the two extreme values, \\( 2[[k]] \\), ignoring the \\( [[m2]] \\) occurrences of the middle value.",
+   "This divides only by the count of the two extreme values, \\( 2\\cdot[[k]] \\), ignoring the \\( [[m2]] \\) occurrences of the middle value.",
    "This is the frequency-weighted sum of squared deviations without dividing by the total count.",
    "This divides by \\( n-1 \\) instead of \\( n \\); that would be a sample-variance divisor, not appropriate here.",
    "This forgets to weight the squared deviations by their frequency \\( [[k]] \\) at all.",

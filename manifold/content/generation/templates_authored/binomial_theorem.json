@@ -149,7 +149,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The general term is \\( \\binom{[[n]]}{j}(x^{2})^{[[n]]-j}\\left(\\dfrac{[[b]]}{x}\\right)^{j} = \\binom{[[n]]}{j}([[a]])^{[[n]]-j}([[b]])^{j}x^{2[[n]]-3j} \\). Setting \\( 2([[n]]) - 3j = 0 \\) gives \\( j = [[j]] \\), so the constant term is \\( \\binom{[[n]]}{[[j]]}([[a]])^{[[n]]-[[j]]}([[b]])^{[[j]]} = [[answer]] \\).",
+  "solution": "The general term is \\( \\binom{[[n]]}{j}(x^{2})^{[[n]]-j}\\left(\\dfrac{[[b]]}{x}\\right)^{j} = \\binom{[[n]]}{j}([[a]])^{[[n]]-j}([[b]])^{j}x^{2\\cdot[[n]]-3j} \\). Setting \\( 2([[n]]) - 3j = 0 \\) gives \\( j = [[j]] \\), so the constant term is \\( \\binom{[[n]]}{[[j]]}([[a]])^{[[n]]-[[j]]}([[b]])^{[[j]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This omits the factors \\( a^{n-j}b^{j} \\), leaving only the binomial coefficient.",
    "This swaps the exponents on \\( a \\) and \\( b \\).",
@@ -168,7 +168,7 @@
    "n": {"type": "int", "lo": 3, "hi": 20}
   },
   "constraints": [],
-  "stem": "Using the binomial theorem applied to \\( (1+x)^{[[n]]}(1+x)^{[[n]]} = (1+x)^{2[[n]]} \\) and comparing coefficients, evaluate \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^{2} \\).",
+  "stem": "Using the binomial theorem applied to \\( (1+x)^{[[n]]}(1+x)^{[[n]]} = (1+x)^{2\\cdot[[n]]} \\) and comparing coefficients, evaluate \\( \\displaystyle\\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^{2} \\).",
   "answer_spec": {"op": "sum", "expr": "binomial([[n]],k)**2", "var": "k", "lo": "0", "hi": "[[n]]"},
   "distractors": [
    "2**[[n]]",

@@ -1,0 +1,48 @@
+$ cd /Users/adambanks/Desktop/manifold && PYTHONPATH=out/pylib out/pyenv/bin/python manifold/tests/demo_sync.py
+
+Manifold desktop-to-desktop sync demo
+  substrate : Anki collection-level sync + self-hosted server (D9)
+  workdir   : /var/folders/nf/z36b1c753b9b3340pm8g_cdc0000gn/T/mf-sync-demo-2rtg2lbg
+  endpoint  : http://127.0.0.1:56932/
+  user      : demo (SYNC_USER1=demo:demo)
+
+[server] starting: /Users/adambanks/Desktop/manifold/out/pyenv/bin/python -m anki.syncserver
+[server] SYNC_HOST=127.0.0.1 SYNC_PORT=56932 SYNC_BASE=/var/folders/nf/z36b1c753b9b3340pm8g_cdc0000gn/T/mf-sync-demo-2rtg2lbg/server-base
+[server] listening addr=127.0.0.1:56932  (TCP accepting on 127.0.0.1:56932)
+
+[base] seeding collection A with the GRE deck...
+FSRS enabled and cards rescheduled.
+[base] A seeded: 519 notes added, 519 cards total
+[base] A login OK; syncing A (expect first-time full upload)...
+[base] A initial sync outcome: full_upload
+[base] creating empty collection B and downloading A's collection...
+[base] B initial sync outcome: full_download; B now has 519 cards
+
+[disjoint] reviewing 10 distinct cards on A and 10 DIFFERENT distinct cards on B, both offline...
+[disjoint] (B's reviews were spaced to a strictly-later millisecond than A's, as two real devices would review at different times)
+[disjoint] local revlog before sync: A +10, B +10
+[disjoint] syncing A -> B -> A to converge...
+[disjoint] after convergence: merged revlog A +20, B +20 (expected +20)
+
+[conflict] reviewing the SAME card on both sides offline; A answers 'Again' first, then B answers 'Easy' >=1s later...
+[conflict] A review: mtime=1783273357 ivl=0 type=1 queue=1 revlog_id=1783273357376
+[conflict] B review: mtime=1783273358 ivl=6 type=2 queue=2 revlog_id=1783273358882  (later)
+[conflict] syncing A -> B -> A to converge...
+[conflict] converged card row: A={'mod': 1783273358, 'type': 2, 'queue': 2, 'due': 6, 'ivl': 6, 'factor': 2500, 'reps': 1}
+[conflict] converged card row: B={'mod': 1783273358, 'type': 2, 'queue': 2, 'due': 6, 'ivl': 6, 'factor': 2500, 'reps': 1}
+[conflict] later review (B) won on both sides
+[conflict] revlog for card 1783273353680: A=[1783273357376, 1783273358882], B=[1783273357376, 1783273358882] (earlier=1783273357376, later=1783273358882)
+
+============================================================================================================
+Sync demo assertions (each verified against the real merged data)
+============================================================================================================
+  [PASS] common base established                           A=519 cards, B=519 cards; revlog baseline A=0, B=0
+  [PASS] disjoint reviews converge (counts match)          A +20, B +20, expected +20
+  [PASS] each review present exactly once (no loss/dupes)  A: 20 rows over 20 cards; B: 20 rows over 20 cards
+  [PASS] conflict: later review wins scheduling state      converged card row == B's later review on both sides (A mtime 1783273358 == B mtime 1783273358)
+  [PASS] conflict: earlier review retained in revlog       both revlog ids present on both sides: [1783273357376, 1783273358882]
+============================================================================================================
+  RESULT: ALL PASS
+============================================================================================================
+
+EXIT_CODE=0

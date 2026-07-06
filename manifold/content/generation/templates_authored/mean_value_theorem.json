@@ -22,7 +22,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Since \\( f \\) is quadratic, \\( f'(x)=2[[a]]x+([[b]]) \\) is linear, so the guaranteed point is always the midpoint of the interval: \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), regardless of the coefficients \\( a,b,c \\).",
+ "solution": "Since \\( f \\) is quadratic, \\( f'(x)=2\\cdot[[a]]x+([[b]]) \\) is linear, so the guaranteed point is always the midpoint of the interval: \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), regardless of the coefficients \\( a,b,c \\).",
  "distractor_rationales": [
   "This gives the left endpoint of the interval, not the guaranteed interior point.",
   "This gives the right endpoint of the interval, not the guaranteed interior point.",
@@ -54,7 +54,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Since \\( s \\) is quadratic, \\( s'(t)=2[[a]]t+([[b]]) \\) is linear, so the guaranteed instant is the midpoint of the time interval: \\( c = \\dfrac{[[t1]]+[[t2]]}{2} = [[answer]] \\).",
+ "solution": "Since \\( s \\) is quadratic, \\( s'(t)=2\\cdot[[a]]t+([[b]]) \\) is linear, so the guaranteed instant is the midpoint of the time interval: \\( c = \\dfrac{[[t1]]+[[t2]]}{2} = [[answer]] \\).",
  "distractor_rationales": [
   "This is the start of the time interval, not the guaranteed interior instant.",
   "This is the end of the time interval, not the guaranteed interior instant.",
@@ -85,7 +85,7 @@
   "sqrt([[p]]*[[q]]) + 1",
   "sqrt([[p]]*[[q]]) - 1"
  ],
- "solution": "\\( f'(x)=-\\dfrac{1}{x^{2}} \\), and the secant slope is \\( \\dfrac{1/[[q]] - 1/[[p]]}{[[q]]-[[p]]} = -\\dfrac{1}{[[p]][[q]]} \\). Setting \\( -\\dfrac{1}{c^{2}} = -\\dfrac{1}{[[p]][[q]]} \\) gives \\( c^{2}=[[p]][[q]] \\), so (taking the positive root in \\( ([[p]],[[q]]) \\)) \\( c=\\sqrt{[[p]][[q]]} = [[answer]] \\), the geometric mean.",
+ "solution": "\\( f'(x)=-\\dfrac{1}{x^{2}} \\), and the secant slope is \\( \\dfrac{1/[[q]] - 1/[[p]]}{[[q]]-[[p]]} = -\\dfrac{1}{[[p]]\\cdot[[q]]} \\). Setting \\( -\\dfrac{1}{c^{2}} = -\\dfrac{1}{[[p]]\\cdot[[q]]} \\) gives \\( c^{2}=[[p]]\\cdot[[q]] \\), so (taking the positive root in \\( ([[p]],[[q]]) \\)) \\( c=\\sqrt{[[p]]\\cdot[[q]]} = [[answer]] \\), the geometric mean.",
  "distractor_rationales": [
   "This is the arithmetic mean, which is the MVT point for a LINEAR or quadratic function, not \\( 1/x \\).",
   "This is the product \\( pq \\) itself, not its square root.",
@@ -116,7 +116,7 @@
   "sqrt(([[p]]**2+[[p]]*[[q]]+[[q]]**2)/3) + 1",
   "sqrt(([[p]]**2+[[p]]*[[q]]+[[q]]**2)/3) - 1"
  ],
- "solution": "\\( f'(x)=3x^{2} \\), and the secant slope is \\( \\dfrac{[[q]]^{3}-[[p]]^{3}}{[[q]]-[[p]]} = [[p]]^{2}+[[p]][[q]]+[[q]]^{2} \\). Setting \\( 3c^{2}=[[p]]^{2}+[[p]][[q]]+[[q]]^{2} \\) gives \\( c=\\sqrt{\\dfrac{[[p]]^{2}+[[p]][[q]]+[[q]]^{2}}{3}} = [[answer]] \\) (positive root, since \\( c\\in([[p]],[[q]]) \\)).",
+ "solution": "\\( f'(x)=3x^{2} \\), and the secant slope is \\( \\dfrac{[[q]]^{3}-[[p]]^{3}}{[[q]]-[[p]]} = [[p]]^{2}+[[p]]\\cdot[[q]]+[[q]]^{2} \\). Setting \\( 3c^{2}=[[p]]^{2}+[[p]]\\cdot[[q]]+[[q]]^{2} \\) gives \\( c=\\sqrt{\\dfrac{[[p]]^{2}+[[p]]\\cdot[[q]]+[[q]]^{2}}{3}} = [[answer]] \\) (positive root, since \\( c\\in([[p]],[[q]]) \\)).",
  "distractor_rationales": [
   "This is the midpoint formula, which is only the MVT point for a quadratic, not a cubic.",
   "This is the geometric mean, which is the MVT point for \\( 1/x \\), not \\( x^{3} \\).",

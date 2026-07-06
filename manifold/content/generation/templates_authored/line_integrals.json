@@ -136,7 +136,7 @@
   "[[answer]] + pi",
   "[[answer]] - pi"
  ],
- "solution": "With \\( \\mathbf{r}'(t) = (-[[R]]\\sin t,\\,[[R]]\\cos t,\\,[[k]]) \\), \\( \\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t) = -([[a]])([[k]])[[R]]\\,t\\sin t + ([[b]])[[R]]^{2}\\cos^{2}t + ([[c]])[[R]][[k]]\\sin t \\). Over \\( 0\\le t\\le 2\\pi \\) the last term vanishes (a full period of \\( \\sin t \\)), \\( \\int_0^{2\\pi} t\\sin t\\,dt = -2\\pi \\), and \\( \\int_0^{2\\pi}\\cos^{2}t\\,dt = \\pi \\), giving \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} = 2\\pi([[a]])([[k]])([[R]]) + \\pi([[b]])([[R]])^{2} = [[answer]] \\).",
+ "solution": "With \\( \\mathbf{r}'(t) = (-[[R]]\\sin t,\\,[[R]]\\cos t,\\,[[k]]) \\), \\( \\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t) = -([[a]])([[k]])[[R]]\\,t\\sin t + ([[b]])[[R]]^{2}\\cos^{2}t + ([[c]])[[R]]\\cdot[[k]]\\sin t \\). Over \\( 0\\le t\\le 2\\pi \\) the last term vanishes (a full period of \\( \\sin t \\)), \\( \\int_0^{2\\pi} t\\sin t\\,dt = -2\\pi \\), and \\( \\int_0^{2\\pi}\\cos^{2}t\\,dt = \\pi \\), giving \\( \\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} = 2\\pi([[a]])([[k]])([[R]]) + \\pi([[b]])([[R]])^{2} = [[answer]] \\).",
  "distractor_rationales": [
   "This flips the sign of the \\( ([[a]])([[k]]) \\)-term relative to the \\( ([[b]])([[R]]) \\)-term.",
   "This uses \\( \\int_0^{2\\pi}\\cos^2 t\\,dt = 2\\pi \\) (the period length) instead of the correct value \\( \\pi \\).",

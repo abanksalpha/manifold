@@ -60,7 +60,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "Rewrite both sides with the common base [[c]]: \\( [[base1]] = [[c]]^{[[m]]} \\) and \\( [[base2]] = [[c]]^{[[n]]} \\), so the equation becomes \\( [[c]]^{[[m]]x} = [[c]]^{[[n]][[k]]} \\). Matching exponents, \\( [[m]]x = [[n]]([[k]]) \\), so \\( x = [[answer]] \\).",
+  "solution": "Rewrite both sides with the common base [[c]]: \\( [[base1]] = [[c]]^{[[m]]} \\) and \\( [[base2]] = [[c]]^{[[n]]} \\), so the equation becomes \\( [[c]]^{[[m]]x} = [[c]]^{[[n]]\\cdot[[k]]} \\). Matching exponents, \\( [[m]]x = [[n]]([[k]]) \\), so \\( x = [[answer]] \\).",
   "distractor_rationales": [
    "This reports the given exponent \\( k \\) directly, without converting to the common base.",
    "This forgets to divide by \\( m \\) after matching the common-base exponents.",

@@ -70,7 +70,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "By the chain rule, \\( h'(x)=f'(g(x))\\,g'(x) \\) and \\( g'(x)=2[[a]]x \\), so \\( h'([[a0]]) = [[cf]]\\cdot(2\\cdot[[a]]\\cdot[[a0]]) = [[answer]] \\).",
+ "solution": "By the chain rule, \\( h'(x)=f'(g(x))\\,g'(x) \\) and \\( g'(x)=2\\cdot[[a]]x \\), so \\( h'([[a0]]) = [[cf]]\\cdot(2\\cdot[[a]]\\cdot[[a0]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This adds the two factors instead of multiplying them.",
   "This drops the factor of 2 from \\( g'(x)=2ax \\).",

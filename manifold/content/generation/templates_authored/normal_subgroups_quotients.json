@@ -100,7 +100,7 @@
  },
  "constraints": ["Eq(Mod([[n]],[[d]]), 0)", "Lt([[d]], [[n]])"],
  "derived": {"h": "[[n]]/[[d]]"},
- "stem": "Let \\( G = D_{[[n]]} \\) be the dihedral group of order \\(2[[n]]\\) (symmetries of a regular \\([[n]]\\)-gon), and let \\( N \\) be the subgroup of rotations by multiples of \\([[d]]\\) steps, so \\( |N| = [[n]]/[[d]] = [[h]] \\). \\(N\\) is normal in \\(G\\) (rotations are inverted, not mixed with reflections, under conjugation). Find the order of the quotient group \\( G/N \\).",
+ "stem": "Let \\( G = D_{[[n]]} \\) be the dihedral group of order \\(2\\cdot[[n]]\\) (symmetries of a regular \\([[n]]\\)-gon), and let \\( N \\) be the subgroup of rotations by multiples of \\([[d]]\\) steps, so \\( |N| = [[n]]/[[d]] = [[h]] \\). \\(N\\) is normal in \\(G\\) (rotations are inverted, not mixed with reflections, under conjugation). Find the order of the quotient group \\( G/N \\).",
  "answer_spec": {"op": "evaluate", "expr": "(2*[[n]])/[[h]]"},
  "distractors": [
   "[[d]]",
@@ -110,7 +110,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "\\( |G/N| = |G|/|N| = 2[[n]]/[[h]] = [[answer]] \\), so \\(G/N\\) is (isomorphic to) a dihedral group of order \\([[answer]]\\).",
+ "solution": "\\( |G/N| = |G|/|N| = 2\\cdot[[n]]/[[h]] = [[answer]] \\), so \\(G/N\\) is (isomorphic to) a dihedral group of order \\([[answer]]\\).",
  "distractor_rationales": [
   "This is the rotation step \\([[d]]\\), not the order of the quotient group.",
   "This is \\( |G| \\) itself, forgetting to quotient by \\(N\\).",

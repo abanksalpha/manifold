@@ -101,10 +101,10 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "With \\(y\\) outer, for each fixed \\(y\\) the inner variable \\(x\\) ranges over the FULL interval \\([-y,y]\\) (length \\(2y\\)), with no split needed: \\( \\int_{0}^{[[b]]}\\int_{-y}^{y} [[k]]e^{y^2}\\,dx\\,dy = \\int_{0}^{[[b]]} 2[[k]]y\\,e^{y^2}\\,dy = [[k]]\\left(e^{[[b]]^2}-1\\right) = [[answer]] \\).",
+  "solution": "With \\(y\\) outer, for each fixed \\(y\\) the inner variable \\(x\\) ranges over the FULL interval \\([-y,y]\\) (length \\(2y\\)), with no split needed: \\( \\int_{0}^{[[b]]}\\int_{-y}^{y} [[k]]e^{y^2}\\,dx\\,dy = \\int_{0}^{[[b]]} 2\\cdot[[k]]y\\,e^{y^2}\\,dy = [[k]]\\left(e^{[[b]]^2}-1\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This is exactly half the correct value, as if the \\(x\\)-length were \\(y\\) instead of \\(2y\\) (forgetting the region extends to both \\(-y\\) and \\(y\\)).",
-   "This evaluates the integrand at \\(y=[[b]]\\) and multiplies by a bogus width \\(2[[b]]\\), instead of integrating.",
+   "This evaluates the integrand at \\(y=[[b]]\\) and multiplies by a bogus width \\(2\\cdot[[b]]\\), instead of integrating.",
    "This drops the \\(-1\\) lower-limit contribution entirely.",
    "This is off by one from the correct value.",
    "This is off by one from the correct value."

@@ -75,7 +75,7 @@
   "Rational([[a]]+[[c]],2)",
   "Rational([[a]]**2+[[c]]**2,3)"
  ],
- "solution": "\\( E[X^2] = \\displaystyle\\int_{[[a]]}^{[[c]]} \\frac{x^2}{[[c]]-[[a]]}\\,dx = \\frac{[[a]]^2+[[a]][[c]]+[[c]]^2}{3} = [[answer]] \\).",
+ "solution": "\\( E[X^2] = \\displaystyle\\int_{[[a]]}^{[[c]]} \\frac{x^2}{[[c]]-[[a]]}\\,dx = \\frac{[[a]]^2+[[a]]\\cdot[[c]]+[[c]]^2}{3} = [[answer]] \\).",
  "distractor_rationales": [
   "This computes \\( (E[X])^2 \\) instead of \\( E[X^2] \\); these differ by the variance.",
   "This is the VARIANCE formula \\( \\frac{(b-a)^2}{12} \\), not the second moment.",

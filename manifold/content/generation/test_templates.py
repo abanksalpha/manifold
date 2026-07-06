@@ -159,6 +159,33 @@ def test_instantiate_stem_has_no_paren_number_artifacts():
         assert not art.search(item["stem"]), item["stem"]
 
 
+def test_numeric_slot_fusion_guard():
+    # Author bug: a display field that glues a literal digit to a numeric slot
+    # (`2[[n]]`, meaning 2*n) renders "21" for n=1 while the answer is computed
+    # from 2*n=2 -> the shown question no longer matches its own answer. This must
+    # fail LOUDLY (TemplateError), not silently ship glued math.
+    base = {
+        "template_id": "fuse_probe",
+        "skill_id": "s",
+        "topic_id": "t",
+        "params": {"n": {"type": "int", "lo": 1, "hi": 3}},
+        "answer_spec": {"op": "evaluate", "expr": "sqrt(3**(2*[[n]]))"},
+        "distractors": ["[[answer]] + 1", "[[answer]] + 2", "[[answer]] - 1", "[[answer]] + 3", "[[answer]] + 4"],
+        "solution": "The value is \\( [[answer]] \\).",
+    }
+    bad = dict(base, stem="Evaluate \\( \\sqrt{3^{2[[n]]}} \\).")
+    with pytest.raises(templates.TemplateError):
+        templates.instantiate(bad, seed=0)
+    # Two adjacent numeric slots fuse too.
+    bad2 = dict(base, stem="Evaluate \\( [[n]][[n]] \\).")
+    with pytest.raises(templates.TemplateError):
+        templates.instantiate(bad2, seed=0)
+    # Making the product explicit with \cdot renders fine.
+    good = dict(base, stem="Evaluate \\( \\sqrt{3^{2\\cdot[[n]]}} \\).")
+    item = templates.instantiate(good, seed=0)
+    assert "\\cdot" in item["stem"] and not templates._leftover_slots(item["stem"])
+
+
 def test_determinism():
     tmpl = TEMPLATES[0]
     a = templates.instantiate(tmpl, 123)

@@ -1408,6 +1408,12 @@ def serve_deterministic(skill: dict[str, Any]) -> dict[str, Any] | None:
     for a teach skill with no content, or ``None`` when the skill needs live
     generation (which the caller handles on the cold path)."""
     skill = _normalize_skill(skill)
+    # In a hermetic test run the live-fixture double is the intended content
+    # source; defer to the cold fixture path (which honors it) instead of serving
+    # real templates from this fast path, so the e2e is deterministic. Production
+    # never sets this, so the template/bank fast path is unchanged there.
+    if os.environ.get("MANIFOLD_LIVE_FIXTURES"):
+        return None
     served = _serve_from_template(skill, seed=None)
     if served is not None:
         return served

@@ -144,7 +144,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Since \\( \\operatorname{adj}(A) = \\det(A) A^{-1} \\), the eigenvalue of \\( \\operatorname{adj}(A) \\) paired with \\( [[l1]] \\) is \\( \\det(A)/[[l1]] = \\dfrac{[[l1]][[l2]][[l3]]}{[[l1]]} = [[l2]]\\cdot[[l3]] = [[answer]] \\).",
+ "solution": "Since \\( \\operatorname{adj}(A) = \\det(A) A^{-1} \\), the eigenvalue of \\( \\operatorname{adj}(A) \\) paired with \\( [[l1]] \\) is \\( \\det(A)/[[l1]] = \\dfrac{[[l1]]\\cdot[[l2]]\\cdot[[l3]]}{[[l1]]} = [[l2]]\\cdot[[l3]] = [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( \\det(A) \\) itself, not the eigenvalue of the adjugate.",
   "This multiplies \\( [[l1]] \\) with only one of the other eigenvalues instead of using the two OTHER eigenvalues.",

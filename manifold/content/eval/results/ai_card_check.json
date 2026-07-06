@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T05:16:47.854873+00:00",
+  "generated_at": "2026-07-05T19:46:35.839325+00:00",
   "sample": {
     "skills": 30,
     "drafts_per_skill": 2,
@@ -11,28 +11,28 @@
   },
   "cutoff_declared_before_run": "serve an item ONLY if it passes BOTH verify.py AND the blind cross-solve",
   "counts": {
-    "correct_useful": 18,
-    "wrong_verify": 8,
-    "wrong_cross_solve": 11,
-    "needs_curation": 8,
-    "gen_error": 15,
+    "correct_useful": 8,
+    "wrong_verify": 15,
+    "wrong_cross_solve": 14,
+    "needs_curation": 1,
+    "gen_error": 22,
     "transient": 0
   },
   "derived": {
     "well_formed_drafts": 37,
-    "correct_useful_rate": 0.486,
-    "wrong_caught_by_gate": 19,
-    "wrong_caught_rate": 0.514
+    "correct_useful_rate": 0.216,
+    "wrong_caught_by_gate": 29,
+    "wrong_caught_rate": 0.784
   },
   "baseline_ship_all_drafts": {
     "description": "simpler method: ship every well-formed generated draft, no checker",
-    "wrong_items_shipped": 19,
-    "wrong_ship_rate": 0.514
+    "wrong_items_shipped": 29,
+    "wrong_ship_rate": 0.784
   },
   "gated_pipeline": {
     "description": "Manifold: serve iff verify AND cross-solve agree",
     "wrong_items_shipped": 0,
     "note": "0 by construction; the gate rejects every wrong_* draft above"
   },
-  "elapsed_s": 202.7
+  "elapsed_s": 176.5
 }

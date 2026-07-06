@@ -104,7 +104,7 @@
   "-(2*[[a]]*[[x0]] + [[b]]*[[y0]])/([[b]]*[[x0]] + 2*[[c]]*[[y0]]) + 1",
   "-(2*[[a]]*[[x0]] + [[b]]*[[y0]])/([[b]]*[[x0]] + 2*[[c]]*[[y0]]) - 1"
  ],
- "solution": "Differentiating implicitly with the product rule on the cross term: \\( 2[[a]]x+[[b]](y+xy')+2[[c]]yy'=0 \\), so \\( y'=-\\dfrac{2[[a]]x+[[b]]y}{[[b]]x+2[[c]]y} \\), giving \\( [[answer]] \\) at \\( ([[x0]],[[y0]]) \\).",
+ "solution": "Differentiating implicitly with the product rule on the cross term: \\( 2\\cdot[[a]]x+[[b]](y+xy')+2\\cdot[[c]]yy'=0 \\), so \\( y'=-\\dfrac{2\\cdot[[a]]x+[[b]]y}{[[b]]x+2\\cdot[[c]]y} \\), giving \\( [[answer]] \\) at \\( ([[x0]],[[y0]]) \\).",
  "distractor_rationales": [
   "This drops the cross-term contributions from both the numerator and denominator entirely.",
   "This drops the negative sign from moving terms across the equation.",

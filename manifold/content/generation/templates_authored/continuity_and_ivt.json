@@ -52,7 +52,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Factoring, \\( [[a]]x^{2}-[[k]] = [[a]](x-[[r]])(x+[[r]]) \\), so for \\( x\\ne [[r]] \\), \\( f(x) = [[a]](x+[[r]]) \\). The limit as \\( x\\to [[r]] \\) is \\( L = 2[[a]]\\cdot[[r]] = [[answer]] \\).",
+ "solution": "Factoring, \\( [[a]]x^{2}-[[k]] = [[a]](x-[[r]])(x+[[r]]) \\), so for \\( x\\ne [[r]] \\), \\( f(x) = [[a]](x+[[r]]) \\). The limit as \\( x\\to [[r]] \\) is \\( L = 2\\cdot[[a]]\\cdot[[r]] = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets to double \\( a \\cdot r \\), dropping the factor of 2 that comes from \\( x+r\\to 2r \\).",
   "This reports the removed factor \\( k=ar^{2} \\) itself, not the limit.",

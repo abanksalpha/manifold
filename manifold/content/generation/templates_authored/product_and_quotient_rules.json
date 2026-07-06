@@ -23,7 +23,7 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "By the product rule, \\( h'(x) = [[a]]([[c]]x^{2}+([[d]])x+([[e]])) + ([[a]]x+([[b]]))(2[[c]]x+([[d]])) \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "solution": "By the product rule, \\( h'(x) = [[a]]([[c]]x^{2}+([[d]])x+([[e]])) + ([[a]]x+([[b]]))(2\\cdot[[c]]x+([[d]])) \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
  "distractor_rationales": [
   "This keeps only the second term of the product rule, dropping the first factor's own contribution.",
   "This keeps only the first term of the product rule, dropping the second factor's own contribution.",
@@ -121,7 +121,7 @@
   "[[answer]] + 3",
   "[[answer]] - 3"
  ],
- "solution": "By the quotient rule, \\( h'(x) = \\dfrac{(2[[a]]x+([[b]]))([[d]]x+([[e]])) - [[d]]([[a]]x^{2}+([[b]])x+([[c]]))}{([[d]]x+([[e]]))^{2}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "solution": "By the quotient rule, \\( h'(x) = \\dfrac{(2\\cdot[[a]]x+([[b]]))([[d]]x+([[e]])) - [[d]]([[a]]x^{2}+([[b]])x+([[c]]))}{([[d]]x+([[e]]))^{2}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
  "distractor_rationales": [
   "This differentiates only the numerator and divides by \\( d \\), ignoring the quotient rule's structure entirely.",
   "This adds instead of subtracts in the quotient-rule numerator.",

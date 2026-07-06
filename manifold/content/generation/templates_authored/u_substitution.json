@@ -145,11 +145,11 @@
   "2*[[answer]]",
   "-[[answer]]"
  ],
- "solution": "With \\( u=[[k]]x \\), \\( dx=\\dfrac{du}{[[k]]} \\), and the limits change from \\( x=0,\\,[[a]] \\) to \\( u=0,\\,[[k]][[a]] \\). The integral becomes \\( \\dfrac{[[c]]}{[[k]]}\\displaystyle\\int_{0}^{[[k]][[a]]} \\frac{du}{1+u^{2}} = \\dfrac{[[c]]}{[[k]]}\\arctan([[k]][[a]]) = [[answer]] \\).",
+ "solution": "With \\( u=[[k]]x \\), \\( dx=\\dfrac{du}{[[k]]} \\), and the limits change from \\( x=0,\\,[[a]] \\) to \\( u=0,\\,[[k]]\\cdot[[a]] \\). The integral becomes \\( \\dfrac{[[c]]}{[[k]]}\\displaystyle\\int_{0}^{[[k]]\\cdot[[a]]} \\frac{du}{1+u^{2}} = \\dfrac{[[c]]}{[[k]]}\\arctan([[k]]\\cdot[[a]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets to divide by \\( [[k]] \\) after substituting \\( dx=du/[[k]] \\).",
   "This multiplies by \\( [[k]] \\) instead of dividing, the opposite mistake.",
-  "This uses \\( \\arctan([[a]]) \\) instead of \\( \\arctan([[k]][[a]]) \\), forgetting the substitution changes the arctan's argument too.",
+  "This uses \\( \\arctan([[a]]) \\) instead of \\( \\arctan([[k]]\\cdot[[a]]) \\), forgetting the substitution changes the arctan's argument too.",
   "This halves the correct value.",
   "This doubles the correct value.",
   "This flips the sign of the correct value."

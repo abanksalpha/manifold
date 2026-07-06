@@ -28,7 +28,7 @@
  ],
  "solution": "A basis is given by the \\( [[n]]^2 \\) matrices with a single \\( 1 \\) entry and \\( 0 \\) elsewhere, so the dimension is \\( [[n]]^2 = [[answer]] \\).",
  "distractor_rationales": [
-  "This counts \\( 2[[n]] \\) (for example one entry per row and column), not all entries.",
+  "This counts \\( 2\\cdot[[n]] \\) (for example one entry per row and column), not all entries.",
   "This is \\( [[n]]([[n]]+1) \\), the dimension counted with an extra column.",
   "This is the dimension of \\( ([[n]]+1)\\times([[n]]+1) \\) matrices.",
   "This undercounts the free entries by one.",
@@ -197,7 +197,7 @@
   "[[answer]] + 2",
   "[[n]]*([[n]] + 1)"
  ],
- "solution": "The trace-zero condition is a single independent linear constraint (\\( a_{11}+\\cdots+a_{[[n]][[n]]}=0 \\)) on the \\( [[n]]^2 \\)-dimensional space of all matrices, cutting the dimension by exactly \\( 1 \\): \\( [[n]]^2 - 1 = [[answer]] \\).",
+ "solution": "The trace-zero condition is a single independent linear constraint (\\( a_{11}+\\cdots+a_{[[n]]\\cdot[[n]]}=0 \\)) on the \\( [[n]]^2 \\)-dimensional space of all matrices, cutting the dimension by exactly \\( 1 \\): \\( [[n]]^2 - 1 = [[answer]] \\).",
  "distractor_rationales": [
   "This ignores the trace-zero constraint entirely.",
   "This adds instead of subtracts the single constraint.",

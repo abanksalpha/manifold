@@ -20,7 +20,7 @@
   "[[answer]] + [[m]]",
   "[[answer]] - [[m]]"
  ],
- "solution": "Line up the [[n]] in \\( (2[[m]])! \\) ways, then divide by \\( [[m]]! \\) for the order of the pairs and \\( 2^{[[m]]} \\) for the order within each pair: \\( \\frac{(2[[m]])!}{[[m]]!\\,2^{[[m]]}} = [[answer]] \\).",
+ "solution": "Line up the [[n]] in \\( (2\\cdot[[m]])! \\) ways, then divide by \\( [[m]]! \\) for the order of the pairs and \\( 2^{[[m]]} \\) for the order within each pair: \\( \\frac{(2\\cdot[[m]])!}{[[m]]!\\,2^{[[m]]}} = [[answer]] \\).",
  "distractor_rationales": [
   "This divides by \\( [[m]]! \\) only, forgetting the two orderings within each pair.",
   "This divides by \\( 2^{[[m]]} \\) only, forgetting that the pairs are unordered.",
@@ -80,7 +80,7 @@
   "[[answer]] + [[m]]",
   "[[answer]] - [[m]]"
  ],
- "solution": "Line up the [[n]] [[noun]] in \\( (2[[m]])! \\) ways, then divide only by \\( 2^{[[m]]} \\) for the order within each of the [[m]] LABELED teams (unlike unlabeled pairs, the teams themselves are already distinguished, so there is no \\( [[m]]! \\) to divide out): \\( \\frac{(2[[m]])!}{2^{[[m]]}} = [[answer]] \\).",
+ "solution": "Line up the [[n]] [[noun]] in \\( (2\\cdot[[m]])! \\) ways, then divide only by \\( 2^{[[m]]} \\) for the order within each of the [[m]] LABELED teams (unlike unlabeled pairs, the teams themselves are already distinguished, so there is no \\( [[m]]! \\) to divide out): \\( \\frac{(2\\cdot[[m]])!}{2^{[[m]]}} = [[answer]] \\).",
  "distractor_rationales": [
   "This also divides by \\( [[m]]! \\), which is only correct when the pairs are UNLABELED.",
   "This forgets to divide out the two orderings within each labeled team.",
@@ -115,7 +115,7 @@
   "This ignores the adjacency restriction and counts all size-[[k]] subsets.",
   "This shrinks the pool by [[k]] instead of [[k]]-1 before choosing.",
   "This chooses one too few seats after the shift.",
-  "This shifts by \\( 2[[k]] \\) instead of \\( [[k]]-1 \\), removing too much room.",
+  "This shifts by \\( 2\\cdot[[k]] \\) instead of \\( [[k]]-1 \\), removing too much room.",
   "This is off from the correct count by [[k]].",
   "This is off from the correct count by [[k]]."
  ]

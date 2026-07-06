@@ -19,7 +19,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Use \\( \\sin(A)\\cos(B) = \\tfrac{1}{2}[\\sin(A+B) + \\sin(A-B)] \\): \\( \\int_{0}^{\\pi}\\sin([[m]]x)\\cos([[n]]x)\\,dx = \\tfrac{1}{2}\\int_{0}^{\\pi}[\\sin(([[m]]+[[n]])x) + \\sin(([[m]]-[[n]])x)]\\,dx \\). Since \\( [[m]]+[[n]] \\) is odd, this equals \\( \\tfrac{2[[m]]}{[[m]]^{2}-[[n]]^{2}} = [[answer]] \\).",
+ "solution": "Use \\( \\sin(A)\\cos(B) = \\tfrac{1}{2}[\\sin(A+B) + \\sin(A-B)] \\): \\( \\int_{0}^{\\pi}\\sin([[m]]x)\\cos([[n]]x)\\,dx = \\tfrac{1}{2}\\int_{0}^{\\pi}[\\sin(([[m]]+[[n]])x) + \\sin(([[m]]-[[n]])x)]\\,dx \\). Since \\( [[m]]+[[n]] \\) is odd, this equals \\( \\tfrac{2\\cdot[[m]]}{[[m]]^{2}-[[n]]^{2}} = [[answer]] \\).",
  "distractor_rationales": [
   "This swaps the roles of \\( [[m]] \\) and \\( [[n]] \\) in the final formula.",
   "This uses \\( [[m]]^{2}+[[n]]^{2} \\) in the denominator instead of \\( [[m]]^{2}-[[n]]^{2} \\).",

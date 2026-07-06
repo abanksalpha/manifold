@@ -89,11 +89,11 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "The terms \\([[p]]x^3\\) and \\([[q]]xy^2\\) are both odd in \\(x\\), so each contributes \\(0\\) when integrated over the symmetric interval \\([-[[a]],[[a]]]\\). Only the constant \\([[s]]\\) survives: \\( \\int_{-[[a]]}^{[[a]]}\\int_0^{[[c]]} [[s]]\\,dy\\,dx = [[s]]\\cdot 2[[a]]\\cdot[[c]] = [[answer]] \\).",
+  "solution": "The terms \\([[p]]x^3\\) and \\([[q]]xy^2\\) are both odd in \\(x\\), so each contributes \\(0\\) when integrated over the symmetric interval \\([-[[a]],[[a]]]\\). Only the constant \\([[s]]\\) survives: \\( \\int_{-[[a]]}^{[[a]]}\\int_0^{[[c]]} [[s]]\\,dy\\,dx = [[s]]\\cdot 2\\cdot[[a]]\\cdot[[c]] = [[answer]] \\).",
   "distractor_rationales": [
    "This wrongly assumes the ENTIRE integrand vanishes by symmetry, missing that the constant term does not depend on \\(x\\) and survives.",
    "This keeps a bogus nonzero contribution from the odd terms instead of letting them cancel.",
-   "This drops the factor of \\(2\\) from the symmetric interval \\([-[[a]],[[a]]]\\) having length \\(2[[a]]\\), using \\([[a]]\\) instead.",
+   "This drops the factor of \\(2\\) from the symmetric interval \\([-[[a]],[[a]]]\\) having length \\(2\\cdot[[a]]\\), using \\([[a]]\\) instead.",
    "This is off by one from the correct value.",
    "This is off by one from the correct value."
   ]

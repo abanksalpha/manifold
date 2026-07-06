@@ -109,7 +109,7 @@
    "[[answer]] + [[h]]",
    "[[answer]] - [[h]]"
   ],
-  "solution": "The curves meet where \\( |y-[[h]]| = [[k]] \\), i.e. \\( y = [[h]]-[[k]] \\) and \\( y = [[h]]+[[k]] \\). The line lies to the right of the V-shape between these points, giving a triangle of base \\( 2[[k]] \\) and height \\( [[k]] \\): \\( \\int_{[[h]]-[[k]]}^{[[h]]+[[k]]}\\left([[k]] - |y-[[h]]|\\right)dy = [[answer]] \\).",
+  "solution": "The curves meet where \\( |y-[[h]]| = [[k]] \\), i.e. \\( y = [[h]]-[[k]] \\) and \\( y = [[h]]+[[k]] \\). The line lies to the right of the V-shape between these points, giving a triangle of base \\( 2\\cdot[[k]] \\) and height \\( [[k]] \\): \\( \\int_{[[h]]-[[k]]}^{[[h]]+[[k]]}\\left([[k]] - |y-[[h]]|\\right)dy = [[answer]] \\).",
   "distractor_rationales": [
    "This uses the full base times height, \\( 2k \\cdot k \\), instead of half that for a triangle.",
    "This computes half the triangle's area as if the base were only \\( k \\).",
@@ -140,7 +140,7 @@
    "[[answer]] + [[p]]",
    "[[answer]] - [[p]]"
   ],
-  "solution": "Since \\( y^{2}+[[p]]-[[q]]y \\) has no real roots (its discriminant \\( [[q]]^{2}-4[[p]] \\) is negative), the curve stays to the right of the line on the whole given interval, and the area is directly \\( \\int_{[[a]]}^{[[b]]}\\left((y^{2}+[[p]]) - [[q]]y\\right)dy = [[answer]] \\), with no need to solve for intersection points first.",
+  "solution": "Since \\( y^{2}+[[p]]-[[q]]y \\) has no real roots (its discriminant \\( [[q]]^{2}-4\\cdot[[p]] \\) is negative), the curve stays to the right of the line on the whole given interval, and the area is directly \\( \\int_{[[a]]}^{[[b]]}\\left((y^{2}+[[p]]) - [[q]]y\\right)dy = [[answer]] \\), with no need to solve for intersection points first.",
   "distractor_rationales": [
    "This evaluates the horizontal gap only at \\( y=[[b]] \\) minus at \\( y=[[a]] \\), instead of integrating it.",
    "This uses the gap at \\( y=[[b]] \\) times the width, a right-rectangle approximation.",

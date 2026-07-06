@@ -88,7 +88,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "By the exponent rule \\( (e^{i\\theta})^{m} = e^{im\\theta} \\) with \\( \\theta=\\pi[[k]]/6 \\) and \\( m=[[m]] \\), the power equals \\( \\cos\\left(\\dfrac{\\pi[[k]][[m]]}{6}\\right) + i\\sin\\left(\\dfrac{\\pi[[k]][[m]]}{6}\\right) = [[answer]] \\).",
+ "solution": "By the exponent rule \\( (e^{i\\theta})^{m} = e^{im\\theta} \\) with \\( \\theta=\\pi[[k]]/6 \\) and \\( m=[[m]] \\), the power equals \\( \\cos\\left(\\dfrac{\\pi[[k]]\\cdot[[m]]}{6}\\right) + i\\sin\\left(\\dfrac{\\pi[[k]]\\cdot[[m]]}{6}\\right) = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets to scale the angle by \\( m \\), leaving \\( \\theta \\) unchanged.",
   "This multiplies the whole exponential by \\( m \\) instead of scaling the angle.",

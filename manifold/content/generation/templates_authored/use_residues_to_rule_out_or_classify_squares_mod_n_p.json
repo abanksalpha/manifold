@@ -23,7 +23,7 @@
     "solution": "Square \\( [[a]] \\) and reduce modulo \\( [[n]] \\): the least non-negative residue of \\( [[a]]^{2} \\) is \\( [[answer]] \\), so \\( [[answer]] \\) is a quadratic residue modulo \\( [[n]] \\).",
     "distractor_rationales": [
       "This is \\( [[a]] \\bmod [[n]] \\); the exponent 2 was dropped.",
-      "This is \\( 2[[a]] \\bmod [[n]] \\); the square was replaced by doubling.",
+      "This is \\( 2\\cdot[[a]] \\bmod [[n]] \\); the square was replaced by doubling.",
       "This is \\( [[a]]^{2}+1 \\bmod [[n]] \\), an off-by-one slip.",
       "This is one more than the correct residue.",
       "This is two more than the correct residue.",

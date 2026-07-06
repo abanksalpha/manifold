@@ -37,7 +37,7 @@
  */
 
 import { CardAnswer_Rating } from "@generated/anki/scheduler_pb";
-import { buildSessionQueue, gradeNow } from "@generated/backend";
+import { buildSessionQueue, getProblemsSolved, gradeNow } from "@generated/backend";
 
 /** The deck the trainer studies. Every skill card lives here. */
 export const MANIFOLD_DECK_NAME = "GRE Mathematics";
@@ -78,6 +78,23 @@ export const INDEPENDENT_LEVEL = 2;
 export function hintsAllowed(level: number): boolean {
     return level !== INDEPENDENT_LEVEL;
 }
+
+/**
+ * Whether the predict-then-reveal pretrieval step is offered at New (level 0):
+ * before the worked example the learner is shown the stem and asked to make a
+ * quick prediction (D36, Phase 3). It grades nothing and sends nothing; it is a
+ * pure metacognitive prompt. Exported as a flag so the study feature can be
+ * ablated or A/B compared without editing the player.
+ */
+export const PREDICT_ENABLED = true;
+
+/**
+ * Whether the optional self-explanation prompt is offered after an attempt at
+ * New (level 0) and Guided (level 1): a one-line "why does this method work?"
+ * box (D36, Phase 3). It is never graded and never sent anywhere. Exported as a
+ * flag so the study feature can be ablated or A/B compared.
+ */
+export const SELF_EXPLAIN_ENABLED = true;
 
 /** The five lettered controls. "Don't know" is handled separately, as a miss. */
 export const CHOICE_IDS = ["A", "B", "C", "D", "E"] as const;
@@ -580,6 +597,36 @@ export async function fetchLiveStep(item: QueueItem, signal?: AbortSignal): Prom
 }
 
 /**
+ * Generate + verify a FRESH instance of the same skill, mapped to a
+ * {@link ServedProblem}, or null when none can be served.
+ *
+ * A New skill is taught on one worked instance and then attempted on a DIFFERENT
+ * one (D36), so the player calls this after the worked example to get a new
+ * instance of the same skill. It uses the same live endpoint as the runner
+ * ({@link postNextProblem}) and the same mapping ({@link toProblem}). An honest
+ * abstain or a transport failure returns null so the caller can fall back to the
+ * already-served worked instance (real and verified, so honest, not fabricated)
+ * rather than crashing; a malformed "ok" payload still throws loudly through
+ * {@link toProblem}, since the server claims it was verified. `queuePosition` is
+ * carried by the caller, so it is 0 here.
+ */
+export async function fetchProblem(
+    item: QueueItem,
+    signal?: AbortSignal,
+): Promise<ServedProblem | null> {
+    let response: LiveResponse;
+    try {
+        response = await postNextProblem(item, signal);
+    } catch {
+        return null;
+    }
+    if (response.status !== "ok") {
+        return null;
+    }
+    return { item, problem: toProblem(item, response.item), queuePosition: 0 };
+}
+
+/**
  * How many upcoming due skills to keep generating ahead of the learner. A small
  * look-ahead buffer hides generation latency: template-backed skills serve in a
  * fraction of a second, but a skill with no template needs a live model round-trip
@@ -901,8 +948,26 @@ export function takePrewarmedSession(): { queue: QueueItem[]; runner: SessionRun
  * scheduling states and applies the rating through Anki's normal answering path,
  * so the chosen order does not depend on Anki's queue and intervals are
  * untouched. Only real problems are graded; abstain steps never reach here.
+ *
+ * `millisecondsTaken` is the measured time on the problem, recorded into the
+ * revlog so study-time stats count Manifold reviews (it was dropped as 0 before).
+ * The caller caps it; 0 means the answer was not timed.
  */
-export async function grade(item: QueueItem, correct: boolean): Promise<void> {
+export async function grade(
+    item: QueueItem,
+    correct: boolean,
+    millisecondsTaken: number,
+): Promise<void> {
     const rating = correct ? CardAnswer_Rating.GOOD : CardAnswer_Rating.AGAIN;
-    await gradeNow({ cardIds: [item.cardId], rating });
+    await gradeNow({ cardIds: [item.cardId], rating, millisecondsTaken });
+}
+
+/**
+ * Read the cumulative count of problems solved (graded reviews across all
+ * sessions) from the engine's revlog. A transport failure surfaces to the caller
+ * rather than returning a fabricated zero.
+ */
+export async function fetchProblemsSolved(): Promise<number> {
+    const solved = await getProblemsSolved({});
+    return solved.total;
 }

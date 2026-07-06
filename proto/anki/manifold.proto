@@ -15,11 +15,40 @@ service ManifoldService {
   // order over the prerequisite DAG. It reads FSRS state, due timing and the
   // blueprint; it never mutates cards, scheduling or the queue.
   rpc BuildSessionQueue(SessionQueueRequest) returns (SessionQueueResponse);
+  // Read-only: the cumulative count of problems solved (graded reviews across
+  // all sessions), read from the revlog. Powers the "total problems solved"
+  // readout on the home and session screens.
+  rpc GetProblemsSolved(generic.Empty) returns (ProblemsSolvedResponse);
+  // Read-only: whether the learner has completed/skipped onboarding, or the
+  // collection already carries study history (a pre-existing user).
+  rpc GetPlacementState(generic.Empty) returns (PlacementStateResponse);
+  // Read-only: selects a short cold diagnostic (one probe per requested topic,
+  // level=2), reusing SessionItem. Unknown topic ids fail loudly.
+  rpc BuildPlacementExam(PlacementExamRequest) returns (SessionQueueResponse);
+  // Mutating (the first mutating manifold RPC): seeds the not-yet-attempted
+  // skill cards of each known topic to Independent via Anki's normal answer
+  // path, tags them mf::placement, and marks onboarding done. Learning-kind, so
+  // the readiness give-up rule is untouched.
+  rpc ApplyPlacement(ApplyPlacementRequest) returns (ApplyPlacementResponse);
+  // Mutating: binds the collection to the signed-in Google account. Returns
+  // reset=true — and wipes the local Manifold deck + clears the onboarding flag
+  // — when a DIFFERENT account signs in on this device, so a new account starts
+  // fresh at placement. An unclaimed collection is claimed without a reset (an
+  // existing user is not wiped on upgrade); a matching account is a no-op. The
+  // collection is a single local store, not per-account storage, so a switch is
+  // a fresh start, not a merge.
+  rpc ClaimAccount(ClaimAccountRequest) returns (ClaimAccountResponse);
 }
 
 // Implicitly includes any of the above methods that are not listed in the
 // backend service.
 service BackendManifoldService {}
+
+// The cumulative count of problems solved: graded revlog reviews across all
+// sessions (the all-time analog of Anki's studied-today count).
+message ProblemsSolvedResponse {
+  uint32 total = 1;
+}
 
 message TopicGraphResponse {
   repeated TopicNode nodes = 1;
@@ -155,4 +184,41 @@ message SessionItem {
   // same day, no graduation required), 3 Revisited (relearning after a lapse).
   // Read-only label; the player does not yet vary the slide by it.
   uint32 level = 7;
+}
+
+message PlacementStateResponse {
+  bool completed = 1;
+}
+
+message PlacementExamRequest {
+  // Blueprint topic ids to probe; empty means every topic. Validated against
+  // the blueprint (unknown ids fail loudly).
+  repeated string topic_ids = 1;
+  // Max distinct-skill probes to draw per topic (>=1). The engine caps the
+  // total.
+  uint32 per_topic = 2;
+}
+
+message ApplyPlacementRequest {
+  // Topics the learner has demonstrated/asserted competence in (already
+  // includes the transitive prerequisite closure, computed client-side). Their
+  // not-yet-attempted skill cards are seeded to Independent.
+  repeated string known_topic_ids = 1;
+}
+
+message ApplyPlacementResponse {
+  // Count of skill cards seeded (graded Good + tagged mf::placement).
+  uint32 seeded_cards = 1;
+}
+
+message ClaimAccountRequest {
+  // The signed-in Google account uid, an opaque per-account owner key.
+  string uid = 1;
+}
+
+message ClaimAccountResponse {
+  // Whether local Manifold progress was reset because a different account
+  // signed in on this device (so the client routes the new account to
+  // placement).
+  bool reset = 1;
 }

@@ -83,7 +83,7 @@
  "distractor_rationales": [
   "This doubles the correct area.",
   "This halves the correct area.",
-  "This treats the region as a \\( 2[[m]] \\) by \\( 2[[m]] \\) by \\( 2[[m]] \\) box instead of integrating the strip widths.",
+  "This treats the region as a \\( 2\\cdot[[m]] \\) by \\( 2\\cdot[[m]] \\) by \\( 2\\cdot[[m]] \\) box instead of integrating the strip widths.",
   "This integrates the strip width with the wrong sign, giving the negative of the area.",
   "This is off by one from the correct area."
  ]

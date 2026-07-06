@@ -12,7 +12,7 @@
   }
  },
  "constraints": [],
- "stem": "For \\( x=t^{2} \\), \\( y=t^{3}-3[[k]]^{2}t \\), a horizontal tangent occurs where \\( dy/dt=0 \\). Which of the following is a possible value of \\( t \\) there?",
+ "stem": "For \\( x=t^{2} \\), \\( y=t^{3}-3\\cdot[[k]]^{2}t \\), a horizontal tangent occurs where \\( dy/dt=0 \\). Which of the following is a possible value of \\( t \\) there?",
  "answer_spec": {
   "op": "solve",
   "equation": "3*t**2 - 3*[[k]]**2 = 0",
@@ -26,7 +26,7 @@
   "[[k]] + 2",
   "2*[[k]]"
  ],
- "solution": "\\( dy/dt=3t^{2}-3[[k]]^{2}=0 \\Rightarrow t=\\pm[[k]] \\); one possible value is \\( [[answer]] \\).",
+ "solution": "\\( dy/dt=3t^{2}-3\\cdot[[k]]^{2}=0 \\Rightarrow t=\\pm[[k]] \\); one possible value is \\( [[answer]] \\).",
  "distractor_rationales": []
 },
 {
@@ -38,7 +38,7 @@
   "k": {"type": "int", "lo": 1, "hi": 20}
  },
  "constraints": [],
- "stem": "For \\( x=t^{3}-3[[k]]^{2}t \\), \\( y=t^{2} \\), a vertical tangent occurs where \\( dx/dt=0 \\). Which of the following is a possible value of \\( t \\) there?",
+ "stem": "For \\( x=t^{3}-3\\cdot[[k]]^{2}t \\), \\( y=t^{2} \\), a vertical tangent occurs where \\( dx/dt=0 \\). Which of the following is a possible value of \\( t \\) there?",
  "answer_spec": {
   "op": "solve",
   "equation": "3*t**2 - 3*[[k]]**2 = 0",
@@ -52,7 +52,7 @@
   "[[k]] + 2",
   "2*[[k]]"
  ],
- "solution": "\\( dx/dt=3t^{2}-3[[k]]^{2}=0 \\Rightarrow t=\\pm[[k]] \\); one possible value is \\( [[answer]] \\).",
+ "solution": "\\( dx/dt=3t^{2}-3\\cdot[[k]]^{2}=0 \\Rightarrow t=\\pm[[k]] \\); one possible value is \\( [[answer]] \\).",
  "distractor_rationales": [
   "This uses \\( k^2\\) instead of \\( k\\) as the value of \\( t\\).",
   "This triples the correct value.",
@@ -91,7 +91,7 @@
   "[[r1]] - 1",
   "[[r2]] - 1"
  ],
- "solution": "\\( f'(x)=3[[p]]x^{2}+2([[b]])x+([[c]])=3[[p]](x-([[r1]]))(x-([[r2]])) \\), so \\( f'(x)=0 \\) at \\( x=[[r1]] \\) or \\( x=[[r2]] \\); one possible value is \\( [[answer]] \\).",
+ "solution": "\\( f'(x)=3\\cdot[[p]]x^{2}+2([[b]])x+([[c]])=3\\cdot[[p]](x-([[r1]]))(x-([[r2]])) \\), so \\( f'(x)=0 \\) at \\( x=[[r1]] \\) or \\( x=[[r2]] \\); one possible value is \\( [[answer]] \\).",
  "distractor_rationales": [
   "This adds the two critical points instead of reporting one of them.",
   "This multiplies the two critical points instead of reporting one of them.",
@@ -130,7 +130,7 @@
   "6*[[a]]*[[x0]] + 2*[[b]] + 1",
   "6*[[a]]*[[x0]] + 2*[[b]] - 1"
  ],
- "solution": "\\( f'(x)=3[[a]]x^{2}+2[[b]]x+[[c]] \\) and \\( f''(x)=6[[a]]x+2[[b]] \\), so \\( f''([[x0]])=[[answer]] \\).",
+ "solution": "\\( f'(x)=3\\cdot[[a]]x^{2}+2\\cdot[[b]]x+[[c]] \\) and \\( f''(x)=6\\cdot[[a]]x+2\\cdot[[b]] \\), so \\( f''([[x0]])=[[answer]] \\).",
  "distractor_rationales": [
   "This flips the sign of the \\( 2b\\) term.",
   "This reports \\( f'(x_0)\\) instead of \\( f''(x_0)\\).",
@@ -164,7 +164,7 @@
   "-Rational([[b]], 3*[[a]]) + 1",
   "-Rational([[b]], 3*[[a]]) - 1"
  ],
- "solution": "\\( f''(x)=6[[a]]x+2[[b]]=0 \\Rightarrow x=-\\dfrac{2[[b]]}{6[[a]]}=-\\dfrac{[[b]]}{3[[a]]}=[[answer]] \\).",
+ "solution": "\\( f''(x)=6\\cdot[[a]]x+2\\cdot[[b]]=0 \\Rightarrow x=-\\dfrac{2\\cdot[[b]]}{6\\cdot[[a]]}=-\\dfrac{[[b]]}{3\\cdot[[a]]}=[[answer]] \\).",
  "distractor_rationales": [
   "This drops the required minus sign.",
   "This forgets to triple \\( a\\) in the denominator.",

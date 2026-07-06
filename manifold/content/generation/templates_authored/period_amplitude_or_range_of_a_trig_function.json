@@ -131,7 +131,7 @@
   "0",
   "[[d]] + [[b]]"
  ],
- "solution": "The maximum is \\( [[a]]+[[d]] \\) (attained when the wave equals \\( 1 \\)) and the minimum is \\( -[[a]]+[[d]] \\); their sum is \\( ([[a]]+[[d]]) + (-[[a]]+[[d]]) = 2[[d]] = [[answer]] \\) — the amplitude cancels, leaving twice the midline.",
+ "solution": "The maximum is \\( [[a]]+[[d]] \\) (attained when the wave equals \\( 1 \\)) and the minimum is \\( -[[a]]+[[d]] \\); their sum is \\( ([[a]]+[[d]]) + (-[[a]]+[[d]]) = 2\\cdot[[d]] = [[answer]] \\) — the amplitude cancels, leaving twice the midline.",
  "distractor_rationales": [
   "This reports only the midline shift, not twice it.",
   "This adds the amplitude on top of twice the midline instead of letting it cancel.",

@@ -83,7 +83,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Applying L'Hopital's rule twice (or dividing every term by \\( x^{2} \\)): \\( \\displaystyle\\lim_{x\\to\\infty}\\dfrac{2[[a]]x+([[b]])}{2[[d]]x+([[e]])} = \\lim_{x\\to\\infty}\\dfrac{2[[a]]}{2[[d]]} = \\dfrac{[[a]]}{[[d]]} = [[answer]] \\).",
+ "solution": "Applying L'Hopital's rule twice (or dividing every term by \\( x^{2} \\)): \\( \\displaystyle\\lim_{x\\to\\infty}\\dfrac{2\\cdot[[a]]x+([[b]])}{2\\cdot[[d]]x+([[e]])} = \\lim_{x\\to\\infty}\\dfrac{2\\cdot[[a]]}{2\\cdot[[d]]} = \\dfrac{[[a]]}{[[d]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This takes the ratio of the linear coefficients instead of the leading quadratic coefficients.",
   "This takes the ratio of the constant terms instead of the leading coefficients.",

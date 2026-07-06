@@ -20,7 +20,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "The critical point is at \\( x=-\\dfrac{[[b]]}{2[[a]]} \\) (where \\( f'(x)=0 \\)). Substituting back into \\( f \\) gives the minimum value \\( f\\!\\left(-\\dfrac{[[b]]}{2[[a]]}\\right) = [[c]] - \\dfrac{[[b]]^{2}}{4[[a]]} = [[answer]] \\).",
+ "solution": "The critical point is at \\( x=-\\dfrac{[[b]]}{2\\cdot[[a]]} \\) (where \\( f'(x)=0 \\)). Substituting back into \\( f \\) gives the minimum value \\( f\\!\\left(-\\dfrac{[[b]]}{2\\cdot[[a]]}\\right) = [[c]] - \\dfrac{[[b]]^{2}}{4\\cdot[[a]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( f(0) \\), not the minimum value at the vertex.",
   "This is the \\( x \\)-coordinate of the minimum, not the minimum VALUE.",
@@ -51,7 +51,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "The critical point is at \\( x=-\\dfrac{[[b]]}{2[[a]]} \\) (where \\( f'(x)=0 \\)). Substituting back into \\( f \\) gives the maximum value \\( f\\!\\left(-\\dfrac{[[b]]}{2[[a]]}\\right) = [[c]] - \\dfrac{[[b]]^{2}}{4[[a]]} = [[answer]] \\).",
+ "solution": "The critical point is at \\( x=-\\dfrac{[[b]]}{2\\cdot[[a]]} \\) (where \\( f'(x)=0 \\)). Substituting back into \\( f \\) gives the maximum value \\( f\\!\\left(-\\dfrac{[[b]]}{2\\cdot[[a]]}\\right) = [[c]] - \\dfrac{[[b]]^{2}}{4\\cdot[[a]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( f(0) \\), not the maximum value at the vertex.",
   "This is the \\( x \\)-coordinate of the maximum, not the maximum VALUE.",

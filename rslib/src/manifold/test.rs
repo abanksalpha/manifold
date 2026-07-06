@@ -212,21 +212,22 @@ fn coverage_below_one_when_under_authored() {
 fn non_root_unlocks_when_prereqs_competent() {
     let mut col = Collection::new();
     // precalc_functions unlocks once its sole prerequisite, elementary_algebra,
-    // is *competent enough* — 80% of its skills answered correctly (the
-    // mastery-learning criterion) — not merely seen and not durably mastered.
+    // is *competent enough* — the unlock bar (65%) of its skills answered
+    // correctly (the mastery-learning criterion) — not merely seen and not
+    // durably mastered.
     let cards: Vec<Card> = ["s0", "s1", "s2", "s3", "s4"]
         .into_iter()
         .map(|s| add_skill_card(&mut col, "elementary_algebra", s, "relearn"))
         .collect();
 
-    // 3 / 5 = 0.6 < 0.8 answered correctly -> precalc_functions stays locked.
+    // 3 / 5 = 0.6 < 0.65 answered correctly -> precalc_functions stays locked.
     for card in &cards[..3] {
         add_revlog(&mut col, card, RevlogReviewKind::Review, 3);
     }
     let nodes = compute_topic_graph(&mut col).unwrap();
     assert_eq!(find(&nodes, "precalc_functions").lock_state, "locked");
 
-    // 4 / 5 = 0.8 >= 0.8 answered correctly -> precalc_functions unlocks, even
+    // 4 / 5 = 0.8 >= 0.65 answered correctly -> precalc_functions unlocks, even
     // though nothing is durably mastered (no stability accrued).
     add_revlog(&mut col, &cards[3], RevlogReviewKind::Review, 3);
     let nodes = compute_topic_graph(&mut col).unwrap();
@@ -309,7 +310,7 @@ fn session_unlocks_dependents_after_prereq_competent() {
     add_skill_card(&mut col, "precalc_functions", "pt_a", "relearn");
     add_skill_card(&mut col, "precalc_functions", "pt_b", "relearn");
 
-    // 3 / 5 answered correctly (0.6 < 0.8): precalc stays locked, serves no new.
+    // 3 / 5 answered correctly (0.6 < 0.65): precalc stays locked, serves no new.
     for card in &ea[..3] {
         add_revlog(&mut col, card, RevlogReviewKind::Review, 3);
     }
@@ -320,7 +321,8 @@ fn session_unlocks_dependents_after_prereq_competent() {
         topic_sequence(&before)
     );
 
-    // 4 / 5 answered correctly (0.8): precalc_functions unlocks and contributes.
+    // 4 / 5 answered correctly (0.8 >= 0.65): precalc_functions unlocks and
+    // contributes.
     add_revlog(&mut col, &ea[3], RevlogReviewKind::Review, 3);
     let after = build_session_queue(&mut col, true).unwrap();
     assert!(
@@ -589,8 +591,8 @@ fn graded_review_still_undoes_correctly() {
     assert_eq!(col.can_undo(), Some(&Op::AddNote));
 
     // A normal graded review — the exact path the session player takes
-    // (`gradeNow` -> `grade_now`), rating the card Good (2).
-    col.grade_now(&[card.id], 2).unwrap();
+    // (`gradeNow` -> `grade_now`), rating the card Good (2), 4s on the answer.
+    col.grade_now(&[card.id], 2, 4000).unwrap();
 
     // Grading is a real, undoable mutation: it records a GradeNow op on top of
     // the stack and moves the card off its New state.
@@ -608,4 +610,154 @@ fn graded_review_still_undoes_correctly() {
         Some(&Op::AddNote),
         "undo must consume only the GradeNow op, keeping prior history"
     );
+}
+
+#[test]
+fn placement_exam_probes_requested_topics_cold() {
+    let mut col = Collection::new();
+    add_skill_card(&mut col, "elementary_algebra", "ea_1", "relearn");
+    add_skill_card(&mut col, "elementary_algebra", "ea_2", "relearn");
+    add_skill_card(&mut col, "differential_calc", "dc_1", "relearn");
+
+    let items =
+        super::placement::build_placement_exam(&mut col, &["elementary_algebra".to_string()], 1)
+            .unwrap();
+
+    assert_eq!(items.len(), 1, "one probe per topic with per_topic=1");
+    assert_eq!(items[0].topic_id, "elementary_algebra");
+    assert_eq!(items[0].level, 2, "probes are presented cold (Independent)");
+}
+
+#[test]
+fn placement_exam_unknown_topic_fails_loudly() {
+    let mut col = Collection::new();
+    let err = super::placement::build_placement_exam(&mut col, &["nope".to_string()], 1);
+    assert!(
+        err.is_err(),
+        "an unknown topic id must fail, not be skipped"
+    );
+}
+
+#[test]
+fn apply_placement_seeds_known_topic_without_moving_readiness() {
+    let mut col = Collection::new();
+    add_skill_card(&mut col, "elementary_algebra", "ea_1", "relearn");
+    add_skill_card(&mut col, "elementary_algebra", "ea_2", "relearn");
+
+    let seeded =
+        super::placement::apply_placement(&mut col, &["elementary_algebra".to_string()]).unwrap();
+    assert_eq!(seeded, 2, "both New skill cards get seeded");
+
+    let nodes = compute_topic_graph(&mut col).unwrap();
+    let ea = find(&nodes, "elementary_algebra");
+    assert_eq!(ea.level_independent, 2, "seeded cards reach Independent");
+    assert_eq!(ea.level_new, 0, "no card is left New");
+    assert_eq!(ea.graded_reviews, 2, "seeding writes real review evidence");
+    // The honesty invariant: seeds are Learning-kind, so they never count as
+    // independent (Review-kind) evidence and never move the readiness gate.
+    assert_eq!(
+        ea.independent_reviews, 0,
+        "seeds are not cold review evidence"
+    );
+
+    // Onboarding is now marked done.
+    assert!(super::placement::placement_completed(&mut col).unwrap());
+}
+
+#[test]
+fn apply_placement_leaves_already_studied_cards_alone() {
+    let mut col = Collection::new();
+    let card = add_skill_card(&mut col, "elementary_algebra", "ea_1", "relearn");
+    // A card already answered leaves the New queue, so it is not is:new.
+    mark_due_review(&mut col, &card, 10.0, 1);
+
+    let seeded =
+        super::placement::apply_placement(&mut col, &["elementary_algebra".to_string()]).unwrap();
+    assert_eq!(
+        seeded, 0,
+        "an already-studied card is not re-seeded (is:new only)"
+    );
+}
+
+#[test]
+fn placement_state_false_on_fresh_true_after_study() {
+    let mut col = Collection::new();
+    assert!(!super::placement::placement_completed(&mut col).unwrap());
+    let card = add_skill_card(&mut col, "elementary_algebra", "ea_1", "relearn");
+    mark_due_review(&mut col, &card, 10.0, 1);
+    assert!(
+        super::placement::placement_completed(&mut col).unwrap(),
+        "a studied collection predates onboarding"
+    );
+}
+
+#[test]
+fn claim_account_claims_then_resets_on_switch() {
+    let mut col = Collection::new();
+    add_skill_card(&mut col, "elementary_algebra", "ea_1", "relearn");
+    add_skill_card(&mut col, "elementary_algebra", "ea_2", "relearn");
+    // A placed account: seeded + onboarding marked done.
+    super::placement::apply_placement(&mut col, &["elementary_algebra".to_string()]).unwrap();
+    assert!(super::placement::placement_completed(&mut col).unwrap());
+
+    // The first account to sign in claims the existing collection WITHOUT a
+    // reset, so an existing user is not wiped on upgrade.
+    assert!(!super::placement::claim_account(&mut col, "uid-A").unwrap());
+    assert!(super::placement::placement_completed(&mut col).unwrap());
+    assert!(
+        find(
+            &compute_topic_graph(&mut col).unwrap(),
+            "elementary_algebra"
+        )
+        .total
+            > 0,
+        "the claiming account keeps the existing deck"
+    );
+    // The same account again is a no-op.
+    assert!(!super::placement::claim_account(&mut col, "uid-A").unwrap());
+
+    // A DIFFERENT account resets: the deck is wiped and onboarding cleared, so
+    // it starts fresh at placement rather than inheriting uid-A's progress.
+    assert!(super::placement::claim_account(&mut col, "uid-B").unwrap());
+    assert_eq!(
+        find(
+            &compute_topic_graph(&mut col).unwrap(),
+            "elementary_algebra"
+        )
+        .total,
+        0,
+        "a new account starts with a wiped Manifold deck"
+    );
+    assert!(
+        !super::placement::placement_completed(&mut col).unwrap(),
+        "a new account is sent back to placement"
+    );
+    // The new account now owns the collection, so it is not reset again.
+    assert!(!super::placement::claim_account(&mut col, "uid-B").unwrap());
+}
+
+#[test]
+fn claim_account_rejects_empty_uid() {
+    let mut col = Collection::new();
+    assert!(
+        super::placement::claim_account(&mut col, "  ").is_err(),
+        "a blank uid must fail loudly rather than claim anonymously"
+    );
+}
+
+#[test]
+fn placement_exam_excludes_already_studied_cards() {
+    let mut col = Collection::new();
+    let studied = add_skill_card(&mut col, "elementary_algebra", "ea_1", "relearn");
+    mark_due_review(&mut col, &studied, 10.0, 1); // studied -> not is:new
+    add_skill_card(&mut col, "elementary_algebra", "ea_2", "relearn"); // untested
+
+    let items =
+        super::placement::build_placement_exam(&mut col, &["elementary_algebra".to_string()], 5)
+            .unwrap();
+
+    // Only the untested (is:new) skill is probed, so a retake can never grade a
+    // studied Review card into Review-kind evidence and move the readiness gate.
+    assert_eq!(items.len(), 1, "the already-studied skill is not probed");
+    assert_eq!(items[0].skill_id, "ea_2");
 }

@@ -24,14 +24,17 @@ value here is read from scoring.ts; this page renders, it does not compute.
 
     import { onMount } from "svelte";
 
+    import { goto } from "$app/navigation";
     import Button from "$lib/manifold/Button.svelte";
     import Dag from "$lib/manifold/Dag.svelte";
+    import { currentManifoldUser } from "$lib/manifold/firebase";
     import Formula from "$lib/manifold/Formula.svelte";
     import { studyNextWithinPrereqs, type TopicNode } from "$lib/manifold/graph";
     import Legend from "$lib/manifold/Legend.svelte";
     import MathText from "$lib/manifold/MathText.svelte";
     import Meter from "$lib/manifold/Meter.svelte";
     import Metric from "$lib/manifold/Metric.svelte";
+    import { claimAccount, fetchPlacementState } from "$lib/manifold/placement";
     import {
         computeScores,
         READINESS_MIN_COVERAGE,
@@ -151,10 +154,39 @@ value here is read from scoring.ts; this page renders, it does not compute.
         selectedId = event.detail;
     }
 
-    // Start generating the first session problem now, so a template-less leading
-    // skill's live generation overlaps the time spent here instead of stalling the
-    // session's first screen when "Start session" is pressed.
-    onMount(() => {
+    // Placement is gated locally, but bound to the signed-in Google account.
+    // First we claim the collection for this account: if a DIFFERENT account
+    // signs in on this device, the engine wipes the local Manifold deck and
+    // clears onboarding, so this fresh account is routed to placement rather than
+    // inheriting the previous account's progress. Then the local onboarding flag
+    // (synced by Anki's own protocol across the account's devices) decides the
+    // gate. Firebase gates *login* (the root layout), not placement. An overlay
+    // covers the page until the check resolves so no stale data flashes; a
+    // genuine backend failure surfaces rather than silently showing the dashboard.
+    let checkingOnboarding = true;
+    let onboardingError: string | null = null;
+
+    onMount(async () => {
+        try {
+            const user = currentManifoldUser();
+            if (user && (await claimAccount(user.uid))) {
+                // A different Google account signed in: local progress was reset,
+                // so start this account at placement.
+                await goto("/manifold-onboarding");
+                return;
+            }
+            if (!(await fetchPlacementState())) {
+                await goto("/manifold-onboarding");
+                return;
+            }
+        } catch (e) {
+            onboardingError = e instanceof Error ? e.message : String(e);
+            return;
+        }
+        checkingOnboarding = false;
+        // Start generating the first session problem now, so a template-less
+        // leading skill's live generation overlaps the time spent here instead of
+        // stalling the session's first screen when "Start session" is pressed.
         prewarmSession();
     });
 </script>
@@ -192,6 +224,13 @@ value here is read from scoring.ts; this page renders, it does not compute.
                                 <path d="M5 12h14" />
                                 <path d="m13 6 6 6-6 6" />
                             </svg>
+                        </Button>
+                        <Button
+                            href="/manifold-onboarding"
+                            variant="secondary"
+                            ariaLabel="Retake the placement"
+                        >
+                            Retake placement
                         </Button>
                     </div>
                 </section>
@@ -548,6 +587,18 @@ value here is read from scoring.ts; this page renders, it does not compute.
     </div>
 </div>
 
+{#if checkingOnboarding}
+    <div class="manifold mf-gate-cover" aria-live="polite">
+        {#if onboardingError}
+            <p class="mf-gate-cover-error">
+                Couldn't reach your account: {onboardingError}
+            </p>
+        {:else}
+            <span class="mf-gate-cover-spinner" aria-hidden="true"></span>
+        {/if}
+    </div>
+{/if}
+
 <style lang="scss">
     .mf-page {
         min-height: 100vh;
@@ -559,6 +610,51 @@ value here is read from scoring.ts; this page renders, it does not compute.
     .mf-shell {
         max-width: 1280px;
         margin-inline: auto;
+    }
+
+    /* Covers the dashboard while the Google-account onboarding check runs, so the
+       returning-vs-new decision resolves before any local data is shown. */
+    .mf-gate-cover {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--mf-space-6);
+        background: var(--mf-bg);
+    }
+
+    .mf-gate-cover-spinner {
+        width: 34px;
+        height: 34px;
+        border: 3px solid color-mix(in srgb, var(--mf-ink) 18%, transparent);
+        border-top-color: var(--mf-ink);
+        border-radius: var(--mf-radius-full);
+        animation: mf-spin 0.8s linear infinite;
+    }
+
+    @keyframes mf-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .mf-gate-cover-error {
+        margin: 0;
+        max-width: 52ch;
+        padding: var(--mf-space-3) var(--mf-space-4);
+        border: 2px solid var(--mf-accent);
+        border-radius: var(--mf-radius);
+        font-size: var(--mf-text-sm);
+        color: var(--mf-ink);
+        background: color-mix(in srgb, var(--mf-accent) 12%, var(--mf-surface));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .mf-gate-cover-spinner {
+            animation-duration: 2.4s;
+        }
     }
 
     .mf-masthead {

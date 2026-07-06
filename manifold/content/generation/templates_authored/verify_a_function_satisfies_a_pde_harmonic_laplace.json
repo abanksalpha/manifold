@@ -24,7 +24,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "Here \\( f_{xx}=2[[A]] \\) and \\( f_{yy}=2[[C]] \\) (both constant), so \\( f_{xx}+f_{yy} = 2[[A]]+2[[C]] = [[answer]] \\) at every point, including \\( ([[x0]],[[y0]]) \\).",
+  "solution": "Here \\( f_{xx}=2\\cdot[[A]] \\) and \\( f_{yy}=2\\cdot[[C]] \\) (both constant), so \\( f_{xx}+f_{yy} = 2\\cdot[[A]]+2\\cdot[[C]] = [[answer]] \\) at every point, including \\( ([[x0]],[[y0]]) \\).",
   "distractor_rationales": [
    "This forgets the factor of 2 from differentiating the squared terms.",
    "This subtracts instead of adds the two second partials.",
@@ -56,7 +56,7 @@
    "[[answer]] + 4",
    "[[answer]] - 4"
   ],
-  "solution": "Here \\( f_{xx}=12[[A]]x^{2} \\) and \\( f_{yy}=2[[B]] \\). Evaluating at \\( ([[x0]],[[y0]]) \\) gives \\( f_{xx}+f_{yy} = 12[[A]]\\cdot[[x0]]^{2} + 2[[B]] = [[answer]] \\).",
+  "solution": "Here \\( f_{xx}=12\\cdot[[A]]x^{2} \\) and \\( f_{yy}=2\\cdot[[B]] \\). Evaluating at \\( ([[x0]],[[y0]]) \\) gives \\( f_{xx}+f_{yy} = 12\\cdot[[A]]\\cdot[[x0]]^{2} + 2\\cdot[[B]] = [[answer]] \\).",
   "distractor_rationales": [
    "This uses the first derivatives \\( f_x, f_y \\) instead of the second derivatives.",
    "This subtracts instead of adds the two second partials.",
@@ -108,7 +108,7 @@
    "y0": {"type": "choice", "values": [-3, -2, -1, 1, 2, 3]}
   },
   "constraints": ["Ne([[A]], 0)"],
-  "stem": "Let \\( f(x,y) = [[A]]x^{3} - 3[[A]]xy^{2} \\). What is the value of the Laplacian \\( f_{xx} + f_{yy} \\) at \\( ([[x0]],[[y0]]) \\)? (\\( f \\) is harmonic there exactly when this value is 0.)",
+  "stem": "Let \\( f(x,y) = [[A]]x^{3} - 3\\cdot[[A]]xy^{2} \\). What is the value of the Laplacian \\( f_{xx} + f_{yy} \\) at \\( ([[x0]],[[y0]]) \\)? (\\( f \\) is harmonic there exactly when this value is 0.)",
   "answer_spec": {"op": "evaluate", "expr": "(6*[[A]]*[[x0]]) + (-6*[[A]]*[[x0]])"},
   "distractors": [
    "12*[[A]]*[[x0]]",
@@ -118,9 +118,9 @@
    "1",
    "-1"
   ],
-  "solution": "Here \\( f_{xx} = 6[[A]]x \\) and \\( f_{yy} = -6[[A]]x \\), so \\( f_{xx}+f_{yy}=0 \\) at every point, including \\( ([[x0]],[[y0]]) \\): \\( f \\) (the real part of \\( [[A]](x+iy)^{3} \\)) is harmonic everywhere. The value is \\( [[answer]] \\).",
+  "solution": "Here \\( f_{xx} = 6\\cdot[[A]]x \\) and \\( f_{yy} = -6\\cdot[[A]]x \\), so \\( f_{xx}+f_{yy}=0 \\) at every point, including \\( ([[x0]],[[y0]]) \\): \\( f \\) (the real part of \\( [[A]](x+iy)^{3} \\)) is harmonic everywhere. The value is \\( [[answer]] \\).",
   "distractor_rationales": [
-   "This mistakenly uses \\( f_{yy}=+6[[A]]x \\) instead of the correct \\( -6[[A]]x\\), so the terms double instead of cancelling.",
+   "This mistakenly uses \\( f_{yy}=+6\\cdot[[A]]x \\) instead of the correct \\( -6\\cdot[[A]]x\\), so the terms double instead of cancelling.",
    "This reports only \\( f_{xx}\\), forgetting to add \\( f_{yy}\\).",
    "This reports only \\( -f_{yy}\\)'s coefficient pattern applied to \\( y_0 \\) rather than the correct expression in \\( x_0 \\).",
    "This mixes \\( x_0 \\) and \\( y_0 \\) incorrectly instead of using \\( f_{xx}, f_{yy}\\) both in terms of \\( x_0 \\) alone.",

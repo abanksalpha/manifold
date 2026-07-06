@@ -84,7 +84,7 @@
   "[[answer]] + 1",
   "[[answer]] + I"
  ],
- "solution": "By De Moivre's theorem, \\( z^{[[n]]} = [[r]]^{[[n]]}\\left(\\cos\\dfrac{[[n]][[k]]\\pi}{6} + i\\sin\\dfrac{[[n]][[k]]\\pi}{6}\\right) \\), which simplifies to the rectangular value \\( [[answer]] \\).",
+ "solution": "By De Moivre's theorem, \\( z^{[[n]]} = [[r]]^{[[n]]}\\left(\\cos\\dfrac{[[n]]\\cdot[[k]]\\pi}{6} + i\\sin\\dfrac{[[n]]\\cdot[[k]]\\pi}{6}\\right) \\), which simplifies to the rectangular value \\( [[answer]] \\).",
  "distractor_rationales": [
   "This raises the modulus to the \\( n \\)-th power but forgets to multiply the angle by \\( n \\) inside the trig functions.",
   "This multiplies the angle inside cosine by \\( n \\) but leaves the sine's angle and the modulus's power unchanged.",

@@ -133,7 +133,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "With \\( y = te^{[[r]]t} \\), \\( y' = (1 + [[r]]t)e^{[[r]]t} \\) and \\( y'' = (2[[r]] + [[r]]^{2}t)e^{[[r]]t} \\). At \\( t = [[t0]] \\), \\( y'' = (2[[r]] + [[r]]^{2}\\cdot[[t0]])e^{[[r]]\\cdot[[t0]]} = [[answer]] \\).",
+  "solution": "With \\( y = te^{[[r]]t} \\), \\( y' = (1 + [[r]]t)e^{[[r]]t} \\) and \\( y'' = (2\\cdot[[r]] + [[r]]^{2}t)e^{[[r]]t} \\). At \\( t = [[t0]] \\), \\( y'' = (2\\cdot[[r]] + [[r]]^{2}\\cdot[[t0]])e^{[[r]]\\cdot[[t0]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This reports \\( y \\) itself rather than \\( y'' \\).",
    "This reports (part of) \\( y' \\) rather than the full second derivative.",

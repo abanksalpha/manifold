@@ -32,7 +32,7 @@
   "-Rational([[p]], 3*[[a]]) + 1",
   "-Rational([[p]], 3*[[a]]) - 1"
  ],
- "solution": "\\( f''(x)=6[[a]]x+2[[p]]=0 \\Rightarrow x=-\\frac{[[p]]}{3[[a]]}=[[answer]] \\).",
+ "solution": "\\( f''(x)=6\\cdot[[a]]x+2\\cdot[[p]]=0 \\Rightarrow x=-\\frac{[[p]]}{3\\cdot[[a]]}=[[answer]] \\).",
  "distractor_rationales": []
 },
 {

@@ -35,7 +35,7 @@
   "2*[[k]] - [[y0]] + 1",
   "2*[[k]] - [[y0]] - 1"
  ],
- "solution": "Reflecting over \\( y=[[k]] \\) sends \\( y_0 \\mapsto 2[[k]]-y_0=[[answer]] \\).",
+ "solution": "Reflecting over \\( y=[[k]] \\) sends \\( y_0 \\mapsto 2\\cdot[[k]]-y_0=[[answer]] \\).",
  "distractor_rationales": []
 },
 {

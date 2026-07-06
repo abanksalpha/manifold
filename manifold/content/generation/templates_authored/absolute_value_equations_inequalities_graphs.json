@@ -181,7 +181,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The intersections satisfy \\( [[a]]x - [[b]] = \\pm [[c]] \\), i.e. \\( x = \\dfrac{[[b]]+[[c]]}{[[a]]} \\) and \\( x = \\dfrac{[[b]]-[[c]]}{[[a]]} \\). Their sum is \\( p+q = \\dfrac{2[[b]]}{[[a]]} = [[answer]] \\) (the two \\( \\pm[[c]] \\) terms cancel, leaving the V's axis of symmetry doubled).",
+  "solution": "The intersections satisfy \\( [[a]]x - [[b]] = \\pm [[c]] \\), i.e. \\( x = \\dfrac{[[b]]+[[c]]}{[[a]]} \\) and \\( x = \\dfrac{[[b]]-[[c]]}{[[a]]} \\). Their sum is \\( p+q = \\dfrac{2\\cdot[[b]]}{[[a]]} = [[answer]] \\) (the two \\( \\pm[[c]] \\) terms cancel, leaving the V's axis of symmetry doubled).",
   "distractor_rationales": [
    "This forgets the factor of 2 and reports only the axis of symmetry, not the sum of both roots.",
    "This uses \\( [[c]] \\) (the height of the line) instead of \\( [[b]] \\) (the vertex location) in the sum formula.",

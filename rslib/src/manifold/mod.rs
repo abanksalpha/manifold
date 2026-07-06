@@ -12,6 +12,7 @@
 
 pub(crate) mod blueprint;
 pub(crate) mod mastery;
+pub(crate) mod placement;
 mod service;
 pub(crate) mod session;
 #[cfg(test)]

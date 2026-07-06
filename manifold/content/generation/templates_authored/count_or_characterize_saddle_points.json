@@ -19,7 +19,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The only critical point is \\( (0,0) \\) (from \\( f_x=2[[A]]x=0 \\), \\( f_y=2[[B]]y=0 \\)), where \\( f_{xx}=2[[A]] \\), \\( f_{yy}=2[[B]] \\), \\( f_{xy}=0 \\), so \\( D = 4[[A]]\\cdot[[B]] \\). The point is a saddle iff \\( D<0 \\), i.e. iff \\( [[A]] \\) and \\( [[B]] \\) have opposite signs. Here that gives \\( [[answer]] \\) saddle point(s).",
+  "solution": "The only critical point is \\( (0,0) \\) (from \\( f_x=2\\cdot[[A]]x=0 \\), \\( f_y=2\\cdot[[B]]y=0 \\)), where \\( f_{xx}=2\\cdot[[A]] \\), \\( f_{yy}=2\\cdot[[B]] \\), \\( f_{xy}=0 \\), so \\( D = 4\\cdot[[A]]\\cdot[[B]] \\). The point is a saddle iff \\( D<0 \\), i.e. iff \\( [[A]] \\) and \\( [[B]] \\) have opposite signs. Here that gives \\( [[answer]] \\) saddle point(s).",
   "distractor_rationales": [
    "This has the saddle/non-saddle condition on \\( AB \\) backwards.",
    "This overcounts; there is only one critical point total, so at most one can be a saddle.",
@@ -51,7 +51,7 @@
    "[[answer]] + 3",
    "[[answer]] - 1"
   ],
-  "solution": "At \\( ([[k]],0) \\): \\( f_{xx}=6[[A]]\\cdot[[k]] \\), \\( f_{yy}=2[[B]] \\), \\( f_{xy}=0 \\), so \\( D_1 = 12[[A]][[B]][[k]] \\). At \\( (-[[k]],0) \\): \\( f_{xx}=-6[[A]]\\cdot[[k]] \\), so \\( D_2=-12[[A]][[B]][[k]] = -D_1 \\). Since \\( D_1 \\) and \\( D_2 \\) always have opposite signs, exactly one of the two critical points has \\( D<0 \\): there is \\( [[answer]] \\) saddle point.",
+  "solution": "At \\( ([[k]],0) \\): \\( f_{xx}=6\\cdot[[A]]\\cdot[[k]] \\), \\( f_{yy}=2\\cdot[[B]] \\), \\( f_{xy}=0 \\), so \\( D_1 = 12\\cdot[[A]]\\cdot[[B]]\\cdot[[k]] \\). At \\( (-[[k]],0) \\): \\( f_{xx}=-6\\cdot[[A]]\\cdot[[k]] \\), so \\( D_2=-12\\cdot[[A]]\\cdot[[B]]\\cdot[[k]] = -D_1 \\). Since \\( D_1 \\) and \\( D_2 \\) always have opposite signs, exactly one of the two critical points has \\( D<0 \\): there is \\( [[answer]] \\) saddle point.",
   "distractor_rationales": [
    "This assumes neither critical point is a saddle, but \\( D_1 \\) and \\( D_2 \\) always have opposite signs, so exactly one must be negative.",
    "This assumes both critical points are saddles, but \\( D_1 \\) and \\( D_2 \\) have opposite signs, so exactly one is negative.",
@@ -84,7 +84,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "At each critical point \\( (\\pm[[p]],\\pm[[q]]) \\), \\( f_{xy}=0 \\) (the function separates in \\( x \\) and \\( y \\)), so \\( D = f_{xx}f_{yy} = 36[[A]][[C]]\\,xy \\), whose sign matches the sign of \\( xy \\) (up to the fixed sign of \\( [[A]][[C]] \\)). Exactly two of the four sign combinations of \\( (x,y) \\) give \\( xy \\) one sign and two give the other, so exactly two of the four critical points have \\( D<0 \\): there are \\( [[answer]] \\) saddle points.",
+  "solution": "At each critical point \\( (\\pm[[p]],\\pm[[q]]) \\), \\( f_{xy}=0 \\) (the function separates in \\( x \\) and \\( y \\)), so \\( D = f_{xx}f_{yy} = 36\\cdot[[A]]\\cdot[[C]]\\,xy \\), whose sign matches the sign of \\( xy \\) (up to the fixed sign of \\( [[A]]\\cdot[[C]] \\)). Exactly two of the four sign combinations of \\( (x,y) \\) give \\( xy \\) one sign and two give the other, so exactly two of the four critical points have \\( D<0 \\): there are \\( [[answer]] \\) saddle points.",
   "distractor_rationales": [
    "This assumes none of the four critical points are saddles, but the signs of \\( D \\) split evenly, so exactly two must be negative.",
    "This undercounts; the signs of \\( xy \\) at the four sign combinations split two-and-two, giving two saddles, not one.",
@@ -116,7 +116,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Critical points satisfy \\( f_x = 3[[A]]x^{2} + [[c1]] = 3[[A]](x^{2} - ([[m]])) = 0 \\), i.e. \\( x^{2} = [[m]] \\). Since \\( [[m]] < 0 \\), there is no real solution for \\( x \\), so \\( f \\) has no critical points at all, and therefore \\( [[answer]] \\) saddle points.",
+  "solution": "Critical points satisfy \\( f_x = 3\\cdot[[A]]x^{2} + [[c1]] = 3\\cdot[[A]](x^{2} - ([[m]])) = 0 \\), i.e. \\( x^{2} = [[m]] \\). Since \\( [[m]] < 0 \\), there is no real solution for \\( x \\), so \\( f \\) has no critical points at all, and therefore \\( [[answer]] \\) saddle points.",
   "distractor_rationales": [
    "This assumes a critical point exists and is a saddle, but \\( x^{2}=[[m]]<0 \\) has no real solution, so \\( f \\) has no critical points.",
    "This assumes two critical points exist and both are saddles, but \\( x^{2}=[[m]]<0 \\) has no real solution.",

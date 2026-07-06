@@ -25,10 +25,10 @@
   "[[answer]] - 2",
   "[[answer]] + 3"
  ],
- "solution": "The Jacobian is \\( \\det\\begin{bmatrix} x_u & x_v \\\\ y_u & y_v \\end{bmatrix} = \\det\\begin{bmatrix} 2[[a]]u & [[b]] \\\\ [[c]] & 2[[d]]v \\end{bmatrix} = 4[[a]][[d]]uv - [[b]][[c]]. \\) At \\( ([[u0]],[[v0]]) \\) this equals \\([[answer]]\\).",
+ "solution": "The Jacobian is \\( \\det\\begin{bmatrix} x_u & x_v \\\\ y_u & y_v \\end{bmatrix} = \\det\\begin{bmatrix} 2\\cdot[[a]]u & [[b]] \\\\ [[c]] & 2\\cdot[[d]]v \\end{bmatrix} = 4\\cdot[[a]]\\cdot[[d]]uv - [[b]]\\cdot[[c]]. \\) At \\( ([[u0]],[[v0]]) \\) this equals \\([[answer]]\\).",
  "distractor_rationales": [
   "This adds \\(x_v y_u\\) instead of subtracting it (wrong sign in the determinant).",
-  "This forgets the factor \\(4\\) coming from \\(x_u y_v = (2[[a]]u)(2[[d]]v)\\).",
+  "This forgets the factor \\(4\\) coming from \\(x_u y_v = (2\\cdot[[a]]u)(2\\cdot[[d]]v)\\).",
   "This is the negative of the determinant (the two diagonal products were swapped).",
   "This is off by one from the correct value.",
   "This is off by one from the correct value."
@@ -87,7 +87,7 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "Expanding along the bottom row, \\( \\det\\begin{bmatrix} [[a]] & 1 & 0 \\\\ 1 & [[b]] & 1 \\\\ 0 & 0 & [[c]] \\end{bmatrix} = [[c]]\\det\\begin{bmatrix}[[a]] & 1\\\\ 1 & [[b]]\\end{bmatrix} = [[c]]([[a]][[b]]-1) = [[answer]] \\).",
+ "solution": "Expanding along the bottom row, \\( \\det\\begin{bmatrix} [[a]] & 1 & 0 \\\\ 1 & [[b]] & 1 \\\\ 0 & 0 & [[c]] \\end{bmatrix} = [[c]]\\det\\begin{bmatrix}[[a]] & 1\\\\ 1 & [[b]]\\end{bmatrix} = [[c]]([[a]]\\cdot[[b]]-1) = [[answer]] \\).",
  "distractor_rationales": [
   "This multiplies the three diagonal entries \\([[a]],[[b]],[[c]]\\) directly, ignoring the off-diagonal \\(1\\)'s.",
   "This makes a sign error inside the \\(2\\times2\\) cofactor, using \\(ab+1\\) instead of \\(ab-1\\).",
@@ -119,7 +119,7 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "By the inverse function theorem, \\( \\dfrac{\\partial(u,v)}{\\partial(x,y)} = \\left(\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\right)^{-1} \\). Here \\( \\dfrac{\\partial(x,y)}{\\partial(u,v)} = [[a]][[d]]-[[b]][[c]] \\), so the inverse Jacobian is \\( [[answer]] \\).",
+ "solution": "By the inverse function theorem, \\( \\dfrac{\\partial(u,v)}{\\partial(x,y)} = \\left(\\dfrac{\\partial(x,y)}{\\partial(u,v)}\\right)^{-1} \\). Here \\( \\dfrac{\\partial(x,y)}{\\partial(u,v)} = [[a]]\\cdot[[d]]-[[b]]\\cdot[[c]] \\), so the inverse Jacobian is \\( [[answer]] \\).",
  "distractor_rationales": [
   "This gives the forward Jacobian \\(\\partial(x,y)/\\partial(u,v)\\) itself instead of taking its reciprocal.",
   "This has the wrong sign on the reciprocal.",

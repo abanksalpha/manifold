@@ -84,7 +84,7 @@
    "[[answer]] + [[N0]]",
    "[[answer]] - [[N0]]"
   ],
-  "solution": "By the net change theorem, the amount at time \\( t=[[b]] \\) is the initial amount plus the accumulated change: \\( [[N0]] + \\int_{0}^{[[b]]}([[m]]t+[[k]])\\,dt = [[N0]] + \\dfrac{[[m]]}{2}[[b]]^{2} + [[k]][[b]] = [[answer]] \\).",
+  "solution": "By the net change theorem, the amount at time \\( t=[[b]] \\) is the initial amount plus the accumulated change: \\( [[N0]] + \\int_{0}^{[[b]]}([[m]]t+[[k]])\\,dt = [[N0]] + \\dfrac{[[m]]}{2}[[b]]^{2} + [[k]]\\cdot[[b]] = [[answer]] \\).",
   "distractor_rationales": [
    "This gives only the net change, forgetting to add the initial \\( [[N0]] \\) liters.",
    "This uses \\( r([[b]]) \\) instead of integrating the rate to find the accumulated change.",

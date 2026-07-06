@@ -24,7 +24,7 @@
   ],
   "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(0\\) to \\([[m]]x\\): \\( \\int_{0}^{[[m]]x}([[p]]x+[[q]]y)\\,dy = [[p]]x([[m]]x) + [[q]]\\frac{([[m]]x)^2}{2} \\). Then integrate this in \\(x\\) from \\(0\\) to \\([[b]]\\) to get \\([[answer]]\\).",
   "distractor_rationales": [
-   "This integrates \\(y\\) up to the constant \\([[m]][[b]]\\) (a rectangle) instead of up to the line \\(y=[[m]]x\\).",
+   "This integrates \\(y\\) up to the constant \\([[m]]\\cdot[[b]]\\) (a rectangle) instead of up to the line \\(y=[[m]]x\\).",
    "This makes a sign error on the \\(y\\)-term after integrating.",
    "This is off by one from the correct value.",
    "This is off by one from the correct value.",
@@ -54,7 +54,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(0\\) to \\([[k]]x^2\\): \\( \\int_{0}^{[[k]]x^2}([[p]]x+[[q]]y)\\,dy = [[p]]x([[k]]x^2) + [[q]]\\frac{([[k]]x^2)^2}{2} \\). Then integrate this in \\(x\\) from \\(0\\) to \\([[b]]\\): \\( \\int_0^{[[b]]}\\left([[p]][[k]]x^3 + \\tfrac{[[q]][[k]]^2}{2}x^4\\right)dx = [[answer]] \\).",
+  "solution": "Fix \\(x\\) and integrate in \\(y\\) from \\(0\\) to \\([[k]]x^2\\): \\( \\int_{0}^{[[k]]x^2}([[p]]x+[[q]]y)\\,dy = [[p]]x([[k]]x^2) + [[q]]\\frac{([[k]]x^2)^2}{2} \\). Then integrate this in \\(x\\) from \\(0\\) to \\([[b]]\\): \\( \\int_0^{[[b]]}\\left([[p]]\\cdot[[k]]x^3 + \\tfrac{[[q]]\\cdot[[k]]^2}{2}x^4\\right)dx = [[answer]] \\).",
   "distractor_rationales": [
    "This treats the upper bound as if it were the linear curve \\([[k]]x\\) instead of the parabola \\([[k]]x^2\\), giving the wrong powers of \\(x\\).",
    "This drops the factor of \\(\\tfrac12\\) that comes from integrating the \\(y\\)-term.",

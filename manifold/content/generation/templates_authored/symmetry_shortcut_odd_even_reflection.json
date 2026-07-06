@@ -22,7 +22,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The integrand's odd-power terms \\( ([[a3]])x^{3} \\) and \\( ([[a1]])x \\) integrate to \\( 0 \\) over the symmetric interval \\( [-[[m]], [[m]]] \\). Only the even part contributes: \\( \\int_{-[[m]]}^{[[m]]} \\left(([[a2]])x^{2} + ([[a0]])\\right)dx = 2\\left(\\tfrac{[[a2]][[m]]^{3}}{3} + [[a0]][[m]]\\right) = [[answer]] \\).",
+  "solution": "The integrand's odd-power terms \\( ([[a3]])x^{3} \\) and \\( ([[a1]])x \\) integrate to \\( 0 \\) over the symmetric interval \\( [-[[m]], [[m]]] \\). Only the even part contributes: \\( \\int_{-[[m]]}^{[[m]]} \\left(([[a2]])x^{2} + ([[a0]])\\right)dx = 2\\left(\\tfrac{[[a2]]\\cdot[[m]]^{3}}{3} + [[a0]]\\cdot[[m]]\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This wrongly doubles the odd-power terms as well, but odd functions integrate to zero on a symmetric interval.",
    "This doubles the \\( x^{2} \\) term but forgets to double the constant term.",
@@ -86,7 +86,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "Since \\(f\\) is even, \\( \\int_{-[[m]]}^{[[m]]} f(x)\\,dx = 2\\int_{0}^{[[m]]} f(x)\\,dx = 2\\left(\\tfrac{[[a4]][[m]]^{5}}{5} + \\tfrac{[[a2]][[m]]^{3}}{3} + [[a0]][[m]]\\right) = [[answer]] \\).",
+  "solution": "Since \\(f\\) is even, \\( \\int_{-[[m]]}^{[[m]]} f(x)\\,dx = 2\\int_{0}^{[[m]]} f(x)\\,dx = 2\\left(\\tfrac{[[a4]]\\cdot[[m]]^{5}}{5} + \\tfrac{[[a2]]\\cdot[[m]]^{3}}{3} + [[a0]]\\cdot[[m]]\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the overall factor of \\(2\\) from doubling the half-interval integral.",
    "This doubles the quartic and quadratic terms but drops the constant term's contribution entirely.",
@@ -148,7 +148,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "Since \\(|x|\\) is even, \\( \\int_{-[[m]]}^{[[m]]} \\left([[a]]|x|+[[c]]\\right)dx = 2\\int_{0}^{[[m]]} \\left([[a]]x+[[c]]\\right)dx = 2\\left(\\tfrac{[[a]][[m]]^{2}}{2}+[[c]][[m]]\\right) = [[answer]] \\).",
+  "solution": "Since \\(|x|\\) is even, \\( \\int_{-[[m]]}^{[[m]]} \\left([[a]]|x|+[[c]]\\right)dx = 2\\int_{0}^{[[m]]} \\left([[a]]x+[[c]]\\right)dx = 2\\left(\\tfrac{[[a]]\\cdot[[m]]^{2}}{2}+[[c]]\\cdot[[m]]\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the overall factor of \\(2\\) from the even-function doubling identity.",
    "This doubles the \\(|x|\\) term but drops the constant term's contribution entirely.",
@@ -170,7 +170,7 @@
    "m": {"type": "int", "lo": 1, "hi": 6}
   },
   "constraints": ["Ne([[a]], 0)", "Ne([[b]], 0)"],
-  "stem": "Both \\( \\sin([[k]]x) \\) and \\( \\sin(2[[k]]x) \\) are odd functions of \\(x\\). Evaluate \\( \\displaystyle\\int_{-[[m]]}^{[[m]]} \\left([[a]]\\sin([[k]]x) + [[b]]\\sin(2[[k]]x)\\right) dx \\) using symmetry, not by finding an antiderivative.",
+  "stem": "Both \\( \\sin([[k]]x) \\) and \\( \\sin(2\\cdot[[k]]x) \\) are odd functions of \\(x\\). Evaluate \\( \\displaystyle\\int_{-[[m]]}^{[[m]]} \\left([[a]]\\sin([[k]]x) + [[b]]\\sin(2\\cdot[[k]]x)\\right) dx \\) using symmetry, not by finding an antiderivative.",
   "answer_spec": {"op": "integrate", "expr": "[[a]]*sin([[k]]*x) + [[b]]*sin(2*[[k]]*x)", "var": "x", "bounds": ["-[[m]]", "[[m]]"]},
   "distractors": [
    "2*[[a]]*(1-cos([[k]]*[[m]]))/[[k]]",
@@ -180,7 +180,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "\\(\\sin([[k]]x)\\) and \\(\\sin(2[[k]]x)\\) are both odd, so their sum is odd; an odd function's signed area cancels exactly over the symmetric interval \\([-[[m]],[[m]]]\\). Hence the integral equals \\( [[answer]] \\).",
+  "solution": "\\(\\sin([[k]]x)\\) and \\(\\sin(2\\cdot[[k]]x)\\) are both odd, so their sum is odd; an odd function's signed area cancels exactly over the symmetric interval \\([-[[m]],[[m]]]\\). Hence the integral equals \\( [[answer]] \\).",
   "distractor_rationales": [
    "This is a partial antiderivative evaluation that ignores the odd-symmetry cancellation.",
    "This confuses derivative coefficients with the (zero) integral value.",
@@ -243,7 +243,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The product of two odd functions is even (not odd), since \\((-f)\\cdot(-g) = fg\\). So \\(f(x)g(x) = ([[a]])x^{4}+([[b]])x^{2}\\) is even, and \\( \\int_{-[[m]]}^{[[m]]} f(x)g(x)\\,dx = 2\\int_{0}^{[[m]]} \\left(([[a]])x^{4}+([[b]])x^{2}\\right)dx = 2\\left(\\tfrac{[[a]][[m]]^{5}}{5}+\\tfrac{[[b]][[m]]^{3}}{3}\\right) = [[answer]] \\).",
+  "solution": "The product of two odd functions is even (not odd), since \\((-f)\\cdot(-g) = fg\\). So \\(f(x)g(x) = ([[a]])x^{4}+([[b]])x^{2}\\) is even, and \\( \\int_{-[[m]]}^{[[m]]} f(x)g(x)\\,dx = 2\\int_{0}^{[[m]]} \\left(([[a]])x^{4}+([[b]])x^{2}\\right)dx = 2\\left(\\tfrac{[[a]]\\cdot[[m]]^{5}}{5}+\\tfrac{[[b]]\\cdot[[m]]^{3}}{3}\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This wrongly assumes a product of two odd functions is itself odd, so the integral must vanish.",
    "This forgets the overall factor of \\(2\\) from the even-function doubling identity.",
@@ -278,7 +278,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The bounds \\([[lo]], [[hi]]\\) are symmetric about \\(x=[[c]]\\), so the substitution \\(u=x-[[c]]\\) turns the integral into \\( \\int_{-[[m]]}^{[[m]]} \\left(([[A]])u^{3}+([[B]])u^{2}+([[D]])u+([[E]])\\right) du \\). The odd-power terms \\(([[A]])u^{3}\\) and \\(([[D]])u\\) vanish over this symmetric interval, leaving \\( 2\\left(\\tfrac{[[B]][[m]]^{3}}{3}+[[E]][[m]]\\right) = [[answer]] \\).",
+  "solution": "The bounds \\([[lo]], [[hi]]\\) are symmetric about \\(x=[[c]]\\), so the substitution \\(u=x-[[c]]\\) turns the integral into \\( \\int_{-[[m]]}^{[[m]]} \\left(([[A]])u^{3}+([[B]])u^{2}+([[D]])u+([[E]])\\right) du \\). The odd-power terms \\(([[A]])u^{3}\\) and \\(([[D]])u\\) vanish over this symmetric interval, leaving \\( 2\\left(\\tfrac{[[B]]\\cdot[[m]]^{3}}{3}+[[E]]\\cdot[[m]]\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This wrongly doubles the odd-power terms as well, but odd functions integrate to zero on a symmetric interval.",
    "This doubles the \\(u^2\\) term but drops the constant term's contribution entirely.",
@@ -298,7 +298,7 @@
    "m": {"type": "int", "lo": 2, "hi": 8}
   },
   "constraints": [],
-  "stem": "Evaluate \\( \\displaystyle\\int_{[[p]]}^{[[p]]+[[m]]} \\dfrac{e^{x}}{e^{x}+e^{2[[p]]+[[m]]-x}}\\,dx \\) using the reflection substitution \\( x \\mapsto (2[[p]]+[[m]])-x \\), which swaps the two exponential terms in the denominator, rather than computing a logarithmic antiderivative directly.",
+  "stem": "Evaluate \\( \\displaystyle\\int_{[[p]]}^{[[p]]+[[m]]} \\dfrac{e^{x}}{e^{x}+e^{2\\cdot[[p]]+[[m]]-x}}\\,dx \\) using the reflection substitution \\( x \\mapsto (2\\cdot[[p]]+[[m]])-x \\), which swaps the two exponential terms in the denominator, rather than computing a logarithmic antiderivative directly.",
   "answer_spec": {"op": "integrate", "expr": "exp(x)/(exp(x)+exp(2*[[p]]+[[m]]-x))", "var": "x", "bounds": ["[[p]]", "[[p]]+[[m]]"]},
   "distractors": [
    "[[m]]",
@@ -308,7 +308,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Let \\(I\\) be the integral and reflect via \\(x \\mapsto (2[[p]]+[[m]])-x\\): the integrand maps to \\( \\dfrac{e^{2[[p]]+[[m]]-x}}{e^{2[[p]]+[[m]]-x}+e^{x}} = 1 - \\dfrac{e^{x}}{e^{x}+e^{2[[p]]+[[m]]-x}} \\), and the bounds are unchanged (reversed then flipped back). So the reflected integral equals \\( [[m]] - I \\), but it also equals \\(I\\) (same region), giving \\(2I = [[m]]\\) and \\(I = [[answer]]\\), independent of the exponential's exact form.",
+  "solution": "Let \\(I\\) be the integral and reflect via \\(x \\mapsto (2\\cdot[[p]]+[[m]])-x\\): the integrand maps to \\( \\dfrac{e^{2\\cdot[[p]]+[[m]]-x}}{e^{2\\cdot[[p]]+[[m]]-x}+e^{x}} = 1 - \\dfrac{e^{x}}{e^{x}+e^{2\\cdot[[p]]+[[m]]-x}} \\), and the bounds are unchanged (reversed then flipped back). So the reflected integral equals \\( [[m]] - I \\), but it also equals \\(I\\) (same region), giving \\(2I = [[m]]\\) and \\(I = [[answer]]\\), independent of the exponential's exact form.",
   "distractor_rationales": [
    "This treats the integral as if the integrand were simply \\(1\\), forgetting the reflection argument only shows \\(2I\\) equals the interval length.",
    "This is off by a spurious extra factor of \\(2\\) in the denominator of the correct half-length formula.",

@@ -85,7 +85,7 @@
   "[[answer]]/2",
   "2*[[answer]]"
  ],
- "solution": "An antiderivative of \\( \\sqrt{x} \\) is \\( \\tfrac{2}{3}x^{3/2} \\), so \\( \\int_{[[a]]}^{[[b]]} [[c]]\\sqrt{x}\\,dx = \\tfrac{2[[c]]}{3}\\left([[b]]^{3/2} - [[a]]^{3/2}\\right) = [[answer]] \\).",
+ "solution": "An antiderivative of \\( \\sqrt{x} \\) is \\( \\tfrac{2}{3}x^{3/2} \\), so \\( \\int_{[[a]]}^{[[b]]} [[c]]\\sqrt{x}\\,dx = \\tfrac{2\\cdot[[c]]}{3}\\left([[b]]^{3/2} - [[a]]^{3/2}\\right) = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets to multiply by the \\( 2/3 \\) coefficient from the power rule.",
   "This uses \\( \\sqrt{x} \\) itself as its own antiderivative instead of \\( \\tfrac{2}{3}x^{3/2} \\).",

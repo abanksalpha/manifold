@@ -18,7 +18,7 @@
    "-3*[[x0]]**2 + 1",
    "-3*[[x0]]**2 - 1"
   ],
-  "solution": "\\( f'(x)=3x^{2}+k \\); \\( f'([[x0]])=0 \\Rightarrow k=-3[[x0]]^{2}=[[answer]] \\).",
+  "solution": "\\( f'(x)=3x^{2}+k \\); \\( f'([[x0]])=0 \\Rightarrow k=-3\\cdot[[x0]]^{2}=[[answer]] \\).",
   "distractor_rationales": []
  },
  {

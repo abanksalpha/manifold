@@ -87,7 +87,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Here \\( g'(x) = \\dfrac{[[a]]}{2\\sqrt{[[a]]x+[[b]]}} \\), and since \\( \\sqrt{[[a]]([[p]])+[[b]]} = x^{*} = [[p]] \\), we get \\( g'(x^{*}) = \\dfrac{[[a]]}{2[[p]]} \\), so \\( |g'(x^{*})| = [[answer]] \\).",
+ "solution": "Here \\( g'(x) = \\dfrac{[[a]]}{2\\sqrt{[[a]]x+[[b]]}} \\), and since \\( \\sqrt{[[a]]([[p]])+[[b]]} = x^{*} = [[p]] \\), we get \\( g'(x^{*}) = \\dfrac{[[a]]}{2\\cdot[[p]]} \\), so \\( |g'(x^{*})| = [[answer]] \\).",
  "distractor_rationales": [
   "This omits the absolute value and reports the signed derivative \\( g'(x^{*}) \\).",
   "This forgets the factor of 2 from differentiating the square root (chain rule).",

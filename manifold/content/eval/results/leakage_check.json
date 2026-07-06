@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-07-06T04:40:07.053822+00:00",
+  "artifact": "manifold served-content leakage screen",
+  "description": "Screens the ACTUAL served content (parametric template instances rendered by templates.instantiate + concrete teach-bank fallback items) against the five held-out ETS practice forms (copyright firewall) and for internal near-duplicates.",
+  "generator": "manifold/content/eval/leakage_report.py",
+  "counts": {
+    "seed_templates": 7,
+    "template_bank_templates": 2902,
+    "templates_total": 2909,
+    "templates_rendered": 2909,
+    "templates_unrenderable": 0,
+    "render_seeds": [
+      101,
+      202
+    ],
+    "template_instances": 5727,
+    "teach_items": 246,
+    "total_items_screened": 5973
+  },
+  "reference": {
+    "dir": "/Users/adambanks/Desktop/manifold/manifold/content/eval/heldout",
+    "forms_screened": [
+      "Practice 1.pdf",
+      "Practice 2.pdf",
+      "Practice 3.pdf",
+      "Practice 4.pdf",
+      "Practice 5.pdf"
+    ],
+    "forms_count": 5,
+    "items_screened": 5973,
+    "threshold": 0.8,
+    "shingle": 4,
+    "rejects": []
+  },
+  "self_screen": {
+    "teach_bank_near_duplicates": {
+      "items": 246,
+      "threshold": 0.8,
+      "shingle": 4,
+      "rejects": []
+    },
+    "within_skill_template": {
+      "method": "one instance per template, compared within each skill (lexical Jaccard k=4, threshold 0.8); exact-duplicate pairs confirmed across seeds [101, 202]+[5001, 5002]",
+      "skills_with_multiple_templates": 581,
+      "template_instances_compared": 2907,
+      "exact_duplicate_pairs": [],
+      "lexical_near_duplicate_candidates": [
+        {
+          "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+          "item_a": "compose_sin_arccos_v1#101",
+          "item_b": "compose_cos_arcsin_v1#101",
+          "jaccard": 1.0,
+          "stem_a": "Evaluate \\( \\sin\\!\\left( \\arccos\\dfrac{1}{2} \\right) \\).",
+          "stem_b": "Evaluate \\( \\cos\\!\\left( \\arcsin\\dfrac{1}{2} \\right) \\)."
+        },
+        {
+          "skill_id": "compose_a_trig_function_with_an_inverse_trig_functio",
+          "item_a": "compose_tan_arcsin_v1#101",
+          "item_b": "compose_tan_arccos_v1#101",
+          "jaccard": 0.923,
+          "stem_a": "Evaluate \\( \\tan\\!\\left( \\arcsin\\dfrac{1}{2} \\right) \\).",
+          "stem_b": "Evaluate \\( \\tan\\!\\left( \\arccos\\dfrac{1}{2} \\right) \\)."
+        },
+        {
+          "skill_id": "pythagorean_identity_simplification",
+          "item_a": "pythagorean_tan_sec_v1#101",
+          "item_b": "pythagorean_cot_csc_v1#101",
+          "jaccard": 1.0,
+          "stem_a": "If \\( \\tan\\theta=\\dfrac{1}{12} \\), use \\( 1+\\tan^{2}\\theta=\\sec^{2}\\theta \\) to find \\( \\sec^{2}\\theta \\).",
+          "stem_b": "If \\( \\cot\\theta=\\dfrac{1}{12} \\), use \\( 1+\\cot^{2}\\theta=\\csc^{2}\\theta \\) to find \\( \\csc^{2}\\theta \\)."
+        },
+        {
+          "skill_id": "inverse_trig_functions",
+          "item_a": "inverse_trig_arcsin_of_sin_branch_v1#101",
+          "item_b": "inverse_trig_arctan_of_tan_branch_v1#101",
+          "jaccard": 0.84,
+          "stem_a": "Evaluate \\( \\arcsin\\!\\left(\\sin\\dfrac{7\\pi}{3}\\right) \\). Give your answer as a value in \\( \\left[-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right] \\).",
+          "stem_b": "Evaluate \\( \\arctan\\!\\left(\\tan\\dfrac{7\\pi}{3}\\right) \\). Give your answer as a value in \\( \\left(-\\tfrac{\\pi}{2},\\tfrac{\\pi}{2}\\right) \\)."
+        },
+        {
+          "skill_id": "propositional_logic",
+          "item_a": "propositional_logic_two_var_and_v1#101",
+          "item_b": "propositional_logic_implication_v1#101",
+          "jaccard": 0.893,
+          "stem_a": "Let \\( p_1, p_2, \\ldots, p_{9} \\) be 9 propositional variables, and consider the formula \\( p_1 \\wedge p_2 \\) (the truth values of \\( p_3, \\ldots, p_{9} \\) do not appear in the formula). Out of all \\( 2^{9} \\) truth assignments to \\( p_1,\\ldots,p_{9} \\), how many make \\( p_1 \\wedge p_2 \\) TRUE?",
+          "stem_b": "Let \\( p_1, p_2, \\ldots, p_{9} \\) be 9 propositional variables, and consider the formula \\( p_1 \\rightarrow p_2 \\) (the truth values of \\( p_3, \\ldots, p_{9} \\) do not appear in the formula). Out of all \\( 2^{9} \\) truth assignments to \\( p_1,\\ldots,p_{9} \\), how many make \\( p_1 \\rightarrow p_2 \\) TRUE?"
+        },
+        {
+          "skill_id": "propositional_logic",
+          "item_a": "propositional_logic_two_var_and_v1#101",
+          "item_b": "propositional_logic_biconditional_v1#101",
+          "jaccard": 0.86,
+          "stem_a": "Let \\( p_1, p_2, \\ldots, p_{9} \\) be 9 propositional variables, and consider the formula \\( p_1 \\wedge p_2 \\) (the truth values of \\( p_3, \\ldots, p_{9} \\) do not appear in the formula). Out of all \\( 2^{9} \\) truth assignments to \\( p_1,\\ldots,p_{9} \\), how many make \\( p_1 \\wedge p_2 \\) TRUE?",
+          "stem_b": "Let \\( p_1, p_2, \\ldots, p_{9} \\) be 9 propositional variables, and consider the formula \\( p_1 \\leftrightarrow p_2 \\) (the truth values of \\( p_3, \\ldots, p_{9} \\) do not appear in the formula). Out of all \\( 2^{9} \\) truth assignments to \\( p_1,\\ldots,p_{9} \\), how many make \\( p_1 \\leftrightarrow p_2 \\) TRUE?"
+        },
+        {
+          "skill_id": "propositional_logic",
+          "item_a": "propositional_logic_implication_v1#101",
+          "item_b": "propositional_logic_biconditional_v1#101",
+          "jaccard": 0.86,
+          "stem_a": "Let \\( p_1, p_2, \\ldots, p_{9} \\) be 9 propositional variables, and consider the formula \\( p_1 \\rightarrow p_2 \\) (the truth values of \\( p_3, \\ldots, p_{9} \\) do not appear in the formula). Out of all \\( 2^{9} \\) truth assignments to \\( p_1,\\ldots,p_{9} \\), how many make \\( p_1 \\rightarrow p_2 \\) TRUE?",
+          "stem_b": "Let \\( p_1, p_2, \\ldots, p_{9} \\) be 9 propositional variables, and consider the formula \\( p_1 \\leftrightarrow p_2 \\) (the truth values of \\( p_3, \\ldots, p_{9} \\) do not appear in the formula). Out of all \\( 2^{9} \\) truth assignments to \\( p_1,\\ldots,p_{9} \\), how many make \\( p_1 \\leftrightarrow p_2 \\) TRUE?"
+        },
+        {
+          "skill_id": "tautology_contradiction_recognition",
+          "item_a": "tautology_excluded_middle_v1#101",
+          "item_b": "tautology_non_contradiction_v1#101",
+          "jaccard": 0.804,
+          "stem_a": "Let \\( p_1, p_2, \\ldots, p_{21} \\) be 21 propositional variables, and consider the formula \\( p_1 \\vee \\neg p_1 \\) (only \\( p_1 \\) appears in it). Out of the \\( 2^{21} \\) possible truth assignments to \\( p_1, \\ldots, p_{21} \\), how many make this formula TRUE?",
+          "stem_b": "Let \\( p_1, p_2, \\ldots, p_{21} \\) be 21 propositional variables, and consider the formula \\( p_1 \\wedge \\neg p_1 \\) (only \\( p_1 \\) appears in it). Out of the \\( 2^{21} \\) possible truth assignments to \\( p_1, \\ldots, p_{21} \\), how many make this formula TRUE?"
+        },
+        {
+          "skill_id": "tautology_contradiction_recognition",
+          "item_a": "tautology_modus_ponens_v1#101",
+          "item_b": "tautology_biconditional_disjunction_v1#101",
+          "jaccard": 0.83,
+          "stem_a": "Let \\( p_1, p_2, \\ldots, p_{21} \\) be 21 propositional variables, and consider the formula \\( \\bigl(p_1 \\wedge (p_1 \\rightarrow p_2)\\bigr) \\rightarrow p_2 \\) (only \\( p_1, p_2 \\) appear in it). Out of the \\( 2^{21} \\) possible truth assignments to \\( p_1, \\ldots, p_{21} \\), how many make this formula TRUE?",
+          "stem_b": "Let \\( p_1, p_2, \\ldots, p_{21} \\) be 21 propositional variables, and consider the formula \\( (p_1 \\leftrightarrow p_2) \\vee (p_1 \\leftrightarrow \\neg p_2) \\) (only \\( p_1, p_2 \\) appear in it). Out of the \\( 2^{21} \\) possible truth assignments to \\( p_1, \\ldots, p_{21} \\), how many make this formula TRUE?"
+        }
+      ],
+      "note": "lexical_near_duplicate_candidates are NOT counted as duplicates: the leakage normalizer strips LaTeX macros, so symbolic-only stems that differ solely by a function/operator macro (e.g. \\cos vs \\sin, \\rightarrow vs \\wedge) collapse to identical tokens. Both raw stems are included so the difference is visible. The objective duplicate signal is exact_duplicate_pairs (identical rendered content across seeds)."
+    }
+  },
+  "threshold": 0.8,
+  "shingle": 4,
+  "clean": true,
+  "rejects": [],
+  "templates_unrenderable": [],
+  "scope": "REFERENCE (copyright) screen: every served item — 5727 parametric template instances (from 2909 templates x up to 2 fixed seeds each) PLUS 246 teach-bank fallback items = 5973 items — was screened for containment (shingle k=4, threshold 0.8) against ALL 5 held-out ETS forms (Practice 1.pdf, Practice 2.pdf, Practice 3.pdf, Practice 4.pdf, Practice 5.pdf). This is comprehensive over the served surface. SELF (near-duplicate) screen: the 246 teach-bank items were all-pairs screened (lexical near-dup is meaningful for concrete prose items). An all-pairs lexical self-screen over all 5727 template instances is intentionally NOT run: it is O(n^2), and parametric instances legitimately share scaffolding while the lexical normalizer deletes LaTeX macros, so it is not a meaningful signal for symbolic stems. Instead a per-skill within-skill template check compares one instance per template: the objective signal is exact_duplicate_pairs (identical rendered stem+choices across seeds); lexical near-dup candidates are recorded with both raw stems for transparency. 'clean' = no ETS leakage AND no teach near-duplicates AND no exact-duplicate templates."
+}

@@ -38,7 +38,7 @@
    "[[answer]] + 3",
    "[[answer]] - 3"
   ],
-  "solution": "Chain rule: \\( f'(x)=3([[a]]x^2+[[b]])^2\\cdot 2[[a]]x \\); at \\( [[x0]] \\) this is \\( [[answer]] \\).",
+  "solution": "Chain rule: \\( f'(x)=3([[a]]x^2+[[b]])^2\\cdot 2\\cdot[[a]]x \\); at \\( [[x0]] \\) this is \\( [[answer]] \\).",
   "distractor_rationales": []
  },
  {
@@ -273,7 +273,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "\\( f'(x) = (2[[a]]x+[[b]])e^{[[a]]x^{2}+[[b]]x} \\). At \\( x=[[x0]] \\), the exponent \\( [[a]]([[x0]])^{2}+[[b]]([[x0]]) \\) equals 0, so \\( e^{0}=1 \\) and \\( f'([[x0]]) = 2([[a]])([[x0]])+[[b]] = [[answer]] \\).",
+  "solution": "\\( f'(x) = (2\\cdot[[a]]x+[[b]])e^{[[a]]x^{2}+[[b]]x} \\). At \\( x=[[x0]] \\), the exponent \\( [[a]]([[x0]])^{2}+[[b]]([[x0]]) \\) equals 0, so \\( e^{0}=1 \\) and \\( f'([[x0]]) = 2([[a]])([[x0]])+[[b]] = [[answer]] \\).",
   "distractor_rationales": [
    "This reports \\( f([[x0]]) \\) itself (which is \\( e^{0}=1 \\)) instead of the derivative.",
    "This omits the constant term \\( b \\) from the chain-rule factor \\( 2ax+b \\).",

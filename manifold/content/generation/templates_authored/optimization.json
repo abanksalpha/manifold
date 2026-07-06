@@ -49,7 +49,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Solving \\( h'(t)=-2[[a]]t+[[b]]=0 \\) gives the critical time \\( t=\\dfrac{[[b]]}{2[[a]]} \\). Evaluating \\( h \\) at this time gives the maximum height \\( \\dfrac{[[b]]^{2}}{4[[a]]}+[[c]] = [[answer]] \\).",
+ "solution": "Solving \\( h'(t)=-2\\cdot[[a]]t+[[b]]=0 \\) gives the critical time \\( t=\\dfrac{[[b]]}{2\\cdot[[a]]} \\). Evaluating \\( h \\) at this time gives the maximum height \\( \\dfrac{[[b]]^{2}}{4\\cdot[[a]]}+[[c]] = [[answer]] \\).",
  "distractor_rationales": [
   "This reports the initial height \\( h(0) \\), not the maximum height.",
   "This reports the time at which the maximum occurs, not the height itself.",
@@ -80,7 +80,7 @@
   "2*sqrt([[a]]*[[b]]) + 1",
   "2*sqrt([[a]]*[[b]]) - 1"
  ],
- "solution": "Solving \\( C'(x) = [[a]] - \\dfrac{[[b]]}{x^{2}} = 0 \\) gives the critical point \\( x=\\sqrt{[[b]]/[[a]]} \\). Since \\( C \\) is convex for \\( x>0 \\), this is a minimum, and \\( C\\big(\\sqrt{[[b]]/[[a]]}\\big) = 2\\sqrt{[[a]][[b]]} = [[answer]] \\).",
+ "solution": "Solving \\( C'(x) = [[a]] - \\dfrac{[[b]]}{x^{2}} = 0 \\) gives the critical point \\( x=\\sqrt{[[b]]/[[a]]} \\). Since \\( C \\) is convex for \\( x>0 \\), this is a minimum, and \\( C\\big(\\sqrt{[[b]]/[[a]]}\\big) = 2\\sqrt{[[a]]\\cdot[[b]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This reports the critical point \\( x=\\sqrt{ab} \\)-style expression without the factor of 2 from evaluating \\( C \\) there.",
   "This reports the optimal rate \\( x=\\sqrt{b/a} \\) itself, not the minimum cost.",
@@ -109,7 +109,7 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "Solving \\( P'(x) = -3x^{2}+2[[a]]x = x(2[[a]]-3x) = 0 \\) gives \\( x=0 \\) or \\( x=\\dfrac{2[[a]]}{3} \\); the nonzero critical point is a maximum for \\( x>0 \\). Evaluating \\( P \\) there gives \\( P\\big(\\tfrac{2[[a]]}{3}\\big) = [[answer]] \\).",
+ "solution": "Solving \\( P'(x) = -3x^{2}+2\\cdot[[a]]x = x(2\\cdot[[a]]-3x) = 0 \\) gives \\( x=0 \\) or \\( x=\\dfrac{2\\cdot[[a]]}{3} \\); the nonzero critical point is a maximum for \\( x>0 \\). Evaluating \\( P \\) there gives \\( P\\big(\\tfrac{2\\cdot[[a]]}{3}\\big) = [[answer]] \\).",
  "distractor_rationales": [
   "This reports the critical point \\( x=2a/3 \\) itself, not the maximum profit.",
   "This mistakes the coefficient \\( a^{2} \\) itself for the maximum profit value.",

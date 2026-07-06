@@ -19,10 +19,11 @@ page). No semantic-embedding model is bundled; embedding-based dedup is an
 optional future augmentation and is **not** silently faked here.
 
 Honesty / fail-loud (cross-cutting rules; firewall §1b):
-  - The ETS PDFs are currently NOT on disk. If a reference screen is requested
-    but the corpus is absent (only the placeholder ``README`` remains), this
-    module raises :class:`LeakageCorpusMissing` — it never reports a fabricated
-    "clean" result off an empty corpus.
+  - The ETS PDFs are git-ignored (copyrighted; never committed), but are present
+    on disk locally. If a reference screen is requested but the corpus is absent
+    (only the placeholder ``README`` remains), this module raises
+    :class:`LeakageCorpusMissing` — it never reports a fabricated "clean" result
+    off an empty corpus.
   - If the reference corpus contains PDFs but no PDF text extractor is installed,
     it raises rather than silently skipping those files.
 
@@ -36,6 +37,7 @@ numpy); no API key. See ``verify.py`` for how the venv was created.
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import re
 import sys
@@ -285,21 +287,17 @@ def screen_self(
     return rejects
 
 
-def screen_bank(
+def _collect_rejects(
     banked: list[dict[str, Any]],
+    corpus: list[tuple[str, str]] | None,
     *,
     self_mode: bool,
-    reference_dir: Path,
-    threshold: float = DEFAULT_THRESHOLD,
-    shingle: int = DEFAULT_SHINGLE,
-    require_reference: bool = True,
+    k: int,
+    threshold: float,
 ) -> list[dict[str, Any]]:
-    """Public entry used by build_bank.py. Returns items to reject.
-
-    Always runs a self near-duplicate screen when ``self_mode``. Runs the
-    reference screen against ``reference_dir``; if ``require_reference`` and the
-    corpus is missing this raises (fail loud) rather than passing silently.
-    """
+    """Run the reference screen (when ``corpus`` is provided) and the self screen
+    (when ``self_mode``), returning a de-duplicated reject list — one entry per
+    item_id, with reference leakage taking precedence over a self near-duplicate."""
     rejects: list[dict[str, Any]] = []
     seen_ids: set[str] = set()
 
@@ -309,13 +307,32 @@ def screen_bank(
                 seen_ids.add(reject["item_id"])
                 rejects.append(reject)
 
-    # Reference screen (skipped entirely only in self-only mode).
-    if require_reference:
-        corpus = load_reference_corpus(reference_dir)  # raises if absent
-        add(screen_reference(banked, corpus, k=shingle, threshold=threshold))
+    if corpus is not None:
+        add(screen_reference(banked, corpus, k=k, threshold=threshold))
     if self_mode:
-        add(screen_self(banked, k=shingle, threshold=threshold))
+        add(screen_self(banked, k=k, threshold=threshold))
     return rejects
+
+
+def screen_bank(
+    banked: list[dict[str, Any]],
+    *,
+    self_mode: bool,
+    reference_dir: Path,
+    threshold: float = DEFAULT_THRESHOLD,
+    shingle: int = DEFAULT_SHINGLE,
+    require_reference: bool = True,
+) -> list[dict[str, Any]]:
+    """Public entry used by this module's CLI (:func:`main`) and by
+    ``manifold/content/eval/leakage_report.py`` (the committed served-content
+    screen). Returns items to reject.
+
+    Always runs a self near-duplicate screen when ``self_mode``. Runs the
+    reference screen against ``reference_dir``; if ``require_reference`` and the
+    corpus is missing this raises (fail loud) rather than passing silently.
+    """
+    corpus = load_reference_corpus(reference_dir) if require_reference else None
+    return _collect_rejects(banked, corpus, self_mode=self_mode, k=shingle, threshold=threshold)
 
 
 # --- CLI -----------------------------------------------------------------------
@@ -333,6 +350,54 @@ def load_bank(path: Path) -> list[dict[str, Any]]:
     if not isinstance(items, list) or not items:
         raise LeakageConfigError(f"{path}: no items found")
     return items
+
+
+def _now_iso() -> str:
+    """UTC timestamp for the report (every number/field comes from a real run)."""
+    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+
+def build_report(
+    banked: list[dict[str, Any]],
+    *,
+    bank_path: Path,
+    reference_dir: Path,
+    require_reference: bool,
+    self_mode: bool,
+    threshold: float,
+    shingle: int,
+    bank_description: str | None = None,
+) -> dict[str, Any]:
+    """Screen a loaded bank and assemble a structured, serializable report.
+
+    Loads the reference corpus (unless ``require_reference`` is False), records the
+    EXACT reference file names actually screened, runs the screens, and returns a
+    JSON-serializable report dict. Raises :class:`LeakageCorpusMissing` /
+    :class:`LeakageConfigError` on a missing/unreadable corpus (fail loud — never a
+    fabricated 'clean' off an absent gold set).
+    """
+    corpus = load_reference_corpus(reference_dir) if require_reference else None
+    reference_files = [name for name, _ in corpus] if corpus else []
+    rejects = _collect_rejects(
+        banked, corpus, self_mode=self_mode, k=shingle, threshold=threshold
+    )
+    return {
+        "generated_at": _now_iso(),
+        "bank": {
+            "path": str(bank_path),
+            "description": bank_description or f"item bank: {bank_path.name}",
+            "item_count": len(banked),
+        },
+        "item_count": len(banked),
+        "reference_screen": require_reference,
+        "reference_dir": str(reference_dir) if require_reference else None,
+        "reference_files_screened": reference_files,
+        "threshold": threshold,
+        "shingle": shingle,
+        "self_mode": self_mode,
+        "clean": not rejects,
+        "rejects": rejects,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -358,10 +423,17 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--threshold", type=float, default=DEFAULT_THRESHOLD)
     parser.add_argument("--shingle", type=int, default=DEFAULT_SHINGLE)
+    parser.add_argument(
+        "--out",
+        default=None,
+        help="also write a structured JSON leakage report to this path "
+        "(generated_at, item_count, reference files screened, threshold, clean, rejects)",
+    )
     args = parser.parse_args(argv)
 
+    bank_path = Path(args.bank)
     try:
-        banked = load_bank(Path(args.bank))
+        banked = load_bank(bank_path)
     except (LeakageConfigError, json.JSONDecodeError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
@@ -370,13 +442,14 @@ def main(argv: list[str] | None = None) -> int:
     require_reference = not args.no_reference
 
     try:
-        rejects = screen_bank(
+        report = build_report(
             banked,
-            self_mode=args.self_mode,
+            bank_path=bank_path,
             reference_dir=reference_dir,
+            require_reference=require_reference,
+            self_mode=args.self_mode,
             threshold=args.threshold,
             shingle=args.shingle,
-            require_reference=require_reference,
         )
     except LeakageCorpusMissing as exc:
         print(f"BLOCKED: {exc}", file=sys.stderr)
@@ -385,11 +458,15 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
+    rejects = report["rejects"]
+
     print("=" * 68)
     print("Manifold leakage / near-duplicate report")
     print("=" * 68)
-    print(f"  bank items      : {len(banked)}")
+    print(f"  bank items      : {report['item_count']}")
     print(f"  reference screen: {'off (self-only)' if not require_reference else reference_dir}")
+    if require_reference:
+        print(f"  reference files : {', '.join(report['reference_files_screened']) or '(none)'}")
     print(f"  self screen     : {'on' if args.self_mode else 'off'}")
     print(f"  threshold       : {args.threshold}")
     print("-" * 68)
@@ -399,6 +476,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  FOUND {len(rejects)} problem item(s):")
         for reject in rejects:
             print(f"    [{reject['reason']}] {reject['item_id']}: {reject['detail']}")
+    if args.out:
+        out_path = Path(args.out)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(
+            json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        )
+        print("-" * 68)
+        print(f"  report written  : {out_path}")
     print("=" * 68)
     return 1 if rejects else 0
 

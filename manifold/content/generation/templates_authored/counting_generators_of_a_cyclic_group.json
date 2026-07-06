@@ -107,7 +107,7 @@
   },
   "constraints": ["Eq(gcd([[p]], [[q]]), 1)", "Ne([[p]], [[q]])"],
   "derived": {"m": "[[p]]**[[a]]", "n": "[[q]]**[[b]]"},
-  "stem": "Consider the direct product \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\), where \\( \\gcd([[m]], [[n]]) = 1 \\). By the Chinese Remainder Theorem this group is cyclic, isomorphic to \\( \\mathbb{Z}_{[[m]][[n]]} \\). How many elements \\( (x,y) \\) generate the entire group \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\)?",
+  "stem": "Consider the direct product \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\), where \\( \\gcd([[m]], [[n]]) = 1 \\). By the Chinese Remainder Theorem this group is cyclic, isomorphic to \\( \\mathbb{Z}_{[[m]]\\cdot[[n]]} \\). How many elements \\( (x,y) \\) generate the entire group \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\)?",
   "answer_spec": {"op": "evaluate", "expr": "([[p]]**([[a]]-1)*([[p]]-1)) * ([[q]]**([[b]]-1)*([[q]]-1))"},
   "distractors": [
    "[[m]] * [[n]]",
@@ -117,14 +117,14 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since \\( \\gcd([[m]],[[n]]) = 1 \\), \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\cong \\mathbb{Z}_{[[m]][[n]]} \\), a cyclic group of order \\( [[m]][[n]] \\) with \\( \\varphi([[m]][[n]]) = \\varphi([[m]])\\varphi([[n]]) = [[answer]] \\) generators.",
+  "solution": "Since \\( \\gcd([[m]],[[n]]) = 1 \\), \\( \\mathbb{Z}_{[[m]]} \\times \\mathbb{Z}_{[[n]]} \\cong \\mathbb{Z}_{[[m]]\\cdot[[n]]} \\), a cyclic group of order \\( [[m]]\\cdot[[n]] \\) with \\( \\varphi([[m]]\\cdot[[n]]) = \\varphi([[m]])\\varphi([[n]]) = [[answer]] \\) generators.",
   "distractor_rationales": [
    "This is the size of the whole group, not the number of generators.",
    "This wrongly assumes every non-identity element is a generator.",
    "This drops the prime-power factors from each Euler totient.",
    "This adds the group orders instead of multiplying the totients.",
-   "This is off by one from \\( \\varphi([[m]][[n]]) \\).",
-   "This is off by one from \\( \\varphi([[m]][[n]]) \\)."
+   "This is off by one from \\( \\varphi([[m]]\\cdot[[n]]) \\).",
+   "This is off by one from \\( \\varphi([[m]]\\cdot[[n]]) \\)."
   ]
  }
 ]

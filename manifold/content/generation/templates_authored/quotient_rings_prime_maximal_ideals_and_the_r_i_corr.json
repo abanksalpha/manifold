@@ -21,7 +21,7 @@
   "[[answer]] - 1",
   "[[answer]] + [[m]]"
  ],
- "solution": "The ideal \\( I=([[d]]) \\) consists of the \\( [[m]] \\) multiples of \\( [[d]] \\) inside \\( \\mathbb{Z}_{n} \\) (namely \\( 0, [[d]], 2[[d]], \\dots \\)), so \\( |I| = n/[[d]] = [[m]] \\). By Lagrange, \\( |\\mathbb{Z}_{n}/I| = |\\mathbb{Z}_{n}|/|I| = n/[[m]] = [[answer]] \\); equivalently \\( \\mathbb{Z}_{n}/([[d]]) \\cong \\mathbb{Z}_{[[d]]} \\), which has \\( [[d]] \\) elements.",
+ "solution": "The ideal \\( I=([[d]]) \\) consists of the \\( [[m]] \\) multiples of \\( [[d]] \\) inside \\( \\mathbb{Z}_{n} \\) (namely \\( 0, [[d]], 2\\cdot[[d]], \\dots \\)), so \\( |I| = n/[[d]] = [[m]] \\). By Lagrange, \\( |\\mathbb{Z}_{n}/I| = |\\mathbb{Z}_{n}|/|I| = n/[[m]] = [[answer]] \\); equivalently \\( \\mathbb{Z}_{n}/([[d]]) \\cong \\mathbb{Z}_{[[d]]} \\), which has \\( [[d]] \\) elements.",
  "distractor_rationales": [
   "This is \\( |I| \\), the size of the IDEAL itself (\\( n/d \\)), not the size of the quotient \\( \\mathbb{Z}_n/I \\).",
   "This is the size of the whole ring \\( \\mathbb{Z}_{n} \\), not the quotient by \\( I \\).",

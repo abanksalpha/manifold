@@ -121,7 +121,7 @@
    "[[answer]]+1",
    "[[answer]]-1"
   ],
-  "solution": "Undetermined coefficients (or the integrating factor) gives the particular solution \\( y_p = \\dfrac{[[k]]\\sin([[k]]x)+[[p]]\\cos([[k]]x)}{[[k]]^{2}+[[p]]^{2}} \\), so \\( y(x) = y_p(x) + Ce^{-[[p]]x} \\) with \\( C = [[y0]] - y_p(0) \\). Evaluating at \\( x = \\dfrac{[[m]]\\pi}{2[[k]]} \\) gives \\( y = [[answer]] \\).",
+  "solution": "Undetermined coefficients (or the integrating factor) gives the particular solution \\( y_p = \\dfrac{[[k]]\\sin([[k]]x)+[[p]]\\cos([[k]]x)}{[[k]]^{2}+[[p]]^{2}} \\), so \\( y(x) = y_p(x) + Ce^{-[[p]]x} \\) with \\( C = [[y0]] - y_p(0) \\). Evaluating at \\( x = \\dfrac{[[m]]\\pi}{2\\cdot[[k]]} \\) gives \\( y = [[answer]] \\).",
   "distractor_rationales": [
    "This swaps the roles of sine and cosine in the particular solution.",
    "This drops the homogeneous (transient) term entirely.",

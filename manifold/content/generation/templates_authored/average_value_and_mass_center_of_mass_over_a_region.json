@@ -58,8 +58,8 @@
  ],
  "solution": "The area of \\(D\\) is \\( \\int_{0}^{[[b]]}[[m]]x\\,dx = [[areaT]] \\). The average value is \\( \\frac{1}{[[areaT]]}\\int_{0}^{[[b]]}\\int_{0}^{[[m]]x}([[p]]x+[[q]]y)\\,dy\\,dx = [[answer]] \\).",
  "distractor_rationales": [
-  "This evaluates \\(f\\) at the vertex \\((x,y)=([[b]],[[m]][[b]])\\) instead of averaging over \\(D\\).",
-  "This divides by \\([[m]][[b]]\\) (a rectangle's dimensions) instead of the true triangle area \\([[areaT]]\\).",
+  "This evaluates \\(f\\) at the vertex \\((x,y)=([[b]],[[m]]\\cdot[[b]])\\) instead of averaging over \\(D\\).",
+  "This divides by \\([[m]]\\cdot[[b]]\\) (a rectangle's dimensions) instead of the true triangle area \\([[areaT]]\\).",
   "This is twice the correct average (forgot the factor of \\(\\tfrac12\\) in the triangle's area).",
   "This is off by one from the correct value.",
   "This is off by one from the correct value."
@@ -90,7 +90,7 @@
   "[[answer]] - 2",
   "[[answer]] + 3"
  ],
- "solution": "The mass is \\( \\iint_R \\delta\\,dA = \\int_{0}^{[[dd]]}\\int_{0}^{[[bb]]} ([[r0]]+[[r1]]x+[[r2]]y)\\,dx\\,dy = [[r0]]\\cdot[[bb]]\\cdot[[dd]] + \\frac{[[r1]][[bb]]^2[[dd]]}{2} + \\frac{[[r2]][[bb]][[dd]]^2}{2} = [[answer]] \\).",
+ "solution": "The mass is \\( \\iint_R \\delta\\,dA = \\int_{0}^{[[dd]]}\\int_{0}^{[[bb]]} ([[r0]]+[[r1]]x+[[r2]]y)\\,dx\\,dy = [[r0]]\\cdot[[bb]]\\cdot[[dd]] + \\frac{[[r1]]\\cdot[[bb]]^2\\cdot[[dd]]}{2} + \\frac{[[r2]]\\cdot[[bb]]\\cdot[[dd]]^2}{2} = [[answer]] \\).",
  "distractor_rationales": [
   "This keeps only the constant part \\([[r0]]\\) of the density, ignoring the \\(x\\) and \\(y\\) terms.",
   "This evaluates the density at the far corner and multiplies by the area, instead of integrating.",

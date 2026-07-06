@@ -160,7 +160,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "The volume is \\( \\int_0^{[[a]]}\\int_0^{[[b]]} \\left([[K]]-xy\\right)dy\\,dx = [[K]][[a]][[b]] - \\dfrac{[[a]]^2[[b]]^2}{4} = [[answer]] \\).",
+  "solution": "The volume is \\( \\int_0^{[[a]]}\\int_0^{[[b]]} \\left([[K]]-xy\\right)dy\\,dx = [[K]]\\cdot[[a]]\\cdot[[b]] - \\dfrac{[[a]]^2\\cdot[[b]]^2}{4} = [[answer]] \\).",
   "distractor_rationales": [
    "This integrates only the flat top surface, forgetting to subtract the saddle \\(xy\\) contribution.",
    "This reports only the (subtracted) saddle contribution, forgetting the flat top's box volume.",

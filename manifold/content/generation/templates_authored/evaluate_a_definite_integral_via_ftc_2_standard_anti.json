@@ -156,11 +156,11 @@
   "[[answer]] - 1",
   "[[answer]] + 2"
  ],
- "solution": "With \\( u = [[k]]x \\), an antiderivative of \\( ([[a]])\\sec^{2}([[k]]x) \\) is \\( \\frac{[[a]]}{[[k]]}\\tan([[k]]x) \\). At \\( x = \\pi/(4[[k]]) \\), \\( [[k]]x = \\pi/4 \\) so \\( \\tan([[k]]x) = 1 \\), giving \\( \\frac{[[a]]}{[[k]]}\\left(1 - 0\\right) = [[answer]] \\).",
+ "solution": "With \\( u = [[k]]x \\), an antiderivative of \\( ([[a]])\\sec^{2}([[k]]x) \\) is \\( \\frac{[[a]]}{[[k]]}\\tan([[k]]x) \\). At \\( x = \\pi/(4\\cdot[[k]]) \\), \\( [[k]]x = \\pi/4 \\) so \\( \\tan([[k]]x) = 1 \\), giving \\( \\frac{[[a]]}{[[k]]}\\left(1 - 0\\right) = [[answer]] \\).",
  "distractor_rationales": [
   "This multiplies by \\( [[k]] \\) instead of dividing by it when undoing the chain rule.",
   "This divides by \\( [[k]]^{2} \\) instead of \\( [[k]] \\).",
-  "This treats the bound \\( \\pi/(4[[k]]) \\) as the value of \\( \\tan \\) itself rather than evaluating \\( \\tan(\\pi/4) = 1 \\).",
+  "This treats the bound \\( \\pi/(4\\cdot[[k]]) \\) as the value of \\( \\tan \\) itself rather than evaluating \\( \\tan(\\pi/4) = 1 \\).",
   "This uses the bound value \\( \\pi/4 \\) directly as \\( \\tan([[k]]x) \\) and forgets to divide by \\( [[k]] \\).",
   "This is off by one from the correct value.",
   "This is off by one from the correct value.",

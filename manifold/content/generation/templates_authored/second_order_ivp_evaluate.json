@@ -107,7 +107,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "With roots \\( \\pm [[w]]i \\), the general solution is \\( y = y_0\\cos([[w]]x) + \\dfrac{v_0}{[[w]]}\\sin([[w]]x) \\). At \\( x = \\dfrac{[[k]]\\pi}{2[[w]]} \\), \\( [[w]]x = \\dfrac{[[k]]\\pi}{2} \\), so \\( y = [[y0]]\\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) + \\dfrac{[[v0]]}{[[w]]}\\sin\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
+  "solution": "With roots \\( \\pm [[w]]i \\), the general solution is \\( y = y_0\\cos([[w]]x) + \\dfrac{v_0}{[[w]]}\\sin([[w]]x) \\). At \\( x = \\dfrac{[[k]]\\pi}{2\\cdot[[w]]} \\), \\( [[w]]x = \\dfrac{[[k]]\\pi}{2} \\), so \\( y = [[y0]]\\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) + \\dfrac{[[v0]]}{[[w]]}\\sin\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This swaps the roles of sine and cosine.",
    "This forgets to divide the velocity term by \\( [[w]] \\).",
@@ -150,7 +150,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "A constant particular solution \\( y_p = [[yp]] \\) satisfies \\( ([[c]])y_p = [[d]] \\). Writing \\( y = y_p + z \\), \\( z \\) solves the homogeneous equation with \\( z(0) = [[y0]]-[[yp]] \\), \\( z'(0) = [[v0]] \\), giving \\( C_1 = [[c1]] \\), \\( C_2 = [[c2]] \\). Hence \\( y([[t0]]) = C_1e^{[[p]][[t0]]} + C_2e^{[[q]][[t0]]} + [[yp]] = [[answer]] \\).",
+  "solution": "A constant particular solution \\( y_p = [[yp]] \\) satisfies \\( ([[c]])y_p = [[d]] \\). Writing \\( y = y_p + z \\), \\( z \\) solves the homogeneous equation with \\( z(0) = [[y0]]-[[yp]] \\), \\( z'(0) = [[v0]] \\), giving \\( C_1 = [[c1]] \\), \\( C_2 = [[c2]] \\). Hence \\( y([[t0]]) = C_1e^{[[p]]\\cdot[[t0]]} + C_2e^{[[q]]\\cdot[[t0]]} + [[yp]] = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to add back the particular solution \\( y_p \\).",
    "This uses \\( y_0 \\) directly instead of shifting by \\( y_p \\) before solving for the constants.",
@@ -231,12 +231,12 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The position is \\( x(t) = [[y0]]\\cos([[w]]t) + \\dfrac{[[v0]]}{[[w]]}\\sin([[w]]t) \\), so the velocity is \\( x'(t) = -[[y0]][[w]]\\sin([[w]]t) + [[v0]]\\cos([[w]]t) \\). At \\( t = \\dfrac{[[k]]\\pi}{2[[w]]} \\), \\( [[w]]t = \\dfrac{[[k]]\\pi}{2} \\), so \\( x' = -[[y0]][[w]]\\sin\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) + [[v0]]\\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
+  "solution": "The position is \\( x(t) = [[y0]]\\cos([[w]]t) + \\dfrac{[[v0]]}{[[w]]}\\sin([[w]]t) \\), so the velocity is \\( x'(t) = -[[y0]]\\cdot[[w]]\\sin([[w]]t) + [[v0]]\\cos([[w]]t) \\). At \\( t = \\dfrac{[[k]]\\pi}{2\\cdot[[w]]} \\), \\( [[w]]t = \\dfrac{[[k]]\\pi}{2} \\), so \\( x' = -[[y0]]\\cdot[[w]]\\sin\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) + [[v0]]\\cos\\!\\left(\\dfrac{[[k]]\\pi}{2}\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This has the wrong sign on the sine term.",
    "This computes the POSITION \\( x(t) \\) rather than the requested velocity \\( x'(t) \\).",
    "This forgets to multiply the sine term by \\( [[w]] \\) and instead multiplies the cosine term.",
-   "This differentiates the wrong way, keeping cosine with \\([[y0]][[w]]\\) instead of sine.",
+   "This differentiates the wrong way, keeping cosine with \\([[y0]]\\cdot[[w]]\\) instead of sine.",
    "This is off by one from the correct value.",
    "This is off by one from the correct value.",
    "This is off by two from the correct value."

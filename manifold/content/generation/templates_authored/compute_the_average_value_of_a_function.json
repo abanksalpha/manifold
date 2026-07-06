@@ -151,7 +151,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "The average value is \\( \\frac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]}(x^{2}+c)\\,dx = \\frac{[[b]]^{2}+[[a]][[b]]+[[a]]^{2}}{3} + c \\). Setting this equal to \\( [[target]] \\) and solving gives \\( c = [[answer]] \\).",
+ "solution": "The average value is \\( \\frac{1}{[[b]]-[[a]]}\\int_{[[a]]}^{[[b]]}(x^{2}+c)\\,dx = \\frac{[[b]]^{2}+[[a]]\\cdot[[b]]+[[a]]^{2}}{3} + c \\). Setting this equal to \\( [[target]] \\) and solving gives \\( c = [[answer]] \\).",
  "distractor_rationales": [
   "This subtracts the average of the squared endpoints instead of the correct average of \\( x^{2} \\), which is \\( \\frac{a^{2}+ab+b^{2}}{3} \\).",
   "This adds instead of subtracts the (incorrect) average-of-endpoints term.",

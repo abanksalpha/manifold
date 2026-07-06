@@ -77,7 +77,7 @@
   },
   "constraints": ["Le([[lo]] + [[seg]], [[b]])", "Le([[lo]] + [[seg]], [[b]])", "Or(Gt([[lo]], 0), Lt([[lo]] + [[seg]], [[b]]))", "Le([[lo]] + [[seg]], 2 * [[b]])"],
   "derived": {"hi": "[[lo]] + [[seg]]"},
-  "stem": "A continuous random variable \\( X \\) has the triangular (tent) density \\( f(x) = \\dfrac{[[b]] - |x - [[b]]|}{[[b]]^{2}} \\) for \\( 0 \\le x \\le 2[[b]] \\) (and \\( f(x) = 0 \\) elsewhere), which rises linearly to a peak at \\( x = [[b]] \\) and falls linearly back to \\( 0 \\) at \\( x = 2[[b]] \\). What is \\( P([[lo]] \\le X \\le [[hi]]) \\)?",
+  "stem": "A continuous random variable \\( X \\) has the triangular (tent) density \\( f(x) = \\dfrac{[[b]] - |x - [[b]]|}{[[b]]^{2}} \\) for \\( 0 \\le x \\le 2\\cdot[[b]] \\) (and \\( f(x) = 0 \\) elsewhere), which rises linearly to a peak at \\( x = [[b]] \\) and falls linearly back to \\( 0 \\) at \\( x = 2\\cdot[[b]] \\). What is \\( P([[lo]] \\le X \\le [[hi]]) \\)?",
   "answer_spec": {"op": "integrate", "expr": "([[b]] - Abs(x - [[b]])) / [[b]] ** 2", "var": "x", "bounds": ["[[lo]]", "[[hi]]"]},
   "distractors": [
    "Rational([[hi]] - [[lo]], 2 * [[b]])",
@@ -89,7 +89,7 @@
   ],
   "solution": "Integrate the tent density over the interval (splitting at the peak \\( x=[[b]] \\) if the interval crosses it): \\( P([[lo]] \\le X \\le [[hi]]) = \\int_{[[lo]]}^{[[hi]]} \\frac{[[b]] - |x-[[b]]|}{[[b]]^2}\\,dx = [[answer]] \\).",
   "distractor_rationales": [
-   "This treats the density as uniform on \\( [0, 2[[b]]] \\), ignoring the triangular shape entirely.",
+   "This treats the density as uniform on \\( [0, 2\\cdot[[b]]] \\), ignoring the triangular shape entirely.",
    "This uses the wrong (unsquared) normalizing denominator.",
    "This mishandles the absolute value by treating the density as purely linear (\\(x/b^2\\)) rather than tent-shaped.",
    "This evaluates only the density's HEIGHT at the upper bound, not the accumulated area.",

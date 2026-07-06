@@ -25,7 +25,7 @@
   "Rational(1, 4*[[a]]) + 1",
   "Rational(1, 4*[[a]]) - Rational(1, 8*[[a]])"
  ],
- "solution": "Writing \\( y=\\frac{1}{4p}x^{2} \\) gives \\( p=\\frac{1}{4[[a]]}=[[answer]] \\).",
+ "solution": "Writing \\( y=\\frac{1}{4p}x^{2} \\) gives \\( p=\\frac{1}{4\\cdot[[a]]}=[[answer]] \\).",
  "distractor_rationales": []
 },
 {
@@ -220,7 +220,7 @@
   "Rational(1, 4*[[a]]) + 1",
   "Rational(1, 4*[[a]]) - Rational(1, 8*[[a]])"
  ],
- "solution": "Writing \\( x=\\frac{1}{4p}y^{2} \\) gives \\( p=\\frac{1}{4[[a]]}=[[answer]] \\).",
+ "solution": "Writing \\( x=\\frac{1}{4p}y^{2} \\) gives \\( p=\\frac{1}{4\\cdot[[a]]}=[[answer]] \\).",
  "distractor_rationales": [
   "This forgets the factor of \\( 4\\) in the denominator.",
   "This uses \\( 2\\) instead of \\( 4\\) in the denominator.",

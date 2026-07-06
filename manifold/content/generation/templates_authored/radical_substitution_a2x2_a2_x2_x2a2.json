@@ -39,7 +39,7 @@
   "2*[[answer]]/3",
   "[[c]]*pi*[[a]]**2"
  ],
- "solution": "With \\( x = [[a]]\\sin\\theta \\), \\( \\sqrt{[[asq]] - x^{2}} = [[a]]\\cos\\theta \\) and \\( dx = [[a]]\\cos\\theta\\,d\\theta \\), so the integral becomes \\( [[c]][[a]]^{2}\\int_{0}^{\\pi/2}\\cos^{2}\\theta\\,d\\theta = [[c]][[a]]^{2}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\) (the area of a quarter disk of radius \\( [[a]] \\), scaled by \\( [[c]] \\)).",
+ "solution": "With \\( x = [[a]]\\sin\\theta \\), \\( \\sqrt{[[asq]] - x^{2}} = [[a]]\\cos\\theta \\) and \\( dx = [[a]]\\cos\\theta\\,d\\theta \\), so the integral becomes \\( [[c]]\\cdot[[a]]^{2}\\int_{0}^{\\pi/2}\\cos^{2}\\theta\\,d\\theta = [[c]]\\cdot[[a]]^{2}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\) (the area of a quarter disk of radius \\( [[a]] \\), scaled by \\( [[c]] \\)).",
  "distractor_rationales": [
   "This uses \\( [[a]] \\) instead of \\( [[a]]^{2} \\), forgetting to square the radius.",
   "This uses \\( \\tfrac{\\pi}{2} \\) (a half disk) instead of \\( \\tfrac{\\pi}{4} \\) for the quarter disk.",
@@ -113,7 +113,7 @@
   "2*[[answer]]",
   "[[answer]] + [[c]]*[[asq]]/2"
  ],
- "solution": "With \\( x = [[a]]\\tan\\theta \\), \\( \\sqrt{[[asq]]+x^2} = [[a]]\\sec\\theta \\) and \\( dx = [[a]]\\sec^2\\theta\\,d\\theta \\), turning the integral into \\( [[c]][[asq]]\\int_0^{\\pi/4}\\sec^3\\theta\\,d\\theta \\). Evaluating the standard secant-cubed reduction gives \\( [[c]][[asq]]\\left(\\tfrac{\\sqrt2}{2} + \\tfrac12\\ln(1+\\sqrt2)\\right) = [[answer]] \\).",
+ "solution": "With \\( x = [[a]]\\tan\\theta \\), \\( \\sqrt{[[asq]]+x^2} = [[a]]\\sec\\theta \\) and \\( dx = [[a]]\\sec^2\\theta\\,d\\theta \\), turning the integral into \\( [[c]]\\cdot[[asq]]\\int_0^{\\pi/4}\\sec^3\\theta\\,d\\theta \\). Evaluating the standard secant-cubed reduction gives \\( [[c]]\\cdot[[asq]]\\left(\\tfrac{\\sqrt2}{2} + \\tfrac12\\ln(1+\\sqrt2)\\right) = [[answer]] \\).",
  "distractor_rationales": [
   "This keeps only the \\( \\sqrt2/2 \\) piece from the secant-cubed antiderivative and drops the logarithmic term.",
   "This keeps only the logarithmic piece (without its \\( 1/2 \\) coefficient) and drops the algebraic \\( \\sqrt2/2 \\) term.",

@@ -70,7 +70,7 @@
   "[[answer]] + [[a]]",
   "[[answer]] - [[a]]"
  ],
- "solution": "Each differentiation of \\( e^{[[k]]x} \\) multiplies by \\( [[k]] \\), so \\( f^{([[n]])}(x)=[[a]][[k]]^{[[n]]}e^{[[k]]x} \\); at \\( x=0 \\) this is \\( [[a]]\\cdot[[k]]^{[[n]]} = [[answer]] \\).",
+ "solution": "Each differentiation of \\( e^{[[k]]x} \\) multiplies by \\( [[k]] \\), so \\( f^{([[n]])}(x)=[[a]]\\cdot[[k]]^{[[n]]}e^{[[k]]x} \\); at \\( x=0 \\) this is \\( [[a]]\\cdot[[k]]^{[[n]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This multiplies \\( k \\) by \\( n \\) instead of raising \\( k \\) to the \\( n \\)th power.",
   "This raises \\( n \\) to the \\( k \\)th power instead of \\( k \\) to the \\( n \\)th power.",

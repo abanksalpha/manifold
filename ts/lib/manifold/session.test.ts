@@ -1,7 +1,7 @@
 // Copyright: Ankitects Pty Ltd and contributors
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
-import { expect, test } from "vitest";
+import { afterEach, expect, test, vi } from "vitest";
 
 import type { LiveResponse, QueueItem, SessionStep, StepFetcher } from "./session";
 import {
@@ -10,15 +10,32 @@ import {
     bigintReviver,
     CHOICE_IDS,
     choiceFor,
+    fetchProblem,
     hintsAllowed,
     isCorrect,
     levelLabel,
+    PREDICT_ENABLED,
     PROBLEMS_ARE_PLACEHOLDER,
+    SELF_EXPLAIN_ENABLED,
     SessionRunner,
     stepFromResponse,
     toLecture,
     toProblem,
 } from "./session";
+
+afterEach(() => {
+    vi.unstubAllGlobals();
+});
+
+/** Stub the global fetch with a canned mediasrv response (or a thrown transport
+ *  error), matching only the `ok` / `text()` surface postNextProblem reads. */
+function stubResponse(body: unknown, ok = true): void {
+    vi.stubGlobal("fetch", async () => ({
+        ok,
+        status: ok ? 200 : 500,
+        text: async () => (typeof body === "string" ? body : JSON.stringify(body)),
+    }));
+}
 
 // A verified item as the live `manifoldNextProblem` endpoint returns it (D44):
 // generated on the fly and proven by verify.py before it is ever sent here.
@@ -407,4 +424,45 @@ test("retryCurrent re-generates a skill after a transient contract breach", asyn
     const recovered = await runner.retryCurrent();
     expect(recovered.served?.item.skillId).toBe("flaky");
     expect(recovered.deferred).toHaveLength(0);
+});
+
+// --- fresh-attempt instance for the worked example (D36, Phase 1) -------------
+
+test("fetchProblem returns a fresh ServedProblem for an ok verdict", async () => {
+    stubResponse({ status: "ok", item: EIGEN_ITEM });
+    const served = await fetchProblem(queueItem());
+    expect(served).not.toBeNull();
+    // A fresh instance of the SAME skill: same item identity, real mapped problem.
+    expect(served?.item.skillId).toBe("eigenvalues_of_an_explicit_small_matrix");
+    expect(served?.problem.choices).toHaveLength(5);
+    expect(served?.problem.correctIndex).toBe(3);
+});
+
+test("fetchProblem returns null on an honest abstain, never a fabricated problem", async () => {
+    stubResponse({ status: "abstain", reason: "needs_curation" });
+    expect(await fetchProblem(queueItem())).toBeNull();
+});
+
+test("fetchProblem returns null on a transport failure so the caller can fall back", async () => {
+    vi.stubGlobal("fetch", async () => {
+        throw new Error("network down");
+    });
+    expect(await fetchProblem(queueItem())).toBeNull();
+    // A non-2xx HTTP response is a transport failure too: null, not a crash.
+    stubResponse("upstream boom", false);
+    expect(await fetchProblem(queueItem())).toBeNull();
+});
+
+test("fetchProblem still throws loudly on a malformed 'ok' item (verify-before-serve)", async () => {
+    // A served item that breaks its own contract is a real invariant breach, not
+    // an ordinary abstain: it must surface, not be swapped in as a broken card.
+    stubResponse({ status: "ok", item: { ...EIGEN_ITEM, choices: ["only", "three", "here"] } });
+    await expect(fetchProblem(queueItem())).rejects.toThrow(/exactly 5 choices/);
+});
+
+test("the teaching study features are on by default and ablatable via flags", () => {
+    // Exported flags let predict-then-reveal and self-explanation be A/B'd or
+    // turned off without editing the player.
+    expect(PREDICT_ENABLED).toBe(true);
+    expect(SELF_EXPLAIN_ENABLED).toBe(true);
 });

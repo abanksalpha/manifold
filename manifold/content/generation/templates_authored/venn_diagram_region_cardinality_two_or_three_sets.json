@@ -51,7 +51,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Removing the double-counted overlap once gives the union; removing it a second time strips out the students who do both, leaving exactly those who do only one: \\( [[A]] + [[B]] - 2[[I]] = [[answer]] \\).",
+  "solution": "Removing the double-counted overlap once gives the union; removing it a second time strips out the students who do both, leaving exactly those who do only one: \\( [[A]] + [[B]] - 2\\cdot[[I]] = [[answer]] \\).",
   "distractor_rationales": [
    "This is the union total, which still includes the students who do both.",
    "This is the sum of the two groups, not accounting for the overlap at all.",

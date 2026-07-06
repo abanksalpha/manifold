@@ -123,7 +123,7 @@
  "distractor_rationales": [
   "This forgets the cubic term entirely and just uses \\(2\\cdot[[cgap]]\\cdot[[k]]\\) doubled incorrectly.",
   "This doubles the correct antiderivative coefficient by mistake.",
-  "This drops the leading \\(2[[cgap]][[k]]\\) term, keeping only the cubic correction.",
+  "This drops the leading \\(2\\cdot[[cgap]]\\cdot[[k]]\\) term, keeping only the cubic correction.",
   "This is off by one from the correct value.",
   "This is off by one from the correct value."
  ]

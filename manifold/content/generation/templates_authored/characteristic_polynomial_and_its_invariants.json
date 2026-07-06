@@ -190,7 +190,7 @@
   "[[answer]] - 2",
   "[[answer]] + 4"
  ],
- "solution": "By Vieta's formulas, \\( c_{1} \\) is the sum of the pairwise products of the eigenvalues: \\( [[r1]][[r2]] + [[r1]][[r3]] + [[r2]][[r3]] = [[answer]] \\).",
+ "solution": "By Vieta's formulas, \\( c_{1} \\) is the sum of the pairwise products of the eigenvalues: \\( [[r1]]\\cdot[[r2]] + [[r1]]\\cdot[[r3]] + [[r2]]\\cdot[[r3]] = [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( c_{2} \\), the sum of the eigenvalues, not the sum of their pairwise products.",
   "This is \\( c_{0} \\), the product of all three eigenvalues, not the sum of pairwise products.",

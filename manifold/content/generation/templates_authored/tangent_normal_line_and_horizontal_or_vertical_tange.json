@@ -37,7 +37,7 @@
    "-1/(2*[[a]]*[[x0]] + [[b]]) + 1",
    "-1/(2*[[a]]*[[x0]] + [[b]]) - 1"
   ],
-  "solution": "Tangent slope \\( =2[[a]][[x0]]+[[b]] \\); the normal slope is its negative reciprocal \\( [[answer]] \\).",
+  "solution": "Tangent slope \\( =2\\cdot[[a]]\\cdot[[x0]]+[[b]] \\); the normal slope is its negative reciprocal \\( [[answer]] \\).",
   "distractor_rationales": []
  },
  {
@@ -79,7 +79,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "A horizontal tangent occurs where \\( f'(x)=2[[p]]x+[[q]]=0 \\), so \\( x=-\\dfrac{[[q]]}{2[[p]]} = [[answer]] \\).",
+  "solution": "A horizontal tangent occurs where \\( f'(x)=2\\cdot[[p]]x+[[q]]=0 \\), so \\( x=-\\dfrac{[[q]]}{2\\cdot[[p]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This drops the negative sign that comes from moving \\( q \\) to the other side.",
    "This forgets to divide by 2 when isolating \\( x \\).",
@@ -373,7 +373,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The tangent slope is \\( m=2[[p]]([[x0]])+[[q]] \\), so the normal slope is \\( -1/m \\); the normal line \\( y=f([[x0]])-\\tfrac{1}{m}(x-[[x0]]) \\) has \\( y \\)-intercept \\( f([[x0]])+\\dfrac{[[x0]]}{m} = [[answer]] \\).",
+  "solution": "The tangent slope is \\( m=2\\cdot[[p]]([[x0]])+[[q]] \\), so the normal slope is \\( -1/m \\); the normal line \\( y=f([[x0]])-\\tfrac{1}{m}(x-[[x0]]) \\) has \\( y \\)-intercept \\( f([[x0]])+\\dfrac{[[x0]]}{m} = [[answer]] \\).",
   "distractor_rationales": [
    "This subtracts the correction term instead of adding it.",
    "This uses the TANGENT line's y-intercept formula instead of the normal line's.",

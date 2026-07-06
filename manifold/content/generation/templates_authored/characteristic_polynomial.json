@@ -59,7 +59,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "\\( p(0) = \\det(0\\cdot I - A) = \\det(-A) = (-1)^3\\det(A) = -\\det(A) \\). Since \\( \\det(A) = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) \\), we get \\( p(0) = [[answer]] \\).",
+ "solution": "\\( p(0) = \\det(0\\cdot I - A) = \\det(-A) = (-1)^3\\det(A) = -\\det(A) \\). Since \\( \\det(A) = [[a]]([[e]]\\cdot[[i]]-[[f]]\\cdot[[h]]) - [[b]]([[d]]\\cdot[[i]]-[[f]]\\cdot[[g]]) + [[c]]([[d]]\\cdot[[h]]-[[e]]\\cdot[[g]]) \\), we get \\( p(0) = [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( \\det(A) \\) itself, forgetting the sign flip \\( (-1)^n \\) from negating a \\(3\\times3\\) matrix.",
   "This double-negates \\( \\det(A) \\), landing back on \\( \\det(A) \\) with the wrong sign relative to \\( p(0) \\).",
@@ -133,7 +133,7 @@
   "[[answer]] - 1",
   "[[answer]] + 2"
  ],
- "solution": "Cofactor-expanding along row 1: \\( \\det(A) = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) = [[answer]] \\).",
+ "solution": "Cofactor-expanding along row 1: \\( \\det(A) = [[a]]([[e]]\\cdot[[i]]-[[f]]\\cdot[[h]]) - [[b]]([[d]]\\cdot[[i]]-[[f]]\\cdot[[g]]) + [[c]]([[d]]\\cdot[[h]]-[[e]]\\cdot[[g]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This uses all plus signs instead of the alternating \\( +,-,+ \\) cofactor pattern.",
   "This is \\( -\\det(A) \\) (i.e. \\( p(0) \\) itself), the negative of what was asked.",

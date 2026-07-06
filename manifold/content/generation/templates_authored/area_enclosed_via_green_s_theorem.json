@@ -22,7 +22,7 @@
  ],
  "solution": "By Green's theorem the area equals \\( \\iint_R 1\\,dA \\). Integrating over \\( 0\\le x\\le [[W]] \\), \\( 0\\le y\\le [[m]]x+[[k]] \\) gives \\( \\int_0^{[[W]]} ([[m]]x+[[k]])\\,dx = [[answer]] \\).",
  "distractor_rationales": [
-  "This uses \\( [[m]][[W]]^{2} \\) (no factor of \\( \\tfrac12 \\)) for the triangular part.",
+  "This uses \\( [[m]]\\cdot[[W]]^{2} \\) (no factor of \\( \\tfrac12 \\)) for the triangular part.",
   "This counts only the rectangular part \\( [[k]]\\cdot[[W]] \\), dropping the triangular part.",
   "This counts only the triangular part, dropping the rectangular part \\( [[k]]\\cdot[[W]] \\).",
   "This evaluates the top boundary height at \\( x=[[W]] \\) instead of integrating for the area.",

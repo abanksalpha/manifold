@@ -174,7 +174,7 @@
    "[[L]]*sqrt(2)",
    "[[L]]/sqrt(3)"
   ],
-  "solution": "The short leg is \\( \\dfrac{[[L]]}{\\sqrt{3}} \\), and the hypotenuse is twice the short leg: \\( \\dfrac{2[[L]]}{\\sqrt{3}} = \\dfrac{2[[L]]\\sqrt{3}}{3} = [[answer]] \\).",
+  "solution": "The short leg is \\( \\dfrac{[[L]]}{\\sqrt{3}} \\), and the hypotenuse is twice the short leg: \\( \\dfrac{2\\cdot[[L]]}{\\sqrt{3}} = \\dfrac{2\\cdot[[L]]\\sqrt{3}}{3} = [[answer]] \\).",
   "distractor_rationales": [
    "This mistakes the long leg's ratio for the hypotenuse's, using \\( \\sqrt{3} \\) directly.",
    "This doubles the long leg directly, as if it were the short leg.",

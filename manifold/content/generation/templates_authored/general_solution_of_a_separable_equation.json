@@ -55,7 +55,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Separating variables, \\( \\frac{dy}{y^{2}} = [[k]]\\,dx \\), so \\( -\\frac{1}{y} = [[k]]x + C \\). Applying \\( y(0) = [[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1 - [[k]][[y0]]x} \\). At \\( x = [[t0]] \\) this equals \\( [[answer]] \\).",
+  "solution": "Separating variables, \\( \\frac{dy}{y^{2}} = [[k]]\\,dx \\), so \\( -\\frac{1}{y} = [[k]]x + C \\). Applying \\( y(0) = [[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1 - [[k]]\\cdot[[y0]]x} \\). At \\( x = [[t0]] \\) this equals \\( [[answer]] \\).",
   "distractor_rationales": [
    "This flips the sign inside the denominator.",
    "This inverts the rational solution, multiplying instead of dividing.",

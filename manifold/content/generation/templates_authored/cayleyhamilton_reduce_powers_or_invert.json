@@ -86,7 +86,7 @@
   "[[answer]] + 1",
   "[[answer]] - 3"
  ],
- "solution": "Since \\( A^{3} = (\\operatorname{tr}A)A^{2} - (\\det A)A = (\\operatorname{tr}A)\\big[(\\operatorname{tr}A)A - (\\det A)I\\big] - (\\det A)A = \\big[(\\operatorname{tr}A)^{2} - \\det A\\big]A - (\\operatorname{tr}A)(\\det A)I \\), the coefficient of \\( A \\) is \\( p = (\\operatorname{tr}A)^{2} - \\det A = ([[a]]+[[d]])^{2} - ([[a]][[d]]-[[b]][[c]]) = [[answer]] \\).",
+ "solution": "Since \\( A^{3} = (\\operatorname{tr}A)A^{2} - (\\det A)A = (\\operatorname{tr}A)\\big[(\\operatorname{tr}A)A - (\\det A)I\\big] - (\\det A)A = \\big[(\\operatorname{tr}A)^{2} - \\det A\\big]A - (\\operatorname{tr}A)(\\det A)I \\), the coefficient of \\( A \\) is \\( p = (\\operatorname{tr}A)^{2} - \\det A = ([[a]]+[[d]])^{2} - ([[a]]\\cdot[[d]]-[[b]]\\cdot[[c]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This drops the \\( -\\det A \\) correction, keeping only \\( (\\operatorname{tr}A)^{2} \\).",
   "This is just \\( \\det A \\), not the full reduction coefficient \\( (\\operatorname{tr}A)^{2}-\\det A \\).",
@@ -148,7 +148,7 @@
   "[[answer]] + 1",
   "[[answer]] - 2"
  ],
- "solution": "\\( \\operatorname{tr}(A^{2}) = (\\operatorname{tr}A)^{2} - 2\\det A = ([[a]]+[[d]])^{2} - 2([[a]][[d]] - [[b]][[c]]) = [[answer]] \\).",
+ "solution": "\\( \\operatorname{tr}(A^{2}) = (\\operatorname{tr}A)^{2} - 2\\det A = ([[a]]+[[d]])^{2} - 2([[a]]\\cdot[[d]] - [[b]]\\cdot[[c]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This omits the \\( -2\\det A \\) correction entirely.",
   "This subtracts \\( \\det A \\) once instead of \\( 2\\det A \\).",

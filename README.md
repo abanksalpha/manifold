@@ -87,10 +87,14 @@ derives three scores on top.
   blended into one number. Readiness refuses to answer below a stated give-up
   line of at least 200 independent reviews and 50% coverage. See
   [`docs/manifold/model-cards.md`](docs/manifold/model-cards.md).
-- **Bank-first, AI-off runtime.** The review loop serves pre-generated,
-  SymPy-verified problems from a static bank and makes no model call on the review
-  path, so both apps run fully with AI switched off and still produce a score.
-  Generation is an offline authoring step, never a runtime dependency.
+- **Template-first, AI-free answer path.** The review loop serves problems from
+  deterministic parametric templates whose numbers are drawn per review and whose
+  answer is computed by SymPy (`solver.py`), never asserted by a model; untemplated
+  teach skills fall back to a pre-vetted, verified bank. No model call sits on the
+  graded answer path, so a wrong model or a prompt injection cannot serve a wrong
+  answer, and both apps still produce a score with AI switched off. Content authoring
+  and the Socratic hint tutor are the only LLM roles, each behind a code gate — see
+  [`docs/manifold/ai-note.md`](docs/manifold/ai-note.md).
 - **Skill identity.** Skills and topics ride Anki tags (`mf::topic::*`,
   `mf::skill::*`, `mf::tier::*`), so no synced database schema is forked.
 
@@ -106,17 +110,24 @@ specs and the decision log live in [`docs/manifold/`](docs/manifold).
 
 ## Evidence and results
 
-Every graded claim is backed by a re-runnable script; the consolidated report is
-[`docs/manifold/results.md`](docs/manifold/results.md). It covers the Rust change,
-the three ranged scores + give-up rule, the leakage screen (clean against all five
-held-out ETS forms), the AI card check + simpler-baseline comparison (the verify +
-cross-solve gate catches 51% wrong drafts and ships zero, where naive generation
-would ship them), the interleaving study-feature ablation, memory-model calibration,
-and the paraphrase test. Where an honest measurement needs data a one-week build
-cannot gather (longitudinal student reviews), the deliverable is the harness plus an
-explicit limitation rather than a fabricated number. The phone companion is partial:
-the shared Rust engine cross-compiles for Android, but a full APK plus verified
-two-way sync is not delivered — see [`docs/manifold/mobile-status.md`](docs/manifold/mobile-status.md).
+Every graded claim is backed by a re-runnable script (`just eval`, `just eval-ai`,
+`just demo-sync`, `just bench`); the consolidated report is
+[`docs/manifold/results.md`](docs/manifold/results.md), and the generation AI is
+written up in [`docs/manifold/ai-note.md`](docs/manifold/ai-note.md). Committed
+result artifacts live under `manifold/content/eval/results/`. They cover the Rust
+change; the three ranged scores + give-up rule; the leakage screen (5,973 served
+items clean against all five held-out ETS forms); the AI card check and the
+keyword/vector-search baseline; prompt-injection resistance (0 corrupted answers,
+0 hint leaks); the interleaving study-feature ablation; memory-model calibration;
+and the paraphrase test. Two-way sync is demonstrated desktop-to-desktop through the
+self-hosted sync server, transcript at
+[`docs/manifold/sync-demo.log`](docs/manifold/sync-demo.log). Where an honest
+measurement needs data a one-week build cannot gather (longitudinal student
+reviews), or a live-API artifact needs a valid key the current `.env` lacks, the
+deliverable is the harness plus an explicit limitation, never a fabricated number.
+The phone companion is partial: the shared Rust engine cross-compiles for Android,
+but a full APK plus on-device sync is not delivered — see
+[`docs/manifold/mobile-status.md`](docs/manifold/mobile-status.md).
 
 ## License and attribution
 

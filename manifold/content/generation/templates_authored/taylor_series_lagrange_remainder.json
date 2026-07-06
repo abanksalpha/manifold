@@ -20,7 +20,7 @@
   "[[answer]] - 1",
   "-[[answer]]"
  ],
- "solution": "Each derivative of \\( e^{[[k]]x} \\) picks up a factor of \\( [[k]] \\), so \\( f^{(n)}(x) = [[c]][[k]]^{n}e^{[[k]]x} \\), and at \\( x=0 \\), \\( f^{([[n]])}(0) = [[c]][[k]]^{[[n]]} = [[answer]] \\).",
+ "solution": "Each derivative of \\( e^{[[k]]x} \\) picks up a factor of \\( [[k]] \\), so \\( f^{(n)}(x) = [[c]]\\cdot[[k]]^{n}e^{[[k]]x} \\), and at \\( x=0 \\), \\( f^{([[n]])}(0) = [[c]]\\cdot[[k]]^{[[n]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This drops the exponent entirely, keeping only the first derivative's factor of \\( [[k]] \\).",
   "This multiplies by \\( n \\) instead of raising \\( [[k]] \\) to the \\( n \\)th power.",

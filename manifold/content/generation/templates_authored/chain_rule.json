@@ -53,12 +53,12 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "Writing \\( h(x)=u^{[[n]]} \\) with \\( u=[[a]]x^{2}+([[b]]) \\), the chain rule gives \\( h'(x)=[[n]]u^{[[n]]-1}\\cdot u' = [[n]]([[a]]x^{2}+([[b]]))^{[[n]]-1}\\cdot 2[[a]]x \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "solution": "Writing \\( h(x)=u^{[[n]]} \\) with \\( u=[[a]]x^{2}+([[b]]) \\), the chain rule gives \\( h'(x)=[[n]]u^{[[n]]-1}\\cdot u' = [[n]]([[a]]x^{2}+([[b]]))^{[[n]]-1}\\cdot 2\\cdot[[a]]x \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
  "distractor_rationales": [
-  "This drops the entire inner-derivative factor \\( u'=2[[a]]x \\).",
+  "This drops the entire inner-derivative factor \\( u'=2\\cdot[[a]]x \\).",
   "This uses \\( u'=[[a]]x \\), forgetting the factor of 2 from differentiating \\( x^{2} \\).",
   "This reports only the inner derivative \\( u'=2ax \\), forgetting the outer power-rule factor entirely.",
-  "This uses \\( u'=2[[a]] \\), forgetting to multiply by \\( x \\).",
+  "This uses \\( u'=2\\cdot[[a]] \\), forgetting to multiply by \\( x \\).",
   "This is off by two from the correct value.",
   "This is off by two from the correct value."
  ]

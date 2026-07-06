@@ -35,7 +35,7 @@
   "Rational(3*[[b]]*[[t0]], 2*[[a]]) + 1",
   "Rational(3*[[b]]*[[t0]], 2*[[a]]) - 1"
  ],
- "solution": "\\( \\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}=\\frac{3[[b]]t^{2}}{2[[a]]t}=\\frac{3[[b]]t}{2[[a]]} \\); at \\( [[t0]] \\) this is \\( [[answer]] \\).",
+ "solution": "\\( \\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}=\\frac{3\\cdot[[b]]t^{2}}{2\\cdot[[a]]t}=\\frac{3\\cdot[[b]]t}{2\\cdot[[a]]} \\); at \\( [[t0]] \\) this is \\( [[answer]] \\).",
  "distractor_rationales": []
 },
 {
@@ -168,7 +168,7 @@
   "-Rational(1,2)*[[b]]*[[t0]]**3 + 1",
   "-Rational(1,2)*[[b]]*[[t0]]**3 - 1"
  ],
- "solution": "The point is \\( ([[a]][[t0]]^{2},[[b]][[t0]]^{3}) \\) and the slope is \\( \\frac{3[[b]][[t0]]}{2[[a]]} \\); the tangent line is \\( y-[[b]][[t0]]^{3}=\\frac{3[[b]][[t0]]}{2[[a]]}(x-[[a]][[t0]]^{2}) \\), which has \\( y \\)-intercept \\( -\\frac{1}{2}[[b]][[t0]]^{3}=[[answer]] \\) (the leading coefficient \\( a\\) cancels out).",
+ "solution": "The point is \\( ([[a]]\\cdot[[t0]]^{2},[[b]]\\cdot[[t0]]^{3}) \\) and the slope is \\( \\frac{3\\cdot[[b]]\\cdot[[t0]]}{2\\cdot[[a]]} \\); the tangent line is \\( y-[[b]]\\cdot[[t0]]^{3}=\\frac{3\\cdot[[b]]\\cdot[[t0]]}{2\\cdot[[a]]}(x-[[a]]\\cdot[[t0]]^{2}) \\), which has \\( y \\)-intercept \\( -\\frac{1}{2}[[b]]\\cdot[[t0]]^{3}=[[answer]] \\) (the leading coefficient \\( a\\) cancels out).",
  "distractor_rationales": [
   "This drops the required minus sign.",
   "This forgets the factor of \\( \\tfrac12\\).",
@@ -235,7 +235,7 @@
   "2*[[a]]*[[t0]]**2 + 1",
   "2*[[a]]*[[t0]]**2 - 1"
  ],
- "solution": "\\( \\dfrac{dy}{dt}=2[[a]]t \\) and \\( \\dfrac{dx}{dt}=\\dfrac{1}{t} \\), so \\( \\dfrac{dy}{dx}=2[[a]]t\\cdot t=2[[a]]t^{2} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
+ "solution": "\\( \\dfrac{dy}{dt}=2\\cdot[[a]]t \\) and \\( \\dfrac{dx}{dt}=\\dfrac{1}{t} \\), so \\( \\dfrac{dy}{dx}=2\\cdot[[a]]t\\cdot t=2\\cdot[[a]]t^{2} \\); at \\( t=[[t0]] \\) this is \\( [[answer]] \\).",
  "distractor_rationales": [
   "This forgets to double the coefficient \\( a\\).",
   "This forgets to square \\( t\\), leaving it linear.",

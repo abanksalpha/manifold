@@ -143,11 +143,6 @@ reason, never a fabricated hint. All maths in a hint is typeset through MathText
 
     {#if open}
         <div id="mf-hint-body" class="mf-hint-body">
-            <p class="mf-hint-note">
-                Ask where you're stuck. The assistant points you toward the method, not
-                the answer.
-            </p>
-
             {#if turns.length > 0}
                 <div class="mf-hint-log" aria-live="polite">
                     {#each turns as turn, i (i)}
@@ -364,14 +359,6 @@ reason, never a fabricated hint. All maths in a hint is typeset through MathText
         background: var(--mf-tertiary);
     }
 
-    .mf-hint-note {
-        margin: 0 0 var(--mf-space-4);
-        max-width: 56ch;
-        font-size: var(--mf-text-sm);
-        line-height: 1.5;
-        color: var(--mf-ink-muted);
-    }
-
     .mf-hint-log {
         display: flex;
         flex-direction: column;
@@ -518,6 +505,16 @@ reason, never a fabricated hint. All maths in a hint is typeset through MathText
     .mf-hint-input:disabled {
         opacity: 0.6;
         cursor: default;
+    }
+
+    /* The global focus style is a loud violet ring floating 3px off the box, which
+       reads as a heavy rectangle around this text field. The caret and the bold
+       border already show focus here, so drop the offset ring and keep only a
+       quiet inset ink edge (still a visible focus state, just not a rectangle). */
+    .mf-hint-input:focus,
+    .mf-hint-input:focus-visible {
+        outline: none;
+        box-shadow: inset 0 0 0 1px var(--mf-ink);
     }
 
     :global(.mf-btn.mf-hint-send) {

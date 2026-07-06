@@ -119,7 +119,7 @@
   "((4*[[a]]**2 + 9*[[b]]**2*[[t1]]**2)**Rational(3,2) - (4*[[a]]**2)**Rational(3,2))/(27*[[b]]**2) - 1",
   "((4*[[a]]**2 + 9*[[b]]**2*[[t1]]**2)**Rational(3,2) - (4*[[a]]**2)**Rational(3,2))/(27*[[b]]**2) + Rational(1,10)"
  ],
- "solution": "The speed is \\( \\sqrt{x'(t)^{2}+y'(t)^{2}}=\\sqrt{(2[[a]]t)^{2}+(3[[b]]t^{2})^{2}} \\); integrating from \\( 0 \\) to \\( [[t1]] \\) via the substitution \\( u=4[[a]]^{2}+9[[b]]^{2}t^{2}\\) gives \\( [[answer]] \\).",
+ "solution": "The speed is \\( \\sqrt{x'(t)^{2}+y'(t)^{2}}=\\sqrt{(2\\cdot[[a]]t)^{2}+(3\\cdot[[b]]t^{2})^{2}} \\); integrating from \\( 0 \\) to \\( [[t1]] \\) via the substitution \\( u=4\\cdot[[a]]^{2}+9\\cdot[[b]]^{2}t^{2}\\) gives \\( [[answer]] \\).",
  "distractor_rationales": [
   "This adds a stray unit to the correct antiderivative value.",
   "This evaluates the integrand only at the endpoint and multiplies by \\( t_1\\) instead of integrating it.",

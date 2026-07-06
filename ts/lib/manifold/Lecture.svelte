@@ -94,6 +94,9 @@ card and the mint/grey answer reveal.
         border-radius: var(--mf-radius-full);
         background: var(--mf-surface);
         color: var(--mf-tertiary-ink);
+        /* Nudge to the label's cap-height centre (measured; align skill). */
+        position: relative;
+        top: 1px;
     }
 
     .mf-lecture-mark svg {

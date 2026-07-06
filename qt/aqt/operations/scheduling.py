@@ -84,6 +84,9 @@ def grade_now(
         lambda col: col._backend.grade_now(
             card_ids=card_ids,
             rating=rating,
+            # Bulk grade from the browser is not a timed answer, so no answer
+            # time is recorded (0 = not measured).
+            milliseconds_taken=0,
         ),
     ).success(
         lambda _: tooltip(

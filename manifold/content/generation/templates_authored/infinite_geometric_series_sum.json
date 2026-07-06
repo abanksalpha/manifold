@@ -82,7 +82,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "After the initial drop of \\( [[h]] \\), the ball travels up and down \\( 2[[h]]r \\), then \\( 2[[h]]r^{2} \\), and so on, with \\( r=\\frac{[[p]]}{[[q]]} \\). The total is \\( [[h]] + \\dfrac{2[[h]]r}{1-r} = [[answer]] \\).",
+  "solution": "After the initial drop of \\( [[h]] \\), the ball travels up and down \\( 2\\cdot[[h]]r \\), then \\( 2\\cdot[[h]]r^{2} \\), and so on, with \\( r=\\frac{[[p]]}{[[q]]} \\). The total is \\( [[h]] + \\dfrac{2\\cdot[[h]]r}{1-r} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the initial drop is not doubled, treating the whole motion as a single geometric series without the leading \\( [[h]] \\).",
    "This omits both the initial drop term and the factor of \\( 2 \\) for up-and-down travel.",

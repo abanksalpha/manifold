@@ -183,6 +183,34 @@ bench *args:
     {{ ninja }} pyenv pylib
     {{ if os() == "windows" { "$env:PYTHONPATH='out\\pylib'; out\\pyenv\\Scripts\\python.exe" } else { "PYTHONPATH=out/pylib out/pyenv/bin/python" } }} manifold/bench/bench_mastery.py {{ args }}
 
+# Regenerate the Manifold eval artifacts that run without an API key: leakage, paraphrase, calibration, prompt-injection, ablation (scripts still auto-load .env if present; macOS/Linux)
+eval:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    V=manifold/content/generation/.venv/bin/python
+    echo "== leakage screen (served content vs held-out ETS forms) =="
+    "$V" manifold/content/eval/leakage_report.py
+    echo "== paraphrase test ==" && "$V" manifold/content/eval/paraphrase.py
+    echo "== memory-model calibration harness ==" && "$V" manifold/content/eval/calibration.py
+    echo "== prompt-injection resistance ==" && "$V" manifold/content/eval/prompt_injection_check.py
+    echo "== interleaving ablation (needs built pylib) =="
+    {{ ninja }} pyenv pylib
+    PYTHONPATH=out/pylib out/pyenv/bin/python manifold/experiments/ablation_interleave.py
+
+# Regenerate the API-key-dependent Manifold eval artifacts (sources .env; macOS/Linux)
+eval-ai *args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    set -a; [ -f .env ] && . ./.env; set +a
+    V=manifold/content/generation/.venv/bin/python
+    echo "== AI card check + ship-all baseline ==" && "$V" manifold/content/eval/ai_card_check.py {{ args }}
+    echo "== keyword/vector retrieval baseline ==" && "$V" manifold/content/eval/baseline_retrieval.py
+
+# Desktop-to-desktop sync demo through the self-hosted Anki sync server (macOS/Linux)
+demo-sync:
+    {{ ninja }} pyenv pylib
+    {{ if os() == "windows" { "$env:PYTHONPATH='out\\pylib'; out\\pyenv\\Scripts\\python.exe" } else { "PYTHONPATH=out/pylib out/pyenv/bin/python" } }} manifold/tests/demo_sync.py
+
 # Helpers to get the right commands for the platform
 
 ninja := if os() == "windows" { "tools\\ninja" } else { "./ninja" }

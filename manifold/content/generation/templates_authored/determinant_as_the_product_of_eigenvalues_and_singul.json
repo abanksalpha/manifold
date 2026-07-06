@@ -160,7 +160,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "The eigenvalues of \\( A \\) are \\( [[d1]], [[d2]], [[d3]] \\), so \\( \\det(A) = [[d1]][[d2]][[d3]] \\) and \\( \\det(A^{-1}) = \\dfrac{1}{\\det(A)} = \\dfrac{1}{[[d1]]\\cdot[[d2]]\\cdot[[d3]]} = [[answer]] \\).",
+ "solution": "The eigenvalues of \\( A \\) are \\( [[d1]], [[d2]], [[d3]] \\), so \\( \\det(A) = [[d1]]\\cdot[[d2]]\\cdot[[d3]] \\) and \\( \\det(A^{-1}) = \\dfrac{1}{\\det(A)} = \\dfrac{1}{[[d1]]\\cdot[[d2]]\\cdot[[d3]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This gives \\( \\det(A) \\) itself instead of \\( \\det(A^{-1}) \\), forgetting to take the reciprocal.",
   "This has the correct reciprocal but the wrong sign.",

@@ -83,7 +83,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Both numerator and denominator vanish at \\( x = 0 \\). Applying L'Hopital's rule once gives \\( \\frac{[[a]]\\sin([[a]]x)}{2[[b]]^{2}x} \\), still of type \\( \\tfrac{0}{0} \\); applying it again gives \\( \\frac{[[a]]^{2}\\cos([[a]]x)}{2[[b]]^{2}} \\), which at \\( x = 0 \\) equals \\( \\frac{[[a]]^{2}}{2[[b]]^{2}} = [[answer]] \\).",
+  "solution": "Both numerator and denominator vanish at \\( x = 0 \\). Applying L'Hopital's rule once gives \\( \\frac{[[a]]\\sin([[a]]x)}{2\\cdot[[b]]^{2}x} \\), still of type \\( \\tfrac{0}{0} \\); applying it again gives \\( \\frac{[[a]]^{2}\\cos([[a]]x)}{2\\cdot[[b]]^{2}} \\), which at \\( x = 0 \\) equals \\( \\frac{[[a]]^{2}}{2\\cdot[[b]]^{2}} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to square the coefficients (stopping after only one differentiation).",
    "This multiplies the coefficients instead of using the squared-over-twice-squared form.",

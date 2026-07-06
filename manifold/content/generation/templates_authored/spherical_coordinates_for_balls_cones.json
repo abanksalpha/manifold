@@ -101,7 +101,7 @@
    "[[answer]] - 2*pi",
    "[[answer]] + 3*pi"
   ],
-  "solution": "With \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi/[[n]]}\\int_{0}^{\\pi}\\int_{0}^{[[R]]} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\dfrac{2\\pi}{[[n]]}\\cdot 2\\cdot\\dfrac{[[R]]^3}{3} = \\dfrac{4\\pi[[R]]^3}{3[[n]]} = [[answer]] \\), exactly \\(\\tfrac1{[[n]]}\\) of the full ball's volume.",
+  "solution": "With \\(dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta\\), the volume is \\( \\int_{0}^{2\\pi/[[n]]}\\int_{0}^{\\pi}\\int_{0}^{[[R]]} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\dfrac{2\\pi}{[[n]]}\\cdot 2\\cdot\\dfrac{[[R]]^3}{3} = \\dfrac{4\\pi[[R]]^3}{3\\cdot[[n]]} = [[answer]] \\), exactly \\(\\tfrac1{[[n]]}\\) of the full ball's volume.",
   "distractor_rationales": [
    "This uses the volume of the full ball, forgetting to restrict to the \\(\\tfrac1{[[n]]}\\)-wedge.",
    "This has an extra stray factor of \\(\\tfrac12\\) from double-counting the wedge fraction.",

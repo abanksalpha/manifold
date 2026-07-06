@@ -87,7 +87,7 @@
    "[[answer]] - 1",
    "3*[[answer]]/2"
   ],
-  "solution": "Writing \\( \\frac{[[p]]x+[[q]]}{(x+[[a]])(x+[[b]])} = \\frac{A}{x+[[a]]} + \\frac{B}{x+[[b]]} \\) with \\( A = \\frac{[[q]]-[[p]][[a]]}{[[b]]-[[a]]} \\) and \\( B = \\frac{[[q]]-[[p]][[b]]}{[[a]]-[[b]]} \\), integrating gives \\( [[answer]] \\).",
+  "solution": "Writing \\( \\frac{[[p]]x+[[q]]}{(x+[[a]])(x+[[b]])} = \\frac{A}{x+[[a]]} + \\frac{B}{x+[[b]]} \\) with \\( A = \\frac{[[q]]-[[p]]\\cdot[[a]]}{[[b]]-[[a]]} \\) and \\( B = \\frac{[[q]]-[[p]]\\cdot[[b]]}{[[a]]-[[b]]} \\), integrating gives \\( [[answer]] \\).",
   "distractor_rationales": [
    "This reverses the sign of the combined logarithm expression.",
    "This doubles the correct value.",

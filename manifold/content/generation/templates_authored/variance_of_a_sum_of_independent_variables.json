@@ -79,7 +79,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Scaling a variable by a constant scales its variance by the constant squared, and independent variances still add: \\( \\mathrm{Var}([[a]]X+([[b]])Y) = [[a]]^2[[sx]]^2 + [[b]]^2[[sy]]^2 = [[answer]] \\).",
+  "solution": "Scaling a variable by a constant scales its variance by the constant squared, and independent variances still add: \\( \\mathrm{Var}([[a]]X+([[b]])Y) = [[a]]^2\\cdot[[sx]]^2 + [[b]]^2\\cdot[[sy]]^2 = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to square the coefficients \\( [[a]] \\) and \\( [[b]] \\) before scaling each variance.",
    "This squares the entire combination \\( aX+bY \\) as if it were a single already-added standard deviation, introducing a spurious cross term.",

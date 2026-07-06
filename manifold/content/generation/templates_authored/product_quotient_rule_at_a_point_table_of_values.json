@@ -343,7 +343,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since \\( f'(x)=2[[a]]x+[[b]] \\), the product rule gives \\( h'([[a0]]) = f'([[a0]])g([[a0]]) + f([[a0]])g'([[a0]]) = (2[[a]]([[a0]])+[[b]])\\cdot[[ga]] + ([[a]]([[a0]])^{2}+[[b]]([[a0]])+[[c]])\\cdot[[gpa]] = [[answer]] \\).",
+  "solution": "Since \\( f'(x)=2\\cdot[[a]]x+[[b]] \\), the product rule gives \\( h'([[a0]]) = f'([[a0]])g([[a0]]) + f([[a0]])g'([[a0]]) = (2\\cdot[[a]]([[a0]])+[[b]])\\cdot[[ga]] + ([[a]]([[a0]])^{2}+[[b]]([[a0]])+[[c]])\\cdot[[gpa]] = [[answer]] \\).",
   "distractor_rationales": [
    "This multiplies the function VALUES \\( f([[a0]])g([[a0]]) \\) instead of applying the product rule.",
    "This uses only the term \\( f'([[a0]])g'([[a0]]) \\), forgetting the second product-rule term.",

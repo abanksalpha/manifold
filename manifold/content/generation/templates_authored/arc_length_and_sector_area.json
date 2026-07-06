@@ -180,7 +180,7 @@
    "[[answer]] + pi",
    "[[answer]] - pi"
   ],
-  "solution": "The sector's boundary consists of two radii, each of length \\( [[r]] \\), plus the arc of length \\( \\frac{[[theta]]}{360}\\cdot 2\\pi[[r]] \\). Adding these gives the perimeter \\( 2[[r]] + \\frac{[[theta]]}{360}\\cdot 2\\pi[[r]] = [[answer]] \\).",
+  "solution": "The sector's boundary consists of two radii, each of length \\( [[r]] \\), plus the arc of length \\( \\frac{[[theta]]}{360}\\cdot 2\\pi[[r]] \\). Adding these gives the perimeter \\( 2\\cdot[[r]] + \\frac{[[theta]]}{360}\\cdot 2\\pi[[r]] = [[answer]] \\).",
   "distractor_rationales": [
    "This omits the two straight radii, giving only the arc length.",
    "This mistakenly adds the sector's area instead of the arc length to the radii.",

@@ -53,7 +53,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since \\( z=g(x,y)=([[alpha]])x+([[beta]])y \\), \\( dS=\\sqrt{1+g_x^2+g_y^2}\\,dA=\\sqrt{1+([[alpha]])^2+([[beta]])^2}\\,dA \\) (constant, since the surface is planar). So \\( \\iint_S z\\,dS = \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\displaystyle\\int_0^{[[H]]}\\!\\!\\int_0^{[[W]]} \\big(([[alpha]])x+([[beta]])y\\big)\\,dx\\,dy = \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\left(\\dfrac{([[alpha]])[[W]]^2[[H]]}{2}+\\dfrac{([[beta]])[[H]]^2[[W]]}{2}\\right) = [[answer]] \\).",
+  "solution": "Since \\( z=g(x,y)=([[alpha]])x+([[beta]])y \\), \\( dS=\\sqrt{1+g_x^2+g_y^2}\\,dA=\\sqrt{1+([[alpha]])^2+([[beta]])^2}\\,dA \\) (constant, since the surface is planar). So \\( \\iint_S z\\,dS = \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\displaystyle\\int_0^{[[H]]}\\!\\!\\int_0^{[[W]]} \\big(([[alpha]])x+([[beta]])y\\big)\\,dx\\,dy = \\sqrt{1+([[alpha]])^2+([[beta]])^2}\\left(\\dfrac{([[alpha]])[[W]]^2\\cdot[[H]]}{2}+\\dfrac{([[beta]])[[H]]^2\\cdot[[W]]}{2}\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This integrates \\( z \\) over the flat rectangle \\( dA \\) instead of over the surface \\( dS \\), dropping the \\( \\sqrt{1+g_x^2+g_y^2} \\) factor.",
    "This computes the plain surface AREA \\( \\iint_S 1\\,dS \\) instead of \\( \\iint_S z\\,dS \\).",

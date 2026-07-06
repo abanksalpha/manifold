@@ -61,7 +61,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "Take the square root of the unbiased sample variance: \\( s = \\sqrt{\\dfrac{(-2[[k]])^2+(-2[[k]])^2+0^2+(2[[k]])^2+(2[[k]])^2}{4}} = \\sqrt{4[[k]]^2} = [[answer]] \\).",
+  "solution": "Take the square root of the unbiased sample variance: \\( s = \\sqrt{\\dfrac{(-2\\cdot[[k]])^2+(-2\\cdot[[k]])^2+0^2+(2\\cdot[[k]])^2+(2\\cdot[[k]])^2}{4}} = \\sqrt{4\\cdot[[k]]^2} = [[answer]] \\).",
   "distractor_rationales": [
    "This divides by \\( n=5 \\) inside the square root; that gives the population standard deviation, not the sample one.",
    "This is the sample variance itself, without taking the square root.",

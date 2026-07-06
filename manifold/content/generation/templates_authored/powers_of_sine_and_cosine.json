@@ -112,7 +112,7 @@
   "3*[[answer]]/2",
   "2*[[answer]]/3"
  ],
- "solution": "Since \\( \\sin^{2}([[k]]x)\\cos^{2}([[k]]x) = \\tfrac{1}{4}\\sin^{2}(2[[k]]x) = \\tfrac{1}{8}\\left(1-\\cos(4[[k]]x)\\right) \\), integrating the constant term \\( \\tfrac{1}{8} \\) over \\( [0,2\\pi] \\) (the cosine term integrates to \\( 0 \\) over whole periods) gives \\( [[c]]\\cdot\\tfrac{1}{8}\\cdot 2\\pi = [[answer]] \\).",
+ "solution": "Since \\( \\sin^{2}([[k]]x)\\cos^{2}([[k]]x) = \\tfrac{1}{4}\\sin^{2}(2\\cdot[[k]]x) = \\tfrac{1}{8}\\left(1-\\cos(4\\cdot[[k]]x)\\right) \\), integrating the constant term \\( \\tfrac{1}{8} \\) over \\( [0,2\\pi] \\) (the cosine term integrates to \\( 0 \\) over whole periods) gives \\( [[c]]\\cdot\\tfrac{1}{8}\\cdot 2\\pi = [[answer]] \\).",
  "distractor_rationales": [
   "This halves the correct value.",
   "This doubles the correct value.",

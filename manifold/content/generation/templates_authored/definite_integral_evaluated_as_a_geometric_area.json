@@ -47,10 +47,10 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The graph of \\( y=[[k]]x \\) from \\( x=0 \\) to \\( x=[[r]] \\) bounds a right triangle with legs \\( [[r]] \\) and \\( [[k]][[r]] \\). The integral is its area, \\( \\tfrac{1}{2}[[r]]([[k]][[r]]) = [[answer]] \\).",
+  "solution": "The graph of \\( y=[[k]]x \\) from \\( x=0 \\) to \\( x=[[r]] \\) bounds a right triangle with legs \\( [[r]] \\) and \\( [[k]]\\cdot[[r]] \\). The integral is its area, \\( \\tfrac{1}{2}[[r]]([[k]]\\cdot[[r]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This treats the region as a full rectangle instead of a triangle, forgetting the factor \\( \\tfrac12 \\).",
-   "This is just the height \\( [[k]][[r]] \\) at \\( x=[[r]] \\), not the triangle's area.",
+   "This is just the height \\( [[k]]\\cdot[[r]] \\) at \\( x=[[r]] \\), not the triangle's area.",
    "This drops the coefficient \\( [[k]] \\) from the height.",
    "This doubles the correct area.",
    "This is off by one from the correct area."
@@ -78,7 +78,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The graph of \\( y=[[m]]x+[[c]] \\) is a line staying positive on \\( [[[a]],[[b]]] \\), so the region under it is a trapezoid with parallel sides \\( [[m]][[a]]+[[c]] \\) and \\( [[m]][[b]]+[[c]] \\) and width \\( [[b]]-[[a]] \\). The integral is its area, \\( \\tfrac{1}{2}\\bigl(([[m]][[a]]+[[c]])+([[m]][[b]]+[[c]])\\bigr)([[b]]-[[a]]) = [[answer]] \\).",
+  "solution": "The graph of \\( y=[[m]]x+[[c]] \\) is a line staying positive on \\( [[[a]],[[b]]] \\), so the region under it is a trapezoid with parallel sides \\( [[m]]\\cdot[[a]]+[[c]] \\) and \\( [[m]]\\cdot[[b]]+[[c]] \\) and width \\( [[b]]-[[a]] \\). The integral is its area, \\( \\tfrac{1}{2}\\bigl(([[m]]\\cdot[[a]]+[[c]])+([[m]]\\cdot[[b]]+[[c]])\\bigr)([[b]]-[[a]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This uses only the left height, treating the region as a rectangle.",
    "This uses only the right height, treating the region as a rectangle.",
@@ -107,7 +107,7 @@
    "[[answer]] + [[k]]",
    "[[answer]] - [[k]]"
   ],
-  "solution": "The graph of \\( y=[[k]]([[W]]-|x|) \\) is an isosceles triangle with base \\( 2[[W]] \\) and height \\( [[k]][[W]] \\) (its apex at \\( x=0 \\)). The integral is its area, \\( \\tfrac{1}{2}(2[[W]])([[k]][[W]]) = [[answer]] \\).",
+  "solution": "The graph of \\( y=[[k]]([[W]]-|x|) \\) is an isosceles triangle with base \\( 2\\cdot[[W]] \\) and height \\( [[k]]\\cdot[[W]] \\) (its apex at \\( x=0 \\)). The integral is its area, \\( \\tfrac{1}{2}(2\\cdot[[W]])([[k]]\\cdot[[W]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This doubles the correct area.",
    "This halves the correct area.",

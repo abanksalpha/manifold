@@ -84,7 +84,7 @@
    "[[answer]]+1",
    "[[answer]]-1"
   ],
-  "solution": "Separating variables, \\( \\dfrac{dy}{y^{2}} = [[k]]\\,dx \\), so \\( -\\dfrac{1}{y} = [[k]]x + C \\). The condition \\( y(0) = [[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1-[[k]][[y0]]x} \\). At \\( x = [[t0]] \\), \\( y = [[answer]] \\).",
+  "solution": "Separating variables, \\( \\dfrac{dy}{y^{2}} = [[k]]\\,dx \\), so \\( -\\dfrac{1}{y} = [[k]]x + C \\). The condition \\( y(0) = [[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1-[[k]]\\cdot[[y0]]x} \\). At \\( x = [[t0]] \\), \\( y = [[answer]] \\).",
   "distractor_rationales": [
    "This mistakes the equation for the LINEAR \\( y' = [[k]]y \\), giving exponential growth instead of the correct rational blow-up form.",
    "This uses the wrong sign in the denominator.",

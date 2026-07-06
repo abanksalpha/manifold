@@ -35,7 +35,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "\\( L(x)=f([[a]])+f'([[a]])(x-[[a]]) \\); with \\( f'([[a]])=2[[a]] \\) the estimate is \\( [[answer]] \\).",
+ "solution": "\\( L(x)=f([[a]])+f'([[a]])(x-[[a]]) \\); with \\( f'([[a]])=2\\cdot[[a]] \\) the estimate is \\( [[answer]] \\).",
  "distractor_rationales": []
 },
 {
@@ -95,7 +95,7 @@
   "[[k]] + Rational([[dx]], 2*[[k]]) + 1",
   "[[k]] + Rational([[dx]], 2*[[k]]) - 1"
  ],
- "solution": "\\( f'(x)=\\dfrac{1}{2\\sqrt{x}} \\), so \\( f'([[ksq]])=\\dfrac{1}{2[[k]]} \\); the estimate is \\( [[k]]+\\dfrac{[[dx]]}{2[[k]]}=[[answer]] \\).",
+ "solution": "\\( f'(x)=\\dfrac{1}{2\\sqrt{x}} \\), so \\( f'([[ksq]])=\\dfrac{1}{2\\cdot[[k]]} \\); the estimate is \\( [[k]]+\\dfrac{[[dx]]}{2\\cdot[[k]]}=[[answer]] \\).",
  "distractor_rationales": [
   "This drops the factor of 2 in the denominator.",
   "This uses \\( k^{2} \\) instead of \\( k \\) in the denominator.",

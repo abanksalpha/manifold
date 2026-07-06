@@ -127,7 +127,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The parabola \\( [[a]]x^{2}+([[B]])x+([[C]]) \\) has its vertex at \\( x = -\\dfrac{[[B]]}{2[[a]]} = [[h]] \\), which satisfies \\( x \\ge [[t]] \\), so the minimum on this piece is the vertex's \\( y \\)-value: \\( [[C]] - \\dfrac{([[B]])^{2}}{4[[a]]} = [[answer]] \\).",
+  "solution": "The parabola \\( [[a]]x^{2}+([[B]])x+([[C]]) \\) has its vertex at \\( x = -\\dfrac{[[B]]}{2\\cdot[[a]]} = [[h]] \\), which satisfies \\( x \\ge [[t]] \\), so the minimum on this piece is the vertex's \\( y \\)-value: \\( [[C]] - \\dfrac{([[B]])^{2}}{4\\cdot[[a]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This reports the constant term \\( C \\) directly instead of completing the square to find the vertex value.",
    "This reports only the correction term, dropping the constant \\( C \\).",

@@ -85,7 +85,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The values taken by \\( i \\) are \\( 1, 1+[[k]], 1+2[[k]], \\ldots \\), i.e. \\( i = 1 + t\\cdot[[k]] \\) for \\( t = 0, 1, 2, \\ldots \\); the last pass has the largest \\( t \\) with \\( 1+t[[k]] \\le [[n]] \\), so there are \\( \\lfloor ([[n]]-1)/[[k]] \\rfloor + 1 = [[answer]] \\) passes.",
+  "solution": "The values taken by \\( i \\) are \\( 1, 1+[[k]], 1+2\\cdot[[k]], \\ldots \\), i.e. \\( i = 1 + t\\cdot[[k]] \\) for \\( t = 0, 1, 2, \\ldots \\); the last pass has the largest \\( t \\) with \\( 1+t[[k]] \\le [[n]] \\), so there are \\( \\lfloor ([[n]]-1)/[[k]] \\rfloor + 1 = [[answer]] \\) passes.",
   "distractor_rationales": [
    "This divides \\( n \\) directly by the step instead of accounting for starting the sequence at \\( i=1 \\).",
    "This forgets to add the initial pass at \\( i=1 \\).",

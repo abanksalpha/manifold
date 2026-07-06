@@ -122,7 +122,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "With \\( c_n = \\binom{2n}{n}\\left(\\frac{[[a]]}{[[b]]}\\right)^{n} \\), the ratio test gives \\( \\lim_{n\\to\\infty}\\left|\\dfrac{c_{n+1}}{c_n}\\right| = 4\\cdot\\dfrac{[[a]]}{[[b]]} \\) (the central binomial coefficient contributes a factor of \\( 4 \\)). The radius is \\( R = \\dfrac{1}{4\\cdot[[a]]/[[b]]} = \\dfrac{[[b]]}{4[[a]]} = [[answer]] \\).",
+  "solution": "With \\( c_n = \\binom{2n}{n}\\left(\\frac{[[a]]}{[[b]]}\\right)^{n} \\), the ratio test gives \\( \\lim_{n\\to\\infty}\\left|\\dfrac{c_{n+1}}{c_n}\\right| = 4\\cdot\\dfrac{[[a]]}{[[b]]} \\) (the central binomial coefficient contributes a factor of \\( 4 \\)). The radius is \\( R = \\dfrac{1}{4\\cdot[[a]]/[[b]]} = \\dfrac{[[b]]}{4\\cdot[[a]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the factor of \\( 4 \\) contributed by the central binomial coefficient.",
    "This forgets the factor of \\( 4 \\) AND inverts \\( a/b \\).",

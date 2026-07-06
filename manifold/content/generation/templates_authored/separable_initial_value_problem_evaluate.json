@@ -57,7 +57,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Separate variables: \\( \\dfrac{dy}{y^{2}} = [[a]]\\,dx \\), so \\( -\\dfrac{1}{y} = [[a]]x + C \\). The condition \\( y(0)=[[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1-[[a]][[y0]]x} \\). At \\( x=[[t0]] \\), \\( y = [[answer]] \\).",
+  "solution": "Separate variables: \\( \\dfrac{dy}{y^{2}} = [[a]]\\,dx \\), so \\( -\\dfrac{1}{y} = [[a]]x + C \\). The condition \\( y(0)=[[y0]] \\) gives \\( C = -\\dfrac{1}{[[y0]]} \\), so \\( y(x) = \\dfrac{[[y0]]}{1-[[a]]\\cdot[[y0]]x} \\). At \\( x=[[t0]] \\), \\( y = [[answer]] \\).",
   "distractor_rationales": [
    "This mistakes the equation for the LINEAR \\( y'=[[a]]y \\), giving exponential growth instead of the correct rational blow-up form.",
    "This drops the \\( y_0 \\) factor from the numerator.",

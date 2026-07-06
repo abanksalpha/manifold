@@ -148,7 +148,7 @@
   "b": {"type": "int", "lo": 1, "hi": 10}
  },
  "constraints": [],
- "stem": "The polar equation \\( r=2[[a]]\\cos\\theta+2[[b]]\\sin\\theta \\) describes a circle through the origin. Converting to rectangular form, find the circle's radius.",
+ "stem": "The polar equation \\( r=2\\cdot[[a]]\\cos\\theta+2\\cdot[[b]]\\sin\\theta \\) describes a circle through the origin. Converting to rectangular form, find the circle's radius.",
  "answer_spec": {
   "op": "evaluate",
   "expr": "sqrt([[a]]**2 + [[b]]**2)"
@@ -161,7 +161,7 @@
   "sqrt([[a]]**2 + [[b]]**2) + 1",
   "sqrt([[a]]**2 + [[b]]**2) - 1"
  ],
- "solution": "Multiplying by \\( r \\): \\( x^{2}+y^{2}=2[[a]]x+2[[b]]y \\), so \\( (x-[[a]])^{2}+(y-[[b]])^{2}=[[a]]^{2}+[[b]]^{2} \\); the radius is \\( \\sqrt{a^{2}+b^{2}}=[[answer]] \\).",
+ "solution": "Multiplying by \\( r \\): \\( x^{2}+y^{2}=2\\cdot[[a]]x+2\\cdot[[b]]y \\), so \\( (x-[[a]])^{2}+(y-[[b]])^{2}=[[a]]^{2}+[[b]]^{2} \\); the radius is \\( \\sqrt{a^{2}+b^{2}}=[[answer]] \\).",
  "distractor_rationales": [
   "This adds \\( a\\) and \\( b\\) directly instead of combining them under a square root.",
   "This subtracts \\( b^2\\) from \\( a^2\\) instead of adding.",

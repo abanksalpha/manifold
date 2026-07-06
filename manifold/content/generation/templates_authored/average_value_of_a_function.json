@@ -114,7 +114,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The average value is \\( \\dfrac{1}{\\pi}\\int_{0}^{\\pi}\\left([[A]]\\sin(x)+[[B]]\\right)dx = \\dfrac{1}{\\pi}\\left(2[[A]] + [[B]]\\pi\\right) = [[answer]] \\).",
+  "solution": "The average value is \\( \\dfrac{1}{\\pi}\\int_{0}^{\\pi}\\left([[A]]\\sin(x)+[[B]]\\right)dx = \\dfrac{1}{\\pi}\\left(2\\cdot[[A]] + [[B]]\\pi\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This uses the peak value \\( \\sin(\\pi/2)=1 \\) instead of averaging over the whole interval.",
    "This forgets the factor of 2 that comes from \\( \\int_{0}^{\\pi}\\sin x\\,dx = 2 \\).",

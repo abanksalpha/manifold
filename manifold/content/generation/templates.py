@@ -79,6 +79,26 @@ def _leftover_slots(text: str) -> bool:
     return bool(SLOT.search(text))
 
 
+# Guard against the "implicit-multiplication concatenation" author bug. Slot
+# substitution is pure string replacement, so a DISPLAY field written ``2[[n]]``
+# (meaning 2*n) renders the digits glued: n=1 -> "21", not "2". The answer is
+# computed from the answer-spec (where ``2*[[n]]`` really is arithmetic), so a
+# glued stem silently stops matching its own code-computed answer. Authors must
+# make the product explicit (``2\cdot[[n]]``). This detects a numeric slot whose
+# rendered value would fuse with an adjacent literal digit, or with another
+# numeric slot — a non-numeric slot (a noun, "\sin x") cannot form a bigger
+# number, so "3 [[noun]]" and the like are never flagged.
+_FUSE = re.compile("[0-9]\x01|\x02[0-9]|\x02\x01")
+
+
+def _fuses_numerically(text: str, params: dict[str, Any]) -> bool:
+    def mark(m: re.Match[str]) -> str:
+        v = params.get(m.group(1))
+        return f"\x01{v}\x02" if v is not None and re.match(r"-?\d", str(v)) else "\x00"
+
+    return bool(_FUSE.search(SLOT.sub(mark, text)))
+
+
 # --- display tidy-up ------------------------------------------------------------
 # Templates wrap every numeric slot in defensive parens (e.g. "[[a]]x + ([[b]])")
 # so a negative value composes safely inside a bigger expression. That is correct
@@ -231,6 +251,18 @@ def instantiate(
             break
     if len(distractors) < CHOICE_COUNT - 1:
         raise InstanceRejected("not enough distinct, non-colliding distractors for these params")
+
+    # Author-bug guard: no display field may fuse a numeric slot into a larger
+    # number with an adjacent digit/slot (see _fuses_numerically). This is a
+    # TemplateError (not InstanceRejected): it is wrong for EVERY seed, so it must
+    # fail loudly at the acceptance gate rather than silently ship glued math.
+    disp_params = {**params, "answer": solver.display(answer)}
+    for _field in (template["stem"], template.get("solution") or "", *(template.get("distractor_rationales") or [])):
+        if isinstance(_field, str) and _fuses_numerically(_field, disp_params):
+            raise TemplateError(
+                f"display field fuses a numeric slot with an adjacent number; "
+                f"write an explicit \\cdot: {_field!r}"
+            )
 
     stem = _tidy_math(_subst(template["stem"], params, expr=False))
     if _leftover_slots(stem):

@@ -26,7 +26,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Cofactor-expanding along row 1: \\( \\det(A) = [[a]]([[e]][[i]]-[[f]][[h]]) - [[b]]([[d]][[i]]-[[f]][[g]]) + [[c]]([[d]][[h]]-[[e]][[g]]) = [[answer]] \\).",
+ "solution": "Cofactor-expanding along row 1: \\( \\det(A) = [[a]]([[e]]\\cdot[[i]]-[[f]]\\cdot[[h]]) - [[b]]([[d]]\\cdot[[i]]-[[f]]\\cdot[[g]]) + [[c]]([[d]]\\cdot[[h]]-[[e]]\\cdot[[g]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This uses all plus signs instead of the alternating \\( +,-,+ \\) cofactor pattern.",
   "This uses all minus signs after the first term instead of the alternating pattern.",

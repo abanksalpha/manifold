@@ -128,7 +128,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "By Vieta's formulas, the sum of the roots is \\( -([[B]]) \\) and their product is \\( [[C]] \\). Using \\( r_1^{2}+r_2^{2} = (r_1+r_2)^{2} - 2r_1r_2 \\), this is \\( (-([[B]]))^{2} - 2([[C]]) = [[B]]^{2} - 2[[C]] = [[answer]] \\).",
+  "solution": "By Vieta's formulas, the sum of the roots is \\( -([[B]]) \\) and their product is \\( [[C]] \\). Using \\( r_1^{2}+r_2^{2} = (r_1+r_2)^{2} - 2r_1r_2 \\), this is \\( (-([[B]]))^{2} - 2([[C]]) = [[B]]^{2} - 2\\cdot[[C]] = [[answer]] \\).",
   "distractor_rationales": [
    "This adds instead of subtracts twice the product when expanding the square of the sum.",
    "This forgets the \\( -2r_1r_2 \\) correction entirely.",

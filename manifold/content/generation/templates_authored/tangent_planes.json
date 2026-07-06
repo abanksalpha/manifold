@@ -25,7 +25,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "The tangent plane at \\( ([[x0]],[[y0]]) \\) is \\( z = f([[x0]],[[y0]]) + f_x([[x0]],[[y0]])(x-[[x0]]) + f_y([[x0]],[[y0]])(y-[[y0]]) \\), with \\( f_x=2[[A]]x+[[C]] \\) and \\( f_y=2[[B]]y+[[D]] \\). Evaluating at \\( (x,y)=([[x1]],[[y1]]) \\) gives \\( [[answer]] \\).",
+  "solution": "The tangent plane at \\( ([[x0]],[[y0]]) \\) is \\( z = f([[x0]],[[y0]]) + f_x([[x0]],[[y0]])(x-[[x0]]) + f_y([[x0]],[[y0]])(y-[[y0]]) \\), with \\( f_x=2\\cdot[[A]]x+[[C]] \\) and \\( f_y=2\\cdot[[B]]y+[[D]] \\). Evaluating at \\( (x,y)=([[x1]],[[y1]]) \\) gives \\( [[answer]] \\).",
   "distractor_rationales": [
    "This evaluates the actual (curved) function \\( f \\) at \\( ([[x1]],[[y1]]) \\), not the linear tangent-plane approximation.",
    "This reports \\( f([[x0]],[[y0]]) \\) itself, forgetting the linear correction terms.",
@@ -58,7 +58,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "The coefficient \\( m \\) is the partial derivative \\( f_x([[x0]],[[y0]]) \\). Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[A]]([[y0]])x^{2} + [[B]]x + [[C]]([[y0]]) \\), so \\( f_x(x,[[y0]]) = 2[[A]]([[y0]])x + [[B]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( m = [[answer]] \\).",
+  "solution": "The coefficient \\( m \\) is the partial derivative \\( f_x([[x0]],[[y0]]) \\). Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[A]]([[y0]])x^{2} + [[B]]x + [[C]]([[y0]]) \\), so \\( f_x(x,[[y0]]) = 2\\cdot[[A]]([[y0]])x + [[B]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( m = [[answer]] \\).",
   "distractor_rationales": [
    "This is \\( n \\), the coefficient of \\( y \\) (i.e. \\( f_y([[x0]],[[y0]]) \\)), not \\( m \\).",
    "This reports \\( f([[x0]],[[y0]]) \\) itself, not the tangent plane's \\( x \\)-coefficient.",
@@ -90,7 +90,7 @@
    "[[answer]] + 3",
    "[[answer]] - 3"
   ],
-  "solution": "The coefficient \\( n \\) is the partial derivative \\( f_y([[x0]],[[y0]]) \\). Holding \\( x=[[x0]] \\) fixed, \\( f([[x0]],y) = [[A]]y^{3} + [[B]]([[x0]])y \\), so \\( f_y([[x0]],y) = 3[[A]]y^{2} + [[B]]([[x0]]) \\). Evaluating at \\( y=[[y0]] \\) gives \\( n = [[answer]] \\).",
+  "solution": "The coefficient \\( n \\) is the partial derivative \\( f_y([[x0]],[[y0]]) \\). Holding \\( x=[[x0]] \\) fixed, \\( f([[x0]],y) = [[A]]y^{3} + [[B]]([[x0]])y \\), so \\( f_y([[x0]],y) = 3\\cdot[[A]]y^{2} + [[B]]([[x0]]) \\). Evaluating at \\( y=[[y0]] \\) gives \\( n = [[answer]] \\).",
   "distractor_rationales": [
    "This is \\( m \\), the coefficient of \\( x \\) (i.e. \\( f_x([[x0]],[[y0]]) \\)), not \\( n \\).",
    "This reports \\( f([[x0]],[[y0]]) \\) itself, not the tangent plane's \\( y \\)-coefficient.",
@@ -125,7 +125,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The tangent plane is \\( z = f([[x0]],[[y0]]) + f_x([[x0]],[[y0]])(x-[[x0]]) + f_y([[x0]],[[y0]])(y-[[y0]]) \\), with \\( f_x=2[[A]]x+[[B]]y+[[E]] \\) and \\( f_y=[[B]]x+2[[C]]y+[[F]] \\). Setting \\( (x,y)=(0,0) \\) gives \\( k = f([[x0]],[[y0]]) - [[x0]]\\,f_x([[x0]],[[y0]]) - [[y0]]\\,f_y([[x0]],[[y0]]) = [[answer]] \\).",
+  "solution": "The tangent plane is \\( z = f([[x0]],[[y0]]) + f_x([[x0]],[[y0]])(x-[[x0]]) + f_y([[x0]],[[y0]])(y-[[y0]]) \\), with \\( f_x=2\\cdot[[A]]x+[[B]]y+[[E]] \\) and \\( f_y=[[B]]x+2\\cdot[[C]]y+[[F]] \\). Setting \\( (x,y)=(0,0) \\) gives \\( k = f([[x0]],[[y0]]) - [[x0]]\\,f_x([[x0]],[[y0]]) - [[y0]]\\,f_y([[x0]],[[y0]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This reports \\( f([[x0]],[[y0]]) \\) itself, forgetting the correction from moving to \\( (0,0) \\).",
    "This drops the base value \\( f([[x0]],[[y0]]) \\), keeping only the (positive) correction terms.",
@@ -158,7 +158,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "Since \\( f_x=[[A]]\\cos(x) \\) and \\( f_y=2[[B]]y \\), at \\( (0,[[y0]]) \\) we get \\( f(0,[[y0]])=[[B]]\\cdot[[y0]]^{2} \\) (since \\( \\sin(0)=0 \\)), \\( f_x(0,[[y0]])=[[A]] \\) (since \\( \\cos(0)=1 \\)), and \\( f_y(0,[[y0]])=2[[B]]\\cdot[[y0]] \\). The tangent plane gives \\( f(0,[[y0]]) + f_x(0,[[y0]])\\cdot[[x1]] + f_y(0,[[y0]])\\cdot([[y1]]-[[y0]]) = [[answer]] \\) at \\( (x,y)=([[x1]],[[y1]]) \\).",
+  "solution": "Since \\( f_x=[[A]]\\cos(x) \\) and \\( f_y=2\\cdot[[B]]y \\), at \\( (0,[[y0]]) \\) we get \\( f(0,[[y0]])=[[B]]\\cdot[[y0]]^{2} \\) (since \\( \\sin(0)=0 \\)), \\( f_x(0,[[y0]])=[[A]] \\) (since \\( \\cos(0)=1 \\)), and \\( f_y(0,[[y0]])=2\\cdot[[B]]\\cdot[[y0]] \\). The tangent plane gives \\( f(0,[[y0]]) + f_x(0,[[y0]])\\cdot[[x1]] + f_y(0,[[y0]])\\cdot([[y1]]-[[y0]]) = [[answer]] \\) at \\( (x,y)=([[x1]],[[y1]]) \\).",
   "distractor_rationales": [
    "This evaluates the actual (curved) function \\( f \\) at \\( ([[x1]],[[y1]]) \\), not the linear tangent-plane approximation.",
    "This reports \\( f(0,[[y0]]) \\) itself, forgetting the linear correction terms.",

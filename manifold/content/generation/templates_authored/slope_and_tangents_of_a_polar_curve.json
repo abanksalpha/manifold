@@ -67,7 +67,7 @@
   "((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])) + Rational(1,10)",
   "((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]]) + ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]])) / ((-[[a]]*[[p]]*sin([[p]]*[[k]]*pi/[[n]]))*cos([[k]]*pi/[[n]]) - ([[a]]*cos([[p]]*[[k]]*pi/[[n]]))*sin([[k]]*pi/[[n]])) - Rational(1,10)"
  ],
- "solution": "With \\( r'(\\theta)=-[[a]][[p]]\\sin([[p]]\\theta) \\) from the chain rule, the slope is \\( \\dfrac{dy}{dx}=\\dfrac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta} \\), which at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) evaluates to \\( [[answer]] \\).",
+ "solution": "With \\( r'(\\theta)=-[[a]]\\cdot[[p]]\\sin([[p]]\\theta) \\) from the chain rule, the slope is \\( \\dfrac{dy}{dx}=\\dfrac{r'\\sin\\theta+r\\cos\\theta}{r'\\cos\\theta-r\\sin\\theta} \\), which at \\( \\theta=\\dfrac{[[k]]\\pi}{[[n]]} \\) evaluates to \\( [[answer]] \\).",
  "distractor_rationales": [
   "This treats the curve as if it were the unit circle, ignoring \\( r(\\theta)\\) entirely.",
   "This forgets that \\( x=r\\cos\\theta,\\,y=r\\sin\\theta\\) mix \\( r\\theta \\) and \\( p\\theta\\) and instead differentiates as if \\( r=a\\cos\\theta\\).",

@@ -21,7 +21,7 @@
    "[[m]]*pi/(6*[[a]])",
    "pi/(4*[[a]])"
   ],
-  "solution": "Since \\( \\int \\dfrac{dx}{a^2+x^2} = \\dfrac{1}{a}\\arctan\\dfrac{x}{a} \\), we get \\( [[m]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_0^{[[a]]} = \\dfrac{[[m]]}{[[a]]}\\arctan(1) = \\dfrac{[[m]]\\pi}{4[[a]]} = [[answer]] \\).",
+  "solution": "Since \\( \\int \\dfrac{dx}{a^2+x^2} = \\dfrac{1}{a}\\arctan\\dfrac{x}{a} \\), we get \\( [[m]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_0^{[[a]]} = \\dfrac{[[m]]}{[[a]]}\\arctan(1) = \\dfrac{[[m]]\\pi}{4\\cdot[[a]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses \\( \\arctan(1) = \\tfrac{\\pi}{2} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
    "This drops the factor \\( \\tfrac{1}{a} \\) and mis-scales the arctangent.",
@@ -43,7 +43,7 @@
   },
   "constraints": [],
   "require_rational": false,
-  "stem": "Evaluate \\( \\displaystyle\\int_0^{[[a]]} \\dfrac{[[m]]}{\\sqrt{4[[a]]^2 - x^2}}\\, dx \\).",
+  "stem": "Evaluate \\( \\displaystyle\\int_0^{[[a]]} \\dfrac{[[m]]}{\\sqrt{4\\cdot[[a]]^2 - x^2}}\\, dx \\).",
   "answer_spec": {"op": "integrate", "expr": "[[m]]/sqrt(4*[[a]]**2 - x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
   "distractors": [
    "[[m]]*pi/3",
@@ -53,7 +53,7 @@
    "[[m]]*pi/6 + pi/2",
    "pi/6"
   ],
-  "solution": "Since \\( \\int \\dfrac{dx}{\\sqrt{(2a)^2 - x^2}} = \\arcsin\\dfrac{x}{2a} \\), we get \\( [[m]]\\left[\\arcsin\\dfrac{x}{2[[a]]}\\right]_0^{[[a]]} = [[m]]\\arcsin\\dfrac{1}{2} = \\dfrac{[[m]]\\pi}{6} = [[answer]] \\).",
+  "solution": "Since \\( \\int \\dfrac{dx}{\\sqrt{(2a)^2 - x^2}} = \\arcsin\\dfrac{x}{2a} \\), we get \\( [[m]]\\left[\\arcsin\\dfrac{x}{2\\cdot[[a]]}\\right]_0^{[[a]]} = [[m]]\\arcsin\\dfrac{1}{2} = \\dfrac{[[m]]\\pi}{6} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses \\( \\arcsin\\tfrac12 = \\tfrac{\\pi}{3} \\) instead of \\( \\tfrac{\\pi}{6} \\).",
    "This uses \\( \\arcsin(1) = \\tfrac{\\pi}{2} \\), mis-reading the upper limit ratio.",
@@ -74,7 +74,7 @@
   },
   "constraints": [],
   "require_rational": false,
-  "stem": "Evaluate \\( \\displaystyle\\int_{[[a]]}^{2[[a]]} \\dfrac{[[m]]}{x\\sqrt{x^2 - [[a]]^2}}\\, dx \\).",
+  "stem": "Evaluate \\( \\displaystyle\\int_{[[a]]}^{2\\cdot[[a]]} \\dfrac{[[m]]}{x\\sqrt{x^2 - [[a]]^2}}\\, dx \\).",
   "answer_spec": {"op": "integrate", "expr": "[[m]]/(x*sqrt(x**2 - [[a]]**2))", "var": "x", "bounds": ["[[a]]", "2*[[a]]"]},
   "distractors": [
    "[[m]]*pi/(2*[[a]])",
@@ -84,7 +84,7 @@
    "[[m]]*pi/(9*[[a]])",
    "pi/(3*[[a]])"
   ],
-  "solution": "Since \\( \\int \\dfrac{dx}{x\\sqrt{x^2-a^2}} = \\dfrac{1}{a}\\,\\mathrm{arcsec}\\dfrac{x}{a} = \\dfrac{1}{a}\\arccos\\dfrac{a}{x} \\), we get \\( [[m]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arccos\\dfrac{[[a]]}{x}\\right]_{[[a]]}^{2[[a]]} = \\dfrac{[[m]]}{[[a]]}\\left(\\arccos\\tfrac12 - \\arccos 1\\right) = \\dfrac{[[m]]\\pi}{3[[a]]} = [[answer]] \\).",
+  "solution": "Since \\( \\int \\dfrac{dx}{x\\sqrt{x^2-a^2}} = \\dfrac{1}{a}\\,\\mathrm{arcsec}\\dfrac{x}{a} = \\dfrac{1}{a}\\arccos\\dfrac{a}{x} \\), we get \\( [[m]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arccos\\dfrac{[[a]]}{x}\\right]_{[[a]]}^{2\\cdot[[a]]} = \\dfrac{[[m]]}{[[a]]}\\left(\\arccos\\tfrac12 - \\arccos 1\\right) = \\dfrac{[[m]]\\pi}{3\\cdot[[a]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses \\( \\arccos\\tfrac12=\\tfrac{\\pi}{2} \\) instead of \\( \\tfrac{\\pi}{3} \\).",
    "This drops the factor \\( \\tfrac1a \\) and mis-scales the result.",
@@ -105,7 +105,7 @@
   },
   "constraints": [],
   "require_rational": false,
-  "stem": "A factory's output rate at time \\( x \\) (in hours) is \\( R(x) = \\dfrac{[[m]][[a]]}{[[a]]^2+x^2} \\) units per hour. How many units are produced from \\( x=0 \\) to \\( x=[[a]] \\)?",
+  "stem": "A factory's output rate at time \\( x \\) (in hours) is \\( R(x) = \\dfrac{[[m]]\\cdot[[a]]}{[[a]]^2+x^2} \\) units per hour. How many units are produced from \\( x=0 \\) to \\( x=[[a]] \\)?",
   "answer_spec": {"op": "integrate", "expr": "[[m]]*[[a]]/([[a]]**2 + x**2)", "var": "x", "bounds": ["0", "[[a]]"]},
   "distractors": [
    "[[m]]*pi/2",
@@ -115,7 +115,7 @@
    "[[m]]*pi/3",
    "[[m]]*pi/6"
   ],
-  "solution": "Total production is \\( \\int_0^{[[a]]} R(x)\\,dx = [[m]][[a]]\\int_0^{[[a]]}\\dfrac{dx}{[[a]]^2+x^2} = [[m]][[a]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_0^{[[a]]} = [[m]]\\arctan(1) = \\dfrac{[[m]]\\pi}{4} = [[answer]] \\).",
+  "solution": "Total production is \\( \\int_0^{[[a]]} R(x)\\,dx = [[m]]\\cdot[[a]]\\int_0^{[[a]]}\\dfrac{dx}{[[a]]^2+x^2} = [[m]]\\cdot[[a]]\\cdot\\dfrac{1}{[[a]]}\\left[\\arctan\\dfrac{x}{[[a]]}\\right]_0^{[[a]]} = [[m]]\\arctan(1) = \\dfrac{[[m]]\\pi}{4} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses \\( \\arctan(1)=\\tfrac{\\pi}{2} \\) instead of \\( \\tfrac{\\pi}{4} \\).",
    "This doubles the correct total.",

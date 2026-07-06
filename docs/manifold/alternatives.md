@@ -487,6 +487,84 @@
   firebase); on-device Google login is the remaining manual verification. The
   event-replay scheduling sync (option a) is deliberately not built.
 
+### D46 — New-user onboarding + placement diagnostic (seed the DAG start point)
+
+- **Status:** resolved (design; implementation planned)
+- **Chose:** a first-run **onboarding wizard** (`/manifold-onboarding`) that (1) imports
+  the seed deck if the collection is empty, (2) asks which **courses** the learner has
+  taken (a checklist mapped to blueprint topic ids), (3) runs a short **cold placement
+  diagnostic** over those topics (reusing the session player + verified problem
+  pipeline), and (4) **seeds** the learner's per-topic starting point so known material
+  is not re-taught. Three new `ManifoldService` RPCs: `GetPlacementState` (read-only
+  gate), `BuildPlacementExam` (read-only cold-probe selection, reuses `SessionItem`),
+  and `ApplyPlacement` (mutating). Gated on a collection-config flag
+  `manifoldOnboardingDone`; the home route redirects until it is set. Specs:
+  [`spec-onboarding-placement.md`](spec-onboarding-placement.md) +
+  [`plan-onboarding-placement.md`](plan-onboarding-placement.md).
+- **Honesty-safe seeding (the crux):** `ApplyPlacement` grades each known topic's
+  not-yet-attempted skill cards **Good through `col.grade_now`** (Anki's normal answer
+  path). On a New card this is a **`Learning`-kind** revlog entry: it sets the FSRS
+  memory state and lifts the teaching level to Independent (so known material is not
+  re-taught) and feeds **Memory** as a labeled prior, but is **not `Review`-kind**, so
+  `independent_reviews` and the readiness give-up rule (≥200 independent reviews / ≥50%
+  coverage) are **left completely untouched**. Readiness never shows an early or ungated
+  number. A dedicated engine test asserts `independent_reviews == 0` while
+  `level_independent > 0` after seeding.
+- **Considered / rejected:** (a) a separate **"placement estimate" readiness** with its
+  own lower evidence bar — rejected as it re-opens the honesty rule the give-up gate
+  exists to enforce (D11/D12). (b) Making placement answers count toward the **existing**
+  200-review gate by pre-graduating cards to `Review` state — rejected: it inflates the
+  cold-evidence count with non-cold attempts. (c) A **separate placement-prior store**
+  read alongside the collection — rejected in favour of writing real card state (one
+  source of truth, syncs and undoes like any study).
+- **Departures logged:** `ApplyPlacement` is the **first mutating manifold RPC**
+  (`mastery`, `session`, and the exam builder stay read-only). Seeded cards are tagged
+  **`mf::placement`** for transparency and future reset; per the `accept_labeled`
+  decision they **do** count toward the Memory score as a self-asserted, probe-confirmed
+  prior (Readiness stays the gated honest number). The **course→topic map lives in TS**
+  (`placement.ts`) but every id is **validated server-side** by `BuildPlacementExam`
+  (unknown id → loud error), so drift fails loudly rather than silently dropping a topic.
+  Seeding includes the **transitive prerequisite closure** of reported courses (knowing X
+  implies its prereqs) so the DAG stays coherent and reported topics actually unlock.
+- **Gaps / risks:** placement content depends on the verified pipeline — probes for
+  untemplated non-teach skills can **abstain** (no API key / gap), and such topics are
+  honestly treated as _untested_ (fall back to self-report), never faked. The seed-deck
+  import endpoint mutates `aqt.mw.col` from a mediasrv handler (follows the
+  `save_custom_colours` precedent); if a build provisions the deck elsewhere it is an
+  idempotent no-op. Retake re-runs the wizard but does not reset prior `mf::placement`
+  seeds (already-studied cards are `is:new`-excluded); a full reset is a future option.
+  Mobile is out of scope this pass (desktop-first, D31); the shared TS carries to Android
+  later unchanged.
+
+### D47 — Per-Google-account reset via a collection owner uid (extends D45/D46)
+
+- **Decision:** The local Anki collection records the **Google uid that owns its
+  Manifold progress** (`manifoldOwnerUid` in collection config). On the home gate the
+  client calls a new mutating RPC, **`ClaimAccount(uid)`**, before the placement check:
+  an **unclaimed** collection is claimed silently (an existing user is not wiped on
+  upgrade — their current progress becomes that account's); the **same** uid is a no-op;
+  a **different** uid **resets** — the engine deletes the `mf::*` deck via
+  `col.remove_notes` and clears `manifoldOnboardingDone` — so the new account is routed to
+  onboarding, which reseeds a fresh deck and re-runs placement. Fixes the report that
+  signing in with a new Google account neither reset progress nor showed placement,
+  because onboarding/progress had been keyed to the **collection**, not the account.
+- **Considered / rejected:** (a) **True per-account collections** (a profile per uid, so
+  each account _retains_ its own progress and switching back restores it) — the faithful
+  model and the intended end state, but it hooks Anki's profile/collection lifecycle and
+  has a boot-ordering problem (the collection opens at startup, before Firebase auth runs
+  in the webview), so it needs a post-auth collection reload; deferred as a larger,
+  live-account-tested change. (b) **Redirect-only** via the dormant per-uid Firestore
+  onboarding flag (`getOnboardingComplete`) — fixes the redirect but not the "reset
+  progress" ask (the new account would onboard on top of the old deck). (c) **"Forget"**
+  the cards instead of deleting — leaves the revlog, so Performance/Readiness evidence
+  would survive the reset; delete + reseed is the honest full reset.
+- **Gaps / risks:** this is a **single local store, not per-account storage**, so a switch
+  is a **fresh start, not a merge** — there is **no retention**: switching back to a prior
+  account resets again, and local progress not already synced to that account's server is
+  lost. If AnkiWeb auto-sync is configured against **one** account, a reset propagates the
+  deletion on the next sync; true isolation is alternative (a). The uid is client-provided
+  (trusted from Firebase auth on the same device) and used only as an opaque owner key.
+
 ---
 
 <sub>Created with the `plan-prd` skill · maintained with `log`.</sub>

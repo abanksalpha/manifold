@@ -213,7 +213,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Iterating the recurrence: \\( f(3) = [[a]]+[[b]] \\), \\( f(4) = [[a]]+2[[b]] \\), \\( f(5) = 2[[a]]+3[[b]] \\), \\( f(6) = 3[[a]]+5[[b]] = [[answer]] \\).",
+  "solution": "Iterating the recurrence: \\( f(3) = [[a]]+[[b]] \\), \\( f(4) = [[a]]+2\\cdot[[b]] \\), \\( f(5) = 2\\cdot[[a]]+3\\cdot[[b]] \\), \\( f(6) = 3\\cdot[[a]]+5\\cdot[[b]] = [[answer]] \\).",
   "distractor_rationales": [
    "This stops at \\( f(3) \\) instead of continuing the recurrence to \\( f(6) \\).",
    "This stops at \\( f(5) \\) instead of continuing one more step to \\( f(6) \\).",

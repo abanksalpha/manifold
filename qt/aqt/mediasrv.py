@@ -432,6 +432,7 @@ def is_sveltekit_page(path: str) -> bool:
         "congrats",
         "manifold",
         "manifold-dashboard",
+        "manifold-onboarding",
         "manifold-session",
         "card-info",
         "change-notetype",
@@ -999,6 +1000,70 @@ def manifold_lecture() -> bytes:
 # hint, no canned fallback.
 
 
+def manifold_import_seed() -> bytes:
+    """Import the GRE seed deck into the open collection (idempotent).
+
+    Reuses manifold/content/import_seed.py so onboarding on a fresh profile has
+    skill cards to diagnose. Fails loudly (surfaced as JSON) if the seed or
+    blueprint files are missing; never fabricates content."""
+    import importlib.util
+
+    script = None
+    for parent in Path(__file__).resolve().parents:
+        candidate = parent / "manifold" / "content" / "import_seed.py"
+        if candidate.exists():
+            script = candidate
+            break
+    if script is None:
+        return json.dumps(
+            {"status": "error", "detail": "import_seed.py not found"}
+        ).encode("utf-8")
+
+    spec = importlib.util.spec_from_file_location(
+        "manifold_import_seed_mod", str(script)
+    )
+    if spec is None or spec.loader is None:
+        return json.dumps(
+            {"status": "error", "detail": "could not load import_seed.py"}
+        ).encode("utf-8")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    import_seed_fn = getattr(module, "import_seed")
+    added, skipped = import_seed_fn(aqt.mw.col)
+    return json.dumps(
+        {
+            "status": "ok",
+            "added": sum(added.values()),
+            "skipped": sum(skipped.values()),
+        }
+    ).encode("utf-8")
+
+
+def manifold_sync() -> bytes:
+    """Trigger an Anki collection + media sync in the background so a finished
+    Manifold session propagates to the learner's other devices (AnkiWeb or the
+    configured server) without waiting for app close.
+
+    Runs on the main thread (Qt sync touches the UI). No-op — not an error — when
+    the user has not signed in to sync yet (nothing to sync to) or a sync is already
+    running; a real sync failure surfaces through Anki's own sync error UI."""
+    mw = aqt.mw
+    if mw is None:
+        return json.dumps({"status": "error", "detail": "no main window"}).encode(
+            "utf-8"
+        )
+
+    def run() -> None:
+        if mw.pm.sync_auth() is None:
+            return  # not signed in to sync yet; nothing to sync to
+        if mw.media_syncer.is_syncing():
+            return  # a sync is already running
+        mw._sync_collection_and_media(lambda: None)
+
+    mw.taskman.run_on_main(run)
+    return json.dumps({"status": "ok"}).encode("utf-8")
+
+
 def manifold_hint() -> bytes:
     """Serve one answer-free hint for the current problem, or a JSON ABSTAIN.
 
@@ -1264,6 +1329,8 @@ post_handler_list = [
     manifold_next_problem,
     manifold_lecture,
     manifold_hint,
+    manifold_import_seed,
+    manifold_sync,
     manifold_google_sign_in,
 ]
 
@@ -1296,6 +1363,11 @@ exposed_backend_list = [
     # ManifoldService
     "get_topic_graph",
     "build_session_queue",
+    "get_problems_solved",
+    "get_placement_state",
+    "build_placement_exam",
+    "apply_placement",
+    "claim_account",
     # TagsService
     "complete_tag",
     # ImageOcclusionService

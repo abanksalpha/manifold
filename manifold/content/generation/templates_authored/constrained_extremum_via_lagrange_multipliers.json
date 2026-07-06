@@ -64,7 +64,7 @@
    "[[answer]] + 2",
    "[[answer]] - 1"
   ],
-  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( y = \\lambda([[a]]) \\) and \\( x = \\lambda([[b]]) \\), so \\( x/[[b]] = y/[[a]] \\). Substituting \\( x = \\frac{[[b]][[k]]}{2[[a]][[b]]} = \\frac{[[k]]}{2([[a]])} \\) and \\( y = \\frac{[[k]]}{2([[b]])} \\) into the constraint and simplifying gives \\( f = xy = \\dfrac{[[k]]^{2}}{4([[a]])([[b]])} = [[answer]] \\).",
+  "solution": "Setting \\( \\nabla f = \\lambda \\nabla g \\) gives \\( y = \\lambda([[a]]) \\) and \\( x = \\lambda([[b]]) \\), so \\( x/[[b]] = y/[[a]] \\). Substituting \\( x = \\frac{[[b]]\\cdot[[k]]}{2\\cdot[[a]]\\cdot[[b]]} = \\frac{[[k]]}{2([[a]])} \\) and \\( y = \\frac{[[k]]}{2([[b]])} \\) into the constraint and simplifying gives \\( f = xy = \\dfrac{[[k]]^{2}}{4([[a]])([[b]])} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses a denominator of \\( 2ab \\) instead of \\( 4ab \\).",
    "This forgets the factor of 4 in the denominator entirely.",
@@ -264,7 +264,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Setting \\( 2x=\\lambda [[a]] \\), \\( 2y=\\lambda [[b]] \\) gives \\( x=\\lambda [[a]]/2 \\), \\( y=\\lambda [[b]]/2 \\). Substituting into \\( [[a]]x+[[b]]y=[[c]] \\) gives \\( \\lambda\\dfrac{[[a]]^{2}+[[b]]^{2}}{2}=[[c]] \\), so \\( \\lambda = \\dfrac{2[[c]]}{[[a]]^{2}+[[b]]^{2}} = [[answer]] \\).",
+  "solution": "Setting \\( 2x=\\lambda [[a]] \\), \\( 2y=\\lambda [[b]] \\) gives \\( x=\\lambda [[a]]/2 \\), \\( y=\\lambda [[b]]/2 \\). Substituting into \\( [[a]]x+[[b]]y=[[c]] \\) gives \\( \\lambda\\dfrac{[[a]]^{2}+[[b]]^{2}}{2}=[[c]] \\), so \\( \\lambda = \\dfrac{2\\cdot[[c]]}{[[a]]^{2}+[[b]]^{2}} = [[answer]] \\).",
   "distractor_rationales": [
    "This drops the factor of 2 that comes from \\( f_{x}=2x \\) and \\( f_{y}=2y \\).",
    "This squares the constraint constant \\( [[c]] \\) instead of using it linearly.",

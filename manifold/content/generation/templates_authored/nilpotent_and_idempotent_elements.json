@@ -26,8 +26,8 @@
   "solution": "In \\( \\mathbb{Z}_{n} \\) an element is nilpotent exactly when it is a multiple of the radical \\( pq \\) (the product of the distinct primes dividing \\( n \\)). The multiples of \\( [[p]]\\cdot[[q]] \\) in \\( \\{0, 1, \\dots, [[nval]]-1\\} \\) number \\( \\dfrac{[[nval]]}{[[p]]\\cdot[[q]]} = [[p]]^{[[a]]-1}[[q]]^{[[b]]-1} = [[answer]] \\).",
   "distractor_rationales": [
    "This is the radical \\( pq \\) itself, not the count of its multiples in \\( \\mathbb{Z}_{[[nval]]} \\).",
-   "This counts the multiples of \\( [[p]] \\) alone; nilpotents must be divisible by every prime factor, i.e. by \\( [[p]][[q]] \\).",
-   "This counts the multiples of \\( [[q]] \\) alone; nilpotents must be divisible by \\( [[p]][[q]] \\), not just \\( [[q]] \\).",
+   "This counts the multiples of \\( [[p]] \\) alone; nilpotents must be divisible by every prime factor, i.e. by \\( [[p]]\\cdot[[q]] \\).",
+   "This counts the multiples of \\( [[q]] \\) alone; nilpotents must be divisible by \\( [[p]]\\cdot[[q]] \\), not just \\( [[q]] \\).",
    "This is one more than the correct count.",
    "This is two more than the correct count.",
    "This is three more than the correct count."

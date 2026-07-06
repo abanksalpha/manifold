@@ -20,7 +20,7 @@
   "2*[[answer]]",
   "[[answer]] + 1"
  ],
- "solution": "With \\( x=[[a]]\\sin\\theta \\), \\( dx=[[a]]\\cos\\theta\\,d\\theta \\), the limits become \\( \\theta=0,\\pi/2 \\), and \\( \\sqrt{[[a]]^{2}-x^{2}}=[[a]]\\cos\\theta \\). The integral becomes \\( [[c]][[a]]^{2}\\displaystyle\\int_{0}^{\\pi/2}\\cos^{2}\\theta\\,d\\theta = [[c]][[a]]^{2}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\); geometrically this is a quarter-circle of radius \\( [[a]] \\).",
+ "solution": "With \\( x=[[a]]\\sin\\theta \\), \\( dx=[[a]]\\cos\\theta\\,d\\theta \\), the limits become \\( \\theta=0,\\pi/2 \\), and \\( \\sqrt{[[a]]^{2}-x^{2}}=[[a]]\\cos\\theta \\). The integral becomes \\( [[c]]\\cdot[[a]]^{2}\\displaystyle\\int_{0}^{\\pi/2}\\cos^{2}\\theta\\,d\\theta = [[c]]\\cdot[[a]]^{2}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\); geometrically this is a quarter-circle of radius \\( [[a]] \\).",
  "distractor_rationales": [
   "This uses \\( \\pi/4 \\)'s numerator-only form (half the circle's quarter area) instead of the full quarter-circle result.",
   "This treats the region as a full square of side \\( [[a]] \\) rather than the quarter-disk the integral represents.",
@@ -72,7 +72,7 @@
   "c": {"type": "int", "lo": 1, "hi": 4}
  },
  "constraints": [],
- "stem": "Using the substitution \\( x = [[a]]\\sec\\theta \\) (so \\( \\sqrt{x^{2}-[[a]]^{2}} = [[a]]\\tan\\theta \\)), evaluate \\( \\displaystyle\\int_{[[a]]}^{2[[a]]} [[c]]\\sqrt{x^{2}-[[a]]^{2}}\\,dx \\).",
+ "stem": "Using the substitution \\( x = [[a]]\\sec\\theta \\) (so \\( \\sqrt{x^{2}-[[a]]^{2}} = [[a]]\\tan\\theta \\)), evaluate \\( \\displaystyle\\int_{[[a]]}^{2\\cdot[[a]]} [[c]]\\sqrt{x^{2}-[[a]]^{2}}\\,dx \\).",
  "answer_spec": {"op": "integrate", "expr": "[[c]]*sqrt(x**2-[[a]]**2)", "var": "x", "bounds": ["[[a]]", "2*[[a]]"]},
  "distractors": [
   "[[c]]*[[a]]**2*sqrt(3)/2",
@@ -82,7 +82,7 @@
   "2*[[answer]]",
   "[[answer]] + 1"
  ],
- "solution": "With \\( x=[[a]]\\sec\\theta \\), \\( dx=[[a]]\\sec\\theta\\tan\\theta\\,d\\theta \\), and \\( \\sqrt{x^{2}-[[a]]^{2}}=[[a]]\\tan\\theta \\), the limits become \\( \\theta=0 \\) (at \\( x=[[a]] \\)) to \\( \\theta=\\pi/3 \\) (at \\( x=2[[a]] \\)). The integral becomes \\( [[c]][[a]]^{2}\\displaystyle\\int_{0}^{\\pi/3}\\sec\\theta\\tan^{2}\\theta\\,d\\theta \\), which evaluates to \\( [[answer]] \\).",
+ "solution": "With \\( x=[[a]]\\sec\\theta \\), \\( dx=[[a]]\\sec\\theta\\tan\\theta\\,d\\theta \\), and \\( \\sqrt{x^{2}-[[a]]^{2}}=[[a]]\\tan\\theta \\), the limits become \\( \\theta=0 \\) (at \\( x=[[a]] \\)) to \\( \\theta=\\pi/3 \\) (at \\( x=2\\cdot[[a]] \\)). The integral becomes \\( [[c]]\\cdot[[a]]^{2}\\displaystyle\\int_{0}^{\\pi/3}\\sec\\theta\\tan^{2}\\theta\\,d\\theta \\), which evaluates to \\( [[answer]] \\).",
  "distractor_rationales": [
   "This keeps only the leading term \\( \\tfrac12 a^2\\sqrt3 \\) from evaluating \\( \\sec\\theta\\tan\\theta \\) at \\( \\theta=\\pi/3 \\) alone, dropping the logarithmic term from the reduction formula.",
   "This mistakes the integrand for a constant-\\( \\sec\\theta \\) area and uses a \\( \\pi/3 \\) sector formula instead of the actual antiderivative.",
@@ -113,7 +113,7 @@
   "2*[[answer]]",
   "[[answer]] + 1"
  ],
- "solution": "With \\( x=[[a]]\\sin\\theta \\), \\( dx=[[a]]\\cos\\theta\\,d\\theta \\), and \\( \\sqrt{[[a]]^{2}-x^{2}}=[[a]]\\cos\\theta \\), the \\( \\cos\\theta \\) factors cancel and the integral becomes \\( [[c]][[a]]^{2}\\displaystyle\\int_{0}^{\\pi/2}\\sin^{2}\\theta\\,d\\theta = [[c]][[a]]^{2}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\).",
+ "solution": "With \\( x=[[a]]\\sin\\theta \\), \\( dx=[[a]]\\cos\\theta\\,d\\theta \\), and \\( \\sqrt{[[a]]^{2}-x^{2}}=[[a]]\\cos\\theta \\), the \\( \\cos\\theta \\) factors cancel and the integral becomes \\( [[c]]\\cdot[[a]]^{2}\\displaystyle\\int_{0}^{\\pi/2}\\sin^{2}\\theta\\,d\\theta = [[c]]\\cdot[[a]]^{2}\\cdot\\dfrac{\\pi}{4} = [[answer]] \\).",
  "distractor_rationales": [
   "This doubles the correct \\( \\pi/4 \\) constant to \\( \\pi/2 \\).",
   "This drops the \\( \\pi \\) factor entirely, as if the average value of \\( \\sin^{2}\\theta \\) were rational.",

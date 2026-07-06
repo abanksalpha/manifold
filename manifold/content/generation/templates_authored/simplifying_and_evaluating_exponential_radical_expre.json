@@ -150,7 +150,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "By the power-of-a-product rule, \\( (ab)^{n} = a^{n}b^{n} \\), so \\( \\dfrac{([[a]][[b]])^{[[n]]}}{[[a]]^{[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
+  "solution": "By the power-of-a-product rule, \\( (ab)^{n} = a^{n}b^{n} \\), so \\( \\dfrac{([[a]]\\cdot[[b]])^{[[n]]}}{[[a]]^{[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to raise \\( b \\) to the power \\( n \\), leaving it unraised.",
    "This reports \\( a^{n} \\) instead of \\( b^{n} \\), the term that should remain after cancellation.",
@@ -170,7 +170,7 @@
    "n": {"type": "int", "lo": 1, "hi": 5}
   },
   "constraints": [],
-  "stem": "Evaluate \\( \\sqrt{[[b]]^{2[[n]]}} \\).",
+  "stem": "Evaluate \\( \\sqrt{[[b]]^{2\\cdot[[n]]}} \\).",
   "answer_spec": {"op": "evaluate", "expr": "sqrt([[b]]**(2*[[n]]))"},
   "distractors": [
    "[[b]]**[[n]]/2",
@@ -180,7 +180,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "Since the exponent \\( 2[[n]] \\) is even and \\( [[b]] > 0 \\), \\( \\sqrt{[[b]]^{2[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
+  "solution": "Since the exponent \\( 2\\cdot[[n]] \\) is even and \\( [[b]] > 0 \\), \\( \\sqrt{[[b]]^{2\\cdot[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This halves the whole power instead of halving just the exponent.",
    "This leaves the expression unrooted, forgetting the square root entirely.",

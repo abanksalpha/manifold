@@ -43,7 +43,7 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "\\( f'(x)=2[[p]]x+([[q]]) \\), so \\( f'([[x0]]) = [[answer]] \\).",
+ "solution": "\\( f'(x)=2\\cdot[[p]]x+([[q]]) \\), so \\( f'([[x0]]) = [[answer]] \\).",
  "distractor_rationales": []
 },
 {
@@ -73,7 +73,7 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "Expanding \\( (x+h)^3=x^3+3x^2h+3xh^2+h^3 \\), the difference quotient reduces to \\( 3x^2+3xh+h^2 \\) plus the constant term's slope \\( [[q]] \\); letting \\( h\\to 0 \\) gives \\( f'(x)=3[[p]]x^2+([[q]]) \\), so \\( f'([[x0]]) = [[answer]] \\).",
+ "solution": "Expanding \\( (x+h)^3=x^3+3x^2h+3xh^2+h^3 \\), the difference quotient reduces to \\( 3x^2+3xh+h^2 \\) plus the constant term's slope \\( [[q]] \\); letting \\( h\\to 0 \\) gives \\( f'(x)=3\\cdot[[p]]x^2+([[q]]) \\), so \\( f'([[x0]]) = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets the linear term's contribution \\( q \\).",
   "This evaluates \\( f(x_0) \\) itself rather than the limiting difference quotient.",

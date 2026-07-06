@@ -85,7 +85,7 @@ service cloud.firestore {
         && data.topics is list && data.topics.size() <= 64;
     }
 
-    // --- the one collection this app uses ------------------------
+    // --- the derived progress snapshot ---------------------------
     match /users/{userId} {
       allow read: if isOwner(userId);
       allow create: if isOwner(userId)
@@ -94,6 +94,14 @@ service cloud.firestore {
                     && isValidSnapshot(userId, request.resource.data)
                     && request.resource.data.uid == resource.data.uid;
       allow delete: if isOwner(userId);
+
+      // Per-account app state, kept out of the strict progress snapshot: small
+      // owner-only docs such as `onboarding` (whether this Google account has
+      // finished placement). Backing onboarding here makes it follow the account,
+      // so a new Google account lands on placement on any device.
+      match /state/{docId} {
+        allow read, write: if isOwner(userId);
+      }
     }
 
     // Everything else: no match ⇒ denied by default. (Firestore denies any path

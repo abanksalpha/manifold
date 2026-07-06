@@ -91,7 +91,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "The innermost integral gives the height \\([[p]]x+[[q]]y+[[r]]\\). Then \\( \\int_0^{[[a]]}\\int_0^{[[b]]} \\left([[p]]x+[[q]]y+[[r]]\\right)dy\\,dx = \\dfrac{[[p]][[a]]^2[[b]]}{2} + \\dfrac{[[q]][[a]][[b]]^2}{2} + [[r]][[a]][[b]] = [[answer]] \\).",
+  "solution": "The innermost integral gives the height \\([[p]]x+[[q]]y+[[r]]\\). Then \\( \\int_0^{[[a]]}\\int_0^{[[b]]} \\left([[p]]x+[[q]]y+[[r]]\\right)dy\\,dx = \\dfrac{[[p]]\\cdot[[a]]^2\\cdot[[b]]}{2} + \\dfrac{[[q]]\\cdot[[a]]\\cdot[[b]]^2}{2} + [[r]]\\cdot[[a]]\\cdot[[b]] = [[answer]] \\).",
   "distractor_rationales": [
    "This uses only the constant term \\([[r]]\\) times the base area, forgetting the tilted \\(px+qy\\) part of the top surface.",
    "This uses only the tilted part of the top surface, forgetting the constant \\([[r]]\\) contribution.",
@@ -122,7 +122,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "The innermost integral gives the height \\(x^2+y^2+[[k]]\\). Then \\( \\int_0^{[[a]]}\\int_0^{[[b]]}\\left(x^2+y^2+[[k]]\\right)dy\\,dx = \\dfrac{[[a]]^3[[b]]}{3} + \\dfrac{[[a]][[b]]^3}{3} + [[k]][[a]][[b]] = [[answer]] \\).",
+  "solution": "The innermost integral gives the height \\(x^2+y^2+[[k]]\\). Then \\( \\int_0^{[[a]]}\\int_0^{[[b]]}\\left(x^2+y^2+[[k]]\\right)dy\\,dx = \\dfrac{[[a]]^3\\cdot[[b]]}{3} + \\dfrac{[[a]]\\cdot[[b]]^3}{3} + [[k]]\\cdot[[a]]\\cdot[[b]] = [[answer]] \\).",
   "distractor_rationales": [
    "This drops the constant \\([[k]]\\) contribution to the height entirely.",
    "This uses only the constant \\([[k]]\\) contribution, forgetting the curved \\(x^2+y^2\\) part of the top surface.",
@@ -153,10 +153,10 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "The innermost \\(z\\)-integral just gives the constant height \\([[c]]\\). Then \\( \\int_0^{[[a]]}\\int_x^{x+[[b]]}[[c]]\\,dy\\,dx = \\int_0^{[[a]]} [[c]][[b]]\\,dx = [[c]][[b]][[a]] = [[answer]] \\), the area of the parallelogram base (\\([[a]]\\times[[b]]\\)) times the height \\([[c]]\\).",
+  "solution": "The innermost \\(z\\)-integral just gives the constant height \\([[c]]\\). Then \\( \\int_0^{[[a]]}\\int_x^{x+[[b]]}[[c]]\\,dy\\,dx = \\int_0^{[[a]]} [[c]]\\cdot[[b]]\\,dx = [[c]]\\cdot[[b]]\\cdot[[a]] = [[answer]] \\), the area of the parallelogram base (\\([[a]]\\times[[b]]\\)) times the height \\([[c]]\\).",
   "distractor_rationales": [
    "This halves the base area as if the region were a triangle rather than a parallelogram.",
-   "This uses \\(\\tfrac12[[a]]\\) as the effective base width, mistaking the shape for a triangle scaled by \\([[a]]\\).",
+   "This uses \\(\\tfrac12\\cdot[[a]]\\) as the effective base width, mistaking the shape for a triangle scaled by \\([[a]]\\).",
    "This is off by one from the correct value.",
    "This is off by one from the correct value.",
    "This is off by two from the correct value."

@@ -130,7 +130,7 @@
  },
  "constraints": ["Eq(Mod([[n]],[[d]]), 0)", "Lt([[d]], [[n]])"],
  "derived": {"h": "[[n]]/[[d]]"},
- "stem": "Let \\( G = D_{[[n]]} \\) be the dihedral group of order \\(2[[n]]\\) (symmetries of a regular \\([[n]]\\)-gon), and let \\( H \\) be the subgroup of rotations by multiples of \\([[d]]\\) steps, so \\( |H| = [[n]]/[[d]] = [[h]] \\). Using Lagrange's theorem, find the index \\( [G:H] \\).",
+ "stem": "Let \\( G = D_{[[n]]} \\) be the dihedral group of order \\(2\\cdot[[n]]\\) (symmetries of a regular \\([[n]]\\)-gon), and let \\( H \\) be the subgroup of rotations by multiples of \\([[d]]\\) steps, so \\( |H| = [[n]]/[[d]] = [[h]] \\). Using Lagrange's theorem, find the index \\( [G:H] \\).",
  "answer_spec": {"op": "evaluate", "expr": "(2*[[n]])/[[h]]"},
  "distractors": [
   "[[d]]",
@@ -140,7 +140,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "By Lagrange's theorem, \\( [G:H] = |G|/|H| = 2[[n]]/[[h]] = [[answer]] \\).",
+ "solution": "By Lagrange's theorem, \\( [G:H] = |G|/|H| = 2\\cdot[[n]]/[[h]] = [[answer]] \\).",
  "distractor_rationales": [
   "This is the rotation step \\([[d]]\\), not the index in the full dihedral group.",
   "This is \\( |G| \\) itself, forgetting to divide by \\( |H| \\).",

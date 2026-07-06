@@ -125,7 +125,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The \\( n \\)-th root rule gives \\( \\log_b\\left(\\sqrt[n]{M}\\right) = \\dfrac{1}{n}\\log_b M \\). Since \\( [[M]] = [[b]]^{[[p]] \\cdot [[n]]} \\), \\( \\log_{[[b]]}[[M]] = [[p]][[n]] \\), so dividing by \\( [[n]] \\) gives \\( [[p]] = [[answer]] \\).",
+  "solution": "The \\( n \\)-th root rule gives \\( \\log_b\\left(\\sqrt[n]{M}\\right) = \\dfrac{1}{n}\\log_b M \\). Since \\( [[M]] = [[b]]^{[[p]] \\cdot [[n]]} \\), \\( \\log_{[[b]]}[[M]] = [[p]]\\cdot[[n]] \\), so dividing by \\( [[n]] \\) gives \\( [[p]] = [[answer]] \\).",
   "distractor_rationales": [
    "This multiplies by \\( n \\) instead of dividing by it, undoing the root incorrectly.",
    "This reports the root index itself rather than the simplified logarithm.",

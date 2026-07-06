@@ -50,7 +50,7 @@
    "[[answer]]/2",
    "[[answer]] + 1"
   ],
-  "solution": "\\( \\int_{0}^{[[a]]} [[c]]x^{-1/2}\\,dx = \\left[2[[c]]\\sqrt{x}\\right]_{0}^{[[a]]} = 2[[c]]\\sqrt{[[a]]} = [[answer]] \\); the singularity is integrable since the exponent \\( -\\tfrac12 > -1 \\).",
+  "solution": "\\( \\int_{0}^{[[a]]} [[c]]x^{-1/2}\\,dx = \\left[2\\cdot[[c]]\\sqrt{x}\\right]_{0}^{[[a]]} = 2\\cdot[[c]]\\sqrt{[[a]]} = [[answer]] \\); the singularity is integrable since the exponent \\( -\\tfrac12 > -1 \\).",
   "distractor_rationales": [
    "This forgets the factor of 2 from antidifferentiating \\( x^{-1/2} \\).",
    "This treats the integrand as if it were \\( \\sqrt{x} \\) rather than \\( 1/\\sqrt{x} \\).",

@@ -128,7 +128,7 @@
   "[[answer]] + 2",
   "[[answer]] - 3"
  ],
- "solution": "The trace is \\( [[a]]+[[d]] = 2([[p]]) \\) and the determinant is \\( ([[a]])([[d]]) - (1)([[s]]) = [[p]]^{2} \\), so the discriminant \\( \\mathrm{trace}^2 - 4\\det = 4[[p]]^{2} - 4[[p]]^{2} = 0 \\). The characteristic equation has a repeated root at half the trace: \\( [[answer]] \\).",
+ "solution": "The trace is \\( [[a]]+[[d]] = 2([[p]]) \\) and the determinant is \\( ([[a]])([[d]]) - (1)([[s]]) = [[p]]^{2} \\), so the discriminant \\( \\mathrm{trace}^2 - 4\\det = 4\\cdot[[p]]^{2} - 4\\cdot[[p]]^{2} = 0 \\). The characteristic equation has a repeated root at half the trace: \\( [[answer]] \\).",
  "distractor_rationales": [
   "This is the \\( (1,1) \\) entry of \\( A \\), not the repeated eigenvalue.",
   "This is the \\( (2,2) \\) entry of \\( A \\), not the repeated eigenvalue.",

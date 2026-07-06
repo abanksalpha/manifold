@@ -86,7 +86,7 @@
   "[[answer]] + [[n]]",
   "[[answer]] - [[n]]"
  ],
- "solution": "By Vandermonde's identity with \\( m=w=[[n]] \\) and \\( r=[[n]] \\), \\( \\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^2 = \\binom{2[[n]]}{[[n]]} = [[answer]] \\).",
+ "solution": "By Vandermonde's identity with \\( m=w=[[n]] \\) and \\( r=[[n]] \\), \\( \\sum_{k=0}^{[[n]]} \\binom{[[n]]}{k}^2 = \\binom{2\\cdot[[n]]}{[[n]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This confuses the sum of squares with the plain row sum \\( 2^{[[n]]} \\).",
   "This squares the row sum \\( 2^{[[n]]} \\) itself instead of applying Vandermonde's identity.",

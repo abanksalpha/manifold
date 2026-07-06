@@ -9,7 +9,7 @@
   "m": {"type": "int", "lo": 1, "hi": 6}
  },
  "constraints": [],
- "stem": "Apply the Ratio Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[m]][[c]]^{n}}{n!} \\): compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\left|\\dfrac{a_{n+1}}{a_{n}}\\right| \\).",
+ "stem": "Apply the Ratio Test to \\( \\displaystyle\\sum_{n=1}^{\\infty} \\dfrac{[[m]]\\cdot[[c]]^{n}}{n!} \\): compute \\( L = \\displaystyle\\lim_{n\\to\\infty} \\left|\\dfrac{a_{n+1}}{a_{n}}\\right| \\).",
  "answer_spec": {"op": "limit", "expr": "[[c]]/(n+1)", "var": "n", "point": "oo"},
  "distractors": [
   "[[c]]",
@@ -19,7 +19,7 @@
   "[[answer]] - 1",
   "2*[[answer]]"
  ],
- "solution": "The constant \\( [[m]] \\) cancels in the ratio: \\( \\dfrac{a_{n+1}}{a_{n}} = \\dfrac{[[m]][[c]]^{n+1}/(n+1)!}{[[m]][[c]]^{n}/n!} = \\dfrac{[[c]]}{n+1} \\), so \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[c]]}{n+1} = [[answer]] \\); since \\( L=0 < 1 \\), the series converges absolutely for every \\( [[c]] \\).",
+ "solution": "The constant \\( [[m]] \\) cancels in the ratio: \\( \\dfrac{a_{n+1}}{a_{n}} = \\dfrac{[[m]]\\cdot[[c]]^{n+1}/(n+1)!}{[[m]]\\cdot[[c]]^{n}/n!} = \\dfrac{[[c]]}{n+1} \\), so \\( L = \\displaystyle\\lim_{n\\to\\infty} \\dfrac{[[c]]}{n+1} = [[answer]] \\); since \\( L=0 < 1 \\), the series converges absolutely for every \\( [[c]] \\).",
  "distractor_rationales": [
   "This treats the factorial growth as if it did not affect the ratio at all, keeping only the exponential's base.",
   "This wrongly assumes the ratio test is inconclusive (\\( L=1 \\)) rather than computing the actual limit.",

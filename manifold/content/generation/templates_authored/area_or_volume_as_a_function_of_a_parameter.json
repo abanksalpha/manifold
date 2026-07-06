@@ -69,7 +69,7 @@
   },
   "constraints": [],
   "derived": {"M": "[[k]]*[[t0]]**3"},
-  "stem": "For a positive parameter \\( t \\), let \\( A(t) \\) be the area of the region under the curve \\( y = 3[[k]]x^{2} \\) and above the \\( x \\)-axis from \\( x=0 \\) to \\( x=t \\), so that \\( A(t) = [[k]]t^{3} \\). For what value of \\( t \\) does \\( A(t) = [[M]] \\)?",
+  "stem": "For a positive parameter \\( t \\), let \\( A(t) \\) be the area of the region under the curve \\( y = 3\\cdot[[k]]x^{2} \\) and above the \\( x \\)-axis from \\( x=0 \\) to \\( x=t \\), so that \\( A(t) = [[k]]t^{3} \\). For what value of \\( t \\) does \\( A(t) = [[M]] \\)?",
   "answer_spec": {"op": "solve", "equation": "[[k]]*t**3 - [[M]] = 0", "var": "t"},
   "distractors": [
    "[[M]]/[[k]]",

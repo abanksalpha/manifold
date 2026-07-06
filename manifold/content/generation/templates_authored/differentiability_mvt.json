@@ -23,7 +23,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "Since \\( f \\) is quadratic, \\( f'(x) = 2([[A]])x+([[B]]) \\) is linear, so \\( f'(x) \\) equals the average slope exactly once. The average rate of change is \\( \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} = [[A]]([[p]]+[[q]])+[[B]] \\); setting \\( 2[[A]]c+[[B]] \\) equal to this and solving gives \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), the midpoint of the interval.",
+  "solution": "Since \\( f \\) is quadratic, \\( f'(x) = 2([[A]])x+([[B]]) \\) is linear, so \\( f'(x) \\) equals the average slope exactly once. The average rate of change is \\( \\dfrac{f([[q]])-f([[p]])}{[[q]]-[[p]]} = [[A]]([[p]]+[[q]])+[[B]] \\); setting \\( 2\\cdot[[A]]c+[[B]] \\) equal to this and solving gives \\( c = \\dfrac{[[p]]+[[q]]}{2} = [[answer]] \\), the midpoint of the interval.",
   "distractor_rationales": [
    "This reports the left endpoint of the interval instead of the guaranteed interior point.",
    "This reports the right endpoint of the interval instead of the guaranteed interior point.",

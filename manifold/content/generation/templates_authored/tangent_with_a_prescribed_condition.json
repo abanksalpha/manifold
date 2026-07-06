@@ -38,7 +38,7 @@
    "Rational([[m]] - [[b]], 2*[[a]]) + 1",
    "Rational([[m]] - [[b]], 2*[[a]]) - 1"
   ],
-  "solution": "\\( y'=2[[a]]x+[[b]]=[[m]] \\Rightarrow x=\\frac{[[m]]-[[b]]}{2[[a]]}=[[answer]] \\).",
+  "solution": "\\( y'=2\\cdot[[a]]x+[[b]]=[[m]] \\Rightarrow x=\\frac{[[m]]-[[b]]}{2\\cdot[[a]]}=[[answer]] \\).",
   "distractor_rationales": []
  },
  {
@@ -172,7 +172,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "A line \\( y=[[p]]x+([[q]]) \\) has slope \\( [[p]] \\). Setting \\( y'=2[[a]]x+([[b]])=[[p]] \\) gives \\( x=\\dfrac{[[p]]-([[b]])}{2[[a]]}=[[answer]] \\).",
+  "solution": "A line \\( y=[[p]]x+([[q]]) \\) has slope \\( [[p]] \\). Setting \\( y'=2\\cdot[[a]]x+([[b]])=[[p]] \\) gives \\( x=\\dfrac{[[p]]-([[b]])}{2\\cdot[[a]]}=[[answer]] \\).",
   "distractor_rationales": [
    "This adds instead of subtracts \\( b \\) from the line's slope.",
    "This forgets the factor of \\( 2 \\) from differentiating \\( ax^{2} \\).",
@@ -204,7 +204,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "A line \\( y=[[p]]x+([[q]]) \\) has slope \\( [[p]] \\), so a perpendicular tangent has slope \\( -\\frac{1}{[[p]]} \\). Setting \\( y'=2[[a]]x+([[b]])=-\\frac{1}{[[p]]} \\) gives \\( x=\\dfrac{-\\frac{1}{[[p]]}-([[b]])}{2[[a]]}=[[answer]] \\).",
+  "solution": "A line \\( y=[[p]]x+([[q]]) \\) has slope \\( [[p]] \\), so a perpendicular tangent has slope \\( -\\frac{1}{[[p]]} \\). Setting \\( y'=2\\cdot[[a]]x+([[b]])=-\\frac{1}{[[p]]} \\) gives \\( x=\\dfrac{-\\frac{1}{[[p]]}-([[b]])}{2\\cdot[[a]]}=[[answer]] \\).",
   "distractor_rationales": [
    "This has the wrong sign on the reciprocal slope.",
    "This uses \\( -p \\) instead of the negative reciprocal \\( -\\frac{1}{p} \\).",

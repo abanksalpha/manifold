@@ -52,7 +52,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Multiply numerator and denominator by the conjugate \\( \\sqrt{x+[[k]]} + [[m]] \\): \\( \\dfrac{(x+[[k]]) - [[m]]^{2}}{(x-[[c]])(\\sqrt{x+[[k]]}+[[m]])} = \\dfrac{x - [[c]]}{(x-[[c]])(\\sqrt{x+[[k]]}+[[m]])} = \\dfrac{1}{\\sqrt{x+[[k]]}+[[m]]} \\) (using \\( [[m]]^{2} = [[k]] + [[c]] \\)). As \\( x \\to [[c]] \\) this gives \\( \\dfrac{1}{2[[m]]} = [[answer]] \\).",
+ "solution": "Multiply numerator and denominator by the conjugate \\( \\sqrt{x+[[k]]} + [[m]] \\): \\( \\dfrac{(x+[[k]]) - [[m]]^{2}}{(x-[[c]])(\\sqrt{x+[[k]]}+[[m]])} = \\dfrac{x - [[c]]}{(x-[[c]])(\\sqrt{x+[[k]]}+[[m]])} = \\dfrac{1}{\\sqrt{x+[[k]]}+[[m]]} \\) (using \\( [[m]]^{2} = [[k]] + [[c]] \\)). As \\( x \\to [[c]] \\) this gives \\( \\dfrac{1}{2\\cdot[[m]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets to double \\( m \\) in the denominator after rationalizing.",
   "This inverts the correct fraction and drops the factor of 2.",

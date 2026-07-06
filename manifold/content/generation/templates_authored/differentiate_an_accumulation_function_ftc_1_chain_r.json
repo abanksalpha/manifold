@@ -28,7 +28,7 @@
   "This uses \\( g(u([[x0]])) \\) but forgets to multiply by the derivative of the inner function \\( u(x) = x^{[[m]]} \\).",
   "This evaluates the integrand at \\( [[x0]] \\) instead of at \\( u([[x0]]) = [[x0]]^{[[m]]} \\).",
   "This uses \\( [[m]]x^{[[m]]} \\) for the inner derivative instead of \\( [[m]]x^{[[m]]-1} \\).",
-  "This multiplies by \\( [[x0]] \\) rather than the full inner derivative \\( [[m]][[x0]]^{[[m]]-1} \\).",
+  "This multiplies by \\( [[x0]] \\) rather than the full inner derivative \\( [[m]]\\cdot[[x0]]^{[[m]]-1} \\).",
   "This is off from the correct value by the inner exponent.",
   "This is off from the correct value by the inner exponent.",
   "This is off by one from the correct value."

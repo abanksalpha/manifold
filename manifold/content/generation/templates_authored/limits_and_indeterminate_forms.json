@@ -147,9 +147,9 @@
  ],
  "solution": "Multiply numerator and denominator by the conjugate \\( \\sqrt{x+[[a]]} + [[k]] \\): \\( \\dfrac{\\sqrt{x+[[a]]} - [[k]]}{x-[[c]]} = \\dfrac{x - [[c]]}{(x-[[c]])\\left(\\sqrt{x+[[a]]}+[[k]]\\right)} = \\dfrac{1}{\\sqrt{x+[[a]]}+[[k]]} \\to \\dfrac{1}{2\\cdot[[k]]} = [[answer]] \\).",
  "distractor_rationales": [
-  "This drops the factor of 2 in the denominator \\( 2[[k]] \\).",
+  "This drops the factor of 2 in the denominator \\( 2\\cdot[[k]] \\).",
   "This inverts the correct value.",
-  "This halves \\( [[k]] \\) instead of forming \\( 2[[k]] \\) in the denominator.",
+  "This halves \\( [[k]] \\) instead of forming \\( 2\\cdot[[k]] \\) in the denominator.",
   "This has the correct magnitude but the wrong sign.",
   "This is off by one from the correct limit.",
   "This is off by one from the correct limit."

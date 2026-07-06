@@ -61,7 +61,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "A translation does not change the Jacobian, so \\(dA = |J|\\,du\\,dv\\) with \\(|J| = |[[a]][[d]]-[[b]][[c]]|\\) as before. Substituting the full affine expressions for \\(x\\) and \\(y\\) into \\(xy\\) and integrating the resulting polynomial in \\(u,v\\) over the rectangle gives \\([[answer]]\\); note the translation constants \\([[e]]\\) and \\([[f]]\\) do NOT drop out of the product the way they would from a purely linear (sum) integrand.",
+  "solution": "A translation does not change the Jacobian, so \\(dA = |J|\\,du\\,dv\\) with \\(|J| = |[[a]]\\cdot[[d]]-[[b]]\\cdot[[c]]|\\) as before. Substituting the full affine expressions for \\(x\\) and \\(y\\) into \\(xy\\) and integrating the resulting polynomial in \\(u,v\\) over the rectangle gives \\([[answer]]\\); note the translation constants \\([[e]]\\) and \\([[f]]\\) do NOT drop out of the product the way they would from a purely linear (sum) integrand.",
   "distractor_rationales": [
    "This evaluates the integrand only at the corner \\((u,v)=([[p]],[[q]])\\) and multiplies by the rectangle's area, instead of integrating the polynomial.",
    "This keeps only the constant term \\(ef\\) of the product \\(xy\\), dropping every term that involves \\(u\\) or \\(v\\).",
@@ -96,7 +96,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "The area of the image scales by the Jacobian: \\( \\iint_D 1\\,dA = |J|\\cdot(\\text{area of the } uv\\text{-rectangle}) = |[[a]][[d]]-[[b]][[c]]|\\cdot [[p]] \\cdot [[q]] = [[answer]] \\).",
+  "solution": "The area of the image scales by the Jacobian: \\( \\iint_D 1\\,dA = |J|\\cdot(\\text{area of the } uv\\text{-rectangle}) = |[[a]]\\cdot[[d]]-[[b]]\\cdot[[c]]|\\cdot [[p]] \\cdot [[q]] = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the Jacobian factor entirely, reporting the area of the original rectangle instead of its image.",
    "This uses the signed Jacobian instead of its absolute value.",
@@ -129,7 +129,7 @@
    "[[answer]] - 2",
    "[[answer]] + 3"
   ],
-  "solution": "First substitute \\(x+y=([[a]]+[[c]])u+([[b]]+[[d]])v\\) and \\(dA=|J|\\,du\\,dv\\) with \\(|J|=|[[a]][[d]]-[[b]][[c]]|\\) as usual; then integrate over the TRIANGLE \\(0\\le v\\le u\\le [[p]]\\) in the \\(uv\\)-plane (not a rectangle): \\( |J|\\int_0^{[[p]]}\\int_0^u \\left(([[a]]+[[c]])u+([[b]]+[[d]])v\\right)dv\\,du = [[answer]] \\).",
+  "solution": "First substitute \\(x+y=([[a]]+[[c]])u+([[b]]+[[d]])v\\) and \\(dA=|J|\\,du\\,dv\\) with \\(|J|=|[[a]]\\cdot[[d]]-[[b]]\\cdot[[c]]|\\) as usual; then integrate over the TRIANGLE \\(0\\le v\\le u\\le [[p]]\\) in the \\(uv\\)-plane (not a rectangle): \\( |J|\\int_0^{[[p]]}\\int_0^u \\left(([[a]]+[[c]])u+([[b]]+[[d]])v\\right)dv\\,du = [[answer]] \\).",
   "distractor_rationales": [
    "This uses the wrong power of \\([[p]]\\) (as if integrating over a 3-dimensional region), from mishandling the nested triangular bounds.",
    "This treats the triangle as if it were the full square \\(0\\le u,v\\le [[p]]\\) rescaled, forgetting the triangle is only half that area's worth of contribution.",
@@ -161,7 +161,7 @@
    "[[answer]] - 2*pi",
    "[[answer]] + 3*pi"
   ],
-  "solution": "The Jacobian of \\(x=[[A]]u,\\ y=[[B]]v\\) is \\([[A]][[B]]\\) (constant), so \\( \\iint_D 1\\,dA = [[A]][[B]]\\iint_{u^2+v^2\\le1} 1\\,du\\,dv = [[A]][[B]]\\cdot\\pi = [[answer]] \\), the familiar ellipse-area formula \\(\\pi ab\\).",
+  "solution": "The Jacobian of \\(x=[[A]]u,\\ y=[[B]]v\\) is \\([[A]]\\cdot[[B]]\\) (constant), so \\( \\iint_D 1\\,dA = [[A]]\\cdot[[B]]\\iint_{u^2+v^2\\le1} 1\\,du\\,dv = [[A]]\\cdot[[B]]\\cdot\\pi = [[answer]] \\), the familiar ellipse-area formula \\(\\pi ab\\).",
   "distractor_rationales": [
    "This squares both semi-axes, mistaking this for a scaling of area by \\((AB)^2\\) rather than \\(AB\\).",
    "This uses the average of \\(A\\) and \\(B\\) squared, an unrelated formula for the area of a circle of the 'average' radius.",

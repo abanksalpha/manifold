@@ -89,7 +89,7 @@
   "[[answer]] - 1",
   "[[answer]] + 4"
  ],
- "solution": "Since \\( \\det(A) = [[a]]\\cdot[[d]] \\) (the product of the eigenvalues) and determinant is multiplicative, \\( \\det(A^{[[n]]}) = \\det(A)^{[[n]]} = ([[a]][[d]])^{[[n]]} = [[answer]] \\).",
+ "solution": "Since \\( \\det(A) = [[a]]\\cdot[[d]] \\) (the product of the eigenvalues) and determinant is multiplicative, \\( \\det(A^{[[n]]}) = \\det(A)^{[[n]]} = ([[a]]\\cdot[[d]])^{[[n]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This adds the eigenvalues' powers (that would relate to a trace), instead of raising their product to the \\( n \\)-th power.",
   "This multiplies \\( \\det(A) \\) by \\( n \\) instead of raising it to the \\( n \\)-th power.",

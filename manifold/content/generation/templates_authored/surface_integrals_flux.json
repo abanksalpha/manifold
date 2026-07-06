@@ -121,7 +121,7 @@
   "[[answer]] + pi",
   "[[answer]] - pi"
  ],
- "solution": "Parametrize the sphere by \\( x=[[R]]\\sin\\phi\\cos\\theta,\\; y=[[R]]\\sin\\phi\\sin\\theta,\\; z=[[R]]\\cos\\phi \\), with outward normal \\( \\mathbf{n}=(x,y,z)/[[R]] \\) and \\( dS=[[R]]^{2}\\sin\\phi\\,d\\phi\\,d\\theta \\). Since \\( \\mathbf{F}\\cdot\\mathbf{n} = [[k]](x,y,z)\\cdot(x,y,z)/[[R]] = [[k]][[R]] \\) (constant, because \\( x^2+y^2+z^2=[[R]]^2 \\) on the sphere), the flux is \\( \\displaystyle\\int_0^{2\\pi}\\int_0^{\\pi} [[k]][[R]]\\cdot[[R]]^{2}\\sin\\phi\\,d\\phi\\,d\\theta = [[answer]] \\).",
+ "solution": "Parametrize the sphere by \\( x=[[R]]\\sin\\phi\\cos\\theta,\\; y=[[R]]\\sin\\phi\\sin\\theta,\\; z=[[R]]\\cos\\phi \\), with outward normal \\( \\mathbf{n}=(x,y,z)/[[R]] \\) and \\( dS=[[R]]^{2}\\sin\\phi\\,d\\phi\\,d\\theta \\). Since \\( \\mathbf{F}\\cdot\\mathbf{n} = [[k]](x,y,z)\\cdot(x,y,z)/[[R]] = [[k]]\\cdot[[R]] \\) (constant, because \\( x^2+y^2+z^2=[[R]]^2 \\) on the sphere), the flux is \\( \\displaystyle\\int_0^{2\\pi}\\int_0^{\\pi} [[k]]\\cdot[[R]]\\cdot[[R]]^{2}\\sin\\phi\\,d\\phi\\,d\\theta = [[answer]] \\).",
  "distractor_rationales": [
   "This has the sign of the flux reversed.",
   "This mistakes the flux integral for the sphere's VOLUME formula \\( \\tfrac43\\pi R^3 \\) times \\( k \\), rather than integrating \\( \\mathbf{F}\\cdot\\mathbf{n}\\,dS \\).",

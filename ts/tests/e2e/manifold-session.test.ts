@@ -15,7 +15,7 @@
 // deliberately-unverifiable draft so the honest abstain path can be asserted
 // directly against the endpoint.
 
-import { expect, test } from "./fixtures";
+import { expect, reachAttempt, test } from "./fixtures";
 
 test("manifold session generates, verifies, serves and grades a problem live", async ({ page }) => {
     await page.goto("/manifold-session");
@@ -25,8 +25,9 @@ test("manifold session generates, verifies, serves and grades a problem live", a
     // The placeholder era is over: no generic "A problem about <skill>" wrapper.
     await expect(page.getByText("A problem about")).toHaveCount(0);
 
-    // The first step is generated live. It shows the honest "generating" state and
-    // then a real, verified problem (the fixture default verifies through verify.py).
+    // The first step is a New skill, so it opens the teaching ladder (predict then
+    // worked example) before the attempt; advance through it to the live problem.
+    await reachAttempt(page);
     const problem = page.locator(".mf-card:not(.mf-abstain):not(.mf-generating)");
     await expect(problem).toBeVisible({ timeout: 30000 });
 
@@ -73,8 +74,8 @@ test("manifold session generates, verifies, serves and grades a problem live", a
 test("the answered problem persists across a dashboard round-trip, then grading resumes", async ({ page }) => {
     await page.goto("/manifold-session");
 
-    const problem = page.locator(".mf-card:not(.mf-abstain):not(.mf-generating)");
-    await expect(problem).toBeVisible({ timeout: 30000 });
+    // Advance the New-skill teaching ladder to the attempt (a fresh instance).
+    await reachAttempt(page);
 
     // Capture the exact problem the learner is on, then answer it so we are in the
     // revealed state with the worked solution and Continue shown.
@@ -106,8 +107,7 @@ test("the answered problem persists across a dashboard round-trip, then grading 
     // revived from the bigint-tagged snapshot, and grade it: the write must land,
     // proving the card id round-tripped through JSON and back into gradeNow.
     await page.getByRole("button", { name: "Continue" }).click();
-    const next = page.locator(".mf-card:not(.mf-abstain):not(.mf-generating)");
-    await expect(next).toBeVisible({ timeout: 30000 });
+    await reachAttempt(page);
     await page.getByRole("button", { name: "Answer A" }).click();
     await expect(page.locator(".mf-feedback")).toBeVisible();
     await expect(page.locator(".mf-error")).toHaveCount(0);
@@ -174,9 +174,8 @@ test("manifold hint assistant answers a question without revealing the answer", 
 
     // Now drive it through the UI on a live problem. The hint assistant is offered on
     // New / Guided / Revisit, but never on a cold Independent problem, so the toggle's
-    // presence must match the served level.
-    const problem = page.locator(".mf-card:not(.mf-abstain):not(.mf-generating)");
-    await expect(problem).toBeVisible({ timeout: 30000 });
+    // presence must match the served level. Advance any teaching ladder to the attempt.
+    await reachAttempt(page);
 
     const level = ((await page.locator(".mf-level").first().textContent()) ?? "").trim();
     const toggle = page.getByRole("button", { name: "Ask for a hint" });

@@ -205,7 +205,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The elements equivalent to [[r]] are \\( [[r]], [[r]]+[[k]], [[r]]+2[[k]], \\dots \\) up to [[n]]; there are \\( \\left\\lfloor \\dfrac{[[n]]-[[r]]}{[[k]]} \\right\\rfloor + 1 = [[answer]] \\) of them.",
+  "solution": "The elements equivalent to [[r]] are \\( [[r]], [[r]]+[[k]], [[r]]+2\\cdot[[k]], \\dots \\) up to [[n]]; there are \\( \\left\\lfloor \\dfrac{[[n]]-[[r]]}{[[k]]} \\right\\rfloor + 1 = [[answer]] \\) of them.",
   "distractor_rationales": [
    "This ignores the offset \\( r \\) and just counts multiples of \\( k \\) up to \\( n \\).",
    "This confuses the class SIZE with the number of classes (the modulus itself).",

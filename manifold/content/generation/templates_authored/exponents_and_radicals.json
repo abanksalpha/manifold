@@ -168,7 +168,7 @@
    "n": {"type": "int", "lo": 1, "hi": 6}
   },
   "constraints": [],
-  "stem": "Evaluate \\( \\sqrt{[[b]]^{2[[n]]}} \\).",
+  "stem": "Evaluate \\( \\sqrt{[[b]]^{2\\cdot[[n]]}} \\).",
   "answer_spec": {"op": "evaluate", "expr": "sqrt([[b]]**(2*[[n]]))"},
   "distractors": [
    "[[b]]**[[n]] / 2",
@@ -178,7 +178,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since the exponent \\( 2[[n]] \\) is even and \\( [[b]] > 0 \\), \\( \\sqrt{[[b]]^{2[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
+  "solution": "Since the exponent \\( 2\\cdot[[n]] \\) is even and \\( [[b]] > 0 \\), \\( \\sqrt{[[b]]^{2\\cdot[[n]]}} = [[b]]^{[[n]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This halves the whole power instead of halving just the exponent.",
    "This leaves the expression unrooted, forgetting the square root entirely.",
@@ -240,7 +240,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since \\( \\sqrt{[[a]]}\\cdot\\sqrt{[[b]]} = \\sqrt{[[a]][[b]]} \\) and \\( [[a]][[b]] = [[c]]^{2}[[d]]^{2}[[e]]^{2} \\) is a perfect square, this simplifies to \\( [[c]]\\cdot[[d]]\\cdot[[e]] = [[answer]] \\).",
+  "solution": "Since \\( \\sqrt{[[a]]}\\cdot\\sqrt{[[b]]} = \\sqrt{[[a]]\\cdot[[b]]} \\) and \\( [[a]]\\cdot[[b]] = [[c]]^{2}[[d]]^{2}[[e]]^{2} \\) is a perfect square, this simplifies to \\( [[c]]\\cdot[[d]]\\cdot[[e]] = [[answer]] \\).",
   "distractor_rationales": [
    "This adds the two radicands instead of multiplying the radicals.",
    "This takes the square root of the SUM of the radicands rather than the product.",

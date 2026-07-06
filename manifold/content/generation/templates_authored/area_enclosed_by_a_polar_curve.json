@@ -134,7 +134,7 @@
   "pi*(2*[[a]]**2+[[b]]**2)/2 + 1",
   "pi*(2*[[a]]**2+[[b]]**2)/2 - 1"
  ],
- "solution": "\\( \\frac{1}{2}\\int_0^{2\\pi}([[a]]+[[b]]\\cos\\theta)^{2}d\\theta=\\frac{\\pi(2[[a]]^{2}+[[b]]^{2})}{2}=[[answer]] \\).",
+ "solution": "\\( \\frac{1}{2}\\int_0^{2\\pi}([[a]]+[[b]]\\cos\\theta)^{2}d\\theta=\\frac{\\pi(2\\cdot[[a]]^{2}+[[b]]^{2})}{2}=[[answer]] \\).",
  "distractor_rationales": [
   "This ignores the \\( b\\cos\\theta \\) term entirely, using only the circle of radius \\( a \\).",
   "This drops the cross-term contribution, treating the area as if \\( a \\) and \\( b \\) were independent circles.",
@@ -170,7 +170,7 @@
   "pi*[[a]]**2/(4*[[k]]) + 1",
   "pi*[[a]]**2/(4*[[k]]) - 1"
  ],
- "solution": "\\( \\frac{1}{2}\\int_0^{\\pi/[[k]]}[[a]]^{2}\\sin^{2}([[k]]\\theta)\\,d\\theta=\\frac{\\pi [[a]]^{2}}{4[[k]]}=[[answer]] \\).",
+ "solution": "\\( \\frac{1}{2}\\int_0^{\\pi/[[k]]}[[a]]^{2}\\sin^{2}([[k]]\\theta)\\,d\\theta=\\frac{\\pi [[a]]^{2}}{4\\cdot[[k]]}=[[answer]] \\).",
  "distractor_rationales": [
   "This uses the full-rose sweep \\( [0,\\pi] \\) instead of one petal's range.",
   "This drops the \\( \\tfrac12 \\) factor from the area formula.",

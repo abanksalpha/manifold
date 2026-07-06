@@ -170,7 +170,12 @@ impl Collection {
         })
     }
 
-    pub fn grade_now(&mut self, cids: &[CardId], rating: i32) -> Result<OpOutput<()>> {
+    pub fn grade_now(
+        &mut self,
+        cids: &[CardId],
+        rating: i32,
+        milliseconds_taken: u32,
+    ) -> Result<OpOutput<()>> {
         self.transact(Op::GradeNow, |col| {
             for &card_id in cids {
                 let states = col.get_scheduling_states(card_id)?;
@@ -186,7 +191,7 @@ impl Collection {
                     current_state: Some(states.current.into()),
                     new_state: Some(new_state.into()),
                     rating,
-                    milliseconds_taken: 0,
+                    milliseconds_taken,
                     answered_at_millis: TimestampMillis::now().into(),
                 }
                 .into();

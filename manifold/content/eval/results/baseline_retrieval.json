@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-07-05T19:47:18.818484+00:00",
+  "eval": "baseline_retrieval",
+  "assignment_requirement": "ASSIGN Friday (~line 126): a side-by-side showing the AI beats a simpler method (keyword or vector search).",
+  "pre_declared": {
+    "declared_before_run": true,
+    "task": "deliver a CORRECT, ON-SKILL exam-style MCQ for a given target skill",
+    "primary_metric": "wrong_answer_rate = fraction of DELIVERED items that FAIL the ground-truth check (verify.py deterministic recompute + serve_live arithmetic guard + independent_solve blind cross-solve)",
+    "secondary_metric": "off_skill_rate = fraction of DELIVERED items whose skill_id != target skill_id",
+    "ground_truth": "one identical judge applied to every delivered item; no LLM in the correctness path except the independent blind solver (signal = disagreement with label)",
+    "cutoff_hypothesis": "Manifold's wrong_answer_rate is STRICTLY LOWER than BOTH the keyword and vector retrieval baselines (expected ~0 for Manifold by the gate); and Manifold's off_skill_rate is 0 vs some for retrieval"
+  },
+  "sample": {
+    "live_tiers": [
+      "relearn",
+      "recognize"
+    ],
+    "pool_skills": 12,
+    "drafts_per_skill": 2,
+    "pool_items_assembled": 23,
+    "pool_generation_outcomes": {
+      "assembled": 23,
+      "gen_error": 8
+    },
+    "target_skills": 12,
+    "targets_in_pool": 6,
+    "targets_out_of_pool": 6,
+    "cross_solve_samples": 2,
+    "manifold_max_attempts_per_target": 6,
+    "embed_model": "text-embedding-3-small",
+    "seed": 1234
+  },
+  "pool_base_rate": {
+    "description": "correctness of the raw assembled pool (what BOTH retrieval baselines draw from); measured with the same judge",
+    "correct": 8,
+    "wrong": 15,
+    "wrong_rate": 0.652
+  },
+  "methods": {
+    "keyword_tfidf": {
+      "description": "pure-Python TF-IDF cosine over pool item text; nearest to the target skill query. No verification (a simpler method just retrieves).",
+      "n_targets": 12,
+      "n_delivered": 12,
+      "delivery_rate": 1.0,
+      "wrong_answer_rate": 0.917,
+      "wrong_delivered": 11,
+      "off_skill_rate": 0.5,
+      "off_skill_delivered": 6,
+      "correct_on_skill_rate_over_all_targets": 0.083,
+      "correct_on_skill_count": 1
+    },
+    "vector_embeddings": {
+      "description": "OpenAI text-embedding-3-small cosine over the same pool + same query. No verification.",
+      "n_targets": 12,
+      "n_delivered": 12,
+      "delivery_rate": 1.0,
+      "wrong_answer_rate": 0.917,
+      "wrong_delivered": 11,
+      "off_skill_rate": 0.5,
+      "off_skill_delivered": 6,
+      "correct_on_skill_rate_over_all_targets": 0.083,
+      "correct_on_skill_count": 1
+    },
+    "manifold_gate": {
+      "description": "generate for the target; deliver ONLY items passing verify + deterministic arithmetic guard + blind cross-solve (what Manifold serves).",
+      "raw_candidates_judged": 42,
+      "rejected_by_gate": 34,
+      "gen_error_drafts": 13,
+      "needs_curation_drafts": 1,
+      "n_targets": 12,
+      "n_delivered": 8,
+      "delivery_rate": 0.667,
+      "wrong_answer_rate": 0.0,
+      "wrong_delivered": 0,
+      "off_skill_rate": 0.0,
+      "off_skill_delivered": 0,
+      "correct_on_skill_rate_over_all_targets": 0.667,
+      "correct_on_skill_count": 8
+    }
+  },
+  "head_to_head": {
+    "manifold_vs_keyword": {
+      "wrong_answer_rate": {
+        "manifold": 0.0,
+        "keyword": 0.917,
+        "manifold_lower_by": 0.917
+      },
+      "off_skill_rate": {
+        "manifold": 0.0,
+        "keyword": 0.5,
+        "manifold_lower_by": 0.5
+      }
+    },
+    "manifold_vs_vector": {
+      "wrong_answer_rate": {
+        "manifold": 0.0,
+        "vector": 0.917,
+        "manifold_lower_by": 0.917
+      },
+      "off_skill_rate": {
+        "manifold": 0.0,
+        "vector": 0.5,
+        "manifold_lower_by": 0.5
+      }
+    }
+  },
+  "conclusion": {
+    "manifold_beats_both_baselines_on_wrong_answer_rate": true,
+    "statement": "Manifold's verify+cross-solve gate delivered 0/8 wrong items (wrong_answer_rate=0.0), vs keyword 11/12 (0.917) and vector 11/12 (0.917). Retrieval has no correctness gate, so it ships the pool's wrong items; Manifold rejects them and abstains rather than serve an unverified item."
+  },
+  "limits": [
+    "Small, bounded sample (API cost/time): the exact rates are estimates, but the gap is large and consistent with results/ai_card_check.json (raw generation ~50% wrong).",
+    "Retrieval quality depends on the pool: a bigger/curated pool would raise retrieval's on-skill hit rate, but NOT its correctness \u2014 an unverified retriever still ships the pool's wrong items, which is the measured failure.",
+    "Half the targets are intentionally absent from the pool to measure retrieval's off-skill failure when a skill isn't represented; the in-pool half shows the on-skill-but-unverified failure. Manifold generates for the exact target, so it is on-skill by construction.",
+    "Manifold trades coverage for correctness: it may ABSTAIN on a target (delivery_rate < 1.0), where retrieval always returns something. correct_on_skill_rate_over_all_targets scores that trade-off honestly (abstention counts against Manifold).",
+    "Manifold's wrong_answer_rate is ~0 because its delivery gate IS the ground-truth check; that is the point of the comparison (the baselines cannot do this), and the judge is still RUN on every delivered item, not asserted.",
+    "Generation and blind cross-solve are LLM calls: the fixed --seed pins the skill sample and answer-slot placement, not the model outputs, so rerunning gives similar but not identical rates.",
+    "API-call counts are logical calls (one chat/embeddings request each); independent_solve's internal transient retries may add a few uncounted HTTP requests."
+  ],
+  "api_calls": {
+    "generation_calls": 87,
+    "cross_solve_calls": 64,
+    "embedding_calls": 2,
+    "total": 153
+  },
+  "elapsed_s": 216.9
+}

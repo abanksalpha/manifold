@@ -85,7 +85,7 @@
    "-[[answer]]",
    "[[answer]]/[[a]]"
   ],
-  "solution": "Since \\( F(0) = 0 \\), \\( F([[m]]) = \\int_{0}^{[[m]]} [[c]]e^{[[a]]x}\\,dx = \\left[\\dfrac{[[c]]}{[[a]]}e^{[[a]]x}\\right]_{0}^{[[m]]} = \\dfrac{[[c]]}{[[a]]}\\left(e^{[[a]][[m]]} - 1\\right) = [[answer]] \\).",
+  "solution": "Since \\( F(0) = 0 \\), \\( F([[m]]) = \\int_{0}^{[[m]]} [[c]]e^{[[a]]x}\\,dx = \\left[\\dfrac{[[c]]}{[[a]]}e^{[[a]]x}\\right]_{0}^{[[m]]} = \\dfrac{[[c]]}{[[a]]}\\left(e^{[[a]]\\cdot[[m]]} - 1\\right) = [[answer]] \\).",
   "distractor_rationales": [
    "This evaluates \\( f([[m]]) \\), the integrand at \\( [[m]] \\), instead of the antiderivative.",
    "This multiplies by \\( [[a]] \\) instead of dividing by it.",
@@ -117,7 +117,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Differentiate term by term: \\( f(x) = F'(x) = 4[[a]]x^{3} + 3[[b]]x^{2} + 2[[c]]x \\). At \\( x = [[x0]] \\), \\( f([[x0]]) = 4([[a]])([[x0]])^{3} + 3([[b]])([[x0]])^{2} + 2([[c]])([[x0]]) = [[answer]] \\).",
+  "solution": "Differentiate term by term: \\( f(x) = F'(x) = 4\\cdot[[a]]x^{3} + 3\\cdot[[b]]x^{2} + 2\\cdot[[c]]x \\). At \\( x = [[x0]] \\), \\( f([[x0]]) = 4([[a]])([[x0]])^{3} + 3([[b]])([[x0]])^{2} + 2([[c]])([[x0]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This evaluates \\( F([[x0]]) \\) itself rather than differentiating first.",
    "This drops the \\( 3 \\) coefficient on the \\( x^{3} \\) term's derivative.",

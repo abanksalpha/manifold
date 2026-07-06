@@ -180,7 +180,7 @@
   "[[answer]] + 1",
   "-[[answer]]"
  ],
- "solution": "With \\( u=\\sqrt{x} \\), \\( \\dfrac{dx}{\\sqrt{x}} = 2\\,du \\), so the integral becomes \\( 2[[c]]\\displaystyle\\int_{0}^{[[a]]}(1+u)^{[[n]]}\\,du = \\dfrac{2[[c]]}{[[n]]+1}\\left((1+[[a]])^{[[n]]+1} - 1\\right) = [[answer]] \\).",
+ "solution": "With \\( u=\\sqrt{x} \\), \\( \\dfrac{dx}{\\sqrt{x}} = 2\\,du \\), so the integral becomes \\( 2\\cdot[[c]]\\displaystyle\\int_{0}^{[[a]]}(1+u)^{[[n]]}\\,du = \\dfrac{2\\cdot[[c]]}{[[n]]+1}\\left((1+[[a]])^{[[n]]+1} - 1\\right) = [[answer]] \\).",
  "distractor_rationales": [
   "This drops the factor of 2 that comes from \\( dx/\\sqrt{x}=2\\,du \\).",
   "This uses the value at the upper limit alone without integrating (a plug-in error), and drops the 1/(n+1) scaling.",

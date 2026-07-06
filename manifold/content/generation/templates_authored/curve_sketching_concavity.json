@@ -22,12 +22,12 @@
   "[[answer]] + 2",
   "[[answer]] - 2"
  ],
- "solution": "\\( f'(x)=3[[a]]x^{2}+2[[b]]x+[[c]] \\), and \\( f''(x)=6[[a]]x+2[[b]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "solution": "\\( f'(x)=3\\cdot[[a]]x^{2}+2\\cdot[[b]]x+[[c]] \\), and \\( f''(x)=6\\cdot[[a]]x+2\\cdot[[b]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( f'([[x0]]) \\), the first derivative (slope), not the second derivative.",
-  "This drops the factor of 2 on the constant term \\( 2[[b]] \\) of \\( f'' \\).",
+  "This drops the factor of 2 on the constant term \\( 2\\cdot[[b]] \\) of \\( f'' \\).",
   "This evaluates \\( f([[x0]]) \\), the function value, not its second derivative.",
-  "This omits the constant term \\( 2[[b]] \\) of \\( f'' \\) entirely, keeping only the \\( x \\)-dependent part's coefficient.",
+  "This omits the constant term \\( 2\\cdot[[b]] \\) of \\( f'' \\) entirely, keeping only the \\( x \\)-dependent part's coefficient.",
   "This is off by two from the correct value.",
   "This is off by two from the correct value."
  ]
@@ -52,7 +52,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "\\( C''(x) = 6[[a]]x + 2([[p]]) \\), which is zero (and changes sign) at \\( x = -\\dfrac{[[p]]}{3[[a]]} = [[answer]] \\).",
+ "solution": "\\( C''(x) = 6\\cdot[[a]]x + 2([[p]]) \\), which is zero (and changes sign) at \\( x = -\\dfrac{[[p]]}{3\\cdot[[a]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This drops the factor of 3 in the denominator, using \\( C'(x) \\)'s structure instead of \\( C''(x) \\)'s.",
   "This has the wrong sign on the inflection point.",
@@ -82,7 +82,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "\\( f'(x)=1-\\dfrac{[[a]]}{x^{2}} \\), and \\( f''(x)=\\dfrac{2[[a]]}{x^{3}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
+ "solution": "\\( f'(x)=1-\\dfrac{[[a]]}{x^{2}} \\), and \\( f''(x)=\\dfrac{2\\cdot[[a]]}{x^{3}} \\). Evaluating at \\( x=[[x0]] \\) gives \\( [[answer]] \\).",
  "distractor_rationales": [
   "This is \\( f'([[x0]]) \\), the first derivative, not the second.",
   "This has the wrong sign and power, mixing up the first-derivative structure.",

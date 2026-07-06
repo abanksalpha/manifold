@@ -91,7 +91,7 @@
    "[[answer]] + [[k]]",
    "[[answer]] - [[k]]"
   ],
-  "solution": "\\( f'(x) = [[a]][[k]]e^{[[k]]x} \\), so \\( f'(0) = [[a]][[k]]e^{0} = [[answer]] \\).",
+  "solution": "\\( f'(x) = [[a]]\\cdot[[k]]e^{[[k]]x} \\), so \\( f'(0) = [[a]]\\cdot[[k]]e^{0} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to multiply by the chain-rule factor \\( k \\).",
    "This squares \\( k \\) instead of using it as a single linear factor.",
@@ -154,7 +154,7 @@
    "[[answer]] + [[c]]",
    "[[answer]] - [[c]]"
   ],
-  "solution": "\\( f'(x) = [[c]][[b]]^{x}\\ln([[b]]) \\), so \\( f'(0) = [[c]]\\cdot [[b]]^{0}\\cdot\\ln([[b]]) = [[c]]\\ln([[b]]) = [[answer]] \\).",
+  "solution": "\\( f'(x) = [[c]]\\cdot[[b]]^{x}\\ln([[b]]) \\), so \\( f'(0) = [[c]]\\cdot [[b]]^{0}\\cdot\\ln([[b]]) = [[c]]\\ln([[b]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This reports \\( f(0)=c \\) itself, forgetting the factor of \\( \\ln(b) \\) entirely.",
    "This multiplies by \\( b \\) instead of by \\( \\ln(b) \\).",

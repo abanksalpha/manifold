@@ -23,7 +23,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]x^{2}([[y0]]) + [[b]]x([[y0]])^{2} + [[c]]x + [[d]]([[y0]]) \\), so \\( f_x(x,[[y0]]) = 2[[a]]([[y0]])x + [[b]]([[y0]])^{2} + [[c]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_x([[x0]],[[y0]]) = [[answer]] \\).",
+  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]x^{2}([[y0]]) + [[b]]x([[y0]])^{2} + [[c]]x + [[d]]([[y0]]) \\), so \\( f_x(x,[[y0]]) = 2\\cdot[[a]]([[y0]])x + [[b]]([[y0]])^{2} + [[c]] \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_x([[x0]],[[y0]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This is \\( f([[x0]],[[y0]]) \\), the function value, not the partial derivative.",
    "This is \\( f_y([[x0]],[[y0]]) \\), the partial with respect to \\( y \\), not \\( x \\).",
@@ -188,7 +188,7 @@
    "[[answer]] + 4",
    "[[answer]] - 4"
   ],
-  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]([[y0]])x^{3} + [[b]]([[y0]])^{2}x^{2} + [[c]]([[y0]])x \\), so \\( f_x(x,[[y0]]) = 3[[a]]([[y0]])x^{2} + 2[[b]]([[y0]])^{2}x + [[c]]([[y0]]) \\) and \\( f_{xx}(x,[[y0]]) = 6[[a]]([[y0]])x + 2[[b]]([[y0]])^{2} \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_{xx}([[x0]],[[y0]]) = [[answer]] \\).",
+  "solution": "Holding \\( y=[[y0]] \\) fixed, \\( f(x,[[y0]]) = [[a]]([[y0]])x^{3} + [[b]]([[y0]])^{2}x^{2} + [[c]]([[y0]])x \\), so \\( f_x(x,[[y0]]) = 3\\cdot[[a]]([[y0]])x^{2} + 2\\cdot[[b]]([[y0]])^{2}x + [[c]]([[y0]]) \\) and \\( f_{xx}(x,[[y0]]) = 6\\cdot[[a]]([[y0]])x + 2\\cdot[[b]]([[y0]])^{2} \\). Evaluating at \\( x=[[x0]] \\) gives \\( f_{xx}([[x0]],[[y0]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This is \\( f_x([[x0]],[[y0]]) \\), the first partial derivative, not the second.",
    "This is \\( f([[x0]],[[y0]]) \\), the function value, not a derivative.",

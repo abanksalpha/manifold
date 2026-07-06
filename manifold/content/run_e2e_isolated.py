@@ -51,6 +51,11 @@ NODE_BIN = OUT / "extracted" / "node" / "bin"
 PLAYWRIGHT_CLI = REPO_ROOT / "node_modules" / "playwright" / "cli.js"
 BROWSERS = OUT / "playwright-browsers"
 LOG_DIR = OUT / "manifold-e2e"
+FIREBASE_DIR = REPO_ROOT / "manifold" / "firebase"
+# The Auth emulator port (from manifold/firebase/firebase.json). firebase.ts points
+# the webview's Firebase Auth here when the e2e flag is set, then signs in
+# anonymously so the app's mandatory Google-login gate resolves headlessly.
+AUTH_EMULATOR_PORT = 9399
 
 # In-process seeding needs the built pylib (the generated `anki` package plus
 # its compiled rsbridge backend) and the seed importer on the path. The prefs
@@ -62,11 +67,16 @@ sys.path.insert(0, str(REPO_ROOT / "qt" / "tests"))
 import import_seed  # noqa: E402
 from launch_anki_for_e2e import TEST_PROFILE, _seed_prefs  # noqa: E402
 
-# The three Manifold specs, run one at a time each against its own fresh seed.
+# The Manifold specs, run one at a time each against its own fresh seed. The
+# scaffold spec grades a card to force a Guided (level 1) item, so like the
+# session spec it needs its own freshly-seeded collection, not a shared one.
 SPECS = [
     "ts/tests/e2e/manifold.test.ts",
     "ts/tests/e2e/manifold-dashboard.test.ts",
     "ts/tests/e2e/manifold-session.test.ts",
+    "ts/tests/e2e/manifold-scaffold.test.ts",
+    "ts/tests/e2e/align-scaffold.test.ts",
+    "ts/tests/e2e/manifold-onboarding.test.ts",
 ]
 
 
@@ -77,8 +87,13 @@ def free_port() -> int:
         return sock.getsockname()[1]
 
 
-def seed_collection(base: Path) -> tuple[int, int]:
-    """Create and seed <base>/test/collection.anki2, returning (added, skipped)."""
+def seed_collection(base: Path, mark_onboarded: bool = True) -> tuple[int, int]:
+    """Create and seed <base>/test/collection.anki2, returning (added, skipped).
+
+    `mark_onboarded` sets the onboarding-done flag so the home opens on the
+    dashboard: the returning-user state every spec except the onboarding one
+    assumes. The onboarding spec passes False to exercise the fresh-user redirect.
+    """
     from anki.collection import Collection
 
     profile_dir = base / TEST_PROFILE
@@ -87,6 +102,8 @@ def seed_collection(base: Path) -> tuple[int, int]:
     col = Collection(str(collection_path))
     try:
         added, skipped = import_seed.import_seed(col)
+        if mark_onboarded:
+            col.set_config("manifoldOnboardingDone", True)
     finally:
         col.close()
     return sum(added.values()), sum(skipped.values())
@@ -103,6 +120,12 @@ def launch_anki(base: Path, port: int, log_path: Path):
         # (the documented e2e escape hatch); binds mediasrv on all interfaces.
         "ANKI_API_HOST": "0.0.0.0",
         "ANKIDEV": "1",
+        # Hermetic: the fixtures below replace every model call, so the e2e must
+        # never use a real key. serve_live.py auto-loads the repo .env, so an
+        # empty value here (a real env var always wins over .env) neutralizes it:
+        # a fixture-miss then abstains honestly instead of making a slow,
+        # non-deterministic real API call that also starves the machine.
+        "OPENAI_API_KEY": "",
         # Manifold serves every problem via live generation (D44). For a hermetic,
         # offline, free e2e we inject a fixtures test double: it replaces ONLY the
         # model call, so serve_live.py still runs verify.py in the loop and every
@@ -204,36 +227,88 @@ def teardown(proc: subprocess.Popen, log) -> None:
         log.close()
 
 
+def launch_auth_emulator():
+    """Start the Firebase Auth emulator (Node-based, no JRE needed) for the whole run.
+
+    The Manifold app gates every route on Google sign-in. firebase.ts, in e2e mode,
+    points Firebase Auth at 127.0.0.1:AUTH_EMULATOR_PORT and signs in anonymously,
+    so that gate resolves without interactive OAuth. Only `auth` is started: the
+    Firestore emulator needs a JRE, and the e2e does not require it — onboarding
+    completion is the local Anki collection flag, not Firestore.
+    """
+    log_path = LOG_DIR / "auth-emulator.log"
+    log = open(log_path, "w", encoding="utf-8")
+    proc = subprocess.Popen(
+        ["firebase", "emulators:start", "--only", "auth", "--project", "manifold-gre"],
+        cwd=str(FIREBASE_DIR),
+        stdout=log,
+        stderr=subprocess.STDOUT,
+        start_new_session=True,
+    )
+    return proc, log
+
+
+def wait_auth_emulator(proc: subprocess.Popen, timeout: float = 60.0) -> None:
+    """Block until the Auth emulator answers on its port, or fail loudly."""
+    url = f"http://127.0.0.1:{AUTH_EMULATOR_PORT}/"
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        if proc.poll() is not None:
+            raise RuntimeError(
+                f"firebase auth emulator exited early with code {proc.returncode}; "
+                f"see {LOG_DIR / 'auth-emulator.log'}"
+            )
+        try:
+            with urllib.request.urlopen(url, timeout=2):
+                return
+        except Exception:
+            time.sleep(0.5)
+    raise TimeoutError(
+        f"auth emulator did not answer on port {AUTH_EMULATOR_PORT} within {timeout:.0f}s"
+    )
+
+
 def main() -> int:
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     # The session spec saves a screenshot here; make sure the dir exists.
     (OUT / "manifold-render").mkdir(parents=True, exist_ok=True)
 
+    # One shared Auth emulator backs the login gate for every spec.
+    print("=== starting firebase auth emulator ===", flush=True)
+    auth_proc, auth_log = launch_auth_emulator()
     results: dict[str, int] = {}
-    for spec in SPECS:
-        name = Path(spec).stem
-        print(f"\n=== {name}: fresh seed + isolated run ===", flush=True)
-        base = Path(tempfile.mkdtemp(prefix=f"mf-e2e-{name}-"))
-        proc = None
-        log = None
-        try:
-            _seed_prefs(base)
-            added, skipped = seed_collection(base)
-            print(f"  seeded {added} notes (skipped {skipped}) at {base}/test", flush=True)
-            port = free_port()
-            server_log = LOG_DIR / f"{name}-server.log"
-            proc, log = launch_anki(base, port, server_log)
-            print(f"  launched anki pid {proc.pid} on port {port}", flush=True)
-            print(f"  server log: {server_log}", flush=True)
-            wait_until_ready(port, proc)
-            print(f"  mediasrv ready; running {spec}", flush=True)
-            rc = run_spec(spec, port)
-            results[name] = rc
-            print(f"  {name}: {'PASS' if rc == 0 else 'FAIL'} (playwright exit {rc})", flush=True)
-        finally:
-            if proc is not None and log is not None:
-                teardown(proc, log)
-            shutil.rmtree(base, ignore_errors=True)
+    try:
+        wait_auth_emulator(auth_proc)
+        print(f"  auth emulator ready on port {AUTH_EMULATOR_PORT}", flush=True)
+
+        for spec in SPECS:
+            name = Path(spec).stem
+            print(f"\n=== {name}: fresh seed + isolated run ===", flush=True)
+            base = Path(tempfile.mkdtemp(prefix=f"mf-e2e-{name}-"))
+            proc = None
+            log = None
+            try:
+                _seed_prefs(base)
+                added, skipped = seed_collection(
+                    base, mark_onboarded="manifold-onboarding" not in spec
+                )
+                print(f"  seeded {added} notes (skipped {skipped}) at {base}/test", flush=True)
+                port = free_port()
+                server_log = LOG_DIR / f"{name}-server.log"
+                proc, log = launch_anki(base, port, server_log)
+                print(f"  launched anki pid {proc.pid} on port {port}", flush=True)
+                print(f"  server log: {server_log}", flush=True)
+                wait_until_ready(port, proc)
+                print(f"  mediasrv ready; running {spec}", flush=True)
+                rc = run_spec(spec, port)
+                results[name] = rc
+                print(f"  {name}: {'PASS' if rc == 0 else 'FAIL'} (playwright exit {rc})", flush=True)
+            finally:
+                if proc is not None and log is not None:
+                    teardown(proc, log)
+                shutil.rmtree(base, ignore_errors=True)
+    finally:
+        teardown(auth_proc, auth_log)
 
     print("\n=== manifold e2e summary (per-spec fresh seed) ===")
     for name, rc in results.items():

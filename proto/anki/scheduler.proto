@@ -246,6 +246,11 @@ message SetDueDateRequest {
 message GradeNowRequest {
   repeated int64 card_ids = 1;
   CardAnswer.Rating rating = 2;
+  // Milliseconds the learner spent answering, recorded into the revlog so
+  // study-time stats reflect grade_now reviews. 0 means "not measured" and
+  // preserves the prior behavior for callers that do not time the answer (e.g.
+  // the browser's Grade Now action).
+  uint32 milliseconds_taken = 3;
 }
 
 message SortCardsRequest {

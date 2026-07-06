@@ -6,9 +6,14 @@ import { getTopicGraph } from "@generated/backend";
 import type { PageLoad } from "./$types";
 
 export const load = (async () => {
+    // Onboarding is not gated here: completion is the local collection flag, which
+    // the page component checks on mount.
     const graph = await getTopicGraph({});
     if (!graph.scoringConfig) {
         throw new Error("getTopicGraph returned no scoring config");
     }
-    return { nodes: graph.nodes, scoringConfig: graph.scoringConfig };
+    return {
+        nodes: graph.nodes,
+        scoringConfig: graph.scoringConfig,
+    };
 }) satisfies PageLoad;

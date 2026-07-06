@@ -108,7 +108,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Combine the two standard limits: \\( 1 - \\cos([[a]]x) \\sim \\dfrac{([[a]]x)^{2}}{2} \\) and \\( \\sin([[b]]x) \\sim [[b]]x \\), so \\( \\dfrac{1-\\cos([[a]]x)}{x\\sin([[b]]x)} \\to \\dfrac{[[a]]^{2}x^{2}/2}{[[b]]x^{2}} = \\dfrac{[[a]]^{2}}{2[[b]]} = [[answer]] \\).",
+ "solution": "Combine the two standard limits: \\( 1 - \\cos([[a]]x) \\sim \\dfrac{([[a]]x)^{2}}{2} \\) and \\( \\sin([[b]]x) \\sim [[b]]x \\), so \\( \\dfrac{1-\\cos([[a]]x)}{x\\sin([[b]]x)} \\to \\dfrac{[[a]]^{2}x^{2}/2}{[[b]]x^{2}} = \\dfrac{[[a]]^{2}}{2\\cdot[[b]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This drops the square on \\( a \\) and the factor of 2, treating both special limits as simple ratios.",
   "This forgets the factor of 2 from the cosine limit.",

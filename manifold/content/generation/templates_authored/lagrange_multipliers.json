@@ -22,7 +22,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "The Lagrange conditions are \\( 2[[A]]x=\\lambda [[p]] \\), \\( 2[[B]]y=\\lambda [[q]] \\), together with the constraint \\( [[p]]x+[[q]]y=[[r]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "solution": "The Lagrange conditions are \\( 2\\cdot[[A]]x=\\lambda [[p]] \\), \\( 2\\cdot[[B]]y=\\lambda [[q]] \\), together with the constraint \\( [[p]]x+[[q]]y=[[r]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
   "distractor_rationales": [
    "This is the unconstrained critical value of \\( f \\) at the origin, ignoring the constraint entirely.",
    "This swaps which weight (\\( [[A]] \\) or \\( [[B]] \\)) pairs with which constraint coefficient squared.",
@@ -87,7 +87,7 @@
    "[[answer]] + 3",
    "[[answer]] - 3"
   ],
-  "solution": "The Lagrange conditions are \\( 2[[A]]x+[[B]]y=\\lambda [[p]] \\), \\( [[B]]x+2[[C]]y=\\lambda [[q]] \\), together with the constraint \\( [[p]]x+[[q]]y=[[r]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "solution": "The Lagrange conditions are \\( 2\\cdot[[A]]x+[[B]]y=\\lambda [[p]] \\), \\( [[B]]x+2\\cdot[[C]]y=\\lambda [[q]] \\), together with the constraint \\( [[p]]x+[[q]]y=[[r]] \\). Solving this system for \\( x,y,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
   "distractor_rationales": [
    "This is the unconstrained critical value of \\( f \\) at the origin, ignoring the constraint entirely.",
    "This has the wrong overall sign.",
@@ -122,7 +122,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "The Lagrange conditions are \\( 2[[A]]x=\\lambda [[p]] \\), \\( 2[[B]]y=\\lambda [[q]] \\), \\( 2[[C]]z=\\lambda [[r]] \\), together with the constraint \\( [[p]]x+[[q]]y+[[r]]z=[[k]] \\). Solving this system for \\( x,y,z,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
+  "solution": "The Lagrange conditions are \\( 2\\cdot[[A]]x=\\lambda [[p]] \\), \\( 2\\cdot[[B]]y=\\lambda [[q]] \\), \\( 2\\cdot[[C]]z=\\lambda [[r]] \\), together with the constraint \\( [[p]]x+[[q]]y+[[r]]z=[[k]] \\). Solving this system for \\( x,y,z,\\lambda \\) and substituting back into \\( f \\) gives the minimum value \\( [[answer]] \\).",
   "distractor_rationales": [
    "This is the unconstrained critical value of \\( f \\) at the origin, ignoring the constraint entirely.",
    "This ignores the \\( z \\)-direction entirely, as if the constraint and objective involved only \\( x \\) and \\( y \\).",

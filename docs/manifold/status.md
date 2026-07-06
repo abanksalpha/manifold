@@ -5,6 +5,63 @@ the actual codebase as of 2026-07-02. Read this top to bottom once before touchi
 
 ---
 
+## Update (2026-07-05): reviewer-gap closure
+
+A reviewer flagged six gaps on the Early Submission; this pass closed them with real,
+committed, re-runnable evidence (no fabricated numbers):
+
+- **Leakage output (was prose-only) → committed.** `manifold/content/eval/leakage_report.py`
+  screens the ACTUAL served content — 2,909 templates × 2 seeds (5,727 instances) + 246
+  teach items = 5,973 items — against all 5 held-out ETS forms; CLEAN, written to
+  `manifold/content/eval/results/leakage_check.json`. `leakage_check.py` gained `--out`.
+- **Prompt-injection resistance (was absent) → built + proven.** New
+  `manifold/content/generation/prompt_safety.py` (fencing + injection screen + hint
+  answer-leak output guard), wired into `hint.py` and the offline authors; +52 new tests
+  (generation suite now 263 passing, up from 211).
+  `manifold/content/eval/prompt_injection_check.py` → `results/prompt_injection.json`:
+  0 corrupted answers (72 template attacks), 0 hint leaks.
+- **Sync recording (was missing) → captured.** `manifold/tests/demo_sync.py`
+  (`just demo-sync`) runs a real two-collection sync through the self-hosted server;
+  transcript `docs/manifold/sync-demo.log` (ALL PASS).
+- **AI-rationale note (was missing) → written.** `docs/manifold/ai-note.md` + generation
+  model cards.
+- **Keyword/vector baseline (ASSIGN-named simpler method) → done.**
+  `manifold/content/eval/baseline_retrieval.py` (`just eval-ai`) →
+  `results/baseline_retrieval.json`: Manifold's verify+cross-solve gate delivers **0.0
+  wrong-answer rate** vs **keyword 0.583 / vector 0.667** (and 0.0 vs 0.5 off-skill); 165
+  real API calls. The injection eval's Section B (live-gen under injection) also ran: 6
+  attempts, **0 wrong served**. (Both were previously blocked by a rejected key; a valid key
+  was supplied and they ran for real.)
+- New recipes: `just eval`, `just eval-ai`, `just demo-sync`. Report: `results.md`.
+
+The runtime is now **template-first** (SymPy-computed answers, resampled per review) for
+every tier, with teach-bank fallback and live-gen only for untemplated non-teach skills —
+superseding the "teach-bank-first + live relearn/recognize" description in §0/§2 below,
+which predates the template layer.
+
+---
+
+## Update (2026-07-05): new-user onboarding + placement diagnostic
+
+New feature landed (spec `docs/manifold/spec-onboarding-placement.md`, plan
+`docs/manifold/plan-onboarding-placement.md`, decision **D46**). A fresh account is
+routed to a new `/manifold-onboarding` wizard: report courses taken → a short cold
+placement diagnostic (reuses the session player + verified pipeline) → seeds the
+per-topic starting point so known material is not re-taught. Honesty-safe: seeds are
+`Learning`-kind (via `grade_now`), so the gated Readiness score is untouched; seeded
+cards are tagged `mf::placement` and count toward Memory as a labeled prior.
+
+- **Engine:** `rslib/src/manifold/placement.rs` + three RPCs on `ManifoldService`
+  (`GetPlacementState`, `BuildPlacementExam` read-only; `ApplyPlacement`, the first
+  mutating manifold RPC). Collection-config flag `manifoldOnboardingDone` gates the
+  home redirect.
+- **Web:** `ts/routes/manifold-onboarding/`, `ts/lib/manifold/placement.ts`, the home
+  gate in `ts/routes/manifold/+page.ts` + a "Retake placement" link. Seed-deck import
+  endpoint `manifoldImportSeed` (mediasrv) for a truly empty first-run collection.
+- **Tests:** Rust `placement_*` in `test.rs`; vitest `placement.test.ts`; e2e
+  `manifold-onboarding.test.ts` (wired into `run_e2e_isolated.py`, which now marks the
+  returning-user specs onboarded). `just check` and the isolated e2e suite are green.
+
 ## 0. What this is + non-negotiable rules
 
 Manifold is a **GRE Mathematics Subject Test** trainer, built as an Anki fork (Rust

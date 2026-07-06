@@ -80,7 +80,7 @@
    "[[answer]] + [[m]]",
    "[[answer]] - [[n]]"
   ],
-  "solution": "First seat the other \\( [[n]]-[[m]] \\) individuals: \\( ([[n]]-[[m]])! \\) ways. This creates \\( [[n]]-[[m]]+1 \\) gaps (including the ends); placing the [[m]] singled-out individuals into distinct gaps, in order, uses \\( \\frac{([[n]]-[[m]]+1)!}{([[n]]-2[[m]]+1)!} \\) of them. Multiplying gives \\( [[answer]] \\).",
+  "solution": "First seat the other \\( [[n]]-[[m]] \\) individuals: \\( ([[n]]-[[m]])! \\) ways. This creates \\( [[n]]-[[m]]+1 \\) gaps (including the ends); placing the [[m]] singled-out individuals into distinct gaps, in order, uses \\( \\frac{([[n]]-[[m]]+1)!}{([[n]]-2\\cdot[[m]]+1)!} \\) of them. Multiplying gives \\( [[answer]] \\).",
   "distractor_rationales": [
    "This is the total number of arrangements with no restriction.",
    "This treats the singled-out group as one glued block instead of spreading them into separate gaps.",

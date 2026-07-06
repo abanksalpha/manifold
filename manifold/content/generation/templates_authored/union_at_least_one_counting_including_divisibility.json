@@ -83,7 +83,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Start from the \"at least one\" count \\( \\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor-\\lfloor N/ab\\rfloor \\), then remove the numbers divisible by BOTH (counted once there but belonging to neither exclusive group) once more: \\( \\lfloor [[N]]/[[a]]\\rfloor+\\lfloor [[N]]/[[b]]\\rfloor-2\\lfloor [[N]]/([[a]][[b]])\\rfloor = [[answer]] \\).",
+ "solution": "Start from the \"at least one\" count \\( \\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor-\\lfloor N/ab\\rfloor \\), then remove the numbers divisible by BOTH (counted once there but belonging to neither exclusive group) once more: \\( \\lfloor [[N]]/[[a]]\\rfloor+\\lfloor [[N]]/[[b]]\\rfloor-2\\lfloor [[N]]/([[a]]\\cdot[[b]])\\rfloor = [[answer]] \\).",
  "distractor_rationales": [
   "This is the \"at least one\" (divisible by [[a]] or [[b]]) count, which still includes numbers divisible by both.",
   "This forgets to remove the overlap at all.",
@@ -114,7 +114,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "By De Morgan and inclusion-exclusion, the count divisible by [[a]] or [[b]] is \\( \\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor-\\lfloor N/ab\\rfloor \\); subtracting this from the total \\(N=[[N]]\\) leaves those divisible by neither: \\( [[N]] - \\lfloor [[N]]/[[a]]\\rfloor - \\lfloor [[N]]/[[b]]\\rfloor + \\lfloor [[N]]/([[a]][[b]])\\rfloor = [[answer]] \\).",
+ "solution": "By De Morgan and inclusion-exclusion, the count divisible by [[a]] or [[b]] is \\( \\lfloor N/a\\rfloor+\\lfloor N/b\\rfloor-\\lfloor N/ab\\rfloor \\); subtracting this from the total \\(N=[[N]]\\) leaves those divisible by neither: \\( [[N]] - \\lfloor [[N]]/[[a]]\\rfloor - \\lfloor [[N]]/[[b]]\\rfloor + \\lfloor [[N]]/([[a]]\\cdot[[b]])\\rfloor = [[answer]] \\).",
  "distractor_rationales": [
   "This is the count divisible by [[a]] or [[b]], the complement of what was asked.",
   "This subtracts both individual counts from the total but forgets to add back the double-subtracted overlap.",

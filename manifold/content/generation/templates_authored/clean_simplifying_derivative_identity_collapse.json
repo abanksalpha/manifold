@@ -179,7 +179,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Expanding the cubes, \\( (x+[[a]])^{3}-(x-[[a]])^{3}=6[[a]]x^{2}+2[[a]]^{3} \\), so \\( f(x)=6x^{2}+2[[a]]^{2} \\) after dividing by \\( [[a]] \\). Then \\( f'(x)=12x \\), so \\( f'([[x0]])=[[answer]] \\).",
+ "solution": "Expanding the cubes, \\( (x+[[a]])^{3}-(x-[[a]])^{3}=6\\cdot[[a]]x^{2}+2\\cdot[[a]]^{3} \\), so \\( f(x)=6x^{2}+2\\cdot[[a]]^{2} \\) after dividing by \\( [[a]] \\). Then \\( f'(x)=12x \\), so \\( f'([[x0]])=[[answer]] \\).",
  "distractor_rationales": [
   "This drops the factor of 2 from the correct coefficient, using \\( 6x_0 \\) instead of \\( 12x_0 \\).",
   "This differentiates with respect to \\( a \\) instead of \\( x \\).",

@@ -21,7 +21,7 @@
   "Rational([[c]],[[a]]) + 1",
   "Rational([[c]],[[a]]) - 1"
  ],
- "solution": "From \\( x=[[a]]t+[[b]] \\), \\( t=\\dfrac{x-[[b]]}{[[a]]} \\). Substituting into \\( y=[[c]]t+[[d]] \\) gives \\( y=\\dfrac{[[c]]}{[[a]]}(x-[[b]])+[[d]]=\\dfrac{[[c]]}{[[a]]}x+\\left([[d]]-\\dfrac{[[c]][[b]]}{[[a]]}\\right) \\), so \\( m=\\dfrac{[[c]]}{[[a]]}=[[answer]] \\).",
+ "solution": "From \\( x=[[a]]t+[[b]] \\), \\( t=\\dfrac{x-[[b]]}{[[a]]} \\). Substituting into \\( y=[[c]]t+[[d]] \\) gives \\( y=\\dfrac{[[c]]}{[[a]]}(x-[[b]])+[[d]]=\\dfrac{[[c]]}{[[a]]}x+\\left([[d]]-\\dfrac{[[c]]\\cdot[[b]]}{[[a]]}\\right) \\), so \\( m=\\dfrac{[[c]]}{[[a]]}=[[answer]] \\).",
  "distractor_rationales": [
   "This inverts the ratio, using \\( a/c\\) instead of \\( c/a\\).",
   "This mistakenly adds the intercept term \\( b\\) into the slope.",

@@ -125,7 +125,7 @@
   "sqrt([[a]]*[[b]]) + 1",
   "sqrt([[a]]*[[b]]) - 1"
  ],
- "solution": "\\( f'(c)=-\\dfrac{1}{c^{2}} \\) must equal the secant slope \\( -\\dfrac{1}{[[a]][[b]]} \\), so \\( c^{2}=[[a]][[b]] \\) and (taking the positive root in \\( ([[a]],[[b]]) \\)) \\( c=\\sqrt{[[a]][[b]]}=[[answer]] \\), the geometric mean of \\( a \\) and \\( b \\).",
+ "solution": "\\( f'(c)=-\\dfrac{1}{c^{2}} \\) must equal the secant slope \\( -\\dfrac{1}{[[a]]\\cdot[[b]]} \\), so \\( c^{2}=[[a]]\\cdot[[b]] \\) and (taking the positive root in \\( ([[a]],[[b]]) \\)) \\( c=\\sqrt{[[a]]\\cdot[[b]]}=[[answer]] \\), the geometric mean of \\( a \\) and \\( b \\).",
  "distractor_rationales": [
   "This is the arithmetic mean, the value from the quadratic MVT case, not this rational function.",
   "This is the product \\( ab \\), not its square root.",

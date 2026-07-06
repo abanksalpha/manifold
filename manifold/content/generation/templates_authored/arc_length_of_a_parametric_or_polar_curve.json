@@ -122,7 +122,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Using \\( 1+\\cos\\theta = 2\\cos^{2}(\\theta/2) \\), the polar speed \\( \\sqrt{r^{2}+(dr/d\\theta)^{2}} \\) simplifies to \\( 2[[a]]\\cos(\\theta/2) \\) (non-negative here since \\( \\theta/2 \\le 90^\\circ \\)). The arc length is \\( \\int_{0}^{[[theta1]]^\\circ} 2[[a]]\\cos(\\theta/2)\\,d\\theta = [[answer]] \\).",
+ "solution": "Using \\( 1+\\cos\\theta = 2\\cos^{2}(\\theta/2) \\), the polar speed \\( \\sqrt{r^{2}+(dr/d\\theta)^{2}} \\) simplifies to \\( 2\\cdot[[a]]\\cos(\\theta/2) \\) (non-negative here since \\( \\theta/2 \\le 90^\\circ \\)). The arc length is \\( \\int_{0}^{[[theta1]]^\\circ} 2\\cdot[[a]]\\cos(\\theta/2)\\,d\\theta = [[answer]] \\).",
  "distractor_rationales": [
   "This is the length of the ENTIRE cardioid (a full \\( 360^\\circ \\) sweep), not just the given portion.",
   "This is the length of exactly the HALF cardioid (\\( 180^\\circ \\)), regardless of the actual angle given.",

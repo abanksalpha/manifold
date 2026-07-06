@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T05:16:02.229088+00:00",
+  "generated_at": "2026-07-06T04:40:07.356155+00:00",
   "memory_model": "Anki FSRS retrievability R (rslib/src/manifold/mastery.rs; scheduler untouched, D3)",
   "external_calibration": "FSRS is calibrated on public multi-million-review benchmarks (open-spaced-repetition/srs-benchmark); cited, not re-derived here.",
   "source": "SIMULATION (no real longitudinal reviews in a one-week build; see docstring)",

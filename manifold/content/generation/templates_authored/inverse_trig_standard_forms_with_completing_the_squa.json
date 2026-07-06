@@ -24,7 +24,7 @@
  "solution": "Using the standard form \\( \\int \\frac{dx}{x^{2}+[[a]]^{2}} = \\tfrac{1}{[[a]]}\\arctan\\tfrac{x}{[[a]]} \\), we get \\( [[c]]\\cdot\\tfrac{1}{[[a]]}\\left[\\arctan\\tfrac{x}{[[a]]}\\right]_{0}^{[[a]]} = \\tfrac{[[c]]}{[[a]]}\\arctan(1) = \\tfrac{[[c]]}{[[a]]}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\).",
  "distractor_rationales": [
   "This forgets the \\( \\tfrac{1}{[[a]]} \\) factor from the standard form.",
-  "This uses \\( \\tfrac{1}{2[[a]]} \\) as the leading coefficient by mistake.",
+  "This uses \\( \\tfrac{1}{2\\cdot[[a]]} \\) as the leading coefficient by mistake.",
   "This halves the correct value.",
   "This triples the correct value.",
   "This scales the correct value by 2/3.",
@@ -162,10 +162,10 @@
   "2*[[answer]]/3",
   "[[c]]*pi/4"
  ],
- "solution": "Factor: \\( [[k2]]x^{2}+[[a2]] = [[k]]^{2}\\left(x^{2}+\\tfrac{[[a]]^{2}}{[[k]]^{2}}\\right) \\), or directly use \\( \\int\\frac{dx}{k^{2}x^{2}+a^{2}} = \\tfrac{1}{ak}\\arctan\\tfrac{kx}{a} \\). Evaluated from \\( 0 \\) to \\( \\tfrac{[[a]]}{[[k]]} \\), \\( \\tfrac{kx}{a} \\) runs from \\( 0 \\) to \\( 1 \\), giving \\( [[c]]\\cdot\\tfrac{1}{[[a]][[k]]}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\).",
+ "solution": "Factor: \\( [[k2]]x^{2}+[[a2]] = [[k]]^{2}\\left(x^{2}+\\tfrac{[[a]]^{2}}{[[k]]^{2}}\\right) \\), or directly use \\( \\int\\frac{dx}{k^{2}x^{2}+a^{2}} = \\tfrac{1}{ak}\\arctan\\tfrac{kx}{a} \\). Evaluated from \\( 0 \\) to \\( \\tfrac{[[a]]}{[[k]]} \\), \\( \\tfrac{kx}{a} \\) runs from \\( 0 \\) to \\( 1 \\), giving \\( [[c]]\\cdot\\tfrac{1}{[[a]]\\cdot[[k]]}\\cdot\\tfrac{\\pi}{4} = [[answer]] \\).",
  "distractor_rationales": [
-  "This forgets the factor of \\( [[k]] \\) in the denominator, using \\( \\tfrac{1}{[[a]]} \\) instead of \\( \\tfrac{1}{[[a]][[k]]} \\).",
-  "This forgets the factor of \\( [[a]] \\) in the denominator, using \\( \\tfrac{1}{[[k]]} \\) instead of \\( \\tfrac{1}{[[a]][[k]]} \\).",
+  "This forgets the factor of \\( [[k]] \\) in the denominator, using \\( \\tfrac{1}{[[a]]} \\) instead of \\( \\tfrac{1}{[[a]]\\cdot[[k]]} \\).",
+  "This forgets the factor of \\( [[a]] \\) in the denominator, using \\( \\tfrac{1}{[[k]]} \\) instead of \\( \\tfrac{1}{[[a]]\\cdot[[k]]} \\).",
   "This halves the correct value.",
   "This triples the correct value.",
   "This scales the correct value by 2/3.",

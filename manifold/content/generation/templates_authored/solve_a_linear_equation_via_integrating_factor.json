@@ -131,7 +131,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The integrating factor is \\( \\mu=e^{[[a]]x} \\), giving \\( (e^{[[a]]x}y)' = [[b]] \\) (the exponentials cancel because the forcing matches the homogeneous rate). Integrating, \\( e^{[[a]]x}y = [[b]]x+C \\), so \\( y=([[b]]x+C)e^{-[[a]]x} \\). Using \\( y(0)=[[y0]] \\), \\( C=[[y0]] \\). Hence \\( y([[t0]]) = ([[b]]\\cdot[[t0]]+[[y0]])e^{-[[a]][[t0]]} = [[answer]] \\).",
+  "solution": "The integrating factor is \\( \\mu=e^{[[a]]x} \\), giving \\( (e^{[[a]]x}y)' = [[b]] \\) (the exponentials cancel because the forcing matches the homogeneous rate). Integrating, \\( e^{[[a]]x}y = [[b]]x+C \\), so \\( y=([[b]]x+C)e^{-[[a]]x} \\). Using \\( y(0)=[[y0]] \\), \\( C=[[y0]] \\). Hence \\( y([[t0]]) = ([[b]]\\cdot[[t0]]+[[y0]])e^{-[[a]]\\cdot[[t0]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to multiply the forcing coefficient by \\( x \\), missing the resonance correction.",
    "This uses the wrong sign in the exponential.",

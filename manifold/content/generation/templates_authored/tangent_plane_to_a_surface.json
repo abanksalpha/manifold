@@ -50,7 +50,7 @@
   "derived": {
    "k": "[[a]]*[[x0]]**2 + [[b]]*[[y0]]**2 + [[c]]*[[z0]]**2"
   },
-  "stem": "The surface \\( [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} = [[k]] \\) is given implicitly by \\( F(x,y,z) = [[a]]x^{2}+[[b]]y^{2}+[[c]]z^{2}-[[k]] \\). The tangent plane at the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface, is \\( F_{x}(x-[[x0]])+F_{y}(y-[[y0]])+F_{z}(z-[[z0]])=0 \\), which simplifies to \\( [[a]][[x0]]x + [[b]][[y0]]y + [[c]][[z0]]z = [[k]] \\). What is the \\( z \\)-intercept of this tangent plane (its \\( z \\)-value when \\( x=0, y=0 \\))?",
+  "stem": "The surface \\( [[a]]x^{2} + [[b]]y^{2} + [[c]]z^{2} = [[k]] \\) is given implicitly by \\( F(x,y,z) = [[a]]x^{2}+[[b]]y^{2}+[[c]]z^{2}-[[k]] \\). The tangent plane at the point \\( ([[x0]], [[y0]], [[z0]]) \\), which lies on the surface, is \\( F_{x}(x-[[x0]])+F_{y}(y-[[y0]])+F_{z}(z-[[z0]])=0 \\), which simplifies to \\( [[a]]\\cdot[[x0]]x + [[b]]\\cdot[[y0]]y + [[c]]\\cdot[[z0]]z = [[k]] \\). What is the \\( z \\)-intercept of this tangent plane (its \\( z \\)-value when \\( x=0, y=0 \\))?",
   "answer_spec": {"op": "evaluate", "expr": "[[k]]/([[c]]*[[z0]])"},
   "distractors": [
    "[[k]]/([[a]]*[[x0]])",

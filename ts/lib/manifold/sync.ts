@@ -67,3 +67,28 @@ export async function pushProgressSnapshot(
         inFlight = false;
     }
 }
+
+/** The whitelisted mediasrv endpoint that runs an Anki collection + media sync. */
+const COLLECTION_SYNC_URL = "/_anki/manifoldSync";
+
+/**
+ * Trigger an Anki collection + media sync of the *actual study data* (cards +
+ * revlog) so a finished session propagates to the learner's other devices on the
+ * same sync account (AnkiWeb / a configured server) without waiting for app close.
+ *
+ * This is the real two-way sync substrate (Anki's protocol, D9), distinct from the
+ * derived Firestore progress mirror above. The backend runs it on the main thread
+ * and no-ops when the user has not signed in to sync yet (nothing to sync to, not
+ * an error); a genuine sync failure surfaces through Anki's own sync error UI. A
+ * transport failure here throws for the caller to surface, never silently swallowed.
+ */
+export async function triggerCollectionSync(): Promise<void> {
+    const res = await fetch(COLLECTION_SYNC_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/binary" },
+        body: new TextEncoder().encode("{}"),
+    });
+    if (!res.ok) {
+        throw new Error(`collection sync request failed: ${res.status}`);
+    }
+}

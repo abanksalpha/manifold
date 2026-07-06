@@ -52,7 +52,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Here \\( f'(x)=-\\dfrac{1}{x^{2}} \\), and the average rate of change simplifies to \\( -\\dfrac{1}{[[p]][[q]]} \\). Setting \\( -\\dfrac{1}{c^{2}} = -\\dfrac{1}{[[p]][[q]]} \\) gives \\( c^{2}=[[p]][[q]] \\); since \\( c \\) must lie in \\( ([[p]],[[q]]) \\) (both negative here), \\( c = -\\sqrt{[[p]][[q]]} = [[answer]] \\), the negative geometric mean of the endpoints.",
+ "solution": "Here \\( f'(x)=-\\dfrac{1}{x^{2}} \\), and the average rate of change simplifies to \\( -\\dfrac{1}{[[p]]\\cdot[[q]]} \\). Setting \\( -\\dfrac{1}{c^{2}} = -\\dfrac{1}{[[p]]\\cdot[[q]]} \\) gives \\( c^{2}=[[p]]\\cdot[[q]] \\); since \\( c \\) must lie in \\( ([[p]],[[q]]) \\) (both negative here), \\( c = -\\sqrt{[[p]]\\cdot[[q]]} = [[answer]] \\), the negative geometric mean of the endpoints.",
  "distractor_rationales": [
   "This is the left endpoint of the interval, not the guaranteed interior point.",
   "This is the right endpoint of the interval, not the guaranteed interior point.",
@@ -83,7 +83,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "Here \\( f'(x)=[[amp]][[k]]\\cos([[k]]x) \\), which vanishes when \\( [[k]]x = \\dfrac{\\pi}{2} + n\\pi \\). The only such point inside \\( \\left(0,\\dfrac{\\pi}{[[k]]}\\right) \\) is \\( c = \\dfrac{\\pi}{[[twok]]} = [[answer]] \\).",
+ "solution": "Here \\( f'(x)=[[amp]]\\cdot[[k]]\\cos([[k]]x) \\), which vanishes when \\( [[k]]x = \\dfrac{\\pi}{2} + n\\pi \\). The only such point inside \\( \\left(0,\\dfrac{\\pi}{[[k]]}\\right) \\) is \\( c = \\dfrac{\\pi}{[[twok]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This is the right ENDPOINT of the interval, where \\( f \\) is zero, not where \\( f' \\) is zero.",
   "This is too small: \\( \\cos([[k]]x) \\) has not yet reached zero at this point.",

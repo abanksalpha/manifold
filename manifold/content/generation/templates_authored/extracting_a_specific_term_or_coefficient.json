@@ -56,7 +56,7 @@
    "[[answer]] - 1",
    "[[answer]] + 2"
   ],
-  "solution": "The general term is \\( \\binom{[[n]]}{j} (x^{2})^{[[n]]-j} \\left(\\dfrac{[[c]]}{x}\\right)^{j} = \\binom{[[n]]}{j} ([[c]])^{j} x^{2[[n]]-3j} \\). Setting \\( 2([[n]]) - 3j = [[m]] \\) gives \\( j = [[j]] \\), so the coefficient is \\( \\binom{[[n]]}{[[j]]} ([[c]])^{[[j]]} = [[answer]] \\).",
+  "solution": "The general term is \\( \\binom{[[n]]}{j} (x^{2})^{[[n]]-j} \\left(\\dfrac{[[c]]}{x}\\right)^{j} = \\binom{[[n]]}{j} ([[c]])^{j} x^{2\\cdot[[n]]-3j} \\). Setting \\( 2([[n]]) - 3j = [[m]] \\) gives \\( j = [[j]] \\), so the coefficient is \\( \\binom{[[n]]}{[[j]]} ([[c]])^{[[j]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This omits the factor \\( c^{j} \\) from the term.",
    "This omits the binomial coefficient \\( \\binom{n}{j} \\).",

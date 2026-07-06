@@ -53,7 +53,7 @@
   "[[answer]]/2",
   "2*[[answer]]"
  ],
- "solution": "First parts step (\\( u=[[c]]x^{2} \\), \\( dv=e^{-[[k]]x}dx \\)) reduces the power of \\( x \\) by one and leaves \\( \\tfrac{2[[c]]}{[[k]]}\\displaystyle\\int_{0}^{\\infty}xe^{-[[k]]x}dx \\); a second parts step (or the known result \\( \\int_0^\\infty xe^{-kx}dx=1/k^2 \\)) finishes it. All boundary terms vanish as \\( x\\to\\infty \\) since the exponential decays faster than any power of \\( x \\) grows. The result is \\( \\dfrac{2[[c]]}{[[k]]^{3}} = [[answer]] \\).",
+ "solution": "First parts step (\\( u=[[c]]x^{2} \\), \\( dv=e^{-[[k]]x}dx \\)) reduces the power of \\( x \\) by one and leaves \\( \\tfrac{2\\cdot[[c]]}{[[k]]}\\displaystyle\\int_{0}^{\\infty}xe^{-[[k]]x}dx \\); a second parts step (or the known result \\( \\int_0^\\infty xe^{-kx}dx=1/k^2 \\)) finishes it. All boundary terms vanish as \\( x\\to\\infty \\) since the exponential decays faster than any power of \\( x \\) grows. The result is \\( \\dfrac{2\\cdot[[c]]}{[[k]]^{3}} = [[answer]] \\).",
  "distractor_rationales": [
   "This drops the factor of 2 that appears after two applications of parts (\\( n! \\) for the reduction of \\( x^{2} \\)).",
   "This uses the wrong power of \\( [[k]] \\) in the denominator, as if only one parts step had been applied to \\( x^2 \\) directly.",

@@ -11,7 +11,7 @@
    "y0": {"type": "int", "lo": -4, "hi": 4}
   },
   "constraints": [],
-  "stem": "The equation \\( \\left(2[[a]]xy+3\\right)dx + \\left([[a]]x^{2}+3[[b]]y^{2}\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = [[a]]x^{2}y+3x+[[b]]y^{3} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
+  "stem": "The equation \\( \\left(2\\cdot[[a]]xy+3\\right)dx + \\left([[a]]x^{2}+3\\cdot[[b]]y^{2}\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = [[a]]x^{2}y+3x+[[b]]y^{3} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
   "answer_spec": {"op": "evaluate", "expr": "[[a]]*[[x0]]**2*[[y0]]+3*[[x0]]+[[b]]*[[y0]]**3"},
   "distractors": [
    "[[a]]*[[x0]]**2*[[y0]]+3*[[x0]]-[[b]]*[[y0]]**3",
@@ -21,7 +21,7 @@
    "[[answer]]+1",
    "[[answer]]-1"
   ],
-  "solution": "Integrating \\( M=2[[a]]xy+3 \\) with respect to \\( x \\) gives \\( F = [[a]]x^{2}y+3x+g(y) \\); matching \\( F_y=[[a]]x^{2}+g'(y) \\) to \\( N=[[a]]x^{2}+3[[b]]y^{2} \\) gives \\( g(y)=[[b]]y^{3} \\), so \\( F(x,y) = [[a]]x^{2}y+3x+[[b]]y^{3} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
+  "solution": "Integrating \\( M=2\\cdot[[a]]xy+3 \\) with respect to \\( x \\) gives \\( F = [[a]]x^{2}y+3x+g(y) \\); matching \\( F_y=[[a]]x^{2}+g'(y) \\) to \\( N=[[a]]x^{2}+3\\cdot[[b]]y^{2} \\) gives \\( g(y)=[[b]]y^{3} \\), so \\( F(x,y) = [[a]]x^{2}y+3x+[[b]]y^{3} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
   "distractor_rationales": [
    "This has the wrong sign on the \\( g(y) \\) term.",
    "This swaps the powers of \\( x \\) and \\( y \\) in the mixed term.",
@@ -108,7 +108,7 @@
   },
   "constraints": [],
   "require_rational": false,
-  "stem": "For \\( x>0 \\), the equation \\( \\left(\\dfrac{y}{x}+2[[a]]x\\right)dx + \\left(\\ln x+2[[b]]y\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = y\\ln x+[[a]]x^{2}+[[b]]y^{2} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
+  "stem": "For \\( x>0 \\), the equation \\( \\left(\\dfrac{y}{x}+2\\cdot[[a]]x\\right)dx + \\left(\\ln x+2\\cdot[[b]]y\\right)dy = 0 \\) is exact. Find the value of the potential function \\( F(x,y) = y\\ln x+[[a]]x^{2}+[[b]]y^{2} \\) at \\( (x,y) = ([[x0]], [[y0]]) \\), the constant defining the implicit solution curve through that point.",
   "answer_spec": {"op": "evaluate", "expr": "[[y0]]*log([[x0]])+[[a]]*[[x0]]**2+[[b]]*[[y0]]**2"},
   "distractors": [
    "[[y0]]*log([[x0]])-[[a]]*[[x0]]**2-[[b]]*[[y0]]**2",
@@ -118,7 +118,7 @@
    "[[answer]]+1",
    "[[answer]]-1"
   ],
-  "solution": "Integrating \\( M=\\tfrac{y}{x}+2[[a]]x \\) with respect to \\( x \\) gives \\( F=y\\ln x+[[a]]x^{2}+g(y) \\); matching \\( F_y=\\ln x+g'(y) \\) to \\( N=\\ln x+2[[b]]y \\) gives \\( g(y)=[[b]]y^{2} \\), so \\( F(x,y)=y\\ln x+[[a]]x^{2}+[[b]]y^{2} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
+  "solution": "Integrating \\( M=\\tfrac{y}{x}+2\\cdot[[a]]x \\) with respect to \\( x \\) gives \\( F=y\\ln x+[[a]]x^{2}+g(y) \\); matching \\( F_y=\\ln x+g'(y) \\) to \\( N=\\ln x+2\\cdot[[b]]y \\) gives \\( g(y)=[[b]]y^{2} \\), so \\( F(x,y)=y\\ln x+[[a]]x^{2}+[[b]]y^{2} \\). At \\( ([[x0]],[[y0]]) \\), \\( F = [[answer]] \\).",
   "distractor_rationales": [
    "This flips the sign of the entire potential.",
    "This swaps \\( x \\) and \\( y \\) inside and outside the logarithm.",

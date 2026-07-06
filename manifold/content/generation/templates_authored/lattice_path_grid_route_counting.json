@@ -143,7 +143,7 @@
   "[[answer]] + 1",
   "[[answer]] - 1"
  ],
- "solution": "By the reflection principle, the number of such paths is the Catalan number \\( C_{[[n]]} = \\dfrac{1}{[[n]]+1}\\binom{2[[n]]}{[[n]]} = [[answer]] \\).",
+ "solution": "By the reflection principle, the number of such paths is the Catalan number \\( C_{[[n]]} = \\dfrac{1}{[[n]]+1}\\binom{2\\cdot[[n]]}{[[n]]} = [[answer]] \\).",
  "distractor_rationales": [
   "This is the count of ALL paths to \\( ([[n]],[[n]]) \\), forgetting the reflection-principle correction for the ones that cross the diagonal.",
   "This uses a naive halving instead of dividing by \\( [[n]]+1 \\).",

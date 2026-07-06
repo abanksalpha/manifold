@@ -23,7 +23,7 @@
    "[[answer]] + 3",
    "[[answer]] - 3"
   ],
-  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = \\dfrac{\\partial f}{\\partial x}\\dfrac{dx}{dt} + \\dfrac{\\partial f}{\\partial y}\\dfrac{dy}{dt} = 2[[A]]xy\\cdot[[a]] + [[A]]x^{2}\\cdot[[c]] \\). Substituting \\( x([[t0]])=[[a]]\\cdot[[t0]]+[[b]] \\) and \\( y([[t0]])=[[c]]\\cdot[[t0]]+[[d]] \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = \\dfrac{\\partial f}{\\partial x}\\dfrac{dx}{dt} + \\dfrac{\\partial f}{\\partial y}\\dfrac{dy}{dt} = 2\\cdot[[A]]xy\\cdot[[a]] + [[A]]x^{2}\\cdot[[c]] \\). Substituting \\( x([[t0]])=[[a]]\\cdot[[t0]]+[[b]] \\) and \\( y([[t0]])=[[c]]\\cdot[[t0]]+[[d]] \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This keeps only the \\( \\partial f/\\partial y \\) branch of the chain rule, dropping the \\( \\partial f/\\partial x \\) contribution.",
    "This keeps only the \\( \\partial f/\\partial x \\) branch of the chain rule, dropping the \\( \\partial f/\\partial y \\) contribution.",
@@ -55,7 +55,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = 2[[A]]x\\cdot(-[[R]]\\sin t) + [[B]]\\cdot([[R]]\\cos t) \\). At \\( t=0 \\), \\( x(0)=[[R]] \\), \\( \\sin(0)=0 \\), and \\( \\cos(0)=1 \\), so the first term vanishes and \\( \\dfrac{dz}{dt}\\Big|_{t=0} = [[B]]\\cdot[[R]] = [[answer]] \\).",
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = 2\\cdot[[A]]x\\cdot(-[[R]]\\sin t) + [[B]]\\cdot([[R]]\\cos t) \\). At \\( t=0 \\), \\( x(0)=[[R]] \\), \\( \\sin(0)=0 \\), and \\( \\cos(0)=1 \\), so the first term vanishes and \\( \\dfrac{dz}{dt}\\Big|_{t=0} = [[B]]\\cdot[[R]] = [[answer]] \\).",
   "distractor_rationales": [
    "This multiplies all three coefficients together instead of correctly cancelling the vanishing \\( \\sin(0) \\) term.",
    "This has the wrong sign on the surviving term.",
@@ -88,7 +88,7 @@
    "[[answer]] + 4",
    "[[answer]] - 4"
   ],
-  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = ([[A]]y+[[B]])\\dfrac{dx}{dt} + [[A]]x\\dfrac{dy}{dt} = ([[A]]y+[[B]])(2[[p]]t) + [[A]]x(3[[q]]t^{2}) \\). Substituting \\( x([[t0]])=[[p]]\\cdot[[t0]]^{2} \\), \\( y([[t0]])=[[q]]\\cdot[[t0]]^{3} \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
+  "solution": "By the chain rule, \\( \\dfrac{dz}{dt} = ([[A]]y+[[B]])\\dfrac{dx}{dt} + [[A]]x\\dfrac{dy}{dt} = ([[A]]y+[[B]])(2\\cdot[[p]]t) + [[A]]x(3\\cdot[[q]]t^{2}) \\). Substituting \\( x([[t0]])=[[p]]\\cdot[[t0]]^{2} \\), \\( y([[t0]])=[[q]]\\cdot[[t0]]^{3} \\) gives \\( \\dfrac{dz}{dt}\\Big|_{t=[[t0]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This applies the product rule to \\( x(t)y(t) \\) directly by name but drops the \\( [[B]]x \\) term's own derivative.",
    "This is \\( z([[t0]]) \\), the value of \\( z \\) itself, not its rate of change.",
@@ -125,7 +125,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "By the (multivariable) chain rule, \\( \\dfrac{\\partial z}{\\partial s} = \\dfrac{\\partial f}{\\partial x}\\dfrac{\\partial x}{\\partial s} + \\dfrac{\\partial f}{\\partial y}\\dfrac{\\partial y}{\\partial s} = (2[[A]]x+[[B]]y)\\cdot[[p]] + ([[B]]x+2[[C]]y)\\cdot[[r]] \\), where \\( x=[[p]]s+[[q]]t \\), \\( y=[[r]]s+[[w]]t \\). Substituting \\( (s,t)=([[s0]],[[t0]]) \\) gives \\( \\dfrac{\\partial z}{\\partial s} = [[answer]] \\).",
+  "solution": "By the (multivariable) chain rule, \\( \\dfrac{\\partial z}{\\partial s} = \\dfrac{\\partial f}{\\partial x}\\dfrac{\\partial x}{\\partial s} + \\dfrac{\\partial f}{\\partial y}\\dfrac{\\partial y}{\\partial s} = (2\\cdot[[A]]x+[[B]]y)\\cdot[[p]] + ([[B]]x+2\\cdot[[C]]y)\\cdot[[r]] \\), where \\( x=[[p]]s+[[q]]t \\), \\( y=[[r]]s+[[w]]t \\). Substituting \\( (s,t)=([[s0]],[[t0]]) \\) gives \\( \\dfrac{\\partial z}{\\partial s} = [[answer]] \\).",
   "distractor_rationales": [
    "This uses \\( \\partial x/\\partial t=[[q]] \\) and \\( \\partial y/\\partial t=[[w]] \\) instead of \\( \\partial x/\\partial s \\) and \\( \\partial y/\\partial s \\), computing \\( \\partial z/\\partial t \\) by mistake.",
    "This is \\( z([[s0]],[[t0]]) \\), the value of \\( z \\) itself, not a partial derivative.",

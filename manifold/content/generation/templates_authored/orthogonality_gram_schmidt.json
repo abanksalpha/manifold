@@ -123,7 +123,7 @@
  "stem": "Let \\( \\mathbf{u} = ([[a]],\\ [[b]],\\ [[c]]) \\) and \\( \\mathbf{v} = ([[d]],\\ [[e]],\\ k) \\), where \\( k \\) is a real parameter. For what value of \\( k \\) are \\( \\mathbf{u} \\) and \\( \\mathbf{v} \\) orthogonal (i.e., \\( \\mathbf{u}\\cdot\\mathbf{v} = 0 \\))?",
  "answer_spec": {"op": "solve", "equation": "[[a]]*[[d]] + [[b]]*[[e]] + [[c]]*k = 0", "var": "k"},
  "distractors": ["-[[answer]]", "[[answer]]+1", "[[answer]]-1", "[[answer]]+2", "[[a]]*[[d]]+[[b]]*[[e]]", "[[d]]+[[e]]"],
- "solution": "Setting \\( \\mathbf{u}\\cdot\\mathbf{v} = [[a]][[d]] + [[b]][[e]] + [[c]]k = 0 \\) and solving for \\( k \\) gives \\( k = [[answer]] \\).",
+ "solution": "Setting \\( \\mathbf{u}\\cdot\\mathbf{v} = [[a]]\\cdot[[d]] + [[b]]\\cdot[[e]] + [[c]]k = 0 \\) and solving for \\( k \\) gives \\( k = [[answer]] \\).",
  "distractor_rationales": [
   "This is the negative of the correct value, from a sign error isolating \\(k\\).",
   "This is off by one from the correct value.",

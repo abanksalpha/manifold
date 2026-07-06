@@ -26,7 +26,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The gradient is \\( \\nabla f = (2[[A]]x+[[B]]y,\\; [[B]]x+2[[C]]y) \\), so \\( \\nabla f([[x0]],[[y0]]) = (2[[A]]\\cdot[[x0]]+[[B]]\\cdot[[y0]],\\; [[B]]\\cdot[[x0]]+2[[C]]\\cdot[[y0]]) \\). The unit vector is \\( \\hat u = \\langle [[a]],[[b]]\\rangle/[[norm]] \\), and \\( D_{\\hat u}f = \\nabla f\\cdot\\hat u = [[answer]] \\).",
+  "solution": "The gradient is \\( \\nabla f = (2\\cdot[[A]]x+[[B]]y,\\; [[B]]x+2\\cdot[[C]]y) \\), so \\( \\nabla f([[x0]],[[y0]]) = (2\\cdot[[A]]\\cdot[[x0]]+[[B]]\\cdot[[y0]],\\; [[B]]\\cdot[[x0]]+2\\cdot[[C]]\\cdot[[y0]]) \\). The unit vector is \\( \\hat u = \\langle [[a]],[[b]]\\rangle/[[norm]] \\), and \\( D_{\\hat u}f = \\nabla f\\cdot\\hat u = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets to divide by \\( |\\langle [[a]],[[b]]\\rangle| \\), using the raw (non-unit) vector instead.",
    "This keeps only the \\( f_x \\) contribution to the dot product, dropping the \\( f_y \\) term entirely.",
@@ -63,7 +63,7 @@
    "[[answer]] + 2",
    "[[answer]] - 2"
   ],
-  "solution": "Since \\( \\langle [[ux]],[[uy]] \\rangle \\) is already a unit vector along a coordinate axis, the directional derivative reduces to a single partial derivative: \\( f_x([[x0]],[[y0]]) = 2[[A]]\\cdot[[x0]]\\cdot[[y0]]+[[B]]\\cdot[[y0]]^{2}+[[C]] \\) and \\( f_y([[x0]],[[y0]]) = [[A]]\\cdot[[x0]]^{2}+2[[B]]\\cdot[[x0]]\\cdot[[y0]]+[[D]] \\). Along \\( \\langle [[ux]],[[uy]]\\rangle \\), \\( D_{\\hat u}f = f_x\\cdot([[ux]]) + f_y\\cdot([[uy]]) = [[answer]] \\).",
+  "solution": "Since \\( \\langle [[ux]],[[uy]] \\rangle \\) is already a unit vector along a coordinate axis, the directional derivative reduces to a single partial derivative: \\( f_x([[x0]],[[y0]]) = 2\\cdot[[A]]\\cdot[[x0]]\\cdot[[y0]]+[[B]]\\cdot[[y0]]^{2}+[[C]] \\) and \\( f_y([[x0]],[[y0]]) = [[A]]\\cdot[[x0]]^{2}+2\\cdot[[B]]\\cdot[[x0]]\\cdot[[y0]]+[[D]] \\). Along \\( \\langle [[ux]],[[uy]]\\rangle \\), \\( D_{\\hat u}f = f_x\\cdot([[ux]]) + f_y\\cdot([[uy]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This swaps which partial derivative pairs with which axis component.",
    "This is \\( f([[x0]],[[y0]]) \\), the function value, not a directional derivative.",
@@ -99,7 +99,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The gradient is \\( \\nabla f([[x0]],[[y0]]) = (2[[c]]\\cdot[[x0]],\\; 2[[d]]\\cdot[[y0]]) \\). The maximum rate of change at this point is \\( |\\nabla f([[x0]],[[y0]])| = \\sqrt{(2[[c]]\\cdot[[x0]])^{2}+(2[[d]]\\cdot[[y0]])^{2}} = [[answer]] \\).",
+  "solution": "The gradient is \\( \\nabla f([[x0]],[[y0]]) = (2\\cdot[[c]]\\cdot[[x0]],\\; 2\\cdot[[d]]\\cdot[[y0]]) \\). The maximum rate of change at this point is \\( |\\nabla f([[x0]],[[y0]])| = \\sqrt{(2\\cdot[[c]]\\cdot[[x0]])^{2}+(2\\cdot[[d]]\\cdot[[y0]])^{2}} = [[answer]] \\).",
   "distractor_rationales": [
    "This adds the two partial derivatives instead of taking the Euclidean norm of the gradient.",
    "This uses the sum of absolute values (a Manhattan-style norm) instead of the Euclidean norm.",
@@ -133,7 +133,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The gradient is \\( \\nabla f(x,y) = (\\cos(x)\\cdot[[a]],\\; 2[[b]]y) \\), so \\( \\nabla f(0,[[y0]]) = ([[a]],\\; 2[[b]]\\cdot[[y0]]) \\) since \\( \\cos(0)=1 \\). Dotting with \\( \\hat u \\) gives \\( D_{\\hat u}f = [[a]]\\cdot\\dfrac{[[p]]}{[[r]]} + 2[[b]]\\cdot[[y0]]\\cdot\\dfrac{[[q]]}{[[r]]} = [[answer]] \\).",
+  "solution": "The gradient is \\( \\nabla f(x,y) = (\\cos(x)\\cdot[[a]],\\; 2\\cdot[[b]]y) \\), so \\( \\nabla f(0,[[y0]]) = ([[a]],\\; 2\\cdot[[b]]\\cdot[[y0]]) \\) since \\( \\cos(0)=1 \\). Dotting with \\( \\hat u \\) gives \\( D_{\\hat u}f = [[a]]\\cdot\\dfrac{[[p]]}{[[r]]} + 2\\cdot[[b]]\\cdot[[y0]]\\cdot\\dfrac{[[q]]}{[[r]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This drops the \\( p \\) and \\( q \\) weights entirely, as if \\( \\hat u = \\langle 1,1\\rangle/r \\).",
    "This keeps only the \\( f_x \\) contribution, dropping the \\( f_y \\) term.",
@@ -169,7 +169,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The direction of steepest descent is \\( -\\nabla f/|\\nabla f| \\), and the directional derivative in that direction is \\( -|\\nabla f([[x0]],[[y0]])| \\). Since \\( \\nabla f([[x0]],[[y0]]) = (2[[c]]\\cdot[[x0]],\\, 2[[d]]\\cdot[[y0]]) \\), the answer is \\( -\\sqrt{(2[[c]]\\cdot[[x0]])^{2}+(2[[d]]\\cdot[[y0]])^{2}} = [[answer]] \\).",
+  "solution": "The direction of steepest descent is \\( -\\nabla f/|\\nabla f| \\), and the directional derivative in that direction is \\( -|\\nabla f([[x0]],[[y0]])| \\). Since \\( \\nabla f([[x0]],[[y0]]) = (2\\cdot[[c]]\\cdot[[x0]],\\, 2\\cdot[[d]]\\cdot[[y0]]) \\), the answer is \\( -\\sqrt{(2\\cdot[[c]]\\cdot[[x0]])^{2}+(2\\cdot[[d]]\\cdot[[y0]])^{2}} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the negative sign; steepest DESCENT gives the negative of the gradient's magnitude.",
    "This negates the sum of the partials instead of the Euclidean norm.",

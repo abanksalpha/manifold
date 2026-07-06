@@ -80,7 +80,7 @@
   "[[answer]]/2",
   "2*[[answer]]"
  ],
- "solution": "An antiderivative of \\( x^{-1/2} \\) is \\( 2x^{1/2} \\). Although \\( 1/\\sqrt{x}\\to\\infty \\) as \\( x\\to 0^{+} \\), the antiderivative itself stays finite there, so \\( \\int_{0}^{[[a]]} \\dfrac{[[c]]}{\\sqrt{x}}\\,dx = 2[[c]]\\sqrt{[[a]]} - 0 = [[answer]] \\); the improper integral converges.",
+ "solution": "An antiderivative of \\( x^{-1/2} \\) is \\( 2x^{1/2} \\). Although \\( 1/\\sqrt{x}\\to\\infty \\) as \\( x\\to 0^{+} \\), the antiderivative itself stays finite there, so \\( \\int_{0}^{[[a]]} \\dfrac{[[c]]}{\\sqrt{x}}\\,dx = 2\\cdot[[c]]\\sqrt{[[a]]} - 0 = [[answer]] \\); the improper integral converges.",
  "distractor_rationales": [
   "This forgets the factor of 2 from the power rule on \\( x^{1/2} \\).",
   "This uses the wrong antiderivative power (\\( x \\) instead of \\( x^{1/2} \\)).",

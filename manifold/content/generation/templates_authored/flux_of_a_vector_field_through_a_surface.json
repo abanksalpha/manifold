@@ -79,7 +79,7 @@
   "W": {"type": "int", "lo": 1, "hi": 4}
  },
  "constraints": ["Ne([[c]] - [[b]], 0)"],
- "stem": "Find the flux of the constant vector field \\( \\mathbf{F} = ( [[a]], [[b]], [[c]] ) \\) upward through the portion of the horizontal plane \\( z = 0 \\) lying above the triangle \\( D \\) with vertices \\( (0,0) \\), \\( ([[W]],0) \\), and \\( (0, [[m]][[W]]) \\) (with upward-pointing normal \\( \\mathbf{k} \\)). The triangle's hypotenuse is the line \\( y = [[m]]([[W]]-x) \\).",
+ "stem": "Find the flux of the constant vector field \\( \\mathbf{F} = ( [[a]], [[b]], [[c]] ) \\) upward through the portion of the horizontal plane \\( z = 0 \\) lying above the triangle \\( D \\) with vertices \\( (0,0) \\), \\( ([[W]],0) \\), and \\( (0, [[m]]\\cdot[[W]]) \\) (with upward-pointing normal \\( \\mathbf{k} \\)). The triangle's hypotenuse is the line \\( y = [[m]]([[W]]-x) \\).",
  "answer_spec": {"op": "dblintegrate", "expr": "([[c]])", "vars": ["y", "x"], "bounds": [["0", "([[m]])*(([[W]])-x)"], ["0", "[[W]]"]]},
  "distractors": [
   "(([[a]]) + ([[b]]) + ([[c]]))*([[W]])**2*([[m]])/2",

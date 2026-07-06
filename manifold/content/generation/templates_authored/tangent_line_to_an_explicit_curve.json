@@ -144,7 +144,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "\\( L(x)=f([[x0]])+f'([[x0]])(x-[[x0]]) \\), so \\( L([[x1]]) = ([[p]]([[x0]])^{2}+[[q]]([[x0]])+[[r]]) + (2[[p]]([[x0]])+[[q]])([[x1]]-[[x0]]) = [[answer]] \\).",
+  "solution": "\\( L(x)=f([[x0]])+f'([[x0]])(x-[[x0]]) \\), so \\( L([[x1]]) = ([[p]]([[x0]])^{2}+[[q]]([[x0]])+[[r]]) + (2\\cdot[[p]]([[x0]])+[[q]])([[x1]]-[[x0]]) = [[answer]] \\).",
   "distractor_rationales": [
    "This evaluates the CURVE \\( y=f(x) \\) at \\( x_1 \\) instead of the tangent LINE.",
    "This reports \\( f([[x0]]) \\) alone, forgetting the linear correction term.",
@@ -209,7 +209,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since \\( f'(x)=-\\dfrac{[[k]]}{x^{2}} \\), the tangent at \\( x=[[x0]] \\) is \\( y=\\dfrac{[[k]]}{[[x0]]} - \\dfrac{[[k]]}{[[x0]]^{2}}(x-[[x0]]) \\); its \\( y \\)-intercept is \\( \\dfrac{2[[k]]}{[[x0]]} = [[answer]] \\).",
+  "solution": "Since \\( f'(x)=-\\dfrac{[[k]]}{x^{2}} \\), the tangent at \\( x=[[x0]] \\) is \\( y=\\dfrac{[[k]]}{[[x0]]} - \\dfrac{[[k]]}{[[x0]]^{2}}(x-[[x0]]) \\); its \\( y \\)-intercept is \\( \\dfrac{2\\cdot[[k]]}{[[x0]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This reports \\( f([[x0]]) \\), the function value, instead of the tangent's \\( y \\)-intercept.",
    "This has the right magnitude but the wrong sign.",
@@ -277,7 +277,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "Since \\( f(x)=[[a]]\\sqrt{x} \\), \\( f'(x)=\\dfrac{[[a]]}{2\\sqrt{x}} \\); at \\( x_0=[[x0]] \\), \\( f(x_0)=[[a]]\\cdot [[s]] \\) and \\( f'(x_0)=\\dfrac{[[a]]}{2\\cdot[[s]]} \\), so the \\( y \\)-intercept is \\( f(x_0)-x_0f'(x_0) = [[a]][[s]] - [[s]]^{2}\\cdot\\dfrac{[[a]]}{2[[s]]} = \\dfrac{[[a]][[s]]}{2} = [[answer]] \\).",
+  "solution": "Since \\( f(x)=[[a]]\\sqrt{x} \\), \\( f'(x)=\\dfrac{[[a]]}{2\\sqrt{x}} \\); at \\( x_0=[[x0]] \\), \\( f(x_0)=[[a]]\\cdot [[s]] \\) and \\( f'(x_0)=\\dfrac{[[a]]}{2\\cdot[[s]]} \\), so the \\( y \\)-intercept is \\( f(x_0)-x_0f'(x_0) = [[a]]\\cdot[[s]] - [[s]]^{2}\\cdot\\dfrac{[[a]]}{2\\cdot[[s]]} = \\dfrac{[[a]]\\cdot[[s]]}{2} = [[answer]] \\).",
   "distractor_rationales": [
    "This reports \\( f(x_0) \\), the function value, instead of the tangent's \\( y \\)-intercept.",
    "This has the right magnitude but the wrong sign.",
@@ -334,7 +334,7 @@
    "[[answer]] + 1",
    "[[answer]] - 1"
   ],
-  "solution": "The tangent's slope is \\( f'(x)=2[[p]]x+[[q]] \\). Setting this equal to \\( [[m]] \\) and solving gives \\( x=\\dfrac{[[m]]-[[q]]}{2[[p]]} = [[answer]] \\).",
+  "solution": "The tangent's slope is \\( f'(x)=2\\cdot[[p]]x+[[q]] \\). Setting this equal to \\( [[m]] \\) and solving gives \\( x=\\dfrac{[[m]]-[[q]]}{2\\cdot[[p]]} = [[answer]] \\).",
   "distractor_rationales": [
    "This forgets the factor of 2 from the power rule on \\( px^{2} \\).",
    "This adds \\( q \\) instead of subtracting it.",
